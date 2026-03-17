@@ -1,0 +1,1628 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-27 51 16 (May 2020)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Change 1 - 05/22</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-27 51 16 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 27 51 16</SCN><BRK/>
+<BRK/>
+<STL>PUBLIC ADDRESS SYSTEMS</STL><BRK/>
+<DTE>05/20, CHG 1: 05/22</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>public address systems</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+items(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification is to be used in conjunction with Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.<BRK/>
+<BRK/>
+If there is a requirement to integrate a Personnel Alerting System (to alert 
+building occupants of eminent threat) to the PA system, assure that the necessary 
+inputs and interfaces are included in this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>RELATED SECTIONS</TTL><BRK/>
+<BRK/>
+<TXT>Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM, applies to this section, with the additions and modifications 
+specified herein.  In addition, refer to the following sections for related work and coordination:<BRK/></TXT>
+<BRK/>
+[<LST>Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS CABLING SYSTEM.</LST>]<BRK/>
+[<LST>Section <SRF>07 84 00</SRF> FIRESTOPPING for additional work related to firestopping.</LST>]<BRK/>
+<BRK/></SPT>
+[<SPT><TTL>SUMMARY</TTL><BRK/>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is intended to be used when a perfomance based IP Networked 
+Public Address System is used where the contractor is responsible for design 
+of the system.  Include SUMMARY paragraph and all sub-paragraphs only if specification 
+includes IP Networked Public Address System.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<SPT><TTL>Scope</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify scope to clearly include desired capabilities of the public address 
+system.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>This work includes design and providing a new, complete, public address system as [required and as ]described 
+herein for the [building name].  Provide a turnkey system capable of receiving, processing, and transmitting 
+indicated input signals including the system wiring, raceways, pull boxes, terminal cabinets, outlet 
+and mounting boxes, control equipment, amplifiers, microphones, speakers, mounting hardware and other 
+accessories and miscellaneous items required for a complete operating system even though each item is 
+not specifically mentioned or described.  Provide system[s] complete and ready for operation.  See paragraph 
+titled SYSTEM DESCRIPTION for additional requirements.</OLI><BRK/>
+<BRK/>
+[<OLI>The <SUB>system layout</SUB> on the drawings show the intent of coverage and are shown in suggested locations.  
+Submit plan view drawing showing all component locations, cable routing, junction boxes, other related 
+equipment, conduit routing, and wire counts for all floors.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a RID outside 
+of the Section's Reference Article to automatically place the reference in the 
+Reference Article.  Also use the Reference Wizard's Check Reference feature 
+to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ACOUSTICAL SOCIETY OF AMERICA (ASA)</ORG><BRK/><BRK/><RID>ASA S3.2</RID><RTL>(2020; R 2025) American National Standard Method for Measuring the Intelligibility of Speech Over Communication Systems</RTL><BRK/><BRK/></REF><REF><ORG>ELECTRONIC COMPONENTS INDUSTRY ASSOCIATION (ECIA)</ORG><BRK/><BRK/><RID>ECIA EIA/ECA 310-E</RID><RTL>(2005) Cabinets, Racks, Panels, and Associated Equipment</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE C62.41.1</RID><RTL>(2002; R 2008) Guide on the Surges Environment in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/><RID>IEEE C62.41.2</RID><RTL>(2002) Recommended Practice on Characterization of Surges in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL INSTITUTE OF STANDARDS AND TECHNOLOGY (NIST)</ORG><BRK/><BRK/><RID>NIST SP 800-82</RID><RTL>(2015; Rev 2) Guide to Industrial Control Systems (ICS) Security</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>DOD 8510.01</RID><RTL>(2022) Risk Management Framework (RMF) for DoD Systems</RTL><BRK/><BRK/><RID>UFC 4-010-06</RID><RTL>(2023) Cybersecurity of Facility-Related Control Systems</RTL><BRK/><BRK/></REF><REF><ORG>U.S. FEDERAL COMMUNICATIONS COMMISSION (FCC)</ORG><BRK/><BRK/><RID>FCC Part 15</RID><RTL>Radio Frequency Devices (47 CFR 15)</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 1449</RID><RTL>(2021; Reprint Oct 2025) UL Standard for Safety Surge Protective Devices</RTL><BRK/><BRK/><RID>UL 1778</RID><RTL>(2014; Reprint Apr 2023) UL Standard for Safety Uninterruptible Power Systems</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Detail Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Layout</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>System Design</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]<BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB></ITM><BRK/>
+<BRK/>
+[<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Design Analysis and Calculations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]<BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Approved Test Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Accreditation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Components</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Public Address System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit Data Package 5 for each component in accordance with the requirements of Section 
+<SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</ITM><BRK/>
+<BRK/></SPT>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following paragraph if specification includes IP Networked 
+Public Address System.</NPR><BRK/>
+<AST/><BRK/></NTE>
+[<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Design Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide a Public Address System, capable of distributing the indicated audio signals from equipment including 
+LAN controllers, communication links, cabling, battery backup, power line surge protection and all other necessary 
+components to make a complete and operational system. Complete coverage will be provided for all interior public 
+spaces and other spaces as indicated on the drawings.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a zoned system capable of evenly distributing live [and pre-recorded] paging and music program sources.  
+Provide balanced and highly intelligible distributed sound free of noise and distortion.  Provide capability 
+of both individual and simultaneous paging all separate paging zones.  Intelligibility must meet the requirements 
+of Modified Rhyme Test (MRT) of <RID>ASA S3.2</RID></TXT><BRK/>
+<BRK/>
+<TXT>Provide all headend interface, amplification components, conditioners and any other equipment necessary.  Provide 
+system capable of interfacing with the GFGI telephone system for zone paging.</TXT><BRK/>
+<BRK/>
+<TXT>Provide all materials and labor needed for a complete and operational system for the services in this specification 
+plus the additional system capabilities as indicated. This includes but not limited to all necessary equipment, 
+interfaces, jumpers, terminations, cabling, amplifiers, conditioners, power supplies, battery backup, software 
+and all components required for system operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Application Design</TTL><BRK/>
+<BRK/>
+<TXT>Provide the system application design required to provide a public address system that complies with and satisfies 
+all of the requirements specified in this Section [and indicated on the Telecommunications Drawings] for this 
+application and project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide an application design that utilizes standard system components that are the product of a Manufacturer 
+regularly engaged in the manufacture of networked public address system, and that have been in satisfactory use 
+for at least six months.  Provide all major components from the same manufacturer.  The System must be supported 
+by a service organization that is, in the opinion of the Contracting Officer, reasonably convenient to the facility.  
+Do not deliver material to the project site more than six months prior to the scheduled date of installation.</TXT><BRK/>
+<BRK/>
+<TXT>Provide hardware, software, and installation of a complete and engineered system.  Provide a submitted design 
+that is properly engineered for the operational requirements.  Include all components required to meet this specification 
+section in the design, other than a change in, or in addition to the operational frequencies identified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Local Products</TTL><BRK/>
+<BRK/>
+<TXT>Incorporate local materials to the greatest extent possible.  All proposed local products must meet all applicable 
+hardware and software requirements set forth in these specifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Minimum Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Specifications are minimum requirements.  If the provided system requires enhanced specifications that exceed 
+those specified herein in order to satisfy the specified design, configuration, capability, and performance requirements, 
+then a provide a system with the enhanced specifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Current State-of-the-Art Technology</TTL><BRK/>
+<BRK/>
+<TXT>Provide application design and products that utilize current state-of-the-art products that provide the enhanced 
+capability and performance specified herein.   Provide design and products representing the latest manufacturer 
+make and model.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Design Analysis and Calculations</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Include in the design analysis and calculations, at a minimum, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Power supply requirements for each component and each separate speaker zone of the system in accordance 
+with the manufacturer's instructions.  Provide power consumption and dissipation data under normal and 
+maximum operating conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Cable types and sizes.</OLI><BRK/>
+<BRK/>
+<OLI>Interfaces with all other systems such as the fire alarm and mass notification system for muting of public 
+address system upon fire alarm or mass notification announcement.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Environmental Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment to be used indoors rated for continuous duty operation under ambient environmental conditions 
+of<MET> 1.7 to 49 degrees C</MET><ENG> 35 to 120 degrees F</ENG> dry bulb and 10 to 95 percent reflective humidity, noncondensing.  
+Provide all other equipment rated for continuous operation under the ambient environmental temperature, pressure, 
+humidity, and vibration conditions specified or normally encountered for the installed location.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electrical Requirements</TTL><BRK/>
+<BRK/>
+<TXT>105 VAC to 130 VAC at 60 Hz operating voltage range, plus or minus 2 percent.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power supplies</TTL><BRK/>
+<BRK/>
+<TXT>Provide power supplies that provide sufficient power for worst-case conditions of system operation that could 
+occur without signal loss or perceptible degradation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Line Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide power line surge protection for all equipment connected to AC power.  Provide surge protection integral 
+to the equipment or installed as an accessory item in accordance to manufacturer's recommendations.  Do not use 
+fuses for surge protection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shielding and Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Provide shielding and grounded as required by the system design, Manufacturer's instructions, <RID>FCC Part 15</RID> listing, 
+and regulatory requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Capability and Configuration</TTL><BRK/>
+<BRK/>
+<SPT><TTL>System Capability</TTL><BRK/>
+<BRK/>
+<TXT>Provide a public address system with capabilities to support [VoIP interface,][zone paging,][background music,][all-call,][priority 
+paging,][messaging processors,][software,][input modules,][controllers,][interface modules,] [and] [_____].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Performance Requirements</TTL><BRK/>
+<BRK/>
+<SPT><TTL>System Initiation and Operation</TTL><BRK/>
+<BRK/>
+<TXT>No user controlled features are permitted on this system.  System is to be active on power up and perform as 
+specified without any form of manual control.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Priority</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate paging priorities on the drawings or in this specification section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TXT>Provide paging priorities as indicated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT>][<SPT><TTL>CYBERSECURITY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate public address integration requirements with facility needs 
+and cybersecurity requirements.  Simple public address system may be segregated 
+from the facility network and greatly reduce the cost of cybersecurity compliance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>The Risk Management Framework (RMF) is the process by which information systems are accredited for operation 
+by a designated official from the Using Military Department.  It is the standard process under which 
+all DoD information systems must achieve and maintain their Authority To Operate.  The Cyber Security 
+process is documented in <RID>DOD 8510.01</RID> and <RID>NIST SP 800-82</RID>.  Refer to <RID>UFC 4-010-06</RID> for additional requirements.</OLI><BRK/>
+<BRK/>
+<OLI>All systems that are IP addressable or interface with the Assured Network must be certified to operate.  
+Coordinate with the Government to initiate and complete the <SUB>accreditation</SUB> process.</OLI><BRK/>
+<BRK/>
+<OLI>Cybersecurity requires input from the system vendor or provider and support from the local IMD.  The 
+local IMD-IA office is the point of contact for all Cybersecurity requirements.  The local CMIO is the 
+point of contact for all clinical and functional system requirements.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL><SUB>QUALIFICATIONS</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Qualification Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The System Contractor, Installer and Manufacturer must each have the minimum qualifications specified, 
+related to the type of system specified for this project.</OLI><BRK/>
+<BRK/>
+<OLI>The Government reserves the right to accept or reject the System Contractor, Installer or Manufacturer 
+based upon qualifications and ability to conform to specified technical or licensing requirements of 
+this Section.  System Contractors, Installers and Manufacturers that do not have the specified qualifications 
+will not be acceptable and will not be allowed to perform the work of this section.</OLI><BRK/>
+<BRK/>
+<OLI>The Government will determine the acceptability of any proposed System Contractor, Installer and Manufacturer 
+based on submitted and verified documentation that substantiates that the proposed System Contractor, 
+Installer and Manufacturer have the qualifications specified in this Section.</OLI><BRK/>
+<BRK/>
+<OLI>Submit documented verification of the specified qualifications as part of the Data Qualifications submittal.  
+The Government maintains the right to request, inspect and verify references and resumes of all technical 
+and managerial personnel assigned to the project.</OLI><BRK/>
+<BRK/>
+<OLI>Include qualification documentation, but not limited to the information outlined below:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A list of projects performed by the System Contractor and Installer during the last five years 
+explicitly involving the type of system specified in this section, including:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Name of facility where work was completed.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Name, title, address and telephone number of a point of contact for the listed facility.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">The make and model of the system provided and total scope of work for the facility.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Restrict list to the facilities where the same type of system was installed for 
+the same purpose provided.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>System Contractor Qualifications</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Contractor qualifications must include the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The Contractor is regularly engaged in the system application design, documentation, installation, 
+testing, training, and maintenance of the type of system specified in this section.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The Contractor has a minimum of five years experience providing these services for systems 
+having the same level of features and functions as the system being provided.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The Contractor has a minimum of five years as the manufacturer or an authorized distributor 
+and service organization for the manufacturer of the system provided.</OLI><BRK/>
+<BRK/>
+<OLI>Contactor personnel qualifications must:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Be factory trained or certified for the make and model of the system provided.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Have a minimum of five years experience performing the services specified in this specification 
+section.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Maintain a full compliment of spare parts for the provided system with the ability to furnish 
+on-call maintenance 24 hours per day, 365 days per year.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Installer Qualifications</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The installer personnel must be regularly engaged in the installation of the type of system in this specification 
+section.</OLI><BRK/>
+<BRK/>
+<OLI>The installation supervisor must be factory trained or certified for the make and model of the system 
+provided.</OLI><BRK/>
+<BRK/>
+<OLI>The installation supervisor must have a minimum of five years experience providing services having the 
+same level of features and functions for the system included in this specification section.</OLI><BRK/>
+<BRK/>
+<OLI>The installation personnel must have a minimum of three years experience providing services having the 
+same level of features and functions for the system included in this specification section.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>The system manufacturer must:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Have a minimum of five years experience in producing the products and type of system included in this 
+specification section.</OLI><BRK/>
+<BRK/>
+<OLI>Produce a system that satisfies all specified features, functions and product requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Guarantee the availability of the replacement parts for the designed system for a minimum of seven years 
+from the date of final acceptance of the system by the Contracting Officer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Equipment placed in storage until installation must be stored with protection from the weather, humidity and 
+temperature variations, dirt and dust, and other contaminants.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EXTRA MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>spare parts</SUB> data for each different item of material and equipment specified, after approval of the detail 
+drawings and not later than [2] [_____] months prior to the date of beneficial occupancy.  The data must include 
+a complete list of parts and supplies, with current unit prices and source of supply.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>The <SUB>public address system</SUB> must consist of an audio distribution network to include amplifiers, mixers, microphones, 
+speakers, cabling, and ancillary components required to meet the required system configuration and operation.  
+Submit Data Package 3 in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA. </TXT><BRK/>
+<BRK/>
+<SPT><TTL>Multi-Channel System with Paging</TTL><BRK/>
+<BRK/>
+<TXT>The system must include microphones, microphone outlet receptacles, microphone inputs with preamplifiers, inputs 
+for [digital music,] [telephone,] [and] [_____] program sources, [single] [all] channel paging, control for each 
+input, power amplifying equipment, and accessories required to output the public address and paging audio signals 
+through selected portions of the audio distribution network as indicated.  The paging signal must be replaced 
+[by zones] [channel [_____]] [all channels] of the system output, when the paging function is activated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Single-Channel System</TTL><BRK/>
+<BRK/>
+<TXT>The system must control and amplify an audio program for distribution within the areas indicated.  Components 
+of the system must include a [mixer-preamplifier,] [mixer-amplifier,] [mike input expander,] [power amplifier,] 
+[microphone,] [speaker system,] cabling and other associated hardware.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Performance</TTL><BRK/>
+<BRK/>
+<TXT>The system must provide even sound distribution throughout the designated area, plus or minus 3 dB for the 1/1 
+octave band centered at 4000 Hz.  The system must provide uniform frequency response throughout the designated 
+area, plus or minus 3 dB as measured with 1/3-octave bands of pink noise at locations across the designated area 
+selected by the Contracting Officer.  The system must be capable of delivering 75 dB average program level with 
+additional 10 dB peaking margin sound pressure level (SPL) in the area at an acoustic distortion level below 
+5 percent total harmonic distortion (THD).  Unless otherwise specified the sound pressure reference level is 
+20 micro Pascal (0.00002 Newtons per square meter).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Detail Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit detail drawings consisting of a complete list of equipment and material, including manufacturer's descriptive 
+and technical literature, performance charts and curves, catalog cuts, and installation instructions.  Note that 
+the contract drawings show layouts based on typical speakers.  Check the layout based on the actual speakers 
+to be installed and make necessary revisions in the detail drawings.  Detail drawings must also contain complete 
+point to point wiring, schematic diagrams and other details required to demonstrate that the system has been 
+coordinated and will properly function as a unit.  Drawings must show proposed layout of equipment and appurtenances, 
+and equipment relationship to other parts of the work including clearances for maintenance and operation.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Network IP <SUB>System Design</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit system design consisting of a design analysis, calculations, and drawings as described in paragraph titled 
+Detail Drawings.  In the design analysis, describe all components, equipment, and appurtenances required for 
+a fully functional system.  Also include a detailed description of system operation to include paging priorities, 
+interfaces with other systems, telephone interface for paging, all system inputs, and paging zones.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>STANDARD PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment which are the standard products of a manufacturer regularly engaged in the manufacture 
+of such products, and that essentially duplicate material and equipment that have been in satisfactory use at 
+least 2 years.  All <SUB>components</SUB> used in the system must be commercial designs that comply with the requirements 
+specified.  Submit copies of current approvals or listings issued by UL, or other nationally recognized testing 
+laboratory for all components.  Equipment must be supported by a service organization that is within [_____] 
+miles of the site.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Identical Items</TTL><BRK/>
+<BRK/>
+<TXT>Items of the same classification must be identical.  This requirement includes equipment, modules, assemblies, 
+parts, and components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Each major component of equipment must have the manufacturer's name, address, model and catalog number, and serial 
+number on a plate secured to the equipment.</TXT><BRK/></SPT>
+</SPT><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Chose digital IP based system or analog type system.  For analog type 
+system, show all components on drawings to include riser diagram showing all 
+required components.</NPR><BRK/>
+<BRK/>
+<NPR>Digital IP based system must be by performance specification.  Show headend 
+location on drawings to include required mounting racks.  Show all speaker locations 
+to include speaker zone assignments.  Include system operation description on 
+the drawings to describe required features and specific operational requirements.</NPR><BRK/>
+<BRK/>
+<NPR>Digital IP system must not reside on Government networks.  Performance specification 
+must include all active networking components and wiring necessary for system 
+operation.  At a minimum, include block diagrams on the drawings to include 
+required functional components such as required inputs, microphones, interfaces 
+with other systems, telephone interface modules, speakers, and volume controls.  
+Define paging priorities on the drawings.</NPR><BRK/>
+<AST/><BRK/>
+<BRK/></NTE>
+[<SPT><TTL>IP NETWORKED PUBLIC ADDRESS SYSTEM</TTL><BRK/>
+<BRK/>
+<TXT>Provide complete digital IP based audio network as required to deliver high quality audio signals to paging speakers 
+as indicated on the drawings.  Provide amplifiers of sufficient power to drive speakers indicated based on the 
+defined paging zones.  Provide additional amplifiers or modules as required for indicated paging zones.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Components</TTL><BRK/>
+<BRK/>
+<TXT>Provide all system components as required for a complete and operational system to include the following minimum 
+components.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Headend Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide floor mounted equipment rack to house all headend equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Auxiliary Inputs</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include specific inputs as required by project specific requirements.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide rack space and input modules for a minimum of two auxiliary inputs.  Input sources are [_____].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Distribution Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide all distribution equipment necessary to process and distribute paging and music to zones as indicated 
+on the drawings.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Monitor Panel</TTL><BRK/>
+<BRK/>
+<TXT>Provide system monitor panel with speaker and zone selection capability to check each output, voice input, and 
+zone selection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Loudspeaker System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show all speaker locations and associated speaker zones on the construction 
+drawings.  Space corridor ceiling speakers at a maximum of twice the ceiling 
+height where ceiling heights do not exceed  <MET>3 m</MET> <ENG>10 feet</ENG>  above finished floorin 
+order to provide maximum uniform coverage.  Space speakers in other locations 
+as recommended by the speaker manufacturer for maximum coverage at low volume 
+levels.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Show individual room volume control locations on the contract drawings 
+to meet project specific requirements.  Indicate specific rooms that require 
+all-call bypass feature on the contract drawings.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide low power loudspeakers for uniform sound distribution at low volume levels.  Space speakers [as indicated 
+on the drawings][_____].  Provide separate volume control for individual rooms as indicated on the drawings.  
+[In rooms designated on the drawings, provide volume control with bypass feature to allow for all-call paging 
+to bypass the local volume control and be audible at normal system volume.]</TXT><BRK/>
+<BRK/>
+<TXT>Provide speakers that are designed to provide even sound dispersion over the 20 Hz to 20 kHZ frequency range 
+within the entire area the speaker covers.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Indoor Loudspeaker Assemblies</TTL><BRK/>
+<BRK/>
+<TXT>Provide cone type speakers with wall or ceiling enclosures and baffles as indicated on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Outdoor Loudspeaker Assemblies</TTL><BRK/>
+<BRK/>
+<TXT>Provide weather resistant cone speakers with enclosures and baffles for outdoor ceiling locations.  Provide horn 
+type loudspeakers for outdoor wall mounted locations.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>IP Addressable PoE Loudspeakers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if not using IP network type system.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  IP Addressable PoE Loudspeakers must not reside on Government networks 
+without prior permission nor without meeting RMF requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide PoE speakers with integral amplifiers to provide a maximum of 8 Watts of power from the PoE connection.  
+Provide all networking components, PoE switches, cabling, and termination equipment to be an integral part of 
+the public address system.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Microphones</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show microphone locations on the contract drawings as required to meet 
+project specific requirements.  Microphones are normally only provided at the 
+headend equipment for testing purposes in medical facilities.  All other paging 
+input is via the telephone system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide types and quantities of microphones as indicated on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>System Configuration</TTL><BRK/>
+<BRK/>
+<SPT><TTL>All Call</TTL><BRK/>
+<BRK/>
+<TXT>Provide all call paging capability.  All call paging will have priority over all other paging zones.  Provide 
+access to all call paging via a microphone, telephone, or both.  Microphone access will have priority over telephone 
+access for all paging zone types.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Zone Paging</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Show all paging zones on the contract drawings.  Coordinate paging zones 
+with project specific requirements.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Show zone volume control locations on the contract drawings.</NPR><BRK/>
+<AST/></NTE><BRK/>
+<TXT>Provide local paging zones as indicated on the drawings.  Provide access to local zones using the telephone system[, 
+microphones,][ or both].  All call paging will have priority over all local paging zones.  Provide zone volume 
+control at a controlled access location as indicated on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Include the following paragraph only in medical facilities that contain 
+combined medical and dental clinics.</NPR><BRK/>
+<AST/></NTE>[<SPT><TTL>Medical and Dental Clinic Zoning</TTL><BRK/>
+<BRK/>
+<TXT>Provide separate wide area zone for the medical clinic areas and separate wide area zone for dental clinic areas 
+as indicated on the drawings.  These wide area zones are in addition to all call for the entire facility.  All 
+call will have priority over wide area zones.</TXT></SPT><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following paragraph only in medical facilities that contain 
+an auditorium equipped with an auditorium AV system.</NPR><BRK/>
+<AST/></NTE><BRK/>
+[<SPT><TTL>Auditorium Zone</TTL><BRK/>
+<BRK/>
+<TXT>Provide all call paging in the auditorium only.  Do not include auditorium within a local or wide area paging 
+zone.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>System Performance</TTL><BRK/>
+<BRK/>
+<TXT>Provide system that evenly distributes sound throughout loudspeaker zones at plus or minus 3 dB for the 1/1 octave 
+band centered at 4,000 Hz.  Provide system that has uniform frequency response throughput loudspeaker zones of 
+plus or minus 3 DB as measured with 1/3 octave bands of pink noise at locations as selected by the Contracting 
+Officer.  Provide system capable of delivering 75 dB average program level with additional 10 dB peaking margin 
+sound pressure level without causing the associated amplifier to exceed normal operating specifications for power 
+or distortion.  Reference sound pressure level is 20 micropascal, unless otherwise indicated.  Minimum audio 
+sound pressure level must be at least +15 dB in all areas.  System must not produce audible hum, noise, buzz, 
+or rattles at any loudspeaker.  Electoral/acoustic signal-to-noise ratio for the entire system must be at least 
+66 dB.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Electrical Power</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include this paragraph for all medical facilities.  Include for other 
+facilities as necessary to meet project specific requirements.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  For medical facilities with a Type I or Type II essential, connect the 
+public address system to the essential system life safety branch.  Coordinate 
+with project electrical engineer.  Public address equipment must be connected 
+to dedicated circuit breakers that serve no other loads.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide uninterruptable power supply (UPS) units that will support AC powered equipment for a minimum of 15 minutes 
+of full power during an AC power failure.  Provide UPS units that comply with <RID>UL 1778</RID> and <RID>FCC Part 15</RID></TXT><BRK/>
+<BRK/></SPT>
+]</SPT>][<SPT><TTL>ANALOG AUDIO SYSTEM</TTL><BRK/>
+<BRK/>
+<SPT><TTL>MIXER-PREAMPLIFIER</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Verify that the designated number of inputs is sufficient to meet the 
+requirements of the design and increase the number of inputs if required.</NPR><BRK/>
+<BRK/>
+<NPR>Consideration should be given to the use of a mixer-amplifier instead of a mixer-preamplifier/power-amplifier 
+combination.  Mixer-amplifiers may not be available for power outputs of 200 
+watts or greater.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mixer-preamplifier must as a minimum conform to the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="12">
+      <COL AUTOWIDTH="0" WIDTH="201.00"/>
+      <COL AUTOWIDTH="0" WIDTH="370.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Rated Output</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">18 dB</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Frequency Response</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Plus or Minus 1 dB, 20 - 20,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Distortion</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Less than 0.5 percent, 20 - 20,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL MERGEDOWN="1">
+<DTA TYPE="STRING">Signal to noise</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Microphone - 60 dB</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL INDEX="2">
+<DTA TYPE="STRING">Aux - 70 dB</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Inputs</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">5 independent balanced low-impedance transformer-isolated</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL MERGEDOWN="2">
+<DTA TYPE="STRING">Input Sensitivity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Microphone - 0.003 volts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL INDEX="2">
+<DTA TYPE="STRING">Aux - 0.125 volts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL INDEX="2">
+<DTA TYPE="STRING">Magnetic Cartridge - 0.0005 volts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Input Channel Isolation</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">80 dB minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Tone Controls</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Plus or Minus 10 dB range at 50 and 15,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">Power Requirement</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">110-125 Vac 60 Hz</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>POWER AMPLIFIERS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The required wattage rating will be inserted in the blank.  This wattage 
+may be computed as follows:  Allow 1 watt for each loudspeaker.  Use 1.4 multiplier 
+for reserve power.  Auditorium systems will have an output of not less than 
+20 watts or not less than 10 watts per 100 seats, whichever is greater.  Special 
+consideration will be given to acoustics, speaker placement, and the functions 
+for which the system will be used, particularly for large auditoriums where 
+music will be reproduced or amplified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Power amplifiers as a minimum conform to the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0" WIDTH="87">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="182.25"/>
+      <COL AUTOWIDTH="0" WIDTH="314.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Rated power output</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[60] [125] [250] [_____] watts RMS</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Frequency Response</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Plus or Minus  3 dB,  20-20,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Distortion</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Less than 2 percent at RPO, 600-13,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Input Impedance</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">50 k ohm unbalanced</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Output Impedance</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Balanced 4 and 8 ohms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Output voltage</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">25 and 70.7 volts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.75">
+         <CEL>
+<DTA TYPE="STRING">Power Requirement</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">110-125 Vac 60 Hz</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MIXER AMPLIFIER</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Verify that the designated number of inputs are sufficient to meet the 
+requirements of the design and increase the number of inputs if required.</NPR><BRK/>
+<BRK/>
+<NPR>Consideration should be given to the use of a mixer-amplifier instead of a mixer-preamplifier/power-amplifier 
+combination.  Mixer-amplifiers may not be available for power outputs of 200 
+watts or greater.</NPR><BRK/>
+<BRK/>
+<NPR>The required wattage rating will be inserted in the blank.  This wattage may 
+be computed as follows:  Allow 1 watt for each loudspeaker.  Use 1.4 multiplier 
+for reserve power.  Auditorium systems will have an output of not less than 
+20 watts or not less than 10 watts per 100 seats, whichever is greater.  Special 
+consideration will be given to acoustics, speaker placement, and the functions 
+for which the system will be used, particularly for large auditoriums where 
+music will be reproduced or amplified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mixer amplifier must as a minimum conform to the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="198.00"/>
+      <COL AUTOWIDTH="0" WIDTH="373.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Rated Power Output (RPO)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[35] [60] [125] [_____] watts RMS</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Frequency Response</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Plus or Minus  3 dB,  20-20,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Distortion</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Less than 1 percent at RPO, 60 - 13,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL>
+<DTA TYPE="STRING">Inputs</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2 microphones (high impedance or low-impedance unbalanced 2 Aux. (high-impedance)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Output Impedance</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Balanced 4 and 8  ohms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Output Voltage</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">25 and  70.7 volts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Power Requirement</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">110-125 Vac 60 Hz</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MICROPHONE INPUT MODULES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Verify that the designated number of inputs are sufficient to meet the 
+requirements of the design and increase the number of inputs if required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Microphone input modules must as a minimum conform to the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="227.25"/>
+      <COL AUTOWIDTH="0" WIDTH="229.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEDOWN="1">
+<DTA TYPE="STRING">Rated Outputs</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.25 volts into 10,000 ohms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL INDEX="2">
+<DTA TYPE="STRING">1.0 volts into 10,000 ohms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Frequency Response</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Plus or Minus 2 dB, 20 - 20,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Distortion</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Less than 0.5 percent 20 - 20,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Inputs</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4 transformer - coupled balanced 150 ohm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Input Sensitivity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.003 volts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.75">
+         <CEL>
+<DTA TYPE="STRING">Input Channel Isolation</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">70 dB minimum</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MICROPHONES<BRK/>
+<BRK/></TTL>
+<SPT><TTL>Desk Microphone</TTL><BRK/>
+<BRK/>
+<TXT>Microphones must as a minimum conform to the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="133.50"/>
+      <COL AUTOWIDTH="0" WIDTH="323.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Element</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Dynamic</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Pattern</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Cardioid</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Frequency Response</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">50 - 12,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Impedance</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Low impedance mic (150-400 ohms)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Front-to-back Ratio</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">20 dB</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.00">
+         <CEL>
+<DTA TYPE="STRING"> Selector switches</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Selector switches for zone must be be [integral microphone] or [Separate console adjacent to microphone]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gooseneck Microphone</TTL><BRK/>
+<BRK/>
+<TXT>Gooseneck microphone must meet the minimum requirements of the desk microphone.  Microphone must have push to 
+talk button.  Gooseneck tube length must be<MET> [305] [406] [_____] mm</MET><ENG> [12] [16] [_____] inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Microphone Jack</TTL><BRK/>
+<BRK/>
+<TXT>Each outlet for microphones must consist of a standard outlet box, flush-mounted, and fitted with a three-pole, 
+polarized, locking-type, female microphone jack and a corrosion resistant-steel device plate.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT>]<SPT><TTL>LOUDSPEAKERS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate on drawings type of speaker and location.  <HL3>Horn Speaker must 
+be specified only in areas with high ambient noise or outdoors.  High output 
+speaker enclosures must be restricted to large open spaces i.e. gymnasiums, 
+auditoriums or commons</HL3></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Cone Speaker</TTL><BRK/>
+<BRK/>
+<TXT>The cone speaker must as a minimum conform to the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0" WIDTH="92">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="13">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="190.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="229.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Application</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Wall baffle] [Ceiling]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Frequency range</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">60 to 12,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING">Power Rating</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Normal - [7] [_____] watts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">Peak   - [10] [_____] watts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Voice Coil Impedance</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">8 ohms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Line Matching Transformer Type</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">25/ 70.7 volt line</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Capacity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4 watts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Magnet</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10 ounces or greater</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Primary Taps</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.5, 1,  2 and 4 watts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING">Primary Impedance</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">25 volts - 1250, 625, and 312 ohms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">70.7 volts - 10k, 5k, and 2.5k ohms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Frequency Response</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">30 - 20,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="41.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Insertion Loss</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Less than 1 dB</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Horn Speaker</TTL><BRK/>
+<BRK/>
+<TXT>The horn speaker must as a minimum conform to the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="205.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="366.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Application</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Indoor] [Outdoor] [Weatherproof]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Frequency Response</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">400 - 14,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Power Taps</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">70 volt line - .9, 1.8, 3.8, 7.5, and 15 watts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Impedance</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5000, 2500, 1300, 670, 330, 90, and 45 ohms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Normal - [ 7] [_____] watts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">Peak   - [15] [_____] watts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dispersion</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">110 degrees</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dual Horn Speaker</TTL><BRK/>
+<BRK/>
+<TXT>The dual horn speaker must meet the minimum requirements of horn speaker except the dispersion must be 100 degrees.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Output Speaker Enclosures</TTL><BRK/>
+<BRK/>
+<TXT>High Output speaker enclosures must be of the tuned-port design for precise balancing and tuning of the speaker.  
+The enclosures must be constructed throughout of<MET> 19.1 mm</MET><ENG> 3/4 inch</ENG> high density board, with screwed and glued 
+joints, durably braced, and padded with fiberglass where acoustically required.   Speaker enclosures must have 
+a [25] [45] degree [_____] vertical dispersion and [90] [120] degrees [_____] horizontal dispersion.  The effective 
+length of throw must be a minimum of<MET> [15] [40] [60] [_____]m</MET><ENG>[50] [130] [200] [_____] feet</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wall Baffle Speaker Enclosures</TTL><BRK/>
+<BRK/>
+<TXT>The wall baffle speaker must be of [particle board construction covered with [walnut laminate]][full steel construction 
+painted [off-white][_____] [_____] and complete with [black] [_____] cloth grille].  Baffle must feature 9.5 
+[12.5] degree slope to provide directional sound dispersion offset in the direction of radiation.  Wall baffle 
+enclosure must come equipped with a wall mounting bracket designed to assure a rigid mounting to any flat surfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ceiling Speaker Enclosures</TTL><BRK/>
+<BRK/>
+<TXT>Ceiling speaker enclosure must be constructed of heavy gauge cold steel with interior undercoating and<MET> 38 mm</MET><ENG> 
+1-1/2 inch</ENG> thick high density fiberglass<MET> 24 kg/cu. m</MET><ENG> 1-1/2 lbs/cu. ft</ENG>.  The unit must be [round] [square] and 
+designed for [recessed] [surface] installations which will be accomplished via [standard screw] [torsion spring] 
+[flange mount] mounting.  Recessed models must have a rust-preventive, [textured black coating] [_____] and the 
+surface mount unit finished in textured [white] [_____].  Enclosure must include four triple compound conduit 
+knockouts.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SPEAKER SWITCHING PANEL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if paging function is not required.  Show zone boundaries on the 
+drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Selector Switches</TTL><BRK/>
+<BRK/>
+<TXT>Zone control must be provided for the paging function.  The speaker switching panel must contain at least [_____] 
+double-pole, [[4-] [3-] position] [push button] selector switches and must be [rack-mounted] [desk mounted] [selector 
+switches built in microphone]to activate priority relays.  Selector switches labeling must be provided to identify 
+the zones.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Power supply</TTL><BRK/>
+<BRK/>
+<TXT>Power supply must be provided for priority relays and controls, rack-mounted and sized for a capacity equal to 
+200 percent of the as-built control system, and must operate at 24 Vdc.  Input and output must be protected to 
+permit Class 2 wiring in accordance with <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PRIORITY RELAYS AND CONTROLS</TTL><BRK/>
+<BRK/>
+<TXT>Provide priority relays and controls required to accomplish operations specified.  Relays must be completely 
+enclosed with a plastic dust cover for maximum protection against foreign matter, and must be plug-in type.  
+Relays must be provided with a diode wired across the relay coil for transient suppression and must be installed 
+utilizing factory-prewired, rack-mounted receptacle strips.  Coil must be maximum 24 volts dc.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SWITCHES AND CONTROLS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Remote Loudspeaker ON/OFF Switches</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If more than one switch is required, indicate in a schedule on the drawing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Remote switches must be [key-operated] [toggle switch] 2-pole, wall-mounted, single gang type with engraved switch 
+plates finished to match the approved finish of electrical wall switches.  Low-voltage priority override relays 
+must be provided as part of the switches with all wiring to the racks to allow override of the ON/OFF switches 
+for priority announcements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Remote Loudspeaker Volume Controls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If more than one control is required, indicate in a schedule on the drawing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Remote volume controls must be an auto transformer type with detented 3 dB steps and an OFF position.  The controls 
+must be wall-mounted in single-gang outlet boxes and furnished with engraved switching plates finished to match 
+approved finish of electrical wall switches.  Insertion loss of the controls must not exceed 0.6 dB and the power-handling 
+capacities of the control must be [10] [35] [75] [_____] watts.  Low-voltage priority override relays must be 
+furnished as part of these controls with all wiring to the racks to allow override of the volume controls for 
+priority announcements.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EQUIPMENT RACKS AND CABINETS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For low powered systems i.e. only paging systems,specify perforations 
+or louvers for cooling through convection currents.  Systems with total amplifier 
+capacity exceeding 400 watts use top rack mounted fan option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Equipment must be mounted on[<MET> 482.6 mm</MET><ENG> 19 inch</ENG> racks] [swing wall mounted cabinets with hinged front removable 
+and reversible door and [right hand] [left hand] hinged rear section that provides access to equipment with <MET> 
+482.6 mm</MET><ENG> 19 inch </ENG>mounting rails] [and] [floor mounted cabinets with <MET> 482.6 mm</MET><ENG> 19 inch </ENG>mounting rails] as indicated 
+on the drawings  UL listed andin accordance with <RID>ECIA EIA/ECA 310-E</RID> and located as shown on drawings.  Ventilated 
+rear panels, solid side panels, and solid top panels must be provided for cabinets.  Equipment cabinets must 
+be provided with lockable front panels that limit access to equipment.  The lockable front must not cover items 
+that require operator access.  Cabinet cooling must be through [perforations or louvers in front panels to ensure 
+adequate ventilation of equipment] [top cabinet mounted fan].  The racks and cabinets must be factory finished 
+with a uniform baked enamel over rust inhibiting primer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CABLES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Speaker Cable</TTL><BRK/>
+<BRK/>
+<TXT>Cables must be of the gauge required depending upon the cable run length.  In no case are cables to be used which 
+is smaller than 18 AWG.  Insulation on the conductors must be polyvinyl chloride (PVC) or an equivalent synthetic 
+thermoplastic not less than<MET> 0.2 mm</MET><ENG> 0.009 inch</ENG>.  Cables must be jacketed with a [PVC] [Fluoropolymer] compound.  
+The jacket thickness must be<MET> 0.5 mm</MET><ENG> 0.02 inch</ENG> minimum.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Microphone Cable</TTL><BRK/>
+<BRK/>
+<TXT>Cable conductor must be stranded copper 20 AWG.  Insulation on the conductors must be polyvinyl chloride (PVC) 
+or an equivalent synthetic thermoplastic not less than<MET> 0.2 mm</MET><ENG> 0.009 inch</ENG>.  Cable must be shielded 100 percent 
+of aluminum polyester foil with a bare 22 gauge stranded soft copper drain conductor.  Cables must be jacketed 
+with a [PVC] [Fluoropolymer] compound.  The jacket thickness must be<MET> 0.5 mm</MET><ENG> 0.02 inch</ENG> minimum.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TERMINALS</TTL><TXT><BRK/>
+<BRK/>
+Terminals must be [solderless, tool-crimped pressure] [or] [_____] type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SURGE PROTECTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Power Line Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT>Major components of the system such as power amplifiers, mixer-preamplifiers, and tuners, must have a device, 
+whether internal or external, which provides protection against voltage spikes and current surges originating 
+from commercial power sources in accordance with <RID>IEEE C62.41.1</RID>/<RID>IEEE C62.41.2</RID> B3 combination waveform and <RID>NFPA 70</RID>
+.  Fuses must not be used for surge protection.  The surge protector must be rated for a maximum let thru voltage 
+of 350 Volts ac (line-to-neutral) and 350 Volt ac (neutral-to-ground).  Surge protection device must be UL listed 
+and labeled as having been tested in accordance with <RID>UL 1449</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SIGNAL SURGE PROTECTION</TTL><BRK/>
+<BRK/>
+<TXT>Major components of the system must have internal protection circuits which protects the component from mismatched 
+loads, direct current, and shorted output lines.  Communication cables/conductors must have surge protection 
+installed at each point where it exits or enters a building.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TELEPHONE INTERFACE MODULE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Telephone Interface module may be used to access PA system from telephone 
+in conjunction or lieu of microphone.  If there is a requirement to integrate 
+Telephone Interface module to the PA system, assure that the necessary inputs 
+and interfaces are included in this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Analog Interface Module</TTL><BRK/>
+<BRK/>
+<TXT>Telephone Interface module must provide one way all call paging access from telephone to PA system.  Paging must 
+be accomplished by the building telephone system instruments interconnected to the PA system via an interface 
+module to allow telephone dial up access to the paging amplifier.  Telephone interface module must as a minimum 
+conform to the following specifications:<BRK/>
+<TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="177.75"/>
+      <COL AUTOWIDTH="0" WIDTH="279.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Impedance</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">600 ohms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Frequency response</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">100Hz to 10Khz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">70V Input Impedance</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200K ohms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Output level</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">400mV rms</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Input Power Requirement</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">12-24Vdc (from power supply)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="51.00">
+         <CEL>
+<DTA TYPE="STRING">Access requirement</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Electronic (analog) or IA2 line key (line card required) PABX loop or ground-start trunk port, or dedicated single-line phone</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>VoIP Interface Module</TTL><BRK/>
+<BRK/>
+<TXT>Provide paging interface module suitable for use with VoIP telephone systems.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with the details of the work and working conditions, verify dimensions in the field, 
+and advise the Contracting Officer of any discrepancies before performing the work.</TXT><BRK/>
+ <BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install equipment as indicated and specified, and in accordance with the manufacturer's recommendations except 
+where otherwise indicated.  Equipment mounted out-of-doors or subject to inclement conditions must be weatherproofed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Equipment Racks</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Racks  be located adjacent to walls.  If a mechanical rack/floor attachment 
+is required, controls must not be lower than <MET>762.0 mm</MET> (<ENG>30 inches</ENG> nor higher 
+than <MET>1.7 m</MET> <ENG>66 inches</ENG> above floor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mount racks side-by-side and bolt together.  Group items of the same function together, either vertically or 
+side-by-side.  Arrange controls symmetrically at a height as indicated.  Make audio input and interconnections 
+with approved shielded cable and plug connectors; output connections may be screw terminal type.  All connections 
+to power supplies must utilize standard male plug and female receptacle connectors with the female receptacle 
+being the source side of the connection.  Inputs, outputs, interconnections, test points, and relays must be 
+accessible at the rear of the equipment rack for maintenance and testing.  Each item must be removable from the 
+rack without disturbing other items or connections.  Empty space in equipment racks must be covered by blank 
+panels so that the entire front of the rack is occupied by panels.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Install wiring in rigid steel conduit, intermediate metal conduit, cable trays, or electric metallic tubing as 
+specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Wiring for microphone, grounding, line level,  speaker 
+and power cables must be isolated from each other by physical isolation and metallic shielding.  Shielding must 
+be terminated at only one end.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>GROUNDING</TTL><BRK/>
+<BRK/>
+<TXT>All grounding practices must comply with <RID>NFPA 70</RID>.  Equipment must be grounded to the serving panelboard ground 
+bus through a green grounding conductor.  Metallic conduits serving the equipment must be isolated on the equipment 
+end with an insulating bushing to prevent noise from being transferred to the circuit.  Equipment racks must 
+be grounded to the panelboard ground bus utilizing a 8 AWG conductor.  Grounding conductor must be terminated 
+to the rack using connector suitable for that purpose.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TRAINING</TTL><BRK/>
+<BRK/>
+<TXT>Conduct a training course for [_____] members of the operating and maintenance staff as designated by the Contracting 
+Officer.  The training course will be given at the installation during normal working hours for a total of [_____] 
+hours and must start after the system is functionally complete but prior to final acceptance tests.  The field 
+instructions must cover all of the items contained in the approved operating and maintenance manuals, as well 
+as demonstrations of routine maintenance operations.  Notify the Contracting Officer at least 14 days prior to 
+the start of the training course.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>ACCEPTANCE TESTS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit test reports in booklet form showing all field tests performed to adjust each component and to prove compliance 
+with the specified performance criteria, upon completion and testing of the installed system.  The reports must 
+include the manufacturer, model number, and serial number of test equipment used in each test.  Each report must 
+indicate the final position of controls and operating mode of the system.  After installation has been completed, 
+conduct acceptance tests, utilizing the <SUB>approved test procedures</SUB>, to demonstrate that equipment operates in accordance 
+with specification requirements.  Submit test plan and test procedures for the acceptance tests.  The test plan 
+and test procedures must explain in detail, step-by-step actions and expected results to demonstrate compliance 
+with the requirements specified.  The procedure must also explain methods for simulating the necessary conditions 
+of operation to demonstrate system performance.  Notify the Contracting Officer [14] [_____] days prior to the 
+performance of tests.  In no case will notice be given until after the Contractor has received written Contracting 
+Officer approval of the test plans as specified.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Testing Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Include the following minimum testing:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Operational Test: Perform tests that include originating program and page messages at microphone outlets, 
+preamplifier program inputs, and other inputs. Verify proper routing and volume levels and that system 
+is free of noise and distortion.</OLI><BRK/>
+<BRK/>
+<OLI>Signal-to-Noise Ratio Test: Measure signal-to-noise ratio of complete system at normal gain settings 
+as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Disconnect microphone at connector or jack closest to it and replace it in the circuit with 
+a signal generator using a 1000-Hz signal. Replace all other microphones at corresponding connectors 
+with dummy loads, each equal in impedance to microphone it replaces. Measure signal-to-noise 
+ratio.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Repeat test for each separately controlled zone of loudspeakers.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Minimum acceptance ratio is 50 dB</OLI><BRK/>
+<BRK/>
+<OLI>Distortion Test: Measure distortion at normal gain settings and rated power. Feed signals at frequencies 
+of 50, 200, 400, 1000, 3000, 8000, and 12,000 Hz into each preamplifier channel. For each frequency, 
+measure distortion in the paging and all-call amplifier outputs. Maximum acceptable distortion at any 
+frequency is 3 percent total harmonics.</OLI><BRK/>
+<BRK/>
+<OLI>Acoustic Coverage Test: Feed pink noise into system using octaves centered at 500 and 4000 Hz. Use sound-level 
+meter with octave-band filters to measure level at five locations in each zone. For spaces with seated 
+audiences, maximum permissible variation in level is plus or minus 2 dB. In addition, the levels between 
+locations in same zone and between locations in adjacent zones must not vary more than plus or minus 
+3 dB.</OLI><BRK/>
+<BRK/>
+<OLI>Power Output Test: Measure electrical power output of each power amplifier at normal gain settings of 
+50, 1000, and 12,000 Hz. Maximum variation in power output at these frequencies must not exceed plus 
+or minus 1 dB.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following paragraph where UPS units are included for the 
+public address system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Power Outage Test: Turn off AC power at the circuit breaker for AC powered components connected to a 
+UPS unit to ensure components continue to operate for a minimum of 15 minutes.</OLI>]<BRK/>
+<BRK/>
+<OLI>Inspection: Verify that units and controls are properly labeled and interconnecting wires and terminals 
+are identified. Prepare a list of final tap settings of paging speaker-line matching transformers.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Public address system will be considered defective if it does not pass any of the required individual tests and 
+inspections listed above.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>   <END/><BRK/></SEC>

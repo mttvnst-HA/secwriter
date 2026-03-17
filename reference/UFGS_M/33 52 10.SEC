@@ -1,0 +1,1810 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="394.50"/>
+      <COL AUTOWIDTH="0" WIDTH="393.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-33 52 10 (November 2018)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 1 - 11/20</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.75">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-33 52 10 (April 2008)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 33 52 10</SCN><BRK/>
+<BRK/>
+<STL>FUEL SYSTEMS PIPING (SERVICE STATION)</STL><BRK/>
+<DTE>11/18, CHG 1: 11/20</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements of <SCP>interior and exterior fuel piping and accessories for 
+small, non-aviation fueling applications (i.e., gasoline fueling, diesel fueling, fuel oil systems) and service 
+station type aviation fuel systems</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this UFGS in conjunction with UFC 3-460-01 "Design: Petroleum Fuel Facilities".  Include in this specification 
+any additional system components/devices necessary to meet state and local regulations.</NPR><BRK/>
+<BRK/>
+<NPR>Stage I vapor recovery is the process of recovering vapors when a storage tank is filled.  Stage I vapor recovery 
+is mandatory on all Army Facilities.  Stage II vapor recovery is the process of recovering vapors during vehicle 
+fueling operations.  Stage II vapor recovery is optional and will be included if required by state and local clean 
+air regulations.</NPR><BRK/>
+<BRK/>
+<NPR>The specification is written around ASME's standard Class 150 rating.  For applications requiring higher pressure 
+ratings (e.g., Class 300), the designer will have to modify this specification appropriately.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>SUMMARY</TTL><BRK/>
+<BRK/>
+<TXT>This section defines the requirements for pipe, piping components, and valves as related to small fuel distribution systems (non-aviation type).  
+Provide the entire fuel distribution system as a complete and fully operational system.  Size, select, construct, and install system components 
+to operate together as a complete system.  Substitutions of functions specified herein will not be acceptable.  Coordinate the work of the system 
+manufacturer's service personnel during construction, testing, calibration, and acceptance of the system.  Design system components and piping 
+specified herein to handle a working pressure of<MET> 1900 kPa</MET><ENG> 275 psig</ENG> at<MET> 38 deg C</MET><ENG> 100 deg F</ENG>.  System components specified herein must be compatible 
+with the fuel to be handled.  Components must be suitable for outside, unsheltered location, and to function normally in ambient temperatures between<MET>
+ [_____] degrees C and [_____] degrees C</MET><ENG> [_____] degrees F and [_____] degrees F</ENG>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Related Sections</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Welding</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use Section <SRF>33 52 23.15</SRF> POL SERVICE PIPING WELDING to define all welding requirements for pressure piping.  
+Edit Section <SRF>33 52 23.15</SRF> POL SERVICE PIPING WELDING around the requirements of ASME B31.3.</NPR><BRK/>
+<BRK/>
+<NPR>Within Section <SRF>33 52 23.15</SRF> POL SERVICE PIPING WELDING, require 100 percent radiographic testing on all underground 
+steel piping as well as all piping downstream of pumps (See UFC 3-460-01).  For all other piping, require random 
+radiographic testing per ASME B31.3, Category M fluid service (20 percent).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Welding activities for pipe and piping components must be in accordance with Section <SRF>33 52 23.15</SRF> POL SERVICE PIPING WELDING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Earthwork</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Require backfill for aluminum, stainless steel, or carbon steel pipe to be sand.</NPR><BRK/>
+<BRK/>
+<NPR>Require sand to be a fine aggregate that is washed and thoroughly dried, contains no more than 500 ppm chlorides, 
+contains no more than 500 ppm sulfates, and has a pH greater than 7.</NPR><BRK/>
+<BRK/>
+<NPR>Suggest horizontal sections of belowground piping be installed with a minimum of<MET> 915 mm</MET><ENG> 36 inch</ENG> of backfill between 
+the top of the pipe and the ground surface.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Excavate and backfill piping as specified in Section <SRF>31 00 00</SRF> EARTHWORK.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cathodic Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide buried metallic components including pipe, anchors, and conduit with a cathodic protection system as specified in [Section <SRF>26 42 13</SRF> GALVANIC 
+(SACRIFICIAL) ANODE CATHODIC PROTECTION (GACP) SYSTEM][ and ][Section <SRF>26 42 17</SRF> IMPRESSED CURRENT CATHODIC PROTECTION (ICCP) SYSTEM].  Cathodic 
+protection for metal components that attach to a tank must be coordinated and compatible with the tank corrosion control system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Concrete Manholes</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The design of manholes including size, reinforcing, arrangement, penetrations, system components and piping 
+within the valve manholes is the responsibility of the designer.  Design manholes to provide proper venting and 
+drainage and adequate room for maintenance without stepping on or over any piping/system components.  When electric 
+manhole sump pumps are used, the electrical distribution and tie in points must be designed and shown on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Require in the referenced section below that concrete be<MET> 30 MPa</MET><ENG> 4000 psi</ENG> minimum 28-day compressive strength, 
+air-entrained admixture (<MET> 133 grams per cubic meter</MET><ENG> 3.6 ounces per cubic yard</ENG>), with water-reducing admixture 
+(<MET> 814 grams per cubic meter</MET><ENG> 22 ounces per cubic yard</ENG>), reinforced with deformed steel bars.  Require manhole sides 
+to be constructed by one monolithic pour.  Require cast-iron steps with nonslip surfaces, spaced<MET> 300 to 400 mm</MET><ENG>
+ 12 to 16 inches</ENG> on centers to be firmly embedded in the concrete walls for access to bottom of manholes.</NPR><BRK/>
+<BRK/>
+<NPR>Note that the interior walls of a typical concrete manhole are not fuel resistant.  Fuel that is collected within 
+a manhole will eventually, if not removed, wick through the concrete to the surrounding soil.  Consider protecting 
+the interior manhole walls with some type of fuel resistant coating.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Construct manhole of concrete in accordance with Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN PETROLEUM INSTITUTE (API)</ORG><BRK/><BRK/><RID>API RP 540</RID><RTL>(1999; R 2004) Electrical Installations in Petroleum Processing Plants</RTL><BRK/><BRK/><RID>API RP 1110</RID><RTL>(2013; R 2018) Recommended Practice for the Pressure Testing of Steel Pipelines for the Transportation of Gas, Petroleum Gas, Hazardous Liquids, Highly Volatile Liquids, or Carbon Dioxide</RTL><BRK/><BRK/><RID>API RP 2003</RID><RTL>(2015; 8th Ed) Protection Against Ignitions Arising out of Static, Lightning, and Stray Currents</RTL><BRK/><BRK/><RID>API STD 600</RID><RTL>(2015) Steel Gate Valves-Flanged and Butt-welding Ends, Bolted Bonnets</RTL><BRK/><BRK/><RID>API STD 608</RID><RTL>(2025) Metal Ball Valves - Flanged, Threaded, And Welding End</RTL><BRK/><BRK/><RID>API Spec 5L</RID><RTL>(2018; 46th Ed; ERTA 2018) Line Pipe</RTL><BRK/><BRK/><RID>API Spec 6D</RID><RTL>(2021; Addendum 1 2025) Specification for Pipeline and Piping Valves</RTL><BRK/><BRK/><RID>API Spec 6FA</RID><RTL>(1999; R 2006; Errata 2006; Errata 2008; R 2011) Specification for Fire Test for Valves</RTL><BRK/><BRK/><RID>API Spec 17J</RID><RTL>(2016; Errata 2 2017; ADD 1 2017) Specification for Unbonded Flexible Pipe</RTL><BRK/><BRK/><RID>API Std 594</RID><RTL>(2017) Check Valves:  Flanged, Lug, Wafer and Butt-Welding</RTL><BRK/><BRK/><RID>API Std 607</RID><RTL>(2016) Fire Test for Quarter-turn Valves and Valves Equipped with Non-metallic Seats</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B1.1</RID><RTL>(2024) Unified Inch Screw Threads (UN, UNR, and UNJ Thread Form)</RTL><BRK/><BRK/><RID>ASME B16.3</RID><RTL>(2021) Malleable Iron Threaded Fittings, Classes 150 and 300</RTL><BRK/><BRK/><RID>ASME B16.5</RID><RTL>(2020) Pipe Flanges and Flanged Fittings NPS 1/2 Through NPS 24 Metric/Inch Standard</RTL><BRK/><BRK/><RID>ASME B16.9</RID><RTL>(2024) Factory-Made Wrought Buttwelding Fittings</RTL><BRK/><BRK/><RID>ASME B16.11</RID><RTL>(2021) Forged Fittings, Socket-Welding and Threaded</RTL><BRK/><BRK/><RID>ASME B16.18</RID><RTL>(2021) Cast Copper Alloy Solder Joint Pressure Fittings</RTL><BRK/><BRK/><RID>ASME B16.21</RID><RTL>(2021) Nonmetallic Flat Gaskets for Pipe Flanges</RTL><BRK/><BRK/><RID>ASME B16.22</RID><RTL>(2021) Wrought Copper and Copper Alloy Solder Joint Pressure Fittings</RTL><BRK/><BRK/><RID>ASME B16.26</RID><RTL>(2024) Cast Copper Alloy Fittings for Flared Copper Tubes</RTL><BRK/><BRK/><RID>ASME B16.34</RID><RTL>(2021) Valves - Flanged, Threaded and Welding End</RTL><BRK/><BRK/><RID>ASME B16.39</RID><RTL>(2025) Malleable Iron Threaded Pipe Unions; Classes 150, 250, and 300</RTL><BRK/><BRK/><RID>ASME B18.2.1</RID><RTL>(2012; R 2021) Square, Hex, Heavy Hex, and Askew Head Bolts and Hex, Heavy Hex, Hex Flange, Lobed Head, and Lag Screws (Inch Series)</RTL><BRK/><BRK/><RID>ASME B18.2.2</RID><RTL>(2022) Nuts for General Applications: Machine Screw Nuts, and Hex, Square, Hex Flange, and Coupling Nuts (Inch Series)</RTL><BRK/><BRK/><RID>ASME B31.3</RID><RTL>(2024) Process Piping</RTL><BRK/><BRK/><RID>ASME B40.200</RID><RTL>(2008; R 2013) Thermometers, Direct Reading and Remote Reading</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII D1</RID><RTL>(2023) BPVC Section VIII-Rules for Construction of Pressure Vessels Division 1</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WATER WORKS ASSOCIATION (AWWA)</ORG><BRK/><BRK/><RID>AWWA C209</RID><RTL>(2025) Hand-Applied Tape Coatings for Steel Water Pipe and Fittings</RTL><BRK/><BRK/><RID>AWWA C215</RID><RTL>(2022) Extruded Polyolefin Coatings for Steel Water Pipe</RTL><BRK/><BRK/><RID>AWWA C216</RID><RTL>(2022) Heat-Shrinkable Cross-Linked Polyolefin Coatings for the Exterior of Special Sections, Connections, and Fittings for Steel Water Pipelines</RTL><BRK/><BRK/><RID>AWWA C217</RID><RTL>(2023) Microcrystalline Wax and Petrolatum Tape Coating Systems for Steel Water Pipe and Fittings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS A5.8/A5.8M</RID><RTL>(2019) Specification for Filler Metals for Brazing and Braze Welding</RTL><BRK/><BRK/><RID>AWS BRH</RID><RTL>(2007; 5th Ed) Brazing Handbook</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A36/A36M</RID><RTL>(2019) Standard Specification for Carbon Structural Steel</RTL><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A105/A105M</RID><RTL>(2023) Standard Specification for Carbon Steel Forgings for Piping Applications</RTL><BRK/><BRK/><RID>ASTM A182/A182M</RID><RTL>(2024) Standard Specification for Forged or Rolled Alloy and Stainless Steel Pipe Flanges, Forged Fittings, and Valves and Parts for High-Temperature Service</RTL><BRK/><BRK/><RID>ASTM A193/A193M</RID><RTL>(2025) Standard Specification for Alloy-Steel and Stainless Steel Bolting Materials for High-Temperature Service and Other Special Purpose Applications</RTL><BRK/><BRK/><RID>ASTM A194/A194M</RID><RTL>(2024) Standard Specification for Carbon Steel, Alloy Steel, and Stainless Steel Nuts for Bolts for High-Pressure or High-Temperature Service, or Both</RTL><BRK/><BRK/><RID>ASTM A234/A234M</RID><RTL>(2025) Standard Specification for Piping Fittings of Wrought Carbon Steel and Alloy Steel for Moderate and High Temperature Service</RTL><BRK/><BRK/><RID>ASTM A240/A240M</RID><RTL>(2025a) Standard Specification for Chromium and Chromium-Nickel Stainless Steel Plate, Sheet, and Strip for Pressure Vessels and for General Applications</RTL><BRK/><BRK/><RID>ASTM A269/A269M</RID><RTL>(2025) Standard Specification for Seamless and Welded Austenitic Stainless Steel Tubing for General Service</RTL><BRK/><BRK/><RID>ASTM A307</RID><RTL>(2023) Standard Specification for Carbon Steel Bolts, Studs, and Threaded Rod 60 000 PSI Tensile Strength</RTL><BRK/><BRK/><RID>ASTM A312/A312M</RID><RTL>(2022a) Standard Specification for Seamless, Welded, and Heavily Cold Worked Austenitic Stainless Steel Pipes</RTL><BRK/><BRK/><RID>ASTM A358/A358M</RID><RTL>(2024a) Standard Specification for Electric-Fusion-Welded Austenitic Chromium-Nickel Stainless Steel Pipe for High-Temperature Service and General Applications</RTL><BRK/><BRK/><RID>ASTM A403/A403M</RID><RTL>(2025) Standard Specification for Wrought Austenitic Stainless Steel Piping Fittings</RTL><BRK/><BRK/><RID>ASTM A563</RID><RTL>(2021; E 2022a) Standard Specification for Carbon and Alloy Steel Nuts</RTL><BRK/><BRK/><RID>ASTM A733</RID><RTL>(2025) Standard Specification for Welded and Seamless Carbon Steel and Austenitic Stainless Steel Pipe Nipples</RTL><BRK/><BRK/><RID>ASTM B32</RID><RTL>(2020) Standard Specification for Solder Metal</RTL><BRK/><BRK/><RID>ASTM B62</RID><RTL>(2017; R 2025) Standard Specification for Composition Bronze or Ounce Metal Castings</RTL><BRK/><BRK/><RID>ASTM B75/B75M</RID><RTL>(2020) Standard Specification for Seamless Copper Tube</RTL><BRK/><BRK/><RID>ASTM B88</RID><RTL>(2022) Standard Specification for Seamless Copper Water Tube</RTL><BRK/><BRK/><RID>ASTM B88M</RID><RTL>(2020) Standard Specification for Seamless Copper Water Tube (Metric)</RTL><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM B247</RID><RTL>(2025) Standard Specification for Aluminum and Aluminum-Alloy Die Forgings, Hand Forgings, and Rolled Ring Forgings</RTL><BRK/><BRK/><RID>ASTM B687</RID><RTL>(1999; R 2023) Standard Specification for Brass, Copper, and Chromium-Plated Pipe Nipples</RTL><BRK/><BRK/><RID>ASTM B813</RID><RTL>(2024) Standard Specification for Liquid and Paste Fluxes for Soldering of Copper and Copper Alloy Tube</RTL><BRK/><BRK/><RID>ASTM D229</RID><RTL>(2019) Standard Test Methods for Rigid Sheet and Plate Materials Used for Electrical Insulation</RTL><BRK/><BRK/><RID>ASTM D3308</RID><RTL>(2012; R 2022) Standard Specification for PTFE Resin Skived Tape</RTL><BRK/><BRK/><RID>ASTM F436</RID><RTL>(2011) Hardened Steel Washers</RTL><BRK/><BRK/><RID>ASTM F844</RID><RTL>(2019; R 2024) Standard Specification for Washers, Steel, Plain (Flat), Unhardened for General Use</RTL><BRK/><BRK/><RID>ASTM F1172</RID><RTL>(1988; R 2024) Standard Specification for Fuel Oil Meters of the Volumetric Positive Displacement Type</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 142</RID><RTL>(2007; Errata 2014) Recommended Practice for Grounding of Industrial and Commercial Power Systems - IEEE Green Book</RTL><BRK/><BRK/><RID>IEEE 1100</RID><RTL>(2005) Emerald Book IEEE Recommended Practice for Powering and Grounding Electronic Equipment</RTL><BRK/><BRK/><RID>IEEE C62.41.2</RID><RTL>(2002) Recommended Practice on Characterization of Surges in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>MANUFACTURERS STANDARDIZATION SOCIETY OF THE VALVE AND FITTINGS INDUSTRY (MSS)</ORG><BRK/><BRK/><RID>MSS SP-58</RID><RTL>(2025) Pipe Hangers and Supports - Materials, Design and Manufacture, Selection, Application, and Installation</RTL><BRK/><BRK/></REF><REF><ORG>NACE INTERNATIONAL (NACE)</ORG><BRK/><BRK/><RID>NACE SP0185</RID><RTL>(2024) Extruded Polyolefin Resin Coating Systems with Soft Adhesives for Underground or Submerged Pipe</RTL><BRK/><BRK/><RID>NACE SP0188</RID><RTL>(2024) Discontinuity (Holiday) Testing of New Protective Coatings on Conductive Substrates</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 30</RID><RTL>(2024; ERTA 1 2025) Flammable and Combustible Liquids Code</RTL><BRK/><BRK/><RID>NFPA 30A</RID><RTL>(2024; ERTA 1 2023) Code for Motor Fuel Dispensing Facilities and Repair Garages</RTL><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 77</RID><RTL>(2024; ERTA 1 2023) Recommended Practice on Static Electricity</RTL><BRK/><BRK/><RID>NFPA 407</RID><RTL>(2022; TIA 24-2) Standard for Aircraft Fuel Servicing</RTL><BRK/><BRK/><RID>NFPA 780</RID><RTL>(2026) Standard for the Installation of Lightning Protection Systems</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY FOR PROTECTIVE COATINGS (SSPC)</ORG><BRK/><BRK/><RID>SSPC PA 1</RID><RTL>(2024) Shop, Field, and Maintenance Coating of Metals</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY OF AUTOMOTIVE ENGINEERS INTERNATIONAL (SAE)</ORG><BRK/><BRK/><RID>SAE J514</RID><RTL>(2012) Hydraulic Tube Fittings</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-PRF-13789</RID><RTL>(1999; Rev E; Notice 1 2008; Notice 2 1016; Notice 3 2021) Strainers, Sediment:  Pipeline, Basket Type</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 971</RID><RTL>(1995; Reprint Mar 2006) UL Standard for Safety Nonmetallic Underground Piping for Flammable Liquids</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Grounding and Bonding</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pipe Supports</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Insulating Flange Kits</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flange Protectors</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fuel Piping Flange Bolts, Nuts, and Washers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Carbon Steel Pipe</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Stainless Steel Pipe</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Non-Metallic Pipe</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Double Wall Carbon Steel Piping</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Steel Reinforced Flexible Pipe</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Copper Piping</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Joint Compound</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Connector</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Strainer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Thermometers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pressure Gauge</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Ball Joint</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bellows Expansion Joint</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flow Meter</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ball Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Plug (Double Block and Bleed) Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Swing Type Check Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wafer Type Check Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Globe Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Thermal Relief Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pressure\Vacuum Relief Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Foot Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tank Overfill Prevention Valve (Gravity Fill)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tank Overfill Prevention Valve (Pumped Fuel Receipt)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Anti-Siphon Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Submersible Pump</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>ANSI Type Centrifugal Pump</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sliding Vane Rotary Pump</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Self-Priming Centrifugal Pump</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Control Panel</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>FRP Containment Sump</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pipeline Markers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Exterior Coating Holiday Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Preliminary Pneumatic Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Final Pneumatic Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hydrostatic Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Exterior Containment Piping Tests</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Contractor Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Licensed Personnel</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Stage II Vapor Recovery System</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pipeline Inventory</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Demonstrations</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Ball Joint</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bellows Expansion Joint</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Insulating Flange Kits</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flange Protectors</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Strainer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Thermometers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Ball Joint</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bellows Expansion Joint</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flow Meter</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ball Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Plug (Double Block and Bleed) Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Swing Type Check Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wafer Type Check Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Globe Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Thermal Relief Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pressure\Vacuum Relief Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Foot Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tank Overfill Prevention Valve (Gravity Fill)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tank Overfill Prevention Valve (Pumped Fuel Receipt)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Anti-Siphon Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Submersible Pump</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>ANSI Type Centrifugal Pump</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sliding Vane Rotary Pump</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Self-Priming Centrifugal Pump</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Control Panel</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Contractor Qualifications</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include any state or local regulatory requirements or certification that must be met by the Contractor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each installation Contractor must have successfully completed at least 3 projects of the same scope and the same size, or larger, within the last 
+6-years; demonstrate specific installation experience in regard to the specific system installation to be performed; have taken, if applicable, 
+manufacturer's training courses on the installation of piping; and meet the licensing requirements in the state.  Experience must include the erection 
+of piping systems in compliance with the requirements of <RID>ASME B31.3</RID>, <RID>NFPA 30</RID>, and <RID>NFPA 30A</RID>.  Submit a letter listing prior projects, the date of 
+construction, a point of contact for each prior project, the scope of work of each prior project, and a detailed list of work performed providing 
+in the letter evidence of prior manufacturer's training and state licensing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Licensed Personnel</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Pipe installers must be licensed/certified when the state, city or locality requires licensed installers.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Stage II Vapor Recovery System</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Delete this paragraph if stage II vapor recovery is not specified. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>System must meet the air quality laws of the State of [_____] as well as applicable local regulations.  Submit certification of the stage II vapor 
+recovery systems from the California Air Resources Board (CARB).  Test and validate the recovery system to be 95 percent efficient in controlling 
+VOC emissions during refueling of motor vehicles.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Design Data</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Pipeline Inventory</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Fuel system volume must be calculated using as constructed pipe lengths, internal diameters, fittings, and components.  Totals must be provided 
+for all items containing fuel with the exception of tanks which is covered by other specifications.  A certified pipeline inventory with sizes, 
+lengths, quantity, and volumes must be provided for the systems in this project.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Handle, store, and protect system components and materials to prevent damage before and during installation in accordance with the manufacturer's 
+recommendations, and as approved by the Contracting Officer.  Replace damaged or defective items.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PROJECT/SITE CONDITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Fuel required for the testing, flushing and cleaning efforts, as specified in this section, will be provided and delivered by the Contracting Officer.  
+Fuel used in the system will remain the property of the Government.  Fuel shortages not attributable to normal handling losses must be reimbursed 
+to the Government.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>ELECTRICAL WORK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show electrical characteristics on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate the ignition temperature of the fuel(s) to be handled with the electrical design.  Ignition temperatures 
+will be as defined in NFPA 497M.  Fuel ignition temperatures will dictate the maximum allowable temperature rating 
+of the electrical system components.  Coordinate the area classification and the electrical design with UFC<BRK/>
+3-460-01.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate piping, valve, system components and other systems bonding and grounding requirements with UFC 3-460-01.  
+Include also in the design a bonding and grounding plan to relieve and control static electricity buildup as described 
+in UFC 3-460-01.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Motors, manual or automatic motor control system components except where installed in motor control centers, and protective or signal devices required 
+for the operation specified herein must be provided under this section in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Any wiring 
+required for the operation specified herein, but not shown on the electrical plans, must be provided under this section in accordance with Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM[, Section <SRF>33 71 01</SRF> OVERHEAD TRANSMISSION AND DISTRIBUTION][, Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Grounding and Bonding</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Ground and bond in accordance with <RID>NFPA 70</RID>, <RID>NFPA 77</RID>, <RID>NFPA 407</RID>, <RID>NFPA 780</RID>, <RID>API RP 540</RID>, <RID>API RP 2003</RID>, <RID>IEEE 142</RID>, and <RID>IEEE 1100</RID>.  Provide jumpers to 
+overcome the insulating effects of gaskets, paints, or nonmetallic components.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MATERIALS AND SYSTEM COMPONENTS</TTL><BRK/>
+<BRK/>
+<TXT>Internal parts and components of system components, piping, piping components, and valves that could be exposed to fuel during system operation 
+must not be constructed of zinc coated (galvanized) metal, brass, bronze, or other copper bearing alloys.  Do not install cast iron bodied valves 
+in piping systems that could be exposed to fuel during system operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and system components that are standard products of a manufacturer regularly engaged in the manufacturing of such products; that 
+are of a similar material, design and workmanship; and that have been in satisfactory commercial or industrial use for a minimum 2-years prior 
+to bid opening.  The 2-year period must include applications of the system components and materials under similar circumstances and of similar 
+size.  Materials and system components must have been for sale on the commercial market through advertisements, manufacturers' catalogs, or brochures 
+during the 2-year period.[  Products having less than a 2-year field service record will be acceptable if a certified record of satisfactory field 
+operation, for not less than 6000 hours, exclusive of the manufacturer's factory tests, can be shown.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In a salt water environment, substitute acceptable non-corroding metal such as, but not limited to, nickel-copper, 
+304 stainless steel, or monel.  Aluminum is unacceptable.  Nomenclature (or system identification) should be established 
+by the designer.<BRK/>
+<BRK/>
+Require melamine plastic nameplates for all NAVFAC projects.  Also for NAVFAC projects, require nameplates to 
+be associated or keyed to system charts and schedules.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Attach nameplates to all specified system components, thermometers, gauges, and valves defined herein.  List on each nameplate the manufacturer's 
+name, address, [contract number,] [acceptance date,] component type or style, model or serial number, catalog number, capacity or size, and the 
+system that is controlled.  Construct plates of [anodized aluminum] [stainless steel] [melamine plastic,<MET> 3 mm</MET><ENG> 0.125 inch</ENG> thick, UV resistance, 
+black with white center core, matte finish surface and square corners] [_____].  Install nameplates in prominent locations with nonferrous screws, 
+nonferrous bolts, or permanent adhesive.  Minimum size of nameplates must be<MET> 25 by 65 mm</MET><ENG> 1 by 2.5 inches</ENG>.  Lettering must be the normal block style 
+with a minimum<MET> 6 mm</MET><ENG> 0.25 inch</ENG> height.  Accurately align all lettering on nameplates.[  For plastic nameplates, engrave lettering into the white 
+core.][  Key the nameplates to a chart and schedule for each system.  Frame charts and schedule under glass, and locate where directed near each 
+system.  Furnish two copies of each chart and schedule.  Each nameplate description must identify its function.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flange Gaskets, Non-Electrically Isolating</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.21</RID>, composition ring, using a Nitrile Rubber such as Buna-N and NBR, or a fluoro rubber such as FKM, FPM and Viton©.  The gasket must 
+be<MET> 3 mm</MET><ENG> 0.1250-inch</ENG> thick.  Gaskets must be resistant to the effects of aviation and non-aviation hydrocarbon fuels and manufactured of fire-resistant 
+materials.  Use fluoro rubber gaskets for biofuel blend fluids.  Full-face gaskets must be used for flat-face flanged joints.  Ring gaskets must 
+be used for raised-face flanged joints.  Gaskets must be of one piece factory cut material.  Select a gasket suitable for the working and test 
+pressure of the fluid.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FLANGED END CONNECTIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Flanges</TTL><BRK/>
+<BRK/>
+<TXT>Provide flanged end connections on system components, fittings, piping, piping components, adapters, couplers,and valves that conform to <RID>ASME B16.5</RID>
+, Class 150.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Carbon Steel</TTL><BRK/>
+<BRK/>
+<TXT>Carbon steel flanges must conform to <RID>ASTM A105/A105M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stainless Steel</TTL><BRK/>
+<BRK/>
+<TXT>Stainless steel flanges must conform to <RID>ASTM A182/A182M</RID>, Grade F304, forged type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Aluminum</TTL><BRK/>
+<BRK/>
+<TXT>Aluminum flanges must conform to <RID>ASTM B247</RID>, Alloy 6061-T6.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Insulating Flange Kits</SUB>, (Electrically Isolating)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use in the following locations to avoid affecting the underground piping cathodic protection system:</NPR><BRK/>
+<BRK/>
+<NPR>a.  Where piping transitions from aboveground to underground;</NPR><BRK/>
+<BRK/>
+<NPR>b.  Below drain and vent valves in underground pits<BRK/>
+and valve vaults;</NPR><BRK/>
+<BRK/>
+<NPR>c.  On both sides of motorized valves in underground<BRK/>
+valve vaults.</NPR><BRK/>
+<BRK/>
+<NPR>Provide weatherproof lightning surge arrester around insulating flange kits where piping transitions from aboveground 
+to underground.</NPR><BRK/>
+<BRK/>
+<NPR>These gaskets are often installed to prevent corrosion between two flanges constructed of dissimilar metals such 
+as carbon steel and stainless steel.  Experience in even extremely corrosive marine environments shows them to 
+be of little use in preventing flange to flange corrosion; the corrosion in those cases are usually the flange 
+face and/or fasteners corroding to themselves.  Before using to prevent flange to flange corrosion, contact Base 
+personnel and try and determine what kind of corrosion they have and how severe it is.</NPR><BRK/>
+<BRK/>
+<NPR>Provide flange protectors where indicated and at cathodic protection insulating flanges.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide <RID>ASTM D229</RID> electrical insulating material of 1,000 ohms minimum resistance or 500 Volts per mil (VPM) minimum dielectric strength; material 
+must be resistant to the effects of aviation and non-aviation hydrocarbon fuels.  Provide full face insulating gaskets between flanges with fluoroelastomer 
+(FKM), commonly referred to as Viton, O-ring sealing surfaces.  Provide full surface<MET> 0.76 mm</MET><ENG> 0.03-inch</ENG> thick wall thickness, spiral-wound mylar 
+insulating sleeves between the bolts and the holes in flanges; bolts may have reduced shanks of a diameter not less than the diameter at the root 
+of threads.  Provide<MET> 3.18 mm</MET><ENG> 0.125-inch</ENG> thick high-strength phenolic insulating washers next to flanges and provide flat circular stainless steel 
+washers over insulating washers and under bolt heads and nuts.  Provide bolts<MET> 12 mm</MET><ENG> 0.5-inch</ENG> longer than standard length to compensate for the 
+thicker insulating gaskets and the washers under bolt heads and nuts.  Above grade flanges separated by electrically insulating flange kits must 
+be provided with weatherproof lightning surge arrester devices.  The surge arrester must bolt across flanges separated by insulating gasket kits 
+per detail on contract drawings.  Provide with flange protector as described in this section.  The arrestor must have the following features:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Weatherproof NEMA 6P enclosure.</OLI><BRK/>
+<BRK/>
+<OLI>Bidirectional and bipolar protection.</OLI><BRK/>
+<BRK/>
+<OLI>Constructed of solid state components, no lights, fuses or relays and used without required maintenance or replacement.</OLI><BRK/>
+<BRK/>
+<OLI>Withstand unlimited number of surges at 50,000 Amperes.</OLI><BRK/>
+<BRK/>
+<OLI>Maximum clamping voltage of 700 Volts based on a <RID>IEEE C62.41.2</RID> 8x20 microsecond wave form at 50,000 Amperes peak measured at the device 
+terminals (zero lead length).</OLI><BRK/>
+<BRK/>
+<OLI>A UL listed arrester for installation in Class 1, Division 1 or Class 1, Division 2, Group D, hazardous areas.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Install the mounting bracket and leads on the flange side of the bolt<BRK/>
+insulating sleeve and washer, and size in accordance with this schedule:</TXT><BRK/>
+<BRK/>
+<TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="12">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="234.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="234.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>Line Size</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>Bolt Size</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>50.8 mm</MET><ENG> 2 inch</ENG></HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>16 mm</MET><ENG> 5/8 inch</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>63.5 mm</MET><ENG> 2.5 inch</ENG></HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>16 mm</MET><ENG> 5/8 inch</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>76 mm</MET><ENG> 3 inch</ENG></HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>16 mm</MET><ENG> 5/8 inch</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>102 mm</MET><ENG> 4 inch</ENG></HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>16 mm</MET><ENG> 5/8 inch</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>152 mm</MET><ENG> 6 inch</ENG></HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>19 mm</MET><ENG> 3/4 inch</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>203 mm</MET><ENG> 8 inch</ENG></HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>19 mm</MET><ENG> 3/4 inch</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>254 mm</MET><ENG> 10 inch</ENG></HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>22 mm</MET><ENG> 7/8 inch</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>305 mm</MET><ENG> 12 inch</ENG></HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>22 mm</MET><ENG> 7/8 inch</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>356 mm</MET><ENG> 14 inch</ENG></HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>25 mm</MET><ENG> 1 inch</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>406 mm</MET><ENG> 16 inch</ENG></HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4><MET>25 mm</MET><ENG> 1 inch</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Note: Make allowance for the<MET> 0.79 mm</MET><ENG> 1/32-inch</ENG> thickness of the insulating sleeve around the bolts when sizing the mounting lugs.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/></TAB><BRK/></SPT>
+<SPT><TTL><SUB>Flange Protectors</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide flange protectors at all cathodic protection insulating flanges to prevent from shorting out due 
+to debris collecting in/on flange.  Use stainless steel flange protector bands.  Caution should be used when installing 
+stainless steel bands to avoid "grounding out" the insulating flanges.</NPR><BRK/>
+<BRK/>
+<NPR>Use in tropics and waterfront locations for all size flanges to minimize/prevent water migration between the flange 
+faces and prevent corrosion.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Protectors must protect the bolts, studs, nuts, and gaskets of a flanged end connection from corrosion or damage due to exposure to the environment.  
+Protectors must be weather and ultraviolet (UV) resistant and constructed with stainless steel bands and rubber lining.  Protectors must allow 
+for quick and easy removal and re-installation by maintenance personnel.  Provide grease filled bolt caps.  Corrosion Prevention grease must be 
+non-expansive and designed for the service.[  Provide protectors that allow visual inspection of the flange gasket without requiring removal.][  
+For electrically isolating flange connections, provide protectors with grease fittings that allow the injection of grease into the flange cavity.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Fuel Piping Flange Bolts, Nuts, and Washers</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Bolts and nuts for pipe flanges, flanged fittings, valves and accessories must conform to <RID>ASME B18.2.1</RID> and <RID>ASME B18.2.2</RID>, except as otherwise 
+specified.</OLI><BRK/>
+<BRK/>
+<OLI>Bolts must be of sufficient length to obtain full bearing on the nuts and must project no more than three full threads and no less than 
+two full threads beyond the nuts with the bolts tightened to the required torque.</OLI><BRK/>
+<BRK/>
+<OLI>Bolts must be regular hexagonal bolts conforming to <RID>ASME B18.2.1</RID> with material conforming to <RID>ASTM A193/A193M</RID>, Class 2, Grade B8, stainless 
+steel, when connections are made where a stainless steel flange is involved, and Grade B7, chromium molybdenum alloy, when only carbon 
+steel flanges are involved.  Bolts and nuts chosen must have sufficient strength to seat gasket types chosen.  Bolts must be threaded in 
+accordance with <RID>ASME B1.1</RID>, Class 2A fit, Coarse Thread Series, for sizes one inch and smaller and Eight-Pitch Thread Series for sizes larger 
+than one inch.</OLI><BRK/>
+<BRK/>
+<OLI>Nuts must conform to <RID>ASME B18.2.2</RID>, hexagonal, heavy series with material conforming to <RID>ASTM A194/A194M</RID>, Grade 8, stainless steel for stainless 
+steel bolts, and Grade 7, chromium molybdenum allow for chromium molybdenum alloy bolts.  Nuts must be threaded in accordance with <RID>ASME B1.1</RID>
+, Class 2B fit, Coarse Thread Series for sizes one inch and smaller and Eight-Pitch Thread Series for sizes larger than one inch.</OLI><BRK/>
+<BRK/>
+<OLI>Provide washers under bolt heads and nuts.  Use chromium molybdenum alloy washers dimensioned to <RID>ASTM F436</RID> flat circular for chromium molybdenum 
+bolts.  Stainless steel washer dimensioned similar to <RID>ASTM F436</RID> flat circular, use material the same as the bolt.</OLI><BRK/>
+<BRK/>
+<OLI>Use torque wrenches to tighten all flange bolts to the torque recommended by the gasket manufacturer.  Tighten in the pattern recommended 
+by the gasket manufacturer.  Use anti-seize compound on stainless steel bolts.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>PIPE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate on the drawings all piping configurations, slopes, sizes, and piping materials (i.e. carbon steel, 
+stainless steel, or double walled flexible piping) permitted for each piping system.  Coordinate these requirements 
+with UFC 3-460-01.</NPR><BRK/>
+<BRK/>
+<NPR>As stated in UFC 3-460-01, use threaded end connections only where unavoidable.  Never require a threaded end 
+connection to be direct buried.  Specifically indicate the location of each threaded end connection on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Pipe must meet the material, fabrication and operating requirements of <RID>ASME B31.3</RID>, except as modified herein.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Carbon Steel Pipe</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide carbon steel pipe that complies with one of the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Pipe must conform to <RID>ASTM A53/A53M</RID>, Type E or S, Grade B, seamless or electric welded.  Pipe smaller than<MET> 65 mm</MET><ENG> 2-1/2 inches</ENG> must be Schedule 
+80.  Pipe<MET> 65 mm</MET><ENG> 2-1/2 inches</ENG> and larger must be Schedule 40.</OLI><BRK/>
+<BRK/>
+<OLI>Pipe must conform to <RID>API Spec 5L</RID>, Product Specification Level (PSL) 1, Grade B, [submerged-arc welded or gas metal-arc welded] [seamless 
+or electric welded].</OLI><BRK/></OLG>
+<BRK/>
+<TXT>End connections for pipe or fittings smaller than<MET> 65 mm</MET><ENG> 2-1/2 inches</ENG> must be forged, socket weld type conforming to <RID>ASTM A182/A182M</RID> and <RID>ASME B16.11</RID>
+, unless indicated otherwise.  End connections for pipe or fittings<MET> 65 mm</MET><ENG> 2-1/2 inches</ENG> and larger must be buttweld type conforming to <RID>ASTM A234/A234M</RID>
+, Grade WPB and <RID>ASME B16.9</RID> of the same wall thickness as the adjoining pipe.[  Where threaded end connections are indicated, provide connections 
+that conform to <RID>ASME B16.3</RID>, Class 150 or <RID>ASME B16.11</RID>.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Stainless Steel Pipe</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide stainless steel pipe that complies with one of the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Pipe must conform to <RID>ASTM A312/A312M</RID>, Type TP304L, seamless only.  Pipe smaller than<MET> 200 mm</MET><ENG> 8 inches</ENG> must be Schedule 40S.  Pipe<MET> 200 mm</MET><ENG>
+ 8 inches</ENG> or larger must be Schedule 10S.</OLI><BRK/>
+<BRK/>
+<OLI>Pipe must conform to <RID>ASTM A358/A358M</RID>, Grade 304L, Class 1 or 3, longitudinally welded.  Radiographically inspect 100 percent of factory 
+longitudinal welds in accordance with <RID>ASME BPVC SEC VIII D1</RID>.  Minimum pipe wall thickness must be<MET> 6 mm</MET><ENG> 0.25 inch</ENG> for pipe<MET> 300 mm</MET><ENG> 12 inches</ENG>
+ and smaller;<MET> 8 mm</MET><ENG> 0.312 inch</ENG> for pipe larger than<MET> 300 mm</MET><ENG> 12 inches</ENG>.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Fittings<MET> 65 mm</MET><ENG> 2-1/2-inch</ENG> and Larger</TTL><BRK/>
+<BRK/>
+<TXT>Provide buttwelded type fittings that complies with one of the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Stainless steel conforming to <RID>ASTM A403/A403M</RID>, Class WP-S, Grade WP 304L, seamless only and <RID>ASME B16.9</RID> of the same thickness as the adjoining 
+pipe.</OLI><BRK/>
+<BRK/>
+<OLI>Stainless steel conforming to <RID>ASTM A403/A403M</RID>, Class WP-XX, Grade WP 304L, of wall thickness as indicated.  Do not fabricate starting material 
+by the fusion welding process without addition of filler metal.  Forming will not be allowed using fusion welding process without addition 
+of filler metal.  Radiographically inspect all factory longitudinal welds in accordance with <RID>ASME BPVC SEC VIII D1</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Fittings<MET> 50 mm</MET><ENG> 2-inch</ENG> and Smaller</TTL><BRK/>
+<BRK/>
+<TXT>Socket welded type fittings, unless indicated otherwise, must conform to <RID>ASME B16.11</RID>.  Fitting materials must be stainless steel that conforms 
+to <RID>ASTM A182/A182M</RID>, Type F304L.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Tubing</TTL><BRK/>
+<BRK/>
+<TXT>Piping must be seamless, fully annealed stainless steel tubing conforming to <RID>ASTM A269/A269M</RID>, Grade TP316, with a hardness number not exceeding 
+80 HRB.  For<MET> 15 mm</MET><ENG> 1/2-inch</ENG> tubing, provide a minimum<MET> 1.3 mm</MET><ENG> 0.049 inch</ENG> tubing wall thickness.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Tubing Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Fittings must be the flareless, Type 316 stainless steel type conforming to <RID>SAE J514</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Flexible Non-Metallic Pipe</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Standard commercial service station piping used for a flow rate of 100 GPM or less.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Piping must conform to <RID>UL 971</RID>.  Piping must be installed in manufacturers supplied corrugated, flexible, access piping.  Size is limited to<MET> 76.2 
+mm</MET><ENG> 3-inch</ENG> diameter or less.  For piping larger than<MET> 76.2 mm</MET><ENG> 3 inches</ENG> use the carbon steel piping system described in Section <SRF>33 52 40</SRF> FUEL SYSTEMS 
+PIPING (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Double Wall Carbon Steel Piping</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this piping for a flow rate of greater than 100 GPM and if required by State or Local regulations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Piping system must be of pre-engineered double-wall construction with both the internal pipe (primary product pipe) and the exterior pipe (containment 
+pipe) of carbon steel.  The exterior containment piping must allow for complete inspection of the primary piping before the exterior piping is 
+sealed.  The exterior piping for the secondary containment system for underground piping must be:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Pipe material must be carbon steel as specified.</OLI><BRK/>
+<BRK/>
+<OLI>Capable of withstanding a minimum<MET> 5 psi</MET><ENG> 35 kPa</ENG> air pressure.</OLI><BRK/>
+<BRK/>
+<OLI>Evenly separated from the primary pipe using pipe spacers which are designed based on pipe size, pipe and fuel weight, and operating conditions.  
+The supports must be constructed of non-metallic and non-conductive material and must be designed so that no point loading occurs on the 
+primary or exterior pipe.  The exterior piping and supports must allow for the installation of any necessary leak detection equipment or 
+cables.</OLI><BRK/>
+<BRK/>
+<OLI>Externally coat primary product pipe and containment pipe as specified in Section <SRF>33 52 80</SRF> LIQUID FUELS PIPELINE COATING SYSTEMS.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Steel Reinforced Flexible Pipe</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Service Headquarters must approve use of HDPE steel reinforced flexible pipe.  Do not use HDPE steel reinforced 
+flexible pipe aboveground.  Use this piping for a flow rate of greater than 100 GPM only.</NPR><BRK/>
+<BRK/>
+<NPR>The use of steel reinforced flexible pipe in lieu of traditional double-walled underground piping on projects 
+in states that require double-walled underground piping needs to be coordinated between the system designer and 
+the state agency that regulates underground piping.  The test protocol to be used for testing the integrity of 
+steel reinforced flexible pipe will need to be provided by the piping supplier and be accepted by the state regulatory 
+agency as equivalent to the traditional double-walled underground piping test protocol required by that agency.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Steel Reinforced High Density Polyethylene (HDPE) flexible piping must be manufactured in accordance with <RID>API Spec 17J</RID> and consist of an inner 
+layer of HDPE material, a steel reinforcing layer and an outer HDPE protective layer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Steel Reinforced Flexible Pipe Fittings</TTL><BRK/>
+<BRK/>
+<TXT>End connections and mid-line connections for steel reinforced high density polyethylene (HDPE) flexible pipe must be of stainless steel swaged 
+onto the pipe ends.</TXT><BRK/>
+<BRK/>
+<TXT>End connections must terminate in flanged end or weld ends as indicated.  Mid-line connections must terminate in flanged fittings if they are in 
+a pit or double swage type if they are not.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL><SUB>Copper Piping</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify copper piping only for small fuel oil applications, lubricating oil applications, etc.  Copper 
+alloy piping materials must not be used within a boiler plant structure.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Pipe and tubing must conform to<MET> <RID>ASTM B88M</RID></MET><ENG> <RID>ASTM B88</RID></ENG>, Type K or L.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Fittings and End Connections</TTL><BRK/>
+<BRK/>
+<TXT>Wrought copper and bronze solder-joint pressure fittings must conform to <RID>ASME B16.22</RID> and <RID>ASTM B75/B75M</RID>.  Cast copper alloy solder-joint pressure 
+fittings must conform to <RID>ASME B16.18</RID>.  Cast copper alloy fittings for flared copper tube must conform to <RID>ASME B16.26</RID> and <RID>ASTM B62</RID>.  Brass or bronze 
+adapters for brazed tubing may be used for connecting tubing to flanges and to threaded ends of valves and system components.  Extracted brazed 
+tee joints produced with an acceptable tool and installed as recommended by the manufacturer may be used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Solder</TTL><BRK/>
+<BRK/>
+<TXT>Solder must conform to <RID>ASTM B32</RID>, grade Sb5, tin-antimony alloy for service pressures up to<MET> 1034 kPa</MET><ENG> 150 psig</ENG>.  Solder flux must be liquid or paste 
+form, non-corrosive and conform to <RID>ASTM B813</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Brazing Filler Metal</TTL><BRK/>
+<BRK/>
+<TXT>Filler metal must conform to <RID>AWS A5.8/A5.8M</RID>, Type BAg-5 with AWS Type 3 flux, except Type BCuP-5 or BCuP-6 may be used for brazing copper-to-copper 
+joints.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>PIPING COMPONENTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide piping components that meet the material, fabrication and operating requirements of <RID>ASME B31.3</RID>, except as modified herein.  Pressure design 
+class for piping components must be Class 150 as defined in <RID>ASME B16.5</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Welded Nipples</TTL><BRK/>
+<BRK/>
+<TXT>Nipples must conform to <RID>ASTM A733</RID> or <RID>ASTM B687</RID> and be constructed of the same material as the connecting pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel Couplings</TTL><BRK/>
+<BRK/>
+<TXT>Couplings must conform to <RID>API Spec 5L</RID>, seamless, extra heavy, wrought steel with recessed ends.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Threaded Unions</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Avoid threaded unions if possible.  Threaded unions may be used in certain aboveground applications if 
+specifically indicated on the drawings.  As stated previously, never required a threaded end connection to be 
+direct buried.  Typically, threaded end connections are only to be used on piping<MET> 50 mm</MET><ENG> 2 inches</ENG> or less in size.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Indicate the locations of each electrically isolating connection on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Unions must conform to <RID>ASME B16.39</RID>, Class 150.  Unions materials must conform to <RID>ASTM A312/A312M</RID>, Grade 304 or 316.  Dielectric unions must conform 
+to dimensional, strength, and pressure requirements of <RID>ASME B16.39</RID>, Class 150.  Steel parts must be galvanized or plated.  Union must have a water-impervious 
+insulation barrier capable of limiting galvanic current to one percent of the short-circuit current in a corresponding bimetallic joint.  When 
+dry, union must be able to withstand a 600-volt breakdown test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Joint Compound</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Joint compounds must be resistant to water and be suitable for use with fuel containing 40 percent aromatics.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Flexible Connector</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Identify on the drawings the nominal pipe size and required length for each flexible pipe connector.  Connectors 
+smaller than<MET> 65 mm</MET><ENG> 2-1/2 inches</ENG> are typically not available with flanged end connections.  If small connectors 
+are required, specifically indicated the location of the threaded connections on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Flexible connectors for fueling pumps must have ANSI Class 300 or<BRK/>
+150 flanges to mate directly to the pump and Class 150 flanges to the<BRK/>
+system flanges. Flanges must be stainless steel and must conform to<BRK/>
+<RID>ASME B16.5</RID>. These units must have an inner stainless steel or Inconel,<BRK/>
+corrugated tube with external stainless steel braid, and all components<BRK/>
+must be rated for not less than 275 psig @ 100ºF. Face by Face dimension<BRK/>
+must be as recommended by the manufacturer. Use Inconel 625 inner bellows<BRK/>
+in coastal environments or where chlorides are present in the atmosphere.</TXT><BRK/>
+<BRK/>
+<TXT>For sizes larger than 152 mm 6 inches, connectors must incorporate the use<BRK/>
+of Lo-corr, multi-ply bellows, without external braid, with bellows rating<BRK/>
+of 300 psig and overall rating consistent with the flange ANSI class.<BRK/>
+Flanges must be plate type, Vanstone design, with axial movement control<BRK/>
+rods.</TXT><BRK/>
+<BRK/>
+<TXT>Fabricate piping to measurements established on the project site and<BRK/>
+position into place without springing or forcing. Make provisions for<BRK/>
+absorbing expansion and contraction without undue stress in any part of the<BRK/>
+system. The use of flexible connectors in permanently mounted pump suction<BRK/>
+and discharge lines as a method of compensating for piping misalignment is not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Strainer</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Duplex strainers have at least two basket or element chambers separated by a valve that permits continuous 
+flow of fluid through one chamber while the other is accessible of cleaning.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Strainer must be single, basket type, arranged in a [simplex] [duplex] configuration as indicated in compliance with <RID>MIL-PRF-13789</RID>, except as specified 
+otherwise.  Strainer end connections must be designed in accordance with <RID>ASME B16.5</RID>, Class 150.  Strainer body material must be the same as the 
+material specified for manual valves.  Strainers must have removable baskets of [7][40][60][100][_____] mesh wire screen with larger wire mesh 
+reinforcement; wire must be stainless steel, Type 316.  Pressure drop for clean strainer must not exceed 3 psig at maximum design flow rate.  The 
+ratio of net effective strainer area to the area of the connecting pipe must be not less than three to one.  Each strainer must be provided with 
+a suitable drain at the bottom, equipped with a ball valve.  The strainer must be equipped with a direct-reading, piston type differential pressure 
+gauge that measures the differential pressure across the basket as per Section <SRF>33 57 55</SRF> FUEL SYSTEM COMPONENTS (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Thermometers</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Used for Burner Fuel Oils and Lubricating Oils that require heating before pumping.  Indicate the scale 
+range for each<BRK/>
+thermometer on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Analog, dial-type bimetallic actuated type that conforms to <RID>ASME B40.200</RID>.  Thermometer must have a<MET> 125 mm</MET><ENG> 5 inch</ENG> diameter dial, a hermetically 
+sealed stainless steel case, a stainless steel stem, a safety glass face, a fixed threaded connection, and a scale range as indicated.  Thermometer 
+accuracy must be within one percent of the scale range.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Pressure Gauge</SUB></TTL><BRK/>
+<BRK/>
+<TXT>See Section <SRF>33 57 55</SRF> FUEL SYSTEM COMPONENTS (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Pipe Supports</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate installation details (including anchorage and spacing) of all hangers on the drawings.  Include 
+applicable seismic zone design requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Supports must be the adjustable type conforming to <RID>MSS SP-58</RID>, except as modified herein.  Provide hot-dipped galvanized finish on rods, nuts, bolts, 
+washers, hangers, and supports.  [Provide Type 316 stainless steel nuts, bolts, washers, and screws when located under a pier.]  Provide miscellaneous 
+metal that conforms to <RID>ASTM A36/A36M</RID>, standard mill finished structural steel shapes, hot-dipped galvanized.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pipe Protection Shields</TTL><BRK/>
+<BRK/>
+<TXT>Shields must conform to <RID>MSS SP-58</RID>, Type 40, except material must be Type 316 stainless steel.  Provide shields at each slide type pipe hanger and 
+support.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Low Friction Supports</TTL><BRK/>
+<BRK/>
+<TXT>Supports must have self-lubricating anti-friction bearing elements composed of 100 percent virgin tetrafluoroethylene polymer and reinforcing aggregates, 
+prebonded to appropriate backing steel members.  The coefficient of static friction between bearing elements must be 0.06 from initial installation 
+for both vertical and horizontal loads and deformation must not exceed<MET> 51 micrometers</MET><ENG> 0.002 inch</ENG> under allowable static loads.  Bonds between material 
+and steel must be heat cured, high temperature epoxy.  Design pipe hangers and support elements for the loads applied.  Provide anti-friction material 
+with a minimum of<MET> 2.3 mm</MET><ENG> 0.09 inch</ENG> thick.  Provide hot-dipped galvanized steel supports.  Provide supports that are factory designed and manufactured.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Escutcheon</TTL><BRK/>
+<BRK/>
+<TXT>Escutcheon must be the chrome plated, stamped steel, hinged, split ring type.  Inside diameter must closely fit pipe outside diameter.  Outside 
+diameter must completely cover the corresponding floor, wall, or ceiling opening.  Provided each escutcheon with necessary set screws.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Flexible Ball Joint</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the location and details of each pipe expansion joint, amount of pipe movement, and pipe anchors 
+on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Flexible ball joints must be [stainless steel] [carbon steel with electroless nickel-plating to a minimum of 3 mils thickness], capable of 360-degree 
+rotation plus 15-degree angular flex movement, <RID>ASME B16.5</RID>, Class 150 flanged end connections.  Provide either pressure molded composition, PEEK, 
+or polytetrafluoroethylene (PTFM) gaskets designed for continuous operation temperature of 275 degrees F.  Joints must be designed for minimum 
+working pressure of ANSI Class 150.  Injectable packing will not be allowed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Bellows Expansion Joint</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the location and details of each pipe expansion joint, amount of pipe movement, and pipe anchors 
+on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Where joints are to be installed on piers or anywhere in direct contact with salt water is a possibility, then 
+require the bellows to be constructed of inconel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The expansion joints must be for axial compression and extension with capacity as per the design documents.  Units must be[ of the externally pressurized 
+design with internal and external integral guides, and] manufactured by an Expansion Joint Manufacturers Association certified manufacturer.  They 
+must incorporate multi-ply, Lo-corr bellows of [<RID>ASTM A240/A240M</RID> 321-304 stainless steel][Inconel 625] if chlorides are present in the atmosphere.  
+Unit must be equipped with travel limit stops, and internal guides vented to reduce the effects of sudden pressure changes.  Flanges and housing 
+must be stainless steel or carbon steel to match piping materials.  Flanges must conform to <RID>ASME B16.5</RID>.  Dual Expansion Joints must incorporate 
+an intermediate anchor base.  Housing must include lifting lug and drain port.  Joints must be capable of 10,000 cycles over a period of 20-years.</TXT><BRK/>
+<BRK/>
+<TXT>Cold set joints to compensate for the temperature at the time of installation.  Provide initial alignment guides on the connecting piping no more 
+than 4 pipe diameters from the expansion joint.  Provide additional alignment guides on the connecting piping no more than 14 pipe diameters from 
+the first guide.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Flow Meter</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Flow meters are mandatory for all Air Force fuel oil projects.  For each meter indicate the maximum flow 
+rate to be metered as well as the allowable pressure drop at the maximum flow rate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide volumetric positive displacement type meter that conforms to <RID>ASTM F1172</RID>, except as modified herein.  Meter must indicate the fuel oil flow 
+rate in<MET> L/s</MET><ENG> gpm</ENG>.  Meter must be provided with overspeed protection and a water escape hole.  If meter is not mounted in-line with the piping, then 
+an appropriate pedestal for mounting must be provided.  Install meter in accordance with manufacturer's recommendations.  Meter must be capable 
+of providing a 4-20 mA analog output signal for the fuel flow rate.[  The output signals must be compatible with the base's existing Energy Monitoring 
+and Control, System (EMCS).]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MANUAL VALVES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Per Service Headquarters or officially designated alternate for marine environment, provide stainless steel 
+valves on exterior (aboveground and in pits) piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All portions of a valve coming in contact with fuel must be of noncorrosive material.  Valves in stainless steel pipe lines or epoxy lined carbon 
+steel pipe lines must be Type 304 or Type 316 stainless steel or carbon steel internally plated with chromium or nickel or internally electroless 
+nickel plated.  Valves in unlined carbon steel pipelines must have carbon steel body.  Stem and trim must be stainless steel for all valves.  Manually 
+operated valves<MET> 150 mm</MET><ENG> 6 inches</ENG> and larger must be worm-gear operated and valves smaller than<MET> 150 mm</MET><ENG> 6 inches</ENG> must be lever operated or handwheel 
+operated.  Valves smaller than<MET> 50 mm</MET><ENG> 2 inches</ENG> must have lever-type handles.  Handles installed more than<MET> 1.5 m</MET><ENG> 6 feet</ENG> above finished floor must 
+have chain operators.  Valve indicators installed higher than 5 feet must have a position indicator visible from ground level.  Sprocket wheel 
+for chain operator must be aluminum.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Ball Valves</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Ball valves must be fire tested and qualified in accordance with the requirements of <RID>API Std 607</RID> and <RID>API STD 608</RID>.  Seal material for the fire test 
+must be graphite, seal material for the project must be as indicated below.  Ball valves must be nonlubricated valves that operate from fully open 
+to fully closed with 90 degree rotation of the ball.  Valves 2 inches and larger must conform to applicable construction and dimension requirements 
+of <RID>API Spec 6D</RID>, ANSI Class 150 and must have flanged ends.  Valves smaller than<MET> 50 mm</MET><ENG> 2 inches</ENG> must be ANSI class 150 valves with flanged ends, 
+unless noted otherwise.  The balls in valves<MET> 250 mm</MET><ENG> 10 inches</ENG>and larger full port and<MET> 300 mm</MET><ENG> 12 inch</ENG> and larger regular port and larger must have 
+trunnion type support bearings.  Except as otherwise specified or indicated, reduced port or full port valves may be provided at the Contractor's 
+option.  Balls must be solid, not hollow cavity.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Materials</TTL><BRK/>
+<BRK/>
+<TXT>Ball must be stainless steel.  Ball valves must have polytetrafluoroethylene (PTFM) or fluoroelastomer (FKM), commonly referred to as Viton seats, 
+body seals and stem seals.  Valves<MET> 100 mm</MET><ENG> 4 inches</ENG> and smaller must have a locking mechanism.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>V-Port Ball Valve</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Primarily used on Truck Offloading System to set minimum offload flow rate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Valve must conform to requirements as specified for BALL VALVES paragraph in this section.  Valve must be provided with characterized linear v-port 
+for flow rate control, and with infinite position lever bracket with locking bolt for set position.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Valve Actuator</TTL><BRK/>
+<BRK/>
+<TXT>Electric valve actuator must be as indicated for Plug (Double Block and Bleed) Valves, electric valve actuator.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Plug (Double Block and Bleed) Valves</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>API Spec 6D</RID>, <RID>API Spec 6FA</RID>, ANSI Class 150, non-lubricated, resilient, double seated, trunnion mounted, tapered lift plug capable of two-way shutoff.  
+Valve must have tapered plug of steel or ductile iron with chrome or nickel plating and plug supported on upper and lower trunnions.  Sealing slips 
+must be steel or ductile iron, with Viton seals which are held in place by dovetail connections.  Valve design must permit sealing slips to be 
+replaced from the bottom with the valve mounted in the piping.  Valves must operate from fully open to fully closed by rotation of the handwheel 
+to lift and turn the plug.  Valves must have weatherproof operators with mechanical position indicators.  Indicator shaft must be stainless steel.  
+Minimum bore size must be not less than 65 percent of the internal cross sectional area of a pipe of the same nominal diameter unless bore height 
+of plug equals the nominal pipe diameter and manufacturer can show equal or better flow characteristics of the reduced bore size design.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Valve Operation</TTL><BRK/>
+<BRK/>
+<TXT>Rotation of the handwheel toward open must lift the plug without wiping the seals and retract the sealing slips so that during rotation of the 
+plug clearance is maintained between the sealing slips and the valve body.  Rotation of the handwheel toward closed must lower the plug after the 
+sealing slips are aligned with the valve body and force the sealing slips against the valve body for positive closure.  When valve is closed, the 
+slips must form a secondary fire-safe metal-to-metal seat on both sides of the resilient seal.  Plug valves located in Isolation Valve Pits or 
+vaults must be provided with handwheel extensions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Integral Cavity Valves</TTL><BRK/>
+<BRK/>
+<TXT>ANSI Class 150.  Provide plug valves with automatic thermal relief valves to relieve the pressure build up in the internal body cavity when the 
+plug valve is closed.  Relief valves must open at<MET> 172 kPa</MET><ENG> 25 psi</ENG> differential pressure and must discharge to the throat of, and to the upstream 
+side, of the plug valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bleed Valves</TTL><BRK/>
+<BRK/>
+<TXT>ANSI Class 150, stainless steel body valve.  Provide manually operated bleed valves that can be opened to verify that the plug valves are not leaking 
+when in the closed position.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Valve Actuator</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Maximum available temperature ranges for a regular actuator is<MET> minus 30 degrees C to 70 degrees C</MET><ENG> minus 
+22 degrees F to 158 degrees F</ENG>.  A lower temperature rating than that will result in an actuator encapsulated in 
+insulation making access to manual controls and the handwheel difficult.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The actuator, controls and accessories must be the responsibility of the valve-actuator supplier for sizing, assembly, certification, field-testing 
+and any adjustments necessary to operate the valve as specified.  The electric valve actuator must include as an integral unit the electric motor, 
+actuator unit gearing, limit switch gearing, position limit switches, torque switches, drive bushing or stem nut, declutch lever, wiring terminals 
+for power, remote control indication connections and handwheel.  The electrically actuated plug valve must be set to open and close completely 
+in 30 to 60 seconds against a differential pressure of 275 PSIG.  The actuator settings of torque and limit contacts must be adjustable.  The valve 
+actuator must be suitable for mounting in a vertical or horizontal position and be rated for 30 starts per hour.  The valve actuator must be capable 
+of functioning in an ambient environment temperature ranging from<MET> minus 30 degrees C to 70 degrees C</MET><ENG> [minus 22 to 158] [_____] degrees F</ENG>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The electrical enclosure must be specifically approved by UL or Factory Mutual for installation in Class I, Division 1, Group D locations.</OLI><BRK/>
+<BRK/>
+<OLI>The electric motor must be specifically designed for valve actuator service and must be totally enclosed, non-ventilated construction.  
+The motor must be capable of complete operation at plus or minus 10 percent of specified voltage.  Motor insulation must be a minimum NEMA 
+Class F.  The motor must be a removable subassembly to allow for motor or gear ratio changes as dictated by system operational requirements.  
+The motor must be equipped with an embedded thermostat to protect against motor overload and also be equipped with space heaters.  It must 
+de-energize when encountering a jammed valve.</OLI><BRK/>
+<BRK/>
+<OLI>The reversing starter, control transformer and local controls must be integral with the valve actuator and suitably housed to prevent breathing 
+or condensation buildup.  The electromechanical starter must be suitable for 30 starts per hour.  The windings must have short circuit 
+and overload protection.  A transformer, if needed, must be provided to supply all internal circuits with 24 VDC or 110 VAC may be used 
+for remote controls.</OLI><BRK/>
+<BRK/>
+<OLI>The actuator gearing must be totally enclosed in an oil-filled or grease-filled gearcase.  Standard gear oil or grease must be used to 
+lubricate the gearcase.</OLI><BRK/>
+<BRK/>
+<OLI>The actuator must integrally contain local controls for Open, Close and Stop and a local/remote three position selector switch: Local Control 
+Only, Off, and Remote Control plus Local Stop Only.  A metallic handwheel must be provided for emergency operation.  The handwheel drive 
+must be mechanically independent of the motor drive.  The remote control capability must be to open and close.  Rim pull to operate valve 
+manually must not exceed<MET> 36 kg</MET><ENG> 80 pounds</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Position limit switches must be functional regardless of main power failure or manual operation.  Four contacts must be provided with each 
+selectable as normally open or normally closed.  The contacts must be rated at 5A, 120 VAC, 30 VDC.</OLI><BRK/>
+<BRK/>
+<OLI>Each valve actuator must be connected to a PLC supplied by "others".</OLI><BRK/>
+<BRK/>
+<OLI>The actuator must have a local display of position even when power has been lost.</OLI><BRK/>
+<BRK/>
+<OLI>The actuator must be supplied with a start-up kit comprising installation instruction, electrical wiring diagram and spare cover screws 
+and seals.</OLI><BRK/>
+<BRK/>
+<OLI>The actuator must be performance tested and a test certificate must be supplied at no extra charge. The test should simulate a typical 
+valve load with current, voltage, and speed measured.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Swing Type Check Valves</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Swing Type Check Valves are limited to<MET> 50 mm</MET><ENG> 2 inch</ENG> size and below.  These valves are used in underground 
+PRT fill line.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Swing check valves must conform to <RID>API STD 600</RID>, regular type, ANSI Class 150 with flanged end connections.  Discs and seating rings must be renewable 
+without removing the valve from the line.  The disc must be guided and controlled to contact the entire seating surface.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Wafer Type Check Valve</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Spring assisted, wafer/tapped lug pattern, butterfly check or globe type with FKM or PTFE seat ring, designed to prevent flow reversal slamming 
+of valve, dual plate, and must conform to <RID>ASME B16.34</RID>, <RID>API Std 594</RID>, except face to face dimensions may deviate from standard.  Valves must be suitable 
+for installation in any orientation.  Valve body and trim material must be as previously indicated herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Globe Valve</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Valve must conform to <RID>ASME B16.34</RID>, Class 150.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Thermal Relief Valve</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate on the drawings the operating pressure required for each valve.  Thermal relief valves will typically 
+be placed down stream of control valves to relieve the pressure buildup created when the control valve is closed.  
+Relief valves are also used to relieve possible thermal expansion in a pipe line if no other provisions exist.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Valve Materials</TTL><BRK/>
+<BRK/>
+<TXT>Valves must have carbon steel bodies (stainless steel on stainless steel pipelines) and bonnets with stainless steel springs and trim.  Valves 
+must be Class 150 flanged end connections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermal Relief Valve (ASME Type)</TTL><BRK/>
+<BRK/>
+<TXT>Thermal relief valves must be the fully enclosed, spring loaded, angle pattern, single port, hydraulically operated type with plain caps, and must 
+be labeled in accordance with ASME BPVC (GPM).  Valve stems must be fully guided between the closed and fully opened positions.  The valves must 
+be factory-set to open at pressures indicated on the drawings.  Operating pressure must be adjustable by means of an enclosed adjusting screw.  
+The valves must have a minimum capacity of 20 GPM at 10 percent overpressure.  Valves must have a replaceable seat.  Relief valves that do not 
+relieve to a zone of atmospheric pressure or tank must be a balanced type relief valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermal Relief Valve (Balanced Type)</TTL><BRK/>
+<BRK/>
+<TXT>Thermal relief valves that do not relieve to a zone of atmospheric pressure or atmospheric tank must be a balanced type relief or regulator valve.</TXT><BRK/>
+<BRK/>
+<TXT>Thermal relief valves must be the fully enclosed, spring loaded, angle pattern, single port, fully balanced type (back pressure must not affect 
+relief pressure) back pressure regulator/relief valve.  Set valve at pressure indicated on drawings.  Valve body must have<MET> 25 mm</MET><ENG> one inch</ENG> (minimum) 
+raised face flange connections unless otherwise indicated.  Orifice must have a minimum orifice size of<MET> 15 millimeter</MET><ENG> .500 inch</ENG> in diameter.  Valve 
+must have bubble-tight piston and seat design with stainless steel piston and Viton seat.  Valve must be selected for the nominal flow condition 
+of: pass a minimum of<MET> [18] liters per minute</MET><ENG> [5] gallons per minute</ENG>, at a differential pressure of<MET> [380] kPa</MET><ENG> [55] psig</ENG>, with a nominal set pressure 
+of<MET> [345] kPa</MET><ENG> [50] psig</ENG>.  Valve must be factory configured to open at required set pressure but must be field adjustable by means of an enclosed 
+adjusting screw.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Pressure\Vacuum Relief Valve</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide the aboveground termination point of a storage tank's vent piping with either a pressure\vacuum 
+relief valve or a vent cap.  The decision on which item to use will be based upon the characteristics of the fuel 
+to be handled (refer to NFPA 30, 30A, and UL 142 as applicable).  Indicate on the drawings the pressure and vacuum 
+settings that each valve will be required to operate.  A valve's typically operating pressure is<MET> 5.2 kPa</MET><ENG> 12 oz 
+per in<SPS>2</SPS></ENG>.  A valves's typical operating vacuum is<MET> 215 Pa</MET><ENG> 0.5 oz per in<SPS>2</SPS></ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Valve must be the pressure\vacuum vent relief type that conforms to <RID>NFPA 30</RID>.  Valve pressure and vacuum relief settings must be set at the factory.  
+Pressure and vacuum relief must be provided by a single valve.  Valve body must be constructed of either cast steel or aluminum.  Valve trim must 
+be stainless steel.  Inner valve pallet assemblies must have a knife-edged drip ring around the periphery of the pallet to preclude condensation 
+collection at the seats.  Pallet seat inserts must be of a material compatible with the fuel specified to be stored.  Valve intake must be covered 
+with a 40 mesh stainless steel wire screen.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Foot Valve</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Foot valves are most commonly used in conjunction with small underground storage tanks and remote pumping 
+systems (e.g., the pump is not located within the tank).  The function of the valve is to hold prime in the suction 
+line following a pump shutdown.  Foot valves are typically located at the termination of the suction line within 
+a tank.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Valve must be the self-activating, double-poppet, shutoff type that prevents fuel flow from reversing. Valve must conform to <RID>NFPA 30</RID>.  Valve body 
+must be constructed of either cast steel or aluminum.  Valve must be provided with a minimum 20 mesh stainless steel screen on the intake.  Valve 
+seats must be the replaceable type.  Valve must be capable of passing through a<MET> 75 mm</MET><ENG> 3 inch</ENG> pipe or tank flange.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Tank Overfill Prevention Valve (Gravity Fill)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify these valves only in combination with a gravity unloading system that feeds an underground storage 
+tank.  Do not specify these valves in combination with any type of unloading pump (including truck mounted pumps).  
+Do not specify these valves in conjunction with aboveground storage tanks.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Valve must be the two-stage, float-activated, shutoff type that is an integral part of the drop tube used for gravity filling.  The first stage 
+must restrict the flow of fuel into the tank to approximately<MET> 0.3 L/s</MET><ENG> 5 gpm</ENG> when the liquid level rises above 87.5 percent of tank capacity.  The 
+second stage must completely stop the flow of fuel into the tank when the liquid level rises above 92.5 percent of tank capacity.  Valve must be 
+constructed of the same material as the fill tube.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Tank Overfill Prevention Valve (Pumped Fuel Receipt)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify these valves when used for pressure filled tanks (e.g.in combination with any type of unloading 
+pump that feeds an aboveground storage tank).  For aboveground storage tanks, set the overfill valve to actuate 
+at 96.5 percent tank volume.  Refer to DoD Military Service Station and Factory Fabricated Tank Standard, STD 
+123-335-03.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Valve must be the two-stage, float-activated, shutoff type that is an integral part of the drop tube used for pressurized fill systems.  The valve 
+must completely stop the flow of fuel into the tank, when the liquid level rises above [96.5 percent][_____] of tank capacity.  Valve must be constructed 
+of the same material as the fill tube.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Anti-Siphon Valves</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Solenoid Controlled Anti-Siphon Ball Valve</TTL><BRK/>
+<BRK/>
+<TXT>Anti-siphon valves must be solenoid controlled, normally closed, spring loaded valves.  Solenoid must be housed in an integral, watertight, explosion 
+proof housing and suitable for installation in Class I, Division I hazardous area locations.  Valve body and trim material must be as previously 
+indicated herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anti-Siphon Valve</TTL><BRK/>
+<BRK/>
+<TXT>Anti-siphon valves must be normally closed, spring loaded, angle pattern type valves.  Valves must be suitable for installation in any orientation 
+and compatible with suction or pressurized systems.  Valve must be UL listed.  Valve body and trim material must be as previously indicated herein.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>PUMPS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the control sequences for pumps on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Submersible Pump</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph if dispenser suction pumps are used in place of submersible pumps. Submersible pumps 
+may be used for both above and belowground tanks.  Check manufacturer's data since these type pumps may only be 
+capable of handling gasoline or diesel fuels.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>See Section <SRF>33 57 55</SRF> FUEL SYSTEM COMPONENTS (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>ANSI Type Centrifugal Pump</SUB></TTL><BRK/>
+<BRK/>
+<TXT>See Section <SRF>33 57 55</SRF> FUEL SYSTEM COMPONENTS (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Sliding Vane Rotary Pump</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify sliding vane rotary pumps for fuel oil applications, lubricating oil applications, etc.  Maximum 
+suction lift for rotary pump will not exceed<MET> 34 kPa</MET><ENG> 10 inches Hg</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>See Section <SRF>33 57 55</SRF> FUEL SYSTEM COMPONENTS (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Self-priming Centrifugal Pump</SUB></TTL><BRK/>
+<BRK/>
+<TXT>See Section <SRF>33 57 55</SRF> FUEL SYSTEM COMPONENTS (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Pump Control Panel</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Panel must include on and off indication lights for each pump.  Panel must contain an adjustable control logic for pump operation in accordance 
+with the indicated operation.  Panel must also have a manual override switch for each pump to allow for the activation or deactivation of each 
+pump.  See Section <SRF>33 09 52</SRF> FUEL PUMP CONTROL AND ANNUNCIATION SYSTEM (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>FRP CONTAINMENT SUMP</SUB></TTL><BRK/>
+<BRK/>
+<TXT>See Section <SRF>33 57 55</SRF> FUEL PUMP CONTROL AND ANNUNCIATION SYSTEM (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ACCESSORIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Concrete Anchor Bolts</TTL><BRK/>
+<BRK/>
+<TXT>Concrete anchors must conform to <RID>ASTM A307</RID>, Grade C, hot-dipped galvanized.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bolts and Studs</TTL><BRK/>
+<BRK/>
+<TXT>Carbon steel bolts and studs must conform to <RID>ASTM A307</RID>, Grade B, hot-dipped galvanized.  Stainless steel bolts and studs must conform to <RID>ASTM A193/A193M</RID>
+, Class 2, Grade 8.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nuts</TTL><BRK/>
+<BRK/>
+<TXT>Carbon steel nuts must conform to <RID>ASTM A563</RID>, Grade A, hex style, hot-dipped galvanized.  Stainless steel nuts must conform to <RID>ASTM A194/A194M</RID>, 
+Grade 8.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Washers</TTL><BRK/>
+<BRK/>
+<TXT>Provide flat circular washers under each bolt head and each nut.  Washer materials must be the same as the connecting bolt and nut.  Carbon steel 
+washers must conform to <RID>ASTM F844</RID>, hot-dipped galvanized.  Stainless steel washers must conform to <RID>ASTM A194/A194M</RID>, Grade 8.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Polytetrafluoroethylene (PTFE) Tape</TTL><BRK/>
+<BRK/>
+<TXT>Tape must conform to <RID>ASTM D3308</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Sleeves</TTL><BRK/>
+<BRK/>
+<TXT>Provided sleeves constructed of [hot-dipped galvanized steel, ductile iron, or cast-iron pipe] [uncoated carbon steel pipe, conforming to <RID>ASTM A53/A53M</RID>
+, [Schedule 30] [Schedule 20] [Standard weight]].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Buried Utility Tape</TTL><BRK/>
+<BRK/>
+<TXT>Provide detectable aluminum foil plastic-backed tape or detectable magnetic plastic tape for warning and identification of buried piping.  Tape 
+must be detectable by an electronic detection instrument.  Provide tape in minimum<MET> 75 mm</MET><ENG> 3 inches</ENG> width rolls, color coded for the utility involved, 
+with warning identification imprinted in bold black letters continuously and repeatedly over entire tape length.  Warning identification must be 
+at least<MET> 25 mm</MET><ENG> one inch</ENG> high and must state as a minimum "BURIED JET FUEL PIPING BELOW".  Provide permanent code and letter coloring that is unaffected 
+by moisture and other substances contained in trench backfill material.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Pipeline Markers</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide pipeline markers constructed of<MET> 150 mm</MET><ENG> 6 inches</ENG> diameter, one-half<BRK/>
+inch thick bronze disk with a<MET> 75 mm</MET><ENG> 3 inch</ENG> long bronze headed bolt welded to the back of the disk.  Engrave the front of the disk with the words 
+"UNDERGROUND FUEL LINE" in the case of one line and "UNDERGROUND FUEL LINES" in the case of multiple fuel lines.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FINISHES</TTL><BRK/>
+<BRK/>
+<TXT>Ship, store, and handle coating materials as well as apply and cure coatings in accordance with <RID>SSPC PA 1</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Exterior Coating, Direct Buried Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Factory Coating</TTL><BRK/>
+<BRK/>
+<TXT>Provide direct buried pipe and piping components with a factory-applied, adhesive undercoat and continuously extruded plastic resin coating in 
+accordance with <RID>NACE SP0185</RID> or <RID>AWWA C215</RID>; minimum thickness of plastic resin must be 36 mils for pipe sizes<MET> 150 mm</MET><ENG> 6 inches</ENG> and larger.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Girth Welds</TTL><BRK/>
+<BRK/>
+<TXT>Coat girth welds using one of the following processes.</TXT><BRK/>
+<BRK/>
+<LST>a.  Heat shrink sleeves in accordance with <RID>AWWA C216</RID>.</LST><BRK/>
+<BRK/>
+<LST>b.  Wax tape coatings in accordance with <RID>AWWA C217</RID>.</LST><BRK/>
+<BRK/>
+<LST>c.  Cold applied tape coatings in accordance with <RID>AWWA C209</RID>.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Damaged Coatings</TTL><BRK/>
+<BRK/>
+<TXT>Repair damaged coating areas using one of the following processes.</TXT><BRK/>
+<BRK/>
+<LST>a.  Wax tape coatings in accordance with <RID>AWWA C217</RID>.</LST><BRK/>
+<BRK/>
+<LST>b.  Cold applied tape coatings in with <RID>AWWA C209</RID>.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rock Shield</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify rock shields where select fill is not available and the possibility of damage from rock fill exists.  
+Delete this paragraph if not applicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a minimum<MET> 10 mm</MET><ENG> 3/8 inch</ENG> thick perforated rock shield around buried piping.  Rock shield must consist of a polyethylene outer surface bonded 
+to a closed cell foam substrate with uniform perforations intended for use with cathodic protection systems.  Rock shield must overlap on itself 
+no less than<MET> 150 mm</MET><ENG> 6 inches</ENG>.  Secure rock shield tightly to the pipe using either strapping tape or plastic ties.  Air filled cell type rock shields 
+are prohibited.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Exterior Coating, Aboveground Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Piping identification as required by the using agency will be developed and inserted in either Section 
+<SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING FOR STEEL STRUCTURES or Section <SRF>09 90 00</SRF> PAINTS AND COATINGS as applicable.</NPR><BRK/>
+<BRK/>
+<NPR>For Air Force Installations, piping will be color-coded in accordance with Attachment 4 of AFM 88-15.</NPR><BRK/>
+<BRK/>
+<NPR>Specify exterior, aboveground coatings per Section <SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING FOR STEEL STRUCTURES if 
+SSPC QP 1 contractor certification is required for any other coatings on the project.  Specify Section 
+<SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING FOR STEEL STRUCTURES if more than 500 square feet of piping is to be coated.  
+Section <SRF>09 90 00</SRF> PAINTS AND COATINGS may be specified for other situations.  If Section <SRF>09 90 00</SRF> PAINTS AND COATINGS 
+is specified, consider choosing the option for the contractor to be certified to SSPC QP 1, as certified contractors 
+are likely to have more experience working around fuel facilities.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coat the exterior of aboveground steel piping, flanges, fittings, nuts, bolts, washers, valves, and piping components, as defined in this specification, 
+in accordance with [Section <SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING FOR STEEL STRUCTURES][Section <SRF>09 90 00</SRF> PAINTS AND COATINGS].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>New System Components</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Factory Coating</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For all Navy projects (regardless of location), the 500 hour salt spray test is required and must be specified.</NPR><BRK/>
+<BRK/>
+<NPR>For Army projects, a salt spray test is optional.  The 125 hour test is suggested for mild or noncorrosive environments.  
+The 500 hour test is suggested for extremely corrosive environments.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Unless otherwise specified, provide system components fabricated from ferrous metal with the manufacturer's standard factory finish.[  Each factory 
+finish must withstand [125] [500] hours exposure to the salt spray test specified in <RID>ASTM B117</RID>.  For test acceptance, the test specimen must show 
+no signs of blistering, wrinkling, cracking, or loss of adhesion and no sign of rust creepage beyond<MET> 3 mm</MET><ENG> 1/8 inch</ENG> on either side of the scratch 
+mark immediately after completion of the test.]  For system component surfaces subject to temperatures above<MET> 50 degrees C</MET><ENG> 120 degrees F</ENG>, the factory 
+coating must be appropriately designed for the temperature service.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Painting</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify exterior, aboveground coatings per Section <SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING FOR STEEL STRUCTURES 
+if SSPC QP 1 contractor certification is required for any other coatings on the project.  If Section <SRF>09 90 00</SRF> 
+PAINTS AND COATINGS is specified, consider choosing the option for the contractor to be certified to SSPC QP 1, 
+as certified contractors are likely to have more experience working around fuel facilities.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Painting required for surfaces not otherwise specified must be field painted as specified in [Section <SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING FOR 
+STEEL STRUCTURES][Section <SRF>09 90 00</SRF> PAINTS AND COATINGS].  Do not paint aboveground stainless steel and aluminum surfaces.  Do not coat system components 
+provided with a complete factory coating.  Prior to any field painting, clean surfaces to remove dust, dirt, rust, oil, and grease.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show belowground valves, flanges, air vents and drains to be installed in a containment sump or manhole 
+as required.  Never require these items to be direct buried.</NPR><BRK/>
+<BRK/>
+<NPR>During design, layout system components to allow for adequate access for routine maintenance.  Do not rely solely 
+on the Contractor to make these judgments.  Show access doors where applicable for maintenance.</NPR><BRK/>
+<BRK/>
+<NPR>Indicate all steel reinforced flexible pipe connection points on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Installation, workmanship, fabrication, assembly, erection, examination, inspection, and testing must be in accordance with <RID>ASME B31.3</RID> and <RID>NFPA 30</RID>
+, except as modified herein.  Safety rules as specified in <RID>NFPA 30</RID> must be strictly observed.  Never direct bury threaded connections, socket welded 
+connections, unions, flanges, valves, air vents, or drains.  Install all work so that parts requiring periodic inspection, operation, maintenance, 
+and repair are readily accessible.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pumps</TTL><BRK/>
+<BRK/>
+<TXT>Properly level, align, and secure pumps in place in accordance with manufacturer's instructions.  Support, anchor, and guide so that no strains 
+are imposed on a pump by weight or thermal movement of piping.[  Provide floor-mounted pumps with mechanical vibration isolators or a vibration 
+isolation foundation.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For belowground piping, indicate on the drawings the minimum required piping slope for each piping run 
+(suggest using<MET> 25 mm per 15 m</MET><ENG> 1 inch per 50 feet</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Thoroughly clean pipe of all scale and foreign matter before the piping is assembled.  Cut pipe accurately to measurements established at the jobsite, 
+and worked into place without springing or forcing.  Cut pipe square and have burrs removed by reaming.  Install pipe to permit free expansion 
+and contraction without causing damage to the building structure, pipe, joints, or hangers.  Cutting or other weakening of the building structure 
+to facilitate piping installation will not be permitted without written approval.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Use reducing fittings for changes in pipe sizes.  Install system components and piping into space allotted and allow adequate acceptable 
+clearances for installation, replacement, entry, servicing, and maintenance.  Provide electric isolation fittings between dissimilar metals.  
+Install piping straight and true to bear evenly on supports.  Piping must be free of traps, must not be embedded in concrete pavement, 
+and must drain as indicated.  Make changes in direction with fittings, except that bending of pipe<MET> 100 mm</MET><ENG> 4 inches</ENG> and smaller will be 
+permitted, provided a pipe bender is used and wide sweep bends are formed.  Mitering or notching pipe or other similar construction to 
+form elbows or tees will not be permitted.</OLI><BRK/>
+<BRK/>
+<OLI>The centerline radius of bends must not be less than 6 diameters of the pipe.  Bent pipe showing kinks, wrinkles, flattening, or other 
+malformations will not be accepted.  When work is not in progress, securely close open ends of pipe and fittings with an expandable pipe 
+plug so that water, earth, or other substances cannot enter the pipe or fittings.  For belowground piping, the full length of each pipe 
+must rest solidly on the underlying pipe bed.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Double-Wall Flexible Non-Metallic Piping</TTL><BRK/>
+<BRK/>
+<TXT>Install double-wall flexible non-metallic piping in accordance with manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipeline Markers</TTL><BRK/>
+<BRK/>
+<TXT>Provide above underground fuel piping spaced every<MET> 90 meters</MET><ENG> 300 feet</ENG>, at tees, and at changes in direction.  For sections of underground piping 
+less than<MET> 90 meters</MET><ENG> 300 feet</ENG> long, place at midpoint.  Provide directly above pipe for single lines and between pipes where pipes run in pairs.  
+Provide additional marker over each mid-line fitting connections for steel reinforced flexible pipe.  Cast marker into<MET> 457 mm</MET><ENG> 18-inch</ENG> diameter,<MET>
+ 305 mm</MET><ENG> 12-inch</ENG> thick concrete plug unless it is set in an area with concrete paving in which case it must be cast into the concrete paving.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel Reinforced Flexible Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Steel reinforced flexible pipe comes in reels.  To the extent possible, design piping system such that 
+the entire length of underground piping can be accommodated with one reel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Connections between steel pipe and steel reinforced flexible pipe and between separate lengths of steel reinforced flexible pipe must not be made 
+aboveground but must be made either inside a pit or vault, or direct bury them.  Where practicable, end-line and mid-line connections must be located 
+inside pit type enclosures of an appropriate size.  Where it is not practicable to locate mid-line connections inside pit type enclosures, mid-line 
+connections may be wrapped with a suitable waterproof protective substance and direct buried underground.  The location of direct buried mid-line 
+connections must be indicated on the final drawings and provided with a pipeline marker.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welded Connections</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise indicated on the drawings, pipe joints must be welded.  Construct branch connections with welding tees or forged welding branch 
+outlets.  Do not weld stainless steel pipe to carbon steel pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Threaded End Connections</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  As stated previously, avoid threaded end connections if possible.  Threaded end connections may be used 
+in certain aboveground applications if specifically indicated on the drawings.  As stated previously, never required 
+a threaded end connection to be direct buried.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide threaded end connections only on piping<MET> 50 mm</MET><ENG> 2 inches</ENG> in nominal size or smaller and only where indicated on the drawings.  Provide threaded 
+connections with PTFE tape or equivalent thread-joint compound applied to the male threads only.  Not more than three threads must show after the 
+joint is tighten.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Brazed Connections</TTL><BRK/>
+<BRK/>
+<TXT>Provide brazing in accordance with <RID>AWS BRH</RID>, except as modified herein.  During brazing, fill pipe and fittings with a pressure regulated inert 
+gas, such as nitrogen, to prevent the formation of scale.  Before brazing copper joints, clean both the outside of the tube and the inside of the 
+fitting with a wire fitting brush until the entire joint surface is bright and clean.  Do not use brazing flux.  Remove surplus brazing material 
+at all joints.  Support piping prior to brazing and do not be spring or force piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Existing Piping Systems</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph if connections to existing piping systems are not required.  Indicate on the drawings 
+the approximate location of each connection point between new and existing piping systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>No interruptions or isolation of an existing fuel handling service or system must be performed unless the actions are approved by the Contracting 
+Officer.  Perform initial cutting of existing fuel pipe with a multiwheel pipe cutter, using a nonflammable lubricant.  After cut is made, seal 
+interior of piping with a gas barrier plug.  Purge interior of piping with carbon dioxide or nitrogen prior to performing any welding process.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Bolted Connections</TTL><BRK/>
+<BRK/>
+<TXT>For each bolted connection of stainless steel components (e.g., pipes, piping components, valves, and system components) use stainless steel bolts 
+or studs, nuts, and washers.  For each bolted connection of carbon steel components, use carbon steel bolts or studs, nuts, and washers.  Bolts 
+to project no more than three full threads and no less than two full threads beyond the nuts with the bolts tightened to the required torque.  
+Prior to installing nuts, apply a compatible anti-seize compound to the male threads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flanges and Unions</TTL><BRK/>
+<BRK/>
+<TXT>Except where threaded end connections [and][or] unions are indicated, provide flanged joints in each line immediately preceding the connection 
+to a system component or material requiring maintenance such as pumps, general valves, control valves, strainers, and other similar items and as 
+indicated.  Assemble flanged joints square and tight with matched flanges, gaskets, and bolts.  For flanges, provide washers under each bolt head 
+and nut.  Torque wrenches must be used to tighten all flange bolts to the torque recommended by the gasket manufacturer.  Tightening pattern must 
+be as recommended by the gasket manufacturer.  Use anti-seize compound on threads for stainless steel bolts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flange Protectors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See Note on FLANGE PROTECTORS paragraph in this section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide flange protectors [on each electrically isolating flange connection][on each flanged end connection, including valves and system components][where 
+indicated on the drawings].[  Fill the flange cavity of electrically isolating flange connections with corrosion inhibitor type grease.]  Provide 
+grease filled bolt caps.  Caution should be used when installing stainless steel bands to avoid "grounding out" the insulating flanges.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<TXT>Install isolation plug or ball valves on each side of each system component, at the midpoint of looped mains, and at any other points indicated 
+or required for draining, isolating, or sectionalizing purpose.  Install valves with stems vertically up unless otherwise indicated.  Provide individual 
+supports and anchors for each valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air Vents</TTL><BRK/>
+<BRK/>
+<TXT>Provide [_____]<MET> [40 mm]</MET><ENG> [1-1/2 inches]</ENG> air vents at all high points and where indicated to ensure adequate venting of the piping system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drains</TTL><BRK/>
+<BRK/>
+<TXT>Provide [_____]<MET> [50 mm]</MET><ENG> [2 inches]</ENG> drains at all low points and where indicated to ensure complete drainage of the piping.  Drains must by schedule 
+120.Drains must be accessible, and must consist of nipples and caps or plugged tees unless otherwise indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bellows Expansion Joints</TTL><BRK/>
+<BRK/>
+<TXT>Cold set joints to compensate for the temperature at the time of installation.  Provide initial alignment guides on the connecting piping no more 
+than 4 pipe diameters from the expansion joint.  Provide additional  alignment guides on the connecting piping no more than 14 pipe diameters from 
+the first guide.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermometers</TTL><BRK/>
+<BRK/>
+<TXT>Provide thermometers with separable sockets.  Install separable sockets in pipe lines in such a manner to sense the temperature of flowing fluid 
+and minimize obstruction to flow.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Sleeves</TTL><BRK/>
+<BRK/>
+<TXT>Provide a pipe sleeve around any pipe that penetrates a wall, floor, or crosses under a roadway.  Do not install sleeves in structural members 
+except where indicated or approved.  Install pipe sleeves in masonry structures at the time of the masonry construction.  Sleeves must be of such 
+size as to provide a minimum of<MET> 12 mm</MET><ENG> 1/2 inch</ENG> all-around clearance between bare pipe and the sleeve.  Align sleeve and piping such that the pipe 
+is accurately centered within the sleeve by a nonconductive centering element.  Securely anchor the sleeve to prevent dislocation.  Closure of 
+the space between the pipe and the pipe sleeve must be by means of a mechanically adjustable segmented elastomeric seal.  The seal must be installed 
+so as to be flush.  For wall or floor penetrations, extend each sleeve through its respective wall or floor and cut flush with each surface.  For 
+roadway crossings, pipe sleeves must be continuous for the entire crossing as well as extend a minimum of<MET> 150 mm</MET><ENG> 6 inches</ENG> beyond both sides of 
+the crossing.  Seal around sleeves that penetrate through valve or fuel related pits with a Buna-N casing seal.  Seal around sleeves that penetrate 
+through non-fire-rated walls and floors in accordance with Section <SRF>07 92 00</SRF> JOINT SEALANTS.  Seal around sleeves that penetrate through fire-rated 
+walls and floors as specified in Section <SRF>07 84 00</SRF> FIRESTOPPING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Escutcheons</TTL><BRK/>
+<BRK/>
+<TXT>Except for utility or equipment rooms, provide finished surfaces where exposed piping pass through floors, walls, or ceilings with escutcheons.  
+Secure escutcheon to pipe or pipe covering.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Access Panels</TTL><BRK/>
+<BRK/>
+<TXT>Provide access panels for all concealed valves, vents, controls, and items requiring inspection or maintenance.  Access panels must be of sufficient 
+size and located so that the concealed items may be serviced and maintained or completely removed and replaced.  Provide access panels as specified 
+in Section <SRF>08 31 00</SRF> ACCESS DOORS AND PANELS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Buried Utility Tape</TTL><BRK/>
+<BRK/>
+<TXT>Bury tape with the printed side up at a depth of<MET> 300 mm</MET><ENG> 12 inches</ENG> below the top surface of earth or the top surface of the subgrade under pavements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Framed Instructions</TTL><BRK/>
+<BRK/>
+<TXT>Framed instructions must include system components layout, wiring and control diagrams, piping, valves, control sequences, and typed condensed 
+operation instructions.  The condensed operation instructions must include preventative maintenance procedures, methods of checking the system 
+for normal and safe operation, and procedures for safely starting and stopping the system.  Frame under glass or laminated plastic the framed instructions 
+and post where directed by the Contracting Officer.  Post the framed instructions before the system performance tests.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PIPE SUPPORTS</TTL><BRK/>
+<BRK/>
+<TXT>Install supports with a maximum spacing as defined in Table 1 below, except where indicated otherwise.  In addition to meeting the requirements 
+of Table 1, provide additional supports where concentrated piping loads exist (e.g., valves).</TXT><BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="10" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="161.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="80.25"/>
+      <COL AUTOWIDTH="0" WIDTH="69.75"/>
+      <COL AUTOWIDTH="0" WIDTH="81.75"/>
+      <COL AUTOWIDTH="0" WIDTH="81.75"/>
+      <COL AUTOWIDTH="0" WIDTH="74.25"/>
+      <COL AUTOWIDTH="0" WIDTH="71.25"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.75"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="9" STYLEID="s51">
+<DTA TYPE="STRING">Table 1.  Maximum Support Spacing</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="72.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Nominal Pipe Size<MET> (mm)</MET><ENG> (Inches)</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>25 </MET><ENG>One </ENG>and Under</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>40 </MET><ENG>1.5</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>50 </MET><ENG>2</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>80 </MET><ENG>3</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>100 </MET><ENG>4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>150 </MET><ENG>6</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>200 </MET><ENG>8</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>250 </MET><ENG>10</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>300 </MET><ENG>12</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="72.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Support Spacing<MET> (m)</MET><ENG> (ft)</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>2 </MET><ENG>7</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>2.75 </MET><ENG>9</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>3 </MET><ENG>10</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>3.5 </MET><ENG>12</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>4.25 </MET><ENG>14</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>5 </MET><ENG>17</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>5.75 </MET><ENG>19</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>6.50 </MET><ENG>22</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>7 </MET><ENG>23</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<BRK/>
+<SPT><TTL>Seismic Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include applicable seismic design requirements on the drawings.  Delete this paragraph if there are no 
+specific seismic design requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Support and brace piping and attach valves to resist seismic loads as specified under Section <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS[ 
+and Section <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS] and as shown on the drawings.  Structural steel required for reinforcement to properly 
+support piping, headers, and system components but not shown must be provided under this section.  Material used for support must be as specified 
+under Section <SRF>05 12 00</SRF> STRUCTURAL STEEL.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Structural Attachments</TTL><BRK/>
+<BRK/>
+<TXT>Provide attachments to building structure concrete and masonry by cast-in concrete inserts, built-in anchors, or masonry anchor devices.  Apply 
+inserts and anchors with a safety factor not less than 5.  Do not attach supports to metal decking.  Construct masonry anchors for overhead applications 
+of ferrous materials only.  Structural steel brackets required to support piping, headers, and system components, but not shown, must be provided 
+under this section.  Material used for support must be as specified under Section <SRF>05 12 00</SRF> STRUCTURAL STEEL.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROLS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>System Commissioning</TTL><BRK/>
+<BRK/>
+<TXT>System commissioning must conform to Section <SRF>33 08 55</SRF> FUEL DISTRIBUTION SYSTEM START-UP (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tests</TTL><BRK/>
+<BRK/>
+<TXT>Furnish labor, materials, equipment, electricity, repairs, and retesting necessary for any of the tests required herein.  Perform piping test in 
+accordance with the applicable requirements of <RID>ASME B31.3</RID> except as modified herein.  To facilitate the tests, various sections of the piping system 
+may be isolated and tested separately.  Where piping sections terminate at flanged valve points, close the line by means of blind flanges in lieu 
+of relying on the valve.  Provide tapped flanges to allow a direct connection between the piping and the air compressor [and][or] pressurizing 
+pump.  Use tapped flanges for gauge connections.  Taps in the permanent line will not be permitted.  Gauges will be subject to testing and approval.  
+Provide provisions to prevent displacement of the piping during testing.  Keep personnel clear of the piping during pneumatic testing.  Only authorized 
+personnel must be permitted in the area during pneumatic and hydrostatic testing.  Isolate system components such as pumps, tanks and meters from 
+the piping system during the testing.  Do not exceed the pressure rating of any component in the piping system during the testing.  Following satisfactory 
+completion of each test, relieve the test pressure and seal the pipe immediately.  Piping to be installed underground must not receive field applied 
+exterior coatings at the joints or be covered by backfill until the piping has passed the final pneumatic tests described herein.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Exterior Coating Holiday Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Following installation, test the exterior coating of direct buried piping for holidays using high-voltage spark testing in accordance with <RID>NACE SP0188</RID>
+.  Repair holidays and retest to confirm holiday-free coating. Text must include all existing underground piping exposed for this project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Preliminary Pneumatic Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Apply a<MET> 170 kPa</MET><ENG> 25 psig</ENG> pneumatic test to product piping.  Maintain the pressure while soapsuds or equivalent materials are applied to the exterior 
+of the piping.  While applying the soapsuds, visually inspect the entire run of piping, including the bottom surfaces, for leaks (bubble formations).  
+If leaks are discovered, repair the leaks accordingly and retest.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Final Pneumatic Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Following the preliminary pneumatic test, apply a<MET> 345 kPa</MET><ENG> 50 psig</ENG> pneumatic test to all product piping and hold for a period not less than 2-hours.  
+During the test period, there must be no drop in pressure in the pipe greater than that allowed for thermal expansion and contraction.  Disconnect 
+the pressure source during the final test period.  If leaks are discovered, repair the leaks accordingly and retest.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Hydrostatic Test</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pressure testing of new Mogas, Avgas, and JP-4 pipelines must be with water.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Testing must comply with the requirements in <RID>ASME B31.3</RID>, except as modified herein.  Hydrostatically test product piping with the fuel to be handled 
+to the lesser of 1-1/2 times operating pressure or<MET> 1896 kPa</MET><ENG> 275 psig</ENG> in accordance with <RID>API RP 1110</RID>.  Maintain the pressure within the piping for 
+4-hours with no leakage or reduction in gauge pressure.  If leaks are discovered, repair the leaks accordingly and retest.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Exterior Containment Piping Tests</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Delete this paragraph if exterior containment piping is not specified. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Apply a minimum pneumatic pressure of<MET> 35 kPa</MET><ENG> 5 psig</ENG> to the exterior containment piping.  Maintain the pressure for at least 1-hour while soapsuds 
+or equivalent materials are applied to the exterior of the piping.  While applying the soapsuds, visually inspect the entire run of piping, including 
+the bottom surfaces, for leaks (bubble formations).  Repair leaks discovered in accordance with manufacturer's instructions and retest.  Perform 
+testing in compliance with the manufacturer's published installation instructions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>SYSTEM PERFORMANCE TESTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If applicable, edit Section <SRF>33 08 55</SRF> FUEL DISTRIBUTION SYSTEM START-UP (NON-HYDRANT) to include the following.</NPR><BRK/>
+<BRK/>
+<NPR>  a.  Verify vent piping is clear of debris and each pressure/vacuum relief vent is operating properly.</NPR><BRK/>
+<BRK/>
+<NPR>  b.  Vapor recovery systems performs as designed.</NPR><BRK/>
+<BRK/>
+<NPR>  c.  Dispensing units are operational and performs as designed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conform tests to Section <SRF>33 08 55</SRF> FUEL DISTRIBUTION SYSTEM START-UP (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>DEMONSTRATIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Conduct a training session for designated Government personnel in the operation and maintenance procedures related to the system components and 
+specified herein.  Include pertinent safety operational procedures in the session as well as physical demonstrations of the routine maintenance 
+operations.  Furnish instructors who are familiar with the installation/system components/systems, both operational and practical theories, and 
+associated routine maintenance procedures.  The training session must consist of a total of [_____] hours of normal working time and must start 
+after the system is functionally completed, but prior to final <NED/>system acceptance.  Submit a letter, at least 14 working days prior to the proposed 
+training date, scheduling a proposed date for conducting the onsite training.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

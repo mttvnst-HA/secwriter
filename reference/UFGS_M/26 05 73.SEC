@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.75"/>
+      <COL AUTOWIDTH="0" WIDTH="224.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-26 05 73 (August 2023)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-26 28 01.00 10 (August 2021)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 05 73</SCN><BRK/>
+<BRK/>
+<STL>POWER SYSTEM STUDIES</STL><BRK/>
+<DTE>08/23</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>power system studies 
+typical for incident energy analysis to support an arc flash risk assessment</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 1584</RID><RTL>(2018; E 2019) Guide for Performing Arc-Flash Hazard Calculations</RTL><BRK/><BRK/><RID>IEEE 1584.1</RID><RTL>(2022) Guide for the Specification of Scope and Deliverable Requirements for an Arc-Flash Hazard Calculation Study</RTL><BRK/><BRK/><RID>IEEE 3002.2</RID><RTL>(2018) Recommended Practice for Conducting Load-Flow Studies and Analysis of Industrial and Commercial Power Systems</RTL><BRK/><BRK/><RID>IEEE 3002.3</RID><RTL>(2018) Recommended Practice for Conducting Short-Circuit Studies and Analysis of Industrial and Commercial Power Systems</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70E</RID><RTL>(2024) Standard for Electrical Safety in the Workplace</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 3-560-01</RID><RTL>(2017; with Change 3, 2023) Operation and Maintenance: Electrical Safety</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide brief, general description of the electrical power system project.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate with Section <SRF>26 11 14.00 10</SRF> MAIN ELECTRIC SUPPLY STATION AND SUBSTATION; 
+Section <SRF>33 71 01</SRF> OVERHEAD TRANSMISSION AND DISTRIBUTION; Section <SRF>33 71 02</SRF> UNDERGROUND 
+ELECTRICAL DISTRIBUTION; Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM; and 
+Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The power system covered by this specification consists of:  [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Field Examination Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Arc Flash Label Formats</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Field Examination</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>System Analyzer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Model Files</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Load Flow Study</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fault Current Study</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Coordination Study</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Arc Flash Hazard Study</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>System Analyzer</TTL><BRK/>
+<BRK/>
+<TXT>The <SUB>System Analyzer</SUB> must perform the power system studies.  The System Analyzer must be a registered professional 
+electrical engineer with a minimum of [3] [_____] years of experience with power system studies.  Include a list 
+of three comparable jobs performed by the System Analyzer with specific names and telephone numbers for reference.  
+Include the license number and state of the registered Professional Engineer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Verifier</TTL><BRK/>
+<BRK/>
+<TXT>The System Verifier may inspect and record settings, markings, and otherwise document the existing equipment.  
+The System Verifier may also place appropriate hazard labels on equipment.  The System Verifier must not make 
+any calibrations or adjustments or place equipment into service.  When working with energized equipment, the 
+system verifier must be a Qualified Person per <RID>NFPA 70E</RID> or working under the direct supervision of a Qualified 
+Person.  [The System Verifier may communicate with the system owner to determine if the equipment within the 
+studied system has received maintenance and testing in accordance with NETA MTS or NFPA 70B.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></PRT>
+<PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>FIELD EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>For each pre- and post-study inspection, submit a <SUB>field examination plan</SUB> identifying which facilities must be 
+examined to complete the required work.  Include a complete information verification procedure, where Qualified 
+Personnel will be required, PPE requirements for "live" equipment examinations, and equipment to be used within 
+the limited approach boundary of the equipment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Perform field inspections of the site and equipment before the first study and after the last study to determine 
+the state and settings of the equipment and to verify the final settings agree with the studies.  [Perform the 
+post-study inspection(s) after changing settings, after performing acceptance tests, and before placing equipment 
+in service.][The post-study inspection may be performed by the testing organization approved in <SRF>26 08 00</SRF> APPARATUS 
+INSPECTION AND TESTING.]</TXT><BRK/>
+<BRK/>
+<TXT>Schedule the field examination by the System Verifier with the Contracting Officer at least [10][_____] business 
+days before conducting examination. Furnish all materials, labor, and equipment necessary to conduct the examination. 
+Maintain a written record of the all equipment examined, equipment location, equipment ratings, settings, personnel 
+involved, and the date the examination was performed.  Submit the written record of each <SUB>field examination</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safety</TTL><BRK/>
+<BRK/>
+<TXT>Where examination of the equipment requires energized equipment to be opened, provide a Qualified Person to directly 
+supervising any non-Qualified Person within the hazard area.  Use PPE, protective barriers,<BRK/>
+danger signs and other safety devices to protect and warn personnel in the vicinity of "live" equipment being 
+examined.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Application of Arc Flash Labels</TTL><BRK/>
+<BRK/>
+<TXT>Install arc flash warning labels using Qualified Personnel as necessary after the setting and inspection is complete.  
+For new or modified equipment, install labels before the equipment is energized for the first time after installation/modification 
+or setting changes.  Schedule the label placement with the Contracting Officer at least [5][_____] business days 
+before label placement. Furnish all materials, labor, and equipment necessary to place the labels.  Maintain 
+a written record of the all equipment that received labels, personnel involved, and the date labels were placed.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>POWER SYSTEM STUDIES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  </NPR><NPR>The designer of record will be responsible for showing and specifying 
+the requirements for fuses, circuit breakers, protective relays, or other protective 
+devices associated with the project.</NPR><BRK/>
+<BRK/>
+<NPR>The complexity and extent of power system studies depends on the type facilities, 
+on the load demand of facilities, and on the quantity of facilities to be constructed.  
+Facilities having a relatively-low power demand (e.g., 500 kVA or less) generally 
+require protection of:  an incoming aerial distribution line or underground, 
+medium-voltage feeder; low-voltage feeders to individual items of equipment; 
+or to power distribution equipment and branch circuits.  More complex projects 
+such as facilities with generating capacity, large motors, or larger load demands, 
+will require more detailed and extensive studies.</NPR><BRK/>
+<BRK/>
+<NPR>Choose the first paragraph for construction or modification of equipment. Choose 
+the second paragraph for periodic study of existing equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Perform power system studies to demonstrate that the equipment selected and system constructed meet the contract 
+requirements for fault current and interrupt ratings, coordination, protection, and Arc Flash Hazard.  Submit 
+reports of the studies along with protective device equipment submittals.  Apply Arc Flash Hazard labels to equipment 
+after the studies are approved.  Update and resubmit the studies after any changes to the equipment or systems 
+which may affect the study results, and re-apply Arc Flash Hazard labels to equipment after the resubmitted studies 
+are approved.  The Government is not responsible for any changes to equipment, device ratings, settings, or additional 
+labor for installation of equipment or devices [or labels ]ordered and/or procured before approval of the study.]<BRK/>
+<BRK/>
+[Perform power system studies to demonstrate the system operation with regard to ratings, coordination, protection, 
+and Arc Flash Hazard.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Scope of Studies</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide a description of the scope of the power system studies.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[____]</TXT><BRK/>
+<BRK/>
+<TXT>The scope of the studies must begin at [the source bus and extend down to system buses where fault current availability 
+is 10,000 amperes or less (symmetrical) and at most 600 volts for facility-level distribution buses.][the source 
+bus and extended through the secondary side of transformers for medium voltage distribution feeders.] [the source 
+bus and extend through [outgoing breakers] [outgoing medium voltage feeders, down to the individual protective 
+devices for medium voltage radial taps][outgoing medium voltage feeders, through the secondary side of transformers][as 
+indicated] for main electric supply substations.][the nearest upstream device in the existing source system and 
+extend through the downstream devices at the load end.][the utility service entrance of a building and extend 
+down to load buses/panels where the fault current is 2,000 amperes or less (symmetrical) for distribution buses 
+nominally operating at 208 volt AC and above.][  For DC system studies, include all DC systems nominally operating 
+at 50 volts and above with fault currents greater than 1,000 amperes.][_____]</TXT><BRK/>
+<BRK/>
+<TXT>The "source bus" is the source of energy for system being analyzed.  This may be the energy feed from a utility, 
+the first bus upstream of the work, generators within the work or upstream of the work, or any other source capable 
+of contributing significant energy into the system being analyzed.</TXT><BRK/>
+<BRK/>
+<TXT>In the systems model for the studies, incorporate all existing and new equipment within the scope of the studies. 
+Incorporate any additional sources or load equipment necessary to accurately model the system's performance.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For simple radial power systems with one source and no alternate power 
+source such as a generator or backup feed, there is usually only one system 
+mode of operation (scenario) to be analyzed.  Systems with multiple modes of 
+operation including generators may have the load currents, fault currents, and 
+arc flash energies affected by which sources are in services.  Loops in the 
+feeder/distribution system that are opened or closed may affect load currents, 
+faults, currents, and arc flash energies.  The multiple modes of operation (scenarios) 
+must be analyzed to determine which modes are most stressful to the equipment 
+and produce the greatest arc flash hazard.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<TXT>Where multiple sources of power may be in service in various combinations or where electrical loops are in the 
+system, incorporate into the studies all the modes of operation to evaluate the impact of the modes of operation 
+on the system.[  The primary modes of operation are listed below.</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">1. [_____]</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">2. [_____]</LST>]<BRK/>
+<BRK/></SPT>
+<SPT><TTL>Determination of Facts</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Require the Contractor to obtain an available fault capacity at the power 
+source or provide a fault capacity on which to base the study.  Delete the unused option.<BRK/>
+<BRK/>
+Where fault current is not available, the System Analyzer should used their 
+technical knowledge, experience, and system information to make a reasonable 
+estimate of the fault capacity.  Such an estimate may produces results that 
+are less accurate than using the known fault capacity.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Determine and document the time-current characteristics, features, ratings, ampacities, and nameplate data for 
+each existing protective device, electrical equipment, and feeder cables.  [Obtain the available fault current 
+from the [owner of the source bus][_____].]  [Utilize the indicated available fault current.]  [For multiple 
+modes of operation, use the mode with available fault current that produces the greatest incident energies in 
+the arc flash hazard study.]</TXT><BRK/>
+<BRK/>
+<TXT>[Utilize field-verified data in the power system studies.  Document the field-verified data in the report.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Single Line Diagram</TTL><BRK/>
+<BRK/>
+<TXT>Provide a single line diagram showing the electrical system buses, devices, transformation points, and all sources 
+of load current and fault current,  including generator and motor contributions. Provide a diagram from the system 
+model.  Each bus, device or transformation point must have a unique identifier.  Show the location of switches, 
+breakers, and circuit interrupting devices on the diagram together with available fault data, and the device 
+interrupting rating.</TXT><BRK/>
+<BRK/>
+<TXT>The naming of existing components within the system model and single line diagram must match existing installed 
+equipment names.  The naming of new components within the system model and single line diagram must use unique 
+identifiers and be coordinated with the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Load Flow Study</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Perform the load flow study in accordance with <RID>IEEE 3002.2</RID> to identify initital steady-state conditions for the 
+fault current study.  For each operating scenario, provide load flow results on the diagram or in the report.  
+Show or describe the loading factors and assumptions used in each operating mode.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Fault Current Study</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Use the results of the load flow study to perform the fault current study in accordance with <RID>IEEE 3002.3</RID>.  Provide 
+balanced three-phase fault, bolted line-to-line fault, and single line-to-ground fault current values at each 
+voltage transformation point and at each power distribution bus.  For each location, show in tabular form on 
+the diagram or in the report the maximum and minimum available fault currents of all modes of operation for that 
+location.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For some systems the fault current or system impedance may not be available.  
+In some cases the utility may only provide a  provide a fault current on the 
+transformer secondary based on an infinite bus on the primary, a withstand current 
+rating, an overcurrent protection kAIC or SCCR rating, transformer nameplate 
+data. For these situations, the source contributions need to be carefully estimated 
+to avoid having currents that are too high or too low.  Poor estimates can lead 
+to errors in under or over specifying equipment capabilities, coordination issues, 
+and under or over stating Arc Flash Hazards.</NPR><BRK/>
+<BRK/>
+<NPR>NEMA AB-5, NEMA ABP-1, IEEE 946, IEEE 3004.3, IEEE 3004.5 and  IEEE 3004.11 
+may provide assistance in the coordination of overcurrent devices.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<TXT>Where the available fault current at the source bus is not available, describe how the fault contribution from 
+the source bus was determined and why this method is reasonable for the study.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>System Coordination Study</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Use the results of the load flow study and fault current study.  For normal modes of operation, demonstrate that 
+selectivity has been obtained between the devices within the scope of the project. Demonstrate the equipment, 
+machines, and conductors are protected from damage from overloads and fault conditions. Include a description 
+of the coordination of the protective devices in this project.  Provide a written narrative describing which 
+devices may operate in the event of a fault at each bus; the logic used to arrive at device ratings and settings; 
+situations where system coordination is not achievable due to device limitations; coordination between upstream 
+and downstream devices; and relay settings.  Provide recommendations to improve or enhance system reliability, 
+and detail where such changes would involve additions or modifications to the contract and cost damages (addition 
+or reduction).  Provide composite coordination plots on a log-log scale.  Where recommendations are provided 
+to improve or enhance system reliability, provide separate coordination plots on log-log scale showing the system 
+coordination before and after the implementation of the recommendations.[  Where coordination has been adjusted 
+to lower arc flash values, include a discussion of the change and the impact on the system within the report.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Arc Flash Hazard Study</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Combinations of multiple sources (including generators) and/or loops 
+in the feeder/distribution system can affect the available incident energy.  
+The system owner should be consulted to determine what incident energy thresholds 
+are acceptable and do not need recommendations for reducing the incident energy.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform the arc flash hazard study in accordance with <RID>IEEE 1584.1</RID>.  Utilize the data from the fault current study 
+to determine the worst case incident energy per <RID>IEEE 1584</RID>[, <RID>IEEE C2</RID>,] and OSHA 29 CFR 1910.269 Appendix E.  Use 
+identified modes of operation to determine the worst case arc flash energy.  If not included in another study, 
+include a description of the devices and device settings for the operating modes that provided the highest arc 
+flash energy.  [The use of a "maintenance switch" to temporarily reduce the Arc Flash incident energy for maintenance 
+work is acceptable. ][Where the adjusting the coordination of devices to obtain lower arc flash values, include 
+a discussion of the change and the impact on the system within the report.] [Where the arc flash energies exceed 
+[1.2 cal/cm<SPS>2</SPS>][4 cal/cm<SPS>2</SPS>][8 cal/cm<SPS>2</SPS>] provide recommendations to reduce the arc flash energy to [1.2 cal/cm<SPS>2</SPS>][4 
+cal/cm<SPS>2</SPS>]].[<BRK/>
+<BRK/>
+Where the AC system voltage is 208 volts or less with an available short-circuit current less than 2000 A, an 
+arc flash hazard study is not required.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Study report(s)</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Include a narrative describing the studies performed; the bases and methods used; and the desired method 
+of coordinated protection of the power system.</OLI><BRK/>
+<BRK/>
+<OLI>Include descriptive and technical data for existing devices and new protective devices proposed.  Include 
+manufacturers published data, nameplate data, and definition of the fixed or adjustable features of the 
+existing or new protective devices.  For existing devices, included statements on the condition of the 
+equipment based upon field inspections and owner's statements and reports.</OLI><BRK/>
+<BRK/>
+<OLI>Document [utility company data including system voltages, fault MVA, system X/R ratio, time-current characteristic 
+curves, current transformer ratios, and relay device numbers and settings;][generator resistance and 
+reactance values, and time constants;] [and] [existing power system data including time-current characteristic 
+curves and protective device ratings and settings].  Identify all assumptions about the protection devices, 
+equipment, and system where data was not available.</OLI><BRK/>
+<BRK/>
+<OLI>For each bus in the system, provide fully coordinated composite time-current characteristics (TCC) curves 
+as required to ensure coordinated power system protection between protective devices and equipment.  
+In a tabular format, provide [existing and ]recommended ratings and settings of all protective devices.</OLI><BRK/>
+<BRK/>
+<OLI>Provide an arc flash study report in accordance with <RID>IEEE 1584.1</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide the calculations performed for the studies, including computer programs utilized.  Provide the 
+name of the software package, developer, and version number.  </OLI><BRK/>
+[<BRK/>
+<OLI>The System Analyzer must stamp the study reports.</OLI><BRK/>
+]</OLG><BRK/></SPT>
+<SPT><TTL>Arc Flash Labels</TTL><BRK/>
+<BRK/>
+<TXT>Provide arc flash warning labels on electrical equipment likely to require examination, servicing, or maintenance 
+while energized. Typical types of equipment include pad-mounted transformers, switchgear, switchboards, panelboards, 
+disconnect switches, industrial control panels, meter socket enclosures, and motor control centers that are in 
+other than dwelling occupancies. The arc flash label naming must match the naming used in the system modeling 
+and the single line diagram.</TXT><BRK/>
+<BRK/>
+<TXT>Comply with the label requirements specified in <TAI OPT="NOT-ARMY"><RID>UFC 3-560-01</RID></TAI><TAI OPT="ARMY"><RID>NFPA 70E</RID></TAI>.  Obtain approval of <SUB>arc flash label formats</SUB>
+ before printing.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide a [<ENG>3.5 inch</ENG> x <ENG>5 inch</ENG> to <ENG>4 inch</ENG> x <ENG>6 inch</ENG>][____] thermal transfer type label of high adhesion polyester 
+for each location device analyzed.  The label must remain in place and be legible for at least 5 years 
+in the installed environment.</OLI><BRK/>
+<BRK/>
+<OLI>Labels must be machine printed with no field markings. Provide arc flash labels in the following manner. 
+All labels must be based on implemented overcurrent devices and settings.</OLI><BRK/>
+<BRK/>
+<LST>1. Provide at least one arc flash label for each 480 volt and 208 volt panelboards.</LST><BRK/>
+<BRK/>
+<LST>2. Provide at least one arc flash label for each low voltage (less than 1000 V) switchboard.</LST><BRK/>
+<BRK/>
+<LST>3. Where the equipment construction has different hazards levels in different areas, provide [a label 
+for each compartment, cubicle, or section separated by barriers][a single label representing the worst 
+case hazard for all branch circuits and a separate unique label for the compartment containing the main 
+protective device.  On the worst case label, indicate which branch circuit compartments have the worst 
+case hazard.]</LST><BRK/>
+<BRK/>
+<OLI>Use the worst case hazard of all operating scenarios unless mitigation procedures are used.  If mitigation 
+procedures are used, explain the procedures on the label.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>MODELING</TTL><BRK/>
+<BRK/>
+<TXT>Develop a software model of the electrical system identified in the scope of the studies.  Use the latest version 
+of [SKM PowerTools(TM)][EasyPower(TM)][ETAP(TM)][_____].  Develop the model with accurate, verified information. 
+Model existing electrical equipment, machines, devices, and conductors directly connected to, altered by, or 
+otherwise affected by the work. This includes, but is not limited to generators, transformers, switchgear, switchboards, 
+panelboards, motor control centers, motors, voltage regulators, tap changers, protective relays, circuit breakers, 
+switches, fuses, conductors, capacitors, reactors, grounding system, and control equipment.</TXT><BRK/>
+<BRK/>
+<TXT>Provide the final <SUB>model files</SUB> in their native editable formats for future use by the Government.  Include device 
+information for devices not in the software vendor's standard distribution.</TXT><BRK/>
+<BRK/></SPT>
+<BRK/>
+<BRK/></PRT>
+    <END/><BRK/></SEC>

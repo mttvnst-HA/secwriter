@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="224.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-14 92 00 (February 2009)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Change 1 - 02/15</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-14 92 00 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 14 92 00</SCN><BRK/>
+<BRK/>
+<STL>PNEUMATIC-TUBE SYSTEM</STL><BRK/>
+<DTE>02/09, CHG 1: 02/15</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>computer controlled 
+pneumatic tube system</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>PL 109-58</RID><RTL>Energy Policy Act of 2005 (EPAct05)</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide a pneumatic-tube system which is computer controlled and designed with not less than [_____] separate 
+zones interconnected to permit automatic unattended transmission of carriers from any station to any other station.  
+Design and locate system components in such a manner that in the event of a defect occurring, components may 
+readily be removed and replaced.  Provide full access type carriers[, capable of handling 1000 ml I.V. bottles 
+or 1000 ml I.V. bags].  Other system characteristics are as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Future capacity of not less than [_____] stations without the need for modifications to the central control 
+and existing station control.</OLI><BRK/>
+<BRK/>
+<OLI>Each zone capable of serving not less than [_____] stations even though a fewer number may be indicated 
+in a given zone at this time.</OLI><BRK/>
+<BRK/>
+<OLI>[Stations within a zone connected to the storage lanes via a single line and diverter unit.]  Control 
+spacing, direction, [storage,] and path of the carriers.</OLI><BRK/>
+<BRK/>
+<OLI>Destination selection by means of push buttons or rotary dials on the station control panel.</OLI><BRK/>
+<BRK/>
+<OLI>Carriers taking the shortest route to their destinations.  A central exchanger is not required.  [Perform 
+carrier processing between zones through the central storage lanes.]</OLI><BRK/>
+<BRK/>
+<OLI>Carriers routed by means of diverters or in-line transfer units.</OLI><BRK/>
+<BRK/>
+<OLI>Carrier rejections indicated at the dispatching station for non-existing, signed-off, or malfunctioning 
+station destinations.  Do not use reject station.</OLI><BRK/>
+<BRK/>
+<OLI>Failure of one station must not interfere with the normal functioning of any other station.  Failure 
+of any diverter will shut down that section of the system.  Failure of an in-line sensor except zero-level 
+sensor must not shut down that section of the system.</OLI><BRK/>
+<BRK/>
+<OLI>Automatic sequencing of sending and receiving carriers.</OLI><BRK/>
+<BRK/>
+<OLI>Each zone [and the central storage lanes] act independently with separate power units as required.</OLI><BRK/>
+<BRK/>
+<OLI>Automatic recovery of a carrier will be required only after a transaction has been initiated and a failure 
+occurs that prevents the completion.  In such a case the carrier in process will be either returned to 
+its source station or processed to the destination station after the failure has been repaired and cleared.</OLI><BRK/>
+<BRK/>
+<OLI>Selection of the shortest, most direct routing of all carriers to their destinations.</OLI><BRK/>
+<BRK/>
+<OLI>Complete "route proofing" of transaction paths before acceptance of the carrier to assure all components 
+in the routing are operating.</OLI><BRK/>
+<BRK/>
+<OLI>Intra-zone transactions must take the most direct path within the zone.</OLI><BRK/>
+<BRK/>
+<OLI>Self-adjusting priority within the system to load balance according to traffic.</OLI><BRK/>
+<BRK/>
+<OLI>Carriers may be positioned in senders simultaneously and destination selected on the station control 
+panel.</OLI><BRK/>
+<BRK/>
+<OLI>Deliver carriers in transit at the time a power failure occurs to their selected destinations upon restoration 
+of power.</OLI><BRK/>
+<BRK/>
+<OLI>Direct processing of simultaneous, multiple transactions to assure maximum operational efficiency of 
+the system.</OLI><BRK/>
+<BRK/>
+<OLI>Deliver carriers in transit at the time of station sign-off to their destination.</OLI><BRK/>
+<BRK/>
+<OLI>Reject carriers addressed to any non-existing or signed off station.</OLI><BRK/>
+<BRK/>
+<OLI>Automatic time clock sign off to allow any station to be automatically signed-off.</OLI><BRK/>
+<BRK/>
+<OLI>Preventive overload feature at station receiver.  Carriers will not be dispatched to a station that is 
+overloaded.</OLI><BRK/>
+<BRK/>
+<OLI>Automatic redistribution of empty carriers to return empty carriers to the locations with the greatest 
+need.</OLI><BRK/>
+<BRK/>
+<OLI>Automatic purge by zone or system.</OLI><BRK/>
+<BRK/>
+<OLI>Each completed transaction, alarm condition that occurs and sign off schedule automatically printed out 
+on printer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Electrical Work</TTL><BRK/>
+<BRK/>
+<TXT>Provide electrical motor-driven equipment specified herein complete with motors, motor starters and controls 
+complying with <RID>NEMA MG 00001</RID>.  Provide electrical equipment and wiring in accordance with Section <SRF>26 20 00</SRF> INTERIOR 
+DISTRIBUTION SYSTEM.  Electrical characteristics are as indicated.  Provide extension to equipment from junction 
+box and all control wiring as specified in this section and complying with <RID>NFPA 70</RID>.  Provide motor starters under 
+this section complete with properly sized thermal-overload protection in each phase and other appurtenances necessary 
+for the motor control specified.  Size each motor to drive the equipment at the specified capacity without exceeding 
+the nameplate rating of the motor when operating at proper electrical system voltage.  Provide control and protective 
+or signal devices required for the operation specified and wiring required for controls and devices but not shown 
+on the electrical plans.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pneumatic-Tube System</SUB></ITM><BRK/>
+<BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pneumatic-Tube System</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Materials and Equipment</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pneumatic-Tube System</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tests</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Tests</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Energy Efficiency</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operating and Maintenance Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect all equipment delivered and placed in storage from the weather, humidity and temperature variation, dirt 
+and dust, or other contaminants.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EXTRA MATTERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>spare parts</SUB> data for each different item of materials and equipment specified, after approval of the detail 
+drawings and not later than [_____] months prior to the date of beneficial occupancy.  Include a complete list 
+of parts and supplies, with current unit prices and source of supply.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>STANDARD PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>Materials and Equipment</SUB> which are the standard products of a manufacturer regularly engaged in the manufacture 
+of the products and that essentially duplicate items that have been in satisfactory use for at least 2 years 
+prior to bid opening.  Provide equipment supported by a service organization that is, in the opinion of the Contracting 
+Officer, reasonably convenient to the site.  Submit a complete list of equipment and material, including manufacturer's 
+descriptive data and technical literature, performance charts and curves, catalog cuts, and installation instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>ENERGY EFFICIENCY</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Selected equipment must conform to efficiency requirements as defined 
+in Public Law (PL) 109-58 - "Energy Policy Act of 2005 (EPAct05)" for energy 
+efficiency procurement and as specified by FEMP and ENERGY STAR. Equipment selected 
+will have as a minimum the efficiency rating determined in under "Energy-Efficient 
+Products" at <URL HREF="http://www1.eere.energy.gov/femp/procurement">http://www1.eere.energy.gov/femp/procurement</URL><BRK/>
+Equipment having a lower efficiency may be specified if the designer determines 
+the equipment to be more life-cycle cost effective.<BRK/>
+Indicate the equipment operating characteristics, including rated energy efficiency, 
+on the drawings.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide products that meet or exceed the specified energy efficiency requirements of FEMP designated or Energy 
+Star qualified products.  Submit documentation certifying that product conforms to <RID>PL 109-58</RID> by meeting or exceeding 
+Energy Star or FEMP efficiency requirements as defined at "Energy-Efficient Products" at <URL HREF="http://www.energystar.gov.">http://www.energystar.gov.</URL>
+.  Indicate Energy Efficiency Rating.  Indicate Energy Efficiency Rating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CARRIER TUBING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Tubing</TTL><BRK/>
+<BRK/>
+<TXT>Provide tubing for carrier transmission lines consisting of<MET> [152.4] [101.6] [1.613] mm OD</MET><ENG> [[6] [4] in] [16 U.S. 
+gauge] OD</ENG> galvanized electric welded steel with flash removed, conforming to <RID>ASTM A123/A123M</RID>.  Size air lines 
+as required for proper system operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bends</TTL><BRK/>
+<BRK/>
+<TXT>Provide bends of the same material as straight tubing, formed on the centerline to a radius of not less than<MET> 
+1200 mm</MET><ENG> 4 feet</ENG>, free from wrinkles or distortion.  Make joints between sections with sleeve couplings, bolted 
+couplings or bell end tubing.  When bends are cut for offsets and small angle turns, squarely cut the ends.  
+File and straighten by mandreling.  Do not use expanded bends.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Provide fittings that are cast iron, cast aluminum or fabricated steel with the inside fitting snugly on the 
+tubing.  Provide box connectors, close elbows, tees, coupling sleeves and other fittings required for proper 
+installation of the system.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>POWER UNITS</TTL><BRK/>
+<BRK/>
+<TXT>Provide power units for each zone and for lanes when required that are capable of operating all lines simultaneously 
+and producing an average carrier speed of<MET> 7.6 m/s</MET><ENG> 25 fps</ENG>.  Design power units for floor or ceiling mounting.  
+Provide a timer or similar device to shut the unit off after a predetermined time without carrier movement.  
+Provide power units complete with vibration isolators, intake and exhaust mufflers, intake and exhaust piping, 
+screen box, air valves if required, and designed for easy access.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTOMATIC CENTRAL-CONTROL CENTER</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Operation of the System</TTL><BRK/>
+<BRK/>
+<TXT>Provide a solid state memory computer to control the system.  The computer must perform logic, control, supervisory 
+and alarm functions and provide permanent storage for system operating program.  Provide program memory protection 
+during power loss.  Provide interface controls to transmit operating data to and from stations.  Keyboard must 
+request information and must simulate operation of components throughout entire system.  Print transactions and 
+failures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Program</TTL><BRK/>
+<BRK/>
+<TXT>The control program is the property of the user.  Allow the user to add, delete, and/or relocate components of 
+the system, onsite, without the need for a new program or programming assistance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Computer Circuits and Keyboard</TTL><BRK/>
+<BRK/>
+<TXT>Provide modular interface circuits, monitor and keyboard consisting of solid state components throughout.  For 
+ease of maintenance, provide readily removable circuit modules.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cathode Ray Tube</TTL><BRK/>
+<BRK/>
+<TXT>Video Display Monitor to display in English language data for the following functions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Failure Location - Zone, [central storage lane,] station, power unit or transfer unit.</OLI><BRK/>
+<BRK/>
+<OLI>Failure Type - Mechanical, electrical or component position.</OLI><BRK/>
+<BRK/>
+<OLI>Present transactions - Station carrier is leaving from and station carrier is going to, backlog per station 
+or zone [and carrier in storage lanes].</OLI><BRK/>
+<BRK/>
+<OLI>Carrier Distribution - Number of carriers assigned to each station, number of carriers presently at each 
+station.</OLI><BRK/>
+<BRK/>
+<OLI>Station sign-off schedule.</OLI><BRK/>
+<BRK/>
+<OLI>Failure Action - Locate where carrier is and corrective action to be taken.</OLI><BRK/>
+<BRK/>
+<OLI>System History Display - Show all system traffic for the past 24-hour period with totals for stations, 
+zones, and the entire system.  This display must be automatically printed.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Keyboard</TTL><BRK/>
+<BRK/>
+<TXT>The keyboard must be interactive with the video monitor to perform the following functions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Request video monitor displays listed above.</OLI><BRK/>
+<BRK/>
+<OLI>Simulate components for trouble shooting.  Make simulation of all components to determine the malfunctioning 
+unit.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Printer</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Selected printers are required to meet performance requirements specified 
+by Energy Star. Information on the requirements can be found at http://www.energystar.gov/ia/partners/product_specs/program_reqs/Imaging_Equipment_Program_Requirements.pdf?ee98-f56e. 
+As of September 6, 2012, the specific performance requirements were as follows:<BRK/>
+<BRK/>
+<TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="61.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="72.00"/>
+      <COL AUTOWIDTH="0" WIDTH="146.25"/>
+      <COL AUTOWIDTH="0" WIDTH="42.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL MERGEDOWN="2" STYLEID="s50">
+<DTA TYPE="STRING">Printer</DTA>
+         </CEL>
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING">Standard</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">High Performance IJ, DT, DS, EP, SI, TT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">TEC</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL INDEX="3">
+<DTA TYPE="STRING">IJ, Impact</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">OM</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">Large or Small</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">DT, DS, EP, Impact, IJ, SI, TT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">OM</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></NPR><BRK/>
+<BRK/>
+<NPR>These are referenced in Energy Star Program Requirements for Residential Air 
+Source Heat Pump (ASHPs) and Central Air Conditioner Equipment, Volume 4.1. 
+These specifications conform to the efficiency requirements as defined in Public 
+Law (PL) 109-58 - "Energy Policy Act of 2005 (EPAct05)" for energy efficiency 
+procurement and as specified by ENERGY STAR. Equipment selected will have as 
+a minimum the efficiency rating determined in under "Energy-Efficient Products" 
+at <URL HREF="http://www1.eere.energy.gov/femp/procurement">http://www1.eere.energy.gov/femp/procurement</URL>.</NPR><BRK/>
+<BRK/>
+<NPR>Equipment having a lower efficiency may be specified if the designer determines 
+the equipment to be more life-cycle cost effective. Indicate the equipment operating 
+characteristics, including rated energy efficiency, on the drawings. A list 
+of compliant products can be found at <URL HREF="http://downloads.energystar.gov/bi/qplist/image_equip_prod_list.xls?be70-acfd">http://downloads.energystar.gov/bi/qplist/image_equip_prod_list.xls?be70-acfd</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [Energy Star compliant ]laser jet printer with at least 128 MB of random access memory, 1200 dots per 
+inch resolution, and support normal and postscript fonts and drivers.  Type face supported must be True Type 
+fonts.  Printer must support HP PCL 6, HP PCL 5e and Post Script emulation.  Equip printer with 10/100 Base Ethernet 
+card, a serial and parallel port.  Provide all Ethernet connectivity cables, power cables and printer drivers 
+with the printer.  Equip printer with at least two paper drawers.  Each drawer must have a capacity of at least 
+600 sheets of standard paper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alarm Module</TTL><BRK/>
+<BRK/>
+<TXT>Provide an alarm module for remote audio-visual signaling of system alarms.  The alarm module must have a "Press 
+to Silence" button.  The alarm must automatically activate should a system alarm condition occur.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>STORAGE AREAS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Storage areas will be deleted if a single zone system is specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Design Storage Areas to initially serve [_____] zones.  Storage must be expandable to a maximum of [_____] storage 
+lanes without the need to replace the initial unit.  Storage area must consist of storage lanes connected directly 
+to every other zone in the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTOMATIC SWITCHING EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Automatically orient diverters to route carriers to or from intermediate stations.  Provide air or electro-mechanically 
+operated units designed to accommodate two or more stations or sublevels and enclosed in sheet metal housing 
+with access panels.  Design diverter so that when a carrier does not clear the diverter completely, no other 
+carrier can be routed to that diverter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBSTATION EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Enclose substation equipment in a self-supporting "rough-in" recessed type enclosure.  Install the operating 
+components after the adjacent walls have been finished.  Factory paint exposed sheet metal surfaces.  Provide 
+stainless steel, brushed aluminum or chrome plated bright metal parts.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Receiving Units</TTL><BRK/>
+<BRK/>
+<TXT>Provide down receive, air cushion, soft delivery type units.  Design carrier receiver tray to receive and store 
+carriers to the front of the received tray.  Full carrier capacity must cause audible alarm to sound or the reject 
+light to illuminate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sending Units</TTL><BRK/>
+<BRK/>
+<TXT>Units must be up-send in conjunction with the receiving unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Carrier Storage Receptacle</TTL><BRK/>
+<BRK/>
+<TXT>Storage receptacle must store not less than four carriers and must be integral with the terminal front.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Station Control Panel</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Operating Controls and Indicators</TTL><BRK/>
+<BRK/>
+<TXT>Include the following operating controls and indicators:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Carrier destination selectors, "Carrier Accepted" signal, "Send" buttons.</OLI><BRK/>
+<BRK/>
+<OLI>"Carrier Rejected" signal when a carrier cannot be dispatched because of destination sign off, an alarm 
+condition, a nonexisting selection or an overloaded station.</OLI><BRK/>
+<BRK/>
+<OLI>"Carrier in Receiver" to indicate a carrier is in the receiving unit when the carrier is not visible.</OLI><BRK/>
+<BRK/>
+<OLI>"Cancellation Button."</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Non-operating Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>"Operating Instructions" display.</OLI><BRK/>
+<BRK/>
+<OLI>Independent carrier dispatch and receive functions.</OLI><BRK/>
+<BRK/>
+<OLI>The memory within the programmable microprocessor available to all stations.</OLI><BRK/>
+<BRK/>
+<OLI>Request to dispatch handled immediately on a local or central control basis.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Directory</TTL><BRK/>
+<BRK/>
+<TXT>Provide station consisting of a framed directory or photo plate clearly showing the location, name, and number 
+of each station in the system.  Provide a glass or plastic cover for the framed directory.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CARRIERS</TTL><BRK/>
+<BRK/>
+<TXT>Furnish four carriers for each station in the system.  Carriers less than<MET> [82.6 x 381.0] [114.3 x 381.0] mm</MET><ENG> [3-1/4 
+x 15] [4-1/2 x 15] inch</ENG> inside dimensions are not acceptable.  Provide carriers that are capable of transporting 
+1000 ml I.V. bottles.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Access</TTL><BRK/>
+<BRK/>
+<TXT>Provide carriers that are side opening, full access type, bi-directional.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Carrier Inserts</TTL><BRK/>
+<BRK/>
+<TXT>Furnish foam lining for transporting fragile items for [_____] of the total system carriers [and furnish [_____] 
+of the total system carriers with foam lining for transporting 1000 ml I.V. bottles].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SYSTEM TESTER</TTL><BRK/>
+<BRK/>
+<TXT>Provide system tester with the ability to test any station, transfer unit, or blower with onsite verification 
+of malfunctions.  A portable test device which supplements the control center may be used.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with all details of the work, verify all dimensions in the field, and advise the Contracting 
+Officer of any discrepancy before performing the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install the <SUB>pneumatic-tube system</SUB> as indicated and as recommended by the manufacturer.  Submit diagrams, instructions, 
+and other sheets proposed for posting.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Submit detail drawings containing complete wiring and schematic diagrams and any other details required 
+to demonstrate that the system has been coordinated and will properly function as a unit.  Show proposed 
+layout and anchorage of equipment and appurtenances, and equipment relationship to other parts of the 
+work including clearance for maintenance and operation.</OLI><BRK/>
+<BRK/>
+<OLI>Submit [six] [_____] copies of design manual consisting of manufacturer's standard literature.  Identify 
+the operational requirements for the system and explain the theory of operation, design philosophy, and 
+specific functions.  Include a description of hardware and software functions, interfaces, and requirements 
+for all system operating modes.  Describe all equipment provided, including general description and specifications.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Sound Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Deaden the sound of tubing and bends run over patient rooms or offices by applying a<MET> 38.1 mm</MET><ENG> 1-1/2 inch</ENG> thick 
+layer of<MET> 24 kg/cubic meter</MET><ENG> 1-1/2 pcf</ENG> density fiberglass insulation with a dust cover and taped joints over the 
+tubing.  Do not extend sound insulation material no less than<MET> 1.5 meters</MET><ENG> 5 feet</ENG> outside the patient rooms or 
+offices.  Provide insulation conforming to EPA requirements in conformance with Section <SRF>01 33 29</SRF> SUSTAINABILITY 
+REQUIREMENTS AND REPORTING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hangers and Supports</TTL><BRK/>
+<BRK/>
+<TXT>Space hangers and supports on<MET> 3 meters</MET><ENG> 10 foot</ENG> centers for horizontal runs of tubing.  Support vertical runs 
+at every floor.  Support each horizontal bend and in-line component.  Hangers for one or two lines of tubing 
+must be<MET> 10 mm</MET><ENG> 3/8 inch</ENG> plated and threaded rods attached to row clamps.  Form hangers for three or more lines 
+with row clamps or<MET> 38.1 mm</MET><ENG> 1-1/2 inch</ENG> channels laid flat against the bottom of the tubing and support by no less 
+than two rods spaced no more than<MET> 900 mm</MET><ENG> 3 feet</ENG> apart.  Row clamps must maintain centerlines of horizontal runs 
+of multiple tubes straight and level and spaced apart in a consistent configuration.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation of Tubing</TTL><BRK/>
+<BRK/>
+<TXT>Make joints airtight by methods recommended by the manufacturer.  Install lines where indicated and securely 
+hold in place and brace against any motion caused by the passage of carriers.  Install tubing passing through 
+openings in floors suitable sleeves or slots, stuff with<MET> 25 mm</MET><ENG> 1 inch</ENG> fiberglass blanket and seal on both ends 
+with a continuous bead of nonhardening mastic at least<MET> 6.4 mm</MET><ENG> 1/4 inch</ENG> deep.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Firewall Penetrations</TTL><BRK/>
+<BRK/>
+<TXT>Where holes are required in fire and smoke walls for the passage of tubing and other accessories, fill the annular 
+space between pipe and hole with a UL approved fireproof material.  Seal penetrations through fire rated walls 
+as specified in Section <SRF>07 84 00</SRF> FIRESTOPPING.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PAINTING AND FINISHING</TTL><BRK/>
+<BRK/>
+<TXT>Furnish field-applied paint as specified in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ACCESS PANELS</TTL><BRK/>
+<BRK/>
+<TXT>Provide access panels as specified in Section <SRF>08 31 00</SRF> ACCESS DOORS AND PANELS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ACOUSTIC COUPLER</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete acoustic coupler if manufacturer has a service organization conveniently 
+located to the site.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an acoustic coupler that will permit the facility to have direct communications with the manufacturer 
+for one year.  Provide a communication tie-in to a cathode ray tube (CRT) at the manufacturer's facility through 
+the handset of an ordinary telephone and the acoustic coupler at the facility.  The coupler will be used to examine 
+or modify computer memory and may command any system component and determine its status.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FRAMED INSTRUCTIONS</TTL><BRK/>
+<BRK/>
+<TXT>Post framed instructions under glass or in laminated plastic, including wiring and control diagrams showing the 
+complete layout of the entire system where directed.  Prepare condensed operating instructions explaining preventive 
+maintenance procedures, methods of checking the system for normal safe operation, and procedures for safely starting 
+and stopping the system in typed form, frame as specified above and post beside the diagrams.  Post the framed 
+instructions before acceptance testing of the systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MANUFACTURER'S FIELD SERVICES</TTL><BRK/>
+<BRK/>
+<TXT>Provide the services of a manufacturer's representative who is experienced in the installation, adjustment, and 
+operation of the equipment specified.  Supervise the installation, adjustment, and testing of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD TRAINING</TTL><BRK/>
+<BRK/>
+<TXT>Provide a field training course for designated operating and maintenance staff members.  Provide training for 
+a total period of [_____] hours of normal working time and start after the system is functionally complete but 
+prior to final acceptance tests.  Cover all of the items contained in the <SUB>Operating and Maintenance Instructions</SUB>
+.  Submit [six] [_____] complete copies of operation manual outlining the step-by-step procedures required for 
+system startup, operation, and shutdown.  Include the manufacturer's name, model number, service manual, parts 
+list, and brief description of all equipment and their basic operating features.  Submit [six] [_____] complete 
+copies of maintenance manual listing routine maintenance procedures, possible breakdowns and repairs, and troubleshooting 
+guide.  Include piping layout, equipment layout, simplified wiring and control diagrams of the system as installed.  
+Operation and maintenance manuals must be approved prior to the training course.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>TESTS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If a single zone system is specified, delete subparagraphs "c," "e," 
+and "f" below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit test plan and procedures, not later than [_____] days prior to the start of testing.  Explain in detail, 
+step-by-step, actions and expected results to demonstrate compliance with the requirements of this specification, 
+and the methods for simulating the necessary conditions of operation to demonstrate performance of the system.  
+Conduct tests in accordance with the approved test procedures to determine that the system is functional, operational 
+and installed in accordance with the specifications.  Notify the Contracting Officer in writing [_____] days 
+prior to conducting tests.  Conduct the following test:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Computer simulation and interrogation.</OLI><BRK/>
+<BRK/>
+<OLI>Consecutive dispatching to random stations within the zone.</OLI><BRK/>
+<BRK/>
+<OLI>Consecutive dispatching to random stations outside the zone.</OLI><BRK/>
+<BRK/>
+<OLI>Multi-station dispatching within the zone where all dispatchers are loaded with carriers, random stations 
+selected and dispatching begins.</OLI><BRK/>
+<BRK/>
+<OLI>Multi-station dispatching outside the zone where all dispatchers are loaded with carriers, random stations 
+selected and dispatching begins.</OLI><BRK/>
+<BRK/>
+<OLI>Two stations in each zone will be randomly selected to dispatch carriers into other zones.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Submit test reports in booklet form showing all field tests performed to adjust each component and all field 
+tests performed to prove compliance with the specified performance criteria, upon completion of installation 
+and testing of the installed system.  Indicate the final position of controls.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

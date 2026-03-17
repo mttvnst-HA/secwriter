@@ -1,0 +1,2415 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 09 93 (November 2015)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 09 23 (May 2011)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 09 93</SCN><BRK/>
+<BRK/>
+<STL>SEQUENCES OF OPERATION FOR HVAC CONTROL</STL><BRK/>
+<DTE>11/15</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>sequences of operation 
+for HVAC control</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This Section contains only Sequences of Operation and cannot be used 
+stand-alone (without the use of other Sections).  This Section is intended to 
+be used with Section <SRF>23 09 00</SRF>.<BRK/>
+<BRK/>
+Template drawings and Points Schedule in electronic format for use with this 
+section are available in online at:<BRK/>
+<URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Sequences of Operation in this Section are being updated, and this 
+Section will soon be revised to include the updated sequences.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>For definitions related to this Section, see Section <SRF>23 09 00</SRF> INTRUMENTATION AND CONTROL FOR HVAC.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<BRK/>
+<TXT>Submittals related to this Section are specified in Section <SRF>23 09 00</SRF> INTRUMENTATION AND CONTROL FOR HVAC.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Products related to this Section are specified in Section <SRF>23 09 00</SRF> INTRUMENTATION AND CONTROL FOR HVAC and related 
+Sections <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC and <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL 
+FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS or <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING 
+CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></PRT>
+<PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These sequences are 'template' sequences.  When editing this specification, 
+the sequences should be put onto the drawings and these template sequences should 
+be deleted.  Note that the Alarm Handling and Scheduling sequences each need 
+to be edited and placed onto their own drawing.<BRK/>
+<BRK/>
+When removing the sequences, keep this subpart number and title intact, but 
+replace the entire contents of the subpart with a note such as <HL2>"All Sequences 
+of Operation are located on drawings"</HL2>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>SEQUENCES OF OPERATION FOR OCCUPANCY SCHEDULING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  FYI: Scheduling is normally performed by the Monitoring and Control (M&amp;C) 
+software (Section <SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL SYSTEM (UMCS) FRONT 
+END AND INTEGRATION.  The UMCS (Section <SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL 
+SYSTEM (UMCS) FRONT END AND INTEGRATION) Contractor will set this up.  In the 
+absence of a UMCS or if communication with the UMCS is lost, a default schedule 
+will be active.<BRK/>
+<BRK/>
+The M&amp;C software will have capabilities to perform scheduling according 
+to day of week, holidays, etc and will have the capability to override system 
+occupancy modes based on demand limiting programs or operator overrides.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>System Mode</TTL><BRK/>
+<BRK/>
+<TXT>Operate air handling units (AHUs) in Occupied, Warm-Up-Cool-Down, or Unoccupied modes as specified. VAV boxes, 
+Fan Coils, and operate other terminal equipment in Occupied or Unoccupied modes as specified.  Chillers, boilers, 
+and other sources of heating/cooling for hydronic loads do not require scheduling; these systems receive requests 
+for heating/cooling from their loads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Scheduler Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate if a common schedule may be used for multiple Terminal Units 
+(TUs).  If allowing a common schedule for multiple TUs: keep the 'group of' 
+bracketed text, and decide if TU groupings will be included on the drawings 
+(keep the 'as shown' bracketed text) or if the Contractor should decide on groupings 
+(remove the 'as shown' bracketed text).<BRK/>
+<BRK/>
+These sequences include details specific to the LonWorks protocol. When using 
+other protocols, edit sequences accordingly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The System Scheduler functionality must reside in either a piece of DDC Hardware dedicated to this functionality 
+or in the DDC Hardware controlling the system AHU.  A single piece of DDC Hardware dedicated to scheduling (performing 
+no other control functionality) may contain multiple System Schedulers.  Provide a unique System Scheduler for:  
+each AHU including it's associated Terminal Units, and each stand-alone Terminal Unit (those not dependent upon 
+AHU service)[ or group of stand-alone Terminal Units acting according to a common schedule].  Each System Scheduler 
+must provide the following functionality:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Scheduled Occupancy Input</TTL><BRK/>
+<BRK/>
+<TXT>Accept network variable of type SNVT_occupancy.  Support the following possible values:  OC_STANDBY, OC_OCCUPIED 
+and OC_UNOCCUPIED.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Occupancy Override Input</TTL><BRK/>
+<BRK/>
+<TXT>Accept network variable of type SNVT_occupancy.  Support the following possible values:  OC_STANDBY, OC_OCCUPIED, 
+OC_UNOCCUPIED, and OC_NUL.</TXT> <BRK/>
+<BRK/></SPT>
+<SPT><TTL>Space Occupancy Inputs</TTL><BRK/>
+<BRK/>
+<TXT>For systems with multiple occupancy sensors, accept multiple inputs of network variable type SNVT_Occupancy.  
+Support the following possible values:  OC_OCCUPIED, OC_UNOCCUPIED, and OC_NUL.  For systems with a single occupancy 
+sensor, accept a network variable input of type SNVT_Occupancy or a hardware binary input (BI) indicating the 
+space occupancy status as Occupied or Unoccupied.</TXT> <BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air Handler Occupancy Output</TTL><BRK/>
+<BRK/>
+<TXT>For a System Scheduler for a system containing an air handler, output one or more SNVTs indicating the desired 
+occupancy status as one of the following possible values:  Warm-Up-Cool-Down (when required by the AHU Sequence 
+of Operation), Occupied and Unoccupied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Terminal Unit Occupancy Output</TTL><BRK/>
+<BRK/>
+<TXT>For a System Scheduler for a stand-alone terminal unit, [a group of stand-alone terminal units acting according 
+to a common schedule,] or a group of terminal units served by a single air handler,  output one or more SNVTs 
+indicating the desired occupancy status as one of the following possible values:  Occupied and Unoccupied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Default Schedule</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must provide the default (backup) 24-hour 7-day schedule on 
+the Points Schedule (i.e. Occupied from 0600 - 2200 Monday through Friday, Unoccupied 
+Saturday and Sunday).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Incorporate a 24-hour 7-day default schedule as shown on the drawings which may be activated and deactivated 
+by the System Scheduler Logic.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Communication Determination</TTL><BRK/>
+<BRK/>
+<TXT>Determine the time elapsed between receipts of the scheduled occupancy input SNVT, and use this elapsed time 
+to activate and deactivate the Default Schedule as specified.  (This provides the capability for the system scheduler 
+to use its Default Schedule if it loses communication with the UMCS).</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>System Scheduler Output Determination</TTL><BRK/>
+<BRK/>
+<TXT>For controlling an Air Handler, interpret a SNVT input of OC_STANDBY as Warm-Up-Cool-Down if the sequence of 
+operation supports that mode, otherwise interpret OC_STANDBY as Occupied.  For Terminal Units, interpret OC_STANDBY 
+as Occupied.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Air Handler Occupancy Output</TTL><BRK/>
+<BRK/>
+<TXT>If more than 95 minutes have passed since the last receipt of the Scheduled Occupancy input, determine the Air 
+Handler Occupancy Output by the default schedule and the Space Occupancy Inputs.  Otherwise, determine the output 
+as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>If the Override Occupancy Input is not OC_NUL, determine the Air Handler Occupancy Output from the Override 
+Occupancy Input.</OLI><BRK/>
+<BRK/>
+<OLI>Otherwise, if at least the required number (as shown on the Occupancy Schedule Drawing) of Space Occupancy 
+Inputs are OC_OCCUPIED or the hardware BI is Occupied the Air Handler Occupancy Output must be OC_OCCUPIED.</OLI><BRK/>
+<BRK/>
+<OLI>Otherwise, determine the Air Handler Occupancy Output from the Scheduled Occupancy Input SNVT.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Terminal Unit Occupancy Output</TTL><BRK/>
+<BRK/>
+<TXT>If more than 95 minutes have passed since the last receipt of the Scheduled Occupancy input, determine the Terminal 
+Unit Occupancy Output by the default schedule.  Otherwise, determine the output as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>If the Override Occupancy Input is not OC_NUL, determine the Terminal Unit Occupancy Output from the 
+Override Occupancy Input SNVT:</OLI><BRK/>
+<BRK/>
+<OLI>Otherwise, determine the Terminal Unit Occupancy Output from the Scheduled Occupancy SNVT.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Air Handler System Scheduling</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Bind the AHU Occupancy Output SNVT from the System Scheduler to the DDC Hardware that executes the Occupancy 
+Mode Determination part of the Air Handler Sequence of Operation</OLI><BRK/>
+<BRK/>
+<OLI>For Air Handlers using occupancy sensors, bind the  output SNVT (of type SNVT_Occupancy) of each occupancy 
+sensor to a Space Occupancy Input of the System Scheduler.</OLI><BRK/>
+<BRK/>
+<OLI>Bind the Terminal Unit Occupancy Output SNVT from the System Scheduler to each AHU-Dependent Terminal 
+Unit.</OLI><BRK/>
+<BRK/>
+<OLI>AHU-Dependent Terminal Units with occupancy sensors must have the Effective Occupancy SNVT (of type SNVT_Occupancy) 
+of each Terminal Unit bound to a Space Occupancy Input of the System Scheduler.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Stand-Alone Terminal Unit Scheduling</TTL><BRK/>
+<BRK/>
+<TXT>Bind the Terminal Unit Occupancy Output from the System Scheduler to the DDC Hardware that executes the Occupancy 
+Mode Determination part of the Terminal Unit Sequence of Operation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SEQUENCES OF OPERATION FOR AIR HANDLING UNITS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) The following sequences, with few exceptions, assume the use of a System 
+Scheduler and space occupancy input(s) to switch between occupied and unoccupied 
+mode setpoints.<BRK/>
+<BRK/>
+2) Show occupied and unoccupied mode setpoints on the Points Schedule.  A configured 
+setpoint is operator adjustable over the control network, but resides in the 
+local DDC Hardware.  In these sequences it serves as the default occupied mode 
+setpoint and (at a separate setting/value) as an unoccupied mode 'setback' setpoint.<BRK/>
+<BRK/>
+3) Space occupancy input(s) may consist of an occupancy sensor and/or a local 
+push-button.  Indicate the use of a sensor and/or push-button by placing an 
+'X' in the 'Thermostat and Occupancy Sensor  Schedule'.  If a push-button is 
+used, show the override time duration in the Schedule.  Note that the occupancy 
+sensor specification requires  a delay that is adjustable between 30 seconds 
+and  15 minute.  If a delay outside of this range is needed edit the Occupancy 
+Sensor Product specification in PART 2.<BRK/>
+<BRK/>
+4) Occupancy sensor location is left up to the Contractor.  If ceiling mount 
+sensors are preferred, edit the sequences and/or indicate in the Thermostat 
+and Occupancy Sensor Schedule.<BRK/>
+<BRK/>
+5) For each unit, as applicable, indicate if the zone temperature setpoint will 
+be occupant adjustable by placing an 'X' in the 'Thermostat and Occupancy Sensor 
+Schedule'.  For non-occupant-adjustable setpoints, show the setpoint in the 
+Points Schedule.  The intent is that the Contractor provides one or the other 
+as shown.  Non-occupant-adjustable setpoints are adjustable by a system operator 
+using a local display panel (LDP) or an operator workstation (and appropriate 
+software).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>All-Air Small Package Unitary System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For heating-only or cooling-only systems, edit the sequence as required.  
+Where applicable, select 'Emerg Heat' for heat pump systems. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control must be proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Fan ON-AUTO Switch</TTL><BRK/>
+<BRK/>
+<SPT><TTL>ON</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat fan ON-AUTO switch in the ON position, the DDC Hardware must start and continuously run the 
+fan.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat fan ON-AUTO switch in the AUTO position, the DDC Hardware operates the fan according to HEAT-OFF-COOL[-EMERG 
+HEAT] switch.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>HEAT-OFF-COOL[-EMERG HEAT] Switch</TTL><BRK/>
+<BRK/>
+<SPT><TTL>HEAT-COOL[-EMERG HEAT]</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat switch in the HEAT or COOL [or EMERG HEAT] positions, use the DDC Hardware to operate the 
+package unit according to the Occupancy Mode.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat switch in the OFF position, de-energize the heating unit and cooling unit [and emergency 
+supplemental heat] with the DDC Hardware.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied</TTL><BRK/>
+<BRK/>
+<TXT>The unit DDC Hardware must be in the Occupied Mode when the local space occupancy input(s) indicate that the 
+space is occupied or when the input from the System Scheduler is occupied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied</TTL><BRK/>
+<BRK/>
+<TXT>The unit DDC Hardware must be in the Unoccupied Mode when the local space occupancy input(s) indicate that the 
+space is unoccupied and when the input from the System Scheduler is unoccupied.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>Run the unit subject to the unit manufacturer's safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Zone Temperature Control</TTL><BRK/>
+<OLG><BRK/>
+<OLI>In the Occupied Mode the zone temperature setpoint (ZN-T-SP) must be at the configured setpoint or at 
+the occupant-adjustable setpoint via the wall-mounted thermostat, as indicated.</OLI><BRK/>
+<BRK/>
+<OLI>In the Unoccupied Mode the zone temperature setpoint (ZN-T-SP-UNOCC) must be at the configured setpoint 
+(ZN-T-SP-UNOCC) as indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Cycle the fan, cooling unit, heating unit[, and emergency supplemental heat] with the DDC Hardware, in 
+accordance with the HEAT-COOL[-EMERG HEAT] switch setting, to maintain zone temperature (ZN-T) at setpoint 
+(ZN-T-SP).</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Heating and Ventilating Unit (or Unit Ventilator)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) A special interlock control sequence for each fan system will be developed 
+by the designer if required.<BRK/>
+<BRK/>
+2) This system has a single outside air duct.  Select either 2-position outside 
+air dampers or modulating dampers.<BRK/>
+<BRK/>
+3)Indicate the System Scheduler and M&amp;C Software Occupancy Schedule on the 
+Occupancy Schedule drawing.  The designer needs to coordinate System Scheduler 
+(occupancy mode determination) with space occupancy sensor input and pushbutton 
+override switch input use.  As described in the System Scheduler sequence, 'occupied' 
+inputs from two different spaces are required to help avoid needless turning 
+on of the system (due to cleaning staff or security staff passing through after hours).<BRK/>
+<BRK/>
+4) The inclusion of filter pressure switches should be coordinated with the 
+local O&amp;M staff.  Pressure switches may not be desired/needed, particularly 
+if filters are replaced on a regular schedule.  Edit the Points Schedule as required.<BRK/>
+<BRK/>
+5) Absence of fan proof(s) or activation of any safety will result in system 
+shutdown.  The system remains shutdown until manually reset devices are reset 
+and a manual reset button (RST-BUT), local to the DDC controller, is pressed.  
+Reset could also be performed from a workstation (via SNVT) or local display 
+panel (LDP).  It is recommended that you coordinate the decision with the local 
+O&amp;M staff.  Edit the Control Logic Diagram and Points Schedule to indicate 
+which reset method is to to be provided by the Contractor.<BRK/>
+<BRK/>
+6) The hardware (product) specification requires that the low limit (freezestat) 
+device include a manual reset at the device.  In the event of shutdown due to 
+freeze stat trip the system will remain shutdown until the device is reset and 
+a separate DDC reset, as described above, is also used.<BRK/>
+<BRK/>
+7) Smoke control is not addressed in this Section.  Smoke control sequence of 
+operation for each fan system, if beyond the requirements described, will be 
+developed by the designer, based on the requirements and parameters of the project.  
+The designer will account for operation of dampers and fans for pressurization 
+and manual override of interlocks to the fire alarm system.  All automatic overrides 
+of normal HVAC control sequences will be activated through the fire protection 
+and smoke control interface panel that the designer will design for the project.  
+With the present control sequence, in the event of shutdown due to smoke detector 
+input the system will remain shutdown until the smoke detector is reset and 
+a separate DDC reset, as described above, is also used.  The Fire Alarm Panel 
+(FAP) input takes precedence over any DDC input to force the fan(s) to run.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control must be proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND-OFF-AUTO Switches</TTL><BRK/>
+<BRK/>
+<TXT>Provide supply fan motor starter to accept a Fire Alarm Panel (FAP) signal that takes precedence over all other 
+starter inputs and switches and starts the fan.  Provide fan motor starter which accepts an occupant accessible 
+emergency shutoff switch as indicated.  Provide supply fan motor starter with an H-O-A switch:</TXT> <BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, the supply fan starts and runs continuously, subject to Safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, the supply fan stops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, the supply fan runs subject to the Supply Fan Start/Stop (SF-SS) command 
+and Safeties.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<TXT>Obtain the system's Occupancy Mode input from the System Scheduler as specified and indicated.  Operate the system 
+in one of the following modes:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Occupied</TTL><BRK/>
+<BRK/>
+<TXT>The Unit's DDC Hardware must be in the Occupied Mode when the input from the System Scheduler (SYS-OCC) is occupied 
+[or when the local space occupancy input(s) (ZN-OCC) indicate that the space is occupied].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied</TTL><BRK/>
+<BRK/>
+<TXT>The Unit's DDC Hardware must be in the Unoccupied Mode when the input from the System Scheduler (SYS-OCC) is 
+unoccupied[ and when the local space occupancy input(s) (ZN-OCC) indicate that the space is unoccupied].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include bracketed text (Mixed Air Damper Control) for systems with 2-position 
+dampers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Enabe the supply fan (SYS-ENA) and command to run (SF-SS).  Enable the Zone Temperature Control loop [and Mixed 
+Air Damper Control].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>Disable all control loops.  When BLDG-T drops below BLDG-T-LL-SP (with a<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> deadband) enable 
+the supply fan (SYS-ENA) and command to run (SF-SS) and enable the Zone Temperature Control loop.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>Subject the supply fan and all DDC Hardware control loops to Proofs and Safeties.  Direct-hardwire interlock 
+safeties to the fan starter circuit as indicated.  DDC Hardware must monitor all proofs and safeties and failure 
+of any proof or activation of any safety must result in all control loops being disabled and the AHU fan being 
+commanded off until reset.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<BRK/>
+<TXT>Supply fan status (proof) (SF-S)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Heating Coil discharge air temperature low limit (freeze stat) (HTG-DA-T-LL)</OLI><BRK/>
+<BRK/>
+<OLI>Supply air smoke (SA-SMK)</OLI><BRK/>
+<BRK/>
+[<OLI>Return air smoke (RA-SMK)</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware</TTL><BRK/>
+<BRK/>
+<TXT>DDC Hardware reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, 
+via a remote command to the DDC Hardware via SNVT or both (where the Contractor provides both reset functions 
+and the operator can use either one to perform the reset), as indicated on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Zone Temperature Control</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the system has modulating dampers, select bracketed damper text in 
+Zone Temperature Control paragraph.  Otherwise, select Mixed Air Damper Control.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Enabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, the DDC Hardware must modulate the heating valve [and outside air, relief, and return 
+air dampers in sequence] to maintain zone temperature (ZN-T) at setpoint (ZN-T-SP).  [Provide sequencing as indicated:  
+Upon a rise in zone temperature above zone temperature setpoint (ZN-T-SP), subject to the zone temperature setpoint 
+deadband as indicated, moculate the outside air, relief, and return air dampers to maintain zone temperature 
+at setpoint.  During occupied mode, ensure outside air damper minimum position (OA-D-MIN) is as indicated.]  
+Upon a fall in zone temperature below zone temperature setpoint, subject to the deadband as indicated, modulate 
+the heating valve towards open to maintain zone temperature setpoint.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is disabled, close the heating valve[ and close the outside air damper and relief damper and open 
+the return damper].</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Mixed Air Damper Control</TTL><BRK/>
+<BRK/>
+<TXT>When this is enabled, open the outside air and relief air dampers and close the return air damper.  When this 
+is disabled, close the outside air and relief air dampers and open the return air damper.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Single Zone with Heating and [DX]Cooling Coils</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Edit the sequence and drawings as necessary for systems with/without a preheat 
+coil, economizer, and other project specific control loop requirements.<BRK/>
+<BRK/>
+2) Minimum outside air flow control can be accomplished several different ways.  
+Refer to the UFC, but don't use flow measurement in a constant volume system.<BRK/>
+<BRK/>
+3) The inclusion of filter pressure switches should be coordinated with the 
+local O&amp;M staff.  Pressure switches may not be desired/needed, particularly 
+if filters are replaced on a regular schedule.  Edit the Points Schedule and 
+Control Schematic as required.<BRK/>
+<BRK/>
+4) Indicate the System Scheduler and M&amp;C Software Occupancy Schedule on 
+the Occupancy Schedule drawing.  The designer needs to coordinate System Scheduler 
+(occupancy mode determination) with space occupancy sensor input and pushbutton 
+override switch input use.  As described in the System Scheduler sequence, 'occupied' 
+inputs from two different spaces are required to help avoid needless turning 
+on of the system (due to cleaning staff or security staff passing through after hours).<BRK/>
+<BRK/>
+5) Absence of fan proof(s) or activation of any safety will result in system 
+shutdown.  The system remains shutdown until manually reset devices are reset 
+and a manual reset button (RST-BUT), local to the DDC controller, is pressed.  
+Reset could also be performed from a workstation (via SNVT) or local display 
+panel (LDP).  It is recommended that you coordinate the decision with the local 
+O&amp;M staff.  Edit the Control Logic Diagram and Points Schedule to indicate 
+which reset method is to to be provided by the Contractor.<BRK/>
+<BRK/>
+6) The hardware (product) specification requires that the low limit (freezestat) 
+device include a manual reset at the device.  In the event of shutdown due to 
+freeze stat trip the system will remain shutdown until the device is reset and 
+a separate DDC reset, as described above, is also used.<BRK/>
+<BRK/>
+7) Smoke control is not addressed in this Section.  Smoke control sequence of 
+operation for each fan system, if beyond the requirements described, will be 
+developed by the designer, based on the requirements and parameters of the project.  
+The designer will account for operation of dampers and fans for pressurization 
+and manual override of interlocks to the fire alarm system.  All automatic overrides 
+of normal HVAC control sequences will be activated through the fire protection 
+and smoke control interface panel that the designer will design for the project.  
+With the present control sequence, in the event of shutdown due to smoke detector 
+input the system will remain shutdown until the smoke detector is reset and 
+a separate DDC reset, as described above, is also used.  The Fire Alarm Panel 
+(FAP) input takes precedence over any DDC input to force the fan(s) to run.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control must be proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND-OFF-AUTO Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide supply fan motor starter to accept a Fire Alarm Panel (FAP) signal that takes precedence over all other 
+starter inputs and switches and starts the fan.  Provide fan motor starter which accepts an occupant accessible 
+emergency shutoff switch as indicated.  Provide supply fan motor starter with an H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, the supply fan starts and runs continuously, subject to Safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, the supply fan stops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, the supply fan runs subject to the Supply Fan Start/Stop (SF-SS) command 
+and Safeties.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<TXT>Obtain the system's Occupancy Mode input from the System Scheduler as specified and indicated.  Operate the system 
+in one of the following modes: Occupied, Unoccupied[, or WarmUp/CoolDown].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS) and enable all control loops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>While the building temperature (BLDG-T) is above the low limit setpoint (BLDG-T-LL) disable all control loops 
+and the supply fan does not run.  When BLDG-T drops below BLDG-T-LL (with a<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> deadband) 
+enable the supply fan (SYS-ENA) and command to run (SF-SS) and enable the Heating Coil Temperature Control loop.  
+Disable the Outside Air Flow Control, Economizer Damper Control, and [DX] Cooling Coil Control loops.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Warm Up / Cool Down Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS) and disable the Minimum Outside Air Flow Control loop.  
+Enable all other control loops.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>The supply fan and all DDC Hardware control loops are subject to Proofs and Safeties.  Safeties must be direct-hardwire 
+interlocked to the fan starter circuit as indicated.  DDC Hardware must monitor all proofs and safeties and failure 
+of any proof or activation of any safety result in all control loops being disabled and the AHU fan being commanded 
+off until reset.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+ <BRK/>
+<TXT>Supply fan status (proof) (SF-S)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Heating coil discharge air temperature low limit (freeze stat) (HTG-DA-T-LL)</OLI><BRK/>
+<BRK/>
+<OLI>Supply air smoke (SA-SMK)</OLI><BRK/>
+<BRK/>
+<OLI>Return air smoke (RA-SMK)</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware</TTL><BRK/>
+<BRK/>
+<TXT>Provide DDC Hardware reset of all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC 
+Hardware, via a remote command to the DDC Hardware via SNVT or both (where the Contractor provides both reset 
+functions and the operator can use either one to perform the reset), as shown on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Minimum Outside Air Flow Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, open the 2-position minimum outside air damper to introduce the minimum outside air 
+flow quantity as shown.  When this loop is disabled, the minimum outside air damper will be closed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Economizer Damper Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Enabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, and the Economizer is ON as determined by the Economizer Enable Logic, the DDC Hardware 
+will modulate the economizer outside air, relief, and return air dampers (Economizer dampers) in sequence with 
+the [DX] cooling coil control and heating coil control valve as shown to maintain zone temperature (ZN-T) at 
+setpoint (ZN-T-SP) as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is disabled, or the Economizer is OFF as determined by the Economizer Enable Logic, the economizer 
+outside air and relief air dampers will be closed, and the return air damper will be open</TXT>.<BRK/>
+<BRK/></SPT>
+<SPT><TTL>Economizer Enable Logic</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the economizer is ON when the outside air dry bulb temperature is between the high limit (ECO-HL-SP) and 
+low limit (ECO-LL-SP) setpoints as shown.  Otherwise the Economizer is OFF. Ensure ECO-HL-SP and ECO-LL-SP each 
+have a<MET> 1 degree C</MET><ENG> 2 degrees F</ENG> deadband.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Heating Coil Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the heating coil control valve in sequence with the [DX staging control][cooling 
+coil valve] and economizer dampers as shown to maintain zone temperature (ZN-T) at setpoint (ZN-T-SP) as shown.  
+When this loop is disabled, the heating coil control valve is closed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>[DX ]Cooling Coil Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled the DDC Hardware must [stage the DX Unit] [modulate the cooling coil control valve] 
+in sequence with the heating coil valve and economizer dampers as shown to maintain zone temperature (ZN-T) at 
+setpoint (ZN-T-SP) as shown.  When this loop is disabled, the [DX unit is off] [cooling coil control valve is 
+closed].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Single Zone with Dual-Temperature Coil</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Edit the sequence and drawings as necessary for systems with/without a preheat 
+coil, economizer, and other project specific control loop requirements.<BRK/>
+<BRK/>
+2) Minimum outside air flow control can be accomplished several different ways.  
+Refer to the UFC, but don't use flow measurement in a constant volume system.<BRK/>
+<BRK/>
+3) The inclusion of filter pressure switches should be coordinated with the 
+local O&amp;M staff.  Pressure switches may not be desired/needed, particularly 
+if filters are replaced on a regular schedule.  Edit the Points Schedule and 
+Control Schematic as required.<BRK/>
+<BRK/>
+4) Indicate the System Scheduler and M&amp;C Software Occupancy Schedule on 
+the Occupancy Schedule drawing.  The designer needs to coordinate System Scheduler 
+(occupancy mode determination) with space occupancy sensor input and pushbutton 
+override switch input use.  As described in the System Scheduler sequence, 'occupied' 
+inputs from two different spaces are required to help avoid needless turning 
+on of the system (due to cleaning staff or security staff passing through after hours).<BRK/>
+<BRK/>
+5) Absence of fan proof(s) or activation of any safety will result in system 
+shutdown.  The system remains shutdown until manually reset devices are reset 
+and a manual reset button (RST-BUT), local to the DDC controller, is pressed.  
+Reset could also be performed from a workstation (via SNVT) or local display 
+panel (LDP).  It is recommended that you coordinate the decision with the local 
+O&amp;M staff.  Edit the Control Logic Diagram and Points Schedule to indicate 
+which reset method is to to be provided by the Contractor.<BRK/>
+<BRK/>
+6) The hardware (product) specification requires that the low limit (freezestat) 
+device include a manual reset at the device.  In the event of shutdown due to 
+freeze stat trip the system will remain shutdown until the device is reset and 
+a separate DDC reset, as described above, is also used.<BRK/>
+<BRK/>
+7) Smoke control is not addressed in this Section.  Smoke control sequence of 
+operation for each fan system, if beyond the requirements described, will be 
+developed by the designer, based on the requirements and parameters of the project.  
+The designer will account for operation of dampers and fans for pressurization 
+and manual override of interlocks to the fire alarm system.  All automatic overrides 
+of normal HVAC control sequences will be activated through the fire protection 
+and smoke control interface panel that the designer will design for the project.  
+With the present control sequence, in the event of shutdown due to smoke detector 
+input the system will remain shutdown until the smoke detector is reset and 
+a separate DDC reset, as described above, is also used.  The Fire Alarm Panel 
+(FAP) input takes precedence over any DDC input to force the fan(s) to run.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control must be proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND-OFF-AUTO Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide supply fan motor starter to accept a Fire Alarm Panel (FAP) signal that takes precedence over all other 
+starter inputs and switches and starts the fan.  Provide fan motor starter which accepts an occupant accessible 
+emergency shutoff switch as indicated.  Provide supply fan motor starter with an H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, the supply fan starts and runs continuously, subject to Safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, the supply fan stops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, the supply fan runs subject to the Supply Fan Start/Stop (SF-SS) command 
+and Safeties.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<TXT>Obtain Occupancy Mode input from the System Scheduler as specified and shown.  Operate the system in one of the 
+following modes: Occupied, Unoccupied[, or WarmUp/CoolDown].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS) and enable all control loops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>While the building temperature (BLDG-T) is above the building low limit setpoint (BLDG-T-LL), disable all control 
+loops and do not run the supply fan.  When BLDG-T drops below BLDG-T-LL (with a<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> deadband), 
+enable the supply fan (SYS-ENA) and command to run (SF-SS) and enable the Dual Temperature Coil Temperature Control 
+loop.  Disable the Minimum Outside Air Flow Control and Economizer Damper Control loops.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Warm Up / Cool Down Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS).  Disable the Minimum Outside Air Flow Control loop 
+and enable all other control loops.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>The supply fan and all DDC Hardware control loops are subject to Proofs and Safeties.  Direct-hardwire interlock 
+safeties to the fan starter circuit as shown. Monitor all proofs and safeties, and disable all control loops 
+and command the AHU fan off until reset due to failure of any proof or activation of any safety.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<BRK/>
+<TXT>Supply fan status (proof) (SF-S)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Dual Temperature coil discharge air temperature low limit (freeze stat) (DT-DA-T-LL)</OLI><BRK/>
+<BRK/>
+<OLI>Supply air smoke (SA-SMK)</OLI><BRK/>
+<BRK/>
+<OLI>Return air smoke (RA-SMK)</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware</TTL><BRK/>
+<BRK/>
+<TXT>Reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, via a remote 
+command to the DDC Hardware via SNVT or both (where the Contractor provides both reset functions and the operator 
+can use either one to perform the reset), as shown on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Minimum Outside Air Flow Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, open the 2-position minimum outside air damper to introduce the minimum outside air 
+flow quantity as shown.  When this loop is disabled, close the minimum outside air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Economizer Damper Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Enabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, and the Economizer is ON as determined by the Economizer Enable Logic, modulate the 
+economizer outside air, relief, and return air dampers (Economizer dampers) in sequence with the dual temperature 
+coil to maintain zone temperature (ZN-T) at setpoint (ZN-T-SP) as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is disabled, or the Economizer is OFF as determined by the Economizer Enable Logic, close the 
+economizer outside air and relief air dampers, and open the return air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Economizer Enable Logic</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the economizer is ON when the outside air dry bulb temperature is between the high limit (ECO-HL-SP) and 
+low limit (ECO-LL-SP) setpoints as shown.  Otherwise the Economizer is OFF. Ensure ECO-HL-SP and ECO-LL-SP each 
+have a<MET> 1 degree C</MET><ENG> 2 degrees F</ENG> deadband.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Dual Temperature Coil Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Enabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, select heating or cooling mode based on a pipe-mounted dual-temperature supply water 
+sensor.  A single sensor may be used for multiple instances of this sequence.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware</TTL><BRK/>
+<BRK/>
+<TXT>Modulate the coil control valve in sequence with the economizer dampers as shown to maintain zone temperature 
+(ZN-T) at setpoint (ZN-T-SP) as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is disabled, close the control valve.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Single Zone with Heating and Cooling Coils and Return Air Bypass</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Edit the sequence and drawings as necessary for systems with/without a preheat 
+coil, economizer, and other project specific control loop requirements.<BRK/>
+<BRK/>
+2) Coordinate the enable/disable of the cooling coil 2-position valve with the 
+chilled water source.  If it is from a local chiller define and share the enabling 
+signal that turns on the chiller and opens the 2-position valve.  Do not use 
+a DX unit in place of the chilled water cooling coil.<BRK/>
+<BRK/>
+3) Minimum outside air flow control can be accomplished several different ways.  
+Refer to the UFC, but don't use flow measurement in a constant volume system.<BRK/>
+<BRK/>
+4) The inclusion of filter pressure switches should be coordinated with the 
+local O&amp;M staff.  Pressure switches may not be desired/needed, particularly 
+if filters are replaced on a regular schedule.  Edit the Points Schedule and 
+Control Schematic as required.<BRK/>
+<BRK/>
+5) Indicate the System Scheduler and M&amp;C Software Occupancy Schedule on 
+the Occupancy Schedule drawing.  The designer needs to coordinate System Scheduler 
+(occupancy mode determination) with space occupancy sensor input and pushbutton 
+override switch input use.  As described in the System Scheduler sequence, 'occupied' 
+inputs from two different spaces are required to help avoid needless turning 
+on of the system (due to cleaning staff or security staff passing through after hours).<BRK/>
+<BRK/>
+6) Absence of fan proof(s) or activation of any safety will result in system 
+shutdown.  The system remains shutdown until manually reset devices are reset 
+and a manual reset button (RST-BUT), local to the DDC controller, is pressed.  
+Reset could also be performed from a workstation (via SNVT) or local display 
+panel (LDP).  It is recommended that you coordinate the decision with the local 
+O&amp;M staff.  Edit the Control Logic Diagram and Points Schedule to indicate 
+which reset method is to to be provided by the Contractor.<BRK/>
+<BRK/>
+7) The hardware (product) specification requires that the low limit (freezestat) 
+device include a manual reset at the device.  In the event of shutdown due to 
+freeze stat trip the system will remain shutdown until the device is reset and 
+a separate DDC reset, as described above, is also used.<BRK/>
+<BRK/>
+8) Smoke control is not addressed in this guide specification.  Smoke control 
+sequence of operation for each fan system, if beyond the requirements described, 
+will be developed by the designer, based on the requirements and parameters 
+of the project.  The designer will account for operation of dampers and fans 
+for pressurization and manual override of interlocks to the fire alarm system.  
+All automatic overrides of normal HVAC control sequences will be activated through 
+the fire protection and smoke control interface panel that the designer will 
+design for the project.  With the present control sequence, in the event of 
+shutdown due to smoke detector input the system will remain shutdown until the 
+smoke detector is reset and a separate DDC reset, as described above, is also 
+used.  The Fire Alarm Panel (FAP) input takes precedence over any DDC input 
+to force the fan(s) to run.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control are proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND-OFF-AUTO Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide supply fan motor starter to accept a Fire Alarm Panel (FAP) signal that takes precedence over all other 
+starter inputs and switches and starts the fan.  Provide fan motor starter which accepts an occupant accessible 
+emergency shutoff switch as indicated.  Provide supply fan motor starter with an H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, start the supply fan and run continuously, subject to Safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, stop the supply fan.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, run the supply fan subject to the Supply Fan Start/Stop (SF-SS) command 
+and Safeties.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<TXT>Obtain the Occupancy Mode input from the System Scheduler as specified and shown.  Operate the system in one 
+of the following modes: Occupied, Unoccupied[, or WarmUp/CoolDown].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS) and enable all control loops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>While the building temperature (BLDG-T) is above the low limit setpoint (BLDG-T-LL) disable all control loops 
+and do not run the supply fan.  When BLDG-T drops below BLDG-T-LL (with a<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> deadband), 
+enable the supply fan (SYS-ENA) and command to run (SF-SS) and enable the Heating Coil Temperature Control loop.  
+Disable all other control loops.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Warm Up / Cool Down Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS).  Disable the Minimum Outside Air Flow Control loop 
+and enable all other control loops.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>The supply fan and all DDC Hardware control loops are subject to Proofs and Safeties.  Direct-hardwire interlock 
+safeties to the fan starter circuit as shown.  Monitor all proofs and safeties and disable all control loops 
+and command the AHU fan off until reset due to failure of any proof or activation of any safety.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<BRK/>
+<TXT>Supply fan status (proof) (SF-S)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Heating coil discharge air temperature low limit (freezestat) (HTG-DA-T-LL)</OLI><BRK/>
+<BRK/>
+<OLI>Supply air smoke (SA-SMK)</OLI><BRK/>
+<BRK/>
+<OLI>Return air smoke (RA-SMK)</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware</TTL><BRK/>
+<BRK/>
+<TXT>Reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, via a remote 
+command to the DDC Hardware via SNVT or both (where the Contractor provides both reset functions and the operator 
+can use either one to perform the reset), as shown on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Minimum Outside Air Flow Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled the DDC Hardware, open the 2-position minimum outside air damper to introduce the minimum 
+outside air flow quantity as shown.  When this loop is disabled, close the minimum outside air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Economizer Damper Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Enabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, and the Economizer is ON as determined by the Economizer Enable Logic, modulate the 
+economizer outside air, return air, and relief air dampers (Economizer dampers) in sequence with the bypass and 
+supply dampers and the heating coil control valve as shown to maintain zone temperature (ZN-T) at setpoint (ZN-T-SP) 
+as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is disabled, or the Economizer is OFF as determined by the Economizer Enable Logic, close the 
+economizer outside air and relief air dampers, and open the return air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Economizer Enable Logic</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the economizer is ON when the outside air dry bulb temperature is between the high limit (ECO-HL-SP) and 
+low limit (ECO-LL-SP) setpoints as shown.  Otherwise the Economizer is OFF.  Ensure ECO-HL-SP and ECO-LL-SP each 
+have a<MET> 1 degree C</MET><ENG> 2 degrees F</ENG> deadband.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Temperature Control Loop Heating Coil Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the heating coil control valve, modulate the economizer dampers if enabled, 
+open and close the 2-position cooling coil valve and modulate the bypass and supply air dampers in sequence to 
+maintain zone temperature (ZN-T) at setpoint (ZN-T-SP) as shown.  When this loop is disabled, close both valves 
+and position the bypass and supply air dampers to bypass air.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Single Zone with Humidity Control</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Edit the sequence and drawings as necessary for systems with/without a preheat 
+coil and other project specific control loop requirements.<BRK/>
+<BRK/>
+2) The inclusion of filter pressure switches should be coordinated with the 
+local O&amp;M staff.  Pressure switches may not be desired/needed, particularly 
+if filters are replaced on a regular schedule.  Edit the Points Schedule and 
+Control Schematic as required.<BRK/>
+<BRK/>
+3) Indicate the System Scheduler and M&amp;C Software Occupancy Schedule on 
+the Occupancy Schedule drawing.  The designer needs to coordinate System Scheduler 
+(occupancy mode determination) with space occupancy sensor input and pushbutton 
+override switch input use.  As described in the System Scheduler sequence, 'occupied' 
+inputs from 2 different spaces are required to help avoid needless turning on 
+of the system (due to cleaning staff or security staff passing through after hours).<BRK/>
+<BRK/>
+3) Absence of fan proof(s) or activation of any safety will result in system 
+shutdown.  The system remains shutdown until manually reset devices are reset 
+and a manual reset button (RST-BUT), local to the DDC controller, is pressed.  
+Reset could also be performed from a workstation (via SNVT) or local display 
+panel (LDP).  It is recommended that you coordinate the decision with the local 
+O&amp;M staff.  Edit the Control Logic Diagram and Points Schedule to indicate 
+which reset method is to to be provided by the Contractor.<BRK/>
+<BRK/>
+4) The hardware (product) specification requires that the low limit (freezestat) 
+device include a manual reset at the device.  In the event of shutdown due to 
+freeze stat trip the system will remain shutdown until the device is reset and 
+a separate DDC reset, as described above, is also used.<BRK/>
+<BRK/>
+5) Smoke control is not addressed in this guide specification.  Smoke control 
+sequence of operation for each fan system, if beyond the requirements described, 
+will be developed by the designer, based on the requirements and parameters 
+of the project.  The designer will account for operation of dampers and fans 
+for pressurization and manual override of interlocks to the fire alarm system.  
+All automatic overrides of normal HVAC control sequences will be activated through 
+the fire protection and smoke control interface panel that the designer will 
+design for the project.  With the present control sequence, in the event of 
+shutdown due to smoke detector input the system will remain shutdown until the 
+smoke detector is reset and a separate DDC reset, as described above, is also 
+used.  The Fire Alarm Panel (FAP) input takes precedence over any DDC input 
+to force the fan(s) to run.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control are proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND-OFF-AUTO Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide supply fan motor starter to accept a Fire Alarm Panel (FAP) signal that takes precedence over all other 
+starter inputs and switches and starts the fan.  Provide fan motor starter which accepts an occupant accessible 
+emergency shutoff switch as indicated.  Provide supply fan motor starter with an H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, start the supply fan and run continuously, subject to Safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, stop the supply fan.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, run the supply fan subject to the Supply Fan Start/Stop (SF-SS)command 
+and Safeties.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<TXT>Obtain Occupancy Mode input from the System Scheduler as specified and shown.  Operate the system in one of the 
+following modes: Occupied, Unoccupied[, or WarmUp/CoolDown].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS) and enable all control loops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>While the building temperature (BLDG-T) is above the low limit setpoint (BLDG-T-LL), disable  all control loops 
+and do not run the supply fan.  When BLDG-T drops below BLDG-T-LL (with a<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> deadband), 
+enable the supply fan (SYS-ENA) and command to run (SF-SS), enable the Preheat Coil Control loop and Reheat Coil 
+Control loop and disable all other loops.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Warm Up / Cool Down Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS).  Disable the Minimum Outside Air Flow Control loop 
+and enable all other control loops.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>The supply fan and all DDC Hardware control loops are subject to Proofs and Safeties.  Direct-hardwire interlock 
+safeties to the fan starter circuit as shown. Monitor all proofs and safeties and disable all control loops and 
+command the AHU fan off until reset due to failure of any proof or activation of any safety.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<BRK/>
+<TXT>Supply fan status (proof) (SF-S)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Preheat coil discharge air temperature low limit (freezestat) (PH-DA-T-LL)</OLI><BRK/>
+<BRK/>
+<OLI>Supply air smoke (SA-SMK)</OLI><BRK/>
+<BRK/>
+<OLI>Return air smoke (RA-SMK)</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware</TTL><BRK/>
+<BRK/>
+<TXT>Reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, via a remote 
+command to the DDC Hardware via SNVT or both (where both reset functions are provided and the operator can use 
+either one to perform the reset), as shown on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Minimum Outside Air Flow Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, open the 2-position minimum outside air damper to introduce the minimum outside air 
+flow quantity as shown.  When this loop is disabled, close the minimum outside air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preheat Coil Control Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the preheat coil valve to maintain the preheat coil discharge air temperature 
+(PH-DA-T) at setpoint (PH-DA-T-SP) as shown.  When this loop is disabled, close the preheat coil valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cooling-and-Dehumidification Coil Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the cooling and dehumidification valve to maintain either the zone temperature 
+(ZN-T) at setpoint (ZN-T-SP) or zone relative humidity (ZN-RH) at setpoint (ZN-RH-SP), whichever calls for more 
+chilled water flow.  Modulate the valve in sequence with the reheat valve and humidification valve as shown to 
+avoid simultaneous cooling and reheating, and simultaneous dehumidification and humidification.  When this loop 
+is disabled, close the coil valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reheat Coil Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the reheat coil valve to maintain the zone temperature (ZN-T) at setpoint 
+(ZN-T-SP) as shown.  Modulate the valve in sequence with the cooling-and-dehumidification valve as shown to avoid 
+simultaneous cooling and reheating.  When this loop is disabled, close the coil valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Humidification Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the humidifier valve to maintain zone relative humidity (ZN-RH) at setpoint 
+(ZN-RH-SP).  Modulate the valve in sequence with the cooling-and-dehumidification valve as shown to avoid simultaneous 
+dehumidification and humidification.  When the supply air duct humidity (SA-RH) rises above 80 percent relative 
+humidity, begin modulating the humidifier valve towards closed and continue to gradually move towards closed 
+until the supply air duct humidity reaches 90 percent relative humidity, at which point the humidifier valve 
+is fully closed.  When this loop is disabled, close the humidifier valve.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Multizone [Dual-Duct] [with][without] Return Fan</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) The sequence is identical for a Dual-Duct system.  You need only change hot/cold 
+deck to hot/cold duct.<BRK/>
+<BRK/>
+2) Edit the sequence and drawings as necessary for systems with/without a return 
+fan, preheat coil, economizer, and other project specific control loop requirements.<BRK/>
+<BRK/>
+3) Choose whether or not to require setpoint reset of the hot deck temperature 
+setpoint, and whether the reset should be based on Outside Air Temperature or 
+Coldest Zone Temperature.  Edit the control schematic drawing to show the reset parameters.<BRK/>
+<BRK/>
+4) Minimum outside air flow control can be accomplished several different ways.  
+Refer to the UFC, but don't use flow measurement in a constant volume system.<BRK/>
+<BRK/>
+5) The inclusion of filter pressure switches should be coordinated with the 
+local O&amp;M staff.  Pressure switches may not be desired/needed, particularly 
+if filters are replaced on a regular schedule.  Edit the Points Schedule and 
+Control Schematic as required.<BRK/>
+<BRK/>
+6) Indicate the System Scheduler and M&amp;C Software Occupancy Schedule on 
+the Occupancy Schedule drawing.  The designer needs to coordinate System Scheduler 
+(occupancy mode determination) with space occupancy sensor input and pushbutton 
+override switch input use.  As described in the System Scheduler sequence, 'occupied' 
+inputs from 2 different spaces are required to help avoid needless turning on 
+of the system (due to cleaning staff or security staff passing through after hours).<BRK/>
+<BRK/>
+7) Absence of fan proof(s) or activation of any safety will result in system 
+shutdown.  The system remains shutdown until manually reset devices are reset 
+and a manual reset button (RST-BUT), local to the DDC controller, is pressed.  
+Reset could also be performed from a workstation (via SNVT) or local display 
+panel (LDP).  It is recommended that you coordinate the decision with the local 
+O&amp;M staff.  Edit the Control Logic Diagram and Points Schedule to indicate 
+which reset method is to to be provided by the Contractor.<BRK/>
+<BRK/>
+8) The hardware (product) specification requires that the low limit (freezestat) 
+device include a manual reset at the device.  In the event of shutdown due to 
+freeze stat trip the system will remain shutdown until the device is reset and 
+a separate DDC reset, as described above, is also used.<BRK/>
+<BRK/>
+9) Smoke control is not addressed in this guide specification.  Smoke control 
+sequence of operation for each fan system, if beyond the requirements described, 
+will be developed by the designer, based on the requirements and parameters 
+of the project.  The designer will account for operation of dampers and fans 
+for pressurization and manual override of interlocks to the fire alarm system.  
+All automatic overrides of normal HVAC control sequences will be activated through 
+the fire protection and smoke control interface panel that the designer will 
+design for the project.  With the present control sequence, in the event of 
+shutdown due to smoke detector input the system will remain shutdown until the 
+smoke detector is reset and a separate DDC reset, as described above, is also 
+used.  The Fire Alarm Panel (FAP) input takes precedence over any DDC input 
+to force the fan(s) to run.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control are proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND-OFF-AUTO switches and Fire Alarm Panel (FAP) Signal</TTL>:<BRK/>
+<BRK/>
+<TXT>Supply Fan VFD. Provide supply fan motor starter to accept a Fire Alarm Panel (FAP) signal that takes precedence 
+over all other starter inputs and switches and starts the fan.  Provide fan motor starter which accepts an occupant 
+accessible emergency shutoff switch as shown.  Provide supply fan motor starter with an H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, the supply fan starts and runs continuously, subject to Safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, the supply fan stops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, the supply fan runs subject to the Supply Fan Start/Stop (SF-SS)command 
+and Safeties.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Return Fan VFD</TTL><BRK/>
+<BRK/>
+<TXT>Incorporate an integral H-O-A switch, manual speed adjustment and also accept a Fire Alarm Panel (FAP) signal.  
+Run the return fan according to the following inputs (in order of decreasing priority):</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Use FAP signal to cause the RF to run at 100 percent</OLI><BRK/>
+<BRK/>
+<OLI>Connect SF-S (proof) to the RF VFD safety circuit such that if SF is not running, RF is off.</OLI><BRK/>
+<BRK/>
+<OLI>Use RF H-O-A switch to select RF mode as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">When switch is in Hand, run fan.  Ensure fan speed is under manual control.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">When switch is in Off, fan is off.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">When switch is in Auto, run fan.  Ensure fan speed is under control of the DDC Hardware.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<TXT>Obtain Occupancy Mode input from the System Scheduler as specified and shown.  Operate the system in one of the 
+following modes: Occupied, Unoccupied[, or WarmUp/CoolDown].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS).  Enable all control loops.  Also enable the Zone 
+Temperature Control loops serviced by the AHU.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>While the building temperature (BLDG-T) is above the low limit setpoint (BLDG-T-LL), disable all control loops 
+and do not run the supply fan.  When BLDG-T drops below BLDG-T-LL (with a<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> deadband), 
+enable the supply fan (SYS-ENA) and command to run (SF-SS), enable the Hot Deck Coil Control loop and all Zone 
+Temperature Control loops, and disable all other control loops.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Warm Up / Cool Down Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS).  Disable the Minimum Outside Air Flow Control loop 
+and enable all other control loops.  Also enable the Zone Temperature Control loops serviced by the AHU.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>The supply fan and all DDC Hardware control loops are subject to Proofs and Safeties.  Direct-hardwire interlock 
+safeties to the fan starter circuit as shown.  Monitor all proofs and safeties and disable all control loops 
+and command the AHU fan off until reset due to failure of any proof or activation of any safety.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Supply fan status (proof) (SF-S)</OLI>[<BRK/>
+<BRK/>
+<OLI>Return fan status (proof) (RF-S)</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Mixed air temperature low limit (freeze stat) (MA-T-LL)</OLI>[<BRK/>
+<BRK/>
+<OLI>Supply air smoke (SA-SMK)</OLI>][<BRK/>
+<BRK/>
+<OLI>Return air smoke (RA-SMK)</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware Reset</TTL><BRK/>
+<BRK/>
+<TXT>Reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, via a remote 
+command to the DDC Hardware via SNVT or both (where the Contractor provides both reset functions and the operator 
+can use either one to perform the reset), as shown on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Minimum Outside Air Flow Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, open the 2-position minimum outside air damper to introduce the minimum outside air 
+follow quantity as shown.  When this loop is disabled, close the minimum outside air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mixed Air Temperature Control With Economizer</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Enabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, and the Economizer is ON as determined by the Economizer Enable Logic, modulate the 
+economizer outside air, relief, and return air dampers to maintain the mixed air temperature (MA-T) at setpoint 
+(MA-T-SP) as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is disabled, or the Economizer is OFF as determined by the Economizer Enable Logic, close the 
+economizer outside air and relief air dampers, and open the return air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Economizer Enable Logic</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the economizer is ON when the outside air dry bulb temperature is between the high limit (ECO-HL-SP) and 
+low limit (ECO-LL-SP) setpoints as shown.  Otherwise the Economizer is OFF. Ensure ECO-HL-SP and ECO-LL-SP each 
+have a<MET> 1 degree C</MET><ENG> 2 degrees F</ENG> deadband.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Hot Deck Coil Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Enabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the hot deck heating coil valve to maintain the hot deck temperature (HD-T) 
+at setpoint (HD-T-SP) as shown.  When this loop is disabled, close the hot deck coil valve.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>DDC Hardware Reset</TTL><BRK/>
+<BRK/>
+<TXT>Reset the hot deck temperature setpoint (HD-T-SP) using a linear reset schedule as shown.  Base reset of the 
+setpoint (HD-T-SP) on [Outside Air Temperature] [Coldest Zone Temperature].</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Cold Deck Coil Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the cold deck cooling coil valve to maintain the cold deck temperature (CD-T) 
+at setpoint (CD-T-SP) as shown.  When this loop is disabled, close the cold deck cooling coil valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Zone Temperature Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Zone Temperature Setpoint</TTL><BRK/>
+<BRK/>
+<TXT>Ensure zone temperature setpoint (ZN-T-SP) is at the configured setpoint or at the occupant-adjustable setpoint 
+via the wall-mounted thermostat, as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware Modulation</TTL><BRK/>
+<BRK/>
+<TXT>Modulate the hot deck and cold deck dampers to maintain zone temperature (ZN-T) at setpoint (ZN-T-SP).</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Multizone with Hot Deck Bypass [with][without] Return Fan</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) NOTE: Edit the sequence and drawings as necessary for systems with/without 
+a return fan, preheat coil, economizer, and other project specific control loop requirements.<BRK/>
+<BRK/>
+2) Minimum outside air flow control can be accomplished several different ways.  
+Refer to the UFC, but don't use flow measurement in a constant volume system.<BRK/>
+<BRK/>
+3) The inclusion of filter pressure switches should be coordinated with the 
+local O&amp;M staff.  Pressure switches may not be desired/needed, particularly 
+if filters are replaced on a regular schedule.  Edit the Points Schedule and 
+Control Schematic as required.<BRK/>
+<BRK/>
+4) Indicate the System Scheduler and M&amp;C Software Occupancy Schedule on 
+the Occupancy Schedule drawing.  The designer needs to coordinate System Scheduler 
+(occupancy mode determination) with space occupancy sensor input and pushbutton 
+override switch input use.  As described in the System Scheduler sequence, 'occupied' 
+inputs from 2 different spaces are required to help avoid needless turning on 
+of the system (due to cleaning staff or security staff passing through after hours).<BRK/>
+<BRK/>
+5) Absence of fan proof(s) or activation of any safety will result in system 
+shutdown.  The system remains shutdown until manually reset devices are reset 
+and a manual reset button (RST-BUT), local to the DDC controller, is pressed.  
+Reset could also be performed from a workstation (via SNVT) or local display 
+panel (LDP).  It is recommended that you coordinate the decision with the local 
+O&amp;M staff.  Edit the Control Logic Diagram and Points Schedule to indicate 
+which reset method is to to be provided by the Contractor.<BRK/>
+<BRK/>
+6) The hardware (product) specification requires that the low limit (freezestat) 
+device include a manual reset at the device.  In the event of shutdown due to 
+freeze stat trip the system will remain shutdown until the device is reset and 
+a separate DDC reset, as described above, is also used.<BRK/>
+<BRK/>
+7) Smoke control is not addressed in this guide specification.  Smoke control 
+sequence of operation for each fan system, if beyond the requirements described, 
+will be developed by the designer, based on the requirements and parameters 
+of the project.  The designer will account for operation of dampers and fans 
+for pressurization and manual override of interlocks to the fire alarm system.  
+All automatic overrides of normal HVAC control sequences will be activated through 
+the fire protection and smoke control interface panel that the designer will 
+design for the project.  With the present control sequence, in the event of 
+shutdown due to smoke detector input the system will remain shutdown until the 
+smoke detector is reset and a separate DDC reset, as described above, is also 
+used.  The Fire Alarm Panel (FAP) input takes precedence over any DDC input 
+to force the fan(s) to run.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and indicated on the Points Schedule.  Unless otherwise specified, all modulating control must be proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND-OFF-AUTO Switches</TTL><BRK/>
+<BRK/>
+<TXT>Supply fan motor starter must accept a Fire Alarm Panel (FAP) signal that takes precedence over all other starter 
+inputs and switches and must start the fan.  The fan motor starter must accept an occupant accessible emergency 
+shutoff switch as shown.  The supply fan motor starter must have an H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, start and continuously run the supply fan, subject to Safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, stop the supply fan.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, run the supply fan subject to the Supply Fan Start/Stop (SF-SS)command 
+and Safeties.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Return Fan Motor Starter</TTL><BRK/>
+<BRK/>
+<TXT>Return fan motor starter must accept a Fire Alarm Panel (FAP) signal that takes precedence over all other starter 
+inputs and switches must start the fan.  The return fan motor starter must have an H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, run the return fan subject to Safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, the return fan must be off.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, run the return fan subject to the supply fan running.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<TXT>Obtain the system's Occupancy Mode input from the System Scheduler as specified and indicated.  Operate the system 
+in one of the following modes: Occupied, Unoccupied[, or WarmUp/CoolDown].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS).  Enable all control loops.  Also enable the Zone 
+Temperature Control loops serviced by the AHU.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>While the building temperature (BLDG-T) is above the low limit setpoint (BLDG-T-LL), disable all control loops 
+and do not run the supply fan.  When BLDG-T drops below BLDG-T-LL (with a<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> deadband), 
+enable the supply fan (SYS-ENA) and command to run (SF-SS), and enable all Zone Temperature Control loops.  Disable 
+the Minimum Outside Air Flow Control, Mixed Air Temperature Control With Economizer, and Cold Deck Coil Control 
+loops.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Warm Up / Cool Down Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS).  Disable the Minimum Outside Air Flow Control loop 
+and enable all other control loops.  Also enable the Zone Temperature Control loops serviced by the AHU.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>The supply fan[, return fan,] and all DDC Hardware control loops are subject to Proofs and Safeties. Direct-hardwire 
+interlocksafeties to the fan starter circuit as shown.  Monitor all proofs and safeties and disable all control 
+loops and command the AHU fan off until reset due to failure of any proof or activation of any safety.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Supply fan status (proof) (SF-S)</OLI><BRK/>
+<BRK/>
+[<OLI>Return fan status (proof) (RF-S)</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Mixed air temperature low limit (freeze stat) (MA-T-LL)</OLI><BRK/>
+<BRK/>
+<OLI>Supply air smoke (SA-SMK)</OLI><BRK/>
+<BRK/>
+[<OLI>Return air smoke (RA-SMK)</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware Reset</TTL><BRK/>
+<BRK/>
+<TXT>Reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, via a remote 
+command to the DDC Hardware via SNVT or both (where the Contractor provides both reset functions and the operator 
+can use either one to perform the reset), as shown on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Minimum Outside Air Flow Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, open the 2-position minimum outside air damper to introduce the minimum outside air 
+follow quantity as shown.  When this loop is disabled, close the minimum outside air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mixed Air Temperature Control With Economizer</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Enabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, and the Economizer is ON as determined by the Economizer Enable Logic, modulate the 
+economizer outside air, relief, and return air dampers to maintain the mixed air temperature (MA-T) at setpoint 
+(MA-T-SP) as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is disabled, or the Economizer is OFF as determined by the Economizer Enable Logic, close the 
+economizer outside air and relief air dampers, and open the return air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Economizer Enable Logic</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the economizer is ON when the outside air dry bulb temperature is between the high limit (ECO-HL-SP) and 
+low limit (ECO-LL-SP) setpoints as shown.  Otherwise the Economizer is OFF. Ensure ECO-HL-SP and ECO-LL-SP each 
+have a<MET> 1 degree C</MET><ENG> 2 degrees F</ENG> deadband.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cold Deck Coil Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the cooling coil valve to maintain the cold deck supply air temperature (SA-T) 
+at setpoint (SA-T-SP) as shown.  When this loop is disabled, close the cooling coil valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Zone Temperature Control</TTL> <BRK/>
+<OLG><BRK/>
+<OLI>Ensure the zone temperature setpoint (ZN-T-SP) is at the configured setpoint or at the occupant-adjustable 
+setpoint via the wall-mounted thermostat, as shown.</OLI><BRK/>
+<BRK/>
+<OLI>Modulate the zone bypass and cold deck dampers, and the zone heating coil valve to maintain zone temperature 
+(ZN-T) at setpoint (ZN-T-SP).  Perform sequencing as shown: Upon a rise in zone temperature above zone 
+temperature setpoint, subject to the zone temperature setpoint deadband as shown, modulate the zone cold 
+deck damper towards open as the bypass deck damper modulates towards closed.  Upon a fall in zone temperature 
+below zone temperature setpoint, subject to the deadband as shown, ensure the bypass damper is fully 
+opened and the zone heating valve modulates towards open.</OLI><BRK/>
+<BRK/>
+<OLI>For systems with electric resistance heating elements, require proof of air flow before activating the 
+heating elements.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Variable Air Volume System [with][without] Return Fan</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Edit the sequence and drawings as necessary for systems with/without a return 
+fan, preheat coil, economizer, and other project specific control loop requirements.<BRK/>
+<BRK/>
+2) Minimum outside air flow control can be accomplished several different ways.  
+Refer to the UFC.<BRK/>
+<BRK/>
+3) The inclusion of filter pressure switches should be coordinated with the 
+local O&amp;M staff.  Pressure switches may not be desired/needed, particularly 
+if filters are replaced on a regular schedule.  Edit the Points Schedule and 
+Control Schematic as required.<BRK/>
+<BRK/>
+4) This spec does not include a variable frequency drive (VFD) specification.  
+Specify a VFD that meets the requirements of the control sequence including 
+the integral H-O-A and a safety shutdown input circuit that is separate from 
+the start/stop input circuit and Fire Alarm Panel (FAP) override switch.<BRK/>
+<BRK/>
+5) Indicate the System Scheduler and M&amp;C Software Occupancy Schedule on 
+the Occupancy Schedule drawing.  The designer needs to coordinate System Scheduler 
+(occupancy mode determination) with space occupancy sensor input and pushbutton 
+override switch input use.  As described in the System Scheduler sequence, 'occupied' 
+inputs from 2 different spaces are required to help avoid needless turning on 
+of the system (due to cleaning staff or security staff passing through after hours).<BRK/>
+<BRK/>
+6) Absence of fan proof(s) or activation of any safety will result in system 
+shutdown.  The system remains shutdown until manually reset devices are reset 
+and a manual reset button (RST-BUT), local to the DDC controller, is pressed.  
+Reset could also be performed from a workstation (via SNVT) or local display 
+panel (LDP).  It is recommended that you coordinate the decision with the local 
+O&amp;M staff.  Edit the Control Logic Diagram and Points Schedule to indicate 
+which reset method is to to be provided by the Contractor.<BRK/>
+<BRK/>
+7) The hardware (product) specification requires that the low limit (freezestat) 
+device include a manual reset at the device.  In the event of shutdown due to 
+freeze stat trip the system will remain shutdown until the device is reset and 
+a separate DDC reset, as described above, is also used.<BRK/>
+<BRK/>
+8) Smoke control is not addressed in this guide specification.  Smoke control 
+sequence of operation for each fan system, if beyond the requirements described, 
+will be developed by the designer based on the requirements and parameters of 
+the project.  The designer will account for operation of dampers and fans for 
+pressurization and manual override of interlocks to the fire alarm system.  
+All automatic overrides of normal HVAC control sequences will be activated through 
+the fire protection and smoke control interface panel that the designer will 
+design for the project.  With the present control sequence, in the event of 
+shutdown due to smoke detector input the system will remain shutdown until the 
+smoke detector is reset and a separate DDC reset, as described above, is also 
+used.  The Fire Alarm Panel (FAP) input takes precedence over any DDC input 
+to force the fan(s) to run. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND-OFF-AUTO Switches</TTL><BRK/>
+<BRK/>
+<TXT>Provide supply fan variable frequency drive (VFD) unit to accept a Fire Alarm Panel (FAP) signal that takes precedence 
+over all other VFD inputs and switches and causes the VFD to run at 100 percent speed.  Provide VFD that accepts 
+an occupant accessible emergency shutoff switch as shown.  Provide supply fan variable frequency drive (VFD) 
+unit with an integral H-O-A switch:</TXT> <BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, start the supply fan and run continuously, subject to Safeties. Ensure 
+fan speed is under manual-operator control.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, stop the supply fan.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, run the supply fan subject to the Supply Fan Start/Stop Signal (SF-SS) 
+and Safeties.  Ensure fan speed is under control of the DDC Hardware.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Return Fan Variable Frequency Drive</TTL><BRK/>
+<BRK/>
+<TXT>Provide return fan variable frequency drive (VFD) unit that accepts a Fire Alarm Panel (FAP) signal that takes 
+precedence over all other VFD inputs and switches and causes the VFD to run at 100 percent speed.  Provide return 
+fan variable frequency drive (VFD) unit with an integral H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, run the return fan subject to Safeties.  Ensure fan speed is under manual-operator 
+control.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, the return fan is off.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, run the return fan subject to the supply fan running.  Ensure fan speed 
+is under control of the DDC Hardware.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<TXT>Obtain Occupancy Mode input from the System Scheduler as specified and shown.  Operate the system in one of the 
+following modes: Occupied, Unoccupied[, or Warm Up/Cool Down].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>The supply fan[, return fan,] and all DDC Hardware control loops are subject to Proofs and Safeties.  Direct-hardwire 
+interlock safeties to the VFD as shown.  Monitor all proofs and safeties and disable all control loops and command 
+the AHU fan off until reset due to failure of any proof or activation of any safety.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Supply fan status (SF-S)</OLI><BRK/>
+<BRK/>
+[<OLI>Return fan status (RF-S)</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Preheat coil discharge air temperature low limit (freezestat) (PH-DA-T-LL) for systems with a preheat 
+coil.  Cooling coil discharge air temperature low limit (freezestat) (CLG-DA-T-LL) for all other systems</OLI><BRK/>
+<BRK/>
+<OLI>Supply air duct pressure high limit (SA-P-HL)</OLI><BRK/>
+<BRK/>
+<OLI>Supply air smoke (SA-SMK)</OLI><BRK/>
+<BRK/>
+<OLI>Return air smoke (RA-SMK)</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware Reset</TTL><BRK/>
+<BRK/>
+<TXT>Reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, via a remote 
+command to the DDC Hardware via SNVT or both (where the Contractor provides both reset functions and the operator 
+can use either one to perform the reset), as shown on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS).  Enable all control loops.</TXT> <BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>While the building temperature (BLDG-T) is above the low limit setpoint (BLDG-T-LL) disable all control loops 
+and do not run the supply fan.  When BLDG-T drops below BLDG-T-LL (with a<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> deadband), 
+enable the supply fan (SYS-ENA) and command to run (SF-SS), enable the Supply Duct Static Pressure Control[, 
+Return Fan Volume Control][, Preheat Control] loops.  Disable the Minimum Outside Air Flow Control, Mixed Air 
+Temperature Control, and Cooling Coil Control loops.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Warm Up/Cool Down</TTL><BRK/>
+<BRK/>
+<TXT>Enable the supply fan (SYS-ENA) and command to run (SF-SS).  Disable the Minimum Outside Air Flow Control loop 
+and enable all other control loops.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Fan Capacity Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Supply Duct Static Pressure Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the supply fan variable frequency drive unit to maintain the duct static 
+pressure (SA-P) at setpoint (SA-P-SP) as shown, as measured by the duct static pressure tap and sensor as shown.  
+When this loop is disabled, ensure the DDC Hardware capacity modulation output to the VFD is zero percent.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Return Fan Volume Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the return fan variable frequency drive unit to maintain a constant volumetric 
+airflow difference at setpoint (F-DIFF-SP) as shown, as measured by the airflow measurement arrays located in 
+the supply and return ducts as shown.  When this loop is disabled, ensure the output to the VFD is zero percent.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Minimum Outside Air Flow Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the minimum outside air damper to maintain the minimum OA volumetric flow 
+(MINOA-F) at setpoint (MINOA-F-SP) as shown.  When this loop is disabled, close the minimum outside air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mixed Air Temperature Control With Economizer</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Enabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, and the Economizer is ON as determined by the Economizer Enable Logic, modulate the 
+economizer outside air, relief, and return air dampers to maintain the mixed air temperature (MA-T) at setpoint 
+(MA-T-SP) as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disabled Loop</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is disabled, or the Economizer is OFF as determined by the Economizer Enable Logic, close the 
+economizer outside air and relief air dampers, and open the return air damper.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Economizer Enable Logic</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the economizer is ON when the outside air dry bulb temperature is between the high limit (ECO-HL-SP) and 
+low limit (ECO-LL-SP) setpoints as shown.  Otherwise the Economizer is OFF. Ensure ECO-HL-SP and ECO-LL-SP each 
+have a<MET> 1 degree C</MET><ENG> 2 degrees F</ENG> deadband.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cooling Coil Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the cooling coil valve to maintain the supply air temperature (SA-T) setpoint 
+(SA-T-SP) as shown.  When this loop is disabled, close the cooling coil valve.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Preheat Coil Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, modulate the preheat coil valve to maintain the preheat coil discharge air temperature 
+(PH-DA-T) at setpoint (PH-DA-T-SP) as shown.  When this loop is disabled, close the preheat coil valve.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></SPT><SPT><TTL>SEQUENCES OF OPERATION FOR TERMINAL UNITS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the VAV Box Sequences:<BRK/>
+1) Show the occupancy schedule (days/times) on the Occupancy Schedule drawing.  
+For simplicity, it is recommended that all boxes, served by a common air handler, 
+operate on the same schedule.<BRK/>
+<BRK/>
+2) Space occupancy input(s) may consist of an occupancy sensor and/or a local 
+push-button.  Indicate the use of a sensor and/or push-button by placing an 
+'X' in the 'Thermostat and Occupancy Sensor  Schedule'.  If a push-button is 
+used, show the override time duration in the Schedule.  Note that the occupancy 
+sensor specification requires  a delay that is adjustable between 30 seconds 
+and 15 minutes. If a delay outside of this range is needed edit the Occupancy 
+Sensor Product specification in PART 2<BRK/>
+<BRK/>
+3) For each VAV box thermostat, indicate if the zone temperature setpoint will 
+be occupant adjustable by placing an 'X' in the 'Thermostat and Occupancy Sensor 
+Schedule'.  For non-occupant-adjustable setpoints, show the setpoint in the 
+Points Schedule.  The intent is that the Contractor provides one or the other 
+as shown.  Non-occupant-adjustable setpoints are adjustable by a system operator 
+using a local display panel (LDP) or operator workstation (and appropriate software).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Zone Temperature Control - Cooling-Only VAV Box</TTL><BRK/>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the VAV box DDC Hardware is in the Occupied Mode when the local space occupancy input(s) (ZN-OCC) indicate 
+that the space is occupied or when the input from the System Scheduler (SYS-OCC) is occupied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied</TTL><BRK/>
+<BRK/>
+<TXT>The VAV box DDC Hardware must be in the Unoccupied Mode when the local space occupancy input(s) (ZN-OCC) indicate 
+that the space is unoccupied and the input from the System Scheduler (SYS-OCC) is unoccupied.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>This system has no safeties.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Zone Temperature Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Occupied Mode the zone temperature setpoint (ZN-T-SP) must be at the configured setpoint or at the occupant-adjustable 
+setpoint via the wall-mounted thermostat, as shown.  The DDC Hardware must modulate the VAV box damper to maintain 
+VAV box supply air flow (VAV-SA-F) at setpoint as measured by a multi-point flow sensing element at the inlet 
+to the VAV box.  Sequenceas indicated:  Upon a rise in zone temperature (ZN-T) above zone setpoint (ZN-T-SP), 
+subject to the zone temperature setpoint deadband as indicated, adjust the airflow setpoint between minimum and 
+maximum flow based on the difference between zone temperature and zone temperature setpoint as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Unoccupied Mode, ensure the VAV box damper is at its minimum position.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Zone Temperature Control - VAV Box with Reheat</TTL><BRK/>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the VAV box DDC Hardware is in the Occupied Mode when the local space occupancy input(s) (ZN-OCC) indicate 
+that the space is occupied or when the input from the System Scheduler (SYS-OCC) is occupied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the VAV box DDC Hardware is in the Unoccupied Mode when the local space occupancy input(s) (ZN-OCC) indicate 
+that the space is unoccupied and the input from the System Scheduler (SYS-OCC) is unoccupied.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>For VAV boxes with electric resistance heating elements, require proof of air flow before activating the heating 
+elements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Zone Temperature Control</TTL><BRK/>
+<OLG><BRK/>
+<OLI>In the Occupied Mode, ensure the zone temperature setpoint (ZN-T-SP) is at the configured setpoint or 
+at the occupant-adjustable setpoint via the wall-mounted thermostat, as shown.</OLI> <BRK/>
+<BRK/>
+<OLI>In the Unoccupied Mode, ensure the zone temperature setpoint (ZN-T-SP) is at the configured setpoint 
+as shown.</OLI><BRK/>
+<BRK/>
+<OLI>Modulate the VAV box damper to maintain VAV box supply air flow (VAV-SA-F) at setpoint as measured by 
+a multi-point flow sensing element at the inlet to the VAV box.  Perform sequencing as shown: Upon a 
+rise in zone temperature above zone temperature setpoint (ZN-T-SP), subject to the zone temperature setpoint 
+deadband as shown, adjust the airflow setpointbetween minimum and maximum flow based on the difference 
+between zone temperature and zone temperature setpoint as shown.  Upon a fall in zone temperature below 
+zone temperature setpoint, subject to the deadband as shown, maintain the airflow at a fixed air flow 
+setpoint (with a setting independent of the cooling minimum air flow), and modulate the heating valve 
+towards open or cicle the staged electric resistance heating coil(s) on in sequence.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Zone Temperature Control - Fan Powered VAV Box</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This sequence is applicable to both Series and Parallel fan powered VAV boxes.<BRK/>
+<BRK/>
+As specified in Section <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION, fans located in series 
+fan-powered VAV boxes must start whenever the AHU fan that serves these boxes 
+is started. <BRK/>
+<BRK/>
+Select appropriate fan control text for series or parallel application.  Note 
+that since an unoccupied AHU cannot run except to provide heating, unoccupied 
+zone temperature setpoint deadband should be large enough to prevent an unoccupied 
+VAV from attempting to provide cooling.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the VAV box DDC Hardware is in the Occupied Mode when the local space occupancy input(s) (ZN-OCC) indicate 
+that the space is occupied or when the input from the System Scheduler (SYS-OCC) is occupied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the VAV box DDC Hardware is in the Unoccupied Mode when the local space occupancy input(s) (ZN-OCC) indicate 
+that the space is unoccupied and the input from the System Scheduler (SYS-OCC) is unoccupied.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>For VAV boxes with electric resistance heating elements, require proof of air flow before activating the heating 
+elements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fan Control</TTL><BRK/>
+<BRK/>
+<TXT>[Run series fans whenever the box is occupied or the Zone Temperature Control loop determines that the box is 
+in heating mode.  Prior to starting the fan, close the supply damper.  Pause the controller after closing the 
+damper before starting the fan to ensure that the fan is not spinning due to supply air delivered by the AHU.  
+After the fan starts, control the supply damper by the Zone Temperature Control loop.][Run parallel fans whenever 
+the Zone Temperature Control loop determines that the box is in heating mode.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Zone Temperature Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Occupied Mode, ensure the zone temperature setpoint (ZN-T-SP) is at the configured setpoint or at the 
+occupant-adjustable setpoint via the wall-mounted thermostat, as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Unoccupied Mode, ensure the zone temperature setpoint (ZN-T-SP)is at the configured setpoint as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sequencing</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Cooling Mode</TTL><BRK/>
+<BRK/>
+<TXT>Upon a rise in zone temperature above zone temperature setpoint (ZN-T-SP), subject to the zone temperature setpoint 
+deadband as shown, adjust the airflow setpoint between minimum and maximum based on the difference between zone 
+temperature and zone temperature setpoint as shown. Modulate the VAV box damper to mix supply and plenum return 
+air as it maintains VAV box supply airflow (VAV-SA-F) at setpoint as measured by a multi-point flow sensing element 
+at the inlet to the VAV box.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heating Mode</TTL><BRK/>
+<BRK/>
+<TXT>Upon a fall in zone temperature below zone temperature setpoint, subject to the deadband as shown, the DDC Hardware 
+must[ first turn on the parallel fan and then] modulate the VAV box damper to mix supply and plenum return air 
+to maintain a fixed air flow setpoint (with a setting independent of the cooling minimum air flow), and modulate 
+the heating valve towards open or cycle the staged electric resistance heating coil(s) on in sequence.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></SPT><SPT><TTL>Perimeter Radiation Control Sequence</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Show the occupancy schedule (days/times) on the Occupancy Schedule drawing.  
+For simplicity, it is recommended that all units operate on the same schedule.<BRK/>
+<BRK/>
+2) Space occupancy input(s) may consist of an occupancy sensor and/or a local 
+push-button. Indicate the use of a sensor and/or push-button by placing an 'X' 
+in the Thermostat Schedule.  If a push-button is used, show the override time 
+duration in the Schedule.  Note that the occupancy sensor specification requires 
+a delay that is adjustable between 30 seconds and 15 minutes. If a delay outside 
+of this range is needed edit the Occupancy Sensor Product specification in PART 
+2</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the radiator DDC Hardware is in the Occupied Mode when the local space occupancy input(s) indicate that 
+the space is occupied or when the input from the System Scheduler is occupied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the radiator DDC Hardware is in the Unoccupied Mode when the local space occupancy input(s) indicate that 
+the space is unoccupied and when the input from the System Scheduler is unoccupied.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>This system has no safeties.</TXT> <BRK/>
+<BRK/></SPT>
+<SPT><TTL>Space Temperature Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupieed Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Occupied Mode, modulate the heating control valve to maintain space temperature at the configured setpoint 
+or at the occupant-adjustable setpoint via the wall-mounted thermostat, as shown.</TXT> <BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Unoccupied Mode, modulate the heating control valve to maintain space temperature at the configured setpoint 
+as shown.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Unit Heater and Cabinet Unit Heater</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Show the occupancy schedule (days/times) on the Occupancy Schedule drawing.  
+For simplicity, it is recommended that all units operate on the same schedule.<BRK/>
+<BRK/>
+2) Space occupancy input(s) may  consist of an occupancy sensor and/or a local 
+push-button.  Indicate the use of a sensor and/or push-button by placing an 
+'X' in the Thermostat Schedule.  If a push-button is used, show the override 
+time duration in the Schedule.  Note that the occupancy sensor specification 
+requires  a delay that is adjustable between 30 seconds and  15 minute. If a 
+delay outside of this range is needed edit the Occupancy Sensor Product specification 
+in PART 2</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Off-Auto Switch</TTL><BRK/>
+<BRK/>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat OFF-AUTO switch in the OFF position, stop the fan and close the heating control valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat OFF-AUTO switch in the AUTO position, control the unit in accordance with its Occupancy Mode.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the unit heater DDC Hardware is in the Occupied Mode when the local space occupancy input(s) indicate 
+that the space is occupied or when the input from the System Scheduler is occupied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the unit heater DDC Hardware is in the Unoccupied Mode when the local space occupancy input(s) indicate 
+that the space is unoccupied and when the input from the System Scheduler is unoccupied.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>Run the unit subject to the unit manufacturer's safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Space Temperature Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Occupied Mode, modulate the heating control valve and cycle the multi-speed fan to maintain space temperature 
+at the configured setpoint or at the occupant-adjustable setpoint via the wall-mounted thermostat, as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Unoccupied Mode, modulate the heating control valve and cycle the multi-speed fan to maintain space temperature 
+at the configured setpoint as shown.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Gas-Fired Infrared Heater</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Use of a System Scheduler is likely not needed in this application.  If it 
+is, edit the sequence and the drawings.<BRK/>
+<BRK/>
+2) Space occupancy input(s) may consist of an occupancy sensor and/or a local 
+push-button.  Indicate the use of a sensor and/or push-button by placing an 
+'X' in the Thermostat Schedule.  If a push-button is used, show the override 
+time duration in the Schedule.  Note that the occupancy sensor specification 
+requires  a delay that is adjustable between 30 seconds and 15 minute.  If a 
+delay outside of this range is needed edit the Occupancy Sensor Product specification 
+in PART 2</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>On-Off-Auto Switch</TTL><BRK/>
+<BRK/>
+<SPT><TTL>ON</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat ON-OFF-AUTO switch in the ON position, energize the heater and run the heater continuously.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat ON-OFF-AUTO switch in the OFF position, de-energize the heater.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat ON-OFF-AUTO switch in the AUTO position, control the heater in accordance with its Occupancy 
+Mode.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the unit DDC Hardware is in the Occupied Mode when the local space occupancy input(s) indicate that the 
+space is occupied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the unit DDC Hardware is in the Unoccupied Mode when the local space occupancy input(s) indicate that 
+the space is unoccupied.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>Run the heater subject to the unit manufacturer's safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Space Temperature Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Occupied Mode, operate the heater to maintain space temperature at the configured setpoint or at the occupant-adjustable 
+setpoint via the wall-mounted thermostat, as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Unoccupied Mode, operate the heater to maintain space setpoint at the configured unoccupied setpoint as 
+indicated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Dual Temperature Fan-Coil Unit</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Show the occupancy schedule (days/times) on the Occupancy Schedule drawing.  
+For simplicity, it is recommended that all units operate on the same schedule.<BRK/>
+<BRK/>
+2) Space occupancy input(s) may consist of an occupancy sensor and/or a local 
+push-button. Indicate the use of a sensor and/or push-button by placing an 'X' 
+in the Thermostat Schedule.  If a push-button is used, show the override time 
+duration in the Schedule.  Note that the occupancy sensor specification requires  
+a delay that is adjustable between 30 seconds and 15 minute. If a delay outside 
+of this range is needed edit the Occupancy Sensor Product specification in PART 2<BRK/>
+<BRK/>
+3) Show 2-way and 3-way valve selections on the Valve Schedule.<BRK/>
+<BRK/>
+4) Fan coil units typically have unit-mounted thermostats.  Indicate if wall 
+mounting is desired and/or show in the Thermostat Schedule for the individual 
+fan coil units.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Off-Auto Switch</TTL><BRK/>
+<BRK/>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat OFF-AUTO switch in the OFF position, stop the fan and close the dual-temperature control 
+valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the thermostat OFF-AUTO switch in the AUTO position, control the unit in accordance with its Occupancy Mode.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Occupancy Modes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the unit DDC Hardware is in the Occupied Mode when the local space occupancy input(s) indicate that the 
+space is occupied or when the input from the System Scheduler is occupied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the unit DDC Hardware is in the Unoccupied Mode when the local space occupancy input(s) indicate that 
+the space is unoccupied and when the input from the System Scheduler is unoccupied.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Heat/Cool Modes</TTL><BRK/>
+<BRK/>
+<TXT>Automatically switch the fan coil unit DDC Hardware between the heating and cooling modes and the resultant control 
+action, based on a pipe-mounted dual-temperature supply water temperature sensor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>Run the unit subject to the unit manufacturer's safeties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Space Temperature Control</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Occupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Occupied Mode, modulate the dual-temperature control valve and modulate the multi-speed fan to maintain 
+space temperature at the configured setpoint or at the occupant-adjustable setpoint via the [wall-mounted] thermostat, 
+as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unoccupied Mode</TTL><BRK/>
+<BRK/>
+<TXT>In the Unoccupied Mode, modulate the dual-temperature control valve and modulate the multi-speed fan to maintain 
+space temperature at the configured setpoint as indicated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></SPT><SPT><TTL>SEQUENCES OF OPERATION FOR HYDRONIC SYSTEMS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Hydronic Heating Hot Water from Distributed [Steam][HTHW] Converter</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Select Steam or High Temperature Hot Water as required.<BRK/>
+<BRK/>
+2) The designer may want to consider other conditions under which this system 
+is enabled, such as outside air temperature.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control must be proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Monitor the enabled status of all systems served by this system.  [If [one][two][___] or more systems 
+served by this system are enabled, enable this system (SYS-ENA), otherwise disable this system][___].</OLI><BRK/>
+<BRK/>
+<OLI>When this system is enabled (SYS-ENA) command the hot water pump on via the Hot Water Pump Start/Stop 
+(HW-PMP-SS) command.</OLI><BRK/>
+<BRK/>
+<OLI>When this system is enabled (SYS-ENA) and the hot water pump is proofed on, enable the Heat Exchanger 
+Control loop.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>HAND-OFF-AUTO Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide hot water pump motor starter with an H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, the pump starts and runs continuously.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, the pump stops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, the pump runs subject to the Hot Water Pump Start/Stop (HW-PMP-SS) command.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>DDC Hardware must monitor all proofs and safeties.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<BRK/>
+<TXT>Hot water pump status (HW-PMP-S)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>None</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware Reset</TTL><BRK/>
+<BRK/>
+<TXT>Reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, via a remote 
+command to the DDC Hardware via SNVT or both (where the Contractor provides both reset functions and the operator 
+can use either one to perform the reset), as indicated on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Heat Exchanger Valve Control</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If a reset schedule is not required delete this option ([determined from 
+a linear reset schedule]) from the sequence along with the reset schedule in 
+the drawing.  Where reset is used, edit the temperatures shown in the reset 
+schedule on the drawing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>When this loop is enabled modulate the [steam][high temperature hot water] valve to maintain the Hot Water Supply 
+Temperature (HWS-T) at setpoint (HWS-T-SP).  The Hot Water Supply Temperature Setpoint (HW-T-SP) must be [determined 
+from a linear reset schedule] as shown.  When this loop is disabled, close the valve.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Hydronic Heating Hot Water From Single-Building Boiler</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer may want to consider other conditions under which this system 
+is enabled, such as outside air temperature.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Monitor the enabled status of all systems served by this system.  If one or more systems served by this 
+system are enabled, enable this system (SYS-ENA).  If no systems served by this system are enabled, disable 
+this system.</OLI><BRK/>
+<BRK/>
+<OLI>When this system is enabled (SYS-ENA) and the hot water pump is proofed on, enable the boiler control 
+and hot water temperature control loops.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>HAND-OFF-AUTO Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide hot water pump motor starter with an H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, start the pump and run continuously. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, stop the pump.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, run the pump subject to the Hot Water Pump Start/Stop (HW-PMP-SS) command.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>DDC Hardware must monitor all proofs and safeties.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<BRK/>
+<TXT>Hot water pump</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>None</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware Reset</TTL><BRK/>
+<BRK/>
+<TXT>Reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, via a remote 
+command to the DDC Hardware via SNVT or both (where the Contractor provides both reset functions and the operator 
+can use either one to perform the reset), as shown on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Boiler Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled, turn the boiler on.  When this loop is disabled, the boiler is turned off.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hot Water Temperature Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled modulate the 3-way mixing valve to maintain hot water supply temperature (HWS-T) at 
+setpoint (HWS-T-SP).  The Hot Water Supply Temperature Setpoint (HWS-T-SP) must be [determined from a linear 
+reset schedule] as shown.  When this loop is disabled, the valve is in its normal (failsafe) position.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Hydronic Dual-Temperature System with [Steam][High Temperature Hot Water] Heat Exchanger and Chilled Water</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) Select Steam or High Temperature Hot Water as required.<BRK/>
+<BRK/>
+3) The designer may want to consider other conditions under which this system 
+is enabled, such as outside air temperature.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Enable and Loop Enable</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Monitor the enabled status of all systems served by this system.  If one or more systems served by this 
+system are enabled, enable this system (SYS-ENA).  If all systems served by this system are not enabled, 
+do not enable this system.</OLI><BRK/>
+<BRK/>
+<OLI>When the system is enabled (SYS-ENA), run the pump.</OLI><BRK/>
+<BRK/>
+<OLI>When this system is enabled (SYS-ENA), and the HEATING/COOLING switch is in HEATING the Heat Exchanger 
+Control loop is enabled.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Chiller Enable (the following paragraph) is only required when there 
+is a local chiller.  In cases where chilled water is from a central plant delete 
+the chiller enable requirement.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+[<OLI>When this system is enabled (SYS-ENA), and the HEATING/COOLING switch is in COOLING and the dual-temperature 
+return water (DTWR-T) is below the dual-temperature return water high-limit temperature (DTWR-T-HL) setpoint 
+of<MET> 29 degrees C</MET><ENG> 85 degrees F</ENG>, enable the chiller.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Switchover Valve Operation</TTL><BRK/>
+<BRK/>
+<TXT>Monitor the status of the DTWR-T-LL and DTWR-T-HL switches.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HEATING/COOLING Switch in the HEATING Position</TTL><BRK/>
+<BRK/>
+<TXT>With the HEATING/COOLING switch in the HEATING position, the switchover valve must open the heat-cool system 
+piping to the heat exchanger and close the heat-cool system piping to the [central plant chilled water][single-building 
+chiller].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>HEATING/COOLING Switch in the COOLING Position</TTL><BRK/>
+<BRK/>
+<TXT>With the HEATING/COOLING switch in the COOLING position, the switchover valve must open the heat-cool system 
+piping to the [central plant chilled water][single-building chiller] and close the heat-cool system piping to 
+the heat exchanger whenever the dual-temperature return water temperature (DTWR-T) is below the dual-temperature 
+return water high-limit temperature (DTWR-T-HL).</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>HAND-OFF-AUTO Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide Dual-Temperature water pump motor starter with an H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, the pump starts and runs continuously.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, the pump stops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, the pump runs subject to the Dual-Temperature Water Pump Start/Stop (DTW-PMP-SS) 
+System Enable (SYS-ENA) command.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>DDC Hardware must monitor all proofs and safeties.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<BRK/>
+<TXT>None</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>Direct-hardwire interlock heat exchanger differential pressure switch (HX-P-LL) to the [steam][high temperature 
+hot water] valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware Reset</TTL><BRK/>
+<BRK/>
+<TXT>Reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, via a remote 
+command to the DDC Hardware via SNVT or both (where the Contractor provides both reset functions and the operator 
+can use either one to perform the reset), as shown on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>[Heat Exchanger][Mixing] Valve Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled modulate the [steam][high temperature hot water] valve to maintain the Hot Water Supply 
+Temperature (HWS-T) at setpoint (HWS-T-SP).  The Hot Water Supply Temperature Setpoint (HWS-T-SP) must be [determined 
+from a linear reset schedule] as shown.  The DDC Hardware must monitor the status of the HX-P-LL safety.  When 
+this loop is disabled, close the valve.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Hydronic Secondary with Variable Speed Pump</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<BRK/>
+1) This spec does not include a variable frequency drive (VFD) specification.  
+Specify a VFD that meets the requirements of the control sequence including 
+the integral H-O-A.<BRK/>
+<BRK/>
+2) The designer may want to consider other conditions under which this system 
+is enabled, such as outside air temperature.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install DDC hardware to perform this Sequence of Operation and to provide SNVT inputs and outputs as specified 
+and shown on the Points Schedule.  Unless otherwise specified, all modulating control is proportional-integral 
+(PI) control.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Enable and Loop Enable</TTL>:<BRK/>
+<OLG><BRK/>
+<OLI>Monitor the enabled status of all systems served by this system. If one or more systems served by this 
+system are enabled, enable this system (SYS-ENA).  If all systems served by this system are not enabled, 
+do not enable this system.</OLI><BRK/>
+<BRK/>
+<OLI>When this system is enabled (SYS-ENA) the Pressure Control loop must be enabled.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>HAND-OFF-AUTO Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide hot water pump variable frequency drive (VFD) unit with an integral H-O-A switch:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HAND</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in HAND position, the pump starts and runs continuously.  Ensure pump speed is under manual-operator 
+control.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OFF</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in OFF position, the pump stops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AUTO</TTL><BRK/>
+<BRK/>
+<TXT>With the H-O-A switch in AUTO position, run the pump subject to the Hot Water Pump Start/Stop (HW-PMP-SS) command 
+and ensure pump speed is under control of the DDC system.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Proofs and Safeties</TTL><BRK/>
+<BRK/>
+<TXT>DDC Hardware must monitor all proofs and safeties.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proofs</TTL><BRK/>
+<BRK/>
+<TXT>None</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safeties</TTL><BRK/>
+<BRK/>
+<TXT>None</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware Reset</TTL><BRK/>
+<BRK/>
+<TXT>Reset all proofs and safeties via a local binary push-button (RST-BUT) input to the DDC Hardware, via a remote 
+command to the DDC Hardware via SNVT or both (where the Contractor provides both reset functions and the operator 
+can use either one to perform the reset), as shown on the Points Schedule drawing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pressure Control</TTL><BRK/>
+<BRK/>
+<TXT>When this loop is enabled modulate the pump variable frequency drive unit to maintain the pipe system  pressure 
+at setpoint as shown, as measured by the differential pressure tap and sensor as shown.  When this loop is disabled, 
+ensure the DDC Hardware capacity modulation output to the VFD is zero percent.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></PRT>     <END/><BRK/></SEC>

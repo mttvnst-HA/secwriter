@@ -1,0 +1,987 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-33 31 23.00 10 (August 2018)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-33 34 00 (April 2008)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 33 31 23.00 10</SCN><BRK/>
+<BRK/>
+<STL>SANITARY SEWER FORCE MAIN PIPING</STL><BRK/>
+<DTE>08/18</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>force mains and 
+inverted siphons for sewage systems</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See UFC 3-240-01 for additional design information on force mains and 
+inverted siphons.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN ASSOCIATION OF STATE HIGHWAY AND TRANSPORTATION OFFICIALS (AASHTO)</ORG><BRK/><BRK/><RID>AASHTO HB-17</RID><RTL>(2002; Errata 2003; Errata 2005, 17th Edition) Standard Specifications for Highway Bridges</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN PETROLEUM INSTITUTE (API)</ORG><BRK/><BRK/><RID>API Spec 6D</RID><RTL>(2021; Addendum 1 2025) Specification for Pipeline and Piping Valves</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B16.1</RID><RTL>(2020) Gray Iron Pipe Flanges and Flanged Fittings Classes 25, 125, and 250</RTL><BRK/><BRK/><RID>ASME B16.3</RID><RTL>(2021) Malleable Iron Threaded Fittings, Classes 150 and 300</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WATER WORKS ASSOCIATION (AWWA)</ORG><BRK/><BRK/><RID>AWWA C105/A21.5</RID><RTL>(2018) Polyethylene Encasement for Ductile-Iron Pipe Systems</RTL><BRK/><BRK/><RID>AWWA C110/A21.10</RID><RTL>(2021) Ductile-Iron and Gray-Iron Fittings</RTL><BRK/><BRK/><RID>AWWA C111/A21.11</RID><RTL>(2023) Rubber-Gasket Joints for Ductile-Iron Pressure Pipe and Fittings</RTL><BRK/><BRK/><RID>AWWA C115/A21.15</RID><RTL>(2020) Flanged Ductile-Iron Pipe With Ductile-Iron or Gray-Iron Threaded Flanges</RTL><BRK/><BRK/><RID>AWWA C151/A21.51</RID><RTL>(2023) Ductile-Iron Pipe, Centrifugally Cast</RTL><BRK/><BRK/><RID>AWWA C200</RID><RTL>(2023) Steel Water Pipe - 6 In. (150 mm) and Larger</RTL><BRK/><BRK/><RID>AWWA C203</RID><RTL>(2025) Coal-Tar Protective Coatings and Linings for Steel Water Pipe and Fittings</RTL><BRK/><BRK/><RID>AWWA C207</RID><RTL>(2023) Standard for Steel Pipe Flanges for Waterworks Service, Sizes 4 in. through 144 in. (100 mm through 3600 mm)</RTL><BRK/><BRK/><RID>AWWA C208</RID><RTL>(2022) Dimensions for Fabricated Steel Water Pipe Fittings</RTL><BRK/><BRK/><RID>AWWA C210</RID><RTL>(2024) Standard for Liquid Epoxy Coating Systems for the Interior and Exterior of Steel Water Pipelines</RTL><BRK/><BRK/><RID>AWWA C300</RID><RTL>(2022) Reinforced Concrete Pressure Pipe, Steel-Cylinder Type</RTL><BRK/><BRK/><RID>AWWA C301</RID><RTL>(2014; R 2019) Prestressed Concrete Pressure Pipe, Steel-Cylinder Type</RTL><BRK/><BRK/><RID>AWWA C303</RID><RTL>(2024) Concrete Pressure Pipe, Bar-Wrapped, Steel-Cylinder Type</RTL><BRK/><BRK/><RID>AWWA C500</RID><RTL>(2019) Metal-Seated Gate Valves for Water Supply Service</RTL><BRK/><BRK/><RID>AWWA C508</RID><RTL>(2025) Swing-Check Valves for Waterworks Service, 2 In. Through 48-In. (50-mm Through 1,200-mm) NPS</RTL><BRK/><BRK/><RID>AWWA C600</RID><RTL>(2023) Installation of Ductile-Iron Mains and Their Appurtenances</RTL><BRK/><BRK/><RID>AWWA C900</RID><RTL>(2022) Polyvinyl Chloride (PVC) Pressure Pipe, and Fabricated Fittings, 4 In. Through 60 In. (100 mm Through 1,500 mm)</RTL><BRK/><BRK/><RID>AWWA C909</RID><RTL>(2022) Molecularly Oriented Polyvinyl Chloride (PVCO) Pressure Pipe, 4 In. (100 mm) and Larger</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM D1784</RID><RTL>(2025) Standard Classification System and Basis for Specification for Rigid Poly(Vinyl Chloride) (PVC) Compounds and Chlorinated Poly(Vinyl Chloride) (CPVC) Compounds</RTL><BRK/><BRK/><RID>ASTM D1785</RID><RTL>(2021) Standard Specification for Poly(Vinyl Chloride) (PVC), Plastic Pipe, Schedules 40, 80, and 120</RTL><BRK/><BRK/><RID>ASTM D2122</RID><RTL>(2016) Standard Test Method for Determining Dimensions of Thermoplastic Pipe and Fittings</RTL><BRK/><BRK/><RID>ASTM D2241</RID><RTL>(2020) Standard Specification for Poly(Vinyl Chloride) (PVC) Pressure-Rated Pipe (SDR Series)</RTL><BRK/><BRK/><RID>ASTM D2464</RID><RTL>(2015) Standard Specification for Threaded Poly(Vinyl Chloride) (PVC) Plastic Pipe Fittings, Schedule 80</RTL><BRK/><BRK/><RID>ASTM D2564</RID><RTL>(2020) Standard Specification for Solvent Cements for Poly(Vinyl Chloride) (PVC) Plastic Piping Systems</RTL><BRK/><BRK/><RID>ASTM D2657</RID><RTL>(2007; R 2015) Heat Fusion Joining Polyolefin Pipe and Fittings</RTL><BRK/><BRK/><RID>ASTM D2774</RID><RTL>(2021a) Standard Practice for Underground Installation of Thermoplastic Pressure Piping</RTL><BRK/><BRK/><RID>ASTM D2996</RID><RTL>(2023) Standard Specification for Filament-Wound "Fiberglass" (Glass-Fiber-Reinforced Thermosetting-Resin) Pipe</RTL><BRK/><BRK/><RID>ASTM D3035</RID><RTL>(2022) Polyethylene (PE) Plastic Pipe (DR-PR) Based on Controlled Outside Diameter</RTL><BRK/><BRK/><RID>ASTM D3139</RID><RTL>(2019) Joints for Plastic Pressure Pipes Using Flexible Elastomeric Seals</RTL><BRK/><BRK/><RID>ASTM D3308</RID><RTL>(2012; R 2022) Standard Specification for PTFE Resin Skived Tape</RTL><BRK/><BRK/><RID>ASTM D3350</RID><RTL>(2021) Polyethylene Plastics Pipe and Fittings Materials</RTL><BRK/><BRK/><RID>ASTM D3754</RID><RTL>(2019) "Fiberglass" (Glass-Fiber-Reinforced Thermosetting-Resin) Sewer and Industrial Pressure Pipe</RTL><BRK/><BRK/><RID>ASTM D4101</RID><RTL>(2017) Standard Classification System and Basis for Specification for Polypropylene Injection and Extrusion Materials</RTL><BRK/><BRK/><RID>ASTM D4161</RID><RTL>(2014; R 2019) "Fiberglass" (Glass-Fiber-Reinforced Thermosetting-Resin) Pipe Joints Using Flexible Elastomeric Seals</RTL><BRK/><BRK/><RID>ASTM F477</RID><RTL>(2014; R 2021) Standard Specification for Elastomeric Seals (Gaskets) for Joining Plastic Pipe</RTL><BRK/><BRK/><RID>ASTM F1483</RID><RTL>(2023) Standard Specification for Oriented Poly(Vinyl Chloride), PVCO, Pressure Pipe</RTL><BRK/><BRK/></REF><REF><ORG>DUCTILE IRON PIPE RESEARCH ASSOCIATION (DIPRA)</ORG><BRK/><BRK/><RID>DIPRA TRD</RID><RTL>(2016) Thrust Restraint Design for Ductile Iron Pipe</RTL><BRK/><BRK/></REF><REF><ORG>MANUFACTURERS STANDARDIZATION SOCIETY OF THE VALVE AND FITTINGS INDUSTRY (MSS)</ORG><BRK/><BRK/><RID>MSS SP-78</RID><RTL>(2011) Cast Iron Plug Valves, Flanged and Threaded Ends</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Disposal of Waste Water</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Final Test Report</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Do not damage pipe, fittings and accessories, and pipe coatings during delivery, handling, and storage.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PIPE AND FITTINGS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  No type of pipe specified in this section will be deleted except:</NPR><BRK/>
+<BRK/>
+<NPR>a.  As described throughout these notes.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Upon specific approval of HQUSACE (CEMP-ET).</NPR><BRK/>
+<BRK/>
+<NPR>c.  As stipulated in specific directives.</NPR><BRK/>
+<BRK/>
+<NPR>d.  When a certain type is required by a railroad company for piping passing 
+under its right-of-way.</NPR><BRK/>
+<BRK/>
+<NPR>Generally, force mains less than<MET> 100 mm</MET><ENG> 4 inches</ENG> in diameter will not be recommended; 
+however, circumstances may require smaller force mains; in those cases, cutter 
+pumps or other shredding devices will be required.</NPR><BRK/>
+<BRK/>
+<NPR>Class 150 pipe will normally be specified for force mains and inverted siphons 
+except where local conditions require a higher class.  Class 150 pipe is furnished 
+with wall thickness suitable for laying with a standard design depth of cover, 
+using a flat-bottom trench without blocks and with compacted backfill.  For 
+other conditions, the class or pressure, and loading will be specified accordingly.  
+Cast-iron fittings can be used with most of the pipe materials specified.  Flanged 
+joints will not be used for buried installation because a flanged joint requires 
+special construction considerations when buried.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<CHG><TXT>Provide piping in locations and sizes as specified in the following table.  Also conform to the respective specifications 
+and other requirements specified below</TXT><BRK/>
+<BRK/>
+<TXT><TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="129.75"/>
+      <COL AUTOWIDTH="0" WIDTH="132.00"/>
+      <COL AUTOWIDTH="0" WIDTH="195.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Location</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Piping Size Range</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Piping Material</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="72.00">
+         <CEL>
+<DTA TYPE="STRING">Force Mains</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Less than<MET> 100 mm</MET><ENG> 4 inches</ENG> in diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Galvanized Steel, Polyvinyl Chloride (PVC) Plastic, Polyethylene (PE) Plastic or Polypropylene Plastic</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Inside Pump Stations</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Less than<MET> 100 mm</MET><ENG> 4 inches</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Galvanized Steel</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="84.00">
+         <CEL>
+<DTA TYPE="STRING">[Force Mains][ and ][Inverted Siphons]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>100 mm </MET><ENG>4 inches </ENG>in diameter and larger</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Ductile Iron, Steel, Concrete Pressure Pipe, PVC Plastic, Oriented PVC PE Plastic, or Reinforced Thermosetting Resin Pipe (RTRP)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL>
+<DTA TYPE="STRING">[Force Mains][ and ][Inverted Siphons]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>200 mm </MET><ENG>8 inches </ENG>in diameter and larger</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">May be Reinforced Plastic Mortar Pressure (RPMP)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="37.50">
+         <CEL>
+<DTA TYPE="STRING">Inside Pump Stations</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>100 mm </MET><ENG>4 inches </ENG>in diameter and larger</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Ductile Iron Pipe with Bolted Flange Joints</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT></CHG><BRK/>
+<BRK/>
+<SPT><TTL>Concrete Pressure Pipe</TTL><BRK/>
+ <NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use reinforced and prestressed concrete pipe for water supply distribution 
+lines.  AWWA Standards do not include sizes less than<CHG><MET> 254 mm</MET><ENG> 10 inches</ENG></CHG> in diameter.  
+Applicable size ranges for publications referenced in this paragraph are as 
+follows:</NPR><BRK/>
+<BRK/>
+<NPR><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="161.25"/>
+      <COL AUTOWIDTH="0" WIDTH="160.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Publications</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>mm</MET> <ENG>Inches</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">AWWA C303 (Reinforced)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>250 - 1050</MET> <ENG>10 - 42</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">AWWA C300 (Reinforced)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>600 - 3600</MET> <ENG>24 - 144</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">AWWA C301 (Prestressed)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>400 - 3600</MET> <ENG>16 - 144</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></NPR><BRK/>
+<BRK/>
+<NPR>In localities where<MET> 150 and 200 mm</MET><ENG> 6-and 8-inch</ENG> pipe conforming to AWWA C303 
+is available, the following will be included in the contract specification as 
+appropriate.  In addition to the data in TABLE 1 of AWWA C303, the following 
+will be applicable:</NPR><BRK/>
+<BRK/>
+<NPR><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="107.25"/>
+      <COL AUTOWIDTH="0" WIDTH="107.25"/>
+      <COL AUTOWIDTH="0" WIDTH="107.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Nominal inside diameter of pipe</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>150 mm</MET><ENG>6 inches</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>200 mm</MET><ENG>8 inches</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Nominal lining thickness</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>6 mm</MET><ENG>1/4 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>6 mm</MET><ENG>1/4 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Nominal coating thickness</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>25 mm</MET><ENG>1 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>25 mm</MET><ENG>1 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">Class 150</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Total steel area per<MET> mm</MET><ENG> foot</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>1990 square mm</MET><ENG>0.94 square inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>1990 square mm</MET><ENG>0.94 square inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Gauge cylinder number</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">16</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">16</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide concrete pressure pipe and fittings that conform to [<RID>AWWA C300</RID>, ][<RID>AWWA C301</RID>, ][or ][<RID>AWWA C303</RID>, ]as applicable 
+for the service requirements, with rubber gasket joints of the type using steel bell and spigot joint rings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plastic Pipe</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PE Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D3350</RID> and <RID>ASTM D3035</RID>, minimum pressure rating of<MET> 689 kPa</MET><ENG> 100 psi</ENG> at<MET> 23 degrees C</MET><ENG> 73.4 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Polypropylene Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D2122</RID> and <RID>ASTM D4101</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PVC Pressure Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ASTM D1785 will be used for threaded joints.  The SDR (Pressure rating) 
+system and PC (Pressure class) system are not directly related.  Reference should 
+be made to the pertinent standards for clarification.  Pressure rated plastic 
+pipe should be derated because water hammer and surges are not included in the 
+design.  It is suggested that the operating pressure not exceed 2/3 of the rated 
+working pressure.  Pressure class plastic pipe, meeting AWWA C900 standards, 
+will not require a derating for instantaneous velocity change not exceeding<MET> 
+0.61 meters per second</MET><ENG> 2 fps</ENG> and for temperature range not exceeding<MET> 23 degrees 
+C</MET><ENG> 72 degrees F</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>PVC Pressure Pipe and Fittings Less Than<MET> 100 mm</MET><ENG> 4 inches</ENG> Diameter:  <RID>ASTM D1785</RID>, Schedule [40][80][120], 
+or <RID>ASTM D2241</RID>, SDR [21][26][32.5], with screw joints, push-on joints, or solvent weld joints.</OLI><BRK/>
+<BRK/>
+<OLI>PVC Pressure Pipe and Fittings<MET> 100 mm</MET><ENG> 4 inches</ENG> Diameter and Larger:  <RID>ASTM D2241</RID>, SDR [21][26][32.5], 
+or <RID>AWWA C900</RID>, Class [100][150][200], with push-on joints.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Oriented Polyvinyl Chloride (PVCO) Plastic Pipe</TTL><BRK/>
+<BRK/>
+<CHG><TXT>Provide pipe, couplings, and fittings manufactured of material conforming to <RID>ASTM D1784</RID>, Class 12454-B.  Provide 
+pipe conforming to <RID>AWWA C909</RID>, Class 150, and to <RID>ASTM F1483</RID> with an outside diameter equal to cast iron outside 
+diameter.</TXT></CHG><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>RPMP Pipe</TTL><BRK/>
+<BRK/>
+<CHG><TXT>Provide RPMP in accordance with <RID>ASTM D3754</RID> produced by centrifugal casting and with an outside diameter equal 
+to ductile iron pipe dimensions from<MET> 450 mm</MET><ENG> 18 inch</ENG> to<MET> 1200 mm</MET><ENG> 48 inch</ENG>.  Provide a smooth uniform continuous 
+resin-rich surface liner coating the entire inner surface of the pipe.  Ensure the minimum pipe stiffness provided 
+is<MET> 248 kPa</MET><ENG> 36 psi</ENG>.</TXT></CHG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RTRP Lines</TTL><BRK/>
+<BRK/>
+<CHG><TXT><RID>ASTM D2996</RID>,<MET> 2413 kPa</MET><ENG> 350 psi</ENG> rated, cast iron pipe dimensions only, with elastomeric gasket joints.  Fittings:  <RID>
+AWWA C110/A21.10</RID>, rated<MET> 1034 kPa</MET><ENG> 150 psi</ENG>.  Use inside sleeves provided by the manufacturer when mechanical joint 
+fittings are used.</TXT></CHG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ductile Iron Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The use of cast-iron fittings and specials with ductile iron pipe is 
+generally acceptable.  However, when required by unusually severe loading conditions, 
+ductile iron fittings and specials conforming to AWWA C110/A21.10 will be specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Ductile Iron Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C151/A21.51</RID>, working pressure not less than<MET> 1034 kPa</MET><ENG> 150 psi</ENG>, unless otherwise shown or specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>River Crossing Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C151/A21.51</RID>, minimum thickness Class 54 with joints in compliance with applicable requirements of <RID>AWWA C110/A21.10</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings, Mechanical</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C110/A21.10</RID>, rated for<MET> 1034 kPa</MET><ENG> 150 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings, Push-On</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C110/A21.10</RID> and <RID>AWWA C111/A21.11</RID>, rated for<MET> 1034 kPa</MET><ENG> 150 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Steel Pipe</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Steel Pipe, <MET>150 mm</MET><ENG> 6 inches</ENG> Diameter and Larger</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C200</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel Pipe Less Than<MET> 150 mm</MET><ENG> 6 inches</ENG> Diameter</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A53/A53M</RID>, standard weight, threaded end, galvanized.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings, <MET>150 mm</MET><ENG> 6 inches</ENG> Diameter and Larger</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C200</RID>, fabricated in compliance with <RID>AWWA C208</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings Less Than<MET> 150 mm</MET><ENG> 6 inches</ENG> Diameter</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.3</RID>, galvanized.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>JOINTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PE Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Heat Fusion Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D2657</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flanged Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.1</RID> or <RID>AWWA C207</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mechanical Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Polypropylene Piping</TTL><BRK/>
+<BRK/>
+<TXT>Heat Fusion Joints:  <RID>ASTM D2657</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<CHG><SPT><TTL>PVC Piping</TTL><BRK/>
+<BRK/>
+<TXT>Provide centering rings or stops to ensure couplings used with plain end pipe are centered on the joint.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Screw Joint Fittings</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D2464</RID>, Schedule 80</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Push-On Joint Fittings</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D3139</RID>, with <RID>ASTM F477</RID>gaskets</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Solvent Cement</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D2564</RID></TXT><BRK/>
+<BRK/></SPT>
+</SPT></CHG><SPT><TTL>PVCO Pipe</TTL><BRK/>
+<BRK/>
+<CHG><TXT>Provide joints conforming to <RID>ASTM D3139</RID> and elastomeric gaskets conforming to <RID>ASTM F477</RID>.</TXT></CHG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ductile Iron Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Push-on Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C111/A21.11</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mechanical Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C111/A21.11</RID> as modified by <RID>AWWA C151/A21.51</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flanged Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C115/A21.15</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Steel Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Push-on Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C200</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mechanical Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C200</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flanged Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C207</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>RPMP Piping</TTL><BRK/>
+<BRK/>
+<CHG><TXT>Provide bell and spigot gasket coupling joints utilizing an elastomeric gasket in accordance with <RID>ASTM D4161</RID> 
+and <RID>ASTM F477</RID>.</TXT></CHG><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>VALVES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Gate Valves</TTL><BRK/>
+<BRK/>
+<CHG><TXT>Provide gate valves<MET> 80 mm</MET><ENG> 3 inches</ENG> and larger in compliance with <RID>AWWA C500</RID>.  Provide non-rising stem (NRS) valves 
+for buried service,<MET> 50 mm</MET><ENG> 2 inch</ENG> square nut operated with joints applicable to the pipe or installation.  Furnish 
+buried valves with extension stems comprising socket, extension stem and operating nut, and of an appropriate 
+length to bring operating nut to within<MET> 150 mm</MET><ENG> 6 inches</ENG> of grade.  Provide one<MET> 1200 mm</MET><ENG> 4 foot</ENG> "T" handle valve 
+wrench for each quantity of 6 buried valves.  Provide outside screw and yoke (OS&amp;Y), handwheel operated with 
+flange ends for gate valves that are exposed or installed inside unless otherwise indicated.  Cast an arrow and 
+the word "OPEN" on all gate valve operating nuts and handwheels in raised letters to indicate the direction of 
+opening.  Equip gate valves<MET> 350 mm</MET><ENG> 14 inches</ENG> and larger with gearing to reduce operating effort.  Equip gate 
+valves<MET> 350 mm</MET><ENG> 14 inches</ENG> and larger, installed in horizontal lines in horizontal position with stems horizontal, 
+with bronze track, roller and scrapers to support the weight of the gate for its full length of travel.  Fit 
+gate valves<MET> 350 mm</MET><ENG> 14 inches</ENG> and larger installed in vertical pipe lines with stems horizontal with slides to 
+assist the travel of the gate assembly.</TXT></CHG><BRK/>
+<BRK/></SPT>
+<CHG><SPT><TTL>Check Valves</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When the design requires the use of check valves with outside balance 
+levers, an appropriate descriptive statement will be added.  Several types of 
+swing check valves are available for several different job requirements and 
+the manufacturer should be consulted for specific job applications.  These valves 
+include horizontal, lever and weight, lever and spring, air cushion, oil hydraulic, 
+etc.  The operating pressure and force main velocity will determine the type 
+of swing check valve needed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide iron-bodied check valves that permit free flow of sewage forward and provide a positive check against 
+backflow.  Design check valves for a minimum working pressure of<MET> 1034 kPa</MET><ENG> 150 psi</ENG> or as indicated.  Directly 
+cast the manufacturer's name, initials, or trademark and also the size of the valve, working pressure, and direction 
+of flow on the body.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Ball Check Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide iron-bodied ball check valves, with flanged ends, that are of the non-slam type.  Provide<MET> Class 125</MET><ENG> 125 
+pound</ENG> type flanges complying with <RID>ASME B16.1</RID> with stainless steel ball unless otherwise specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Swing Check Valves</TTL><BRK/>
+<BRK/>
+<TXT>Comply with <RID>AWWA C508</RID>. Provide with iron body, bronze mounted, and flanged ends.  Provide<MET> Class 125</MET><ENG> 125 pound</ENG>
+ type flanges, complying with <RID>ASME B16.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></CHG><SPT><TTL>Plug Valves</TTL><BRK/>
+<BRK/>
+<CHG><TXT>Provide cast iron valves complying with <RID>MSS SP-78</RID> or steel plug valves in compliance with <RID>API Spec 6D</RID>.</TXT></CHG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pinch Valves</TTL><BRK/>
+<BRK/>
+<CHG><TXT>Provide double acting, jam-proof type pinch valves with unobstructed streamlined flows and built-in operator.  
+Provide iron bodied valves with a non-rising handwheel.  Provide a sleeve of pure gum rubber, neoprene, Buna 
+N or hypalon as required for service.  Provide a valve with flanged ends of <MET>Class 125</MET><ENG>125 pound</ENG> type in compliances 
+with <RID>ASME B16.1</RID>.</TXT></CHG><BRK/>
+<BRK/></SPT>
+<CHG><SPT><TTL>Air Release Valves</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When conditions indicate that vacuum conditions may exist in the line, 
+the use of a sewage air and vacuum valve may be required.  An appropriate paragraph 
+will be added.  Air vents will be specifically adapted for use with sewage.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide air release valves designed to permit release of air from an empty pipe during filling and capable of 
+discharging accumulated air in the line while the line is in operation and under pressure.  Attach valves by 
+means of threaded pipe connections.  Vent valves to the atmosphere.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Manual Air Release Valves</TTL><BRK/>
+<BRK/>
+<TXT>Consisting of an<MET> 80 mm</MET><ENG> 3 inch</ENG> gate valve and<MET> 80 mm</MET><ENG> 3 inch</ENG> ductile iron pipe and fittings.  Install the valve 
+with its line of flow in the horizontal position.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Automatic Air Release Valve</TTL><BRK/>
+<BRK/>
+<TXT>Compound lever type capable of withstanding operating pressures of<MET> 1034 kPa</MET><ENG> 150 psi</ENG>, with a<MET> 13 mm</MET><ENG> 1/2 inch</ENG> outlet.  
+Provide with iron body and cover of the valve and a stainless steel float.  Provide internal parts made entirely 
+of stainless steel or bronze.  Provide valve specifically adapted for use with sewage and complete with hose 
+and blow-off valves to permit backflushing without dismantling the valve.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></CHG></SPT><SPT><TTL>VALVE VAULTS</TTL><BRK/>
+<BRK/>
+<CHG><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Valve vaults will be required on all air vents installed on the buried 
+force mains.  Details will be shown on the drawings.  When valve vaults are 
+not required, this paragraph will be deleted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TXT>Cast iron or concrete, except design concrete vaults installed in locations subject to vehicular traffic to withstand 
+the following [_____] AASHTO load designation as outlined in <RID>AASHTO HB-17</RID>.  Provide extension type cast iron 
+vaults with slide type adjustment and flared base.  Provide <MET> 5 mm</MET><ENG> 3/16 inch</ENG> minimum metal.  Ensure that the vault 
+length is adaptable, without full extension, to the depth of cover over the pipe at the valve locations.  Manufacture 
+concrete vaults accordance with Section <SRF>03 42 13.00 10</SRF> PLANT-PRECAST CONCRETE PRODUCTS FOR BELOW GRADE CONSTRUCTION.  
+Cast the word "SEWER" in the cover. [Provide secure latch/lock mechanism to prevent unauthorized entry or tampering 
+with the components within.]</TXT></CHG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MISCELLANEOUS MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Provide miscellaneous materials in compliance with the following requirements:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pipe Coatings and Linings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  UFC 3-240-01 includes conditions requiring lining and coating of pipes.  
+Protective materials for galvanized pipe less than<MET> 80 mm</MET><ENG> 3 inches</ENG> in diameter 
+will be required only where the pipe is within the zone of influence of adjacent 
+buried cathodic protection systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST>a.  Steel, interior:  <RID>AWWA C203</RID> or <RID>AWWA C210</RID>.</LST><BRK/>
+<BRK/>
+<LST>b.  Steel, exterior, buried:  <RID>AWWA C203</RID>.</LST><BRK/>
+<BRK/>
+<LST>c.  Steel,  exterior, exposed:  <RID>AWWA C210</RID>.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joint Lubricants</TTL><BRK/>
+<BRK/>
+<TXT>Provide joint lubricants as recommended by the pipe manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bolts, Nuts and Glands</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C111/A21.11</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joint Compound</TTL><BRK/>
+<BRK/>
+<TXT>A stiff mixture of graphite and oil or inert filler and oil.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joint Tape</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D3308</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bond Wire</TTL><BRK/>
+<BRK/>
+<TXT>Bond wire type RHW or USE, Size 1/0 AWG, neoprene jacketed copper conductor shaped to stand clear of the joint.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<CHG><SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install pipe, pipe fittings, and appurtenances at the locations indicated.  Perform excavation, trenching, and 
+backfilling as specified in Section <SRF>31 00 00</SRF> EARTHWORK.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cutting</TTL><BRK/>
+<BRK/>
+<TXT>Cut pipe in a neat manner with mechanical cutters.  Use wheel cutters where practicable.  Grind sharp and rough 
+edges smooth and remove loose material from the pipe before laying.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Laying</TTL><BRK/>
+<BRK/>
+<TXT>Except where otherwise authorized, lay pipe with bells facing the direction of laying.  Before lowering and while 
+suspended, inspect the pipe for defects.  Reject defective material.  Lay pipe in compliance with the following:</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="8">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="216.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="216.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Ductile Iron</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><RID>AWWA C600</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Steel</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><RID>AWWA C600</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concrete</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Manufacturer's instructions</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Polyvinyl Chloride</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Manufacturer's instructions</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Polyethylene</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><RID>ASTM D2774</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Polypropylene</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><RID>ASTM D2774</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Reinforced Thermosetting Resin</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Manufacturer's instructions</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Reinforced Plastic Mortar</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Manufacturer's instructions</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Jointing</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Concrete Pressure Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Follow the manufacturer's instructions when lubricating and installing rubber gaskets.  Provide joints that comply 
+with the manufacturer's instructions.  Fill the external annular space with cement mortar or with a portland 
+cement-filled polyurethane loop.  For pipe<MET> 600 mm</MET><ENG> 24 inch</ENG> diameter and larger, fill the internal annular space 
+with cement mortar and struck off to ensure a smooth and continuous surface between pipe sections.  Pipe less 
+than<MET> 600 mm</MET><ENG> 24 inch</ENG> diameter must have a rope or trowelable mastic affixed to the concrete face of the bell socket 
+before joining the sections of pipe.  Ensure the mastic provided causes no problems with the rubber gasket and 
+ensure the gasket fills the interior annular space when the pipe sections are pushed together.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joints for PE Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Provide heat fusion joints that comply with the manufacturer's instructions concerning equipment, temperature, 
+melt time, heat coat, and joining time.  Make flanged and mechanical joints in compliance with the manufacturer's 
+instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joints for Polypropylene Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Ensure heat fusion joints comply with the manufacturer's instructions concerning equipment, temperature, melt 
+time, heat coat, and joining time.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joints for PVC Pipe</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Make threaded joints by wrapping the male threads with joint tape or by applying an approved thread lubricant, 
+then threading the joining members together.  Tighten the joint with strap wrenches taking care not to 
+damage the pipe and fittings.  Tighten the joint no more than 2 threads past hand-tight.</OLI><BRK/>
+<BRK/>
+<OLI>Bevel the ends of pipe for push-on joints to facilitate assembly.  Mark pipe to indicate when the pipe 
+is fully seated.  Lubricate the gasket to prevent displacement.  Ensure the gasket remains in proper 
+position in the bell or coupling while the joint is made.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure solvent-weld joints comply with the manufacturer's instructions.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Joints for RPMP Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Use an elastomeric gasket in accordance with <RID>ASTM D4161</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joints for RTRP Lines</TTL><BRK/>
+<BRK/>
+<TXT>Provide elastomeric gasket joints in compliance with the manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joints for Ductile Iron Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Install mechanical and push-on type joints in compliance with <RID>AWWA C600</RID> and the manufacturer's instructions.  
+Install flanged joints in compliance with manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joints for Steel Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Make screw joints tight with joint tape or joint compound applied with a brush to the male threads only.  Install 
+mechanical joints, push-on joints, and flanged joints in compliance with the manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Coating and Lining</TTL><BRK/>
+<BRK/>
+<TXT>Field coat non-galvanized steel pipe in compliance with <RID>AWWA C203</RID>.  Test the applied materials by means of a 
+spark-type electrical device in compliance with <RID>AWWA C203</RID>.  Repair flaws and holidays in the coating or lining 
+of the pipe and the pipe joints; with the repaired areas at least equal in thickness to the minimum required 
+for the pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PE Pipe Encasement</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Loose polyethylene encasement is used in conjunction with ductile or 
+cast iron pipe to protect the pipe from corrosive soils.  Review AWWA 105 for 
+design requirements and application.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[When installed underground, encase pipe with [_____]<MET> mm</MET><ENG> mil</ENG> thick polyethylene in accordance with <RID>AWWA C105/A21.5</RID>
+.]  [Encase in accordance with <RID>AWWA C105/A21.5</RID>.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation of Valves</TTL><BRK/>
+<BRK/>
+<TXT>Prior to installation, clean valves of all foreign matter and inspect for damage and then fully open and close 
+valves to ensure that all parts are properly operating.  Install valves with the stem in the vertical position.  
+[Install valves in valve vaults as indicated] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation of Valve Boxes</TTL><BRK/>
+<BRK/>
+<TXT>Install valve boxes over each outside gate valve, unless otherwise indicated.  Center valve boxes over the valve.  
+Carefully tamp fill around each valve box to a distance of<MET> 1.2 m</MET><ENG> 4 feet</ENG> on all sides or to undisturbed trench 
+face, if less than<MET> 1.2 m</MET><ENG> 4 feet</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation of Valve Vaults</TTL><BRK/>
+<BRK/>
+<TXT>Install valve vaults as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drain Lines</TTL><BRK/>
+<BRK/>
+<TXT>Install drain lines where indicated.  The drain line consists of a tee in the main line with a<MET> 100 mm</MET><ENG> 4 inch</ENG> 
+diameter branch, a<MET> 100 mm</MET><ENG> 4 inch</ENG> diameter elbow, and a<MET> 100 mm</MET><ENG> 4 inch</ENG> gate valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thrust Restraint</TTL><BRK/>
+<BRK/>
+<TXT>[Provide thrust restraint as specified in Section <SRF>33 11 00</SRF> WATER UTILITY DISTRIBUTION PIPING.] [Provide plugs, 
+caps, tees and bends deflecting 11-1/4 degrees or more, either vertically or horizontally, with thrust restraint.]  
+Securely anchor valves or provide with thrust restraints to prevent movement.  Install thrust restraints made 
+from either thrust blocks or, for ductile-iron pipes, restrained joints.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Thrust Blocks</TTL><BRK/>
+<BRK/>
+<TXT>Provide concrete thrust blocking of a mix not leaner than:  1 cement, 2-1/2 sand, 5 gravel; and having a compressive 
+strength of not less than<MET> 14 MPa</MET><ENG> 2000 psi</ENG> after 28 days.  Place blocking between solid ground and the fitting 
+to be anchored.  Unless otherwise indicated or directed, place the base and thrust bearing sides of thrust blocks 
+directly against undisturbed earth.  Place the side of thrust blocks not subject to thrust against forms, if 
+applicable.  Provide the area of bearing as shown or as directed.  Place blocking so that the fitting joints 
+are accessible for repair.  Use steel rods and clamps, protected by galvanizing or by coating with bituminous 
+paint, to anchor vertical down bends into gravity thrust blocks.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Restrained Joints</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When the restrained length is specified by the designer, this paragraph 
+will be modified to delete the design requirement.  The Government's designer 
+should use UFC 3-230-01 for guidance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For ductile iron pipe, design restrained joints in accordance with <RID>DIPRA TRD</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Grout</TTL><BRK/>
+<BRK/>
+<TXT>Provide grout mix for exterior joint protection on concrete pipes of 1 part portland cement, 2 parts sand, and 
+of sufficient liquid consistency to flow into the joint recess beneath the diaper.  Provide grout mix for interior 
+joint protection of 1 part portland cement and 1 part sand.  Substitute a  polyurethane foam loop, impregnated 
+with portland cement, in lieu of grout for exterior joints, if directed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bonded Joints</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Bonded joints will be used to maintain electrical continuity in metallic 
+pipelines where cathodic protection is provided during construction or where 
+it is anticipated that cathodic protection will be provided in the future.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Where indicated, provide a thermally welded metallic bond at each joint, including joints made with flexible 
+couplings or rubber gaskets, of ferrous-metallic piping to effect continuous conductivity. </TXT><BRK/>
+<BRK/></SPT>
+</SPT></CHG><SPT><TTL><TST>FIELD QUALITY CONTROL</TST></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit this paragraph to establish responsibility for tests.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<CHG><TXT>Perform both a pressure test and a leakage test on all pipelines.  [Obtain the Contracting Officer's approval 
+of the method proposed for <SUB>disposal of waste water</SUB> from hydrostatic tests.] [The Contractor is responsible for 
+all testing.] [Perform testing using an independent testing laboratory, subject to approval by the Contracting 
+Officer.] [Contractor will coordinate all tests to ensure they are witnessed by the Contracting Officer.]  Notify 
+the Contracting Officer at least 7 days in advance of equipment tests.  Submit the <SUB>final test report</SUB> to the Contracting 
+Officer within 30 days after the test.</TXT></CHG><BRK/>
+<BRK/>
+<SPT><TTL><TST>Pressure Test</TST></TTL><BRK/>
+<BRK/>
+<CHG><TXT>After installing the pipe, joints, and thrust blocks, wait at least five days before pressure testing.  For the 
+pressure test, partially backfill the trench but leave the joints exposed for examination, then fill the pipe 
+with water to expel all air.  Subject the pipeline to a test pressure of<MET> 700 kPa</MET><ENG> 100 psi</ENG> or 150 percent of the 
+working pressure, whichever is greater, for a period of at least one hour.  Open and close each valve several 
+times during the test.  Examine the exposed pipe, joints, fitting, and valves for leaks.  Stop visible leaks 
+or replace defective pipe, fittings, joints, or valves.</TXT></CHG><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST>Leakage Test</TST></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When the Contracting Officer determines that less stringent requirements 
+would not have a detrimental impact on the environment, and would not violate 
+Federal, state, or local requirements and would not contaminate any existing 
+or potential water supply or habitable area, less stringent limits may be permitted.  
+The maximum leakage permitted must not exceed<MET> 60 liters per 10 mm nominal diameter 
+per kilometer</MET><ENG> 25 U.S. gallons per inch nominal diameter per mile</ENG> of pipe per 
+day, based on a pressure of<MET> 690 kPa</MET><ENG> 100 psi</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>Allowable leakage at other test pressures will be the above limit multiplied 
+by the product of the square root of the test pressure divided by 10.  Inferior 
+workmanship or defective material will not be accepted when less stringent requirements 
+are allowed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<CHG><TXT>Conduct the leakage test subsequent to or concurrently with the pressure test.  Place the amount of water permitted 
+as leakage for the line in a sealed container attached to the supply side of the test pump.  Apply no other source 
+of supply to the pump or line under test.  Pump the water into the line by the test pump as required to maintain 
+the specified test pressure as described for a 2 hour period.  The test will be considered a failure upon exhaustion 
+of the supply or the inability to maintain the required pressure.  PE pipe experiences diametric expansion and 
+pressure elongation during initial testing.  Consult the manufacturer prior to testing for special testing considerations.  
+Determine allowable leakage by the following I-P formula:</TXT><BRK/>
+<BRK/>
+<LST>L = NDP/K Where:</LST><BRK/>
+<BRK/>
+<LST>L = Allowable leakage in gallons per hour.</LST><BRK/>
+<BRK/>
+<LST>N = Number of joints in length of pipeline tested.</LST><BRK/>
+<BRK/>
+<LST>D = Nominal diameter of the pipe in inches.</LST><BRK/>
+<BRK/>
+<LST>P = Square root of the test pressure in psig.</LST><BRK/>
+<BRK/>
+<LST>K = 7400 for pipe materials.</LST><BRK/>
+<BRK/>
+<TXT>At the conclusion of the test, measure the amount of water remaining in the container and record the results 
+in the test report.<BRK/>
+<BRK/>
+[Test ductile iron pressure lines in accordance with the requirements of AWWA C600.]<BRK/>
+<BRK/>
+[Test concrete pressure lines in accordance with the recommendations of AWWA M9.]<BRK/>
+<BRK/>
+[Test plastic pressure lines in accordance with the recommendations of AWWA C605.]</TXT></CHG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Retesting</TTL><BRK/>
+<BRK/>
+<CHG><TXT>If any deficiencies are revealed during any test, correct such deficiencies and repeat the tests until the results 
+of the tests are within specified allowances, without additional cost to the Government.</TXT></CHG><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

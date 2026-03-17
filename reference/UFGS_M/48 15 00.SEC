@@ -1,0 +1,1273 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-48 15 00 (February 2026)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-48 15 00 (May 2017)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 48 15 00</SCN><BRK/>
+<BRK/>
+<STL>WIND GENERATOR SYSTEM</STL><BRK/>
+<DTE>02/26</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>wind generator systems</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN CLEAN POWER ASSOCIATION (ACP)</ORG><BRK/><BRK/><RID>AWEA O&amp;M RP</RID><RTL>(2017) AWEA Operations and Maintenance Recommended Practices, Second Edition</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN INSTITUTE OF STEEL CONSTRUCTION (AISC)</ORG><BRK/><BRK/><RID>AISC 325</RID><RTL>(2017) Steel Construction Manual</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF CIVIL ENGINEERS (ASCE)</ORG><BRK/><BRK/><RID>ASCE 7-16</RID><RTL>(2017; Errata 2018; Supp 1 2018) Minimum Design Loads and Associated Criteria for Buildings and Other Structures</RTL><BRK/><BRK/><RID>ASCE/AWEA RP2011</RID><RTL>(2011)   Recommended Practice for Compliance of Large Land-based Wind Turbine Support Structures</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF SAFETY PROFESSIONALS (ASSP)</ORG><BRK/><BRK/><RID>ASSP Z359</RID><RTL>(2013) Fall Protection Code</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 80</RID><RTL>(2013) Guide for Safety in AC Substation Grounding</RTL><BRK/><BRK/><RID>IEEE 100</RID><RTL>(2000; Archived) The Authoritative Dictionary of IEEE Standards Terms</RTL><BRK/><BRK/><RID>IEEE 142</RID><RTL>(2007; Errata 2014) Recommended Practice for Grounding of Industrial and Commercial Power Systems - IEEE Green Book</RTL><BRK/><BRK/><RID>IEEE 242</RID><RTL>(2001; Errata 2003) Recommended Practice for Protection and Coordination of Industrial and Commercial Power Systems - Buff Book</RTL><BRK/><BRK/><RID>IEEE 519</RID><RTL>(2022) Standard for Harmonic Control in Electrical Power Systems</RTL><BRK/><BRK/><RID>IEEE 1547</RID><RTL>(2018) Interconnection and Interoperability of Distributed Energy Resources with Associated Electric Power Systems Interfaces</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/><RID>IEEE C62.41</RID><RTL>(1991; R 1995) Recommended Practice on Surge Voltages in Low-Voltage AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL CODE COUNCIL (ICC)</ORG><BRK/><BRK/><RID>ICC IBC</RID><RTL>(2024) International Building Code</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTROTECHNICAL COMMISSION (IEC)</ORG><BRK/><BRK/><RID>IEC 61400-SER</RID><RTL>(2014) Wind Turbine Generator Systems - ALL PARTS</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified or indicated, electrical and electronics terms used in these specifications, and on the drawings, are as defined in <RID>
+IEEE 100</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified or indicated, wind turbine terms used in these specifications, and on the drawings, are as defined in <RID>IEC 61400-SER</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ADMINISTRATIVE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pre-Installation Meetings</TTL><BRK/>
+<BRK/>
+<TXT>Comply with Section <SRF>01 30 00</SRF> ADMINISTRATIVE REQUIREMENTS and hold a pre-installation meeting [no earlier than][1][2][_____] weeks prior to start 
+of installation work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Scheduling</TTL><BRK/>
+<BRK/>
+<TXT>Provide a delivery and installation schedule to the CO [no later than] [30][60][_____] days prior to start of installation work to allow internal 
+coordination.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Permits are assumed to be obtained by firm holding design responsibility.  Ensure this is clarified in 
+contract bid package.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Commissioning Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Commissioning Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Submittal is for diagrams and instructions from a manufacturer or fabricator for use in producing the product 
+and as aids to the Contractor for integrating the product or system into the project and prepared by or for the 
+Contractor to show how multiple systems and interdisciplinary work will be coordinated.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Shop Drawings, Drawings, Schedules</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Control diagram and software documentation to include software/Contractor's manual, program listing, and 
+applicable hierarchy diagrams. The software manual must describe the functions for all wind turbine system control 
+and monitoring software and must include all instructions necessary for proper loading, testing, debugging, and 
+operations.  Software description must include the following as a minimum: general system descriptions, including 
+control system operating philosophies, sequence of operations, and interface definitions; explanation of program 
+error messages; Data format, entry retrieval, archiving, and trending capabilities.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Site Plan Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Riser Diagram</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Installation ands Assembly Drawings and Details</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Wind Turbine System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Sample <SUB>Warranty</SUB> Certificate; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer Data Sheet</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Wind Turbine System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Towers/Support Structures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Foundations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Visual Impact Analysis &amp; Mitigation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Static Loading and Dynamic Response Analysis</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Noise Analysis &amp; Mitigation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wildlife Impact Analysis &amp; Mitigation </SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Groundings System Analysis</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Work Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Tests Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Functional Performance Testing Results</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Certificate of Completion</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Commissioning Agents Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Seismic Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wind Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operations Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Startup, Shutdown, and Emergency Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Definition and Use of All System, Command, and Application Software</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Alarms and Alarm Presentation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Recovery and Restart Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Contractor Commands (Control Consoles, Indicating/Control Panels, and Peripheral Devices)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Data Package 5</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Corrective Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Preventative Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Recommended Multi-Year Operations and Maintenance (O&amp;M) Requirements Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Special Tools and Equipment</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Training Materials</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Course</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Commissioning Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Decommissioning Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Warranty</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>As-built Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OPERATION AND MAINTENANCE MANUALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review AWEA website for updated O&amp;M requirements for wind turbines.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit Operation and Maintenance (O&amp;M) Data specifically applicable to this contract and a complete and concise depiction of the provided equipment, 
+product, or system, stressing and enhancing the importance of system interactions, troubleshooting, and long-term preventative maintenance and 
+operation in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA, <SUB>Data Package 5</SUB>. Comply with <RID>AWEA O&amp;M RP</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Include manufacturer's standard wind turbine system <SUB>operations manuals</SUB> that integrate operational instructions for the installed equipment.  The 
+wind turbine system manual must fully describe all wind turbine system operational aspects including, but not limited to:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Control  and monitoring configuration and instruction.</OLI><BRK/>
+<BRK/>
+<OLI>System performance capabilities and equipment specifications.</OLI><BRK/>
+<BRK/>
+<OLI>System startup, shutdown, and emergency procedures.</OLI><BRK/>
+<BRK/>
+<OLI>Definition and use of all system, command, and applicable software.</OLI><BRK/>
+<BRK/>
+<OLI>Alarms and alarm presentation.</OLI><BRK/>
+<BRK/>
+<OLI>Recovery and restart procedures.</OLI><BRK/>
+<BRK/>
+<OLI>Contractor commands.</OLI><BRK/>
+<BRK/>
+<OLI>Detailed step-by-step instructions must be provided for user interfaces, such as control consoles, indicating/control panels, and peripheral 
+devices.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Preventative Maintenance Manuals</TTL><BRK/>
+<BRK/>
+<TXT><SUB>Preventative Maintenance Manuals</SUB> must include as a minimum, the applicable visual examinations, software and hardware tests, and diagnostic routines 
+and resultant adjustment procedures necessary for periodic maintenance of control equipment.  Instructions on how to load and use the test and 
+diagnostic program and special or standard test equipment must be an integral part of the manuals.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Corrective Maintenance Manuals</TTL><BRK/>
+<BRK/>
+<TXT><SUB>Corrective Maintenance Manuals</SUB> must include as a minimum, detailed logic diagrams and flow charts must also be provided, as necessary, for trouble-shooting 
+analysis and field repair actions.  For mechanical items required field repairs, information on tolerances, clearances, and wear limits, and maximum 
+bolt down torques must be supplied.  Information on the loading and use of special off-line diagnostic program tools, tests equipment, and any 
+cautions or warnings that must be observed to protect personnel and equipment, must also be included.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Spare Parts</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Special tools if required must be identified by part number and function/description.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a spare parts list (<SUB>Data Package 5</SUB>) and <SUB>Special Tools and Equipment</SUB> list required for maintaining total system availability at [95] percent.  
+Parts list must include, as a minimum, part description, recommended quantity, shelf life, storage conditions, manufacturer, model number, and 
+estimated delivery times.  Parts must be identified on a list or drawing in sufficient detail for procurement of any repairable or replaceable 
+part.  These parts must be identified by their individual by the industrial, generic part numbers, and must have second source referencing whenever 
+possible.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the word, "must" had been substituted 
+for "should" wherever it appears.  Interpret references in these publications to the "authority having jurisdiction," or words of similar meaning, 
+to mean the Contracting Officer.  Provide equipment, materials, installation, and workmanship in accordance with the mandatory and advisory provisions 
+of <RID>NFPA 70</RID> unless more stringent requirements are specified or indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are standard products of manufacturers regularly engaged in the manufacture of such products, which are of 
+a similar material, design and workmanship.  Standard products must have been in satisfactory commercial or industrial use for 2 years prior to 
+bid opening.  The 2-year use must include applications of equipment and materials under similar circumstances and of similar size.  The product 
+must have been for sale on the commercial market through advertisements, manufacturers' catalogs, or brochures during the 2 year period.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Submit minimum of three hard copies of drawings for government approval prior to manufacturing and equipment construction or integration.  Submit <SUB>
+Shop Drawings, Drawings, Schedules</SUB> at a minimum of 11 by 17 inches in size using a minimum scale of 1/4 inch per foot, for the exception of drawings 
+not requiring scale. Submit <SUB>site plan drawings</SUB> and <SUB>Riser Diagram</SUB> and general design notes at a minimum of 24 by 36 inches.  Submit <SUB>Installation 
+ands Assembly Drawings and Details</SUB> at a minimum of 24 by 36 inches.  Submit installation details at minimum scale of 1/2 inch per foot for overview 
+and 2 inches per foot for detail.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Product Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Submit complete detailed product drawings for the wind turbine system consisting of  <SUB>Shop Drawings, Drawings, Schedules</SUB>and <SUB>Manufacturer Data Sheet</SUB>
+. Include in the shop drawings [one][three][four] wire diagrams, utility interconnection diagrams, switchboard and switchgear drawings, equipment 
+enclosures, conduits, monitors, meters, and all other accessories associated with the installation of the PV system. Provide equipment dimensions, 
+weights and structural mounting details.</TXT><BRK/>
+<BRK/>
+<TXT>Include nameplate data, size, and capacity of each wind turbine.  Include all assumptions such as applicable wind speed, snow and seismic loads.  
+Include applicable federal, military, industry, and technical society publication references.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation and Assembly Drawings and Details</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>site plan drawings</SUB>, <SUB>Riser Diagram</SUB> and general notes and <SUB>Installation ands Assembly Drawings and Details</SUB> prior to start of construction.  
+Include sufficient drawing detail for all parts of the work to enable the Government to check conformity with the requirements of the contract 
+documents.  Include in the site plan drawings: topographic and utility survey; bore logs; soils report; site plan(s); site construction details; 
+structural drawings; structural construction details; site electrical plan; and site electrical construction details.  Include in the installation 
+and assembly drawings and details: parts lists; assembly drawings; interconnection wiring diagrams; wire and cable schedules; wire and cable termination 
+schedules; instrument plan; instrument and control wire, conduit and cable schedules; instrument wire and cable termination schedule; control diagrams; 
+control sequence of operation; seismic restraint details; and wind restraint details.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>"As-Built" and Record Drawings</TTL><BRK/>
+<BRK/>
+<TXT>After completion of construction, submit <SUB>"As-built" Drawings</SUB> prepared and certified by the construction contractor, showing in red ink, on-site 
+changes to the original construction details and all underground utilities measured from field benchmarks, accurate to within 1" of centerline 
+of the utility.  Immediately record for inclusion into the as-built drawings all modifications to original drawings made during installation.  
+Indicate adequate clearance for operation, maintenance, and replacement of operating equipment devices.  Prepare "As-built" Drawings on a minimum 
+of 24 by 36 inches vellum using red ink.</TXT><BRK/>
+<BRK/>
+<TXT>After submittal and approval of "As-built" Drawings, submit Record Drawings, prepared and by the project engineer(s) and architect(s), of the original 
+design drawings reflecting all design changes and contractor noted changes in the "As-Built" drawings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Factory Acceptance Testing</TTL><BRK/>
+<BRK/>
+<TXT>Prepare Work Plan and Factory Test Plan.  Conduct Factory Acceptance Testing during manufacturing of the wind generators as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Tower: mil certificate for steel plates, dimensional inspection report, non-destructive test report, coating inspection report, non-conformance 
+reports, inspection certificate from certifying agency;</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Parts: generator, wind turbine generator transformer, converter system, and controller;</OLI><BRK/>
+<BRK/>
+<OLI>Nacelle: gear box, lubrication system, main shaft installation, yaw drives and system; blade pitch system, cooling system; and major castings.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Prepare Factory Test Reports after completion of testing.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Work Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit [6][_____] copies of schedules of dates for factory tests, installation, field tests, and operator training for the UPS system.  Furnish 
+a list of instrumentation equipment for factory and field test reports.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Factory Test Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit [6][_____] copies of factory test plans and procedures at least [21][_____] calendar days prior to the tests being conducted.  Provide detailed 
+description of test procedures, including test equipment and setups, to be used to ensure the UPS meets the performance specification and explain 
+the test methods to be used.  As a minimum, the test procedures to include the test required under the paragraph entitled "Factory Testing."</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Factory Tests Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit [6][_____] copies of factory test report within [45][_____] calendar days after completion of tests.  Receive approval of test prior to 
+shipping unit.  Factory test reports must be signed by an official authorized to certify on behalf of the UPS manufacturer of that the system meets 
+specified requirements in accordance with the requirements set forth in paragraph entitled "Factory Testing".  Provide test reports in booklet 
+form tabulating factory tests and measurements performed, upon completion and testing of the installed system.  Reports to  state the Contractor's 
+name and address, the name of the project and location, and list the specific requirements which are being certified.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Handle, store, and protect equipment and materials to prevent damage before and during installation in accordance with the manufacturer's recommendations, 
+and as approved by the Contracting Officer.  Replace damaged or defective items.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PROJECT/SITE CONDITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Environmental Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  An initial visual, noise, and wildlife analysis may occur in initial planning stage for site down-select; 
+however, site specific analysis is required for the final site design and selected turbines.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The wind turbine system must conform to applicable federal, state, regional, and local regulations regarding visual impact, noise pollution control, 
+and wildlife impact.  Perform and submit <SUB>Noise Analysis &amp; Mitigation</SUB>, <SUB>Visual Impact Analysis &amp; Mitigation</SUB>, and <SUB>Wildlife Impact Analysis 
+&amp; Mitigation </SUB> to [Contracting Officer][_____] for review and approval prior to mobilization in accordance with Section <SRF>01 57 19</SRF> TEMPORARY ENVIRONMENTAL 
+CONTROLS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Existing Conditions</TTL><BRK/>
+<BRK/>
+<TXT>Location            [_____]</TXT><BRK/>
+<BRK/>
+<TXT>Elevation          <MET> [_____] meters</MET><ENG> [_____] feet</ENG> above sea level.</TXT><BRK/>
+<BRK/>
+<TXT>Seismic Zone        Site is in <RID>ICC IBC</RID></TXT><BRK/>
+<BRK/>
+<TXT>                    Seismic Use Group [_____]</TXT><BRK/>
+<TXT>                    Importance Factor [_____]</TXT><BRK/>
+<BRK/>
+<TXT>Temperature Range  <MET> [_____] to [_____] degrees C</MET><ENG> [_____] to [_____] degrees F</ENG></TXT><BRK/>
+<BRK/>
+<TXT>Average Humidity    [_____] percent</TXT><BRK/>
+<BRK/>
+<TXT>Lightning           [_____] annual average strikes</TXT><BRK/>
+<BRK/>
+<TXT>Rainfall            [_____] in. mean total annual rainfall</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Available Utilities</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Early utility interconnect coordination is critical, as is an approved power agreement.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Utility power is presently supplied by [utility] from a [_____]kV line transformed down to [_____]kV for local distribution.  Coordinate with the 
+utility company for the available fault current value at the new wind farm transformer located at [TBD], and to design the wind turbine system 
+to meet or exceed the available fault current values at the individual wind turbine points of connection (step-up transformer at the base of each 
+turbine).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wind Resource Data</TTL><BRK/>
+<BRK/>
+<TXT>The prevailing wind is from the [compass direction] with average annual wind speeds estimated to be<MET> [_____] m/s</MET><ENG> [_____] mph</ENG> at<MET> [60][_____] meters</MET><ENG>
+ [197][_____] ft</ENG> above ground level at the preferred locations for these new wind turbines.  Peak 15 minute average wind has been recorded from 
+the [compass direction]at<MET> [25][_____] m/s</MET><ENG> [56][_____] mph</ENG>.  Summary average annual wind data results from past wind resource assessments are included 
+in Attachment 1 of this specification.  Validate the site(s) wind resource characteristics and design wind turbine system specifically for site 
+conditions.</TXT><BRK/>
+<BRK/>
+<TXT>Validate the Wind Farm system's components and design parameters with respect to wind loading and survival wind speed. [Additional wind resource 
+assessment data is available upon request.]  The wind turbine system will be designed to maintain structural integrity and safe operation under 
+specified environmental conditions, without damage to life or property for the [20][_____] year life of the wind turbine system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Site Equipment Limitations</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Reference any known site limitations, such as bridge weight limitations, height restrictions, etc.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Identify and provide any special crane requirements for shipping, off-loading and erection of the wind turbine and its components.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>Wind turbine system must provide reliable operation, free from breakdowns(not excluding normal maintenance), for the design life of the wind turbine 
+system[ [20][_____] years].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CERTIFICATIONS</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>Seismic Certification </SUB>and <SUB>Wind Certification</SUB>, prepared by a licensed professional engineer or National Recognized Testing Laboratory, (NRTL) 
+for all components and assembled systems in accordance with <RID>ICC IBC</RID>,<RID> ASCE 7-16</RID> state and local building codes.  Seismic and wind certifications 
+must demonstrate system must withstand wind and seismic requirements as installed and remain remain online and functional after a seismic or wind 
+event.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>The wind turbine system must be furnished as totally coordinated assemblies which, after site installation and testing, must comply with the design 
+and performance requirements of this specification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DESIGN REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>All materials used in construction must be noncombustible wherever practical, and must be new materials.</TXT><BRK/>
+<BRK/>
+<TXT>Analysis of all required erection equipment loadings (i.e., on gin poles, winches, cranes, cables, earth anchors) must be performed as required 
+for erection and/or maintenance purposes.  Reference <RID>IEC 61400-SER</RID> and wind turbine manufacturer's standards.  Provide UV resistant exposed cables 
+and stainless steel cable ties.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<BRK/>
+<TXT>General requirements for the <SUB>wind turbine system</SUB> includes:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The wind turbine system should consist of a [horizontal] [vertical]. axis, upwind active yaw control configurations, with a minimum of 
+three rotor blades.</OLI><BRK/>
+<BRK/>
+<OLI>Rotor controls must be supplied to provide an active variable pitch (power/torque) air-foil design.</OLI><BRK/>
+<BRK/>
+<OLI>Operational RPM's must be variable, no less than [minus 10][_____] percent to [plus 5][_____] percent of synchronous RPM's.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  80 meter hub height has been the standard.  Newer technology is allowing higher hub heights. Ensure correct 
+hub height is used for specification and permitting.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Wind turbine hub height of<MET> [80][_____] meters</MET><ENG> [263][_____] feet</ENG> maximum, due to FAA height and other design issues, and energy production 
+requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Rotor diameter of<MET> [_____] meters</MET><ENG> [_____] feet</ENG> minimum to<MET> [_____] meters</MET><ENG> [_____] feet</ENG> maximum.</OLI><BRK/>
+<BRK/>
+<OLI>Low-voltage ride-through capability (see IEEE draft standard and/or European REE and EON grid code requirements.)</OLI><BRK/>
+<BRK/>
+<OLI>Reactive power support capability of [0.96][_____] inductive to [0.98][_____] capacitive power factor range, or approved equal.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Controls</TTL><BRK/>
+<BRK/>
+<TXT>The wind turbine controls will utilize standard "soft start" technologies to minimize the impact to electrical power systems.  The design must 
+include active power factor and load leveling controls to help reduce the need for supplemental active VAR control and to stabilize and/or minimize 
+the system frequency/power changes due to wind variability respectively.  The design requirements for the wind turbine subsystem components must 
+be as described below.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Enclosures</TTL><BRK/>
+<BRK/>
+<TXT>All wind turbine equipment, controls, terminations, etc., supplied with the wind turbine system, which are intended to be located outside the nacelle, 
+must be located in NEMA 12 (or equal) gasketed minimum rated enclosures for improved corrosion and environmental protection.  If temperature control 
+is required within the wind turbine control enclosures, provide all equipment, devices, and controls necessary to maintain the required temperature.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rotors</TTL><BRK/>
+<BRK/>
+<TXT>Wind turbine rotors must consist of nonmetallic composite airfoils of a design resistant to abrasion related efficiency losses and must be non-EMI 
+conductive/reflective.  The rotor design must be optimized to provide maximum wind turbine output performance based on the specific wind regime 
+characteristics[ given in the supplied wind data].  Further, the rotor controls must be designed to provide a minimum of one level of safety beyond 
+the primary systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reduction Gear Assemblies</TTL><BRK/>
+<BRK/>
+<TXT>High-efficiency, reduction gear assemblies (if required) must be supplied that are designed for low temperature rise, low levels of vibration, 
+long life, and low noise emissions.  Further, the gear assembly designs must provide reliable operation, free from breakdowns (not excluding normal 
+maintenance), for the design life of the wind turbine system[ ([20][_____] years)].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings and Seals</TTL><BRK/>
+<BRK/>
+<TXT>The drive train must utilize tapered roller bearing technology, wherever possible, to maintain parallelism and axial tolerance of the drive train 
+during all operating conditions.</TXT><BRK/>
+<BRK/>
+<TXT>Maintenance-free sealing must be installed on all shafts to prevent leaking of gear lubrication and intrusion of dirt and dust.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Foundations</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Determine soil and foundation load requirements and comply with applicable requirements of <RID>ASCE/AWEA RP2011</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Towers/Support Structures</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The tower must be a free-standing construction consisting of tubular steel (or approved equal), with provisions for safely climbing and servicing 
+the turbine.  The tower must be provided with a catwalk or maintenance platform just below or within the turbine to provide for turbine servicing 
+as in accordance with manufacturer's standard design.  Determine proper height of tower assembly for optimum operation of the wind turbines.  Tower 
+construction using self erecting crane systems are encouraged, and should be considered in cases where the height limitations of the installation 
+may severely limit the performance of the offered system.  Establish and maintain all precautions with regards to wind turbine installation and 
+safeguarding the cranes for all possible wind conditions.  Comply with <RID>IEC 61400-SER</RID>, <RID>ASCE/AWEA RP2011</RID>,  and wind turbine manufacturer's standards.</TXT><BRK/>
+<BRK/>
+<TXT>All tower components including, but not limited to, or tube elements, anchors, supports, rails, ladders, etc., will be of a corrosion resistant 
+steel construction, or coated with certified [10]-year surface coatings as in accordance with Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Wind Ratings</TTL><BRK/>
+<BRK/>
+<TXT>The wind turbine system must be capable to withstand winds of Category [1][2][3][4] or [5] as defined by the Saffir-Simpson Hurricane Wind Scale. 
+Provide wind certifications for all components and assemblies.</TXT><BRK/>
+<BRK/>
+<TXT>The tower assembly (and all associated components subject to fluctuating/cyclic loading) must be designed to withstand all operating conditions 
+for the specific wind region characteristics based on, but not limited to, the supplied wind data.  <SUB>Static loading and dynamic response analysis</SUB>
+ must be submitted for review, for all loads imposed on the wind turbine system.  The analysis must also include all required erection equipment 
+loadings (i.e., on gin poles, winches, cranes, cables, earth anchors), as required for erection and/or maintenance purposes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seismic Ratings</TTL><BRK/>
+<BRK/>
+<TXT>All structures and structural elements must be suitable for Seismic Design Category [_____] in accordance with <RID>ICC IBC</RID>, <RID>ASCE 7-16</RID>, and all other 
+applicable building codes and standards pertaining to the erection of such structures.</TXT><BRK/>
+<BRK/>
+<TXT>All bolted connections must meet <RID>AISC 325</RID> standards for loading and torque specifications.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Brakes</TTL><BRK/>
+<BRK/>
+<TXT>A brake system, active yaw control, and/or airfoil system, in combination with brakes, must be supplied as required to support:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Manual shutdown during design wind conditions;</OLI><BRK/>
+<BRK/>
+<OLI>Over-speed shutdown;</OLI><BRK/>
+<BRK/>
+<OLI>Parking for maintenance; and</OLI><BRK/>
+<BRK/>
+<OLI>Loss of electrical grid power during rated wind operations.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Main shaft type braking is the preferred technology, although other types of technologies are not excluded provided they can be shown to meet the 
+functional and performance requirements defined herein.  The braking system must provide maintenance-free braking operations for a minimum of five 
+years (i.e., no new brake pads), with significant use of pitch and yaw controls to minimize braking requirements.  The braking system must be configured 
+to prevent any type of runaway conditions that could exist whether grid power is available or not.  The braking system must be capable of providing 
+sufficient braking force for parking, normal stopping, and emergency stopping of the wind turbine system, as described below.  A braking system 
+other than those described below may be submitted for "or equal" substitute based upon performance.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Parking Brakes</TTL><BRK/>
+<BRK/>
+<TXT>A parking brake must be supplied capable of preventing rotor rotation at wind speeds up to the survival wind speed and/or as required for maintenance 
+support, and capable of being used when there is no power.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Normal Stopping Brake System</TTL><BRK/>
+<BRK/>
+<TXT>A normal stopping brake system (or equal) must be supplied to dissipate the kinetic energy of the rotating machinery at the design over speed condition, 
+while suffering no irreparable damage.  The braking system must include fail-safe automatic operational mode in the event of a power out condition 
+(i.e., loss of utility power while operating at rated wind speed).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Emergency Brake</TTL><BRK/>
+<BRK/>
+<TXT>An emergency brake must be supplied that is designated to meet the same requirements of the normal stopping brake above.  In addition, upon activation, 
+the emergency brake must alarm and require manual resetting prior to resuming automatic operation of the wind turbine.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Electrical Systems</TTL><BRK/>
+<BRK/>
+<TXT>Perform an independent stability and reliability study with a focus on determining the impacts to the installation's site facilities.  Operate 
+the wind-farm in strict adherence to <RID>IEEE 519</RID> guidelines for controlling voltage, current, and harmonic distortions.  Operate the wind-farm with 
+all the power conditioning equipment necessary to maintain a stable power factor.  Operate the wind-farm in a manner that does not diminish the 
+capacity of existing installation facilities.  Operate the wind-farm with appropriate controls and equipment that will automatically separate the 
+wind-farm from the installation, or the installation and the Utility so that installation's site operations are not compromised in the event of 
+equipment, and/or system failures.  Operate the wind-farm with standing agreements cooperating jointly in maintenance processes and procedures.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Equipment</TTL><BRK/>
+<BRK/>
+<TXT>All generators, motors, and related electrical systems must meet the requirements of <RID>NFPA 70</RID>, <RID>IEEE C2</RID>, and/or IEC requirements for all construction.  
+Wind turbine generators must be high-efficiency, continuous rated machines, with a minimum of Class F insulation and temperature rise.  The generator 
+efficiency will be a minimum of 90 percent for all loads greater than 10 percent of rated load.  The generator must include embedded temperature 
+protection with solid state sensors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Distribution</TTL><BRK/>
+<BRK/>
+<TXT>Isolation breakers must be provided for key system assemblies to facilitate maintenance without interruption operation of other wind turbine systems.  
+All fuses, circuit breakers, power supplies/regulators, and line conditioners necessary for wind turbine operations within the specified service 
+conditions must be provided for all wind turbine equipment and assemblies.  Power to the wind turbine control and monitoring subsystems must be 
+distributed from a central point within one of the wind turbine system cabinets located within each nacelle.  Voltage and current requirements 
+must be identified and documented in the submittals to facilitate the design and transformer sizing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Overcurrent Protection and Disconnect</TTL><BRK/>
+<BRK/>
+<TXT>A [circuit breaker][switch] must be installed as the primary means disconnecting the wind turbine incoming power cables/lines from the wind turbine 
+system.  The [circuit breaker][switch] must be capable of being locked in the open position and located conveniently for maintenance and operating 
+personnel.  The rating of the [circuit breaker][switch] must be sized in accordance with <RID>NFPA 70</RID> for the maximum rated load current expected at 
+the wind turbine.  All electrical equipment supplied must be rated or protected to withstand and/or interrupt (without damage) the maximum available 
+fault current expected at the point of connection to the wind turbine system.  The fault current available at the wind farm site is initially estimated 
+at approximately [_____] kAIC symmetrical at [_____] kVAC at each tower base, to be more closely determined during wind farm electrical modeling 
+and design.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Step-up Transformer</TTL><BRK/>
+<BRK/>
+<TXT>A step-up transformer may be required and must be provided by others if the wind turbine output does not match the planned collector/distribution 
+system voltage of [34.5][_____] kV (where the turbine is to be interconnected), or if the planned system is not suitable for the wind turbine standard 
+design requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surge Suppression</TTL><BRK/>
+<BRK/>
+<TXT>External power input connections must be surge protected against <RID>IEEE C62.41</RID>Category B transients.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Harmonics</TTL><BRK/>
+<BRK/>
+<TXT>The wind turbine generated harmonics measured at the wind generator system ac output must not exceed the levels required to conform with <RID>IEEE 519</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The possible exposure to a corrosive environment should be carefully examined. Even when the correct conductor 
+size and the selected joining (connecting) method have satisfied all the IEEE 837 test requirements, it may be 
+prudent to choose a larger conductor size to compensate for some gradual reduction in the conductor cross section 
+during the design life of the installation where the soil environment tends to promote corrosion. Coordinate soil 
+environment with Geotechnical Engineer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Grounding must conform to <RID>NFPA 70</RID>, <RID>IEEE 80</RID>, <RID>IEEE 142</RID>, <RID>IEEE 242</RID> and <RID>IEEE C2</RID>, except that grounds and grounding systems must have a resistance to 
+solid earth ground not exceeding 5 ohms.  Provide ground grid for maximum permissible touch and step voltages as in accordance with <RID>IEEE 80</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide inner ring electrode around the foundation and bond it through the foundation to the turbine tower.  Provide additional ring electrodes 
+of gradually increasing depth and diameter in order to reduce touch and step voltages at the edges of the system. Provide a <SUB>Groundings System Analysis</SUB>
+.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The possible exposure to a corrosive environment should be carefully examined. Even when the correct conductor 
+size and the selected joining (connecting) method have satisfied all the IEEE 837 test requirements, it may be 
+prudent to choose a larger conductor size to compensate for some gradual reduction in the conductor cross section 
+during the design life of the installation where the soil environment tends to promote corrosion. Coordinate soil 
+environment with Geotechnical Engineer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Equipment Labeling</TTL><BRK/>
+<BRK/>
+<TXT>Install permanent labels on all major switches, controls, electrical panels, cabinets, disconnects, motor starters, major equipment, or components.  
+Weatherproof labels must be either laminated black phenolic plastic with white engraved letters, or engraved (or embossed) stainless steel nameplates.  
+Lettering for panels and equipment must be minimum<MET> [12][_____] mm</MET><ENG> [1/2][_____] inch</ENG> high.  Labels must be permanently installed by gluing or screwing 
+to equipment covers.  Labels must show panel or load name and circuit fed from.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Factor (PF) Correction</TTL><BRK/>
+<BRK/>
+<TXT>Active pf control must be installed as a integral portion of each wind turbine electrical system, and must include control provisions to maintain 
+a minimum power factor of [0.95][_____] at rated load (adjustable range of 0.9 to 1.0).  Additional (supplemental) pf correction equipment utilizing 
+capacitor technologies is not excluded (i.e. must be integrated and cannot be included in lieu of active pf control); however, the capacitors must 
+incorporate provisions for disconnection and safe controlled bleed off of electrical energy to support safe maintenance, as required.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Control and Monitoring Systems</TTL><BRK/>
+<BRK/>
+<TXT>Wind turbine control and monitoring system electronics (both local and remote) must be microprocessor-based, provide control of all critical functions, 
+and include (but not be limited to) fail-safe automatic shutdown in the event of any component malfunction, rotor over speed condition, or excess 
+vibrations.  The system must be designed with on-line diagnostic capabilities to allow technicians to trouble-shoot subsystem problems down to 
+the module or board level.  Provide controls for manual and automatic indicated wind turbine starts.  Contractor control panels will be supplied 
+both at ground level and within the nacelle control compartment; and each will be equipped with all the vendor standard control switches, indicators, 
+and metering necessary to support normal wind turbine operations.  In addition, the Contractor panel(s) will include a serial communications interface 
+or Ethernet port to communicate directly to the wind turbine microprocessor control system via[ IBM][_____] compatible, portable laptop computer.</TXT><BRK/>
+<BRK/>
+<TXT>The wind turbine control system must provide normal operations monitoring to start and stop the wind turbine based on available wind, and to support 
+automatic shutdown in the event an abnormal operating condition occurs.  Automatic shutdown must be provided for the system failures identified 
+above as a minimum.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Control System Modularity</TTL><BRK/>
+<BRK/>
+<TXT>All system controls and indicators must be solid state, modular, plug-in construction, so that any module may easily be removed from the system 
+and replaced without breaking or making solder type connections.  Subassemblies and modules performing identical functions must be interchangeable 
+without making wiring changes.  The number of types and sizes of modules must be kept to a minimum, in order to reduce the extent and cost of required 
+spare parts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Variable Speed/Load Leveling</TTL><BRK/>
+<BRK/>
+<TXT>To maximize reliability, impact on energy security, and reduce life cycle costs, the wind turbine generator control systems are preferred that 
+include active variable speed technologies (variable rotor, pitch, and/or rotor-generator speeds) and active machine damping to reduce/limit peak 
+torque effects due to wind gusts and/or grid supply fluctuations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Assembly Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Internal assembly wiring, including jumpers, must be color coded or permanently labeled using heat shrinkable, sleeve type markers[ [Brady B321][_____] 
+or approved equal,] as indicated on system schematics.  Label identifications must be typed or printed.  Wiring terminal strips must be provided 
+and clearly identified for all equipment.  Power and signal terminal strips must be separated.  Provide [20][_____] percent spare terminals for 
+all electrical connections where possible.</TXT><BRK/>
+<BRK/>
+<TXT>Label all furnished cables, cable terminations and connections.  Cables and connections must be located in easily accessible areas.  Signal and 
+power wiring must be routed in separate bundles and kept separate by providing separate terminal blocks and connectors.  Wires must be terminated 
+using calibrated crimp ring lugs.  Internal wiring and cabling must conform to <RID>NFPA 70</RID> and <RID>IEC 61400-SER</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ground Level Controls</TTL><BRK/>
+<BRK/>
+<TXT>Provide a standard ground level control panel(s) with the following functional characteristics as a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Allow local manual isolation of, or set it in a safe maintenance mode for, the wind turbine unit both from the normal power supply and 
+from remote Contractor initiated controls to support safe maintenance activities.</OLI><BRK/>
+<BRK/>
+<OLI>Allow local ground level manual controls to initiate shutdown of the wind turbine system.</OLI><BRK/>
+<BRK/>
+<OLI>Supplied to allow the Contractor to access the standard diagnostic functions, provide software and interface to allow direct connection 
+of a portable, laptop computer to directly access the master microprocessor system (or control interface/PLC, etc.).[  The new system must 
+be capable of being integrated with (i.e., interface directly to), and/or be an extension of, the existing wind farm monitoring and control 
+system.]</OLI><BRK/>
+<BRK/>
+<OLI>Allow ground level monitoring (without the need of the serial communications interface) of the following status and metered functions as 
+a minimum (or equivalent functions):</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Discrete indicators (lights or approved equal),</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Wind turbine system   READY,</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Wind turbine system   FAULT,</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Wind turbine system   ON LINE;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Meters/selectable Liquid Crystal Displays (LCDs) (for approval);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Grid Voltage,</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Line to Line volts - Phases AB, BC, and CA;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Wind turbine output power,</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Kilowatts and kilowatt hours;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Power Factor,</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Percent PF showing 0.5 - 1 - 0.5 (both leading/lagging);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Rotor RPM;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Pitch monitoring for active pitch turbines;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Manual start/stop;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Emergency stop (latching mushroom head switch with shield);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Automatic and emergency shutdown indicators (lights or approved equal) with shutdown/manual reset; and</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Local/remote selector.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Remote Monitoring and Control Work Stations</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Agency network security requirements if an Agency remote terminal is desired.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Wind farm remote monitoring and control (SCADA) workstations are to be installed at the remote facilities/rooms as shown in the contract drawings 
+as part of the wind farm/turbines project.  The remote monitoring system must include two desktop computers, with modems, running Windows operating 
+systems, and interfacing with the wind turbines using standard turbine manufacturer's supplied software.  The new wind turbines must have remote 
+control and monitoring software installed on the wind turbine workstations, and must be able to be accessed via fiber optic connection to support 
+internet access through the SCADA computer for monitoring and reporting of Wind Farm power production.  The workstations must be able to access 
+the wind turbines for remote monitoring and control via fiber optic cable system.  No DOS based software allowed in the installation of the new 
+systems.</TXT><BRK/>
+<BRK/>
+<TXT>The new wind turbines must also have communications accessibility via dedicated external fiber optic cable, DSL connection, satellite connection, 
+or other for manufacturer's warranty purposes, depending on the requirements of the wind turbine manufacturer.  Determine, supply and define the 
+SCADA system, for the Installation Contractor to install, to support the above wind turbine communications and monitoring hardware and software 
+(Procure the fiber optic cable and related components). Provide <SUB>Definition and Use of All System, Command, and Application Software</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Local Nacelle Monitoring and Controls</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's standard wind turbine system monitoring, controls, and alarms within the nacelle/base at the Contractor control panel with 
+ability to remote monitor as required.  All controls, meters, LCD displays, etc., must be located within NEMA 12 (or equal) gasketed enclosures.  
+The nacelle Contractor panel will include service switches to prevent the operation of the turbine from the base control panel when service personnel 
+are in the nacelle, as well as the basic Contractor functions identified in subparagraph, GROUND LEVEL CONTROLS of this section.  In addition, 
+system failures, malfunctions, and/or warning indications must be provided as identified below (as a minimum):</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Loss of enclosure cooling (if cooling is required);</OLI><BRK/>
+<BRK/>
+<OLI>Under/over voltage;</OLI><BRK/>
+<BRK/>
+<OLI>Under/over frequency;</OLI><BRK/>
+<BRK/>
+<OLI>Out of phase sequence;</OLI><BRK/>
+<BRK/>
+<OLI>Phase current unbalance;</OLI><BRK/>
+<BRK/>
+<OLI>Excess vibration;</OLI><BRK/>
+<BRK/>
+<OLI>Generator problem,</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Generator excess power,</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Generator over current,</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Generator over temperature,</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Generator over speed,</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Generator cooling failure;</OLI><BRK/>
+<BRK/>
+<OLI>Yaw system failure;</OLI><BRK/>
+<BRK/>
+<OLI>Cable over twist (if cables are used);</OLI><BRK/>
+<BRK/>
+<OLI>Hydraulic system failure;</OLI><BRK/>
+<BRK/>
+<OLI>Loss of gear box oil pressure;</OLI><BRK/>
+<BRK/>
+<OLI>Gear box over temperature;</OLI><BRK/>
+<BRK/>
+<OLI>Pitch control system failure (as required); and</OLI><BRK/>
+<BRK/>
+<OLI>Communications systems failure.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cable Over Twist Protection</TTL><BRK/>
+<BRK/>
+<TXT>If the proposed system utilizes cables between the yaw deck and the tower, the wind turbine system must incorporate the necessary cable twist sensors 
+to detect and determine the net number of nacelle rotations to prevent cable damage due to over twist.  In the event a cable over twist is sensed, 
+the wind turbine system controls must operate to safely bring the rotor to a complete stop, untwist the cable by counter yawing, and restart the 
+wind turbine system.  This system must be tolerant of total power outages and not lose track of previous twist information.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PERFORMANCE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>The wind turbine system output performance must meet the minimum criteria given in paragraph, DESIGN REQUIREMENTS of this section (less 2.5 percent 
+tolerance).  The minimum annual gross energy production required to meet this specification was calculated using historical data and corresponding 
+distribution with long-term annual average wind speed of<MET> [_____] m/s</MET><ENG> [_____] mph</ENG> at<MET> [_____] meters</MET><ENG> [_____] feet</ENG> AGL, tower/hub height of<MET> [_____] 
+meters</MET><ENG> [_____] feet</ENG>, wind sheer of [_____] between<MET> [_____] and [_____] meters</MET><ENG> [_____] and [_____] feet</ENG>, altitude curve of<MET> [1.06][_____] kg/m<SPS>3</SPS></MET><ENG> [6.617][_____] 
+lb/ft<SPS>3</SPS></ENG> x 10<SPS>-2</SPS> air density.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TESTS, INSPECTIONS, AND VERIFICATIONS</TTL><BRK/>
+<BRK/>
+<TXT>Perform pre-performance and performance tests, inspections, and verifications in accordance with <RID>IEC 61400-SER</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Submit all manufacturer's standard airfoil performance and mechanical stress/strength tests data under the maximum expected operating conditions.</TXT><BRK/>
+<BRK/>
+<TXT>All wind turbines controls must be tested to standard manufacturing and systems tests and must include but not be limited to:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Rotor controls (if required);</OLI><BRK/>
+<BRK/>
+<OLI>Yaw control (if required;)</OLI><BRK/>
+<BRK/>
+<OLI>Cooling system controls (if required);</OLI><BRK/>
+<BRK/>
+<OLI>Safety and shutdown systems; and</OLI><BRK/>
+<BRK/>
+<OLI>Braking systems.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Prepare and submit for review and approval a test plan and procedures for factory and site testing.  Tests must include an integrated control systems 
+test where a minimum of the wind turbine generator and associated controls must be tested as a complete or mock assembly.  These tests must be 
+subject to witness by the Contracting Officer (or designated representative).  Notify the Contracting Officer at least [30][_____] working days 
+in advance of the tests.  Should the Contracting Officer elect not to have a representative present during factory tests conducted by Contractor, 
+the Contractor must still conduct such factory tests and inspections and submit test data and reports.</TXT><BRK/>
+<BRK/>
+<TXT>Data must be reported as taken during testing.  Data format must be such that it can be included in performance test data submitted to the Contracting 
+Officer.</TXT><BRK/>
+<BRK/>
+<TXT>Furnish the Contracting Officer [two][_____] copies of all shop and field test reports (and/or certificate of compliance) and [two][_____] additional 
+information copies of these reports, clearly identified as such.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SITE PREPARATION</TTL><BRK/>
+<BRK/>
+<TXT>Evaluate and ensure site is accessible for the size and weight of planned equipment and facilities.  Coordinate transportation routes to site.</TXT><BRK/>
+<BRK/>
+<TXT>Prepare site and lay down areas in accordance with approved contract documents.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WIND TURBINE SYSTEM PREPARATION</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the wind turbine systems, remote work stations, control, power monitoring equipment, and all ancillary installed equipment are operational 
+in accordance with this specifications section.  All testing, both on site and at the factory, must be organized and supported by approved Commissioning 
+plans.  Submit a <SUB>Commissioning Plan</SUB> and procedures to the Contracting Officer for approval no later than [20][_____] business days after approval 
+of the final design.  The plan must state what equipment configuration will be tested, when it will be tested, which tests will be run, any special 
+test equipment required, any required simulation software, and who will conduct and witness the tests as a minimum.  The test procedures must define 
+the operating steps and expected results to demonstrate compliance with the requirements of this specifications section.  The <SUB>Commissioning Report</SUB>
+ must record all test results and describe nonconformance events and corrective actions.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure that the wind turbine components and associated subsystem must be tested by the manufacturer before shipment to verify proper assembly and 
+function of all components/subsystems, and to ensure that the final assembled unit meets or exceeds the requirements of this specifications section.  
+Component tests will be performed and/or Manufacturer's Factory certificates of compliance will be submitted indicating the equipment has been 
+fully tested and meets the manufacture's standard design requirements.  These tests must include (as a minimum):</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Full Load Generator Tests - Full load test must be performed using the full load nameplate rating of the wind turbine generator unit.  
+Full load testing must validate the vibration, temperature rise, and voltage and current outputs are within standard manufacturing limits 
+(and/or meet) the manufacture's specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Generator Insulation Tests - Generator insulation resistance and high potential tests must be performed with an insulation tester.  Stator 
+readings must be taken at the generator circuit breaker/switch.  All results of insulation tests must be recorded.  Readings must be within 
+the standard manufacturing limits specified by the generator manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Gearbox/Transmission Full Load Tests - Full load testing must validate the vibration, temperature rise, sealing, audible noise, gear tooth 
+patterns, and lubrication systems are within the limits specified by the manufacturer.  Full load test must be performed using the full 
+load nameplate rating of the transmission or wind turbine generator unit (whichever is greater).</OLI><BRK/></OLG>
+<BRK/>
+<TXT>All factory component tests described above may be performed at the manufacturing facility.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ERECTION</TTL><BRK/>
+<BRK/>
+<TXT>Determine all hoisting and rigging and other installation requirements, and must make arrangements, if appropriate, for rent or purchase of any 
+of these special installation tools.</TXT><BRK/>
+<BRK/>
+<TXT>Comply with <RID>ASSP Z359</RID> Fall Protection Code during all construction, operations, and maintenance actions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install, test and commission wind turbine system.  Provide detailed instructions and necessary oversight for installing all wind turbine system 
+equipment.  Notify the [CO][COR] of any errors in installation ensure that any and all installation errors are corrected in accordance with the 
+manufacturer's instructions and specifications.  Certify that the wind turbine system and wind turbine equipment are ready to operate.  The Contracting 
+Officer must receive [30][_____] working days' notice of the scheduled start up of the wind turbine system, with validation of the final schedule 
+[21][_____] days prior to startup.</TXT><BRK/>
+<BRK/>
+<TXT>The scope of the Contractor's installation of the wind energy system must include, but not be limited to, the following activities:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Wind towers installation and setup support, including for hoisting, rigging, leveling, etc.;</OLI><BRK/>
+<BRK/>
+<OLI>Nacelle and rotor installations;</OLI><BRK/>
+<BRK/>
+<OLI>Control, monitoring, and terminal cabinet installations; and</OLI><BRK/>
+<BRK/>
+<OLI>Wiring connections/hookup.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM INTERFACES</TTL><BRK/>
+<BRK/>
+<TXT>Wind turbine control and monitoring system is not authorized to interface with installation information network without approved software and hardware, 
+and either an Authorization to Operate (ATO), Interim ATO (IATO), or Interim Authorization to Test (IATT).  Permanent connection is not allowed 
+without an Approval to Connect (ATC) or Interim ATC (IATC) authorization. Comply with <RID>IEEE 1547</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Power System Interface</TTL><BRK/>
+<BRK/>
+<TXT>The wind farm generator connections to the site power grid will be field located as shown in the contract drawings.  Validate proper voltage drop 
+of system after completion of the wind turbine Contractor submittals.  Locate the wind turbine system ground level controls to enable safe manual 
+ground level shutdown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dispatch Interface</TTL><BRK/>
+<BRK/>
+<TXT>The remote monitoring and control system must be integrated to allow the [UTILITY][Contractor's][User's] power dispatch, via the master workstations 
+at the remote facilities, to monitor and control Wind Farm status and record aggregate power output and wind turbine status from the Wind Farm 
+system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control System Interface</TTL><BRK/>
+<BRK/>
+<TXT>The wind turbine system must be supplied with a standard fiber optic, DSL, satellite or 56 kbit/s to 115 kbit/s minimum serial interface communications 
+interface [by others] to link standard wind turbine control and monitoring functions with the existing remote monitoring/control system.  The wind 
+turbine communications interface will be capable of driving control signals, from the final locations recommended for the wind turbines to the 
+remote facility workstations.  The communications interface must include all the standard software drivers, installation and operation documentation, 
+and programming support necessary to allow easy integration directly with the [Contractor's][user's] workstations located at the remote.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FINISHING, CLEANING, AND PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>All surface finishes, cleaning, and painting must conform with Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.  All exposed surfaces that protect material 
+must be UV resistant to maintain appearances through the design life of the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EQUIPMENT IDENTIFICATION</TTL><BRK/>
+<BRK/>
+<TXT>Each piece of equipment must be identified so that it can be easily correlated with the documentation.  The means of identification must be uniform 
+throughout the system.  The identification mark must be permanently affixed to the part it identifies.  This requirement includes internal wiring, 
+terminal strips, input/output cables and connectors, input/output modules, power supplies, and other subsystem components and subassemblies.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>NAMEPLATES</TTL><BRK/>
+<BRK/>
+<TXT>Each major piece of wind turbine system equipment must be furnished with a permanently attached 316 stainless steel nameplate, which contains a 
+minimum of the following information:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Tag number;</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer name;</OLI><BRK/>
+<BRK/>
+<OLI>Model number;</OLI><BRK/>
+<BRK/>
+<OLI>Serial number; and</OLI><BRK/>
+<BRK/>
+<OLI>Purchase order number.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Each nameplate must be fully visible when the equipment is in operating condition and consist of a self-adhesive label having [_____]<MET> [6][_____] 
+mm</MET><ENG> [1/4][_____] in</ENG> embossed letters.  Shipping container must be labeled with the same data.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Manufacturer's Field Service</TTL><BRK/>
+<BRK/>
+<TXT>Provide the services of factory trained and approved field service engineer during system installation, testing, and commissioning.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Start Up Services</TTL><BRK/>
+<BRK/>
+<TXT>Carry out a checklist of startup requirements and conduct a series of safety tests to ensure proper installation, safe operation, and performance 
+up to specification.  Develop a <SUB>Commissioning Report</SUB> detailing all procedures, testing, and results.</TXT><BRK/>
+<BRK/>
+<TXT>After installation, prepare the new wind turbine systems for final testing and commissioning.  The wind turbine systems must be fully debugged 
+and operating in accordance with all requirements of this specifications section.  Final start-up services must include, but will not be limited 
+to, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Final functional checks of all installed wind turbine systems, automated control modes, and associated controls and instrumentation.</OLI><BRK/>
+<BRK/>
+<OLI>Final verification and calibration of all wind turbine system control and instrumentation signals and digital readouts.</OLI><BRK/>
+<BRK/>
+<OLI>Final verification of the proper operation of all controlled shutdown functions and capabilities; and both automatic and ground level supported 
+operating, monitoring, and related control functions.</OLI><BRK/>
+<BRK/>
+<OLI>Alarm systems.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Functional Acceptance Testing</TTL><BRK/>
+<BRK/>
+<TXT>After installation, conduct functional acceptance testing of the equipment and all accessories furnished to verify their proper performance under 
+conditions of actual operation.  Notify the CO at least [30][_____] working days in advance of the tests.  Compliance with all requirements of 
+this specifications section and all applicable standards (as amended) must be verified by an on-site startup/operational test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operational Testing</TTL><BRK/>
+<BRK/>
+<TXT>Support complete on-line operational testing on site to formally commission wind turbine operations, validate warranties, perform training, and 
+initiate maintenance schedules.  The wind turbine manufacturer will support the Installation Contractor who will be responsible for developing 
+and implementing approved operational test procedures for testing all of the wind turbine operational and failure/failsafe systems.  A <SUB>certificate 
+of completion</SUB> must be provided at the conclusion of system's construction, installation, and commissioning.  Coordinate  all formal correspondence 
+and reporting required for approval of the test plan.  Project implementation must require the installation, testing, and operation of the wind 
+turbine generating units in parallel with the installation's [_____] kV distribution system.  Installation and start-up support service submittals, 
+test plan documents, and test schedule information must be submitted for review and approval.</TXT><BRK/>
+<BRK/>
+<TXT>Perform and submit field data reports for the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Verification of proper electrical power connection to all wind turbine system components.</OLI><BRK/>
+<BRK/>
+<OLI>Verification of proper termination of all system interconnect wiring and signal transmitter calibrations.</OLI><BRK/>
+<BRK/>
+<OLI>Verification of proper wind turbine system monitoring, controls, and environmental support system functionality.</OLI><BRK/>
+<BRK/>
+<OLI>Functional checks of all analog and digital signals, modems, and data communications systems associated with the wind turbine system.</OLI><BRK/>
+<BRK/>
+<OLI>Verification of wind turbine equipment alignments, torques and adjustments, and vibration block installations.</OLI><BRK/>
+<BRK/>
+<OLI>Functional checks (and correction if necessary) of all lubrication and cooling system levels and operations, shaft seals, and or other 
+system fluid leaks.</OLI><BRK/>
+<BRK/>
+<OLI>All variations to documentation must be documented and submitted immediately to the CO and/or the COR.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>COMMISSIONING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING is intended for building systems, however, the basic requirements 
+are applicable to PV commissioning processes.  Section <SRF>01 91 00.15</SRF> will need to be tailored for PV systems when 
+compiling project specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conduct Commissioning, after the system is installed and is ready for operation, in accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING, 
+item (6)renewable energy generation, to verify that the completed and installed system meets the requirements of IEEE 1547.  Tailor for non-building 
+systems.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Commissioning Agent</TTL><BRK/>
+<BRK/>
+<TXT>Individual qualified in testing protective equipment (e.g., professional engineer, factory-certified technician, licensed electrician with experience 
+in testing protective equipment) must perform or directly supervise commissioning tests.  Provide <SUB>Commissioning Agents Qualifications</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Commissioning Plan and Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Develop and implement a <SUB>commissioning plan</SUB> and <SUB>commissioning schedule</SUB> in accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Start-up Pre-functional Checklists</TTL><BRK/>
+<BRK/>
+<TXT>Carry out a checklist of startup requirements and conduct a series of safety tests to ensure proper installation, safe operation, and performance 
+conforming to specification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Functional Performance Testing</TTL><BRK/>
+<BRK/>
+<TXT>Prepare test procedures and conduct functional performance testing of the installed system.  Test on completion each individual wind turbine generator 
+and then test on completion the complete wind power system plant.  Test the complete wind power system for a minimum duration of 200 hours, of 
+which 150 hours should be generator time with 85 percent availability.</TXT><BRK/>
+<BRK/>
+<TXT>Provide testing of the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Collector System</OLI><BRK/>
+<BRK/>
+<OLI>Collector and Substation Equipment</OLI><BRK/>
+<BRK/>
+<OLI>Ground Grid</OLI><BRK/>
+<BRK/>
+<OLI>Main Power Transformers</OLI><BRK/>
+<BRK/>
+<OLI>Circuit Breakers</OLI><BRK/>
+<BRK/>
+<OLI>Arrestors</OLI><BRK/>
+<BRK/>
+<OLI>Switches and Switchgear</OLI><BRK/>
+<BRK/>
+<OLI>Instrument Transformers</OLI><BRK/>
+<BRK/>
+<OLI>Wind Plant Relays</OLI><BRK/>
+<BRK/>
+<OLI>Wind Plant Energization </OLI><BRK/>
+<BRK/>
+<OLI>Turbine Transformer</OLI><BRK/>
+<BRK/>
+<OLI>Overhead Collection Circuits</OLI><BRK/>
+<BRK/>
+<OLI>Fiber Optics and Secondary Cables</OLI><BRK/>
+<BRK/>
+<OLI>Medium Voltage Cable Systems</OLI><BRK/>
+<BRK/>
+<OLI>Power Performance</OLI><BRK/>
+<BRK/>
+<OLI>Nacelle Anemometer Verification</OLI><BRK/>
+<BRK/>
+<OLI>Acoustic Noise</OLI><BRK/>
+<BRK/>
+<OLI>SCADA and Controls</OLI><BRK/>
+<BRK/>
+<OLI>Back Up/Black Start Generator(s)</OLI><BRK/>
+<BRK/>
+<OLI>Grid Synchronization and Interface</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Functional Performance Testing Results</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Coordinate, observe and record the results of the functional performance testing.  Coordinate retesting as necessary until satisfactory performance 
+is verified.  Verify the intended operation of individual components and system interactions under various conditions and modes of operation.</TXT><BRK/>
+<BRK/>
+<TXT>Document items of non-compliance in materials, installation or operation.  Immediately address observed non-conformance and deficiencies in terms 
+of notification to responsible parties, and provide recommended actions to correct deficiencies.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Final <SUB>Commissioning Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Prepare and submit final commissioning report.  Summarize all of the tasks, findings, conclusions, and recommendations of the commissioning process 
+in accordance with <RID>IEC 61400-SER</RID>.  Include the results of all tests and a listing of the final settings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Demonstration</TTL><BRK/>
+<BRK/>
+<TXT>Provide hands on demonstration of wind turbine systems and controls as part of the training session.  Minimum demonstration areas must include 
+pre-startup inspections, system startup, grid connection; operations, operator initiated shutdown, emergency shutdown, and extreme conditions procedures.</TXT><BRK/>
+<BRK/>
+<TXT>Demonstrate, upon completion of functional acceptance tests, that all circuits and devices are in proper operating condition and performing as 
+intended.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Training</TTL><BRK/>
+<BRK/>
+<TXT>Provide a [1][3][5] day comprehensive <SUB>training course</SUB> covering operations and maintenance, critical spares, and unique tools requirements, with 
+complete <SUB>training materials</SUB>, at construction completion.</TXT><BRK/>
+<BRK/>
+<TXT>Provide recommendations and sources for advanced maintenance personnel training and certification programs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Spare Parts</TTL><BRK/>
+<BRK/>
+<TXT>Provide a spare parts list in accordance with the manufacturer's recommendations that will ensure [95][_____] percent system availability for from 
+one year to 2 years of operation for each wind turbine unit, (according to options awarded).  The list must include/identify all required gaskets, 
+seals, sealing materials required for maintaining the weather tight integrity of the wind turbine tower and nacelle.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Special Tools and Equipment</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Identify special tools and equipment designed specifically for the wind turbine equipment operation and maintenance.  Special tools and devices, 
+including any metric wrenches or other hand tools that are not standard in the United States, required for operation and maintenance of the equipment 
+furnished under this specifications section, must be listed and clearly identified with the name of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Site Restoration</TTL><BRK/>
+<BRK/>
+<TXT>Clean and restore temporary work areas to pre-existing conditions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Decommissioning Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a decommissioning plan to Contracting Officer for approval.  Decommissioning plan must include actions necessary to restoring site and 
+access roads to natural conditions and option to evaluate structure and components for life extension upgrades.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Warranty</TTL><BRK/>
+<BRK/>
+<TXT>Provide system and major component <SUB>Warranty</SUB> in accordance with Section <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>OPERATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Normal Operations</TTL><BRK/>
+<BRK/>
+<TXT>The wind turbine system must be operating in an automatic, unmanned mode, unless a failure alarm is detected in the wind farm control system, or 
+maintenance is being performed on the system.  Wind turbine system controls must be provided to optimize wind turbine system outputs under normal 
+wind conditions, as described in paragraph, EXISTING CONDITIONS of this section.  Standard wind turbine controls must be designed to keep the wind 
+generating system operational within its normal operating limits over the design life of the wind farm system, producing efficient, optimized, 
+electrical power.  Should the wind turbine or its control system malfunction, the protection system/safety schemes must maintain it in a non-hazardous 
+condition.  Acceptable safety schemes must include braking, blade pitching, spoilers, and active yawing, as required by the turbine generator manufacturer. 
+Provide wind turbine <SUB>Operations Manuals</SUB>, <SUB>Alarms and Alarm Presentation</SUB>, <SUB>System Startup, Shutdown, and Emergency Procedures</SUB>, and <SUB>Contractor Commands 
+(Control Consoles, Indicating/Control Panels, and Peripheral Devices)</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Startup Inspections</TTL><BRK/>
+<BRK/>
+<TXT>Pre-startup inspections must be performed prior to initiating wind turbine system operations.  To support automatic operations, the inspections 
+will only be required following maintenance and/or abnormal shutdowns brought on by the automatic shutdown features of the controls.  Pre-starting 
+inspection will be performed using manufacturer's instructions and procedures to ensure that the wind turbine system is ready for on-line operations.  
+The necessary instructions, procedures, checklists, etc. must be supplied as part of the documentation submittals as required herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connection to Grid</TTL><BRK/>
+<BRK/>
+<TXT>To connect grid power to the associated wind turbine unit, coordinate with utility company grid operations to close the wind turbine switchgear 
+breakers either manually at the site or remotely via the Contractor stations.  Compliance with interconnection agreement requirements is mandatory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Initiate Wind Turbine Operations</TTL><BRK/>
+<BRK/>
+<TXT>Once grid power is supplied to the wind turbine, the wind turbine control system will begin its internal system diagnostics, as necessary, to prepare 
+the control system for active operations.  All faults normally detected by the control system, or occurring as a result of automatic shutdown, 
+will have to be manually reset prior to allowing active operations.  When the fault indications have been reset, the controls will output a wind 
+turbine "READY" indicator to notify that the wind turbine is ready to activate soft start operations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Normal Operations</TTL><BRK/>
+<BRK/>
+<TXT>Final wind turbine connection to the grid for normal on-line operation will occur when the he ON-LINE command is initiated, either from the Contractor's 
+panel or remotely via the serial communications/control link.  Normal operation must include normal pitch, speed, and voltage controls to automatically 
+optimize output while operating within normal wind speed parameters.  ON-LINE operations will invoke normal operation where the wind turbines will 
+begin soft start (solid state soft start, reduced voltage starting, or equal) operations (to reduce the impact of connecting the wind turbine to 
+the grid) if adequate wind is available.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Normal Shutdown</TTL><BRK/>
+<BRK/>
+<TXT>All Normal shutdowns must result in immediate orderly shutdown, including a functional disconnect of the wind turbine generator from the grid at 
+the wind turbine output control (or equal).  The wind turbine control system must remain operational to maintain full control of the wind turbine 
+shutdown (application of normal braking, required rotor and blade pitch operations, active yawing, etc.) as necessary to effect safe (non-damaging) 
+shutdown of the wind turbine unit.  Prior to beginning maintenance operations, shut down the system, applying the parking brake, open the switchgear 
+breaker supplying the wind turbine system, open the wind turbine local disconnect breaker, and set the wind turbine operations switch into the 
+LOCAL mode.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Emergency Shutdown</TTL><BRK/>
+<BRK/>
+<TXT>Emergency shutdown procedures/functions must be included as an integral part of the wind turbine basic operating capabilities.  The emergency shutdown 
+system must operate to disconnect the wind turbine from the grid and apply appropriate braking actions, require rotor and blade pitch operations, 
+active yawing, etc., as necessary to effect safe (non-damaging) shutdown of the wind turbine unit in emergency, extreme operating conditions, survival 
+wind speeds or a loss of grid power while operating.  These include, but are not limited to, loss of grid power, breaker trip, over speed, contractor 
+control, and other anomalies.  Provide <SUB>Recovery and Restart Procedures</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Extreme Operating Conditions</TTL><BRK/>
+<BRK/>
+<TXT>Peak wind speed, high temperature, and earthquakes all constitute extreme operating conditions, which may exist whether the wind turbine is in 
+operation or not.  The wind turbine system design analysis must consider the effects of extreme operating conditions; and the resulting design 
+configuration must include the necessary safety elements to mitigate damage from the extremes (and still effect safe shutdown).  Contractor inspection 
+and manual reset is expected before any operation following an extreme event.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<TXT>Contractor to create maintenance schedule and perform system and component <NED/>maintenance in accordance with equipment manufacturers' recommendations 
+and <RID>AWEA O&amp;M RP</RID>. Provide a <SUB>Recommended Multi-Year Operations and Maintenance (O&amp;M) Requirements Schedule</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

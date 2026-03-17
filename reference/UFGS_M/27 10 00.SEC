@@ -1,0 +1,2183 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="395.25"/>
+      <COL AUTOWIDTH="0" WIDTH="392.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.75">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-27 10 00 (May 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="6.75">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="6.75">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-27 10 00 (August 2011)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 27 10 00</SCN><BRK/>
+<BRK/>
+<STL>BUILDING TELECOMMUNICATIONS CABLING SYSTEM</STL><BRK/>
+<DTE>05/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers requirements for <SCP>building telecommunications cabling systems using a physical 
+hierarchical star or hierarchical star with redundancy levels network topology for transporting telecommunications 
+signals within a building</SCP>.  Telecommunications cabling systems include the copper and optical fiber horizontal 
+and interior building backbone systems and cable media, patch panels, connecting blocks, firestopping, grounding, 
+cable support, hardware, communications outlets, connectors, and associated hardware; station wiring, work area 
+station outlets and service outlets; pathways; and distribution terminals.  This specification covers telecommunication 
+cabling systems supporting customer's voice, data, video, audio, security, digital imaging, facility related control 
+system distribution, and environmental control for transporting information throughout modern buildings using 
+twisted pair and optical fiber cables.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate telecommunications requirements with electrical, grounding, security, fire alarm, and HVAC requirements.  
+Coordinate all requirements with the proponent Technical Authority.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to UFC 1-300-02 <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">Unified Facilities Guide</URL> Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in a respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must provide single line schematic type diagrams of the telecommunications system, site plans, 
+and floor plans showing overhead or underground service entrances, maintenance holes, handholes, conduit sizes, 
+conductor size and type, number of pairs and fibers, and physical locations and layouts of telecommunication entrance 
+facility, telecommunications equipment rooms, campus distributor, building distributors, floor distributors, and 
+telecommunications outlets.</NPR><BRK/>
+<BRK/>
+<NPR>The designer must tailor this document to the operational theater to align with the requirements OCONUS when applicable.  
+The BICSI TDMM contains references for OCONUS but these must be coordinated with the local technical authorities.</NPR><BRK/>
+<BRK/>
+<NPR>The design package is to include but is not limited to the following drawings:</NPR><BRK/>
+<BRK/>
+<NPR>T0 Site drawings, T1 Interior Drawings showing all ICT elements on floor plans, T2 Drawings showing serving zones 
+and pathways, T3 Drawings for all telecommunication  spaces, T4 Drawings for details including labeling scheme 
+and cabinet elevations, T5 Drawings showing schedules for cable plant including cutovers, and T6 Drawings including 
+network diagrams, riser diagrams, and boundary diagrams in accordance with ANSI/TIA 606.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  UFC 3-580-01, "Information and Communications Technology Infrastructure Planning and Design," provides 
+requirements for interior and outside plant (OSP)telecommunications cabling systems for DoD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM D709</RID><RTL>(2017) Standard Specification for Laminated Thermosetting Materials</RTL><BRK/><BRK/></REF><REF><ORG>BICSI International Standards Program (BICSI)</ORG><BRK/><BRK/><RID>ANSI/BICSI N1</RID><RTL>(2019) Installation Practices for Telecommunications and ICT Cabling and Related Cabling Infrastructure</RTL><BRK/><BRK/><RID>ANSI/BICSI N3</RID><RTL>(2020) Planning and Installation Methods for the Bonding and Grounding of Telecommunication and ICT Systems and Infrastructure</RTL><BRK/><BRK/><RID>BICSI TDMM</RID><RTL>(2024; 15th Edition) Telecommunications Distribution Methods Manual</RTL><BRK/><BRK/></REF><REF><ORG>ELECTRONIC COMPONENTS INDUSTRY ASSOCIATION (ECIA)</ORG><BRK/><BRK/><RID>ECIA EIA/ECA 310-E</RID><RTL>(2005) Cabinets, Racks, Panels, and Associated Equipment</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 100</RID><RTL>(2000; Archived) The Authoritative Dictionary of IEEE Standards Terms</RTL><BRK/><BRK/></REF><REF><ORG>INSULATED CABLE ENGINEERS ASSOCIATION (ICEA)</ORG><BRK/><BRK/><RID>ICEA 61196-1-100</RID><RTL>(2022) Coaxial Communications Cables-Part 1-100:Electrical test methods General Requirements</RTL><BRK/><BRK/><RID>ICEA S-83-596</RID><RTL>(2021) Indoor Optical Cable</RTL><BRK/><BRK/><RID>ICEA S-90-661</RID><RTL>(2021) Category 3 and 5E Individually Unshielded Twisted Pairs, Indoor Cables (With or Without an Overall Shield) for Use in General Purpose and LAN Communications Wiring Systems</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO/IEC 11801</RID><RTL>(2017) Information technology - Part 1-General Requirements-Generic cabling for customer premises</RTL><BRK/><BRK/><RID>ISO/IEC 14763-2</RID><RTL>(2019) Information technology - Part 1 -Implementation and operation of customer premises cabling</RTL><BRK/><BRK/><RID>ISO/IEC 14763-3</RID><RTL>(2024) Information technology - Implementation and operation of customer premises cabling; Part 3: Testing of optical fibre cabling</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL TELECOMMUNICATION UNION (ITU)</ORG><BRK/><BRK/><RID>ITU-T G.652</RID><RTL>(2024) Characteristics of a single-mode optical fibre and cable</RTL><BRK/><BRK/><RID>ITU-T G.655</RID><RTL>(2009) Characteristics of a non-zero dispersion-shifted single-mode optical fibre and cable</RTL><BRK/><BRK/><RID>ITU-T G.657</RID><RTL>(2024) Characteristics of a bending-loss insensitive single-mode optical fibre and cable</RTL><BRK/><BRK/><RID>ITU-T G.984.1</RID><RTL>(2012) Gigabit-capable passive optical networks (GPON): General characteristics</RTL><BRK/><BRK/><RID>ITU-T G.987.1</RID><RTL>(2016; 2020 Corrigendum 1) 10-Gigabit-capable passive optical networks (XG-PON): General requirements</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL CONTRACTORS ASSOCIATION (NECA)</ORG><BRK/><BRK/><RID>NECA/BICSI 568</RID><RTL>(2006) Standard for Installing Building Telecommunications Cabling</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>ANSI/NEMA WC 66</RID><RTL>(2024) Standard for Category 6 and 6A, 100 Ohm, Individually Unshielded Twisted Pairs, Indoor Cables (With Or Without An Overall Shield) for Use in LAN Communication Wiring Systems</RTL><BRK/><BRK/><RID>NEMA BI-50026/VE 2</RID><RTL>(2024) Cable Tray Installation Guidelines</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>TELECOMMUNICATIONS INDUSTRY ASSOCIATION (TIA)</ORG><BRK/><BRK/><RID>ANSI/TIA-526-7</RID><RTL>(2015a; R 2022) Measurement of Optical Power Loss of Installed Single-Mode Fiber Cable Plant, Adoption of IEC 61280-4-2 edition 2:  Fibre-Optic Communications Subsystem Test Procedures - Part 4-2:  Installed Cable Plant - Single-Mode Attenuation and Optical Return Loss Measurement</RTL><BRK/><BRK/><RID>ANSI/TIA-526-14</RID><RTL>(2023d) OFSTP-14A Optical Power Loss Measurements of Installed Multimode Fiber Cable Plant</RTL><BRK/><BRK/><RID>ANSI/TIA-568 Series</RID><RTL>(2023) Building Telecommunications Cabling Standards, includes ANSI/TIA-568.0 (2020e), ANSI/TIA-568.1 (2024e), ANSI/TIA-568.2 (2024e), ANSI/TIA-568.3 (2022e), ANSI/TIA-568.4 (2022), ANSI/TIA-568.5 (2022)</RTL><BRK/><BRK/><RID>ANSI/TIA-568.1</RID><RTL>(2020e) Commercial Building Telecommunications Infrastructure Standard</RTL><BRK/><BRK/><RID>ANSI/TIA-568.2</RID><RTL>(2024e) Balanced Twisted-Pair Telecommunications Cabling and Components Standards</RTL><BRK/><BRK/><RID>ANSI/TIA-568.3</RID><RTL>(2022e) Optical Fiber Cabling Components Standard</RTL><BRK/><BRK/><RID>ANSI/TIA-568.4</RID><RTL>(2022e) Broadband Coaxial Cabling and Components Standard</RTL><BRK/><BRK/><RID>ANSI/TIA-568.5</RID><RTL>(2022; 2024 Am 1) Balanced Single Twisted-pair Telecommunications Cabling and Components Standard</RTL><BRK/><BRK/><RID>ANSI/TIA-569</RID><RTL>(2019e; Add 1 2022) Telecommunications Pathways and Spaces</RTL><BRK/><BRK/><RID>ANSI/TIA-570</RID><RTL>(2024e) Residential Telecommunications Infrastructure Standard</RTL><BRK/><BRK/><RID>ANSI/TIA-606</RID><RTL>(2021d) Administration Standard for Telecommunications Infrastructure</RTL><BRK/><BRK/><RID>ANSI/TIA-607</RID><RTL>(2019d) Generic Telecommunications Bonding and Grounding (Earthing) for Customer Premises</RTL><BRK/><BRK/><RID>ANSI/TIA-942</RID><RTL>(2024)Telecommunications Infrastructure Standard for Data Centers</RTL><BRK/><BRK/><RID>ANSI/TIA-1152</RID><RTL>(2016; R 2021) Requirements for Field Test Instruments and Measurements for Balanced Twisted-Pair Cabling</RTL><BRK/><BRK/><RID>TIA TSB-162</RID><RTL>(2021) Telecommunications Cabling Guidelines for Wireless Access Points</RTL><BRK/><BRK/><RID>TIA-455-21</RID><RTL>(1988a; R 2012) FOTP-21 - Mating Durability of Fiber Optic Interconnecting Devices</RTL><BRK/><BRK/><RID>TIA/EIA-598</RID><RTL>(2014D; Add 2 2018) Optical Fiber Cable Color Coding</RTL><BRK/><BRK/><RID>TIA/EIA-604-2</RID><RTL>(2004b; R 2014) FOCIS 2 Fiber Optic Connector Intermateability Standard</RTL><BRK/><BRK/><RID>TIA/EIA-604-3</RID><RTL>(2004b; R 2014) Fiber Optic Connector Intermateability Standard (FOCIS), Type SC and SC-APC, FOCIS-3</RTL><BRK/><BRK/><RID>TIA/EIA-604-10</RID><RTL>(2021c) FOCIS 10 Fiber Optic Connector Intermateability Standard - Type LC</RTL><BRK/><BRK/><RID>TIA/EIA-604-12</RID><RTL>(2000) FOCIS 12 Fiber Optic Connector Intermateability Standard Type MT-RJ</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 3-580-01</RID><RTL>(2024) Information and Communications Technology Infrastructure Planning and Design</RTL><BRK/><BRK/></REF><REF><ORG>U.S. FEDERAL COMMUNICATIONS COMMISSION (FCC)</ORG><BRK/><BRK/><RID>FCC Part 68</RID><RTL>Connection of Terminal Equipment to the Telephone Network (47 CFR 68)</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 50</RID><RTL>(2024) UL Standard for Safety Enclosures for Electrical Equipment, Non-Environmental Considerations</RTL><BRK/><BRK/><RID>UL 444</RID><RTL>(2023) UL Standard for Safety Communications Cables</RTL><BRK/><BRK/><RID>UL 467</RID><RTL>(2022) UL Standard for Safety Grounding and Bonding Equipment</RTL><BRK/><BRK/><RID>UL 486A-486B</RID><RTL>(2025) UL Standard for Safety Wire Connectors</RTL><BRK/><BRK/><RID>UL 514C</RID><RTL>(2014; Reprint Apr 2024) UL Standard for Safety Nonmetallic Outlet Boxes, Flush-Device Boxes, and Covers</RTL><BRK/><BRK/><RID>UL 723</RID><RTL>(2018; Reprint Jun 2025) UL Standard for Safety Test for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/><RID>UL 969</RID><RTL>(2025) UL Standard for Safety Marking and Labeling Systems</RTL><BRK/><BRK/><RID>UL 1286</RID><RTL>(2022; Reprint Mar 2024) UL Standard for Safety Office Furnishings</RTL><BRK/><BRK/><RID>UL 1666</RID><RTL>(2007; Reprint Sep 2021) UL Standard for Safety Test for Flame Propagation Height of Electrical and Optical-Fiber Cables Installed Vertically in Shafts</RTL><BRK/><BRK/><RID>UL 1863</RID><RTL>(2004; Reprint Apr 2025) UL Standard for Safety Communication Circuit Accessories</RTL><BRK/><BRK/><RID>UL 2043</RID><RTL>(2023) Fire Test for Heat and Visible Smoke Release for Discrete Products and Their Accessories Installed in Air-Handling Spaces</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ensure that design provides for adequate telecommunications spaces using UFC 3-580-01 as a minimum requirement.</NPR><BRK/>
+<BRK/>
+<NPR>Network type, size and configuration must be coordinated with the technical manager.  The horizontal and backbone 
+structured cabling must support the Information Technology (IT) and Operational Technology (OT) requirements of 
+the end user.</NPR><BRK/>
+<BRK/>
+<NPR>For Military Construction projects the proponent property (non-permanent) items are procured from a distinct funding 
+source separate from MILCON money and may or may not be included in a MILCON project construction contract.  The 
+infrastructure that supports those items is real property and is to be included in the design.  The ICT designer 
+must verify the items that are being procured outside of the MILCON project construction contract and must document 
+these items in writing.</NPR><BRK/>
+<BRK/>
+<NPR>Select bracketed Section 27 05 26 GROUNDING AND BONDING FOR COMMUNICATIONS SYSTEMS when issued.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM and Section <SRF>33 82 00</SRF> TELECOMMUNICATIONS OUTSIDE PLANT (OSP)[, and Section 27 05 26 GROUNDING AND 
+BONDING FOR COMMUNICATIONS SYSTEMS] apply to this section with additions and modifications specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified or indicated, electrical and electronics terms used in this specification must be as defined in <RID>ANSI/TIA-568.1</RID>, <RID>ANSI/TIA-568.2</RID>
+, <RID>ANSI/TIA-568.3</RID>, <RID>ANSI/TIA-569</RID>, <RID>ANSI/TIA-606</RID>, Federal Communications Commission (FCC), <RID>BICSI TDMM</RID>, <RID>IEEE 100</RID>, and herein.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Distributor C / Campus Distributor (CD)</TTL><BRK/>
+<BRK/>
+<TXT>A distributor from which the campus backbone cabling emanates.  (International expression for main cross-connect (MC).)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Distributor B / Building Distributor (BD)</TTL><BRK/>
+<BRK/>
+<TXT>A distributor in which the building backbone cables terminate and at which connections to the campus backbone cables may be made.  (International 
+expression for intermediate cross-connect (IC).)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Distributor A / Floor Distributor (FD)</TTL><BRK/>
+<BRK/>
+<TXT>A distributor used to connect horizontal cable and cabling subsystems or equipment.  (International expression for horizontal cross-connect (HC).)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Room (TR)</TTL><BRK/>
+<BRK/>
+<TXT>An enclosed space for housing telecommunications equipment, cable, terminations, and cross-connects.  The room is the recognized cross-connect 
+between the backbone cable and the horizontal cabling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Entrance Facility (EF)</TTL><BRK/>
+<BRK/>
+<TXT>An entrance to the building for both private and public network service cables (including wireless) including the entrance point at the building 
+wall and continuing to the equipment room.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Room (ER)</TTL><BRK/>
+<BRK/>
+<TXT>An space for telecommunications equipment that serves the occupants of a building.  Equipment housed therein is considered distinct from a telecommunications 
+room because of the nature of its complexity.  It is not necessary for the TR or ER to be positively charged relative to air flow unless it is 
+adjacent to an outside space, storage, warehouse, or an unconditioned space such as a mechanical room.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Open Cable</TTL><BRK/>
+<BRK/>
+<TXT>Cabling that is not run in a raceway as defined by <RID>NFPA 70</RID>.  This refers to cabling that is "open" to the space in which the cable has been installed 
+and is therefore exposed to the environmental conditions associated with that space.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Open Office</TTL><BRK/>
+<BRK/>
+<TXT>A floor space division provided by furniture, moveable partitions, or other means instead of by building walls.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pathway</TTL><BRK/>
+<BRK/>
+<TXT>A physical infrastructure utilized for the placement and routing of telecommunications cable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Cable</TTL><BRK/>
+<BRK/>
+<TXT>All copper and fiber cables utilized for the application of transmitting data on a network.Supports all equipment outlets whether indicated as 
+work areas, service, or equipment type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Activity Specific Telecommunications Manager/Authority</TTL><BRK/>
+<BRK/>
+<TXT>Throughout this document, the term "telecommunications manager" or "technical authority" refers to the following:</TXT><BRK/>
+<BRK/>
+<LST>For Army, the Network Enterprise Center (NEC)</LST><BRK/>
+<BRK/>
+<LST>For Navy, the Base Communications Officer (BCO)</LST><BRK/>
+<BRK/>
+<LST>For Marine Corps, the Installation Communications G6</LST><BRK/>
+<BRK/>
+<LST>For Air Force, the Base/Installation</LST><BRK/>
+<BRK/>
+<LST>Communications Squadron, Commander's</LST><BRK/>
+<BRK/>
+<LST>Representative.</LST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use Section <SRF>33 82 00</SRF> TELECOMMUNICATIONS OUTSIDE PLANT (OSP) to specify exterior distribution and interbuilding 
+cables and include bracketed sentence.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide telecommunications pathway systems referenced herein.  The telecommunications designer and contractor must coordinate with the technical 
+authority concerning access to and configuration of telecommunications spaces.  The building telecommunications cabling, and pathway system must 
+include permanently installed backbone and horizontal cabling, horizontal and backbone pathways, service entrance facilities, work area pathways, 
+telecommunications and service outlet assemblies, conduit, raceway, and hardware for splicing, terminating, and interconnecting cabling necessary 
+to transport the Information Technology (IT) and Operational Technology (OT) (including LAN) between equipment items in a building.  The horizontal 
+system must be wired in a star topology from the telecommunications work area to the floor distributor or campus distributor at the center or hub 
+of the star.  The backbone cabling and pathway system includes intrabuilding and interbuilding interconnecting cabling, pathway, and terminal hardware.</TXT><BRK/>
+<BRK/>
+<TXT>The intrabuilding backbone provides connectivity from the floor distributors to the building distributors or to the campus distributor and from 
+the building distributors to the campus distributor as required.  The backbone system must be wired in a star topology with the campus distributor 
+at the center or hub of the star.[  The interbuilding backbone system provides connectivity between the campus distributors and is specified in 
+Section <SRF>33 82 00</SRF> TELECOMMUNICATIONS OUTSIDE PLANT (OSP).]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Specification <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the 
+following list, and corresponding submittal items in the text, to reflect only the submittals required for the 
+project.  The Guide Specification technical editors have classified those items that require Government approval, 
+due to their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy, Marine Corps, or Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submittals must include the manufacturer's name, trade name, place of 
+manufacture, and catalog model or number.  Include performance and characteristic curves.  Submittals must also include applicable federal, military, 
+industry, and technical society publication references.  Should manufacturer's data require supplemental information for clarification, the supplemental 
+information must be submitted as specified in paragraph REGULATORY REQUIREMENTS.  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>T1-T6 Telecommunications Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Telecommunications Cabling (Backbone and Horizontal)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cable Trays</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Non-continuous Cable Supports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Patch Panels</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Telecommunications Outlet/Connector Assemblies</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Equipment Support Frames</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Connector Blocks</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Multi-User Telecommunications Outlet Assembly</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Delete submittal for spare parts on Navy projects.  Spare parts requirements are provided in Section 
+<SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA on Navy projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<ITM><SUB>Spare Parts</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Floor Outlet And Poke-Thru Boxes</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Plywood Backboards</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Consolidation Point</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Fiber Link Loss Budget</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Telecommunications Cabling Testing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Telecommunications Contractor</SUB> Qualifications; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Key Personnel</SUB> Qualifications; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Reel Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Telecommunications Cabling and Pathway System</SUB> Data Package 5; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Record Documentation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Shop Drawings</TTL><BRK/>
+<BRK/>
+<TXT>In exception to Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES, submitted plan drawings must[ be in electronic format, both native and PDF][ be a minimum 
+of<MET> 279 by 432 mm</MET><ENG> 11 by 17 in</ENG> in size using a minimum scale of<MET> 1 mm per 100 mm</MET><ENG> 1/8 inch per foot</ENG>, except as specified otherwise].  Include wiring 
+diagrams and installation details of equipment indicating proposed location, layout and arrangement, control panels, accessories, piping, ductwork, 
+and other items that must be shown to ensure a coordinated installation.  Wiring diagrams must identify circuit terminals and indicate the internal 
+wiring for each item of equipment and the interconnection between each item of equipment.  Drawings must indicate required clearance for operation, 
+maintenance, and replacement of operating equipment devices.  Submittals must include the nameplate data, size, and capacity.  Submittals must 
+also include applicable federal, military, industry, and technical society publication references.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>T1-T6 Telecommunications Drawings</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Registered Communications Distribution Designer (RCDD) approved drawings for all projects.</NPR><BRK/>
+<BRK/>
+<NPR>On government designed (in-house design) projects, the government designer must make sure that the bid documents 
+require an RCDD stamp on the contractor's telecommunications drawings submitted for approval.</NPR><BRK/>
+<BRK/>
+<NPR>For small scale projects, limited to adding drops to existing telecommunications rooms, an RCDD stamp is not required 
+provided the work is being accomplished under the technical authority of an RCDD or the government telecommunications 
+manager.</NPR><BRK/>
+<BRK/>
+<NPR>Activity Specific Telecommunications Manager/Authority:<BRK/>
+Throughout this document, the term "telecommunications manager" or "technical authority" refers to the following:<BRK/>
+   For Army, the Network Enterprise Center (NEC)<BRK/>
+   For Navy, the Base Communications Officer (BCO)<BRK/>
+   For Marine Corps, Installation Communications G6<BRK/>
+   For Air Force, the Base/Installation<BRK/>
+   Communications Squadron, Commander's<BRK/>
+   Representative.</NPR><BRK/>
+<BRK/>
+<NPR>It is expected, per UFC 3-580-01, that these drawings will be provided during design.  When the project requires 
+design after award include the below requirements. All drawings must be required as-builts.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Registered Communications Distribution Designer (RCDD) approved drawings in accordance with <RID>ANSI/TIA-606</RID>.  The identifier for each cabinet, 
+rack, termination, and cable must appear on the drawings.  Drawings must depict final telecommunications installed wiring system infrastructure 
+in accordance with <RID>ANSI/TIA-606</RID>.  The drawings should provide details required to prove that the distribution system will properly support connectivity 
+from the EF telecommunications rooms and ER telecommunications rooms[, Campus Distributor's (CD)][, Building Distributor's (BD)][ and][ Floor Distributor's 
+(FD)] to the telecommunications work area outlets.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a plastic laminated schematic of the as-installed telecommunications cable system showing cabling, CD's, BD's, FD's, and the EF and ER 
+for telecommunications keyed to floor plans by architectural wayfinding room number.  Mount the laminated schematic in the EF telecommunications 
+space as directed by the Contracting Officer.  The following drawings must be provided as a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>T1 - Building Area/Serving Zone Boundaries, Backbone Systems, and Horizontal Pathways.  Layout of complete building per floor.  The drawing 
+indicates location of building areas, serving zones, vertical backbone diagrams, telecommunications rooms, access points, pathways, grounding 
+system, and other systems that need to be viewed from the complete building perspective.</OLI><BRK/>
+<BRK/>
+<OLI>T2 - Serving Zones/Building Area Drawings - Drop Locations and Cable Identification (ID'S).  Shows a building area or serving zone.  These 
+drawings show drop locations, telecommunications rooms, access points and detail call outs for common equipment rooms and other congested 
+areas.</OLI><BRK/>
+<BRK/>
+<OLI>T3 - Drawings in accordance with <RID>ANSI/TIA-606</RID> that include telecommunications rooms plan views, pathway layout (cable tray, ladder racks, 
+and conduit), mechanical/electrical layout, and[ cabinet,][ rack,][ backboard,][ and] wall elevations.  Drawings must show layout of applicable 
+equipment including incoming cable stub or connector blocks, building protector assembly, outgoing cable connector blocks, patch panels 
+and equipment spaces and cabinet/racks.  Drawings must include a complete list of equipment and material, equipment rack details, to include 
+conduit and cable tray fill data, proposed layout and anchorage of equipment and appurtenances, and equipment relationship to other parts 
+of the work including clearance for maintenance and operation.  Drawings may also be an enlargement of a congested area of T1 and T2 drawings.</OLI><BRK/>
+<BRK/>
+<OLI>T4 - Drawings to include Faceplate Labeling, Firestopping Assemblies, Americans with Disabilities Act (ADA) requirements, etc.  Detailed 
+drawings of symbols and typical details such as faceplate labeling, faceplate types, faceplate population installation procedures, detail 
+racking, and raceways.  Outlets must be laid out in a logical manner, moving left to right starting from the[ telecommunications space 
+served][ main entrance door] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>T5 - Drawings to include schedules to show information for cutovers and administrative details.</OLI><BRK/>
+<BRK/>
+<OLI>T6 – Drawings to include network, riser, and boundary diagrams.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Telecommunications Qualifications</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  BICSI Copper and Fiber Cabling Installer, Technician Level certification is preferred for supervisors and 
+installers in lieu of documentation of 3 years' experience.  Contractors have the option to submit either BICSI 
+certification or experience documentation.  Equivalent training and 3 years of verifiable experience in lieu of 
+the certification may be adjudicated by the COR.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Work and equipment installation under this section must be performed by and provided by approved telecommunications contractor(s) and key personnel.  
+Qualifications must be provided for:  the telecommunications system contractor, the telecommunications system installer, and the supervisor (if 
+different from the installer).  A minimum of 30 days prior to installation, submit documentation of the experience, and certifications, of the 
+telecommunications contractor and all key personnel.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Telecommunications Contractor</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The telecommunications contractors must be a firm which is regularly and professionally engaged in the business of the implementation, installation, 
+and testing of the specified telecommunications systems and equipment.  The telecommunications contractor must demonstrate experience in providing 
+successful telecommunications systems within the past 3 years of similar scope and size.  Submit documentation for a minimum of three and a maximum 
+of five successful telecommunication system installations for the telecommunications contractor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Key Personnel</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide key personnel who are regularly and professionally engaged in the business of providing implementation, installation, and testing of the 
+specified telecommunications systems and equipment.  There may be one key person, or more key persons proposed for this solicitation depending 
+upon how many of the key roles each has successfully provided.  Each of the key personnel must demonstrate experience in providing successful telecommunications 
+systems within the past 5 years.  Submit documentation for a minimum of three and a maximum of five successful telecommunication system installations 
+for the submitted key personnel. Supervisors, installers, and testers assigned to the installation of this system or any of its components must 
+be Building Industry Consulting Services International (BICSI) Registered Cabling Installers, Technician Level for both copper and fiber. Submit 
+documentation of current BICSI certification for each of the key personnel. In lieu of BICSI certification, supervisors and installers assigned 
+to the installation and testing of this system or any of its components must have a minimum of [5][_____] years' experience in the installation 
+of the specified copper and fiber optic cable and components and training that is deemed equivalent by the COR.  These must include factory or 
+factory approved certification from each equipment manufacturer indicating that they are qualified to install and test the provided products.  
+Documentation for each key person must include at least two successful system installations provided that are equivalent in system size and in 
+construction complexity to the telecommunications system proposed for this solicitation.  Include specific experience in installing and testing 
+telecommunications systems and provide the names and locations of at least two project installations successfully completed using optical fiber 
+and copper telecommunications cabling systems.</TXT><BRK/>
+<BRK/>
+<TXT>All the existing telecommunications system installations offered by the key persons as successful experience must have been in successful full-time 
+service for at least 18 months prior to the issuance date for this solicitation.  Provide the name and role of the key person, the title, location, 
+and completed installation date of the referenced project, the referenced project owner point of contact information including name, organization, 
+title, and telephone number, and generally, the referenced project description including system size and construction complexity. Indicate that 
+all key persons are currently employed by the telecommunications contractor or have a commitment to the telecommunications contractor to work on 
+this project.  Note that only the key personnel identified in the approved submittals of the successful proposal, and approved by the Contracting 
+Officer are permitted to do work on this solicitation's telecommunications system.  Key personnel must function in the same roles in this contract, 
+as they functioned in the offered successful experience.  Any substitutions for the telecommunications contractor's key personnel requires the 
+resubmission of the qualifications and new approval from The Contracting Officers Representative (COR).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Minimum <SUB>Manufacturer Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Cabling, equipment, and hardware manufacturers must have a minimum of [3][_____] years' experience in the manufacturing, assembly, and factory 
+testing of components which comply with <RID>ANSI/TIA-568 Series</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Test Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a complete and detailed test plan for the telecommunications cabling system including a complete list of test equipment for the components 
+and accessories for each cable type specified, [60][_____] days prior to the proposed test date.  Include procedures for certification, validation,[ <SUB>
+fiber link loss budget</SUB>] and testing.  Provide calibration data for equipment and all appurtenances and accessories to be used including but not 
+limited to launch cables.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Reports</TTL><BRK/>
+<BRK/>
+<TXT>Provide test reports, in native and PDF format, for each[ coax][,][ copper] and[ fiber] cable installed.  In addition to cable test data, each 
+report must indicate the project name, date and time of test, personnel performing the test, software version of cable limits and equipment, and 
+calibration dates of all equipment.  Results must include equipment reference testing required when changing equipment locations, when reference 
+cords are removed from equipment, and the start of new testing shifts.  Cable ID's on each test result must match those provided in T4 approved 
+submittals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the word, "must" or "shall" had been 
+substituted for "should" wherever it appears.  Interpret references in these publications to the "authority having jurisdiction," or words of similar 
+meaning, to mean the Contracting Officer.  Equipment, materials, installation, and workmanship must be in accordance with the mandatory and advisory 
+provisions of <RID>NFPA 70</RID> unless more stringent requirements are specified or indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such products which are of equal material, 
+design, and workmanship.  Products must have been in satisfactory commercial or industrial use for 2 years prior to bid opening.  The 2-year period 
+must include applications of equipment and materials under similar circumstances and of similar size.  The product must have been on sale on the 
+commercial market through advertisements, manufacturers' catalogs, or brochures during the 2-year period.  Where two or more items of the same 
+class of equipment are required, these items must be products of a single manufacturer; however, the component parts of the item need not be the 
+products of the same manufacturer unless stated in this section.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a 2-year field service record will be acceptable if a certified record of satisfactory field operation for not less than 
+6000 hours, exclusive of the manufacturers' factory or laboratory tests, is furnished.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material and Equipment Manufacturing Date</TTL><BRK/>
+<BRK/>
+<TXT>Products manufactured more than 1-year prior to date of delivery to site must not be used, unless specified otherwise.  Products must not be delivered 
+to site earlier than 6 months prior to installation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>DELIVERY AND STORAGE</TTL><BRK/>
+<BRK/>
+<TXT>Provide protection from weather, moisture, extreme heat and cold, dirt, dust, and other contaminants for telecommunications cabling and equipment 
+placed in storage.  Visual inspection, for damage, of all material must be performed prior to installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ENVIRONMENTAL REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Telecommunication spaces must comply with <RID>UFC 3-580-01</RID> paragraph 2-3.1.3.3 and as indicated in Division 23 specifications.  Connecting hardware 
+must be rated for operation under ambient conditions of<MET> 0 to 60 degrees C</MET><ENG> 32 to 140 degrees F</ENG> and in the range of 0 to 95 percent relative humidity, 
+noncondensing unless more stringent criteria are called out by the designer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>The equipment items must be supported by service organizations which are reasonably convenient to the equipment installation in order to render 
+satisfactory service to the equipment on a regular and emergency basis during the warranty period of the contract and as required in Section 
+<SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>SEISMIC REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not use this paragraph for Navy projects.  When directed to meet seismic requirements, edit Sections 
+<SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS and <SRF>26 05 48</SRF> SEISMIC PROTECTION FOR ELECTRICAL EQUIPMENT 
+to suit the project and include in the contract documents.  Edit the following paragraph and include it in the 
+project specification.  When a government designer is the Engineer of Record, provide seismic requirements on 
+the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide seismic details[ conforming to[ Section <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS][ and to][ Section <SRF>26 05 48</SRF> SEISMIC PROTECTION 
+FOR ELECTRICAL EQUIPMENT]][ as indicated].</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Operation and Maintenance Manuals</TTL><BRK/>
+<BRK/>
+<TXT>Commercial off the shelf manuals must be furnished for operation, installation, configuration, and maintenance of products provided as a part of 
+the <SUB>Telecommunications Cabling and Pathway System</SUB>, Data Package 5.  Submit draft operations and maintenance data, drawings, and record documentation 
+prior to the start of final acceptance testing and commissioning.  Submit final operations and maintenance data in accordance with Section 
+<SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA and as specified herein not later than [2][_____] months prior to the date of beneficial occupancy.  In 
+addition to requirements of Data Package 5, include the requirements of paragraphs TELECOMMUNICATIONS DRAWINGS, TELECOMMUNICATIONS SPACE DRAWINGS, 
+and RECORD DOCUMENTATION.  Ensure that these drawings and documents depict the as-built configuration.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Record Documentation</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ANSI/TIA-606 describes the necessary data fields and reports for hard copy, spreadsheet, and electronic 
+media as well as cable management software requirements.  Check with activity technology manager to determine 
+if cable management software is currently employed at the activity and provide necessary data input to the existing 
+system to include information associated with project installation in the coordinated/approved/proper format.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide T5 drawings including documentation on cables and termination hardware in accordance with <RID>ANSI/TIA-606</RID>.  T5 drawings must include schedules 
+to show information for cut-overs and cable plant management, patch panel layouts and cover plate assignments, cross-connect information, and connecting 
+terminal layout as a minimum.  T5 drawings must be provided[ in hard copy format][ on electronic media using Windows based computer cable management 
+software.][  A licensed copy of the cable management software including documentation, must be provided.]  Provide the following T5 drawing documentation 
+as a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Cables - A record of installed cable must be provided in accordance with <RID>ANSI/TIA-606</RID>.  The cable records must[ include only the required 
+data fields][ include the required data fields for each cable and complete end-to-end circuit report for each complete circuit from the 
+assigned outlet to the entry facility] in accordance with <RID>ANSI/TIA-606</RID>.  Include manufacture date of cable with submittal.</OLI><BRK/>
+<BRK/>
+<OLI>Termination Hardware - A record of installed patch panels, cross-connect points, distribution frames, terminating block arrangements and 
+type, and outlets must be provided in accordance with <RID>ANSI/TIA-606</RID>.  Documentation must include the required data fields[ as a minimum][ 
+only] in accordance with <RID>ANSI/TIA-606</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Spare Parts</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph for Navy projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>In addition to the requirements of Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA, provide a complete list of parts and supplies, with current 
+unit prices and source of supply, and a list of spare parts recommended for stocking.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>COMPONENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pathway requirements are included in paragraph TELECOMMUNICATIONS PATHWAYS in this section for open cable 
+systems including cable tray.  Refer to SECTION <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM for conduit requirements. 
+SECTION <SRF>33 82 00</SRF> TELECOMMUNICATIONS OUTSIDE PLANT (OSP) provides requirements for campus backbone cable systems.</NPR><BRK/>
+<BRK/>
+<NPR>For specialized circuits such as classified networks, coordination is required with the Technical Authority.  
+Provide electrical and telephone outlets installed per the ADA to accommodate TTD's and other devices.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Components must be UL, or third party certified by a nationally recognized testing laboratory (NRTL).  Where equipment or materials are specified 
+to conform to industry and technical society reference standards of the organizations, submit proof of such compliance.  The label or listing by 
+the specified organization will be acceptable evidence of compliance.  In lieu of the label or listing, submit a certificate from an independent 
+testing organization, competent to perform testing, and approved by the Contracting Officer.  The certificate must state that the item has been 
+tested in accordance with the specified organization's test methods and that the item complies with the specified organization's reference standard.  
+Provide a complete system of telecommunications cabling and pathway components using star topology for the intra building backbone and the horizontal 
+cabling.  When redundancy is required by the mission utilize appropriate level of redundancy to ensure reliability.  Provide support structures 
+and pathways, complete with outlets, cables, connecting hardware and telecommunications cabinets/racks.</TXT><BRK/>
+<BRK/>
+<TXT>Cabling and interconnecting hardware and components for telecommunications systems must be UL listed, or third-party independent testing laboratory 
+certified and must comply with <RID>NFPA 70</RID>, <RID>ANSI/TIA-569</RID>, and conform to the requirements specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TELECOMMUNICATIONS SPACES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For projects that do not include SECTION <SRF>33 82 00</SRF> TELECOMMUNICATIONS OUTSIDE PLANT (OSP) for termination 
+of interbuilding cables, copy paragraph BUILDING PROTECTOR ASSEMBLIES and PROTECTOR MODULES from SECTION 
+<SRF>33 82 00</SRF> and paste the paragraphs into this section as part of the telecommunications spaces.  Include these for 
+projects that include OT cabling to endpoint devices, non-person entities, that are outside of the NFPA 780 protection 
+zone for the building and served by copper cabling.  Provide protected entrance terminals (PET) in accordance 
+with ANSI/TIA-758.  Equip PETs with modules to protect the inside plant cabling and equipment from power surges.  
+Furnish solid state or gas tube modules adequate for all used pairs plus 25 percent, but not to exceed the total 
+pair count.  Provide 110-type insulation displacement connector (IDC) terminal blocks or cable stubs.  Provide 
+710-type connector for legacy only applications.</NPR><BRK/>
+<BRK/>
+<NPR>Navy projects adhere to color coding standards in accordance with the following colors from ANSI/TIA-606.</NPR><BRK/>
+<TAB HEADERROWS="0" WIDTH="96">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="12">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="180.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="576.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><CTR>Cross-Connect Field Color Codes</CTR></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Color</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Identifies</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Orange</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Demarcation point (e.g., central office terminations).</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Green</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Network connections (e.g., network and auxiliary equipment).</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Purple</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Common equipment, private branch exchange (PBX), local area network (LANs), multiplexers (e.g., switching and data equipment).</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">White</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">First-level backbone (e.g., CD (MC) to an FD (HC) or to a BD (IC)).</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Gray</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Second-level backbone (e.g., BD (IC) to an FD (HC)).</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Blue</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Horizontal cable (e.g., horizontal connections to telecommunications outlets).</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Brown</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Interbuilding backbone (campus cable terminations).</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Yellow</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Miscellaneous (e.g., auxiliary, alarms, security).</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Red</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Reserved for future use (also, key telephone systems).</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="46.50">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">NOTE: Brown takes precedence over white or gray for interbuilding runs.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/></TAB><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide connecting hardware and termination equipment in the[ data center <RID>ANSI/TIA-942</RID>][ telecommunications entrance facility][ and][ telecommunication 
+equipment room[s]] to facilitate installation as shown on design drawings for terminating and cross-connecting permanent cabling.  Provide telecommunications 
+interconnecting hardware color coding in accordance with <RID>ANSI/TIA-606</RID> and as approved by the technical authority.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Plywood Backboards</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide void-free, fire retardant treated A/C interior grade plywood.  Plywood must comply with International Building Code, Section 2303.2 and 
+painted only if required for illumination reflectance or by the Technical Authority.<MET> 19 mm</MET><ENG> 3/4 in thick</ENG><MET> [1200 by 2400 mm]</MET><ENG> [4 by 8 ft]</ENG>[ as indicated].  
+Backboards must be fire rated by manufacturing process.  Fire stamp must be clearly visible.  Paint applied over fire retardant backboard must 
+be <RID>UL 723</RID> fire retardant paint.  Provide label including paint manufacturer, date painted, UL listing and name of installer.  When painted, paint 
+label and fire stamp must be clearly visible and outside of where equipment is likely to be installed. Backboards must be provided on a minimum 
+of two adjacent walls in the telecommunication spaces or on walls indicated to support wall mounted equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Equipment Support Frames</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide equipment support frames only when patch panels or cabinet/rack mounted interconnecting equipment 
+are provided.  In most applications, a 42U channel rack in locked communications room is sufficient.  Provide 
+lockable cabinets in locations where additional security is required.  Use wall-mounted brackets for small systems 
+where only a few patch panels are required.</NPR><BRK/>
+<BRK/>
+<NPR>Provide adequate space in telecommunications spaces to facilitate tenant owned telecommunications system support 
+equipment requirements.  Coordinate with the Information Communications Technical Authority to determine the space 
+and weight requirements for the USG-provided active equipment.</NPR><BRK/>
+<BRK/>
+<NPR>DoR must coordinate power requirements with Using Agency and tailor requirements accordingly.</NPR><BRK/>
+<BRK/>
+<NPR>Horizontal cable management is not required when angled patch panels are otherwise specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide in accordance with <RID>ECIA EIA/ECA 310-E</RID> and <RID>UL 50</RID>.</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Bracket, wall mounted, 8-gauge aluminum.  Provide hinged bracket compatible with<MET> [482.6 mm][584 mm]</MET><ENG> [19 in][23 in]</ENG> panel mounting.</OLI><BRK/>
+<BRK/>
+][<OLI>Racks,[ wall][ floor] mounted 2-post modular type,42U[ 16-gauge steel][ or][ 11-gauge aluminum] construction, minimum, treated to resist 
+corrosion.  Provide rack with vertical[ and horizontal] cable management and[ horizontal][ 42U vertical] ground bar.  Provide [_____][1] 
+vertical surge protected Power Distribution Units (PDU) per rack with 42U, duplex 24 C13's and 18 flexible C39's, which accepts C14 and 
+C20 plugs power receptacles.  PDU must have indicator lights, but no integral on/off switch[ and be capable of monitoring].  Rack must 
+be compatible with<MET> [482.6 mm][584 mm]</MET><ENG> [19 in][23 in]</ENG> panel mounting.</OLI><BRK/>
+<BRK/>
+][<OLI>Channel Racks, 42U<MET> [762 mm][_____]</MET><ENG> [30 in][_____]</ENG> depth floor mounted, aluminum construction, painted[ white][ black] rated for 2000 lbs 
+load.  Provide channel rack with vertical[ and horizontal] cable management and[ horizontal][ 42U vertical] ground bar.[  Provide [_____][2] 
+vertical rear mounted surge protected 42U Power Distribution Units (PDU) with duplex 24 C13's and 18 flexible C39's, which accepts C14 
+and C20 plugs.  PDU must have indicator lights, but no integral on/off switch[ and be capable of monitoring].][  Provide ceiling mounted 
+fan.]  Rack must be compatible with<MET> [482.6 mm][584 mm]</MET><ENG> [19 in][23 in]</ENG> panel mounting.</OLI><BRK/>
+<BRK/>
+][<OLI>Racks, floor mounted 4-post,[ 16-gauge steel][ or][ 11-gauge aluminum] construction, minimum, treated to resist corrosion and painted[ 
+white][ black].  Provide rack with vertical[ and horizontal] cable management and[ vertical][ horizontal] ground bar.[  Provide [2][_____] 
+42U vertical rear mounted surge protected Power Distribution Units (PDU) with duplex 24 C13's and 18 flexible C39's, which accepts C14 
+and C20 plugs.  PDU must have indicator lights, but no integral on/off switch[ and be capable of monitoring].]  Rack must be compatible 
+with<MET> [482.6 mm][584 mm]</MET><ENG> [19 in][23 in]</ENG> panel mounting.</OLI><BRK/>
+<BRK/>
+][<OLI>Cabinets, freestanding modular type,[ 16-gauge steel][ or][ 11-gauge aluminum] construction , minimum, treated to resist corrosion and 
+painted[ white][ black].  Cabinets with 63 percent mesh doors with blanks and baffling to ensure front-to-rear air flow and avoid intra-cabinet 
+air circulation unless another cooling method is designed.  In instances where other air flow is needed, use manufacturer-approved penetrations 
+and sealing to maintain airflow.  For hot and cold aisles, use an airflow scheme engineered for the solution.  Cabinet must have removable 
+and lockable side panels, front and rear doors with at least 63 percent mesh, and have adjustable feet for leveling.  Cabinet must have 
+cable access in the roof and base and be compatible with<MET> [482.6 mm][584 mm]</MET><ENG> [19 in][23 in]</ENG> panel mounting.  Provide cabinet with[ vertical][ 
+horizontal] grounding bar[,][[ rack][ roof] mounted<MET> 15 cu. m</MET><ENG> 550 CFM</ENG> fan with filter][ and two vertical rear mounted surge protected Power 
+Distribution Units with duplex 24 C13's and 18 flexible C39's, which accepts C14 and C20 plugs].  All cabinets must be keyed alike to local 
+activity key requirement unless in an entrance facility for Service Providers or as required for differing security levels.</OLI><BRK/>
+<BRK/>
+][<OLI>Cabinets, wall-mounted modular type,[ 16 gauge steel][ or][ 11 gauge aluminum] construction, minimum, treated to resist corrosion and painted[ 
+white][ black].  Cabinet must have lockable front[ and rear] door[s], louvered side panels,[<MET> 7 cu. m</MET><ENG> 250 CFM</ENG>[ roof][ rack] mounted fan,] 
+ground lug, and top and bottom cable access.  Cabinet must be compatible with<MET> [482.6 mm][584 mm]</MET><ENG> [19 in][23 in]</ENG> panel mounting. Provide 
+a duplex AC outlet[ and a 1U vertical mounted surge protected Power Distribution Unit that supports C13's and flexible C39's which accepts 
+C14 and C20 plugs].  All cabinets must be keyed alike to local activity key requirement unless in an entrance facility for Service Providers 
+or as required for differing security levels.</OLI><BRK/>
+<BRK/>
+]</OLG></SPT><SPT><TTL><SUB>Connector Blocks</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Type 66 blocks are not permitted.  Select 710-style for legacy installation only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide insulation displacement connector (IDC)[ Style 110][ Style 710] for Category systems aligned with cable type.  Provide blocks for the number 
+of horizontal and backbone cables terminated on the block plus 25 percent spare.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cable Guides</TTL><BRK/>
+<BRK/>
+<TXT>Provide cable guides specifically manufactured for the purpose of routing cables, wires, and patch cords horizontally and vertically on[<MET> [482.6 
+mm][584 mm]</MET><ENG> [19 in][23 in]</ENG> equipment[ racks][ cabinets]][ and][ telecommunications backboards].  Provide Cable guides of ring or bracket type devices[ 
+panels][ backboard] for horizontal cable management and individually mounted for vertical cable management.  Mount cable guides with screws,[ and][ 
+or] nuts and lock washers.  Provide one horizontal cable manager for every[ 24 port appearances below or above][ 48 port appearances below and 
+above] each patch panel unless angled patch panels are specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Patch Panels</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide ports for the number of horizontal and backbone cables terminated on the panel plus[ 25] [_____] percent spare.  Provide pre-connectorized[ 
+optical fiber][ and][ copper] patch cords for patch panels equal to the number of installed horizontal cables.  Provide patch cords, as complete 
+assemblies, with matching connectors as specified.[  Provide fiber optic patch cables with crossover orientation in accordance with <RID>ANSI/TIA-568.3</RID>
+].  Patch cords must meet minimum performance requirements specified in <RID>ANSI/TIA-568 Series</RID> for cables, cable length, and hardware specified.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Connector Block to Patch Panel</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide individual patch panels with a maximum of 48 adapter ports per patch panel for Navy projects.  
+Larger patch panel cross-connect fields are more difficult for cable and administrative management.  Army projects 
+allow the use of 96 port adapter patch panels.</NPR><BRK/>
+<BRK/>
+<NPR>Wire 8-pin modular ports to T568A configuration unless specifically requested and approved by the authority having 
+jurisdiction.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide in accordance with <RID>ANSI/TIA-568 Series</RID>, <RID>ANSI/TIA-569</RID> standards.  Panels must be third party verified.  Panel must be constructed of<MET> 2.2 
+mm</MET><ENG> 0.09 in</ENG> minimum aluminum and must be[ cabinet][ rack][ wall] mounted and compatible with an <RID>ECIA EIA/ECA 310-E</RID><MET> [482.6 mm][584 mm]</MET><ENG> [19 in][23 
+in]</ENG> equipment[ cabinet][ rack].  Panel must provide [48][_____],[ Flat][ Angled], non-keyed, 8p8c wired to[ T568A][ T568B].  Patch panels must 
+terminate the building cabling on[ Type 110 IDCs][ RJ45 type connector] and must utilize a printed circuit board interface.  The rear of each panel 
+must have incoming cable strain-relief and routing guides.  Panels must have each port factory numbered.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fiber Optic Backbone Patch Panel</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide rack/cabinet mount patch panels with either a vertical or horizontal orientation for the entire 
+project.  Provide quantities of LGX distribution panels to terminate all of the fiber being deployed plus 25 percent 
+spare LGX space that must be covered with blanking panels.  Provide space for fusion splice trays and cassettes 
+in fiber patch panels.</NPR><BRK/>
+<BRK/>
+<NPR>Do not use SC, ST, or MT-RJ fiber optic adapters and connectors for new construction unless specifically required 
+for interface with existing equipment reused on installations.  Check with activity for specific requirements 
+for SC, ST, and MT-RJ adapters and connectors.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide housing for maintenance and cross-connecting of optical fiber cables.  Panel must be constructed of[[ 16][ 18] gauge steel][ or][ 11-gauge 
+aluminum] minimum and must be[ cabinet][ rack][ wall] mounted and compatible with an <RID>ECIA EIA/ECA 310-E</RID><MET> [482.6 mm][584 mm]</MET><ENG> [19 in][23 in]</ENG> equipment 
+rack.  Each panel must provide[ 12] [_____][ multimode][ single-mode] adapters as[ MPT-type 12 fiber connector cassettes broke out to six duplex 
+LC UPC connectors,][ duplex LC UPC in accordance with <RID>TIA/EIA-604-10</RID> with zirconia ceramic alignment sleeves,][ duplex LC APC for RF applications 
+including but not limited to DAS] in accordance with <RID>TIA/EIA-604-10</RID> with zirconia ceramic alignment sleeves[ duplex SC in accordance with <RID>TIA/EIA-604-3</RID>
+ with zirconia ceramic].  Provide dust cover for all unused adapters.  The rear of each panel must have a cable management tray a minimum of<MET> 203 
+mm</MET><ENG> 8 in</ENG> deep with removable cover, incoming cable strain-relief and routing guides, and able to support <MET> 1 m</MET><ENG> 3 ft</ENG> of cable slack.  Panels must 
+have each adapter factory numbered and be equipped with laminated plastic nameplates above each adapter.  Must be equipped with factory bonding 
+terminal.  Patch panels must be sized to support all known connections plus 25 percent spare.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fiber Optic Distribution Patch Panel</TTL><BRK/>
+<BRK/>
+<TXT>[Cabinet ][Rack ][Wall ]mounted optical fiber distribution panel (OFDP) must be constructed in accordance with <RID>ECIA EIA/ECA 310-E</RID> utilizing[[ 16][ 
+18] gauge steel][ or][ 11-gauge aluminum] minimum.  Panel must be divided into two sections, distribution and user.  Distribution section must 
+have strain relief, routing guides, splice tray and must be lockable, user section must have a cover for patch cord protection[ MPT-type 12 fiber 
+connector cassettes multiplexed out to six duplex LC UPC connectors,][ duplex LC UPC in accordance with <RID>TIA/EIA-604-10</RID> with zirconia ceramic alignment 
+sleeves,][ duplex LC APC for RF applications including but not limited to DAS in accordance with <RID>TIA/EIA-604-10</RID> with zirconia ceramic alignment 
+sleeves,][ duplex SC in accordance with <RID>TIA/EIA-604-3</RID> with zirconia ceramic][ MT-RJ in accordance with <RID>TIA/EIA-604-12</RID> with thermoplastic][ ST in 
+accordance with <RID>TIA/EIA-604-2</RID> with metallic] alignment sleeves.  Provide dust covers for adapters.  Provide patch cords as specified in the paragraph 
+PATCH PANELS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>TELECOMMUNICATIONS PATHWAY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate cable tray layout on the drawings.  When multiple types and sizes are used, indicate size and 
+type of cable trays on the drawings.  When using "as indicated" option, ensure information required is shown on 
+the drawings.  The RCDD must coordinate with structural engineer when designating the Span/Load Class category.  
+This designation is found in NEMA BI-50016/VE 2.  Provide designation on drawings and/or in this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide telecommunications pathways in accordance with <RID>ANSI/TIA-569</RID>, conduit types specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM, 
+and as specified here.  Provide system furniture pathways in accordance with <RID>UL 1286</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide the following:  Submit <SUB>cable trays</SUB> design, including dimensional layout, load and seismic calculations, and fill calculations.  Dimensional 
+layout includes cable spacings, cable tray splices, and supports.  Fill calculations include an index of cables for each section and identification 
+of the lb/ft, cross sectional area, and insulation voltage class for each cable.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Cable trays:  form a wireway system, with a nominal[<MET> [75][100][150] mm</MET><ENG> [3][4][6] in</ENG>][ as indicated] depth.  Cable tray is to have a span/load 
+class designation of [_____] per <RID>NEMA BI-50026/VE 2</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Cable trays:  constructed of[ aluminum][ copper-free aluminum][ steel that has been hot-dipped galvanized after fabrication].</OLI><BRK/>
+<BRK/>
+<OLI>Cable trays:  include splice and end plates, dropouts, and miscellaneous hardware.</OLI><BRK/>
+<BRK/>
+<OLI>Edges, fittings, and hardware: finished free from burrs and sharp edges.</OLI><BRK/>
+<BRK/>
+<OLI>Fittings: ensure not less than load-carrying ability of straight tray sections and have manufacturer's minimum standard radius.</OLI><BRK/>
+<BRK/>
+<OLI>Radius of bends: [<MET> [305][610][915] mm</MET><ENG> [12][24][36] in</ENG>.][ as indicated.]</OLI><BRK/>
+<BRK/>
+[<OLI>Accessories: ensure cable transitions required to proper support cable, bonding hardware, are indicated and provided.</OLI><BRK/>
+<BRK/>
+]</OLG><SPT><TTL>Basket-Type Cable Trays</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Basket cable tray is a fabricated structure consisting of wire mesh bottom and side rails.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide[ size as indicated][ of nominal<MET>[ 50,][ 100,][ 150,][ 200,][ 300,][ 450,][ and][ 600] mm</MET><ENG>[ 2,][ 4,][ 6,][ 8,][ 12,][ 18,][ and][ 24] in</ENG> width 
+and<MET>[ 25,][ 50,][ and][ 100] mm</MET><ENG>[ 1,][ 2,][ and][ 4] in</ENG> depth] with maximum wire mesh spacing of<MET> 50 by 100 mm</MET><ENG> 2 by 4 in</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Trough-Type Cable Trays</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Trough or ventilated cable tray is a fabricated structure consisting of integral or separate longitudinal 
+rails and a bottom having openings sufficient for the passage of air and utilizing 75 percent or less of the plan 
+area of the surface to support cables.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide[ size as indicated][ of nominal<MET> [150][305][455][610][760][915] mm</MET><ENG> [6][12][18][24][30][36] in</ENG> width].[  Cable tray must be suitable for 
+use as an equipment grounding conductor.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ladder-Type Cable Trays</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ladder cable tray is a fabricated structure consisting of two longitudinal side rails connected by individual 
+transverse members (rungs).  Ladder cable tray is best suited for pathways in telecommunications spaces.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide[ size as indicated][ of nominal<MET> [150][305][455][610][760][915] mm</MET><ENG> [6][12][18][24][30][36] in</ENG> width] with maximum rung spacing of<MET> [150][225][305][455] 
+mm</MET><ENG> [6][9][12][18] in</ENG> in each EF and TR.[  Cable tray must be suitable for use as an equipment grounding conductor.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Channel-Type Cable Trays</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Channel cable tray is a fabricated structure consisting of a one-piece ventilated-bottom or solid-bottom 
+channel section, not exceeding<MET> 152 mm</MET><ENG> 6 inches</ENG> in width.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide[ size as indicated][ of nominal<MET> [75][100][150] mm</MET><ENG> [3][4][6] in</ENG> width].  Provide trays with one-piece construction having slots spaced not 
+more than<MET> 115 mm</MET><ENG> 4 1/2 in</ENG> on centers.[  Cable tray must be suitable for use as an equipment grounding conductor.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Solid Bottom-Type Cable Trays</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Solid bottom or non-ventilated cable tray is a fabricated structure consisting of a bottom without ventilation 
+openings within integral or separate longitudinal side rails.</NPR><BRK/>
+<BRK/>
+<NPR>Center hung cable tray is not allowed for UMC projects and is not preferred for any other proponent.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide[ size as indicated][ of nominal<MET> [150][305][455][610][760][915] mm</MET><ENG> [6][12][18][24][30][36] in</ENG> width].[  Provide solid covers.][  Do not 
+provide solid covers.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Non-continuous Cable Supports</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Utilize telecommunications cable supports (J-Hooks / J-Supports / D-rings) only as specifically permitted 
+in UFC 3-580-01, Telecommunications Interior Infrastructure Planning and Design.</NPR><BRK/>
+<BRK/>
+<NPR>The use of cable tray mounted hooks mounted to the outside edge of cable tray is the preferred method for installation 
+of Distributed Antenna System coax.  The intent is to prevent the heavier cabling from having to transition thru 
+BTP and fiber optic cabling.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide cable supports in accordance with <RID>UL 2043</RID>.  Provide[[ galvanized][ zinc-coated][ stainless] steel] cable supports[ as indicated].  Use 
+cable trays for horizontal distribution to the maximum extent possible (maximum horizontal distance: <MET> 6 m</MET><ENG> 20 ft</ENG> in open face hangers).  The remaining 
+pathway to the work area outlet may be implemented in a variety of ways combining conduit, non-continuous cable supports, and stub-ups/outs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sleeves and Conduit</TTL><BRK/>
+<BRK/>
+<TXT>Provide sleeves and conduit in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM and as further required in <RID>ANSI/TIA-569</RID>.  Conduit 
+must be minimum<MET> 25.4 mm</MET><ENG> 1 in</ENG>, runs must not exceed<MET> 30 m</MET><ENG> 100 ft</ENG> without installation of appropriate type, and sized pull box.  There must be no 
+aggregated bends between pull boxes in excess of 180 degrees.  Pull boxes must not be installed as a change in pathway direction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Floor Outlet and Poke-Thru Boxes</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Telecommunications floor outlets:  consisting of recessed outlets flush with the finished floor[ aluminum][ stainless steel][ brass] housing with 
+receptacles as specified in[ Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM][ as indicated] and a minimum of [1][2][_____]<MET> 25 mm</MET><ENG> 1 in</ENG> bushed side 
+opening.  Must be hinged type, not requiring a special took to open, and provides latching style ports for cable egress protection when in use.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Outlet Boxes for Telecommunications System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When using "as indicated" option, ensure information required is shown on the drawings.  Choose<MET> 100 mm</MET><ENG> 
+4 inch</ENG> square boxes for single gang, four outlet, copper telecommunications configurations that do not have provision 
+for fiber optic cabling.  Choose<MET> 120 mm</MET><ENG> 4 11/16 inch</ENG> square boxes for<MET> 35 mm</MET><ENG> 1 1/4 inch</ENG> conduit installations and 
+for outlet boxes that have or may require fiber optic cabling.  Larger boxes are required to meet bend radii requirements 
+for fiber optic cable and for situations when conduit larger than 1 inch are required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Standard type<MET> [100 mm square by 54 mm deep][120 mm square by 54 mm deep][130 mm square by 73 mm deep]</MET><ENG> [4 in square by 2 1/8 in deep][4 
+11/16 in square by 2 1/8 in deep][5 inches square by 2 7/8 in deep]</ENG>.</OLI><BRK/>
+<BRK/>
+[<OLI>Outlet boxes for wall-mounted telecommunications outlets:<MET> 100 by 54 by 54 mm</MET><ENG> 4 by 2 1/8 by 2 1/8 in</ENG> deep.</OLI><BRK/>
+<BRK/>
+]<OLI>Depth of boxes: large enough to allow manufacturers' recommended conductor bend radii.</OLI><BRK/>
+<BRK/>
+[<OLI>Outlet boxes for fiber optic telecommunication outlets: include a minimum<MET> 10 mm</MET><ENG> 3/8 in</ENG> deep single or two gang plaster ring as shown and 
+installed using a minimum<MET> 27 mm</MET><ENG> 1 in</ENG> conduit system.</OLI><BRK/>
+<BRK/>
+][<OLI>Outlet boxes for handicapped telecommunications station:<MET> [100 by 54 by 54 mm][130 mm square by 73 mm deep]</MET><ENG> [4 by 2 1/8 by 2 1/8 in][5 in 
+square by 2 7/8 in]</ENG> deep.  Design outlet box for recess mounting with the faceplate flush with the wall surface, at the same height as 
+the electrical outlets.</OLI><BRK/>
+<BRK/>
+]<OLI>Extension rings are not permitted for new construction.  Use only on existing boxes in concealed conduit systems where wall is furred out 
+for new finish.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>TELECOMMUNICATIONS CABLING (BACKBONE AND HORIZONTAL)</SUB> </TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Cables must be terminated within telecommunications rooms, telecommunications equipment rooms, and work 
+areas.  Cross-connect jumpers may be provided as part of the contract if required to provide the customer a complete 
+and usable facility.  Optical fiber and copper patch cords must be provided by the Contractor when patch panels 
+are installed.  Optical fiber media may be single-mode, multimode, or hybrid combination.  For information on 
+optical fiber local area network system, visit <URL HREF="https://www.tiafotc.org">https://www.tiafotc.org/</URL>.</NPR><BRK/>
+<BRK/>
+<NPR>It is recommended that the labeling requirements be provided as a detail on drawings and approved by the technical 
+authority/technology manager during design.</NPR><BRK/>
+<BRK/>
+<NPR>Air Force Medical Facilities are installed and labeled in accordance with HEADQUARTERS AIR FORCE MEDICAL SUPPORT 
+AGENCY DESIGN AND IMPLEMENTATION GUIDELINES MEDICAL SYSTEMS INFRASTRUCTURE MODERNIZATION PROGRAM (2001) for Air 
+Force medical projects.  All other projects are labeled in accordance with ANSI/TIA-606.  Coordinate with the 
+facility on labeling standards in place and include in the design.</NPR><BRK/>
+<BRK/>
+<NPR>When systems furniture is provided as part of the construction contract, ensure that systems furniture specifications 
+require compliance with ANSI/TIA-568 Series cabling standards as applicable.</NPR><BRK/>
+<BRK/>
+<NPR>NFPA 70 provides detailed information for optical fiber cables and communications circuits in various spaces and 
+locations.  Article 770, table 770-154(a), provides application of optical fiber cables and article 800, Table 
+800.154(a), provides application for communications circuits (copper).</NPR><BRK/>
+<BRK/>
+<NPR>Table 770.179 provides the following definitions for optical fiber cable:</NPR><BRK/>
+<BRK/>
+<NPR>-- OFNP Nonconductive optical fiber plenum cable<BRK/>
+-- OFCP Conductive optical fiber plenum cable<BRK/>
+-- OFNR Nonconductive optical fiber riser cable<BRK/>
+-- OFCR Conductive optical fiber riser cable<BRK/>
+-- OFNG Nonconductive optical fiber general-purpose cable<BRK/>
+-- OFCG Conductive optical fiber general-purpose cable<BRK/>
+-- OFN Nonconductive optical fiber general-purpose cable<BRK/>
+-- OFC Conductive optical fiber general-purpose cable<BRK/>
+-- CI Circuit Integrity, Fire Resistive Cable System, or Electrical Circuit Protective Systems</NPR><BRK/>
+<BRK/>
+<NPR>Table 800.179 provides the following definitions for communications circuits:</NPR><BRK/>
+<BRK/>
+<NPR>-- CMP Communications plenum cable<BRK/>
+-- CMR Communications riser cable<BRK/>
+-- CMG Communications general-purpose cable CM, CATV, BM, and BL Communications general-purpose cable, Community 
+Antenna coax, Network-powered Broadband medium power, and network-powered Broadband low power<BRK/>
+-- CI Circuit Integrity, Fire Resistive Cable System, or Electrical Circuit Protective Systems<BRK/>
+-- CMP-LP, CMR-LP, CMX Communications cable, limited use<BRK/>
+-- CMUC Under-carpet communications wire and cable</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In passive optical network (PON) topologies, specify single mode fiber since it is currently the only viable 
+cabling solution.  PON technology is not supported by all current networks and must be coordinated with the agency 
+specific telecommunications manager (NEC, BCO, G6) and additionally for the Navy, with the NMCI/COSC/NGEN Contractor.  
+Design PON when required with two fibers to the WO and SO to support growth and technology advancements IAW UFC 
+3-580-01.  The designer will need to add the appropriate ITU references into the body of each section as appropriate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Cabling must be UL listed for the application and must comply with <RID>ANSI/TIA-568 Series</RID> Standards <RID>ISO/IEC 11801</RID> and <RID>NFPA 70</RID>.  Provide a labeling 
+system for cabling as required by[ as indicated,] <RID>ANSI/TIA-606</RID>, and <RID>UL 969</RID>.  Ship cable on reels or in boxes bearing manufacture date for balanced 
+twisted pair (BTP) in accordance with <RID>ICEA S-90-661</RID>[ and optical fiber cables in accordance with <RID>ICEA S-83-596</RID>][ coax in accordance with <RID>ICEA 61196-1-100</RID>
+] for all cable used on this project.  Cabling manufactured more than 12 months prior to date of installation must not be used.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Backbone Cabling</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  150 ohm shielded twisted pair (STP)is not allowed for new construction.  Backbone cable lengths must not 
+exceed guidelines of ANSI/TIA-568.1, ANSI/TIA-568.2, and ANSI/TIA-568.3.  STP 100-ohm backbone and horizontal 
+cable may be required for EMI isolation in complex buildings.</NPR><BRK/>
+<BRK/>
+<NPR>Use fiber optic cable for backbone data service, unless expanding an existing site where other backbone cable 
+types are required or requested by user.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Backbone Copper</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ANSI/TIA-568.1 recognizes Category 5e rated cable as the minimum backbone transmission media.  Use of cables 
+rated higher than Category 5e are not required since the copper backbone cable is only used for voice systems.  
+Choose the first bracketed jacket color for the preferred color code for cable jackets.  Coordinate with activity 
+and choose the second bracketed jacket color option to specify an activity preferred color.  Color coding for 
+conductors within the 25 pair bundles is covered by the reference to industry standards.</NPR><BRK/>
+<BRK/>
+<NPR>ICEA S-90-661 specifies a different cable marking interval for copper cables when marked in SI versus empirical 
+units.  This standard requires: "Length marking must appear at intervals not to exceed<MET> 1 meter</MET><ENG> 3.3 feet</ENG> and the 
+word "METER" must appear after each length marking.  If specified by the user, length marking must be provided 
+in feet and must appear at intervals not to exceed<MET> 0.6 meters</MET><ENG> 2 feet</ENG>.  The word "FEET" must appear after each 
+length marking".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Copper backbone cable must be solid conductor, 24 AWG, 100 ohm, [25][_____]-pair, Category 5e, UTP or greater, in accordance with <RID>ANSI/TIA-568.1</RID>
+, <RID>ANSI/TIA-568.2</RID>, and <RID>UL 444</RID>, formed into 25 pair binder groups covered with a [gray][_____] thermoplastic jacket[ and overall metallic shield].  
+Cable must be imprinted with manufacturers name or identifier, flammability rating, gauge of conductor, transmission performance rating (category 
+designation) at regular length marking intervals in accordance with <RID>ICEA S-90-661</RID>.  Provide plenum (CMP), riser (CMR), or general purpose (CM or 
+CMG) communications rated cabling in accordance with <RID>NFPA 70</RID>.  Substitution of a higher rated cable must be permitted in accordance with <RID>NFPA 70</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Backbone Optical Fiber</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In a fiber optic communication cable, a buffer is one type of component used to encapsulate one or more 
+optical fibers for the purpose of providing such functions as mechanical isolation, protection from physical damage, 
+and fiber identification.  The buffer may take the form of a miniature conduit, contained within the cable and 
+called a loose buffer, or loose buffer tube, in which one or more fibers may be enclosed, often with a lubricating 
+gel.  A loose buffer is typically used in outside plant applications.  A tight buffer consists of a polymer coating 
+in intimate contact with the primary coating applied to the fiber during the manufacturing process.  A tight buffer 
+is typically used for interior distribution. If a transition under-slab or through an underground duct system 
+is designed, the use of indoor/outdoor rated fiber optic cabling is recommended.</NPR><BRK/>
+<BRK/>
+<NPR>Indicate the proper color coding of optical fiber cabling on design drawings.  TIA/EIA-598 color coding scheme 
+for cordage jackets used on military projects is as follows:</NPR><BRK/>
+<TAB WIDTH="92">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="9">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="143.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="189.75"/>
+      <COL AUTOWIDTH="0" WIDTH="172.50"/>
+      <COL AUTOWIDTH="0" WIDTH="219.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Fiber type</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Fiber diameter in micrometer (um) and Class</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Jacket color</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL MERGEDOWN="4" STYLEID="s50">
+<DTA TYPE="STRING">Multimode</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">50/125um Laser Optimized (OM5)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Lime green</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">50/125um Laser Optimized (OM4)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Violet or aqua</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">50/125um Laser Optimized (OM3)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Aqua</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="55.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">50/125um (OM2)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Orange</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Legacy only to support extending existing installation OM2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">62.5/125um (OM1)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Slate</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Legacy only to support extending existing installation OM1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="49.50">
+         <CEL MERGEDOWN="2" STYLEID="s50">
+<DTA TYPE="STRING">Single-mode</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">OS1 (ranges between 8um and 10um)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Yellow</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Legacy only to support extending existing Installation OS1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="37.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">OS1a (ranges between 8um and 10um)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Yellow</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="64.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">OS2 (ranges between 8um and 10um)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Yellow</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Army Installation and Campus Area Network (ICAN) Guide standard dictates the use of single mode fiber 
+cables for building backbones on Army projects.</NPR><BRK/>
+<BRK/>
+<NPR>For Navy projects provide single mode fiber cables (OS1a) for building backbones on all new projects to future 
+proof the network and standardize the backbone.  Additionally, this permits the option of flattening the network 
+via direct connection to switches in TRs other than the main TR.</NPR><BRK/>
+<BRK/>
+<NPR>In existing facilities with multimode cables and switches, coordinate with the activity and the NMCI/COSC/NGEN 
+contractor to determine whether the switch optics will be changed to utilize the single mode backbone, or if multimode 
+cable must also be provided in addition to the single mode.  If using multimode, OM3 (which permits data rates 
+up to 10 Gig) is first choice.  OM2 and OM1 should only be used to supplement existing systems.</NPR><BRK/>
+<BRK/>
+<NPR>For Air Force projects, coordinate fiber cable requirements with the Installation Communications Squadron.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide in accordance with <RID>ICEA S-83-596</RID>, <RID>ITU-T G.655</RID>, <RID>ANSI/TIA-568.3</RID>, <RID>UL 1666</RID>, and <RID>NFPA 70</RID>.  Cable must be imprinted with fiber count, fiber type 
+and aggregate length at regular intervals not to exceed<MET> 1 m</MET><ENG> 40 in</ENG>.  Provide the number of strands indicated, (but not less than 12 strands between 
+the main telecommunication room and each of the other telecommunication rooms), of single-mode (OS1a), tight buffered fiber optic cable.  Specify 
+For premises applications deploying 10 Gigabit-Passive Optical Network (10G-PON)<RID>ITU-T G.987.1</RID>, <RID>ITU-T G.984.1</RID>, and <RID>ITU-T G.657</RID>.  For longer reaches 
+directly mating to OSP specify bend-insensitive fiber meeting <RID>ITU-T G.652</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide tight buffered fiber optic multimode,[ 50/125-µm diameter laser optimized (OM5)][ 50/125-µm diameter laser optimized (OM4)][ 50/125-µm 
+diameter laser optimized (OM3)][ 50/125-µm diameter (OM2)][ 62.5/125-µm diameter (OM1)] cable as indicated.  Provide OM1 or OM2 only when mating 
+to legacy installations. Provide plenum (OFNP), riser (OFNR), or general purpose (OFN or OFNG) rated non-conductive, fiber optic cable in accordance 
+with <RID>NFPA 70</RID>.  Substitution of a higher rated cable must be permitted in accordance with <RID>NFPA 70</RID>.  The cable cordage jacket, fiber, unit, and group 
+color must be in accordance with <RID>TIA/EIA-598</RID>.  For industrial applications or where subjected to physical damage armored conductive cables should 
+be considered with appropriate bond and hardware.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Horizontal Cabling</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate project requirements and use of fiber optic cable and coax for horizontal cabling with the technical 
+authority.</NPR><BRK/>
+<BRK/>
+<NPR>Remove requirements for copper infrastructure for US Marine Corp projects unless specifically exempted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide horizontal cable in compliance with <RID>NFPA 70</RID> and performance characteristics and installation in accordance with <RID>ANSI/TIA-568 Series</RID> applicable 
+for the type of horizontal media.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Horizontal Copper</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the first bracketed jacket color for the preferred color code for cable jackets.  Coordinate with 
+activity and choose the second bracketed jacket color option to specify an activity preferred color.  Cabling, 
+patch panels, connector blocks, work area outlets, and cable connectors must be color-coded to distinguish their 
+classification level.  If color-coding is not possible, cabling must be clearly marked to indicate classification 
+level.  Provide detail sufficient for the security officer to submit and obtain approval from the certified TEMPEST 
+technical authority.  Design submittals must document RED/BLACK and checklist items from Intelligence Community 
+Directive (ICD) Tech Spec, including the TEMPEST checklist items specific to telecommunications systems.</NPR><BRK/>
+<BRK/>
+<NPR>ICEA S-90-661 specifies a different cable marking interval for copper cables when marked in SI versus empirical 
+units.  This standard requires "Length marking must appear at intervals not to exceed 1 meter, and the word "METER" 
+must appear after each length marking.  If specified by the user, length marking must be provided in feet and 
+must appear at intervals not to exceed 3.3 feet.  The word "FEET" must appear after each length marking.</NPR><BRK/>
+<BRK/>
+<NPR>Screened twisted pair cable (ScTP) may be required OCONUS, in AV applications, or in secure areas, confirm with 
+technical authority.  Coordinate with Activity for specific requirements and applicable reference standards.</NPR><BRK/>
+<BRK/>
+<NPR>The following are minimum cable Types for PoE System Application Data minimum requirements:<BRK/>
+Workstation and Service Outlets   Cat 6A<BRK/>
+BAS                               Cat 6<BRK/>
+AV                                Shielded Cat 6A<BRK/>
+Lighting                          Cat 6 23 AWG<BRK/>
+WAPs                              2 each Cat 6A<BRK/>
+Elevator                          2 each Cat 6A</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide horizontal copper cable, UTP, 100-ohm in accordance with <RID>ANSI/TIA-568.2</RID>, <RID>UL 444</RID>, <RID>ANSI/NEMA WC 66</RID>.  For Workstation Outlets provide four 
+each individually twisted pair, minimum size 24 AWG conductors, Category 6A, with a[ blue][ green] [_____] thermoplastic jacket.</TXT><BRK/>
+<BRK/>
+<TXT>For Service Outlets and Facility Related Control Systems (FRCS) that do not require 10G horizontal capability, provide[ four][ one] each individually 
+twisted pair, minimum size 24 AWG conductors, Category 6, with a [green][_____] thermoplastic jacket.  For AV that contain uncompressed HDMI signals, 
+provide four each individually twisted pair, minimum size 24 AWG conductors, Shielded Category 6A, with a [White][_____] thermoplastic jacket.  
+For Wireless Access Points (WAP) provide 2 Category 6a cables to each outlet in accordance with <RID>TIA TSB-162</RID>.  Cable must be imprinted with manufacturers 
+name or identifier, flammability rating, gauge of conductor, transmission performance rating (category designation) and length marking at regular 
+intervals in accordance with <RID>ICEA S-90-661</RID>.  Provide plenum (CMP), riser (CMR), or general purpose (CM or CMG) communications rated cabling in 
+accordance with <RID>NFPA 70</RID>.  Substitution of a higher rated cable must be permitted in accordance with <RID>NFPA 70</RID>.  Cables installed in conduit within 
+and under slabs must be UL listed and labeled for wet locations in accordance with <RID>NFPA 70</RID>.[  Provide residential ANSI/TIA Category 6 cabling in 
+accordance with <RID>ANSI/TIA-570</RID>.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Horizontal Optical Fiber</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: When using fiber to the work area outlet, the design can use the multimode or single mode optical fiber 
+for horizontal cabling.  If using multimode, OM3 (which permits data rates up to 10 Gig) is first choice.  OM2 
+and OM1 are legacy solutions and should only be used to supplement existing systems.  Coordinate with Telecommunications 
+Manager.</NPR><BRK/>
+<BRK/>
+<NPR>Centralized cabling provides connection from the work areas to the centralized cross connect by allowing the use 
+of pull through cable, an interconnect, or a splice in the TR or ER.  Although this is using the same cable as 
+horizontal, the industry standard permits runs up to<MET> 300 m</MET><ENG> 984 ft</ENG> for OM3 and<MET> 400 m</MET><ENG> 1,312 ft</ENG> for OM4/OM5.  These 
+distances support 10GBASE-SR using MMF.</NPR><BRK/>
+<BRK/>
+<NPR>In passive optical network (PON) topologies, specify single mode fiber as it is currently the only viable cabling 
+solution.  PON technology is not supported by all current networks and must be coordinated with the agency specific 
+telecommunications manager approval from the technical authority.  Best practice is when designing PON is to design 
+with two fibers to support a differing infrastructure if the network architecture changes.</NPR><BRK/>
+<BRK/>
+<NPR>For horizontal cabling, OM3 or better multimode optical fiber is recommended for: – Distances up to<MET> 90 m</MET><ENG> 295 ft</ENG>
+ in the horizontal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide optical fiber horizontal cable in accordance with <RID>ANSI/TIA-568.3</RID>.  Cable must be tight buffered,[ multimode, 50/125-µm diameter laser optimized, 
+OM3][,][ single-mode, 8/125-µm diameter, OS1a with <RID>ITU-T G.657</RID> fiber][ single-mode, 8/125-µm diameter, OS1a with <RID>ITU-T G.652</RID> fiber].  Cable must 
+be imprinted with manufacturer, flammability rating and fiber count at regular intervals not to exceed<MET> 1 m</MET><ENG> 40 in</ENG>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide plenum (OFNP), riser (OFNR), or general purpose (OFN or OFNG) rated non-conductive, fiber optic cable in accordance with <RID>NFPA 70</RID>.  Substitution 
+of a higher rated cable must be permitted in accordance with <RID>NFPA 70</RID>.  Cables installed in conduit within and under slabs be UL listed and labeled 
+for wet locations in accordance with <RID>NFPA 70</RID>.  The cable jacket must be of single jacket construction with color coding of cordage jacket, fiber, 
+unit, and group in accordance with <RID>TIA/EIA-598</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Work Area Cabling</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Verify with Telecommunications Manager/Technical Authority</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Work Area Copper</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the first bracketed jacket color for the preferred color code for cable jackets.  Coordinate with 
+activity for alternate color coding and choose the second bracketed jacket color option to enumerate activity 
+preferred color code.  Coordinate work area cabling color code with work area adapter color code.  When selecting 
+2-pair UTP, verify component compatibility.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide work area copper cable in accordance with <RID>ANSI/TIA-568.2</RID>, with a[ blue,][ green] [_____] thermoplastic jacket.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Work Area Optical Fiber</TTL><BRK/>
+<BRK/>
+<TXT>Provide optical work area cable in accordance with <RID>ANSI/TIA-568.3</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Outlets</TTL><BRK/>
+<BRK/>
+<TXT>Provide service outlet[ single pair copper][ 4-pair copper][ fiber optic] cabling to support all operational technology (OT) outlets as indicated 
+in accordance with <RID>ANSI/TIA-568 Series</RID>. </TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>TELECOMMUNICATIONS OUTLET/CONNECTOR ASSEMBLIES</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When a building has elevators, all necessary four-pair copper cable with an eight-position modular outlet 
+adapter location must be verified with the elevator installer or Contractor.</NPR><BRK/>
+<BRK/>
+<NPR>When a building has OT that requires structured cabling provide Service outlets with a four-pair copper cable 
+with an eight-position modular outlet or 2-pair copper cabling if vendor equipment accepts this new connection 
+type.</NPR><BRK/>
+<BRK/>
+<NPR>Conduit bend radius must be coordinated with cable bend radius.  Conduit entries at outlet and junction boxes 
+must be arranged so that cables passing through the box must enter and exit at opposite sides of the box.  Provide 
+grounding and bonding as required by ANSI/TIA-607.</NPR><BRK/>
+<BRK/>
+<NPR>Wire 8-pin modular outlet/connectors to T568A configuration unless specifically requested and approved by the 
+Telecommunications Manager.  The term RJ-45 refers to 8-pin modular adapters/connectors wired to T568A or T568B 
+configurations.  Ensure drawings indicate work area outlet adapter color code functionality if color coding of 
+adapters is a requirement of the project.</NPR><BRK/>
+<BRK/>
+<NPR>Remove requirements for copper infrastructure for US Marine Corp projects unless specifically exempted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Outlet/Connector Copper</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate outlet/connector color with Telecommunications Manager/Technical Authority.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Outlet/connectors must comply with <RID>FCC Part 68</RID>, <RID>ANSI/TIA-568.1</RID>, and <RID>ANSI/TIA-568.2</RID>[ <RID>ANSI/TIA-568.5</RID>].  UTP outlet/connectors must be <RID>UL 1863</RID> listed, 
+non-keyed, 8-pin modular, constructed of high impact rated thermoplastic housing and must be third party verified by a nationally recognized testing 
+laboratory.  Outlet/connectors provided for UTP cabling must meet or exceed the requirements for the cable provided.  Outlet/connectors must be 
+terminated using a RJ45 type connections, color-coded for both T568A and T568B wiring.  Each outlet/connector must be wired[ T568A][ or][ T568B].  
+UTP outlet/connectors must comply with <RID>ANSI/TIA-568.2</RID> for [200][_____] mating cycles.[  UTP outlet/connectors installed in outdoor or marine environments 
+must be jell-filled type containing an anti-corrosive, memory retaining compound.]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Optical Fiber Adapters(Couplers)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  LC style adapters and connectors are the default standard for new construction due to smaller form factor 
+(size) allowing higher density at both the patch panel and the outlets.</NPR><BRK/>
+<BRK/>
+<NPR>Do not use SC, ST, or MT-RJ fiber optic adapters and connectors for new construction unless specifically required 
+for interface with existing equipment reused on installations.  Check with activity for specific requirements 
+for SC, ST, and MT-RJ adapters and connectors.</NPR><BRK/>
+<BRK/>
+<NPR>Sleeves are used in adapters to align the fibers and reduce insertion loss.  Zirconia ceramic split sleeves are 
+more expensive but provide higher durability than phosphor bronze split sleeves.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide optical fiber adapters suitable for[ duplex LC in accordance with <RID>TIA/EIA-604-10</RID> with zirconia ceramic alignment sleeves,][ duplex SC in 
+accordance with <RID>TIA/EIA-604-3</RID> with zirconia ceramic alignment sleeves,][ MT-RJ in accordance with <RID>TIA/EIA-604-12</RID> with thermoplastic alignment sleeves,][ 
+and][ ST crimp style connector in accordance with <RID>TIA/EIA-604-2</RID> with metallic alignment sleeves] as indicated.  Provide dust cover for adapters.  
+Optical fiber adapters must comply with <RID>TIA-455-21</RID> for [500][_____] mating cycles.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Optical Fiber Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Provide in accordance with <RID>TIA-455-21</RID>.[  Optical fiber connectors must be[ duplex LC in accordance with <RID>TIA/EIA-604-10</RID> with zirconia ceramic alignment 
+sleeves,][ duplex SC in accordance with <RID>TIA/EIA-604-3</RID> with zirconia ceramic][ MT-RJ in accordance with<RID> TIA/EIA-604-12</RID> with thermoplastic][ ST in 
+accordance with <RID>TIA/EIA-604-2</RID> with metallic] ferrule, epoxy less[ crimp style] compatible with[[ 62.5/125][ 50/125] multimode][ 8/125 singlemode] 
+fiber.  The connectors must provide a maximum attenuation of 0.3 dB at[ 850][ 1300][ 1310][ 1550] nm with less than a 0.2 dB change after 500 mating 
+cycles.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cover Plates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate cover plate color with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEMS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Telecommunications cover plates must comply with <RID>UL 514C</RID>, and <RID>ANSI/TIA-568 Series</RID>;[ flush][ or][ oversized][ flat][ angled] design constructed 
+of[ stainless steel][ high impact thermoplastic material[[ ivory][ white][ brown] in color][ to match color of receptacle/switch cover plates specified 
+in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM]][ 302 stainless material][ or][ brass material].  Provide 2-Post, stainless material cover plates 
+for all wall mounted telephone locations.  Provide labeling in accordance with the paragraph LABELING in this section.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ZONE CABLING ASSEMBLIES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Zone Cabling Assemblies such as MUTOA's and CP's are termination devices used for open office cabling.  
+The use of these assemblies allows horizontal cabling to change more easily when the open office plan is reconfigured.  
+Work area cables originating from the MUTOA should be routed through work area pathways (e.g., furniture pathways).  
+The work area cables must be connected directly to workstation equipment without the use of any additional intermediate 
+connections.  MUTOAs must be located in an open office area so that each furniture cluster is served by at least 
+one MUTOA.  The MUTOA must be limited to serving a maximum of twelve work areas. <MET> 90 meter</MET><ENG> 295 feet</ENG> maximum permanent 
+link requirements remain.  Spare capacity must also be considered when sizing the MUTOA.  MUTOA's are not allowed 
+above ceiling spaces.</NPR><BRK/>
+<BRK/>
+<NPR>Passive consolidation points (with no provisions for active network components) can be designed to allow horizontal 
+cabling to be changed more easily when the open office plan is reconfigured.  This introduces another connection 
+point in the cabling infrastructure and should be coordinated with the telecommunications manager/Technical authority 
+prior to design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL><SUB>Multi-User Telecommunications Outlet Assembly</SUB> (MUTOA)</TTL><BRK/>
+<BRK/>
+<TXT>Provide MUTOA(s) in accordance with <RID>ANSI/TIA-569</RID>.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Consolidation Point</SUB> (CP)</TTL><BRK/>
+<BRK/>
+<TXT>Provide CP(s) in accordance with <RID>ANSI/TIA-569</RID>.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>BONDING PRODUCTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate bonding components and conductor sizes on drawings.  Use the following guidelines until Section 
+27 05 26 GROUNDING AND BONDING FOR COMMUNICATIONS SYSTEMS is issued.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide in accordance with <RID>UL 467</RID>, <RID>ANSI/TIA-607</RID>, and <RID>NFPA 70</RID>.  Components must be labeled as required by <RID>ANSI/TIA-606</RID> and as indicated.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Bonding Conductors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A Telecommunication Bonding Backbone (TBB) is required between the Primary Bonding Busbar (PBB) and all 
+Secondary Bonding Busbars (SBBs).  A TBB is not required for installation with only a single SBB or PBB.  A Telecommunications 
+Bonding Conductor (TBC) is required between the PBB and the building grounding electrode system</NPR><BRK/>
+<CTR><TAB HEADERROWS="0" WIDTH="51">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="11">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="270.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="139.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING"><HL4>Sizing of the TBC, TBB, and BBC</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">TBB length linear<MET> m</MET><ENG> ft</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">TBB Size AWG</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">less than<MET> 4</MET><ENG> 13</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">6</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>4 - 6 </MET><ENG>14 - 20</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>6 - 8 </MET><ENG>21 - 26</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>8 - 10 </MET><ENG>27 - 33</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>10 - 13 </MET><ENG>34 - 41</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>13 - 16 </MET><ENG>42 - 52</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1/0</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>16 - 20 </MET><ENG>53 - 66</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2/0</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>20 - 26 </MET><ENG>67 - 84</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3/0</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="56.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">If longer lengths are necessary, reference chart in ANSI/TIA 607 Section 6.3</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></CTR><BRK/>
+<BRK/>
+<NPR>Choose the second bracketed options where lightning protection system is provided in the job and specified in 
+other sections.  Choose insulated TBB when pathway is a dissimilar metal than copper.  See ANSI/TIA-607 E Section 
+6 for further information.  Choose BBC bracketed conductor when two or more stacks of TR's are present.</NPR><BRK/>
+<BRK/>
+<NPR>When a tower or antenna is installed, the installation shall meet the meet the bonding and grounding requirements 
+of ATIS 0600334.  See annex B of ANSI/TIA-607 for information regarding bonding and grounding of towers and antennas.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>ASTM B1, solid bare copper wire for sizes No. 8 AWG and smaller diameter; ASTM B8, Class B, stranded bare copper wire for sizes No. 6 AWG and larger 
+diameter.  Conductors must be installed using two-hole compression type lugs in accordance with <RID>ANSI/TIA-607</RID> and <RID>UL 486A-486B</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a copper TBB between the telecommunications main grounding busbar (PBB) and the electrical service ground in accordance with <RID>ANSI/TIA-607</RID>
+.  Size the bonding conductor for telecommunications the same as the TBB.[  Provide insulated TBB with insulation as specified in Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph INSULATION and meeting the fire ratings of its pathway.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Telecommunications Bonding Backbone (TBC)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copper Telecommunication Bonding Conductor (TBC) between the primary bonding busbar (PBB) and the electrical service ground in accordance 
+with <RID>ANSI/TIA-607</RID>.  Size the TBC the same as the largest TBB conductor.[  Provide insulated TBCB with insulation as specified in Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph INSULATION and meeting the fire ratings of its pathway.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Bonding Backbone (TBB)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copper telecommunications bonding backbone (TBB) between the PBB and all SBB's in accordance with <RID>ANSI/TIA-607</RID>.  Size the TBB in accordance 
+with <RID>ANSI/TIA-607</RID> based on total length.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Telecommunications Backbone Bonding Conductor (BBC)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copper telecommunications backbone bonding conductor(BBC) between the top most floor SBB's in accordance with <RID>ANSI/TIA-607</RID>.  Size the 
+BBC the same as the largest TBB conductor.  Provide insulated conductors with insulation as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION 
+SYSTEM paragraph INSULATION and meeting the fire ratings of its pathway.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Telecommunications Equipment Bonding Conductor (TEBC)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copper conductor in accordance with <RID>ANSI/TIA-607</RID> with a minimum No. 6 AWG to bond all raceways,[ rack RBB][ cabinet RBB][ wall mounted 
+equipment cabinet RBB] to the[ PBB][ SBB].[  Provide insulated conductors with insulation as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION 
+SYSTEM paragraph INSULATION and meeting the fire ratings of its pathway.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Bonding Busbars</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Minimum width for the Primary bonding busbar (PBB) is<MET> 100 mm</MET><ENG> 4 in</ENG> and for the Secondary bonding busbar 
+(SBB) is<MET> 50 mm</MET><ENG> 2 in</ENG>.  Telecommunications bonding busbar provides bonding termination for all metallic elements 
+in the telecommunications systems.  Choose the bracketed option for Secondary bonding busbars (SBB) when there 
+are more than one telecommunications room or telecommunications equipment rooms included in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide corrosion-resistant bonding busbar suitable for[ indoor][ outdoor] installation in accordance with <RID>ANSI/TIA-607</RID>.  Busbars:  plated for 
+reduced contact resistance.  Provide a Primary bonding busbar (PBB) in the telecommunications entrance facility[ and a Secondary bonding busbar 
+(SBB) in all other telecommunications rooms and equipment rooms].  The Primary bonding busbar (PBB)[ and the secondary bonding busbar (SBB)]:  
+sized in accordance with the immediate application requirements and with consideration of future growth.  Provide[ vertical][ horizontal] Rack 
+Bonding Busbar (RBB) in each[ rack][ cabinet].  Provide bonding busbars with the following:  a.  , b.  ; c.  Listed by a nationally recognized 
+testing laboratory.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Predrilled copper busbar provided with holes for use with standard sized two-hole lugs,</OLI><BRK/>
+<BRK/>
+<OLI>Minimum dimensions of<MET> 6 mm</MET><ENG> 0.25 in</ENG> thick by<MET> 100 mm</MET><ENG> 4 in</ENG> wide for the PBB[ and<MET> 50 mm</MET><ENG> 2 in</ENG> wide for SBBs] with length as indicated and<MET> 6 
+mm</MET><ENG> 0.25 in</ENG> thick by[<MET> [762 mm][648 mm]</MET><ENG> [30 in][25.5 in]</ENG> [_____] for a vertical RBB][[<MET> 483 mm</MET><ENG> 19 in</ENG>] [_____] for a horizontal RBB].</OLI><BRK/>
+<BRK/>
+<OLI>Listed by a nationally recognized testing laboratory.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIRESTOPPING MATERIAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Firestopping material requirements are specified in Section <SRF>07 84 00</SRF> FIRESTOPPING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide as specified in Section <SRF>07 84 00</SRF> FIRESTOPPING.  Ends of conduit stubs must be treated as part of the overall assembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MANUFACTURER'S NAMEPLATE</TTL><BRK/>
+<BRK/>
+<TXT>Each item of equipment must have a nameplate bearing the manufacturer's name, address, model number, and serial number securely affixed in a conspicuous 
+place; the nameplate of the distributing agent will not be acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>UNIQUE IDENTIFICATION NAMEPLATES AND LABELS</TTL><BRK/>
+<BRK/>
+<TXT>Provide[ laminated plastic nameplates per <RID>ASTM D709</RID>][ thermal ink transfer process][ laser printer] for each equipment[ rack][ cabinet],[ wall 
+mounted cabinet,] patch panels, outlet[ and active equipment device]; as specified[ or as indicated on the drawings].[  Nameplates must be melamine 
+plastic,<MET> 3 mm</MET><ENG> 0.125 in</ENG> thick, white with [black][_____] center core.  Surface must be matte finish.  Corners must be square.  Accurately align 
+lettering and engrave into the core.  Minimum size of nameplates must be<MET> 25 by 65 mm</MET><ENG> 1 by 2.5 in</ENG>.]  Lettering must be[ a minimum of<MET> 6.35 mm </MET><ENG>0.25 
+in</ENG> high normal block style.][ sized for the equipment, white with [black][_____] text.  Labels must be sized to fit the devices/equipment being 
+labeled.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TESTS, INSPECTIONS, AND VERIFICATIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Factory Reel Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Provide documentation of the testing and verification actions taken by manufacturer to confirm compliance with[ <RID>ANSI/TIA-568.2</RID> for BTP copper][ <RID>
+ANSI/TIA-568.3</RID> and <RID>ANSI/TIA-526-7</RID> for single mode optical fiber][, and <RID>ANSI/TIA-526-14</RID> for multimode optical fiber] cables.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete last sentence associated with cabling guides for single family resident ANSI/TIA installations.</NPR><BRK/>
+<BRK/>
+<NPR>Cable installation logic must be approved by the proponents technical authority/telecommunications manager.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install telecommunications telecommunication spaces, pathway systems, and cabling (including the horizontal and backbone cable), telecommunications 
+outlet/connector assemblies, and associated hardware as detailed in <RID>NECA/BICSI 568</RID>, <RID>ANSI/BICSI N1</RID>, <RID>ANSI/BICSI N3</RID>, <RID>ANSI/TIA-568.1</RID>, <RID>ANSI/TIA-568.2</RID>
+,[ <RID>ANSI/TIA-568.3</RID>,] <RID>ANSI/TIA-569</RID>, <RID>NFPA 70</RID>, and UL standards as applicable.  Pathways and outlet boxes must be types as specified in PART 2.  Install 
+cabling in a star topology network[ redundant star for C5ISR and other facilities with a mission that supports telecommunications infrastructure 
+redundancy].[  Install residential cabling in a star wiring architecture from the distribution device as required by <RID>ANSI/TIA-570</RID>.]  Install telecommunications 
+cabling with copper media in accordance with the following criteria to avoid potential electromagnetic interference between power and telecommunications 
+equipment.  The interference ceiling must not exceed 3.0 volts per meter measured over the usable bandwidth of the telecommunications cabling.  
+Cabling must be run with horizontal and vertical cable guides in telecommunications spaces with terminating hardware and interconnection equipment.  
+To ensure a logical sequence of installation, and ease of maintenance, organize cables from top-to-bottom, left-to-right across the front of each 
+patch panel.  WAO must start from the[ building's main entrance][ serving telecommunications room] working left-to-right around each room and left-to-right 
+throughout the building.  SO's[ may be included in sequence][ managed separately from WAO's as approved by the COR and technical authority].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TELECOMMUNICATION SPACE EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Install all termination hardware necessary to support required Category [6a][_____][ and][ optical fiber] system[s] and network equipment as indicated 
+on the drawings.</TXT><BRK/>
+<BRK/>
+<SPT><TTL> Plywood Backboards</TTL><BRK/>
+<BRK/>
+<TXT>Install A/C grade plywood backboards on walls as indicated on the drawings and in accordance with <RID>ANSI/TIA-569</RID>.  Mount plywood vertically, with 
+the bottom of the plywood<MET> [150 mm][203 mm]</MET><ENG> [6 in][8 in]</ENG> [_____] above the finished floor with the best side toward the room.  Mounting anchors 
+utilizing[ galvanized][ zinc plated][ stainless steel] hardware with a flat head.  Finished installation must be flush with countersunk screw head 
+to prevent splitting.  Drywall screws are not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Support Frames</TTL><BRK/>
+<BRK/>
+<TXT>Install equipment support frames, patch panels, cable management, and cable guides in accordance with <RID>ANSI/TIA-569</RID>.  Verify coordinated placement 
+of all equipment and utilities.  Maintain required clearances per PART 2 and approved shop drawing.  Mount required PDU's along the sides of equipment 
+frames per manufacturers recommendation[ as indicated on the drawings].</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Bracket, wall mounted.  Mount bracket to plywood backboard in accordance with manufacturer's recommendations.  Mount rack so height of 
+highest panel does not exceed<MET> 1980 mm</MET><ENG> 78 in</ENG> above floor.</OLI><BRK/>
+<BRK/>
+<OLI>Racks, floor mounted modular type.  Permanently anchor rack to the floor in accordance with manufacturer's recommendations.  Anchor at 
+the top in accordance with seismic requirement found elsewhere in design.</OLI><BRK/>
+<BRK/>
+<OLI>Cabinets, freestanding modular type.  When cabinets are connected, remove adjoining side panels for cable routing between cabinets.[  Mount 
+rack mounted fan in[ roof][ base] of cabinet.]</OLI><BRK/>
+<BRK/>
+<OLI>[Cabinets][Rack], wall-mounted modular type.  Mount[ cabinet][ rack] to plywood backboard in accordance with manufacturer's recommendations.  
+Mount cabinet so height of highest panel does not exceed<MET> 1980 mm</MET><ENG> 78 in</ENG> above floor.</OLI><BRK/>
+<BRK/>
+<OLI>Allow a minimum of<MET> 914 mm</MET><ENG> 36 in</ENG> working clearance in[ front and rear of floor mounted equipment frames][ front of wall mounted equipment 
+frames].  Clearance of<MET> 153 mm</MET><ENG> 6 in</ENG> is required for equipment frames adjacent to a wall and a minimum of<MET> 762 mm</MET><ENG> 30 in</ENG> is required at the 
+end of each row.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Connector Blocks</TTL><BRK/>
+<BRK/>
+<TXT>Install[ cabinet][ rack][ wall] mounted[ 110-Type][ 710-type] connector blocks in orderly rows and columns.  Adequate vertical and horizontal wire 
+routing areas must be provided between groups of blocks.  Install in accordance with industry standard wire routing guides per <RID>ANSI/TIA-569</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Patch Panels</TTL><BRK/>
+<BRK/>
+<TXT>Patch panels must be mounted[ in equipment[ cabinets]][ racks][ on the plywood backboard] with sufficient ports to accommodate the installed cable 
+plant plus [25][_____] percent spares.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Copper Patch Panel.  Copper cable entering a patch panel must have additional support and be secured to the panel as recommended by the 
+manufacturer to prevent movement of the cable and reduce component strain.  Land cabling left-to-right, top-to-bottom in the same logic 
+as room's are identified.</OLI><BRK/>
+<BRK/>
+<OLI>Fiber Optic Patch Panel.  Fiber optic cable loop must be <MET>[900][_____] mm</MET><ENG> [3][_____] ft</ENG> in length.  The outer jacket of each cable entering 
+a patch panel must be secured to the panel to prevent movement of the fibers within the panel, using clamps or brackets specifically manufactured 
+for that purpose.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Cable Management</TTL><BRK/>
+<BRK/>
+<TXT>Install horizontal and vertical cable management in accordance with <RID>ANSI/TIA-569</RID>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Horizontal Cable Management:  Install one rack unit (RU) horizontal manager for every one RU of patch panel or switch port appearances.  
+Horizontal cable management must be installed to support ports without overlapping/crossing/impinging on other port appearances.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Vertical Cable Management:  Install vertical cable management between racks[ and at each end of each row].  Vertical cable management panels must 
+be a minimum of<MET> 150 mm</MET><ENG> 6 in</ENG> wide and deep and additionally sized based on total anticipated cable fill plus 50 percent.  Allow space against wall 
+for operation of management covers.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TELECOMMUNICATIONS PATHWAYS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not use metal flex conduit for telecommunications wiring unless used to connect floor boxes under raised 
+floors.</NPR><BRK/>
+<BRK/>
+<NPR>For guidelines on conduit sizing, see UFC 3-580-01, "Information and Communications Infrastructure Planning and 
+Design" and NFPA 70.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install in accordance with <RID>ANSI/TIA-569</RID> and <RID>NFPA 70</RID>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Horizontal Pathway:  Telecommunications pathways from the work area to the telecommunications room:  installed and cabling length requirements 
+in accordance with <RID>ANSI/TIA-568 Series</RID>.  Size conduits[ wireways][ and cable trays] in accordance with <RID>ANSI/TIA-569</RID>[ and][ as indicated].  
+Install a minimum of<MET> 25 mm</MET><ENG> 1 in</ENG> conduit for telecommunications work area and service outlets.  Conduit size must be increased if required 
+by cable diameter and fill requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Backbone Pathway:  Telecommunication pathways from the telecommunications entrance facility to telecommunications rooms, and, telecommunications 
+equipment rooms (backbone cabling):  installed in accordance with <RID>ANSI/TIA-569</RID> and as indicated.  Size conduits[, wireways][, and cable 
+trays] for telecommunications risers in accordance with <RID>ANSI/TIA-569</RID>[ and][ as indicated].</OLI><BRK/>
+<BRK/>
+<OLI>Service Entrance Conduit, Overhead:  Install service entrance overhead as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Interior Distribution System</TTL><BRK/>
+<BRK/>
+<TXT>Install conduit in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM PART 3 except as indicated below.  Install wall mounted outlet 
+boxes as specified in PART 2.  Provide pull boxes for telecommunications systems in accordance with <RID>ANSI/TIA-569</RID>.  No conduit runs must exceed<MET> 
+30 m</MET><ENG> 100 ft</ENG> without a pull boxed placed.  Pull boxes must not be used for a change in direction.  Conduit bends must not exceed more than the equivalent 
+of two 90 degree bends or 180 degrees total without the addition of a pull box in accordance with <RID>ANSI/TIA-569</RID>.  Conduits must enter and exit pull 
+boxes in accordance with <RID>ANSI/TIA-569</RID>.  Install firestop penetrations in accordance with Section <SRF>07 84 00</SRF> FIRESTOPPING.  Install conductors run 
+through smoke and fire partitions in<MET> 103 mm</MET><ENG> 4 in</ENG> rigid steel conduits with bond bushings, extending<MET> 305 mm</MET><ENG> 12 in</ENG> beyond each side of partitions.  
+Seal conduit on both ends to maintain smoke and fire ratings of[ partitions][ listed fire barrier pathways].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pull Cords</TTL><BRK/>
+<BRK/>
+<TXT>Pull cords must be installed in conduit serving telecommunications outlets that do not have cable installed.  Pull cords must be labeled on each 
+end and indicate the service in which they were installed to support, the location of all pull boxes, and room number of the far ends.  Spare outlet 
+locations must be included in record documentation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cable Tray</TTL><BRK/>
+<BRK/>
+<TXT>Install cable tray as specified in PART 2.  Cable tray access and working clearances of<MET> 305 mm</MET><ENG> 12 in</ENG> on one side and above the tray must be coordinated 
+with other utilities.  Side and top encroachment distance of less than<MET> 914 mm</MET><ENG> 3 ft</ENG> in a<MET> 6 m</MET><ENG> 20 ft</ENG> span is allowable provided it does not prohibit 
+access to raceways or conduits that feed into the tray and is approved prior to cable installation.  These encroachments must be approved by the 
+Building Information Modeling (BIM) Coordination Team with final approval by the Information Communications Technical Authority.  Install cable 
+tray using[ wall mounted brackets][ ceiling hung brackets].  Do not install cable tray using a single center hanger.</TXT><BRK/>
+<BRK/>
+<TXT>Install and bond in accordance with <RID>NFPA 70</RID>, <RID>ANSI/TIA-569</RID>, and <RID>ANSI/TIA-607</RID>.  Install cable trays parallel with or at right angles to ceilings, 
+walls, and structural members.  Cable tray and tray supports must not partially nor completely obstruct access to the room.  Support[ in accordance 
+with <RID>NEMA BI-50026/VE 2</RID> and with manufacturer recommendations but at not more than<MET> [1830][_____] mm</MET><ENG> [6][_____] ft</ENG> intervals][ as indicated by the 
+manufacturer].  Coat contact surfaces of aluminum connections with an antioxidant compound prior to assembly.  Adjacent cable tray sections bonded 
+together by connector plates of an identical type as the cable tray sections.  Terminate cable trays<MET> 55 mm</MET><ENG> 10 in</ENG> from both sides of smoke and fire 
+partitions.  Install cable tray supports to resist forces of 0.5 times the equipment weight in any direction and 1.5 times the equipment weight 
+in the downward direction.  Ensure edges, fittings, and hardware are finished free from burrs and sharp edges.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Non-Continuous Cable Supports</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Utilize non-continuous telecommunications cable supports (J-Hooks / J-Supports / Bridle rings/ D-rings) 
+only as specifically permitted in UFC 3-580-01, Telecommunications Interior Infrastructure Planning and Design.  
+If allowed, verify design notes are included on drawings.</NPR><BRK/>
+<BRK/>
+<NPR>For Navy projects, install cabling in a wireway/raceway pathway system only.  Delete bracketed sentences associated 
+with cabling not in wireway and pathway, structural member routing, cable placement and coiling of cables.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Install open top and closed ring cable supports on<MET> 1.2 m to 1.5 m</MET><ENG> 4 ft to 5 ft</ENG> centers to adequately support and distribute the cable's weight.  
+Use these types of supports to support a maximum of 20<MET> 6.4 mm</MET><ENG> 0.25 in</ENG>diameter cables.  Support cable not in a wireway or pathway minimum of<MET> [200][_____] 
+mm</MET><ENG> [8][_____] in</ENG> above ceilings and no greater than<MET> 1.2 m to 1.5 m</MET><ENG> 4 ft to 5 ft</ENG> centers to adequately support and distribute the cable's weight.  
+Open top and closed ring cable supports must be suspended from or attached to the structural ceiling or walls with hardware or other installation 
+aids specifically designed to support their weight.</TXT><BRK/>
+<BRK/>
+]<TXT>Cable must not be run through structural members or in contact with pipes, ducts, or other potentially damaging items.  Placement of cable parallel 
+to power conductors must have a minimum separation of<MET> 300 mm</MET><ENG> 12 in</ENG>.  Cable routed exposed under raised floors must be plenum rated.  Plenum cables 
+must comply with flammability plenum requirements of <RID>NFPA 70</RID>.  Install cabling after the flooring system has been installed in raised floor areas 
+and arranged to not impede underfloor airflow.[  Cable<MET> [1.8][_____] m</MET><ENG> [6][_____] ft</ENG> long must be neatly coiled not less than<MET> [300][_____] mm</MET><ENG> [12][_____] 
+in</ENG> in diameter below each feed point in raised floor areas.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Floor Outlet and Poke-Thru Boxes</TTL><BRK/>
+<BRK/>
+<TXT>Install floor outlet boxes in accordance[ with manufacturer's instructions][ and][ as indicated].  Boxes must be flush with finished floor surfaces.  
+If electrical power is provided in the same box, the box must be fully partitioned.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunication Penetrations</TTL><BRK/>
+<BRK/>
+<TXT>Seal openings around telecommunication penetrations through fire resistance-rated wall, partitions, floors, or ceilings as specified in Section 
+<SRF>07 84 00</SRF> FIRESTOPPING.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TELECOMMUNICATIONS CABLE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Backbone Cable</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Copper Backbone Cable.  Install intrabuilding backbone copper cable, in indicated pathways, between the campus distributor, located in 
+the telecommunications entrance facility or room, the building distributors and the floor distributors located in telecommunications rooms 
+and telecommunications equipment rooms as indicated on drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Optical fiber Backbone Cable.  Install intrabuilding backbone optical fiber in indicated pathways.  Prepare cable for pulling by cutting 
+outer jacket<MET> 250 mm</MET><ENG> 10 in</ENG> leaving strength members exposed for approximately<MET> 250 mm</MET><ENG> 10 in</ENG>.  Twist strength members together and attach 
+to pulling eye.  Vertical cable support intervals must be in accordance with manufacturer's recommendations.  Fusion-splice backbone fibers 
+to factory produced pigtails.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Horizontal Cable</TTL><BRK/>
+<BRK/>
+<TXT>Install UTP[ and][ optical fiber] telecommunications cabling system as detailed in <RID>ANSI/TIA-568 Series</RID> based on media type[ and <RID>ANSI/TIA-570</RID> for 
+residential cabling].  Screw terminals must not be used except where specifically indicated on plans.  Use an approved insulation displacement 
+connection (IDC) tool kit for copper cable terminations.  Terminate on a workstation outlet, service outlet, or MPTL on the field end and a patch 
+panel in the TR.  Do not exceed manufacturers' cable pull tensions for copper and optical fiber cables.  Provide a device to monitor cable pull 
+tensions.  Do not exceed<MET> 110 N</MET><ENG> 25 lbs</ENG> pull tension for four pair copper cables.  Do not chafe or damage outer jacket materials.  Use only lubricants 
+approved by cable manufacturer.  Do not use any support methods that allow over cinching of cables, or crush cables with staples.  For UTP cable, 
+bend radii must not be less than four times the cable diameter.  For fiber optic cables the bend radius must not be less than 20 times the diameter 
+during pulling and must not be less than 10 times the diameter after installation.  All cabling must be terminated; no cable must contain unterminated 
+elements.  Cables must not be spliced.  Label cabling in accordance with paragraph LABELING in this section.  Install cable rated for their listed 
+environment. </TXT><BRK/>
+<OLG><BRK/>
+<OLI>Install copper horizontal cabling as indicated on approved shop drawings.  Do not untwist Category UTP cables more than<MET> 12 mm</MET><ENG> 1/2 in</ENG> from 
+the point of termination to maintain cable geometry.  Install a slack cable a minimum of<MET> [3 m]</MET><ENG> [10 ft]</ENG> [_____] along the longest pathway 
+in the TR.  Install<MET> 300 mm</MET><ENG> 12 in</ENG> of cable slack above ceiling at the WOA or service outlet.</OLI><BRK/>
+<BRK/>
+<OLI>Install fiber horizontal cabling as indicated on approved shop drawings.  Install a slack loop a minimum of<MET> [3 m]</MET><ENG> [10 ft]</ENG> [_____] in the 
+form of a managed figure-eight (not a service loop) on the back wall field of the telecommunications room.  Install fiber optic cable in 
+innerduct.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>OUTLETS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Work Area Outlets</TTL><BRK/>
+<BRK/>
+<TXT>Terminate copper work area outlet cable in accordance with <RID>ANSI/TIA-568.1</RID>,[ <RID>ANSI/TIA-568.2</RID>][ <RID>ANSI/TIA-568.4</RID>][ <RID>ANSI/TIA-568.5</RID>] and wiring configuration 
+T568A.[  Terminate fiber optic cables in accordance with <RID>ANSI/TIA-568.3</RID>.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Outlets (SO)</TTL><BRK/>
+<BRK/>
+<TXT>Terminate copper cable in accordance with <RID>ANSI/TIA-568.1</RID>,[ <RID>ANSI/TIA-568.2</RID>][ <RID>ANSI/TIA-568.4</RID>][ <RID>ANSI/TIA-568.5</RID>] [<RID>TIA TSB-162</RID>] and wiring configuration 
+as specified.[  Terminate fiber optic cables in accordance with <RID>ANSI/TIA-568.3</RID>.]  Male (MPTL) may be used in place of a SO in applications where 
+a SO and patch cord are not accessible, or the OT equipment is not conducive to this type of installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cover Plates</TTL><BRK/>
+<BRK/>
+<TXT>As a minimum, each outlet/connector must be labeled with the unique number to identify cable link in accordance with the paragraph LABELING in 
+this section and as shown on the approved shop drawings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ZONE CABLING ASSEMBLIES</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Multi-User Telecommunications Outlet Assembly (MUTOA)</TTL><BRK/>
+<BRK/>
+<TXT>Run horizontal cable in the ceiling or underneath the floor and terminate each cable on a MUTOA in each individual zone.  MUTOAs must not be located 
+in ceiling spaces, or any obstructed area.  MUTOAs must not be installed in furniture unless that unit of furniture is permanently secured to the 
+building structure.  MUTOAs must be located in an open work area so that each furniture cluster is served by at least one MUTOA.  The MUTOA must 
+be limited to serving a maximum of twelve work areas.  Maximum work area cable length requirements must also be considered.  MUTOAs must be labeled 
+to include the maximum length of work area cables.  MUTOA labeling is in addition to the labeling described in <RID>ANSI/TIA-606</RID>, or other applicable 
+cabling administration standards.  Work area cables extending from the MUTOA to the work area device must also be uniquely identified and labeled.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Consolidation Point (CP)</TTL><BRK/>
+<BRK/>
+<TXT>Run horizontal cable in the ceiling or underneath the floor and terminate each cable on a CP in each individual zone.  CPs located in ceiling spaces 
+must remain accessible and not installed in an obstructed area.  CPs must be labeled to include the maximum length of work area cables.  CP labeling 
+is in addition to the labeling in accordance with <RID>ANSI/TIA-606</RID>, section LABELING, and as designed.  Work area cables and service outlet cables 
+extending from the CP to the work area device must also be uniquely identified and labeled.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>TELECOMMUNICATIONS BONDING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit this subpart after Section 27 05 26 GROUNDING AND BONDING FOR COMMUNICATIONS SYSTEMS is issued.</NPR><BRK/>
+<BRK/>
+<NPR>Choose the bracketed option for Secondary bonding busbars (SBB) when there are more than one telecommunications 
+room or telecommunications equipment rooms included in the project.</NPR><BRK/>
+<BRK/>
+<NPR>Choose Telecommunications Bonding Conductors bracketed option when more than one telecommunication grounding busbar 
+is installed as part of the project.</NPR><BRK/>
+<BRK/>
+<NPR>Choose or edit the requirement for a Telecommunication Bonding Backbone (TBB) and Backbone Bonding Conductor (BBC) 
+in accordance with ANSI/TIA-607.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Clean the busbar prior to fastening the conductors to the busbar and apply an anti-oxidant to the contact area to control corrosion and reduce 
+contact resistance.[  No. 2 AWG bare copper wire throughout cable tray system, and bond to each section, except use No. 1/0 aluminum wire if cable 
+tray is aluminum.][  Provide cable tray connecting hardware listed for bonding per the manufacture literature and from the same manufacturer.]  
+Provide in accordance with <RID>ANSI/TIA-607</RID>, <RID>NFPA 70</RID>[ and section BONDING PRODUCTS][ and as specified in Section 27 05 26 GROUNDING AND BONDING FOR 
+COMMUNICATIONS SYSTEMS].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Telecommunications Bonding Busbars</TTL><BRK/>
+<BRK/>
+<TXT>Install a Primary bonding busbar (PBB) in the telecommunications entrance facility in accordance with <RID>ANSI/TIA-607</RID>.  Install the PBB as close to 
+the electrical service entrance grounding connection as practicable.  Where a panelboard for telecommunications equipment is not installed in the 
+entrance facility room, locate the PBB near the backbone cabling and associated terminations.  In addition, locate the PBB to provide for the shortest 
+and straightest routing of the grounding conductors.  Where a panelboard for telecommunications equipment is located within the same room or space 
+as a PBB, bond that panelboard's alternating current equipment ground (ACEG) bus (when equipped) or the panelboard enclosure to the PBB.[  Bond 
+the PBB to building steel using[ irreversible exothermic weld][ 2 lugs connect rated for bonding].][  Install a Secondary bonding busbar (SBB) 
+in all other telecommunications rooms and telecommunications equipment rooms.  Install the SBB as close to the telecommunications room panelboard 
+as practicable, when equipped.  Where a panelboard for telecommunications equipment is not installed in the telecommunications room, locate the 
+SBB near the backbone cabling and associated terminations.  In addition, locate the SBB to provide for the shortest and straightest routing of 
+the grounding conductors.  Where a panelboard for telecommunications equipment is located within the same room or space as a SBB, bond that panelboard's 
+alternating current equipment ground (ACEG) bus (when equipped) or the panelboard enclosure to the SBB.]  Install bonding busbars to maintain clearances 
+as required by <RID>NFPA 70</RID> and insulated from its support.  A minimum of<MET> 50 mm</MET><ENG> 2 in</ENG> separation from the wall is recommended to allow access to the 
+rear of the busbar and adjust the mounting height to accommodate overhead or underfloor cable routing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Bonding Conductors (TBC)</TTL><BRK/>
+<BRK/>
+<TXT>Install a TBC service equipment bond consisting of separate bonding conductor between the PBB and readily accessible grounding connection of the 
+electrical service in accordance with <RID>ANSI/TIA-607</RID>.  Bonding conductors should not be placed in ferrous metallic conduit unless required per <RID>NFPA 70</RID>
+ for protection from physical and mechanical damage.  If it is necessary to place grounding and bonding conductors in ferrous metallic conduit 
+that exceeds<MET> 1 m</MET><ENG> 3 ft</ENG> in length, bond the conductors to each end of the conduit using a grounding bushing and No. 6 AWG conductor, minimum.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Backbone Bonding Conductor (BBC)</TTL><BRK/>
+<BRK/>
+<TXT>Install a BBC between the topmost SBB's that extends across the building, using the telecommunications backbone pathways shortest paths, and connects 
+to the SBBs in all telecommunications rooms and equipment rooms in accordance with <RID>ANSI/TIA-607</RID>.  Each BBC must be continuous to the farthest SBB.  
+Bonding conductors should not be placed in ferrous metallic conduit unless required per <RID>NFPA 70</RID> for protection from physical and mechanical damage.  
+If it is necessary to place grounding and bonding conductors in ferrous metallic conduit that exceeds<MET> 1 m</MET><ENG> 3 ft</ENG> in length, bond the conductors to 
+each end of the conduit using a grounding bushing and No. 6 AWG.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Telecommunications Bonding Backbone (TBB)</TTL><BRK/>
+<BRK/>
+<TXT>Install a TBB that originates at the PBB, extends throughout the building using the telecommunications backbone pathways shortest paths, and connects 
+to the SBBs in all telecommunications rooms and equipment rooms in accordance with <RID>ANSI/TIA-607</RID>.  Each TBB must be continuous to the farthest SBB.  
+Bonding conductors should not be placed in ferrous metallic conduit unless required per <RID>NFPA 70</RID> for protection from physical and mechanical damage.  
+If it is necessary to place grounding and bonding conductors in ferrous metallic conduit that exceeds<MET> 1 m</MET> <ENG> 3 ft</ENG> in length, bond the conductors 
+to each end of the conduit using a grounding bushing and No. 6 AWG conductor, minimum.[  In a metal frame (structural steel) building, where the 
+steel framework is readily accessible within the room, or external to the room but readily accessible; bond each PBB[ and SBB] to the vertical 
+steel metal frame using conductors sized per <RID>ANSI/TIA-607</RID> based on length but no less than No. 6 AWG conductor.]</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The TBC[ and TBB][ BBC] conductor must be installed without splices and routed in the shortest possible straight-line path to the greatest 
+extent possible.  Make the bonding conductor between a TBB and SBB continuous.  Where splices are unavoidable, the number of splices should 
+be a minimum.  Make the splices accessible and located in telecommunications spaces. Connect joined segments of a TBB using exothermic 
+welding, irreversible compression-type connectors, or equivalent.  Install all joints to be adequately supported and protected from damage.  
+Whenever two or more TBBs are used within a multistory building, bond the TBBs together with a backbone bonding conductor (BBC) at the 
+top floor and at a minimum of every third floor in between.  Do not connect the TBB or BBC to the pathway ground.</OLI><BRK/>
+<BRK/>
+<OLI>Telecommunications Bonding Connections (TEBC):  Telecommunications bonding connections to the PBB[ or SBB]:  utilize listed compression, 
+two-hole lugs, exothermic welding, suitable and equivalent, or other irreversible compression type connections.  Bond all metallic pathways, 
+cabinets, and racks for telecommunications cabling and interconnecting hardware located within the same room or space as the PBB[ or SBB] 
+to the PBB[ or SBB respectively].  In a metal frame (structural steel) building, where the steel framework is readily accessible within 
+the room; bond each PBB[ and SBB] to the vertical steel metal frame using a minimum No. 6 AWG conductor.  Where the metal frame is external 
+to the room and readily accessible, bond the metal frame to the SBB or PBB with a minimum No. 6 AWG conductor.  When practicable because 
+of shorter distances and, where horizontal steel members are permanently electrically bonded to vertical column members, the SBB may be 
+bonded to these horizontal members in lieu of the vertical column members.  All connectors used for bonding to the metal frame of a building 
+must be listed for the intended purpose.</OLI><BRK/>
+<BRK/>
+<OLI>Rack Bonding Busbar (RBB):  Install[ horizontal][ vertical] busbars in each equipment frame provided.  Bond all appliances and supporting 
+hardware that have a manufacturer bonding connection available.  Unless otherwise approved by the Telecommunications Manager to not bond 
+equipment frames using example "A" in <RID>ANSI/TIA-607</RID>.  Utilize listed compression, two-hole lugs, suitable and equivalent one-hole compression.</OLI><BRK/>
+<BRK/>
+<OLI>Telecommunications Equipment Frames and Supporting Structures; Bond all telecommunications equipment frames and supporting metallic structures 
+(cable trays, ladder rack, conduits, bonding conductor of nonmetallic sheathed cables, foiled, or shielded cable) in accordance with <RID>ANSI/TIA-607</RID>
+ and <RID>NFPA 70</RID>.[  Bond access flooring supports systems.]  Utilize listed compression two-hole lugs, bonding ribbons, or other irreversible 
+compression type connections.  Where ground fault protection is employed, ensure that connection of ground and neutral does not interfere 
+with correct operation of fault protection.  Label all bonding conductors in accordance with <RID>ANSI/TIA-606</RID>, paragraph LABELING of this section, 
+and as designed.  Test all bonding in accordance with <RID>ANSI/TIA-607</RID> and as provided in paragraph TESTING.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>LABELING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Labels</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Install and label medical facilities in accordance with Defense Health Agency LAN/WLAN Installation Manual.  
+Label other projects in accordance with ANSI/TIA-606 using a mechanical device for printing.  Labeling schemes 
+are required to be detailed in design drawings and approved by the telecommunications manager.  Labeling must 
+be IAW the architectural wayfinding and not construction space number/naming conventions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide labeling in accordance with <RID>ANSI/TIA-606</RID>, <RID>UFC 3-580-01</RID>, and as submitted and approved on T4 shop drawings.  Handwritten labeling is unacceptable.  
+Stenciled lettering for voice and data circuits must be provided using[ thermal ink transfer process][ laser printer] [_____].  Labeling of cabling 
+must be provided on all telecommunication outlet boxes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cable</TTL><BRK/>
+<BRK/>
+<TXT>Cables must be labeled using labels with To/From information on opposing end with identifiers in accordance with <RID>ANSI/TIA-606</RID> and as submitted 
+and approved on T4 shop drawings. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Termination Hardware</TTL><BRK/>
+<BRK/>
+<TXT>Equipment frames, workstation outlets, service outlets, and patch panel connections must be labeled using coded labels with identifiers in accordance 
+with <RID>ANSI/TIA-606</RID> and as submitted and approved on T4 shop drawings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD APPLIED PAINTING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use and coordinate paint and coating requirements with Section <SRF>09 90 00</SRF> PAINTS AND COATINGS when provided 
+in the job.  When requirements are beyond what is specified in Section <SRF>09 90 00</SRF>, specify the requirements in this 
+paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Painting must be as specified in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Painting Backboards</TTL><BRK/>
+<BRK/>
+<TXT>If backboards are required to be painted, then the manufactured fire- retardant backboard must be painted with fire retardant paint, so as not 
+to increase flame spread and smoke density and must be appropriately labeled.  Label and fire rating stamp must be unpainted and placed in a location 
+not anticipated to be covered by equipment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD FABRICATED NAMEPLATE MOUNTING</TTL><BRK/>
+<BRK/>
+<TXT>Provide number, location, and letter designation of nameplates as indicated.  Fasten nameplates to the device with a minimum of two sheet-metal 
+screws or two rivets.  Nameplates must be installed plumb, level, and center to the device.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TESTING AND INSPECTIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Telecommunications Cabling Testing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Perform telecommunications cabling inspection, verification, and performance tests in accordance with <RID>ANSI/TIA-568 Series</RID>, <RID>ISO/IEC 14763-2</RID>, <RID>ISO/IEC 14763-3</RID>
+ based on media.  Test equipment must conform to <RID>ANSI/TIA-1152</RID>.  Provide results with coordinated as built record plans for labeling in accordance 
+with <RID>ANSI/TIA-606</RID> and approved label scheme as a single complete package.  Remove failed cable reels from project site upon attenuation test failure.  
+Copper tests are required to be performed with Certification Test Equipment level IIIe at 500 MHz for class [6][6A][_____] with the results furnished 
+in the native format of the tester and in PDF format.  For service outlets and other cables that are not workstation outlets use the most applicable 
+test for the class of cable per <RID>ANSI/TIA-568 Series</RID> standard.  To test links with an MPTL run the test Permanent Link Adapter and a Patch Cord 
+Adapter (PCA) on the other end following manufacturer recommendations.</TXT><BRK/>
+<TAB WIDTH="62">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="5">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="100.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="138.75"/>
+      <COL AUTOWIDTH="0" WIDTH="268.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Level</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Frequency</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Cable Category</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">IIe</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">100 MHz</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">5e and class D</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">III</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">250 MHz</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">6 and class E</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">IIIe</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">500 MHz</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">6A and class EA</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">IV</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1000 MHz</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">8 and class F/FA*</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<SPT><TTL>Inspection</TTL><BRK/>
+<BRK/>
+<TXT>Visually inspect UTP and optical fiber jacket materials for UL or third-party certification markings.  Inspect cabling terminations in telecommunications 
+rooms and at workstations to confirm color code for T568A or T568B pin assignments and inspect cabling connections to confirm compliance with <RID>ANSI/TIA-568.1</RID>
+, <RID>ANSI/TIA-568.2</RID>,[ <RID>ANSI/TIA-568.3</RID>,][ <RID>ANSI/TIA-568.4</RID>][ <RID>ANSI/TIA-568.5</RID>][ and][ <RID>ANSI/TIA-570</RID> for residential cabling].  Visually confirm [Category 
+6a][_____] marking of outlets, cover plates, outlet/connectors, and patch panels ensuring the entire channel is composed of components of the same 
+marking.  Visually inspect cabling jacket for deformation and discoloration.  Cables may be required to be replaced, regardless of test results, 
+if cabling jacket damage is deemed by the telecommunications manager or COR to be excessive.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Verification Tests</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Technicians who have successfully completed a training program for the test equipment and hold a current certificate as proof thereof must 
+execute the tests.</OLI><BRK/>
+<BRK/>
+<OLI>The COR must be notified of the start date of the testing phase 5[_____] business days before testing commences and must be invited to 
+witness [and][or] review field-testing.  Cable acceptance testing must only be performed after cabling is in place, both ends are terminated, 
+and faceplates are installed.</OLI><BRK/>
+<BRK/>
+<OLI>Bonding system testing is required to determine if an acceptable level of resistance is provided between the telecommunications bonding 
+system and the building's electrical grounding electrode system.  Prior to performing testing a visual inspection must be performed to 
+verify all components are installed in accordance with <RID>ANSI/TIA-607</RID> recommendations.  Perform bonding testing on all segments of the bonding 
+system using a two-point test in accordance with <RID>ANSI/TIA-607</RID>.  Testing must be performed prior to the installation of any telecommunications 
+equipment.  Maximum value of resistance between any two points in the telecommunications bonding system and to the buildings electrical 
+grounding electrode system must be less than 100 milliohms.  Document and submit test results in accordance with paragraph SUBMITTALS.</OLI><BRK/>
+<BRK/>
+<OLI>UTP backbone copper cabling must be tested for DC loop resistance, shorts, opens, intermittent faults, and polarity between conductors, 
+and between conductors and shield, if cable has overall shield.  Test operation of shorting bars in connection blocks.  Test cables after 
+termination but prior to being cross-connected.</OLI></OLG><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Two methods for measuring the installed optical fiber cable plant loss are described in TIA/EIA-526-7 (single-mode 
+cable).  Tier 1 uses optical power measurement equipment.  Tier 2 uses an Optical Time Domain Reflectometer (OTDR).  
+Tier 2 is now recognized as a recommended test by TIA and BICSI.  Method B is not recommended for existing cable 
+plants containing branching devices and/or isolators.  Tier 2 testing is required when certifying PON or FTTx 
+to document the performance of splitters.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[For multi-mode optical fiber, perform 100 percent of optical fiber end-to-end attenuation tests in accordance with <RID>ANSI/TIA-568.3</RID> and <RID>ANSI/TIA-526-14</RID>
+ using[ Tier 1, Optical Power Meter and LED Light Source][ and][ Tier 2, OTDR] for multi-mode optical fiber.  ][For single-mode optical fiber, 
+perform 100 percent of optical fiber end-to-end attenuation tests in accordance with <RID>ANSI/TIA-568.3</RID> and <RID>ANSI/TIA-526-7</RID> using[ Tier 1, Optical Power 
+Meter and Light Source][ and][ Tier 2, OTDR] for single-mode optical fiber.  ]Test the link at both standard frequencies bidirectionally for[ multi-mode][ 
+and][ single-mode].  Reference grade connectors with an attenuation value equal to or less than[ .10dB for multimode][ and][ 0.20dB for single-mode] 
+must be used.  The testing method must comply with <RID>ANSI/TIA-526-7</RID> using the single jumper method.  Fiber connector loss must be .5dB or less and 
+splice loss must be 0.3dB or less for cable acceptance.</TXT><BRK/>
+<BRK/>
+<TXT>An optical time domain reflectometer (OTDR) is required for all inside plant lengths more than<MET> 90 m</MET><ENG> 295 ft</ENG>[ when requested by the Telecommunications 
+Manager] [_____] using the launch cables and exit cables of the required length for the fiber type.  This does not relieve the requirement for 
+the OLTS above.</TXT><BRK/>
+<BRK/>
+<TXT>Final labeling must be verified as part of testing and certified as accurate per record documentation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Tests </TTL><BRK/>
+<BRK/>
+<TXT>Perform testing for each outlet[ CP][ and][ MUTOA] as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Perform 100 percent of Category [6a][_____] cables using link tests in accordance with <RID>ANSI/TIA-568.1</RID> and <RID>ANSI/TIA-568.2</RID>[ <RID>ANSI/TIA-568.5</RID>
+].  Tests for pass/fail must include Wire Map, DC Loop Resistance, Length, Propagation Delay, Delay Skew, Insertion Loss, Return Loss, 
+NEXT, ACR-F, PS ACR-F, PSNEXT, PSAACR-F, DC Resistance Unbalance, DC Resistance Unbalance between pairs.<BRK/>
+<BRK/>
+Testing of no less than 10 percent of cabling installed for Average PS ANEXT, PS AACR-F, Average PS AACR-F.<BRK/>
+<BRK/>
+Test reports must be recorded for information only for the following tests: ACR-N, PS ACR-N, TCL, and ELTCTL.</OLI><BRK/>
+<BRK/>
+<OLI>Optical fiber Links.  Perform optical fiber end-to-end[ Tier 1][ Tier 2], bidirectional, link tests in accordance with <RID>ANSI/TIA-568.3</RID>.</OLI><BRK/>
+<BRK/></OLG>
+</SPT></SPT></SPT><SPT><TTL>COMMISSIONING</TTL><NED/><BRK/>
+<BRK/>
+<TXT>Commissioning of the telecommunications system must be accomplished for projects where more than passive equipment is provided as further defined 
+in Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

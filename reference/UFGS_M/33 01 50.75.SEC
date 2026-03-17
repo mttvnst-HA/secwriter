@@ -1,0 +1,2893 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="393.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="394.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-33 01 50.75 (May 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 33 01 50.75</SCN><BRK/>
+<BRK/>
+<STL>REPAIR OF FIELD FABRICATED FUEL STORAGE TANKS</STL><BRK/>
+<DTE>05/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>repair of a field fabricated fuel storage tank.</SCP></NPR><BRK/>
+<BRK/>
+<NPR>Adhere to UFC 1-300-02 <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">Unified Facilities Guide</URL> Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<BRK/>
+<NPR>The designer should not alter the products and processes specified herein without thorough knowledge of the need 
+for the change and the implications of the change.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<BRK/>
+<NPR>For cases when repair is preceded by inspection, pair this Section with <SRF>33 01 50.65</SRF> INSPECTION OF FIELD FABRICATED 
+FUEL STORAGE TANKS.</NPR><BRK/>
+<BRK/>
+<NPR>Make use of this Section in consultation with SMEs listed below.  The Section requires considerable judgment and 
+specialized professional engineering competence.  There are substantial consequences to repair of a fuel storage 
+tank.  Do not use this Section unless professionally competent and proficient in fuel storage tank repair design.</NPR><BRK/>
+<BRK/>
+<NPR>Knowledge and competence in topics covered in this Section are maintained by each Service center of excellence.  
+Subject Matter Expert (SME) is defined as Service Headquarters Subject Matter Experts:</NPR><BRK/>
+<BRK/>
+<NPR>Air Force - The Air Force Fuels Facilities Subject Matter Expert (AFCEC/COS)<BRK/>
+<BRK/>
+Army - Headquarters, U.S. Army Corps of Engineers, POL-MCX Facilities Proponent (CECW-EC) through the Army Petroleum 
+Center (APC)<BRK/>
+<BRK/>
+Navy/Marine Corps - NAVFAC POL Facilities Engineer (NAVFAC EXWC, SH25)</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN INSTITUTE OF STEEL CONSTRUCTION (AISC)</ORG><BRK/><BRK/><RID>AISC 325</RID><RTL>(2017) Steel Construction Manual</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN PETROLEUM INSTITUTE (API)</ORG><BRK/><BRK/><RID>API MPMS 2.2A</RID><RTL>(1995; R 2017) Manual of Petroleum Measurement Standards Chapter 2-Tank Calibration Section 2A-Measurement and Calibration of Upright Cylindrical Tanks by the Manual Tank Strapping Method</RTL><BRK/><BRK/><RID>API MPMS 2.2B</RID><RTL>(1989; R 2019) Manual of Petroleum Measurement Standards Chapter 2: Tank Calibration - Section 2B: Calibration of Upright Cylindrical Tanks Using the Optical Reference Line Method</RTL><BRK/><BRK/><RID>API MPMS 2.2C</RID><RTL>(2002; R 2013) Manual of Petroleum Measurement Standards Chapter 2: Tank Calibration - Section 2C - Calibration of Upright Cylindrical Tanks Using the Optical-Triangulation Method</RTL><BRK/><BRK/><RID>API MPMS 2.2D</RID><RTL>(2003; R 2014) Manual of Petroleum Measurement Standards Chapter 2: Tank Calibration - Section 2D  Calibration of Upright Cylindrical Tanks Using the Internal Electro-Optical Distance-Ranging Method</RTL><BRK/><BRK/><RID>API RP 575</RID><RTL>(2020) Inspection Practices for Atmospheric and Low-Pressure Storage Tanks</RTL><BRK/><BRK/><RID>API RP 621</RID><RTL>(2022; 5th Ed) Reconditioning of Metallic Gate, Globe, and Check Valves</RTL><BRK/><BRK/><RID>API RP 1110</RID><RTL>(2013; R 2018) Recommended Practice for the Pressure Testing of Steel Pipelines for the Transportation of Gas, Petroleum Gas, Hazardous Liquids, Highly Volatile Liquids, or Carbon Dioxide</RTL><BRK/><BRK/><RID>API RP 2207</RID><RTL>(2017; 7th Ed) Preparing Tank Bottoms for Hot Work</RTL><BRK/><BRK/><RID>API STD 608</RID><RTL>(2025) Metal Ball Valves - Flanged, Threaded, And Welding End</RTL><BRK/><BRK/><RID>API Spec 6D</RID><RTL>(2021; Addendum 1 2025) Specification for Pipeline and Piping Valves</RTL><BRK/><BRK/><RID>API Std 598</RID><RTL>(2009) Valve Inspecting and Testing</RTL><BRK/><BRK/><RID>API Std 607</RID><RTL>(2016) Fire Test for Quarter-turn Valves and Valves Equipped with Non-metallic Seats</RTL><BRK/><BRK/><RID>API Std 650</RID><RTL>(2025) Welded Tanks for Oil Storage</RTL><BRK/><BRK/><RID>API Std 653</RID><RTL>(2014; Addendum 1 2018; Errata 1 2010; Addendum 2 2020; Addendum 3 2023; Errata 2 2025; Addendum 4 2025 ) Tank Inspection, Repair, Alteration, and Reconstruction</RTL><BRK/><BRK/><RID>API Std 2015</RID><RTL>(2018) Requirements for Safe Entry and Cleaning of Petroleum Storage Tanks</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY FOR NONDESTRUCTIVE TESTING (ASNT)</ORG><BRK/><BRK/><RID>ANSI/ASNT CP-189</RID><RTL>(2020) ASNT Standard for Qualification and Certification of Nondestructive Testing Personnel</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF CIVIL ENGINEERS (ASCE)</ORG><BRK/><BRK/><RID>ASCE 7-22</RID><RTL>(2022; Supp 1 2023; Supp 2 2023; Supp 3 2025) Minimum Design Loads and Associated Criteria for Buildings and Other Structures</RTL><BRK/><BRK/><RID>ASCE/SEI 37</RID><RTL>(2015) Design Loads on Structures During Construction</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B1.1</RID><RTL>(2024) Unified Inch Screw Threads (UN, UNR, and UNJ Thread Form)</RTL><BRK/><BRK/><RID>ASME B16.5</RID><RTL>(2020) Pipe Flanges and Flanged Fittings NPS 1/2 Through NPS 24 Metric/Inch Standard</RTL><BRK/><BRK/><RID>ASME B16.9</RID><RTL>(2024) Factory-Made Wrought Buttwelding Fittings</RTL><BRK/><BRK/><RID>ASME B16.11</RID><RTL>(2021) Forged Fittings, Socket-Welding and Threaded</RTL><BRK/><BRK/><RID>ASME B16.21</RID><RTL>(2021) Nonmetallic Flat Gaskets for Pipe Flanges</RTL><BRK/><BRK/><RID>ASME B16.34</RID><RTL>(2021) Valves - Flanged, Threaded and Welding End</RTL><BRK/><BRK/><RID>ASME B16.48</RID><RTL>(2015) Line Blanks</RTL><BRK/><BRK/><RID>ASME B18.2.1</RID><RTL>(2012; R 2021) Square, Hex, Heavy Hex, and Askew Head Bolts and Hex, Heavy Hex, Hex Flange, Lobed Head, and Lag Screws (Inch Series)</RTL><BRK/><BRK/><RID>ASME B18.2.2</RID><RTL>(2022) Nuts for General Applications: Machine Screw Nuts, and Hex, Square, Hex Flange, and Coupling Nuts (Inch Series)</RTL><BRK/><BRK/><RID>ASME B31.3</RID><RTL>(2024) Process Piping</RTL><BRK/><BRK/><RID>ASME B40.100</RID><RTL>(2022) Pressure Gauges and Gauge Attachments</RTL><BRK/><BRK/><RID>ASME BPVC SEC IX</RID><RTL>(2017; Errata 2018) BPVC Section IX-Welding, Brazing and Fusing Qualifications</RTL><BRK/><BRK/><RID>ASME BPVC SEC V</RID><RTL>(2017) BPVC Section V-Nondestructive Examination</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII</RID><RTL>(2015) Boiler and Pressure Vessel Codes:  Section VIII Rules for Construction of Pressure Vessel</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS A2.4</RID><RTL>(2012) Standard Symbols for Welding, Brazing and Nondestructive Examination</RTL><BRK/><BRK/><RID>AWS A3.0M/A3.0</RID><RTL>(2025) Standard Welding Terms and Definitions</RTL><BRK/><BRK/><RID>AWS A5.1/A5.1M</RID><RTL>(2025) Specification for Carbon Steel Electrodes for Shielded Metal Arc Welding</RTL><BRK/><BRK/><RID>AWS A5.3/A5.3M</RID><RTL>(2023) Specification for Aluminum and Aluminum-Alloy Electrodes for Shielded Metal Arc Welding</RTL><BRK/><BRK/><RID>AWS A5.4/A5.4M</RID><RTL>(2012; R 2022) Specification for Stainless Steel Electrodes for Shielded Metal Arc Welding</RTL><BRK/><BRK/><RID>AWS A5.9/A5.9M</RID><RTL>(2022) Welding Consumables-Wire Electrodes, Strip Electrodes, Wires, and Rods for Arc Welding of Stainless and Heat Resisting Steels- Classification</RTL><BRK/><BRK/><RID>AWS A5.10/A5.10M</RID><RTL>(2023) Welding Consumables - Wire Electrodes, Wires and Rods for Welding of Aluminum and Aluminum-Alloys - Classification</RTL><BRK/><BRK/><RID>AWS A5.18/A5.18M</RID><RTL>(2025) Specification for Carbon Steel Electrodes and Rods for Gas Shielded Arc Welding</RTL><BRK/><BRK/><RID>AWS A5.22/A5.22M</RID><RTL>(2024) Specification for Stainless Steel Flux Cored and Metal Cored  Welding Electrodes and Rods</RTL><BRK/><BRK/><RID>AWS A5.32/A5.32M</RID><RTL>(2021) Welding Consumables-Gases and Gas Mixtures for Fusion Welding and Allied Processess</RTL><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/><RID>AWS D1.2/D1.2M</RID><RTL>(2014; Errata 1 2014; Errata 2 2020) Structural Welding Code - Aluminum</RTL><BRK/><BRK/><RID>AWS D1.6/D1.6M</RID><RTL>(2017) Structural Welding Code — Stainless Steel</RTL><BRK/><BRK/><RID>AWS D10.7/D10.7M</RID><RTL>(2008) Guide for the Gas Shielded Arc Welding of Aluminum and Aluminum Alloy Pipe</RTL><BRK/><BRK/><RID>AWS QC1</RID><RTL>(2016) Specification for AWS Certification of Welding Inspectors</RTL><BRK/><BRK/><RID>AWS WHB-4.9</RID><RTL>(2010) Welding Handbook, Volume 4 - Materials and Applications Part 1</RTL><BRK/><BRK/><RID>AWS Z49.1</RID><RTL>(2021) Safety in Welding, Cutting and Allied Processes</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A36/A36M</RID><RTL>(2019) Standard Specification for Carbon Structural Steel</RTL><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A105/A105M</RID><RTL>(2023) Standard Specification for Carbon Steel Forgings for Piping Applications</RTL><BRK/><BRK/><RID>ASTM A182/A182M</RID><RTL>(2024) Standard Specification for Forged or Rolled Alloy and Stainless Steel Pipe Flanges, Forged Fittings, and Valves and Parts for High-Temperature Service</RTL><BRK/><BRK/><RID>ASTM A193/A193M</RID><RTL>(2025) Standard Specification for Alloy-Steel and Stainless Steel Bolting Materials for High-Temperature Service and Other Special Purpose Applications</RTL><BRK/><BRK/><RID>ASTM A194/A194M</RID><RTL>(2024) Standard Specification for Carbon Steel, Alloy Steel, and Stainless Steel Nuts for Bolts for High-Pressure or High-Temperature Service, or Both</RTL><BRK/><BRK/><RID>ASTM A216/A216M</RID><RTL>(2021) Standard Specification for Steel Castings, Carbon, Suitable for Fusion Welding, for High-Temperature Service</RTL><BRK/><BRK/><RID>ASTM A234/A234M</RID><RTL>(2025) Standard Specification for Piping Fittings of Wrought Carbon Steel and Alloy Steel for Moderate and High Temperature Service</RTL><BRK/><BRK/><RID>ASTM A269/A269M</RID><RTL>(2025) Standard Specification for Seamless and Welded Austenitic Stainless Steel Tubing for General Service</RTL><BRK/><BRK/><RID>ASTM A325</RID><RTL>(2014) Standard Specification for Structural Bolts, Steel, Heat Treated, 120/105 ksi Minimum Tensile Strength</RTL><BRK/><BRK/><RID>ASTM A500/A500M</RID><RTL>(2023) Standard Specification for Cold-Formed Welded and Seamless Carbon Steel Structural Tubing in Rounds and Shapes</RTL><BRK/><BRK/><RID>ASTM A536</RID><RTL>(2024) Standard Specification for Ductile Iron Castings</RTL><BRK/><BRK/><RID>ASTM A563</RID><RTL>(2021; E 2022a) Standard Specification for Carbon and Alloy Steel Nuts</RTL><BRK/><BRK/><RID>ASTM A743/A743M</RID><RTL>(2021) Standard Specification for Castings, Iron-Chromium, Iron-Chromium-Nickel, Corrosion Resistant, for General Application</RTL><BRK/><BRK/><RID>ASTM A992/A992M</RID><RTL>(2022) Standard Specification for Structural Steel Shapes</RTL><BRK/><BRK/><RID>ASTM B241/B241M</RID><RTL>(2022) Standard Specification for Aluminum and Aluminum-Alloy Seamless Pipe and Seamless Extruded Tube</RTL><BRK/><BRK/><RID>ASTM B247</RID><RTL>(2025) Standard Specification for Aluminum and Aluminum-Alloy Die Forgings, Hand Forgings, and Rolled Ring Forgings</RTL><BRK/><BRK/><RID>ASTM C920</RID><RTL>(2018; R 2024) Standard Specification for Elastomeric Joint Sealants</RTL><BRK/><BRK/><RID>ASTM D229</RID><RTL>(2019) Standard Test Methods for Rigid Sheet and Plate Materials Used for Electrical Insulation</RTL><BRK/><BRK/><RID>ASTM E329</RID><RTL>(2025b) Standard Specification for Agencies Engaged in Construction Inspection, Testing, or Special Inspection</RTL><BRK/><BRK/><RID>ASTM E1316</RID><RTL>(2020a) Standard Terminology for Nondestructive Examinations</RTL><BRK/><BRK/><RID>ASTM F436</RID><RTL>(2011) Hardened Steel Washers</RTL><BRK/><BRK/><RID>ASTM F3125/F3125M</RID><RTL>(2019) Standard Specification for High Strength Structural Bolts and Assemblies, Steel and Alloy Steel, Heat Treated, Inch Dimensions 120 ksi and 150 ksi Minimum Tensile Strength, and Metric Dimensions 830 MPa and 1040 MPa Minimum Tensile Strength</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE C62.41</RID><RTL>(1991; R 1995) Recommended Practice on Surge Voltages in Low-Voltage AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO 9001</RID><RTL>(2015) Quality Management Systems- Requirements</RTL><BRK/><BRK/><RID>ISO ISO/IEC 17025</RID><RTL>(2017) General Requirements for the Competence of Testing and Calibration Laboratories</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 326</RID><RTL>(2015) Standard for Safeguarding of Tanks and Containers for Entry, Cleaning, or Repair</RTL><BRK/><BRK/><RID>NFPA 704</RID><RTL>(2022) Standard System for the Identification of the Hazards of Materials for Emergency Response</RTL><BRK/><BRK/></REF><REF><ORG>RESEARCH COUNCIL ON STRUCTURAL CONNECTIONS (RCSC)</ORG><BRK/><BRK/><RID>RCSC A348</RID><RTL>(2020) RCSC Specification for Structural Joints Using High-strength Bolts</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY OF AUTOMOTIVE ENGINEERS INTERNATIONAL (SAE)</ORG><BRK/><BRK/><RID>SAE AMS3275</RID><RTL>(2009; Rev C) Sheet, Acrylonitrile Butadiene (NBR) Rubber and Non-Asbestos Fiber Fuel and Oil Resistant</RTL><BRK/><BRK/></REF><REF><ORG>U.S. ARMY CORPS OF ENGINEERS (USACE)</ORG><BRK/><BRK/><RID>EM 385-1-1</RID><RTL>(2024) Safety -- Safety and Occupational Health (SOH) Requirements</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>FC 1-300-09N</RID><RTL>(2024) Navy and Marine Corps Design</RTL><BRK/><BRK/><RID>MIL-PRF-907</RID><RTL>(2020; Rev H) Antiseize Thread Compound, High Temperature</RTL><BRK/><BRK/><RID>STD DSN AW 78-24-27</RID><RTL>(2015) Aboveground Vertical Steel Fuel Tanks With Fixed Roofs</RTL><BRK/><BRK/><RID>UFC 3-460-01</RID><RTL>(2019; with Change 3, 2023) Design: Petroleum Fuel Facilities</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>29 CFR 1910.146</RID><RTL>Permit-required Confined Spaces</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NAVAL SUPPLY SYSTEMS COMMAND (NAVSUP)</ORG><BRK/><BRK/><RID>NAVSUPINST 10345.1</RID><RTL>(2018) Fuel Tank Return to Service</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Barrel</TTL><BRK/>
+<BRK/>
+<TXT>As used in this Section, volume unit of product comprised of 42 US gallons.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Designer of Record</TTL><BRK/>
+<BRK/>
+<TXT>The professional engineer nominated by the prime contractor to be in responsible charge of all storage tank design and repair.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gas Test Hole</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Be vigilant for gas test holes which were installed during inspection or which must be installed during 
+repair.  Use significant measures to guard against un-repaired gas test holes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Hole installed through the tank shell for purposes of determining the presence of hydrocarbon vapors, compliance with Marine Chemist requirements 
+to certify a space to be gas-free, or inerting a space.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hazardous Area</TTL><BRK/>
+<BRK/>
+<TXT>As used in this Section, any area within<MET> 30 meters</MET><ENG> 100 feet</ENG> of active storage tanks, areas within<MET> 30 meters</MET><ENG> 100 feet</ENG> of leaking sections of fuel 
+pipelines or other vapor sources, areas within<MET> 60 meters</MET><ENG> 200 feet</ENG> of the downwind side of potential vapor emission sources (i.e., pressure-vacuum 
+vents, sample ports, or open vents on active tanks; leaking sections of pipelines), areas within existing tanks, and areas within a tunnel or adit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hot Work</TTL><BRK/>
+<BRK/>
+<TXT>For work covered by this Section:  drilling, boring, flame heating, welding, torch cutting, brazing, carbon arc gouging, grinding, abrasive blasting, 
+or any work which produces heat, by any means, of<MET> 200 degrees C</MET><ENG> 400 degrees F</ENG> or more; or in the presence of flammables or flammable atmospheres, 
+other ignition sources such as spark or arc producing tools or equipment, static discharges, friction, impact, open flames or embers, nonexplosion-proof 
+lights, fixtures, motors or equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydraulic Envelope</TTL><BRK/>
+<BRK/>
+<TXT>Surfaces of the tank hydraulic boundary.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Independent</TTL><BRK/>
+<BRK/>
+<TXT>Impartial third party not a part or affiliated with Contractor or subcontractor principal or subsidiary businesses.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Marine Chemist</TTL><BRK/>
+<BRK/>
+<TXT>The holder of a valid Certificate issued by the National Fire Protection Association in accordance with the "Rules for Certification of Marine 
+Chemists" establishing the individual as a Qualified Person pursuant to <RID>NFPA 326</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seal Weld</TTL><BRK/>
+<BRK/>
+<TXT>A weld intended primarily to provide joint tightness against leakage and installed compliant with acceptance criteria for porosity in <RID>ASME B31.3</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Snug-Tight Condition</TTL><BRK/>
+<BRK/>
+<TXT>Tightness attained by either a few impacts of an impact wrench or the full effort of a worker with an ordinary spud wrench that brings the plies 
+into firm contact in accordance with <RID>RCSC A348</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tank Engineer</TTL><BRK/>
+<BRK/>
+<TXT>One or more licensed professional engineers, or an engineering firm, acceptable to the Contracting Officer who are knowledgeable and experienced 
+in the engineering disciplines associated with evaluating mechanical and material characteristics that affect the integrity and reliability of 
+fuel storage tanks. The storage tank engineer is the tank repair subject matter expert.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tank Inspector of Record</TTL><BRK/>
+<BRK/>
+<TXT>The individual, certified as a fuel storage tank inspector, in responsible charge of the storage tank inspection.  The recognized certification 
+is <RID>API Std 653</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Weld Map</TTL><BRK/>
+<BRK/>
+<TXT>Drawing(s) containing sketches and tables which correlate design, weld plan, shop drawings, welder identification, and nondestructive examination 
+(NDE).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding Personnel</TTL><BRK/>
+<BRK/>
+<TXT>As used in this Section, individuals performing welding to include welder, welding operator, and tack welder.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section[ <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES][ 
+01 33 00.05 20 CONSTRUCTION SUBMITTAL PROCEDURES]:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>NDE Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Test Water Disposal Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Weld Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welding Procedure Specification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welder Performance Qualification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Repair ASNT NDE Examiner Credentials</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Severe Weather Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Piping Hydrostatic Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Tank Hydrostatic Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Weld Map</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Weld Tracking Log</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas Test Hole Repair</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Shop Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Ball Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Double Block And Bleed Ball Valve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Anti-Seize Compound</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Plug Valve (Double Block And Bleed Type)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tank Bottom to Foundation Sealant</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Repair Log</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Design Documents</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Test Water Characterization</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Hydrostatic Test Record</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Mill Test Reports</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>DBB Valve Hydrotest Report</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Procedure Qualification Record</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Piping Hydrostatic Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Tank Hydrostatic Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Marine Chemist Certificate</SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Independent Testing Organization</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Weld Inspector Certificate</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Instrument Calibration Certificate</SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Tank Inspector of Record</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Qualifications Of CIH</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-09 Manufacturer's Field Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Valve Reconditioning Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Completion Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Post-Repair Inspection Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tank Calibration Table</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Electronic Tank Calibration Table</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GENERAL REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Design, materials, repair, fabrication, appurtenances, welding, testing, and NDE must be in accordance with <RID>UFC 3-460-01</RID>, <RID>API Std 653</RID>,[ <RID>ASME B31.3</RID>
+,] <RID>AWS D1.1/D1.1M</RID>, and as indicated and specified herein.  The basis for tank repairs and alterations is <RID>API Std 650</RID> equivalence.[  The basis for 
+nozzle and piping repairs and alterations is <RID>ASME B31.3</RID> equivalence.]  Product[s] to be stored in the tank [is][are] [_____][MIL-DTL-5624 Grade 
+JP-4][ and ][MIL-DTL-5624 Grade JP-5][ and ][MIL-DTL-83133 JP-8][ and ][AFLP-3747 Jet A F-24][ and ][ASTM D4814 Mogas(F-46)][ and ][Diesel (F-76)].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Protect in Place</TTL><BRK/>
+<BRK/>
+<TXT>Protect in place motors, pumps, impellers, risers, floating roof, gauges, alarms, and ATG probe and conductors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<TXT>This Section covers welding on storage tanks and associated piping.  Contractor is responsible for the quality of design, joint preparation, welding, 
+inspection, and examination.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Deviations from applicable codes, approved procedures, and approved detail drawings are not permitted without prior written approval by 
+the Contracting Officer.  Materials or components with welds made offsite will not be accepted if the welding does not conform to the requirements 
+of this Section.  Develop procedures for welding all metal included in the work.  Material with welds will not be accepted unless the welding 
+is specified or indicated on the drawings or otherwise approved.</OLI><BRK/>
+<BRK/>
+<OLI>Welding must not start until welding procedures, inspectors, NDE personnel, and welding personnel have been qualified and approved. Procedure 
+and performance qualification testing must be performed by an approved testing laboratory.  Notify the Contracting Officer at least one 
+week in advance of the time and place of the tests.  If the Contracting Officer elects to witness, the qualification tests must be performed 
+at or near the worksite.</OLI><BRK/>
+<BRK/>
+<OLI>Maintain current records of test results obtained in the welding procedure and welding personnel performance qualifications.  Maintain 
+NDE procedures readily available at the site for review by the Contracting Officer.  Procedures for making transition welds between different 
+P number materials or between plates or pipes of different thickness must be qualified.  Unless specified herein, the choice of welding 
+process must be the responsibility of the Contractor.</OLI><BRK/>
+<BRK/>
+<OLI>Welding on in-service tanks or piping is prohibited without specific approval from the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>All materials used in the welding operations must be clearly identified and recorded.  The inspection and testing defined in this section 
+are minimum requirements.  Additional inspection and testing is the responsibility of the Contractor when it is necessary to achieve the 
+quality required.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Weld Inspection</TTL><BRK/>
+<BRK/>
+<TXT>This Section contains requirements to inspect all welding.  Ensure compliance with requests of the Weld Inspector(s) to correct deficiencies in 
+materials and workmanship.  Correct all deficiencies in materials and workmanship in compliance with the requirements of this Section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nondestructive Examination</TTL><BRK/>
+<BRK/>
+<TXT>This Section prescribes requirements for conducting NDE used to detect the presence of surface and subsurface discontinuities.  It provides minimum 
+requirements to qualify personnel, procedures, and equipment, and contains acceptance criteria.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ADMINISTRATIVE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Sequencing</TTL><BRK/>
+<BRK/>
+<TXT>Conduct tank inspection in accordance with Section <SRF>33 01 50.65</SRF> INSPECTION OF FUEL STORAGE TANKS.  Inspect and validate predictive repairs during 
+the design phase in accordance with Section <SRF>01 14 00</SRF> WORK RESTRICTIONS.  Use the results of the inspection and validation to inform a repair design 
+in accordance with paragraph DESIGN REQUIREMENTS.  Do not finalize the design until inspection results have been analyzed, reported to the Government, 
+and direction has been received as to the extent of repairs that will be performed.</TXT><BRK/>
+<BRK/>
+<TXT>Repair work must be authorized by the Tank Inspector and the Designer of Record before commencement of work by a repair organization.  The Tank 
+Inspector will designate inspection hold points which are necessary during the repair sequence.  The Tank Inspector must approve repair and alteration 
+work at the designated hold points.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Scheduling</TTL><BRK/>
+<BRK/>
+<TXT>Do not start tank repairs until the design has been issued for construction and the Contracting Officer has accepted the design.  Do not start 
+coating repair until tank repairs which will damage coating have been completed, inspected and accepted by the Government.  If a tank hydrostatic 
+test is required, schedule the test before coating work starts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Repair and Progress Meetings</TTL><BRK/>
+<BRK/>
+<TXT>Conduct onsite meetings prior to and during the execution of repair work pursuant to Section <SRF>01 45 00</SRF> QUALITY CONTROL, and as follows.  </TXT><BRK/>
+<OLG><BRK/>
+<OLI>Prior to the start of each unique type of repair</OLI><BRK/>
+<BRK/>
+<OLI>Prior to restart of work following a shutdown</OLI><BRK/>
+<BRK/>
+<OLI>Upon any change in personnel of Superintendent, Quality Control Manager, or Site Safety and Health Officer (SSHO)</OLI><BRK/>
+<BRK/>
+<OLI>Minimum once per month during a continuous repair evolution</OLI><BRK/></OLG>
+<BRK/>
+<TXT>The Quality Control Manager (QCM) will chair the meetings, extend meeting invitations, distribute the agenda, and publish minutes.  Notify the 
+Contracting Officer 14 calendar days prior to each meeting.  Minimum required attendance is the foreman for personnel conducting repairs, SSHO, 
+Superintendent, and QCM.  If the API inspector or tank engineer is onsite, attendance is required.</TXT><BRK/>
+<BRK/>
+<TXT>Meeting content must comply with paragraph QUALITY ASSURANCE.  Distribute meeting minutes to attendees, the Government technical team, and the 
+Contracting Officer within three calendar days of the meeting.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DESIGN REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See FC 1-300-09N Navy and Marine Corps Design Procedures for professional engineer requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Design basis is relevant portions of <RID>UFC 3-460-01</RID>.  Consult with experts experienced in fuel storage tank repair. Provide subject matter professional 
+engineering expertise to design efficient tank repairs.  Validate conditions to fully inform sketches and shop drawings.  Door sheets require design 
+by the Tank Engineer.  Design construction bracing and structural reinforcement to prevent damage or deformation to the facility, resist all construction 
+load conditions, and compliant with <RID>ASCE/SEI 37</RID>.  Produce work plans, sketches, and shop drawings which are complete and usable.  Replacement of 
+tank roofs must meet the requirements of <RID>ASCE 7-22</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide design drawings and specifications[ in accordance with <RID>FC 1-300-09N</RID>].  Submit <SUB>Design Documents</SUB> pursuant to Section[ 01 33 10.05 20 DESIGN 
+SUBMITTAL PROCEDURES][ <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Severe Weather Damage Mitigation</TTL><BRK/>
+<BRK/>
+<TXT>Calculate the minimum ballast fill height required to withstand a severe weather event (i.e., to prevent overturning, sliding, buckling, or uplift).  
+Design bracing or ballast to prevent damage due to these conditions during construction.  Contractor to prepare <SUB>severe weather plan</SUB> prior to construction 
+for securing the empty tank in the event of high winds.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Design drawings must be to scale.  A typical drawing set includes the following.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Title sheet, orientation diagram, and drawing index</OLI><BRK/>
+<BRK/>
+<OLI>Structural notes</OLI><BRK/>
+<BRK/>
+<OLI>Bottom plan</OLI><BRK/>
+<BRK/>
+<OLI>Rollout elevation</OLI><BRK/>
+<BRK/>
+<OLI>Roof plan</OLI><BRK/>
+<BRK/>
+<OLI>Nozzle schedule</OLI><BRK/>
+<BRK/>
+<OLI>Interior piping plan</OLI><BRK/>
+<BRK/>
+<OLI>Piping details</OLI><BRK/>
+<BRK/>
+<OLI>Repair details</OLI><BRK/>
+<BRK/>
+<OLI>Repair schedule</OLI><BRK/>
+<BRK/>
+<OLI>Civil details</OLI><BRK/>
+<BRK/>
+<OLI>Electrical details</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Repair Standards</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>The overall standard for tank repair is <RID>API Std 653</RID>.  Geometry, configuration, and structural shapes may exist which could require repairs which 
+are not fully compliant with <RID>API Std 653</RID>, <RID>API Std 650</RID>, or <RID>STD DSN AW 78-24-27</RID>.  Design repairs which comply to the extent possible.  Identify on 
+the shop drawings where minimum spacing requirements cannot be met.  Design temporary construction bracing and supports in accordance with <RID>ASCE/SEI 37</RID>
+.</TXT><BRK/></SPT>
+<BRK/>
+<SPT><TTL>Door Sheet</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Carefully plan repairs which might necessitate the use of a door sheet.  Door sheets are only justified 
+for significant repair or alteration work to a tank.  Door sheet removal, replacement, and structural bracing 
+requires a professional design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use of a door sheet is only allowed in the event of significant mandatory repairs such as bottom replacement.  Door sheets are not allowed for 
+non-mandatory repairs such as blasting, coating, or replacement of internal appurtenances.  Do not use a door sheet if it is the only repair that 
+will trigger a tank hydrostatic test.  Design the removal and replacement of a door sheet in accordance with <RID>API Std 653</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Structural Welds</TTL><BRK/>
+<BRK/>
+<TXT>In accordance with <RID>AWS D1.1/D1.1M</RID> Structural Welding Code, <RID>AWS D1.2/D1.2M</RID> Structural Welding Code (aluminum), and <RID>AWS D1.6/D1.6M</RID> Structural Welding 
+Code (stainless steel).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Butt Joints</TTL><BRK/>
+<BRK/>
+<TXT>Weld joint design must be in accordance with <RID>API Std 650</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fillet Welded Joints</TTL><BRK/>
+<BRK/>
+<TXT>Fillet welded patch plate repairs are an acceptable method of repair.  Design for fillet welded repairs must be in accordance with <RID>API Std 653</RID> 
+to the extent possible.  Tombstone type repair plates are an acceptable method of adjoining structural shapes, cover plates, and stiffeners.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use in-process weld examination on cut and cover tank piping within the hydraulic boundary or on drain-dry 
+AST piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+[<SPT><TTL>Nozzles</TTL><BRK/>
+<BRK/>
+<TXT>Provide in-process weld examination pursuant to <RID>ASME B31.3</RID> and requirements of this Section for nozzle piping closure welds which are part of the 
+tank hydraulic envelope.  In addition to PT or MT, visually inspect the condition of the root pass after cleaning.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Engineered Plans</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Workplace Ventilation</TTL><BRK/>
+<BRK/>
+<TXT>Design ventilation and tank entry means and methods which will provide a gas-free environment suitable for safe entry and compliant with <RID>EM 385-1-1</RID>
+ and <RID>API Std 2015</RID>.  Prepare for hot work consistent with <RID>API RP 2207</RID>.  Expect liquid or hydrocarbon vapors below the tank bottom.  Should gas test 
+holes be required, provide an engineered detail to install the holes and purge the interstice with inert gas.  Submit in accordance with paragraph 
+SUBMITTALS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<TXT>Address all aspects of welding, inspection, and examination to meet requirements of this Section. Identify methods to minimize heat distortion.   
+Determine which regions of the tank require special treatment such as preheat or postweld heat treatment.  Establish fit-up and edge preparation 
+tolerances.  Use SMAW, GTAW, or GMAW processes with low-hydrogen electrodes on hydraulic envelope or seal welds.  Restrict weld processes for root 
+passes to gas tungsten or shielded metal arc.</TXT><BRK/>
+<BRK/>
+<TXT>Include in the weld plan specification and qualifying record for each procedure along with a summary table which lists all qualified welding personnel 
+and the Welding Procedure Specification (WPS) under which they are qualified.  Submit <SUB>Weld Plan</SUB> in accordance with paragraph SUBMITTALS.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Welding Personnel Identification</TTL><BRK/>
+<BRK/>
+<TXT>Assign each welding personnel a unique identification number, letter, or symbol.  Place identification on the weld map. Ensure each identification 
+is traceable to a welder and an associated performance qualification record.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Symbology</TTL><BRK/>
+<BRK/>
+<TXT>Weld symbology and drawings specifying NDE must employ symbols accordance with <RID>AWS A2.4</RID>.  Definitions must be in accordance with <RID>AWS A3.0M/A3.0</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Piping Hydrostatic Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Piping hydrostatic testing is for use on cut and cover tank piping that is part of the tank hydraulic boundary 
+or on drain-dry AST piping.</NPR><BRK/>
+<BRK/>
+<NPR>Use judgment regarding test pressures. If segment contains both old and new components, do not specify the full 
+test pressure identified in UFC 3-460-01.</NPR><BRK/>
+<BRK/>
+<NPR>Identify in scope of work documents who will supply test water, disposition options for the test water, and testing 
+that is required to determine the quality of the test water after use.</NPR><BRK/>
+<BRK/>
+<NPR>Verify that piping pressure testing is performed in compliance with the Allowable Pressure Table in UFC 3-460-01.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a <SUB>Piping Hydrostatic Test Plan</SUB> which will establish post-repair tightness and strength of repaired tank envelope nozzle piping.  Testing 
+must be compliant with <RID>ASME B31.3</RID> and consistent with <RID>API RP 1110</RID>.  Plan must include site specific procedure, fill points and volume, air bleed, 
+closure means and material specification, valves, flanges, fittings, and instruments in each segment.  Use fresh water with less than 50 ppm Chloride 
+content as the test medium.  Designate a test examiner in responsible charge of executing the plan, examining for leaks, and certifying results.</TXT><BRK/>
+<BRK/>
+<TXT>Test duration is no less than 4 hours.  Strength component test pressure must be no less than 150 psig and not exceed the flange rating.  For repairs 
+with all new materials, use a test pressure of [_____]<MET> [mPa]</MET> <ENG>[psig]</ENG>.  Acceptance criteria are the no leak condition and unaccountable error less 
+than 1 degree F.  Dispose of test water in accordance with paragraph HYDROSTATIC TEST WATER DISPOSAL.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Tank Hydrostatic Test</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph only in the event tank repairs are significant enough to warrant the test.</NPR><BRK/>
+<BRK/>
+<NPR>Identify in scope of work documents who will supply test water, disposition options for the test water, and testing 
+that is required to determine the quality of the test water after use.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a <SUB>Tank Hydrostatic Test Plan</SUB> in accordance with <RID>API Std 650</RID>.  Perform test with fresh water.  Verify the capacity and condition of atmospheric 
+and overflow vents to ensure they are adequate for the rate of fill.  Plan shell settlement measurements  to take place before, during, and after 
+hydrostatic test in accordance with <RID>API Std 650</RID>.  Test must fill tank with water and maintain full for a period not less than 24 hours or until 
+any measured settlement stabilizes.  Inspect shell for leaks.  The appearance of damp spots must be considered evidence of leakage.  Plan for prompt 
+dewatering and dehydration to limit rusting.</TXT><BRK/>
+<BRK/>
+<TXT>Repair leaks disclosed by the test.  Then, retest the tank to demonstrate the tank is leak-free.  No water must be released to the sanitary or 
+storm sewer systems without the expressed, written approval of the Contracting Officer.  Dispose of test water in accordance with paragraph HYDROSTATIC 
+TEST WATER DISPOSAL.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Nondestructive Examination</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use ASME B31.3 if examining repair work on inaccessible cut and cover tank piping which is part of the 
+hydraulic boundary, or on inaccessible drain-dry AST piping which is part of the hydraulic boundary.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit an <SUB>NDE Plan</SUB> for nondestructive examination and testing.  Procedures, personnel, methods, equipment, calibration, examinations, and records 
+must be compliant with this Section and <RID>API Std 653</RID>.[  For examination of work on hydraulic boundary piping, procedures, personnel, methods, equipment, 
+calibration, examinations, and records must be compliant with <RID>ASME B31.3</RID> and severe cyclic conditions.]  Conform NDE terminology to <RID>ASTM E1316</RID>.  
+Do not use phased array ultrasonic testing in lieu of RT unless approved by the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<TXT>List individuals and their responsibilities for executing the NDE plan.  Include examiner qualifications and certifications.  Describe tests and 
+examinations which will be performed.  Include requirements for instrument calibration.  Detail the process to report defects.  Include written 
+procedures, methods, specifications, and procedure qualifications for all NDE methods.  Appropriate nondestructive technologies are listed in paragraph 
+APPROPRIATE NONDESTRUCTIVE TECHNOLOGY.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Appropriate Nondestructive Technology</TTL><BRK/>
+<TAB WIDTH="87">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="165.75"/>
+      <COL AUTOWIDTH="0" WIDTH="62.25"/>
+      <COL AUTOWIDTH="0" WIDTH="433.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Method</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Symbol</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Detection Window</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL>
+<DTA TYPE="STRING">Visual inspection</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">VT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Detection of surface discontinuities by direct viewing using line-of sight vision or enhanced with the use of optical instruments</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="66.00">
+         <CEL>
+<DTA TYPE="STRING">Ultrasonic testing</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Detection of discontinuities throughout the volume of material, measurement of wall thickness, and evaluation of bond characteristics in most types of material and in basic geometric configurations</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="42.75">
+         <CEL>
+<DTA TYPE="STRING">Liquid penetrant examination</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">PT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Detecting the presence of surface discontinuities in ferrous and nonferrous materials</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.75">
+         <CEL>
+<DTA TYPE="STRING">Magnetic particle examination, wet suspension</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">MT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Detection of surface or near surface discontinuities in ferromagnetic materials</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="28.50">
+         <CEL>
+<DTA TYPE="STRING">Radiologic testing</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">RT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Detection of discontinuities throughout the volume of welds</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">Vacuum box testing</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">VBT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Detection of leaks and through wall defects in the hydraulic boundary</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT><SPT><TTL>Safety</TTL><BRK/>
+<BRK/>
+<TXT>Incorporate safety as an element of the design.  Conform to <RID>API Std 2015</RID>, Section <SRF>01 35 26</SRF> GOVERNMENTAL SAFETY REQUIREMENTS, <RID>EM 385-1-1</RID>, Hot Work 
+Permit, and <RID>AWS Z49.1</RID>.  Design continuous forced ventilation to maintain minimum workspace air exchange rates which eliminate the hazard of exposure 
+to a hazardous atmosphere.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Certification of Space</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must select either Marine Chemist or CIH to certify or re-certify the space.  Coordinate the requirement 
+with Sections <SRF>01 35 26</SRF> GOVERNMENTAL SAFETY REQUIREMENTS, <SRF>33 01 50.55</SRF> CLEANING OF PETROLEUM STORAGE TANKS, and 
+<SRF>33 01 50.65</SRF> INSPECTION OF FIELD FABRICATED FUEL STORAGE TANKS</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit certification, in accordance with <RID>NFPA 326</RID>, from[ an NFPA certified Marine Chemist][ a CIH] stating that tank is safe for hot work and that 
+special precautionary measures have been taken for workers to enter the tank to perform the work.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Exercise caution with regard to gas test holes.  Ensure the identification, location, and repairs of gas 
+test holes are diligently tracked.  Use proactive measures to guard against un-repaired gas test holes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Data Management</TTL><BRK/>
+<BRK/>
+<TXT>Organize repair data in a non-proprietary management system such as a database or spreadsheet established pursuant to Section <SRF>33 01 50.65</SRF> INSPECTION 
+OF FIELD FABRICATED FUEL STORAGE TANKS.  Provide secure, auditable, and organized data.  Ensure the system has the capability to track the provenance 
+of each repair.  Cloud-based systems are not acceptable.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Repair Log</TTL><BRK/>
+<BRK/>
+<TXT>Produce a <SUB>Repair Log</SUB> capable of uniquely tracking every repair on the project.  Follow the tank location identification scheme established pursuant 
+to Section <SRF>33 01 50.65</SRF> INSPECTION OF FIELD FABRICATED FUEL STORAGE TANKS.  Initial dataset will be populated by the inspection record.  Enter gas 
+test hole locations into repair log.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Weld Tracking</TTL><BRK/>
+<BRK/>
+<TXT>Develop a <SUB>Weld Tracking Log</SUB> capable of uniquely identifying and tracking every weld on the project.  Follow the tank location identification scheme 
+established pursuant to Section <SRF>33 01 50.65</SRF> INSPECTION OF FIELD FABRICATED FUEL STORAGE TANKS.  The log must include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Location in tank</OLI><BRK/>
+<BRK/>
+<OLI>Type of weld including temporary and tack welds</OLI><BRK/>
+<BRK/>
+<OLI>Applicable WPS</OLI><BRK/>
+<BRK/>
+<OLI>Name or identification number of welding personnel</OLI><BRK/>
+<BRK/>
+<OLI>Date and time of completion of welding or tacking</OLI><BRK/>
+<BRK/>
+<OLI>Name and date of inspector performing visual inspection</OLI><BRK/>
+<BRK/>
+<OLI>Date and type of NDE testing</OLI><BRK/>
+<BRK/>
+<OLI>Examiner name and acceptance criteria</OLI><BRK/>
+<BRK/>
+<OLI>Description of defects found; reason for non-compliance; corrective action taken</OLI><BRK/>
+<BRK/>
+<OLI>Date, time, and inspector who deemed weld acceptable</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Weld identification on the shop drawings must match weld tracking log.  Update and populate the log as work progresses, and submit to the Contracting 
+Officer as part of progress documentation and the contract completion report.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Shop Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Prepare shop drawings under supervision of a Registered Professional Engineer.  Elements of fabricated items omitted from design drawings must 
+be detailed by the fabricator and so indicated on the shop drawings, or returned to the Designer of Record for detailing.  Identify all field and 
+shop welds on the shop drawings and distinguish those which are seal welds.  Any and all details developed by the fabricator must be clouded on 
+the shop drawings for separate approval by the Engineer of Record.</TXT><BRK/>
+<BRK/>
+<TXT>Orient location of repairs depicted on the shop drawing to plan and elevations.  Depict localized conditions to include metal thickness, toe spacing 
+dimensions, and adjacent structural shapes.  Show isometric view when needed for clarity.  Denote new material specification, grade, size, thickness, 
+dimensions, and fitup tolerances.  Identify weld specification and required NDE.  The following types of repairs must be shown on the <SUB>Shop Drawings</SUB>
+.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Insert Plate</TTL><BRK/>
+<BRK/>
+<TXT>Depict whether complete or partial penetration butt joint welds.  Provide dimensions to adjacent features for accurate layout.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fillet Welded Patch Plate</TTL><BRK/>
+<BRK/>
+<TXT>Indicate details of adjacent nozzles, insert plates, welds, and reinforcing plates.  Ensure plate meets <RID>API Std 653</RID> minimum radius requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gas Test Hole Repair</TTL><BRK/>
+<BRK/>
+<TXT>Dimension test hole centerline with plate edges and location in tank.  Detail repair method to fill hole with weld metal and identify NDE of repair.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Weld Repair</TTL><BRK/>
+<BRK/>
+<TXT>Prior to repair, lightly grind weld and examine the surface with MT or PT to determine whether indications are removed.  A weld repair which requires 
+depth more than one-third of the base material thickness must have the weld gouged out to full depth at least one inch past the defect limits.  
+Indicate dimensions, location, and WPS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nozzles, Flanges, and Manway</TTL><BRK/>
+<BRK/>
+<TXT>Indicate materials, dimensions, thickness, location, clearance from existing welds, details, and reinforcing plates.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Interior Piping and Supports</TTL><BRK/>
+<BRK/>
+<TXT>Indicate dimensions, location and orientation, spacing, fasteners, clearances from existing welds, and pipe sizes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tank Appurtenances and Attachments</TTL><BRK/>
+<BRK/>
+<TXT>Indicate attachment and striker pads.  Detail location, type, and size of fasteners, welds, supports, and connections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Weld Map</TTL><BRK/>
+<BRK/>
+<TXT>Prepare <SUB>Weld Map</SUB> to coordinate the physical layout of the tank, the shop drawings, the weld plan, the NDE plan, and welder identification.  Include 
+joint configuration, and weld size and type.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pre-Repair and Progress Meetings</TTL><BRK/>
+<BRK/>
+<TXT>Discuss repair work, quality expectations, acceptance standards, and lines of authority during the pre-repair meetings.  The QCM must provide clear 
+direction to all parties regarding acceptable work output, individuals authorized to inspect and test repairs, and consequences for incompetent, 
+careless, or otherwise objectionable work.  Meeting agenda items include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Safety</OLI><BRK/>
+<BRK/>
+<OLI>Repair procedures, fitup, weld specifications, weld personnel identification</OLI><BRK/>
+<BRK/>
+<OLI>Weld inspection process</OLI><BRK/>
+<BRK/>
+<OLI>Non-destructive examination process</OLI><BRK/>
+<BRK/>
+<OLI>Acceptance criteria</OLI><BRK/>
+<BRK/>
+<OLI>Responsibilities of the parties</OLI><BRK/>
+<BRK/>
+<OLI>Acceptable standards of quality</OLI><BRK/>
+<BRK/>
+<OLI>Documentation of work</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Weld Inspection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use ASME B31.3 if examining repair work on inaccessible cut and cover tank piping which is part of the 
+hydraulic boundary, or on inaccessible drain-dry AST piping which is part of the hydraulic boundary.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Add "Weld Inspector" as a QC Specialist to Section <SRF>01 45 00</SRF> QUALITY CONTROL.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide weld inspection procedures compliant with <RID>API Std 650</RID>[ and <RID>ASME B31.3</RID>].  The weld inspector(s) is considered a QC Specialist and must report 
+results directly to the QC Manager, as specified in Section <SRF>01 45 00</SRF> QUALITY CONTROL.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>NDE Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Provide NDE procedures for methods compliant with <RID>API Std 653</RID>[, <RID>ASME B31.3</RID>,] and paragraph NDE PROCEDURE STANDARDS.  Provide a procedure standard 
+for a method planned to be used which is not listed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>NDE Procedure Standards</TTL><BRK/>
+<TAB HEADERROWS="1" WIDTH="82">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="8">
+      <COL AUTOWIDTH="0" WIDTH="192.75"/>
+      <COL AUTOWIDTH="0" WIDTH="429.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Method</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Procedure Standard</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">UT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">ASME BPVC SEC V Article 4</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">UT in lieu of RT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">API Std 650 Annex U</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">VBT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">API Std 650 8.6</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">PT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">ASME BPVC SEC V Article 6</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">MT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">ASME BPVC SEC V Article 7<BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">RT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">ASME BPVC SEC V Article 2<BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL>
+<DTA TYPE="STRING">VT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">API Std 650 8.5</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT></SPT><SPT><TTL>QUALIFICATION AND CERTIFICATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Previously Qualified Procedures and Personnel</TTL><BRK/>
+<BRK/>
+<TXT>Welding procedures and welding personnel previously qualified by test may be accepted for the work without requalification, provided that all of 
+the following conditions are fulfilled:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Copies of the Welding Procedure Specification, the Procedure Qualification Record, and the Welder Performance Qualification record for 
+each procedure to be used are submitted in accordance with paragraph SUBMITTALS.</OLI><BRK/>
+<BRK/>
+<OLI>Testing was performed by an independent approved testing laboratory or an approved technical consultant.  Copies of the Test Laboratory 
+Accreditation and Technical Consultant Certification are submitted and approved in accordance with paragraph SUBMITTALS.</OLI><BRK/>
+<BRK/>
+<OLI>The welding procedures, welders, and welding operators were qualified in accordance with <RID>ASME BPVC SEC IX</RID>, and base materials, filler materials, 
+electrodes, equipment, and processes conformed to the applicable requirements of this specification.</OLI><BRK/>
+<BRK/>
+<OLI>The requirements of paragraph RENEWAL OF QUALIFICATION are met and records showing name of employer and period of employment using the 
+process by which the welder was qualified are submitted as evidence of conformance.</OLI><BRK/>
+<BRK/>
+<OLI>Each procedure qualified by mechanical test in accordance with <RID>ASME BPVC SEC IX</RID> QW-200 must contain coupon bend test results.</OLI><BRK/>
+<BRK/>
+<OLI>Each welding personnel qualified by mechanical test in accordance with <RID>ASME BPVC SEC IX</RID> QW-300 must contain coupon bend test results.  
+Welding personnel cannot be qualified by initial production welding.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Welding Procedure Specification</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Prepare welding procedure specifications which provide direction to the welder and welding operator for making production welds.  Use the WPS format 
+QW-482 in <RID>ASME BPVC SEC IX</RID>.  Include procedures for weld repairs.  Specify back purge gas requirements and end preparation for butt joint welds 
+to include cleaning, alignment, and root opening tolerances.  Specify interpass temperature control and any weld special treatment requirements.  
+Identify weld procedures uniquely and reference on the Weld Map and shop drawings.</TXT><BRK/>
+<BRK/>
+<TXT>WPS must be compliant with <RID>API Std 650</RID> and <RID>ASME BPVC SEC IX</RID> requirements.  Submit each WPS together with its associated PQR, and in accordance 
+with paragraph SUBMITTALS.  Approval of a procedure does not relieve Contractor of the sole responsibility for design and production of acceptable 
+welds.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Procedure Qualification Record</SUB> (PQR)</TTL><BRK/>
+<BRK/>
+<TXT>Perform tests, qualify all procedures including weld repair, and document the results in detail on procedure qualification records.  Qualify each 
+proposed welding procedure.  Qualify procedures in compliance with <RID>API Std 650</RID>, <RID>ASME BPVC SEC IX</RID>, and this Section.  Use the PQR format QW-483 
+in <RID>ASME BPVC SEC IX</RID>.  Submit each PQR together with its associated WPS, and in accordance with paragraph SUBMITTALS.</TXT><BRK/>
+<BRK/>
+<TXT>Qualify procedure(s) which will be used to repair the tank shell.  Qualify in compliance with <RID>API Std 650</RID>, <RID>ASME BPVC SEC IX</RID>, and this Section.  
+Use the PQR format QW-483 in <RID>ASME BPVC SEC IX</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding Personnel Performance</TTL><BRK/>
+<BRK/>
+<TXT>Conduct tests to determine the welding personnel, using qualified procedures, are capable of producing the minimum requirements of an acceptable 
+weldment.  Test all welding personnel for each welding process to be used.  Tests conducted by a different employer are not acceptable.  Test in 
+accordance with <RID>API Std 650</RID> and <RID>ASME BPVC SEC IX</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Welder Performance Qualification</SUB> (WPQ)</TTL><BRK/>
+<BRK/>
+<TXT>A welder or welding operator may be qualified by volumetric NDE or by bend tests on a test coupon.  Qualification by initial production welding 
+is not allowed.  Before assigning welding personnel to the work, provide WPQ records which certify the individual is performance-qualified for 
+the procedure in accordance with <RID>ASME BPVC SEC IX</RID>.  The certification must state the type of welding and positions for which each is qualified, 
+the code and welding procedure specification under which each is qualified, date qualified, and the firm and individual certifying the qualification 
+tests.  Use the WPQ format in <RID>ASME BPVC SEC IX</RID> QW-484A for welders and QW-484B for welding operators.  All welder qualification records must be 
+signed and stamped by a certified welding inspector (CWI) as defined in <RID>AWS QC1</RID>.  Submit each WPQ in accordance with paragraph SUBMITTALS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Renewal of Qualification</TTL><BRK/>
+<BRK/>
+<TXT>Requalification of welding personnel must be required under any of the following conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>When welding personnel has not used the specific welding procedure for a period of 3 months; the period may be extended to 6 months if 
+the welding personnel has been employed on another welding procedure.</OLI><BRK/>
+<BRK/>
+<OLI>When welding personnel has not welded with any procedure during a period of 3 months, all the personal qualifications must be considered 
+expired, including any extension by virtue of "a" above.</OLI><BRK/>
+<BRK/>
+<OLI>There is specific reason to question the individual's ability to make welds which will meet requirements of the specifications.</OLI><BRK/>
+<BRK/>
+<OLI>The welding personnel was qualified by an employer, other than those firms performing work under this contract, and a qualification test 
+has not been taken within the preceding 12 months.</OLI><BRK/>
+<BRK/>
+<OLI>Renewal of qualification for a specific welding procedure under conditions a, b, and d above, needs to be made on only a single test joint 
+or pipe of a thickness, position, or material required by the welding procedure specification to reestablish the welder's or welding operator's 
+qualification for the previous qualification.</OLI><BRK/>
+<BRK/>
+<OLI>Any welding personnel qualified by initial production welding.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Weld Inspector</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use an independent weld inspector if the scope and risk of the work warrants.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate the QC Specialist requirement with Section <SRF>01 45 00</SRF> QUALITY CONTROL.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Welding inspectors must be qualified in accordance with <RID>API Std 650</RID> and be a CWI or senior certified welding inspector (SCWI) as defined in <RID>AWS QC1</RID>
+, and have minimum [5][7] years of experience inspecting storage tank welding or process pipe welding on military or commercial fuel storage tanks 
+or piping.  Each inspector must be certified to be a CWI or SCWI with <RID>ASME BPVC SEC IX</RID> endorsement.  Provide AWS Certified <SUB>Weld Inspector Certificate</SUB>
+ in accordance with paragraph SUBMITTALS.[  Provide one SCWI in responsible charge of weld inspection duties to oversee CWI inspection and review 
+all weld inspection reports.]  The weld inspector(s) is considered a QC Specialist in accordance with paragraph WELD INSPECTION.</TXT><BRK/>
+<BRK/>
+<TXT>Should a weld inspector also be a welder, that individual is disqualified from inspecting or examining a weld or any portion thereof of the inspector's 
+own work.[  All inspectors must be independent and must not represent nor be an employee of the prime construction contractor, welding subcontractor, 
+fabricator, erector, or manufacturer.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Non-Destructive Examiner</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Qualification:  Examiners must be qualified to perform NDE in accordance with <RID>API Std 653</RID> and <RID>API Std 650</RID>.  Examiners must meet minimum 
+requirements for qualification in <RID>ANSI/ASNT CP-189</RID>.  Qualified examiners must have minimum five years verifiable experience performing 
+non-destructive examination of fuel storage tanks.  Examiners performing thickness measurements must be experienced and skilled in the 
+examination of thin metal.  Experience is defined as work activity performing a specific NDE method under the direction of qualified supervision 
+but does not include time spent in training programs.<BRK/>
+<BRK/>
+Should an examiner also be a welder, that individual is disqualified from inspecting or examining a weld or any portion thereof of the 
+examiner's own work.  Personnel performing NDE examination must not represent nor be an employee of the prime construction contractor, 
+welding subcontractor, fabricator, erector, or manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Certification:  Examiners certified compliant with <RID>ANSI/ASNT CP-189</RID> pursuant to the table Examiner Certification Standards for the applicable 
+method.  Level II Limited certification does not meet Level II requirement.  Provide <SUB>Repair ASNT NDE Examiner Credentials</SUB> in accordance 
+with paragraph SUBMITTALS.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Examiner Certification Standards</TTL><BRK/>
+<TAB HEADERROWS="1" WIDTH="81">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="189.00"/>
+      <COL AUTOWIDTH="0" WIDTH="426.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Method</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Standard</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Level II or III</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UT in lieu of RT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">API Std 650 Annex U with Level III review</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">VBT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Level II or III</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">PT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Level II or III</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">MT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Level II or III</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">RT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Level III<BRK/></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT>[<SPT><TTL>Independent Testing Organization</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use an independent NDE test organization if that level of oversight is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The independent testing organization, testing laboratory, technical consultant or NDE testing firm must meet principles of <RID>ASTM E329</RID>.  The principal 
+business of the testing organization, testing laboratory, technical consultant or NDE testing firm must be inspection and testing, and must have 
+no involvement in design, procurement, fabrication, construction and installation.  The testing organization, testing laboratory, technical consultant 
+or NDE testing firm must be a first tier subcontractor.  Submit copy of current <SUB>Independent Testing Organization</SUB> certification in accordance with 
+paragraph SUBMITTALS.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Tank Engineer</TTL><BRK/>
+<BRK/>
+<TXT>Licensed professional engineer with minimum qualifications of each individual:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Bachelor of Science degree in Civil or Mechanical Engineering</OLI><BRK/>
+<BRK/>
+<OLI>[Five][Seven] years of experience in POL facilities engineering, including design, inspection, and construction.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Tank Inspector of Record</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use an independent inspector to inspect repair work if the scope, risk, and complexity of the work warrant 
+such usage.  Coordinate inspector requirements with paragraph INSPECTION OF REPAIRS.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate the QC Specialist requirement with Section <SRF>01 45 00</SRF> QUALITY CONTROL.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an experienced[ independent] <RID>API Std 653</RID> Inspector who must have a minimum of [5][7] years of experience.  Submit copy of current <SUB>Tank 
+Inspector of Record</SUB> certification in accordance with paragraph SUBMITTALS.  The Tank Inspector of Record is considered a QC Specialist.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Marine Chemist</TTL><BRK/>
+<BRK/>
+<TXT>Submit copy of current <SUB>Marine Chemist Certificate</SUB> issued by the National Fire Protection Association in accordance with the Rules for Certification 
+of Marine Chemists, pursuant to <RID>NFPA 326</RID>, and in accordance with paragraph SUBMITTALS.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Qualifications of CIH</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit name, address, and telephone number of the CIH selected to perform responsibilities in paragraph CERTIFICATION OF SPACE.  Provide previous 
+experience of the CIH.  Submit proper documentation that the Industrial Hygienist is certified by the American Board of Industrial Hygiene in comprehensive 
+practice, including certification number and date of certification/recertification.  The CIH must be familiar with the hazards involved in fuel 
+systems work.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Handle, store, and protect equipment and materials to prevent damage before and during installation in accordance with manufacturer recommendations 
+and as approved by the Contracting Officer.  Replace damaged or defective items.  Protect plate material from exposure to weather, road salt, and 
+damage during transportation.</TXT><BRK/>
+<BRK/>
+<TXT>Deliver all filler metals, electrodes, and other welding materials to the site in original manufacturer containers.  Store in a dry space protected 
+from weather and contamination until used.  Containers must be properly labeled and designed to give maximum protection from moisture and to insure 
+safe handling.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Material Control</TTL><BRK/>
+<BRK/>
+<TXT>Store materials in a controlled access and clean, dry area that is weathertight, protected from weather and contamination, and is maintained at 
+a temperature recommended by the manufacturer.  Materials must not be in contact with the ground or a floor, and must be stored on wooden pallets 
+or cribbing.  Piping systems, fittings, and components must be kept clean before and during installation by means of plugs or other approved methods.  
+Cap piping, fittings, and valves to prevent contamination by dirt, water, and other foreign material.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Damaged Containers</TTL></SPT><BRK/>
+<BRK/>
+<TXT>Low-hydrogen steel electrodes must be stored in their sealed shipping container.  If the seal is damaged during shipment or storage, and the damage 
+is not immediately detected, the covered electrodes in that container must be rebaked in accordance with manufacturer instructions prior to issuance, 
+or must be discarded.  If a container is damaged in storage and the damage is witnessed, the electrodes from that container must be immediately 
+placed in a storage oven.  The storage oven temperature must be as recommended by the manufacturer or the welding material specification.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Partial Issues</TTL><BRK/>
+<BRK/>
+<TXT>When a container of covered electrodes is opened and only a portion of the content is issued, the remaining portion must, within the limits established 
+by <RID>AWS D1.1/D1.1M</RID> be placed in a storage oven.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Damaged Materials</TTL><BRK/>
+<BRK/>
+<TXT>Materials which are damaged must be discarded.  Covered electrodes which are oil or water-soaked, dirty, or on which the flux has separated from 
+the wire must be discarded.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Indicate on the drawings all piping configurations, slopes, sizes, and piping materials (i.e., carbon steel 
+or stainless steel) permitted for each piping system.  Coordinate these requirements with the statement of work 
+or project program.  For work requiring other than Class 150 materials, edit accordingly.</NPR><BRK/>
+<BRK/>
+<NPR>Delete submittal key tag for materials not associated with a particular project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Internal parts and components of equipment, piping, piping components, and valves that could be exposed to fuel during system operation must not 
+be constructed of zinc coated (galvanized) metal, brass, bronze, or other copper bearing alloys.  Do not install cast iron bodied valves in piping 
+systems that could be exposed to fuel during system operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Steel Plate</TTL><BRK/>
+<BRK/>
+<TXT>Plate material must be manufactured by the open-hearth, electric-furnace, or basic oxygen process.  Meet requirements of <RID>API Std 650</RID>, Group II, 
+as-rolled, killed or semi-killed, and conforming to <RID>ASTM A36/A36M</RID>.  Provide <SUB>Mill Test Reports</SUB>.  Provide Impact Test Data when required by <RID>API Std 650</RID>
+ for the material group and thickness.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Carbon Steel Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT) or <SRF>33 56 21.17</SRF> SINGLE WALL ABOVEGROUND FIXED ROOF 
+STEEL POL STORAGE TANK are used, delete any duplicate material requirements below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Pipe:  <RID>ASTM A53/A53M</RID>, black steel, Type S, Grade B, standard mill finish.  For pipe diameters NPS 2 or less, use Schedule 80.</OLI><BRK/>
+<BRK/>
+<OLI>Butt-Joint Fittings:  End connections for pipe or fittings NPS 2-1/2 and larger must be buttweld type conforming to <RID>ASTM A234/A234M</RID> Grade 
+WPB, and <RID>ASME B16.9</RID> Class 150.  Backing rings must conform to <RID>ASME B31.3</RID> and be compatible with materials being welded.</OLI><BRK/>
+<BRK/>
+<OLI>Forged Fittings (Socket-Welded):  End connections for pipe or fittings smaller than NPS 2-1/2 must be forged, socket weld type conforming 
+to <RID>ASTM A182/A182M</RID> and <RID>ASME B16.11</RID> Class 3000.</OLI><BRK/>
+<BRK/>
+<OLI>Meet chemical, physical, and toughness requirements of <RID>API Std 650</RID>. Submit certificates and certified mill pipe test reports demonstrating 
+compliance with the requirements of <RID>API Std 650</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>When required by <RID>API Std 650</RID>, submit Charpy V-notch impact test results demonstrating compliance with <RID>API Std 650</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Gaskets</TTL><BRK/>
+<BRK/>
+<TXT>Composition ring, one piece factory cut, compliant with <RID>ASME B16.21</RID>, Buna-N.  Gaskets must be composed of either graphite or synthetic fibers in 
+a nitrile binder and must be resistant to the effects of aviation hydrocarbon fuels and manufactured of fire-resistant materials.  Use full-faced 
+gaskets for flat-face flanged joints.  Use ring gaskets on raised-face flanged joints.  Buna-N material must conform to <RID>SAE AMS3275</RID>.  Select a 
+gasket suitable for the work and test pressure of the fluid.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fasteners</TTL><BRK/>
+<BRK/>
+<TXT>Bolts must be of sufficient length to obtain full bearing on the nuts and must project no more than three full threads beyond the nuts with the 
+bolts tightened to the required torque.  Provide electrical isolation for separation of dissimilar metals.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Flange Bolts, Nuts, and Washers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Bolts for pipe flanges, flanged fittings, manway covers, valves, and accessories must conform to <RID>ASME B18.2.1</RID>.  Bolts must be regular hexagonal 
+bolts conforming to <RID>ASME B18.2.1</RID> with material conforming to <RID>ASTM A193/A193M</RID>, Class 2, Grade B8, stainless steel, when connections between 
+steel and aluminum are made, and Grade B7 when only carbon steel components are involved.  Bolts must be threaded in accordance with <RID>ASME B1.1</RID>
+, Class 2A fit, Coarse Thread Series, for sizes one inch and smaller and Eight-Pitch Thread Series for sizes larger than one inch.  Where 
+aluminum is bolted to steel, use stainless steel fasteners.</OLI><BRK/>
+<BRK/>
+<OLI>Nuts for pipe flanges, flanged fittings, valves and accessories must conform to <RID>ASME B18.2.2</RID>, hexagonal, heavy series with material conforming 
+to <RID>ASTM A194/A194M</RID>, Grade 8, stainless steel for stainless steel bolts, and Grade 7 for carbon steel bolts.  Nuts must be threaded in accordance 
+with <RID>ASME B1.1</RID>, Class 2B fit, Coarse Thread Series for sizes one inch and smaller and Eight-Pitch Thread Series for sizes larger than one 
+inch.</OLI><BRK/>
+<BRK/>
+<OLI>Use chromium molybdenum alloy washers dimensioned to <RID>ASTM F436</RID> flat circular for chromium molybdenum bolts.  Stainless steel washer dimensioned 
+in accordance with <RID>ASTM F436</RID> flat circular, use material the same as the bolt.  Use torque wrenches to tighten all flange bolts to the 
+torque recommended by the gasket manufacturer.  Tight in the pattern recommended by the gasket manufacturer.  Use anti-seize compound on 
+stainless steel bolts.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Structural Bolts, Nuts, and Washers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Bolts:  <RID>ASTM F3125/F3125M</RID> (<RID>ASTM A325</RID>), Type 1, heavy hex style, plain finish. Ensure bolt heads are distinctively marked with the manufacturer 
+unique identifier and grade.  Bearing type connections are Type N unless determined otherwise.</OLI><BRK/>
+<BRK/>
+<OLI>Nuts:  <RID>ASTM A563</RID>, Grade C, heavy hex style, plain finish.  Ensure nuts are distinctively marked with the manufacturer's unique identifier 
+and grade.</OLI><BRK/>
+<BRK/>
+<OLI>Washers:  <RID>ASTM F436</RID>, Type 1, circular.  When the outer face of the joint has a slope greater than 1:20 with respect to a plane normal to 
+the bolt axis, use ASTM F436, Type 1, beveled to compensate for the lack of parallelism.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Thread Lubricant</TTL><BRK/>
+<BRK/>
+<TXT>Provide thread lubricant compliant with <RID>MIL-PRF-907</RID> <SUB>Anti-Seize Compound</SUB> to minimize galling on fasteners external to the tank.  On tank interior 
+fasteners use SAE 30 oil.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Structural Steel Shapes</TTL><BRK/>
+<OLG><BRK/>
+<OLI>W-Shapes:  <RID>ASTM A992/A992M</RID>, standard mill finish</OLI><BRK/>
+<BRK/>
+<OLI>Angles, Channels, and Plates:  <RID>ASTM A36/A36M</RID>, standard mill finish</OLI><BRK/>
+<BRK/>
+<OLI>Steel Pipe:  <RID>ASTM A53/A53M</RID>, standard mill finish, Grade B, Type E or S, or <RID>ASTM A500/A500M</RID>, Grade B</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Aluminum Pipe For Stilling Wells</TTL><BRK/>
+<BRK/>
+<TXT>Aluminum pipe must be <RID>ASTM B241/B241M</RID>, alloy 6061-T6, Schedule 40 for pipe sizes NPS 2 through 12; Schedule 80 for pipe sizes NPS 2 and smaller.  
+Process per <RID>ASME B31.3</RID>, GTAW, consumables per <RID>AWS A5.10/A5.10M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flanges</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A105/A105M</RID> Class 150, raised face, weld-neck flange compliant with <RID>ASME B16.5</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Bolting And Aluminum Flanges For Stilling Wells</TTL><BRK/>
+<BRK/>
+<TXT>Aluminum flanges must be <RID>ASME B16.5</RID>, Class 150 Flat Face Type, except material must conform to <RID>ASTM B247</RID>, alloy 6061-T6 or alloy 356-T6.  Aluminum 
+flanges may be welding neck or slip-on type.  Provide bolting in accordance with paragraph FLANGE BOLTS, NUTS, AND WASHERS.  Provide electrical 
+isolation for separation of dissimilar metals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flange Protectors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use near coastal areas and in wet locations (valve pits).  Check with Activity to determine suitability 
+and type.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Protectors must protect the bolts, studs, nuts, and gaskets of a flanged end connection from corrosion or damage due to exposure to the environment.  
+Protectors must be weather and ultraviolet resistant, and allow for quick and easy removal and re-installation by maintenance personnel.  Provide 
+grease filled bolt caps.  Corrosion prevention grease must be non-expansive and designed for the service.  Provide protectors that allow for visual 
+inspection of the flange gasket without requiring removal.  Equip with grease fittings which allow injection of grease into the flange cavity.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Isolating Gasket Kits (Insulating) and Over-Voltage Protection Devices for Flanges</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>ASTM D229</RID> electrical insulating material of 1,000 ohms minimum resistance or 500 Volts per mil (VPM) minimum dielectric strength.  Material 
+must be resistant to the effects of aviation hydrocarbon fuels.  Provide full face insulating gaskets between flanges with fluoroelastomer (commonly 
+referred to as Viton) O-ring sealing surfaces.  Provide full surface<MET> 0.75 mm</MET><ENG> 0.03-inch</ENG> thick wall thickness, spiral-wound mylar insulating sleeves 
+between the bolts and the holes in flanges; bolts may have reduced shanks of a diameter not less than the diameter at the root of threads.  Provide<MET>
+ 3 mm</MET><ENG> 0.125-inch</ENG> thick high-strength phenolic insulating washers next to flanges and provide flat circular stainless steel washers over insulating 
+washers and under bolt heads and nuts.  Provide bolts<MET> 12 mm</MET><ENG> 0.5-inch</ENG> longer than standard length to compensate for the thicker insulating gaskets 
+and the washers under bolt heads and nuts.  Above grade flanges separated by electrically isolating gasket kits must be provided with weatherproof 
+lightning surge arrester devices.  The surge arrester must bolt across flanges separated by insulating gasket kits per detail on drawings.  The 
+arrestor must have the following features:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Weatherproof NEMA 6P per <RID>NEMA 250</RID> enclosure</OLI><BRK/>
+<BRK/>
+<OLI>Bidirectional and bipolar protection</OLI><BRK/>
+<BRK/>
+<OLI>Constructed of solid state components, no lights, fuses or relays and used without required maintenance or replacement</OLI><BRK/>
+<BRK/>
+<OLI>Withstand unlimited number of surges at 50,000 Amperes</OLI><BRK/>
+<BRK/>
+<OLI>Maximum clamping voltage of 700 Volts based on a <RID>IEEE C62.41</RID> 8x20 microsecond wave form at 50,000 Amperes peak measured at the device terminals 
+(zero lead length)</OLI><BRK/>
+<BRK/>
+<OLI>A UL listed arrester for installation in Class 1, Division 1 or Class 1, Division 2, Group D, hazardous areas</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Install the mounting bracket and leads on the flange side of the bolt insulating sleeve and washer, and size in accordance with this schedule:</TXT><BRK/>
+<BRK/>
+<TXT><TAB WIDTH="66">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="12">
+      <COL AUTOWIDTH="0" WIDTH="294.75"/>
+      <COL AUTOWIDTH="0" WIDTH="194.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Line Size</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Bolt Size</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>50 mm </MET><ENG>2 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>16 mm </MET><ENG>5/8 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>62 mm </MET><ENG>2.5 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>16 mm </MET><ENG>5/8 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>75 mm </MET><ENG>3 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>16 mm </MET><ENG>5/8 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>100 mm </MET><ENG>4 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>16 mm </MET><ENG>5/8 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>150 mm </MET><ENG>6 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>19 mm </MET><ENG>3/4 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>203 mm </MET><ENG>8 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>19 mm </MET><ENG>3/4 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>254 mm </MET><ENG>10 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>22 mm </MET><ENG>7/8 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>305 mm </MET><ENG>12 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>22 mm</MET><ENG> 7/8 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>355 mm </MET><ENG>14 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>25 mm </MET><ENG>1  inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>406 mm </MET><ENG>16 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>25 mm </MET><ENG>1  inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="69.75">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Note:  Make allowance for the<MET> 1 mm</MET><ENG> 1/32-inch</ENG> thickness of the insulating sleeve around the bolts when sizing the mounting lugs.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+</SPT><SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide valves that meet the material, fabrication and operating requirements of <RID>ASME B31.3</RID>, except as modified herein.  Valves must have flanged 
+end connections and conform to <RID>ASME B16.34</RID>, Class 150 except as modified herein.  Provide stainless steel stem and trim for each valve.  Valves 
+must have a weatherproof housing.  Seats, body seals, and stem seals must be fluoropolymer elastomer or Buna-N.  Do not use threaded or socket 
+welded valves.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Valves Connected to Stainless Steel, Aluminum, or Internally Coated Carbon Steel Piping.  Provide valves with bodies, bonnets, and covers 
+constructed of stainless steel conforming to <RID>ASTM A743/A743M</RID>, Type 304 or 316; or cast steel conforming to <RID>ASTM A216/A216M</RID>, Grade WCB internally 
+plated with nickel or internally electroless nickel plated; or ductile iron conforming <RID>ASTM A536</RID>, electroless nickel plated.</OLI><BRK/>
+<BRK/>
+<OLI>Valves Connected to Carbon Steel Piping (No Internal Coating).  Provide valves with bodies, bonnets, and covers constructed of cast steel 
+conforming to <RID>ASTM A216/A216M</RID>.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL><SUB>Ball Valve</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Valve must be non-lubricated, double seated, ball type that conforms to <RID>API STD 608</RID>.  Meet the fire test requirements of <RID>API Std 607</RID>.  Valve must 
+operate from fully open to fully closed with 90 degree rotation of the ball.  Valve must be capable of 2-way shutoff.  Valve ball must be constructed 
+of stainless steel.  Valves smaller than<MET> 50 mm</MET><ENG> NPS 2</ENG> must have one piece bodies and must have a minimum bore not less than 55 percent of the internal 
+cross sectional area of a pipe of the same nominal diameter.  Balls must be provided with trunnion type support bearings for valves<MET> 350 mm</MET><ENG> NPS 
+14</ENG> and larger.  Provide valves with worm gear operators, except valves<MET> 150 mm</MET><ENG> NPS 6</ENG> and smaller may be lever operated with a minimum 10 adjustable 
+positions between fully opened and fully closed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ball Valve (Double Block and Bleed Type)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use double block and bleed ball valves on product piping where isolation is required but only when the 
+valve is anticipated to operate very infrequently (less than weekly).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><SUB>Double Block and Bleed Ball Valve</SUB> (DBB) must meet the fire test requirements of <RID>API Std 607</RID>.  Valves must be trunnion-mounted with independent 
+spring and hydraulically actuated, floating, single piston effect, self-relieving seat rings with bi-directional sealing.  Ball must be solid type 
+with full through-conduit opening.  Stem must be anti-static, blow-out-proof design with o-ring seals and provided with an emergency sealant injection 
+fitting.  Valves must be 3-piece, bolted body design equipped with body drain/bleed valve and vent fitting, and suitable for double block and bleed 
+service in the closed and open positions.  Valves must have nylon or teflon seat inserts, viton B body, stem, and seat o-rings, with stainless 
+steel and graphite body gaskets and graphite secondary stem seals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Plug Valve (Double Block and Bleed Type)</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide non-lubricated, resilient, double seated, trunnion mounted type with a tapered lift plug capable of 2-way shutoff that conforms to <RID>API Spec 6D</RID>
+.  Valve must have electroplated nickel interiors.  Valve plug must be constructed of steel or ductile iron with electroplated nickel that is supported 
+on upper and lower trunnions.  Valve sealing slips must be constructed of steel or ductile iron with Viton seals.  Valve design must permit sealing 
+slips to be replaced from the bottom with the valve mounted in the piping.  Minimum bore size must be 65 percent of the internal cross sectional 
+area of a pipe of the same nominal diameter, unless the manufacturer can show an equivalent or greater flow rate with a lower percent internal 
+cross sectional area.  Valves<MET> 150 mm</MET><ENG> NPS 6</ENG> and larger must have removable lower and bonnet (upper) bushing.  Valve must have weatherproof, worm 
+gear operators with mechanical position indicators.  Indicator flag and shaft must be made of steel.  Provide valve body cavity relief and piping 
+in accordance with <RID>STD DSN AW 78-24-27</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Stainless Steel Control Tubing</TTL><BRK/>
+<BRK/>
+<TXT>Seamless, fully annealed tubing conforming to <RID>ASTM A269/A269M</RID>, Grade TP316, Rockwell hardness B80 or less.  Wall thickness for<MET> 13 mm</MET><ENG> 1/2-inch</ENG> tubing 
+to be<MET> 1.2 mm</MET><ENG> 0.049-inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding Materials</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Normally, selection of the electrodes is done by the Contractor.  In special cases, if the selection of 
+the proper electrode is critical to the design, the designer may specify the electrodes to be used.  In special 
+cases it also may be necessary to specify the welding process.</NPR><BRK/>
+<BRK/>
+<NPR>The selection of electrodes should be limited to non covered for all root passes.  Covered electrodes may be allowed 
+for fill passes after the root pass is completed.  This will eliminate formation of weld slag.  Weld process for 
+root passes is restricted to Gas Tungsten or Gas Metal Arc Welding to provide for a clean weld on the initial 
+pass.</NPR><BRK/>
+<BRK/>
+<NPR>In tight or confined spaces where oxygen supply may be a concern, use of a back purge gas may be re-evaluated 
+and a covered electrode may be allowed.  This condition should be addressed by the Designer and the Contracting 
+Officer on a case by case basis.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Welding materials for carbon steel, stainless steel and aluminum must comply with <RID>AWS WHB-4.9</RID>.  Welding equipment, electrodes, welding wire, and 
+fluxes must be capable of producing satisfactory welds when used by a qualified welder or welding operator using qualified welding procedures.  
+All field girth root pass welds must be made with non-covered electrodes or welding wire.  External welds on the pipe such as attaching pipe supports 
+may be made with covered electrodes or welding wire.  Electrodes, welding wire and fluxes are given in paragraph WELDING CONSUMABLES.  Welding 
+materials for aluminum and aluminum alloy must comply with <RID>AWS D10.7/D10.7M</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Welding Consumables</TTL><BRK/>
+<TAB HEADERROWS="2" WIDTH="97">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="5" ROWCOUNT="11">
+      <COL AUTOWIDTH="0" WIDTH="171.75"/>
+      <COL AUTOWIDTH="0" WIDTH="116.25"/>
+      <COL AUTOWIDTH="0" WIDTH="138.75"/>
+      <COL AUTOWIDTH="0" WIDTH="150.00"/>
+      <COL AUTOWIDTH="0" WIDTH="159.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING">AWS</DTA>
+         </CEL>
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING">Process</DTA>
+         </CEL>
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING">Alloy</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Consumable</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Use</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.75">
+         <CEL INDEX="4" MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Note(1)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><RID>AWS A5.1/A5.1M</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">SMAW</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Low Carbon</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">E7018, E6010</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Fill</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><RID>AWS A5.4/A5.4M</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">SMAW</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Stainless</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">E308L, E309L</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Fill</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><RID>AWS A5.3/A5.3M</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">SMAW</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Aluminum</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Fill</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><RID>AWS A5.9/A5.9M</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">GTAW/GMAW</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Stainless</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">ER308L,ER309L</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Root and Fill</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><RID>AWS A5.10/A5.10M</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">GTAW/GMAW</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Aluminum</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">ER5356</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Root and Fill<BRK/>Note (2)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><RID>AWS A5.18/A5.18M</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">GTAW/GMAW</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Low Carbon</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">E70S-3,E70S-6</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Root and Fill</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING"><RID>AWS A5.22/A5.22M</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">GTAW</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Stainless</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">E308LT1-1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Root</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><RID>AWS A5.32/A5.32M</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">GTAW/GMAW</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">All</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Shielding Gas</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.75">
+         <CEL MERGEACROSS="4">
+<DTA TYPE="STRING">Note(1):  The consumable material designations shown are examples and are not intended to limit the selection of consumable materials.<BRK/>Note (2): Backing rings not permitted.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT><SPT><TTL><SUB>Tank Bottom To Foundation Sealant</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The tank bottom perimeter to foundation ring wall mastic sealant must be liquid applied non-sagging, two part polysulfide rubber joint sealant 
+composed of 100 percent solids, and conforming to <RID>ASTM C920</RID>, Class 25.  The sealant must be suitable for use on steel, epoxy coated surfaces, and 
+concrete.  The sealant must be rated with a Shore A Hardness of not more than 30, a minimum tensile strength of<MET> 1,000 kPa</MET><ENG> 150 psi</ENG>, a minimum elongation 
+of 100 percent at<MET> 350 kPa</MET><ENG> 50 psi</ENG> without breaking, and a minimum elongation of 200 percent at<MET> 550 kPa</MET><ENG> 80 psi</ENG> without breaking.  The sealant must 
+be resistant to jet fuel, sunlight, cold, and ozone without shrinking; and must have a rated life expectancy of at least 15 years.  Use with bond 
+breaker tape recommended by the manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FABRICATION</TTL><BRK/>
+<BRK/>
+<TXT>Verify all dimensions with field measurements prior to fabrication. Fabricate structural steel for tank components in accordance with <RID>API Std 650</RID>
+ and <RID>AISC 325</RID>.  All steel and metal work must be well formed to shape and size, with sharp lines and angles, and true curves.  Drilling and punching 
+must produce clean true lines and surfaces.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Steel Plates</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Fillet Welded Patch Plates</TTL><BRK/>
+<BRK/>
+<TXT>Edge of plates must be smooth, free from laminations, scale, burrs, and slag.  Prepare edges for welding in accordance with weld plan.  Round corners 
+of fillet welded repair plates to a minimum radius compliant with <RID>API Std 653</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insert, Reinforcement, and Replacement Plates</TTL><BRK/>
+<BRK/>
+<TXT>Fabricate insert plates and replacement plates in accordance with <RID>API Std 650</RID>, <RID>API Std 653</RID>, and as specified herein.  Shop roll replacement and 
+reinforcement plates to match tank[ and pipe] curvature.  Edges of plates and edges of openings must be uniform and smooth, free from scale, burrs, 
+and slag accumulations, and prepared for welding in accordance with approved weld plan.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SAFETY</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Control of Hazardous Energy</TTL><BRK/>
+<BRK/>
+<TXT>Prior to entry, provide proper lockout and tagout of the storage tank and appurtenances to completely isolate work from sources of energy in accordance 
+with <RID>EM 385-1-1</RID>.  Items to be isolated include nozzles, valves, pumps, and motor starters.  Isolate tank and piping with physical means such as 
+blind flanges compliant with <RID>ASME B16.5</RID> or solid-plate line blanks compliant with <RID>ASME B16.48</RID> to prevent fuel or vapor transfer into the tank or 
+piping.  Isolation means must be of sufficient strength to withstand pressure which might be exerted by the product being blanked off, and must 
+be gasketed on both sides if line blank is inserted between two flanges.  Do not use a valve as means of isolation.  Execute in accordance with 
+accepted Accident Prevention Plan, Section <SRF>01 35 26</SRF> GOVERNMENTAL SAFETY REQUIREMENTS and <RID>EM 385-1-1</RID>.  Coordinate lockout tagout with site fuels 
+operator.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tank Plate Access</TTL><BRK/>
+<BRK/>
+<TXT>Provide means of access, lighting, and ventilation to all areas of the tank envelope for personnel, materials, and equipment.  Provide access, 
+lighting, and ventilation to the work, coordinated with Installation Safety, for the Contracting Officer representative while work is being performed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preparation for Entry</TTL><BRK/>
+<BRK/>
+<TXT>Develop written procedures in accordance with <RID>EM 385-1-1</RID> and consistent with <RID>API RP 575</RID> for entry and re-entry into a storage tank.  Test columns 
+and interstices for hydrocarbons and purge as necessary.  Do not start repairs until storage tank has been cleaned in accordance with Section 
+<SRF>33 01 50.55</SRF> CLEANING OF PETROLEUM STORAGE TANKS, vapor-free certification is received from the Marine Chemist or CIH as specified in Part 1 above, 
+and requirements of <RID>EM 385-1-1</RID> have been met.  Prepare for entry in a manner compliant with Section <SRF>01 35 26</SRF> GOVERNMENTAL SAFETY REQUIREMENTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gas-Free Environment</TTL><BRK/>
+<BRK/>
+<TXT>Degass tank until requirements of Section <SRF>33 01 50.55</SRF> CLEANING OF PETROLEUM STORAGE TANKS, the accepted Accident Prevention Plan, <RID>API Std 2015</RID>, <RID>
+29 CFR 1910.146</RID>, and the certified Marine Chemist or CIH are met.  Obtain gas-free certification from the Marine Chemist or CIH.  Maintain the 
+gas-free environment.  Display the Marine Chemist or CIH certificate on-site and available for review at all times.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gas Test Hole</TTL><BRK/>
+<BRK/>
+<TXT>Pursuant to Marine Chemist or CIH requirements, install gas test holes in accordance with the shop drawing and hot work permit.  Drill with a pneumatic 
+tool using cooling lubricant.  Purge the interstice with inert gas as-needed to remove hydrocarbon vapors and consistent with <RID>API RP 2207</RID>.  Record 
+all gas test holes in the repair log.  Repair the hole in accordance with paragraph GAS TEST HOLE REPAIR.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Structural Bracing</TTL><BRK/>
+<BRK/>
+<TXT>Prior to removing door sheet, manway, or areas of shell plate, temporarily reinforce tank structure to resist buckling and distortion.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WELDING OPERATIONS</TTL><BRK/>
+<BRK/>
+<TXT>Conduct welding operations in accordance with the weld plan and coordinated with the weld map.  Limit welding personnel to welding procedures for 
+which they are qualified.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Identification</TTL><BRK/>
+<BRK/>
+<TXT>Assign each welder or welding operator weld a unique identification number, letter, or symbol.  Place identification on the work and the weld map. 
+Ensure each identification is traceable to a welder and associated performance qualification record.  Do not use fluorescent paint in tank.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joint Fit-Up</TTL><BRK/>
+<BRK/>
+<TXT>Provide fit-up and joint preparation so that root openings are in accordance with the weld plan.  Parts that are to be joined by welding must be 
+fitted, aligned, and retained in position during the welding operation by the use of bars, jacks, clamps, or other mechanical fixtures.  End welds 
+must be properly aligned prior to welding.  Welded temporary attachments must not be used except when it is impractical to use mechanical fixtures. 
+When temporary attachments are used, they must be the same material as the base metal, and must be completely removed by grinding or thermal cutting 
+after the welding operation is completed.  If thermal cutting is used, the attachment must be cut to not less than<MET> 6 mm</MET><ENG> 1/4 inch</ENG> from the member 
+and the balance removed by grinding.  After the temporary attachment has been removed, the area must be examined visually and with other NDE means 
+as determined necessary by the Welding Inspector.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preheat and Interpass Temperatures</TTL><BRK/>
+<BRK/>
+<TXT>Preheat temperatures must meet the requirements specified by <RID>API Std 650</RID>.  However, in no case must the preheat be below<MET> 10 degrees C</MET><ENG> 50 degrees 
+F</ENG> for ferritic steel or austenitic stainless steel, or<MET> 0 degrees C</MET><ENG> 32 degrees F</ENG> for nonferrous alloys.  The maximum interpass temperatures must 
+not exceed<MET> 149 degrees C</MET><ENG> 300 degrees F</ENG> for austenitic stainless steels, nickel alloys, and copper alloys; and<MET> 260 degrees C</MET><ENG> 500 degrees F</ENG> for carbon 
+steels.  Preheat techniques must be such as to ensure that the full thickness of the weld joint preparation and/or adjacent base material, at least<MET>
+ 75 mm</MET><ENG> 3 inches</ENG> in all directions, is at the specified temperature.  Preheating by induction or resistance methods is preferred.  When flame heating 
+is used, only a neutral flame must be employed.  Oxy-fuel heating must not be used on austenitic stainless steel; however, air-fuel heating is 
+acceptable if controlled to insure that the surface temperature does not exceed<MET> 66 degrees C</MET><ENG> 150 degrees F</ENG>.  Interpass temperatures must be checked 
+on the surface of the component within<MET> 25 mm</MET><ENG> 1 inch</ENG> of the weld groove and at the starting location of the next weld pass, and for a distance of<MET>
+ 150 mm</MET><ENG> 6 inches</ENG> ahead of the weld, but not on the area to be welded.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<TXT>Insert plates and shell replacement plates must be butt-joint welded to the existing shell plate with complete penetration and complete fusion.  
+Provide fit-up, heat input, and welding sequence to prevent distortion of the tank shell and insert plate.  Provide temporary reinforcement of 
+shell openings to prevent shell distortions.  Coordinate shell openings and insert plate sizes to account for shrinkage during welding operations 
+and to prevent peaking and banding in excess of <RID>API Std 653</RID> criteria.  Remove erection tabs by grinding the attaching welds when welding is complete.  
+Gouging or tearing of the shell, insert plate, and replacement plate is not permitted.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Welding must not be done when the ambient temperature is lower than<MET> minus 18 degrees C</MET><ENG> 0 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Welding is not permitted on surfaces that are wet, when rain is falling on the surfaces to be welded, or during periods of high winds.  
+The exception is when the welders and the work are properly protected.</OLI><BRK/>
+<BRK/>
+<OLI>Gases for purging and shielding must be welding grade and must have a dew point of<MET> minus 40 degrees C</MET><ENG> minus 40 degrees F</ENG> or lower.</OLI><BRK/>
+<BRK/>
+<OLI>Any welding process which requires the use of external gas shielding must not be done in a draft or wind unless the weld area is protected 
+by a shelter.  This shelter must be of material and shape appropriate to reduce wind velocity in the vicinity of the weld to a maximum 
+of<MET> 8 km/hour</MET><ENG> 5 mph</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Grinding of completed welds is to be performed only to the extent required for NDE and to provide weld reinforcement within the requirements 
+of <RID>API Std 650</RID>.  If the surface of the weld requires grinding, follow requirements in paragraph TANK REPAIR.  Minimum weld external reinforcement 
+must be flush between external surfaces.</OLI><BRK/>
+<BRK/>
+<OLI>Permanently mark each weld with the identification symbol of the individual welding personnel.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  There are rare circumstances when welding stainless to carbon steel could be warranted such as installation 
+of data plate, tank grounding lug, and circulation vent/inspection hatch to tank roof.  Edit the below if this 
+procedure is necessary. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Direct welded connection of carbon steel and stainless steel must not be made.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Complete Joint Penetration Welds</TTL><BRK/>
+<BRK/>
+<TXT>Complete joint penetration welds must be continuous, full size, complete fusion, and must be made with a minimum of two passes.  Weld profile must 
+be in accordance with <RID>AWS D1.1/D1.1M</RID>.  All weld starts and stops must merge with complete fusion to each other and to the base metal.  Starts must 
+overlap the end of any previous weld by a minimum of<MET> 19 mm</MET><ENG> 3/4 inches</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Postweld Heat Treatment</TTL><BRK/>
+<BRK/>
+<TXT>Postweld heat treatment must be performed in accordance with <RID>API Std 650</RID>[, <RID>ASME B31.3</RID>,] and the welding plan.  Temperatures for local postweld 
+heat treatment must be measured continuously by thermocouples in contact with the weldment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TANK REPAIR</TTL><BRK/>
+<BRK/>
+<TXT>Coordinate the location of repair joints and existing joints.  Make necessary adjustments to meet joint spacing requirements upon approval from 
+the designer of record.  Repair all arc strikes in accordance with paragraph PLATE REPAIR regardless of location.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Grinding</TTL><BRK/>
+<BRK/>
+<TXT>For areas which require grinding and after all grinding operations are complete, measure and record remaining plate thickness with UT.  When grinding 
+results in an actionable shell thickness, repair the depression in accordance with <RID>API Std 653</RID>.  When welding to restore thickness, provide complete 
+fusion with the base metal and to each other on all weld passes.  Inspect and test each weld pass and the completed repair.  Correct defects in 
+the repair that fail acceptance criteria.  Use a patch plate to restore reduced thickness due to grinding if required by the designer of record.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cutting</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Preparation</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Remove existing coating a minimum of 2 inches from each cutline.</OLI><BRK/>
+<BRK/>
+<OLI>Coordinate cutlines with repair plate dimensions.</OLI><BRK/>
+<BRK/>
+<OLI>Mark cutlines on the plate.</OLI><BRK/>
+<BRK/>
+<OLI>Provide temporary reinforcement around opening to prevent shell distortion.</OLI><BRK/>
+<BRK/>
+<OLI>Obtain approval from the Contracting Officer to cut the shell.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Marking</TTL><BRK/>
+<BRK/>
+<TXT>Prior to erection, identify members and repair plates with a painted mark.  Connecting parts pre-assembled in the shop for installation in the 
+field must be match marked with paint.  Do not use scratch or notch marks.  Do not locate marks on areas to be welded.  Do not use fluorescent 
+paint in the tank.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation</TTL><BRK/>
+<BRK/>
+<TXT>Cut plates using a track guided cutting device in accordance with an approved procedure which produces a straight, neat, distortion-free cutline.  
+Air carbon arc gouging and hand-held unguided cutting are not permitted.  Prepare cut edges of the shell by grinding to remove all slag and burrs.  
+Inspect cut edges for laminations.  Accurately match insert plate to the tank shell and retain in position with erection tabs during welding operation.  
+Tack welding of joints must not remain in the finished joints.  Misalignment in joints must not exceed <RID>API Std 650</RID> tolerances for alignment in 
+shell joints.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Plate Repair</TTL><BRK/>
+<BRK/>
+<TXT>Prior to performing repairs, remove existing coating to bare metal surface.  Investigate the extents of arc strikes, gouges, pits, and attachment 
+removal locations by careful grinding to completely remove the defect.  Provide a smooth 4:1 transition with the surrounding plate.  Examine ground 
+area with MT to verify complete removal of the defect.  Repeat testing-inspecting-grinding until defect is removed.  Verify and repair deficient 
+remaining plate thickness with requirement in paragraph GRINDING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Gas Test Hole Repair</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Exercise caution with regard to gas test holes.  Fill holes with weld metal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Grind a groove at the hole and fill with weld metal flush with the top of the base metal.  Provide weld overlay a minimum of 0.5 inch past the 
+groove weld in both directions.  Provide a fillet-welded patch plate over the test hole repair.  Inspect, examine, and test the repair in accordance 
+with paragraph INSPECTION, EXAMINATION, AND TESTING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Weld Repair</TTL><BRK/>
+<BRK/>
+<TXT>Remove the defect to sound metal.  Use MT or PT to determine whether the entire defect has been removed.  Preheat the site if conditions exist 
+which would adversely affect the quality of the weld repair.  Reweld the joint per <RID>API Std 650</RID> and the design.  Inspect, examine, and test the 
+repair in accordance with Paragraph INSPECTION, EXAMINATION, AND TESTING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel to Aluminum Connections</TTL><BRK/>
+<BRK/>
+<TXT>Where aluminum is bolted to steel, use stainless steel fasteners.  Provide electrical isolation for separation of dissimilar metals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nozzles, Flanges, and Manway</TTL><BRK/>
+<BRK/>
+<TXT>Use stainless steel fasteners for rooftop flanges and access hatches.  On carbon steel tanks, use carbon steel fasteners for shell flanges and 
+access hatches.  Provide washers under bolt head and nuts.  Assemble fasteners using thread lubricant.  Use calibrated torque wrench to tighten 
+flange bolts to the value recommended by the gasket manufacturer.  Follow tightening pattern as recommended by the gasket manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tank Appurtenances and Attachments</TTL><BRK/>
+<BRK/>
+<TXT>Remove attachments by carefully grinding the attaching welds to avoid removal of base metal.  Repair areas not meeting acceptance criteria in accordance 
+with paragraph PLATE REPAIR using approved methods.  Provide inspection of repair areas in accordance with paragraph NDE SCHEDULE.  Repeat repair 
+procedure until acceptance criteria are satisfied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Door Sheet</TTL><BRK/>
+<BRK/>
+<TXT>Do not cut a door sheet without approval by the Contracting Officer.  Reinforce and brace the tank pursuant to paragraph STRUCTURAL BRACING.  Perform 
+all repair and NDE of the door sheet prior to coating and the hydrostatic test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coating System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Verify applicable regulatory VOC requirements for the location.  If needed, review WBDG to determine whether 
+a low-VOC system is available.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Pursuant to requirements, provide tank interior coating system in accordance with[ Section <SRF>09 97 13.17</SRF> THREE COAT EPOXY INTERIOR COATING OF WELDED 
+STEEL PETROLEUM FUEL TANKS] [_____].  Recoat surfaces affected by welding or repairs.  If product service changed, hazard identification label 
+is missing or illegible,  or if work impairs existing tank hazard labeling, label the tank with a hazard identification system in accordance with <RID>
+NFPA 704</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Tank Calibration Table</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>After repairs are complete, coating has been installed, and the cure period has passed, calibrate tank in accordance with paragraph TANK 
+CALIBRATION METHOD.  Provide two hard copy laminated capacity tables[ stamped by a Professional Engineer], one in English units and one 
+in SI units.  Both tables must show the volume of the fuel at all liquid levels in the tank from the top of the datum plate to the level 
+of overflow.  Include unit conversion notes on each table.</OLI><BRK/>
+<BRK/>
+<OLI>English unit table must show the volume of product in gallons and barrels, and the corresponding level of product in 1/16 inch increments.  
+SI unit table must show the volume of product in liters and in cubic meters, and the corresponding level of product in 2.0 mm increments.</OLI><BRK/>
+<BRK/>
+<OLI>Volume calculations must be made in the smaller units.  Larger units may be obtained by rounding.  The<MET> 0 mm</MET><ENG> zero inch</ENG> level must be the 
+level of the top of the datum plate.  Level below the top of the datum plate, including nozzle piping, must be shown in negative units 
+starting at the lowest point of the shell.</OLI><BRK/>
+<BRK/>
+<OLI>Identify on the calibration table (strapping chart) the following level points:  high, high-high, low, and low-low.  Tables must not include 
+tank volume above the level of overflow.</OLI><BRK/>
+<BRK/>
+<OLI>Provide <SUB>Electronic Tank Calibration Table</SUB> on electronic media compatible with the Electronic Automatic Tank Gauging System.  Also provide 
+tables identical to the master gauge table in format compatible with Microsoft Excel.  Contact Contracting Officer for direction on required 
+format.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Tank Calibration Method</TTL><BRK/>
+<BRK/>
+[<TXT>Calibrate storage tank in accordance with the API Manual of Petroleum Measurement Standards using the <RID>API MPMS 2.2A</RID>, Measurement and Calibration 
+of Upright Cylindrical Tanks by the Manual Tank Strapping Method.</TXT><BRK/>
+<BRK/>
+][<TXT>Calibrate storage tank in accordance with the API Manual of Petroleum Measurement Standards using the <RID>API MPMS 2.2B</RID>, Calibration of Upright Cylindrical 
+Tanks Using the Optical Reference Line Method.</TXT><BRK/>
+<BRK/>
+][<TXT>Calibrate storage tank in accordance with the API Manual of Petroleum Measurement Standards using the <RID>API MPMS 2.2C</RID>, Calibration of Upright Cylindrical 
+Tanks Using the Optical-Triangulation Method.</TXT><BRK/>
+<BRK/>
+][<TXT>Calibrate storage tank in accordance with the API Manual of Petroleum Measurement Standards using the <RID>API MPMS 2.2D</RID>, Calibration of Upright Cylindrical 
+Tanks Using the Internal Electro-Optical Distance Ranging Method.</TXT><BRK/>
+<BRK/>
+]</SPT></SPT></SPT><SPT><TTL>VALVE REPAIR</TTL><BRK/>
+<BRK/>
+<TXT>Provide professional valve reconditioning services for the tank isolation valves in accordance with <RID>API Std 598</RID> and <RID>API RP 621</RID>.  Provide services 
+from an independent reconditioning facility with a documented and established quality assurance program which includes essential elements described 
+in the <RID>ISO 9001</RID> standard, and has written procedures compliant with <RID>API RP 621</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Disassemble, clean, and inspect all components for dimensional accuracy, surface condition, mating fit, and mechanical integrity.  Use PT examination 
+procedures in accordance with <RID>API RP 621</RID>.  Provide supplementary PT examination of castings or forgings in accordance with Part 8 of <RID>ASME B16.34</RID>
+.  Replace slips, soft seats, bonnet and cover fasteners, packing, gaskets, and grease fittings.  Recondition valve to manufacturer standards and <RID>
+API RP 621</RID>.  Pressure test each assembled valve compliant with <RID>API Std 598</RID>.  Recoat exterior valve surfaces in accordance with Section 
+<SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING FOR STEEL STRUCTURES.  Provide <SUB>Valve Reconditioning Report</SUB> and <SUB>DBB Valve Hydrotest Report</SUB> for each valve in 
+accordance with paragraph SUBMITTALS.  Reinstall valves with new fasteners and gaskets.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Valve Operation</TTL><BRK/>
+<BRK/>
+<TXT>Valve must operate from fully open to fully closed by rotation of the handwheel or operator to lift and turn the plug.  Rotation of the plug toward 
+open must lift the plug without wiping the seals and retract the sealing slips so that clearance is maintained between sealing slips and valve 
+body.  Rotation of the handwheel toward closed must lower the plug after sealing slips are aligned with the valve body and force the sealing slips 
+against the valve body for positive closure.  When valve is closed, slips must form a secondary fire-safe metal to metal seat on both sides of 
+the resilient seal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valve Commissioning</TTL><BRK/>
+<BRK/>
+<TXT>Commission valves back into service.  Verify proper operation through the entire range of motion.  Demonstrate proper valve operation prior to 
+requesting return to service.</TXT><BRK/>
+<BRK/>
+<TXT>Adjust motor operator limit switches and torque settings to provide proper operation.  Verify motor operator function through its entire range 
+of motion.  Demonstrate proper motor operator function prior to requesting return to operator.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Isolation Valve Verification</TTL><BRK/>
+<BRK/>
+<TXT>Immediately prior to commencement of filling operation, verify the body cavity of the isolation valves is dry.  During the tank filling process 
+at 25, 50, 75, and 100 percent fill heights, check the body cavity of the skin valves for the presence of product.  Report the results of the check.  
+Notify the Fuel Operator and Contracting Officer immediately should product be found.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>INSPECTION, EXAMINATION, AND TESTING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Set frequency of inspector and engineer oversight adequate for the level of risk and complexity of work.  
+If required by the repair program, include Suitability for Service certification by the inspector of record.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Inspection of Repairs</TTL><BRK/>
+<BRK/>
+<TXT>Provide inspector and engineering oversight during the construction phase by the Tank Inspector of Record and tank engineer.  Provide an on-site 
+in-progress presence by the API Inspector of Record and the tank engineer to review and audit work.  During the in-progress review, validate nondestructive 
+examination, evaluate weld quality, and assess overall quality of repair work.  Conduct review and report findings.  Provide:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Contemporaneous review of construction inspection, test, and examination records</OLI><BRK/>
+<BRK/>
+<OLI>Audit review of quality control reports, testimony photographs, repair log, and weld tracking log</OLI><BRK/>
+<BRK/>
+<OLI>In-progress review inspection at a minimum frequency of one review per[ every fifty repairs][ major alteration]</OLI><BRK/>
+<BRK/>
+<OLI>Prefinal inspection</OLI><BRK/>
+<BRK/>
+<OLI>Post-Repair Inspection Report</OLI><BRK/>
+<BRK/>
+[<OLI>Suitability for Service certification</OLI><BRK/>
+<BRK/>
+]</OLG></SPT><SPT><TTL>Weld Inspection</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Perform weld inspection and NDE to detect surface and internal discontinuities in completed welds.  Provide NDE testing services for all 
+nondestructive testing and inspection.  Service organization must meet requirements of paragraph QUALIFICATIONS and be approved by the 
+Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>All tack welds, weld passes, and completed welds must be visually inspected.  In addition to visual inspection, examine every weld final 
+pass with another method such as MT, PT, or RT.</OLI><BRK/>
+<BRK/>
+<OLI>When inspection and testing indicates disqualifying defects in a weld joint, the weld must be repaired by a qualified welder in accordance 
+with paragraph CORRECTION AND REWORK.  Submit weld inspection and NDE field examination reports to the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide non-destructive examinations and inspections in accordance with paragraph NDE SCHEDULE.</OLI><BRK/>
+<BRK/>
+<OLI>Weld personnel found making defective welds must be removed from the work by the Quality Control Manager.  The minimum criteria for removal 
+are provided below in Welder Removal Criteria.</OLI><BRK/></OLG>
+<BRK/>
+<TAB WIDTH="65">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="259.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="234.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Welder Removal Criteria</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Unit of Measure, Total Welds (per Welder)<BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Quantity Which Fail Inspection or NDE</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Each</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">10%</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Linear Foot</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">10%</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<SPT><TTL>Weld Inspector Duties</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Verify the base materials and consumable welding materials conform to the specifications and that welding filler metals used are as specified 
+for each base material.</OLI><BRK/>
+<BRK/>
+<OLI>Check the welding equipment to be used for the work is appropriate for use with the welding procedure specification and has the capability 
+to meet the applicable requirements of the welding procedure.</OLI><BRK/>
+<BRK/>
+<OLI>Verify only qualified and approved welding procedures are used.</OLI><BRK/>
+<BRK/>
+<OLI>Review that edge preparation or joint geometry meet the requirements of the welding procedure and drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Verify the specified filler metals are used and that filler metals are maintained in proper condition, per requirements, or as recommended 
+by the manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Verify procedure qualification and welding personnel qualifications are compliant with the weld plan.</OLI><BRK/>
+<BRK/>
+<OLI>Assess the technique and performance of each welding personnel is as specified.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure work conforms to requirements of this Section, applicable standards, weld plan, design drawings, and manufacturer requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Verify the work inspected is identified and documented in accordance with specified requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Prepare and maintain clear reports which record results of the inspections and examinations.</OLI><BRK/>
+<BRK/>
+<OLI>Verify the approved WPS pre-heat and post heat procedures are being used.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Visual Inspection</TTL><BRK/>
+<BRK/>
+<TXT>Inspect weld joints visually as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Before welding:  Compliance with requirements for joint preparation,  alignment and fit-up, and cleanliness.</OLI><BRK/>
+<BRK/>
+<OLI>During welding:  Cracks and conformance to the approved welding procedure.</OLI><BRK/>
+<BRK/>
+<OLI>After welding:  Cracks, contour and finish, bead reinforcement, undercutting, overlap, weld slag on the interior of the pipe and size of 
+welds.  Visual examination of the interior of the pipe may be performed by any of the remote means allowed by <RID>ASME BPVC SEC V</RID>, visual inspection.</OLI><BRK/>
+<BRK/>
+<OLI>Enhance visual acuity with a magnifying lens of 5X power wherever required to discern indications otherwise not clear. Measure size and 
+contour of welds with suitable gages.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>NDE</TTL><BRK/>
+<BRK/>
+<TXT>Perform NDE as required by this Section, the weld inspector,[ <RID>API Std 653</RID>][ <RID>ASME B31.3</RID>], and in accordance with written procedures.  Procedures 
+for radiographic, liquid penetrant, magnetic particle, or ultrasonic tests and methods must conform to paragraph NDE PROCEDURE STANDARDS.  Each 
+approved procedure must be demonstrated to the satisfaction of the Contracting Officer.  In addition to the essential variables required in paragraph 
+NDE PROCEDURE STANDARDS, the written procedures must include the timing of the NDE in relation to the welding operations and safety precautions.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>NDE Methods</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Magnetic Particle.  Perform magnetic particle inspection with the wet method and fluorescent particle material.  The inspection zone must 
+include the weld and 1/2 inch of adjacent base material on each side of the weld.</OLI><BRK/>
+<BRK/>
+<OLI>Liquid Penetrant.  Perform liquid penetrant exams prior to ultrasonic inspections on the same surfaces to avoid interference between the 
+penetrant dye and residual couplant.</OLI><BRK/>
+<BRK/>
+<OLI>Vacuum Box.  Apply a commercial bubble forming solution and subject the area of interest to a partial vacuum.  Use a glass top vacuum box 
+with hypalon or neoprene sealing gasket.  Observe the solution film for bubble formation at an initial 3 psig differential pressure.  Increase 
+differential pressure to 6 psig.  Hold vacuum for at least 20 seconds while continuing to observe the solution for bubbles.  Minimum light 
+intensity at the examination surface must be 100 foot-candles.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>NDE Frequency</TTL><BRK/>
+<BRK/>
+<TXT>Conduct NDE of all welding.  The frequency of NDE must be in accordance with paragraph NDE SCHEDULE.  Provide either PT or MT on all welding that 
+will not be radiographed.  Provide 100 percent RT for welds on underground or inaccessible piping.</TXT><BRK/>
+<BRK/>
+<TXT>For aboveground welds examined by radiography at frequency less than 100 percent, provide random RT in accordance with[ <RID>API Std 653</RID>][ <RID>ASME B31.3</RID>
+] on no less than 20 percent of welds.  Random testing must include representation of welds made by each welding operator or welder.  Where RT 
+is infeasible, notify and provide justification to the Contracting Officer.  Justification must be substantive and not be based on inconvenience.  
+Upon approval by the Contracting Officer, perform UT in lieu of RT in accordance with <RID>API Std 653</RID> Annex U.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>NDE Schedule</TTL><BRK/>
+<BRK/>
+<TAB HEADERROWS="1" WIDTH="85">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="29">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="132.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="132.00"/>
+      <COL AUTOWIDTH="0" WIDTH="190.50"/>
+      <COL AUTOWIDTH="0" WIDTH="190.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>Tank</HL4></DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING"><HL4>NDE</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Location</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Repair / Weld Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Frequency</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Method</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Bottom and UST shell</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Butt joint weld</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Each pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT<BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT
+, VBT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Fillet weld</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Each pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT, VBT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Weld repair</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, UT, MT, VBT; Note 1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Weld metal buildup</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UT, MT, VBT; Note 2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hole &lt; 0.5 inch dia</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Each pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT, VBT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Puddle</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT or PT, VBT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Cutline</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Each</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT; Note 3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Attachment installation or removal</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Each</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT, VBT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Gouge, pit</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT, VBT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Gas test hole</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Groove weld</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Weld overlay</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, VBT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Nozzle accessible piping</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Butt joint weld</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Root pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL>
+<DTA TYPE="STRING">Cover pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">PT, RT; Note 4</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Nozzle accessible</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Fillet</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Root pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL>
+<DTA TYPE="STRING">Cover pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Shell</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Fillet weld</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Reinforcement plate</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">VT, pneumatic, MT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Butt weld</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Root pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL>
+<DTA TYPE="STRING">Cover pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, RT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Attachment installation or removal</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Each</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Inaccessible piping</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Butt weld</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Root pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">RT or PT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL>
+<DTA TYPE="STRING">Cover pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">RT or PT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="28.50">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Weld overlay</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, VBT</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="63.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Interior piping</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL>
+<DTA TYPE="STRING">Final pass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">VT, MT</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<LST>Note 1.  Examination of a weld repair must be repeated as required until the defect has been removed.</LST><BRK/>
+<BRK/>
+<LST>Note 2.  Examine base metal with UT beneath the weld metal buildup to detect laminar defects.</LST><BRK/>
+<BRK/>
+<LST>Note 3.  Examine for laminations, scale, burrs.</LST><BRK/>
+<BRK/>
+<LST>Note 4.  RT may be required in[ Project Program][ Statement of Work].</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>NDE Acceptance</TTL><BRK/>
+<BRK/>
+<TXT>NDE Acceptance must be in accordance with <RID>API Std 653</RID>, <RID>API Std 650</RID>,[ <RID>ASME B31.3</RID>,] <RID>AWS D1.1/D1.1M</RID>, and this Section.  Acceptance criteria are in 
+the paragraph NDE ACCEPTANCE CRITERIA and notes.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: For inaccessible or underground piping segments use this paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Interpretation of test results and limitations on imperfections in welds must comply with the requirements of 100 percent radiography as defined 
+in <RID>ASME B31.3</RID>.  When NDE reveals imperfections of a type or magnitude not acceptable by the criteria specified in this Section, then progressive 
+sampling for examination requirements in <RID>ASME B31.3</RID> are triggered.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>NDE Acceptance Criteria</TTL><BRK/>
+<BRK/>
+<TAB HEADERROWS="1" WIDTH="79">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="9">
+      <COL AUTOWIDTH="0" WIDTH="237.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="305.25"/>
+      <COL AUTOWIDTH="0" WIDTH="57.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Method</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Acceptance Criteria</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Note</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">UT, piping</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">ASME B31.3 Chapter VI</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">UT, plates</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">ASME B31.3 Chapter VI</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">UT in lieu of RT</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">API Std 650 Annex U</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">VBT</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">API Std 650 8.6</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">PT</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><RID>ASME BPVC SEC VIII</RID> Appendix 8</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">MT</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">ASME BPVC SEC VIII Appendix 6<BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">RT</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">API 650 8.1 / ASME B31.3<BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">VT</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">AWS D1.1/D1.1M Table 6.1 / API Std 650 8.5</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<LST>Note 1.  Imperfections which produce a response amplitude greater than 20 percent of the reference level must be investigated to the extent 
+the operator can determine the shape, identity, and location of all such imperfections.  Imperfections are unacceptable if the indications 
+exceed the reference level amplitude and have lengths exceeding criteria in <RID>ASME B31.3</RID> Chapter VI.  In addition, indications characterized 
+as cracks, lack of fusion, or incomplete penetration are unacceptable regardless of length.</LST><BRK/>
+<BRK/>
+<LST>Note 2.  Indications with any dimension greater than<MET> 2 mm</MET><ENG> 1/16 of an inch</ENG> must be considered relevant.  All surfaces examined must be free 
+of 10 or more rounded indications in any<MET> 3870 square mm</MET><ENG> 6 square inches</ENG> of surface, with the major dimension of this area not to exceed<MET>
+ 150 mm</MET><ENG> 6 inches</ENG>, and the area taken in the most unfavorable location relative to the indications being evaluated.</LST><BRK/>
+<BRK/>
+<LST>Note 3.  Acceptance criteria for pipe and piping welds per <RID>ASME B31.3</RID> Severe Cyclic Conditions.</LST><BRK/>
+<BRK/>
+<LST>Note 4.  Acceptance criteria per <RID>AWS D1.1/D1.1M</RID> except for surface porosity or exposed slag inclusion.  Acceptance criteria for the extent 
+of porosity or exposed slag inclusion is zero (no apparent imperfection) for welds less than or equal to 3/16 inch nominal thickness, and 
+per <RID>API Std 650</RID> 8.5 for welds greater than 3/16 inch nominal thickness.</LST><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL><SUB>Piping Hydrostatic Test</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Piping hydrostatic testing is for use on cut and cover tank piping that is part of the tank hydraulic boundary 
+or on drain-dry AST piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Isolate each test segment.  Notify the Contracting Officer 14 calendar days in advance of testing.  Hydrostatic testing must not begin until permission 
+is granted by the Contracting Officer.  Only authorized personnel must be permitted in the area during hydrostatic testing.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Instruments</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Instruments must be clean, in good working order, and within the calibration interval.  Instruments without a calibration certificate must 
+not be used.</OLI><BRK/>
+<BRK/>
+<OLI>Calibrate all test instruments against a standard by a laboratory A2LA accredited to <RID>ISO ISO/IEC 17025</RID>.  Calibration must have taken place 
+no more than 6 months prior to the hydrostatic testing.  Calibration certificates must include the Model, Serial Number, date of certification 
+and must be signed by the testing company.  Provide current <SUB>Instrument Calibration Certificate</SUB> for measurement instruments.</OLI><BRK/>
+<BRK/>
+<OLI>Provide indicating pressure test gauge connected directly to the segment and readily visible to the operator controlling pressure for the 
+duration of the test.  Analog type gauges must be compliant with <RID>ASME B40.100</RID> Grade 3A, accurate to plus or minus 0.25 percent full scale, 
+graduated over a range not less than 1-1/2 times nor more than 4 times the test pressure, and incremented no greater than 0.5 psi.</OLI><BRK/>
+<BRK/>
+<OLI>Digital type pressure gauge must be integral transducer type, compliant with <RID>ASME B40.100</RID> Grade 3A, and accurate to plus or minus 0.25 
+percent full scale.</OLI><BRK/>
+<BRK/>
+<OLI>Provide digital contact thermometer incremented to 0.1 degree F or less.  Memorialize pressure data with analog chart recorder.  Transducers 
+must have a range not less than 1.5 times and not greater than 4 times the pressure being tested.</OLI><BRK/>
+<BRK/>
+<OLI>Use calibrated continuous recorders (dataloggers) with adequate storage capacity to record temperature and pressure data.  Synchronize 
+the time interval for both measurements.</OLI><BRK/>
+<BRK/>
+<OLI>Measure the volume of test medium with a calibrated meter.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Procedure</TTL><BRK/>
+<OLG><BRK/>
+<OLI>For inaccessible segments, account for the volume of any test medium added or removed by measuring with a calibrated meter.</OLI><BRK/>
+<BRK/>
+<OLI>After filling has been completed, allow the test section to stabilize at 25 percent of the test pressure for 24-hours or until a temperature-time 
+plot is asymptotic to ground temperature.  Start pressure and temperature recorders prior to pressurization and run throughout the stabilization 
+period to ensure proper stabilization has taken place before starting the hydrotest.</OLI><BRK/>
+<BRK/>
+<OLI>Maintain segment at a steady test pressure condition for a minimum of 15 minutes prior to initiation of examination for leakage.  Examine 
+piping, joints, and connections of accessible piping for leaks while maintaining test pressure.  Leakage of temporary gaskets and seals, 
+installed for the purpose of conducting the hydrostatic test and which will be replaced later, is permitted unless the leakage rate precludes 
+maintenance of system test pressure for the required duration.  Personnel performing the examination for leaks must be qualified for visual 
+examination.  Extend the test interval as needed to ensure positive reconciliation of test data.  Monitor temperature and pressure.  Analyze 
+consistent error, inconsistent error, the magnitude of any lost volume, and pressure versus temperature data trends.</OLI><BRK/>
+<BRK/>
+<OLI>Provide certification from the hydrostatic test examiner the piping segments are either pass or fail. Inconclusive results are not acceptable. 
+Provide written <SUB>Hydrostatic Test Record</SUB>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Disposal of Hydrostatic Test Water</TTL><BRK/>
+<BRK/>
+<TXT>Remove test water from segment upon completion of test.  For large volume tests, apply for coverage under the State Department of Health General 
+Permit authorizing discharges of hydrotest water.  Sample, test, and characterize the water pursuant to the General Permit.  Provide <SUB>Test Water 
+Characterization</SUB> results to the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<TXT>If test results exceed allowable discharge limits in the General Permit, dispose of the water off installation in an appropriate manner.  If discharge 
+is allowed under the General Permit, provide a <SUB>Test Water Disposal Plan</SUB> to the Contracting Officer for approval. Water discharged on the surface 
+must be in a slow and controlled manner which will not result in erosion or migration outside the disposal area.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inspection and Tests by the Government</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The Government may perform inspection and supplemental nondestructive or destructive tests as deemed necessary.  The cost of supplemental 
+NDE will be borne by the Government.  The correction and repair of defects and the re-examination of weld repairs must be performed by 
+the Contractor at no additional cost to the Government.  Inspection and tests will be performed as required for visual inspection and NDE, 
+except that destructive tests may be required also.</OLI><BRK/>
+<BRK/>
+<OLI>When destructive tests are ordered by the Contracting Officer and performed by the Contractor and the specimens or other supplemental examinations 
+indicate that the materials and workmanship do not conform to the contract requirements, the cost of the tests, corrections, and repairs 
+must be borne by the Contractor.  When the specimens or other supplemental examinations of destructive tests indicate that materials or 
+workmanship do conform to the specification requirements, the cost of the tests and repairs will be borne by the Government.</OLI><BRK/>
+<BRK/>
+<OLI>When destructive tests are made, repairs must be made by qualified welders or welding operators using welding procedures which will develop 
+the full strength of the members cut.  Welding must be subject to inspection and tests in the mill, shop, and field.  When materials or 
+workmanship do not conform to the specification requirements, the work may be rejected at any time before final acceptance of the system 
+containing the weldment.</OLI><BRK/>
+<BRK/>
+<OLI>In addition to inspection and test performed in compliance with this Section, the Contracting Officer may perform inspection and testing 
+while work is in progress and at the completion of the work.  The Contracting Officer must have entry and access to all parts of the job 
+while work is being performed.  Provide access to the work surfaces necessary for Government inspection and testing.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>CORRECTION AND REWORK</TTL><BRK/>
+<BRK/>
+<TXT>The tank must be free from leaks and must meet requirements of the Contract Documents.  Correct defective and non-conforming work.  Final determination 
+of items requiring corrective action will be made by the Contracting Officer.  When inspection and testing indicates defects in weld joints, repair 
+the welds using a qualified welder.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Damage</TTL><BRK/>
+<BRK/>
+<TXT>Any damage, distortion, or deformation to any part of the tank or tank appurtenances resulting from the work must be brought to the attention of 
+the Contracting Officer within 24 hours of identification.  In the event faulty welding, or its removal for rewelding, damages the base metal so 
+that in the judgment of the Contracting Officer its retention is not in conformance with the intent of the contract documents, remove and replace 
+the damaged base metal.</TXT><BRK/>
+<BRK/>
+<TXT>Provide design and methods to repair the damage, distortion, or deformation to the Contracting Officer for approval.  Conduct repair, inspection, 
+and NDE examination of the repair in accordance with this Section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rework</TTL><BRK/>
+<BRK/>
+<TXT>Rework must be in full compliance with requirements of this Section, <RID>API Std 650</RID>[, and <RID>ASME B31.3</RID>].  Repair defects in accordance with approved 
+procedures.  Defects discovered between weld passes must be repaired before additional weld material is deposited.  Wherever a defect is removed 
+but repair by welding is not required, blend the affected area into the adjacent surface to eliminate sharp notches, crevices, or corners.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Defect Removal</TTL><BRK/>
+<BRK/>
+<TXT>Correct defective or unsound weld joints by removing and replacing the entire weld joint, or for the following defects corrections must be made 
+as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Excessive Convexity and Overlap:  Reduce by removal of excess metal.</OLI><BRK/>
+<BRK/>
+<OLI>Excessive Concavity of Weld, Undersized Welds, Undercutting:  Clean and deposit additional weld metal.</OLI><BRK/>
+<BRK/>
+<OLI>Excessive Weld Porosity, Inclusions, Lack of Fusion, Incomplete Penetration:  Remove defective portions and reweld.</OLI><BRK/>
+<BRK/>
+<OLI>Crack in Weld or Base Metal:  Remove crack throughout its length, including sound weld metal for a distance of twice the thickness of the 
+base metal or two inches, whichever is less, beyond each end of the crack, followed by the required rewelding.  Complete removal must be 
+confirmed by magnetic particle inspection for carbon steel or liquid penetrant inspection for stainless steel.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Grinding</TTL><BRK/>
+<BRK/>
+<TXT>For areas which require grinding, and after all grinding operations are complete, measure and record remaining plate thickness with UT.  Conform 
+to requirements in paragraph TANK REPAIR.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Inspection and NDE of Rework</TTL><BRK/>
+<BRK/>
+<TXT>Inspect rework in accordance with all requirements of this Section.  After a defect has been removed, re-examine the area with the nondestructive 
+examination method with which it was discovered.  Ensure the defect has been removed in accordance with the acceptance criteria in this Section.  
+Any indication of a defect must be regarded as a defect, unless re-evaluation by non-destructive methods after surface conditioning shows that 
+no unacceptable defect is present.  Do not repair an area by welding until the defect has been completely removed.  Inspect and examine all reworked 
+areas by repeating the original inspection and examination procedures.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DATA MANAGEMENT</TTL><BRK/>
+<BRK/>
+<TXT>Populate weld tracking and repair logs daily.  Deploy data backup capability which will manage the security, integrity, and restorability risks 
+of the repair database.  Limit edit rights to individuals with a specific need.  Provide physical and administrative safeguards which will ensure 
+data integrity</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<TXT>The Tank Engineer and the Tank Inspector of Record must inspect, examine, and approve all repair and alteration work after repairs and alterations 
+have been completed.  The Tank Inspector of Record is required to be on-site during construction as noted in paragraph INSPECTION OF REPAIRS.  
+Certify to the Contracting Officer compliance with this Section, requirements of <RID>API Std 653</RID>, and suitability for active fuel service.  Provide 
+a <SUB>Post-Repair Inspection Report</SUB> signed by the Inspector of Record and the Tank Engineer.</TXT><BRK/>
+<BRK/>
+<TXT>Provide new manway and valve flange gaskets along with new fasteners for all manway and flanged connections which were opened during the work.  
+Make sure all vents are clear and unobstructed.  Verify emergency vent is operational.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Post-Repair Cleanliness</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Tank</TTL><BRK/>
+<BRK/>
+<TXT>After completion of the work, clean interior surfaces of the tank to remove all foreign matter such as blast material, dirt, debris, grease, and 
+oils.  Provide interior surfaces free from sources of product contamination, fit for service in[ F-76][ JP-5 / JP-8 turbine] [_____] fuel storage, 
+and to the satisfaction of the Contracting Officer.  After removal of protective coverings, inspect motors, pumps, impellers, risers, floating 
+roof, and gauges to ensure contamination or damage has not taken place.  Should damage or contamination be found, remedy the finding to the satisfaction 
+of the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping</TTL><BRK/>
+<BRK/>
+<TXT>Clean the interior of piping to ensure surfaces are free of contamination or foreign matter, and fit for[ F-76][ JP-5 / JP-8 turbine] [_____] fuel 
+service.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Commissioning, Tank</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Verify operation of tank level alarms by closing connection valves and filling housings with fuel to confirm action.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure that certified strapping charts are available for start-up personnel.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure tank cathodic protection system is energized and functional.</OLI><BRK/>
+<BRK/>
+<OLI>Remove vent coverings.</OLI><BRK/>
+<BRK/>
+<OLI>Fill water draw-off systems from tank sump to ensure proper operation.</OLI><BRK/>
+<BRK/>
+<OLI>Allow time for fuel/water mixture to separate after filling.  Verify liquid separation through sight glass.  Proper operation includes 
+capability to drain separated water and capability to pump separated fuel back to a full tank.</OLI><BRK/>
+<BRK/>
+<OLI>Adjust and calibrate the level indicators including the final setting of the high high level (HHLA) and high level (HLA) alarms.  Since 
+the HHLA is at a point higher than the High Liquid Level Shut-Off Valve float set point, use an artificial method of simulating HHL</OLI><BRK/>
+<BRK/>
+[<OLI>Commission tank per all requirements of <SRF>33 08 55</SRF> FUEL DISTRIBUTION SYSTEM START-UP (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+]</OLG></SPT><SPT><TTL>Commissioning, Piping</TTL><BRK/>
+<BRK/>
+<TXT>Ensure that all piping integrity inspections have been performed.  Evacuate piping low point drains, valve cavities, and equipment drains.  Verify 
+bolted connections are tight.  Ensure piping cathodic protection system is energized and functional.  Ensure thermal relief is installed and functional.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Commissioning, Valves</TTL><BRK/>
+<BRK/>
+<TXT>Test isolation valves and operators  through full range of motion.  Adjust automatic control valves by the valve manufacturer authorized field 
+test engineer. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inspection During Tank Filling</TTL><BRK/>
+<BRK/>
+<TXT>After work is complete, remain onsite during tank filling.  Verify the vents are not covered and are operating properly.  Verify all manways, flanges, 
+gaskets, piping, valves, and other work are secure.  Observe the tank being refilled until fuel level reaches full height.  Assess for weeps and 
+repair as necessary.  Ensure full operation of MOVs and verify torque levels are within acceptance limits.  Check isolation valve body cavities 
+pursuant to paragraph VALVE COMMISSIONING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tank Return to Service</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Follow RTO/RTS requirements of the particular branch.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>In order to return a storage tank to the operator fit for service, comply with[ NAVFAC Red Zone requirements and Section <SRF>01 45 00</SRF> QUALITY CONTROL] 
+[_____], and requirements of[ <RID>NAVSUPINST 10345.1</RID>] [_____].  Minimum return to service requirements are:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Inspection Report</OLI><BRK/>
+<BRK/>
+<OLI>Tank Suitability for Service Statement</OLI><BRK/>
+<BRK/>
+<OLI>List of Identified Repairs</OLI><BRK/>
+<BRK/>
+<OLI>List of Recommended Repairs</OLI><BRK/>
+<BRK/>
+<OLI>List of Pending (Actual) Repairs</OLI><BRK/>
+<BRK/>
+<OLI>Calibration (Strapping) Charts</OLI><BRK/>
+<BRK/>
+<OLI>Signed statement which declares custody of the tank is returned to the Activity and items a through f above have been provided to the Contracting 
+Officer</OLI><BRK/>
+<BRK/>
+<OLI>Written acceptance from Activity acknowledging tank return to service statement</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Completion Report</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use an independent inspector to inspect repair work if the scope, risk, and complexity of the work warrant 
+such usage.  Coordinate inspector requirements with paragraph INSPECTION OF REPAIRS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Upon completion of tank repairs and inspection of the repairs, provide a report.  Submit <SUB>Completion Report</SUB> in accordance with Section[ 01 33 00.05 
+20 CONSTRUCTION SUBMITTAL PROCEDURES][ <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES].  Minimum report contents are:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Tank inspection report pursuant to Section <SRF>33 01 50.65</SRF> INSPECTION OF FIELD FABRICATED FUEL STORAGE TANKS.</OLI><BRK/>
+<BRK/>
+<OLI>Repair report compiling all design, materials, repairs, quality control documentation, and logs made pursuant to this Section.</OLI><BRK/>
+<BRK/>
+<OLI>Quality Control Specialist reports to include independent tank inspector, coating inspector report, and tank engineer report.</OLI><BRK/>
+<BRK/>
+<OLI>Suitability for service statement.</OLI><BRK/>
+<BRK/>
+<OLI>Storage Tank Engineer name, license number, and date.</OLI><BRK/>
+<BRK/>
+<OLI>[Independent ]Tank Inspector name, certification number, and date.  [Independent ]Tank Inspector must be third party.</OLI><BRK/>
+<BRK/>
+<OLI>Post-Repair Inspection Report</OLI><BRK/>
+<BRK/>
+<OLI>As-built drawings of all repairs made.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Suitability for Service Statement</TTL><BRK/>
+<BRK/>
+<TXT>This statement must be a one page document.  Include recommended service <NED/>interval based on the corrosion rate and tank conditions.  Specify the 
+due date for the next inspection based on completion of repairs and provide the interval stated in DoD guidance.  Activity must accept and countersign 
+tank return to service statement.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></PRT>    <END/><BRK/></SEC>

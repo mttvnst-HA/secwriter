@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-08 56 46.10 20 (August 2011)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 1 - 02/22</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-08 56 46.10 20 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 08 56 46.10 20</SCN><BRK/>
+<BRK/>
+<STL>RADIO FREQUENCY SHIELDED ENCLOSURES, DEMOUNTABLE TYPE</STL><BRK/>
+<DTE>08/11, CHG 1: 02/22</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>radio frequency shielded enclosures, demountable Type</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for radio frequency shielded enclosures, demountable Type, 
+in sizes under<MET> 50 square meter</MET><ENG> 500 square feet</ENG>.  For larger enclosures and for High Altitude Electromagnetic Pulse 
+(HEMP) protected enclosures, contact NAVFAC Engineering Innovation and Criteria Office (Code EICO) before beginning 
+design.  Do not design HEMP enclosures utilizing demountable shield construction.  The electrical designer should 
+refer to MIL-HDBK-419 Volumes I and II for special grounding and bonding requirements for EMI enclosures and to 
+NACSIM 5203 for TEMPEST enclosures.  All metallic electrical conduits which penetrate a TEMPEST shield must be 
+isolated within<MET> 50 mm</MET><ENG> 2 inches</ENG> of the exterior of the shield by a nonmetallic conduit section at least<MET> 150 mm</MET><ENG> 
+6 inches</ENG> long to prevent conduction of information from the shielded enclosure.  Although not addressed in this 
+specification, it is recognized that fiber optic cable has gained acceptance as an effective method of transmitting 
+data across the boundary of shielded enclosures without filtering.  If fiber optic cable is used, describe the 
+penetration of the shield in detail.  For a discussion of the advantages and disadvantages of fiber optic systems 
+see NAVFAC DM-12.02.  Designer should consult these documents and other appropriate sources before applying this 
+guide specification to large scale EMI enclosures to HEMP and to TEMPEST Projects.  The potential requirement 
+for thermal expansion joints inherent to large scale enclosures is not addressed in this guide specification.  
+The extent and location of the work to be accomplished and wiring, equipment, and accessories necessary for a 
+complete installation should be indicated on the project drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information shall be shown on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Assembly details;</NPR><BRK/>
+<BRK/>
+<NPR>2.  Penetration details;</NPR><BRK/>
+<BRK/>
+<NPR>3.  Location and method of mounting shielded enclosure within building;</NPR><BRK/>
+<BRK/>
+<NPR>4.  Location of mechanical and electrical equipment within shielded enclosure;</NPR><BRK/>
+<BRK/>
+<NPR>5.  Interior wall finish;</NPR><BRK/>
+<BRK/>
+<NPR>6.  Suspended ceiling; and</NPR><BRK/>
+<BRK/>
+<NPR>7.  Raised computer floor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification. The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+ <BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+ <BRK/>
+References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AIR MOVEMENT AND CONTROL ASSOCIATION INTERNATIONAL, INC. (AMCA)</ORG><BRK/><BRK/><RID>AMCA 210</RID><RTL>(2025) Laboratory Methods of Testing Fans for Certified Aerodynamic Performance Rating</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A653/A653M</RID><RTL>(2025a) Standard Specification for Steel Sheet, Zinc-Coated (Galvanized) or Zinc-Iron Alloy-Coated (Galvannealed) by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM B194</RID><RTL>(2022) Standard Specification for Copper-Beryllium Alloy Plate, Sheet, Strip, and Rolled Bar</RTL><BRK/><BRK/><RID>ASTM E84</RID><RTL>(2025) Standard Test Method for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/><RID>ASTM E90</RID><RTL>(2023) Standard Test Method for Laboratory Measurement of Airborne Sound Transmission Loss of Building Partitions and Elements</RTL><BRK/><BRK/><RID>ASTM F1066</RID><RTL>(2025) Standard Specification for Vinyl Composition Floor Tile</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 299</RID><RTL>(2006; R 2012) Standard Method for Measuring the Effectiveness of Electromagnetic Shielding Enclosures</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF COMMERCE (DOC)</ORG><BRK/><BRK/><RID>DOC/NIST PS51</RID><RTL>(1971) Hardwood and Decorative Plywood</RTL><BRK/><BRK/><RID>DOC/NIST PS58</RID><RTL>(1973) Basic Hardboard (ANSI A135.4)</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-PRF-15733</RID><RTL>(2010; Rev J, Supp 1 2010; Notice 1 2015; Notice 2 2020) Filters and Capacitors, Radio Frequency Interference, General Specification for</RTL><BRK/><BRK/><RID>MIL-STD-220</RID><RTL>(2009; Rev C; Notice 2 2024) Method of Insertion Loss Measurement</RTL><BRK/><BRK/><RID>MIL-STD-461</RID><RTL>(2015; Rev G) Requirements for the Control of Electromagnetic Interference Characteristics of Subsystems and Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>GENERAL REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert additional details describing the specific project for which this specification is being used.  
+Projects involving military communications equipment must be designed to incorporate the applicable requirements 
+of MIL-STD-188-124, "Grounding, Bonding and Shielding for Common Long Haul/Tactical Communication Systems."  Be 
+aware that standard manufactured shielded doors are not designed for exposure to weather.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM, applies to this section, with the additions and modifications specified herein.  The enclosure[s] 
+shall be capable of being erected, disassembled, and reerected entirely from its interior without special tools [, except where RF enclosure ceiling 
+is specified as being supported by the structural ceiling above].  Provide enclosure[s] complete with [power line filters,] [telephone/signal line 
+filters,] [RF air vents,] [penetrations for compressed air lines, water lines and [_____],] [coaxial cables,] [lighting fixtures,] [workbenches 
+with convenience outlets,] and door assembly. Provide each item with fittings and hardware necessary for a complete and operable RF shielded enclosure.  
+Where two or more units of the same type, class, and size of equipment are required, these units shall be products of a single manufacturer.  Provide 
+means of completely isolating the structure electrically from the building in which it is to be installed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Mechanical Work</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify or delete these paragraphs as required for each project.  Additional items such as raised computer 
+floors may be specified in the same manner.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert appropriate Section number and title in blank below using format per UFC 1-300-02, "Unified Facilities 
+Guide Specifications (UFGS) Format Standard".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide complete shielded enclosure[s] including work specified in [_____] [and [_____]].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electrical Work</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify or delete these paragraphs as required for each project.  Additional items such as raised computer 
+floors may be specified in the same manner.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert appropriate Section number and title in blank below using format per UFC 1-300-02.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conform to the requirements of the <RID>NFPA 70</RID>, National Electrical Code. Provide a complete shielded enclosure[s] including work specified in [_____] 
+[and [_____]].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Acoustical Ceiling System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify or delete these paragraphs as required for each project.  Additional items such as raised computer 
+floors may be specified in the same manner.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide as specified in Section <SRF>09 51 00</SRF> ACOUSTICAL CEILINGS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM>Radio frequency <SUB>shielded enclosure</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Include penetration details.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM>Telephone and signal <SUB>line filters</SUB></ITM><BRK/>
+<BRK/>
+<ITM>Shielded <SUB>air vents</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Lighting</SUB> fixtures</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Exhaust fan</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Door assemblies</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When specifying nonlatching doors, delete door static load and sag tests and cycle test for door latches.  
+Retain cycle test for door hinges.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM>Door <SUB>static load test</SUB></ITM><BRK/>
+<BRK/>
+<ITM>Door <SUB>sag test</SUB></ITM><BRK/>
+<BRK/>
+<ITM>Swinging door <SUB>closure test</SUB></ITM><BRK/>
+<BRK/>
+<ITM>EMI tests for <SUB>line filters</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit final report to Resident Officer in Charge of Construction within 30 days following completion.</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Attenuation testing</SUB></ITM><BRK/>
+<BRK/>
+<ITM>Seam <SUB>leak detection testing</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  The results of EMI testing shall be submitted to the Contracting Officer on a daily basis and test results incorporated into 
+a EMI Shielding Test Final Report. Submit final reports within 30 days following completion of tests.  List location of the permanent 
+SELDS test leads.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Performance</SUB> test plan</ITM><BRK/>
+<BRK/>
+<ITM>Qualifications of <SUB>installation supervision</SUB> personnel</ITM><BRK/>
+<BRK/>
+<ITM>Qualifications of <SUB>testing agency</SUB></ITM><BRK/>
+<BRK/>
+<ITM>Certification of <SUB>test equipment</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Components</SUB> of shielded enclosure individually and as a system, meet specified attenuation requirements.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Shielded enclosure</SUB>, Data Package 3; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RELIABILITY</TTL><BRK/>
+<BRK/>
+<TXT>Reliability to maintain high shielding effectiveness for long term usage with minimum maintenance shall be stressed throughout the design, construction, 
+and erection of the specified shielded enclosure.  Particular attention shall be paid to the total project so that corrosion and the installation 
+of electrical service, power line filters, ventilation, and connector panels do not derate the required shielding effectiveness.  The enclosures 
+will be subject to varying moveable live floor loads and continuous use of the ventilation system and ac power line filters.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY AND STORAGE</TTL><BRK/>
+<BRK/>
+<TXT>Deliver materials to the job site in undamaged condition.  Store material to ensure proper alignment, and protect material against dampness and 
+accumulated moisture before and after delivery.  Store materials under cover in a well-ventilated enclosure, and do not allow materials to be exposed 
+to extreme changes in temperature and humidity.  Do not store materials in the building until concrete and masonry are dry.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Certificates</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Performance</SUB> Test Plan</TTL><BRK/>
+<BRK/>
+<TXT>Submit a performance test plan for SELDS and <RID>IEEE 299</RID> testing of the facility.  The test plan shall include tester qualifications, equipment listings 
+(including calibration dates and antenna factors), and proposed test report format.  The plan shall also address specific dates and durations that 
+testing will be conducted during the overall construction period so that the expert Government witness may be scheduled to observe the testing 
+and so that repairs may be made to the shield and retests conducted before the building finish materials are installed.  Finally, the test plan 
+shall indicate the proposed dates and duration of the lowest and the highest frequency tests following installation of the building finish materials 
+[so that an expert Government witness may be available for these final acceptance tests].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Qualifications of <SUB>Testing Agency</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit the experience and qualifications of an independent testing agency for review and approval.  The testing agency shall have recent experience 
+in Shielded Enclosure Leak Detection System (SELDS) and <RID>IEEE 299</RID> shielded enclosure testing and shall list where and when the experience was obtained.  
+Submit with the performance test plan.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Certification of <SUB>Test Equipment</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Certify that test equipment for the attenuation testing has been calibrated within last 12 months.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Contents</TTL><BRK/>
+<BRK/>
+<TXT>In addition, the manual shall contain the following information:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A complete set of assembly and disassembly drawings;</OLI><BRK/>
+<BRK/>
+<OLI>A schedule of recommended maintenance and adjustment procedures to ensure continuous shielding effectiveness;</OLI><BRK/>
+<BRK/>
+<OLI>Allowable loads on top of room and on shelves mounted on walls, including permissible weights of equipment that can be mounted on walls; 
+and</OLI><BRK/>
+<BRK/>
+<OLI>Prescribed method of handling panels, cleaning of seams and contact fingers, bonding jumpers, installing metallic items penetrating the 
+shielding material without decreasing the attenuation characteristics.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>SHIELDED ENCLOSURE</SUB> CHARACTERISTICS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Radio Frequency Interference Attenuation</TTL><BRK/>
+<BRK/>
+<TXT>The attenuation and shielding effectiveness requirements apply to the finished shielded enclosure[s] and enclosure's <SUB>components</SUB> when all power 
+line filters are installed and carrying current, ventilation systems are operating, [the coaxial connector panels capped,] and shielded door[s] 
+are in normal operation position.  The specified shielded effectiveness shall be achieved without using conductive tapes, gaskets, or cement materials.  
+Provide enclosure[s] having the following minimum magnetic, electric, and plane wave attenuation:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Magnetic - [60] [_____] dB at 14kHz increasing linearly to [100] [_____] dB at 200 kHz</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Electric - [100] [_____] dB from 1.0 kHz to 50 MHz</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Plane Wave - [100] [_____] dB between 50 MHz and 10 GHz</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sound Transmission Class (STC)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  STC 30 provides only minimum sound transmission loss.  For greater sound control, more detailed acoustical 
+design requirements must be incorporated into the specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide enclosure[s] having an STC of [30] [_____] dB minimum when tested according to <RID>ASTM E90</RID> [not including sound transmission loss of surrounding 
+building construction].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PANELS CONSTRUCTION</TTL><BRK/>
+<BRK/>
+<TXT>Flat steel sheet laminated to each side of a<MET> 20 mm</MET><ENG> 3/4 inch</ENG> structural core of either plywood or hardboard.  [Panels shall have a flame spread 
+rating of less than 25 when tested according to <RID>ASTM E84</RID>.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Flat Steel Sheet</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A653/A653M</RID> with<MET> Z180</MET><ENG> G-60</ENG> coating, minimum 24 gage, phosphatized.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plywood</TTL><BRK/>
+<BRK/>
+<TXT><RID>DOC/NIST PS51</RID> for exterior, sound grade hardwood, Type I.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hardboard</TTL><BRK/>
+<BRK/>
+<TXT><RID>DOC/NIST PS58</RID> for standard type hardboard.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Adhesive for Laminating Steel Sheets to Structural Core</TTL><BRK/>
+<BRK/>
+<TXT>Waterproof type which maintains a permanent bond for the lifetime of the enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Floor Finish</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate or specify whether other flooring is to be provided or higher floor loads are required. This is 
+most critical when raised floors are required.  Allowances must be made for elevated door thresholds.  Vinyl composition 
+1 is asbestos-free and should be specified for all projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Vinyl-composition tile, <RID>ASTM F1066</RID>, Type IV, composition 1,<MET> 300 by 300 mm, 3 mm</MET><ENG> 12 by 12 inches, 1/8 inch</ENG>, thick.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FRAMING-JOINING SYSTEM</TTL><BRK/>
+<BRK/>
+<TXT>The panels shall be joined and supported by specially designed members that clamp the edges of the panels and provide continuous, uniform, and 
+constant pressure contact against the shielding elements of the panels.  The walls shall be self-supporting from floor to ceiling with no bracing.  
+Deflection of walls under a static load of<MET> 35 kg</MET><ENG> 75 pounds</ENG> applied normal to the wall surface at any point along the framing members shall not 
+exceed 1/250 of the span between supports.  [Ceilings shall be self-supporting from wall to wall.]  [Ceilings shall be supported by adjustable, 
+nonconducting, isolated hangers from the structural ceiling above.] Ceilings shall be designed to have a deflection under total weight, including 
+ceiling finish, of not more than 1/270 of the span.  At corner intersections of walls, floor, or ceiling, provide a one-piece factory prewelded 
+corner section or trihedral corner framed with brass machined cast corner cap assemblies consisting of inner and outer parts.  The modular enclosure 
+shall be designed for ease of erection, disassembly, and re-assembly.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Channels</TTL><BRK/>
+<BRK/>
+<TXT>The framing-joining system members shall consist of<MET> 3 mm</MET><ENG> 1/8 inch</ENG>zinc-plated steel channels having minimum<MET> 16 mm</MET><ENG> 5/8 inch</ENG> overlap along each side 
+of the contacting surface.  Screw fasteners shall be spaced at<MET> 75 or 100 mm</MET><ENG> 3 or 4 inch</ENG> intervals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Screw Fasteners</TTL><BRK/>
+<BRK/>
+<TXT>Screw fasteners shall be either zinc-plated or cadmium-plated steel, minimum size<MET> 6 mm</MET><ENG> 1/4 inch</ENG> - 20 with pan or flat Phillips heads.  Fasteners 
+shall be heat treated and hardened with minimum tensile strength of<MET> 930 MPa</MET><ENG> 135,000 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>DOOR ASSEMBLIES</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not accept doors that deviate from this specification without consulting NAVFAC 15C.  Probable deviations 
+include:  magnetic and electromagnetic doors, other non-finger stock type doors, adhesive mounted finger stock, 
+and requests to approve doors tested to less than 10,000 open close cycles, among others.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The enclosure door shall be nonsagging and nonwarping and shall afford shielded effectiveness equal to the rest of the enclosure when the door 
+is closed.  The shielded door shall be provided with [multiple rows] [at least one row] of RF finger stock around the door or its frame.  The fingers 
+that form a contact between the door and its frame shall be protected from damage due to physical contact and shall be concealed within the door 
+and frame assemblies.  The door shall have a clear opening of<MET> [900 mm]</MET><ENG> [36 inches]</ENG> [_____] wide and<MET> [2100 mm]</MET><ENG> [84 inch]</ENG> [_____] high.  Door assembly 
+shall be the same manufacture as the enclosure.  Doors shall be reinforced steel or laminated type.  Laminated type shall be the same construction 
+as enclosure panels, except the steel faces shall be electrically and mechanically joined by channels or overlapping seams, both of which shall 
+be continuously seam welded along all joined surfaces.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Finger Stock</TTL><BRK/>
+<BRK/>
+<TXT>Contacts for doors shall be copper beryllium conforming to <RID>ASTM B194</RID>, Condition HT.  The finger stock shall be secured to the door or frame without 
+using special tools or soldering or adhesives and shall have a minimum overlap of<MET> 50 mm</MET><ENG> 2 inches</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>[Latching Type</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the applicable paragraph(s) from the following:</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specially designed door for electrical or pneumatic operation may be specified; however, these special 
+doors are not compatible with all demountable enclosures.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The door shall be lever controlled with roller cam action requiring not more than<MET> 90 N</MET><ENG> 20 pounds</ENG> of operating force on the handle for both opening 
+and closing.  The door shall be equipped with a two or three-point latching mechanism that provides proper compressive force for the RF seal.  
+The mechanism shall be operable from both sides of the door and shall have permanently-lubricated ball bearings at points of pivot and rotation.  
+The door latches and hinges shall be rated for a minimum of 10,000 cycles without loss of attenuation and without adjustments.]</TXT><BRK/>
+<BRK/>
+<TXT>[Nonlatching Type</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Nonlatching doors may be used for enclosures having many daily open-close operations; however, they may 
+not retain as high an attenuation over the long term compared with doors having three-point latching mechanisms.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The door shall be equipped with three heavy-duty ball bearing hinges and a door pull.  Door shall open and close with a force not to exceed<MET> 20 
+N</MET><ENG> 5 pounds</ENG>.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>LINE FILTERS</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Power Line Filters</TTL><BRK/>
+<BRK/>
+<TXT>Shall have current and voltage ratings as [indicated] [specified].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telephone and Signal Line Filters</TTL><BRK/>
+<BRK/>
+<TXT><RID>MIL-PRF-15733</RID>.  Filters shall have an insertion loss of 100 decibels in the frequency range of 14 kHz to 10 GHz measured according to <RID>MIL-STD-220</RID>
+, full load condition.  Filters shall have a pass band of [_____] kHz to [_____] kHz with a characteristic impedance of [_____] ohms.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WAVEGUIDE-TYPE <SUB>AIR VENTS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Honeycomb-type air vents shall have cores fabricated of brass or steel, and each guide shall be electrically and mechanically bonded to all adjacent 
+guides.  Air vents shall be a permanent part of the shielded enclosure and shall have a shielding effectiveness equal to that of the total enclosure. 
+Static pressure drop through the vents shall not exceed<MET> 5 Pa</MET><ENG> 0.02 inch</ENG> water gage at an air velocity of<MET> 3 m/s</MET><ENG> 600 feet per minute</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING STUD</TTL><BRK/>
+<BRK/>
+<TXT>Enclosure shall have a permanently installed, solid brass or bronze grounding stud complete with hardware and jamb nuts located in the entrance 
+plate [unless otherwise specified or indicated].  The stud shall be<MET> 13 mm</MET><ENG> 1/2 inch</ENG> diameter double-threaded bolt which allows a full<MET> 50 mm</MET><ENG> 2 inch</ENG>
+ running thread inside and outside of the shielded enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SERVICE ENTRANCE PLATES (SET-UP PANELS)</TTL><BRK/>
+<BRK/>
+<TXT>Shall be minimum<MET> 3 mm</MET><ENG> 1/8 inch</ENG> thick steel, sized<MET> [300 by 300 mm]</MET><ENG> [12 by 12 inches]</ENG> [_____] and shall have a<MET> 6 mm</MET><ENG> 1/4 inch</ENG> extruded brass frame 
+for mounting to shielded enclosure wall panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>NAMEPLATES</TTL><BRK/>
+<BRK/>
+<TXT>Major components of equipment shall have manufacturer's name, address, catalog number, model, style, and type on a plate securely and conspicuously 
+attached to each item of equipment.  Nameplates for electrical apparatus shall conform to NEMA Standards.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>LIGHTING</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In shielded enclosures where electronic equipment is very sensitive to EMI, specify a dual lighting system 
+so that fluorescent lighting can be turned off and incandescent lighting left on during sensitive tests or operations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide lighting fixtures as indicated [and as specified in Section <SRF>26 51 00</SRF> INTERIOR LIGHTING].  Fluorescent lighting fixtures shall meet the 
+requirements of <RID>MIL-STD-461</RID>, Class C3, Group I for both conducted and radiated interference.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>EXHAUST FAN</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph cites only minimum requirements.  Design calculations are necessary to size HVAC to suit 
+room size and equipment/personnel contained within.  Exhaust fan motors located inside shielded enclosure must 
+meet MIL-STD-461, Class C3, Group I.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Propeller fans shall be [direct drive] [belt drive] for [wall or window] [roof or ceiling] mounting, except that fans shall be centrifugal type 
+with aluminum housing and wheel. Additionally exhaust fans shall be electromagnetically compatible.  Motors shall be completely shielded from the 
+air stream.  Provide exhaust opening and gravity closing type automatic louvers.  Provide exhaust which can supply 15 room air changes per hour. 
+Capacity of fans shall be certified in accordance with <RID>AMCA 210</RID>, and shall be not greater than 110 percent of the indicated capacity at indicated 
+pressure drop.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COAXIAL CABLE PENETRATIONS</TTL><BRK/>
+<BRK/>
+<TXT>For each coaxial cable entering the shielded enclosure, provide RF waveguide threaded insert with cap and chain on shielded room side of enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SOURCE QUALITY CONTROL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When specifying nonlatching doors, delete door static load and sag tests and cycle test for door latches.  
+Retain cycle test for door hinges.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Door <SUB>Static Load Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The door shall be mounted and latched to its frame, then set down in a horizontal position such that the door will open downward and only the frame 
+is rigidly and continuously supported from the bottom.  A load of<MET> 2kPa</MET><ENG> 40 psf</ENG> shall be applied uniformly over the entire surface of the door for 
+at least 10 minutes.  The door will not be considered acceptable if this load causes breakage, failure, or permanent deformation which varies the 
+clearance between door leaf and stops to vary more than<MET> 2 mm</MET><ENG> 1/16 inch</ENG> from the original dimension.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Door <SUB>Sag Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The door and its frame shall be installed normally and opened 90 degrees. Two<MET> 23 kg</MET><ENG> 50 pound</ENG> weights, one on each side of the door, shall be suspended 
+from the door within<MET> 125 mm</MET><ENG> 5 inches</ENG> of the outer edge for at least 10 minutes.  The door will not be considered acceptable if this test causes 
+breakage, failure, or permanent deformation which varies the clearance between the door leaf and floor frame more than<MET> 2 mm</MET><ENG> 1/16 inch</ENG> from its 
+original dimension.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Swinging Door <SUB>Closure Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Door shall be operated 5000 complete open-close cycles.  The door will not be acceptable if the closure test causes any breakage, failure, or permanent 
+deformation that causes the clearance between door and frame to vary more than<MET> 2 mm</MET><ENG> 1/16 inch</ENG> from the original dimension.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Installation Supervision</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Furnish the services of a qualified installation engineer or technician regularly employed by the shielding manufacturer/fabricator for a minimum 
+of three 8 hours working days to instruct Contractor personnel in the installation of the RFI shield.  A qualified installation technician is acceptable 
+in lieu of a qualified installation engineer.  <TST>After the shielded enclosure has been completely installed including RF filters, vents, and exhaust 
+fans, furnish the services of the engineer or technician described herein to inspect the installation for compliance with the specifications.  
+The inspection shall be made before any finishes or the concrete topping coat are installed.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Panel Installation</TTL><BRK/>
+<BRK/>
+<TXT>Lay panels in a straight line with true, level, and even surfaces and with the joints in alignment; install them in accordance with the shielding 
+manufacturer's recommendations.  Exercise care while handling and installing metal shielding panels to ensure that panels are not damaged. Clean 
+exposed surfaces of all dirt, finger marks, and foreign matter resulting from manufacturing processes, handling, or installation.  Inside the enclosure, 
+mount items including boxes, conduits, fixtures, and switches directly to the RF panels with<MET> 16 mm</MET><ENG> 5/8 inch</ENG> long, zinc-plated, self-tapping screws.  
+Keep electrical conduits as close to RF shielding as possible.  Do not use framing-joining system bolts to mount material and equipment.  If material 
+and equipment penetrate shielded enclosure, seam weld or solder materials and equipment to both shielding surfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surface Preparation</TTL><BRK/>
+<BRK/>
+<TXT>Clean and buff surfaces to ensure good electrical contact with shielding surface.  Remove paint or other coverings on mating surfaces of special 
+boxes such as for fire alarm systems, buzzers, and signal lights, including areas between box and cover, box and wall, and box and conduit.  Remove 
+insulating material to maintain a low-resistance ground system and to ensure firm mating of metal surfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Floor Panel Setting</TTL><BRK/>
+<BRK/>
+<TXT>Place a polyethylene film of 6-mil thickness over the structural floor of the parent room before any other work is set thereon.  Provide a<MET> 3 mm</MET><ENG>
+ 1/8 inch</ENG> thick layer of hardboard over this film with joints loosely butted.  Over this layer provide an additional layer of similar filler material 
+of equal thickness as the projection of the framing-joining member from the bottom surface of the floor panel leaving no more than<MET> 6 mm</MET><ENG> 1/4 inch</ENG>
+ space between the hardboard and the framing-joining member.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FRAMING-JOINING SYSTEM</TTL><BRK/>
+<BRK/>
+<TXT>Tighten screws with a calibrated adjustable torque wrench so that equal torque can be set on each screw.  (Proper torque values will be approximately<MET>
+ 9 Nm</MET><ENG> 80 inch pounds</ENG>, but may vary somewhat depending on the manufacturer).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DOOR ASSEMBLIES</TTL><BRK/>
+<BRK/>
+<TXT>Mount so that the clearance between the door edges and frame shall not vary more than<MET> 2 mm</MET><ENG> 1/16 inch</ENG> and the innerface of the door periphery does 
+not vary more than<MET> 2 mm</MET><ENG> 1/16 inch</ENG> from the plane of the face of the stop.  Through-bolt hinges to the door and the frame.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>LINE FILTERS</TTL><BRK/>
+<BRK/>
+<TXT>Provide filters for incoming electrical power lines [, including neutrals,] and for incoming telephone and signal lines.  Support filters independently 
+of the shielding.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WAVEGUIDE-TYPE AIR VENTS</TTL><BRK/>
+<BRK/>
+<TXT>[Provide each inlet and return air duct with the number and size of waveguide-type air vents at each location where the ducts enter the shielded 
+enclosure.]  [As a minimum, provide each enclosure with one <MET> 300 mm</MET><ENG> 12 inch</ENG> square and one<MET> 300 mm</MET><ENG> 12 inch</ENG> square return waveguide-type air vent.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EXHAUST FAN</TTL><BRK/>
+<BRK/>
+<TXT>Mount on [wall] [or] [ceiling] over the exhaust vent on the exterior surface of shielded enclosure.  Provide power from electrical source exterior 
+to the shielded enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CONDUCTOR INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Provide filtered conductors in conduit, except for coaxial cables, from filter to shielding and penetrate the enclosure through threaded rigid 
+steel conduits.  [Twist conductors leading from the filters and conductors inside the shielded enclosure approximately 10 turns per foot in the 
+conduit.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If not specified in Division 26, "Electrical," the following sentence shall be added: "Wires inside the 
+enclosure and for a distance of at least<MET> 15 meters</MET><ENG> 50 feet</ENG> outside of the enclosure shall be enclosed in a grounded, 
+threaded rigid steel conduit system."</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Extend the grounding stud through and [bolt] [weld] it to the electrical power panel with a minimum No. 4 AWG insulated stranded copper conductor 
+to effectively serve as a single grounding point for the completely assembled shielded enclosure, both internally and externally.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SERVICE ENTRANCE PLATE</TTL><BRK/>
+<BRK/>
+<TXT>Install RF connectors for coaxial cable and other RF shielded cable on entrance plate.  Soft solder connectors to the plate.  If location of plate 
+is not indicated, mount plate in wall panel adjacent to power line filters.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD TESTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Seam <SUB>Leak Detection Testing</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  SELDS testing the seams in the floor shielding is usually very difficult because you cannot "sniff" on 
+both sides (assuming the shield is on the ground level).  To circumvent this problem SELDS loops may be positioned 
+beneath the floor shield for SELDS testing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Continuously test seams during fabrication using the SELDS, commonly known as a "sniffer."  Upon completion of the basic shielded enclosure, before 
+applying any metal primer or installing any accessories, test the entire shielded enclosure with the SELDS.  Install terminal points on the shielding 
+exterior and permanently attach test leads on two sets of diagonally opposing corners during construction for use with the SELDS. Continuously 
+probe seams with the test receiver set to detect abrupt change of shielding level greater than 10 dB on the "shielding unit" scale. Clearly mark 
+points having change greater than 10 dB and repair the seam to meet the specified requirement.</TST>  Retest each repaired point until there are no points 
+on seams which fail test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Attenuation Testing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Furnish the services of an independent testing laboratory, approved by the Contracting Officer, to test the shielded enclosure.  Certify that 
+laboratory is equipped and staffed to perform field tests of RF shielded enclosures and performs the tests as a normal service.]  [Final acceptance 
+testing will be by the Government.]  <TST>Conduct the final shielding acceptance test after penetrations have been completed, specifically including 
+electrical and other utility penetrations.  In addition, the Contractor may schedule a complete or abbreviated test to verify that the shielding 
+assembly is adequate prior to conducting final shielding acceptance test.</TST></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Test Method</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Expert Government witness should be present for all final acceptance testing.  Note that IEEE 299 requires 
+one magnetic field test (150 kHz), three electric field tests (200 kHz, 1 MHz, 18 MHz), and one plane wave test 
+(400 MHz).  Also, note that IEEE 299 and NSA 65-6 differ on positioning of source and receiver.   IEEE 299 requires 
+source outside and receiver inside the shield, while NSA 65-6 requires source inside and receiver outside (to 
+simulate TEMPEST conditions).  For TEMPEST shielding effectiveness testing, continuous sweeping of seams at one 
+or more plane wave frequencies should also be specified, in addition to testing around all door panels, filters, 
+air duct penetrations and all other penetrations of the shielding at all test frequencies.  If enclosure is designed 
+specifically for attenuating microwave frequencies, specify additional test frequencies above 1 GHz.  Such testing 
+is expensive and should only be used when a firm requirement exists (e.g., NSA-65-6).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>The test procedure, frequencies, and equipment shall be as specified in <RID>IEEE 299</RID> [plus the additional frequencies specified in the contract].  
+Perform the test as soon as possible after completion of the shielded enclosure, including installation of services, power/telephone/signal lines, 
+RF filters, and waveguide vents.  Conduct tests with doors closed and the filters under normal load conditions.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Additional Test Points</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph if design includes strict tolerances, high attenuation requirements, and many penetrations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Measure additional test points beyond those specified in <RID>IEEE 299</RID>. Test points include the periphery of doors and covers, handles, latches, power 
+filter penetrations, air vent filters, telephone and control line filter penetrations, and points of penetration by pipes, tubes, and bolts.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Final In Service Testing</TTL><BRK/>
+<BRK/>
+<TXT><TST>Upon completion of acceptance checks, settings, and tests, show by demonstration in service that equipment and devices are in operating <NED/>condition 
+and performing the intended function.</TST>  Give the Contracting Officer five working days advance notice of the dates and times for checks and tests.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

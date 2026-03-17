@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="226.50"/>
+      <COL AUTOWIDTH="0" WIDTH="223.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-13 48 73 (May 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-13 48 73 (May 2022)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 13 48 73</SCN><BRK/>
+<BRK/>
+<STL>SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS</STL><BRK/>
+<DTE>05/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>seismic structural 
+elements for protection of nonstructural components that include electrical, 
+mechanical, and miscellaneous equipment and components.</SCP></NPR><BRK/>
+<BRK/>
+<NPR>This guide specification [also] covers all equipment bracing requirements (including 
+mechanical, electrical and architectural) for antiterrorism protection from 
+equipment falling on building occupants in accordance with UFC 4-010-01 DoD 
+Minimum Antiterrorism Standards for Buildings.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Projects only having antiterrorism equipment bracing requirements with no seismic 
+protection requirements will require significant editing to this UFGS because 
+most of the requirements apply to seismic protection.  Projects having both 
+antiterrorism equipment bracing and seismic protection requirements will require 
+the specification to be edited such that the most stringent of both requirements 
+is met.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The intent of this specification is to provide for adequate resistance 
+to lateral forces induced by earthquakes for listed mechanical, electrical and 
+miscellaneous equipment and components.  The design seismic lateral forces are 
+in addition to the "normal" gravity forces (weight) acting on the components 
+of a system.  This guide specification will be used in conjunction with Sections 
+<SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS, <SRF>01 45 35</SRF> SPECIAL INSPECTIONS, 
+<SRF>26 05 48</SRF> SEISMIC PROTECTION FOR ELECTRICAL EQUIPMENT, and <SRF>05 05 20</SRF> POST-INSTALLED 
+CONCRETE AND MASONRY ANCHORS.</NPR><BRK/>
+<BRK/>
+<NPR>Seismic protection design for anchorage and bracing of all equipment will be 
+based on UFC 3-301-01 Structural Engineering<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">, UFC 3-301-02 Design of Risk Category 
+V Structures, National Strategic Military Assets,</TAI> and UFC 4-010-01 DoD Minimum 
+Antiterrorism Standards for Buildings.</NPR><BRK/>
+<BRK/>
+<NPR>There are 3 options to provide seismic protection for a project:</NPR><BRK/>
+<BRK/>
+<NPR>1)  Issue a contract requiring the Contractor to hire a professional engineer 
+to submit the stamped calculations and drawings in accordance with this section.  
+The Contracting Officer will "accept" the design but the Contractor's Professional 
+Engineer will have final responsibility for the adequacy of the structural supports 
+and attachments.</NPR><BRK/>
+<BRK/>
+<NPR>2)  Hire an A-E who will use this section and will submit calculations and drawings 
+stamped by a professional engineer.  The Contracting Officer will "accept" the 
+design but the A-E Professional Engineer will have final responsibility for 
+the adequacy of the structural supports and attachments.  One of the disadvantages 
+of this approach may be that the actual equipment dimensions, weights and mounting 
+details may not be known until the equipment is acquired.  The A-E Professional 
+Engineer must be retained during the construction phase to review seismic bracing 
+shop drawings and perform field inspections as part of the final responsibility.</NPR><BRK/>
+<BRK/>
+<NPR>3)  Perform the design in house, in which case the Government designer will 
+have final responsibility for the adequacy of the structural supports and attachments.  
+One of the disadvantages of this approach may be that the actual equipment dimensions, 
+weights and mounting details may not be known until the equipment is acquired.  
+The Structural Engineer of Record (SER) of the main building or their representative 
+must be retained during the construction phase to review seismic bracing shop 
+drawings and perform field inspections with actual equipment information as 
+part of the final responsibility</NPR><BRK/>
+<BRK/>
+<NPR>Regardless of who performs the design, this section, properly edited, must be 
+included in the construction documents to allow the Contractor to install the 
+seismic protection features. In addition, the Structural Engineer of Record 
+(SER) of the main building or their representative must be retained during the 
+construction phase to review all submittals that have been signed and sealed 
+by the Contractor's or A-E Professional Engineer, to verify compliance with 
+the design intent and the specified design criteria and to ensure coordination 
+with the contract documents and other shop drawings.</NPR><BRK/>
+<BRK/>
+<NPR>This section can be used for bracing details of medical equipment by editing 
+the specification accordingly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN CONCRETE INSTITUTE (ACI)</ORG><BRK/><BRK/><RID>ACI 318</RID><RTL>(2019; R 2022) Building Code Requirements for Structural Concrete (ACI 318-19) and Commentary (ACI 318R-19)</RTL><BRK/><BRK/><RID>ACI 355.2</RID><RTL>(2007) Qualification of Post-Installed Mechanical Anchors in Concrete and Commentary</RTL><BRK/><BRK/><RID>ACI 355.4</RID><RTL>(2011) Qualification of Post-Installed Adhesive Anchors in Concrete (ACI 355.4) and Commentary</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF CIVIL ENGINEERS (ASCE)</ORG><BRK/><BRK/><RID>ASCE 7-22</RID><RTL>(2022; Supp 1 2023; Supp 2 2023; Supp 3 2025) Minimum Design Loads and Associated Criteria for Buildings and Other Structures</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A36/A36M</RID><RTL>(2019) Standard Specification for Carbon Structural Steel</RTL><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A193/A193M</RID><RTL>(2025) Standard Specification for Alloy-Steel and Stainless Steel Bolting Materials for High-Temperature Service and Other Special Purpose Applications</RTL><BRK/><BRK/><RID>ASTM A276/A276M</RID><RTL>(2025) Standard Specification for Stainless Steel Bars and Shapes</RTL><BRK/><BRK/><RID>ASTM A307</RID><RTL>(2023) Standard Specification for Carbon Steel Bolts, Studs, and Threaded Rod 60 000 PSI Tensile Strength</RTL><BRK/><BRK/><RID>ASTM A500/A500M</RID><RTL>(2023) Standard Specification for Cold-Formed Welded and Seamless Carbon Steel Structural Tubing in Rounds and Shapes</RTL><BRK/><BRK/><RID>ASTM A563</RID><RTL>(2021; E 2022a) Standard Specification for Carbon and Alloy Steel Nuts</RTL><BRK/><BRK/><RID>ASTM A563M</RID><RTL>(2007; R 2013) Standard Specification for Carbon and Alloy Steel Nuts (Metric)</RTL><BRK/><BRK/><RID>ASTM A603</RID><RTL>(2019) Standard Specification for Zinc-Coated Steel Structural Wire Rope</RTL><BRK/><BRK/><RID>ASTM A992/A992M</RID><RTL>(2022) Standard Specification for Structural Steel Shapes</RTL><BRK/><BRK/><RID>ASTM B695</RID><RTL>(2021) Standard Specification for Coatings of Zinc Mechanically Deposited on Iron and Steel</RTL><BRK/><BRK/><RID>ASTM C827/C827M</RID><RTL>(2023) Standard Test Method for Change in Height at Early Ages of Cylindrical Specimens of Cementitious Mixtures</RTL><BRK/><BRK/><RID>ASTM C1107/C1107M</RID><RTL>(2020) Standard Specification for Packaged Dry, Hydraulic-Cement Grout (Nonshrink)</RTL><BRK/><BRK/><RID>ASTM F436/F436M</RID><RTL>(2024) Standard Specification for Hardened Steel Washers Inch and Metric Dimensions</RTL><BRK/><BRK/><RID>ASTM F844</RID><RTL>(2019; R 2024) Standard Specification for Washers, Steel, Plain (Flat), Unhardened for General Use</RTL><BRK/><BRK/><RID>ASTM F959/F959M</RID><RTL>(2017a; R 2023) Standard Specification for Compressible-Washer-Type Direct Tension Indicators for Use with Structural Fasteners, Inch and Metric Series</RTL><BRK/><BRK/><RID>ASTM F1554</RID><RTL>(2020) Standard Specification for Anchor Bolts, Steel, 36, 55, and 105-ksi Yield Strength</RTL><BRK/><BRK/><RID>ASTM F3125/F3125M</RID><RTL>(2019) Standard Specification for High Strength Structural Bolts and Assemblies, Steel and Alloy Steel, Heat Treated, Inch Dimensions 120 ksi and 150 ksi Minimum Tensile Strength, and Metric Dimensions 830 MPa and 1040 MPa Minimum Tensile Strength</RTL><BRK/><BRK/></REF><REF><ORG>ICC EVALUATION SERVICE, INC. (ICC-ES)</ORG><BRK/><BRK/><RID>ICC ES AC156</RID><RTL>(2012) Acceptable Criteria for Seismic Certification by Shake-Table Testing of Nonstructural Components</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL CODE COUNCIL (ICC)</ORG><BRK/><BRK/><RID>ICC IBC</RID><RTL>(2024) International Building Code</RTL><BRK/><BRK/></REF><REF><ORG>METAL FRAMING MANUFACTURERS ASSOCIATION (MFMA)</ORG><BRK/><BRK/><RID>MFMA-4</RID><RTL>(2004) Metal Framing Standards Publication</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 3-301-01</RID><RTL>(2023; with Change 6, 2026) Structural Engineering</RTL><BRK/><BRK/><RID>UFC 3-301-02</RID><RTL>(2023; with Change 1, 2025) Design of Risk Category V Structures, National Strategic Military Assets</RTL><BRK/><BRK/><RID>UFC 4-010-01</RID><RTL>(2018; with Change 3, 2024) DoD Minimum Antiterrorism Standards for Buildings</RTL><BRK/><BRK/></REF><REF><ORG>VIBRATION ISOLATION AND SEISMIC CONTROL MANUFACTURERS ASSOCIATION (VISCMA)</ORG><BRK/><BRK/><RID>VISCMA 412</RID><RTL>(2014) Installing Seismic Restraints for Mechanical Equipment</RTL><BRK/><BRK/><RID>VISCMA 413</RID><RTL>(2014) Installing Seismic Restraints for Electrical Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer should verify that specified details do not interfere with the 
+performance of the cathodic protection system (when used) or of the vibration 
+isolation systems.</NPR><BRK/>
+<BRK/>
+<NPR>For Designated Seismic Systems that must remain operational after an earthquake<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">
+ and for </TAI><TAI OPT="RISK CATEGORY (RC) V STRUCTURE">systems and equipment in RC V buildings that have a performance objective 
+higher than non-mission critical</TAI>, the designer should show a "G" classification 
+for the items under SD-02 Shop Drawings in the SUBMITTALS paragraph.  This will 
+allow the SER of the main building or their representative to:  1)Do a QC review 
+on the anchorage and bracing details of these essential systems, and 2)Assess 
+the impact of the bracing and anchorage details on the structural supporting 
+system of the essential building.</NPR><BRK/>
+<BRK/>
+<NPR>Design done by the Contractor must be in accordance with UFC 3-301-01<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">, UFC 3-301-02 
+for systems and equipment in Risk Category V structures,</TAI> and UFC 4-010-01.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the first paragraph for projects where Contractor will design 
+seismic and/or antiterrorism protection system. Choose the second paragraph 
+for projects where Architect-Engineer (AE) or Government designer will design 
+seismic protection system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Design and provide seismic supports and attachments[, and isolation and energy dissipation systems] in accordance 
+with <RID>ASCE 7-22</RID> Chapter 13 and as modified by <RID>UFC 3-301-01</RID>.]<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">  Design and provide seismic supports and attachments, 
+and isolation and energy dissipation systems in accordance with <RID>UFC 3-301-02</RID>.</TAI>[  Design and provide supports and 
+attachments in accordance with requirements in <RID>UFC 4-010-01</RID>.]</TXT><BRK/>
+<BRK/>
+<TXT>[Provide seismic supports and attachments[, and isolation and energy dissipation systems] as indicated and in 
+accordance with <RID>ASCE 7-22</RID> and as modified by <RID>UFC 3-301-01</RID>.]<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">  Provide seismic supports and attachments, and isolation 
+and energy dissipation systems as indicated and in accordance with <RID>UFC 3-301-02</RID>.</TAI></TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The SER of the main building must specify the structural design criteria 
+and results of the seismic analysis in the table below. This information is 
+needed for equipment/component, support, and attachment design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Components and their supports must be attached or anchored to structure or foundation.  Components, supports, 
+and attachments must comply with following structural design criteria:</TXT><BRK/>
+<LST><TAB HEADERROWS="0" WIDTH="98">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="294.75"/>
+      <COL AUTOWIDTH="0" WIDTH="128.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Risk Category:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[I][II][III][IV][V]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Seismic Design Category:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[C][D][E][F]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Seismic Design Spectral Response Acceleration Parameter at Short Period (SDS):</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><ENG>[_____]</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Seismic Design Spectral Response Acceleration Parameter at period of 1 second (SD1):</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Seismic relative displacement within structure [between level [_____] and level [_____]] (Dp):</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[<MET>_____ mm</MET> <ENG>_____ inches</ENG>.]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">[Seismic relative displacement within structure between level [_____] and level [_____] (Dp):]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[<MET>_____ mm</MET> <ENG>_____ inches</ENG>.]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="87.75">
+         <CEL>
+<DTA TYPE="STRING">[Seismic relative displacement between structure [_____] and structure [_____][, at level [_____] (Dp):]]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[<MET>_____ mm</MET> <ENG>_____ inches</ENG>.]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/>
+<TXT>Apply the seismic requirements described in this section and on the drawings, of the electrical, mechanical, 
+and miscellaneous equipment and components listed in paragraphs ELECTRICAL EQUIPMENT, MECHANICAL EQUIPMENT, and 
+MISCELLANEOUS EQUIPMENT AND COMPONENTS below, in accordance with <RID>UFC 3-301-01</RID><TAI OPT="RISK CATEGORY (RC) V STRUCTURE">, <RID>UFC 3-301-02</RID>, </TAI>and additional data 
+furnished by the Contracting Officer.  Provide seismic protection measures in addition to any other requirements 
+called for in other sections of these specifications.  Where there is a conflict between the specifications and 
+the drawings, the specifications will take precedence.  Accomplish resistance to lateral forces induced by earthquakes 
+without consideration of friction resulting from gravity loads.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain this paragraph when (1) the Contractor will design the supports 
+and attachments and (2) the building is required to comply with the minimum 
+standards in UFC 4-010-01.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>For new construction [and existing buildings] required to comply with the UFC 4-010-01, all overhead electrical, 
+mechanical, and miscellaneous equipment and other fixtures weighing <ENG>31 pounds</ENG> or more must be designed to resist 
+forces of 0.5 times the equipment weight in any horizontal direction and 1.5 times the equipment weight in the 
+downward direction. This requirement does not preclude the need to design equipment mountings for structural 
+design criteria stated above.</TXT>]<BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electrical Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide seismic supports and attachments for electrical equipment listed in Section <SRF>26 05 48</SRF> SEISMIC PROTECTION 
+FOR ELECTRICAL EQUIPMENT, paragraph ELECTRICAL EQUIPMENT.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mechanical Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide seismic supports and attachments for the mechanical equipment listed in Section <SRF>23 05 48.19</SRF> SEISMIC BRACING 
+FOR MECHANICAL SYSTEMS, paragraph MECHANICAL EQUIPMENT.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Miscellaneous Equipment and Components</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must ensure that the lists below includes all architectural 
+components and miscellaneous items to be braced.  Delete the items which are 
+not part of the project and add items which are not included in the list.  Some 
+architectural components, including but not limited to masonry walls, parapets, 
+egress stairways, are typically designed by the SER of the main building. However, 
+if any architectural components are not designed and detailed in the contract 
+drawings, add those items into the list. The lists should be broken out as follows:  <TAI OPT="RISK CATEGORY (RC) V STRUCTURE">
+For nonstructural equipment/components in Risk Category V structures, the designer 
+should provide three separate lists of equipment/components; non-Mission Critical 
+(NMC), Mission Critical Level 1 (MC-1 equipment and components must be fully 
+operational immediately after a seismic event), and/or Mission Critical Level 
+2 (MC-2 equipment and components must be repairable and operable within 3 days 
+after a seismic event).   </TAI>For nonstructural equipment/components in Risk Category 
+I, II, III, or IV structures, two separate lists of nonstructural equipment/components 
+must be provided; equipment/components with Ip = 1.0 and equipment/components 
+with Ip = 1.5 (Designated Seismic Systems).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide seismic supports and attachments for the following miscellaneous equipment and components in accordance 
+with the requirements of this specification:</TXT><BRK/>
+<BRK/>
+[<LST>Equipment/Components with Ip = 1.0</LST><BRK/>
+<LST>Storage cabinets</LST><BRK/>
+<LST>Ornamentations</LST><BRK/>
+<LST>Storage Racks</LST><BRK/>
+<LST>Signs and Billboards</LST><BRK/>
+<LST>Shelving</LST><BRK/>
+<LST>Furnishings</LST><BRK/>
+<LST>Partitions</LST><BRK/>
+<LST>Stacks</LST><BRK/>
+<LST>Pole or frame supported equipment</LST><BRK/>
+<LST>Storage tanks for water and oil</LST><BRK/>
+<LST>[_____]</LST>]<BRK/>
+[<BRK/>
+<TXT>Equipment/Components with Ip = 1.5 (Designated Seismic Systems)<BRK/>
+Insert edited list here similar to one above for Ip = 1.0</TXT>]<BRK/>
+<BRK/>
+[<LST>[_____]</LST><BRK/>
+<LST>[_____]</LST><BRK/>
+]<BRK/>
+<TAI OPT="RISK CATEGORY (RC) V STRUCTURE"><TXT>Non-Mission Critical (NMC) Equipment/Components in Risk Category V <BRK/>
+ Insert edited list here similar to one above for Ip = 1.0 </TXT><BRK/>
+<LST>[_____]</LST><BRK/>
+<LST>[_____]</LST><BRK/>
+<BRK/>
+<TXT>Mission Critical Level 1  (MC-1) Equipment/Components in Risk Category V<BRK/>
+Insert edited list here similar to one above for Ip = 1.0</TXT><BRK/>
+<LST>[_____]</LST><BRK/>
+<LST>[_____]</LST><BRK/>
+<BRK/>
+<TXT>Mission Critical Level 2 (MC-2) Equipment/Components in Risk Category V<BRK/>
+ Insert edited list here similar to one above for Ip = 1.0</TXT><BRK/>
+<LST>[_____]</LST><BRK/>
+<LST>[_____]</LST><BRK/></TAI>
+<BRK/></SPT>
+<SPT><TTL>[Contractor Designed ]Supports and Attachments</TTL><BRK/>
+<BRK/>
+<TXT>Provide seismic supports and attachments[, and isolation and energy dissipation systems] for electrical, mechanical, 
+and miscellaneous equipment and components.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain this paragraph when the Contractor will design the supports and 
+attachments. Indicate permissible locations of supports and attachments on drawings 
+for projects that require Contractor to design supports and attachments. The 
+SER of the main building or their representative must review adequacy of structure 
+to resist seismic and other loads, and modify support layout or design reinforcement 
+of main building structural members if capacity of structural members is exceeded.  
+Delete this paragraph when all support and attachment  details and locations 
+are indicated on the drawings and calculations are included in the Design Analysis.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Contractor must retain services of a Professional Engineer to design supports and attachments[, and isolation 
+and energy dissipation systems] for electrical, mechanical, and miscellaneous equipment and components.[  Supports 
+and attachments, and isolation and energy dissipation systems that induce torsion in structural members are not 
+permitted.]</TXT><BRK/>
+]<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.  This includes Designated Seismic Systems and Mission 
+Critical Systems that must remain operational after an earthquake.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.  <TAI OPT="AIR FORCE,NAVY">Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY"> Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<TAI OPT="RISK CATEGORY (RC) V STRUCTURE"><LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Independent Reviewer Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Supports and Attachments Shop Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Resilient Vibration Isolation Devices</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Material Supports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Common Bolts</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>High-Strength Bolts</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Anchors Certified Manufacturer's Mill Reports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Vibration Isolators</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Isolation and Energy Dissipation Systems</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Snubbers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welding Electrodes And Rods</SUB>;</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Design Calculations and Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Details of Equipment Supports and Attachments</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<TAI OPT="RISK CATEGORY (RC) V STRUCTURE"><BRK/>
+<ITM><SUB>Independent Design Review Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/></TAI>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Anchor Test Results</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Shake Table Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Certificate Of Completion</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welder Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Appropriate materials for structural supports must be used in corrosive 
+environments.  Dissimilar metals must be isolated.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>EQUIPMENT REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Seismic Control Bracing does not guarantee that the equipment itself 
+is rugged enough to survive earthquake shaking.  When a piece of equipment is 
+required to remain operational after an earthquake, include paragraph SPECIAL 
+TESTING FOR SEISMIC-RESISTING EQUIPMENT.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Equipment must be rugged enough to survive design seismic event.  Equipment components designated as Designated 
+Seismic Systems <TAI OPT="RISK CATEGORY (RC) V STRUCTURE">and MC-1 (Mission Critical Level 1) </TAI>must remain operational as required in paragraph SPECIAL 
+TESTING FOR SEISMIC-RESISTING EQUIPMENT.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the first paragraph for projects where Contractor will design 
+seismic protection system, or choose the second paragraph for projects where 
+Architect-Engineer (AE) or Government designer will design seismic protection 
+system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Submit <SUB>design calculations and drawings</SUB> of supports and attachments [, and <SUB>isolation and energy dissipation systems</SUB>
+] for the items listed in paragraph ELECTRICAL EQUIPMENT, MECHANICAL EQUIPMENT, and MISCELLANEOUS EQUIPMENT AND 
+COMPONENTS. Design calculations and drawings must be stamped and signed by Contractor's Professional Engineer.  
+Design must be based on actual equipment and system layout.  Design must include calculated applicable loads 
+and capacity of materials utilized for the connection of the equipment or system to the structure.  Analysis 
+must detail anchoring methods.</TXT><BRK/>
+]<BRK/>
+[<TXT>Submit <SUB>supports and attachments shop drawings</SUB>[, and <SUB>isolation and energy dissipation systems</SUB>] along with catalog 
+cuts, templates, and erection and installation details, as appropriate, for the items listed in paragraph ELECTRICAL 
+EQUIPMENT, MECHANICAL EQUIPMENT, and MISCELLANEOUS EQUIPMENT AND COMPONENTS.</TXT><BRK/>
+]<BRK/>
+<TXT>Drawings must indicate thickness, type, grade, class of metal, and dimensions; and show construction details, 
+reinforcement, anchorage, and installation with relation to the building construction.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Designated Seismic System Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Include drawing for Designated Seismic System Equipment <TAI OPT="RISK CATEGORY (RC) V STRUCTURE">and Mission Critical Equipment </TAI>indicating the equipment 
+location in the facility to be used for the installation.  Equipment must be rigidly or flexibly mounted to building 
+structure or foundation.  Roof mounted equipment both vibration isolated and nonisolated, must have support members 
+designed and anchored to building structure</TXT><BRK/>
+<BRK/>
+<TAI OPT="RISK CATEGORY (RC) V STRUCTURE"><TXT>Submit <SUB>Independent Design Review Report</SUB>, prepared by Contractor's independent Professional Engineer for the support 
+and attachment design and drawings of mission critical (MC) equipment and components attached to Risk Category 
+V structures in accordance with <RID>UFC 3-301-02</RID>.  The Independent Reviewer must be a Professional Engineer with 
+at least 15 years of experience in the theory and application of nonlinear seismic analysis and structural behavior 
+under extreme cyclic loads.  Previous design experience must be commensurate in complexity to the project being 
+reviewed.  Submit <SUB>independent reviewer qualifications</SUB> for approval.</TXT></TAI><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rigidly (Base and Suspended) Mounted Equipment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Rigidly mounted equipment is defined as having a period of vibration 
+of 0.06 seconds or less for the equipment plus its mounting.  Equipment with 
+a fundamental period greater than 0.06 seconds should be assumed to be flexibly 
+mounted or nonrigid and designed in accordance with the next paragraph below.</NPR><BRK/>
+<BRK/>
+<NPR>List items that may require additional reinforcements (internally) to prevent 
+permanent deformation, dislocations, separation of components, or other damage, 
+which would render the equipment inoperative for significant periods of time 
+following an earthquake and to meet the specified requirements (such as engine-driven 
+generators, etc., which consist of a number of individual components built into 
+an assembly by the manufacturers). For emergency generators, include auxiliary 
+items required for the generator to operate, such as battery racks and day tanks.  
+Coordinate with note in paragraph SUPPORTS AND ATTACHMENTS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The following specific items of miscellaneous equipment and components must be constructed and assembled to withstand 
+the seismic forces specified in <RID>UFC 3-301-01</RID><TAI OPT="RISK CATEGORY (RC) V STRUCTURE"> <RID>UFC 3-301-02</RID></TAI>.</TXT><BRK/>
+<BRK/>
+[<LST>Storage cabinets</LST><BRK/>
+<LST>Storage Racks</LST><BRK/>
+<LST>Signs and Billboards</LST><BRK/>
+<LST>Shelving</LST><BRK/>
+<LST>Stacks</LST><BRK/>
+<LST>Pole or frame supported equipment</LST><BRK/>
+<LST>[_____]</LST>]<BRK/>
+<BRK/>
+<TXT>Equipment furnished under this contract must be [rigidly mounted][rigidly mounted using cast-in-place anchors] 
+or post-installed anchors that are qualified for earthquake loading in accordance with <RID>ACI 355.2</RID> or <RID>ACI 355.4</RID>
+.  Cast-in-place anchors must conform to <RID>ASTM F1554</RID> and <RID>ACI 318</RID> Chapter 17.  For any rigid equipment which is 
+rigidly anchored, entirely locate each item of equipment and rigidly attach on one side only of a building expansion 
+joint; provide flexible joints for piping, electrical conduit, cabletray, busway, raceway, mechanical ducts, 
+etc., that are capable of accommodating displacements equal to the full width of the joint in both orthogonal 
+directions.  Suspended equipment bracing attachments should be located just above the center of gravity to minimize 
+swinging.[  [Base-mounted equipment installed in Risk Category (RC) IV buildings needed for continued operation 
+after an earthquake] <TAI OPT="RISK CATEGORY (RC) V STRUCTURE">Mission critical equipment intalled in RC V buildings </TAI>assigned to Seismic Design Category 
+(SDC) D, E, or F must have two nuts provided on each anchor.]</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain following paragraph when the Contractor will design the supports 
+and attachments for rooftop equipment. Delete this paragraph when all supports 
+and attachments details and locations are indicated on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>[Roof ][floor] mounted equipment curbs, framing and attachment to equipment and structure must be designed and 
+braced to withstand seismic loads. Use the ratio of the overturning moment from seismic forces to the resisting 
+moment due to gravity loads utilizing appropriate load factors per <RID>ASCE 7-22</RID> or <RID>ICC IBC</RID> to determine if overturning 
+forces need to be considered in the sizing of anchor bolts.  Provide calculations to verify the adequacy of the 
+anchors for combined shear and overturning.</TXT><BRK/>
+]<BRK/></SPT>
+<SPT><TTL>Nonrigid or Flexibly-Mounted Equipment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain the bracket when the Contractor will design the supports and attachments.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Select vibration isolation devices so that the maximum movement of equipment from the static deflection point 
+is <MET>6 mm</MET> <ENG>1/4 inch</ENG>.  Equipment flexibly mounted on <SUB>vibration isolators</SUB> must have a bumper restraint or <SUB>snubbers</SUB>
+ in each horizontal direction, and vertical restraints must be provided where required to resist overturning.  
+Isolator housing and restraints must be constructed of ductile materials.  A viscoelastic pad or similar material 
+of appropriate thickness must be used between the bumper and components to limit the impact load.[  Restraints 
+must be designed to resist the calculated horizontal lateral and vertical forces.]</TXT><BRK/>
+<BRK/>
+<TXT>Spring vibration isolators must be seismically rated.  The seismically rated housing must be sized to meet or 
+exceed the force requirements applicable to the project and meet the required isolation criteria.  Spring vibration 
+isolator manufacturer must be a member of VISCMA.  Design force, Fp, must be doubled for vibration isolators 
+if the nominal clearance (air gap) between the equipment support frame and restraint is greater than <ENG>0.25 inches</ENG>
+ in accordance with <RID>ASCE 7-22</RID>, Chapter 13.  Housed springs must not be used for seismic restraint applications 
+because they cannot resist uplift.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUPPORTS AND ATTACHMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Supports</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select Class C weight zinc-coated wires for wire rope where used in coastal 
+environment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit <SUB>Material supports</SUB> used for members listed[ in this section][ and ][on the drawings].  Material supports 
+must conform with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Angles, plates, and bars, <RID>ASTM A36/A36M</RID></OLI><BRK/>
+<BRK/>
+<OLI>Wide flange and WT shapes, <RID>ASTM A992/A992M</RID></OLI><BRK/>
+<BRK/>
+<OLI>Threaded rods, <RID>ASTM A307</RID></OLI><BRK/>
+<BRK/>
+<OLI>Wire rope, <RID>ASTM A603</RID> pre-stretched, with [Class B weight zinc-coated][Class C weight zinc-coated] wires 
+throughout rope.  Connect rope at ends using ferrule or saddle-type wire rope clamp systems.  Ferrule 
+clamps must be qualified by testing for use in seismic applications per <RID>VISCMA 413</RID>.  Saddle-type clamps 
+must be used with minimum of two clamps at each end of wire rope.</OLI><BRK/>
+<BRK/>
+<OLI>Tubes, <RID>ASTM A500/A500M</RID>, Grade B.</OLI><BRK/>
+<BRK/>
+<OLI>Pipes, <RID>ASTM A53/A53M</RID>, Grade B.</OLI><BRK/>
+<BRK/>
+<OLI>Channels (Struts) with in-turned lips and associated hardware for fastening to channels at discrete points 
+conforming to <RID>MFMA-4</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Fasteners</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When galvanizing ASTM A307 and ASTM F3125 bolts, specify either hot-dip 
+process in accordance with ASTM F2329/F2329M or zinc-coated by the mechanical-deposition 
+process in accordance with ASTM B695, Class 55.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><SUB>Common bolts</SUB>, <RID>ASTM A307</RID>, Grade A, plain finish [hot dipped zinc coating][mechanically deposited zinc coating].  
+The bolt heads and the nuts of the supplied fasteners must be marked with the manufacturer's identification mark, 
+the strength grade and type specified by ASTM specifications.</TXT><BRK/>
+<BRK/>
+[<TXT><SUB>High-strength bolts</SUB>, <RID>ASTM F3125/F3125M</RID>, Grade A325, heavy hex head style, with nuts per <RID>ASTM A563</RID>[ and washers 
+per <RID>ASTM F436/F436M</RID>], plain finish [hot dipped zinc coating][mechanically deposited zinc coating].[  Direct tension 
+indicator washers must be per <RID>ASTM F959/F959M</RID>.][  Provide <RID>ASTM B695</RID>, Class 55, Type 1 galvanizing.]  Submit product 
+data for direct tension indicator washers.</TXT><BRK/>
+]<BRK/></SPT>
+<SPT><TTL>Anchors</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>Anchors Certified Manufacturer's Mill Reports</SUB> which clearly show the applicable ASTM mechanical and chemical 
+requirements together with the actual test results for the supplied fasteners.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cast-in-Place Anchors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For most jobs, ASTM F1554 36 ksi anchor rods are used.  If high tensile 
+loads are anticipated, consider the use of 55 ksi or 105 ksi ASTM F1554 anchor 
+rods.  If stainless steel is considered, select from material in ASTM A193/A193M.</NPR><BRK/>
+<BRK/>
+<NPR>Some nonshrink grouts derive their nonshrink properties from an increase in 
+volume of metal due to oxidation.  Where oxidation is not desired for appearance 
+sake, specify nonmetallic grout.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLG><OLI>Anchor rods must be per <RID>ASTM F1554</RID> Gr 36 [55][105], Class 1A[2A].[  Stainless steel <RID>ASTM A193/A193M</RID>.]</OLI><BRK/>
+<BRK/>
+<OLI>Anchor nuts must be per <MET> <RID>ASTM A563M</RID></MET><ENG><RID>ASTM A563</RID></ENG>, Grade A, hex style.[  Stainless steel <RID>ASTM A193/A193M</RID>.]</OLI><BRK/>
+<BRK/>
+<OLI>Anchor washers must be per <RID>ASTM F844</RID>.[  Stainless steel [Type 304][Type 316] conforming to <RID>ASTM A276/A276M</RID>
+.]</OLI><BRK/>
+<BRK/>
+<OLI>Anchor plate washers must be per <RID>ASTM A36/A36M</RID>[ Stainless steel [Type 304][Type 316] conforming to <RID>ASTM A276/A276M</RID>
+].</OLI><BRK/>
+<BRK/>
+<OLI>Non-shrink grout must be per <RID>ASTM C1107/C1107M</RID>, with no <RID>ASTM C827/C827M</RID> shrinkage.[  Grout must be nonmetallic.]  
+Submit product data for non-shrink grout.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Post-installed Anchors</TTL><BRK/>
+<BRK/>
+<TXT>Refer to Section <SRF>05 05 20</SRF> POST-INSTALLED CONCRETE AND MASONRY ANCHORS, paragraph POST-INSTALLED ANCHORS, for 
+requirements</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWS D1.1/D1.1M</RID>.  Submit product data for <SUB>welding electrodes and rods</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SUPPORTS AND ATTACHMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designs must include complete seismic details showing bracing requirements.  
+The design is for the supports of the equipment, not the equipment itself.  
+Proper supports do not guarantee that the equipment is rugged enough to survive 
+earthquake shaking.  When a piece of equipment is required to remain operational 
+after an earthquake, the manufacturer should be consulted regarding the capabilities 
+of the equipment to withstand seismic loading.  Refer to paragraph SPECIAL TESTING 
+FOR SEISMIC-RESISTING EQUIPMENT for additional equipment requirements</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide supports and attachments with continuous load path to distribute equipment/component seismic loads to 
+structure conforming [to the arrangements shown][ to <RID>UFC 3-301-01</RID> requirements]<TAI OPT="RISK CATEGORY (RC) V STRUCTURE"> and to <RID>UFC 3-301-02</RID> requirements</TAI>
+.  Install vertical diagonal braces at a 45-degree slope.  Where interference is present, the slope may be minimum 
+of 30 degrees or a maximum of 60 degrees per <RID>VISCMA 412</RID> and <RID>VISCMA 413</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide bolted and welded connections for supports and attachments[ as the arrangements shown][ in accordance 
+with <RID>UFC 3-301-01</RID>]<TAI OPT="RISK CATEGORY (RC) V STRUCTURE"> and <RID>UFC 3-301-02</RID></TAI>.  Provide welding in accordance with <RID>AWS D1.1/D1.1M</RID>.[  Grind visible welds 
+smooth in the finished installation.]  Provide <RID>AWS D1.1/D1.1M</RID> qualified welders, welding operators, and tackers.  
+Submit AWS <SUB>welder qualifications</SUB> for approval.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BUILDING DRIFT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer will be guided by the results of the seismic analysis to 
+determine the expected building story drifts, deflections, and relative displacements; 
+this information is needed for equipment bracing design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Do not attach sway braces for equipment to two dissimilar structural elements of a building that may respond 
+differentially during an earthquake unless a flexible joint is provided.  Equipment/components supports and attachments 
+must be capable of accommodating building story drifts, deflections, and relative displacements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ANCHORS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Submit copies of <SUB>anchor test results</SUB> to verify the adequacy of the specific anchor and application, as specified.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure housekeeping pads have adequate space to mount equipment and seismic restraint devices allowing adequate 
+edge distance and embedment depth for the restraint anchors.  Identify position of reinforcing steel and other 
+embedded items prior to drilling holes for post-installed anchors.  Do not drill holes in concrete or masonry 
+until concrete, mortar, or grout has achieved full design strength.  Install neoprene grommet washers or fill 
+the gap with epoxy on equipment anchors where clearance between anchor and equipment support hole exceeds 0.125 
+inches.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cast-In-Place Anchors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer will ensure that foundations and anchors for pad-mounted 
+or floor-mounted equipment are detailed and designed in accordance with UFC 
+3-301-01<TAI OPT="RISK CATEGORY (RC) V STRUCTURE"> or UFC 3-301-02, as appropriate</TAI>.  When the designer has the necessary 
+size, weight, and other information for a piece of equipment, the anchorage 
+details including sizes, length and number of anchors, thickness and reinforcing 
+of pads and foundations for that piece of equipment will be shown by the designer 
+on the drawings.  When this information is not available, it will be the A-E 
+responsibility to design the support and anchorage for the equipment in accordance 
+with the specified requirements.</NPR><BRK/>
+<BRK/>
+<NPR>If seismic forces cause the equipment to uplift, design anchors for combined 
+shear and tension.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use templates to locate cast-in-place anchors accurately and securely in formwork.  Provide anchors with an embedded 
+straight length with heavy hex nut and[ plate] washer[ as shown on drawings] to provide required strength and 
+ductility.  Anchors that exceed the normal depth of equipment foundation piers or pads must either extend into 
+concrete floor or the foundation or be increased in depth to accommodate the required anchor embedment depth.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Post-Installed Anchors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Verify if restrictions exist on the type of drilling equipment to be 
+used for the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Refer to Section <SRF>05 05 20</SRF> POST-INSTALLED CONCRETE AND MASONRY ANCHORS, paragraph ANCHORING AND REINFORCING for 
+requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Post-Installed Anchor Bolt Tests and Inspections</TTL><BRK/>
+<BRK/>
+<TXT>Refer to Section <SRF>05 05 20</SRF> POST-INSTALLED CONCRETE AND MASONRY ANCHORS, paragraph TESTS AND INSPECTIONS for requirements.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>RESILIENT VIBRATION ISOLATION DEVICES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Where the need for vibration isolation devices (e.g. multidirectional seismic snubbers, spring vibration isolators) 
+is determined, install these devices as indicated in drawings and in accordance with the manufacturer's written 
+instructions.  After completion of installation of all isolation materials and before startup of isolated equipment, 
+all debris must be cleared from areas surrounding and from beneath all isolated equipment, leaving equipment 
+free to move on the isolation supports.  Ensure pipe, duct, and electrical connections to the isolated equipment 
+do not reduce system flexibility.  Ensure that pipe, conduit, and duct passing through walls and floors do not 
+transmit vibrations.  Check for vibration and noise transmission through connections, piping, ductwork, foundation, 
+and walls. Adjust, repair, or replace isolators as required to reduce vibration and noise transmissions to specified 
+levels.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EQUIPMENT SUPPORT REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Suspended Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment supports and attachments for components supported from overhead floor or roof structural systems.  
+Provide braces that consist of angles, rods, wire rope, bars, channels (struts) or pipes arranged as shown in 
+bracing submittals and secured at both ends with not less than<MET> 13 mm</MET><ENG> 1/2 inch</ENG> bolts.  Provide sufficient supports 
+and attachments for equipment to resist horizontal and vertical forces as specified in paragraph GENERAL REQUIREMENT 
+without exceeding capacity of structural elements</TXT><BRK/>
+<BRK/>
+<TXT>Submit <SUB>details of equipment supports and attachments</SUB> for acceptance.  In lieu of bracing with vertical supports, 
+these items may be supported with hangers inclined at 45 degrees directed up and radially away from equipment 
+and oriented symmetrically in 90-degree intervals on the horizontal plane, bisecting the angles of each corner 
+of the equipment, provided that supporting members are properly sized to support operating weight of equipment 
+when hangers are inclined.  Where interference is present, the inclined hanger slope may be minimum of 30 degrees 
+or a maximum of 60 degrees per <RID>VISCMA 412</RID> and <RID>VISCMA 413</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Floor or Pad Mounted Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Equipment and components must be positively attached to floor or pad. Provide and install anchors as indicated 
+in approved drawings and in accordance with paragraph ANCHORS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SPECIAL TESTING FOR SEISMIC-RESISTING EQUIPMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">  Include this paragraph only for special testing for seismic-resisting 
+equipment and components designated as Risk Category V Mission Critical Level 
+1 (MC-1) by the building owner and specified by the SER of the building.  MC-1 
+equipment and components must be fully operable immediately after a seismic 
+event.</TAI><BRK/>
+<BRK/>
+This paragraph<TAI OPT="RISK CATEGORY (RC) V STRUCTURE"> also </TAI> applies to Designated Seismic System (DSS)(assigned to 
+SDC C thru F) equipment and components that must remain operational after an 
+earthquake to function for life safety purposes or is needed for continued operation 
+in a Risk Category IV structure.</NPR><BRK/>
+<BRK/>
+<NPR>This paragraph will be applicable to both new buildings designed in accordance 
+with UFC 3-301-01<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">, UFC 3-301-02,</TAI> and to existing building seismic rehabilitation 
+designs.</NPR><BRK/>
+<BRK/>
+<TAI OPT="RISK CATEGORY (RC) V STRUCTURE"><NPR>The designer must indicate on the drawings all locations and all components 
+for which special inspection and testing is required for MC-1 equipment.</NPR></TAI><BRK/>
+<BRK/>
+<NPR>Add any additional requirements as necessary.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Manufactured equipment and components assigned as Designated Seismic Systems in buildings assigned to SDC C, 
+D, E, or F [and Risk Category IV equipment and components] <TAI OPT="RISK CATEGORY (RC) V STRUCTURE">MC-1 (Mission Critical Level 1) for Risk Category 
+V, </TAI>required to remain operational after an earthquake must be seismic qualified by shake table testing conforming 
+to <RID>ICC ES AC156</RID> <SUB>Shake Table Test</SUB> procedures.  The manufacturer is to provide a certification by a fully qualified 
+testing agency for the specific equipment and components.  Prequalified certifications are acceptable unless 
+noted otherwise.</TXT><BRK/>
+<BRK/>
+<TXT>A certification for each equipment and component in accordance with the requirement must be maintained in a file 
+identified as "Equipment Certification Documentation."<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">  For Risk Category V, all MC-1 and MC-2 equipment qualification 
+documentation in accordance with <RID>UFC 3-301-02</RID>, Section 2-17.2.5 must be maintained in a file identified as "Mission 
+Critical Components and Equipment Qualifications Manual."</TAI>  This file must be a part of the Operations &amp; Maintenance 
+(O&amp;M) Manual that is turned over to the Authority Having Jurisdiction (AHJ).  The following statement must 
+be included in the O&amp;M Manual: "Replaced or modified components in this Manual must be qualified per the 
+original qualification criteria."</TXT><BRK/>
+<BRK/>
+<TXT>Equipment and components that are required to be certified <TAI OPT="RISK CATEGORY (RC) V STRUCTURE">and MC-1 and MC-2 equipment/components </TAI>must bear permanent 
+marking or nameplates constructed of a durable heat and water resistant material.  Nameplates must be mechanically 
+attached to all nonstructural components and placed on the component for clear identification.  The nameplate 
+must not be less than <ENG>5 inches x 7 inches</ENG> with red letters 1 inch in height on a white background stating "Certified 
+Equipment."<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">, "MC-1" or "MC-2" as appropriate.</TAI> The following statement must be on the nameplate:  "This equipment/component 
+is seismically certified.  Modification or replacement must be approved in advance by a qualified professional 
+engineer and documented in the "Equipment Seismic Certification Documentation" file within the O&amp;M manuals."<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">
+ For "MC-1" and "MC-2", the following statement must be on the nameplate: “This equipment/component is Mission 
+Critical.  No modifications are allowed unless authorized in advance and documented in the Mission Critical Equipment 
+Qualifications Manual.”</TAI>  The nameplate must also contain the component identification number in accordance with 
+the drawings/specifications and the O&amp;M manuals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SPECIAL INSPECTION FOR COMPONENTS, SUPPORTS, AND EQUIPMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include this paragraph only for special<BRK/>
+inspection of Designated Seismic Systems per IBC Section 1705.13.4; Architectural 
+Components per IBC Section 1705.13.5; Plumbing, Mechanical and Electrical Components 
+per IBC Section 1705.13.6; Storage Racks per IBC Section 1705.13.7; Seismic 
+Isolation Systems per IBC Section 1705.13.8<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">; and Components, Supports, and Attachments</TAI><TAI OPT="RISK CATEGORY (RC) V STRUCTURE">
+ that serve<BRK/>
+Risk Category V Structures</TAI>.<BRK/>
+<BRK/>
+The designer must indicate on the drawings all locations and all features for 
+which special inspection is required.  This includes indicating the locations 
+of all components, supports, and attachments requiring inspection. <BRK/>
+<BRK/>
+Designated Seismic Systems are required to be operational after a design earthquake.<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">
+  MC-1 equipment and components must be fully operable immediately after a seismic 
+event.  MC-2 equipment and components must be repairable and operable within 
+3 days after a seismic event.</TAI>  <BRK/>
+<BRK/>
+This paragraph will be applicable to both new buildings designed according to 
+UFC 3-301-01<TAI OPT="RISK CATEGORY (RC) V STRUCTURE">, UFC 3-301-02,</TAI> and to existing building seismic rehabilitation 
+designs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLG><OLI>Perform special inspections for designated seismic systems, equipment, components, supports, and attachments 
+in accordance Section <SRF>01 45 35</SRF> SPECIAL INSPECTION which includes the Statement of Special Inspections 
+and Schedule of Special Inspections, <RID>ICC IBC</RID> Chapter 17, and <RID>UFC 3-301-01</RID>. <TAI OPT="RISK CATEGORY (RC) V STRUCTURE">For Risk Category V structures, 
+special inspection must also be performed in accordance with <RID>UFC 3-301-02</RID></TAI>.</OLI><BRK/>
+<BRK/>
+<OLI>Contractor must employ Special Inspector, who must be an independent <BRK/>
+Professional Engineer, to perform periodic walk-down inspections to ensure that the equipment/components 
+satisfy life safety mounting requirements. The Special Inspector must be familiar with the construction 
+and installation of mechanical and electrical components, and their vulnerabilities to earthquakes. The 
+selection of the Special inspector is subject to the approval of the Structural Engineer of Record (SER) 
+of the main building or their representative and per Section 01 45 35 SPECIAL INSPECTION.</OLI><BRK/>
+<BRK/>
+<OLI>Special Inspector must (1) inspect and test items required in the Section <SRF>01 45 35</SRF> SPECIAL INSPECTION 
+and the Statement of Special Inspection and Schedule of Special Inspections; (2) examine Designated Seismic 
+Systems requiring seismic qualification in accordance with <RID>ASCE 7-22</RID> and (3) verify the label, anchorage 
+installation, and mounting conform to the certificate of compliance.</OLI><BRK/>
+<BRK/>
+<OLI>A final walk-down inspection for Designated Seismic Systems <TAI OPT="RISK CATEGORY (RC) V STRUCTURE">and MC-1 and MC-2 equipment/components </TAI>will 
+be performed by the SER of the main building or their representative<TAI OPT="RISK CATEGORY (RC) V STRUCTURE"> and by the Nonstructural Component 
+Design Reviewer for Risk Category V structures</TAI>. The final walk-down inspection must be documented in 
+a report. The final report prepared by the SER needs to include the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Record/observations of final site visit</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Documentation that all required inspections were performed in accordance with the Statement 
+of Special Inspections.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Documentation that the Designated Seismic Systems were installed in accordance with the construction 
+documents and inspected in accordance with the requirements of <RID>ICC IBC</RID> Chapter 17, as modified 
+by <RID>UFC 3-301-01</RID><TAI OPT="RISK CATEGORY (RC) V STRUCTURE"> and <RID>UFC 3-301-02</RID></TAI>.</OLI><BRK/>
+<BRK/>
+<OLI>A <SUB>certificate of completion</SUB> is required for each Designated Seismic System equipment <TAI OPT="RISK CATEGORY (RC) V STRUCTURE">and MC-1 and MC-2 
+equipment for Risk Category V </TAI>to certify that seismic supports and attachments have been installed and 
+inspected in accordance with the requirements in this section and <RID>UFC 3-301-01</RID><TAI OPT="RISK CATEGORY (RC) V STRUCTURE"> and <RID>UFC 3-301-02</RID></TAI>. The 
+certification of completion must be a part of the O&amp;M Manual that is turned over to the AHJ.</OLI></OLG><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

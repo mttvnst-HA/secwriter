@@ -1,0 +1,2019 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-26 35 44 (August 2021)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 1 - 05/24</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-26 35 44.00 20 (February 2018)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 35 44</SCN><BRK/>
+<BRK/>
+<STL>270 VDC SOLID STATE CONVERTER</STL><BRK/>
+<DTE>08/21, CHG 1: 05/24</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification has been specifically limited to cover the requirements for <SCP>the procurement, installation, 
+and testing of 72 kW, 270 VDC solid state converters</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>For Navy projects, the use of any other size converter is no longer authorized.  If a different size unit is required 
+for a specific project, contact NAVFAC Atlantic (LANT), Code DC 44 - Electrical Criteria Manager at (757) 322-4327 
+for authorization, and for the additional requirements necessary to appropriately modify this specification.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These converters are used to supply 270 VDC and limited amounts of 28 VDC electrical power to aircraft 
+in shore facility environments.  Typical applications include aircraft operating in flight line conditions or 
+in hangars, avionics shops, laboratories, training buildings, flight simulators, and computer rooms.</NPR><BRK/>
+<BRK/>
+<NPR>This specification is not to be used for procurement of power converters installed on board aircraft or ships 
+without specific authorization from Naval Air Warfare Center Aircraft Division (NAWCAD Power and Energy Division 
+(AB43) at (301) 342-4161), and from the Naval Sea Warfare Command (contact the Technical Warrant Officer for the 
+appropriate ship classification).</NPR><BRK/>
+<BRK/>
+<NPR>This specification is not intended for medium-voltage applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy projects, incorporate the special SUBMITTAL REVIEW PROCESS paragraph in the SUBMITTALS section.  
+Coordinate with NAVAIR, NAVFAC, and the Activity to see whether the "review and approval", or the "surveillance 
+only" options are required.</NPR><BRK/>
+<BRK/>
+<NPR>1)  If "review and approval" (reach-back support) is desired, for a specific NAVFAC project, the technical representative 
+(electrical engineer) editing this document for that project must contact NAVFAC LANT for consultation during 
+the design stage of the project, prior to including the requirement in the specification.  Point of Contact (POC) 
+information is included in the first introductory technical note.</NPR><BRK/>
+<BRK/>
+<NPR>2)  If "surveillance only" is agreed to, it requires the submittal information to be sent to NAVAIR and NAVFAC 
+LANT for review and comment at the same time as the information is being sent to the Designer of Record for Review 
+and Approval.  The surveillance mode would give NAVAIR or NAVFAC LANT the opportunity to confirm compliance, without 
+inadvertently holding up the project if the appropriate personnel are not available to do the review in a timely 
+manner.</NPR><BRK/>
+<BRK/>
+<NPR>The Electrical Designer of Record must also insure that the Division 1, Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES, 
+paragraphs FORWARDING SUBMITTALS REQUIRING GOVERNMENT APPROVAL and SUBMITTALS RESERVED FOR NAVFAC [_____] APPROVAL 
+of the project document are edited to identify the agreed upon special process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordination is required between this section and the project power systems study to determine which of 
+the standardized Arc Flash Warning labels are required on the equipment.  These labels (Graphics) are available 
+in metric (SI) and U.S. Customary (IP) system dimensions.  Use these files to develop project specific drawings.<BRK/>
+<BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="2">
+      <COL AUTOWIDTH="0" WIDTH="81.00"/>
+      <COL AUTOWIDTH="0" WIDTH="240.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING"><HL1>File Name</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>Description</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.75">
+         <CEL>
+<DTA TYPE="STRING">ARCFLASH</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Arc Flash Warning Label</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/></TAB></NPR><BRK/>
+<NPR>NOTE:  To download UFGS Forms, Graphics, and Tables, go to: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL></NPR><BRK/>
+<BRK/>
+<NPR>Go to the specification section number, select the appropriate Electrical.ZIP file(s) and extract the desired 
+details.</NPR><BRK/>
+<BRK/>
+<NPR>Do not include the Arc Flash Warning Labels in the project specifications.  Insert the appropriate details on 
+drawings and modify optional and blank items.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  To the Project Specification Editors:  The following two Attachments are included with the pdf version 
+of this specification section and are referenced several times.<BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="60.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="174.75"/>
+      <COL AUTOWIDTH="0" WIDTH="86.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>File Name</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Description</HL1></DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Figure  263544-1</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Transient Voltage Recovery Limits for 270 VDC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Rev 07 26 21</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Figure  263544-2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Transient Voltage Recovery Limits for 28 VDC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Rev 07 26 21</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></NPR><BRK/>
+<NPR>When developing your final project documents, you must download and attach the pdf versions of both figures to 
+the end of this edited Section 26 35 44 270 VDC SOLID STATE CONVERTER.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  To download UFGS Forms, Graphics, and Tables, go to: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL></NPR><BRK/>
+<BRK/>
+<NPR>Go to the specification section number, select Figure 263544 -1 and Figure 263544-2 and download.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information must be shown on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Show location of all equipment including converter, paralleling controls when required, and remote monitoring 
+and control panels.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Provide functional block diagram, single line diagrams, power, and control wiring interconnection diagrams, 
+wiring diagrams, conduit entry diagrams, equipment elevations, maintenance envelope, limiting dimensions, and 
+equipment ratings which are not covered in the specifications.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Design equipment rooms with working spaces as required by NFPA 70 and manufacturers extra limitations.  Provide 
+ventilation for equipment rooms based on converter components heat load generated when operating at 100 percent 
+load.  Provide 60 Hz convenience receptacles.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ensure that the 270 VDC distribution systems are properly coordinated including the ratings of the power 
+cables, ground cables, circuit breakers, transformers, filters, rectifiers, and control equipment.  Provide calculations 
+in Basis of Design per UFC 3-501-01, Electrical Engineering, including voltage drops, which can be critical in 
+DC systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM D709</RID><RTL>(2017) Standard Specification for Laminated Thermosetting Materials</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 100</RID><RTL>(2000; Archived) The Authoritative Dictionary of IEEE Standards Terms</RTL><BRK/><BRK/><RID>IEEE 519</RID><RTL>(2022) Standard for Harmonic Control in Electrical Power Systems</RTL><BRK/><BRK/><RID>IEEE 1159</RID><RTL>(2019) Recommended Practice on Monitoring Electric Power Quality</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/><RID>IEEE C62.41.1</RID><RTL>(2002; R 2008) Guide on the Surges Environment in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/><RID>IEEE C62.41.2</RID><RTL>(2002) Recommended Practice on Characterization of Surges in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTRICAL TESTING ASSOCIATION (NETA)</ORG><BRK/><BRK/><RID>NETA ATS</RID><RTL>(2025) Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTROTECHNICAL COMMISSION (IEC)</ORG><BRK/><BRK/><RID>IEC 60947-4-1</RID><RTL>(2023) Low-voltage Switchgear and Controlgear, Part 4-1: Contactors and Motor Starters - Electromechanical Contactor and Motor Starters</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA ST 20</RID><RTL>(2014) Dry-Type Transformers for General Applications</RTL><BRK/><BRK/><RID>NEMA Z535.4</RID><RTL>(2023) Product Safety Signs and Labels</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 70E</RID><RTL>(2024) Standard for Electrical Safety in the Workplace</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY OF AUTOMOTIVE ENGINEERS INTERNATIONAL (SAE)</ORG><BRK/><BRK/><RID>SAE AS7974</RID><RTL>(2010; Rev A) Cable Assemblies and Attachable Plugs, External Electrical Power, Aircraft</RTL><BRK/><BRK/><RID>SAE AS7974/5</RID><RTL>(2017; Rev A) Cable Assembly, External Electrical Power, Aircraft, Single-Jacketed 270 VDC, 90 KW</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-STD-704</RID><RTL>(2016; Rev F; Change 1; Notice 3 2021) Aircraft Electric Power Characteristics</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 467</RID><RTL>(2022) UL Standard for Safety Grounding and Bonding Equipment</RTL><BRK/><BRK/><RID>UL 489</RID><RTL>(2025) UL Standard for Safety Molded-Case Circuit Breakers, Molded-Case Switches and Circuit-Breaker Enclosures</RTL><BRK/><BRK/><RID>UL 506</RID><RTL>(2017; Reprint Jan 2022) UL Standard for Safety Specialty Transformers</RTL><BRK/><BRK/><RID>UL 1012</RID><RTL>(2010; Reprint Jul 2025) UL Standard for Safety Power Units Other than Class 2</RTL><BRK/><BRK/><RID>UL 1449</RID><RTL>(2021; Reprint Oct 2025) UL Standard for Safety Surge Protective Devices</RTL><BRK/><BRK/></REF></SPT>[<SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include this optional reference to Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING when it is already 
+being used and referred to for other electrical equipment on the project.  Coordinate with optional paragraph 
+in PART 3.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate converter equipment with Government's cybersecurity requirements and interpretations.  Include this 
+optional reference to Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS if the 270 VDC system 
+includes remote control or remote access capability.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Section [<SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING] [and <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS] applies to this section, 
+with the additions and modifications specified herein.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified or indicated, electrical and electronics terms used in these specifications, and on the drawings, must be as defined 
+in <RID>IEEE 100</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ensure the optional bracketed "Remote Monitoring and Control Panel" is not included when that equipment 
+is not included in the body of the specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Converter Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Converter</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>270 VDC Aircraft Power Cable Assembly</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>28 VDC Interlock</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Remote Monitoring and Control Panel</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Work Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Routine Factory Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Special Factory Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Test Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Routine Factory Tests Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Special Factory Tests Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Manufacturer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Nationally Recognized Testing Laboratory (NRTL) Listing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-09 Manufacturer's Field Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Field Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Test Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Test Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Syllabus</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with options under paragraph OPERATION AND MAINTENANCE MANUALS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Converter O&amp;MM</SUB>, Data Package 5; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Preliminary Converter O&amp;MM</SUB>, Data Package 5; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Remote Monitoring and Control Panel</SUB>, Data Package 5; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  On Navy projects, include at least one of the bracketed options below.  The first option is for surveillance 
+only, and the second option is for complete approval where "reach-back support" has already been coordinated with 
+either NAVAIR or NAVFAC LANT per the third introductory Technical Note.  Add the appropriate information in Section 
+<SRF>01 33 00</SRF> SUBMITTAL PROCEDURES to coordinate with the special requirements.</NPR><BRK/>
+<AST/><BRK/>
+<BRK/></NTE>
+[<SPT><TTL>Government Submittal Review</TTL><BRK/>
+<BRK/>
+[<TXT>NAWCAD Air Vehicle Electrical Power Systems Group (AB43), (301) 342-4161 [and Code DC 44, NAVFAC LANT, Naval Facilities Engineering Systems Command] 
+will provide surveillance.  If they have comments or concerns, they will contact and coordinate resolution of their comments with the appropriate 
+approving agent.</TXT><BRK/>
+<BRK/>
+]<TXT>[(NAWCAD Air Vehicle Electrical Power Systems Group (AB43), (301) 342-4161][Code DC 44, NAVFAC LANT, Naval Facilities Engineering Systems Command][_____] 
+will review and approve all submittals in this section requiring Government approval.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the word, "must" had been substituted 
+for "should" wherever it appears.  Interpret references in these publications to the "authority having jurisdiction," or words of similar meaning, 
+to mean the Contracting Officer.  Equipment, materials, installation, and workmanship must be in accordance with the mandatory and advisory provisions 
+of <RID>NFPA 70</RID> unless more stringent requirements are specified or indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such products which are of equal material, 
+design and workmanship.  Products must have been in satisfactory commercial or industrial use for 5 years prior to bid opening.  The 5-year period 
+must include applications of equipment and materials under similar circumstances and of similar size.  The product must have been on sale on the 
+commercial market through advertisements, manufacturers' catalogs, or brochures during the 5-year period.  Where two or more items of the same 
+class of equipment are required, these items must be products of a single manufacturer; however, the component parts of the item need not be the 
+products of the same manufacturer unless stated in this section.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a 5-year field service record will be acceptable if a certified record of satisfactory field operation for not less than 
+6000 hours, exclusive of the manufacturers' factory or laboratory tests, is furnished.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material and Equipment Manufacturing Date</TTL><BRK/>
+<BRK/>
+<TXT>Products manufactured more than 1 year prior to date of delivery to site must not be used, unless specified otherwise.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Converter Drawings</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide a detail on the drawings that identifies the location, mounting and permitted maintenance access 
+areas for each converter.</NPR><BRK/>
+<BRK/>
+<NPR>For Navy projects, include the bracketed options that require surface mounting against the wall, and prohibits 
+rear access to converter.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Furnish scaled drawings of enclosure outline including front, top, side views, and overall dimensions. Include "maintenance envelope" dimensions 
+confirming space limitations identified on the drawings[, and surface mounting flush against the wall.[  Rear access for maintenance and repair 
+purposes is prohibited]]. The "maintenance envelope" drawings must also indicate adequate clearance for operation, maintenance, and replacement 
+of operating equipment devices.  Provide external power and control wiring, cabling, connector, and backplane interconnect drawings.  Provide single 
+line, schematic, and wiring diagrams.  Drawings must include details of input and output circuit breakers, contactors, rectifiers, surge protectors, 
+control devices and conduit entry and exit locations.  If parallel operation is included, provide an interconnection diagram.  Submittals must 
+include the nameplate data, size, and capacity.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Manufacturer</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The experience clause in this section has been approved by a Level I Contracting Officer in accordance 
+with the requirements of Naval Facilities Acquisition Supplement (NFAS).  NFAS can be found at the following link:</NPR><BRK/>
+<BRK/>
+<NPR><URL HREF="https://www.navfac.navy.mil/products_and_services/sb/opportunities/guidelines/navfac.html">https://www.navfac.navy.mil/products_and_services/sb/<BRK/>
+opportunities/guidelines/navfac.html</URL></NPR><BRK/>
+<BRK/>
+<NPR><HL3>This clause may be used without further approval or request for waiver</HL3>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit a certification stating that the manufacturer has a minimum of five years' experience in the design, manufacturing, and testing of a 270 
+VDC solid state converter at the equivalent or greater kW and voltage ratings for direct connection to aircraft electrical loads.  When specifications 
+require multiple converters operating in parallel, the manufacturer must provide specific experience with equal or greater kW rated converters.</TXT><BRK/>
+<BRK/>
+<TXT>Experience in manufacturing motor generator sets does not qualify as equivalent.  Experience in manufacturing portable engine-driven 28 VDC power 
+units does not qualify as equivalent.  The manufacturer must be experienced in producing units for installation in permanent buildings, in environmentally 
+closed spaces, or in weatherproof enclosures as applicable.  The manufacturer must furnish documented experience with converters in various environmental 
+conditions including exterior flight line, hangar, and environmentally enclosed spaces within buildings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Work Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a written work plan with the initial shop drawing submittal, which consists of a schedule of dates of the routine and special factory tests, 
+installation of equipment, field tests, and operator training for the system.  Furnish a list of the test instrumentation equipment complete with 
+the documented calibration program, for the factory and the field tests.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Routine Factory Test Plan</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate calendar day requirements with Activity and with special review requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit test plan and procedures at least [21][_____] calendar days prior to the tests being conducted.  Provide detailed description of test procedures, 
+including test equipment and setups complete with their current calibration dates, to be used to ensure the converter meets this specification 
+and explain the test methods used.  As a minimum, include the tests required under the paragraph ROUTINE FACTORY TESTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Special Factory Test Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit the Special Factory Test Plan and procedures with the Routine Factory Test Plan.  Provide detailed description of test procedures, including 
+test equipment and setups complete with their calibration dates, used to ensure the converter meets this specification and explain the test methods 
+used.  As a minimum, include the tests required under the paragraph SPECIAL FACTORY TESTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Field Test Plan</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate calendar day requirements with Activity and with special review requirements.  For Navy projects, 
+use 30 days to coordinate with NAVAIR requirement to have time to arrange attendance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit test plan and procedures at least [30][15][_____] calendar days prior to the start of field tests.  Provide detailed description and dates 
+and times scheduled for performance of tests, and detailed description of test procedures, including test equipment and setups of the tests to 
+be conducted to ensure the system meets this specification.  List make, model, and current calibration dates, and provide functional description 
+of the test instruments and accessories.  Explain the test methods to be used.  As a minimum, include the tests required under the paragraph FIELD 
+QUALITY CONTROL.  Test reports must include power quality measurement data collected in accordance with <RID>IEEE 1159</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Nationally Recognized Testing Laboratory (NRTL) Listing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>270 VDC converters must be identified with a nationally recognized testing laboratory (NRTL) label or UL label prior to shipping.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Currently Listed Products</TTL><BRK/>
+<BRK/>
+<TXT>Submit NRTL or UL certification or UL file number for the actual converter to be shipped with the initial submittal to verify compliance of equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Proposed Listed Products</TTL><BRK/>
+<BRK/>
+<TXT>Submit NRTL or UL certification or UL file number for same or similar rating or product size range of like design unit with the initial submittal 
+to verify compliance of equipment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Routine Factory Tests Certification</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate calendar day requirements with Activity and with special review requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit within [45][_____] calendar days after completion of tests.  Receive approval of test prior to shipping unit.  Certify tests were conducted 
+on each converter in accordance with the requirements set forth in paragraph ROUTINE FACTORY TESTS and certify converter satisfactorily operated 
+within specified limits.  Include copies of the test procedures, test configuration diagrams and schematics, test data, and results.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Special Factory Tests Certification</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Certify tests were conducted on a converter of the same design, construction, kW rating, and voltage rating to be provided.  Tests must be in accordance 
+with the requirements set forth in paragraph SPECIAL FACTORY TEST and certify converter operated without malfunctioning within specified limits.  
+Include copies of the test procedures, test configuration diagrams and schematics, test data, and results.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Field Test Certification</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate calendar day requirements with Activity and with special review requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit report of test results as specified by paragraph FIELD QUALITY CONTROL within [15][_____] calendar days after completion of tests.  Certify 
+tests were conducted on each converter in accordance with the paragraph FIELD QUALITY CONTROL and certify converter satisfactorily operated within 
+specified limits.  Include copies of the test procedures, test configuration diagrams and schematics, test data, and results.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>OPERATION AND MAINTENANCE MANUALS</TTL><BRK/>
+<BRK/>
+<TXT>Submit converter Operation and Maintenance Manuals (O&amp;MM) in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Additions to <SUB>Converter O&amp;MM</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the paralleling bracketed option when paralleling has been included as a requirement of the equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>In addition to requirements of Data Package 5, include the following on the actual converter provided:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A "one-line diagram" from the building service entrance panel to the converter and out to the end utilization point(s).</OLI><BRK/>
+<BRK/>
+<OLI>A concise, duplicatable, single page data sheet with operating instructions for each unit including startup[, paralleling,] and shutdown 
+procedures.</OLI><BRK/>
+<BRK/>
+<OLI>Routine and field test reports.</OLI><BRK/>
+<BRK/>
+<OLI>NRTL or UL certification or UL file number.</OLI><BRK/>
+<BRK/>
+<OLI>A list of all code required identification and warning signage and labels that have been provided on the converter.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Preliminary Converter O&amp;MM</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Prior to scheduling Field Tests, two bound copies of a Preliminary O&amp;MM must be submitted to and approved by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Spare Parts Information</TTL><BRK/>
+<BRK/>
+<TXT>Furnish recommended manufacturer's spare parts list, quantities, lead time to receive after ordering, and a schedule of prices,(guaranteed for 
+one year after warranty expires), for each type of converter and other equipment specified in this section.  Include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Fuses</OLI><BRK/>
+<BRK/>
+<OLI>Human Machine Interface (HMI)</OLI><BRK/>
+<BRK/>
+<OLI>Indicator lamp/LED</OLI><BRK/>
+<BRK/>
+<OLI>Output switching modules</OLI><BRK/>
+<BRK/>
+<OLI>Plug-in logic cards</OLI><BRK/>
+<BRK/>
+<OLI>Power filter capacitors</OLI><BRK/>
+<BRK/>
+<OLI>Power semi-conductors</OLI><BRK/>
+<BRK/>
+<OLI>Ventilation system filters</OLI><BRK/>
+<BRK/>
+<OLI>270 VDC Aircraft Power Cable Assembly</OLI><BRK/>
+<BRK/>
+<OLI>28 VDC Aircraft Power Cable Assembly</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>The equipment items must be supported by service organizations which are most convenient to the equipment installation in order to render satisfactory 
+service to the equipment on a regular and emergency basis during the warranty period of the contract in accordance with Section <SRF>01 78 23</SRF> OPERATION 
+AND MAINTENANCE DATA.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>270 VDC <SUB>CONVERTER</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do NOT edit this paragraph to specify the internal architecture of the converter (e.g. type of power supply, 
+rectifier type or switching technology to be utilized).  Specifying this type of technology may make this a sole 
+source specification which requires justification and approval per federal contract law.</NPR><BRK/>
+<BRK/>
+<NPR>For the options:  Choose 50 or 60 Hz based on the exterior power distribution system at the project location.  
+Choose 24,000 for the MTBF unless the project has documented, more stringent requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide converter consisting of modular construction solid-state components for [50][60] Hz to 270 VDC conversion, input/output devices, and ancillary 
+control devices.  Converter must be a standard product of the manufacturer and the manufacturer's latest design that complies with the specification 
+requirements.  The converters provided under this contract must be products of the same manufacturer.  Each unit must have a calculated Mean Time 
+Between Failures (MTBF) exceeding [24,000][_____] hours as calculated when the converter is provided with yearly servicing and maintenance.  Provide 
+converter with NRTL or UL listing complying with <RID>UL 1012</RID>.  The converter must have minimum 12 pulse, active input rectification circuit or a demonstrated 
+design achieving equal or better performance characteristics.  Circuit breakers operating at 270 VDC and 28 VDC must be designed and UL tested 
+for [50][60] Hz operation [and derated] for the applicable VDC operation, as appropriate.  Provide startup and shutdown instructions posted on 
+the front of the unit using engraved plastic or aluminum plate.  Provide a plastic encapsulated schematic diagram attached to the inside of the 
+unit in clear view of maintenance personnel.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Electrical Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>The 270 VDC output and the associated 28 VDC Interlock voltage, measured at the aircraft end of the servicing cable, must be in accordance with <RID>
+MIL-STD-704</RID>, must be controlled to the voltage regulation requirements within this document throughout all loadings defined, and must comply with 
+the additional modifications identified herein.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Input Voltage</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Using input voltage other than 480 volts (US) or 380 volts (European) will increase the cost and weight 
+and decrease the efficiency of the converter.  Show input voltage on the construction drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Choose 60 or 50 Hz based on the exterior power distribution system at the project location.  Choose 10 percent 
+voltage variation unless specific project documents require a higher percentage input variation to be permitted.</NPR><BRK/>
+<BRK/>
+<NPR>A voltage changing transformer is not permitted at the input of the converter unit on any new facilities.  Adding 
+a voltage changing transformer at the input is only permitted in the rare case when retrofitting an existing facility 
+and there is no other voltage available. In this exception, remove the last sentence in the section below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[480][380][_____] V, three phase, three wire, grounded, [60][50] Hz.  Converter must provide rated output voltage when input voltage is varied 
+plus or minus [10][_____] percent.  A voltage changing transformer is not permitted at the input of the converter unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Input Power Factor</TTL><BRK/>
+<BRK/>
+<TXT>Between 0.8 lagging and unity, under all conditions of steady state line and load variations specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surge Protection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select Location Category C for outdoor locations only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide converter capable of sustaining an input surge described in and tested in accordance with <RID>UL 1449</RID>, and <RID>IEEE C62.41.1</RID> and <RID>IEEE C62.41.2</RID>, 
+Location Category [B][C], and continue to operate with no alarms within the specified tolerance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inrush Current</TTL><BRK/>
+<BRK/>
+<TXT>The inrush current must not exceed 100 percent of the rated full load input current.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Input Current Distortion</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where total connected converter load is a small percentage (less than 40 percent) of the total connected 
+facility load, use 12 percent Total Harmonic Distortion (THD)and 8 percent individual.  For large converters (e.g. 
+312 kW or larger) or where total connected converter load is a significant percentage of the total connected facility 
+load, use 5 percent THD and 3 percent individual.</NPR><BRK/>
+<BRK/>
+<NPR>For installation in shipboard environments using Type 1 power (60 hertz per MIL-Std-1399-300, Part 1 (2018) Low 
+Voltage Electric Power, Alternating Current), use 5 percent THD and 3 percent individual.</NPR><BRK/>
+<BRK/>
+<NPR>Note that per NAVAIR request, the converter Special Tests paragraph requires data to be provided at the 25, 50, 
+75 and 100 percent load points.  This is intentionally more stringent than the "full load" requirement below, 
+and is intended for data acquisition only.  It will be used to help develop a resolution to known field problems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Input current Total Harmonic Distortion (THD) must not exceed [12][5] percent of the fundamental frequency with nominal input voltage at full load.  
+Individual harmonic content must not exceed [8][3] percent of the fundamental frequency.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Output Voltage</TTL><BRK/>
+<BRK/>
+<TXT>As an exception to the requirements of <RID>MIL-STD-704</RID>, the 270 VDC converter must simultaneously provide and regulate (when measured at the cable 
+head) to the following steady state voltage limits:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>270 VDC (plus or minus 3 VDC).</OLI><BRK/>
+<BRK/>
+<OLI>28 VDC (plus 1 VDC or minus 2 VDC).</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Power Output</TTL><BRK/>
+<BRK/>
+<TXT>The 270 VDC converter must have a power output rating of:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>270 VDC:  267 amperes (72 kW) with overload / transient capability as defined herein.</OLI><BRK/>
+<BRK/>
+<OLI>28 VDC:  15 amperes (0.42 kW) with overload / transient capability as defined herein.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Load Range</TTL><BRK/>
+<BRK/>
+<TXT>The 270 VDC converter must be capable of meeting the following load ranges:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>270 VDC:  0 to 72 kW of any combination of resistive and constant power loads with overload / transient capability as defined herein, in 
+parallel with up to 2,500 microfarads of capacitance, with a minimum current demand rate of 200 Amperes per millisecond.</OLI><BRK/>
+<BRK/>
+<OLI>28 VDC:  0 to 0.42 kW of any combination of resistive and constant power loads with overload / transient capability as defined herein, 
+in parallel with up to 100 microfarads of capacitance, with a minimum current demand rate of 60 Amperes per millisecond.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Efficiency</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the Navy, the use of any size converter other than 72 kW is no longer authorized.  If a different size 
+is required for a specific project, contact NAVFAC LANT for approval and for the appropriate efficiency modifications. 
+The POC information is located at the beginning of this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide 72 kW units with a minimum efficiency of 89 percent at 50 percent load and 92 percent at 100 percent load.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>No Load Input Losses</TTL><BRK/>
+<BRK/>
+<TXT>Provide converter with no-load input losses no greater than 7 percent of the output kW rating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Overload</TTL><BRK/>
+<BRK/>
+<TXT>The converter outputs, both 270 VDC and 28 VDC, must have overload capabilities in accordance with the following table.  The satisfactory overload 
+operating time is based on no more than one overload of the same or longer conditions, within the following specified time between overloads.</TXT><BRK/>
+<HL4><TAB WIDTH="82">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="6">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="119.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="101.25"/>
+      <COL AUTOWIDTH="0" WIDTH="162.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="49.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Percent of Full Load (Rated Output) </HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Satisfactory Operating Time</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Time Between Overloads</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="132.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1
+10 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">30 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">2 hours<BRK/><BRK/>Note: Unit must still be capable of withstanding any of the other conditions for their respective operating times.  e.g. Unit can still do 150 percent for less than 10
+ seconds, before tripping, etc.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>125 percent</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>5 minutes</HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>10 minutes</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">150 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">10 seconds</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">10 minutes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">200 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2 seconds</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">5 minutes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">250 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">100 milliseconds<BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">5 minutes</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></HL4><BRK/>
+<TXT>After minimum operating time is achieved, unit must interrupt output power.  Unit must be capable of sustaining the overload without damage until 
+the protective device interrupts the overload.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Short Circuit</TTL><BRK/>
+<BRK/>
+<TXT>When a bolted positive to negative fault is applied to the unit, unit must be capable of sustaining the short circuit current without damage until 
+the protective device interrupts the fault.  The output transient voltage recovery time and thresholds are more stringent than those required by <RID>
+MIL-STD-704</RID>, and must comply with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>During a bolted fault the current output must be regulated between 485 and 550 Amps for 5 seconds.  If the fault condition clears in less 
+than 5 seconds, the power source must recover to the voltage range of 250 to 280 volts within 40 milliseconds, and then settling out to 
+the regulated voltage levels of 270 VDC (plus or minus 3 VDC) within 10 milliseconds, as shown in <ATT>Figure 263544-1: Transient Voltage Recovery 
+Limits for 270 VDC</ATT>.</OLI><BRK/>
+<BRK/>
+<OLI>During this 270 VDC bolted fault condition, as well as for any high di/dt load or overload condition (e.g. over voltage, over current, 
+under voltage, ripple), the 28 VDC interlock power output must not be disrupted and power quality must remain as defined in <ATT>Figure 263544-2: 
+Transient Voltage Recovery Limits for 28 VDC</ATT>, throughout the fault isolation event.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Ripple Amplitude</TTL><BRK/>
+<BRK/>
+<TXT>Ripple amplitude is the maximum absolute value of the difference between the steady state and the instantaneous DC voltage.  The maximum allowable 
+ripple amplitude for the 270 VDC output is more stringent than what is required by <RID>MIL-STD-704</RID>.  The maximum allowable ripple amplitude for the 
+28 VDC output must be in accordance with <RID>MIL-STD-704</RID> These must comply with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>270 VDC output:  1.5V (peak to mean).</OLI><BRK/>
+<BRK/>
+<OLI>28 VDC output:  1.5V (peak to mean).</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Distortion Spectrum</TTL><BRK/>
+<BRK/>
+<TXT>The converter output distortion spectrum must meet the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>270 VDC:  <RID>MIL-STD-704</RID> Figure 18, inclusive of the fundamental voltage ripple component.</OLI><BRK/>
+<BRK/>
+<OLI>28 VDC:  <RID>MIL-STD-704</RID> Figure 15.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Distortion Factor</TTL><BRK/>
+<BRK/>
+<TXT>The DC distortion factor is the ratio of the DC distortion to the DC steady state voltage.  The maximum allowable distortion factor for the 270 
+VDC converter must be as follows per Table IV of <RID>MIL-STD-704</RID>:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>270 VDC output:  0.015.</OLI><BRK/>
+<BRK/>
+<OLI>28 VDC output:  0.035.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Transient Output Voltage Recovery</TTL><BRK/>
+<BRK/>
+<TXT>The transient output voltage recovery time and thresholds are more stringent than those required by <RID>MIL-STD-704</RID>.  Monitor and record output voltage 
+at the load end of the cable.  Comply with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The 270 VDC output must remain within the range of 220 to 330 VDC for any step load change as defined in paragraph LOAD RANGE herein.</OLI><BRK/>
+<BRK/>
+<OLI>The 270 VDC output must begin recovery from the worst case transient excursion within 10 milliseconds and must be recovered to within the 
+steady-state operating range specified in paragraph OUTPUT VOLTAGE within 40 milliseconds per Figure 263544-1: Transient Voltage Recovery 
+Limits for 270 VDC.</OLI><BRK/>
+<BRK/>
+<OLI>The 28 VDC output must remain within a range of 26 to 40 VDC for any step load change as defined in paragraph LOAD RANGE herein.  The voltage 
+must not drop below 26 VDC for more than 50 microseconds.</OLI><BRK/>
+<BRK/>
+<OLI>The 28 VDC output must begin recovery from the worst case transient excursion within 15 milliseconds and must be recovered to within the 
+steady-state operating range specified in paragraph OUTPUT VOLTAGE within 100 milliseconds per Figure 263544-2: Transient Voltage Recovery 
+Limits for 28 VDC.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Environmental Rating</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select<MET> 55 degrees C</MET><ENG> 130 degrees F</ENG> for the ambient temperature rating unless in areas subject to extreme 
+temperatures (e.g. Middle East and desert environments.).  Use 0-95 percent relative humidity unless extreme condensation 
+such as in a jungle climate.</NPR><BRK/>
+<BRK/>
+<NPR>Use<MET> 915 meters</MET><ENG> 3000 feet</ENG> level unless location of installation will be at higher elevations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The converter must be rated for continuous operation from no load to rated full load under the following conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Ambient temperatures ranging from<MET> -20 to [55][60][65] degrees C.</MET><ENG> -4 to [130][140][150] degrees F.</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Relative humidity from [0 to 95] [_____] percent noncondensing.</OLI><BRK/>
+<BRK/>
+<OLI>Ambient pressures from sea level to<MET> [915] [_____] meters</MET><ENG> [3,000] [_____] feet</ENG></OLI>.<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Monitoring and Control Panel</TTL><BRK/>
+<BRK/>
+<TXT>Provide converter with a control panel that is equipped with the following controls, indicators, instrumentation, data logging, diagnostics, and 
+alarm functions.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Controls</TTL><BRK/>
+<BRK/>
+<TXT>Controls must be mounted on the front of the control panel, accessible without opening any doors or covers.  Specific sequencing, or the requirement 
+for simultaneous pushbutton operation, is not acceptable for any input or output control.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the remote control panel option when unit is platform mounted or located out of sight of aircraft.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Start/stop pushbutton for input device control (circuit breaker or contactor).</OLI><BRK/>
+<BRK/>
+<OLI>Lamp/light emitting diode (LED) test - A push-to-test button or switch to test indicator lamps/LEDs. If panel lights all blink as part 
+of the startup Built-in-Test (BIT) sequence, then a separate push to test button is not required.</OLI><BRK/>
+<BRK/>
+<OLI>Emergency power off - A separate pushbutton for emergency power off.</OLI><BRK/>
+<BRK/>
+<OLI>Output device ON/OFF.</OLI><BRK/>
+<BRK/>
+<OLI>Alarm silence and "silence" indicator - A switch that must disable the audible alarm without clearing the alarm codes.</OLI><BRK/>
+<BRK/>
+<OLI>Additional individual controls for the following functions (Note - these may be included as part of the Human-Machine Interface (HMI) as 
+described in paragraph HUMAN MACHINE INTERFACE REQUIREMENTS):</OLI><BRK/>
+<BRK/>
+<OLI>- Output voltage adjust</OLI><BRK/>
+<BRK/>
+<OLI>- Alarm reset - resets and clears the silenced audible alarm.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Indicators</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The following are mandatory indicators.  They must be included on the control panel on the exterior of the unit[, and on the exterior of 
+the remote control panel] in addition to any that are included in the HMI:</OLI><BRK/>
+<BRK/>
+<OLI>- Input power available - Lamp/LED to indicate that the supply voltage is available.</OLI><BRK/>
+<BRK/>
+<OLI>- Output power On/Off - Lamp/LED to indicate that the converter output voltage is available.</OLI><BRK/>
+<BRK/>
+<OLI>- Output device "ON".</OLI><BRK/>
+<BRK/>
+<OLI>- Audible alarm.</OLI><BRK/>
+<BRK/>
+<OLI>- Aircraft interlock bypass - Lamp/LED to indicate that the Aircraft Interlock has been bypassed.</OLI><BRK/>
+<BRK/>
+<OLI>In addition, include the following additional indicators, if they are not included in the HMI:</OLI><BRK/>
+<BRK/>
+<OLI>- System alarm - Lamp/LED to indicate that a fault has been detected.  This indicator must be latched in the "ON" position whenever an 
+alarm condition described in paragraph ALARM ANNUNCIATOR, is detected and must remain "ON" until the alarm reset pushbutton is pressed.</OLI><BRK/>
+<BRK/>
+<OLI>- Indicating lamp/LED to indicate that the alarm silence switch is in the disable position.</OLI><BRK/>
+<BRK/>
+<OLI>- Elapsed time meter in hours; (may be internal or visible externally).</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Human Machine Interface (HMI) Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide an HMI with a minimum of four by twenty (4 x 20) character backlit LED display for presenting the digital instrumentation, diagnostic system, 
+and fault indicating system data.  The HMI display must be viewable in direct sunlight and the HMI must be rated for harsh environments.</TXT><BRK/>
+<OLG> <BRK/>
+<OLI>Digital Instrumentation.  Provide true RMS, plus/minus one percent accuracy, microprocessor-based readings that include the following functions:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output voltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output current.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inverter temperature.  This function is desired for field diagnostics, but is not mandatory.</OLI><BRK/>
+<BRK/>
+<OLI>Alarm Annunciator.  The unit must be capable of detecting and displaying the following abnormal conditions:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Input overvoltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Input undervoltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output undervoltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output overvoltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output overload.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">System alarm.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Control logic failure.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Over-temperature.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Logic power supply failure.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Input/Output Devices</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate 50 Hz vs 60 Hz requirement with Activity.  Provide appropriate short circuit ratings in accordance 
+with Basis of Design Calculations per UFC 3-501-01, Electrical Engineering.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide fully-rated, UL approved devices for control of [60][50] Hz input and for control of DC outputs from the converter.  Derate devices and 
+cables operating at 270 VDC in accordance with <RID>IEEE 519</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Input Device</TTL><BRK/>
+<BRK/>
+<TXT>Provide converter with a UL listed input device (circuit breaker conforming to requirements of <RID>UL 489</RID> or contactor) as an integral part of the 
+converter.  Device must be operable from the front of the converter.  Device must have a short-circuit current rating of [_____] amperes symmetrical 
+minimum.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Output Contactor</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include option for IEC on Oconus projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide converter output with an automatic magnetically-held contactor with interlock circuit.  Output contactor must have sufficient capacity 
+to handle rated load, overload, and available short circuit current.  Contactor must additionally be rated for make / break operation into a 2,500 
+microfarads capacitance without damage to the converter.</TXT><BRK/>
+<BRK/>
+<TXT>Contactor must open when any circuit identified in the paragraph SAFETY FUNCTIONS causes the system to shut down.  Electrically interlock contactor 
+with ON/OFF circuitry so that when the converter is shut down, the contactor opens immediately and remains open.[  Conform to the requirements 
+of <RID>IEC 60947-4-1</RID>.]</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Output Circuit Breaker</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Only add an output circuit breaker, (and delete the OUTPUT CONTACTOR paragraph above), if the converter 
+is supplying a downstream distribution panelboard (such as in a shop or laboratory), or multiple outputs with 
+distribution internal to the converter.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide converter output(s) with non-automatic manual circuit breaker(s), with appropriate frame size and a shunt trip coil rated for DC operation.  
+Trip circuit breaker by the unit's OFF circuit [local or remotely activated] and when any circuit identified in the paragraph SAFETY FUNCTIONS 
+causes the system to shut down.  Output breaker(s) must be operable from the front of the unit.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Aircraft Interlock Circuit</TTL><BRK/>
+<BRK/>
+<TXT>The 270 VDC output power contactors must be interlocked with the unit's fault indicators, alarms, and the 28 VDC interlock power circuit.  When 
+the 28 VDC interlock power source is "broken" (e.g. when the power cord is removed from the aircraft receptacle), the 270 VDC output power source 
+must be disabled.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Safety Functions</TTL><BRK/>
+<BRK/>
+<SPT><TTL>270 VDC Power Source</TTL><BRK/>
+<BRK/>
+<TXT>The 270 VDC power source internal 270 VDC buss must automatically discharge to below 12 VDC within 2 seconds after the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>270 VDC power source has been turned off.</OLI><BRK/>
+<BRK/>
+<OLI>Whenever any access panel is opened on the equipment.  Under this condition, the interlock circuitry must open the input device and the 
+270 VDC output device, and not allow the input or output device to close.  For maintenance purposes, provide an internal bypass switch 
+to defeat the interlock circuitry.</OLI><BRK/>
+<BRK/>
+<OLI>Detection of system fault that results in a converter shut down condition, including the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Input undervoltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Input overvoltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Loss of input phase.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Loss of input power.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>270 VDC Output Cable </TTL><BRK/>
+<BRK/>
+<TXT>The 270 VDC power must be removed from the output cable within 100 milliseconds after one of the following occurs:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Receiving a stop command.</OLI><BRK/>
+<BRK/>
+<OLI>Loss of 28 VDC interlock power.</OLI><BRK/>
+<BRK/>
+<OLI>Detection of a fault that results in an output shut down, including the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output overvoltage - Protect by tripping output devices for instantaneous overvoltage of 30 percent or more and for 10 to 30 
+percent overvoltage lasting more than 0.25 seconds.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output undervoltage - Protect by preventing the closing of the output disconnect until the output voltage is 95 percent of the 
+rated output.  If, after closing, the voltage decreases to below 90 percent for longer than 5 seconds, provide relaying to trip 
+output devices utilizing a field-adjustable time-delayed circuit with a range of 4 to 10 seconds.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output overload.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Converter overtemperature protection.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Automatic Line Drop Compensation</TTL><BRK/>
+<BRK/>
+<TXT>Provide automatic line drop compensation (ALDC) from zero to ten percent adjustable internally.  Separate ALDC functions are required for the 270 
+VDC power source and for the 28 VDC interlock power source.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Auto Restart</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Auto restart should be considered when the converter is installed in a remote location that is not readily 
+accessible to operating personnel and maintaining 270 VDC power is critical to operations.  Use of auto restart 
+should be studied carefully to ensure that it does not create a potential personnel safety hazard.</NPR><BRK/>
+<BRK/>
+<NPR>This is an additional cost item and should not be specified unless specifically requested by the user.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>After a total input power outage the unit must be capable of automatically restarting and re-energizing loads upon restoration of normal power.  
+Provide units with a manual/auto restart switch and with backup battery power supply if it is needed to meet the auto restart requirement.  When 
+interlock circuit has been interrupted or when interlock is in the maintenance position (manual restart), the system should not restart.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Built-In Test Equipment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Built-in test equipment (BIT) should be considered when the converter is installed in a remote location 
+that is not readily accessible to operating personnel and maintaining 270 VDC power is critical to operations.  
+It may also be needed when high reliability is a defined concern.</NPR><BRK/>
+<BRK/>
+<NPR>This may be an additional cost item and although some manufacturers include it at no cost, it should not be required 
+unless specifically requested by the user.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Converter must include Built-in test equipment(BIT), which monitors both primary circuits and protection circuits of the unit.  Provide visual 
+indication to assist diagnosis of unit failures to a modular level.  Provide visual indication of converter status using cabinet mounted light 
+emitting diodes and Human Machine Interface (HMI).  As a minimum the indicator lights must include a "machine on" light, and an "output faulted" 
+indicator light that comes on when the unit has shut down.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Magnetic Components</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Magnetic components are used within the converter unit.  Do not delete this information.  It is not included 
+to imply permission to utilize transformers for modifying the input voltages to the converter.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Class 180 power magnetic transformer and inductors in accordance with <RID>NEMA ST 20</RID> and <RID>UL 506</RID>.  The limits of Class 180 must not be exceeded 
+at the maximum specified ambient temperature and at 100 percent load.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Acoustical Noise</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Converters are inherently noisy.  Manufacturers standard for a 72 kW converter is 72 dBa, and their lowest 
+attainable value is 68 dBa.  If 68 dBa is specifically required by the Activity because of the location of the 
+converter, include the "optional Acoustical Noise Test" in paragraph SPECIAL FACTORY TESTS, to verify that the 
+equipment furnished meets the more stringent requirement.  The test parameters (height and range) are included 
+in that paragraph.</NPR><BRK/>
+<BRK/>
+<NPR>If a different size converter is required for a specific project, contact NAVFAC LANT for approval and for the 
+appropriate acoustical noise modifications.  The POC information is located at the beginning of this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide unit with a maximum continuous acoustical noise level less than [72][68] dBa (A weighted scale).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Assembly Construction</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Per manufacturers, all converter enclosures require ventilation.  Per NEMA 250 Tables 1 and 2, only NEMA 
+Types 1,2,3R and 3RX are permissible to be ventilated.  Verify availability by multiple manufacturers before using 
+other enclosure types.</NPR><BRK/>
+<BRK/>
+<NPR>When location is outdoors, include the appropriate outdoor location coating and painting options.</NPR><BRK/>
+<BRK/>
+<NPR>When location is indoors, in item a:<BRK/>
+   - For Navy and Air Force, choose first option requiring flush wall mounting.<BRK/>
+   - For Army, choose second option and identify if pedestal mounted in hangars or floor mounted in lab or other 
+locations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide enclosures suitable for [indoor][outdoor][corrosive][_____] environments in accordance with <RID>NEMA 250</RID>, Type [l][2][3R][3RX].  Arrange to 
+provide required louvers, cooling air, entry and exit provisions for equipment within enclosures.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>[Units must be mounted flush against the wall, must not require back access for maintenance, and must comply with the "Maintenance Envelopes" 
+identified on the drawings.][Units must be [pedestal][floor] mounted as indicated and comply with the "Maintenance Envelopes" identified 
+on the drawings.]</OLI><BRK/>
+<BRK/>
+<OLI>Construct unit(s) so that components, with the exception of control and monitoring components, are totally enclosed within the enclosure.  
+Electronic circuits including power circuits must be modular construction readily accessible for maintenance, repair and module replacement 
+from the front of the enclosure.[  For units installed outdoors or in corrosive environments, [provide a conformal (rust-inhibiting) coating 
+for the printed circuit boards][enclose electronic circuits in a sealed electronics compartment that is not provided with direct cooling 
+ventilation or forced air cooling].]</OLI><BRK/>
+<BRK/>
+<OLI>Provide permanent identification tags for wiring.  Uniquely identify each wire.  Use the same identification system in the wiring diagrams 
+in the Operation and Maintenance Manual.  Enclosures must be painted in accordance with paragraph FACTORY APPLIED FINISH and as specified 
+herein.  Provide each enclosure with a finish coat over a rust inhibiting substrate or a substrate that has been provided with a rust inhibiting 
+treatment.[  For outdoor enclosures, if the unit is not painted using the powder coating process, provide two finish coats on the unit.]</OLI><BRK/>
+<BRK/>
+<OLI>Provide units with a Mean Time To Repair (MTTR) of 30 minutes from the time of the diagnosed failure based on documented manufacturer's 
+historical data for the average time of repair for their top ten faults.  Provide the supporting data with the equipment submittal.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>AIRCRAFT POWER CABLE ASSEMBLY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate  cable assembly requirements with unit voltage requirements, aircraft requirements, and with 
+paragraph AIRCRAFT INTERLOCK CIRCUIT.  Point of use systems are required.  Distributing through pits is not permitted 
+on new installations.  Distributing through other areas that increase total length beyond<MET> 43 meters</MET><ENG> 140 feet</ENG> is 
+not permitted on new installations.</NPR><BRK/>
+<BRK/>
+<NPR>For the Navy:</NPR><BRK/>
+<BRK/>
+<NPR>1)  Use the 333 Amperes option and the<MET> 25 meters</MET><ENG> 83 feet</ENG> length for all cable assemblies.</NPR><BRK/>
+<BRK/>
+<NPR>2)  If a different amperage is specifically identified  in the project requirements, or a longer length is required 
+due to a specific aircraft layout, approval must be obtained from NAVFAC LANT.  The POC information is located 
+at the beginning of this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a single-jacketed <SUB>270 VDC aircraft power cable assembly</SUB> in compliance with <RID>SAE AS7974</RID> and <RID>SAE AS7974/5</RID>.  The 270 VDC output cable assembly 
+must be constructed and tested to meet the power requirements of this specification, to minimize cross coupling, to meet current demand rates and 
+to ensure power regulation, ripple, distortion, and transient voltage recovery, as defined herein, is not exceeded.</TXT><BRK/>
+<BRK/>
+<TXT>Rate cable for [333][_____] amperes.  Cable length must be<MET> [43][_____]meters</MET><ENG> [83][_____]feet</ENG>.  Provide control cabling included within the jacket 
+for interlock circuit.  Terminate control wiring on accessible terminal blocks in unit.  Provide cable assembly with integrally molded 270 VDC 
+connector capable of connecting to the aircraft receptacle.  Provide cable/connector assembly suitable for severe duty, with crimped contact terminations. 
+Banded cables are not permitted.  In addition, the assembly must comply with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The 270 VDC and 28 VDC returns must be tied together only on the aircraft side of the on-aircraft external power receptacle.</OLI><BRK/>
+<BRK/>
+<OLI>The 28 VDC interlock output positive will be on pin "1" and output negative voltage will be on pin "2".</OLI><BRK/>
+<BRK/>
+<OLI>Pins "3" and "4" must be internally connected within the cable connector end to provide a "jumper" for interlock control (less than 0.1 
+ohms).</OLI><BRK/>
+<BRK/>
+<OLI>The contact section of the molded aircraft servicing connector must be capable of being repaired in the field.  The contact section must 
+be a one-piece, molded, replacement section or have individually replaceable pins and a molded one-piece cover.  Installation of the replacement 
+contact section must restore watertight integrity to the molded aircraft servicing connector.  Repair must not include replacement of the 
+entire aircraft servicing connector.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL><SUB>28 VDC Interlock</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The 28 VDC interlock power must be within <RID>MIL-STD-704</RID> "Normal Operating Limits", be available on power initiation, and must remain present throughout 
+the duration of connection of power to the aircraft.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The 28 VDC interlock power must provide at least 15 amps of power capacity for aircraft equipment use.</OLI><BRK/>
+<BRK/>
+<OLI>The 270 VDC output must only be enabled when the 28 VDC interlock is present.</OLI><BRK/>
+<BRK/>
+<OLI>Power must only be available when the plug is fully seated in the aircraft receptacle.</OLI><BRK/>
+<BRK/>
+<OLI>The sensing back of the 28 VDC interlock from the aircraft must indicate a proper connection of the receptacle.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>[<SPT><TTL><SUB>REMOTE MONITORING AND CONTROL PANEL</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph unless plans clearly indicate requirement for remote monitoring and control panel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide remote monitoring and control panel and circuitry.  Connect to clearly and permanently labeled terminal blocks located inside the converter's 
+enclosure.  Provide the circuitry such that indicator lamp/LED information and control function(s) can be extended from the terminals to a remote 
+location in the future.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Pushbutton or switch for de-energizing the output terminals.</OLI><BRK/>
+<BRK/>
+<OLI>Indicator lamp/LED showing the unit status (energized or not energized).</OLI><BRK/>
+<BRK/>
+<OLI>Indicator lamp/LED showing the output control device position (open or closed).</OLI><BRK/>
+<BRK/>
+<OLI>System alarm.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL>MANUFACTURER'S NAMEPLATE</TTL><BRK/>
+<BRK/>
+<TXT>Each frequency converter, each major component within the frequency converter, and each item of other equipment must have a nameplate bearing the 
+manufacturer's name, address, model number, and serial number securely affixed in a conspicuous place; the nameplate of the distributing agent 
+will not be acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FACTORY APPLIED FINISH</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph covers only the basic painting requirements for most electrical equipment.  Include any 
+special finishes for high or low temperatures and extremely corrosive atmospheres.  Use manufacturer's standard 
+color unless the Activity requires a special color.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Electrical equipment must have factory-applied painting systems which must, as a minimum, meet the requirements of <RID>NEMA 250</RID> corrosion-resistance 
+test and the additional requirements as specified herein.  Interior and exterior steel surfaces of equipment enclosures must be thoroughly cleaned 
+and then receive a rust-inhibitive phosphatizing treatment, a primer powder coat, or equivalent treatment prior to painting.  Exterior surfaces 
+must be free from holes, seams, dents, weld marks, loose scale or other imperfections.  Interior surfaces  must receive not less than one coat 
+of corrosion-resisting paint or powder coating process in accordance with the manufacturer's standard practice.  When enclosure is aluminum, interior 
+may optionally be coated with rust inhibiting treated film.  Exterior surfaces must be primed, filled where necessary, and given not less than 
+two coats baked enamel with semigloss finish, or finished with a powder coating process.[  Color must be the manufacturer's standard color.][  
+Equipment located indoors must be ANSI Light Gray,[ and equipment located outdoors must be ANSI[ Light Gray][ Dark Gray]].]  Provide manufacturer's 
+coatings for touch-up work and as specified in paragraph FIELD APPLIED PAINTING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SOURCE QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Factory Test Schedule</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The Government reserves the right to witness tests and reserves the right to request the raw data from the tests whether witnessed or not.  Provide 
+the converter test schedule for tests to be performed at the manufacturer's test facility.  Submit required test schedule and location, and notify 
+the Contracting Officer 30 calendar days before scheduled test date.  Notify Contracting Officer 15 calendar days in advance of changes to scheduled 
+date.</TXT><BRK/>
+<BRK/>
+<TXT>Test Instrument Calibration.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The manufacturer must have a documented calibration program which assures that all applicable test instruments are maintained within rated 
+accuracy.</OLI><BRK/>
+<BRK/>
+<OLI>The accuracy must be directly traceable to the National Institute of Standards and Technology.</OLI><BRK/>
+<BRK/>
+<OLI>Instrument calibration frequency schedule must not exceed 12 months for both test floor instruments and leased specialty equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Provide dated calibration labels, that are visible on all test equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Calibrating standard must be of higher accuracy than that of the instrument tested.</OLI><BRK/>
+<BRK/>
+<OLI>Keep up-to-date records that indicate dates and test results of instruments calibrated or tested.  For instruments calibrated by the manufacturer 
+on a routine basis, in lieu of third party calibration, include the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Maintain up-to-date instrument calibration instructions and procedures for each test instrument.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Identify the third party/laboratory calibrated instrument to verify that calibrating standard is met.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Routine Factory Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the bracketed option, "As an exception..." when there are multiple, identically sized (in kW) converters 
+on the same contract.  Intent is to only do the "automatic line drop compensation test' on the first converter.</NPR><BRK/>
+<BRK/>
+<NPR>In item c, the aircraft power cable assembly is normally included in the project.  If for some reason it is not 
+part of the contract, modify the item and provide additional appropriate cable information (e.g. length and type) 
+that the manufacturer should use for tests.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform routine tests by the manufacturer at the factory, on each of the actual converter(s) prepared for this project to ensure that the design 
+performance is maintained in production.[  As an exception, test automatic line drop compensation on only one unit on multiple unit orders of the 
+same kW rating.  If there are multiple units with different kW ratings, then testing one of each of the kW ratings is acceptable.]  Submit test 
+reports, by serial number and receive approval before delivery of equipment to the project site.  Include a list of the current test equipment 
+calibration dates.  Required tests, test conditions, and testing sequence is as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>For tests which require full load, use the nameplate full load kW of the unit being tested unless otherwise noted.</OLI><BRK/>
+<BRK/>
+<OLI>All measurements must be true RMS measurements.  Obtain measurements in accordance with <RID>IEEE 1159</RID>.  Monitor and record all data at the 
+load end of the cable.</OLI><BRK/>
+<BRK/>
+<OLI>Connect loads to the converter with the specified aircraft power cable assembly.</OLI><BRK/>
+<BRK/>
+<OLI>No adjustments to the frequency converter are allowed between load tests.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Test Conditions</TTL><BRK/>
+<BRK/>
+<TXT>Tests must include the following conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Initial Safety Verification:  Perform tests and checks to validate the safe and timely shutdown for each condition (for the power source 
+and the output cable) identified in paragraph SAFETY FUNCTIONS.</OLI><BRK/>
+<BRK/>
+<OLI>Input current and power factor:  Operate converter at low, nominal and high input voltage at full load.  Measure and record input voltage, 
+input power factor and input current in each phase.</OLI><BRK/>
+<BRK/>
+<OLI>Output voltage, output current, and voltage regulation.  <TST>Operate converter at nominal input voltage unless otherwise specified.</TST></OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">50 percent of rated capacity.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">100 percent of rated capacity.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">50 percent of rated capacity with the loads as specified in the paragraph LOAD RANGE.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">100 percent of rated capacity at low and high input voltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">100 percent of rated capacity with the loads as specified in the paragraph LOAD RANGE.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Note - Operate for not less than 10 minutes at each test condition in (1), (2), (3) and (4) above, and for not less than 30 minutes 
+at test condition in (5) above.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Note - Monitor and record each of the following at the beginning and end of each test condition:  output voltage, output voltage 
+waveform, output voltage ripple (peak-to-peak, distortion factor and distortion spectrum), output current, output current waveform, 
+output current ripple (peak-to-peak, distortion factor and distortion spectrum).  Verify output remains within specified regulation 
+limits at each load level by overlaying the graphs of Figure 263544 - 1 with the 270 VDC test data, and Figure 263544 - 2 with 
+the 28 VDC test data.</OLI><BRK/>
+<BRK/>
+<OLI>Efficiency:  Operate at nominal input voltage at half load and full load.  Measure and record input voltage, input current, output voltage, 
+and output current.  Calculate the unit efficiency.</OLI><BRK/>
+<BRK/>
+<OLI>No load losses:  Operate at no load and nominal input voltage.  Measure and record input voltage, input current, input power, input power 
+factor, and output voltage.  Calculate the no load losses.</OLI><BRK/>
+<BRK/>
+<TST><OLI>Overload:  Operate at nominal input voltage and output voltage with loads and in sequence listed below:</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the Navy:  Coordinate with NAVAIR (POC information is at front of specification), to see if the NAVAIR 
+Digital File Information has been completed before including the bracketed documentation option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<HL4><TAB WIDTH="91">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="122.25"/>
+      <COL AUTOWIDTH="0" WIDTH="81.75"/>
+      <COL AUTOWIDTH="0" WIDTH="137.25"/>
+      <COL AUTOWIDTH="0" WIDTH="84.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Percent of Full Load</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Time</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Time Between Overloads</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Iterations</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">250 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">50 milliseconds</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2 seconds</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">150 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10 seconds</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">125 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">110 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">30 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2 hours</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></HL4></TST><BRK/>
+<OLI LEVEL="2">Monitor output to confirm there is no 270 VDC power interruption.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide graph showing current magnitude over time[ in accordance with NAVAIR Digital File Information] for each condition above.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide graph showing Output Voltage Response is in accordance with paragraph TRANSIENT OUTPUT VOLTAGE RECOVERY time and thresholds.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">After minimum operating time is achieved, unit must interrupt output power.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Utilize the identified burn-in hours, unless a validated reason has been identified by the Activity (such 
+as a requirement for a higher uptime confidence limit) to either reduce or increase the number of hours.</NPR><BRK/>
+<BRK/>
+<NPR>The last sentence in the BURN-IN TEST paragraph permits not using the Aircraft power cable assembly that has been 
+mandated for all the other tests.  This exception has been added because the specified cable may not withstand 
+the current draw for this length of time without overheating.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Burn-in Test:  Before delivery, burn-in all units[ under full load conditions for at least [24][_____] hours][ by cycling units [6][_____] 
+hours "ON" under full load conditions and [3][_____] hours "OFF" at no load conditions for at least [4][_____] complete "ON" cycles].  
+Perform burn-in test  with the converter enclosure doors closed, load connected directly to the output terminals, and all ventilation in 
+the final operating condition.  The specified aircraft cable is not required to be used for this test.</OLI><BRK/>
+<BRK/>
+<OLI>Include harmonic frequency spectrum analysis depicting harmonic order across the range of individual harmonic occurrence, and harmonic 
+magnitude for each load condition in the test reports.  Conduct tests at the unit's input terminals (to the 37th harmonic) per IEEE standards.  
+Output voltage distortion spectrum analysis must be measured out to 16,000 Hz.</OLI><BRK/>
+<BRK/>
+<OLI>Automatic line drop compensation:  Operate converter at nominal voltage and verify specified performance of the line drop compensation 
+at the following loads.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">No-load.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">50 percent of rated capacity.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">100 percent of rated capacity.</OLI><BRK/>
+<BRK/>
+<OLI>28 VDC Interlock. Perform each of the above tests (a through h) at 50 percent and 100 percent of full 28 VDC load.  Verify operation within 
+specified limits.  However, the burn-in test (item g) must be performed only at full load, and not at 50 percent load of 28 VDC.</OLI><BRK/>
+<BRK/>
+<OLI>Post Routine Test Safety Verification:  Repeat tests conducted under item a.  Initial Safety Validation to confirm safety features were 
+not affected by previous tests.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Special Factory Tests (Design Tests)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the bracketed option "each of" when there are multiple sizes of converters in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit special factory test (design test) reports (complete with test data, explanations, formulas, results, setup and cable information, and the 
+list of the calibration dates of the test equipment used), in the same submittal package as the catalog data and drawings for [each of] the specified 
+converter(s).  Tests must be certified and signed by a registered professional engineer or by a "company certified professional designee" within 
+the manufacturers' organization.  Submit designee's credentials with the initial design test report for approval.  <TST>Tests must be on file based 
+on a production model of converters of the same design, construction and kW rating provided.</TST></TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the first bracketed option below, "As an exception..." unless there are more than 5 units on the 
+project, or the units are going to a severe or hard to reach environment / strategic location.  When choosing 
+the second option instead of the first, coordinate with the Activity to determine the number of "production units" 
+that must be tested.</NPR><BRK/>
+<BRK/>
+<NPR>The "As an exception..." sentence has always permitted the Special Factory Tests to be done on one of the first 
+units produced, at the same time scheduled for the Routine Tests.  However it was rarely used, since it only applies 
+when the manufacturer already meets the experience requirements in the QUALIFICATIONS OF MANUFACTURER paragraph 
+in Part 1 of this specification, but was building a slightly different unit without the specific design tests 
+already on file.</NPR><BRK/>
+<BRK/>
+<NPR>With the new requirements in this specification, this exception may become more frequently used since test data 
+may not be on file.  The manufacturer still has to meet the QUALIFICATIONS OF MANUFACTURER paragraph, and all 
+of the Special Factory Tests will still be subject to being witnessed by the government with the Routine tests.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><HLS><TST>[As an exception, when the manufacturer does not have the special factory tests for the specific unit characteristics already on file, the manufacturer 
+may conduct the special factory tests on the first "production unit" along with the routine tests.][  The manufacturer must test [one][_____] unit[s] 
+at the same time scheduled for routine tests, of each rating and size converter.]  To assure compliance with the specification, these tests are 
+also subject to government witnessing at the same time as the routine tests.  </TST></HLS><TST>For all tests which require full load, use the nameplate full load 
+kW of the unit being tested, unless otherwise noted.  For all tests that are "not already on file", connect loads to the converter with an aircraft 
+power cable assembly,<MET> 43 meters</MET><ENG> 140 feet</ENG> long, similar to the specified project aircraft power cable assembly.  Monitor and record all data at 
+the load end of the cable, unless otherwise noted.  The tests conducted on the unit must include the following:<BRK/></TST>
+</TXT><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select Location Category C for outdoor locations only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Initial Safety Verification:  Perform tests and checks to validate the safe and timely shutdown for each condition (for the power source 
+and the output cable) identified in paragraph SAFETY FUNCTIONS.</OLI><BRK/>
+<BRK/>
+<OLI>Surge protection:  Apply input surges in accordance with <RID>IEEE C62.41.1</RID> and <RID>IEEE C62.41.2</RID>, Location Category [B][C] and monitor output.  
+Conduct a minimum of three consecutive successful tests on each unit listed.  Confirm there is no interruption to 270 VDC output power 
+and voltage stays within specified regulation tolerances.  Surge protection tests must be applicable on all converter units utilizing same 
+surge protection device by manufacturer and part number regardless of converter kW size.</OLI><BRK/>
+<BRK/>
+<TST><OLI>Input current:  Perform the following tests at nominal input voltage.  Conduct each test a minimum of three times.  Monitor the input and 
+output power to demonstrate the duration of the transients until the converter reaches steady state.  Provide copies of waveforms and analysis 
+in test report.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Measure inrush current when initially turning on machine with no load.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">After applying power and unit is at steady state, conduct load application test, going from 0 to full load to measure affect 
+on input.</OLI><BRK/></TST>
+<BRK/>
+<OLI>Input current distortion:  <TST>Operate at nominal input voltage at 0, 25, 50, 75, and 100 percent of rated full load.  Measure and record the 
+input current THD for the current in each phase.</TST></OLI><BRK/>
+<BRK/>
+<OLI>Input current and power factor:  Operate converter at low, nominal and high input voltage at full load.  Measure and record input voltage, 
+input power factor and input current in each phase and neutral if the neutral conductor is connected to the converter input.</OLI><BRK/>
+<BRK/>
+<OLI>Output voltage, output current, and voltage regulation.  <TST>Operate converter at nominal input voltage unless otherwise specified.</TST></OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">50 percent of rated capacity.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">100 percent of rated capacity.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">50 percent of rated capacity with the loads as specified in the paragraph LOAD RANGE.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">100 percent of rated capacity at low and high input voltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">100 percent of rated capacity with the loads as specified in the paragraph LOAD RANGE.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Note - Operate for not less than 10 minutes at each test condition in (1), (2), (3) and (4) above, and for not less than 30 minutes 
+at test condition in (5) above.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Note - Monitor and record each of the following at the beginning and end of each test condition:  output voltage, output voltage 
+waveform, output voltage ripple (peak-to-peak, distortion factor and distortion spectrum), output current, output current waveform, 
+output current ripple (peak-to-peak, distortion factor and distortion spectrum).  Verify converter is operating within specified 
+regulation limits at each load level by overlaying the graph of Figure 263544 - 1 with the 270 VDC test data, and Figure 263544 
+- 2 with the 28 VDC test data.</OLI><BRK/>
+<BRK/>
+<OLI>Include harmonic frequency spectrum analysis depicting harmonic order across the range of individual harmonic occurrence, and harmonic 
+magnitude for each load condition in the test reports.  Conduct tests at the unit's input terminals (to the 37th harmonic) per IEEE standards.  
+Output voltage distortion spectrum analysis must be measured out to 500,000 Hz per <RID>MIL-STD-704</RID>.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the Navy:  Coordinate with NAVAIR (POC information is at front of specification), to see if the NAVAIR 
+Digital File Information has been completed before including the bracketed documentation option.  Include bracketed 
+option once NAVAIR has established a defined version of Digital File Requirements (still in progress).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TST><OLI>Overload:  Operate at nominal input voltage and output voltage with loads as listed below:</OLI><BRK/>
+<HL4><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="101.25"/>
+      <COL AUTOWIDTH="0" WIDTH="138.75"/>
+      <COL AUTOWIDTH="0" WIDTH="132.75"/>
+      <COL AUTOWIDTH="0" WIDTH="95.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="37.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Percent of Full Load</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Satisfactory Operating Time</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Time Between Overloads</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Iterations</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">110 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">30 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2 hours</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">125 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">150 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10 seconds</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2 seconds</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">250 percent</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">50 milliseconds</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5 minutes</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></HL4><BRK/></TST>
+<OLI>Monitor output to confirm there is no 270 VDC power interruption.  After minimum operating time is achieved, unit must interrupt output 
+power.  Provide voltage and current waveforms [in accordance with NAVAIR Digital File Information] documenting the unit's response for 
+each test.</OLI><BRK/>
+<BRK/>
+<OLI>Short-circuit:  <TST>Apply a bolted positive to negative fault directly to the output terminals of the unit.  Conduct a minimum of three consecutive 
+successful tests on each unit.  Provide unit capable of carrying the fault current until the integral system protective devices interrupts 
+the fault with no damage to the unit.  Provide waveforms of short circuit current during short circuit tests.</TST></OLI><BRK/>
+<BRK/>
+<OLI>Transient Output Voltage Recovery:  <TST>Operate at the following load steps: 0 to 100 percent, 0 to 50 percent, 100 to 0 percent and 50 to 
+0 percent.  Measure and record recovery time and output voltage deviation limits.</TST>  Provide recordings or display of output voltage during 
+transient recovery test.  Verify converter is operating within specified regulation limits at each load level by overlaying the graph of 
+Figure 263544 - 1 with the 270 VDC test data, and Figure 263544 -  2 with the 28 VDC test data.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete bracketed acoustical noise test unless converter is installed in special locations such as test 
+laboratories or other confined spaces and a lower than 72 dBa value is specified.</NPR><BRK/>
+<BRK/>
+<NPR>The test parameters (Height and Range)identified below, meet the ANSI SI 4 requirements.  However the standard 
+is not referenced because it "allows units to be averaged over a certain production range /quantity", whereas 
+we want each unit to be individually compliant.</NPR><BRK/>
+<BRK/>
+<NPR>The optional paralleling test has been removed from this version of the specification.  If it is required because 
+of a critical location, approval and specific verbiage must be obtained from NAVFAC LANT.  The POC information 
+is located at the beginning of this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Acoustical noise:  <TST>Operate at no load, 50 percent and 100 percent of full load.  Measure continuous steady sound pressure level<MET> 1525 mm</MET><ENG>
+ 5 feet</ENG> horizontally from the center of each side of the converter at a point<MET> 1525 mm</MET><ENG> 5 feet</ENG> above the floor.</TST> Decibels (dB) are referenced 
+to 20 micropascal.</OLI><BRK/>
+<BRK/>
+]<OLI>Post Special Test Safety Verification:  Repeat tests conducted under item a.  Initial Safety Verification, to confirm safety features were 
+not affected by previous tests.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>ARC FLASH WARNING LABEL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the Arc Flash Warning Label detail on the drawings.  See the technical notes at the beginning of 
+this section to obtain the AutoCAD drawing file of the label.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide arc flash warning labels for arc flash protection in accordance with <RID>NFPA 70E</RID> and <RID>NEMA Z535.4</RID> for the enclosures of electrical equipment 
+that are likely to require examination, adjustment, servicing, or maintenance while energized.  Locate this self-adhesive warning label on the 
+outside of the equipment compartment doors warning of potential electrical arc flash hazards and appropriate PPE required.  Provide label format 
+as indicated.  The marking must be clearly visible to everyone, including qualified persons, before examination, adjustment, servicing, or maintenance 
+of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD FABRICATED NAMEPLATES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the following paragraph where nameplates are fabricated to identify specific equipment designated on 
+the drawings.  Provide note on panelboard schedules to indicate where other than black center core labels are 
+required</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM D709</RID>.  Provide laminated plastic nameplates for each equipment enclosure, relay, switch, and device; as specified or as indicated on the drawings.  
+Each nameplate inscription must identify the function and, when applicable, the position.  Nameplates must be melamine plastic,<MET> 3 mm</MET><ENG> 0.125 inch</ENG>
+ thick, white with [black] [_____] center core.  Surface must be matte finish.  Corners must be square.  Accurately align lettering and engrave 
+into the core.  Minimum size of nameplates must be<MET> 25 by 65 mm</MET><ENG> 1 by 2.5 inches</ENG>.  Lettering must be a minimum of<MET> 6.35 mm</MET><ENG> 0.25 inch</ENG> high normal block 
+style.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING AND BONDING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the reference to Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION when equipment is also being 
+provided outside.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>UL 467</RID>.  Provide grounding and bonding as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM[ and for exterior work, in Section 
+<SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION].</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>CAST-IN-PLACE CONCRETE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include concrete requirements when equipment is also being provided outside on concrete pads.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide concrete associated with electrical work for other than encasement of underground ducts rated for<MET> 30 MPa</MET><ENG> 4000 psi</ENG> minimum 28-day compressive 
+strength unless specified otherwise.  Conform to the requirements of Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+]</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install products to operate at 270 VDC in the same manner as specified in other sections of this specification for products operating at [50] [60] 
+Hz, unless indicated or specified otherwise.  Conform to the requirements of <RID>NFPA 70</RID> and <RID>IEEE C2</RID> and to manufacturer's instructions and recommendations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Floor Mounted</TTL><BRK/>
+<BRK/>
+<TXT>Provide proper floor mounting channels and install in accordance with the manufacturer's drawings and instructions and as indicated.  Align, level, 
+and bolt units to channels to allow easy withdrawal or insertion of removable components and to permit proper operation and maintenance of equipment.  
+When in a Class 1, Division 2 area, mount units at least 18 inches above finished floor.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Wall Mounted</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Wall mount units 5 kW or less.  Floor mount all other units.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Bracket mount, but otherwise install as required for floor-mounted units.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Maintenance Platform Mounted</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When used, verify drawings identify:<BRK/>
+1)  An appropriate maintenance platform with safety details including the maintenance envelope.<BRK/>
+2)  The location of the remote control panel and interconnecting conduit and wiring.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install as required for floor-mounted units.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Grounding and Bonding</TTL><BRK/>
+<BRK/>
+<TXT>In accordance with <RID>NFPA 70</RID> and as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Grounding and Bonding - Exterior Equipment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When equipment in the project is located outdoors, include the optional grounding and foundation (concrete 
+pad) requirements.  Use 25 ohms unless the project requires more stringent requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>NFPA 70</RID> and <RID>IEEE C2</RID>, except provide grounding systems with a resistance to solid earth ground not exceeding [25][_____] ohms.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Grounding Electrodes</TTL><BRK/>
+<BRK/>
+<TXT>Provide driven ground rods as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pad-Mounted Equipment Grounding</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ensure plans show the pad details and ground connections matching how this paragraph is edited.  Converter 
+is to have a ground ring and the normal number of ground rods is two.  The one ground rod option should only be 
+chosen if required by local installation requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a ground ring around the equipment pad with 4/0 AWG bare copper.[  Provide two ground rods in the ground ring at opposite corners.][  Provide 
+one ground rod in the ground ring with the ground rod located in the equipment cabinet.]  Install the ground rods at least<MET> 3000 mm</MET><ENG> 10 feet</ENG> apart 
+from each other.  Provide separate copper grounding conductors and connect them to the ground loop as indicated.  When work in addition to that 
+indicated or specified is required to obtain the specified ground resistance, the provision of the contract covering "Changes" applies.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections</TTL><BRK/>
+<BRK/>
+<TXT>Connect ground conductors to the upper end of ground rods by exothermic weld or compression connector.  Provide compression connectors at equipment 
+end of ground conductors.  Make joints in grounding conductors and loops by exothermic weld or compression connector.  Install exothermic welds 
+and compression connectors as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Foundation for Equipment and Assemblies</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Mounting slab connections may have to be given in detail depending on the requirements for the seismic 
+zone in which the requirement is located.  Include construction requirements for concrete slab only if slab is 
+not detailed on drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mount equipment on concrete slab as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Unless otherwise indicated, provide the slab with dimensions at least<MET> 200 mm</MET><ENG> 8 inches</ENG> thick, reinforced with a<MET> 152 by 152 mm MW19 by MW19</MET><ENG>
+ 6 by 6 inches - W2.9 by W2.9</ENG> mesh placed uniformly<MET> 100 mm</MET><ENG> 4 inches</ENG> from the top of the slab.</OLI><BRK/>
+<BRK/>
+<OLI>Place slab on a<MET> 150 mm</MET><ENG> 6 inch</ENG> thick, well-compacted gravel base.</OLI><BRK/>
+<BRK/>
+<OLI>Install slab such that top of concrete slab is approximately<MET> 100 mm</MET><ENG> 4 inches</ENG> above the finished grade with gradual slope for drainage.</OLI><BRK/>
+<BRK/>
+<OLI>Provide edges above grade with<MET> 15 mm</MET><ENG> 1/2 inch</ENG> chamfer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide slab of adequate size to project at least<MET> 200 mm</MET><ENG> 8 inches</ENG> beyond the equipment.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Stub up conduits, with bushings,<MET> 50 mm</MET><ENG> 2 inches</ENG> into cable wells in the concrete pad.  Coordinate dimensions of cable wells with equipment cable 
+training areas.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cast-In-Place Concrete</TTL><BRK/>
+<BRK/>
+<TXT>Provide cast-in-place concrete work in accordance with the requirements of Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Sealing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Require sealing of cable wells (windows) in the concrete pad if rodent intrusion is a problem.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>When the installation is complete, seal all entries into the equipment enclosure with an approved sealing method.  Provide seals of sufficient 
+strength and durability to protect all energized live parts of the equipment from rodents, insects, or other foreign matter.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>]<SPT><TTL>Wiring and Conduit</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designers of Record must provide calculations and ratings for conductors, circuit breakers (50Hz / 60Hz), 
+and devices operating at 270 VDC and at 28 VDC.</NPR><BRK/>
+<BRK/>
+<NPR>Use of a distributed 270 VDC power system (instead of a Point of Use system), is prohibited on new projects, and 
+is limited to making modifications to existing systems.  If used, a distributed system may require additional 
+special calculations.</NPR><BRK/>
+<BRK/>
+<NPR>See UFC 3-555-01 (Draft in progress) for additional information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide wiring and conduit as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Use copper conductors for DC systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Representative</TTL><BRK/>
+<BRK/>
+<TXT>The manufacturer's representative must place the system in operation and make necessary adjustments to ensure optimum operation of the equipment.  
+The manufacturer's representative must have at least 2 years of practical experience in the installation and testing of 270 VDC solid state converters.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD FABRICATED NAMEPLATE MOUNTING</TTL><BRK/>
+<BRK/>
+<TXT>Provide number, location, and letter designation of nameplates as indicated.  Fasten nameplates to the device with a minimum of two sheet-metal 
+screws or two rivets.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WARNING SIGN MOUNTING</TTL><BRK/>
+<BRK/>
+<TXT>Provide the number of signs required to be readable from each accessible side.  Space the signs in accordance with <RID>NFPA 70E</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD APPLIED PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>Where field painting of enclosures is required to correct damage to the manufacturer's factory applied coatings, provide manufacturer's recommended 
+coatings and apply in accordance to manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Field Test Schedule</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the bracketed options below on Navy projects where "reach-back support" has already been coordinated 
+with NAVAIR / NAVFAC LANT per the third introductory Technical Note at the beginning of this specification section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Give Contracting Officer[ and (NAWCAD Air Vehicle Electrical Power Systems Group (AB43) (301) 342-4161] 30 days notice of dates, times and scheduled 
+tests which require the presence of the Contracting Officer.  The Contracting Officer will coordinate with the using activity[ and NAVAIR / NAVFAC 
+LANT,] and schedule a time that will eliminate or minimize interruptions and interference with the activity operations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Instruments</TTL><BRK/>
+<BRK/>
+<TXT>Provide test instruments capable of measuring and recording or displaying test data at a higher resolution and greater accuracy than specified 
+for the converter's performance.  The test instruments used in the field tests must have current valid calibration stickers issued by an approved 
+calibration laboratory.  Verify calibration and adjustments of converter instruments provided prior to field tests.  Calibrate instruments for 
+270 VDC operation when measuring 270 VDC signals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Initial Inspection and Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the bracketed option for the NETA ATS Representative when Section <SRF>26 08 00</SRF> APPARATUS INSPECTION 
+AND TESTING is included in the project.  Ensure that the list of identified specification sections that the NETA 
+inspector is responsible for includes this section (see bracketed options in Section <SRF>26 08 00</SRF> APPARATUS INSPECTION 
+AND TESTING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform in accordance with the manufacturer's recommendations and include the following visual and mechanical inspections and electrical tests.[  
+In addition, coordinate with the <RID>NETA ATS</RID> representative to witness, document, and validate the converter Field Quality Control.]</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Compare equipment nameplate information with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Inspect physical and mechanical condition.  Inspect cables and wiring harnesses for damage and strain relief.</OLI><BRK/>
+<BRK/>
+<OLI>Inspect all bolted electrical connections for high resistance using low-resistance ohmmeter, verifying tightness of accessible bolted electrical 
+connections by calibrated torque-wrench method, or performing thermographic survey.  Perform thermographic survey while the unit is at 
+full load during the loadbank test.</OLI><BRK/>
+<BRK/>
+<OLI>Perform specific inspections and mechanical tests as recommended by manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Verify correct equipment grounding.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL> Field Performance Checks and Tests</TTL><BRK/>
+<BRK/>
+<TXT>Conduct converter field checks and tests under the supervision of the manufacturer's representative.  Provide labor, equipment, test instruments, 
+and incidentals required for the tests including load banks, except the Government will furnish the electricity.</TXT><BRK/>
+<BRK/>
+<TXT>All tests must be performed with the load connected to the load end of the specified aircraft cable assembly.  The cable must be laid out / uncoiled 
+to provide heat dissipation.  No adjustment to the converter is allowed between tests.  Successfully complete the safety verification, preliminary 
+operation, and the control and protective devices check prior to performing load and transient tests.  Load tests must be performed with the converter 
+doors closed and the 28 VDC at full load.  If the converter fails to operate within the specified limits during any of the tests, discontinue the 
+test, make necessary repairs to correct the failure, and restart testing of the converter.  Repeat all previously completed tests and document 
+the respective failed test data and new data.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Initial Safety Verification</TTL><BRK/>
+<BRK/>
+<TXT>Perform tests and checks to validate the safe and timely shutdown for each condition (for the power source and the output cable) identified in 
+paragraph SAFETY FUNCTIONS.  As an exception, a representative fault test will be sufficient at this time.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preliminary Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>For the Navy:  NAVAIR is working on and will provide the requirements for a "digital manual" / type of "Data Acquisition 
+system."  All Manufacturers should also already have one of their own.  The future goal is to include the standardized 
+requirement as part of the specification so that NAVAIR will have the various manufacturer's equipment information, 
+in a consistent format, submitted and then on file in the NAVAIR Database system for maintenance and problem solving.  
+At that time, we will determine whether it will be possible to include  as an attachment / sample in the specification 
+or possibly as a reference to a UFC Appendix.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TST><TXT>Inspect the converter and make adjustments necessary to assure proper operation in accordance with the manufacturer's instructions.  Operate converter 
+at 0, 25, 50, 75, and 100 percent of rated full load.  On the input measure and record the voltage, current, frequency, and THDs (voltage and current) 
+at each load.  On both the 270 VDC and the 28 VDC outputs, measure and record the voltage, current, DC ripple, distortion spectrum, and distortion 
+factor at each load.  Verify converter is operating within specified regulation limits at each load level by overlaying the graph of Figure 263544 
+- 1 with the 270 VDC test data, and Figure 263544 - 2 with the 28 VDC test data. Verify the operation of the 28 VDC Interlock Power.</TXT><BRK/>
+<BRK/>
+<TXT>Test data must include input voltage and current harmonic distortion amplitudes of all individual harmonics presented in a spectrum analysis format 
+up to the 15th order at the 50 percent and 100 percent load points.  Output voltage distortion spectrum analysis must be measured out to 6,000 
+Hz.</TXT></TST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control and Protective Device Checks</TTL><BRK/>
+<BRK/>
+<TXT><TST>Operate each control, switch, input/output device that is capable of being operated manually a minimum of three times, demonstrating satisfactory 
+operation each time.  Perform operation test on each protective device to ensure that devices function properly.</TST>  After each operation measure 
+and record the converter output voltage and current.  Verify converter is operating within specified limits.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Load (Burn-in) Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the bracketed option "For converters used ..." only when one of the converters, on a multi converter 
+project, will not be connected to the aircraft cable assembly when in service; e.g. used in a lab setting instead.</NPR><BRK/>
+<BRK/>
+<NPR>In the rare condition, where there is only the one converter in a lab setting, then delete the entire sentence 
+before the bracketed option as well.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Operate each unit continuously a minimum of 1 hour at 100 percent rated full load.  Perform a concurrent load (burn in) test for the 270 VDC and 
+the 28 VDC loads.</TST>  Measure and record the converter output voltage and current (both 270 VDC and the 28 VDC Interlock Power), at beginning, 30 
+minutes, and 1 hour.  Verify converter is operating within specified limits.  Load test must be performed with the converter doors closed and the 
+test load connected to the converter at the cable head with specified aircraft cable assembly.[  For converters used to supply test bench loads, 
+perform load tests with the converter doors closed at the output of the converter.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Post Load Test Verification</TTL><BRK/>
+<BRK/>
+<TXT>Repeat tests identified in paragraph PRELIMINARY OPERATION, to validate converter was not affected by the Load test.  However apply loads in the 
+reverse order (e.g. 100, 75, 50, 25, and 0 percent of the rated full load).</TXT><BRK/>
+<BRK/>
+<TXT>Conduct tests on each converter with the load connected to the load end of the specified aircraft power cable assembly.  No adjustment to the converter 
+is allowed between load tests.  Monitor and record output voltage at the load end of the cable.  Verify converter is operating within specified 
+regulation limits at each load level by overlaying the graph of Figure 263544 - 1 with the 270 VDC test data, and Figure 263544 - 2 with the 28 
+VDC test data.  In addition, verify specified performance of the line drop compensation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Final Safety Verification</TTL><BRK/>
+<BRK/>
+<TXT>Repeat tests conducted under paragraph INITIAL SAFETY VERIFICATION to confirm safety features were not affected by previous tests.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Grounding System</TTL><BRK/>
+<BRK/>
+<TXT>Inspect grounding system for compliance with contract plans and specifications.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DEMONSTRATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Instructing Government Personnel</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy:  Include bracketed option requiring coordination with NAVAIR and coordination with Activity on 
+availability of aircraft for conducting training.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide field training to Government personnel on the operation and maintenance of the converter provided at the same time as the Field Acceptance 
+Testing.[  For Navy projects contact NAWCAD Air Vehicle Electrical Power Systems Group (AB43) at (301) 342-4161 to obtain the name and e-mail of 
+the NAVAIR point-of-contact so they can attend the training.  Coordinate with the Activity to establish availability and non-availability to train 
+on actual aircraft.]  Include up to a maximum of 2 hours of instruction on operation and up to a maximum of 4 hours of repair and maintenance of 
+the converters.  The instructor must be approved by the manufacturer of the unit provided.  Submit <SUB>training syllabus</SUB> including each topic of training 
+and a brief outline of each topic to the Contracting Officer at least 4 weeks prior to training for approval.</TXT><BRK/>
+<BRK/>
+<TXT>Training must be approved by the Contracting Officer at least 2 weeks in advance.  The Government may record, video and audio, the training sessions 
+and use these recordings to train personnel on the operation and <NED/>maintenance of the converter system.  Provide two copies of video or audio DVDs, 
+and of any supplemental information and examples covered in the training sessions, to the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

@@ -1,0 +1,2604 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.75"/>
+      <COL AUTOWIDTH="0" WIDTH="224.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-22 15 26 (November 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="6.75">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.75">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.75">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-22 15 26.00 20 (April 2006)<BRK/>UFGS-43 15.00 00 20 (April 2006)<BRK/></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 22 15 26</SCN><BRK/>
+<BRK/>
+<STL>COMPRESSED AIR PIPING SYSTEMS (UP TO 5000 PSI)</STL><BRK/>
+<DTE>11/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>non-breathing air 
+compressed air systems <BLD>with pressures up to<MET>  34,470 kPa (gage)</MET><ENG> 5000 psig</ENG></BLD></SCP><BLD>.</BLD><BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Project requirements may require supplemental information added to the 
+paragraphs contained herein.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification. The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME A13.1</RID><RTL>(2023) Scheme for the Identification of Piping Systems</RTL><BRK/><BRK/><RID>ASME B1.20.1</RID><RTL>(2013; R 2018) Pipe Threads, General Purpose (Inch)</RTL><BRK/><BRK/><RID>ASME B16.3</RID><RTL>(2021) Malleable Iron Threaded Fittings, Classes 150 and 300</RTL><BRK/><BRK/><RID>ASME B16.9</RID><RTL>(2024) Factory-Made Wrought Buttwelding Fittings</RTL><BRK/><BRK/><RID>ASME B16.11</RID><RTL>(2021) Forged Fittings, Socket-Welding and Threaded</RTL><BRK/><BRK/><RID>ASME B16.20</RID><RTL>(2023) Metallic Gaskets for Pipe Flanges</RTL><BRK/><BRK/><RID>ASME B16.22</RID><RTL>(2021) Wrought Copper and Copper Alloy Solder Joint Pressure Fittings</RTL><BRK/><BRK/><RID>ASME B16.24</RID><RTL>(2022) Cast Copper Alloy Pipe Flanges, Flanged Fittings, and Valves Classes 150, 300, 600, 900, 1500, and 2500</RTL><BRK/><BRK/><RID>ASME B16.26</RID><RTL>(2024) Cast Copper Alloy Fittings for Flared Copper Tubes</RTL><BRK/><BRK/><RID>ASME B16.34</RID><RTL>(2021) Valves - Flanged, Threaded and Welding End</RTL><BRK/><BRK/><RID>ASME B16.39</RID><RTL>(2025) Malleable Iron Threaded Pipe Unions; Classes 150, 250, and 300</RTL><BRK/><BRK/><RID>ASME B31.1</RID><RTL>(2024) Power Piping</RTL><BRK/><BRK/><RID>ASME B31.9</RID><RTL>(2025) Building Services Piping</RTL><BRK/><BRK/><RID>ASME B36.10M</RID><RTL>(2022) Welded and Seamless Wrought Steel Pipe</RTL><BRK/><BRK/><RID>ASME B40.100</RID><RTL>(2022) Pressure Gauges and Gauge Attachments</RTL><BRK/><BRK/><RID>ASME B46.1</RID><RTL>(2020) Surface Texture, Surface Roughness, Waviness and Lay</RTL><BRK/><BRK/><RID>ASME BPVC SEC IX</RID><RTL>(2017; Errata 2018) BPVC Section IX-Welding, Brazing and Fusing Qualifications</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII D1</RID><RTL>(2023) BPVC Section VIII-Rules for Construction of Pressure Vessels Division 1</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/><RID>AWS D1.5M/D1.5</RID><RTL>(2025) Bridge Welding Code</RTL><BRK/><BRK/><RID>AWS Z49.1</RID><RTL>(2021) Safety in Welding, Cutting and Allied Processes</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A106/A106M</RID><RTL>(2019a) Standard Specification for Seamless Carbon Steel Pipe for High-Temperature Service</RTL><BRK/><BRK/><RID>ASTM A182/A182M</RID><RTL>(2024) Standard Specification for Forged or Rolled Alloy and Stainless Steel Pipe Flanges, Forged Fittings, and Valves and Parts for High-Temperature Service</RTL><BRK/><BRK/><RID>ASTM A193/A193M</RID><RTL>(2025) Standard Specification for Alloy-Steel and Stainless Steel Bolting Materials for High-Temperature Service and Other Special Purpose Applications</RTL><BRK/><BRK/><RID>ASTM A194/A194M</RID><RTL>(2024) Standard Specification for Carbon Steel, Alloy Steel, and Stainless Steel Nuts for Bolts for High-Pressure or High-Temperature Service, or Both</RTL><BRK/><BRK/><RID>ASTM A269/A269M</RID><RTL>(2025) Standard Specification for Seamless and Welded Austenitic Stainless Steel Tubing for General Service</RTL><BRK/><BRK/><RID>ASTM A312/A312M</RID><RTL>(2022a) Standard Specification for Seamless, Welded, and Heavily Cold Worked Austenitic Stainless Steel Pipes</RTL><BRK/><BRK/><RID>ASTM A351/A351M</RID><RTL>(2024; E 2025) Standard Specification for Castings, Austenitic, for Pressure-Containing Parts</RTL><BRK/><BRK/><RID>ASTM A380/A380M</RID><RTL>(2025) Standard Practice for Cleaning, Descaling, and Passivation of Stainless Steel Parts, Equipment, and Systems</RTL><BRK/><BRK/><RID>ASTM A403/A403M</RID><RTL>(2025) Standard Specification for Wrought Austenitic Stainless Steel Piping Fittings</RTL><BRK/><BRK/><RID>ASTM B88</RID><RTL>(2022) Standard Specification for Seamless Copper Water Tube</RTL><BRK/><BRK/><RID>ASTM B88M</RID><RTL>(2020) Standard Specification for Seamless Copper Water Tube (Metric)</RTL><BRK/><BRK/><RID>ASTM B127</RID><RTL>(2025) Standard Specification for Nickel-Copper Alloy (UNS N04400) Plate, Sheet, and Strip</RTL><BRK/><BRK/><RID>ASTM B164</RID><RTL>(2003; R 2014) Standard Specification for Nickel-Copper Alloy Rod, Bar, and Wire</RTL><BRK/><BRK/><RID>ASTM B165</RID><RTL>(2019) Standard Specification for Nickel-Copper Alloy (UNS N04400)* Seamless Pipe and Tube</RTL><BRK/><BRK/><RID>ASTM B209/B209M</RID><RTL>(2021a) Standard Specification for Aluminum and Aluminum-Alloy Sheet and Plate</RTL><BRK/><BRK/><RID>ASTM B564</RID><RTL>(2025) Standard Specification for Nickel Alloy Forgings</RTL><BRK/><BRK/><RID>ASTM D1330</RID><RTL>(2004; R 2010) Rubber Sheet Gaskets</RTL><BRK/><BRK/><RID>ASTM E11</RID><RTL>(2024) Standard Specification for Woven Wire Test Sieve Cloth and Test Sieves</RTL><BRK/><BRK/><RID>ASTM E381</RID><RTL>(2022) Standard Method of Macroetch Testing Steel Bars, Billets, Blooms, and Forgings</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO 6953-1</RID><RTL>(2024) Pneumatic Fluid Power — Compressed Air Pressure Regulators and Filter-Regulators</RTL><BRK/><BRK/></REF><REF><ORG>MANUFACTURERS STANDARDIZATION SOCIETY OF THE VALVE AND FITTINGS INDUSTRY (MSS)</ORG><BRK/><BRK/><RID>MSS SP-58</RID><RTL>(2025) Pipe Hangers and Supports - Materials, Design and Manufacture, Selection, Application, and Installation</RTL><BRK/><BRK/><RID>MSS SP-71</RID><RTL>(2018) Gray Iron Swing Check Valves, Flanged and Threaded Ends</RTL><BRK/><BRK/><RID>MSS SP-80</RID><RTL>(2019) Bronze Gate, Globe, Angle, and Check Valves</RTL><BRK/><BRK/></REF><REF><ORG>SHEET METAL AND AIR CONDITIONING CONTRACTORS' NATIONAL ASSOCIATION (SMACNA)</ORG><BRK/><BRK/><RID>SMACNA 1981</RID><RTL>(2024) Seismic Restraint Manual Guidelines for Mechanical Systems, 3rd Edition</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY OF AUTOMOTIVE ENGINEERS INTERNATIONAL (SAE)</ORG><BRK/><BRK/><RID>SAE AMS7276</RID><RTL>(2020; Rev J) Rings, Sealing Fluorocarbon (FKM) Rubber High-Temperature Fluid Resistant Low Compression Set 70 to 80</RTL><BRK/><BRK/><RID>SAE AS4841</RID><RTL>(2021; Rev D) Fittings, 37 Degree Flared, Fluid Connection</RTL><BRK/><BRK/><RID>SAE AS4842</RID><RTL>(2016; Rev A) Fittings and Bosses, Pipe Threaded, Fluid Connection</RTL><BRK/><BRK/><RID>SAE AS4842/1</RID><RTL>(2016; Rev A) Fittings, 37 Degree Flared to Pipe Threaded, Fluid Connection</RTL><BRK/><BRK/><RID>SAE AS4843</RID><RTL>(2016; Rev A) Fittings, Beaded, Fluid Connection</RTL><BRK/><BRK/><RID>SAE AS4843/1</RID><RTL>(2016; Rev A) Fittings, Beaded to 37 Degree Flared, Fluid Connection</RTL><BRK/><BRK/><RID>SAE AS4843/2</RID><RTL>(2016; Rev A) Fittings, Beaded to Pipe Threaded, Fluid Connection</RTL><BRK/><BRK/><RID>SAE AS4875</RID><RTL>(2016; Rev A) Fittings, Straight Threaded Boss, Fluid Connection</RTL><BRK/><BRK/><RID>SAE AS4875/1</RID><RTL>(2021; Rev B) Fittings, Straight Thread Boss or Flanged to 37 Degree Flared, Fluid Connection</RTL><BRK/><BRK/><RID>SAE AS4875/2</RID><RTL>(2016; Rev A) Fittings, Flanged to Beaded, Fluid Connection</RTL><BRK/><BRK/><RID>SAE J513</RID><RTL>(2025) Refrigeration Tube Fittings - General Specifications</RTL><BRK/><BRK/><RID>SAE J514</RID><RTL>(2012) Hydraulic Tube Fittings</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-C-15726</RID><RTL>(1988; Rev F; Am 1 1991; Notice 1 2020) Copper-Nickel Alloy, Sheet, Plate, Strip, Bar, Rod, and Wire</RTL><BRK/><BRK/><RID>MIL-T-16420</RID><RTL>(1978; Rev K; Am 1 1988) Tube, Copper-Nickel Alloy, Seamless and Welded (Copper Alloy Numbers 715 and 706)</RTL><BRK/><BRK/><RID>UFC 3-420-02</RID><RTL>(2022) Compressed Air</RTL><BRK/><BRK/></REF><REF><ORG>U.S. GENERAL SERVICES ADMINISTRATION (GSA)</ORG><BRK/><BRK/><RID>CID A-A-1689</RID><RTL>(Rev B) Tape, Pressure-Sensitive Adhesive, (Plastic Film)</RTL><BRK/><BRK/><RID>CID A-A-58092</RID><RTL>(Basic; Notice 1; Notice 2) Tape, Antiseize, Polytetrafluoroethylene</RTL><BRK/><BRK/><RID>CID A-A-59617</RID><RTL>(Basic, Notice 1) Unions, Brass or Bronze, Threaded Pipe Connections and Solder-Joint Tube Connections</RTL><BRK/><BRK/><RID>CID A-A-60001</RID><RTL>(Rev A) Traps, Steam</RTL><BRK/><BRK/><RID>FS QQ-B-654</RID><RTL>(Rev A; Notice 1; Notice 2) Brazing Alloys, Silver</RTL><BRK/><BRK/><RID>FS WW-S-2739</RID><RTL>(Basic; Notice 1; Notice 2) Strainers, Sediment:  Pipeline, Water, Air, Gas, Oil, or Steam</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>29 CFR 1910.219</RID><RTL>Mechanical Power Transmission Apparatus</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NAVAL SEA SYSTEMS COMMAND (NAVSEA)</ORG><BRK/><BRK/><RID>QPL-24109</RID><RTL>(2014) Valve, Globe, Angle, Quick Change Cartridge Trim, High Pressure (H.P.) Hydraulic and Pneumatic (Sizes 1/8 - 1-1/4 Inches)</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Section <SRF>23 03 00</SRF> BASIC MECHANICAL MATERIALS AND METHODS, applies to this section, with the additions and modifications 
+specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G".  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a "G" to an item if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>High Pressure Compressed Air System</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Piping and Tubing</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fittings</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Valves</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Adapters</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pressure gages</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Snubbers</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Timed Solenoid Drain</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Traps</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Filters</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Strainers</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Unions</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>O-ring Gaskets</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flexible connections</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hangers and Supports</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Valve box</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Identification Labels For Piping</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pipe</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tubing</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Quick Disconnect Couplings</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Lubricators</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Dielectric Unions</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hose Reel Assembly</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Aluminum Piping</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Non-Destructive Examination (NDE) Report For Welding of Piping</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Leak Tightness Test</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Employer's Record Documents</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welding Procedures and Qualifications</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Cleaning Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM>Posted Operating Instructions for <SUB>Compressed Air Systems</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The SMACNA Seismic Restraint Manual referenced in the paragraph below 
+must be applied to locations subject to significant risk of seismic induced 
+loads.  The degree to which this manual is to be used for contract drawings 
+and specifications must be determined by the designer of record in coordination 
+with the NAVFAC Engineering Field Division's Mechanical Design Branch.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide all work specified in this section, including design, materials, fabrication, assembly, erection, installation, 
+and examination, inspection and testing of <SUB>compressed air systems</SUB> in conformance with <RID>ASME B31.1</RID>, <RID>ASME BPVC SEC VIII D1</RID>
+ [and <RID>ASME BPVC SEC IX</RID>] [ <RID>ASME BPVC SEC IX</RID> and <RID>SMACNA 1981</RID>], as modified and supplemented by this specification 
+section and accompanying drawings.  In <RID>ASME B31.1</RID>, <RID>ASME BPVC SEC VIII D1</RID> and <RID>ASME BPVC SEC IX</RID>, the advisory provisions 
+must be considered mandatory, as though the word "must" had been substituted for "should" wherever it appears; 
+reference to the "authority having jurisdiction" and "owner" must be interpreted to mean the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>High Pressure Compressed Air System</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Show location, length, and type of welds or brazes, and indicate welding and brazing procedures to be used, preheat, 
+postweld heat treatment, and nondestructive welding and brazing testing required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Laboratory Test Reports and Material Control</TTL><BRK/>
+<BRK/>
+<TXT>Laboratory Test Reports and Material Control for high Pressure Compressed Air Systems:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Laboratory Test Reports</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following laboratory test reports for pipe, tube, fittings, valves, and other pressure containing 
+components (except pressure gages) for each heat and lot of material.</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Full chemical analyses.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Physical properties.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  Etch test per <RID>ASTM E381</RID> as modified for the alloy to verify pipe and tube are seamless and free of 
+defects.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material Control</TTL><BRK/>
+<BRK/>
+<TXT>Where more than one type of corrosion resistant alloy (stainless steel and copper-nickel or nickel-copper for 
+example) is to be installed at project site, the Contractor must implement and maintain a material control system 
+with markings and/or tags to identify positively each piece as to the type of metal.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Welding Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The drawings should be checked to ensure that any supplementary information 
+required by the welding and Non-Destructive Examination (NDE) paragraphs has 
+been shown and that there is not conflict between the project drawings and the 
+specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Drawings must indicate, or test of the project specifications must specify, 
+the tensile strength, elongation, shear strength, size, length, type, and location 
+of the welds, as necessary.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide all welding work specified in this section for compressed air piping systems and in conformance with <RID>
+ASME B31.1</RID>, as modified and supplemented by this specification section and the accompanying drawings.  The welding 
+work includes: qualification of welding procedures, brazing procedures, welders, brazers, welding operators, 
+brazing operators, inspection personnel, nondestructive examination personnel, maintenance of welding records, 
+and examination methods for welds. Welded joints are prohibited on intake pipes per <RID>UFC 3-420-02</RID></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Butt Welded Joints</TTL><BRK/>
+<BRK/>
+<TXT>Butt welded joints must be full penetration joints.  Butt welded joints in systems with working pressures over<MET>
+ 2068 kPa (gage)</MET><ENG> 300 psig</ENG> must be full penetration welds with consumable inserts or backing rings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Employer's Record Documents</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit to the Resident Officer in Charge of Construction (ROICC) for  review and approval the following documentation.  
+This documentation and the subject qualifications must be in compliance with <RID>ASME B31.1</RID>.</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  List of qualified welding procedures that is proposed to be used to provide the work specified in 
+this specification section.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  List of qualified welders, brazers, welding operators, and brazing operators that are proposed to 
+be used to provide the work specified in this specification section.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  List of qualified weld inspection personnel that are proposed to be used to provide the work specified 
+in this specification section.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Welding Procedures and Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Determine performance qualification in accordance with <RID>ASME B31.1</RID>[ and <RID>ASME B31.9</RID> for low pressure piping] and 
+as specified.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Specifications and Test Results</TTL><BRK/>
+<BRK/>
+<TXT>Submit two copies of the welding procedure specifications and procedure qualification test results for each type 
+of welding required.  Approval of any procedure does not relieve the Contractor of the responsibility for producing 
+acceptable welds.  Submit this information on the forms printed in ASME BPVC SEC IX or their equivalent.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Certification</TTL><BRK/>
+<BRK/>
+<TXT>Prior to any welding, submit a list of qualified welders, together with data and certification that each individual 
+is performance qualified as specified.  Do not start any welding work prior to submitting welder, and welding 
+operator qualifications.  The certification must state the type of welding, positions for which each welder is 
+qualified, the code and procedure under which each is qualified, date qualified, and the entity certifying the 
+qualification tests.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Renewal of Qualification</TTL><BRK/>
+<BRK/>
+<TXT>Requalification of a brazer or brazing operator must be required if the individual has not used the specific 
+brazing process for a period of six months or there is specific reason to question the individual's ability to 
+make brazes that will meet the requirements of the specifications.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Experience for Installation and Testing</TTL><BRK/>
+<BRK/>
+<TXT>Experience for Installation and Testing Of [Medium] [and] [High] Pressure Air System:  Install and test [medium] 
+[and] [high] pressure air piping and equipment in accordance with <RID>ASME B31.1</RID> and only with competent personnel 
+specially trained and experienced in installation and testing of [medium] [and] [high] pressure air systems.  
+The supervisors and personnel performing installation and testing must have had previous experience in the satisfactory 
+installation and testing of at least two [medium] [and] [high] pressure air systems.  Submit data substantiating 
+this experience to the Contracting Officer for approval prior to performing any work.  Supervisors and personnel 
+with experience not acceptable to the Contracting Officer will be prohibited from working on these systems.  
+Experience data must include the following:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Name of employee</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Employer</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  List educational background and specialized training on installation and testing [medium] [and] [high] 
+pressure systems, including safety precautions.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">d.  List at least two installations of each type of system worked on and installed and tested satisfactorily.</LST><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">(1) Type of system and operating or design pressure; for medium pressure<MET> 869 to 2751 kPa (gage)</MET><ENG>
+ 126 to 399 psig</ENG>; for high pressure<MET> 2758 kPa (gage)</MET><ENG> 400 psig</ENG> and higher.</ITM><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">(2) Company or owner.</ITM><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">(3) Location.</ITM><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">(4) Name, address, and phone number of a person who can be contacted for verification at the 
+installation.</ITM><BRK/>
+<BRK/>
+<LST INDENT="-0.33">e.  If registered engineer, give the state in which registration is held, and branch of engineering.  
+An engineer is required to supervise safety during testing of medium and high pressure air systems.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Qualification of Pressure Vessel (Receiver) Inspectors</TTL><BRK/>
+<BRK/>
+<TXT>State Certification of Competency and active commission from the National Board of Boiler and Pressure Vessel 
+Inspectors (NBBI), Columbus, Ohio.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Training</TTL><BRK/>
+<BRK/>
+<TXT>Where special cleaning, flushing, material control, testing, and other special requirements are used on a contract, 
+such as required for high pressure compressed air systems, conduct formal training programs for employees on 
+the special requirements.  Maintain records on such training which must be available for inspection by the Contracting 
+Officer.  Certify that employees have satisfactorily completed the required training prior to performing work 
+on the contract.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SAFETY PRECAUTIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Temperature Restriction</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must ensure that the piping design temperature is not exceeded, 
+especially for high pressure systems.  Provide aftercoolers and high temperature 
+shutdown devices as required for safe operation of the systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Compressors or other equipment must not discharge compressed air to the piping systems above<MET> [38] [_____] degrees 
+C</MET><ENG> [100] [_____] degrees F</ENG> unless approved by the Contracting Officer.  Aftercoolers or other devices must be 
+provided to comply with the temperature restriction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rotating Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Fully guard couplings, motor shafts, gears and other exposed rotating or rapidly moving parts in accordance with 
+OSHA <RID>29 CFR 1910.219</RID>.  Provide rigid and suitably secured guard parts that are readily removable without disassembling 
+guarded unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding and Brazing</TTL><BRK/>
+<BRK/>
+<TXT>Safety in welding, cutting, and brazing of pipe must conform to <RID>AWS Z49.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>THERMO PLASTIC PIPING SYSTEMS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Optional paragraph added since UFC 3-420-02 prohibits thermo plastic 
+piping for compressed air piping.</NPR>5<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Thermo plastic piping systems are not allowed and no variance will be accepted.</TXT><BRK/>
+<BRK/></SPT>
+]<TAI OPT="LOW-PRESSURE"><SPT><TTL>LOW PRESSURE COMPRESSED AIR PIPING AND ACCESSORIES</TTL><BRK/>
+<BRK/>
+<TXT>Low pressure compressed air piping and accessories must be rated for<MET> 862 kPa (gage) at 65 1/2 degrees C</MET><ENG> 125 psig 
+at 150 degrees F</ENG></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Steel Piping</TTL><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  <SUB>Pipe</SUB>: Pipe must conform to <RID>ASTM A53/A53M</RID>, be [seamless] [electric resistance welded] carbon steel, 
+Schedule 40, and black.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  <SUB>Fittings</SUB>: Fittings 2-inches and larger must conform to [<RID>ASME B16.9</RID>, and must be carbon steel, butt 
+welded, and schedule 40] [<RID>ASME B46.1</RID> and must be carbon steel, have welding neck flanges, Class 150,] 
+flanged fittings, 1/16 oil resistant synthetic rubber gaskets conforming to <RID>ASTM D1330</RID>, bolts conforming 
+to <RID>ASTM A193/A193M</RID> Grade B7, and nuts conforming to <RID>ASTM A194/A194M</RID> Grade 7.  Butt welded joints must 
+be full penetration consumable insert or backing ring type.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  Fittings, size<MET> 40 mm</MET><ENG> 1 1/2 inches</ENG> and smaller must conform to [<RID>ASME B16.3</RID>, and must be threaded malleable 
+iron, Class 150,] [<RID>ASME B16.11</RID> forged carbon steel,] and have [Class 3000 socket welding] [Class 2000 
+threaded.]  Joints may also be butt welded or flanged, as specified for sizes<MET> 50 mm</MET><ENG> 2 inches</ENG> and larger.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">d.  Flat-faced steel flanges:  Where connections are made to Class 125 cast iron flanges with steel flanges, 
+use only flat-faced Class 150 steel flanges.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">e.  Unions:  must conform to <RID>ASME B16.39</RID>, Class 1 and be rated for (<MET> 2068 kPa (gage)</MET><ENG> 300 psig</ENG> WOG).</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Copper Tubing</TTL><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  <SUB>Tubing</SUB>: must conform to <MET> <RID>ASTM B88M</RID></MET><ENG> <RID>ASTM B88</RID></ENG>, Type K or L, and be hard drawn, Class 1.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Fittings:  must conform to <RID>ASME B16.22</RID> wrought copper or bronze, with silver brazed joints.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  Brazing filler metal:  must conform to <RID>FS QQ-B-654</RID>, Class III.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">d.  Unions:  must be bronze conforming to <RID>CID A-A-59617</RID> and be brazed joint type.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">e.  Flanges and flanged fittings:  must conform to <RID>ASME B16.24</RID>, bronze Class 150, gaskets must be oil 
+resistant synthetic rubber conforming to <RID>ASTM D1330</RID>, bolts must conform to <RID>ASTM A193/A193M</RID> Grade B7, 
+and nuts must conform to <RID>ASTM A194/A194M</RID> Grade 7.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">f.  Flared fittings: must conform to <MET> <RID>ASTM B88M</RID></MET><ENG> <RID>ASTM B88</RID></ENG>, Type K or L and be annealed, with [<RID>ASME B16.26</RID>
+] [<RID>SAE J513</RID>] flared fittings.</LST><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Aluminum Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Aluminum piping may ONLY be used for Low Pressure piping. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All <SUB>Aluminum piping</SUB>, fittings, and unions must conform to <RID>ASTM B209/B209M</RID> [6061-T6] [6063]. Piping must be no 
+less than schedule 40. []</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Valves</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Gate Valves</TTL><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Bronze Gate Valves: Valves 2-inches and smaller must conform to <RID>MSS SP-80</RID> Class 150, and be wedge 
+disc, rising stem, inside screw type, with brazed joints ends when used with copper tubing.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Steel Gate Valves:  must conform to <RID>ASME B16.34</RID>, Class 150 have flanged ends, outside screw and yoke 
+type with [solid wedge] [flexible wedge disc], [as recommended by the manufacturer for the conditions 
+indicated.][  Provide motor operator where indicated.]</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Globe and Angle Valves</TTL><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Bronze globe and angle valves: must conform to <RID>MSS SP-80</RID> Class 150 for valves 2-inches and smaller, 
+Class 200 valves must be used for copper tubing unless the tubing has brazed ends.  Valves must have 
+renewable seats and discs except brazed-end valves which must have integral seats.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Steel globe and angle valves: must conform to <RID>ASME B16.34</RID> [Class 150]  [as recommended by the manufacturer 
+for the conditions indicated and have flanged ends.][  Provide motor operator where indicated.]</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Reducing Valves</TTL><BRK/>
+<BRK/>
+<TXT>Pressure reducing valves must conform to <RID>ISO 6953-1</RID> and have a nominal pressure rating of not less than inlet 
+system pressure.  Provide pressure reducing valves capable of being adjusted to specified flow and pressure, 
+and suitable for intended service.  Provide dome loaded type pilot valves if required for proper operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safety Valves</TTL><BRK/>
+<BRK/>
+<TXT>Safety valves must conform to <RID>ASME BPVC SEC VIII D1</RID> and <RID>ASME BPVC SEC IX</RID> Valve must be code stamped for),<MET> 862 
+kPa (gage)</MET><ENG> 125 psig</ENG>. Valve must be rated for unfired pressure vessels, made of bronze, be a factory set and sealed, 
+and have [threaded] [flanged connections].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Check Valves</TTL><BRK/>
+<BRK/>
+<TXT>Check valves must conform to <RID>MSS SP-80</RID> Valve must have a bronze body with [brazed joint] [threaded ends] [steel 
+body with [flanged end] [threaded ends] per <RID>ASME B16.34</RID>]. Check valve must have a perforated piston with closed 
+downstream end, in line with the pipe and held closed by a steel poppet return spring.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Regulators</TTL><BRK/>
+<BRK/>
+<TXT>Pressure Regulators must be diaphragm type, air loaded, tight closing single seat, and brass body construction 
+[with an integral filter and bowl].  [Pressure regulators used to deliver compressed air for cleaning must be 
+factory set at not more than<MET> 207 kPa (gage)</MET><ENG> 30 psig</ENG> and must be nonadjustable.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Needle Valves</TTL><BRK/>
+<BRK/>
+<TXT>Needle valves must be one-piece bodies of pressure balanced type with [integral] [screwed] bonnets. Valves must 
+have stems of hardened stainless steel with fine thread for metering and ease of adjusting, and teflon packing. 
+Needle valves must be of the slow opening type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ball Valves</TTL><BRK/>
+<BRK/>
+<TXT>Ball valves under 2.5-inches must be full port design and have a copper alloy body. Valves<ENG> 2.5 inches</ENG> and larger 
+must be ANSI Class 150 steel-bodied.  Valves must have two-position lever handles.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Pressure Gages</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Pressure gages must conform to<RID>ASME B40.100</RID> Accuracy Grade A, for air and have a [steel] [brass] case. Gages must 
+have nonshatterable safety glass, and a pressure blowout back to prevent glass from flying out in case of an 
+explosion.  Gages must have a<MET> 90 mm</MET><ENG> 3 1/2 inch</ENG> minimum diameter dial and a dial range of approximately twice 
+working pressure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Hangers and Supports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide pipe hangers and supports conforming to <RID>MSS SP-58</RID> and <RID>ASME B31.1</RID>, as indicated.  Provide [zinc][copper] 
+plated pipe hangers and supports.  Provide tubing supports of U-shaped steel bolts and nuts. Supports must be 
+firmly secured to support structures such as walls, columns, floors, or brackets.  Clips must fit closely around 
+piping but have sufficient clearance to permit longitudinal movement from normal expansion and contraction.  
+Provide supports at valves, fittings, branch lines, outlets, changes in direction, equipment, and accessories.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Quick Disconnect Couplings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Quick Disconnect Couplings must be constructed of all brass and suitable for a working pressure of not less than<MET>
+ 862 kPa (gage)</MET><ENG> 125 psig</ENG>. The Female side of the coupling (fixed end) must have a male thread connection with 
+an automatic shutoff.  Provide the male side of coupling with hose stem and ball check to bleed pressure from 
+the hose and prevent hose whipping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Single Cartridge Type <SUB>Filters</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide Single Cartridge Type Filters rated for<MET> 862 kPa (gage)</MET><ENG> 125 psig</ENG> operating pressure and filter housings 
+of [brass] [bronze] construction.  Provide cellulose cartridge filters of graded density construction capable 
+of removing liquids and solids of 5 microns and larger.  Filter capacity must be compatible with rated flow of 
+equipment or pressure reducing valves provided.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Strainers</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Strainers must conform to<RID>FS WW-S-2739</RID>  Class 125, Style Y, Type II, and be simplex type. Strainers must be [bronze][malleable 
+iron] body type and have a [20-mesh Monel][stainless steel] screen.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Traps</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Traps must conform to<RID>CID A-A-60001</RID> to drain water and other liquids from system.  Type of traps, as indicated, 
+and rated working pressure not less than system operating pressure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Lubricators</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Lubricators must be of brass body construction and have a minimum rating of<ENG> 125 psig</ENG> [Lubricator must have a 
+[clear plastic bowl and metal guard.]  [metal bowl.]]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Flexible Connections</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Connections for vibration isolation must be wire braid reinforced corrugated metal hose type, line-sized bronze 
+end connections. Connections must be suitable for pressure indicated.  Connection length must be as recommended 
+by manufacturer but not less than<MET> [457] [_____] mm</MET><ENG> [18] [_____] inches</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Dielectric Unions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Unions must have steel female pipe thread end and copper solder-joint ends. Unions must conform to all dimensional, 
+strength and pressure requirements of <RID>ASME B16.39</RID>, Class 1.  Steel parts must be galvanized or plated.  Unions 
+must have a water-impervious insulation barrier capable of limiting galvanic current to one percent of the short-circuit 
+current in a corresponding bimetallic joint.  When dry, it must also be able to withstand a 600-volt breakdown 
+test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Polytetrafluoroethylene (PTFE) Tape</TTL><BRK/>
+<BRK/>
+<TXT>Tape must conform to<RID>CID A-A-58092</RID> for screw-jointed pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Hose Reel Assembly</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a hose reel assembly complete with<ENG> 50 foot</ENG> hose rated for a minimum of<MET> 862 kPa (gage)</MET><ENG> 125 psig</ENG>, ball 
+stop, hose extension with air coupler, hose rollers, [reel enclosure,] [nonsparking ratchet pawl,] and required 
+accessories.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><SPT><TTL>HIGH PRESSURE (HP) AIR PIPING AND ACCESSORIES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The high pressure air system materials listed are tentative suggestions.  
+The designer must calculate required minimum wall thicknesses for pipe and tube 
+in accordance with ASME B31.1 and verify adequacy of the materials listed.  
+Select material for corrosion resistance required in the service environment.  
+Allowance for corrosion or fabrication, factor "A" in ASME B31.1, paragraph 
+104.1, must be selected by the designer.  If carbon steel is selected as the 
+piping material, special attention should be given to the corrosion allowance 
+for the higher pressures such as<MET> 20,682 kPa (gage)</MET><ENG> 3000 psig</ENG> and<MET> 34,470 kPa 
+(gage)</MET><ENG> 5000 psig</ENG> systems since commercial sizes per ASME B36.10M would not permit 
+selection of large corrosion allowance factors.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>HP Air <SUB>Piping and Tubing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>HP air piping and tubing for<MET> 34,470 kPa (gage) at 38 degrees C</MET><ENG> 5000 psig at 100 degrees F</ENG> system must conform 
+to the following:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Stainless steel pipe must conform to  <RID>ASTM A312/A312M</RID>. Pipes with sizes up to 1-inch IPS must be 
+annealed type [304L] [316L] and Schedule 160 seamless stainless steel. Pipes in sizes from 1 1/4-inches 
+to 2 1/2-inches must be double extra strong.  Wall thickness "schedule" and "weight" designations must 
+conform to <RID>ASME B36.10M</RID>.  Fittings for pipe<MET> 40 mm</MET><ENG> 1 1/2 inches</ENG> IPS and smallermust conform to  <RID>ASTM A403/A403M</RID>
+ and <RID>ASME B16.11</RID>, be forged stainless steel, Type [304L] [316L], and socket welded. Fittings must be, 
+Class 6000 for<MET> 6 to 25 mm</MET><ENG> 1/4 to one inch</ENG> IPS, and Class 9000 for<MET> 32 and 40 mm</MET><ENG> 1 1/4 and 1 1/2 inches</ENG>
+ IPS.  Fittings for pipes<ENG> 2 to 2 1/2 inches</ENG> IPS must be <RID>ASTM A403/A403M</RID>, <RID>ASME B16.9</RID>, butt welding, seamless 
+wrought stainless steel Type [304L] [316L], and double extra strong (XXS).</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Larger sizes must be special as indicated. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Nickel-copper pipe must conform to  <RID>ASTM B165</RID>. Pipes with sizes up to one inch IPS must be annealed 
+type and Schedule 160 seamless construction. Pipes in sizes from 1 1/4-inches to 3-inches must be double 
+extra strong.  Wall thickness "schedule" and "weight" designations must conform to <RID>ASME B36.10M</RID>.  Fittings<MET>
+ 40 mm</MET><ENG> 1 1/2 inches</ENG> IPS and smaller must conform to <RID>ASME B16.11</RID>, be forged nickel-copper <RID>ASTM B564</RID>, and 
+be socket welded. Fittings must be Class 6000 for<MET> 6 to 25 mm</MET><ENG> 1/4 to one inch</ENG> IPS and Class 9000 for<MET> 32 
+and 40 mm</MET><ENG> 1 1/4 and 1 1/2 inches</ENG> IPS.  Fittings for pipe<MET> 50 mm</MET><ENG> 2 inches</ENG> IPS and larger must conform to <RID>
+ASME B16.9</RID>, be butt welded, and of seamless wrought 70-30 nickel-copper. Fittings must be double extra 
+strong (XXS) for<ENG> 2 to 3 inches</ENG> IPS.</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use only one type of fitting for the entire project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST INDENT="-0.33">c.  Stainless steel tubing must conform to  <RID>ASTM A269/A269M</RID>, and be made of annealed seamless stainless 
+steel type [304] [304L] [316]. Tubing wall thicknesses is specified below.  Fittings for tubing must 
+be  stainless steel, Type [304] [304L] [316] and conform to [<RID>SAE AS4841</RID>,] [<RID>SAE AS4842</RID>,][<RID>SAE AS4842/1</RID>,][<RID>
+SAE AS4843</RID>,][<RID>SAE AS4843/1</RID>,][<RID>SAE AS4843/2</RID>,][<RID>SAE AS4875</RID>][<RID>SAE AS4875/1</RID>,][<RID>SAE AS4875/2</RID>,][<RID>SAE J514</RID>] . Fittings 
+must be flared type and suitable for<MET> 34,470 kPa</MET><ENG> 5000 psi</ENG> service.  Fittings must have a minimum burst 
+strength of<MET> 138 MPa (gage)</MET><ENG> 20,000 psig</ENG>, provide laboratory burst test reports.  Do not use flareless 
+fittings or bite type fittings.  Do not weld tubing.</LST><BRK/>
+<MET><TAB HEADERROWS="2" WIDTH="70">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="165.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="161.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>MINIMUM WALL THICKNESS FOR STAINLESS STEEL TUBING</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1> Size (mm O.D.)</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Thickness (mm)</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">1.47</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">15</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">2.11</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">16</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">2.41</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">20</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">3.05</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></MET><ENG><TAB HEADERROWS="2" WIDTH="70">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="165.75"/>
+      <COL AUTOWIDTH="0" WIDTH="161.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING"><HL4>MINIMUM WALL THICKNESS FOR STAINLESS STEEL TUBING</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1> Size (Inches O.D.)</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Thickness (Inches)</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3/8</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">.058</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1/2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">.083</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5/8</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">.095</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3/4</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">.120</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></ENG><BRK/>
+<LST INDENT="-0.33">d.  Copper-nickel tube must conform to  <RID>MIL-T-16420</RID>. Tubing must have a composition of 70-30 and be  
+temper-annealed, Type I - seamless Class 6000 (<MET> 41,364 kPa (gage)</MET><ENG> 6000 psig</ENG> working pressure), and Grade 
+2 (material with heat identification)  Fittings<MET> 40 mm</MET><ENG> 1 1/2 inches</ENG> IPS and smaller must conform to  <RID>ASME B16.11</RID>
+, <RID>MIL-C-15726</RID>, forged copper-nickel, and socket welded. The body wall thickness must conform to <RID>MIL-T-16420</RID>
+ for Class 6000. The average socket wall thickness must be 1.25 times and the minimum socket wall 1.09 
+times the minimum wall thickness for that size listed in <RID>MIL-T-16420</RID> for Class 6000.  Fittings<MET> 50 to 
+80 mm</MET><ENG> 2 to 3 inches</ENG> IPS must conform to <RID>ASME B16.9</RID>and be butt welded, seamless wrought, 70-30 copper-nickel 
+composition, with minimum wall thickness per <RID>MIL-T-16420</RID> for Class 6000.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Pressure Air Piping</TTL><BRK/>
+<BRK/>
+<TXT>High pressure air piping for<MET> 20,682 kPa (gage) at 38 degrees C</MET><ENG> 3000 psig at 100 degrees F</ENG> system must conform 
+to the following:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Stainless steel pipe must conform to  <RID>ASTM A312/A312M</RID>. Pipes with sizes up to 1-inch IPS must be 
+annealed type [304L] [316L] and Schedule 80 seamless stainless steel. Schedule 160<MET> 32 to 150 mm</MET><ENG> 1 1/4 
+to 6 inches</ENG> IPS.  Wall thickness "schedule" and "weight" designations must conform to <RID>ASME B36.10M</RID>.  
+Fittings for pipe<MET> 40 mm</MET><ENG> 1 1/2 inches</ENG> IPS and smaller:  <RID>ASTM A403/A403M</RID>, <RID>ASME B16.11</RID>, forged stainless 
+steel, Type [304L], [316L], socket welding, Class 3000 for<MET> 6 to 25 mm</MET><ENG> 1/4 to one inch</ENG>IPS, Class 6000  
+for<MET> 32 and 40 mm</MET><ENG> 1 1/4 and 1 1/2 inches</ENG>IPS.  Fittings for pipe<MET> 50 to 150 mm</MET><ENG> 2 inches to 6 inches</ENG>IPS: <RID>
+ASTM A403/A403M</RID>, <RID>ASME B16.9</RID>, butt welding, seamless wrought stainless steel Type [304L] [316L], Schedule 
+160.</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use only one type of fitting for the entire project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST INDENT="-0.33">b.  Stainless steel tubing must conform to  <RID>ASTM A269/A269M</RID>, and be made of annealed seamless stainless 
+steel type [304] [304L] [316]. Tubing minimum wall thicknesses is specified below.  Fittings for tubing 
+must be  stainless steel, Type [304] [304L] [316] and conform to [<RID>SAE AS4841</RID>,] [<RID>SAE AS4842</RID>,][<RID>SAE AS4842/1</RID>
+,][<RID>SAE AS4843</RID>,][<RID>SAE AS4843/1</RID>,][<RID>SAE AS4843/2</RID>,][<RID>SAE AS4875</RID>,][<RID>SAE AS4875/1</RID>,][<RID>SAE AS4875/2</RID>,] [<RID>SAE J514</RID>]. 
+Fittings must be flared type and suitable for<MET> 20,682 kPa</MET><ENG> 3000 psi</ENG> service.  Fittings must have a minimum 
+burst strength of<MET> 139 MPa</MET><ENG> 20,000 psig</ENG>, provide laboratory burst test reports.  Do not use flareless fittings 
+or bite type fittings.  Do not weld tubing.  Brazed<MET> 20,682 kPa</MET><ENG> 3000 psi</ENG> tubing fittings may be used where 
+flared fitting connections are not required for equipment.  Use <RID>FS QQ-B-654</RID>, Grade V, brazing alloy where 
+tubing or fitting or both tubing and fitting are stainless steel.</LST><BRK/>
+<MET><TAB HEADERROWS="2" WIDTH="70">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="165.75"/>
+      <COL AUTOWIDTH="0" WIDTH="161.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING"><HL4>MINIMUM WALL THICKNESS FOR STAINLESS STEEL TUBING</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1> Size (mm O.D.)</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Thickness (mm)</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.47</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">15</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2.11</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">16</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2.41</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">20</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3.05</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></MET><ENG><TAB HEADERROWS="2" WIDTH="70">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="165.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="161.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>MINIMUM WALL THICKNESS FOR STAINLESS STEEL TUBING</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1> Size (Inches O.D.)</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Thickness (Inches)</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">3/8</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">.058</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">1/2</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">.083</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">5/8</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">.095</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">3/4</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">.120</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></ENG><BRK/>
+<LST INDENT="-0.33">c.  Copper-nickel tube must conform to  <RID>MIL-T-16420</RID>. Tubing must have a composition of 70-30 and be temper-annealed, 
+Type I - seamless, Class 3300 (<MET> 22,750 kPa (gage)</MET><ENG> 3300 psig</ENG> working pressure), and Grade 2 (material 
+with heat identification).  Fittings, Brazing: bronze or copper-nickel, silver brazed ends, rated for 
+not less than<MET> 20,682 kPa</MET><ENG> 3000 psi</ENG> working pressure.  Limit brazed joints to required connections to existing 
+piping.  Use welded joints for new and existing piping to the maximum extent practical.  Fittings, welding,<ENG>
+ 1 1/2 inches</ENG> IPS and smaller:  <RID>ASME B16.11</RID>, <RID>MIL-C-15726</RID>, forged copper-nickel, and socket welded. The 
+body wall thickness must conform to <RID>MIL-T-16420</RID> for Class 3300. The average socket wall thickness must 
+be 1.25 times and the minimum socket wall 1.09 times the minimum wall thickness for that size listed 
+in <RID>MIL-T-16420</RID> for Class 3300; however, for<MET> 6 mm</MET><ENG> 1/4 inch</ENG> IPS, <RID>ASME B16.11</RID>, Class 3000 dimensions may 
+be used when approved by the Contracting Officer.  Fittings, welding,<MET> 50 to 80 mm</MET><ENG> 2 to 3 inches</ENG> IPS must 
+conform to <RID>ASME B16.9</RID> and be butt welded, seamless wrought, 70-30 copper-nickel composition with minimum 
+wall thickness per <RID>MIL-T-16420</RID> for Class 3300.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Globe and Angle Valves</TTL><BRK/>
+<BRK/>
+<TXT>Valves must conform to <RID>QPL-24109</RID> and have bronze body construction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Needle Valves</TTL><BRK/>
+<BRK/>
+<TXT>Valves must conform to<RID>QPL-24109</RID>and have bronze body construction. Provide needle valve cartridges in lieu of 
+shutoff valve cartridges.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safety Valves</TTL><BRK/>
+<BRK/>
+<TXT>Valves must conform to<RID>ASME BPVC SEC VIII D1</RID> and <RID>ASME BPVC SEC IX</RID>.  Safety valves must be code stamped, [Type 
+[304L] [316L] stainless steel,] [70-30 copper-nickel,] [70-30 nickel-copper,] [bronze,] [carbon steel,] and have 
+0-ring seal union thread piece ends as provided per <RID>QPL-24109</RID> . Valves must be factory set and sealed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Reducing Valves</TTL><BRK/>
+<BRK/>
+<TXT>Pressure Reducing Valves must conform to<RID>ISO 6953-1</RID>, have a nominal pressure rating of<MET> [2758] [10,341] [20,680] 
+[41,364] kPa (gage)</MET><ENG> [400] [1500] [3000] [6000] psig</ENG>, body of [stainless steel,] [bronze,] [aluminum bronze,] 
+[naval brass,] and an outlet pressure and capacity as required for the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Adapters</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide suitable tailpiece adapters for installation of valves conforming to <RID>QPL-24109</RID> and for other components 
+with similar union end connections.  Tailpieces must match pipe material  [Type 304L stainless steel][ 316L stainless 
+steel,] [70-30 nickel-copper,] [70-30 copper-nickel,] socket welding type for<MET> 40 mm</MET><ENG> 1 1/2 inches</ENG> IPS and smaller.  
+[Tailpieces for tubing must be brazed O.D. type suitable for<MET> 20,682 kPa</MET><ENG> 3000 psi</ENG>].  Provide thread piece adapters 
+for O-ring union installation of components made of material different from pipe or where welded joint installation 
+is not suitable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Pressure Gages</SUB> (High Pressure)</TTL><BRK/>
+<BRK/>
+<TXT>Pressure gages for high pressure systems must conform to <RID>ASME B40.100</RID>, for air, with a scale approximately twice 
+the system working pressure, nonshatterable safety glass, and pressure blowout back to prevent glass from flying 
+out in case of an explosion.  Gages <MET> [90] [114] mm</MET><ENG> [3 1/2] [4 1/2] inches</ENG> in diameter must have a steel case 
+and tubing. Gages must have an accuracy of one percent full scale in middle half section of scale, 1 1/2 percent 
+of full scale value in first, and last 1/4 sections of scale.  Do not fasten bourdon tube pressure-sensitive 
+elements with low-melting-point solder.  Print on gage faces in red letters "USE NO OIL." Provide pressure snubbers 
+or equalizer in pressure gage installations on inflow side of a gage valve.  Mount gage branches vertically on 
+top of an air line to avoid branch flow of condensate and dirt.  Connect a gage to an air line or component through 
+an equalizer, gage valve (slow-opening needle type), and branch with provision for bleed-off.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Snubbers</SUB> [and] [Equalizers]</TTL><BRK/>
+<BRK/>
+<TXT>Snubbers [and] [Equalizers] must have a[Type 304L or Type 316L stainless steel] [70-30 copper-nickel] [70-30 
+nickel-copper] body with a rated working pressure not less than system design pressure.  Snubber elements must 
+be  sintered stainless steel unless otherwise approved.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Timed Solenoid Drain</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Timed solenoid drain must be packaged with<MET> 6 mm, [20,682] [34,470] kPa (gage)</MET><ENG> 1/4 inch, [3000] [5000] psig</ENG>, direct 
+acting, normally closed solenoid valve, solid state timer, drain cycle adjustable from zero to 50 minutes, valve 
+open duration adjustable from one to 14 seconds, power on light, valve open light, operation on 115 or 230 VAC, 
+and housed in NEMA [1] [_____] enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Compressed Air <SUB>Filters</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a high pressure compressed air filter, of single cartridge type, designed for operating pressures not 
+less than the system design pressure.  Provide a filter housing of [Type [304L] [316L] stainless steel] [70-30 
+copper-nickel] [70-30 nickel-copper] construction.  Provide a cellulose cartridge filter of graded density construction 
+capable of removing liquids and solids of 5 microns and larger.  Provide filter with a bottom drain and [manual 
+drain valve] [timed solenoid drain].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Strainers</SUB></TTL><BRK/>
+<BRK/>
+<TXT> Provide strainers of Y-pattern type with [cast stainless steel body conforming to <RID>ASTM A351/A351M</RID> [CF8M (Type 
+316)][CF8 (Type 304)][CF3 (Type 304L)][CF3M (Type 316L,]] [70-30 copper-nickel,] [70-30 nickel-copper,] [forged 
+alloy steel body conforming to<RID>ASTM A182/A182M</RID> Grade F-22,] rated for the system design working pressure, with 
+[20-mesh Monel][stainless steel screen].  Net strainer area not less then 2.5 times the inlet connection area.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Unions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Unions must be O-ring seal type compatible with union ends of <RID>QPL-24109</RID> valves, material and end preparation 
+compatible with pipe and fittings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>O-Ring Gaskets</SUB></TTL><BRK/>
+<BRK/>
+<TXT>O-Ring Gaskets must conform to<RID>SAE AMS7276</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Hangers and Supports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide pipe hangers and supports conforming to <RID>MSS SP-58</RID> and <RID>ASME B31.1</RID>unless indicated otherwise.  Hangers 
+for high pressure air lines must be rigid or braced and sufficiently strong to prevent "whipping" of a pipe if 
+a break occurs while the line is under pressure.  Provide zinc plated pipe hangers and supports except for copper 
+plated inserts for copper piping.  Provide tubing supports of U-shaped steel bolts and nuts firmly secured to 
+adequately support structures such as walls, columns, floors, or brackets.  Clips must fit closely around piping 
+but must have sufficient clearance to permit longitudinal movement of piping during normal expansion and contraction.  
+Provide supports at valves, fittings, branch lines, outlets, changes in direction, equipment, and accessories.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MEDIUM PRESSURE COMPRESSED AIR PIPING AND ACCESSORIES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Components are listed based on operation at maximum temperature of<MET> 66 
+degrees C</MET><ENG> 150 degrees F</ENG>.  Class 300 steam rated components have water-oil-gas 
+(WOG) ratings above<MET> 2758 kPa (gage) at 66 degrees C</MET><ENG> 400 psig at 150 degrees 
+F</ENG>.  If higher operating temperatures are expected, change component descriptions 
+to higher ratings as required after reviewing appropriate component specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Medium pressure compressed air piping and accessories from<ENG> 126 to 399 psig at 150 degrees F</ENG>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Pipe must conform to [<RID>ASTM A53/A53M</RID>][<RID>ASTM A106/A106M</RID>] and be seamless carbon steel, Schedule 40, and black.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Fittings</SUB>, Size<MET> 50 Millimeters</MET><ENG> 2 Inches</ENG> and Larger</TTL><BRK/>
+<BRK/>
+<TXT>Fittings 2-inches and greater must conform to [<RID>ASME B16.9</RID>, must be carbon steel, butt welded and Schedule 40][<RID>
+ASME B46.1</RID>, carbon steel welding neck flanges, Class 300,] <RID>ASME B46.1</RID>, flanged fittings, carbon steel, Class 
+300, gaskets <RID>ASME B16.20</RID>, spiral wound metallic, Class 300, bolts <RID>ASTM A193/A193M</RID> Grade B7, and nuts conforming 
+to <RID>ASTM A194/A194M</RID> Grade 7.  Butt welded joints must be full penetration consumable insert or backing ring type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings, Size<MET> 40 Millimeters</MET><ENG> 1 1/2 Inches</ENG> and Smaller</TTL><BRK/>
+<BRK/>
+<TXT>Fittings 1 1/2-inches and smaller must conform to<RID>ASME B16.11</RID> and be constructed of  forged carbon steel, [Class 
+3000 socket welded][Class 2000 threaded].  Seal weld threaded joints that are not required to be disassembled 
+for maintenance.  Joints may also be butt welded or flanged, as specified for sizes<MET> 50 mm</MET><ENG> 2 inches</ENG> and larger.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flat-faced Steel Flanges</TTL><BRK/>
+<BRK/>
+<TXT>Where connections are made to Class 250 cast iron flanges with steel flanges, use only flat-faced Class 300 steel 
+flanges.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unions</TTL><BRK/>
+<BRK/>
+<TXT>Unions must conform to<RID>ASME B16.39</RID>, Class 2 (<MET> 3447 kPa (gage)</MET><ENG> 500 psig</ENG> WOG, cold, non-shock).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Valves</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Globe and Angle Valves</TTL><BRK/>
+<BRK/>
+<TXT>Sizes<MET> 50 mm</MET><ENG> 2 inches</ENG> and smaller, must be [ bronze and conform to <RID>MSS SP-80</RID>, Type 3 (Metallic Disc, Renewable 
+Seat), and have Class 300 threaded ends.][carbon steel and conform to <RID>ASME B16.34</RID>, and have Class 300 threaded 
+ends.]  Sizes larger than<MET> 50 mm</MET><ENG> 2 inches</ENG> must conform to <RID>ASME B16.34</RID> and be carbon steel tapered disk type and 
+Class 300 flanged ends.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Check Valves</TTL><BRK/>
+<BRK/>
+<TXT>Check valves must conform to [<RID>ASME B16.34</RID>][<RID>MSS SP-71</RID>] Class 300 steel. Valves must be [lift][swing] type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Reducing Valves</TTL><BRK/>
+<BRK/>
+<TXT>Pressure reducing valves must conform to<RID>ISO 6953-1</RID>, with nominal pressure rating of not less than inlet system 
+pressure indicated.  Provide pressure reducing valves capable of being adjusted to specified flow and pressure, 
+and suitable for intended service.  [Provide pilot valve for dome loaded type]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safety Valves</TTL><BRK/>
+<BRK/>
+<TXT>Safety valves must conform to<RID>ASME BPVC SEC VIII D1</RID> and <RID>ASME BPVC SEC IX</RID>. Valves must be code stamped and of  
+bronze body construction with bronze trim for unfired pressure vessels and have [threaded][flanged] connection. 
+Valves must be factory set and sealed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pressure Gages</TTL><BRK/>
+<BRK/>
+<TXT>Pressure gages must conform<RID>ASME B40.100</RID> Accuracy Grade A for air, with a [steel][brass] case and nonshatterable 
+safety glass. The case must have a pressure blowout back to prevent glass from flying out in the event of an 
+explosion.  Gages must have a<MET> 90 mm</MET><ENG> 3 1/2 inch</ENG> minimum diameter dial and a dial range of approximately twice 
+working pressure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Hangers and Supports</TTL><BRK/>
+<BRK/>
+<TXT>Hangars and supports must conform to<RID>MSS SP-58</RID> and <RID>ASME B31.1</RID>, unless indicated otherwise.  Provide zinc plated 
+pipe hangers and supports.  Provide tubing supports of U-shaped steel bolts and nuts firmly secured to adequately 
+support structures such as walls, columns, floors, or brackets.  Clips must fit closely around piping but must 
+have sufficient clearance to permit longitudinal movement of piping during normal expansion and contraction.  
+Provide supports at valves, fittings, branch lines, outlets, changes in direction, equipment, and accessories.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Strainers</TTL><BRK/>
+<BRK/>
+<TXT>Strainers must conform to<RID>FS WW-S-2739</RID> Class 250 and be Style Y, simplex type, with [20-mesh Monel][stainless 
+steel screen].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Traps</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Traps must conform to<RID>CID A-A-60001</RID>, to drain water and other liquids from system.  Traps must be rated working 
+pressure not less than system operating pressure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Flexible Connections</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Connections must be for vibration isolation, wire braid reinforced corrugated metal hose type, line-sized, with 
+bronze end connections, suitable for pressure indicated.  Length of the connections must be as recommended by 
+manufacturer but not less than<MET> [457] [_____] mm</MET><ENG> [18] [_____] inches</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Polytetrafluoroethylene (PTFE) Tape</TTL><BRK/>
+<BRK/>
+<TXT>PTFE Tape must conform to<RID>CID A-A-58092</RID> for screw-jointed pipe.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SLEEVES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Floor Slabs, Roof Slabs, and Outside Walls Above and Below Grade</TTL><BRK/>
+<BRK/>
+<TXT>Sleeves must be made of Galvanized-steel pipe and have an inside diameter at least<MET> 15 mm</MET><ENG> 1/2 inch</ENG> larger than 
+the outside diameter of the pipe passing through it.  Provide sufficient sleeve length to extend completely through 
+floors, roofs, and walls, so that sleeve ends are flush with finished surfaces. Sleeves for floor slabs must 
+extend<MET> 15 mm</MET><ENG> 1/2 inch</ENG> above finished floor surface.  Sleeves located in waterproofed construction must include 
+flange and clamping ring.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Partitions</TTL><BRK/>
+<BRK/>
+<TXT>Partitions must be galvanized sheet steel, 26 gage or heavier and of sufficient length to completely extend through 
+partition thickness. The sleeve ends must be flush with partition finished surface.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>VALVE BOX</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a valve box of rectangular concrete design with the words "Compressed Air" cast or otherwise marked on 
+the cover.  Box size must be large enough for removal of the valve without removing box.  Provide valve box for 
+areas as follows:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Roads and traffic areas:  Heavy Duty, cast iron cover</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Other areas:  Standard duty, heavy steel plate or concrete cover</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>IDENTIFICATION LABELS FOR PIPING</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Labels for pipes<MET> 20 mm</MET><ENG> 3/4 inch</ENG> O.D. and larger must bear printed legends to identify the contents of pipes and 
+arrows to show the direction of flow.  Pipes smaller than<MET> 20 mm</MET><ENG> 3/4 inch</ENG> O.D., must have labels with color coded 
+backgrounds to signify levels of hazard in accordance with <RID>ASME A13.1</RID>.  Legends and type and size or characters 
+must also conform to <RID>ASME A13.1</RID>.  [Labels must be made of plastic sheet in conformance with <RID>CID A-A-1689</RID> with 
+pressure-sensitive adhesive suitable for the intended applications.][ Labels must be premolded of plastic to 
+fit over specific pipe outside diameters<MET> 20 mm</MET><ENG> 3/4 inch</ENG> and larger.]  For pipes smaller than<MET> 20 mm</MET><ENG> 3/4 inch</ENG> O.D., 
+provide brass identification tags<MET> 40 mm</MET><ENG> 1 1/2 inches</ENG> in diameter with legends in depressed black-filled characters.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BURIED UTILITY WARNING AND IDENTIFICATION TAPE</TTL><BRK/>
+<BRK/>
+<TXT>Provide polyethylene plastic tape manufactured specifically for warning and identification of buried utility 
+lines.  Tape must be of the type provided in rolls,<MET> 152 mm</MET><ENG> 6 inches</ENG> minimum width, color codes for compressed 
+air (gray) with warning and identification imprinted in bold black letters continuously and repeatedly over entire 
+tape length.  Warning and identification must be "CAUTION BURIED COMPRESSED AIR LINE BELOW" or similar wording.  
+Code and letter coloring must be permanent, unaffected by moisture and other substances contained in trench backfill 
+material.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FRESH WATER</TTL><BRK/>
+<BRK/>
+<TXT>Fresh water for cleaning, flushing, and testing must be clean and potable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BASIC PIPING AND COMPONENT MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Conform to the following where material is specified by generic type and no specification is listed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Stainless Steel</TTL><BRK/>
+<BRK/>
+<TXT>Austenitic type, annealed, <RID>ASTM A182/A182M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nickel-Copper</TTL><BRK/>
+<BRK/>
+<TXT>70-30 nickel-copper, annealed, <RID>ASTM B164</RID>, alloy N04400, <RID>ASTM B127</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Copper-Nickel</TTL><BRK/>
+<BRK/>
+<TXT>70-30 copper-nickel, soft temper, <RID>MIL-C-15726</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Other Materials</TTL><BRK/>
+<BRK/>
+<TXT>For materials where no specification is listed above, conform to material specifications listed in <RID>ASME B31.1</RID>
+ or <RID>ASME BPVC SEC VIII D1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install materials and equipment as indicated and in accordance with manufacturer's recommendations.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Excavation and Backfilling</TTL><BRK/>
+<BRK/>
+<TXT>See Section <SRF>31 00 00</SRF> EARTHWORK.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Corrosion Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide corrosion protection for buried steel [and corrosion resistant steel] piping in accordance with Section 
+<SRF>09 97 13.28</SRF> PROTECTION OF BURIED STEEL PIPING AND STEEL BULKHEAD TIE RODS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>Non-Destructive Examination (NDE) report for welding of piping</SUB>.  Unless specifically stated to the contrary, 
+fabrication, assembly, welding, and brazing must conform to <RID>ASME B31.1</RID> for all piping of the air system.  Piping 
+must follow the general arrangement shown.  Cut piping accurately to measurements established for the work.  
+Work piping into place without springing or forcing, [except where cold-springing is specified].  Piping and 
+equipment within buildings must be entirely out of the way of lighting fixtures and doors, windows, and other 
+openings.  Locate overhead piping in buildings in the most inconspicuous positions.  Do not bury or conceal piping 
+until it has been inspected, tested, and approved.  Where pipe passes through building structure, pipe joints 
+must not be concealed, but must be located where they may be readily inspected and building structure must not 
+be weakened.  Avoid interference with other piping, conduit, or equipment.  Except where specifically shown otherwise, 
+vertical piping must run plumb and straight and parallel to walls.  Piping connected to equipment must be installed 
+to provide flexibility for vibration.  Adequately support and anchor piping so that strain from weight of piping 
+is not imposed on the equipment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Fittings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete bending of medium or high pressure pipe when not included in project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use long radius ells where appropriate to reduce pressure drops.  [Pipe bends in lieu of fittings may be used 
+for piping where space permits.  Pipe bends must have a uniform radius of at least five times the pipe diameter 
+and must be free from any appreciable flattening, wrinkling, or thinning of the pipe.]  Mitering of pipe to form 
+elbows, notching straight runs to form full sized tees, or any similar construction must not be used.  Make branch 
+connections with welding tees, except factory made forged welding branch outlets or nozzles having integral reinforcements 
+conforming to <RID>ASME B31.1</RID> may be used.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Bending of High[ and Medium] Pressure Pipe</TTL><BRK/>
+<BRK/>
+<TXT>  Prior to bending pipe for high [and medium ]pressure systems, the Contractor must submit for approval written 
+fabrication and inspection procedures and calculations by a licensed professional engineer showing the required 
+minimum wall thickness of pipe after bending.  Only cold bending must be permitted.  The fabrication procedure 
+must indicate the required pipe wall thickness prior to bending, equipment to be used, set up and bending procedures, 
+and inspection and acceptance criteria.  <TST>Inspection must include verification of minimum wall thickness by ultrasonic 
+or other approved methods.  No wrinkles or other contour irregularities will be permitted in the bent pipe.  
+Check flattening in accordance with <RID>ASME B31.1</RID>.</TST>  Include required dimensional checks in inspection procedures 
+and acceptable values tabulated for each pipe size to be bent.  Qualified personnel must perform nondestructive 
+examinations required in accordance with qualified procedures.  Bend pipe sections accurately so that they can 
+be installed without springing or forcing the piping they are installed in.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Clearances for Welding</TTL><BRK/>
+<BRK/>
+<TXT>Welds are prohibited on Intake Pipe by UFC 3-420-02. Provide clearances from walls, ceilings, and floors to permit 
+the installation of joints.  The clearances must be at least<MET> 150 mm</MET><ENG> 6 inches</ENG> for pipe sizes<MET> 100 mm</MET><ENG> 4 inches</ENG> and 
+less,<MET> 250 mm</MET><ENG> 10 inches</ENG> for pipe sizes over<MET> 100 mm</MET><ENG> 4 inches</ENG>, and sufficient in corners.  However, the specified 
+clearances must not waive requirements for welders to be qualified for the positions to be welded.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleaning</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Special cleaning requirements are mainly intended for high pressure systems.  
+Special cleaning should also be considered for medium pressure systems over<MET> 
+1724 kPa (gage)</MET><ENG> 250 psig</ENG> which may be subject to dieseling explosions when oil 
+contamination is present.  Objective cleaning standards are specified to simplify 
+inspection and acceptance in the field.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Before jointing and erection of piping or tubing, thoroughly clean interiors of pipe sections, tube, and components.  
+In steel pipe, loosen scale and other foreign matter by rapping sharply and expel by wire brush and swab.  Blow 
+out both steel pipe and copper tube and components with clean, dry, oil free compressed air at<MET> 690 kPa (gage)</MET><ENG>
+ 100 psig</ENG> or more.  Maintain cleanliness by closure of pipe/tube openings with caps or plugs.  Before making 
+final terminal connections, blow out complete system with compressed air at<MET> 690 kPa (gage)</MET><ENG> 100 psig</ENG> or more.  
+Cleaning and cleanness of medium pressure systems over<MET> 1724 kPa (gage)</MET><ENG> 250 psig</ENG> and high pressure systems must 
+be in accorddance with paragraph CLEANING AND CLEANNESS REQUIREMENTS.</TXT><BRK/>
+[<BRK/>
+<TXT>Contractor to provide compressed air source used in cleaning.  Use of compressor to be installed in this contractor 
+is not permitted.</TXT><BRK/>
+]<BRK/></SPT>
+<SPT><TTL>Changes in Pipe Size</TTL><BRK/>
+<BRK/>
+<TXT>Use reducing fittings for changes in pipe size.  The use of bushings will not be permitted.  In horizontal lines,<MET>
+ 65 mm</MET><ENG> 2 1/2 inches</ENG> and larger, reducing fittings must be of the eccentric type to maintain the bottom of the 
+lines in the same plane.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drainage and Flexibility</TTL><BRK/>
+<BRK/>
+<TXT>Compressed air piping must be free of unnecessary pockets and pitched approximately<MET> one mm per 400 mm</MET><ENG> 3 inches 
+per 100 feet</ENG> in the direction of flow to low points.  Where pipes must be sloped so that condensate flows in 
+opposite direction to air flow, slope<MET> one mm per 200 mm</MET><ENG> 6 inches per 100 feet</ENG> or greater.  Provide flexibility 
+by use of fittings, loops, and offsets in piping.  Install branches at top of a main to prevent carryover of 
+condensate and foreign matter.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Threaded Joints</TTL><BRK/>
+<BRK/>
+<TXT>Where possible use pipe with factory cut threads, otherwise cut pipe ends square, remove fins and burrs, and 
+cut taper pipe threads in accordance with <RID>ASME B1.20.1</RID>.  Threads must be smooth, clean, and full cut.  Apply 
+thread tape to male threads only.  Work piping into place without springing or forcing.  Backing off to permit 
+alignment of threaded joints will not be permitted.  Engage threads so that not more than three threads remain 
+exposed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flanged Joints in High Pressure System</TTL><BRK/>
+<BRK/>
+<TXT>Install using calibrated torque wrenches or feeler gage methods to assure proper gasket compression.  Calibrate 
+torque wrench immediately prior to use.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding and Brazing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Welding of the supports needs to be done per the weld standard that governs 
+the structure the supports are being attached to.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Welds are prohibited on Intake Pipe in accordance with <RID>UFC 3-420-02</RID>.  Perform welding and brazing in accordance 
+with qualified procedures using qualified welders and welding operators and brazers.  Do not perform welding 
+and brazing when the quality of the completed weld or braze could be impaired by the prevailing working or weather 
+conditions.  The Contracting Officer will determine when weather or working conditions are unsuitable for welding.  
+Welding of hangers, supports, and plates to structural members must be in accordance with [<RID>AWS D1.1/D1.1M</RID>][<RID>AWS D1.5M/D1.5</RID>
+][_____].  Mark welding and brazing detail drawings to identify the welder or brazer making the joint.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cleaning for Welding and Brazing</TTL><BRK/>
+<BRK/>
+<TXT>Surfaces to be welded or brazed must be free from loose scale, slag, rust, paint, oil, and other foreign material.  
+Joint surfaces must be smooth and free from defects which might affect proper welding.  Clean each layer of weld 
+metal thoroughly by wire brushing, grinding, or chipping prior to inspection or deposition of additional weld 
+metal.  Conform to paragraph entitled CLEANING AND CLEANNESS REQUIREMENTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stress Cracking During Brazing</TTL><BRK/>
+<BRK/>
+<TXT>For austenitic stainless steel and other material susceptible to stress corrosion cracking from molten brazing 
+filler metal, avoid applying stress during brazing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding or Brazing of Valves</TTL><BRK/>
+<BRK/>
+<TXT>Welding or Brazing of Valves:  Disassemble valves subject to damage from heat during welding or brazing and reassemble 
+after installation.  Open valves two or three turns off the seat when not subject to heat damage during welding 
+or brazing; do not backseat valve.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<TXT>Install valves in conformance with <RID>ASME B31.1</RID> at the locations indicated and elsewhere as required for the proper 
+functioning of the system.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Globe Valves</TTL><BRK/>
+<BRK/>
+<TXT>Install globe valves so that the pressure will be below the disk.  Install globe valves with the stems vertical.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure-Reducing Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide compressed air entering each pressure-reducing valve with a strainer.  Provide each pressure-reducing 
+valve unit with two block valves and with a globe or angle bypass valve and bypass pipe.  Provide a bypass around 
+a reducing valve of reduced size to restrict its capacity to approximately that of the reducing valve.  Provide 
+each pressure reducing valve unit with an indicating gage to show the reduced pressure, and a safety valve on 
+the lower pressure side.  These requirements do not apply to small pressure regulating valves used to adjust 
+pressure for pneumatic equipment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Hangers and Supports</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See UFC 1-200-01, "General Building Requirements" and UFC 3-301-01, "Structural 
+Engineering", for calculating pipe support spacing for schedules not shown.  
+Also, space supports for high pressure air piping to provide restraint against 
+whipping and damage to other piping if the high pressure line breaks; see DM 
+3.5, "Compressed Air and Vacuum Systems," Section 7, "Piping Systems." Delete <ATT>
+Table I</ATT> and reference to seismic requirements if not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Selection, fabrication, and installation of piping hangers and supports must conform to <RID>MSS SP-58</RID>[ except that 
+spacing of the hangers and supports must be as per Table I].[  Provide seismic restraints for piping in accordance 
+with <RID>SMACNA 1981</RID>.]</TXT><BRK/>
+[<MET><TAB HEADERROWS="0" WIDTH="68">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="16">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="82.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="120.75"/>
+      <COL AUTOWIDTH="0" WIDTH="114.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>TABLE I.  MAXIMUM SPAN FOR PIPE</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">DIAMETER MM</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">STD. WT. STEEL PIPE SCHEDULE 40</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">EX. STRONG STEEL PIPE SCHEDULE 80</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">15</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">1.52</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1.52</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">20</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">1.75</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1.75</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">25</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">1.98</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1.98</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">40</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">2.29</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2.36</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">50</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">2.59</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2.59</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">65</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">2.82</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2.90</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">80</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">3.125</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3.20</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">90</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">3.35</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3.35</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">3.51</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3.58</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">125</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">3.89</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3.96</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">150</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">4.19</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">4.27</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">200</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">4.73</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">4.88</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">250</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">5.18</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">5.34</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.75">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">300</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">5.56</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">5.79</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></MET>
+<ENG><TAB HEADERROWS="0" WIDTH="68">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="16">
+      <COL AUTOWIDTH="0" WIDTH="82.50"/>
+      <COL AUTOWIDTH="0" WIDTH="120.75"/>
+      <COL AUTOWIDTH="0" WIDTH="114.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING"><HL4>TABLE I.  MAXIMUM SPAN FOR PIPE</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">DIAMETER INCHES</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">STD. WT. STEEL PIPE SCHEDULE 40</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">EX. STRONG STEEL PIPE SCHEDULE 80</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1/2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5'-0"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5'-0"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3/4</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5'-9"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5'-9"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">6'-6"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">6'-6"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1-1/2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">7'-6"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">7'-9"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">8'-6"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">8'-6"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2-1/2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">9'-3"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">9'-6"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10'-3"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10'-6"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3-1/2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">11'-0"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">11'-0"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">11'-6"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">11'-9"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">12'-9"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">13'-0"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">6</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">13'-9"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">14'-0"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">15'-6"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">16'-0"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">17'-0"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">17'-6"</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">12</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">18'-3"</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">19'-0"</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></ENG>]<BRK/></SPT>
+<SPT><TTL>Pressure Gages</TTL><BRK/>
+<BRK/>
+<TXT>Provide pressure gauges with a [shut-off valve][petcock] installed between the gage and the line.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Strainers</TTL><BRK/>
+<BRK/>
+<TXT>Provide strainers with meshes suitable for the services where indicated, or where dirt might interfere with the 
+proper operation of valve parts, orifices, or moving parts of equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Foundations</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment foundations of sufficient size and weight and of proper design to preclude shifting of equipment 
+under operating conditions or under any abnormal conditions which could be imposed upon the equipment.  Provide 
+foundations which meet the requirements of the equipment manufacturer, and when required by the Contracting Officer, 
+obtain from the equipment manufacturer approval of the foundation design and construction for the equipment involved.  
+Equipment vibration must be maintained within acceptable limits, and must be suitably dampened and isolated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Installation</TTL><BRK/>
+<BRK/>
+<TXT>Install equipment strictly in accordance with these specifications, and the manufacturers' installation instructions.  
+Grout equipment mounted on concrete foundations before piping is installed.  Install piping in a manner that 
+does not place a strain on any of the equipment.  Do not bolt flanged joints tight unless they match properly.  
+Extend expansion bends adequately before installation.  Grade, anchor, guide and support piping without low pockets.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleaning of System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Special cleaning requirements are mainly intended for high pressure systems.  
+Special cleaning should also be considered for medium pressure systems over<MET> 
+1724 kPa (gage)</MET><ENG> 250 psig</ENG> which may be subject to dieseling explosions when oil 
+contamination is present.  Objective cleaning standards are specified to simplify 
+inspection and acceptance in the field.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Clean the various system components before final closing as the installations are completed.  Remove foreign 
+matter from equipment and surrounding areas.[  Cleaning and cleanliness must conform to paragraph CLEANING AND 
+CLEANLINESS REQUIREMENTS, for pressures over<MET> 1724 kPa (gage)</MET><ENG> 250 psig</ENG>.]  Preliminary or final tests will not 
+be permitted until the cleaning is approved by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Sleeves</TTL><BRK/>
+<BRK/>
+<TXT>Provide pipe sleeves where pipes and tubing pass through masonry or concrete walls, floors, roofs, and partitions.  
+Hold sleeves securely in proper position and location before and during construction.  All sleeves must be of 
+sufficient length to pass through entire thickness of walls, partitions, or slabs.  Extend sleeves in floor slabs<MET>
+ 50 mm</MET><ENG> 2 inches</ENG> above the finished floor.  Pack space between the pipe or tubing and the sleeve firmly with oakum 
+and caulk both ends of the sleeve with elastic cement.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Floor, Wall, and Ceiling Plates</TTL><BRK/>
+<BRK/>
+<TXT>Provide chromium-plated steel or nickel-plated cast iron plates on pipes passing through floors and partitions 
+of finished rooms.  Provide painted cast-iron, malleable iron, or steel for other areas.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flashing for Buildings</TTL><BRK/>
+<BRK/>
+<TXT>Provide flashing where pipes pass through building roofs and outside walls[ in accordance with Section 
+<SRF>07 60 00</SRF> FLASHING AND SHEET METAL].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unions and Flanges</TTL><BRK/>
+<BRK/>
+<TXT>Provide unions and flanges to permit disconnection of piping and apparatus without disassembly, springing or 
+straining the adjacent piping, and as indicated.  Provide a union for each connection having a screwed-end valve.  
+[Provide unions or flanges not farther apart than<MET> 30 meters</MET><ENG> 100 feet</ENG>.]  [Provide unions or flanges as indicated.]  
+Provide unions on piping under<MET> 50 mm</MET><ENG> 2 inches</ENG> in diameter, and provide flanges on piping<MET> 50 mm</MET><ENG> 2 inches</ENG> and over 
+in diameter.  Install dielectric unions or flanges between ferrous and non-ferrous piping, equipment, and fittings; 
+except that bronze valves and fittings may be used without dielectric couplings for ferrous-to-ferrous or non-ferrous 
+to non-ferrous connections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Painting of Piping and Equipment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Other paint sections can be used where appropriate for the project, but 
+09 90 00 should be used inside buildings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Paint piping and equipment in accordance with Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Identification of Piping</TTL><BRK/>
+<BRK/>
+<TXT>Identify piping in accordance with <RID>ASME A13.1</RID>.  Use commercially manufactured piping identification labels.  
+Space identification marking on runs not farther apart than<MET> 15 meters</MET><ENG> 50 feet</ENG>.  Provide two copies of the piping 
+identification code framed under glass and install where directed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Warning and Identification Tape</TTL><BRK/>
+<BRK/>
+<TXT>Coordinate installation of utility warning and identification tape with backfill operation.  Provide tape above 
+buried lines at a depth of<MET> 200 to 305 mm</MET><ENG> 8 to 12 inches</ENG> below finish grade.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLEANING AND CLEANNESS REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Special cleaning requirements are mainly intended for high pressure systems.  
+Special cleaning should also be considered for medium pressure systems over<MET> 
+1724 kPa (gage)</MET><ENG> 250 psig</ENG> which may be subject to dieseling explosions when oil 
+contamination is present.  Objective cleaning standards are specified to simplify 
+inspection and acceptance in the field.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Cleaning and cleanness requirements must conform to <RID>ASTM A380/A380M</RID> and the following.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Substitution</TTL><BRK/>
+<BRK/>
+<TXT>The word "must" must be substituted for "should" in <RID>ASTM A380/A380M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Prohibited Methods and Processes</TTL><BRK/>
+<BRK/>
+<TXT>The following methods and processes must not be used[ unless otherwise stated].</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Chemical descaling (acid pickling).</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Abrasive blasting and vapor blasting.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  Alkaline cleaning.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">d.  Emulsion cleaning.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">e.  Chelate cleaning.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">f.  Acid cleaning.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">g.  Passivation.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">h.  Corrosion inhibitors must not be used.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Approval of Methods and Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Prepare and submit written <SUB>cleaning procedures</SUB> for approval.  Perform production cleaning in accordance with 
+approved procedures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tools Used on Corrosion-Resistant Alloys</TTL><BRK/>
+<BRK/>
+<TXT>Tools used on corrosion-resistant alloys such as grinding, polishing, filing, deburring, and brushing tools must 
+be visually clean and must not have been used on carbon or low alloy steels, aluminum, lead or materials containing 
+lead or lead components, or other low melting point materials.  Wire brushes must be 300 series stainless steel.  
+Unless otherwise approved, each tool must be used on only one type of corrosion-resistant metal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleaning Before Installation</TTL><BRK/>
+<BRK/>
+<TXT>Clean piping, components, and equipment before installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleaning Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Clean surfaces containing no crevices or inaccessible areas by any of the procedures described herein.  Clean 
+surfaces containing crevices by immersion in unused or redistilled acetone, ethanol, or isopropanol only.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Vapor Degreasing</TTL><BRK/>
+<BRK/>
+<TXT>Vapor degreasing may be used on surfaces containing no crevices or inaccessible areas and must be accomplished 
+by the following procedures:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Dry all parts entering degreaser.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Load parts onto racks in the condensing zone so that they do not touch each other, and in such a 
+manner to insure complete draining of solvents.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  Use perchloroethylene bath.  Maintain bath at<MET> 121 to 127 degrees C </MET><ENG> 250 to 260 degrees F</ENG>.  The bath 
+must contain a neutral inhibitor to prevent acid formation due to hydrolysis.  Other types of inhibitors 
+are not permitted.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">d.  Change solvent when boiling point of perchloroethylene exceeds<MET> 127 degrees C</MET><ENG> 260 degrees F</ENG>.  Dump 
+solvent earlier if cleanliness standards are not attained.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">e.  Lower or raise parts in the degreaser at a rate not to exceed<MET> 5 mm/s</MET><ENG> 12 inches per minute</ENG> and immerse 
+in vapor phase.  Spray with clean solvent during immersion time.  Keep the spray nozzle at least<MET> 305 
+mm</MET><ENG> one foot</ENG> below the vapor line during spraying.  Allow part to remain in vapor until condensation ceases 
+(3 to 5 minutes).  Dry parts completely before removing from degreaser.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Degreasing by Immersion or Wiping</TTL><BRK/>
+<BRK/>
+<TXT>Degreasing of parts having no inaccessible areas or crevices may be performed by immersion in solvent or by wiping 
+with a clean lintless wiping cloth saturated with the solvent perchloroethylene, unused or redistilled acetone, 
+ethanol, or isopropanol, or Stoddard solvent for preliminary degreasing.  Dry in accordance with paragraph DRYING 
+REQUIREMENTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Trisodium-Phosphate Detergent Cleaning (Degreasing)</TTL><BRK/>
+<BRK/>
+<TXT>Trisodium-phosphate detergent cleaning may be used on surfaces containing no crevices or inaccessible areas and 
+must be accomplished as follows:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Remove heavy dirt by either scrubbing with a non-shedding bristle brush using a solution of up to<MET>
+ 112.2 mL</MET><ENG> one fluid ounce</ENG> of nonionic detergent per<MET> liter</MET><ENG> gallon</ENG> of tap water or immersing the parts 
+in a hot (approximately<MET> 71 - 88 degrees C</MET><ENG> 160 - 190 degrees F</ENG>) solution consisting of<MET> 207 to 296 mL</MET><ENG> 7 
+to 10 ounces</ENG> of trisodium phosphate and up to<MET> 112.2 mL</MET><ENG> one fluid ounce</ENG> of the nonionic detergent per<MET> 
+liter</MET><ENG> gallon</ENG> of tap water for about 20 minutes.  Agitate and use brush as necessary.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Rinse parts thoroughly in hot water at a minimum of<MET> 49 degrees C</MET><ENG> 120 degree F</ENG>.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  Dry the parts in accordance with paragraph DRYING REQUIREMENTS.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ultrasonic Cleaning</TTL><BRK/>
+<BRK/>
+<TXT>Cleaning methods using ultrasonic equipment may be used.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Drying Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Accomplish drying by still or forced clean air or inert gas, drying oven, or by evacuation.  When using evacuation, 
+exercise care to prevent evacuating-pump lubricant from entering the equipment.  Check compressed air used for 
+drying to ensure cleanliness by blowing through a clean, white, cotton filter cloth for about 5 minutes at full 
+drying velocity.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inspection and Acceptance Criteria for Cleanliness</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>ASTM A380/A380M</RID> and the following:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cleanness Criteria</TTL><BRK/>
+<BRK/>
+<TXT>All surfaces of piping material, equipment, instruments, and other components which will come in contact with 
+compressed air must be clean to the extent that no contamination is visible to a person with normal visual acuity 
+(natural or corrected) under a lighting level of at least<MET> 1076 lux</MET><ENG> 100 footcandles</ENG> on the surface being inspected.  
+Cleanness of surface which cannot be visually inspected due to inaccessibility or geometry must be determined 
+by an interpretation of the discoloration or dirt obtained by wiping with a clean, white, wet or dry cloth.  
+Free of contamination must mean free of oil, dirt, metallic flakes, preservatives, paint, and any other substances 
+which may present a safety hazard or impair the quality of the compressed air.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Critical Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>No rust must be allowed on valve seats, orifice plates or other critical surfaces.  Thin films of rust are acceptable 
+on other corrosion-resistant material surfaces provided there is no visible thickness or evidence of pitting 
+and the total area involved does not exceed one percent of the total surface area of the component in contact 
+with compressed air.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Carbon and Low Alloy Steels</TTL><BRK/>
+<BRK/>
+<TXT>A uniform light rust that can be removed by brushing or wiping is acceptable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Maintaining Cleanness During Installation</TTL><BRK/>
+<BRK/>
+<TXT>Maintain cleanness of piping, components, and equipment during installation.  Dirt and debris producing operations 
+must be performed so that dirt and debris fall away from system openings; otherwise, provide covers over openings 
+to preclude contamination.  Cap, plug, cover, or bag openings and pipe ends and secure with tape when they are 
+not required to be open for the performance of work.  Metal caps, plugs, and covers must be austenitic stainless 
+steel.  Plastic items and tape must be free of substances that can have a harmful effect on stainless steel and 
+other corrosion-resistant metals in the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleanness Verification Flushes</TTL><BRK/>
+<BRK/>
+<TXT>After installation, check the systems for cleanness by flushing with water.  Perform flushing so that the minimum 
+velocity through any part of the system is not less than<MET> [1.1] [_____] meters</MET><ENG> [3.6] [_____] feet</ENG> per second.  
+Pass flush water through a filter for cleanness evaluation.  Filter element must be corrosion-resistant wire 
+cloth with mesh size conforming to <RID>ASTM E11</RID> [No. 20 (850 micrometers)][No. 25 (710 micrometers)][No. 30 (600 
+micrometers)].  Filter area must be sufficient to limit pressure drop so that required flushing velocity can 
+be attained.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Flush Acceptance Criteria</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select flush acceptance criteria based on how critical the system is 
+and the volume of system to be flushed.  More particles may be expected and 
+may be acceptable in larger systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The system must be flushed until there is no more than [slight speckling] [[0.1] [0.5] [_____] cubic centimeters] 
+of particulates on the filter screen.  There must be no particles larger than<MET> 0.79 by 1.59 mm</MET><ENG> 1/32 by 1/16 inch</ENG>
+ long.  The flush water must show no visual evidence of contamination such as oil particles, discoloration, or 
+iridescent surface film characteristic of oil.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Recleaning of Systems</TTL><BRK/>
+<BRK/>
+<TXT>Systems which fail to meet acceptance flush criteria after flushing for more than 4 hours must be recleaned by 
+the Contractor at no additional cost to the Government.  Prepare recleaning procedures and submit to the Contracting 
+Officer for approval.  Remove instruments, components, and any other items that may be damaged by recleaning.  
+Perform recleaning by flushing with hot water at not less than<MET> 60 degrees C</MET><ENG> 140 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>CLEANING SILVERBRAZED PIPING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  All silverbrazed piping, including low pressure systems, should be cleaned 
+to preclude corrosion from residual brazing flux.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Clean silverbrazed piping to remove residual flux remaining in the system after fabrication.  Use one of the 
+procedures below.  The hot flush and hot recirculating flush are preferred.  Minimum flow rate through any part 
+of the system in<MET> liters</MET><ENG> gallons</ENG> per<MET> second</MET><ENG> minute</ENG> must be<MET> 0.0037</MET><ENG> 1.5</ENG> times the inside diameter of the pipe in<MET>
+ mm</MET><ENG> inches</ENG>.  For any flushing method used, the system must be full of water so that joints are completely submerged 
+at all times.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Hot Flushing Method</TTL><BRK/>
+<BRK/>
+<TXT>Hot flush the system for one hour using heated fresh water.  No part of the system must go below<MET> 43 degrees C</MET><ENG>
+ 110 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hot Recirculating Flush Method</TTL><BRK/>
+<BRK/>
+<TXT>Perform hot recirculating flush for one hour.  Heat water during flushing so that no part of the system falls 
+below<MET> 43 degrees C</MET><ENG> 110 degrees F</ENG>.  After completing the hot recirculating flush, flush the system with cold fresh 
+water for 15 minutes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cold Soak Method</TTL><BRK/>
+<BRK/>
+<TXT>Cold soak the system using fresh water at not less than<MET> 15.50 degrees C</MET><ENG> 60 degrees F</ENG> for 12 hours.  Following 
+the 12 hour soak, flush the system with fresh water at not less than<MET> 15.50 degrees C</MET><ENG> 60 degrees F</ENG> for 4 hours.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Examinations</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Welding Examinations</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The paragraphs will be edited and inserted if necessary to ensure proper 
+implementation of the "CONTRACTOR QUALITY CONTROL PROGRAM."  The specification 
+writer or design engineer must indicate how much quality control of welding 
+is needed for each project and who is to be responsible, i.e., primarily the 
+Contractor or the Government.  Rarely will a project require 100 percent testing 
+of welds by NDE methods.  The designer must determine the required methods and 
+the extent of inspection and testing and must indicate the extent in this section 
+of the project specifications or on the project drawings by notes, nondestructive 
+test symbols, or other means. <ATT> Table II</ATT> at the end of this section was developed 
+from MIL-STD-278, "Fabrication, Welding and Inspection, and Casting Inspection 
+and Repair for Machinery, Piping, and Pressure Vessels in Ships of the United 
+States Navy."  The referenced applicable publications and Army Technical Manual, 
+"WELDING DESIGN, PROCEDURES AND INSPECTION," TM-5-805-7, may be used for guidance 
+in determining inspection and testing requirements.  The specifications or drawings 
+must clearly indicate which joints require 100 percent NDE inspection, which 
+joints require random NDE inspection, and which NDE methods are to be employed 
+for each joint.  For random inspection, the drawings must indicate the location, 
+number of joints, and minimum increment length of weld that will be subject 
+to NDE inspection without predisclosing the exact spots to be examined.  Joints 
+not indicated to be tested by NDE methods must be subject to visual inspection 
+only.  In cases where the nature of the welding is such as to require visual 
+inspection only, the requirements for other nondestructive examinations should 
+be deleted from these paragraphs and from paragraph QUALIFICATION OF INSPECTION 
+AND NONDESTRUCTIVE PERSONNEL.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Information based on Table II must be developed and included in each 
+project specification.  Table must clearly define the systems to be inspected 
+and the type of NDE required.  Revise Table II if required for the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>[The Government will ][The Contractor must ]perform visual and nondestructive examinations to detect surface 
+and internal discontinuities in completed welds, and submit a Non-Destructive Examination (NDE) report meeting 
+the requirements specified in <RID>ASME B31.1</RID>.</TST>[  The Contractor must obtain the services of a qualified commercial 
+inspection or testing laboratory or technical consultant, approved by the Contracting Officer.]  Visually examine 
+welds.  Perform [radiographic, ][liquid penetrant, ][ or ][magnetic particle] examination as specified in Table 
+II of this section.  For systems operating at<MET> 6894 kPa (gage)</MET><ENG> 1000 psig</ENG> or higher, all welds must be examined.  
+For high pressure systems operating less than<MET> 6894 kPa (gage)</MET><ENG> 1000 psig</ENG>, perform random NDE.  When examination 
+and testing indicate defects in a weld joint, the weld must be repaired by a qualified welder.  Remove and replace 
+defects as specified in <RID>ASME B31.1</RID>, unless otherwise specified.  Repair defects discovered between weld passes 
+before additional weld material is deposited.  Whenever a defect is removed, and repair by welding is not required, 
+blend the affected area into the surrounding surface, eliminating sharp notches, crevices, or corners.  After 
+defect removal is complete and before rewelding, <TST>examine the area by the same test methods which first revealed 
+the defect</TST> to ensure that the defect has been eliminated.  After rewelding, reexamine the repaired area by the 
+same test methods originally used for that area.  Any indication of a defect must be regarded as a defect unless 
+reevaluation by surface conditioning [and NDE] shows that no unacceptable defects are present.  The use of any 
+foreign material to mask, fill in, seal, or disguise welding defects will not be permitted.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Brazing Examinations</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must perform brazing examinations.</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Visual Examinations</LST><BRK/>
+<BRK/>
+<TXT>Visually examine all compressed air systems as follows:</TXT><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">(1) <TST>Check brazed joint fit-up.</TST>  Diametrical clearances must conform to brazing procedure requirements.</ITM><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">(2) <TST>Check base material of pipe and fitting for conformance to the applicable drawing or specification.</TST></ITM><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">(3) <TST>Check grade of brazing alloy for conformance to the brazing procedure before fit-up or brazing.</TST></ITM><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">(4) <TST>Check completed brazed joint for a complete ring of brazing alloy between the outside surface 
+of the pipe and the face of the fitting, and for a visible fillet.</TST></ITM><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">(5) <TST>Check stainless steel and other susceptible material for evidence of stress cracks.  Check 
+inside of joint if possible with borescope or other aids.</TST></ITM><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Nondestructive Examination</LST><BRK/>
+<BRK/>
+<TXT>For high pressure compressed air systems, any fitting, [copper-nickel pipe][stainless steel tubing] which is 
+reused after unsweating a brazed joint must be <TST>liquid penetrant examined for cracks.</TST>  Any crack detected must 
+be cause for rejection of the fitting or pipe.  Liquid penetrant examination must be performed by qualified personnel.</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  Repair of Brazed Joints</LST><BRK/>
+<BRK/>
+<TXT>Defective joints may be repaired.  No more than two attempts to repair by reheating and additional face feeding 
+of brazing filler metal will be permitted, after which the defective joint must be unsweated, reprepared as a 
+new joint, examined for defects on pipe and fittings, and rebrazed.  <TST>Perform required NDE.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If air (pressure) drop tests are used for system acceptance, assure that 
+leakages at acceptable rates through valves (or other components) are not causing 
+pressure drop.  Most hard-seated valves have some allowable leakage rate (about<MET>
+ 10 cubic centimeters</MET><ENG> 0.0026 gal</ENG> per hour of water per<MET> 25 mm</MET><ENG> one inch</ENG> valve 
+size or<MET> 3 liters per hour</MET><ENG> 0.1 cubic feet per hour</ENG>of gas per<MET> 25 mm</MET><ENG> one inch</ENG> of 
+valve size).  Delete check for cross-connection if only one type of system is 
+involved in project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General Requirements, Testing</TTL><BRK/>
+<BRK/>
+<TXT><TST>Perform testing after cleaning and acceptance of cleanness.</TST>  Contractor must provide everything required for 
+tests. Tests must be subject to the approval of the Contracting Officer.  Calibrate the test pressure gage with 
+a dead weight tester within [15][_____] days before use and certify by initial and date on a sticker applied 
+to dial face.  [Pressurize each piping system individually and check to assure that there are no cross-connections 
+between different systems prior to hydrostatic and operational tests.]</TXT><BRK/>
+<BRK/>
+<TXT>Supervision of Testing</TXT><BRK/>
+<BRK/>
+<TXT>For [high][ and ][medium] pressure system, an experienced registered professional engineer responsible for safety 
+and employed by the Contractor must be present during testing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydrostatic and Leak Tightness Tests</TTL><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Preliminary Preparation</LST><BRK/>
+<BRK/>
+<TXT>Remove or isolate from the system the compressor, air dryer, filters, instruments, and equipment which would 
+be damaged by water during hydrostatic tests and reinstall after successful completion of tests.</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Performance of Hydrostatic Tests</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify or show on the drawings the design working pressure of each system 
+in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Hydrostatically test piping systems in accordance with <RID>ASME B31.1</RID>.  Vent or flush air from the piping system.  
+Pressurize system for 10 minutes with water at one and one-half times design working pressure, then reduce to 
+design working pressure and check for leaks and weeps.</TST></TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  Compressed Air <SUB>Leak Tightness Test</SUB></LST><BRK/>
+<BRK/>
+<TXT>After satisfactory completion of hydrostatic pressure test, blow systems dry with clean, oil-free compressed 
+air, and <TST>test with clean, dry air at design working pressure.  Brush joints with soapy water solution to check 
+for leaks.  Install a calibrated test pressure gage in piping system to observe any loss in pressure.</TST>  Maintain 
+required test pressure for a sufficient length of time to enable an <TST>inspection of joints and connections.</TST></TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">d.  Compressed Air Pressure Test For High Pressure Systems</LST><BRK/>
+<BRK/>
+<TXT><TST>For high pressure systems, compressed air at system design pressure must then stand in a system to equalize temperature.</TST>
+  Pressure drop, corrected for temperature change, must not be more than one percent in 24 hours for a test pressure<MET>
+ 6894 kPa (gage)</MET><ENG> 1000 psig</ENG> and above, and not over 5 percent in 6 hours for test pressures from<MET> 2758 to 6894 
+kPa (gage)</MET><ENG> 400 to 1000 psig</ENG>.  Use formula below to correct pressure for temperature change.</TXT><BRK/>
+<TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="1" ROWCOUNT="5">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="468.00"/>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET> PF + 101.32 = (PI + 101.32)(TF + 273)/(TI + 273)</MET><ENG> PF + 14.7 = (PI + 14.7)(TF + 460)/(TI + 460)</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Where PF  =  Final Pressure,<MET> (kPa (gage))</MET><ENG> (psig)</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Where PI  =  Initial Pressure,<MET> (kPa (gage))</MET><ENG> (psig)</ENG><BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Where TF  =  Final Temperature, (degrees<MET> C</MET><ENG> F</ENG>)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="41.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Where TI  =  Initial Temperature (degrees<MET> C</MET><ENG> F</ENG>)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<SPT><TTL>Operational Tests</TTL><BRK/>
+<BRK/>
+<TXT><TST>Test equipment as in service to determine compliance with contract requirements and warranty.  During the tests, 
+test equipment under every condition of operation.  Test safety controls to demonstrate performance of their 
+required function.  Completely test system for compliance with specifications.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>INSTRUCTION TO GOVERNMENT PERSONNEL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the piping is for a project being turned over to a local sponsor, 
+edit this paragraph accordingly.  Coordination of the training will still need 
+to be through the Contracting Officer.  Verify that this coordination is defined 
+somewhere in the Contract.<BRK/>
+<BRK/>
+Designer to determine appropriate duration of instruction.  With the transfer 
+of the dryers to the compressor spec sections, the durations should be greatly 
+reduced compared to past projects, and in some case no instruction might be acceptable.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [2] [_____][consecutive][separate]  [man-days][hours] of instruction to [2] [_____] Government personnel 
+in accordance with Section <SRF>23 03 00</SRF> BASIC MECHANICAL MATERIALS AND METHODS for each pressure catagory of piping 
+(low, medium, high) used in the project.</TXT><BRK/>
+[<PGE/><MET><TAB HEADERROWS="5">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="7" ROWCOUNT="9">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="94.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="62.25"/>
+      <COL AUTOWIDTH="0" WIDTH="54.00"/>
+      <COL AUTOWIDTH="0" WIDTH="62.25"/>
+      <COL AUTOWIDTH="0" WIDTH="55.50"/>
+      <COL AUTOWIDTH="0" WIDTH="59.25"/>
+      <COL AUTOWIDTH="0" WIDTH="80.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEACROSS="6" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>TABLE II</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEACROSS="6" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>HP Piping (2758 kPa (Gage) Higher) Inspection Requirements <HL1>1</HL1>/</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEACROSS="6" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>Required Nondestructive Examination</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL MERGEDOWN="1" STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Welded Joint type and pipe size, mm</HL1></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING"><HL1>VISUAL EXAMINATION</HL1></DTA>
+         </CEL>
+         <CEL INDEX="4" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL1>T/PT TEST</HL1></DTA>
+         </CEL>
+         <CEL INDEX="6" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL1>RADIOGRAPHY</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="58.50">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Root Layer</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Completed Weld</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Root Layer</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Completed Weld</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Completed Weld</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Extent Of</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Butt 100 and greater</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>3</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">6.28 radian</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Butt 65 to 90 incl</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>3</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>4</HL1>/<HL1>5</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">At least 105 radian</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Butt less than 65</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>3</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>4</HL1>/<HL1>5</HL1>/<HL1>6</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">At least 105 radian</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="41.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All socket and fillets</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">--</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">--</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></MET><BRK/>
+<ENG><TAB HEADERROWS="5">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="7" ROWCOUNT="9">
+      <COL AUTOWIDTH="0" WIDTH="94.50"/>
+      <COL AUTOWIDTH="0" WIDTH="62.25"/>
+      <COL AUTOWIDTH="0" WIDTH="54.00"/>
+      <COL AUTOWIDTH="0" WIDTH="62.25"/>
+      <COL AUTOWIDTH="0" WIDTH="55.50"/>
+      <COL AUTOWIDTH="0" WIDTH="59.25"/>
+      <COL AUTOWIDTH="0" WIDTH="80.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEACROSS="6">
+<DTA TYPE="STRING"><HL4>TABLE II</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEACROSS="6">
+<DTA TYPE="STRING"><HL4>HP Piping (400 psig and Higher) Inspection Requirements <HL1>1</HL1>/</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEACROSS="6">
+<DTA TYPE="STRING"><HL4>Required Nondestructive Examination</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Welded Joint type and pipe size, inches</HL1></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>VISUAL EXAMINATION</HL1></DTA>
+         </CEL>
+         <CEL INDEX="4" MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>T/PT TEST</HL1></DTA>
+         </CEL>
+         <CEL INDEX="6" MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>RADIOGRAPHY</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="58.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Root Layer</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Completed Weld</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Root Layer</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Completed Weld</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Completed Weld</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Extent Of</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">Butt 4 and greater</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>3</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">360 degrees</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">Butt 2-1/2 to 3-1/2 incl.</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>3</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>4</HL1>/<HL1>5</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">At least 60 degrees</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">Butt less than 2-1/2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>3</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>4</HL1>/<HL1>5</HL1>/<HL1>6</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">At least 60 degrees</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="41.25">
+         <CEL>
+<DTA TYPE="STRING">All socket and fillets</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X<HL1>2</HL1>/</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">--</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">--</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></ENG><BRK/>
+<TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="1" ROWCOUNT="11">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="468.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Legend:  X - Indicates that test is required.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">         MT   Magnetic Particle Inspection</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">         PT   Liquid Penetrant Inspection</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">         RT   Radiographic Examination</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">NOTES:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="100.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>  1</HL1>/  Where new welds in piping intersects existing or older welds, the latter welds must be inspected for a distance of<MET> 150 mm</MET><ENG> 6 inches</ENG> or a distance equal to 50 percent of the pipe size diameter, whichever is less, as measured from points of intersection.  The existing or older weld and adjacent base material must be free from cracks.  Where non-intersecting adjacent existing welds are inadvertently radiographed, only cracks must be cause for rejection.<BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="87.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>  2</HL1>/  MT/PT inspect the first or root pass of welds and when accessible, the reverse or back-chipped ground, gouged or machined side prior to depositing metal on the reverse side.  Visual examination at 5X magnification may be substituted for MT/PT inspection.  Linear discontinuities must be unacceptable.  Use 5X inspection where crevices cannot be cleaned thoroughly.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="90.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>  3</HL1>/  MT/PT test must be performed only when post-weld heat treatment is required and when specified on drawing.  The test must be conducted after heat treatment and must include<MET> 6.28 radian</MET><ENG> 360 degrees</ENG> of circumferential weld surface and adjacent base material.  Where<MET> 6.28 radian</MET><ENG> 360 degrees</ENG> RT is performed after heat treatment, MT/PT is not required, except where specified on drawing.<BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>  4</HL1>/  RT of welds on piping in the horizontal fixed position must represent a sector which was welded in the vertical or overhead position.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="54.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>  5</HL1>/  In lieu of<MET> 1.05 radian</MET><ENG> 60 degree</ENG> RT, PT or MT may be performed on the inside of a joint where weld is within 2 1/2 nominal pipe diameters from the open end is back welded, has backing ring removed or used consumable insert.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>  6</HL1>/  RT is required where the working pressure exceeds<MET> 3964 kPa (gage)</MET><ENG> 575 psig</ENG>.  For working pressure<MET> 3964 kPa (gage)</MET><ENG> 575 psig</ENG> and below, inspection may be performed in lieu of RT.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+]</SPT></PRT>    <END/><BRK/></SEC>

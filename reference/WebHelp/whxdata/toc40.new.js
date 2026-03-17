@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"Windows Defender","type":"item","tilePath":"","description":"","url":"Troubleshooting/Windows_Issues/TS_Windows_Defender.htm"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

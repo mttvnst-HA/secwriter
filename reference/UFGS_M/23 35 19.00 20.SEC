@@ -1,0 +1,1944 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 35 19.00 20 (February 2010)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Change 3 - 11/24</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 35 19.00 20 (July 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 35 19.00 20</SCN><BRK/>
+<BRK/>
+<STL>INDUSTRIAL VENTILATION AND EXHAUST</STL><BRK/>
+<DTE>02/10, CHG 3: 11/24</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>blower and exhaust systems for removal of flammable 
+vapors including paint spraying residue, corrosive fumes, dust, and stock conveying</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification also includes plastic duct systems for removal of nonflammable corrosive fumes 
+and vapors.  Materials must be selected by the designer to suit project requirements.  The system must be designed 
+in accordance with NFPA 91.  Ventilation and exhaust systems and components for removal of smoke and grease laden 
+vapors from commercial type cooking equipment are covered in Section <SRF>11 05 40</SRF> COMMON WORK RESULTS FOR FOODSERVICE 
+EQUIPMENTand <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION.  Laboratory fume hoods are covered in Section <SRF>11 53 00</SRF> LABORATORY 
+EQUIPMENT AND FUME HOODS.  The design agency (EFD, OICC, PWC, etc.) must ensure review of the ventilation system 
+design by the appropriate Naval Medical Command (NAVMEDCOM) activity in accordance with NAVOSH requirements. For 
+high temperature applications, the designer must specify special fans and duct material as required for the particular 
+application.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information must be shown on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Arrangement plan and details for fans, ducts, and accessories.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Duct pressure classes or duct operating pressures.  Design duct for maximum negative pressure practical to 
+accommodate improper operation or poor maintenance.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Equipment schedules.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Equipment foundations and supports.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Structural supports for ducts where required.</NPR><BRK/>
+<BRK/>
+<NPR>6.  The design of industrial ventilation systems and the editing of this section should be performed by professional 
+engineers or industrial hygienists with a sound knowledge of industrial ventilation.  Design should conform to 
+the ACGIH-2092S Industrial Ventilation:  A Manual Of Recommended Practice; ASSE Z9.2, Fundamentals Governing the 
+Design and Operation of Local Exhaust Ventilation Systems; AIHA Z9.3, Spray Finishing Operations - Safety Code 
+for Design, Construction and Ventilation; UFC 3-410-04N, "Industrial Ventilation"; and other references as applicable.  
+Fan arrangements should be selected to eliminate system effects identified in ANSI/AMCA 201.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AIR MOVEMENT AND CONTROL ASSOCIATION INTERNATIONAL, INC. (AMCA)</ORG><BRK/><BRK/><RID>AMCA 99</RID><RTL>(2016) Standards Handbook</RTL><BRK/><BRK/><RID>AMCA 99-0401</RID><RTL>(1986) Classifications for Spark Resistant Construction</RTL><BRK/><BRK/><RID>AMCA 201</RID><RTL>(2002; R 2011) Fans and Systems</RTL><BRK/><BRK/><RID>AMCA 210</RID><RTL>(2025) Laboratory Methods of Testing Fans for Certified Aerodynamic Performance Rating</RTL><BRK/><BRK/><RID>AMCA 211</RID><RTL>(2013; Rev 2017) Certified Ratings Program Product Rating Manual for Fan Air Performance</RTL><BRK/><BRK/><RID>AMCA 300</RID><RTL>(2014) Reverberant Room Method for Sound Testing of Fans</RTL><BRK/><BRK/><RID>AMCA 301</RID><RTL>(2014) Methods for Calculating Fan Sound Ratings from Laboratory Test Data</RTL><BRK/><BRK/><RID>AMCA 500-D</RID><RTL>(2018) Laboratory Methods of Testing Dampers for Rating</RTL><BRK/><BRK/><RID>AMCA CRP</RID><RTL>(Online) Directory of Products Licensed Under the AMCA International Certified Ratings Program</RTL><BRK/><BRK/></REF><REF><ORG>AIR-CONDITIONING, HEATING AND REFRIGERATION INSTITUTE (AHRI)</ORG><BRK/><BRK/><RID>AHRI 1060 I-P</RID><RTL>(2014) Performance Rating of Air-to-Air Heat Exchangers for Energy Recovery Ventilation Heat Equipment</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN BEARING MANUFACTURERS ASSOCIATION (ABMA)</ORG><BRK/><BRK/><RID>ABMA 9</RID><RTL>(2015) Load Ratings and Fatigue Life for Ball Bearings</RTL><BRK/><BRK/><RID>ABMA 11</RID><RTL>(2014; R 2020) Load Ratings and Fatigue Life for Roller Bearings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN CONFERENCE OF GOVERNMENTAL INDUSTRIAL HYGIENISTS (ACGIH)</ORG><BRK/><BRK/><RID>ACGIH-2092S</RID><RTL>(2004) Industrial Ventilation:  A Manual of Recommended Practice</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN INSTITUTE OF STEEL CONSTRUCTION (AISC)</ORG><BRK/><BRK/><RID>AISC 360</RID><RTL>(2016) Specification for Structural Steel Buildings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/><RID>AWS D1.3/D1.3M</RID><RTL>(2025) Structural Welding Code - Sheet Steel</RTL><BRK/><BRK/><RID>AWS Z49.1</RID><RTL>(2021) Safety in Welding, Cutting and Allied Processes</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A36/A36M</RID><RTL>(2019) Standard Specification for Carbon Structural Steel</RTL><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/><RID>ASTM A167</RID><RTL>(2011) Standard Specification for Stainless and Heat-Resisting Chromium-Nickel Steel Plate, Sheet, and Strip</RTL><BRK/><BRK/><RID>ASTM A653/A653M</RID><RTL>(2025a) Standard Specification for Steel Sheet, Zinc-Coated (Galvanized) or Zinc-Iron Alloy-Coated (Galvannealed) by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM A1011/A1011M</RID><RTL>(2025) Standard Specification for Steel, Sheet and Strip, Hot-Rolled, Carbon, Structural, High-Strength Low-Alloy, High-Strength Low-Alloy with Improved Formability, and Ultra-High-Strength</RTL><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM B152/B152M</RID><RTL>(2019) Standard Specification for Copper Sheet, Strip, Plate, and Rolled Bar</RTL><BRK/><BRK/><RID>ASTM C582</RID><RTL>(2023) Contact-Molded Reinforced Thermosetting Plastic (RTP) Laminates for Corrosion-Resistant Equipment</RTL><BRK/><BRK/><RID>ASTM C920</RID><RTL>(2018; R 2024) Standard Specification for Elastomeric Joint Sealants</RTL><BRK/><BRK/><RID>ASTM D1330</RID><RTL>(2004; R 2010) Rubber Sheet Gaskets</RTL><BRK/><BRK/><RID>ASTM D1654</RID><RTL>(2008; R 2016; E 2017) Standard Test Method for Evaluation of Painted or Coated Specimens Subjected to Corrosive Environments</RTL><BRK/><BRK/><RID>ASTM D1927</RID><RTL>(1981; R 1988) Rigid Poly(Vinyl Chloride) Plastic Sheet</RTL><BRK/><BRK/><RID>ASTM D2000</RID><RTL>(2018; R 2024) Standard Classification System for Rubber Products in Automotive Applications</RTL><BRK/><BRK/><RID>ASTM D2564</RID><RTL>(2020) Standard Specification for Solvent Cements for Poly(Vinyl Chloride) (PVC) Plastic Piping Systems</RTL><BRK/><BRK/><RID>ASTM D2665</RID><RTL>(2025) Standard Specification for Poly(Vinyl Chloride) (PVC) Plastic Drain, Waste, and Vent Pipe and Fittings</RTL><BRK/><BRK/><RID>ASTM D4167</RID><RTL>(2015) Fiber-Reinforced Plastic Fans and Blowers</RTL><BRK/><BRK/></REF><REF><ORG>CALIFORNIA DEPARTMENT OF PUBLIC HEALTH (CDPH)</ORG><BRK/><BRK/><RID>CDPH SECTION 01350</RID><RTL>(2017; Version 1.2) Standard Method for the Testing and Evaluation of Volatile Organic Chemical Emissions from Indoor Sources using Environmental Chambers</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA ICS 1</RID><RTL>(2022) Standard for Industrial Control and Systems: General Requirements</RTL><BRK/><BRK/><RID>NEMA ICS 2</RID><RTL>(2000; R 2020) Industrial Control and Systems Controllers, Contactors, and Overload Relays Rated 600 V</RTL><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 65</RID><RTL>(1993) Processing and Finishing of Aluminum</RTL><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 91</RID><RTL>(2026) Standard for Exhaust Systems for Air Conveying of Vapors, Gases, Mists and Noncombustible Particulate Solids</RTL><BRK/><BRK/><RID>NFPA 664</RID><RTL>(2020) Standard for the Prevention of Fires and Explosions in Wood Processing and Woodworking Facilities</RTL><BRK/><BRK/></REF><REF><ORG>RUBBER MANUFACTURERS ASSOCIATION (RMA)</ORG><BRK/><BRK/><RID>RMA IP-20</RID><RTL>(2007) Specifications for Drives Using Classical V-Belts and Sheaves. Specifications for A, B, C, and D Cross Sections</RTL><BRK/><BRK/><RID>RMA IP-22</RID><RTL>(2007) Specifications for Drives Using Narrow V-Belts and Sheaves (Joint RMA/MPTA), 4th Edition</RTL><BRK/><BRK/></REF><REF><ORG>SHEET METAL AND AIR CONDITIONING CONTRACTORS' NATIONAL ASSOCIATION (SMACNA)</ORG><BRK/><BRK/><RID>SMACNA 1378</RID><RTL>(1995) Thermoplastic Duct (PVC) Construction Manual, 2nd Edition</RTL><BRK/><BRK/><RID>SMACNA 1403</RID><RTL>(2008) Accepted Industry Practice for Industrial Duct Construction, 2nd Edition</RTL><BRK/><BRK/><RID>SMACNA 1520</RID><RTL>(1999) Round Industrial Duct Construction Standards, 3rd Edition</RTL><BRK/><BRK/><RID>SMACNA 1922</RID><RTL>(2004) Rectangular Industrial Duct Construction Standards, 2nd Edition</RTL><BRK/><BRK/><RID>SMACNA 1972 CD</RID><RTL>(2012) HVAC Air Duct Leakage Test Manual - 2nd Edition</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY FOR PROTECTIVE COATINGS (SSPC)</ORG><BRK/><BRK/><RID>SSPC Paint 11</RID><RTL>(1992; E 2000) Paint Specification No. 11Red Iron Oxide, Zinc Chromate, Raw Linseed Oil and Alkyd Primer</RTL><BRK/><BRK/><RID>SSPC Paint 20</RID><RTL>(2019) Zinc-Rich Primers (Type I, Inorganic, and Type II, Organic)</RTL><BRK/><BRK/><RID>SSPC SP 5/NACE No. 1</RID><RTL>(2007) White Metal Blast Cleaning</RTL><BRK/><BRK/></REF><REF><ORG>SOUTH COAST AIR QUALITY MANAGEMENT DISTRICT (SCAQMD)</ORG><BRK/><BRK/><RID>SCAQMD Rule 1168</RID><RTL>(2022) Adhesive and Sealant Applications</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-DTL-12276</RID><RTL>(2006; Rev E; Notice 1 2011; Notice 2 2016; Notice 3 2021) Varnish, Phenolic, Baking</RTL><BRK/><BRK/><RID>MIL-DTL-24441</RID><RTL>(2009; Rev D; Notice 1 2021) Paint, Epoxy-Polyamide, General Specification for</RTL><BRK/><BRK/><RID>MIL-P-21035</RID><RTL>(1991; Rev B; Notice 2 2003; Notice 3 2021) Paint, High Zinc Dust Content, Galvanizing Repair (Metric)</RTL><BRK/><BRK/><RID>MIL-PRF-23236</RID><RTL>(2009; Rev D; Notice 1 2023) Coating Systems for Ship Structures</RTL><BRK/><BRK/></REF><REF><ORG>U.S. GENERAL SERVICES ADMINISTRATION (GSA)</ORG><BRK/><BRK/><RID>CID A-A-272</RID><RTL>(Rev C) Caulking Compounds</RTL><BRK/><BRK/><RID>FS TT-S-001543</RID><RTL>(Rev B; Notice 1) Sealing Compound:  Silicone Rubber Base (For Calking, Sealing, and Glazing in Buildings and Other Structures)</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>29 CFR 1910.219</RID><RTL>Mechanical Power Transmission Apparatus</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 33</RID><RTL>(2010; Reprint Apr 2020) Heat Responsive Links for Fire-Protection Service</RTL><BRK/><BRK/><RID>UL 181</RID><RTL>(2013; Reprint Dec 2021) UL Standard for Safety Factory-Made Air Ducts and Air Connectors</RTL><BRK/><BRK/><RID>UL 214</RID><RTL>(1997; Rev thru Aug 2001) Tests for Flame-Propagation of Fabrics and Films</RTL><BRK/><BRK/><RID>UL Bld Mat Dir</RID><RTL>(updated continuously online) Building Materials Directory</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>GENERAL REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SMACNA Duct Construction Manuals</TTL><BRK/>
+<BRK/>
+<TXT>The recommendations in the Sheet Metal and Air Conditioning Contractors' National Association (SMACNA) duct construction manuals must be considered 
+mandatory requirements.  Substitute the word "must" for "should" in these manuals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fan Data</TTL><BRK/>
+<BRK/>
+<TXT>[For fans include fan curves or rating tables and derating factors.  ]Provide certified performance curves showing total pressure, power, and mechanical 
+efficiency versus flow rate of the operating density and fan speed.  All areas of unstable operation must be indicated.  For fans equipped with 
+adjustable capacity controls such as variable inlet or vaneaxial fans with adjustable blade settings, minimum and maximum performance must be indicated 
+along with performance for fire intermediate settings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Natural Ventilation</TTL><BRK/>
+<BRK/>
+<TXT>Evaluate natural ventilation for appropriate spaces, and design air distribution systems to operate in the same direction as natural ventilation 
+to reduce energy cost of pumping outdoor air.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Industrial Ventilation and Exhaust Systems</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit drawings including fan installation drawings; duct systems[ , including welding and vehicle exhaust]; supports and anchor location and load 
+imposed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Start-Up Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit start-up tests reports in accordance with the paragraph TESTING, ADJUSTING, AND BALANCING.  Submit final test report for [the] system[s] 
+tested, describing all test apparatus, instrumentation calculations, factors, flow coefficients, sound levels, and equipment data based on <RID>ACGIH-2092S</RID>
+ recommended forms or reasonable facsimiles thereof to suit project conditions.  Adjustment and setting data must be included in test report.  
+Submit sound level test reports for high noise level equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Related Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Conform to Section <SRF>23 03 00</SRF> BASIC MECHANICAL MATERIALS AND METHODS as well as additional requirements specified herein.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Industrial Ventilation and Exhaust Systems</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Fans</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Dampers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Connectors</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Duct</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gaskets</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Protective Coating Materials</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sealants</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Access Ports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Damper Regulators</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Blast Gates</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Vibration Isolators</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ductwork, Dust [and Fume] Collection</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Steel Ducts</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fiberglass Ductwork</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Thermoplastic Ductwork</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Vehicle Tail Pipe Exhaust System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welding Fume Exhaust System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Recycled Content of Ductwork Steel Components</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Recycled Content of Protectively Coated Steel Ducts</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Indoor Air Quality for Duct Sealants</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Fan Tests</SUB>, including Sound Power Level Tests; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Ventilation and Exhaust System <SUB>Start-Up Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sound Level Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Welding Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welding Test Agenda</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welding Test Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welders' Identification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fiberglass Fan Servicer Experience Information</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Fans</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Vehicle Tail Pipe Exhaust System</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welding Fume Exhaust System</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Industrial Ventilation and Exhaust Systems</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Posted Operating Instructions</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit text of posted operating instructions for ventilation and exhaust systems.</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Welders' Identification</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a listing of the names and identification symbols to be used to identify the work performed by the welder or welding operator who after 
+completing a welded joint must identify it as his work by applying his assigned symbol for a permanent record.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Fiberglass Fan Servicer Experience Information</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit text.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Qualified Personnel</TTL><BRK/>
+<BRK/>
+<TXT>Operations involving joining thermoplastic ductwork by solvent or hot gas and joining fiberglass ductwork by laminating must be performed by personnel 
+certified by the manufacturer as qualified for the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Qualification of Welders</TTL><BRK/>
+<BRK/>
+<TXT>Qualify each welder or welding operator by tests using equipment, <SUB>welding procedures</SUB> and a base metal and electrode or filler wire from the same 
+compatible group number that will be encountered in the applicable <SUB>welding test procedures</SUB>.  <TST>Welders or welding operators who make acceptable procedure 
+qualification test welds will be considered performance qualified for the welding procedure used.  Determine performance qualification in accordance 
+with <RID>AWS D1.1/D1.1M</RID>.  Notify the Contracting Officer 24 hours in advance as to the time and place of tests[ and wherever practical perform the 
+tests at the work site].</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TAB Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Requirements are specified in Section <SRF>23 05 93</SRF> TESTING, ADJUSTING AND BALANCING and Section <SRF>23 08 01.00 20</SRF> TESTING INDUSTRIAL VENTILATION SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>POSTED OPERATING INSTRUCTIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide for ventilation and exhaust system.  In addition, permanently mark, drill, and pin as an integral part of device, final adjustment and 
+settings pursuant to testing, adjusting, and balancing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SAFETY PRECAUTIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Guards and Screens</TTL><BRK/>
+<BRK/>
+<TXT>Provide metal personnel safety guards for normally accessible unducted fan inlets and discharges and moving power transmission components in accordance 
+with OSHA <RID>29 CFR 1910.219</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>AWS Z49.1</RID> for safety in welding and cutting.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>FANS</SUB>, GENERAL REQUIREMENTS FOR</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Performance, Component, and Other Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Fans must have certified performance ratings as evidenced by conformance to the requirements of <RID>AMCA 211</RID>, and must be listed in <RID>AMCA CRP</RID>, or must 
+be currently eligible for such listing.  Fans must generally be in accordance with <RID>AMCA 99</RID> unless superseded by other requirements stated elsewhere 
+herein.  Determine performance data for fans in accordance with <RID>AMCA 210</RID>.  Select fans to minimize the exposure of personnel working in or occupying 
+the immediate installation area.  The total sound power level of the <SUB>fan tests</SUB> must not exceed 90 dBA when tested per <RID>AMCA 300</RID> and rated per <RID>AMCA 301</RID>
+, or it must be provided with an appropriate attenuation device or devices.  Scheduled fan performance is the performance required under specified 
+or indicated installation conditions with specified or indicated accessories.  The net installed air performance of the fan, with accessories/appurtenances 
+in place, must be sufficient to meet the scheduled performance within the limits of the fan rating certification tolerance.  Affix the manufacturer's 
+product identification nameplate to each unit.  Apply additional requirements for specific service or generic type or class of fan.  If nonuniform 
+air flow conditions are likely to be encountered, contact the fan manufacturer to ensure that the fan is rated for the additional fan inlet and 
+outlet effect.  Install fans to minimize fan system effect in accordance with <RID>AMCA 201</RID>.  Fans must be listed in the Directory of Products licensed 
+to use AMCA seal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings and Lubrication</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Sleeve type bearings should be specified or indicated on drawings where low noise levels are required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Precision anti-friction or sleeve type with provisions for self-alignment and for radial and thrust loads imposed by the service.  Provide water-cooled 
+bearings where required for the service or recommended by the manufacturer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Anti-friction Bearings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:</NPR><BRK/>
+<NPR>Continuous 8-hour service          20,000</NPR><BRK/>
+<NPR>Continuous 24-hour service         40,000</NPR><BRK/>
+<NPR>Continuous 24-hour service         80,000</NPR><BRK/>
+<NPR>(extreme reliability)</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Constructed of steel alloys with a certified L-10 minimum rated life of [20,000] [40,000] [80,000] hours under load conditions imposed by the service.  
+Rated and selected in accordance with <RID>ABMA 9</RID> and <RID>ABMA 11</RID>.  Provide with dust-tight seals suitable for environment and lubricant pressures encountered; 
+cast ferrous metal housing, bolted-split pillow block type where located within fan casings; grease lubricated with provisions to prevent overheating 
+due to excess lubricant; surface ball check type grease supply fittings.  Provide manual or automatic grease pressure relief fittings visible from 
+normal maintenance locations.  Include lubrication extension tubes where necessary to facilitate safe maintenance during operation and fill tubes 
+with lubricant prior to equipment operation.  Prelubricated, sealed, anti-friction bearings, which conform to above specified materials and L-10 
+life requirements, may be provided for fans requiring less than<MET> 0.37 kW</MET><ENG> 1/2 horsepower</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sleeve Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Premounted, self-aligning, continuous oil supply, single or double ring lubricated, insert type, with suitable provisions for shaft expansion and 
+such thrust as may be imposed by service loads.  Provide water cooling for shaft surface speed exceeding<MET> 6.1 meters per second</MET><ENG> 1200 feet per minute</ENG>
+.  Provide each sleeve bearing with approximately<MET> 473 mL</MET><ENG> 16 ounce</ENG> capacity constant level oiler and oil level gage.  Include on sleeve bearing 
+submittal data:  Bearing manufacturing source, type, lubricant, clearances, "L/D" ratio, antifriction metal, belt angle, shaft speed, shaft critical 
+speed, Brinell hardness at journal, and shaft surface finish at journal in micro-inches.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Motors and Motor Starters</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The motor control requirements should be coordinated with the Electrical Section and will depend on field 
+conditions.  The following types of motor starters should be used as a guide only.  When electrical power circuits 
+to which ventilation and exhaust equipment are connected are heavily loaded, the full voltage across the line 
+starting may result in excessive voltage drop on the circuits.</NPR><BRK/>
+<MET><TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="126.75"/>
+      <COL AUTOWIDTH="0" WIDTH="122.25"/>
+      <COL AUTOWIDTH="0" WIDTH="482.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL1>Power (kW)</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>Voltage</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>Type Starter</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Up to 5 1/2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">208-230</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Across-the-line magnetic</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">5 1/2 to 11</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">208-230</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Across-the-line magnetic part winding or wye delta</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">11 to 22 3/8</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">460</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Across-the-line magnetic part winding or wye delta</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Above 11</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">208-230</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Part winding or wye delta</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Above 22 1/2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">460</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Part winding or wye delta</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></MET>
+<ENG><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="6">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="126.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="122.25"/>
+      <COL AUTOWIDTH="0" WIDTH="482.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Motor H.P.</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Voltage</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>Type Starter</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Up to 7 1/2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">208-230</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Across-the-line magnetic</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">7 1/2 to 15</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">208-230</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Across-the-line magnetic part winding or wye delta</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">15 to 30</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">460</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Across-the-line magnetic part winding or wye delta</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Above 15</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">208-230</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Part winding or wye delta</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Above 30</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">460</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Part winding or wye delta</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></ENG><AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conform to <RID>NEMA MG 00001</RID> and <RID>NEMA ICS 1</RID> and <RID>NEMA ICS 2</RID>.  Motors less than<MET> 3/4 kW</MET><ENG> one hp</ENG> must meet NEMA High Efficiency requirements.  Motors<MET> 3/4 
+kW</MET><ENG> one hp</ENG> and larger must meet NEMA Premium Efficiency requirements.  Motors must not exceed 1800 rpm, unless otherwise indicated, and must be 
+variable-speed, [[open] [dripproof] enclosure] [totally enclosed fan cooled] [explosion proof] type.  Provide [manual] [magnetic-across-the-line] 
+[reduced voltage] [part-winding] [wye-delta] type motor starters with [general-purpose NEMA 1] [weather resistant NEMA 3R] [watertight NEMA 4] 
+[moisture and dusttight NEMA 12] enclosure in accordance with <RID>NEMA ICS 6</RID>.  Provide single-phase motors with inherent thermal overload protection 
+with manual reset. Provide three-phase motors with thermal overload protection in the control panel. Provide permanently lubricated or grease-lubricated 
+ball or roller bearings; auxiliary lubrication and relief fittings on outside of fan casing; arrange grease lines to minimize pressure on bearing 
+seals.  Motor power must not be less than brake power required with blades set at maximum pitch angle at any air delivery from the indicated amount 
+down to 50 percent thereof.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Guards and Screens</TTL><BRK/>
+<BRK/>
+<TXT>Construct guards and screens to provide, as applicable:  required strength and clearance with minimal reduction in free area at fan inlets and 
+discharges; cooling; access panels for tachometer readings; ease of sectional disassembly for maintenance and inspection functions where guard 
+total weight exceeds<MET> 22.70 kg</MET><ENG> 50 pounds</ENG>; weather protection where components are weather exposed.  Installed guards and screens must not negate 
+noise control and vibration isolation provisions.[  For burn protection, insulate surfaces when service temperatures exceed<MET> 60 degrees C</MET><ENG> 140 degrees 
+F</ENG> as part of work under Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL SYSTEMS.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Transmission Components</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Fan Drives</TTL><BRK/>
+<BRK/>
+<TXT>[Direct] [or] [V-belt] type as indicated.  V-belt drives must conform to <RID>RMA IP-20</RID> and <RID>RMA IP-22</RID>.  Drives must be applied in accordance with the 
+manufacturer's published recommendations, unless specified otherwise.  Base power rating of a V-belt drive on maximum pitch diameter of sheaves.  
+Provide classical belt section adjustable sheave type, with a minimum service factor of 1.5 for drives with motors rated up to and including<MET> 22 
+kW</MET><ENG> 30 hp</ENG>.[  Provide classical section or narrow section, fixed sheave or adjustable sheave type with a minimum 1.5 service factor for drives with 
+motors rated over<MET> 22 kW</MET><ENG> 30 hp</ENG>.][  Provide at least two belts for drives with motors rated one hp and above.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sheaves</TTL><BRK/>
+<BRK/>
+<TXT>Statically and dynamically balanced, machined cast ferrous metal or machined carbon steel, bushing type, secured by key and keyway.  Pitch diameter 
+or fixed sheaves and adjustable sheaves, when adjusted to specified limits, must not be less than that recommended by <RID>NEMA MG 00001</RID>.  Select adjustable 
+sheaves that provide the required operating speed with the sheave set at midpoint of its adjustment range.  The adjustment range for various size 
+and type belts must be:  16 percent, minimum for Classical section belts; 12 percent, minimum for Narrow section belts. [Belt deflection in adjustable 
+sheave drives must not exceed 1 1/2 degrees.]  Provide companion sheaves for adjustable sheave drives with wide groove spacing to match driving 
+sheaves, except that standard fixed pitch spacing may be used for all two-through-four groove drives whose center-to-center dimensions exceed the 
+following:  "A" and "B" Section<MET> 406 mm</MET><ENG> 16 inches</ENG>; "C" Section<MET> 635 mm</MET><ENG> 25 inches</ENG>; "D" Section<MET> 914 mm</MET><ENG> 36 inches</ENG>.  Furnish endless, static dissipating, 
+oil-resistant, synthetic cloth or filament reinforced elastomer construction belts.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Special Construction for Hazardous Areas</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Spark-Resistant</TTL><BRK/>
+<BRK/>
+<TXT>Construct [_____] [specified or indicated] units in accordance with <RID>AMCA 99-0401</RID>; Type [A] [B] [C].  Provide [Type B] [or] [Type C] construction 
+and electrical grounding of fan parts and grounding to building structure where fume or vapor handling systems conforming to <RID>NFPA 91</RID> are specified.  
+Do not place bearings in the air stream.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Explosion Proof</TTL><BRK/>
+<BRK/>
+<TXT>Construct fans to <RID>AMCA 99-0401</RID>, Type [A] [B] [C] spark-resistant requirements where explosion-proof electrical components are specified or indicated 
+to conform to <RID>NFPA 70</RID>, Class [_____], Group [_____], Division [_____] requirements.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Protective Coating for Fans</TTL><BRK/>
+<BRK/>
+<TXT>Prepare and coat fans as follows:  Replace bolts required to provide access or adjustment and normally threaded into the coated surface with studs 
+or bolts having heads continuously welded inside.  Omit sharp edges, self-tapping screws, and permanent threads protruding into the coated surface.  
+Eliminate hairline cracks and sharp inside corners by continuous welding, brazing, or filling with high melting point solder.  Seal impeller hub 
+to the shaft.  Construct housing split to use external throughbolts. Flange inlet and outlet and consider as fan interior.  Peen or grind welds 
+smooth, and grind outside corners to approximately<MET> 1.60 mm</MET><ENG> 1/16 inch</ENG> radius. Sandblast metal surfaces to white metal in accordance with <RID>SSPC SP 5/NACE No. 1</RID>
+.  Coat interior surfaces of housing in contact with airstream, including inlet, impeller and shaft, flange faces, shaft seal, [exterior surfaces 
+of housing] [, and bearing and motor pedestal].  Do not coat bearings, coupling, motor, drive, or other auxiliaries.[  Prepare and coat stainless 
+steel shaft.][  Finish fan in accordance with the manufacturer's standard practice.][  Coat fan with [phenolic] [epoxy] [_____].][  Coat fan as 
+indicated.]  Statically and dynamically balance the fan in two planes after coating and finishing, and where material has been removed, refinish 
+and rebalance the fan as specified herein.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CENTRIFUGAL FANS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements for Centrifugal Fans</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See Section <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS for guidance given in guide specification 
+technical notes.  Definite requirements should be specified in contract specification for bidders' information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide fan of [forward-curved] [radial] [backward inclined] [airfoil] type blades with [manual] [or] [automatic inlet vanes [as indicated]].  
+Arrange fans for indicated service, and construct for the applicable <RID>AMCA 99</RID>Class pressure ratings as indicated for system design pressure and 
+temperature.  Fan shaft must be solid steel, ground and finished as required for the service, with first critical speed a minimum 25 percent higher 
+than cataloged fan speed.  Select fan for maximum efficiency, minimum noise, and stability during all modes of system operation. [Vibration isolation 
+mountings must be spring type and limit vibration transmissibility to a maximum [_____] [5] percent of the unbalanced force at lowest equipment 
+speed, unless otherwise specified or indicated.] Arrangement and drives must be as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Industrial Exhauster[s]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use industrial exhausters for high particulate loading applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Single-width, single-inlet type arranged for indicated service and constructed for duty at indicated system design pressure and temperature not 
+to exceed<MET> [66] [93] [177] [260] [371] degrees C</MET><ENG> [150] [200] [350] [500] [700] degrees F</ENG>.  Continuously welded [carbon] [alloy] [copper bearing 
+alloy] [Type [_____] [304L] [316L] stainless] [steel] [[_____] alloy aluminum] scroll with required reinforcement, flanged inlet and outlet connections, 
+[cone] inlet [bolted] [welded] to scroll side sheet, threaded and plugged scroll drain, [quick] [or] [bolted] access door with gasket; [Carbon] 
+[alloy] [Type [_____] stainless] steel shaft, [fitted with] [heat slinger] [shaft seal] [grease lubricated stuffing box]; continuously welded [carbon] 
+[alloy] [copper bearing alloy] [Type [_____] [304L] [316L] stainless] [steel] [_____ alloy aluminum] impeller assembly. [_____] [radial] [paddle 
+type (open radial)] [backplated paddle] type impeller blades [with inlet shroud].[  Provide protective coating of [_____].] on fan surfaces exposed 
+to [air] [fume] [vapor] stream; [Motor must be totally enclosed type.]  Mount complete assembly including motor, power transmission components, 
+and guards on a common vibration isolation base with spring mountings [conforming to requirements indicated].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Utility Set[s]</TTL><BRK/>
+<BRK/>
+<TXT>Single-width, single-inlet, nonoverloading scroll type.  Scroll must be [intermittently] [or] [continuously] welded [carbon] [Type [304L] [316L] 
+stainless] [steel] [_____ alloy aluminum] with required reinforcement, [flanged inlet and outlet connections], streamline orifice inlet bolted 
+[and gasketed] to scroll side sheet, [threaded and] [plugged] [piped] [scroll drain,] [access door with gasket].[  Carbon] [Type [304] [316] stainless] 
+[steel] [monel] shaft finished as required [and fitted with] [heat slinger] [shaft seal] [grease lubricated stuffing box]; welded [carbon] [Type 
+[304L] [316L] stainless] [steel] [_____ alloy aluminum] impeller assembly; [backward inclined] flat or single thickness airfoil type impeller blades.  
+Provide protective coating of [_____] for [fan surfaces exposed to [air] [fume] [vapor] stream and weather.]  Motor and power transmission components 
+must be enclosed in ventilated weathertight hood. [Discharge must be fitted with an automatic gravity shutter constructed from [specified stainless 
+steel] [aluminum].][  Mount complete assembly from individual points of support on rails and vibration isolated by double-rubber-in-shear mountings] 
+[conforming to requirements indicated].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>In-line Centrifugal Fans</TTL><BRK/>
+<BRK/>
+<TXT>Welded steel casings, centrifugal backward inclined blades, stationary discharge conversion vanes, internal and external belt guards and adjustable 
+motor mounts.  Inlet and outlet connections for fan casings to duct work and equipment casings, may be of the slip fit or flanged type. [Provide 
+guards for discharges.  Rate fans with guards in place.]  Air must enter and leave the fan axially.  Inlet must be streamlined and conversion vanes 
+must eliminate turbulence and provide smooth discharge air flow.  Enclose fan bearings and drive shafts, and isolate from the air stream.  Fan 
+bearings must be mechanically sealed against dust and dirt and must be self-aligning, pillow block ball or roller type.  Motor and drive must be 
+provided by fan manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fiberglass Centrifugal Fans</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show intended service on drawing fan schedule or specify here.  Revise paragraph if special chemical or 
+corrosion resistance is required in accordance with manufacturer's recommendations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM D4167</RID>.  Construct of fire retardant fiberglass with a flame spread rating at least equal to or less than that of the duct system.  Housing 
+and fan impeller must be fiberglass.  Shaft and fan support stand must be steel with protective coating.  Provide exterior gel coat, coating, or 
+paint with ultraviolet light inhibiting properties for fans exposed to sunlight. Fiberglass fans must be suitable for [the intended service.] [use 
+in [_____]].  Provide with flanged outlet [and inlet] connections, [threaded [and plugged]] scroll drain, bolted access and inspection doors, and 
+epoxy coated steel fan base and motor mount.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>[VANEAXIAL] [TUBEAXIAL] FANS</TTL><BRK/>
+<BRK/>
+<TXT>Direct-connected with adjustable blade impeller or V-belt driven.  When direct connected, fans must be driven by totally-enclosed, air-over (TEAO), 
+flanged or end mounted motors.  When belt-driven, provide internal and external belt guards and adjustable motor mounts.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Fan Impeller Blades</TTL><BRK/>
+<BRK/>
+<TXT>Air-foil type [with stationary guide vanes], designed to provide the efficiency [and sound level] indicated.  In fan selection, consider and account 
+for any losses due to the size of the motor in relation to the fan hub diameter.  Impeller blades of direct-driven fans must be adjustable to permit 
+varying performance over a range of volume and pressure.  Index the hub to facilitate setting the angle of the blades uniformly and accurately 
+from minimum to maximum angle; provide stops to avoid overloading motor.  Furnish motor with the factory blade maximum setting included in the 
+fan nameplate data.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fan Casings</TTL><BRK/>
+<BRK/>
+<TXT>Cylindrical, or welded steel construction, with flanged inlets and outlets. Assemble motor support [and guide vanes] by welding.  Provide casings 
+with bolted or hinged access plates adequate for inspection and servicing of internal parts.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>BATHROOM AND KITCHEN FANS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Quiet operation will increase the likelihood that occupants will use fans.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Power used must be a maximum of 13 watts for 50 cfm fans; 15 watts for 70 cfm fans; 17 watts for 90 cfm fans; and 20 watts for 100 cfm fans.  Noise 
+levels must not exceed 0.5 sones for 50 to 70 cfm fans; 1.0 sones for 90 cfm fans; and 1.5 sones for 100 cfm fans.  Fan lights must be compact 
+fluorescent.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BASIC MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Coated and Uncoated Carbon Steel Sheets, Plates, and Shapes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Mill Galvanized Steel Sheet</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A653/A653M</RID>, lock forming quality, Coating G-90[,<MET> 204 degrees C</MET><ENG> 400 degrees F</ENG>, maximum].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mill Galvanized Steel Shapes</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A36/A36M</RID> galvanized in accordance with [<RID>ASTM A123/A123M</RID>] [<RID>ASTM A653/A653M</RID>].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Uncoated (Black) Carbon Steel Sheet</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A1011/A1011M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Uncoated (Black) Carbon Steel Plates and Shapes</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A36/A36M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Corrosion Resistant (Stainless) Steel</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A167</RID>, Type 304L or Type 316L with mill finish, except as otherwise specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Corrosion Protection</TTL><BRK/>
+<BRK/>
+<TXT>Treat equipment fabricated from ferrous metals that do not have a zinc coating conforming to [<RID>ASTM A123/A123M</RID>] [<RID>ASTM A653/A653M</RID>] for prevention 
+of corrosion with a factory coating or paint system that will withstand 125 hours in a salt-spray fog test except that equipment located outdoors 
+must withstand 500 hours.  Perform salt-spray fog test in accordance with <RID>ASTM B117</RID>.  Each specimen must have a standard scribe mark as defined 
+in <RID>ASTM D1654</RID>.  Upon completion of exposure, evaluate and rate the coating or paint system in accordance with procedures A and B of <RID>ASTM D1654</RID>.  
+The rating of failure at the scribe mark must be not less than six (average creepage not greater than<MET> 3 mm</MET><ENG> 1/8 inch</ENG>).  The rating of the unscribed 
+area must be less than ten (no failure).  Thickness of coating or paint system on the actual equipment must be identical to that on the test specimens 
+with respect to materials, conditions of application, and dry-film thickness.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>HEAT RECOVERY SYSTEMS</TTL><BRK/>
+<BRK/>
+<TXT>Heat recovery systems must be utilized in ventilation units (100 percent outside air units) where the temperature differentials between supply 
+air and exhaust air is significant.  Heat recovery systems must operate at a minimum of 70 percent efficiency.  The heat recovery systems must 
+have factory-installed microprocessor controller that in turn can be connected to a Direct Digital Control (DDC) Building Automation System to 
+monitor temperatures, [wheel operation,] filter cleanliness, defrost control, and other critical conditions.  Prefilters must be provided in all 
+heat recovery systems before the heat recovery equipment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Unit Casing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include bracketed sentences unless condensate drain is not needed or cross contamination is prevented by 
+other methods.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a self supporting unit casing constructed of minimum<MET> 1.1 mm</MET><ENG> 0.04 inches</ENG> thick extruded aluminum profiles and aluminum zinc sheet steel 
+that create a double wall.[  The base of the casing must be constructed as a continuous condensate drain with a total of four connection possibilities.]  
+The casing bottom, top, and sides must be insulated with<MET> 50 mm</MET><ENG> 2 inch</ENG> thick fibrous glass insulation with a minimum density of<MET> 96 kg per cubic 
+meter</MET><ENG> 6 lb per cubic foot</ENG> or another material with equivalent insulating value.[  Provide a partition to isolate the exhaust and supply airstreams 
+from each other to avoid cross contamination.]  Partition must be a minimum of<MET> [1.9][_____] mm</MET><ENG> [0.075][_____] inches</ENG> [galvanized steel] [aluminum].  
+Provide stainless steel casing for corrosive air streams.  The casing must be designed for diagonal mounting of the heat exchanger access from 
+the side for maintenance and cleaning.  The casing must be designed with an integral defrost control damper on the heat exchanger section for defrost 
+control.  Provide full size access doors for checking the heat exchanger section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heat Exchanger Section</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Enthalpy Wheel</TTL><BRK/>
+<BRK/>
+<TXT>A desiccant-impregnated enthalpy wheel with variable speed rotary wheel must be used in the supply and exhaust systems.  Wheels must contain media 
+made of a lightweight polymer that is coated with a corrosion-resistant finish.  Etched or oxidized surfaces are not acceptable.  Heat transfer 
+surfaces must be coated with a non-migrating (permanently bonded) absorbent.[  Desiccant must be silica gel for maximum latent energy transfer.]  
+Wheel must allow laminar flow but not radial, and prevent leakage, bypassing, and cross contamination by cross flow within wheel.  The wheel must 
+have rotor seals specifically designed to limit cross-contamination, and a rotation detector.  Should rotation stop, the rotation detector must 
+alarm the HVAC control system.  Wheel must not condense water directly or require a condensate drain for summer or winter operation.  Performance 
+rating must be in accordance with <RID>AHRI 1060 I-P</RID>.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Heat Pipe</TTL><BRK/>
+<BRK/>
+<TXT>For sensible heat recovery a run-around type heat pipe must use refrigerant to absorb heat from the air stream at the air intake and reject the 
+heat back into the air stream at the discharge of the air-handling unit.  The heat transfer between air streams must take place in a counterflow 
+arrangement.  The unit must have no moving parts and must be one piece construction.  Tube core must be<MET> [18][25][_____] mm</MET><ENG> [5/8][1][_____] inch</ENG>
+ OD seamless aluminum tubing permanently expanded into the fins to form a firm, rigid and complete metal pressure contact between the tube and 
+fin collar of all operating conditions.  Provide copper tubes and copper fins for corrosive air streams.  Secondary surfaces must be of continuous 
+plate type aluminum fins,<MET> [0.18][_____] mm</MET><ENG> [0.007][_____] inch</ENG> thick, and of corrugated design to produce maximum heat transfer efficiencies.  
+System must have solenoid valve control to operate under partial load conditions.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Run-around Coil</TTL><BRK/>
+<BRK/>
+<TXT>The run-around coils must be used at the exhaust discharge from the building and at the fresh air intake into the building.[  A glycol run-around 
+coil must be used with control valves and a pump for part load conditions.]</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Sensible Heat Recovery Unit</TTL><BRK/>
+<BRK/>
+<TXT>[A cross-flow, air-to-air (z-duct) heat exchanger must recover the heat in the exhaust and supply air streams.  Z-ducts must be constructed entirely 
+of sheet metal.] [Heat wheels must be used for sensible heat recovery.  Unit must have variable speed drive for controlling the temperature leaving 
+the unit.  Wheels must contain media made of a lightweight polymer that is coated with a corrosion-resistant finish.  Etched or oxidized surfaces 
+are not acceptable.  Wheel must allow laminar flow but not radial, and prevent leakage, bypassing, and cross contamination by cross flow within 
+wheel.  The wheel must have rotor seals specifically designed to limit cross-contamination, and a rotation detector.  Should rotation stop, the 
+rotation detector must alarm the HVAC control system.  Wheel must not condense water directly or require a condensate drain for summer or winter 
+operation.  Performance rating must be in accordance with <RID>AHRI 1060 I-P</RID>.]</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Defrost Control Damper Section</TTL><BRK/>
+<BRK/>
+<TXT>Provide an integral defrost control damper section with electric damper motor for defrost control of the heat exchanger section.  The defrost control 
+dampers must be mounted upstream of the heat exchanger section and must be capable of preventing frost build-up on the plates of the heat exchanger.  
+Drain pan must be stainless steel.  The damper motor must be located outside of both airstreams.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Angle Filter Box</TTL><BRK/>
+<BRK/>
+<TXT>Provide a side access, galvanized steel duct mounted filter box assembly with integral holding frames suitable for accommodating [<MET>50 mm</MET><ENG>2 inch</ENG>][_____] 
+thick filters with a minimum efficiency reporting value of 13.  Provide filter box constructed of minimum<MET> 1.3 mm</MET><ENG> 0.05 inch</ENG> thick galvanized steel 
+with extruded aluminum tracks and individual universal holding frames with polyurethane foam gaskets and positive sealing clips designed to accommodate 
+various standard size filters in various efficiency ranges.  Provide access doors with positive sealing, heavy duty quick opening half-twist latches 
+and sponge neoprene gasketing on each side of filter box for removal and replacement of filters.  For each filter box provide one magnehelic gauge 
+or inclined manometer with static pressure taps, shut-off and vent cocks, and aluminum tubing with range<MET> 50 to 1470 Pa</MET><ENG> 0.0073 to 0.21 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIRE <SUB>DAMPERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use 1 1/2 hour rated damper for up to 2 hour fire walls.  Use 3 hour rated damper only for 3 hour or 4 
+hour fire walls.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [_____] [single leaf] [guillotine] [recessed] [hinged] [type] [curtain type with interlocking blades] [with frame and operating mechanism 
+housed out-of-[air] [fume] [vapor] stream,] constructed and rated in accordance with <RID>AMCA 500-D</RID>.  Furnish dampers for indicated stream flow, to 
+equal or exceed fire resistance rating of [1 1/2 hours] [3 hours].  Fire damper must be rattle-free and must cause a minimum [5] [10] percent increase 
+in stream velocity or system static pressure.[  For [_____] system[s], stream exposed materials of construction must be [_____].] Provide building 
+penetration collars in accordance with <RID>AMCA 500-D</RID> [and <RID>NFPA 91</RID>], [unless otherwise indicated].  Provide one spare fusible link for testing of each 
+fire damper operation and one spare fusible link for each [10] fire dampers, but not less than two.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MISCELLANEOUS MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Filler Metal, Welding</TTL><BRK/>
+<BRK/>
+<TXT>AWS filler metal specification and grade compatible with base materials to develop full joint strength.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flashing Materials</TTL><BRK/>
+<BRK/>
+<TXT>[Mill galvanized, phosphatized, steel sheet with minimum spangle, conforming to <RID>ASTM A653/A653M</RID>, Coating G90, 24 gage minimum thickness.  Mill 
+No. 1 or 2D finished, stainless steel, fully annealed, soft temper, conforming to <RID>ASTM A167</RID>, Type 304,<MET> 0.38 mm</MET><ENG> 0.015 inch</ENG> minimum thickness.  Mill 
+finished copper, conforming to <RID>ASTM B152/B152M</RID>, minimum<MET> 1487 gram per square meter</MET><ENG> 16 ounces per square foot</ENG>.][  As specified in Section [
+<SRF>07 60 00</SRF>] FLASHING AND SHEET METAL.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Flexible Connectors</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Service</TTL><BRK/>
+<BRK/>
+<TXT>Airtight, fire-retardant, fume and vapor resistant, chloroprene or chlorosulfonated polyethylene impregnated, woven fibrous glass fabric, rated 
+for continuous service at<MET> 121 degrees C</MET><ENG> 250 degrees F</ENG>, conforming to <RID>UL 214</RID>, with<MET> 678 gram per square meter</MET><ENG> 20 ounce per square yard</ENG> weight for 
+service at<MET> 498 Pa</MET><ENG> 2 inches water</ENG> gage and under and<MET> 1017 gram per square meter</MET><ENG> 30 ounce per square yard</ENG> weight for service over<MET> 498 Pa</MET><ENG> 2 inches 
+water</ENG> gage.  Provide with or without integral 24 gage mill galvanized sheet metal connectors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Acoustic Service</TTL><BRK/>
+<BRK/>
+<TXT>Provide as second layer for nonpressure service to<MET> 60 degrees C</MET><ENG> 140 degrees F</ENG>, leaded sheet vinyl, a minimum<MET> 1.40 mm</MET><ENG> 0.055 inches</ENG> thick, weighing 
+a minimum<MET> 20.60 kg per square meter</MET><ENG> 0.87 pounds per square foot</ENG>, capable of 10 dBA attenuation in 10 to 10,000 Hz range, suitable for solvent seam 
+or overlap joining and banding.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>[Fume] [Dust Collection] Service</TTL><BRK/>
+<BRK/>
+<TXT><MET>[3 mm]</MET><ENG>[1/8 inch]</ENG> [_____] thick, single-ply, synthetic fabric reinforced chloroprene suitable for<MET> 107 degrees C</MET><ENG> 225 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Temperature Service</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Bellows type metal expansion joints, temperature range minus<MET> 29 degrees C to [427] [538] degrees C</MET><ENG> 20 degrees F to [800] [1000] degrees 
+F</ENG>, plus or minus<MET> 25 kPa</MET><ENG> 100 inches water</ENG> gage [with interior liner [and exterior cover]].</OLI><BRK/>
+<BRK/>
+<OLI>Fabric reinforced, insulated, elastomeric cover expansion joint for operating temperature up to<MET> [204 degrees C]</MET><ENG> [400 degrees F]</ENG>[_____] 
+[belt] [or] [flange] type for<MET> [10 kPa gage]</MET><ENG> [40 inches water gage]</ENG> [_____] positive or negative pressure [, with interior liner or baffle].</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Flexible Duct</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must indicate on the drawings the types of flexible duct required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Metallic Type</TTL><BRK/>
+<BRK/>
+<TXT>Single-ply [zinc-coated carbon steel] [mill galvanized carbon steel] [Type 316 stainless steel] [two-ply aluminum], [self-supporting to<MET> 2.50 meters</MET><ENG>
+ 8 foot</ENG> spans] with corrugated and interlocked, folded and knurled type seam construction, bendable without damage through 180 degrees with a throat 
+radius approximately 10 times the duct diameter, airtight, rated for positive or negative working pressure of<MET> 3735 Pa</MET><ENG> 15 inches water</ENG> gage at [<MET>
+177 degrees C</MET><ENG>350 degrees F</ENG> for aluminum] [<MET>343 degrees C</MET><ENG>650 degrees F</ENG> for galvanized steel and stainless steel] <RID>UL 181</RID>, Class 1 rated, conforming 
+to <RID>NFPA 91</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wire Reinforced Fabric Type</TTL><BRK/>
+<BRK/>
+<TXT>Elastomer impregnated woven synthetic fabric, bonded to and supported by corrosion protected or corrosion resistant spring steel helix, rated for 
+positive or negative working pressure of<MET> [3735 Pa gage at 121 degrees C]</MET><ENG> [15 inches water gage at 250 degrees F]</ENG> [_____] <RID>UL 181</RID>, Class 1 labeled.  
+Provide with manufacturer's standard metallic connection collar and clamping fastener assembly [fitted with] [dampers] [and] [extractors] [as indicated].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ball Joints</TTL><BRK/>
+<BRK/>
+<TXT>Fabricated from cast iron or formed sheet metal with outer sections secured with bolts.  Provide each half of the ball joint with tubular stubs 
+for connecting ducts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Slip Joints</TTL><BRK/>
+<BRK/>
+<TXT>Fabricated from tubular sheet metal sections.  Provide outer tube with formed steel flat bar clamps.  Where required or indicated, provide a chain 
+or other means to fix relative longitudinal position of outer and inner joint sections.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Gaskets</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Elastomer Buna N</TTL><BRK/>
+<BRK/>
+<TXT>Sheet,<MET> 3 mm</MET><ENG> 1/8 inch</ENG> thick, conforming to <RID>ASTM D2000</RID>, Type 2BG410B14.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Elastomer Chloroprene</TTL><BRK/>
+<BRK/>
+<TXT>Sheet,<MET> 3 mm</MET><ENG> 1/8 inch</ENG> thick, conforming to <RID>ASTM D2000</RID>, Type 2BE410B14.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rubber</TTL><BRK/>
+<BRK/>
+<TXT>Sheet,<MET> 3 mm</MET><ENG> 1/8 inch</ENG> thick red or black, natural, reclaimed, synthetic rubber or mixture thereof, conforming to <RID>ASTM D1330</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Protective Coating Materials</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Baked Unmodified Phenolic</TTL><BRK/>
+<BRK/>
+<TXT><RID>MIL-DTL-12276</RID>, Type II.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Epoxy Coating</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>MIL-PRF-23236</RID>, Type I, Class 1 or <RID>MIL-DTL-24441</RID> system, Formula 150 green primer<MET> 0.076 mm</MET><ENG> 3 mils</ENG>, Formula 151 haze gray<MET> 0.076 mm</MET><ENG> 3 mils</ENG>
+, and Formula 152 white<MET> 0.076 mm</MET><ENG> 3 mils</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inorganic Zinc Coating</TTL><BRK/>
+<BRK/>
+<TXT><RID>SSPC Paint 20</RID>, Type I-C (Self-cure type).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Galvanizing Repair Paint</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>MIL-P-21035</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Sealants</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Elastomeric</TTL><BRK/>
+<BRK/>
+<TXT>Sealant specified in these specifications or referenced standards as elastomeric or without further qualification, must be silicone, polyurethane, 
+polysulfide, polyisobutylene, or acrylic terpolymer suitable for the service.  For sealing of nongasketed duct joints during fabrication or assembly, 
+sealant must be polyurethane, acrylic terpolymer or polysulfide.  Sealants must conform to the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Silicone:  Conforming to <RID>FS TT-S-001543</RID>, single component type, not requiring primed substrate, with manufacturer published estimated life 
+of 30 years and a maximum 5 percent shrinkage when cured.</OLI><BRK/>
+<BRK/>
+<OLI>Polyurethane:  Conforming to <RID>ASTM C920</RID>, Type 2, Class A, single component type, not requiring primed substrate, with manufacturer published 
+estimated life of 20 years and a maximum 10 percent shrinkage when cured.</OLI><BRK/>
+<BRK/>
+<OLI>Polysulfide:  Conforming to <RID>ASTM C920</RID>, Type 2, Class A, single component type, not requiring primed substrate, with manufacturer published 
+estimated life of 20 years and a maximum 10 percent shrinkage when cured.</OLI><BRK/>
+<BRK/>
+<OLI>Polyisobutylene/Butyl:  Conforming to <RID>CID A-A-272</RID>, Type 1, single component type, not requiring primed substrate, with manufacturer published 
+estimated life of 10 years and a maximum 15 percent shrinkage when cured.</OLI><BRK/>
+<BRK/>
+<OLI>Acrylic Terpolymer:  Conforming to <RID>ASTM C920</RID>, single component type, not requiring primed substrate, with manufacturer's published estimated 
+life of 20 years and a maximum 10 percent shrinkage when cured.</OLI><BRK/>
+<BRK/>
+<OLI>Provide sealants and non-aerosol adhesive products meeting either emissions requirements of <RID>CDPH SECTION 01350</RID> (use the office or classroom 
+requirements, regardless of space type) or VOC content requirements of <RID>SCAQMD Rule 1168</RID> (HVAC duct sealants must be classified in the "Other" 
+category within the SCAQMD Rule 1160 sealants table).  Provide validation of <SUB>indoor air quality for duct sealants</SUB>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Heat Shrinking over Round Exterior Duct</TTL><BRK/>
+<BRK/>
+<TXT>High molecular weight, irradiated polyethylene band with interior heat activated epoxy adhesive coating for heat shrinking and epoxy extrusion 
+over round, exterior, duct joints.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hard Cast Caulking for Exterior Ducts</TTL><BRK/>
+<BRK/>
+<TXT>Mineral and adhesive impregnated woven fiber tape with adhesive activator for exterior round or rectangular duct joints.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Caulking of Building Surface Penetration</TTL><BRK/>
+<BRK/>
+<TXT>Foamed silicones, two-component, fire-resistant, [gamma radiation resistant], low-exotherm, room temperature vulcanizing silicone.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>SPECIALTIES</TTL><BRK/>
+<BRK/>
+<TXT>Steel, cast iron, stainless steel, nonferrous metal, or plastic to match duct construction, or as indicated.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Access Ports</SUB>, Test</TTL><BRK/>
+<BRK/>
+<TXT>With gasketed screw cap and flange, to suit exhaust service[,<MET> 25 mm</MET><ENG> one inch</ENG> nominal pipe size].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Damper Regulators</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Incremental position indicating and locking type, with satin finish chrome plated, flush surface mounting cover and regulator box where concealment 
+is required in finished spaces.  For splitter dampers, provide splitter tip mounted trunnion brackets with self-locking screw regulator or rods 
+with external swivel joint brackets.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Blast Gates</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide means for locking in adjusted position with bolt and nut.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cast Iron Access Door</TTL><BRK/>
+<BRK/>
+<TXT>Cast iron frame, [hinged and] gasketed cast iron door, quick closing clamps for watertight sealing[, size as indicated][,<MET> 152 by 229 mm</MET><ENG> 6 by 9 
+inches</ENG> minimum size].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUPPORTS AND HANGERS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must design all supports, including wind bracing for stacks, and show all important details 
+on the drawings.  SMACNA Accepted Industry Practice for Industrial Duct Construction is illustrative and does 
+not fix sizes of supports or allowable loads.  Refer to SMACNA round and rectangular duct construction standards 
+for design tables and other information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General Requirements for Supporting Elements</TTL><BRK/>
+<BRK/>
+<TXT>Provide ducting systems and equipment supporting elements including but not limited to building structure attachments; supplementary steel; hanger 
+rods, stanchions and fixtures; vertical duct attachments; horizontal duct attachments; anchors; supports.  Design supporting elements for stresses 
+imposed by systems, with a minimum safety factor of 4.0 based on duct being 50 percent full of particulate conveyed.  Supporting elements must 
+conform to <RID>SMACNA 1403</RID>, <RID>SMACNA 1922</RID>, <RID>SMACNA 1520</RID>, [<RID>SMACNA 1378</RID>,] and <RID>NFPA 91</RID>, as applicable, and modified and supplementary requirements specified 
+herein.  Do not use weld studs and powder actuated anchoring devices to support mechanical systems components without prior approval.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Vertical Attachments</TTL><BRK/>
+<BRK/>
+<TXT>Provide in accordance with SMACNA Standards, except mill galvanized iron straps must be a minimum of<MET> 25 mm</MET><ENG> one inch</ENG> wide, 16 gage thick.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Horizontal Attachments</TTL><BRK/>
+<BRK/>
+<TXT>Provide as indicated in accordance with SMACNA Standards.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Supplementary Steel</TTL><BRK/>
+<BRK/>
+<TXT>Provide where required to frame structural members between existing members or where structural members are used in lieu of commercially rated 
+supports.  Such supplementary steel must be fabricated in accordance with the <RID>AISC 360</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Vibration Isolators</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See Section <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS for guidance given in guide specification 
+technical notes.  Definite requirements should be specified in contract specification for bidders' information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide vibration isolators with in-series, contained, steel springs, chloroprene elastomer elements, and fasteners for connecting to building 
+structure attachments.  Devices must be loaded by support system in operating condition to produce required static spring deflection without exceeding 
+75 percent of device maximum load rating.][  Conform to Section <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>DUCTWORK, DUST [AND FUME] COLLECTION</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements for Dust[ and Fume] Collection Ductwork</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete all welded seams and flanged joints when not required.  However, factors such as water intrusion 
+under negative pressure in weather exposure should be considered when construction which is not leak-tight is 
+permitted for the project.  Duct conveying fumes subject to condensation should be leak-tight.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use materials with recycled content where appropriate for use.  Verify suitability, availability within 
+the region, cost effectiveness and adequate competition before specifying product recycled content requirements.</NPR><BRK/>
+<BRK/>
+<NPR>Research has shown that products are available meeting the recycled content requirements stated below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Where specified or indicated] [_____] fabricate system ductwork from black carbon steel [, with welded seams and flanged and gasketed joints].  
+Provide steel with a minimum of 70 percent recycled content.  Provide data identifying percentage of <SUB>recycled content of ductwork steel components</SUB>
+.  Construct duct to handle [_____] [wood dust] particulate with an influent loading of<MET> [15,000 grains per [standard liter per second (L/s)] [actual 
+L/s]]</MET><ENG> [7,000 grains per [standard cubic feet per minute (scfm)] [actual cubic feet per minute (acfm)]</ENG> [_____]].  Provide ductwork in accordance 
+with best practice recommendations and requirements of <RID>SMACNA 1922</RID> and <RID>SMACNA 1520</RID>, for [Class I] [Class II] [Class III] [Class IV] duct and requirements 
+specified or indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fabrication of Dust [and Fume] Collection Ductwork</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete all welded seams and flanged joints when not required.  However, factors such as water intrusion 
+under negative pressure in weather exposure should be considered when construction which is not leak-tight is 
+permitted for the project.  Duct conveying fumes subject to condensation should be leak-tight.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide indicated sizes, lengths and configuration without deviation unless otherwise approved.  Assemble ductwork airtight [as defined under paragraph 
+DUCTWORK STRUCTURAL INTEGRITY AND LEAKAGE TESTING in this section] and include necessary reinforcements, bracing, supports, framing, gasketing 
+and fastening to guarantee rigid construction and freedom from vibration, airflow induced motion, and excessive deflection.  For [_____] system, 
+provide SMACNA Class 1 construction with any of the reference standard seams and connections being acceptable [, except [_____]].  For [_____] 
+system, provide SMACNA Class [2] [3] [4] construction with welded duct and fitting seams and welded companion angle or Van-Stone flanges.  Welding 
+must conform to requirements specified herein.  Provide flanges at [branches] [hoods,] [equipment] [and] [enclosure connections,] where necessary 
+for ease of access to equipment or maintenance disassembly, and where indicated.  Provide elbows and fittings a minimum 2 gages heavier than straight 
+ducts of equal diameter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Radius Elbows</TTL><BRK/>
+<BRK/>
+<TXT>Fabricated from butt welded specified piece gore sections or from formed welded or seamless tubing to a minimum centerline radius of [2.0] [2.5] 
+[_____] diameters.  Assemble, weld, and finish ground gore sections to eliminate internal projections.  Construct gored elbow in accordance with 
+the following:</TXT><BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="234.00"/>
+      <COL AUTOWIDTH="0" WIDTH="234.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING"> <HL1><MET>400 mm diameter and less</MET></HL1><HL1> <ENG>16 inches diameter and less</ENG></HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1><MET>Over 400 mm diameter</MET></HL1><HL1><ENG> Over 16 inches diameter</ENG></HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">90 degree - 5 piece minimum</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">90 degree - 7 piece minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">60 degree - 4 piece minimum</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">60 degree - 6 piece minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">45 degree - 3 piece minimum</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">45 degree - 5 piece minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">30 degree - 3 piece minimum</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">30 degree - 4 piece minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">15 degree - 2 piece minimum</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">15 degree - 3 piece minimum</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<SPT><TTL>Flanged Joints</TTL><BRK/>
+<BRK/>
+<TXT>Gasketed with full face gaskets<MET> 3 mm</MET><ENG> 1/8 inch</ENG> thick red or black rubber as specified under paragraph MISCELLANEOUS MATERIALS in this section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Access Doors</TTL><BRK/>
+<BRK/>
+<TXT>Provide hinged, gasketed, and fitted with snap-action closures access doors.  Equip access door with gaskets of common weather stripping type, 
+foamed, closed-cell, elastomer with pressure sensitive adhesive back. Provide cleanout adjacent to every bend and vertical riser.  In horizontal 
+duct runs, locate cleanout door with maximum of spacing of<MET> 4 meters</MET><ENG> 12 feet</ENG> for ducts<MET> 300 mm</MET><ENG> 12 inches</ENG> or less in diameter and<MET> 6 meters</MET><ENG> 20 feet</ENG>
+ for larger ducts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flexible Connectors</TTL><BRK/>
+<BRK/>
+<TXT>[Provide drawband secured flexible connectors, conforming to requirements specified under paragraph MISCELLANEOUS MATERIALS in this section, utilizing<MET>
+ 3 mm</MET><ENG> 1/8 inch</ENG> thick reinforced elastomer, fabricated into a cylindrical shape by vulcanizing or otherwise bonding longitudinal seam.] [Provide 
+flange secured flexible connectors, conforming to requirements specified under paragraph MISCELLANEOUS MATERIALS in this section, utilizing bellows 
+type metal expansion joint.  Where service temperature exceeds<MET> 149 degrees C</MET><ENG> 300 degrees F</ENG>, insert<MET> 25 mm</MET><ENG> one inch</ENG> thickness of mineral wool.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PROTECTIVELY COATED <SUB>STEEL DUCTS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Ductwork, Protectively Coated Steel, For Corrosive Fume and Vapor Exhaust:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements for Protectively Coated Steel Ductwork</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use materials with recycled content where appropriate for use.  Verify suitability, availability within 
+the region, cost effectiveness and adequate competition before specifying product recycled content requirements.<BRK/>
+<BRK/>
+Research has shown that products are available meeting the recycled content requirements stated below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fabricate [_____] system ductwork from black carbon steel with welded seams, flanged and gasketed joints and protectively coated interior surfaces 
+including flange faces, provide steel with a minimum of 70 percent recycled content.  Provide data identifying percentage of <SUB>recycled content of 
+protectively coated steel ducts</SUB>.  Construct ductwork to handle [_____] [fumes] [condensing] [noncondensing] [vapors] containing [_____].  Spiral 
+welded duct is prohibited.  Provided ductwork in accordance with best practice recommendations and requirements of <RID>SMACNA 1922</RID> and <RID>SMACNA 1520</RID>, 
+for Class [IV] [_____] duct.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protective Coating</TTL><BRK/>
+<BRK/>
+<TXT>Provide [_____] [and] [_____] protective coatings as specified under PROTECTIVE COATING MATERIALS, a subparagraph of MISCELLANEOUS MATERIALS in 
+this section.  Provide [_____] coating to interior of duct [and related fan] surfaces.  Coat exterior duct [and related fan] surfaces with same 
+protective coating as specified for exterior surfaces [primed with] [inorganic zinc coating] [_____].[  Exterior fan surfaces must be finished 
+[protectively coated] [primed] [as specified under paragraph, "_____".]][  Field finish exterior surfaces which have only been primed, as specified 
+in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fabrication of Protectively Coated Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Construct protectively coated ductwork for corrosive fume and vapor exhaust in accordance with <RID>SMACNA 1922</RID> and <RID>SMACNA 1520</RID> and as specified herein.  
+Provide indicated sizes, lengths and configuration without deviation, unless otherwise approved.  Spiral welded duct is prohibited.  Install ductwork 
+to be water washable, watertight, self-draining, and airtight [as defined under paragraph DUCTWORK STRUCTURAL INTEGRITY AND LEAKAGE TESTING in 
+this section].  Provide necessary reinforcements, bracing supports, framing, gasketing, and drainage provisions, and fastening to guarantee rigid 
+construction and freedom from vibration, airflow induced motion, and excessive deflection.  Rigid construction is required to prevent damage to 
+or failure of protective coating during construction, transport, erection, and on-off system operation.  Only companion angle flanged joints must 
+be permitted. Weld ducting and fittings seams.  Avoid seams in bottom<MET> 80 mm</MET><ENG> 3 inches</ENG>of ducting and in corners wherever practical by bending of 
+corners and arranging seams high in the side sheets or top sheet.  Cracks, laps, sharp inside corners, sharp sheared edges, weld "icicles," flux, 
+pits, weld spatter, burrs, and similar defects which contribute to coating discontinuities must be eliminated by the following:  a)  welding continuously, 
+b)  grinding of metal flush with surface or to<MET> 0.8 mm</MET><ENG> 1/32 inch</ENG> radius or to maximum radius permitted by thinner metals, c) Utilizing other fabrication 
+techniques and subsequent surface preparation abrasive blasting.  Removed from the job site for repair rejected ducting not conforming to these 
+requirements and which exhibit coating thickness deficiency.  Welding must conform to requirements specified herein.  Continuously weld companion 
+flange angles to the inside of the duct and intermittently weld with<MET> 25 mm</MET><ENG> one inch</ENG> welds every<MET> 100 mm</MET><ENG> 4 inches</ENG> on outside of duct.  Intermittently 
+weld girth and transverse reinforcements to duct surface for<MET> 25 mm</MET><ENG> one inch</ENG> on<MET> 152 mm</MET><ENG> 6 inch</ENG> centers or spot welded on<MET> 100 mm</MET><ENG> 4 inch</ENG> centers.  
+Weld and grind flange and reinforcement angles at corners or ends to form continuous frames.  Provide flanges at [branches,] [hoods,] [equipment] 
+[and] [enclosure connections,] where necessary for ease of access to equipment or maintenance disassembly, and where indicated.  Limit duct lengths 
+in accordance with size, to permit complete and ready access for welding, grinding, blasting, coating, coating continuity checking and testing, 
+and visual inspection during fabrication and immediately prior to erection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Radius Elbows</TTL><BRK/>
+<BRK/>
+<TXT>Fabricated radius elbows from butt welded specified piece gore sections or from formed welded or seamless tubing to a minimum centerline radius 
+of [2.0] [_____] diameters and preferably 2.5 times the duct diameter. Assemble, weld, and finish ground gore sections to prevent internal crevices 
+and projections.  Construct gored elbow in accordance with the following:</TXT><BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="234.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="234.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"> <HL1><MET>400 mm diameter and less</MET></HL1><HL1><ENG> 16 inches diameter and less</ENG></HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1><MET>Over 400 mm diameter</MET></HL1><HL1><ENG> Over 16 inches diameter</ENG></HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">90 degree - 5 piece minimum</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">90 degree - 6 piece minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">60 degree - 4 piece minimum</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">60 degree - 5 piece minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">45 degree - 3 piece minimum</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">45 degree - 4 piece minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">30 degree - 3 piece minimum</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">30 degree - 3 piece minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">15 degree - 2 piece minimum</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">15 degree - 2 piece minimum</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<SPT><TTL>Flanged Joints</TTL><BRK/>
+<BRK/>
+<TXT>Gasketed with full-face gaskets which are one-piece, heat, adhesive or solvent vulcanized, or bonded and assembled to prevent drainage and limit 
+extrusion or cavity at joint.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Access and Cleanout Door Openings</TTL><BRK/>
+<BRK/>
+<TXT>Provide access plates upstream and downstream of equipment installed in ductwork, at locations to facilitate duct cleaning (such as in horizontal 
+runs, near elbow junctions, and vertical runs), and where indicated.  For ducts<MET> 300 mm</MET><ENG> 12 inches</ENG> diameter or less, locate cleanout or access openings 
+a minimum of<MET> 3.70 meters</MET><ENG> 12 feet</ENG> apart.  Provide<MET> 250 by 300 mm</MET><ENG> 10 by 12 inches</ENG> minimum size access opening; unless otherwise indicated or prevented 
+by duct dimension.  Locate opening a minimum of<MET> 80 mm</MET><ENG> 3 inches</ENG> from bottom of duct.  Frame access openings by welded and ground miter joint<MET> 5 mm</MET><ENG>
+ 3/16 inch</ENG> thick strap iron, or angle iron, with<MET> 6 mm</MET><ENG> 1/4 inch</ENG> stainless steel bolt or stud assembly to duct on<MET> 100 mm</MET><ENG> 4 inch</ENG> centers.  Fabricate 
+plates out of 300 series corrosion-resistant steel or polyvinyl chloride faced sheet backed by 16 gage sheet metal, reinforced as required for 
+larger sizes, or constructed of heavier gage metal.  Ensure only corrosion resistant materials are expose to duct interior.  Provide one "U" handle 
+on access plates through<MET> 250 by 300 mm</MET><ENG> 10 by 12 inches</ENG> and two "U" handles on larger sizes.  Locate access openings at points which will permit 
+ready access to duct internals with no duct cutting.  Where access through equipment or access doors specified herein is not available at a specific 
+point, provide<MET> 200 mm</MET><ENG> 8 inch</ENG> diameter gasketed access plates spaced on maximum<MET> 3 meters</MET><ENG> 10 foot</ENG> centers.  Where penetration of duct surfaces is 
+approved or specified, provide 300 series corrosion resistant steel fastener assemblies.  Provide hex type, cadmium plated flange fastener bolts 
+and nuts and [<MET>3 mm</MET><ENG>1/8 inch</ENG> thick acid resistant chloroprene] [<MET>3 mm</MET><ENG>1/8 inch</ENG> thick Buna N] joint gaskets.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>THERMOPLASTIC DUCTWORK</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Duct systems of plastic material may be used to handle only nonflammable corrosive fumes and vapor when 
+conventional metal duct systems will not be adequate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  SMACNA Thermoplastic Duct (PVC) Construction Manual is applicable to fume exhaust systems construction 
+and installation requirements for round and rectangular PVC ductwork for positive and negative pressure systems 
+operating in environments up to<MET> 27 degrees C at 498 Pa, 1493 Pa, and 2488 Pa</MET><ENG> 80 degrees F at 2 inches, 6 inches, 
+and 10 inches water</ENG> gage.  The requirements of this standard are applicable specifically to Classes 12454-B and 
+12454-C PVC compounds as defined in ASTM D1784, Rigid Poly(Vinyl Chloride) (PVC) Compounds and Chlorinated Poly(Vinyl 
+Chloride) (CPVC) Compounds.  The designer must indicate on the drawings the static pressure classification (<MET>498 
+Pa, 1493 Pa, or 2488 Pa</MET><ENG>2 inches, 6 inches, or 10 inches water</ENG> gage positive or negative) to which each duct system 
+(or each portion of a duct system) is to be constructed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Construct ductwork, fittings, hoods, and accessories in accordance with <RID>SMACNA 1378</RID> and <RID>NFPA 91</RID>.  Fabricate supplementary steel in accordance with 
+the <RID>AISC 360</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Product Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide duct system from a manufacturer recognized in the field of fabrication of PVC material.  Fabricating personnel must be certified by the 
+manufacturer as qualified to perform the work in accordance with the specified requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Basic Ductwork Materials</TTL><BRK/>
+<BRK/>
+<TXT>Fabricate ducts, hoods, accessories and components in sheet form from materials conforming to <RID>ASTM D1927</RID>, [Type I, Grade 1] [Type I, Grade 2].  
+Utilize extrusions of the same compounds as specified for duct.  Solvent cement must conform to <RID>ASTM D2564</RID>.  Construct metal components, when permitted 
+to be located interior to the duct, of [Type] [304 or 304L] [316 or 316L] [_____] [corrosion resistant steel] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fasteners</TTL><BRK/>
+<BRK/>
+<TXT>Where penetration of duct surfaces is approved or specified, provide Type 316 corrosion resistant steel fastener assemblies encapsulated with polyester 
+on duct interior, unless total disassembly is intended.  Provide flange fastener bolts and nuts of hex type only, cadmium plated, unless exposed 
+to corrosive fumes; in which case provide Type 316 stainless steel. Equip bolted assemblies with two oversized washers, except where assembled 
+with metallic reinforcement contact. Plastic bolting is prohibited.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joint Gaskets</TTL><BRK/>
+<BRK/>
+<TXT>Provide [<MET>3 mm</MET><ENG>1/8 inch</ENG> thick acid resistant chloroprene.] [<MET>3 mm</MET><ENG>1/8 inch</ENG> thick Buna N.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fabrication</TTL><BRK/>
+<BRK/>
+<TXT>Construct water washable, watertight, self-draining, and airtight ductwork as specified or indicated.  Provide required reinforcements, bracing, 
+supports, framing, gasketing, sealing, resilient mounting, drainage provisions, and fastening to guarantee rigid construction and freedom from 
+vibration, airflow induced motion and noise, and excessive deflection at specified maximum system pressure and velocity.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Flanges</TTL><BRK/>
+<BRK/>
+<TXT>Provide flanges at all branches on maximum<MET> 6 meters</MET><ENG> 20 foot</ENG> centers in ducting sized<MET> 400 mm</MET><ENG> 16 inches</ENG> and under, on maximum<MET> 2.40 meters</MET><ENG> 8 foot</ENG> 
+centers in duct sized over<MET> 400 mm</MET><ENG> 16 inches</ENG>, where required for ease of access to equipment, at hoods, enclosure connections and where indicated.  
+Furnish one piece, heat, adhesive, or solvent vulcanized or bonded full face gaskets at flange joints.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Access Plates</TTL><BRK/>
+<BRK/>
+<TXT>Provide access plates upstream and downstream of equipment in ducts at locations to facilitate duct cleaning, and where indicated.  Locate access 
+openings a minimum of<MET> 50 mm</MET><ENG> 2 inches</ENG> above bottom of duct and externally frame with welded and ground miter joint steel which is isolated from 
+duct interior.  Construct access plate with PVC on interior side, backed with steel on exterior side.  Provide stainless steel access plate fasteners.  
+For ductwork cleaning access, provide<MET> 200 mm</MET><ENG> 8 inch</ENG> diameter gasketed access plates on maximum<MET> 3 meters</MET><ENG> 10 foot</ENG> on centers, except where access 
+is available through an air terminal device or other required access.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>FIBERGLASS DUCTWORK</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Duct systems of plastic material may be used to handle only nonflammable corrosive fumes and vapor when 
+conventional metal duct systems will not be adequate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ductwork, Fiberglass for Nonflammable [Corrosive] [Fume] [Vapor] Exhaust:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Fiberglass Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Construct ductwork, fittings, accessories, and material of construction in accordance with <RID>NFPA 91</RID>, and <RID>ASTM C582</RID>.  Fabricate supplementary steel 
+in accordance with the <RID>AISC 360</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Basic Ductwork Materials</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Fill in resin characteristics from ASTM C582 if necessary.  Verify suitability of Type 316 stainless steel 
+for the specific chemical exposure; for example, chromic acid attacks Type 316 stainless steel.  Revise as required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must verify that products meeting the indicated minimum recycled content are available, preferably 
+from at least three sources, to ensure adequate competition.  If not, write in suitable recycled content values 
+that reflect availability and competition.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fabricate ducts, accessories and components in sheet form from materials conforming to <RID>ASTM C582</RID> [, RTP [_____]].  Provide exterior gel coat, coating 
+or paint with ultraviolet light inhibiting properties for ducts exposed to sunlight.  Construct metal components, when permitted to be located 
+interior to the duct, of Type 316 corrosion resistant steel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fasteners</TTL><BRK/>
+<BRK/>
+<TXT>Where penetration of duct surfaces is approved or specified, provide Type 316 corrosion resistant steel fastener assemblies encapsulated with polyester 
+on duct interior, unless total disassembly is intended.  Provide flange fastener bolts and nuts of hex type only, cadmium plated, unless exposed 
+to corrosive fumes; in which case provide Type 316 stainless steel. Equip bolted assemblies with two oversized washers, except where assembled 
+with metallic reinforcement contact.  Plastic bolting is prohibited.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joint Gaskets</TTL><BRK/>
+<BRK/>
+<TXT>Provide [<MET>3 mm</MET><ENG>1/8 inch</ENG> thick acid resistant chloroprene.] [<MET>3 mm</MET><ENG>1/8 inch</ENG> thick Buna N.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fabrication</TTL><BRK/>
+<BRK/>
+<TXT>Construct water washable, watertight, self-draining, and airtight ductwork as specified or indicated.  Provide required reinforcements, bracing, 
+supports, framing, gasketing, sealing, resilient mounting, drainage provisions, and fastening to guarantee rigid construction and freedom from 
+vibration, airflow induced motion and noise, and excessive deflection at specified maximum system pressure and velocity.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Flanges</TTL><BRK/>
+<BRK/>
+<TXT>Provide flanges at all branches on maximum<MET> 6 meters</MET><ENG> 20 foot</ENG> centers in ducting sized<MET> 400 mm</MET><ENG> 16 inches</ENG> and under, on maximum<MET> 2.40 meters</MET><ENG> 8 foot</ENG> 
+centers in duct sized over<MET> 400 mm</MET><ENG> 16 inches</ENG>, where required for ease of access to equipment, at hoods, enclosure connections and where indicated.  
+Furnish one piece, heat, adhesive, or solvent vulcanized or bonded full face gaskets at flange joints.  Provide flanges at dissimilar material 
+joints, such as between fiberglass reinforced plastic (FRP) and PVC.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Access Plates</TTL><BRK/>
+<BRK/>
+<TXT>Provide access plates upstream and downstream of equipment in ducts at locations to facilitate duct cleaning, and where indicated.  Locate access 
+openings at least<MET> 50 mm</MET><ENG> 2 inches</ENG> above bottom of duct and externally frame with welded and ground miter joint steel which is isolated from duct 
+interior.  Construct access plate with fiberglass on interior side, backed with steel on exterior side.  Provide Type 316 stainless steel access 
+plate fasteners.  For ductwork cleaning access, provide<MET> 200 mm</MET><ENG> 8 inch</ENG> diameter gasketed access plates on not more than<MET> 3 meters</MET><ENG> 10 foot</ENG> centers, 
+except where access is available through an air terminal device or other required access provision.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>VEHICLE TAIL PIPE EXHAUST SYSTEM</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specifications included are for maintenance work.  Dynamometer applications require revised specifications 
+with special considerations for high temperatures involved.  Following are<MET> kW/cms</MET><ENG> horsepower/cfm</ENG> of exhaust gas 
+recommendations for sizing system and hoses for maintenance work applications.</NPR><BRK/>
+<BRK/>
+<NPR>Maintenance-gasoline: <MET> 223 (kW/0.07 m3/s; 261/0.09; 373/0.19</MET><ENG> 299 (HP)/150 (CFM); 350/200; 500/400</ENG></NPR><BRK/>
+<BRK/>
+<NPR>Maintenance-diesel: <MET> 224/0.19; 373/0.28; 522/0.47</MET><ENG> 300/400; 500/600; 700/1000</ENG></NPR><BRK/>
+<BRK/>
+<NPR>Turbo-charged diesel:  to<MET> 373/0.66</MET><ENG> 500/1400</ENG></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General Requirements for Vehicle Tail Pipe Exhaust System</TTL><BRK/>
+<BRK/>
+<TXT>Provide a hanging [exposed overhead] [disappearing overhead] [disappearing underfloor] [nondisappearing (plug-in underfloor)] type vehicle tail 
+pipe exhaust system.  Construct and install in accordance with applicable requirements of <RID>NFPA 91</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Construct ducts and miter or stamped fittings with galvanized steel.  Duct sheet metal gages must conform to Class I in <RID>SMACNA 1922</RID> and <RID>SMACNA 1520</RID>
+.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Suction Side Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Construct suction side ductwork with lock groove seam longitudinal joints.  Connect circumferential joints between sections with push-on or bead 
+and crimp type, secured with a minimum 4 rivets or screws on ducts up to and including<MET> 100 mm</MET><ENG> 4 inches</ENG> diameter, and with screws or rivets a minimum<MET>
+ 80 mm</MET><ENG> 3 inches</ENG> on center on larger sizes of duct.  Lap joints in the direction of air flow.  On disappearing overhead systems, assemble roller 
+duct sections using pop rivets.  Solder all joints or construct ductwork leak-tight as for discharge side ductwork below.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Discharge Side Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Construct ductwork on the discharge side of the fan leak-tight with joints and seams welded, brazed, or soldered.  Provide flanges with suitable 
+gaskets, where required.  Repair damaged galvanizing with galvanizing repair compound.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Fan</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The criteria for special AMCA construction for protective coating can be further delineated here or incorporated 
+into referenced paragraph, if this is the only fan.  Specify welded Class II construction only where required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See Section <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS for guidance given in guide specification 
+technical notes.  Definite requirements should be specified in contract specification for bidders' information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Comply with paragraph CENTRIFUGAL FANS in this section [, subparagraph UTILITY SET,] and special requirements for protective coatings.[  Provide 
+unit of all welded construction, utilizing minimum 14-gage carbon steel in AMCA Class II construction.] [Internal and external protective coating 
+must be manufacturer's standard, engineered quality type, with properties comparable to [air-dry or baked phenolic,] [or] [epoxy] applied in multiple 
+coats of<MET> 0.10 to 0.15 mm</MET><ENG> 4 to 6 mil</ENG> dry film thickness.] [Mount entire assembly for vibration isolation on structural steel base and spring or 
+elastomer type isolators with minimum transmissibility of [10] [5] percent.][  Provide split sleeve or flexible connection at fan inlet.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flexible Tail Pipe Exhaust Tubing and Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Provide interlocking helical seam metallic type construction of<MET> 0.3 mm</MET><ENG> 0.012 inch</ENG> minimum thickness up to and including<MET> 150 mm</MET><ENG> 6 inch</ENG> diameter 
+and<MET> 0.51 mm</MET><ENG> 0.020 inch</ENG> minimum thickness over<MET> 150 mm</MET><ENG> 6 inches</ENG> diameter Type 302, 304, or 321 corrosion-resistant steel [with inside diameter] [and 
+length as shown.] [of]<MET> [80] [100] [125] [150] [200]mm and [_____] meters in length</MET><ENG> [3] [4] [5] [6] [8] [inches] and [_____] feet in length</ENG>.  Connect 
+to duct by welding or with screws or flanged joint with gasket [and fit with tail pipe adapters constructed of minimum 20 gage Type 300 or 400 
+Series stainless steel, and which include provisions for secure tail pipe attachment].  Secure hose terminal connections by screws, clamps, or 
+flanged connections.[  Provide winch operated hose assembly.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Supporting Elements</TTL><BRK/>
+<BRK/>
+<TXT>Support ducting [as indicated] with anti-sway bracing to resist perceptible movement in response to forces imposed by flexible tubing location 
+on handling.  Suspend tubing from overhead location and provide means to raise and lower for use.  Assemble suspension system with rigid pulley 
+restraint,<MET> 3 mm</MET><ENG> 1/8 inch</ENG> diameter aircraft cable, pulleys, and manually operated winch fitted with safety ratchet lock and slip resistant hand 
+grip.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>WELDING FUME EXHAUST SYSTEM</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements for Welding Fume Exhaust System</TTL><BRK/>
+<BRK/>
+<TXT>Provide a [hanging] [long reach type] welding fume exhaust system as specified and indicated.  Construct and install in accordance with applicable 
+requirements of <RID>NFPA 91</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Construct ducts and stamped fittings with galvanized steel.  Duct sheet metal gages must conform to Class I in <RID>SMACNA 1922</RID> and <RID>SMACNA 1520</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Suction Side Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Construct suction side ductwork with lock groove seam longitudinal joints.  Connect circumferential joints between sections with push-on or crimp 
+and bead type, secured with a minimum 4 rivets or screws up to and including<MET> 100 mm</MET><ENG> 4 inches</ENG> diameter, and with screws or rivets a maximum<MET> 80 mm</MET><ENG>
+ 3 inches</ENG> on center on larger sizes of duct.  Lap joints in the direction of air flow.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Discharge Side Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Construct ductwork on the discharge side of the fan leak-tight with joints and seams welded, brazed, or soldered.  Provide flanges with suitable 
+gaskets, where required.  Repair damaged galvanizing with galvanizing repair compound.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Fan</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The criteria for special AMCA construction for protective coating can be further delineated here or incorporated 
+into referenced paragraph, if this is the only fan.  Specify welded Class II construction only where required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See Section <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS for guidance given in guide specification 
+technical notes.  Definite requirements should be specified in contract specification for bidders' information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Comply with paragraph CENTRIFUGAL FANS [, subparagraph UTILITY SET,] in this Section and special requirements for protective coatings.[  Provide 
+unit of all welded construction, utilizing a minimum 14-gage carbon steel in AMCA Class II construction.][  Internal and external protective coating 
+must be manufacturer's standard, engineered quality type, with properties comparable to [air-dry or baked phenolic,] [or] [epoxy] applied in multiple 
+coats of<MET> 0.10 to 0.15 mm</MET><ENG> 4 to 6 mil</ENG> dry film thickness.] [Mount entire assembly for vibration isolation on structural steel base and spring or 
+elastomer type isolators with a minimum transmissibility of [10] [5] percent.][  Provide split sleeve or flexible connection at fan inlet.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flexible Welding Fume Exhaust Tubing and Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Provide corrosion protected, spring steel helix reinforced, neoprene impregnated, woven fibrous glass fabric laminate, flexible tubing with cuffed 
+ends or equivalent construction, and with an inside diameter [and length as shown.] of<MET> [100] [125] [150] mm [and [_____] meters in length]</MET><ENG> [4] 
+[5] [6] inches [and [_____] feet in length]</ENG>.  Connect to duct with clamp or gasketed flange [and fit with swivel connected conical fume hood, constructed 
+of minimum 20 gage aluminum [or 26 gage galvanized steel] [or ABS plastic] and fitted with<MET> 13 mm</MET><ENG> 1/2 inch</ENG> mesh intake screen and magnets for holding 
+receptor in fixed location].  Secure tubing to terminal devices by clamping.[  Provide spring or weight counterbalanced supporting arms for flexible 
+hose section of long reach system.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Supporting Elements</TTL><BRK/>
+<BRK/>
+<TXT>Support ducting [as indicated] with anti-sway bracing to resist perceptible movement in response to forces imposed by flexible tubing location 
+on handling.  Suspend tubing from overhead location [and provide means to raise and lower for use].[  Assemble suspension system with rigid pulley 
+restraint,<MET> 3 mm</MET><ENG> 1/8 inch</ENG> diameter aircraft cable, pulleys, and manually operated winch fitted with safety ratchet lock and slip resistant hand 
+grip.] [Support movable portion of long reach system with brackets.] Observe that hood remain in a fixed position after manual adjustment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>STACKHEADS</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>SMACNA 1403</RID> no loss type stackheads for vertical discharge to the atmosphere unless indicated otherwise.  Weather caps are prohibited.  
+Provide bracing or guy wires for wind loads on stacks as indicated.  Discharge stacks should be vertical and terminate at a point where height 
+or velocity prevents reentry of exhaust air.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Installation Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ductwork for Class 2, 3, and 4 service and supporting elements must be able to sustain working live loads 
+imposed by ducting 50 percent filled with particulate material being conveyed.  Provide supplementary structural 
+steel for the support of system components.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install in accordance to <RID>NFPA 91</RID>, and <RID>SMACNA 1922</RID>, and <RID>SMACNA 1520</RID>.  Provide mounting and supports for equipment, ductwork, and accessories, including 
+structural supports, hangers, vibration isolators, stands, clamps and brackets, access doors, blast gates, and dampers.  Install accessories in 
+accordance with the manufacturer's instructions.  Construct positive pressure duct inside buildings airtight.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Wood Facilities</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include paragraphs when appropriate.  For other projects, edit as required and include appropriate references.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For [wood processing] [and] [woodworking] facilities, conform to <RID>NFPA 664</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Aluminum Facilities</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include paragraphs when appropriate.  For other projects, edit as required and include appropriate references.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For aluminum [processing] [and] finishing facilities, conform to <RID>NFPA 65</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Electrical Ground Continuity</TTL><BRK/>
+<BRK/>
+<TXT>Where electrical ground continuity is required, provide brazed connection insulated, multi-strand, copper wire jumpers across points of discontinuity.  
+Provide connection to ground and continuity testing as part of the work of Division 26.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Special Installation Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Special installation requirements for protectively coated steel ductwork for corrosive fume and vapor exhaust:  Slope horizontal ducts<MET> [25] [_____] 
+mm in [12] [_____] meters</MET><ENG> [one] [_____] inch in [40] [_____] feet</ENG> in the direction of air flow or<MET> [25] [_____] in [3] [_____] meters</MET><ENG> [one] [_____] 
+inch in [10] [_____] feet</ENG> in the direction opposite to airflow.  Where necessary, slope duct to common drainage point.  Provide drains at low points, 
+at internal duct restrictions, at base of risers and where indicated.  Provide drain connections of<MET> 25 mm</MET><ENG> one inch</ENG> pipe size corrosion resistant 
+steel couplings welded to duct and provided with polytetrafluoroethylene paste lubricated PVC plug where drainage piping is not indicated.  Provide 
+drain lines with a trap of<MET> 25 mm</MET><ENG> one inch</ENG> greater depth than the positive or negative pressure in the duct but not less than<MET> 50 mm</MET><ENG> 2 inches</ENG>.  Provide 
+duct support system to include additional weight due to collection or [condensate] [and] washing water in nondrainable deflected surface and other 
+areas.  Provide duct supports and building structure attachments in accordance with <RID>SMACNA 1922</RID> and <RID>SMACNA 1520</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Special Requirements for Installation of Thermoplastic Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Requirements for installation of thermoplastic ductwork for nonflammable corrosive fume and vapor exhaust:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Slope</TTL><BRK/>
+<BRK/>
+<TXT>Slope horizontal ducts<MET> [25] [_____] mm in [12] [_____] meters</MET><ENG> [one] [_____] inch in [40] feet</ENG> in the direction of airflow or<MET> [25] [_____] in [3] 
+[_____] meters</MET><ENG> [one] [_____] inch in [10] [_____] feet</ENG> in opposite to the direction of airflow.  Where necessary, slope duct to common drainage 
+point.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drains</TTL><BRK/>
+<BRK/>
+<TXT>Provide drains at all low points, at internal to duct drainage restrictions, at base of risers, and where indicated.  Provide drain connections 
+of<MET> 25 mm</MET><ENG> one inch</ENG> IPS couplings with polytetrafluoroethylene paste lubricated plug where drainage piping is not indicated, and where piping is 
+indicated, provide PVC Type DWV piping conforming to <RID>ASTM D2665</RID> to points indicated.  Provide trap of<MET> 25 mm</MET><ENG> one inch</ENG> greater depth than the positive 
+or negative pressure in the duct but not less than<MET> 50 mm</MET><ENG> 2 inches</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Duct Supports</TTL><BRK/>
+<BRK/>
+<TXT>Isolate duct support contact surfaces from supporting steel by<MET> 6 mm</MET><ENG> 1/4 inch</ENG> thick closed-cell foamed cellular elastomer insulation material of 
+a width greater than support.  Provide duct support system to include additional weight due to collection of condensate and washing water in nondrainable, 
+deflected surface and other areas.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Special Requirements for Installation of Fiberglass Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Requirements for installation of fiberglass ductwork for nonflammable corrosive fume and vapor exhaust:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Slope</TTL><BRK/>
+<BRK/>
+<TXT>Slope horizontal ducts<MET> [25] [_____] mm in [12] [_____] meters</MET><ENG> [one] [_____] inch in [40] [_____] feet</ENG> in the direction of airflow or<MET> [25] [_____] 
+mm in [3] [_____] meters</MET><ENG> [one] [_____] inch in [10] [_____] feet</ENG> in opposite to the direction of airflow.  Where necessary, slope duct to common 
+drainage point.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drains</TTL><BRK/>
+<BRK/>
+<TXT>Provide drains at all low points, at internal drainage restrictions, at base of risers, and where indicated.  Provide drain connections of<MET> 25 mm</MET><ENG>
+ one inch</ENG> IPS couplings with polytetrafluoroethylene paste lubricated plug where drainage piping is not indicated, and where piping is indicated, 
+provide PVC Type DWV piping conforming to <RID>ASTM D2665</RID> to points indicated.  Provide a trap of one inch greater depth than the positive or negative 
+pressure in the duct but not less than<MET> 50 mm</MET><ENG> 2 inches</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Duct Supports</TTL><BRK/>
+<BRK/>
+<TXT>Isolate duct support contact surfaces from supporting steel by<MET> 6 mm</MET><ENG> 1/4 inch</ENG> thick closed-cell foamed cellular elastomer insulation material of 
+a width greater than support.  Design duct supporting system to include additional weight due to collection of condensate and washing water in 
+nondrainable, deflected surface and other areas.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Miscellaneous Sheet Metal Work</TTL><BRK/>
+<BRK/>
+<TXT>Provide [_____] and [_____], fabricated from [mill galvanized steel] [black steel and protectively coated] [aluminum] [_____], as indicated.  Sheet 
+metal thickness, reinforcement and fabrication, where not indicated, must conform to <RID>SMACNA 1403</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Building Penetrations</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Penetration Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide properly sized, fabricated, located, and trade coordinated sleeves and prepared openings, for duct mains, branches, and other item penetrations, 
+during the construction of the surface to be penetrated. Provide sleeves for round duct<MET> 380 mm</MET><ENG> 15 inches</ENG> and smaller and prepared openings for 
+round duct larger than<MET> 380 mm</MET><ENG> 15 inches</ENG> and square or rectangular duct.  Fabricate sleeves, except as otherwise specified or indicated, from 20 
+gage,<MET> 1.00 mm</MET><ENG> 0.0396 inch</ENG> thick mill galvanized sheet metal. Sleeves penetrating load bearing surfaces must be standard weight galvanized steel 
+pipe.  Provide roof penetrations as shown in <RID>SMACNA 1403</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Framed Opening</TTL><BRK/>
+<BRK/>
+<TXT>Provide framed openings in accordance with approved shop drawings.  Refer to paragraph FIRE DAMPERS in this section, for related work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Clearances</TTL><BRK/>
+<BRK/>
+<TXT>Provide a minimum<MET> 25 mm</MET><ENG> one inch</ENG> clearance between penetrating and penetrated surfaces.  Fill clearance space with bulk fibrous glass or mineral 
+wood [or foamed silicone] and seal and close.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tightness</TTL><BRK/>
+<BRK/>
+<TXT>Penetration must be [weathertight] [fireproof where fire rated surfaces are penetrated] [vaportight to prevent vapor transmission to conditioned 
+spaces] [sound tight to prevent sound transmission to or between normally occupied or finished spaces] [deleterious or hazardous substance-tight 
+where] [toxic] [flammable] [_____] [substances or gases could migrate].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sealants</TTL><BRK/>
+<BRK/>
+<TXT>Provide sealant of [_____] [elastomeric] type [or foamed silicone type], as specified under paragraph SEALANTS in this section.  Apply to oil free 
+surfaces to a minimum<MET> 10 mm</MET><ENG> 3/8 inch</ENG> depth.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Closure Collars</TTL><BRK/>
+<BRK/>
+<TXT>Provide a minimum<MET> 100 mm</MET><ENG> 4 inches</ENG> wide, unless otherwise indicated, for exposed ducts and items on each side of penetrated surface, except where 
+equipment is installed.  Install collar tight against the surface and fit snugly around penetrating item without contact.  Grind sharp edges smooth 
+to prevent damage to penetrating surface.  Fabricate collars for round ducts<MET> 380 mm</MET><ENG> 15 inches</ENG> in diameter or less from 20 gage,<MET> 1.00 mm</MET><ENG> 0.0396 
+inch</ENG> nominal thickness, mill galvanized steel.  Attach collars a minimum of 4 fasteners to where the opening is<MET> 300 mm</MET><ENG> 12 inches</ENG> in diameter or 
+less, and a minimum of 8 fasteners where the opening is<MET> 500 mm</MET><ENG> 20 inches</ENG> in diameter or less.  Fabricate collars for square and rectangular ducts 
+with a maximum side of<MET> 380 mm</MET><ENG> 15 inches</ENG> or less from 20 gage,<MET> 1.00 mm</MET><ENG> 0.0396 inch</ENG> nominal thickness, mill galvanized steel.  Fabricate collars 
+for round, square, and rectangular ducts with minimum dimension over<MET> 380 mm</MET><ENG> 15 inches</ENG> from 18 gage,<MET> 1.40 mm</MET><ENG> 0.0516 inch</ENG> in nominal thickness, mill 
+galvanized steel.  Install collars with fasteners a maximum of<MET> 150 mm</MET><ENG> 6 inches</ENG>on center.[  Where penetrating items are irregularly shaped and where 
+approved, smoothly finished, fire-retardant, foamed silicone elastomer may be utilized without closure collar.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Installation of Fire Dampers</TTL><BRK/>
+<BRK/>
+<TXT>Install fire dampers at locations indicated.  Provide units and connecting ductwork in accordance with applicable provisions of [<RID>NFPA 91</RID>,] [<RID>UL Bld Mat Dir</RID>
+,] <RID>AMCA 500-D</RID> [and <RID>UL 33</RID>], [and as indicated].  Install retaining angles, sleeves, break-away connections, and duct access doors at each damper, 
+as required.  Minimum thickness of sleeves must be 14 gage [, except as otherwise indicated].  Duct access doors must be hinged [and fitted with 
+UL listed glass viewing port assembly].  Prior to acceptance, simulate conditions to cause each unit to function automatically.  Apply safe, nonflame, 
+heat source to fusible links and replace test activated fusible links.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation of Flexible Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Flexibly connect duct connected and vibration isolated fans [, ducts crossing building expansion joints] and specified or indicated components 
+[, except where direct connections are specified or indicated].  When fans are started, stopped, or operating, flexible connector surfaces must 
+be curvilinear, free of stress induced by misalignment or fan reaction forces, and must not transmit vibration.  Leakage must not be perceptible 
+to the hand when placed within<MET> 150 mm</MET><ENG> 6 inches</ENG> of the flexible connector surface or joint.  Provide a minimum of<MET> 150 mm</MET><ENG> 6 inches</ENG> and a maximum 
+of<MET> 610 mm</MET><ENG> 2 feet</ENG> active length with a minimum of<MET> 25 mm</MET><ENG> one inch</ENG> of slack, secured at each end by folding in to 24 gage sheet metal or by metal 
+collar frames.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation of Supports</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Selection</TTL><BRK/>
+<BRK/>
+<TXT>Select duct and equipment support system taking into account the best practice recommendations and requirements of <RID>SMACNA 1922</RID>, <RID>SMACNA 1520</RID>, and <RID>
+NFPA 91</RID>; location and precedence of work under other sections; interferences of various piping and electrical work; facility equipment; building 
+configuration; structural and safety factor requirements; vibration and imposed loads under normal and abnormal service conditions.  Indicated 
+support sizes, configurations, and spacings are the minimal type of supporting component required for normal loads.  Where installed loads are 
+excessive for the normal support spacings, provide heavier duty components or reduce the element spacing.  After system start-up, replace or correct 
+support elements which vibrate and cause noise or possible fatigue failure.  Exercise special care to prevent cascading failure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>General Requirement for Supports</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See Section <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS for guidance given in guide specification 
+technical notes.  Definite requirements should be specified in contract specification for bidders' information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Securely attach supporting elements to building structural steel or structural slabs.  Where supports are required between building structural 
+members provide supplementary structural steel as specified for work under this section.  On submittals show location of supports and anchors and 
+loads imposed on each point of support or anchor.  Do not hang ductwork or equipment from piping, or other ducts or equipment.  Attach supports 
+to structural framing member and concrete slab.  Do not anchor supports to metal decking unless a means is provided and approved for preventing 
+the anchor from puncturing the metal decking.  Where supports are required, between structural framing members, provide suitable intermediate metal 
+framing.  Where C-clamps are used, provide retainer clips.  A maximum span of<MET> 3 meters</MET><ENG> 10 feet</ENG> must exist between any two points, with lesser spans 
+as specified or as required by duct assemblies, interferences, and loads imposed or permitted.  Provide a minimum one set of two vertical support 
+elements for each point of support and each length of duct, except as otherwise specified.  Install supports on both sides of all duct turns, branch 
+fittings, and transitions.  Cross-brace hangers sufficiently to eliminate sway.  Perforated strap hangers are prohibited.  Where ductwork system 
+contains heavy equipment, hang such equipment independently of the ductwork.[  Duct supports must be vibration isolated from structure at points 
+indicated.][  Provide vibration isolators in indicated discharge ducting system for a minimum distance of<MET> [15 meters]</MET><ENG> [50 feet]</ENG> [_____] beyond 
+the fan.  Coordinate deflection of duct and equipment mountings and conform to Section <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS.][  The 
+location of supporting elements must be limited by the allowable load on the purlin which must be limited to that no greater than the moment produced 
+by<MET> 4450 Newton</MET><ENG> one Kip</ENG> load at mid-span of purlin.  When the hanger load exceeds these limits, provide reinforcing of purlin[s] or additional support 
+beam[s].  When an additional beam is used, the beam must bear on the top chord of the roof trusses and bearing must be over gusset plates of top 
+chord.  Stabilize beam by connection to roof purlin along bottom flange.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Methods of Attachment</TTL><BRK/>
+<BRK/>
+<TXT>Clamp, or weld when approved, attachment to building structural steel in accordance with <RID>AWS D1.1/D1.1M</RID>.  Construct masonry anchors selected for 
+overhead applications of ferrous materials only.  Install masonry anchors in rotary, non-percussion, electric drilled holes.  Self-drilling anchors 
+may be used provided masonry drilling is performed with electric hammers selected and applied in such a manner as to prevent concrete spalling 
+or cracking.  Pneumatic tools are prohibited.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<TXT><SUB>Welding test agenda</SUB> must be done in accordance with the applicable provisions of <RID>AWS D1.1/D1.1M</RID> and <RID>AWS D1.3/D1.3M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Ports</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must indicate on the drawings the location of test ports required for proper testing, including 
+static pressure, velocity pressure, and test openings for sampling discharge stack or duct.  See ACGIH-2092S Industrial 
+Ventilation:  A Manual Of Recommended Practice for recommendations in the chapter on testing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide test access ports at points required for work under paragraph TESTING, ADJUSTING, AND BALANCING in this section.  Locate test ports in 
+straight duct as far as practical downstream of fans, change of direction fittings, takeoffs, interior to duct accessories, and like turbulent 
+flow areas.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ductwork Cleaning</TTL><BRK/>
+<BRK/>
+<TXT>Protect duct openings from construction debris using temporary caps, flanges, or other approved means.  Clean ductwork in accordance with manufacturer's 
+recommendations [and the North American Insulation Manufacturers Association (NAIMA) Guide on Cleaning of Duct Board Materials].[  Clean dirty 
+duct interior with high velocity water and oil-free air streams or by vacuum cleaning as required by project conditions.  ][<TST>Test watertight duct 
+work for proper support, leakage, and unacceptable drainage provisions by intermittently spraying interior with garden hose nozzle, at a rate of<MET>
+ 0.2 liter per second</MET><ENG> 3 gallons per minute</ENG></TST>, exercising care to prevent excessive water accumulation.]  After construction is complete but accessible 
+and prior to acceptance, remove all construction debris from exterior surfaces.  Do not close duct inspection ports until inspected by the Contracting 
+Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protective Coating Work</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements for Protective Coating Work</TTL><BRK/>
+<BRK/>
+<TXT>Provide protective coating on interior [and exterior] surfaces of [_____] [and] [interior] [and] [exterior] surfaces of [_____] with [_____] system 
+as specified hereafter.  Prime coat exterior surfaces of [_____] [and] [_____] with [_____] [inorganic zinc coating as part of work under this 
+section] [.] [, for field finishing of exterior surfaces as part of work under Section [<SRF>09 90 00</SRF>] PAINTS AND COATINGS.]  Brush primer, or protective 
+coating where no primer is specified, onto corners and into crevices and welds, working the material into irregular surfaces for a holiday free 
+finish.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Baked, Unmodified Phenolic System</TTL><BRK/>
+<OLG><BRK/>
+<OLI>General:  The following must govern for a protective coating system based on unmodified phenol-formaldehyde resin intended for shop application 
+to [black carbon steel] [_____] surfaces in [fume] [vapor] exhaust service with possibility of materials concentration by condensation 
+and subsequent evaporation.  Shop apply coating by an applicator approved or licensed by the coating manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Surface Preparation:  Clean and blast surfaces with dry abrasive to "White Metal" and critical profile and anchor pattern in accordance 
+with <RID>SSPC SP 5/NACE No. 1</RID>, and requirements and recommendations of the coating manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Application:  The complete system must include the application of two coats of red pigmented base followed by not less than one coat of 
+the clear finish, to provide a total minimum dry film thickness of<MET> [0.15 mm]</MET><ENG> [6 mils]</ENG> [_____].  Apply coating materials by conventional 
+industrial pressure spray equipment.  Use only those thinners and cleaners in amounts recommended by the manufacturer.  Heat-cure each 
+coat between coats and bake surfaces after the last coat in accordance with manufacturer's applicable published instructions and specific 
+instructions for the specified application.  Baking time between coats must be a minimum 1 1/2 to 2 hours at<MET> 93 to 121 degrees C</MET><ENG> 200 to 
+250 degrees F</ENG>.  Baking after top coat must be one hour at<MET> 93 to 177 degrees C</MET><ENG> 200 to 350 degrees F</ENG>, plus 2 hours final bake at a temperature 
+of<MET> [177] [204] degrees C</MET><ENG> [350] [400] degrees F</ENG>.  Other baking schedules to achieve required quality coating may be proposed.</OLI><BRK/>
+<BRK/>
+<OLI>Repair:  Return damaged surfaces to the applicator's shop for repair, unless otherwise approved by the Contracting Officer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Inorganic Zinc Coating System</TTL><BRK/>
+<BRK/>
+<LST>a.  General Requirements, Inorganic Zinc Coating System:  The following must govern for a protective coating system primer based on inorganic 
+zinc coating intended for shop application to [_____] [specified] black carbon steel surfaces with subsequent field finishing with compatible 
+tie coat and [epoxy] [acrylic latex] [modified acrylic] [chlorinated rubber] top coat [applied as part of work under Section <SRF>09 90 00</SRF> PAINTS 
+AND COATINGS.]</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  Surface Preparation:  <RID>SSPC SP 5/NACE No. 1</RID>.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  Application:  Apply one coat at<MET> [0.05 to 0.10] [0.10 to 0.13] mm</MET><ENG> [2 to 3] [3 to 5] mils</ENG> dry film thickness by airless or conventional 
+spray equipment.  Use only those thinners and cleaners in amounts recommended by the manufacturer.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">d.  Repair:  Field repair damaged surfaces in accordance with manufacturer's instructions.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Inspection of Protective Coating Work</TTL><BRK/>
+<BRK/>
+<TXT><TST>Visually inspect coated surfaces from a maximum distance of<MET> 1.5 meters</MET><ENG> 5 feet</ENG> with special attention given to corners and crevices.  Check coating 
+thickness in accordance with <RID>SSPC Paint 11</RID>.  Perform inspection immediately prior to erection of ductwork and equipment and in the presence of 
+the Contracting Officer.  Repair coating as required.  Apply additional coating if thickness is not sufficient.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Factory and Field Painting and Finishing</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Factory Work</TTL><BRK/>
+<BRK/>
+<TXT>Factory finish interior ferrous metal and other specified metallic equipment and component surfaces with manufacturer's standard surface preparation, 
+primer, and finish coating.  Factory finish exterior to building space ferrous metal surfaces and other exterior to building and interior to building 
+metallic or nonmetallic surfaces with specified protective coating system in accordance with the paragraph PROTECTIVE COATING MATERIAL in this 
+section and otherwise with manufacturer's standard surface preparation, primer and finish which meet the requirements of paragraph CORROSION PREVENTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Work</TTL><BRK/>
+<BRK/>
+<TXT>Touch-up or if necessary, repaint factory applied finishes which are marred, damaged, or degraded during shipping, storage, handling, or installation 
+to match the original finish.  Clean and prime field or shop fabricated ferrous metals required for the installation specified under this section 
+in accordance with the applicable provisions of Section [<SRF>09 90 00</SRF>] PAINTS AND COATINGS.  Painting of surfaces not otherwise specified and finish 
+painting of items only primed at the factory or elsewhere, are specified as part of the work under Section [<SRF>09 90 00</SRF>] PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>TESTING, ADJUSTING, AND BALANCING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Ductwork Structural Integrity and Leakage Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In addition to significant energy losses, air leakage from HVAC ducts and air handling units can cause 
+significant IAQ problems due to unexpected airflow between indoors and outdoors, and between areas within the 
+building.  Air leakage from supply or return duct work contributes to the condensation of humid air in building 
+cavities and/or on the neighboring surfaces.  Air leakage can be especially problematic for ducts or AHUs that 
+are located outside the conditioned spaces.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Inspect and test systems pressure rated higher than<MET> 498 Pa</MET><ENG> 2 inches water</ENG> gage for structural integrity and leakage as systems or sections during 
+construction but after erection, as work progresses, in system or section lengths not exceeding<MET> 30 meters</MET><ENG> 100 feet</ENG>.  Test for structural integrity 
+at [_____] percent in excess of system fan positive or negative total pressure.  Test for leakage at [_____] percent in excess of system fan positive 
+or negative total pressure.[  Leakage test procedure and apparatus must be in accordance with <RID>SMACNA 1972 CD</RID>.  Total leakage, prorated to length 
+of duct under test, must not exceed one percent of system capacity.]</TST>[  Confirm that duct leakage is less than three percent of coil airflow for 
+new systems and less than six percent for existing systems.]  Do not permit leakage in positive pressure ducts in buildings carrying flammable 
+or toxic materials.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Transmission Components Adjustment</TTL><BRK/>
+<BRK/>
+<TXT><TST>Test and adjust V-belts and sheaves for proper alignment and tension preliminary to operation and after 72 hours of operation at final speed, in 
+the presence of the Contracting Officer.</TST>  Belts on drive side must be uniformly loaded, not bouncing.[  Align direct-drive couplings to less than 
+half of manufacturer's allowable range of misalignment.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preliminary Tests</TTL><BRK/>
+<BRK/>
+<TXT><TST>Conduct an operational test on the entire exhaust duct systems, components, and equipment for a period of not less than 6 hours after power transmission 
+components are adjusted.  Replace filters, if any, after preliminary tests and prior to conducting final acceptance tests.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Testing, Adjusting, and Balancing Work</TTL><BRK/>
+<BRK/>
+<TXT>Perform work in accordance with the applicable and recommended procedures of:  <RID>ACGIH-2092S</RID>.  Provide apparatus, certified, calibrated, instrumentation 
+including that to measure sound levels, motor current, and power factor.  Unless approved otherwise, instruments must be limited to manometers 
+and approved aneroid type gages (such as a Magnehelic). Velometers may be used for low velocity measurements if approved by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Systems Volume Acceptance Criteria</TTL><BRK/>
+<BRK/>
+<TST><TXT>Systems final volume must be within the following limits:</TXT><BRK/>
+<BRK/>
+<LST>Fan:  Plus 10 percent, minus zero percent of design volume at design temperature</LST><BRK/>
+<BRK/>
+<LST>Hood or Equipment:  Plus or minus [5] [10] percent of design volume at design temperature</LST><BRK/>
+<BRK/>
+<TXT>Note:  Tolerances must be taken on clean or dirty conditions as indicated on the drawings.</TXT></TST><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Sound Level Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Report to the Contracting Officer in writing, sound levels higher than 84 dBA at hoods or at workers' normal operating positions at equipment in 
+addition to being included in the required test reports.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SYSTEM[S] OPERATION DEMONSTRATION</TTL><BRK/>
+<BRK/>
+<TXT><TST>After systems and equipment testing, adjusting, and balancing has been completed and accepted, demonstrate the complete and correct functioning 
+of systems equipment and controls by operation through normal ranges and sequences, and by simulation of abnormal conditions, [including the manual 
+tripping of fire dampers].  Manually and automatically cause every device to function as intended.</TST>  Readjust, as necessary, any settings and after 
+sufficient operating time, but not less than [6] [_____] hours, verify ability of equipment and controls to establish and maintain stable and accurate 
+operation and required system performance.  Note any abnormal deviations, such as excessive vibration, noise, and heat, binding damper mechanisms, 
+and incorrect fan rotation.  Make any necessary repairs, replacements or adjustments.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SCHEDULE</TTL><BRK/>
+<BRK/>
+<TXT>Some metric measurements in this section are based on mathematical conversion of inch-pound measurements, and not on metric measurements <NED/>commonly 
+agreed on by the manufacturers or other parties.  The inch-pound and metric measurements shown are as follows:</TXT><BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="5">
+      <COL AUTOWIDTH="0" WIDTH="195.00"/>
+      <COL AUTOWIDTH="0" WIDTH="195.00"/>
+      <COL AUTOWIDTH="0" WIDTH="195.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL1>Products</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>Inch-Pound</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>Metric</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEDOWN="2">
+<DTA TYPE="STRING">a.  Motors: Capacity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">= 7 1/2 hp</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">= 5 1/2 kW</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING">= 15 hp</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">= 11 kW</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING">= 30 hp</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">= 22 3/8 kW</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">b.  Gaskets: Thickness</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">= 1/8 inch</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">= 3 mm</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

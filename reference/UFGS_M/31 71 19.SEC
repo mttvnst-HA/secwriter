@@ -1,0 +1,2418 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-31 71 19 (November 2022)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">New</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 31 71 19</SCN><BRK/>
+<BRK/>
+<STL>TUNNEL AND SHAFT EXCAVATION IN ROCK - MECHANICAL</STL><BRK/>
+<DTE>11/22</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>tunnel excavation 
+for underground construction by mechanical excavation using Tunnel Boring Machine 
+(TBM), roadheader, or hydraulic rock breaker</SCP>.  This specification is currently 
+for use in tunnel excavation in bedrock conditions.  For mixed-face or soft 
+ground tunneling conditions (i.e., soil-like conditions), revise specification 
+to account for anticipated ground conditions for appropriate equipment selection 
+and methods of ground support and groundwater control.  The term "mining" is 
+often used synonymously with "excavation" for underground construction applications. 
+Where the construction of an underground cavity is the primary purpose, the 
+term "excavation" is more appropriate, and is used herein.<BRK/>
+<BRK/>
+For localized ground conditions including fault zones or other specialized ground 
+conditions, revise specification to account for rock characterization conditions 
+identified in the Geotechnical Baseline Report or other geotechnical design 
+documents where the rock mass is characterized. This specification can be modified 
+for micro-tunneling applications; however, exercise care  for Execution requirements. 
+This section was originally developed for USACE Civil Works projects.<BRK/>
+<BRK/>
+For underground construction and tunnel excavation requiring drill and blasting 
+methods, include guide specification <SRF>31 23 00.00</SRF> TUNNEL EXCAVATION - BLASTING.<BRK/>
+<BRK/>
+For projects on a naval facility, consult with local NAVFAC office, and NAVSEA 
+on requirements.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For USACE:  Consult with Subject Matter Experts (SME) from the Geotechnical 
+Engineering, Structural Engineering, Engineering Geology, and Materials Community 
+of Practice or District Office that have completed a similar type of underground 
+construction project, while editing this section, to be appraised of recent, 
+specific requirements, guidance, excavation methods, lessons learned, or understandings 
+for the subject project.</NPR><BRK/>
+<BRK/>
+<NPR>Consult with or have Specification reviewed by Subject Matter Experts in Underground 
+Construction for projects involving Tunnel Excavation as a primary component 
+of a project, or where Underground Construction issues are particularly challenging.  
+For a Tunnel Excavation project in the vicinity of a dam or levee, Subject Matter 
+Experts in Dam and Levee Safety must review the Specification.</NPR><BRK/>
+<BRK/>
+<NPR>There are likely decisions and/or requirements of other agencies, the Safety 
+Manual, and/or internal offices/divisions/ branches, which could have an influence 
+upon a project's underground construction specifications.  Some of these issues 
+may be: concerns from federal, state, and local jurisdictions and agencies; 
+public use of federal, state and/or local properties near or adjacent to the 
+project; evaluations of acceptable construction vibrations, noise and/or pressures 
+affecting individuals or reaching nearby structures; natural resource impact 
+reviews, negotiations and/or requirements; constraints on the excavation means 
+and methods; pre-construction inspections; special studies to facilitate lower 
+cost of the bids or to encourage more bid submissions; the acquisition strategy 
+for the payment for the project; and, other concerns specific to the project.  
+Depending on the acquisition strategy, a Design Bid Build or Design Build will 
+require adequate up-front planning and tailoring of specifications depending 
+on strategy</NPR><BRK/>
+<BRK/>
+<NPR>This Tunnel Excavation guide specification covers the construction of underground 
+facilities by means of mechanical excavation by Tunnel Boring Machine (TBM), 
+or other mechanical excavation such as roadheader or hydraulic breaker, and 
+includes mucking.  The details on excavation are typically covered by a separate 
+Rock Excavation specification depending on the contract mechanism used. Tailor 
+this specification for your specific project needs</NPR><BRK/>
+<BRK/>
+<NPR>The following minimum requirements for project information will be indicated 
+on the project drawings:<BRK/>
+<BRK/>
+1.  Surface elevations, existing and proposed, with reference datums provided 
+for vertical and horizontal coordinates.<BRK/>
+<BRK/>
+2.  All utilities, whether trenched, buried, at the surface or overhead to distances 
+well beyond the project's boundary limits;<BRK/>
+<BRK/>
+3.  Spatial location and record of all soil and rock borings and test pits, 
+instrumentation, geologic mapping, and geophysical surveys including soil and 
+rock classifications and the pertinent engineering properties.  For example, 
+this data may include, but is not limited to, weathered rock, material strength, 
+bit drops, circulation loss, voids, ground water observations, SPT, Recovery, 
+RQD, RMR and Q System rock mass classification systems, lab testing results, 
+permeability, stratigraphy, geologic features and structure, faults and other 
+significant discontinuities, and topsoil thickness encountered in borings and 
+mapped surface exposures.  (NOTE:  This is a list of examples of data pertinent 
+to the tunnel design that may be provided in the project drawings or GBR/GDR 
+but does not include all possible engineering properties or conditions of soil 
+and rock that characterize a specific site.);<BRK/>
+<BRK/>
+4.  Hazardous gases, such as methane are a concern.  As well as coal seams, 
+coal lenses, abandoned gas/oil wells, or gas lines shown on the appropriate drawings.<BRK/>
+<BRK/>
+5.  Reference to project Geotechnical Data Report (GDR), Geotechnical Interpretation 
+Report (GIR) and/or Geotechnical Baseline Report (GBR) for additional site characterization 
+information not contained on the project drawings.<BRK/>
+<BRK/>
+6.  Location and limits of hard material, whether rock or concrete, or other 
+building materials;<BRK/>
+<BRK/>
+7.  Excavation or demolition limits, and clearing, stripping and grubbing limits, 
+and tolerances of excavation;<BRK/>
+<BRK/>
+8.  Location of borrow and disposal area, if located on Government property; 
+or on site (as some sites may or may not remain government property, and disposal 
+sites may be under control of project partners);<BRK/>
+<BRK/>
+9.  Hydrological, hydraulic and impoundment data, where applicable;<BRK/>
+<BRK/>
+10.  Details of all rights-of-way within the project boundaries; and<BRK/>
+<BRK/>
+11.  History of relevant construction, earthwork, and any environmental conditions 
+of potential concern at the site.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typical Measurement and Payment language is to be inserted into the Measurement 
+and Payment specification section.  This is typical language used that will 
+need to be tailored for the project needs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>METHOD OF MEASUREMENT</TTL><BRK/>
+<BRK/>
+<TXT>Tunnel support for the various support categories must be measured and paid by the individual components comprising 
+each support category (e.g., Rock Bolts, Dowels, High-Capacity Anchors, Steel Arch Ribs, Welded Wire Fabric, 
+Shotcrete, Reinforced Concrete), under their respective specification or special provision section.</TXT><BRK/>
+<BRK/>
+<TXT>Tunnel Excavation must be measured by the<MET>[ meter][ cubic meter]</MET><ENG>[ linear foot][ cubic yard]</ENG> excavated in accordance 
+with the 'B' line payment limit shown on the Drawings.  Tunnel drainage must be measured and paid under Section 
+<SRF>01 20 00</SRF> PRICE AND PAYMENT PROCEDURES.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BASIS OF PAYMENT</TTL><BRK/>
+<BRK/>
+<TXT>The accepted quantities measured as specified above must be paid for at the contract unit price for the pay items 
+listed below.</TXT><BRK/>
+<BRK/>
+<LST>Pay Item Pay Unit</LST><BRK/>
+<BRK/>
+<LST>Tunnel Excavation<MET>[ Meter][ Cubic Meter]</MET><ENG>[ Linear Foot][ Cubic Yard]</ENG></LST><BRK/>
+<BRK/>
+<TXT>Payment for Tunnel Excavation must constitute full compensation for all excavation, scaling, scaling reports, 
+rock support, removal, hauling and disposal of excavated materials, air monitoring and ventilation and illumination, 
+instrumentation and stability monitoring, survey control, control of water and groundwater inflow including groundwater 
+testing, supply of potable water, safety, supervision and management coordination, control and oversight of said 
+work, and all other work necessary for completion of the tunnel in accordance with the Contract Documents.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The coordination with other federal, state, and local jurisdictions and 
+agencies, the public, and private entities must be completely resolved before 
+finalizing the specifications.  A project's excavation and/or foundation requirements, 
+for which, dense materials are being removed, may require navigation, highway, 
+structural and/or other regulations and codes to be followed.  Depending upon 
+the proximity of public-use areas, private residences or businesses, and the 
+project's location within a county or township, various accommodations will 
+need to be required for the protection of the public, and the safety of private 
+entities regarding local laws, regulations, and ordinances.  Avoiding natural 
+resource impacts may overlay other measures and require seasonal or daily time 
+limitations; special observers for some or all the underground construction 
+work; special studies or monitoring; and other potential considerations.</NPR><BRK/>
+<BRK/>
+<NPR>Agency coordination will vary by project.  Be certain that all government stakeholders 
+have been involved with planning of the project and approved of all requirements 
+for the specifications.  List those important navigation or safety stakeholders.</NPR><BRK/>
+<BRK/>
+<NPR>It is essential that the agency/service person, using these Guide Specifications 
+to prepare Plans and Specifications, coordinate with the planners and environmental 
+compliance specialists within their agency/Service to ensure that all appropriate 
+restrictions and mitigation measures for hazards associated with tunnel excavation 
+and underground construction are incorporated into the Plans and Specifications.  
+Failure to comply with the requirements of applicable Federal or state laws 
+and regulations could result in project delays or stoppages, as well as the 
+potential for increased project costs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>SCOPE</TTL><BRK/>
+<BRK/>
+<TXT>This work consists of excavation and disposal of all material within the rock tunnel limits indicated on the 
+plans, in accordance with these specifications and in conformity to the lines, grades, stations and tolerances 
+shown on the plans or as established in the field by the Contracting Officer.  Also included is the initial design 
+support and tunnel reinforcement requirements for the rock tunnel to maintain the inherent strength and control 
+deformations of the ground surrounding the tunnel opening.  In addition, the work also includes geotechnical 
+instrumentation for monitoring rock displacement and water management in the tunnel, including but not limited 
+to:  furnishing, installing, and monitoring of instrumentation and optical survey targets in the tunnel, collection 
+and interpretation of data and furnishing all other necessary material, equipment and labor incidental to such 
+work, [furnishing of optical survey targets][furnishing of weirs and flumes to measure ground water inflow and 
+outflow], including installation and monitoring of instruments in accordance with the specifications.  The Contractor's 
+qualified staff must monitor all geotechnical instrumentation and interpret the data obtained from them, performed 
+in a timely manner to ensure that potential safety issues are identified and effectively mitigated. The data 
+must be made available to the Contracting Officer upon request or otherwise required per specification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RELATED WORK SPECIFIED ELSEWHERE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These specifications for related work specified elsewhere are not all 
+inclusive.  Add and remove specifications as needed for the project.</NPR><BRK/>
+<BRK/>
+<NPR>List any specifications that are related, such as Earthwork, Excavation, Soil 
+and Rock Anchors, Temporary Environmental Controls, Shotcrete, Natural Resources, 
+are typical specs related depending on the project.</NPR><BRK/>
+<BRK/>
+<NPR>The specifications without numbers listed below presently do not have a corresponding 
+UFGS Guide Specification.  The designer will need to write a project-specific 
+specification to address those features of work, if needed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Section <SRF>01 20 00</SRF> PRICE AND PAYMENT PROCEDURES<BRK/>
+Section <SRF>01 35 26</SRF> GOVERNMENT SAFETY REQUIREMENTS<BRK/>
+Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES<BRK/>
+Section <SRF>02 32 13</SRF> SUBSURFACE DRILLING AND SAMPLING<BRK/>
+Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE<BRK/>
+Section <SRF>03 37 13</SRF> SHOTCRETE<BRK/>
+Section <SRF>31 00 00</SRF> EARTHWORK<BRK/>
+Section <SRF>31 23 06.00</SRF> BLASTING - SURFACE<BRK/>
+Section <SRF>31 68 13</SRF> SOIL AND ROCK ANCHORS<BRK/>
+Section <SRF>31 73 19</SRF> TUNNEL AND SHAFT GROUTING<BRK/>
+[Section XX XX XX GEOTECHNICAL AND STRUCTURAL INSTRUMENTATION]<BRK/>
+[Section XX XX XX GEOTECHNICAL DATA]<BRK/>
+[Section XX XX XX GROUNDWATER TREATMENT SYSTEM]<BRK/>
+[Section XX XX XX REINFORCING STEEL]<BRK/>
+[Section XX XX XX SURVEYING AND LAYOUT]<BRK/>
+[Section XX XX XX TEMPORARY ELECTRICAL SYSTEMS]<BRK/>
+[Section XX XX XX TEMPORARY LIGHT AND POWER]<BRK/>
+[Section XX XX XX TUNNEL AND SHAFT DEWATERING]<BRK/>
+[Section XX XX XX TUNNEL EXCAVATION SUPPORT]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Add and remove references as needed for the project.  Reference the appropriate 
+state and local laws, regulations and ordinances concerning blasting where the 
+project is to occur.<BRK/>
+<BRK/>
+This paragraph is used to list the publications cited in the text of the guide 
+specification.  The publications are referred to in the text by basic designation 
+only and listed in this paragraph by organization, designation, date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM D2487</RID><RTL>(2017; R 2025) Standard Practice for Classification of Soils for Engineering Purposes (Unified Soil Classification System)</RTL><BRK/><BRK/><RID>ASTM D5434</RID><RTL>(2012) Field Logging of Subsurface Explorations of Soil and Rock</RTL><BRK/><BRK/><RID>ASTM D6032/D6032M</RID><RTL>(2017) Standard Test Method for Determining Rock Quality Designation (RQD) of Rock Core</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL SOCIETY OF AUTOMATION (ISA)</ORG><BRK/><BRK/><RID>ISEE PSBS</RID><RTL>(2017) ISEE Performance Specification for Blasting Seismographs</RTL><BRK/><BRK/></REF><REF><ORG>U.S. ARMY CORPS OF ENGINEERS (USACE)</ORG><BRK/><BRK/><RID>EM 385-1-1</RID><RTL>(2024) Safety -- Safety and Occupational Health (SOH) Requirements</RTL><BRK/><BRK/><RID>EM 1110-1-1804</RID><RTL>(2001) Engineering and Design -- Geotechnical Investigations</RTL><BRK/><BRK/><RID>EM 1110-2-1009</RID><RTL>(2018) Engineering and Design -- Structural Deformation Surveying</RTL><BRK/><BRK/><RID>EM 1110-2-2901</RID><RTL>(1997) Engineering and Design -- Tunnels and Shafts in Rock</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED ATTACHMENTS AND SPECIFICATIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Geotechnical Data Report (GDR) and Geotechnical Baseline Report (GBR) 
+Importance.  Project-specific site data should be presented in Geotechnical 
+Data Report (GDR); design interpretations of the expected subsurface conditions 
+and expected behavior should be presented in the Geotechnical Baseline Report 
+(GBR).  GDR/GBR data must be consistent with information presented in the project 
+specifications and drawings without conflict.  Agencies may require different 
+types of documents; there may be a Geotechnical Interpretive Report (GIR).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>"Geotechnical Data Report" (GDR) dated [_____], prepared by [_____].</TXT><BRK/>
+<BRK/>
+<TXT>"Geotechnical Baseline Report" (GBR) dated [_____], prepared by [_____].</TXT><BRK/>
+<BRK/>
+<TXT>"Geotechnical Interpretive Report" (GIR) dated [_____], prepared by [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete definitions that will not be used in the specification text for 
+a specific project.  A complete list of frequently used tunneling terms can 
+be found in Appendix B of the EM 1110-2-2901 and other references.  Recommend 
+only including definitions not already referenced in the EM and definitions 
+to further define the work on the specific project in the specification.  It 
+may be necessary to add definitions depending on what the Earthwork and/or Excavation 
+specifications for the project have terms for Rock, Weathered Rock, Sound Rock, 
+Voids, or Sediment.  The same rock classification terms and definitions used 
+in design should be carried through construction to avoid ambiguities and conflict.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Green Concrete</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If no concrete placement is expected on the project, then delete this 
+definition.  There needs to be limits on vibrations when there is green concrete 
+because of the strength loss due to vibrations while curing.  Involve the Structural 
+Engineer project development team members in these determinations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Concrete that has undergone initial setting but has not hardened to design strength.  Green concrete also includes 
+the materials of shotcrete or cementitious grouts.  Note the paragraph Green Concrete.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Vibrations</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Velocity units are expressed in centimeters per second (cps) or inches 
+per second (ips).  Tailor this for project purposes.  Frequency of vibration 
+is also a factor of potential concern to be measured with PPV.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Vibrations are the result of various wave forms emanating from the source. Peak particle velocity (PPV) and associated 
+frequencies are defined as the maximum absolute value of the three ground vibration velocities measured in the 
+three mutually perpendicular directions along the vertical, longitudinal, and transverse plane over the period 
+of a record by a seismograph, capable of producing a permanent record and capable of internal dynamic calibration.  
+Peak, total vector-sum particle velocity is the peak value over the full-time history of each time-unit's value 
+of the square-root sum of the squared, component velocities.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Initial Support</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In addition, the initial support systems indicated on the drawings for 
+additional openings in the tunnel, must form part of the Permanent Support.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The support system installed after an excavation advance within the tunnel forward area to minimize ground deformation 
+and loosening and to maintain stability and safety of the opening.  Provide initial support to minimize ground 
+movement and loosening and to maintain stability of the opening prior to construction of the permanent rock reinforcement/support 
+and tunnel lining.  Initial support generally refers to all elements of rock support required to provide a safe, 
+stable rock excavation at all times during construction.  Initial support measures include but may not be limited 
+to [_____],[rock bolts and dowels for rock reinforcement], [shotcrete lining], [steel ribs], [timber blocking], 
+(cribbing), (lagging), (chemical grout), [spiling or forepoling], [steel straps], [lattice girders], [welded 
+wire fabric], [shotcrete], and [pre-reinforcement].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Additional Support</TTL><BRK/>
+<BRK/>
+<TXT>May include rock bolts and dowels, crib and lagging, steel straps, spot-holds, steel sets, steel liner plates, 
+chemical grout, shotcrete and pre-reinforcement spiling in addition to the initial support types and quantities 
+for the support categories as shown on the Contract Drawings to stabilize rock and provide water control.  Install 
+additional ground support measures as conditions warrant for local stabilization and safety during tunneling 
+operations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Final Lining</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Tailor this paragraph to the type of final lining for the project, this 
+may be a cast-in-place or precast reinforced concrete liner, steel liner that 
+is backfilled with contact grout, or left unlined, maybe with shotcrete or reinforced 
+(steel fiber) shotcrete or other.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Cast-in-place reinforced concrete, steel] lining that is placed after the tunnel has been excavated and supported 
+with initial support.  Backfill concrete and contact grout are also included in the final lining.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Design (Excavation) Line</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This nomenclature should be defined during the development of the plans 
+and specifications as it will be specific for each project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>A line defined as that completed excavation surface/line within which no unexcavated material must remain.  Only 
+shotcrete, structural steel rib supports with limited blocking, rock bolts or dowels, including bearing plates 
+and metal hardware, and tie rods may extend beyond the design line as shown on the Drawings.  The minimum concrete 
+cover over these elements is shown on the Drawings.  Embedments shown on the Drawings within the design line 
+must be placed as shown.  The Contractor may select the size of the excavated opening provided that finished 
+minimum excavation tolerances are maintained and the design line requirements and diameter constraints given 
+in this section are satisfied.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>A-line (Theoretical Excavation Line)</TTL><BRK/>
+<BRK/>
+<TXT>The A-line, shown in the contract drawings, is the line within which unexcavated material must not be permitted 
+to remain.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>B-line (Pay Line)</TTL><BRK/>
+<BRK/>
+<TXT>The B-line shown in the contract drawings is the outside limit to which measurement for payment for excavation 
+must be made.  Excavation beyond the B-line must be avoided and will be at the Contractor's expense unless approved 
+by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heading</TTL><BRK/>
+<BRK/>
+<TXT>A wall of unexcavated rock at the advance end of a tunnel (synonymous with the term "Face"). Also use to designate 
+either a small tunnel or a small tunnel driven as part of a larger tunnel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Face</TTL><BRK/>
+<BRK/>
+<TXT>The position of the underground works that has been advanced the furthest for the respective section of the overall 
+construction sequence adopted for the tunnel, adit or shaft.  Also referred to as "Working Face" or "Heading."</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fissure Grouting</TTL><BRK/>
+<BRK/>
+<TXT>Is the drilling and grouting of holes, including in advance of the face being excavated, in order to seal off 
+water passages or solidify discontinuities or other areas of jointed or fractured ground intercepting the underground 
+works, which if left untreated could lead to instability of the tunnel excavation.  Also referred to as "Pre-Grouting."</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Forward Area</TTL><BRK/>
+<BRK/>
+<TXT>Is that area within which the initial ground support is to be installed behind the heading in the vicinity of 
+the face, also referred to as spilling or forepoling (depends on rock mass conditions, stand up time, and heading 
+advance rate).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Intermediate Jacking Station</TTL><BRK/>
+<BRK/>
+<TXT>A fabricated steel cylinder fitted with hydraulic jacks that is incorporated into a pipeline between two pipe 
+segments.  Its function is to distribute the jacking load over the pipe string on long drives.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Length of Advance Interval</TTL><BRK/>
+<BRK/>
+<TXT>Length of the unsupported span of exposed ground opened up during one excavation increment (depends on rock mass 
+conditions, stand up time, and heading advance rate).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Overbreak</TTL><BRK/>
+<BRK/>
+<TXT>The amount of ground unintentionally removed beyond the pay line, or B-Line.  Minimize overbreak, reduce excessive 
+rock removal or over-excavation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Micro-Tunneling</TTL><BRK/>
+<BRK/>
+<TXT>Trenchless construction of small diameter tunnel used to construct utility tunnels from approximately<MET> 0.5 to 
+4m</MET><ENG> 1ft 8in to 13ft 1in</ENG> in diameter and remotely operated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Over-Excavation</TTL><BRK/>
+<BRK/>
+<TXT>Excavation of ground beyond the theoretical excavation line, or A-Line.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Jacking</TTL><BRK/>
+<BRK/>
+<TXT>A one-pass tunneling method by which a pipe string with the leading edge directly behind the TBM is pushed forward 
+as the tunnel advances and will serve as the tunnel support and carrier pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Probe Hole</TTL><BRK/>
+<BRK/>
+<TXT>An exploratory hole drilled in advance of an excavation to explore ground conditions or water infiltration conditions.  
+Supplemental probe holes are those installed in addition to the probe holes shown on the Drawings or required 
+herein and at the direction or approval of the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Scaling</TTL><BRK/>
+<BRK/>
+<TXT>Consists of barring, wedging, and picking to remove loose, shattered, or unstable pieces of rock around the heading 
+advance.  Individual pieces not in accordance with the specified tolerance must also be removed during scaling.  
+Scaling may be performed manually or with mechanical equipment depending on tunnel configuration and safety considerations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shotcrete</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  EM 1110-1-2907 Rock Reinforcement, Chapter 6 Surface Treatment provides 
+guidance on shotcrete (wet and dry mix) applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mortar or concrete conveyed through a hose and pneumatically projected<BRK/>
+at high velocity onto a surface.<BRK/></TXT>
+<BRK/>
+<BRK/></SPT>
+<SPT><TTL>Staged Excavation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Advancing multiple headings is often performed in poor ground or for 
+larger final tunnel dimensions, where a top (left and/or right) heading is advanced, 
+supported, then the other heading or bench removed, potentially also removing 
+the center support system separating the headings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Sequence of excavation by which the final excavation is divided into a group of smaller drifts, also referred 
+to as slashes and cuts, or top heading and bench.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Support Type</TTL><BRK/>
+<TXT>Method of excavation and initial ground support defined in the Drawings for use at a particular location.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tights or Underbreak</TTL><BRK/>
+<BRK/>
+<TXT>Projections of rock in a tunnel inside the minimum excavation profile (A-line) that need to be removed prior 
+to placement of lining.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tunnel Boring Machine (TBM)</TTL><BRK/>
+<BRK/>
+<TXT>A mechanized, shielded machine that is steerable, guided, and<BRK/>
+articulated.  The TBM may be operated and steered either from within the machine or remotely.<BRK/></TXT>
+<BRK/>
+<BRK/></SPT>
+<SPT><TTL>Backfill Tunnel Grouting</TTL><BRK/>
+<BRK/>
+<TXT>Filling the annular space between the pipe string and the excavated ground.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Sheet and Drain Hose</TTL><BRK/>
+<BRK/>
+<TXT>Sheeting and drain hose used to collect and pan off ground water from areas at either the excavated surface behind 
+the shotcrete lining or to collect and drain seepage through the shotcrete lining.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following restrictions apply to tunnel excavation methods using Tunnel 
+Boring Machine (TBM) only.  Tunnels may be excavated and supported using a continuous 
+or incremental excavation-observation-support approach to provide the necessary 
+and justifiable levels of ground control and permanent stabilization.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Adit</TTL><BRK/>
+<BRK/>
+<TXT>A horizontal passage for the purpose of access or drainage.  Supplemental to the main tunnel heading and typically 
+shorter in length.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Roadheader</TTL><BRK/>
+<BRK/>
+<TXT>A mechanical excavator consisting of a rotating cutterhead mounted on a boom; boom may be mounted on wheels or 
+tracks or in a tunnel boring machine.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydraulic Breaker</TTL><BRK/>
+<BRK/>
+<TXT>Hydraulic operated rock breaker, also known as a percussion hammer or hydraulic impact breaker, mounted on heavy 
+duty excavator or backhoe with point tools selected for impact rock breakage in tunnel or rock slope excavation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reverse Circulation Drill</TTL><BRK/>
+<BRK/>
+<TXT>Method of drilling using combined rotary drill and pneumatic reciprocating piston (hammer) action, with dual 
+wall drill rods consisting of an outer drill rod with an inner tube.  Hollow inner tubes allow drill cuttings 
+to be transported back to the surface.  Can be used for shaft excavation in rock within certain limits of maximum 
+shaft diameter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stand-Up-Time</TTL><BRK/>
+<BRK/>
+<TXT>The amount of time the tunnel will support itself without any added support structures.  The time that elapses 
+between the exposure of rock or soil in a tunnel excavation and the beginning of noticeable movements of the 
+ground.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>RESTRICTIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Revise these requirements to accommodate project-specific constraints 
+based upon variables such as ground conditions, locations of adjacent structures, 
+construction vibration criteria, ordnances, or other requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The use of a staged excavation approach with integral, concurrent initial support and permanent stabilization 
+of the tunnel periphery is fundamental to the successful execution of the project and recognizes that tunnel 
+spans of different dimensions must be developed in variable and fractured rock mass conditions.</TXT><BRK/>
+<BRK/>
+<TXT>Do not begin tunnel excavation until the following conditions have been met:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">1.  Required submittals as listed in Paragraph SUBMITTALS have been made and the Contracting Officer 
+has reviewed and approved the submittals.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">2.  Pre-construction inspections near the tunnel excavation have been completed by the Contractor and 
+pre-construction documents have been provided to Contractoring Officer.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">3.  Installation of geotechnical and structural instrumentation for surface structures and ground near 
+the tunnel excavation alignment have been completed and initialized by others.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">4.  All issues related to health and safety have been met and all submittals have been made in accordance 
+with OSHA requirements, <RID>EM 385-1-1</RID>, and other applicable codes and regulations of Federal, State, and 
+local agencies having jurisdiction.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">5.  Required personnel with qualifications specified in paragraph TUNNELING PERSONNEL are available on 
+site to perform work.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">6.  Temporary construction power substation has been installed and tested in accordance with the Division 
+16 specifications.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">7.  Installation of all vibration monitoring and air quality equipment with required background monitoring 
+completed.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following Submittal requirements are for tunnel excavation using 
+any excavation methods and should be included in all project specifications.</NPR><BRK/>
+<BRK/>
+<NPR>Several other considerations include Tunnel and Confined space rescue team training 
+and setting up an independent emergency communication lines within the tunnel. 
+The requirements for safety will need to comply with EM 385-1-1 and additional 
+requirements included in safety section. If the local fire department is not 
+trained in confined space tunnel or mine rescue, they may have to be trained 
+in confined space tunnel/mine rescue procedures prior to excavation of tunnel 
+or a private specialty company can be hired for rescue services as required 
+by local, state, and federal work ordinances.</NPR><BRK/>
+<BRK/>
+<NPR>Haul routes for muck disposal can also be an issue in densely populated areas.  
+Haul routes may need to be coordinated with local and state officials as required 
+by local ordinances.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Power Supply Requirements and Anticipated Power Source(S)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Dust Suppression System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Muck Removal System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Method and System For Maintaining Line And Grade</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pre-Construction Surveys</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The section below should be used when excavating near vibration sensitive 
+equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Specifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Seismographs</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Roadheader</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Tunnel Excavation Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ventilation Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Daily Records</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Drilling Logs</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Post-Construction Surveys</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Individual Vibration Monitoring Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Certification from the Roadheader Manufacturer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tunneling Superintendent and Supervisors</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Professional Engineer or Professional Geologist</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>TBM Operators and Mechanics</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Vibration Monitoring Specialty Firm</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Structural Condition Assessment Inspection/Evaluation Technician</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Roadheader</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manuals for Operation and Maintenance</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<BRK/>
+<SPT><TTL>COORDINATION</TTL><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph can be used if working with multiple stakeholders/owners.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Underground construction methods will be in the vicinity of the [existing lock, railroad, and highway, and river 
+barge, train, hospital highway traffic, utilities and businesses] and their operation will not be impeded or 
+delayed beyond that which has been coordinated with TVA, U.S. Coast Guard, U.S. Army Corps of Engineers - [_____] 
+District, [_____] environmental or natural resources offices, [_____] Department of Transportation, local government 
+entities, [ [_____] Railroad, regional or local utilities, and/private businesses].  Include a coordination and 
+traffic control with the appropriate authorities that mitigates navigation and traffic delays.</TXT><BRK/>
+<BRK/>
+<TXT>Coordinate, through the Contracting Officer, with other Contractors working onsite to minimize work stoppages 
+during tunnel excavation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>LIABILITY</TTL><BRK/>
+<BRK/>
+<TXT>Compliance with provisions in the contract will not relieve the Contractor of their responsibility for damages 
+or injuries caused by, related to, or arising out of tunneling or associated activities.  The Contractor assumes 
+all liability and hold and save the Government, its agents, officers, and employees harmless for all claims for 
+personal injuries, property damage, or other claims arising out of or in connection with, under this contract.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SAFETY EQUIPMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section requires tailoring for the specific project design, geology, 
+and site conditions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide safety equipment and monitoring instruments according to requirements of Safety and Health Plan 
+in accordance with Section <SRF>01 35 26</SRF> GOVERNMENT SAFETY REQUIREMENTS, to be included in the Materials Handling 
+Plan as required in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</OLI><BRK/>
+<BRK/>
+<OLI>Provide personal protective equipment for protection against respirable dust, and all other protective 
+measures that may be deemed necessary for dust control as per Federal Requirements.  Submit the details 
+of the <SUB>Dust Suppression System</SUB>.</OLI><BRK/>
+<BRK/>
+<OLI>All rock reinforcement, including spiling and other ground support in accordance with the requirements 
+set forth in Section <SRF>31 68 13</SRF> SOIL AND ROCK ANCHORS and <SRF>03 37 13</SRF> SHOTCRETE.</OLI><BRK/>
+<BRK/>
+<OLI>Lattice girders and shotcrete lining must be in accordance with the requirements of [Section XX XX XX 
+TUNNEL EXCAVATION SUPPORT], and Section <SRF>03 37 13</SRF> SHOTCRETE.</OLI><BRK/>
+<BRK/>
+<OLI>Steel sets must be in accordance with the requirements of [Section XX XX XX TUNNEL EXCAVATION SUPPORT], 
+and [Section XX XX XX REINFORCING STEEL].</OLI><BRK/>
+<BRK/>
+<OLI>Shotcrete materials must be in accordance with the requirements of Section <SRF>03 37 13</SRF> SHOTCRETE.</OLI><BRK/>
+<BRK/>
+<OLI>Water sheet and drain hoses as part of temporary construction measures to drain off local water inflows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  PVC sheet, or approved equal by the Contracting Officer, for application at exposed ground 
+surface or shotcrete surface.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Flexible PVC hose with end couplings as required</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>PROBEHOLE DRILLING EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>A continuous probe must be maintained at<MET> [_____] meters</MET><ENG> [_____] feet</ENG>, or least [_____] tunnel diameters ahead 
+of the tunnel face.  If the probing results indicate the presence of poor ground requiring the installation of 
+pre-reinforcement, the Contractor must adjust as necessary to achieve the required excavation profile prior to 
+excavating through the anticipated poor ground.  During the probing operation the Contractor must monitor and 
+measure the amount of in-flowing water.</TXT><BRK/>
+<BRK/>
+<TXT>Probe hole drilling equipment must be capable of drilling a minimum [_____]-inch diameter holes through sound 
+and decomposed rock [and concrete].  Provide all necessary probe hole drilling personnel, equipment, and accessories.</TXT><BRK/>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer of record to provide input on the flow pressures for packer 
+tests.  Consideration must be taken by reviewing other available data such as 
+piezometers, pressure cells, rock mass features.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The drill must be suitable for drilling in wet ground conditions, highly sheared or fractured zones, and through 
+fault gouge.  The drilling equipment must be capable offsetting packers in the hole against a pressure of<MET> [_____] 
+kg/cm<SPS>2</SPS></MET><ENG> [_____] psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ROADHEADER</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following Submittal requirements for Roadheader should only be included 
+if this method of mechanical excavation will be employed on the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conform to Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.  Submit for review at least sixty (60) days before the start 
+of excavation with the roadheader(s) the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Make and model number, <SUB>manufacturer's specifications</SUB>, and <SUB>manuals for operation and maintenance</SUB>.</OLI><BRK/>
+<BRK/>
+<OLI><SUB>Certification from the roadheader manufacturer</SUB> that the proposed machine(s) can excavate the anticipated 
+rock conditions as described in the Contract Documents at a rate sufficient to meet the project schedule.</OLI><BRK/>
+<BRK/>
+<OLI><SUB>Power supply requirements and anticipated power source(s)</SUB>.</OLI><BRK/>
+<BRK/>
+<OLI>Details of <SUB>dust suppression system</SUB>.</OLI><BRK/>
+<BRK/>
+<OLI>Details of <SUB>muck removal system</SUB>.</OLI><BRK/>
+<BRK/>
+<OLI>Details of <SUB>method and system for maintaining line and grade</SUB>.</OLI><BRK/>
+<BRK/>
+<OLI>For refurbished (used) machines, in addition to the information required herein, submit the following 
+additional information: maintenance record(s) and description of last three (3) projects, including rock 
+types excavated, advance rates, total operated hours, and rebuild records of major components.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>TUNNEL BORING MACHINE (TBM)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Accurate TBM performance estimation is critical for construction schedule 
+and cost development for any mechanical tunneling.  The selection of an appropriate 
+TBM for excavation conditions at a site depends on rock properties, rock mass 
+characterization and machine specifications anticipated along the tunnel alignment. 
+TBM parameters including thrust and power, as well as cutter disk spacing and 
+layout together with the anticipated rock material properties and rock mass 
+characteristics are main parameters used for TBM performance estimation. Therefore, 
+these key parameters should be quantified carefully along any tunnel alignment 
+for any type of hard rock TBM projects. These conditions should be defined in 
+the project GDR/GBR and/or GIR. The impact of these factors on TBM performance 
+cannot be understated. Significant detail should be given to joint and fracture 
+systems within the rock mass. The fracture systems should be classified and 
+quantified by using fracture class designation system. Orientation of discontinuities 
+via alpha angle and distance between the planes of weakness should be quantified 
+and used to make correlation between the geology present along the alignment 
+and the rate of penetration for the selected TBM. These results can be modeled 
+in several different tunnel penetration prediction models.  Rock fracture index 
+(RFI) should be introduced and used as an adjustment factor for fractured rock 
+mass conditions. Typical Rock Mass Classifications systems used include RMR, 
+Q, and GSI.</NPR><BRK/>
+<BRK/>
+<NPR>Specific technical considerations for the use of TBMs include geological parameters 
+(rock type, rock alteration, rock strength, rock abrasivity, durability, groundwater 
+inflows), discontinuities in the rock mass (joints, fractures, bedding, shears, 
+faults), depth of cover and the potential for overstressing/rock bursts, site 
+access and terrain, portal locations, TBM constraints, minimum tunnel size, 
+tunnel support requirements, contractor and labor experience, and project schedule 
+demands.  A thorough evaluation of the anticipated ground conditions should 
+be performed as part of the investigation and the design decision to utilize 
+TBM excavation techniques. Minimum specifications for TBMs are necessary in 
+order to prevent the incorrect type of TBM from being used. Appropriate geotechnical 
+investigations are essential in order to provide critical information on the 
+anticipated subsurface conditions for careful planning and design of the proposed 
+tunnel alignment.</NPR><BRK/>
+<BRK/>
+<NPR>TBMs offer high rates of tunnel excavation progress that can be run around the 
+clock, which is a unique economic advantage recognized for tunneling projects 
+where timing is a critical component of the project.  TBMs are most appropriately 
+applied in homogeneous rock conditions that are conducive for excavation, including 
+very strong rock varying from 150 MPa to 250 MPa (21,755 to 35,300 psi).</NPR><BRK/>
+<BRK/>
+<NPR>One of the key considerations for the use of TBMs is the depth of rock cover 
+along the tunnel alignment and the potential for overstressing. Overstressing 
+will occur under the following conditions:<BRK/>
+1)  High rock cover.<BRK/>
+2)  Low/moderate rock strength.<BRK/>
+3)  High in situ stresses.</NPR><BRK/>
+<BRK/>
+<NPR>Evaluation of the uniaxial compressive strength and in situ stresses should 
+be included in the tunnel investigation program. Estimates of rock strength 
+can be made by field observations at bedrock outcrops, and rock alteration and 
+joint spacing can be measured in the field.  Drilling programs can collect in-situ 
+samples for laboratory testing of rock block or core samples.</NPR> <BRK/>
+<BRK/>
+<NPR>The vertical alignment for TBMs is typically kept below a maximum grade of 3 
+percent; otherwise, special braking systems must be incorporated in the TBM 
+design. Horizontal alignments also have similar limitations, with typical minimum 
+radii of curvature of about<MET> 250-300 meters</MET><ENG> 820-954 feet</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>Project schedule and procurement are probably the two biggest issues regarding 
+TBM selection. Early or on-time completion is critical for major tunneling projects 
+due to the large amount of infrastructure and manpower associated with their 
+construction.   Some projects may mandate the use of TBMs in order to provide 
+an overall shorter construction schedule.  Typical procurement and building 
+time for new TBMs is typically over a calendar year.</NPR><BRK/>
+<BRK/>
+<NPR>The minimum requirements for the application of TBMs on any given tunnel project 
+should be based on the following:<BRK/>
+1)  Distribution of main rock types, strength, quality, and durability.<BRK/>
+2)  Quantification of number and extent of major fault and shear zones.<BRK/>
+3)  Presence of weak rock units and potential for overstressing and squeezing conditions.<BRK/>
+4)  Installation requirements for initial tunnel support.<BRK/>
+5)  Final support and lining requirements.</NPR><BRK/>
+<BRK/>
+<NPR>The main disadvantages for the use of TBMs for tunneling projects are as follows:<BRK/>
+1)  Limited to use for relatively straight tunnels where radius of curvature 
+may be restricted<BRK/>
+2)  TBMs are typically not considered to be appropriate for long, deep tunnels, 
+where extensive lengths may be subject to overstressing due to low rock strengths 
+and/or high in situ stresses.</NPR><BRK/>
+<BRK/>
+<NPR>Geological mapping and evaluation should be considered the first step in tunnel 
+planning and design. This work can comprise a desk review of existing literature 
+and historical reports and investigations. The key requirement is the identification 
+of rock mass characteristics and engineering properties critical to tunnel design. 
+Consideration should be given to structural discontinuities such as faults along 
+the tunnel alignment and then, field proofing/mapping of suspected features.  
+The key lessons learned from past tunneling projects where TBM were utilized 
+are that every tunnel project and site location is unique in terms of geology, 
+access, terrain/cover, experience of candidate contractors and project completion 
+demands.  TBMs offer key project schedule benefits regarding production which 
+is a unique economic advantage recognized and utilized when selecting TBM excavation 
+methods.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The TBM will be a fully shielded machine built or rebuilt by an established TBM manufacturer with at least 10 
+years' experience manufacturing or rebuilding TBMs.</TXT><BRK/>
+<BRK/>
+<TXT>The TBM must have the following specific characteristics, capabilities, and equipment:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Configured to excavate to the dimensions indicated on the Contractor's shop drawings and designed to 
+advance through all anticipated ground conditions as detailed in the GBR.</OLI><BRK/>
+<BRK/>
+<OLI>Full-circle shield, for the entire length of the TBM and tail that will continuously and fully support 
+the ground as the TBM advances.</OLI><BRK/>
+<BRK/>
+<OLI>Ability to steer TBM and trailing equipment to maintain line and grade within the specified tolerances.</OLI><BRK/>
+<BRK/>
+<OLI>Full-face cutterhead. Select cutter types, changeability, and configuration as required to excavate through 
+the anticipated ground conditions.</OLI><BRK/>
+<BRK/>
+<OLI>TBM performance specifications, including cutterhead rotation horsepower, must be specified based upon 
+anticipated ground conditions (e.g., lithology and in-situ rock stress conditions) along the proposed 
+tunnel alignment.</OLI><BRK/>
+<BRK/>
+<OLI>The tail of the shield must have a sealing system that prevents soil from flowing into the shield and 
+tunnel through the joint between the tail of the shield and the first jacked pipe if required by anticipated 
+ground conditions.</OLI><BRK/>
+<BRK/>
+<OLI>When starting and stopping TBM, provide equipment and implement procedures to avoid high voltage fluctuations 
+on the power distribution system.</OLI><BRK/>
+<BRK/>
+<OLI>TBM must be equipped with suitable safety systems in accordance with applicable OSHA requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Equip TBM with laser target system to permit accurate monitoring of line and grade.</OLI><BRK/>
+<BRK/>
+<OLI>Maintain an inventory of spare parts and wear items recommended by the TBM and trailing systems manufacturers 
+to ensure continued functioning of TBM and all essential systems.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>PIPE JACKING SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Depending on the project design, include language for the pipe jacking 
+system, as needed. Delete if pipe jacking for tunnel liner installation is not 
+required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a pipe jacking system with the following features:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Has the main jacks mounted in a jacking frame located at the jacking portal.</OLI><BRK/>
+<BRK/>
+<OLI>Has a jacking frame which successively pushes a string of connected pipes following the TBM towards the 
+receiving portal.</OLI><BRK/>
+<BRK/>
+<OLI>Has sufficient capacity to push the TBM and pipe string through the ground. Incorporate intermediate 
+jacking stations, if necessary.</OLI><BRK/>
+<BRK/>
+<OLI>Develops a uniform distribution of jacking forces on the end of the pipe by use of spreader rings and 
+packing, measured by operating gauges.</OLI><BRK/>
+<BRK/>
+<OLI>Provides and maintains a lubrication system at all times to lower the friction developed on the surface 
+of the pipe during jacking.</OLI><BRK/>
+<BRK/>
+<OLI>Use thrust reactions for pipe jacking that are adequate to support the jacking pressure developed by 
+the main jacking system. Special care must be taken when setting the pipe guide rails at the jacking 
+pit to ensure correctness of the alignment, grade, and stability.</OLI><BRK/></OLG>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Expansive grouts were introduced as an alternative rock breakage method 
+but were not used extensively in mining due to low productivity rate and cost 
+per excavation volume ratios. Expansive grouts can be used to induce fractures 
+in saturated conditions. Effectiveness is generally determined by water content, 
+ambient temperature, and borehole diameter.  Expansive grouts can have low efficiencies 
+and take a long time to set and expand to induce rock breakage.  Depending on 
+access line drilling can be performed with an air track or hydraulic hammer 
+drilling set ups.   Localized small breaks can be done with a rotary hammer 
+drilled line patterns.</NPR><BRK/>
+<BRK/>
+<NPR>Expansive grout is utilized to eliminate fly-rock, noise, blast or mechanical 
+excavation vibration, and structural damage related to air blast overpressure 
+or mechanical excavation. It does not require special permits, or special blasting 
+certifications. Expansive grouts are typically used in specialized ground condition 
+conditions that necessitate its use (examples: rock excavation adjacent to embankment 
+structures or grout curtains, or in close urban environments where blasting 
+techniques would exceed local variances on peek particle velocities and/or vibration 
+and dust.</NPR><BRK/>
+<BRK/>
+<NPR>To best utilize this technique bedrock information should be collected regarding 
+rock type, grain size, planes of weakness, foliation, strength, cementation, 
+fracture spacing, rock mass characterization and engineering parameters. Test 
+panels to specifically develop expansive grout excavation techniques could be 
+utilized and finalized prior to critical excavation in environmentally sensitive 
+near critical structures at the site.</NPR><BRK/>
+<BRK/>
+<NPR>A hydraulic splitting machine is another mechanical means of excavation that 
+utilizes predrilled patterns in the rock.  It is comprised of two parts: a splitter 
+and a power station. The splitter consists of a power cylinder with multiple 
+pistons or wedges (based on a machine model) that apply pressure into a bore 
+hole wall, pushing the rock toward a free face. The power station consists of 
+a hydraulic pump, hydraulic pipe, and control panel.   These can be utilized 
+locally in critically sensitive areas in place of expansive grout techniques.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification is for use for tunnel excavation. For mixed face tunneling 
+conditions, revise specification to account for anticipated ground conditions. 
+This specification requires a Geotechnical Baseline Report (GBR) that defines 
+the ground properties, conditions, and behavior related to tunnel excavation, 
+support, and constructability along the tunnel alignment, portals, or along 
+separate tunnel segments that is expected. The Geotechnical Data Report (GDR) 
+contains all the testing and rock mass characterization data used to characterize 
+the conditions and behavior of the ground along the tunnel alignment to establish 
+the base line conditions for the project.  The GBR defines what constitutes 
+a differing site conditions for claim resolution per the frameworks of the contract.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph should agree with the designations under paragraph SUBMITTALS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Care must be exercised to minimize overbreak, to prevent immediate or subsequent rock falls from within 
+the tunnel or from portal areas and other rock slopes outside the tunnel, and to preserve the integrity 
+of the rock outside the limits of tunnel excavation.</OLI><BRK/>
+<BRK/>
+<OLI>Clean working conditions must be always maintained inside the tunnel. All muck, slush grout, grout spills, 
+and any other material not required for tunneling must be removed from the tunnel in a timely manner.</OLI><BRK/>
+<BRK/>
+<OLI>Detailed construction sequencing must be the responsibility of Contractor, consistent with the requirements 
+of these Specifications, and those shown on the Contract Drawing and in agreement with the approved submittals.</OLI><BRK/>
+<BRK/>
+<OLI>Perform work in a manner that minimizes safety hazards and exposure of personnel and equipment to hazardous 
+and potentially hazardous conditions in accordance with specified safety requirements and Contractor's 
+Safety and Health Plan.</OLI><BRK/>
+<BRK/>
+<OLI>Minimize ground movement at the tunnel face and in the surrounding excavation, and prevent ground loss, 
+subsidence, and movement in surface features, overlying structures, and utilities above and around the 
+vicinity of the tunnel excavation.</OLI><BRK/>
+<BRK/>
+<OLI>Provide additional face and excavation stabilization by means of discretionary ground support wherever 
+ground conditions dictate.</OLI><BRK/>
+<BRK/>
+<OLI>In case of stoppages for any reason, maintain qualified personnel on-duty to monitor conditions that 
+may threaten stability of the heading.</OLI><BRK/>
+<BRK/>
+<OLI>If monitoring of ground vibrations indicate that vibration levels are exceeding response levels as defined 
+under paragraph titled Ground Vibration and Deformation Effects Monitoring, and [Section XX XX XX GEOTECHNICAL 
+AND STRUCTURAL INSTRUMENTATION] then adjust procedures for excavation and initial support installation 
+in accordance with the accepted Contingency Plan to reduce the levels to within acceptable limits.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The need to maintain enough tunnel support materials/equipment will vary 
+per project.  Define this quantity during design phase and incorporate in GBR.  
+The following paragraph should be tailored for the specific project requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Maintain enough shotcrete materials at the tunnel face, ready for immediate application, during the entire 
+excavation period. Excavation will not be permitted without this requirement being met or as approved 
+by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>As the excavation progresses, the Contracting Officer will perform inspection, [photogrammetry,LiDAR 
+scanning] and geologic mapping or other documentation of the exposed tunnel sections.  This mapping will 
+be accomplished after excavation and either before or in conjunction with support installation.  The 
+Contractor must provide cleaning of the heading and completed crown and sidewalls and a safe means of 
+access to these areas to allow this mapping.  Mapping of the crown and sidewalls will be conducted for 
+documentation of the actual geologic conditions encountered and assessment of rock mass characteristics 
+of the heading.  The Contractor must assume that this inspection and mapping will be performed once each 
+shift for a period of minimum [20] minutes in each heading.  Lighting, ventilation, and access will be 
+provided for close inspection of the face.  Where necessary the excavated surfaces may need to be cleaned 
+by air or water jets to provide surfaces suitable for mapping, as directed by the Contracting Officer; 
+provided, however, such cleaning will be minimal in areas where softer materials can be gouged out to 
+depths greater than three inches.  The Contractor must cease operations to the extent necessary to permit 
+such mapping as directed by the Contracting Officer.  Such work will be coordinated by the Contracting 
+Officer in a manner to avoid undue disruption to Contractor's operations.</OLI><BRK/>
+<BRK/>
+<OLI>Establish and maintain surveyed tunnel station markers throughout both lined and unlined excavated tunnel. 
+Placed station markers indicating the tunnel stationing at <MET>15.24 meters</MET><ENG>50 feet</ENG> intervals by spray painting 
+the rock or shotcrete surface in a color to contrast with background. Intermediate station markers will 
+be made at <MET>3.05 meters</MET><ENG>10-foot</ENG> intervals with visible paint marks located at or near tunnel spring-line.</OLI><BRK/>
+<BRK/>
+<OLI>Sequence and direction of tunneling to be as shown on the Drawings and as reviewed by the Contracting 
+Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Temporary niches or adits, temporary or future pump sump pits and other temporary openings:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Excavate these temporary openings conforming to excavation and support criteria of this 
+Specification and as reviewed by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Seal all temporary openings with <MET>[27.58 MPa]</MET><ENG>[4,000-psi]</ENG> 28-day strength concrete in accordance 
+with the requirements of Section <SRF>03 30 00</SRF> CAST­IN-PLACE CONCRETE when no longer needed, before 
+Contract completion and as reviewed by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Survey:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Contractor is responsible for the development and implementation of a surveying program 
+capable of satisfying all survey and accuracy requirements. This program is subject to the 
+review of the Contracting Officer prior to the commencement of the work. The review does not 
+release the Contractor of liabilities associated with or dependent on this part of the work.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Design and implement a functional underground network and determine all required measurements 
+and the required accuracy of each measurement including horizontal angles, zenith angles, azimuth 
+angles, distances, and height differences. Include analysis of required redundancy and measure 
+of internal reliability associated with each planned observation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Design and implement a functional surface control network, stations, positions, measurements, 
+and accuracies. Measurements may include Global Positioning System (GPS) vectors, horizontal 
+angles, zenith angles, azimuth angles, distances, and height differences. Include analysis 
+of required redundancy and measure of internal reliability associated with each planned observation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Obtain survey information prior to completing the last<MET> [_____] meters</MET><ENG> [_____] feet</ENG> of the 
+tunnel excavation.  Adjustments to line and grade to the tunnel over the last <MET>30.48 meters</MET><ENG>100 
+feet</ENG> may be necessary to meet project requirements.  The purpose of conducting the survey is 
+to obtain the true centerline alignment in 3-dimensions to locate the connections as shown 
+on the drawings.  Vertical and horizontal alignment must be taken along both invert/sidewall 
+construction joints.  The center point on the invert is assumed as the dividing line between 
+both invert/sidewall joints.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Obtain start point alignment for the survey from the surface at [_____] data for alignment 
+consisting of at least 2 benchmarks with known elevation and geographic coordinates enabling 
+tie-in to [ NAVD88] elevation and the [_____] State Plane Coordinate System, respectively.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Perform in-tunnel survey to an accuracy of one-half-inch in the horizontal and vertical 
+dimensions. Record sufficient survey points to enable the complete horizontal and vertical 
+profile of tunnel alignment to be detailed. Some tunnel alignment curves may not necessarily 
+be circular arcs; they may be based on complex parabola or other geometric shape forms.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Assume that station of benchmarks or survey monuments are as indicated in historical documents. 
+All new survey stationing must reference these stations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  A survey was completed on [_____]. This information is available and must be reviewed by 
+the Contractor, prior to conducting the tunnel survey.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Shaft centerline is the basis of all tunnel stationing up and down station of the shaft 
+centerline.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  Calibration and data processing:</OLI><BRK/>
+<BRK/>
+<ITM>a.  Calibrate all survey instrumentation as required and as recommended by instrument manufacturer. 
+Submit all calibration records to the Contracting Officer.</ITM><BRK/>
+<BRK/>
+<ITM>b.  Data reduction must incorporate calibrations and meteorological correction, and reduction 
+of measurements to the ellipsoid and thence to the [_____] State Plane Coordinate System. Correct 
+distance measurements by electro-optical distance measurement instrument (EODMI) for scale, 
+cyclic error, zero error, and meteorological effects. Correct azimuth angles using the Laplace 
+correction and include the deflection of the vertical components on angles and azimuth measurements.</ITM><BRK/>
+<BRK/>
+<ITM>c.  Data regression processing must include least squares adjustments, as required. Employ data 
+outlier detection. Determine horizontal and vertical confidence intervals.</ITM><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>TEMPORARY SYSTEMS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review applicable consideration in EM 385-1-1 and/or consult with a safety 
+professional with tunneling background.  Ensure groundwater conditions and overall 
+regime through rock mass is well understood by tunnel reach and rock type.  
+The safety requirements for the contract should be specified in Section 
+<SRF>01 35 26</SRF> GOVERNMENTAL SAFETY REQUIREMENTS.  This specification section below 
+can be tailored to remove some items if they will be included in Section 
+<SRF>01 35 26</SRF>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST INDENT="-0.33">1.  Provide, operate, and maintain a complete backup generator systems for all tunnel ventilation, lighting 
+and dewatering systems.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">2.  Provide, operate, and maintain a complete groundwater control/ treatment system to collect water 
+from within the tunnel and shaft and suitably treats it before discharge in accordance with the requirements 
+of [Section XX XX XX TUNNEL AND SHAFT DEWATERING].</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">3.  Water entering the tunnel from all sources must be controlled, managed, and disposed of in a manner 
+to prevent damage to the tunnel and surrounding property and in accordance with all Federal, State, and 
+local regulations.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">4.  Design, furnish, install, operate, and maintain a temporary lighting system in all underground and 
+other working areas in strict compliance with all applicable Federal, State, and local regulations and 
+industry standards.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">5.  The system must provide a minimum light level in accordance with OSHA requirements and <RID>EM 385-1-1</RID>
+. In case of failure of the lighting system, provide an emergency lighting system in all work areas in 
+strict compliance with all applicable Federal, State, and local regulations, and industry standards.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">6.  Design, furnish, install, operate, and maintain temporary ventilation during all phases of construction 
+complying with all applicable Federal, State, local regulations, and industry standards.  Operate and 
+maintain the entire temporary ventilation system.  Details of the Contractor's ventilation system must 
+be presented to the Contracting Officer for his agreement at least 60 days prior to its installation.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">7.  Two battery-operated handlamps of 20-Watts minimum power must be provided and maintained at each 
+working face and portal for emergencies and inspection of the work.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">8.  Electric heaters or radiators having exposed coils or elements must not be allowed in the tunnels.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">9.  All main electrical cables installed within the tunnels must comply with all applicable Federal, 
+Municipal, and Local Requirements.</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer will need to ensure safety requirements in specification at 
+a minimum follow OSHA/EM 385-1-1/MSHA.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST INDENT="-0.33">10.  Provide additional floodlighting and ventilation locally as required at active ground support installation, 
+shotcrete, and other locations, and provide portable floodlighting and ventilation equipment, as needed, 
+for localized construction operations.  Equipment for short-term use may be battery-operated.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">11.  For Contract requirements regarding temporary construction power, refer to [Section XX XX XX TEMPORARY 
+LIGHT AND POWER] [and] [Section XX XX XX TEMPORARY ELECTRICAL SYSTEMS].</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">12.  In all parts of the Underground Works, the atmosphere inhaled by those present must contain not 
+less than 19.5% nor greater than 23.5% of oxygen and must not contain a concentration of contaminates 
+such as gases, vapors, and dusts greater than is safe for the health of the construction personnel, considering 
+the effects of exposure time, temperature, humidity, and the combined effects of several contaminants.  
+The concentration of inflammable contaminants must not exceed 10 percent of the lower explosive limit 
+(minimum explosive concentration).</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">13.  Use of wet drilling methods.  Carry out drilling using hollow bits with continuous water feed to 
+reduce dust.  Always wear suitable protective equipment.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">14.  The Contractor must be responsible for obtaining all information necessary to determine what concentrations 
+of contaminants are harmless, without prejudice to the adoption of such lower figures as may be stated 
+by competent authorities or directed by the Contracting Officer.  The atmosphere inhaled by the workmen 
+and other authorized persons in all parts of the tunnel must not contain more than 5 ppm of nitrous fumes 
+(measured as NO2) for longer than 10 minutes after each blast, 30 ppm of nitrous fumes as an absolute 
+maximum, 50 ppm of carbon monoxide as an absolute maximum, 5,000 ppm of carbon dioxide as an absolute 
+maximum, or for other contaminants.  The Safety Professional must field calibrate air quality monitoring 
+instrumentation in accordance with manufacturer's recommendations.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">15.  In all parts of the Underground Works, throughout the period in which materials producing contaminants 
+are used, and at such time as may be necessary to maintain the standard of purity of air required in 
+this subsection, clean fresh air must be supplied by forced ventilation, using an exhaust system at the 
+face or other method as agreed by the Contracting Officer, at a rate not less than the greater of the 
+following:</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  OSHA 29 CFR 1926.800(k)(2) requires each employee working underground 
+have at least 200 cu ft (5.7 m3) of fresh air per minute.  OSHA 29 CFR 1926.800(k)(3) 
+addresses minimum velocity of air.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI><MET>[_____] cubic meters</MET><ENG>[_____] cubic feet</ENG> per hour per person present in a tunnel;</OLI><BRK/>
+<BRK/>
+<OLI><MET>[_____] meters</MET><ENG>[_____] feet</ENG> per hour per kilowatt of combustion-engine generated power operating simultaneously 
+in the heading.</OLI><BRK/>
+<BRK/>
+<LST INDENT="-0.33">16.  The Contractor must take special measures to minimize the effect of fumes.  These measures must 
+include the use of efficient and properly maintained exhaust smoke washers (scrubbers) for all internal 
+combustion engines in the tunnel.  Gasoline engines must not be permitted in the tunnel.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">17.  Notwithstanding any requirements of this subsection the method of ventilation and treatment of fumes 
+or airborne particulate matter, must be submitted to the Contracting Officer.  The Contractor must provide, 
+maintain, and use as directed by the Contracting Officer, an instrument approved by the Contracting Officer 
+to measure the velocity of air, and an approved gas detector.  Maintenance of the gas detectors must 
+include the supply of all detector tubes.</LST><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>PUBLIC MEETINGS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Communicate with the project manager and stakeholders about whether specific 
+requirements for a meeting or multiple meetings are needed.  It may be necessary 
+to advertise the meeting in a local newspaper and specify the meeting room capacity.  
+Several planning meetings with stakeholders will need to take place during design 
+and the need and content of the public meetings determined and this specification 
+tailored appropriately.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fifteen calendar days prior to commencing tunneling operations, provide the approved Project Manager, Tunneling 
+Superintendent and Vibration Specialist, to attend a public meeting to be conducted on an evening to be determined 
+by the Contracting Officer.  This meeting will inform the public about the anticipated tunneling and underground 
+construction operations.  The Project Manager and Tunneling Superintendent must make a short presentation on 
+tunneling and underground construction.  [The Vibration Specialist must make a presentation explaining the potential 
+impacts tunneling activities may have on nearby structures.]  Answer any questions pertaining to public concerns 
+that may impact the public.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TUNNELING PERSONNEL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Tunneling Superintendent and Supervisors</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The nomenclature of tunneling "supervisors" could vary based on geographic 
+location.  Foreman, Shifters or Walking-Boss are common terms for supervisor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit for approval the qualifications. Perform the work under the direct supervision of an experienced tunneling 
+superintendent and tunneling supervisors with experience requirements in accordance with Section [_____], or 
+as directed by the Contracting Officer.  In addition, the Tunneling Superintendents' experience must include 
+at least one project of a comparable size to this Project within the previous ten years (or as approved by the 
+Contracting Officer).  Duties of the tunneling superintendent and tunneling supervisors will include the requirements 
+set forth in Section [____].  Substitutions for the tunnel superintendent during the Contract period will not 
+be made without prior written acceptance by the Contracting Officer.  Substitute personnel must have the same 
+qualifications specified herein for the position to be held.</TXT><BRK/>
+<BRK/>
+<TXT>Tunneling superintendents and supervisors must have a minimum of 15 years of comparable experience in supervising 
+the excavation and support of tunnels in similar ground using the similar construction methods and must have 
+all necessary licenses and permits required by local agencies or others having jurisdiction.  Supervisors and 
+superintendents must have experience on at least two projects with full face hard [roadheader, TBM] excavation.  
+Tunneling must not be performed unless the tunneling superintendent, supervisors, drillers, and miners meeting 
+the above experience requirements are on site and in actual supervision of this portion of the work.</TXT><BRK/>
+<BRK/>
+<TXT>The following duties are also part of the responsibilities of tunneling supervisors and superintendents:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Supervising excavation to ensure safety and quality of construction.</OLI><BRK/>
+<BRK/>
+<OLI>Meeting daily [at the start of each shift] with the Contracting Officer or the Contracting Officer's 
+designated representative at the tunnel face to discuss ground conditions encountered and corresponding 
+excavation and support requirements including additional initial support and keeping records thereof.</OLI><BRK/>
+<BRK/>
+<OLI>Devising and implementing additional initial support measures as required by ground conditions or as 
+directed by the Contracting Officer, coordinating remedial measures when ground loss at mined tunnel 
+heading or instability of mined tunnel occurs, or appears likely to occur.</OLI><BRK/></OLG>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Nomenclature of these positions may vary depending on geographic area.  
+The level of experience of the TBM Operator (and Mechanics) should be a function 
+of the size and complexity of the project.  Ten years should be a minimum for 
+most small projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL><SUB>TBM Operators and Mechanics</SUB></TTL><BRK/>
+<BRK/>
+<TXT>TBM operators and TBM mechanics must have at least [ten] years (or as approved by the Contracting Officer) of 
+demonstrated experience in operating bedrock TBM(s).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Professional Engineer or Professional Geologist</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A licensed professional must be used, that may vary on the state, since 
+some do not license Engineering Geologists or Geotechnical Engineers.  Tailor 
+this section appropriately for your project needs.  There could be different 
+functions for the different positions, with the geologist expert in defining 
+the rock conditions and understanding the design requirements, while providing 
+input in design of tunnel and underground support.  Expertise in both design 
+and construction aspects of the work is needed - how that's accessed might be 
+different whether Design Build or Design Bid Build.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Contractor's Professional Engineer or Professional Geologist must be a licensed Civil Engineer, Geotechnical 
+Engineer, Geologist, or Engineering Geologist in the State of [_____] with a minimum of 10 years' experience 
+designing underground excavations and constructing such excavations, installing slope stabilization support, 
+designing tunnel and underground support, evaluating rock mass properties, and groundwater conditions for large 
+underground excavations. The Civil Engineer, Geotechnical Engineer, Geologist, or Engineering Geologist must 
+have worked on a minimum of two projects with full face hard rock tunnel excavation.  Tunneling must not be performed 
+unless the Civil Engineer, Geotechnical Engineer, Geologist, or Engineering Geologist meeting the above experience 
+requirements is on site and in actual supervision of this portion of the work. Submit for approval the qualifications.</TXT><BRK/>
+<BRK/>
+<TXT>The Contractor's Professional Engineer or Professional Geologist as defined above will:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Depending upon the nature of the Contract, the Contractor's Professional 
+Engineer or Professional Geologist may provide geologic mapping or other services 
+previously specified as responsibilities falling under the Contracting Officer. 
+The designer should determine which party will be responsible for providing 
+these services.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLG><BRK/>
+<OLI>Provide inspection of excavations and evaluate rock and groundwater conditions during construction.</OLI><BRK/>
+<BRK/>
+<OLI>Perform pre-construction and periodic site visits throughout construction to assess site conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Update the excavation, dewatering plans, rock support, and rock mass characterization as construction 
+progresses to reflect changing conditions and changes in contract rock support based on in-situ conditions 
+observed.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a written Monthly Excavation Status Report that informs the Contractor and Contracting Officer 
+of the status of the excavation and provide an accounting of the Contractor's adherence to the plans 
+and address present or potential problems or issues with ongoing construction.</OLI><BRK/>
+<BRK/>
+<OLI>Be available to meet with the Contracting Officer and Government representatives throughout the Contract 
+duration.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Vibration Monitoring Specialty Firm</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This requirement is a new format from previous specifications.  The firm 
+is submitted for approval, having the appropriate experience and the firm must 
+have on staff the Vibration specialists and Seismograph Technicians, typically 
+a firm is subcontracted by the Contractor and having multiple experienced people 
+approved allows them to have flexibility on supporting the site work.  The people 
+coming to the project or responding to the work must be within the group approved 
+but does not need to be a single person anymore.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Retain the services of a vibration monitoring specialty firm that specializes in the prediction, monitoring, 
+and control of ground vibrations.  The firm must have experience conducting installation of <SUB>seismographs</SUB> for 
+vibration monitoring and communicating vibration results.  The firm must have on staff at least [_____] Vibration 
+Specialists that specialize in vibration monitoring and analysis.  The firm must have on staff at least [_____] 
+Seismograph Technicians that have five years or more experience with seismograph installation and vibration monitoring.  
+Submit resumes for all personnel and for the firm for approval citing, in additional to other pertinent data, 
+experience, training, and education, at least 60 days prior to the commencement of work.  The Seismograph Technicians 
+must be persons capable of setting up the seismographs at designated locations, effectively recording the work, 
+and appropriately interpreting results.  The Vibration Specialists must interpret the seismograph records to 
+ensure that the seismic data must be effectively utilized in the control of operations with respect to the existing 
+structures.  The Seismograph Technicians must supervise the placement, operation, and maintenance of the seismographs. 
+The Contracting Officer may require the Vibration Specialists and Seismograph Technicians to be present during 
+the production tunneling work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Structural Condition Assessment Inspection/Evaluation Technician</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This may be required for shaft/portal construction.  Depending on proximity 
+of the tunnel it may be needed to document condition of structures and ground 
+in proximity to the work.  Designers will need to determine if this is necessary.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Five years is the minimum experience requirement, depending on the project 
+it might be necessary to increase the minimum if there is a special concern 
+or sensitive structures, consult with USACE SME to help determine.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Pre and Post Construction structural inspections must be performed by technicians with at least [five] years' 
+experience in pre-construction and post construction surveys in the State of [_____].  [The inspections must 
+be done under the supervision of a professional engineer and be stamped by the engineer].  Submit a copy of the 
+qualifications and certificates to the Contracting Officer.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The paragraph below should be used when Tunnel Boring Machine (TBM) excavation 
+techniques are required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</SPT><SPT><TTL>PRE-CONSTRUCTION DOCUMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following submittal requirements are for tunnel excavation using 
+Tunnel Boring Machine (TBM) and should only be included if this method of excavation 
+will be employed on the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Training certifications and/or resumes of TBM operators and mechanics, experienced in operating and maintaining 
+TBMs suitable for the Project conditions, at least 60 days before TBM assembly or excavation commences.</TXT><BRK/>
+<BRK/>
+<TXT>Sequence and methods for mobilizing each TBM to Assembly Chamber, launching TBMs in Starter Tunnels, partial 
+or complete disassembly, backing up and re-assembling TBMs and re­ launching in Starter Tunnels for subsequent 
+tunnel drives, as applicable.</TXT><BRK/>
+<BRK/>
+<TXT>Contingency plan for providing additional initial support of tunnel sidewalls and advancing TBM if rock mass 
+has insufficient bearing capacity to support required gripper pressure.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Tunnel Excavation Plan</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>The following documents must be submitted to the Contracting Officer at least 60 days prior to commencing excavation:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">1.  A scale drawing of proposed tunneling operations. The drawing must include detailed working drawings 
+of mobilization, proposed methods, and sequence of excavating and disposing of materials for each portion 
+of the work, ventilation, illumination, identification of known shears/faults/weak rock, survey control, 
+type and location of vibration and stability-related instrumentation, installation of ground support 
+including placing of shotcrete, steel sets and rock reinforcement, dimensions for excavation and types 
+of equipment to be used.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">2.  Drawings and details of the initial support of all excavations.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">3.  Procedures for the control and disposal of groundwater and water supplied for use during tunneling.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">4.  Methods and equipment for measuring and recording groundwater inflow. Methods, equipment, guidelines, 
+and criteria for the use of fissure grouting must be proposed by the Contractor in his method statement 
+as required in Section <SRF>31 73 19</SRF> TUNNEL AND SHAFT GROUTING.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">5.  Instruments for monitoring air quality.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">6.  The following records of work accomplished must be submitted to the Contracting Officer within one 
+day of the installation of any geotechnical instrumentation measuring tunnel convergence:</LST><BRK/>
+<OLG><BRK/>
+<OLI>A list of instruments installed, including instrument identification numbers, calibration, elevation, 
+orientation, stationing, offset, and initial coordinates as applicable to each instrument or installation.</OLI><BRK/>
+<BRK/>
+<OLI>Drawings showing details of installed instruments. All dimensions and materials used must be fully identified.</OLI><BRK/>
+<BRK/>
+<OLI>A statement describing the procedure used for the installation of each instrument.</OLI><BRK/>
+<BRK/>
+<LST INDENT="-0.33">7.  A method statement of the proposed tunneling operations. This method statement must include details 
+of the Contractors proposed tunnel-logging system such as the NGI "Q" system or Rock Mass Rating (RMR) 
+system for determining ground support, as defined in the GBR, in concert with guidelines provided in 
+Chapter 7 Design of Initial Support, <RID>EM 1110-2-2901</RID>.  The report must present details of proposed methods 
+and sequences of excavating and disposing of materials for each portion of the work, probing ahead of 
+the tunnel face, pre-grouting, ventilation, illumination, placing shotcrete, steel sets and rock reinforcement, 
+surveying, monitoring, and construction equipment to be used.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">8.  Catalog cuts of excavation, drilling, mucking and transportation equipment to be used.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">9.  Contingency Plan for the excavation and support of the tunnels in the event that monitoring of excavation 
+operations in accordance with Section [_____] and monitoring of ground deformations in accordance with 
+[Section XX XX XX TUNNEL INSTRUMENTATION] indicate vibrations or movements exceeding threshold values 
+defined in the drawings.  Refer to <RID>EM 1110-2-1009</RID> for further guidance on instrumentation.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">10.  The following Survey Details must be submitted to the Contracting Officer for approval:</LST><BRK/>
+<BRK/>
+<OLI>Manufacturer's address, phone number and name of the contact person.</OLI><BRK/>
+<BRK/>
+<OLI>List and description of special modifications if there are changes.</OLI><BRK/>
+<BRK/>
+<OLI>Description of instrument's operational principle.</OLI><BRK/>
+<BRK/>
+<OLI>Plans or diagrams of instrument.</OLI><BRK/>
+<BRK/>
+<OLI>Maintenance requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Reading procedures, including sample data, and data processing calculations.</OLI><BRK/>
+<BRK/>
+<OLI>Complete data on all tests done to calibrate instruments or verify accuracy.</OLI><BRK/>
+<BRK/>
+<LST INDENT="-0.33">11.  Working Drawings - The following must be submitted in accordance with the specifications:</LST><BRK/>
+<BRK/>
+<OLI>Drawings and details of the initial and permanent reinforcement<BRK/>
+and/or support of all excavations.</OLI><BRK/>
+<BRK/>
+<OLI>Procedures for the control [, treatment ]and disposal of groundwater and water supplied for use during 
+tunneling.</OLI><BRK/>
+<BRK/>
+<OLI>Methods and equipment for measuring and recording groundwater inflow. Methods, equipment, guidelines, 
+and criteria for the use of fissure grouting must be proposed by the Contractor in a method statement 
+as required in Section <SRF>31 73 19</SRF> TUNNEL AND SHAFT GROUTING.</OLI><BRK/>
+<BRK/>
+<LST INDENT="-0.33">12.  Instruments for monitoring air quality and ventilation.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">13.  The following records of work accomplished must be submitted to the Contracting Officer within 24-hours 
+of the installation of geotechnical instrumentation measuring tunnel convergence and any other devices 
+to monitor tunnel stability:</LST><BRK/>
+<BRK/>
+<OLI>A list of instruments installed, including instrument identification numbers, calibration, elevation, 
+orientation, stationing, offset, and initial coordinates as applicable to each instrument or installation.</OLI><BRK/>
+<BRK/>
+<OLI>Drawings showing details of installed instruments.  All surveyed locations, dimensions and materials 
+used must be fully identified.</OLI><BRK/>
+<BRK/>
+<OLI>A statement describing purpose and the procedure used for the installation of each instrument.</OLI><BRK/>
+<BRK/>
+<LST INDENT="-0.33">14.  Complete working drawings and system description of proposed equipment, materials, and method for 
+handling water within the tunnel, measurement of pumped water, and disposal methods.</LST><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Roadheader</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit for review at least sixty (60) days before the start of excavation with the roadheader(s)the following:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">1.  Make and model number, year manufactured, manufacturer's specifications, and manuals for operation 
+and maintenance.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">2.  Certification from the roadheader manufacturer that the proposed machine(s)can excavate the anticipated 
+rock conditions as described in the Contract Documents at a rate sufficient to meet the project schedule.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">3.  Power supply requirements and anticipated power source(s).</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">4.  For refurbished (used) machines, in addition to the information required herein, submit the following 
+additional information: maintenance record(s) and description of last three (3) projects, including rock 
+types excavated, advance rates, total operated hours, and rebuild records of major components.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">5.  Roadheader Shift Report:  Prepare a roadheader shift report for each shift in which the roadheader(s) 
+was operating and submit to the Contracting Officer for review by noon the following day in a form and 
+format acceptable to the Contracting Officer.  The following minimum information should be included with 
+these reports:</LST><BRK/>
+<OLG><BRK/>
+<OLI>Time and position of cutter/pick changes.</OLI><BRK/>
+<BRK/>
+<OLI>Identification of all roadheader downtime, including classification and duration.  Categories of downtime 
+identified should include roadheader repair, cutter/pick changes, installation of initial support, groundwater 
+inflow, gas inflow, power outages and electrical repair, muck disposal delays, mechanical repairs, alignment 
+survey, grouting, routine maintenance, or other category as described by the Contractor.</OLI><BRK/>
+<BRK/>
+<LST INDENT="-0.33">6.  Contingency Plan for additional initial support of pillars with signs of instability or if excessive 
+ground deformations are detected.  Contingency Plan must include a backup roadheader.  Contingency Plan 
+for the excavation and support of the tunnels if monitoring of excavation operations and monitoring of 
+ground deformations in accordance with [Section XX XX XX GEOTECHNICAL AND STRUCTURAL INSTRUMENTATION] 
+indicate vibrations or movements exceeding threshold values defined in the drawings.</LST><BRK/></OLG>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the XX XX XX TUNNEL EXCAVATION SUPPORT Specification will be used, 
+the proceeding section can be deleted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following Submittal requirements for Roadheader should only be included 
+if this method of mechanical excavation will be employed on the project.</NPR><BRK/>
+<BRK/>
+<NPR>Prediction of roadheader performance plays a significant role in the plan of 
+tunnel and underground construction in regard to cost, schedule, and excavation 
+assessment.  The roadheaders advancement rates underground are influenced by 
+rock strength, abrasivity, rock mass discontinuities, rock type, brittleness, 
+machine specifications (rotary rotation speeds and teeth or pick metal type, 
+and weight and power of roadheader machine) combined with the time to install 
+rock support and muck out.  Roadheader performance results illustrate that rock 
+mass properties have a considerable impact on the applicability and rate of 
+the roadheader advancement.  Several models demonstrate and accurately predict 
+the roadheader performance as a function of rock mass properties.  The very 
+low vibration emissions and precise profile of a roadheader excavation may facilitate 
+excavation near embankment infrastructures or vibration sensitive infrastructure.  
+Dust, and associated mitigative measures should be considered carefully as well.  
+The higher susceptibility of this excavation method in regard to the rock and 
+rock mass characteristics does imply a significant risk potential to the application 
+of this method in regard to the variability of the excavated rock mass.  For 
+these reasons a comprehensive site GBR should be performed during the site characterization 
+process outlined in USACE 1110-1-1804 and utilized with this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Ventilation Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide, operate, document, and maintain for the duration of tunnel construction operations a temporary ventilation 
+system and air quality monitoring system which conforms to the requirements of all federal, state, and local 
+regulations in accordance with <RID>EM 385-1-1</RID>.  Remove system(s) from the site when work is completed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Pre-Construction Surveys</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  During design consult with the adjacent businesses/stakeholders/jurisdictions 
+to determine what Pre-Construction Survey needs to be conducted and whether 
+access is allowed, or special considerations are needed.  This needs to be outlined 
+in the specifications for a proper bid to be made for the scope.  It is important 
+to include the entire Project Development Team in design to ensure all project 
+features of importance are documented before tunnel construction.</NPR><BRK/>
+<BRK/>
+<NPR>Special attention should be given to clear identification of Real Estate property 
+and boundary information in support of design and construction.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to the commencement of construction, conduct a Pre-Construction Survey of any nearby buildings, structures, 
+and utilities within<MET> [_____] meters</MET><ENG> [_____] feet</ENG> from the construction area, or otherwise delineated by plan 
+drawing, that may potentially be at risk of vibration damage to document pre-existing conditions.  The survey 
+extent and method used must be acceptable to both the Contractor's insurance company and the Contracting Officer.  
+The Contractor is responsible for any damages or injuries resulting from construction.  Submit all Pre-Construction 
+Surveys 60 calendar days before the start of work.  There will be no construction allowed until the Pre- Construction 
+Survey is submitted and approved by the Contracting Officer.  Provide owners of surveyed features a copy of their 
+feature's Pre-Construction Survey results before or with the notice of work commencement.  Notify owners and 
+occupants of local buildings prior to the commencement of work.  Perform the following when conducting Pre-Construction 
+Surveys:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Each [Civil Works] structure must be documented (including high resolution photography and/or videotaping) 
+as to its construction, foundation type, condition, and closest distance to excavation.  The general 
+condition and all observable defects of each structure must be documented.  This includes measurements 
+of the defects.</OLI><BRK/>
+<BRK/>
+<OLI>The facilities that may be impacted by construction must be addressed by the Contractor for safety and 
+continued operation during the tunnel program.</OLI><BRK/>
+<BRK/>
+<OLI>Freestanding structures (such as retaining walls) must be inspected on the exterior and on the interior 
+if connected to a structure.  All concrete walks, driveways, or adjacent structures must be inspected 
+for cracks, level condition, holes, and defects.</OLI><BRK/>
+<BRK/>
+<OLI>Industrial structures, silo/elevators and special facilities, and office space must be described relative 
+to their present condition and tolerance to vibration.  Besides the inspection of walls, columns and 
+stairwells, the Contractor must survey the work areas and structures for distress.</OLI><BRK/>
+<BRK/>
+<OLI>Survey the current condition of above and underground utilities to include water, power, gas, sewer, 
+and communication lines, and any associated above-ground connections to said underground utilities such 
+as fuel tanks and hard connections to structures.</OLI><BRK/>
+<BRK/>
+<OLI>An inspection of accessible structures must be made and a list of all structures, which could not be 
+surveyed or refused to allow survey, must be completed.  The dates of possible subsequent surveys and 
+physical constraints prohibiting the survey must be documented.  The requirement to perform Pre-Construction 
+Surveys is not an indication of Right-of-Entry by the Contractor.  Any Right-of-Entry associated with 
+Pre-Construction Surveys, monitoring during construction and Post-Construction surveys are the responsibility 
+of the Contractor.  In the event a property or properties identified as significant or intended to be 
+included in the Surveys and monitoring are not included because access was denied, indicate this occurrence 
+including the points of contact, dates contacted, and any reasons provided for denial of access (if given.)</OLI><BRK/>
+<BRK/>
+<OLI>Certify that the survey was prepared prior to the start of any construction under this Contract.  Submit 
+a copy of the Pre-Construction survey in conjunction with the Tunnel Excavation Plan.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>RECORD KEEPING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The paragraph below applies to all excavation techniques.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Daily Records</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Maintain daily records as excavation progresses and one copy of such records must be submitted to the Contracting 
+Officer before 12:00 PM of the following workday.  Keep such other records as deemed necessary.  The following 
+data must be included in the daily record for each tunnel heading:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">1.  Station of tunnel heading faces at start and end of each work shift.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">2.  Type, quantity, and location of initial support and additional initial support installed. Draft Geologic 
+mapping and excavation records that comply with <RID>EM 1110-1-1804</RID> Appendix B and C.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">3.  Evaluation of in-tunnel monitoring results.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">4.  Probe hole records in accordance with Drilling Logs  paragraph of this Section.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">5.  Number of workers employed per shift for each workday categorized by union trade, idle equipment, 
+active equipment, and site visitors.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">6.  Water inflow measurements.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">7.  Air quality Measurements.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">8.  Vibration Monitoring Measurements.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">9.  Tunnel Deformation Monitoring Measurements.</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The section below should be used when Tunnel Boring Machine (TBM) excavation 
+techniques are required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST INDENT="-0.33">10.  Daily shift reports on TBM operation and performance data must be prepared commencing on the first 
+day of TBM assembly and cover a continuous period until the TBM(s) are removed from the tunnel.  One 
+copy of the shift reports, signed by Contractor's representative, must be provided to the Contracting 
+Officer before 12:00 PM the following workday.  Use manual and automatic recording data collection systems 
+in accordance with [Section XX XX XX GEOTECHNICAL AND STRUCTURAL INSTRUMENTATION].  Include the following 
+information, as a minimum, in the shift reports for each tunnel heading excavated by TBM:</LST><BRK/>
+<OLG><BRK/>
+<OLI>TBM performance information, including stations of each advance of the TBM, the TBM clock time at the 
+start and end of each shift.</OLI><BRK/>
+<BRK/>
+<OLI>For each shove or stroke of the TBM, the date, time, and tunnel station at start of shove, the duration 
+and length of shove.</OLI><BRK/>
+<BRK/>
+<OLI>TBM and excavation system downtime, including classification, details, and duration.  Iinclude the impact 
+on excavation progress.  Categories of downtime may include, but not be limited to, TBM repair, cutter 
+head changes, installation of initial support, groundwater inflow, gas inflow, power outages and electrical 
+repair, downtime of backup equipment, muck disposal system delays, hydraulics repair, gripper problems, 
+alignment survey, probe hole drilling, waiting time due to lack of grout, and routine maintenance.</OLI><BRK/>
+<BRK/>
+<OLI>Cutter head changes, including time, date, and reason for replacement, cutter position, or number.</OLI><BRK/>
+<BRK/>
+<OLI>TBM clock record of utilization and penetration rates.</OLI><BRK/>
+<BRK/>
+<OLI>Air quality and gas monitoring data. Line and grade survey reports.</OLI><BRK/>
+<BRK/>
+<OLI>Water inflows, if any, with locations and estimates of rates.</OLI><BRK/>
+<BRK/>
+<OLI>Overbreak</OLI><BRK/>
+<BRK/>
+<OLI>Any other geological and/or unusual features such as faults, shears, crushed or soft zones, and raveling 
+areas.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Drilling Logs</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The drillers are required to keep precise drilling logs on each probe hole to show the depth and position of 
+the geological features.  At minimum, each drilling log must include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Borehole designation and location station number;</OLI><BRK/>
+<BRK/>
+<OLI>Borehole depth, groundwater depth, inclination, azimuth, and diameter;</OLI><BRK/>
+<BRK/>
+<OLI>Elevation of top of borehole;</OLI><BRK/>
+<BRK/>
+<OLI>Depth(s) of geologic structural features, e.g., voids, gouge or mud seams, soft weathered or altered 
+zones, Ocher iron-stained intervals, changes in rock chip color, and other features encountered in the 
+probe hole;</OLI><BRK/>
+<BRK/>
+<OLI>Relative penetration rates;</OLI><BRK/>
+<BRK/>
+<OLI>Start and end times of drilling;</OLI><BRK/>
+<BRK/>
+<OLI>List hole misalignment;</OLI><BRK/>
+<BRK/>
+<OLI>Soft seams within the rock and sudden feed pressure changes on the drill;</OLI><BRK/>
+<BRK/>
+<OLI>Seepage and groundwater flow from the borehole; and </OLI><BRK/>
+<BRK/>
+<OLI>Drill make, model, and serial number.</OLI><BRK/>
+<BRK/>
+<OLI>If qualitative descriptors are used (e.g., soft, moderately hard, hard, very hard, decomposed, highly 
+weathered, moderately weathered, slightly weathered, unweathered), ensure consistency between drill operators 
+in logging using these terms.  [Log soil and rock in accordance with <RID>ASTM D2487</RID>, <RID>ASTM D5434</RID>, <RID>ASTM D6032/D6032M</RID>
+.]  Submit an example of the Drilling Logs with the Tunnel Excavation Plan. Copies, both hard and electronic 
+PDFs, of these drilling logs must be provided within 24 hours to Contracting Officer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Post-Construction Surveys</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pre- and Post-Construction Inspections and the Structural Inspection/Evaluation 
+Specialist would only be required if there are structures or facilities requiring 
+such inspections.  Eliminate the paragraphs referencing Pre- and Post-Construction 
+Inspections and the Structural Inspection/Evaluation Specialist if the project 
+does not have a requirement for these inspections.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Post-Construction Survey must be conducted at any structure previously surveyed during pre-construction and locations 
+where a reasonable notice of damage from construction has been provided.  Post-Construction surveys will be conducted 
+by, or under the supervision of, the Structural Inspection/ Evaluation Specialist, who will also sign and date 
+each survey.  The survey extent and method used must be acceptable to both the Contractor's insurance company 
+and the Contracting Officer.  The post-construction surveys must be conducted within a week of the notice of 
+damage.  The Contractor is responsible for any damages or injuries resulting from construction.  Submit a copy 
+of all post-construction surveys within two business days of the on-premises surveys to both the structure's 
+owner and the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Probe Hole Drilling</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The design team must evaluate expected ground conditions including but 
+not limited to:  zones of intensely jointed rock mass due to faults, shears, 
+or other structural dislocations, rock types, weathering profiles, groundwater 
+regime, other pertinent geological information available from the site investigations 
+to determine the adequate length of probing ahead of tunnel.  This information 
+must be included in the Geotechnical Baseline Report as a recommendation.</NPR><BRK/>
+<BRK/>
+<NPR>Insert gallons per minute (gpm) based upon results of any packer tests performed, 
+or other estimates of water inflow.  In lieu of available project data assume 
+nominal amount of water on the order of 15-20 gpm. The inflow information must 
+be included in the GBR and/or GDR.</NPR><BRK/>
+<BRK/>
+<NPR>The number of supplemental probe holes expected for the project must be determined 
+during design phase and clearly listed as a recommendation in the GBR.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>The Contracting Officer must be informed 24 hours prior to any probing activities in the tunnel so that 
+a government representative be present during the probing.  The results of probing ahead, along with 
+any proposed amendments to excavation profile, sequence or support must be submitted to the Contracting 
+Officer immediately upon completion of the probing.</OLI><BRK/>
+<BRK/>
+<OLI>Probe holes must be drilled to provide advance warning of any abnormal inflow of water or degradation 
+in rock quality, which might occur. Probe hole locations and extent of hole drilling is shown on the 
+Drawings and will be modified as needed in the field as approved by the Contracting Officer.  The Contracting 
+Officer may direct supplemental probe holes to be drilled based on ground conditions.  Exploratory probe 
+holes may also be required to explore the nature of subsurface formations or following grout operations 
+to investigate the effectiveness of the grouting program.</OLI><BRK/>
+<BRK/>
+<OLI>If the inflow of water from the probe hole exceeds [_____] gpm, supplemental probe holes will be required, 
+at the direction of the Contracting Officer, to probe the extent and character of the ground, and/or 
+to drain the water, and/or for use as grout holes. If directed by the Contracting Officer, grout the 
+face of the tunnel heading in accordance with <SRF>31 73 19</SRF> TUNNEL AND SHAFT GROUTING.</OLI><BRK/>
+<BRK/>
+<OLI>Probe holes must be drilled to a minimum of<MET> [_____] meters</MET><ENG> [_____] feet</ENG> measured along the drilled hole 
+and will overlap to maintain at least one hole a minimum of<MET> [_____] meters</MET><ENG> [_____] feet</ENG> ahead of the 
+plane of the tunnel face at all times. The Contracting Officer may reduce the drilling length based on 
+ground conditions.</OLI><BRK/>
+<BRK/>
+<OLI>During probe hole drilling, the Contractor will stop at a minimum of each <MET>3.05 meters</MET><ENG>10 feet</ENG> of hole 
+advance to measure water flow and water pressure. The Contracting Officer may waive this requirement 
+on a hole-by-hole basis if little or no water is encountered.</OLI><BRK/>
+<BRK/>
+<OLI>Probe hole must be terminated<MET> [_____] meters</MET><ENG> [_____] feet</ENG> beyond the first groutable feature, as determined 
+by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Probe holes must be sealed by grouting through a packer close to the first water producing feature to 
+prevent water flows into the tunnel while the tunnel face is advanced.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Depending on the project the probe holes may be incidental to the work 
+and no additional time or payment will be required as in this paragraph.  If 
+the Contracting Officer directs the Contractor to do probe hole drilling outside 
+of the contracting payment procedures, then it would be compensated.  Tailor 
+this paragraph for your project requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>If, in any section of the tunnel excavation, drilling is directed by the Contracting Officer for supplemental 
+probe holes, other operations will be suspended or modified as may be necessary to permit such drilling; 
+and the Contractor will not be entitled to any compensation for delay nor will the Contractor be entitled 
+to any extension of time, such stopping of work being deemed an ordinary delay to be expected during 
+construction operations.</OLI><BRK/>
+<BRK/>
+<OLI>Follow format requirement in the paragraph DRILLING LOGS.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>GROUND VIBRATION AND DEFORMATION EFFECTS MONITORING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Incorporate requirements for a data acquisition system and real time 
+monitoring in certain sensitive areas on project-specific basis as needed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General Tolerance</TTL><BRK/>
+<BRK/>
+<TXT>The instruments must be installed as close as practicable to the locations [shown on the Drawings] [or as established 
+in the field by the Contracting Officer].  The Contractor must submit to the Contracting Officer for consent, 
+all final instrument locations prior to their installation.  Where instruments are shown on the contract drawings 
+to be installed in clusters, the Contractor must install all instruments shown within a<MET> [_____] mm</MET><ENG> [_____] in.</ENG>
+ radius</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Availability of Data</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must monitor all instruments and provide data obtained to the Contracting Officer within a maximum 
+of [24 hours] after taking the readings unless otherwise directed by the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<TXT>Instrument monitoring data must not be disclosed to third parties and must not be published without the prior 
+written approval of the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<BRK/></SPT>
+<SPT><TTL>Instrument Installation Sequence</TTL><BRK/>
+<BRK/>
+<TXT>Optical survey targets must be installed following scaling and within<MET> [_____] meters </MET><ENG> [_____] feet</ENG> of the advancing 
+tunnel face.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation Requirements</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must assign an instrument identification number to each instrument.  Each instrument identification 
+number must be permanently affixed to a suitable material, such as the stamping of a brass tag.  The tag must 
+be attached to the instrument or must be secured at the instrument location.</TXT><BRK/>
+<BRK/>
+<TXT>Optical survey targets must be installed as shown on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protection of Instruments</TTL><BRK/>
+<BRK/>
+<TXT>Full responsibility must be borne by the Contractor for protecting the instruments from damage caused by construction 
+operations.  Damaged instruments must be promptly replaced or repaired, as directed by the Contracting Officer, 
+at the expense of the Contractor.</TXT><BRK/>
+<BRK/>
+<TXT>The instruments must be clearly marked and protected to avoid being covered by shotcrete.  Access must be maintained 
+to permit reading of instruments.  Shotcrete applied around instruments must be removed immediately.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Depending on the project, this section will vary and need to be tailored 
+for the monitoring locations and thresholds specifically.  The designer should 
+engage necessary subject matter experts for various disciplines - Structural 
+for concrete and Mechanical/Electrical for related equipment (powerhouses or 
+locks).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</SPT><SPT><TTL>Vibration Control Monitoring</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Vibration monitoring may be required for underground construction using 
+mechanical excavation means.  Consult with the Structural, Mechanical, and Electrical 
+Engineers as appropriate on the project in developing the vibration thresholds.  
+The paragraph's narrative is a generic description for most projects, where 
+the nearest structure/facility is: Standard Construction Timber Frame, Brick, 
+and Concrete Buildings; Lock Monoliths; Powerhouse Switchyard; Highway and Railroad 
+Bridges; Buried Utilities; and Wells and Aquifers.    Some projects may require 
+assessment by a trained experienced vibration specialist or structural engineer 
+of lower allowable vibration criteria at critical or historic or special structures 
+or facilities or structures with continuous occupants.  Ground vibrations can 
+cause the occupants of structures to become physically uncomfortable at levels 
+well below the allowable vibration levels to avoid damage to the structure itself.  
+Projects a with a Powerhouse and Electrical Power Relay Equipment or Pipelines, 
+besides those with continuous occupants, should be evaluated for lower allowable 
+vibration criteria.  Some projects could utilize the assessment by a trained 
+experienced vibration specialist or structural engineer to include higher allowable 
+vibration criteria for those projects where typical structures/facilities are 
+more than twice the distance of the closest approach from construction to: Steel 
+and Reinforced-Concrete Structures; Mass Concrete Monoliths; and Cured Shotcrete.  
+The specification writer must include a limitation of the allowable vibration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Vibration monitoring must conform to current industry standards and use equipment developed for that purpose.  
+Peak particle velocity must be used as the unit of measure.  Begin seismic vibration monitoring at least four 
+weeks prior to the commencement of any mechanical excavation anticipated to induce excessive ground vibrations 
+to determine background levels on adjacent roads, and the [_____].  Permanently mount the seismograph to record 
+seismic events for a 24-hour period daily.  Submit the background vibration monitoring reports and the baseline 
+vibrations levels determined from the data for approval at least two weeks prior to the commencement of mechanical 
+excavation anticipated to induce excessive ground vibrations.   The peak particle velocity of each component 
+must not be allowed to exceed current local, State and Federal vibration limits, whichever is more stringent, 
+and never exceed the safe limits of the nearest structure subject to vibration damage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Measuring and Recording Instruments</TTL><BRK/>
+<BRK/>
+<TXT>Submit seismographs for approval.  Provide up to [_____] seismographs capable of sampling rates of 15,000 samples 
+per second or higher that meets <RID>ISEE PSBS</RID>.  The 15,000 samples per second accuracy is required to acquire reproducible 
+vibration readings.  The units must be self-contained except for external geophones and microphones.  The seismograph 
+must be capable of providing a printout or downloading the data to a portable device for off-site printing.  
+The units must be programmed with specific data for each site of seismograph placement, which includes seismograph 
+location, geophone burial or mounting method, calibration signal, date, time, and closest distance to the excavation.  
+The seismographs and geophones must be placed on and secured to sound bedrock, buried in virgin soil, or affixed 
+to mass concrete foundations or to other structures where vibration data is needed.  Include the raw data values 
+from the seismograph of vibration.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seismograph Locations</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph will vary depending on the project, the designer should 
+determine what structures need to be monitored.  It may be necessary to require 
+one or two extra seismographs that are placed at the Contracting Officer's direction.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install seismographs at locations approved by the Contracting Officer.  These locations are subject to change 
+as the project progresses.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Individual Vibration Monitoring Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide the original digital results of vibration monitoring in the form of peak readings and frequencies for 
+each monitoring period, provide the Contracting Officer with access to the online data available immediately 
+after data is collected.  Submit the vibration monitoring reports.  Data recorded for each monitoring period 
+must include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Identification of instrument used and location.</OLI><BRK/>
+<BRK/>
+<OLI>Name of qualified observer and interpreter.</OLI><BRK/>
+<BRK/>
+<OLI>Distance and direction of recording station from excavation area.</OLI><BRK/>
+<BRK/>
+<OLI>Type of ground at recording station and material on which the instrument is sitting.</OLI><BRK/>
+<BRK/>
+<OLI>How the geophone is anchored, if peak acceleration is greater than 0.2 g to prevent decoupling of the 
+sensor.</OLI><BRK/>
+<BRK/>
+<OLI>Maximum particle velocity in each component direction.</OLI><BRK/>
+<BRK/>
+<OLI>A dated and signed copy of seismic records with their supporting information.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Convergence Monitoring Construction Requirements</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Tolerance</TTL><BRK/>
+<BRK/>
+<TXT>The instruments must be installed as close as practicable to the locations shown on the Drawings or as established 
+in the field as approved by the Contracting Officer.  The Contractor must submit to the Contracting Officer for 
+consent, all final instrument locations prior to their installation.  Where instruments are shown on the contract 
+drawings to be installed in clusters, the Contractor must install all instruments shown within a<MET> [_____] mm</MET><ENG> [_____] 
+in.</ENG> radius.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Availability of Data</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must monitor all instruments and provide data obtained to the Contracting Officer within a maximum 
+of 24 hours after taking the readings unless otherwise directed by the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<TXT>Instrument monitoring data must not be disclosed to third parties and must not be published without the prior 
+written approval of the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protection of Instruments</TTL><BRK/>
+<BRK/>
+<TXT>Full responsibility must be borne by the Contractor for protecting the instruments from damage caused by construction 
+operations.  Damaged instruments must be promptly replaced or repaired, as directed by the Contracting Officer, 
+at the expense of the Contractor.</TXT><BRK/>
+<BRK/>
+<TXT>The instruments must be clearly marked and protected to avoid being covered by shotcrete. Access must be maintained 
+to permit reading of instruments. Shotcrete applied around any instrument must be removed immediately.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Rock Damage Control</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Tailor this paragraph to the specific site conditions that may affect 
+underground construction.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The rock formations are known to contain geological features including variable weathering, alteration, fracturing 
+and shearing, voids, weathered joints, and gouge seams.  Rock cores recovered during site exploration drilling 
+investigations disclose the site's geological conditions and are available for review by the Contractor.  The 
+Contractor is encouraged to review the [Geotechnical Data Report, Geotechnical Baseline Report, other reports 
+provided with bid documents or made accessible], the drill core, drill core photographs, cut slopes or outcrops, 
+and all geotechnical and structural information available before planning and conducting tunnel excavation operations.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The section below should be used when Roadheader mechanical excavation 
+techniques are required on the project.</NPR><BRK/>
+<BRK/>
+<NPR>A Roadheader is more economical for shorter tunnels rather than using/mobilizing 
+a TBM and where Drill and Blast excavation is not allowed.</NPR><BRK/>
+<BRK/>
+<NPR>A Roadheader is a hybrid mechanical excavator and consists of a boom-mounted 
+rotating cutting head with a conveyor for broken rocks, crawler tracks move 
+the entire machine forward into the rock face. High mobility, advance rates, 
+reliability, low rock disturbance, safety, and small labor force for deployment, 
+staging area footprint, are some of the advantages of Roadheader.</NPR><BRK/>
+<BRK/>
+<NPR>The power density ratio provided by the small diameter cutting drum gives the 
+Roadheader an edge over other mechanical excavation techniques. Recent advances 
+have made Roadheaders more efficient in hard rock tunneling. Increases in machine 
+weight, size, automation, and remote control, cutterhead and boom positioning, 
+advances in hydraulic and electrical systems, muck pick and loading systems, 
+and cutter head design are the biggest developments in Roadheader which make 
+them economical choices in some underground excavation scenarios.</NPR><BRK/>
+<BRK/>
+<NPR>Boom-type Roadheaders are small size (up to 30 tons), mid-size (between 30 and 
+70 tons) and large size (between 70 and 120 tons).  Several rock properties 
+affect the cutting force of a Roadheader. Uniaxial Compressive Strength (UCS), 
+Brazilian Tensile Strength (BTS), quartz content, Ratio of UCS to BTS, and Cone 
+indenter hardness, tangent Young's modulus, density, porosity, static elasticity 
+modulus, shore scleroscope hardness, specific energy, rock quality designation, 
+Rock mass cuttability index, Cercher abrasivity index, Schmidt Hammer rebound 
+hardness, and point load strength, are some of the parameters of rock that are 
+found to influence Roadheader performance.</NPR><BRK/>
+<BRK/>
+<NPR>Cutting performance is a term used to illustrate the influence of cutting rate 
+and cutter wear in different geological conditions. The prediction of cutting 
+performance for any type of excavating conditions, or rock formation in which 
+the machine is deployed, is one of the main factors determining the economics 
+of a mechanized excavation operation. The instantaneous cutting rate or ICR 
+has widely been applied and modified for specific rock types. Progress over 
+a construction shift or on hourly basis is also taken as a performance metric 
+tracked on the job. Machine selection is performed on the basis of tunnel dimensions 
+and ground conditions which in turn, determine production rate and bit consumption. 
+Deployment of the Roadheader is mainly dependent on how effectively the performance 
+rating is geologically investigated. Accordingly, if not selected as per geological 
+conditions anticipated the consequences can be economically costly leading to 
+claims and scheduling implications.</NPR><BRK/>
+<BRK/>
+<NPR>Despite the advantages, the Roadheader has some disadvantages such as high pick 
+consumption rate in very abrasive rocks, making excavation uneconomical due 
+to frequent bit changes with increased machine vibrations and maintenance costs.  
+Exposure to silica or rock dust continues to be a major risk to the health of 
+workers. Dust particles such as coal dust, silica dust and other finely powdered 
+materials, can damage lungs and airways.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</SPT><SPT><TTL>ROADHEADER EXCAVATION</TTL><BRK/>
+<BRK/>
+<TXT>The roadheader(s) must excavate the tunnel(s) to the minimum excavation size as shown on the Drawings or as approved 
+by the Contracting Officer, to provide the required lining thickness indicated on the Drawings within the size, 
+alignment and grade tolerances specified.  The roadheader(s) must be maintained and utilized to handle the various 
+ground conditions as described in the GBR and sustain advance rates that will permit completion of the work within 
+the allowable schedule. Minimize the loss of ground ahead of and around the roadheader and always provide support 
+of the excavation. Use a dust control system.</TXT><BRK/>
+<BRK/>
+<TXT>Install the rock support and initial support system as close behind the excavation operation as possible.  The 
+face must not extend more than<MET> [_____] meters</MET><ENG> [_____] feet</ENG> in front of the nearest installed support.</TXT><BRK/>
+<BRK/>
+<TXT>The tunnel must be excavated by a mobile fully articulated boom excavating machine, commonly known as a "road 
+header".  The excavating machine must meet the following requirements:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">1.  Must be a [25] ton or heavier machine with a minimum horsepower of [150] HP to the cutter head.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">2.  Be equipped to excavate to the "A" or over excavation lines shown on the above drawings with capability 
+to quickly adjust excavation size to meet varied support requirements.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">3.  Be equipped with a gas-detection devices and warning system.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">4.  Be of such a configuration that structural-steel adit supports or rock reinforcement may be installed 
+at or near the heading ahead of the main body of the machine where required.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">5.  Be designed so that the entire machine and its trailing equipment may be backed out through the structural-steel 
+supported reaches of the adit or any other restricted reaches so designed to provide free access for 
+passage of men, equipment, and materials to the face to perform ground support or excavation tasks. To 
+assist in backing excavating equipment out of the adit, partial disassembly of the machine is acceptable. 
+However, the capabilities of backing the equipment out of the adit and providing free access to the adit 
+heading must be provided in a manner that maintains the integrity of the machine and trailing equipment 
+during removal from the adit and reinstallation in the adit.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">6.  Be equipped to remove muck with high water content from adit invert in areas of high water inflow 
+and in standing water.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">7.  Be equipped so that adit drainage inflow of water in the vicinity of the machine, as deep as <MET>0.61 
+meters</MET><ENG>2 feet</ENG>, will not stop the operation of the tunneling machine.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">8.  Be designed to provide for adequate ventilation for all workmen in vicinity of the machine and its 
+trailing equipment.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">9.  Be capable of maintaining its correct alignment and grade at all times.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">10.  Be capable of wetting the face of the excavation and cutter head for effective dust control.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">11.  Excavation of quartzo-feldspathic bedrock lithologies are expected to result in higher than normal 
+wear on the cutter and fracturing of carbide cutter tips.</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  While it has been demonstrated that roadheaders have been used in conglomerates, 
+sandstones, granite, quartzite and diabase, these formations are particularly 
+hard for roadheader tunnel excavation.  Roadheader is most efficient in low 
+to medium hardness rock.  Use in hard rock and highly abrasive rock should be 
+expected to result in low-production excavation rates.  Equipment is limited 
+by a shorter life of tools and increased cutting tool cost.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>REQUIRED MUCKING</TTL><BRK/>
+<BRK/>
+<TXT>Required mucking operations must adhere to the detailed plan for muck handling.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The section below should be used when Tunnel Boring Machine (TBM) excavation 
+techniques are required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<TXT>Provide a mucking system for handling and transporting the excavated rock from the tunnel face, through the TBM 
+backup system, the tunnel and shaft, and on the surface, to the muck stockpiling area, with the capacity to sustain 
+peak hourly penetration, peak shift, and peak daily advance rates.  Ensure the mucking system does not restrict 
+any of the other operations including handling and erecting of initial support system materials.</TXT><BRK/>
+<BRK/>
+<TXT>For rail mucking systems, a track with ties and ballast or direct fixation system will be maintained for safe 
+operation of trains. Do not allow the head of the rails to be submerged in water or covered with tunnel muck 
+or other debris.  Upon completion of excavation of the tunnel, remove all such trackwork prior to placement of 
+final lining.</TXT><BRK/>
+<BRK/>
+<TXT>For conveyor mucking systems, the tunnel must be immediately cleared of all spillage and other debris to maintain 
+a safe and clear personnel egress and evacuation route throughout the tunnel.  Do not store tunnel muck on the 
+mucking conveyor when not in use. In the event the conveyor mucking system is repaired, all replaced parts and 
+components must be removed from the tunnel to minimize safety hazards.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SCALING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typically, a level of scaling is required for each project to remove 
+loose, unstable rock prior to mucking operations or prior to required bolting 
+application, shotcrete, or other methods of stabilization before carrying out 
+additional excavation operations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>A program of frequent inspection and scaling must be maintained in all portions of the tunnel. Immediately after 
+excavation advancement, the roof and walls of rock excavations must be inspected by experienced and suitably 
+equipped scalers who must dislodge and scale down all loose and unstable rock. Scale any loose and unstable or 
+unsafe appearing material remaining on the tunnel periphery at the portal areas as the excavation proceeds.  
+No separate payment will be made for scaling.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The section below on grouting should be used when Tunnel Boring Machine 
+(TBM) excavation techniques are required, and high groundwater conditions are 
+anticipated or unstable geologic materials (such as fault zones, karst, or other 
+unstable geologic conditions) and grouting is used to control water inflow to 
+the tunnel heading or stabilize ground conditions. The anticipated volume of 
+water as indicated in the Geotechnical Baseline Report should be specified in 
+the section below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>GROUTING</TTL><BRK/>
+<BRK/>
+<TXT>Conduct pre-excavation and post-construction grouting in accordance with Section 31 73 19 TUNNEL AND SHAFT GROUTING 
+and as shown on the Contract Drawings.</TXT><BRK/>
+<BRK/>
+<TXT>If groundwater exceeds [_____]<MET> liters per minute (lpm)</MET><ENG> gallons per minute (gpm)</ENG> during probe hole advancement 
+during tunnel construction the Contractor's Engineering Geologist or Geotechnical Engineer will submit a grouting 
+and excavation plan or establish protocols for excavation if certain inflows exceed threshold<MET> lpm</MET><ENG> gpm</ENG> values 
+prior to tunnel excavation.  The Contracting Officer must be informed of the implementation of the grouting plan 
+if groundwater inflows exceed excavation plan established inflow thresholds.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The section below should be used when Roadheader excavation techniques 
+are required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>MAINTAINING PILLAR STABILITY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The use of rock pillars as an excavation support means in tunneling is 
+expected to have limited application. Historically, pillars have been used in 
+mining applications. Delete this section if rock pillars are not anticipated 
+on the project.</NPR><BRK/>
+<BRK/>
+<NPR>In addition to pillar stabilization using rock dowels, a narrow pillar may be 
+designed to be stabilized/widened by a heavily reinforced concrete section. 
+Modify as applicable to project conditions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install additional rock dowels in pillars where the pillar width measured at springline is less than or equal 
+to<MET> [_____] meters</MET><ENG> [_____] feet</ENG>. Install dowels as shown on the Contract Drawings.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The section below should be used when Tunnel Boring Machine (TBM) excavation 
+techniques are required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>INITIAL SUPPORT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A UFGS for TUNNEL EXAVATION SUPPORT is being developed.  The designer 
+will need to include Initial Support as listed here and Permanent support.  
+Often the contractor will be responsible for designing their own initial ground 
+support types and may not be defined in the GBR or specs.  Alternatively, the 
+GBR may give conceptual initial support types (spacing, type, lengths) to bid 
+on but give multiple support Types that may be applied along different alignment 
+stationing depending on the geologic conditions.  Tailor this section as appropriate</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<SPT><TTL>Support Classes and Support Class Ranges</TTL><BRK/>
+<BRK/>
+<TXT>All stations indicating limits of typical support classes referenced herein or as shown on the Contract Drawings 
+are only approximate and may vary due to the geological and hydrological conditions encountered in the field.  
+Tunnel excavation support classes, as shown on the Contract Drawings, are the minimum to be installed and adjusted 
+above and beyond the said minimum based on the actual ground conditions encountered and be determined in the 
+field in consultation between Contractor and the Contracting Officer.  Each support class defines installation 
+of a specific initial support system. The support elements are as specified in [Section XX XX XX TUNNEL EXCAVATION 
+SUPPORT] and as shown on the Contract Drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Initial Support Measures</TTL><BRK/>
+<BRK/>
+<TXT>Initial support measures have been derived based on anticipated ground conditions and the need to provide stabilization 
+of the tunnel openings under this Contract. Excavation and support measures delineated hereafter are typical 
+and will be supplemented by additional initial support measures as required by ground conditions encountered 
+or as directed by the Contracting Officer.  Expect to install additional ground support across weak or open geological 
+features to minimize ground deformation.  Damage is defined as the loosening of rock behind final lines and grades, 
+opening of joints in the excavation or rock block displacement.  If any damage occurs to the final excavation 
+that requires remediation, it must be the responsibility of the Contractor to provide a timely, recommended corrective 
+action to the Contracting Officer and demonstrate that the methods employed did not cause the damage.</TXT><BRK/>
+<BRK/>
+<TXT>To minimize ground movement; the initial support must be installed following each heading and as close to the 
+working face as practical in accordance with [Section XX XX XX TUNNEL EXCAVATION SUPPORT].</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Verify that a Geotechnical Baseline Report has been prepared for the 
+project and has been referenced in Section Related Attachments and Specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLG><BRK/>
+<OLI>Ground support guidelines for the tunnel excavation are shown on the Drawings and provided in the GBR.  
+In addition to the ground support shown on the contract plans, the Contractor must install such ground 
+support as necessary to always ensure the stability of the excavation and the safety of the construction 
+personnel.  Ground support installed by the Contractor without agreement or instruction from the Contracting 
+Officer must be for the Contractors convenience and at the Contractor's expense.</OLI><BRK/>
+<BRK/>
+<OLI>The ground support must be installed as soon as practicable after tunnel excavation to minimize loosening 
+or movement of the surrounding ground.  The Contractor must be responsible for providing confirmation 
+that the ground support system has produced a stable excavation.  The support layouts shown on the contract 
+drawings are a guide only and must be modified as required in the field based on geologic conditions 
+exposed during tunnel excavation.</OLI><BRK/>
+<BRK/>
+<OLI>The approval of the proposed excavation and support sequence by the Contracting Officer or failure to 
+call attention upon improper or inadequate application of the related excavation sequence or tunnel support, 
+pre-support, or face support or to require respective change must not relieve the Contractor of responsibility 
+for the integrity of the tunnel support or the proper execution of the work.</OLI><BRK/>
+<BRK/>
+<OLI>Lengths of excavation rounds shown on the contract drawings are maximum values and may have to be reduced 
+due to the ground conditions encountered.</OLI><BRK/>
+<BRK/>
+<OLI>Pneumatically projected concrete, either fiber reinforced Shotcrete or plain Shotcrete must comply with 
+provisions set forth in Section <SRF>03 37 13</SRF> SHOTCRETE.</OLI><BRK/>
+<BRK/>
+<OLI>Rock reinforcement for tunnel excavation must comply with <SRF>31 68 13</SRF> SOIL AND ROCK ANCHORS.</OLI><BRK/>
+<BRK/>
+<OLI>Steel arch ribs, liner plates and additional ground support elements must comply with [Section XX XX 
+XX TUNNEL EXCAVATION SUPPORT].</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>EXCAVATION SEQUENCE FOR TUNNELS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This is a placeholder for an excavation sequence.  Depending on the project 
+design and site conditions each project will require a specific excavation sequence.  
+Example language: "Tunnel excavation must be accomplished in either a full face 
+or top heading and bench format as indicated on the contract drawings. All initial 
+support must be applied or installed prior to tunnel heading advance."</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>GROUND SUPPORT SYSTEM TYPES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ground support systems are often referred to as "categories" of ground 
+support types. These categories are applied throughout a tunnel alignment in 
+various zones as defined by the geologic conditions encountered as part of the 
+pre-design investigations. See the Geotechnical Baseline Report for anticipated 
+ground conditions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[_____] ground support categories have been developed for the stabilization of the main tunnels as defined in 
+[Section XX XX XX TUNNEL EXCAVATION SUPPORT].</TXT><BRK/>
+<BRK/>
+<TXT>An estimate has been made as to the lengths of each of the ground support categories required to stabilize the 
+tunnel.  The estimated lengths are shown on the contract drawings and presented in the Geotechnical Baseline 
+Report (GBR).  Actual stabilization requirements may vary from those estimated based on the geologic conditions 
+encountered.  In accordance with Section <SRF>01 35 26</SRF> GOVERNMENTAL SAFETY REQUIREMENTS, the Contractor must be responsible 
+for the safety of the work and for accomplishing the initial and permanent stabilization of the tunnel opening.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EXCAVATION FOR TRENCHES AND SUMPS</TTL><BRK/>
+<BRK/>
+<TXT>Excavation for trenches and sumps must conform with <SRF>31 00 00</SRF> EARTHWORK and as shown on the contract drawings.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Excess Excavation section is applicable to mechanical excavation using 
+roadheader. It should not be expected that the excess excavation section will 
+be applicable to TBM excavation methods.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>EXCESS EXCAVATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The type/class of shotcrete used to fill overbreak areas in the tunnel 
+should be defined by the designer in early stages of the development of the 
+bid documents.  Similarly, the type of material used to fill overbreak in tunnel 
+invert must also be defined during early stages of the project design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Excavation outside of the B-Line shown on the drawings must be filled with Class I,II, III Shotcrete in accordance 
+with Section <SRF>03 37 13</SRF> SHOTCRETE, or as directed by the Contracting Officer, at the expense of the Contractor. 
+Overbreak excavation in the tunnel invert must be filled with [ compacted crushed rock, lean concrete ], or as 
+directed by the Contractor Officer, at the expense of the Contractor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TOLERANCES</TTL><BRK/>
+<BRK/>
+<TXT>The tunnels must be excavated in accordance with the A-line dimensions shown on the Drawings.  No unexcavated 
+rock or other material must protrude within the A-line.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CONTROL OF WATER</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section will likely be incorporated into a future UFGS for Tunnel 
+Dewatering.  This section will need to be heavily tailored for your project 
+needs.  Adhere to the current version of the ETL 1110-2-586 DEWATERING:  Methods, 
+Installation, and Performance Monitoring.  The project may develop a Diversion 
+and Care of Water specification that is included in the front-end specifications 
+and this language may be included there.</NPR><BRK/>
+<BRK/>
+<NPR>Beyond safety considerations of ice accumulation around portals and shafts, 
+ice formation can create havoc with tunnel drainage and related rock subdrain 
+systems in unheated area subjected to freezing conditions (e.g. near portals).  
+This has been a critical issue for prior USACE underground facilities during 
+construction.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Contractor is responsible for control of water in the tunnel during construction and must take all means 
+necessary for such control.  Control of water must include but not be limited to, furnishing, installing, operating, 
+and maintaining pumps and other equipment including temporary measuring devices must as per (b) below, constructing 
+temporary ditches and drains and keeping ditches and drains free to carry all water to sumps or other disposal 
+areas; and disposal of all water, tested as required, draining, or pumped from the tunnel.  Disposal of water 
+must conform to all applicable Federal, State, and local laws.  [Treatment of groundwater is required if determined 
+to be contaminated.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Automatic Measuring Devices</TTL><BRK/>
+<BRK/>
+<TXT>Automatic measuring devices must be furnished by the Contractor and must be employed to measure the flow rate 
+of water coming out of the tunnel portals.  Water piped in for construction operations and water exiting at the 
+portals must be separately measured.  The difference between the total flow rate out of and the total flow rate 
+into the tunnel must be considered the rate of groundwater inflow to the tunnel.  This rate of flow must be measured 
+and recorded on a [daily basis, [_____] hour basis] for information only.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fissure Grouting</TTL><BRK/>
+<BRK/>
+<TXT>Fissure grouting must mean grouting carried out in the rock mass surrounding the Underground Works to stem water 
+flows emanating from fissures in the rock where if left un-stemmed the inflows could initiate instability.  Pressure 
+grouting must be carried out when instructed by the Contracting Officer and, where necessary the Contractor must 
+carry out lugeon permeability tests to establish the extent of the fissure to delineate zones that will take 
+grout.  Further requirements are detailed in Section <SRF>31 73 19</SRF> TUNNEL AND SHAFT GROUTING.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PERMANENT TUNNEL DRAINAGE</TTL><BRK/>
+<BRK/>
+<TXT>A drainage geotextile must be installed on the walls and crown of the excavation behind the shotcreted surface 
+at locations where actual flows of water are encountered and at other locations as shown on the Drawings or as 
+may be required to the satisfaction of the Contracting Officer.  The drainage geotextile may be accompanied by 
+drill holes installed into the rock face at discrete locations to capture concentrated seepage flow.  The installation 
+must comprise full coverage for ground support in accordance with [Section XX XX XX TUNNEL EXCAVATION SUPPORT].</TXT><BRK/>
+<BRK/>
+<TXT>The drainage membrane must be fixed and sealed to the approval of the Contracting Officer so that the placing 
+of shotcrete does not block or obstruct the drainage geotextile. Geotextile must be installed in accordance with 
+Section [_____] and Waterproof Membrane must be installed in accordance with Section [_____].</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

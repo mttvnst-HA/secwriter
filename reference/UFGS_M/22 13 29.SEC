@@ -1,0 +1,2079 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-22 13 29 (February 2011)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-44 46 00 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 22 13 29</SCN><BRK/>
+<BRK/>
+<STL>SANITARY SEWERAGE PUMPS</STL><BRK/>
+<DTE>02/11</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>sewage and sludge 
+pumps for domestic type waste</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification guide covers pumps for domestic sewage and sludge.  
+Industrial wastewater and sludge may require special consideration and design.  
+Refer to UFC 3-240-01 and consult the published data of representative manufacturers 
+and the Hydraulics Institute.  The following are the types of pumps included 
+and the general uses:</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="CENTRIFUGAL SOLIDS HANDLING PUMPS">a.  Centrifugal solids handling pumps have high head (up to<MET> 69 m</MET><ENG> 225 feet</ENG>) and 
+high capacity (up to<MET> 2840 L/second</MET><ENG> 45,000 gpm</ENG>) capabilities and high efficiency 
+relative to other solids handling pumps.  They are ideal for sewage applications.</TAI></NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="SUBMERSIBLE CENTRIFUGAL PUMPS">b.  Submersible centrifugal pumps have high head (up to<MET> 55 m</MET><ENG> 180 feet</ENG>) and high 
+capacity (up to<MET> 1390 L/second</MET><ENG> 22,000 gpm</ENG>) capabilities but are less efficient 
+than standard centrifugal pumps.  They have higher operating costs but lower 
+installation costs than standard centrifugal pumps.  They are ideal for sewage 
+and low concentration sludge applications.</TAI></NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="SELF-PRIMING CENTRIFUGAL PUMPS">c.  Self-priming centrifugal pumps have moderate head (up to<MET> 31 m</MET><ENG> 100 feet</ENG>) 
+and moderate capacity (up to<MET> 158 L/second</MET><ENG> 2,500 gpm</ENG>) capabilities and are less 
+efficient than standard centrifugal pumps.  They have higher operating costs 
+but lower installation costs than standard centrifugal pumps.  They are ideal 
+for raw sewage applications where occasional service interruptions are acceptable.</TAI></NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="SCREW PUMPS">d.  Screw pumps have low head (up to<MET> 9 m</MET><ENG> 30 feet</ENG>) and high capacity (up to<MET> 5050 
+L/second</MET><ENG> 80,000 gpm</ENG>) capabilities and are relatively efficient (70 to 75 percent).  
+They are ideal for raw sewage, storm water, and activated sludge lift stations.</TAI></NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="PLUNGER PUMPS">e.  Plunger pumps have high head<MET> 76 to 92 m</MET><ENG> 250 to 300 feet</ENG> and moderate capacity 
+(up to<MET> 35 L/second</MET><ENG> 550 gpm</ENG>) capabilities. They are ideal for sludges of various 
+consistencies.</TAI></NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="PROGRESSIVE CAVITY PUMPS">f.  Progressive cavity pumps have high head (up to<MET> 54 m</MET><ENG> 175 feet</ENG> per stage) 
+and moderate capacity (up to<MET> 35 L/second</MET><ENG> 500 gpm</ENG>) capability.  They may not 
+perform well under abrasive conditions.</TAI></NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="DIAPHRAGM PUMPS">g.  Diaphragm pumps have low head (up to<MET> 8 m</MET><ENG> 25 feet</ENG> static head) and low capacity 
+(up to<MET> 10 L/second</MET><ENG> 150 gpm</ENG>) capabilities.  They are ideal for pumping primary 
+sludges and corrosives, abrasives, and slurries to 75 percent solids.</TAI></NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="RECESSED IMPELLER PUMPS">h.  Recessed impeller pumps have high head (up to<MET> 69 m</MET><ENG> 225 feet</ENG>) and high capacity 
+(up to<MET> 316 L/second</MET><ENG> 5,000 gpm</ENG>) capabilities.  They are ideal for sludges up 
+to 4 percent solids and possibly as high as 5 percent solids.</TAI></NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ROTARY LOBE PUMPS">i.  Rotary lobe pumps have high head (up to<MET> 107 m</MET><ENG> 350 feet</ENG>) and moderate capacity 
+(up to<MET> 95 L/second</MET><ENG> 1500 gpm</ENG>) capabilities.  They are ideal for sludges of various 
+consistencies.</TAI></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN BEARING MANUFACTURERS ASSOCIATION (ABMA)</ORG><BRK/><BRK/><RID>ABMA 9</RID><RTL>(2015) Load Ratings and Fatigue Life for Ball Bearings</RTL><BRK/><BRK/><RID>ABMA 11</RID><RTL>(2014; R 2020) Load Ratings and Fatigue Life for Roller Bearings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B40.100</RID><RTL>(2022) Pressure Gauges and Gauge Attachments</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A153/A153M</RID><RTL>(2023) Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA ICS 1</RID><RTL>(2022) Standard for Industrial Control and Systems: General Requirements</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Equipment Installation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Materials and Equipment</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Framed Instructions</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Field Testing and Adjusting Equipment</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operating and Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect from the weather, excessive humidity and excessive temperature variation; and dirt, dust, or other contaminants 
+all equipment delivered and placed in storage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EXTRA MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>spare parts</SUB> data for each different item of material and equipment specified, after approval of the related 
+submittals, and not later than [_____] months prior to the date of beneficial occupancy.  Include in the data 
+a complete list of parts and supplies, with current unit prices and source of supply </TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>MATERIALS AND EQUIPMENT</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment which are the standard products of a manufacturer regularly engaged in the manufacture 
+of such products and that essentially duplicate items that have been in satisfactory use for at least 2 years 
+prior to bid opening.  Provide equipment supported by a service organization that is, in the opinion of the Contracting 
+Officer, reasonably convenient to the site.  Provide pump casings constructed of cast iron of uniform quality 
+and free from blow holes, porosity, hard spots, shrinkage defects, cracks, and other injurious defects.  Impellers 
+must be [cast iron] [ductile iron] [unless otherwise specified for rotors].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Provide each major item of equipment with the manufacturer's name, address, type or style, model or serial number, 
+and catalog number on a plate secured to the item of equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Guards</TTL><BRK/>
+<BRK/>
+<TXT>Enclose or guard belts, pulleys, chains, gears, projecting setscrews, keys, and other rotating parts so located 
+that any person may come in close proximity thereto.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Special Tools</TTL><BRK/>
+<BRK/>
+<TXT>Provide one set of special tools, calibration devices, and instruments required for operation, calibration, and 
+maintenance of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Motors</TTL><BRK/>
+<BRK/>
+<TXT>Provide motors conforming to <RID>NEMA MG 00001</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motor Controls</TTL><BRK/>
+<BRK/>
+<TXT>Provide controls conforming to <RID>NEMA ICS 1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bolts, Nuts, Anchors, and Washers</TTL><BRK/>
+<BRK/>
+<TXT>Provide steel bolts, nuts, anchors, and washers; galvanized in accordance with <RID>ASTM A153/A153M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Gauges</TTL><BRK/>
+<BRK/>
+<TXT>Provide compound gauges on the suction side of pumps and standard pressure gauges on the discharge side of pumps 
+complying with <RID>ASME B40.100</RID>.  Use gauge ranges as appropriate for the particular installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seal Water Systems</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Alternate seal water systems utilize filtered effluent recirculated back 
+to pump seals as water supply.  Consult water seal manufacturers for details.  
+Delete entire paragraph if seal water not specified for pumps.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Utilize [potable] [_____] water for pumping systems requiring seal water.  Provide a factory assembled package 
+seal water system, consisting of a [<MET>189 L</MET><ENG> 50 gallon</ENG>] [_____] galvanized tank, float valve mounted directly on 
+the tank, and 2 centrifugal pumps of equal capacity, with close coupled motors, that is supplied as a single 
+self-contained unit.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Float Valve</TTL><BRK/>
+<BRK/>
+<TXT>Mount float valve on the tank to maintain a water level below an overflow provided near the top of the tank and 
+to maintain a<MET> 152 mm</MET><ENG> 6 inch</ENG> air gap between the water system and the top of the tank.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Auxiliary Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide auxiliary equipment required to complete the system as indicated and include the necessary piping, valving, 
+pressure gauges, pressure regulators, pressure switches, solenoid valves, strainers, and accessories.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controls</TTL><BRK/>
+<BRK/>
+<TXT>Ensure solenoid valve opens whenever the process pump motor is energized. Ensure pressure switch signals an alarm 
+and stops the process pump whenever the seal pressure is below a set point.  Locate the pressure regulating valve 
+on a bypass line back to the seal water reservoir tank.  Determine the pressure switch and pressure regulating 
+valve set points by the process pump manufacturer.  Also provide a valved bypass around each solenoid valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Characteristics</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert data for each seal water system required.  Repeat paragraph as 
+necessary for seal water systems with different characteristics.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Size the seal water systems for pump number[s] [_____] for [_____]<MET> L/second</MET><ENG> gpm</ENG> at [_____]<MET> kPa</MET><ENG> psi</ENG> and [_____]<MET>
+ W</MET><ENG> horsepower</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><TAI OPT="CENTRIFUGAL SOLIDS HANDLING PUMPS"><SPT><TTL>CENTRIFUGAL SOLIDS HANDLING PUMPS</TTL><BRK/>
+<BRK/>
+<TXT>Provide centrifugal solids handling pumps of the nonclogging centrifugal type designed to pump solids up to<MET> 76 
+mm</MET><ENG> 3 inches</ENG> in diameter and which provide no internal interstices that catch solids and stringy materials to 
+cause clogging.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Pump number[s] [_____] located in [_____] must have the following operating characteristics:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="11">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="285.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="286.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pump Service</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="54.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Design Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent efficiency</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent efficiency</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent efficiency</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Impeller Type</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Operating Speed</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum NPSH Required at Maximum Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Motor Type</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Electrical Characteristics</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] volts ac, [_____] phase, [60] [_____] Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Size</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Within rated load driving pump at specified rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pump Control</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Pump Casing</TTL><BRK/>
+<BRK/>
+<TXT>Construct pump casing with tapped and plugged holes for venting and draining the pump.  Provide casing that is 
+capable of withstanding pressures 50 percent greater than the maximum operating pressure.  The volute must have 
+smooth passages.  Construct casing such that the impeller can be removed without disturbing the suction and discharge 
+connections.  Provide casing with a handhole to permit inspection and cleaning of the pump interior.  Provide 
+lifting eyes to facilitate handling of the pump.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impeller</TTL><BRK/>
+<BRK/>
+<TXT>Design the impeller with smooth passages to prevent clogging and pass stringy or fibrous materials.  Statically, 
+dynamically, and hydraulically balance the impeller within the operating range and to the first critical speed 
+at 150 percent of the maximum operating speed.  Key the impeller securely to the shaft with a locking arrangement 
+whereby the impeller cannot be loosened by torque from either forward or reverse direction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wearing Rings</TTL><BRK/>
+<BRK/>
+<TXT>Provide renewable wearing rings on the impeller and casing and have wearing surfaces normal to the axis of rotation.  
+Construct wearing rings of [steel] [cast iron].  Design wearing rings for ease of maintenance and secure to prevent 
+rotation.  Replaceable steel wear plates fastened to casing may be used in lieu of wearing rings on casing and 
+impeller.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Shaft</TTL><BRK/>
+<BRK/>
+<TXT>Provide stainless or high grade alloy steel pump shaft of adequate size and strength to transmit the full driver 
+horsepower with a liberal safety factor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Shaft Sleeve</TTL><BRK/>
+<BRK/>
+<TXT>Protect pump shaft from wear by a stainless steel, high grade alloy steel, or bronze shaft sleeve.  Seal the 
+joint between the shaft and sleeve to prevent leakage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stuffing Box</TTL><BRK/>
+<BRK/>
+<TXT>Provide stuffing box of the same material as the casing and provide [grease] [or] [water] seal.  Design the stuffing 
+box for a minimum of five rings of packing and with easily removable split type glands.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mechanical Seals</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify double mechanical seals in high pressure applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [single] [double] mechanical seals to seal the pump shaft against leakage.  Hold each seal interface 
+in contact by its own spring system, supplemented by external liquid pressures.  Construct the seal system to 
+be readily removable from the shaft.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Provide ball or roller type pump bearings designed to handle all thrust loads in either direction.  Pumps depending 
+only on hydraulic balance end thrust will not be acceptable.  Provide bearings that have an ABMA L-10 life of 
+50,000 hours minimum, as specified in <RID>ABMA 9</RID> or <RID>ABMA 11</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lubrication</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the inapplicable types of lubrication.  Normally use grease for 
+vertical shaft pumps.  Use either grease or oil for horizontal shaft pumps.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [oil bath] [or] [grease] lubricated bearings.  [Provide an oil reservoir for oil bath lubricated bearings.  
+Provide reservoir with an overflow opening to prevent overfilling and a drain at the lowest point.]  [Provide 
+a grease fitting for grease-lubricated bearings that prevents overlubrication and the building up of pressure 
+injurious to the bearings.  If the grease fitting is not easily accessible, provide grease tubing to a convenient 
+location.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Support</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete inapplicable types of support.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide horizontal centrifugal pumps with a common base plate for the pump and motor.  Provide vertical shaft 
+centrifugal pumps with separate bases for the pump and motor.  Support vertical dry pit centrifugal pumps by 
+a heavy cast iron base with adequate legs to provide maximum rigidity and balance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coupling</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete inapplicable types of couplings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide couplings of the heavy-duty flexible type, keyed or locked to the shaft.  Make disconnecting of the coupling 
+possible without removing the driver half or the pump half of the coupling from the shaft.  Couplings for extended 
+shaft vertical centrifugal pumps may be of the universal type.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="SUBMERSIBLE CENTRIFUGAL PUMPS"><SPT><TTL>SUBMERSIBLE CENTRIFUGAL PUMPS</TTL><BRK/>
+<BRK/>
+<TXT>Provide submersible centrifugal pumps which are centrifugal type pumps designed to pump solids up to<MET> 76 mm</MET><ENG> 3 
+inches</ENG> in diameter and are capable of withstanding submergence as required for the particular installation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Pump number[s] [_____] located in [_____] must have the following operating characteristics:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="11">
+      <COL AUTOWIDTH="0" WIDTH="285.00"/>
+      <COL AUTOWIDTH="0" WIDTH="286.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Pump Service</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="54.00">
+         <CEL>
+<DTA TYPE="STRING">Design Operating Point</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent efficiency</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL>
+<DTA TYPE="STRING">Maximum Operating Point</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent efficiency</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL>
+<DTA TYPE="STRING">Minimum Operating Point</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent efficiency</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Impeller Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Operating Speed</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Depth of Submergence</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Motor Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Electrical Characteristics</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] volts ac, [_____] phase, [60] [_____] Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Size</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Within rated load driving pump at specified rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Pump Control</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Pump Casing</TTL><BRK/>
+<BRK/>
+<TXT>Provide casing capable of withstanding operating pressures 50 percent greater than the maximum operating pressures.  
+Provide volute with smooth passages which provide unobstructed flow through the pump.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mating Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>Machine and fit surfaces where watertight seal is required, including seal between discharge connection elbow 
+and pump, with nitrile rubber O-rings.  Accomplish sealing by metal-to-metal contact between mating surfaces, 
+resulting in proper compression of the O-rings without the requirement of specific torque limits.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coatings</TTL><BRK/>
+<BRK/>
+<TXT>Protect exterior surfaces of the casing in contact with sewage by a sewage resistant coal tar epoxy coating.  
+All exposed nuts and bolts must be stainless steel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impeller</TTL><BRK/>
+<BRK/>
+<TXT>Provide impeller of the [single] [double] shrouded non-clogging design to minimize clogging of solids, fibrous 
+materials, heavy sludge, or other materials found in sewage.  Statically, dynamically, and hydraulically balance 
+the impeller within the operating range and to the first critical speed at 150 percent of the maximum operating 
+speed.  Key the impeller securely to the shaft with a locking arrangement whereby the impeller cannot be loosened 
+by torque from either forward or reverse direction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wearing Rings</TTL><BRK/>
+<BRK/>
+<TXT>Provide renewable type wearing rings, when required, on the impeller and casing with wearing surfaces normal 
+to the axis of rotation.  Use pump manufacurer's standard material for wear rings.  Design wearing rings for 
+ease of maintenance and adequately secure to prevent rotation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Shaft</TTL><BRK/>
+<BRK/>
+<TXT>Provide pump shaft consisting of high grade alloy steel and of adequate size and strength to transmit the full 
+driver horsepower with a liberal safety factor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seals</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not specify ceramic seals where sudden changes in temperature can 
+occur and cause the seal to crack.  Tungsten carbide seals are standard for 
+many manufacturers.  Delete last sentence if conventional seals are acceptable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a tandem mechanical shaft seal system running in an oil bath.  Provide seals consisting of [_____] with 
+each interface held in contact by its own spring system.  [Conventional mechanical seals which require a constant 
+pressure differential to effect sealing will not be allowed.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Provide ball or roller type pump bearings designed to handle all thrust loads in either direction.  Pumps depending 
+only on hydraulic balance end thrust will not be acceptable.  Provide bearings that have an ABMA L-10 life of 
+50,000 hours minimum, as specified in <RID>ABMA 9</RID> or <RID>ABMA 11</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motor</TTL><BRK/>
+<BRK/>
+<TXT>Provide pump motor that has Class F insulation, NEMA B design, in accordance with <RID>NEMA MG 00001</RID>, and is watertight.  
+Provide motor that is either oil filled, air filled with a water jacket, or air filled with cooling fins which 
+encircles the stator housing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Cable</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Last sentence may eliminate several manufacturers.  However, this requirement 
+may be needed for protection of motor and to reduce maintenance costs.  Evaluate 
+for each specific pump application.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide power cable complying with <RID>NFPA 70</RID>, Type SO, and of standard construction for submersible pump applications.  
+The power cable must enter the pump through a heavy duty entry assembly provided with an internal grommet assembly 
+to prevent leakage.  Separate the cable entry junction chamber and motor by a stator lead sealing gland or terminal 
+board which isolates the motor interior from foreign material gaining access through the pump top.  [Epoxies, 
+silicones, or other secondary sealing systems are not acceptable.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation Systems</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In following three paragraphs, delete inapplicable installation systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Rail Mounted Systems</TTL><BRK/>
+<BRK/>
+<TXT>Provide rail mounted installation systems consisting of guide rails, a sliding bracket, and a discharge connection 
+elbow.  Provide guide rails of the size and type standard with the manufacturer that do not support any portion 
+of the weight of the pump.  The sliding guide bracket must be an integral part of the pump unit.  Permanently 
+install the discharge connection elbow in the wet well along with the discharge piping.  Connect the pump automatically 
+to the discharge connection elbow when lowered into place and easily remove for inspection and service without 
+entering the pump well.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bolt Down Systems</TTL><BRK/>
+<BRK/>
+<TXT>The pump mount system must include a base designed to support the weight of the pump.  The base must be capable 
+of withstanding all stresses imposed upon it by vibration, shock, and direct and eccentric loads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lifting Chain</TTL><BRK/>
+<BRK/>
+<TXT>Provide lifting chain to raise and lower the pump through the limits indicated.  Provide galvanized chain capable 
+of supporting the pump.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></TAI><TAI OPT="SELF-PRIMING CENTRIFUGAL PUMPS"><SPT><TTL>SELF-PRIMING CENTRIFUGAL PUMPS</TTL><BRK/>
+<BRK/>
+<TXT>Design self-priming centrifugal pumps to pump solids up to<MET> 76 mm</MET><ENG> 3 inches</ENG> in diameter and of the centrifugal 
+type capable of repeated reprime when handling trash-laden sewage.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Pump number[s] [_____] located in [_____] must have the following operating characteristics:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="13">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="228.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="228.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pump Service</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Design Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent efficiency</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="51.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent efficiency</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="51.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent efficiency</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Priming Lift</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Reprime Lift</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Impeller Type</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Rotation Direction</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Clockwise] [Counterclockwise]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Operating Speed</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Motor Type</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Electrical Characteristics</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] volts ac, [_____] phase, [60] [_____] Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Size</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Within rated load driving pump at specified rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pump Control</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Pump Casing</TTL><BRK/>
+<BRK/>
+<TXT>Provide casing that is capable of withstanding pressures 50 percent greater than the maximum operating pressures 
+and that contains no openings of smaller diameter than the specified sphere size.  Internal devices that will 
+inhibit maintenance or interfere with priming and performance are not permitted.  Design the pump to retain sufficient 
+liquid in the casing to ensure unattended operation.  Provide casing such that the impeller can be removed without 
+disturbing the suction and discharge connections.  Provide front access to the pump interior to permit inspection 
+and cleaning of the pump interior without removing suction or discharge piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impeller</TTL><BRK/>
+<BRK/>
+<TXT>Provide two-vane, semi-open, non-clog type impeller with pump-out vanes cast integrally on its backside.  Statically, 
+dynamically, and hydraulically balance the impeller within the operating range and to the first critical speed 
+at 150 percent of the maximum operating speed.  Key the impeller securely to the shaft with a locking arrangement 
+whereby the impeller cannot be loosened by torque from either forward or reverse direction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wear Plate</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Steel is standard with most manufacturers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a replaceable wear plate constructed of [cast iron] [alloy steel].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Shaft</TTL><BRK/>
+<BRK/>
+<TXT>Provide pump shaft consisting of high grade alloy steel or stainless steel and of adequate size and strength 
+to transmit the full driver<MET> wattage</MET><ENG> horsepower</ENG> with a liberal safety factor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Shaft Sleeve</TTL><BRK/>
+<BRK/>
+<TXT>Protect the pump shaft from wear by a high grade alloy steel or stainless steel shaft sleeve.  Place a seal, 
+if needed, between the shaft and sleeve to prevent leakage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seals</TTL><BRK/>
+<BRK/>
+<TXT>Seal the pump shaft against leakage by [oil lubricated] [water lubricated] mechanical seal.  Provide stationary 
+sealing member consisting of [tungsten carbide] [silicon carbide] and the rotating member consisting of [tungsten 
+carbide] [silicon carbide].  Ensure the seal is such that the faces will not lose alignment during shock loads 
+that cause deflection, vibration, and axial or radial movement of the pump shaft.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Provide ball or roller type pump bearings designed to handle all thrust loads in either direction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lubrication</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the inapplicable types of lubrication.  Normally use grease for 
+vertical shaft pumps.  Use either grease or oil for horizontal shaft pumps.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [oil bath] [or] [grease] lubricated bearings.  [Provide an oil reservoir for oil bath lubricated bearings 
+with an overflow opening to prevent overfilling and a drain at the lowest point.]  [Provide a grease fitting 
+to add grease for grease-lubricated bearings.  Provide grease fitting of the type that prevents overlubrication 
+and the building up of pressure injurious to the bearings.  If the grease fitting is not easily accessible, provide 
+grease tubing to a convenient location.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Suction Check Valve</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the pump is in an application where a high degree of reliability is 
+desired, retain the last sentence.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The pump must contain a suction check valve to maintain prime.  Provide suction check valve which is removable 
+without disturbing the suction piping.  [The pump must be capable of prime or reprime in the event of check valve 
+failure.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Support</TTL><BRK/>
+<BRK/>
+<TXT>Provide a common fabricated steel base plate for the pump and motor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coupling</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete inapplicable type of couplings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Transmit power from the motor to the pump by a [flexible coupling] [V-belt drive assembly].  [Flexible couplings 
+must be of the heavy duty type, keyed or locked to the shaft.]  Provide V-belt drive assembly that has a minimum 
+of two belts.  Select the drive assembly on the basis of the power to be transmitted from the motor to the pump.  
+Enclose the drive on all sides by a solid metal guard.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="SCREW PUMPS"><SPT><TTL>SCREW PUMPS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit paragraph for enclosed or tube mounted screw pumps.  Tube mounted 
+screw pumps do not require concrete trough.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure screw pumps have a spiral flight screw operating in a concrete trough with the screw rotation elevating 
+the liquid up the inclined trough.  Provide pump consisting of a lower bearing assembly, a spiral screw with 
+deflectors, an upper bearing assembly, a drive assembly, and an automatic grease lubricated system for the lower 
+bearing.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Pump number[s] [_____] located in [_____] must have the following characteristics:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="13">
+      <COL AUTOWIDTH="0" WIDTH="228.00"/>
+      <COL AUTOWIDTH="0" WIDTH="228.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Pump Service</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">Total Lift</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="51.00">
+         <CEL>
+<DTA TYPE="STRING">Angle of Inclination</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[22] [30] [38] [_____] degrees from horizontal</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="51.00">
+         <CEL>
+<DTA TYPE="STRING">Spiral Screw Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet [_____] inches</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Flight Thickness</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Quantity of Flights</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[1] [2] [3]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Design Capacity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Tube Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet [_____] inches</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Screw Speed</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Motor Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Electrical Characteristics</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] volts ac, [_____] phase, [60] [_____] Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Size</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Within rated load driving pump at specified rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Pump Control</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Lower Bearing Assembly</TTL><BRK/>
+<BRK/>
+<TXT>The lower bearing assembly must be sleeve or roller bearing type design.  If sleeve bearing is utilized, either 
+rotate the bronze phosphor sleeve around stationary shaft or attach shaft to bronze bushing which rotates inside 
+stationary cartridge.  Ensure sleeve bearing is hermetically sealed, automatic grease lubricated.  Provide oil 
+lubricated roller bearings designed to guard against oil leakage.  Arrange labyrinth to protect fire seal from 
+damage.  Provide bearings that have L-10 life of 100,000 hours.  The bearing housing must permit precise adjustment 
+in the field.  Provide a spare lower bearing assembly.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Seals</TTL><BRK/>
+<BRK/>
+<TXT>Prevent contaminants from entering the bearing by two spring-loaded lipseals, one to exclude wastewater and contaminants 
+and one to retain the grease in the bearing, or by a fixed journal with hollow axis to allow grease to the top 
+end of the bearing where it flows the length of the bearing sealing out contaminants.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearing Shield</TTL><BRK/>
+<BRK/>
+<TXT>Provide a heavy-duty bearing shield to protect the bearing assembly from heavy debris.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Spiral Screw</TTL><BRK/>
+<BRK/>
+<TXT>Provide spiral screw consisting of a steel torque tube with steel flights welded to the exterior of the tube, 
+a drive shaft, and lower stub shaft.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Torque Tube</TTL><BRK/>
+<BRK/>
+<TXT>Seal torque tube at both ends with welded steel plates.  Take care to insure that the end plates are parallel 
+after welding.  Weld flights continuously to the tube on both sides.  Bolt the drive shaft and lower stub shaft 
+to the torque tube ends with a registered fit to ensure axial alignment of the tube and shafting.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shafts</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the upper and lower shafts and the outside diameter of the flights of the completed spiral screw have 
+the same axis.  Do not exceed a maximum deflection at midspan of<MET> 4 mm</MET><ENG> 5/32 inch</ENG> when calculated as a uniformly 
+loaded horizontal simple beam supported between the upper and lower bearings.  Statically balance the completed 
+spiral screw.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Flow Defector Plates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Deflector plates may be extended to completely enclose pump or pump may 
+be tube mounted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide flow deflector plates for installation in the pump trough along the uptake side of the spiral screw for 
+the full length of the spiral.  Ensure deflector plates are concave to effect an extension of the circular arch 
+of the trough to at least the height of the top surface of the torque tube.  Fabricate deflector plates from 
+no less than<MET> 3 mm</MET><ENG> 1/8 inch</ENG> thick steel plate complete with stiffeners and anchors where required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Upper Bearing Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Provide upper bearing assembly consisting of an upper bearing housing, bearing, seals, mounting, and cover.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Housing</TTL><BRK/>
+<BRK/>
+<TXT>Provide cast iron upper bearing housing with grease fittings on the exterior of the housing for periodic manual 
+lubrication.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearing</TTL><BRK/>
+<BRK/>
+<TXT>Provide upper bearing which hasan ABMA L-10 life of 50,000 hours minimum, as specified in <RID>ABMA 9</RID> or <RID>ABMA 11</RID>, 
+and is one of the following:  a dual bearing consisting of a spherical roller thrust type bearing for pump thrust 
+loads and a spherical roller bearing for radial loads; or a single combination radial and thrust, self-aligning, 
+spherical roller bearing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seals</TTL><BRK/>
+<BRK/>
+<TXT>Provide two seals for protection of the upper bearings.  Attach one seal to the extended shaft of the spiral 
+screw to prevent contamination from entering the bearing top side.  Locate the other seal on the bottom side 
+to retain the grease within the bearing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mounting Plate</TTL><BRK/>
+<BRK/>
+<TXT>Provide a fabricated steel mounting plate and anchor bolts for mounting the upper bearing assembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cover</TTL><BRK/>
+<BRK/>
+<TXT>Provide a fabricated steel cover to close the opening in the wall for the spiral shaft.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Drive Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Provide drive assembly consisting of a motor, gear reducer, and backstop.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Gear Reducer</TTL><BRK/>
+<BRK/>
+<TXT>Provide gear reducer that has the torque rating for the spiral speed based upon continuous operation with a uniform 
+load.  Ensure the gear reducer has an outer cast iron housing, totally enclosed and rigidly constructed to maintain 
+precise alignment of the gears and bearings.  Design gear reducer with a service factor of no less than [_____] 
+based on the torque requirements of the screw or [_____] based on the motor horsepower, whichever is greater.  
+Splash lubricate gears and bearings or, if necessary, pressure lubricate to ensure oil is provided to all gears 
+and bearings.  Positively secure shaft-mounted gear reducers to the screw shaft and anchor a torque arm to the 
+floor.  Provide double lip oil seals on the shaft.  Provide non-shaft-mounted gear reducers with an adjustable 
+base and connect to the screw shaft by a flexible coupling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Backstop</TTL><BRK/>
+<BRK/>
+<TXT>Provide a backstop to prevent the reverse rotation of the spiral screw and drive assembly when the power to the 
+motor is disconnected.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive</TTL><BRK/>
+<BRK/>
+<TXT>Connect the gear reducer to the drive motor by means of belts and sheaves designed with the same service factor 
+as the gear reducer.  Provide a safety cover for the belt drive.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Lubrication System</TTL><BRK/>
+<BRK/>
+<TXT>Provide an automatic grease lubricator with grease pump and reservoir to continuously grease the lower bearing 
+when the pump is operating.  Provide grease pump with a [_____]<MET> W</MET><ENG> hp</ENG>, [_____] volts ac, [_____] phase, [60] [_____] 
+Hz motor.  Interlock the grease pump with the screw pump motor to prevent the screw pump from operating if the 
+lubricator malfunctions.  Provide a visual or automatic indicator to confirm that the lower bearing is receiving 
+grease from the lubrication system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Radius Screed</TTL><BRK/>
+<BRK/>
+<TXT>Provide a radius screed and any additional sheaves and belts as necessary to adjust screw speed to enable the 
+installation of the grout in the trough with the screw installed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="PLUNGER PUMPS"><SPT><TTL>PLUNGER PUMPS</TTL><BRK/>
+<BRK/>
+<TXT>Provide positive displacement type plunger pumps designed to pump sewage sludges with a minimum amount of clogging.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Pump number[s] [_____] located in [_____] must have the following operating characteristics:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="285.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="286.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pump Service</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Design Capacity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="63.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Design Head</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="63.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction Lift</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Stroke Speed</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] strokes per minute</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pump Type</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[simplex] [duplex] [triplex] [quadraplex]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Motor Type</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Electrical Characteristics</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] volts ac, [_____] phase, [60] [_____] Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Size</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Within rated load driving pump at specified rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pump Control</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Pump Base</TTL><BRK/>
+<BRK/>
+<TXT>Provide a common, welded steel, drip-rim base with a<MET> 25 mm</MET><ENG> 1-inch</ENG> threaded drain connection for the pump and 
+motor.  Provide base consisting of heavy section, fully braced to withstand all shock loads and to resist buckling 
+when properly anchored.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Body</TTL><BRK/>
+<BRK/>
+<TXT>Provide cast iron pump body.  The pump must be of heavy construction, designed to handle its maximum rated capacity 
+and head on a continuous duty basis and hydrostatically test at 1.5 times the maximum rated head of the pump.  
+The pump body must be of sectional construction so that the stuffing box, valve bodies, and air chamber adapters 
+are independently removable.  Ensure construction permits removal of the stuffing box, plunger, and connecting 
+rod without disturbing the body, valve chambers, manifolds, piping, or shaft.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide valve chambers on both the inlet and discharge connections of each cylinder.  Construct valve chambers 
+with contoured interiors to minimize clogging.  Provide ball type valves, at least<MET> 130 mm</MET><ENG> 5-1/8 inches</ENG> in diameter, 
+and constructed of neoprene.  Provide valve seats consisting of independent, fully machined plates which may 
+be replaced without disturbing valve bodies or piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connecting Rod, Eccentric, Eccentric Bearings, and Shaft</TTL><BRK/>
+<BRK/>
+<TXT>Provide connecting rod and eccentric strap assembly that is cast as one piece and has a quality hot-poured Babbitt 
+lining.  Design the eccentric, bearings, and shaft to handle the stresses and deflections imposed upon it by 
+the specified service.  Offset the shaft from the vertical centerline of the cylinder by an amount appropriate 
+to the cylinder diameter to reduce lateral thrust on the cylinder during the discharge stroke.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plungers</TTL><BRK/>
+<BRK/>
+<TXT>Provide ductile iron plungers with a plugged drain hole in the bottom which are accessible through the top of 
+the plunger.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cylinders</TTL><BRK/>
+<BRK/>
+<TXT>Machine cylinders to a smooth bore to provide a uniform surface throughout the full travel of the plunger.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stuffing Box</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the cylinder and plunger has an effective packing arrangement to provide lubrication for the plunger and 
+maintain the most effective vacuum. Provide stuffing box heavy cast construction with a circular drain lip and<MET>
+ 25 mm</MET><ENG> 1 inch</ENG> threaded drain connection.  Provide stuffing box with a minimum of four rings of [_____] packing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air Chambers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Generally provide air chambers on suction side of all pumps and always 
+on discharge side of all pumps.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide air chambers on [the discharge side] [both suction and discharge sides] of the pump with a minimum capacity 
+of<MET> 0.0295 cubic meters</MET><ENG> 1800 cubic inches</ENG> and a minimum<MET> 76 mm</MET><ENG> 3 inch</ENG> diameter opening.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sampling Valve</TTL><BRK/>
+<BRK/>
+<TXT>Provide a<MET> 50 mm</MET><ENG> 2 inch</ENG> sampling valve on the discharge side of the pump.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Relief Valve</TTL><BRK/>
+<BRK/>
+<TXT>Provide a pressure relief valve with a bypass line from the main suction and discharge manifolds.  Ensure valve 
+is factory set to prevent motor overload or pump damage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lubrication</TTL><BRK/>
+<BRK/>
+<TXT>Provide each pump eccentric with a sight-feed oil lubricator.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete inapplicable drive systems.  The gear reducer is recommended for<MET>
+ 11.2 kW</MET><ENG> 15 hp</ENG> and larger applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Chain Drive</TTL><BRK/>
+<BRK/>
+<TXT>Provide capacity variations by stroke adjustment accomplished at each eccentric assembly, through the use of 
+eccentric flanges coupled to the eccentric body.  Obtain overall drive reduction through the combination of a 
+gearhead motor and silent roller chain.  Ensure motor gearhead is totally enclosed and running in oil.  Provide 
+chain capacity that is at least 150 percent of the chain manufacturers published horsepower rating. Enclose the 
+entire chain drive assembly completely in a sealed lip, dust resistant steel guard.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>V-Belt and Integral Gear Drive</TTL><BRK/>
+<BRK/>
+<TXT>Provide capacity variations by stroke adjustment accomplished at each eccentric assembly, through the use of 
+eccentric flanges coupled to the eccentric body.  Obtain overall drive reduction through a combination of gears 
+and V-belts.  Run gears in an oil bath contained in an oil-tight cast iron or aluminum enclosure.  Select the 
+gear reduction design, gear materials and face widths, shafting, and bearings for the specified operating conditions.  
+Cover the entire V-Belt drive assembly by a rigid safety guard.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gear Reducer Drive</TTL><BRK/>
+<BRK/>
+<TXT>Provide capacity variations by pump speed change only.  Connect the low speed shaft of the reducer directly to 
+the main shaft of the pump through a flexible coupling with shear pin protection.  Design the shear pin overload 
+protection for release at 150 percent to 175 percent of normal torque.  Connect the high speed shaft of the reducer 
+to the motor by a heavy duty flexible coupling.  Enclose the entire gear reduction unit in a dustproof and oil-tight 
+housing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="PROGRESSIVE CAVITY PUMPS"><SPT><TTL>PROGRESSIVE CAVITY PUMPS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For sludges of solids concentration exceeding 18 percent, installation 
+of bridge breaker on the inlet port should be investigated.  Designs vary and 
+manufacturer's specifications should be consulted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide progressive cavity pumps consisting of a single helical rotor rotating in a double helical stator.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Pump number[s] [_____] located in [_____] must have the following operating characteristics:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="9">
+      <COL AUTOWIDTH="0" WIDTH="285.00"/>
+      <COL AUTOWIDTH="0" WIDTH="286.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Pump Service</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Design Capacity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Operating Head</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Operating Speed</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">[Single] [Double] stage</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Motor Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Electrical Characteristics</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] volts ac, [_____] phase, [60] [_____] Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Size</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Within rated load driving pump at specified rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">Pump Control</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Casing</TTL><BRK/>
+<BRK/>
+<TXT>[Cradle mount the pump body such that the suction chamber can be rotated to allow the suction port to accommodate 
+any piping configuration.]  Incorporate two inspection ports 180 degrees apart in the suction housing to provide 
+access to internal parts.  Provide a drain plug in the casing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rotor</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Tool steel and stainless steel are common rotor materials.  Other materials 
+are also available.  Chrome plating is standard for most manufacturers but may 
+be deleted, depending upon the application.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The pump rotor must be a helix constructed of machined and polished [high quality tool steel] [stainless steel] 
+[and must be covered with a layer of hard chrome plate].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stator</TTL><BRK/>
+<BRK/>
+<TXT>The rotor must revolve in a helix elastomeric stator consisting of Buna-N chemically bonded to a steel tube.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive Shaft and Connecting Rod</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Universal joint design is critical since this is a common problem area 
+for this type pump.  The pin or cardan type joints are inferior to the gear 
+type but may be acceptable for some applications.  Deleting the pin or cardan 
+type joints will eliminate many manufacturers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide rotor driven by a connecting rod between the rotor and drive shaft, connected at each end with a crowned 
+gear [or pin or cardan] type universal joint.  Design the universal joints to transmit the required thrust and 
+torque.  The connecting rod and universal joint in combination must impart no thrust on the seal.  Provide universal 
+joints that are [grease] [_____] lubricated and totally sealed and shielded.  Ensure seal prevents liquid from 
+contaminating the joints, and the shields prevent foreign objects from damaging the seal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flexible Drive Shaft</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The spring steel flexible one-piece drive shaft is proprietary and should 
+not be specified alone.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide rotor which is driven by a one-piece, flexible, high strength spring steel drive shaft with a corrosion 
+and abrasion-resistant thermoplastic coating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seals</TTL><BRK/>
+<BRK/>
+<TXT>Provide pump seals consisting of a stuffing box with a split packing gland and lantern ring or a mechanical seal.  
+Provide fittings for [grease] [water] lubrication.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Design bearings for an ABMA L-10 life of at least 50,000 hours minimum, as specified in <RID>ABMA 9</RID> or <RID>ABMA 11</RID>, and 
+grease lubricate.  Provide lubrication fittings in the bearing housing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="DIAPHRAGM PUMPS"><SPT><TTL>DIAPHRAGM PUMPS</TTL><BRK/>
+<BRK/>
+<TXT>Provide diaphragm pumps of the self-priming, positive displacement type designed to pump sludge of various concentrations 
+and levels of abrasiveness.  Design pump such that operating the pump without liquid in the pump casing will 
+not damage any portion of the pump.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Pump number[s] [_____] located in [_____] must have the following operating characteristics:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="11">
+      <COL AUTOWIDTH="0" WIDTH="285.00"/>
+      <COL AUTOWIDTH="0" WIDTH="286.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Pump Service</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="56.25">
+         <CEL>
+<DTA TYPE="STRING">Operator</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[mechanical] [air]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL>
+<DTA TYPE="STRING">Design Head</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL>
+<DTA TYPE="STRING">Peak Capacity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Total Dynamic Head</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Suction and Discharge Check Valve Size</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inches</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Pump Speed</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] strokes per minute</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Motor Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL>
+<DTA TYPE="STRING">Electrical Characteristics</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] volts ac, [_____] phase, [60] [_____] Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Size</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Within rated load driving pump at specified rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.75">
+         <CEL>
+<DTA TYPE="STRING">Pump Control</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Casing</TTL><BRK/>
+<BRK/>
+<TXT>Line all interior wetted parts with [<MET>6.4 mm</MET><ENG> 1/4 inch</ENG> thick chlorosulfonated polyethylene].  Design pump body 
+to permit access to the casing interior without disassembling the suction and discharge piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Suction and Discharge Check Valves</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify the appropriate type of valve for the material to be pumped.  
+If large, pipe-size solids are to be pumped, specify the flap check valve.  
+If maintenance will be infrequent, specify the in-line ball check valve.  For 
+other applications specify the quick-opening ball check valve.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [quick opening ball check type,] [in-line ball check type,] [or] [in-line flap check type] suction and 
+discharge check valves. [Provide quick-opening ball check valves that have replaceable [stainless steel,] [bronze,] 
+[or] [cast iron] seats and an easily removable cover plate to permit inspection and cleaning of the valve interior 
+without disassembling the adjacent piping.]  [Provide in-line ball check valves that have a streamlined internal 
+design, eliminating projections on which material can collect.] [Provide in-line flap check valves that have 
+an elastomeric seal on the disc to insure sealing and a removable cover to permit inspection and cleaning of 
+the valve interior without disassembling the adjacent piping.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pulsation Dampers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify inlet pulsation dampers for pumps with high suction head and 
+discharge pulsation dampers for pumps with high discharge head.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an air chamber type pulsation damper on the pump [inlet] [and] [discharge].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air-Operated Actuators</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete inapplicable drive type, mechanical or air-operated.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a complete air operated actuator with all accessories required for proper operation, including the following:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Valve</TTL><BRK/>
+<BRK/>
+<TXT>A three-way solenoid valve on the air supply line.  Operate the valve on a signal from the flow control timer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Timer</TTL><BRK/>
+<BRK/>
+<TXT>An adjustable solid state flow control timer to control pump stroke rate and length.  Ensure stroke rate is adjustable 
+from 0 to [40] [_____] strokes per minute.  Ensure stroke length is adjustable from [0.75] [_____] to [1.25] 
+[_____] seconds.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Muffler</TTL><BRK/>
+<BRK/>
+<TXT>An air exhaust muffler to ensure quiet operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Regulator</TTL><BRK/>
+<BRK/>
+<TXT>An air pressure regulator to maintain a constant air supply pressure to the pumping system.  Ensure the air pressure 
+regulator is field adjustable from<MET> [_____] to [_____] kPa</MET><ENG> [_____] to [_____] psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Strainer</TTL><BRK/>
+<BRK/>
+<TXT>Provide an air supply strainer to remove particles larger than [_____] microns from the air supply with a removable 
+cover to permit cleaning without dismantling adjacent piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Assist</TTL><BRK/>
+<BRK/>
+<TXT>Spring assist or air cylinder assist as required for adequate suction lift.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Mechanical Actuators</TTL><BRK/>
+<BRK/>
+<TXT>Provide mechanical actuator consisting of an electric motor and [gear reducer] [belt drive] connected to the 
+diaphragm by a connecting rod and eccentric.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="RECESSED IMPELLER PUMPS"><SPT><TTL>RECESSED IMPELLER PUMPS</TTL><BRK/>
+<BRK/>
+<TXT>Provide recessed impeller pumps of the vortex type designed to handle fluids containing solids, air, and stringy 
+material normally found in sewage.  Design pumps to pump solids up to<MET> 76 mm</MET><ENG> 3 inches</ENG> in diameter.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Pump number[s] [_____] located in [_____] must have the following operating characteristics:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="13">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="285.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="286.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pump Service</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Design Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow at [_____]<MET> mm</MET><ENG> feet</ENG> head</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="51.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow at [_____]<MET> mm</MET><ENG> feet</ENG> head</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="51.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> L/second</MET><ENG> gpm</ENG> flow at [_____]<MET> mm</MET><ENG> feet</ENG> head</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge Diameter</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction Diameter</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Operating Speed</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum NPSH Required at Maximum Operating Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Seal Type</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[packing] [mechanical]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Motor Type</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Electrical Characteristics</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] volts ac, [_____] phase, [60] [_____] Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Size</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Within rated load driving pump at specified rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pump Control</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Pump Casing</TTL><BRK/>
+<BRK/>
+<TXT>Construct pump casing with tapped and plugged holes for priming, venting, and drainage of the pump.  Provide 
+casing capable of withstanding pressures 50 percent greater than the maximum operating pressure.  Ensure all 
+internal casing clearances are equal to the discharge nozzle diameter so that all material that can pass through 
+the discharge nozzle can pass through the casing.  Provide flanged casing connections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impeller</TTL><BRK/>
+<BRK/>
+<TXT>The impeller must be of the recessed design.  Key the impeller securely to the shaft with a locking arrangement 
+whereby the impeller cannot be loosened from either forward or reverse direction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Shaft</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify manufacturer's standard pump shaft material.  High grade alloy 
+steel is standard with most manufacturers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [high grade alloy steel] [or] [stainless steel] pump shaft that is sized to provide a minimum amount 
+of deflection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sleeve</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify manufacturer's standard pump shaft sleeve material.  Stainless 
+steel is standard with most manufacturers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Protect the pump shaft throughout the packing area by a removable [stainless steel] [or] [bronze] sleeve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seals</TTL><BRK/>
+<BRK/>
+<TXT>Provide a stuffing box, designed for the interchangeable use of packing or mechanical seals, and suitable for 
+use of grease, oil, or water as the sealing liquid.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Packing</TTL><BRK/>
+<BRK/>
+<TXT>Design the stuffing box to accommodate a minimum of [_____] rings of [graphite] [oil] impregnated [nonasbestos] 
+[metallic] packing with lantern ring and packing gland.  Ensure packing is readily removable from the shaft.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mechanical Seals</TTL><BRK/>
+<BRK/>
+<TXT>Provide mechanical seals concicting of the [single] [double] type of [carbon-ceramic] [tungsten carbide] construction.  
+Hold each seal interface in place by its own [stainless steel] spring system.  Construct the seal system to be 
+readily removable from the shaft.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Provide antifriction ball or roller type pump bearings designed to carry all radial or thrust loads.  Provide 
+bearing that are [grease] [oil] lubricated and contained in dust- and moisture-proof housings.  [Provide an oil 
+reservoir with overflow and drain openings.]  [Provide a grease fitting of the type that prevents overlubrication. 
+If the grease fitting is not readily accessible, provide an extension tube.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="ROTARY LOBE PUMPS"><SPT><TTL>ROTARY LOBE PUMPS</TTL><BRK/>
+<BRK/>
+<TXT>Provide positive displacement type rotary lobe pumps consisting of two tri-lobe rotors which draw product into 
+pockets formed between the rotors and rotor case and push pumped material 180 degrees around the interior of 
+the contoured rotor case and out through the discharge port.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Pump number[s] located in [_____] must have the following characteristics:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL AUTOWIDTH="0" WIDTH="285.00"/>
+      <COL AUTOWIDTH="0" WIDTH="286.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Pump Service</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL>
+<DTA TYPE="STRING">Design Capacity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>[_____] to [_____] L/second</MET><ENG> [_____] to [_____] gpm</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="66.00">
+         <CEL>
+<DTA TYPE="STRING">Operating Head</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG> maximum to [_____]<MET> mm</MET><ENG> feet</ENG> minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="66.00">
+         <CEL>
+<DTA TYPE="STRING">Operating Speed</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Discharge Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Suction Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Motor Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="41.25">
+         <CEL>
+<DTA TYPE="STRING">Electrical Characteristics</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] volts ac, [_____] phase, [60] [_____] Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Size</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Within rated load driving pump at specified rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Pump Control</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Casing</TTL><BRK/>
+<BRK/>
+<TXT>Construct rotor casing of [ductile iron] [cast iron].  Construct the gear casing of cast iron.  Use a removable 
+end cover to allow access to tri-rotor elements without need to disturb packing glands, bearings, suction, or 
+discharge connections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rotors</TTL><BRK/>
+<BRK/>
+<TXT>Provide pump rotors that are tri-lobe form [profile machined in cast iron] [high quality tool steel encapsulated 
+in urethane] [stainless steel].  Provide a removable and replaceable wear plate between the rotors and rotor 
+case to protect the rotor case from wear.  Locate rotors on shafts by positive locking assembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shafts and Sleeves</TTL><BRK/>
+<BRK/>
+<TXT>Provide shafts consisting of [high grade alloy steel] [_____] fitted with replaceable stainless shaft sleeves 
+where passing through gland area.  Time shafts in their rotation by zero backlash timing gears keyed to shafts 
+and running in a separate oil chamber gear case.  Ensure seals prevent ingress of pumped material into gear case.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Packing Glands</TTL><BRK/>
+<BRK/>
+<TXT>Provide adjustable packing gland type seals.  Provide stuffing box glands with split lantern rings for through 
+water flush.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify L-10 life expectancy based on check with manufacturers for actual 
+pump models under consideration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide pump with heavy duty antifriction roller or ball type bearings for shaft support, with a ABMA L-10 life 
+of [40,000] [100,000] hours at maximum operating conditions.  Ensure oil seals prevent ingress of pumpage into 
+gear case.  Provide a slinger for each shaft.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><SPT><TTL>ELECTRICAL WORK</TTL><BRK/>
+<BRK/>
+<TXT>Provide electrical motor driven equipment specified complete with motors, motor starters, controls and wiring 
+in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Specify or indicate electrical characteristics.  
+Provide motor starters complete with thermal overload protection and other appurtenances necessary for the motor 
+control specified.  Provide manual or automatic control and protective or signal devices required for the operation 
+specified, and any control wiring required for controls and devices but are not shown.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with all details of the work, verify all dimensions in the field, and advise the Contracting 
+Officer of any discrepancy before performing the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>EQUIPMENT INSTALLATION</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit Drawings containing complete wiring and schematic diagrams and any other details required to demonstrate 
+that the system has been coordinated and will properly function as a unit.  Show on the Drawings proposed layout 
+and anchorage of equipment and appurtenances, and equipment relationship to other parts of the work including 
+clearances for maintenance and operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Installation</TTL><BRK/>
+<BRK/>
+<TXT>Install pumping equipment and appurtenances in the position indicated and in accordance with the manufacturer's 
+written instructions.  Provide all appurtenances required for a complete and operating pumping system, including 
+such items as piping, conduit, valves, wall sleeves, wall pipes, concrete foundations, anchors, grouting, pumps, 
+drivers, power supply, seal water units, and controls.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Concrete</TTL><BRK/>
+<BRK/>
+<TXT>Provide concrete conforming to Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="SCREW PUMPS"><SPT><TTL>Grouting Screw Pump Flow Channel</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if no screw pumps.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>After installation and adjustment of the screw pump, place grout in the flow channel to the configuration and 
+dimensions indicated and as required to insure a proper fit between the screw pump and flow channel.  Attach 
+a radius screed provided by the pump manufacturer temporarily to provide proper clearance between the screw and 
+the flow channel.  Grout the flow channel in strict accordance with the manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>Pumps and motors must be thoroughly cleaned, primed, and given two finish coats of paint at the factory in accordance 
+with the recommendations of the manufacturer.  Field painting required for ferrous surfaces not finished at the 
+factory is specified in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FRAMED INSTRUCTIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Post, where directed, framed instructions containing wiring and control diagrams under glass or in laminated 
+plastic.  Frame condensed operating instructions, prepared in typed form, as specified above and posted beside 
+the diagrams.  Post the framed instructions before acceptance testing of the system.  Submit pump characteristic 
+curves showing capacity in gpm, net positive suction head (NPSH), head, efficiency, and pumping horsepower from 
+0 gpm to 110 percent (100 percent for positive displacement pumps) of design capacity.  Submit a complete list 
+of equipment and material, including manufacturer's descriptive data and technical literature, performance charts 
+and curves, catalog cuts, and installation instructions.  Diagrams, instructions, and other sheets proposed for 
+posting.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FIELD TESTING AND ADJUSTING EQUIPMENT</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL><TST>Operational Test</TST></TTL><BRK/>
+<BRK/>
+<TXT>Prior to acceptance, perform an operational test of all pumps, drivers, and control systems to determine if the 
+installed equipment meets the purpose and intent of the specifications.  Demonstrate that the equipment is not 
+electrically, mechanically, structurally, or otherwise defective; is in safe and satisfactory operating condition; 
+and conforms with the specified operating characteristics.  Prior to applying electrical power to any motor driven 
+equipment, rotate the drive train by hand to demonstrate free operation of all mechanical parts.  Include checks 
+for excessive vibration, leaks in all piping and seals, correct operation of control systems and equipment, proper 
+alignment, excessive noise levels, and power consumption.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Retesting</TTL><BRK/>
+<BRK/>
+<TXT>If any deficiencies are revealed during any test, correct such deficiencies and reconduct the tests.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Test Reports</TTL><BRK/>
+<BRK/>
+<TXT>Submit performance test reports in booklet form showing all field tests performed to adjust each component and 
+all field tests performed to prove compliance with the specified performance criteria, upon completion and testing 
+of the installed system.  In each test report indicate the final position of controls.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MANUFACTURER'S SERVICES</TTL><BRK/>
+<BRK/>
+<TXT>Provide the services of a manufacturer's representative who is experienced in the installation, adjustment, and 
+operation of the equipment specified.  Supervise the installation, adjustment, and testing of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD TRAINING</TTL><BRK/>
+<BRK/>
+<TXT>Provide a field training course for designated operating and maintenance staff members.  Provide training for 
+a total period of [_____] hours of normal working time and start after the system is functionally complete but 
+prior to final acceptance tests.  Cover all of the items contained in the <SUB>operating and maintenance manuals</SUB>.  
+Submit [six] [_____] copies of operation and [six] [_____] copies of maintenance manuals for the equipment furnished.  
+One complete set prior to performance testing and the remainder upon acceptance.  Detail the step-by-step procedures 
+required for system startup, operation, and shutdown.  Include in the operation manuals the manufacturer's name, 
+model number, parts list, and brief description of all equipment and their basic operating features.  List in 
+the maintenance manuals routine maintenance procedures, possible breakdowns and repairs, and troubleshooting 
+guides.  Include piping and equipment layout and simplified wiring and control diagrams of the system as installed 
+in the maintenance manuals.  Manuals must be approved prior to the field training course.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

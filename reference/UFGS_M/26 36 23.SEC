@@ -1,0 +1,1288 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-26 36 23 (February 2026)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-26 36 23 (May 2020)<BRK/><BRK/></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 36 23</SCN><BRK/>
+<BRK/>
+<STL>AUTOMATIC TRANSFER SWITCHES AND BY-PASS/ISOLATION SWITCH</STL><BRK/>
+<DTE>02/26</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>low voltage applications 
+(600V or less) of automatic transfer switches (ATS) and ATS with by-pass/isolation 
+switches.  See TSEWG TP-09 Automatic Transfer Equipment white paper at <URL>https://www.wbdg.org/dod/supp-tech-documents/tsewg-tp-09</URL>
+.  See TSEWG TP-19 Static Uninterruptible Power Supply (UPS) white paper at <URL>
+https://www.wbdg.org/dod/supp-tech-documents/tsewg-tp-19</URL></SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+items(s) or insert appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether 
+or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification is for use when the nature of electrical loads 
+indicates a need for automatic transfer between two power sources.  Terminology 
+used depends on the application.  "Preferred" and "alternate" should be used 
+when this specification applies to a stand-by generator system as defined in 
+NFPA 70.  The same terminology should be used when switching between different 
+sets of service entrance conductors or between feeders supplied by different 
+transformers.  "Normal" and "emergency" should be used for the emergency system 
+application described in NFPA 70.</NPR><BRK/>
+<BRK/>
+<NPR>This specification covers conventional, standard, commercially available equipment 
+appropriate for most Department of Army/Air Force/Navy applications.  Special 
+applications may require synchronized, closed-transition transfer, or withdrawal 
+features to facilitate rapid maintenance or repair.  Manufacturers of standard 
+ATS may be able to provide ATS for special applications.</NPR><BRK/>
+<BRK/>
+<NPR>Fire pumps may utilize an automatic transfer switch.  NFPA 20 describes Arrangement 
+I and Arrangement II.  Arrangement I is the most common and it is where the 
+ATS is part of the fire pump controller and Section 21 30 00 FIRE PUMPS is to 
+be used instead of this specification.  Arrangement II is a separate ATS from 
+the controller.  This is not as common since the switch has to be listed for 
+electric-motor driven fire pump service and there are only a few manufacturers 
+that have this listing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following system design requirements are to be adhered to when providing 
+automatic transfer switches:</NPR><BRK/>
+<BRK/>
+<NPR>1.  The neutral conductor for each source of supply, including the neutral on 
+separately derived systems, must be switched by the transfer switch.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Service rated automatic transfer switches are available (ATS and service 
+entrance breaker included in one enclosure).  In many cases it is more cost 
+effective to include the service overcurrent protection internal to the enclosure 
+in addition to the ATS and this is the recommended approach.  Designer should 
+consider cost savings due to elimination of additional cable and installation 
+labor.  If this is not possible or practical, then specify a service rated transfer 
+switch with the appropriate integrated overcurrent protection as part of the 
+transfer switch.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Do not use open type transfer switches installed in other equipment such 
+as switchboards.  Consideration should be made regarding overall installation 
+cost and minimizing footprint.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the following related guide specifications for power distribution 
+equipment:</NPR><BRK/>
+<BRK/>
+<NPR>--Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING<BRK/>
+--Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM<BRK/>
+--Section <SRF>26 23 00</SRF> LOW-VOLTAGE SWITCHGEAR</NPR><BRK/>
+<BRK/>
+<NPR>Do not use the following related guide specifications except for Army Civil 
+Works projects.  They have not been unified:</NPR><BRK/>
+<BRK/>
+<NPR>--Section 26 22 00.00 10 480-VOLT STATION SERVICE SWITCHGEAR AND TRANSFORMERS<BRK/>
+--Section 26 28 00.00 10 MOTOR CONTROL CENTERS, SWITCHBOARDS AND PANELBOARDS</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the following information on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  The available fault current at the bus feeding the automatic transfer switch.</NPR><BRK/>
+<BRK/>
+<NPR>2.  The rating of the overcurrent device protecting the automatic transfer switch.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Identify automatic transfer switches to be provided with By-pass/Isolation 
+Switches, when applicable.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Identify control type, i.e., Utility-Generator, Preferred Utility Source, 
+or Generator-Generator, for each automatic transfer switch.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Identify automatic transfer switches to be provided with "transfer time 
+delay"/"time delay transition" or "in-phase monitor" features, where applicable.</NPR><BRK/>
+<BRK/>
+<NPR>6.  Identify automatic transfer switches to be used for fire pump service, when 
+applicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM D709</RID><RTL>(2017) Standard Specification for Laminated Thermosetting Materials</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 602</RID><RTL>(2007) Recommended Practice for Electric Systems in Health Care Facilities - White Book</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTRICAL TESTING ASSOCIATION (NETA)</ORG><BRK/><BRK/><RID>NETA ATS</RID><RTL>(2025) Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA ICS 2</RID><RTL>(2000; R 2020) Industrial Control and Systems Controllers, Contactors, and Overload Relays Rated 600 V</RTL><BRK/><BRK/><RID>NEMA ICS 4</RID><RTL>(2015) Application Guideline for Terminal Blocks</RTL><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 20</RID><RTL>(2025; TIA 25-1) Standard for the Installation of Stationary Pumps for Fire Protection</RTL><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 99</RID><RTL>(2024, TIA 24-2) Health Care Facilities Code</RTL><BRK/><BRK/><RID>NFPA 110</RID><RTL>(2025) Standard for Emergency and Standby Power Systems</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 508</RID><RTL>(2018; Reprint Jul 2021) UL Standard for Safety Industrial Control Equipment</RTL><BRK/><BRK/><RID>UL 1008</RID><RTL>(2022) UL Standard for Safety Transfer Switch Equipment</RTL><BRK/><BRK/><RID>UL 1066</RID><RTL>(2022) UL Standard for Safety Low-Voltage AC and DC Power Circuit Breakers Used in Enclosures</RTL><BRK/><BRK/></REF></SPT><TAI OPT="NAVY"><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include this paragraph on Navy projects; otherwise, delete.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM, and Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING, applies 
+to this section, with the additions and modifications specified herein.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G".  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.   
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy,   and Air Force.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Automatic Transfer Switch Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB> Automatic Transfer Switches</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>By-Pass/Isolation Switch (BP/IS)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Remote Annunciator Panel</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Remote Annunciator and Control System Panel</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Checks and Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Functional Acceptance Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Testing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Test Reports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Testing -Medical Facilities</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Proof of Listing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance Manual</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>OPERATION AND MAINTENANCE MANUAL</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Submit in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE 
+DATA, Data Package 5</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Assemble and bind manuals in durable, hard-covered, water resistant binders.  Assemble and index the manuals 
+per the following table of contents:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Manufacturer's O&amp;M per "SD-10 Operation and Maintenance Data".</OLI><BRK/>
+<BRK/>
+<OLI>Catalog data required by "SD-03 Product Data"</OLI><BRK/>
+<BRK/>
+<OLI>Drawings required by "SD-02 Shop Drawings".</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Additions to Operation and Maintenance Manuals</TTL><BRK/>
+<BRK/>
+<TXT>In addition to requirements of SD-10 Data Package 5, include the followings on the actual equipment provided:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>An outline drawing, front, top, and side views.</OLI><BRK/>
+<BRK/>
+<OLI>Prices for spare parts and supply list.</OLI><BRK/>
+<BRK/>
+<OLI>Date of Purchase.</OLI><BRK/>
+<BRK/>
+<OLI>Corrective maintenance procedures.</OLI><BRK/>
+<BRK/>
+<OLI>Operating manual outlining step-by-step procedures for system startup, operation, and shutdown.</OLI><BRK/>
+<BRK/>
+<OLI>Include simplified wiring and control diagrams in the manual for system as installed.</OLI><BRK/>
+<BRK/>
+<OLI>Provide typical contact voltage drop readings under specified conditions for use during periodic maintenance.  
+Provide instructions for determination of contact integrity.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Spare Parts</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not provide spare parts for Navy projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Furnish the following the following minimum spare parts and any other spare parts required in one-year operation, 
+of the same material and workmanship, meeting the same requirements, and interchangeable with the corresponding 
+original parts.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Fuses: Two of each type and rating.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Proof of Listing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit proof of listing by <RID>UL 1008</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Automatic Transfer Switch Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Include the following as a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>An outline drawing, including front, top, and side views.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a nameplate of corrosion-resistant material with not less than<MET> 3 mm</MET><ENG> 1/8 inch</ENG> tall characters 
+showing manufacturer's name and equipment ratings.  Mount nameplate to front of enclosure and meet the 
+nameplate requirements of <RID>NEMA ICS 2</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide detail drawings that include manufacturer's name and catalog number, electrical ratings, total 
+system transfer statement, reduced normal supply voltage at which transfer to the alternate supply is 
+initiated, transfer delay times, short-circuit current rating, wiring diagram, description of interconnections, 
+testing instructions, acceptable conductor type for terminals, tightening torque for each wire connector, 
+and other required <RID>UL 1008</RID> markings.</OLI><BRK/>
+<BRK/>
+<OLI>Submit interface equipment connection diagram showing conduit and wiring between ATS and related equipment. 
+Provide diagrams showing interlocking provisions and cautionary notes, if any. </OLI><BRK/>
+<BRK/>
+<OLI>Drawings are to indicate adequate clearance for operation, maintenance, and replacement of operating 
+equipment devices.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the 
+word "must" had been substituted for "should" wherever it appears.  Interpret references in these publications 
+to the "authority having jurisdiction," or words of similar meaning, to mean the Contracting Officer.  Equipment, 
+materials, installation, and workmanship must be in accordance with the mandatory and advisory provisions of <RID>
+NFPA 70</RID> unless more stringent requirements are specified or indicated</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Product</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such 
+products which are of equal material, design and workmanship, and:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Have been in satisfactory commercial or industrial use for 2 years prior to bid opening including applications 
+of equipment and materials under similar circumstances and of similar size.</OLI><BRK/>
+<BRK/>
+<OLI>Have been on sale on the commercial market through advertisements, manufacturers' catalogs, or brochures 
+during the 2-year period.</OLI><BRK/>
+<BRK/>
+<OLI>Where two or more items of the same class of equipment are required, provide products of a single manufacturer; 
+however, the component parts of the item need not be the products of the same manufacturer unless stated 
+in this section.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a 2-year field service record are acceptable if the manufacturer has been regularly 
+engaged in the design and production of automatic transfer switches and if a certified record of satisfactory 
+field operation for not less than 6000 hours, exclusive of the manufacturers' factory or laboratory tests, is 
+furnished.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material and Equipment Manufacturing Date</TTL><BRK/>
+<BRK/>
+<TXT>Products manufactured more than 1 years prior to date of delivery to site are not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>DELIVERY AND STORAGE</TTL><BRK/>
+<BRK/>
+<TXT>Protect equipment placed in storage from humidity and temperature variations, moisture, water intrusion, dirt, 
+dust, or other contaminants.  In harsh environments where temperatures exceed non-operational parameters established 
+within this specification, provide an environmentally controlled equipment storage facility  to ensure temperature 
+parameters are within equipment specification. Provide documentation of same to the Government when storage is 
+implemented.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ENVIRONMENTAL CONDITIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not use this paragraph and subparagraphs for the Navy.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an ATS that is suitable for prolonged performance under following service conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Operating altitude: Sea level to<MET> 1,000 meters</MET><ENG> 3,300 ft</ENG>. (Systems applied at higher altitudes are to be 
+derated in accordance with the manufacturer's instructions).</OLI><BRK/>
+<BRK/>
+<OLI>Operating ambient temperature range:<MET>-[-4][_____] to [40][_____] degrees C</MET><ENG> [40][_____] to [104][_____] 
+degrees F</ENG>. </OLI><BRK/>
+<BRK/>
+<OLI>Operating relative humidity: 0 to 90 percent, without condensation.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>SEISMIC REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not use this paragraph for Navy projects.  When directed to meet Seismic 
+Requirements, <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS and Section 
+<SRF>26 05 48</SRF> SEISMIC PROTECTION FOR ELECTRICAL EQUIPMENT must be edited to suit 
+the project and be included in the contract documents.  Edit the following paragraph 
+and include it in the project specification.  When a Government designer is 
+the Engineer of Record, provide seismic requirements on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide seismic details[ conforming to[ Section <SRF>13 48 73</SRF>, SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS][ and 
+to][ Section <SRF>26 05 48</SRF>, SEISMIC PROTECTION FOR ELECTRICAL EQUIPMENT]][ as indicated].</TXT><BRK/>
+<BRK/></SPT>
+]</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>AUTOMATIC TRANSFER SWITCHES</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Withstand closing current ratings listed in UL 1008 should be used when 
+fault currents are less than withstand closing current rating listed.  However, 
+in no case should withstand current rating be less than 10,000 amperes.</NPR><BRK/>
+<BRK/>
+<NPR>Where closed-transition transfer is required, coordinate system design requirements 
+with power supplier.</NPR><BRK/>
+<BRK/>
+<NPR>Delete BP/IS requirements if not applicable.  Delete reference to IEEE 602 if 
+not applicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  UFC 3-520-01 Interior Electrical Systems requires the neutral to be switched 
+for grounded systems. The alternate power source is considered a separately 
+derived system when the neutral is switched per the National Electrical Code.</NPR><BRK/>
+<BRK/>
+<NPR>Sizing of neutral bus, pole, contacts, and terminations should consider harmonic 
+currents.  Harmonic currents tend to have a high zero phase sequence component, 
+which are additive in neutral circuit.  Neutral ampere rating may need to be 
+higher than phase contacts.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the following options for switches to be installed in facilities 
+complying with UFC 4-510-01, Design:  Military Medical Facilities located at 
+: (a) Switches utilizing circuit breakers are not acceptable; (b) "Automatic 
+Transfer Switches are to be provided with drawout construction. Verify requirements 
+with latest version.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Option "Switches utilizing circuit breakers are not acceptable for critical 
+applications."  If not a medical facility, this is a choice by the designer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each automatic transfer switch must be rated and marked for total system transfer and have the current and voltage 
+ratings as indicated.  Provide a switch operating mechanism that is electrically operated, have quick-make, quick-break, 
+load break contacts, and be mechanically held in both positions.  [Switches utilizing circuit breakers are not 
+acceptable.]  Provide an ATS that is UL listed.  ATS must be manufactured and tested in accordance with applicable 
+requirements of <RID>NEMA ICS 2</RID>, <RID>UL 1008</RID> and <RID>UL 1066</RID>.  ATS must conform to <RID>NFPA 110</RID>.  Provide the ATS with the following 
+characteristics:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Voltage:  [_____] volts [ac][dc].</OLI><BRK/>
+<BRK/>
+<OLI>Amperage:  [_____] amps [ac][dc].  Provide an ATS with a continuous load current rating of the switch 
+rating.</OLI><BRK/>
+<BRK/>
+<OLI>Number of Phases:  [Three][One].</OLI><BRK/>
+<BRK/>
+<OLI>Number of Wires:  [Four][Three][Two].</OLI><BRK/>
+<BRK/>
+<OLI>Frequency:  [60][50] Hz.</OLI><BRK/>
+<BRK/>
+<OLI>Poles:  [Four switched][Three switched][Two switched].  [One of the poles is the neutral.]</OLI><BRK/>
+<BRK/>
+<OLI>ATS Withstand Current Rating:  ATS must be rated to close on and withstand the available RMS symmetrical 
+short circuit current at the ATS terminals.  The ATS must be listed in accordance with <RID>UL 1008</RID> for 3 
+[18] [30] cycle close and withstand ratings.  Minimum UL listed close and withstand ratings at 208 VAC 
+[480 VAC] must be 30 [42] [65] [100] [200] kA.</OLI><BRK/>
+<BRK/>
+<OLI>Nonwelding Contacts:  Provide contacts that are nonwelding at the available fault current rating.  Contacts 
+must be suitable for repetitive power transfer switching.  Switches rated 800 amps and above must have 
+segmented, blow-on construction for high withstand and close-on capability and be protected by separate 
+arcing contacts.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  It is standard to have the ATS with contacts rated at the same value 
+as the main contacts.  Requesting a 200 per cent contacts for the neutral is 
+an option, but can increase the cost and size of the transfer switch.  Increasing 
+the neutral needs to be considered where the majority of the load is non-linear, 
+which can result in increased neutral current.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>[Phase and Neutral] [Phase] Contacts:  Provide contacts with silver alloy composition.  [Provide neutral 
+contacts with the same continuous current rating as main or phase contacts.]  [Provide neutral contacts 
+with 200 percent the current rating of the phase contacts.]</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Per NFPA 70, emergency, legally required standby, and critical operations 
+power systems require the ATS to be listed for emergency use.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Configuration.  Provide an ATS for use in [emergency systems][legally required standby system][optional 
+standby systems][critical operations power systems] described in <RID>NFPA 70</RID>.  [Provide an ATS that is listed 
+for emergency use.]</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Open transition is the default choice.  Closed transition may be required 
+with some UPS.  Closed transition requires coordination with the local utility.   
+See UFC 3-540-01 Engine-Driven Generator Systems for Prime and Standby Power 
+Applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>ATS Configuration.  [Provide an open transition ATS.  ][Neutral is to break and make with the phase contacts.][Phase 
+contacts are to break and make, but the neutral is to make before break (overlap).][Provide a closed 
+transition ATS.]</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The circuit breaker should be rated for 100 percent.  Switches rated 
+below 2500 amps may have the breaker rated for 80 percent.  Default is 100 percent</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Service Entrance Rated.  Provide an integrated circuit breaker and automatic transfer switch.  Provide 
+a separate deadfront compartment for the circuit breaker on switches 600 amp and larger.  Provide label 
+indicating that the ATS is the service disconnect.  Provide a circuit breaker that is rated for [100 
+percent][80 percent] of the switch contact current rating.  All components, except as noted herein, are 
+to have a continuous load rating.</OLI><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide this option for Medical Facilities. This is not a common option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Viewing Ports.  Provide contacts that are viewable from the front of the device when the door is open.  
+Comply with the requirements found in <RID>IEEE 602</RID> and <RID>NFPA 99</RID></OLI><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose only if a NFPA 20 rated ATS is required for the fire pump</NPR><BRK/>
+<AST/><BRK/></NTE>
+[<OLI>Fire Pump Service.  Provide a manual operating means that is externally operable without opening the 
+enclosure on transfer switches for fire pump service. The manual means is to open and close the switch 
+contacts at the same rate of speed as that caused by the automatic operation of the switch.  The ATS 
+is to meet the requirements found in <RID>NFPA 20</RID>.</OLI><BRK/>
+]</OLG><BRK/>
+<SPT><TTL>Undervoltage Sensing - Normal/Preferred Source</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Where utility type power source is used and application is standard, monitoring 
+devices should drop out at 85 percent of nominal value and pick up at 90 percent.  
+Where precise power is monitored, protection should be specified with monitoring 
+devices set to drop out at 90 percent of nominal and pick up at 95.  In applications 
+requiring closer regulation, solid state or microprocessor arrangement may be 
+used with pickup and dropout response adjusted as close as 2 percent differential.  
+However, for these applications a redundant uninterruptible power supply should 
+be considered.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Undervoltage Sensing - Normal Source.  Provide undervoltage sensing for each phase in the normal/preferred source.  
+Sense low phase-to-ground voltage on each phase.  Provide sensing circuit with adjustable dropout, 75-98 percent 
+of nominal value and adjustable pickup, 85-100 percent of nominal value. Factory set dropout value to [85][90][80][_____]percent. 
+Factory set pickup value to [90][95][_____]percent. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Adjustable Time Delay - Override Transfer</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ATS operation should not be initiated during low voltage conditions attributed 
+to a fault or to momentary dips or excursions (transients) in normal or preferred 
+power source.  Time delay before monitored source override should exceed associated 
+circuit breaker tripping time and normal system voltage instability periods.   
+Minimum of 1 second is recommended.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Adjustable Time Delay - Override Transfer.  For override of normal-source voltage sensing to delay transfer[ 
+and engine starting] signals.  Engine starting control contacts with adjustable commit-to-start delay circuit, 
+0.0-6.0 seconds.  Factory set at [1][0.5][_____]second[s].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Voltage/Frequency Lockout Relay - Alternate/Emergency Source</TTL><BRK/>
+<BRK/>
+<TXT>Voltage/Frequency Lockout Relay.  [Single-][Three-]phase sensing must be provided on the normal and emergency 
+source.  Prevent premature transfer to alternate/emergency source.  Provide pickup voltage that is adjustable 
+from 85-100 percent of nominal.  Factory set for pickup at [90][_____] percent. Provide pickup frequency that 
+is adjustable from 90-97 percent of nominal.  Factor set frequency pickup for [95][_____] percent.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Adjustable Time Delay - Transfer to Alternate/Emergency Power Source</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<BRK/>
+<NPR>NOTE:  Provide transfer to emergency or alternate source time delay for the 
+transfer switches requiring delayed-automatic operation.  For an emergency power 
+source choose 0 seconds. </NPR><BRK/>
+<BRK/>
+<NPR>Use nonzero setting where multiple ATS require staggered application of load 
+steps to alternate or emergency source.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Adjustable Time Delay - Transfer to Alternate Power Source.  Transfer to alternate power source time delay for 
+transfer switches as indicated, adjustable 0-5 minutes.  Factory set to [0][_____] seconds.  ATS is to monitor 
+the frequency and voltage of alternate power source and transfer when frequency and voltage are stabilized.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Adjustable Time Delay- Re-transfer to Normal/Preferred Source</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typical factory setting is 10 minutes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Adjustable Time Delay- Transfer to Source.  Re-transfer to normal source time delay, adjustable 0-30 minutes.  
+Factory set at [10][_____] minutes.  Time delay is automatically defeated upon loss or sustained undervoltage 
+of alternate power source, provided that normal source has been restored.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Engine-Generator Exerciser</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph when automatic system exercising is required by nature 
+of loads and desired reliability.  Automatic system exerciser is recommended 
+when diesel engine driven generator set is used, but only if automatic feature 
+is manually initiated and can be manually overridden during exercise period 
+to return ATS to normal or preferred source.</NPR><BRK/>
+<BRK/>
+<NPR>Consult ATS manufacturers' literature for feature availability, timing interval 
+range, and pickup and dropout settings.  Insert proper values for application.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Exerciser.  Solid-state, programmable-time switch exerciser to allow automatic starting of the generator set, 
+subsequent load transfer, retransfer of load and shuts down engine after a preset cool-down period.  Initiates 
+exercise cycle at preset intervals adjustable from on a daily, weekly, bi-weekly or monthly basis..  Running 
+periods are adjustable from 10-30 minutes.  Factory settings are for 7-day exercise cycle, 20 minute running 
+period and 5-minute cool-down period.   Exerciser features include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Exerciser Transfer Selector Switch: Permits selection of exercise with and without load transfer or dual 
+independent exercisers that allow for unloaded and loaded schedule testing.</OLI><BRK/>
+<BRK/>
+<OLI>Push-button programming control with digital display of settings.</OLI><BRK/>
+<BRK/>
+<OLI>Integral battery operation of time switch when normal control power is not available.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Engine Shutdown Time Delay</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Omit this paragraph if there is no generator in transfer scheme.  Recommended 
+values for normal applications are shown in brackets but may be changed for 
+other design conditions.  Where values are not shown or different settings are 
+required, specify values and settings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Engine Shutdown.  Provide time delay that is adjustable from [0][_____] to [5][_____] minutes and is factory 
+set at [5][_____] minutes.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Engine Starting Contacts</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The standard is one normally closed and one normally open contact.  Choose 
+the others values if additional contacts are required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [1][2][3][4] isolated normally closed and [1][2][3][4] isolated normally open contact that is rated 5 
+A at 250 VAC/30 VDC minimum.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Controls for Fire Pump Service Automatic Transfer Switch</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following  paragraph is intended for use when the automatic transfer 
+switch is to be used for fire pump service where the ATS is not part of the 
+fire pump controller.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following additional controls features:</TXT><BRK/>
+<BRK/>
+<TXT>Phase reversal of the normal source is to initiate transfer to the emergency/alternate source.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Delayed Transition With Time Delay Neutral</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR> Transferring large motor or other inductive loads such as transformers requires 
+special consideration. The motor will act like a generator momentarily and a 
+transformer needs to have its magnetic field collapse.  If a transfer happens, 
+the transformer or motor may not be in-phase with the new power source.  There 
+are two general methods to address this issue:  a contact transfer time delay 
+(neutral position delay or timed transition) and in-phase monitor.  The time 
+delay allows the residual voltage of the motors to decay to a safer level.  
+In-phase monitor allows transfer when the phase angle between the load and the 
+source are within the preset parameters and provides minimum service interruption; 
+however, this approach is not recommended. Instead, i the extra time is a factor, 
+then the motor loads should be separately disconnected by the ATS and restarted 
+in sequence after the transfer.  See TSEWG TP-9 for more information.</NPR><BRK/>
+<BRK/>
+<NPR>Wound-rotor motors are not suitable for in-phase or the time delay approach.  
+These motors should be isolated and restarted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an adjustable time delay transition for indicated transfer switches to allow safe transfer of highly 
+inductive loads between two non-synchronized sources.  This transfer between loads has a programmed neutral position 
+arranged to provide a midpoint between the two working positions, with an intentional time-controlled pause at 
+midpoint during transfer.  Pause is adjustable from 1 to 300 seconds.  Factory set time delay at [0.5][1][2][5] 
+seconds.  Time delay occurs for both transfer directions. Manufacturer is to provide recommendations for establishing 
+the length of the time delay.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Motor Disconnect And Timing Relay</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the delayed transition with time delay neutral is too long for other 
+critical loads, then this option allows sending a signal to the motor controller 
+to prevent coming on line with the alternate/emergency source.  Then signal 
+is sent to sequence these loads on the new source.  Delete if not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Motor Disconnect and Timing Relay:  Controls designate starters so they disconnect motors before transfer and 
+reconnect them selectively at an adjustable time interval after transfer.  Control connection to motor starters 
+is through wiring external to automatic transfer switch.  Time delay for reconnecting individual motor loads 
+is adjustable between 1 and 60 seconds, and settings are as indicated.  Relay contacts handling motor-control 
+circuit inrush and seal currents are rated for actual currents to be encountered.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Make Before Break Neutral</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the project has a transformerless UPS, then this option needs to be 
+considered.  Some manufacturers for transformerless UPS 60 kVA and below require 
+the neutrals to be briefly connected during the transfer.  The default value 
+is 50 ms.  Since this varies with manufacturer, the first choice requires the 
+Contractor to coordinate this item.  The second choice if for when it is known.  
+See TSEWG TP-19 Static Uninterruptible Power Supply (UPS) white paper at <URL HREF="https://www.wbdg.org/ffc/dod/supplemental-technical-criteria/tsewg-tp-19">https://www.wbdg.org/ffc/dod/<BRK/>
+supplemental-technical-criteria/tsewg-tp-19</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Contractor is required to coordinate with UPS manufacturer to determine if the unit being procured requires 
+the neutral to be interconnected.  If not required, then break before make neutral contacts are allowed.  If 
+required, then provide the ATS with make before break neutral contacts.][  Provide the ATS with a make before 
+break neutral.  Phase contacts are to break before make.]  The neutrals are to make for [50][_____] ms.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Auxiliary Contact for Uninterruptible Power Supply</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Projects with a generator as an alternate power source that will be powering 
+an Uninterruptible Power Supply may want to have a signal sent to the UPS from 
+the ATS.  This signal would have the UPS limit the charging current to a lower 
+level, so as not to potentially increase the generator size. Other factors such 
+a size of UPS compared to the entire load and expected length of generator runtime 
+should be taken into account.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a contact that closes when transferred to the alternate power source.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Unassigned Auxiliary Contacts</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide at least three contacts for each position on Medical Facilities 
+and for all other facilities provide at least two contacts.  The standard is 
+10 amps at 240 volts.  Edit appropriately for the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [two][three][_____] normally open and [two][three][_____] normally closed, single-pole, double-throw  
+auxiliary contacts for each switch position rated at [10][15][_____] amperes at [240][120][480][_____] volts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Front Panel Devices</TTL><BRK/>
+<BRK/>
+<TXT>Provide devices mounted on cabinet front consisting of:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Mode selector switch with the following positions and associated functions.  Selector switch can be part 
+of the microprocessor controller consisting of an LCD screen with a graphical interface or as a stand-alone 
+test switch.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">TEST - Simulates loss of normal/preferred source system operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">NORMAL - Transfers system to normal/preferred source bypassing re-transfer time delay.</OLI><BRK/>
+<BRK/>
+<OLI>Switch position indicating lights or graphical LCD display.  Indicate source to which load is connected.</OLI><BRK/>
+<BRK/>
+<OLI>Source-Available Monitor.  Provide source-available indicating lights or graphical LCD display monitor 
+that is labeled to show when one or both sources of power are available.  If indicating lights are used, 
+then the preference is to have Green be normal/preferred power and Red be for alternate/emergency power; 
+however, other color schemes are allowed if clearly marked.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The transfer override switch is typically an option on an standard ATS.  
+Overrides transfer back to the power source regardless of the condition of the 
+power source.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Provide a transfer override switch.  Provide automatic transfer switch microprocessor based controller, 
+which offers field selectable/adjustable inputs and outputs for transfer switch operation.  Override 
+switch must bypass automatic transfer controls so ATS will transfer and remain connected to [alternate][emergency][generator][_____] 
+power source, regardless of condition of normal/preferred source. Provide an indicating light to show 
+override status. [If [alternate][emergency] source fails and [normal][preferred] source is available, 
+ATS is to automatically retransfer to [normal] [preferred] source.]</OLI><BRK/>
+<BRK/>
+<OLI>Lamp test button.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Voltage Unbalance</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the power system has a large number of motors then consider adding 
+this requirement.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide automatic transfer switch controller or control logic to include positive and negative sequence voltage 
+detection to identify a phase loss condition that can adversely effect motor loads. </TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Closed-Transition Transfer Switch</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The typical transfer switch operates in an open-transition manner; however, 
+there are times the closed-transition makes sense.  See TSEWG TP-19 Static Uninterruptible 
+Power Supply (UPS) white paper at <URL>https://www.wbdg.org/dod/supp-tech-documents/tsewg-tp-19</URL>
+ for a discussion on the topic.  Delete if not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include the following functions and characteristic for an automatic transfer switch that is to operate in a closed-transition 
+manner.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Fully automatic make-before-break operation.</OLI><BRK/>
+<BRK/>
+<OLI>Load transfer without interruption, through momentary interconnection of both power sources not exceeding 
+100 ms, but no less than 50 ms.</OLI><BRK/>
+<BRK/>
+<OLI>Initiation of No-Interruption Transfer:  Controlled by in-phase monitor and sensors confirming both sources 
+are present and acceptable.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Initiation occurs without active control of generator.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Controls ensure that closed-transition load transfer closure occurs only when the 2 sources 
+are within plus or minus 5 electrical degrees maximum, and plus or minus 5 percent maximum 
+voltage difference.</OLI><BRK/>
+<BRK/>
+<OLI>Failure of power source serving load initiates automatic break-before-make transfer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>In-Phase Monitor</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A Closed-transition type ATS needs to have the in-phase monitor option. </NPR><BRK/>
+<BRK/>
+<NPR> In addition, UFC 4-510-01 Design:  Military Medical Facilities needs to be 
+consulted for its requirements.  The current version requires an ATS feeding 
+high efficiency motors rated 25 hp or larger to be provided with an in-phase 
+monitor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an in-phase monitor that consists of a factory-wired, internal relay that controls transfer so it occurs 
+only when the two sources are synchronized in phase.  Relay compares phase relationship and frequency difference 
+between normal and emergency sources and initiates transfer when both sources are within 5 electrical degrees, 
+and only if transfer can be completed within 60 electrical degrees.  Transfer is initiated only if both sources 
+are within 2 Hz of nominal frequency and 70 percent or more of nominal voltage  Manufacturer is to provide information 
+regarding what conditions a transfer cannot be accomplished.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>[<SPT><TTL><SUB>BY-PASS/ISOLATION SWITCH (BP/IS)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include by-pass/isolation switches only where the nature of the loads 
+make continuance of power essential when the associated ATS switch is disconnected 
+for repairs, preventive maintenance, or testing.  Consult UFC 4-510-01 Design: 
+Military Medical Facilities and UFC 3-540-01 Engine-Driven Generator Systems 
+for Prime and Standby Power Applications for when a by-pass/isolation switches 
+for automatic transfer switches to be  provided. Delete reference to generator 
+starting where a generator is not used as alternate source.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include non-load-break by-pass/isolation switches for the indicated automatic transfer switches.  Designs which 
+disconnect or interrupt the load when bypassing are not acceptable.  Include the following features for each 
+combined by-pass/isolation switch and automatic transfer switch: </TXT><BRK/>
+<OLG><BRK/>
+<OLI>Bypass/isolation switch (BP/IS) and associated ATS are to be made by the same manufacturer and must be 
+completely interconnected and tested at factory and at project site as specified.</OLI><BRK/>
+<BRK/>
+<OLI>ATS is to be manufactured, listed and tested in accordance with paragraph AUTOMATIC TRANSFER SWITCH.  
+BP/IS switch current, voltage, closing, and short-circuit withstand closing ratings are to be equal or 
+exceed comparable ratings specified for ATS and have the same phase arrangement and number of poles.</OLI><BRK/>
+<BRK/>
+<OLI>Provide externally operated and arranged selector switch or handle so designed and constructed not to 
+stop in an intermediate or neutral position during operation and that one person can safely bypass the 
+ATS.  Accomplish isolation of the ATS externally by one person.  Bypass and isolation handles must be 
+permanently affixed and operable without opening the enclosure door.  Provide interlocks that ensure 
+ATS is disconnected from source and load during isolation.  Interlocks prevent ATS operation, except 
+for testing and maintenance, while isolated. BP/IS operation is to be accomplished without disconnecting 
+switch load terminal conductors.  Equipment which require separate tools, keys, or other devices to operate 
+the bypass/isolation mechanism which may not be present during an emergency is not acceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Provide drawout transfer switch that provides physical separation from bypass switch and live parts and 
+accessibility for testing and maintenance operation.</OLI><BRK/>
+<BRK/>
+<OLI>Provide contacts that have the same contact temperature that do not exceed those of the ATS contacts 
+when carrying rated load.  Provide contacts as specified for associated ATS, including provisions for 
+inspection of contacts without disassembly of BP/IS or removal of entire contact enclosure.   Provide 
+manufacturer instructions for determining contact integrity in order To facilitate maintenance.</OLI><BRK/>
+<BRK/>
+<OLI>The ATS controls remain functional with the ATS isolated or in bypass mode to permit monitoring of the 
+normal power source [and automatic starting of the generator in the event of a loss of the normal power 
+source].  In the isolated mode, the bypass section is capable of functioning as a manual transfer to 
+transfer the load to either power source for maintenane purposes or when automatic control has failed.  
+Equipment that requires automatic controls to be functional to operate the bypass switch is not acceptable..  
+The ATS can be completely removed from the enclosure, if required for maintenance or repair, while the 
+bypass section continues to power the load.</OLI><BRK/>
+<BRK/>
+<OLI>Construct Bypass/isolation switch for convenient removal of parts from front of switch enclosure without 
+removal of other parts or disconnection of external power conductors. </OLI><BRK/>
+<BRK/>
+<OLI>Achieve load by-pass to the source with no load interruption.  Bypass/isolation equipment that breaks 
+the load is not accpetalbe.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Optional operational items.  Chose those required for project.   Drawout 
+bypass is normally available on those with 150 amp or greater ratings. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Provide drawout bypass switch that provides physical separation from<BRK/>
+ATS and live parts and accessibility for testing and maintenance operation.  [Provide automatic shutters 
+that closed to isolate the bus.]</OLI><BRK/>
+<BRK/>
+][<OLI>Provide a means to ensure the switch is transferred to the alternate or emergency power source when normal 
+power source becomes unavailable.</OLI><BRK/>
+]</OLG><BRK/>
+<SPT><TTL>Markings</TTL><BRK/>
+<BRK/>
+<TXT>Mark isolation handle positions with engraved plates or other approved means to indicate position or operating 
+condition of associated ATS, as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide an indication that shows that BP/IS section is providing power to the load.</OLI><BRK/>
+<BRK/>
+<OLI>Provide indication of ATS isolation/test position.  </OLI><BRK/>
+<BRK/>
+<OLI>Provide suitable control labels and instruction signs describing operating instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Indicating lamps or LCD screen for indicating that shows the source availability, bypass switch position, 
+transfer switch position, and isolation handle position.  If indicating lights are used, provide a lamp 
+test button that turns the indicating lights on, but does not cause any function to take place.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Interconnection</TTL><BRK/>
+<BRK/>
+<TXT>Interconnect BP/IS and associated ATS with suitably sized copper bus bars silver-plated at each connection point, 
+and braced to withstand magnetic and thermal forces created at withstand current rating specified for associated 
+ATS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>ENCLOSURE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must provide normal power source to ATS when specifying enclosure 
+heater.</NPR><BRK/>
+<BRK/>
+<NPR>If ATS assembly is provided, equipment should be installed in free-standing, 
+floor-mounted enclosure as specified, except when manufacturer incorporates 
+switch specified in wall-mounted enclosure as standard construction.  However, 
+in some applications it is advisable to specify that ATS or BP/IS components 
+be mounted in separate switchboard, switchgear, motor control center, or other 
+enclosure.  Investigate conditions and options and specify accordingly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an enclosure that meets the following:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The option on providing screened and filtered intake and exhaust vents 
+are not available by all manufacturer, even by an option. Choose only if required 
+by the site conditions for the ATS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide ATS and accessories in a [free-standing, floor-mounted][wall-mounted], [ventilated][unventilated] <RID>
+NEMA 250</RID>, Type [1][3R][3RX][4][4X][12], smooth sheet metal enclosure constructed in accordance with applicable 
+requirements of <RID>NEMA ICS 6</RID>, <RID>UL 508</RID>, <RID>UL 1066</RID>, and <RID>UL 1008</RID>.  [Provide screened and filtered intake vents.  
+Provide screened exhaust vents.] [Provide door with suitable hinges, locking handle latch, and gasketed 
+jamb.] Provide at least No. 14 metal gauge.</OLI><BRK/>
+<BRK/>
+<OLI>Factory wiring within enclosure and field wiring terminating within enclosure must comply with <RID>NFPA 70</RID>
+.  Provide wire that is permanently tagged or marked near terminal at each end with wire number shown 
+on approved detail drawing, when wiring is not color coded.  Conform terminal block to <RID>NEMA ICS 4</RID>.  Arrange 
+terminals for entrance of external conductors from [top and bottom][top][bottom] of enclosure as shown.  
+Main switch terminals, including neutral terminal if used, must be pressure type suitable for termination 
+of external [copper] [aluminum] conductors shown.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The option on a controlled heater is typically only available on those 
+units which require a NEMA 3R or similar enclosure.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Provide thermostatically controlled heater within enclosure to prevent condensation over temperature 
+range stipulated in paragraph ENVIRONMENTAL CONDITIONS.</OLI><BRK/>
+]</OLG><BRK/>
+<SPT><TTL>Construction</TTL><BRK/>
+<BRK/>
+<TXT>Construct enclosure for ease of removal and replacement of ATS components and control devices from front without 
+disconnection of external power conductors or removal or disassembly of major components.  </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleaning and Painting</TTL><BRK/>
+<BRK/>
+<TXT>Protect both the inside and outside surfaces of an enclosure, including means for fastening against corrosion 
+by enameling, galvanizing, plating, powder coating, or other equivalent means.  Protection is not required for 
+metal parts that are inherently resistant to corrosion, bearings, sliding surfaces of hinges, or other parts 
+where such protection is impractical.   Provide manufacturer's standard finish material, process, and color that 
+is free from runs, sags, peeling, or other defects.  An enclosure marked Type 1, 3R, 4 or 12 is acceptable if 
+there is no visible rust at the conclusion of a salt spray (fog) test using the test method in <RID>ASTM B117</RID>, employing 
+a 5 percent by weight, salt solution for 24 hours.  Type 4X enclosures are acceptable following performance of 
+the above test with an exposure time of 200 hours.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Fabricated Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Nameplate is to comply with <RID>ASTM D709</RID>.  Provide laminated plastic nameplates for each equipment enclosure as 
+specified or as indicated on the drawings.  Provide an inscription on each nameplate that identifies the name 
+of the equipment, sources of power, calculated short circuit with date and the location e.g. 'SWB-1 Electrical 
+Room 103'.  Provide nameplates that are made of melamine plastic,<MET> 3 mm</MET><ENG> 0.125 inch</ENG> thick, white with [black][_____] 
+center core.  Provide the nameplate with a surface that is matte finished and that has square corners..  Accurately 
+align lettering and engrave into the core.  Provide nameplates that are at least<MET> 25 by 65 mm</MET><ENG> 1.0 by 2.5 inches</ENG>
+ with a minimum lettering size of<MET> 6.35 mm</MET><ENG> 0.25 inch</ENG> high normal block style.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL><SUB>REMOTE ANNUNCIATOR PANEL</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This option is for a remote annunciator without any means of control.  
+If this is required do not choose the 'Remote annunciator Controller'.  There 
+are two types of panels indicated:  one is a simple panel with indicating lights 
+and switches, the other is a touchscreen panel.  Touchscreen is becoming more 
+common.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide remote annunciation with LED indicating lights, an audible alarm with silence switch as well as all 
+appropriate labeling.][ or ][Provide a remote annunciator panel that utilizes a touchscreen human machine interface 
+(HMI).  Minimum screen size is <MET>175 mm</MET><ENG>7 inches</ENG>.]  The annunciator is to be configured to handle [1][2][_____] 
+transfer switches. Provide a surface mounted cabinet.  Provide built-in power supply that accepts either 24 VDC 
+or 120VAC or [_____].  Provide communications module to support monitoring of ATS.  Module must provide status, 
+analog parameters, event logs, equipment settings, and configurations over embedded webpage, open protocol, and 
+automated email while utilizing AES 128-bit encryption.  Provide a remote annunciation panel to annunciate the 
+following conditions for the indicated transfer switch(es).</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Sources available</OLI><BRK/>
+<BRK/>
+<OLI>Switch position.</OLI><BRK/>
+<BRK/>
+<OLI>Switch in test mode.</OLI><BRK/>
+<BRK/>
+<OLI>Failure of communication link.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL><SUB>REMOTE ANNUNCIATOR AND CONTROL SYSTEM PANEL</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This option is for a combination remote annunciator and control system 
+panel.  If this is chosen be sure to delete the previous 'Remote Annunciator 
+Panel' option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a remote annunciator and control system that utilizes a touchscreen human machine interface (HMI) with 
+the ability to remotely monitor and control multiple transfer switches from a single panel. Minimum screen size 
+is <ENG>7 inches</ENG><MET>175 mm</MET>. Provide password protection and date/time stamped alarm history. The controller is to have 
+internal battery backup.  In the event of a communication link failure, the system is to automatically revert 
+to stand-alone, self-contained operation.  Automatic transfer switch sensing, controlling or operating function 
+is not to depend on remote panel for proper operation.  Provide a surface mounted cabinet.  Communication is 
+to be by a [Modbus] RS-485 connection. The annunciator controller is to be configured to monitor and control 
+[1][2][_____] transfer switches.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Monitor</TTL><BRK/>
+<BRK/>
+<TXT>Monitor the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Sources available</OLI><BRK/>
+<BRK/>
+<OLI>Switch position.</OLI><BRK/>
+<BRK/>
+<OLI>Switch in test mode.</OLI><BRK/>
+<BRK/>
+<OLI>Overvoltage</OLI><BRK/>
+<BRK/>
+<OLI>Failure of communication link.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete option if none of the sources are a generator.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Engine test or exercise.</OLI><BRK/>
+]</OLG><BRK/></SPT>
+<SPT><TTL>Alarm Screen</TTL><BRK/>
+<BRK/>
+<TXT>Alarm for the following conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Alternate source closed</OLI><BRK/>
+<BRK/>
+<OLI>Undervoltage</OLI><BRK/>
+<BRK/>
+<OLI>Lockout.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Control Functions</TTL><BRK/>
+<BRK/>
+<TXT>Provide a means to perform the following functions from the controller:  an alarm silence button in addition 
+to monitoring the following items:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Control of switch-test initiation.</OLI><BRK/>
+<BRK/>
+<OLI>Control of switch operation in either direction.</OLI><BRK/>
+<BRK/>
+<OLI>Control of time-delay bypass for transfer to normal source.</OLI><BRK/>
+<BRK/>
+<OLI>Control to perform an engine test.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This option can be beneficial to allow remote changes, but it can also 
+be a concern with the security.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Provide a means to remotely configure transfer switch controller setpoints.  The means to perform these 
+changes must be password protected.</OLI><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide if a large system and want to be able to remotely control the 
+various ATSs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Manage up to eight (8) transfer switches from a single remote annunicator and control panel</OLI><BRK/>
+]</OLG><BRK/></SPT>
+</SPT>]<SPT><TTL><SUB>FACTORY TESTING</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a description of proposed field test procedures, including proposed date and steps describing each test, 
+its duration and expected results, not less than [_____] weeks prior to test date.  Submit certified factory 
+and field test reports, within 14 days following completion of tests.  Provide reports that are certified and 
+dated and that demonstrate that tests were successfully completed prior to shipment of equipment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Prototype Factory Testing</TTL><BRK/>
+<BRK/>
+<TXT>A prototype of specified ATS is to be factory tested in accordance with <RID>UL 1008</RID>.  In addition, perform factory 
+tests on each ATS as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Insulation resistance test to ensure integrity and continuity of entire system</OLI><BRK/>
+<BRK/>
+<OLI>Main switch contact resistance test.</OLI><BRK/>
+<BRK/>
+<OLI>Visual inspection to verify that each ATS is as specified.</OLI><BRK/>
+<BRK/>
+<OLI>Mechanical test to verify that ATS sections are free of mechanical hindrances.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical tests to verify complete system electrical operation and to set up time delays and voltage 
+sensing settings.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Factory Test Reports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide three certified copies of factory test reports from the manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL><SUB>FACTORY TESTING -MEDICAL FACILITIES</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The factory tests sequence listed below is required for Medical Facilities 
+only.  This testing is normally above and beyond the standard factory test performed 
+on an ATS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The factory tests for ATS and By-Pass/Isolation switches used in medical facilities must be conducted in the 
+following sequence:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>General</OLI><BRK/>
+<BRK/>
+<OLI>Normal</OLI><BRK/>
+<BRK/>
+<OLI>Overvoltage</OLI><BRK/>
+<BRK/>
+<OLI>Undervoltage</OLI><BRK/>
+<BRK/>
+<OLI>Overload</OLI><BRK/>
+<BRK/>
+<OLI>Endurance</OLI><BRK/>
+<BRK/>
+<OLI>Temperature Rise</OLI><BRK/>
+<BRK/>
+<OLI>Dielectric Voltage-Withstand</OLI><BRK/>
+<BRK/>
+<OLI>Contact Opening</OLI><BRK/>
+<BRK/>
+<OLI>Dielectric Voltage-Withstand (Repeated)</OLI><BRK/>
+<BRK/>
+<OLI>Withstand</OLI><BRK/>
+<BRK/>
+<OLI>Instrumentation and Calibration of High Capacity</OLI><BRK/>
+<BRK/>
+<OLI>Closing</OLI><BRK/>
+<BRK/>
+<OLI>Dielectric Voltage-Withstand (Repeated)</OLI><BRK/>
+<BRK/>
+<OLI>Strength of Insulating Base and Support</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Installation must conform to the requirements of <RID>NFPA 70</RID> and manufacturer's recommendation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PREREQUISITES FOR FUNCTIONAL ACCEPTANCE TESTING</TTL><BRK/>
+<BRK/>
+<TXT>Completion of the following requirements is mandatory prior to scheduling functional acceptance tests for the 
+automatic transfer switch.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Performance of Acceptance Checks and tests</TTL><BRK/>
+<BRK/>
+<TXT>Complete as specified in paragraph entitled AUTOMATIC TRANSFER SWITCH ACCEPTANCE 
+CHECKS AND TESTS.  The Acceptance Checks and Tests are to be accomplished by the Testing organization as described 
+in Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturers O&amp;M Information</TTL><BRK/>
+<BRK/>
+<TXT>The manufacturers O&amp;M information required by the paragraph entitled "SD-10 Operation and Maintenance Data", 
+is to be submitted to and approved by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Ensure all test equipment and instruments is on hand prior to scheduling field tests, or subject to Contracting 
+Officer's approval, evidence must be provided to show that arrangements have been made to have the necessary 
+equipment and instruments on site prior to field testing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use of 26 20 00 is only required on Navy projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Give Contracting Officer 15 days notice of dates and times scheduled for tests which require the presence of 
+the Contracting Officer.  The Contracting Officer will coordinate with the using activity and schedule a time 
+that will eliminate or minimize interruptions and interference with the activity operations.  The contractor 
+is responsible for costs associated with conducting tests outside of normal working hours and with incorporating 
+special arrangements and procedures, including temporary power conditions.  The contractor provides labor, equipment, 
+apparatus, including test load, and consumables required for the specified tests.  Calibration of all measuring 
+devices and indicating devices must be certified.  Provide the services of a qualified factory-trained manufacturer's 
+representative to assist the contractor in installation and start-up of the equipment specified under this section.  
+The manufacturer's representative is to provide technical direction and assistance to the contractor in general 
+assembly of the equipment, connections and adjustments, and testing of the assembly components contained herein.  
+[Provide a test load that is a  cataloged product in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.]  
+Perform the following field tests in accordance with the manufacturer's recommendations and include the following 
+visual and mechanical inspections and electrical tests, performed in accordance with <RID>NETA ATS</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Automatic Transfer Switch <SUB>Acceptance Checks and Tests</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Confirm correct application of manufacturer's recommended lubricants.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that manual transfer warnings are attached and visible.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify tightness of all control connections.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify tightness of accessible bolted connections by calibrated torque-wrench method.  Thermographic 
+survey is not required. </OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform manual transfer operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify positive mechanical interlocking between normal and alternate sources.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Measure contact-resistance.  Correct values that exceed 500 microhms and values for 1 pole 
+deviating by more than 50 percent from other poles.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation-resistance on each pole, phase-to-phase and phase-to-ground with switch 
+closed, and across each open pole for one minute.  Perform tests in both source positions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify settings and operations of control devices.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Calibrate and set all relays and timers.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Test ground-fault protective device.</OLI><BRK/>
+]</OLG><BRK/></SPT>
+<SPT><TTL><SUB>Functional Acceptance Tests</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit for the appropriate generator specification, if the project has 
+a generator.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Functional Acceptance Tests must be coordinated with Section <SRF>26 32 15</SRF> ENGINE-GENERATOR SET STATIONARY 15-2500 
+KW, WITH AUXILIARIES.[Functional Acceptance Test must be coordinated with Section <SRF>21 30 00</SRF> FIRE PUMPS.] Include 
+simulating power failure and demonstrating the following operations for each automatic transfer switch.  Demonstrate 
+in service that the automatic transfer switches are in good operating condition, and function not less than five 
+times.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Perform automatic transfer tests:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Simulate loss of normal/preferred power.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Return to normal/preferred power.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Simulate loss of emergency/alternate power.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Simulate all forms of single-phase conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Verify correct operation and timing of the following functions:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Normal source voltage-sensing relays.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Engine start sequence.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Time delay upon transfer.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Alternate source voltage-sensing relays.</OLI><NED/><BRK/>
+<BRK/>
+<OLI LEVEL="2">Automatic transfer operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Interlocks and limit switch function.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Time delay and retransfer upon normal power restoration.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">By-pass/isolation functional modes and related automatic transfer switch operations.</OLI><BRK/>
+]</OLG><BRK/></SPT>
+<SPT><TTL>Infrared Scanning</TTL><BRK/>
+<BRK/>
+<TXT>After Substantial Completion, but not more than 60 days after Final Acceptance, perform an infrared scan of each 
+switch.  Remove all access panels so joints and connections are accessible to portable scanner.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Follow-up Infrared Scanning:  Perform an additional follow-up infrared scan of each switch 11 months 
+after acceptance.</OLI><BRK/>
+<BRK/>
+<OLI>Instrument:  Use an infrared scanning device designed to measure temperature or to detect significant 
+deviations from normal values.  Provide calibration record for device.</OLI><BRK/>
+<BRK/>
+<OLI>Record of Infrared Scanning:  Prepare a certified report that identifies switches checked and that describes 
+scanning results.  Include notation of deficiencies detected, remedial action taken, and observations 
+after remedial action.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>TRAINING</TTL><BRK/>
+<BRK/>
+<TXT>Provide 4 hours of training to maintenance personnel on the proper operation, maintenance and adjustment of the 
+automatic transfer switch.[  Coordinate this training with that of the generator equipment.]</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

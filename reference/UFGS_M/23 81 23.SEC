@@ -1,0 +1,1448 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 81 23 (November 2020)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 81 23.00 20 (February 2010)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 81 23</SCN><BRK/>
+<BRK/>
+<STL>COMPUTER ROOM AIR CONDITIONING UNITS</STL><BRK/>
+<DTE>11/20</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>heating, ventilating, and cooling (HVAC) equipment 
+for thermal, humidity, and airflow control in data processing environments</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the most efficient, competitively available CRAC for which there are at least two products available 
+for the indicated ranges of comparability.  Design parameters for each item of equipment must be indicated on 
+the drawings including capacity, efficiency, sound ratings, motor speeds, electrical characteristics, and special 
+features.</NPR><BRK/>
+<BRK/>
+<NPR>System requirements must conform to UFC 3-410-01, "Heating, Ventilating, and Air Conditioning Systems".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AIR-CONDITIONING, HEATING AND REFRIGERATION INSTITUTE (AHRI)</ORG><BRK/><BRK/><RID>AHRI 410</RID><RTL>(2001; Addendum 1 2002; Addendum 2 2005; Addendum 3 2011) Forced-Circulation Air-Cooling and Air-Heating Coils</RTL><BRK/><BRK/><RID>AHRI 1360</RID><RTL>(2017) Performance Rating of Computer and Data Processing Room Air Conditioners</RTL><BRK/><BRK/><RID>ANSI/AHRI 460</RID><RTL>(2005) Performance Rating of Remote Mechanical-Draft Air-Cooled Refrigerant Condensers</RTL><BRK/><BRK/><RID>ANSI/AHRI 520</RID><RTL>(2004) Performance Rating of Positive Displacement Condensing Units</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ANSI/ASHRAE 15 &amp; 34</RID><RTL>(2022) ASHRAE Standard 15-Safety Standard for Refrigeration Systems and ANSI/ASHRAE Standard 34-Designation and Safety Classification of Refrigerants</RTL><BRK/><BRK/><RID>ASHRAE 52.2</RID><RTL>(2025) Method of Testing General Ventilation Air-Cleaning Devices for Removal Efficiency by Particle Size</RTL><BRK/><BRK/><RID>ASHRAE 62.1</RID><RTL>(2016) Ventilation for Acceptable Indoor Air Quality</RTL><BRK/><BRK/><RID>ASHRAE 90.1 - IP</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/><RID>ASHRAE 90.1 - SI</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/><RID>ASHRAE 127</RID><RTL>(2012) Method of Testing for Rating Computer and Data Processing Room Unitary Air-Conditioners</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B31.1</RID><RTL>(2024) Power Piping</RTL><BRK/><BRK/><RID>ASME B31.5</RID><RTL>(2022) Refrigeration Piping and Heat Transfer Components</RTL><BRK/><BRK/><RID>ASME BPVC</RID><RTL>(2010) Boiler and Pressure Vessels Code</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM C1071</RID><RTL>(2025) Standard Specification for Fibrous Glass Duct Lining Insulation (Thermal and Sound Absorbing Material)</RTL><BRK/><BRK/><RID>ASTM C1338</RID><RTL>(2019) Standard Test Method for Determining Fungi Resistance of Insulation Materials and Facings</RTL><BRK/><BRK/><RID>ASTM D5864</RID><RTL>(2011) Standard Test Method for Determining Aerobic Aquatic Biodegradation of Lubricants or Their Components</RTL><BRK/><BRK/><RID>ASTM D6081</RID><RTL>(1998; R 2014) Aquatic Toxicity Testing of Lubricants: Sample Preparation and Results Interpretation</RTL><BRK/><BRK/><RID>ASTM E84</RID><RTL>(2025) Standard Test Method for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/><RID>ASTM G21</RID><RTL>(2015; R 2021; E 2021) Standard Practice for Determining Resistance of Synthetic Polymeric Materials to Fungi</RTL><BRK/><BRK/></REF><REF><ORG>ETL TESTING LABORATORIES (ETL)</ORG><BRK/><BRK/><RID>ETL DLP</RID><RTL>(updated continuously) ETL Listed Mark Directory</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/><RID>NEMA MG 10</RID><RTL>(2017) Energy Management Guide for Selection and Use of Fixed Frequency Medium AC Squirrel-Cage Polyphase Induction Motors</RTL><BRK/><BRK/><RID>NEMA MG 11</RID><RTL>(1977; R 2012) Energy Management Guide for Selection and Use of Single Phase Motors</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 90A</RID><RTL>(2024) Standard for the Installation of Air Conditioning and Ventilating Systems</RTL><BRK/><BRK/></REF><REF><ORG>U.S. ARMY CORPS OF ENGINEERS (USACE)</ORG><BRK/><BRK/><RID>EM 1110-2-1424</RID><RTL>(2016) Engineering and Design -- Lubricants and Hydraulic Fluids</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>16 CFR 1201</RID><RTL>Safety Standard for Architectural Glazing Materials</RTL><BRK/><BRK/><RID>40 CFR 82</RID><RTL>Protection of Stratospheric Ozone</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 94</RID><RTL>(2023; Reprint Jan 2024) UL Standard for Safety Tests for Flammability of Plastic Materials for Parts in Devices and Appliances</RTL><BRK/><BRK/><RID>UL 181</RID><RTL>(2013; Reprint Dec 2021) UL Standard for Safety Factory-Made Air Ducts and Air Connectors</RTL><BRK/><BRK/><RID>UL 723</RID><RTL>(2018; Reprint Jun 2025) UL Standard for Safety Test for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/><RID>UL Elec Equip Dir</RID><RTL>(2011) Electrical Appliance and Utilization Equipment Directory</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<LST>Computer Room Air Conditioner (CRAC):  A single, self-contained unit or split-system unit designed and manufactured specifically for temperature 
+and humidity control of data processing environments.</LST><BRK/>
+<BRK/>
+<LST>Cold Aisle:  The aisle between or adjacent to rows of racks from which the computing equipment draws cool air.</LST><BRK/>
+<BRK/>
+<LST>Hot Aisle:  The aisle between or adjacent to rows of racks to which the computing equipment ejects hot air.</LST><BRK/>
+<BRK/>
+<LST>Rack:  Telecommunications support frame that can consist of post-and-frame or full cabinet construction. Racks are provided under Section 
+<SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS CABLING SYSTEM.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Computer Room Air Conditioner</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Small Computer Room Air Conditioners</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Space Temperature Control System Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Filters</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Refrigerants</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>[Cold][ and ][Hot] Aisle Containment Systems</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Rack Mounted Fans</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Leak Detection</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Factory witness testing is expensive and rarely necessary for commonly manufactured mechanical equipment 
+such as CRAC.  Confirm with the facility owner that witness testing is necessary and worth the cost.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<ITM><SUB>CRAC Production Schedule and Factory Test Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Manufacturer's Factory Test Plans</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Test Reports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Test Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Field Test Plans</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Test Reports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Certificate of Specification Compliance</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Credentials of the Manufacturer's Field Test Representative</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ozone Depleting Substances Technician Certification</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Certified List Of Qualified Permanent Service Organizations</SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Seismic Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation Manual for Each Type of CRAC</SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Installation Manual for Each Type of Aisle Containment System</SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Installation Manual for Each Type of Rack Mounted Fan</SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Computer Room Air Conditioner Operation and Maintenance Data</SUB>, Data Package 4; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Indoor Air Quality During Construction</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFRIGERANTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  EPA, per the Significant New Alternative Policy rule, reviews refrigerant substitutes on the basis of ozone 
+depletion potential, global warming potential, toxicity, flammability, and exposure potential.  Lists of acceptable 
+and unacceptable substitutes are updated several times each year.  A chronological list of SNAP updates is available 
+at <URL HREF="https://www.epa.gov/snap/substitutes-refrigeration-and-air-conditioning">https://www.epa.gov/snap/substitutes-refrigeration-<BRK/>
+and-air-conditioning</URL> or from the stratospheric ozone information hotline at 1 (800) 296-1996.  Reducing ozone 
+depletion and global warming potential by reducing or eliminating CFC, and reducing or eliminating HCFC and Halon 
+use in air conditioning equipment is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><SUB>Refrigerants</SUB> must have an Ozone Depletion Potential (ODP) no greater than 0.0.  CFC-based refrigerants are prohibited.  [HCFCs][ and ][Halons] 
+are not permitted.  Provide SDS sheets for all refrigerants.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALIFICATIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Ozone Depleting Substances Technician Certification</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph requires a certification for technicians who work on equipment that could release 
+ozone depleting refrigerants, such as R-123, into the atmosphere.  This is required as of January 1, 2018 to meet 
+the requirements of 40 CFR 82, Subpart F.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All technicians working on equipment that contain ozone depleting refrigerants must be certified as a Section 608 Technician to meet requirements 
+in <RID>40 CFR 82</RID>, Subpart F.  Provide copies of technician certifications to the Contracting Officer at least 14 calendar days prior to work on any 
+equipment containing these refrigerants.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALIFICATIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Material and Equipment Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are standard products of manufacturers regularly engaged in the manufacturer of such products, which are of 
+a similar material, design, and workmanship.  Standard products must have been in satisfactory commercial or industrial use for two years prior 
+to bid opening.  The two-year use must include applications of equipment and materials under similar circumstances and of similar size.  The product 
+must have been for sale on the commercial market through advertisements, manufacturers' catalogs, or brochures during the two-year period.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alternative Equipment Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a two-year field service record will be acceptable if a certified record of satisfactory field operation for not less 
+than 6000 hours, exclusive of the manufacturer's factory or laboratory tests, can be shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Support</TTL><BRK/>
+<BRK/>
+<TXT>The equipment items must be supported by service organizations.  Submit a <SUB>certified list of qualified permanent service organizations</SUB> for support 
+of the equipment which includes their addresses and qualifications.  These service organizations must be reasonably convenient to the equipment 
+installation and able to render satisfactory service to the equipment on a regular and emergency basis during the warranty period of the contract.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Nameplate</TTL><BRK/>
+<BRK/>
+<TXT>For each item of equipment, provide a nameplate bearing the manufacturer's name, address, model number, and serial number securely affixed in a 
+conspicuous place; the nameplate of the distributing agent will not be acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Modification of References</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the word, "must" had been substituted 
+for "should" wherever it appears.  Interpret references in these publications to the "authority having jurisdiction", or words of similar meaning, 
+to mean the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Definitions</TTL><BRK/>
+<BRK/>
+<TXT>For the International Code Council (ICC) Codes referenced in the contract documents, advisory provisions must be considered mandatory, the word 
+"should" is interpreted as "must."  Reference to the "code official" must be interpreted to mean the "Contracting Officer."  For Navy owned property, 
+references to the "owner" must be interpreted to mean the "Contracting Officer."  For leased facilities, references to the "owner" must be interpreted 
+to mean the "lessor."  References to the "permit holder" must be interpreted to mean the "Contractor."</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Administrative Interpretations</TTL><BRK/>
+<BRK/>
+<TXT>For ICC Codes referenced in the contract documents, the provisions of Chapter 1, "Administrator," do not apply.  These administrative requirements 
+are covered by the applicable Federal Acquisition Regulations (FAR) included in this contract and by the authority granted to the Officer in Charge 
+of Construction to administer the construction of this project.  References in the ICC Codes to sections of Chapter 1, must be applied appropriately 
+by the Contracting Officer as authorized by his administrative cognizance and the FAR.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>PROJECT REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Verification of Dimensions</TTL><BRK/>
+<BRK/>
+<TXT>Become familiar with the details of the work, verify all dimensions in the field, and provide adequate clearance for all connections and service 
+access. Notify the Contracting Officer of any discrepancy before performing any work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Energy Efficiency</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to<MET> ASHRAE 90.1 - SI</MET><ENG> ASHRAE 90.1 - IP</ENG> Table 6.8.1-11 for the minimum efficiency requirements of air 
+conditioners and condensing units serving computer rooms.  Efficiencies should be indicated on schedules and should 
+be better than or equal to the minimum efficiencies required by<MET> ASHRAE 90.1 - SI</MET><ENG> ASHRAE 90.1 - IP</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide equipment with minimum efficiencies [as indicated][as required by<MET> <RID>ASHRAE 90.1 - SI</RID></MET><ENG> <RID>ASHRAE 90.1 - IP</RID></ENG>].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Handle, store, and protect equipment and materials to prevent damage before and during installation in accordance with the manufacturer's recommendations, 
+and as approved by the Contracting Officer.  Replace damaged or defective items.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>COMPUTER ROOM AIR CONDITIONER</SUB> (CRAC)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The indoor components of the CRAC are inherently noisy.  In noise sensitive areas, designers should take 
+steps to attenuate CRAC generated sound.  Determine the maximum acceptable sound level limit for the application 
+in NC level or dbA and add the limit to the CRAC equipment schedule.  This sound level compliance may be verified 
+by the CRAC factory and field tests.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designers should locate the floor registers in a raised floor system as far from the CRAC as possible to 
+reduce direct sound transmission from the unit to the conditioned space and to improve air distribution performance.  
+Floor registers should be coordinated with Section <SRF>09 69 13</SRF> RIGID GRID ACCESS FLOORING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designers should indicate the mandatory routing of piping around the floor stand of a downflow CRAC in 
+their piping plan view and piping details.  Ensure, by dimensioning of piping details, that no piping interferes 
+with the air flow performance of the CRAC.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to<MET> ASHRAE 90.1 - SI</MET><ENG> ASHRAE 90.1 - IP</ENG> Table 6.8.1K for the minimum efficiency requirements of air 
+conditioners and condensing units serving computer rooms.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide complete working CRACs, designed, [and] factory assembled[, and factory tested].  Equipment must be listed in <RID>UL Elec Equip Dir</RID> or <RID>ETL DLP</RID>
+ for computer room application.  CRACs must have a minimum sensible coefficient of performance of [_____] in accordance with <RID>ASHRAE 127</RID>.  Computer 
+Room Air Conditioners must have [a minimum [seasonal ]energy efficiency ratio ([S]EER) of [_____],] [a minimum Heating Seasonal Performance Factor 
+(HSPF) of [_____],] [a minimum Integrated Part Load Value (IPLV) of [_____],][ and ][a minimum COP of [_____]].  CRACs must include room cabinet 
+and frame, [floor stand, ]fan section, filter section, cooling coil, [reheat coil, ][humidifier, ][compressor[s], ][condenser[s], ]controls, and, 
+interconnecting piping internal to the CRAC.  Provide units rated in accordance with <RID>AHRI 1360</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Unit Airflow Configuration</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the airflow configuration for each unit on the equipment schedule.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Downflow Units</TTL><BRK/>
+<BRK/>
+<TXT>The CRAC must draw return air in at the top [or sides ]of the cabinet and discharge supply air at the bottom of the cabinet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Upflow Units</TTL><BRK/>
+<BRK/>
+<TXT>The CRAC must draw return air in at the bottom [or sides ]of the cabinet and discharge supply air at the top of the cabinet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>In-row Units</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Security and procurement constraints may not allow the use in in-row units. In-row units must be coordinated 
+with the support frame provided under Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS CABLING SYSTEM, which, in some 
+instances, may be provided under a separate contract.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The CRAC must be designed and manufactured to be installed within the row of server cabinets where it must draw return air in at the back (from 
+the hot aisle) and discharge supply air at the front (into the cold aisle).  In-row units must match the height and depth of the adjacent racks 
+and integrate into the row such that no gaps exist that would allow air to bypass from the cold aisle to the hot aisle.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ceiling Mounted Units</TTL><BRK/>
+<BRK/>
+<TXT>The CRAC must be designed to be installed at or above the ceiling where it must draw return air in at a duct connection or integral return grille 
+and discharge supply air at a duct connection or integral supply register.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cabinet and Frame</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Unit Frame</TTL><BRK/>
+<BRK/>
+<TXT>Unit frame must be manufactured of welded steel tubes and must be mill-galvanized or coated with an epoxy finish.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unit Cabinet</TTL><BRK/>
+<BRK/>
+<TXT>Exterior panels must be steel sheet, minimum of<MET> 1.0 mm</MET><ENG> 20 gage</ENG>, mill-galvanized or coated with a corrosion-inhibiting epoxy finish in [manufacturer's 
+standard][the specified][the indicated] color.  Mill galvanized sheet metal must be coated with not less than<MET> 380 gram of zinc per square meter</MET><ENG>
+ 1.25 ounces of zinc per square foot</ENG> of two-sided surface.  Mill rolled structural steel must be hot-dip galvanized or primed and painted.  Cut 
+edges, burns and scratches in hot-dip galvanized surfaces must be coated with galvanizing repair coating.  Manufacturer's standard cabinet materials 
+and finishes will be acceptable if equivalent to the above requirements and approved by the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<TXT>Provide removable panel for access to controls without interrupting airflow.  Panels must be gasketed to prevent air leakage under system operating 
+pressure and must be removable for service access without the use of special tools.</TXT><BRK/>
+<BRK/>
+[<TXT>Provide double deflection [supply][ and ][return] grille[s] integral to unit.  Grilles must be factory coated the same as the unit cabinet.</TXT><BRK/>
+<BRK/>
+]</SPT>[<SPT><TTL>Cabinet Interiors Sound Attenuation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For CRAC interior cabinets located in spaces which require low sound levels because of interaction requirements 
+of the operating personnel, select desired sound attenuation methods specified in this paragraph.  In noise sensitive 
+areas, specifiers should take special steps to attenuate CRAC generated sound, such as using the two inch foam 
+requirement, in lieu of the fiber glass insulation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a factory-installed sound attenuation system in the interior of the CRAC cabinet.</TXT><BRK/>
+<BRK/>
+[<TXT>CRAC cabinet panels interior must be provided with<MET> 25 millimeters of 24 kilogram per cubic meter</MET><ENG> 1 inch of 1 1/2 pound per cubic foot</ENG> fiber glass 
+insulation on interior of cabinet panels.  Insulation must be applied to the cabinet panels with 100 percent adhesive coverage and both the insulation 
+and the adhesive must conform to <RID>NFPA 90A</RID>.  Insulation must be rated for 6000 fpm per <RID>UL 181</RID> and <RID>ASTM C1071</RID>.  Insulation must resist the growth 
+of microorganisms per <RID>ASTM C1338</RID> and <RID>ASTM G21</RID>.</TXT><BRK/>
+<BRK/>
+][<TXT>CRAC cabinet panels interior must be provided with minimum<MET> 50 millimeters</MET><ENG> two inch</ENG> thick acoustical sound absorbing foam with a minimum Noise Reduction 
+Coefficient (NRC) of 0.85.</TXT><BRK/>
+<BRK/>
+][<TXT>Compressors located in CRAC interior cabinets must be either wrapped in a sound absorbing insulating blanket or enclosed in its' own sound absorbing 
+insulated mini-cabinet inside of the larger CRAC interior cabinet.</TXT><BRK/>
+<BRK/>
+][<TXT>Fans and compressors located in the CRAC interior cabinet must be provided with vibration isolators between their respective support frames and 
+the cabinet framing.</TXT><BRK/>
+<BRK/>
+]<TXT>CRAC manufacturer's standard interior cabinet sound attenuation materials and finishes will be acceptable if equivalent to the above requirements 
+and approved by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Fan Section</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For CRAC units of sizes 6 tons and more, when specifying a belt drive, specify dual V-belt fan drives.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide fan(s) and fan motor(s) as integral, factory installed components of the CRAC.[  Provide units with capability to lower fans into the floorstand 
+below the raised floor.  The procedure to lower the fans must be described in the manufacturer's written installation instructions.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Fan Wheel</TTL><BRK/>
+<BRK/>
+<TXT>The supply air fan must be AMCA certified.  Provide [steel][aluminum], [forward curved, double-width, double-inlet][backward curved, plenum/plug 
+type] fan wheel.  The fan must be statically and dynamically balanced.  The fan must have self-aligning, permanently lubricated ball bearings with 
+a minimum life span of 100,000 hours.  Assess potential effects of lubricant on aquatic organisms in accordance with <RID>ASTM D6081</RID> and submit aquatic 
+toxicity reports.  Assess biodegradation in accordance with <RID>ASTM D5864</RID>.  In accordance with <RID>EM 1110-2-1424</RID> Chapter 8, aquatic toxicity must exceed 
+1,000 ppm at LL50 and biodegradation must exceed 60 percent conversion of carbon to carbon dioxide in 28 days.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motor and Drive</TTL><BRK/>
+<BRK/>
+<TXT>[Provide fan wheel directly coupled to motor shaft.] [Provide [V-belt drive][dual V-belt drive] sized for 200 percent of the motor nameplate rating.  
+Fan speed must be adjustable with cast iron variable pitch pulleys.  Sheaves must be within the middle one third of the sheave adjustment range.]</TXT><BRK/>
+<BRK/>
+<TXT>[Provide drip-proof, permanent split capacitor type, NEMA rated motor with inherent overload protection and sliding adjustable motor base.] [Provide 
+electronically commutated motor with integrated electronic control board and direct microprocessor control signaling for speed control.]</TXT><BRK/>
+<BRK/>
+[<TXT>Provide variable frequency drive(s) in accordance with Section <SRF>26 29 23</SRF> ADJUSTABLE SPEED DRIVE (ASD) SYSTEMS UNDER 600 VOLTS.</TXT><BRK/>
+<BRK/>
+]</SPT></SPT><SPT><TTL>Cooling Coil</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate on the design drawings the minimum required head for the coil condensate pump.  Do not locate 
+units with hydronic coils directly above computer racks.  A double-sloped pan prevents water from standing and 
+stagnating in the pan.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide <RID>AHRI 410</RID> coil and slope for drainage.  Coil must be manufactured of seamless copper tubes with plate [aluminum][copper] fins.[  Indoor 
+and outdoor coils must be matched and from same manufacturer.]  Each coil, in the production process, must be individually tested at<MET> 2200 kPa</MET><ENG> 320 
+psi</ENG> with compressed air under water and verified to be air tight.  Factory dehydrate and seal each coil after testing and prior to evaluation and 
+charging.[  Provide DX coil complete with a distributor and thermostatic expansion valve with external equalizer.][  Provide hydronic coils complete 
+with drain and vent connections.]  Provide [double-sloped ]condensate drain pan of [minimum<MET> 1.0 millimeter</MET><ENG> 22 gage</ENG> Type 304 stainless steel][plastic] 
+with nonferrous connections[,[ and] internal trap,][, and a condensate pump system complete with integral pump discharge check valve, integral 
+float switch, reservoir, and pump and motor assembly.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Filters</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  MERV 13 filters are typically at least 6 inches deep with 0.8 inch wg pressure drop or higher, making them 
+only feasible in applied, belt-driven central station air handling units.  Terminal equipment or smaller packaged 
+rooftop equipment cannot achieve this level of filtration or generate the static pressure needed to deliver proper 
+airflow when using this high efficiency filtration.  Typically MERV 6 or 8 is the highest efficiency filter that 
+can be applied for that equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide UL listed<MET> [50] [100] [_____] mm</MET><ENG> [2] [4] [_____] inches</ENG> thick deep pleated fiberglass throwaway type filters.[  Additionally, provide<MET> [50] 
+[_____] mm</MET><ENG> [2] [_____] inches</ENG> thick deep pleated fiberglass throwaway type pre-filters.]  Provide filtration media with a Minimum Efficiency Reporting 
+Value (MERV) of [6][8][13] as determined by <RID>ASHRAE 52.2</RID>.  Provide one complete spare filter bank set per unit for installation prior to final acceptance 
+testing covered in Part 3 of this section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reheat Coil</TTL><BRK/>
+<BRK/>
+[<TXT>Provide <RID>AHRI 410</RID> reheat coils and slope for drainage.  Provide coil manufactured of seamless copper tubes with plate [aluminum][copper] fins.  
+Each coil, in the production process, must be individually tested at<MET> 2200 kPa</MET><ENG> 320 psi</ENG> with compressed air under water and verified to be air tight.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide electric reheat coils with low watts density.  The electric reheat coils must be enclosed in 304 stainless steel tubes and 304 stainless 
+steel fins.  Provide modulating control of the electric reheat coils by [multiple stages][ or ][Silicon Controlled Rectifier (SCR)].  Provide UL 
+or ETL listed safety switches to protect system from overheating.</TXT><BRK/>
+<BRK/>
+]</SPT>[<SPT><TTL>Humidifier</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Investigate the water source conditions of the project site and specify the appropriate type of humidifier. 
+If site water is very poor, a water treatment system may be required.  Provide a deionized water system if using 
+adiabatic humidifiers such as ultrasonic type.  Specify an evaporator pan for infrared and ultrasonic humidifiers.  
+Specify dispersion tube for steam generating humidifiers. Indicate steam generating capacities on the equipment 
+schedule.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Humidifier section must include liquid-level control, emergency overflow and automatic water supply system factory pre-piped for final connection.[  
+Provide stainless steel evaporator pan with water high level and low level alarms].[  Provide [copper][stainless steel] atmospheric steam dispersion 
+tube for installation in a [vertical][ or ][horizontal] air stream.  Dispersion tube must have integral condensate return to the steam generator.]  
+Arrange system to be cleanable and serviceable.  Provide water chemistry requirements with humidifier submittal data.</TXT><BRK/>
+<BRK/>
+[<TXT>Provide infrared type humidifier, including high intensity quartz lamps mounted above and out of water supply.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide humidifier of the self-contained steam generating electrode type utilizing a [plastic][disposable] canister with full probes connected 
+to electric power via electrode screw connectors.  Provide electrodes manufactured from expanded low carbon steel, zinc plated and dynamically 
+formed for precise current control.  The humidifier assembly must include integral fill cup, fill and drain valves and associated piping.  Design 
+the canister to collect the mineral deposits in the water and provide clean particle free steam to the air stream.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide humidifier of the self-contained ultrasonic type operating on the principle of ultrasonic nebulization of water.  Provide 300 series stainless 
+steel casing.  The ultrasonic humidifier must not produce any unacceptable noise radiation or frequency interference with communications or other 
+electronic equipment.  Provide water chemistry requirements with humidifier submittal data.</TXT><BRK/>
+<BRK/>
+]</SPT>][<SPT><TTL>Compressor</TTL><BRK/>
+<BRK/>
+<TXT>Provide compressor that is direct drive, [semi-hermetic][ or ][hermetic reciprocating,][ or ][scroll] type capable of operating at partial load 
+conditions.  Compressor must be capable of continuous operation down to the lowest step of unloading as specified.  Provide compressors of<MET> 26 kW</MET><ENG>
+ 7.5 tons</ENG> and larger with capacity reduction devices to produce automatic capacity reduction of at least 50 percent.  If standard with the manufacturer, 
+two or more compressors may be used in lieu of a single compressor with unloading capabilities, in which case the compressors operate in sequence, 
+and each compressor has an independent refrigeration circuit through the condenser and evaporator.  Start each compressor in the unloaded position.  
+Provide compressor[s] complete with vibration isolation, suction and discharge service valves, high and low pressure safety switches, protection 
+against short cycling, and built-in overload protection.   Provide refrigeration circuits including hot gas mufflers, liquid-line filter-drier, 
+refrigerant sight glass,[ lubrication pump,] and moisture indicator, externally equalized expansion valve, and liquid-line solenoid valve factory 
+connected with refrigeration copper tubing.[  Crankcase heaters are required.][  Provide hot gas bypass.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Refrigeration Circuit</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Filter-driers are optional and may be deleted on most pre-charged systems.</NPR><BRK/>
+<BRK/>
+<NPR>Delete the last two sentences in the last paragraph except when needed for a self contained heat pump with an 
+integral water cooled condenser.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide field-installed refrigerant tubing for split systems in accordance with Section <SRF>23 23 00</SRF> REFRIGERANT PIPING.</TXT><BRK/>
+<BRK/>
+<TXT>Refrigerant-containing components must comply with <RID>ANSI/ASHRAE 15 &amp; 34</RID> and be factory tested, cleaned, dehydrated, charged with [nitrogen][refrigerant 
+and oil] and sealed.  Provide refrigerant charging valves and connections, and pumpdown valves for each circuit.[  Provide reversible-flow type 
+filter-drier in each liquid line.][  Refrigerant flow control devices must be an adjustable superheat thermostatic expansion valve with external 
+equalizer matched to coil, capillary or thermostatic control, and a pilot solenoid controlled, leak-tight, four-way refrigerant flow reversing 
+valve.  Provide a refrigerant suction line [thermostatic][thermostatic and water flow switch] control to prevent freeze-up in event of loss of 
+water flow during heating cycle.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Condenser[ and][ Dry Cooler]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert minimum temperature at which the mechanical cooling equipment will be required to operate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide condenser circuit pre-piped with start-up and head pressure controls to maintain system operation at ambient temperatures down to<MET> [4.4 
+degrees C] [minus 6.6 degrees C] [[_____] degrees C]</MET><ENG> [40 degrees F] [20 degrees F] [[_____] degrees F]</ENG>.</TXT><BRK/>
+<BRK/>
+[<TXT>Provide an integral factory wired and tested control panel for each condenser[ and][ dry cooler].  The factory control board must control each 
+condenser fan speed individually to optimize overall system performance.</TXT><BRK/>
+<BRK/>
+][<SPT><TTL>Air-cooled Condenser</TTL><BRK/>
+<BRK/>
+<TXT>Provide remote air-cooled condenser arranged for [vertical][ or ][horizontal] air discharge, designed and manufactured specifically for permanent 
+outdoor installation.  Condenser performance must be rated in accordance with <RID>ANSI/AHRI 460</RID>.  Condenser must have head pressure control to allow 
+unit operation down to<MET> [minus 18 degrees C] [minus 29 degrees C] [minus 34 degrees C]</MET><ENG> [0 degrees F] [minus 20 degrees F] [minus 30 degrees F]</ENG>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Condenser Fans</TTL><BRK/>
+<BRK/>
+<TXT>Provide direct-driven propeller fans with factory balanced [aluminum][ or ][glass-reinforced polymer] blades and equipped with fan guards.  Provide 
+[permanent split capacitor][ or ][electronically commutated] fan motors with [drip proof][totally enclosed][explosion proof] enclosures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Condenser Coils</TTL><BRK/>
+<BRK/>
+<TXT>Air-cooled condenser coils must be [seamless copper tubes with plate type [aluminum][cooper] fins][ or ][all aluminum microchannel type][ with 
+coating as described in [paragraph CORROSION PROTECTION FOR COASTAL INSTALLATIONS][Section <SRF>09 96 00</SRF> HIGH PERFORMANCE COATINGS]].  The coils, in 
+the production process, must be pressure tested with compressed air at<MET> 2068 kPa</MET><ENG> 300 psig</ENG> under water and verified to be leak-free.  Factory dehydrate 
+and seal each coil after testing and prior to evaluation and charging.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unit Casing</TTL><BRK/>
+<BRK/>
+<TXT>Provide air-cooled condenser casings and mounting legs manufactured from [aluminum][ or ][galvanized steel] with[ manufacturer's standard corrosion-resistant 
+finish][ coating as described in [paragraph CORROSION PROTECTION FOR COASTAL INSTALLATIONS][Section <SRF>09 96 00</SRF> HIGH PERFORMANCE COATINGS]].</TXT><BRK/>
+<BRK/></SPT>
+</SPT>][<SPT><TTL>Liquid-cooled Condenser</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In cold climates it is often cost effective to install an economizer coil that is used instead of the evaporator 
+during cold weather.  During periods of cold weather "free cooling" can be provided.  When the glycol in the condenser 
+can be cooled to about<MET> 10 degrees C</MET><ENG> 50 degrees F</ENG> or less, the refrigeration unit is bypassed and the air that 
+is normally passed through the evaporator goes through the economizer coil which contains cold glycol flowing 
+from the condenser.</NPR><BRK/>
+<BRK/>
+<NPR>Specify a fouling factor of 0.001 for projects with unknown water quality and/or questionable water treatment 
+practices. Otherwise, specify 0.0005 fouling factor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide cleanable, cast iron or steel shell and [copper][copper-nickel] tubes, [counterflow type, ][water-cooled ][or ][glycol-cooled ]condenser 
+with removable cast iron or steel heads.  The condenser must be constructed in accordance with <RID>ASME BPVC</RID>.[  As an option, a coaxial [copper][copper-nickel] 
+tube-in-copper tube type water-cooled condenser may be provided.]  Select liquid cooled condensers with a fouling factor of [0.001][0.0005].  Condensers 
+must be rated for not less than<MET> 2758 kPa</MET><ENG> 400 psi</ENG> refrigerant pressure and<MET> 862 kPa</MET><ENG> 125 psi</ENG> water pressure at operating temperatures.</TXT><BRK/>
+<BRK/>
+<TXT>Water supply and return connections and piping internal to unit must be copper with brazed or threaded copper or bronze fittings, terminating in 
+a threaded connection.  Piping arrangement must include valved access for recirculation of acidic scale removal chemicals and isolation pressure 
+taps to determine pressure drop and water flow.  Provide a separate condenser for each compressor circuit.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Dry Coolers</TTL><BRK/>
+<BRK/>
+<TXT>Provide dry cooler arranged for vertical air discharge, designed and manufactured specifically for permanent outdoor installation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Dry Cooler Fans</TTL><BRK/>
+<BRK/>
+<TXT>Provide direct-driven propeller fans with factory balanced [aluminum][ or ][glass-reinforced polymer] blades and equipped with fan guards.  Provide 
+[permanent split capacitor][ or ][electronically commutated] fan motors with [drip proof][totally enclosed][explosion proof] enclosures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dry Cooler Coils</TTL><BRK/>
+<BRK/>
+<TXT>Dry cooler coils must be seamless copper tubes with plate type [aluminum][copper] fins[ with coating as described in [paragraph CORROSION PROTECTION 
+FOR COASTAL INSTALLATIONS][Section <SRF>09 96 00</SRF> HIGH PERFORMANCE COATINGS]].  The coils, in the production process, must be pressure tested with compressed 
+air<MET> 2068 kPa</MET><ENG> 300 psig</ENG> under water and verified to be leak-free.  Factory dehydrate and seal each coil after testing and prior to evaluation and 
+charging.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dry Cooler Casing</TTL><BRK/>
+<BRK/>
+<TXT>The dry cooler casings and mounting legs must be manufactured from [aluminum][ or ][galvanized steel] with[ manufacturer's standard corrosion-resistant 
+finish][ coating as described in [paragraph CORROSION PROTECTION FOR COASTAL INSTALLATIONS][Section <SRF>09 96 00</SRF> HIGH PERFORMANCE COATINGS]].</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Integral Pump Package</TTL><BRK/>
+<BRK/>
+<TXT>Provide dry cooler with a [single][double] pump package complete with an open expansion tank.  The pump package must be mounted in a weatherproof 
+enclosure.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>]</SPT>[<SPT><TTL>Economizers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In most cases, the conditions for economizer operation should be determined by the CRAC controller.  In 
+some cases, a facility manager may want to control this with the Building Automation System.  Coordinate this 
+specification with the specific site requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The factory mounted CRAC controls must control the economizer operation process to ensure coordination of all components.  The conditions for economizer 
+operation must be determined[ by the factory mounted CRAC controls based on indoor and outdoor conditions][ by the HVAC control system].</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Air Economizers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The use of air economizers in computer rooms requires careful evaluation for each individual application.  
+In warm, moist climates, the number of available economizer hours often does not warrant the construction expense.  
+In cold dry climates, the cooling savings may be partially offset by humidification loads.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide factory mounted dampers and duct connection flanges to allow up to 100 percent outdoor air through the unit for free cooling.  Dampers 
+must meet the requirements of Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Water Economizers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For use with water cooled direct expansion systems.  Economizer operation in chilled water systems is accomplished 
+at the chiller plant and is beyond the scope of this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide factory mounted coil and condenser water changeover valve.  When commanded, the changeover valve must divert condenser water flow from 
+the condenser coil to the economizer coil.</TXT><BRK/>
+<BRK/>
+<TXT>Coil must meet <RID>AHRI 410</RID> and be sloped for drainage.  Provide coil manufactured of seamless copper tubes with plate aluminum fins.  Each coil, in 
+the production process, must be individually tested at<MET> 320 psi</MET><ENG> 2200 kPa</ENG> with compressed air under water and verified to be air tight.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Refrigerant Economizer</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For use with air cooled direct expansion systems. Verify the capability of site personnel to operate and 
+maintain this system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide fully integrated, pumped refrigerant economizer operation.  In addition to the specified CRAC and air cooled condenser, provide a refrigerant 
+pump package from the same manufacturer.  The entire system must be controlled and optimized by the CRAC controls.  During cold outdoor temperatures, 
+the compressors must reduce capacity as much as possible.  As compressor capacity decreases, a variable speed pump on each refrigeration circuit 
+must then pump the liquid refrigerant through the air cooled condenser and evaporator for free cooling.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>][<SPT><TTL>Floorstand</TTL><BRK/>
+<BRK/>
+<TXT>Provide a[n] [adjustable]<MET> [225] [300] [450] [600] [_____] mm</MET><ENG> [9] [12] [18] [24] [_____] inches</ENG> high [seismic rated ]floorstand for each CRAC for 
+freestanding installation on the main building structural floor.  Floorstand must elevate the unit to the height of the raised computer floor and 
+must allow for leveling and locking at the desired height.  Floorstand must be retractable, or removable, for installing the unit directly on the 
+raised floor.  Unit must be fully gasketed (rubber or neoprene) to prevent air leakage at the raised floor penetration.[  Provide radiused turning 
+vane integral to floorstand.]</TXT><BRK/>
+<BRK/>
+[<TXT>For units requiring <SUB>seismic certification</SUB>, the floorstand must be included in the unit certification.</TXT><BRK/>
+<BRK/>
+]</SPT>]</SPT><SPT><TTL><SUB>SMALL COMPUTER ROOM AIR CONDITIONERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this section for console type and ceiling mounted type computer room air conditioners under 5 tons.  
+These units are typically used in telecom closets or small, low density computer rooms where airflow management 
+is less of a concern.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide complete working CRACs, designed and factory assembled.  Equipment must be listed in <RID>UL Elec Equip Dir</RID> or <RID>ETL DLP</RID> for computer room application.  
+CRACs must have a minimum sensible coefficient of performance of [_____] in accordance with <RID>ASHRAE 127</RID>.  CRACs must include room cabinet and frame, 
+fan, filter, cooling coil, [reheat coil, ][humidifier , ][compressor[s], ][condenser[s], ]controls, and, interconnecting piping internal to the 
+CRAC.  Provide units rated in accordance with <RID>AHRI 1360</RID>.  Provide all refrigerant piping in accordance with Section <SRF>23 23 00</SRF> REFRIGERANT PIPING.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Configuration</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify each configuration type needed.  If multiple types are required, indicate type for each equipment 
+mark on the schedule.  Retain the applicable subparagraphs "[EVAPORATOR][ OR ][COOLING COIL] CABINET CONSTRUCTION" 
+through "INDOOR [WATER][GLYCOL] COOLED CONDENSING UNIT" to specify the various components necessary for each configuration 
+included in the design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Self Contained Air Cooled:  Provide an indoor unit for [ducted concealed][exposed] application.  Unit must have connections for supply and return 
+ducts from the central air handling system for heat rejection.  Unit must consist of a direct expansion system evaporator and an indoor, air cooled 
+condensing unit.</TXT><BRK/>
+<BRK/>
+][<TXT>Split System Air Cooled:  Provide an indoor unit for [ducted concealed][exposed] application, an outdoor condensing unit, and interconnecting refrigerant 
+piping.  Unit must consist of a direct expansion system evaporator and an outdoor, air cooled condensing unit.</TXT><BRK/>
+<BRK/>
+][<TXT>[Water][Glycol] Cooled:  Provide an indoor unit for [ducted concealed][exposed] application.[  Provide dry cooler as specified elsewhere in this 
+section.][  Provide [cooling tower][remote evaporatively cooled condenser] as specified in <SRF>23 65 00</SRF> COOLING TOWERS AND REMOTE EVAPORATIVELY-COOLED 
+CONDENSERS.]  Unit must consist of a direct expansion system evaporator and an indoor, [water][glycol] cooled condensing unit.</TXT><BRK/>
+<BRK/>
+][<TXT>Chilled Water: Provide an indoor unit for [ducted concealed][exposed] application with a chilled water coil.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>[Evaporator][ or ][Cooling Coil] Cabinet Construction</TTL><BRK/>
+<BRK/>
+<TXT>Provide cabinet and chassis constructed of heavy gauge galvanized steel with all service access from a single side of the unit.  Mounting brackets 
+must be integral to the cabinet.  Internal cabinet insulation must meet <RID>ASHRAE 62.1</RID> requirements for Mold Growth, Humidity &amp; Erosion, tested 
+per <RID>UL 181</RID> and <RID>ASTM C1338</RID> standards.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air Distribution Components</TTL><BRK/>
+<BRK/>
+<TXT>Provide direct-drive fan assembly equipped with double-inlet blower, self-aligning ball bearings and lifetime lubrication.  Fan motor must be permanent-split 
+capacitor, high-efficiency type, equipped with two speeds for airflow modulation.  The microprocessor controller must use the lower fan speed for 
+precise dehumidification control.  Fan speed must also be user selectable from the wall controller.  System must be suitable for supply and return 
+air plenum or ducted supply and return air distribution.  Provide filter rack designed to accept<MET> 100 mm</MET><ENG> 4 inch</ENG> thick filters.  Provide pleated 
+filters with a MERV 8 rating in accordance with <RID>ASHRAE 52.2</RID>.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Direct Expansion System Evaporator Components</TTL><BRK/>
+<BRK/>
+<TXT>The evaporator section must include evaporator coil, thermostatic expansion valve and filter drier.  The evaporator coil must be constructed of 
+copper tubes and aluminum fins.  Provide an externally equalized thermostatic expansion valve to control refrigerant flow.  The refrigerant piping 
+must be spun-closed and filled with a nitrogen holding charge.  Evaporator and condensing unit must be field piped using copper lines, brazed, 
+evacuated and field charged with R-407C refrigerant.  The evaporator unit can be coupled directly with the condensing unit or mounted remote to 
+the condensing unit.  The coil assembly must be mounted in a condensate drain pan with an internally trapped drain line.  The evaporator drain 
+pan must include a factory-installed float switch to shut down the evaporator upon high water condition.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Chilled Water System Components</TTL><BRK/>
+<BRK/>
+<TXT>Provide a motorized, slow-close, two-position, chilled water control valve. Valve design pressure rating must be not less than<MET> 2068 kPa</MET><ENG> 300 psig</ENG>
+ static pressure, with a maximum close-off pressure rating of not less than<MET> 414 kPa</MET><ENG> 60 psig</ENG>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a cooling coil constructed of copper tubes and aluminum fins with integral drain and vent.  The coil assembly must be mounted in a condensate 
+drain pan with an internally trapped drain line.  The evaporator drain pan must include a factory-installed float switch to shut down the evaporator 
+upon high water condition.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Indoor, Air-Cooled Condensing Unit</TTL><BRK/>
+<BRK/>
+<TXT>Condensing unit components must include condenser coil, direct drive centrifugal blower, scroll compressor, high-pressure switch, refrigerant receiver, 
+head pressure control valve, hot gas bypass system, and liquid line solenoid valve.  Provide a factory mounted disconnect switch in the high voltage 
+section of the electrical panel.  The switch handle must be accessible from the unit front.  The cabinet and chassis must be constructed of heavy 
+gauge galvanized steel, and must be serviceable from one side of the unit. Mounting brackets must be integral to the cabinet design and be designed 
+for ceiling mounting.</TXT><BRK/>
+<BRK/>
+<TXT>Provide hot gas bypass to reduce compressor cycling and improve operation under low-load conditions.  The hot gas bypass must be completely contained 
+in the condensing unit.  Field installed third refrigerant line is not acceptable.  Hot gas bypass must be automatically deactivated upon a call 
+for dehumidification.  Provide a high pressure switch to protect the unit from abnormal refrigerant pressure conditions and deactivate the compressor 
+and annunciate an alarm at the wall controller.  The blower must continue to circulate air.  The wall controller must be used to manually restart 
+the compressor function after the automatic pressure switch resets.  Three high head pressure alarms in a rolling 12-hour period must lock out 
+the manual restart feature until power is cycled to the evaporator unit.  A pressure balancing valve must be factory installed to reduce the chance 
+of high pressure cut-out due to excessive refrigerant migration to the receiver due to changing outdoor temperatures during off-cycles.  The refrigerant 
+piping must be spun-closed and filled with a nitrogen holding charge.  Evaporator and condensing unit must be field piped using copper lines, brazed, 
+evacuated and field charged with R-407C refrigerant.  Condensing unit must be designed for<MET> 35 degrees C</MET><ENG> 95 degrees F</ENG> ambient and be capable of 
+operation to<MET> minus 34 degrees C</MET><ENG> minus 30 degrees F</ENG>.  The condensing unit can be mounted directly to the evaporator or can be mounted remote to 
+the evaporator.  The condensing coil must be constructed of copper tubes and aluminum fins.  The condenser fan must be centrifugal type, double 
+inlet, direct drive.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Outdoor, Air-Cooled Condensing Unit</TTL><BRK/>
+<BRK/>
+<TXT>Provide condensing unit rated in accordance with <RID>ANSI/AHRI 520</RID> and designed for permanent outdoor installation.  Provide removable panels for access 
+to all components.  Condensing unit components must include condenser coil, direct drive propeller fan, scroll compressor, high-pressure switch, 
+refrigerant receiver, head pressure control valve, hot gas bypass system, and liquid line solenoid valve.  Unit casing and chassis must be constructed 
+of heavy gauge galvanized steel.</TXT><BRK/>
+<BRK/>
+<TXT>Provide hot gas bypass to reduce compressor cycling and improve operation under low-load conditions.  The hot gas bypass must be completely contained 
+in the condensing unit.  Field installed third refrigerant line is not acceptable.  Hot gas bypass must be automatically deactivated upon a call 
+for dehumidification.  Provide a high pressure switch to protect the unit from abnormal refrigerant pressure conditions and deactivate the compressor 
+and annunciate an alarm at the wall controller.  The blower must continue to circulate air.  The wall controller must be used to manually restart 
+the compressor function after the automatic pressure switch resets.  Three high head pressure alarms in a rolling 12-hour period must lock out 
+the manual restart feature until power is cycled to the evaporator unit.  A pressure balancing valve must be factory installed to reduce the chance 
+of high pressure cut-out due to excessive refrigerant migration to the receiver due to changing outdoor temperatures during off-cycles.  The refrigerant 
+piping must be spun-closed and filled with a nitrogen holding charge.  Evaporator and condensing unit must be field piped using copper lines, brazed, 
+evacuated and field charged with R-407C refrigerant.  Condensing unit must be designed for<MET> [35 degrees C] [40.6 degrees C]</MET><ENG> [95 degrees F] [105 
+degrees F]</ENG> ambient and be capable of operation to<MET> [minus 18 degrees C] [minus 34 degrees C]</MET><ENG> [0 degrees F] [minus 30 degrees F]</ENG>.[  Condensing unit 
+must operate at a sound level less than 58 dbA.]  The condensing coil must be constructed of copper tubes and aluminum fins.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Indoor [Water][Glycol] Cooled Condensing Unit</TTL><BRK/>
+<BRK/>
+<TXT>Condensing unit components must include coaxial condenser coil, scroll compressor, high-pressure switch, water regulating valve, hot gas bypass 
+system, and liquid line solenoid valve.  Provide a factory mounted disconnect switch in the high voltage section of the electrical panel.  The 
+switch handle must be accessible from the unit front.  The cabinet and chassis must be constructed of heavy gauge galvanized steel, and must be 
+serviceable from one side of the unit.  Mounting brackets must be integral to the cabinet design and be designed for ceiling mounting.</TXT><BRK/>
+<BRK/>
+<TXT>Provide hot gas bypass to reduce compressor cycling and improve operation under low-load conditions.  The hot gas bypass must be completely contained 
+in the condensing unit.  Field installed third refrigerant line is not acceptable.  Hot gas bypass must be automatically deactivated upon a call 
+for dehumidification.  Provide a high pressure switch to protect the unit from abnormal refrigerant pressure conditions and deactivate the compressor 
+and annunciate an alarm at the wall controller.  The blower must continue to circulate air.  The wall controller must be used to manually restart 
+the compressor function after the automatic pressure switch resets.  Three high head pressure alarms in a rolling 12-hour period must lock out 
+the manual restart feature until power is cycled to the evaporator unit.  The refrigerant piping must be spun-closed and filled with a nitrogen 
+holding charge.  Evaporator and condensing unit must be field piped using copper lines, brazed, evacuated and field charged with R-407C refrigerant.  
+The condenser circuit must be pre-piped with a [2-way][3-way] regulating valve which is head-pressure actuated.  The condenser water/glycol circuit 
+must be designed for a static operating pressure of<MET> [1034 kPa] [2413 kPa]</MET><ENG> [150 PSI] [350 PSI]</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Steam Generating Humidifier</TTL><BRK/>
+<BRK/>
+<TXT>Provide a factory mounted steam generating humidifier that is controlled by the integral unit controls. Humidifier must include disposable canister, 
+all supply and drain valves,<MET> 25.4 mm</MET><ENG> 1 inch</ENG> air gap on fill line, inlet strainer, steam distributor and electronic controls.  The need to change 
+canister must be annunciated on the wall-mounted controller.  An LED light on the humidifier assembly must indicate cylinder full, overcurrent 
+detection, fill system fault and end of cylinder life conditions.  The canister flush water must not drain into the coil drain pan.  The humidifier 
+wand must be mounted over the coil drain pan.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Electric Reheat</TTL><BRK/>
+<BRK/>
+<TXT>Provide factory mounted, 304/304 stainless steel, finned-tubular electric resistance heater.  Reheat must be controlled by the integral unit controls 
+to maintain room dry bulb temperature when dehumidification is required.  Provide UL listed safety switch to protect the system from overheating.  
+Provide a factory mounted ground current detector to shut-down the entire unit if a ground fault in the reheat system is detected.[  Provide Silicon 
+Controlled Rectifier (SCR) controller to proportionally control the reheat elements to maintain the selected room temperature.]</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Hot Water Reheat</TTL><BRK/>
+<BRK/>
+<TXT>Provide hot water reheat coil constructed of copper tubes and aluminum fins with integral drain and vent.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Controls</TTL><BRK/>
+<BRK/>
+<TXT>Provide remote mounted color touchscreen display for each unit.  Provide remote mounted temperature[ and humidity] sensor[s] for each unit.  Controls 
+must be organized by menus with minimum menu selection of: Alarms, Event Log, Graphics, and Status Overview.  The Graphics menu must display a 
+minimum of the following: zone temperature[ and humidity], zone setpoints, fan status[, and valve position].  Controls must include a control system 
+interface.  The control system interface must meet DDC Hardware requirements of Section [<SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND 
+OTHER BUILDING CONTROL SYSTEMS][<SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS].</TXT><BRK/>
+<BRK/>
+[<TXT>Integrate CRAC control into the HVAC control system defined in Section [<SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING 
+CONTROL SYSTEMS][<SRF>23 09 23.02</SRF> BACNET DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS][ and ][UMCS defined in Section <SRF>25 10 10</SRF> UTILITY 
+MONITORING AND CONTROL SYSTEM (UMCS) FRONT END AND INTEGRATION].[  HVAC control system interface point is located in [indicate room number].][  
+UMCS interface is located in [indicate building and room number].][  Refer to controls drawings for minimum points required to interface with the 
+[HVAC control system][ and ][UMCS].]</TXT><BRK/>
+<BRK/>
+]</SPT></SPT>[<SPT><TTL><SUB>[COLD][ AND ][HOT] AISLE CONTAINMENT SYSTEMS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Aisle containment systems must be closely coordinated with the communications, lighting, and fire protection 
+systems.  The ceiling of an aisle containment system is an obstruction to light and sprinkler spray and can make 
+routing of data cable in overhead cable tray more difficult.  Containment systems are typically only required 
+in very high density data centers or in retro-fit applications where fundamental best practice in airflow design 
+cannot be applied due to physical constraints.  If containment is required, it should be provided under the same 
+contract as the server racks themselves.  Containment systems connect directly to the racks, so this must be a 
+fully coordinated system.  Coordinate with fire protection to extend the suppression system into the contained 
+aisles.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an engineered and manufactured system of solid panels to fully enclose each [hot][cold] aisle.  The system must connect to uniform rows 
+of same-height racks.  The containment system must be provided in its entirety from a single manufacturer.  All components must be selected for 
+compatibility with the equipment support frame provided under Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS CABLING SYSTEM.  All materials in the 
+containment system must have a flame spread index not greater than 75 and a smoke developed index not greater than 450 when tested in accordance 
+with <RID>ASTM E84</RID> or <RID>UL 723</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Wall Panels:  [Translucent][ or ][Transparent]<MET> 6.0 mm</MET><ENG> 0.236 inch</ENG> minimum thickness polycarbonate panels framed within<MET> 25.4 mm x 25.4 mm</MET><ENG> 1 inch 
+x 1 inch</ENG> T-slot aluminum extrusion or extruded aluminum tube.  Panels must be <RID>UL 94</RID> listed with a minimum rating of V-1.</TXT><BRK/>
+<BRK/>
+<TXT>Roof Panels:  Construction same as wall panels.</TXT><BRK/>
+<BRK/>
+<TXT>Doors:  [Sliding][ or ][Hinged] doors of similar construction to wall panels.  Doors must comply with the requirements of CPSC <RID>16 CFR 1201</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Grommets:  At each penetration through the aisle enclosure system, provide brush-type grommets to minimize air leakage.  Grommets must be of ABS 
+or polypropylene construction with nylon brush filaments and EPDM gasket.</TXT><BRK/>
+<BRK/>
+<TXT>Blanking Panels:  Provide panels to blank off openings in the aisle.  Panel construction must be similar to wall panel construction or rack enclosure 
+construction.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>RACK MOUNTED FANS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide a fan schedule on the drawings that, at minimum, indicates: airflow, configuration (top, side, 
+bottom, front, or back of rack), number of fans, and electrical requirements.</NPR><BRK/>
+<BRK/>
+<NPR>Similar to containment systems, the need for rack mounted fans should be closely evaluated by the designer, and 
+only specified when absolutely needed.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an engineered and manufactured fan system, designed to attach directly to the equipment support frame provided under Section <SRF>27 10 00</SRF> BUILDING 
+TELECOMMUNICATIONS CABLING SYSTEM.  Fan system must circulate air evenly through the entire rack that it serves.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cabinet</TTL><BRK/>
+<BRK/>
+<TXT>Exterior panels must be steel sheet, minimum of<MET> 1.0 mm</MET><ENG> 20 gage</ENG>, mill-galvanized or coated with a corrosion-inhibiting epoxy finish in [manufacturer's 
+standard][the specified][the indicated] color.  Mill galvanized sheet metal must be coated with not less than<MET> 380 gram of zinc per square meter</MET><ENG>
+ 1.25 ounces of zinc per square foot</ENG> of two-sided surface.  Mill rolled structural steel must be hot-dip galvanized or primed and painted.  Cut 
+edges, burns and scratches in hot-dip galvanized surfaces must be coated with galvanizing repair coating.  Manufacturer's standard cabinet materials 
+and finishes will be acceptable if equivalent to the above requirements and approved by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fan</TTL><BRK/>
+<BRK/>
+<TXT>Provide array of propeller type fans powered via single point cord-and-plug connection.[  Provide dual power feeds for redundancy.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>INSTRUMENTATION AND CONTROLS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Evaluate the project in accordance with UFC 4-010-06 Cybersecurity of Facility Related Control Systems.  
+Coordinate with, reference, and provide content in Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL 
+SYSTEMS to ensure that control systems provided under this section meet the project cybersecurity requirements.</NPR><BRK/>
+<BRK/>
+<NPR>Indicate on the controls drawings the required control points that the CRAC unit manufacturer must provide to 
+the HVAC control system.  Coordinate with the system owner to determine the minimum points.</NPR><BRK/>
+<BRK/>
+<NPR>The recommended method of CRAC unit control is a rack mounted temperature and humidity sensor.  Selection of the 
+appropriate rack for mounting the sensors may be coordinated during the design if the racks are part of the construction 
+contract, or the contractor should be required to coordinate with the Contracting Officer if the racks are part 
+of another contract.</NPR><BRK/>
+<BRK/>
+<NPR>For buildings with an HVAC control system, provide a room temperature sensor independent of the CRAC unit controls. 
+monitor the room temperature and send an alarm when out of range.  Critical applications or the use of aisle containment 
+systems may necessitate the use of multiple room temperature sensors.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All controls provided under this section must comply with the requirements of Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Unit Level Controls</TTL><BRK/>
+<BRK/>
+<TXT>Provide factory installed components and wiring to control a unit's basic functions and space ambient conditions[ including [humidification][ and 
+][dehumidification]] at one factory installed and tested station.  Controller modules must provide automatic centralized control of computer room 
+critical equipment, simplifying emergency switching and unit testing.  When the module recognizes an alarm condition, it must automatically switch 
+to a stand-by device.  User must be able to program a switching delay to allow time to correct emergency conditions.  Provide modules with capability 
+to balance the runtime of all connected air units.  Provide clear, simplified instructions for programming and configuration of controllers, minimizing 
+the chances of operator error.  Provide an electronic temperature and humidity recorder, integral or external to the unit, readable to specified 
+control accuracy, complete with supplies required for one year of operation.  Controls must include a control system interface to an HVAC control 
+system.  The control system interface must meet DDC Hardware requirements of Section [<SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER 
+BUILDING CONTROL SYSTEMS][<SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS].  Unit controls must comply 
+with the requirements of Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Display Panel</TTL><BRK/>
+<BRK/>
+<TXT>Provide[ color LED touchscreen display with graphical menu navigation][ LCD digital display with push button navigation].  Display panel must include 
+the following minimum data: power on, power off, unit in alarm, description of alarm, filter status,[ rack inlet temperature, ][ room temperature, 
+][ room relative humidity ,][ event log, ][ service contact information, ] and unit run hours.[  Display must have capability to set up password 
+protection].</TXT><BRK/>
+<BRK/>
+<TXT>Provide the following minimum externally accessible controls at the unit: start and stop total system functions, silence audible alarm, main power 
+disconnect.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alarms</TTL><BRK/>
+<BRK/>
+<TXT>Display alarms on unit display panel.  Alarm for the following: high and low space temperature, high and low space humidity, dirty filters, loss 
+of airflow,[ loss of [water][ or ][glycol] flow,] compressor high head pressure,[ custom alarms as indicated on the controls drawings,] humidifier 
+problems, and leak detection.  Provide field accessible local audible alarm with silence pushbutton.  Provide push-to-test lamps or all-lamp test 
+pushbutton.[  CRACs must have local devices which provide signals for remote audible and visual alarming capability for the above specified alarm 
+conditions.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Leak Detection</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Describe here or indicate on drawings the layout of rope type detection systems.  For mission critical 
+applications with tier 3 or tier 4 infrastructure, the rope detection system should monitor the entire underfloor 
+area in the data center.  For mission critical applications with tier 1 or tier 2 infrastructure, the rope detection 
+system should monitor the areas around the CRACs.  Ultimately, the extent of the leak detection system should 
+be coordinated with the owner of the computer room.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [spot][ or ][rope] moisture detection system for each computer room.  Leak detection must be designed for installation on the subfloor 
+below the raised floor of the computer room.  Leak detection system must interface with the associated CRAC control panel to alarm upon detection 
+of moisture on the subfloor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Factory Wired Components</TTL><BRK/>
+<BRK/>
+[<TXT>Provide factory installed and wired[ chilled][,][ and][ condenser][,][ and][ hot] water valve[s].  Valve[s] must meet the requirements of Section 
+<SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide CRAC manufacturer's remote [room temperature sensor][,][ and][ rack mounted temperature sensor array][,][ and][ room humidity sensor].  
+Sensors must meet the requirements of Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide factory wired discharge air temperature sensor.  Sensors must meet the requirements of Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES 
+FOR HVAC.</TXT><BRK/>
+<BRK/>
+]</SPT></SPT>][<SPT><TTL>Supervisory CRAC Controls</TTL><BRK/>
+<BRK/>
+<TXT>In addition to stand alone controls, provide [a ]device[s] to network together all CRACs [in each computer room][in this contract][as indicated].  
+The network device must integrate all data for each CRAC, as required under stand alone controls, and display it on any connected CRAC's display 
+panel.[  The network device must optimize the operation of all connected CRACs to minimize energy use.]  The network device must balance runtime 
+across all connected units.  The network device must automatically switch to a standby unit upon detection of failure of a duty unit.  Provide 
+all control wiring among CRACs and network device[s] as required to meet this specification.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Integration to [HVAC control system] [and] [Basewide Utility Monitoring and Control System (UMCS)]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with the owner/operator of the data center for which points must be interfaced into the HVAC 
+control system and/or UMCS.  Indicate those points on the controls drawings.  At a minimum, call for entering 
+and leaving air temperatures, valve positions, fan speed, and alarms.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Integrate CRAC control into the HVAC control system defined in Section [<SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING 
+CONTROL SYSTEMS][<SRF>23 09 23.02</SRF> BACNET DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS][ and ][UMCS defined in Section <SRF>25 10 10</SRF> UTILITY 
+MONITORING AND CONTROL SYSTEM (UMCS) FRONT END AND INTEGRATION].[  HVAC control system interface point is located in [indicate room number].][  
+UMCS interface is located in [indicate building and room number].]</TXT><BRK/>
+<BRK/>
+[<TXT>Refer to controls drawings for minimum points required to interface with the [HVAC control system][ and ][UMCS].</TXT><BRK/>
+<BRK/>
+]</SPT>]</SPT>[<SPT><TTL>CORROSION PROTECTION FOR COASTAL INSTALLATIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For all outdoor applications and in Environmental Severity Classification (ESC) locations C3 thru C5 and 
+all humid locations, as well as all indoor applications in a harsh environmental, add sentence below to paint 
+in accordance with Section <SRF>09 96 00</SRF> HIGH PERFORMANCE COATINGS.  See UFC 1-200-01 for determination of ESC for 
+a project location; humid locations are those in ASHRAE climate zones 0A, 1A, 2A, 3A, 3C, 4C and 5C (as identified 
+in<MET> ASHRAE 90.1 - SI</MET><ENG> ASHRAE 90.1 - IP</ENG>).</NPR><BRK/>
+<BRK/>
+<NPR>High Performance coatings are specified for all outdoor applications because ultraviolet radiation breaks down 
+most standard coatings, causing a phenomena know as chalking, which is the first stage of the corrosion process.  
+For additional information, contact The Coating Industry Alliance, specific suppliers such as Keeler and Long 
+PPG and NACE International (NACE).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Coat exterior coils, exterior casings, interior coils exposed to outdoor air, and interior casings exposed to outdoor air, in accordance with Section 
+<SRF>09 96 00</SRF> HIGH PERFORMANCE COATINGS.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide the [polyelastomer][ or ][phenolic] finish coating system on exterior coils, exterior casings, interior coils exposed to outdoor air, and 
+interior casings exposed to outdoor air.  The coating system must not reduce the HVAC equipment's performance rating.</TXT><BRK/>
+<BRK/>
+]<TXT>Finish coating must be applied at the premises of the HVAC equipment manufacturer or at the premises of the coating manufacturer or his authorized 
+applicator.  Provide finish coating in colors gray, or aluminum, or ivory.  All components of the special finish coating systems, including primers 
+and intermediate coats, must be applied by immersion dip-coating or spray-coating in accordance with coating manufacturer's written procedures.</TXT><BRK/>
+<BRK/>
+<TXT>If special finish coatings are applied at the finish coating manufacturer's (or his authorized applicator's) premises, the equipment to be finish 
+coated must be transported to and from the finish coating manufacturer's premises by the Contractor.  The finish-coating manufacturer must be responsible 
+for necessary disassembly of the HVAC equipment and re-assembly of final finish coated equipment.</TXT><BRK/>
+<BRK/>
+<TXT>Submit for approval a <SUB>Certificate of Specification Compliance</SUB> provided by the finish coating system manufacturer.  Requirements for certificate 
+include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Name of firm that provided the finish coating system.</OLI><BRK/>
+<BRK/>
+<OLI>Project title and Navy construction contract number.</OLI><BRK/>
+<BRK/>
+<OLI>Listing of the pieces of equipment that were finish coated by this firm.</OLI><BRK/>
+ <BRK/>
+<OLI>Certificate must certify that the finish coating materials and application procedures employed conform to the contract specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Date of final inspection by this firm and printed name and signature of the inspector.</OLI><BRK/>
+<BRK/>
+<OLI>Printed name and signature of the officer of the firm that is responsible for firm's certification program.</OLI><BRK/></OLG>
+<BRK/>
+[<SPT><TTL>Polyelastomer Finish Coating System</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Heat Exchanger Coil (Including Evaporator Coil) Surfaces</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Acrylic polymer resin primer: <MET> 0.025 mm</MET><ENG> 1 mil</ENG> minimum dry film thickness.</OLI><BRK/>
+<BRK/>
+<OLI>Polyelastomer resin top coating:  3 coats,<MET> 0.038 mm</MET><ENG> 1.5 mils</ENG> minimum total dry film thickness.</OLI><BRK/>
+<BRK/>
+<OLI>In lieu of coating, provide copper tubes and copper fins</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Uninsulated Interior Surfaces and Exterior Surfaces</TTL><BRK/>
+<BRK/>
+<LST>Polyelastomer resin:  3 coats,<MET> 0.100 to 0.150 mm</MET><ENG> 4 to 6 mils</ENG><BRK/>
+minimum total dry film thickness.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insulated Interior Surfaces </TTL><BRK/>
+<BRK/>
+<LST>Vinyl: <MET> 0.050 to 0.250 mm</MET><ENG> 2 to 10 mils</ENG> minimum dry film<BRK/>
+thickness.</LST><BRK/>
+<BRK/></SPT>
+</SPT>][<SPT><TTL>Phenolic Finish Coating System</TTL><BRK/>
+<BRK/>
+<TXT>Provide a resin base thermosetting phenolic finish.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Heat Exchanger Coil (Including Evaporator Coil) Surfaces</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Apply phenolic finish to the entire coil.  Provide a minimum of two coats.  Total minimum dry film thickness must be<MET> 0.075 mm</MET><ENG> 3 mils</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>In lieu of coating, provide coil of copper tubes and copper fins</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Uninsulated Interior Surfaces and Exterior Surfaces </TTL><BRK/>
+<BRK/>
+<LST>Amine cured epoxy phenolic finish: <MET> 0.150 to 0.175 mm</MET><ENG> 6 to 7 mils</ENG> minimum total dry film thickness.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insulated Interior Surfaces </TTL><BRK/>
+<BRK/>
+<LST>Polyester or Vinyl Ester finish: <MET> 0.050 to 0.250 mm</MET><ENG> 2 to 10 mils</ENG> minimum dry film thickness.</LST><BRK/>
+<BRK/></SPT>
+</SPT>]</SPT>]<SPT><TTL>FACTORY PAINTING SYSTEMS</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's standard factory painting.  Certify that the factory painting system applied will withstand 125 hours in a salt-spray fog 
+test, except that equipment located outdoors must withstand 500 hours in a salt-spray fog test.  Salt-spray fog test must be in accordance with <RID>
+ASTM B117</RID>, and for that test the acceptance criteria must be as follows:  immediately after completion of the test, the paint must show no signs 
+of blistering, wrinkling, or cracking, and no loss of adhesion; and the specimen must show no signs of rust creepage beyond<MET> 3 mm</MET><ENG> 0.125 inch</ENG> on 
+either side of the scratch mark.</TXT><BRK/>
+<BRK/>
+<TXT>The film thickness of the factory painting system applied on the equipment must not be less than the film thickness used on the test specimen.  
+The factory painting system must be designed for the anticipated temperature service.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ELECTRICAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate the Short Circuit Current Rating (SCCR) with the electrical engineer.  This value varies for 
+every application and is not easily fixed in the field if the equipment is not specified correctly.  For multiple 
+CRACs with different SCCR requirements, indicate this information on the equipment schedule or reference its location 
+on the electrical drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an integral electrical panel of similar construction to the unit cabinet.  Within the electrical panel, provide a single point power connection 
+terminal block and [fused disconnect switch, ][fuse block and disconnect switch].  The electrical panel must provide at least [65,000][_____] amp 
+Short Circuit Current Rating (SCCR).[  Refer to electrical drawing [_____] for Short Circuit Current Rating (SCCR).]</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph for other than NAVFAC SE projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Electrical Motors, Controllers, Contactors, and Disconnects</TTL><BRK/>
+<BRK/>
+<TXT>Provide motors, controllers, disconnects and contactors with their respective pieces of equipment.  Motors, controllers, disconnects and contactors 
+must conform to and have electrical connections provided under Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Provide internal wiring for components 
+of packaged equipment as an integral part of the equipment.  Extended voltage range motors will not be permitted.  Controllers and contactors must 
+have a maximum of 120 volt control circuits, and must have auxiliary contacts for use with the controls provided.  When motors and equipment provided 
+are larger than sizes indicated, the cost of additional electrical service and related work must be included under the section that specified that 
+motor or equipment.  Power wiring and conduit for field installed equipment must be provided under and conform to the requirements of Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph and its subparagraphs regarding electrical components and energy efficient motors for 
+NAVFAC SE projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Electrical Installations</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>IEEE C2</RID>, <RID>NFPA 70</RID>, and requirements specified herein.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>New Work</TTL><BRK/>
+<BRK/>
+<TXT>Provide electrical components of mechanical equipment, such as motors, motor starters[ (except starters/controllers which are indicated as part 
+of a motor control center)], control or push-button stations, float or pressure switches, solenoid valves, integral disconnects, and other devices 
+functioning to control mechanical equipment, as well as control wiring and conduit for circuits rated 100 volts or less, to conform with the requirements 
+of the section covering the mechanical equipment.  Extended voltage range motors are not to be permitted.  The interconnecting power wiring and 
+conduit, control wiring rated 120 volts (nominal) and conduit,[ the motor control equipment forming a part of motor control centers,] and the electrical 
+power circuits must be provided under Division 26, except internal wiring for components of package equipment must be provided as an integral part 
+of the equipment.  When motors and equipment provided are larger than sizes indicated, provide any required changes to the electrical service as 
+may be necessary and related work as a part of the work for the section specifying that motor or equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Modifications to Existing Systems</TTL><BRK/>
+<BRK/>
+<TXT>Where existing mechanical systems and motor-operated equipment require modifications, provide electrical components under Division 26.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Efficiency Motors</TTL><BRK/>
+<BRK/>
+<SPT><TTL>High Efficiency Single-Phase Motors</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified, single-phase fractional-horsepower alternating-current motors must be high efficiency types corresponding to the applications 
+listed in <RID>NEMA MG 11</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Efficiency Polyphase Motors</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified, polyphase motors must be selected based on high efficiency characteristics relative to the applications as listed in <RID>
+NEMA MG 10</RID>.  Additionally, polyphase squirrel-cage medium induction motors with continuous ratings must meet or exceed energy efficient ratings 
+in accordance with Table 12-6C of <RID>NEMA MG 00001</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Three-Phase Motor Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide controllers for motors rated<MET> 1.34 kilowatts</MET><ENG> 1 horsepower</ENG> and larger with electronic phase-voltage monitors designed to protect motors from 
+phase-loss, undervoltage, and overvoltage.  Provide protection for motors from immediate restart by a time adjustable restart relay.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Electrical Control Wiring</TTL><BRK/>
+<TAI OPT="NAVY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains NAVY Tailoring.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT><TAI OPT="NAVY">[Provide control wiring under Section <SRF>23 09 53.00 20</SRF> SPACE TEMPERATURE CONTROL SYSTEMS.  ]</TAI>[Provide control wiring under Section <SRF>23 09 00</SRF> INSTRUMENTATION 
+AND CONTROL FOR HVAC.  ][  Provide control wiring under this section in accordance with <RID>NFPA 70</RID> and Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.]  
+Provide <SUB>Space temperature control system drawings</SUB> which include point-to-point electrical wiring diagrams.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>[HVAC WATER PIPING][ AND ][METAL DUCTWORK]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not locate units with hydronic coils directly above computer racks.  Design piping systems to limit 
+the amount of overhead hydronic piping installed in the computer room.  Do not locate hydronic piping directly 
+above computer racks.  Ideally, hydronic piping should be installed below the raised access floor.  Locate hydronic 
+piping under raised access floors such that it does not block airflow from downflow CRAC units.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Requirements for HVAC water piping and metal ductwork are specified in [Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, AND CONDENSER WATER PIPING SYSTEMS][ 
+and ][Section <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION].</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>FIRE PROTECTION DEVICES</TTL><BRK/>
+<BRK/>
+<TXT>The requirements for duct smoke detectors are specified in Section [<SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC][<SRF>23 09 53.00 20</SRF> SPACE TEMPERATURE 
+CONTROL SYSTEMS].</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>SOURCE QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Provide factory test plan[s], factory test schedule[s], factory test[s] and factory test report[s] on [each of the CRAC[s]; ][CRAC-1 through CRAC-[_____]].</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Manufacturer's Factory Test Plans</SUB></TTL><BRK/>
+<BRK/>
+<TXT>For [each CRAC][insert specific unit marks], submit a factory test plan which when followed during factory testing must verify that the performance 
+scheduled on the drawings is met by the produced CRAC models.</TXT><BRK/>
+<BRK/>
+<TXT>The manufacturer must perform factory tests on the actual CRAC[s] produced for this project.  The test reports must document the performance tests 
+conducted on the factory assembled computer room air conditioning units.  Performance testing on the individual computer room air conditioning 
+unit components, not factory assembled, is not acceptable.</TXT><BRK/>
+<BRK/>
+<TXT>Submit the required test plans for review and approval to the Contracting Officer at least [90][_____] calendar days before scheduled factory test 
+date.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Test Procedure</TTL><BRK/>
+<BRK/>
+<TXT>Indicate in each test plan the factory acceptance test procedures.  Procedures must be structured to test all modes of operation to confirm that 
+the controls are performing in accordance with the intended sequence of control.</TXT><BRK/>
+<BRK/>
+<TXT>Controllers must be verified to be properly calibrated and have the proper set point to provide stable control of their respective equipment.</TXT><BRK/>
+<BRK/>
+<TXT>Include in each test plan a detailed step-by-step procedure for testing automatic controls provided by the manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Variables</TTL><BRK/>
+<BRK/>
+<TXT>Each test plan must list performance variables that are required to be measured or tested as part of the field test.  Include in the performance 
+variables list the performance indicated on the equipment schedules on the contract design drawings.</TXT><BRK/>
+<BRK/>
+<TXT>Manufacturer must provide with each test procedure a description of acceptable performance results that must be verified.  Manufacturer must identify 
+the acceptable limits or tolerances within which each tested performance variable must acceptably operate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Configuration</TTL><BRK/>
+<BRK/>
+<TXT>Plans must indicate that tests are to be performed for a minimum of four continuous hours[ in a wet coil condition].  If test period is interrupted, 
+the four hour test period must be started over.  Each test plan must be job specific and must address the particular CRAC[s] and particular conditions 
+which exist with this contract.  Generic or general preprinted test procedures are not acceptable.[  Tests must include [a pressurized raised floor 
+discharge configuration at the specified or indicated height above the floor,][ with or without the air discharge elbows; ][or a top air discharge 
+configuration][ and phenolic coated coils].]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tested Variables</TTL><BRK/>
+<BRK/>
+<TXT>Plans must provide for air side testing which includes verification of the airflow, total static pressure; fan drive motor KW, amperage and RPM; 
+and fan RPM.  Provide entering air temperatures equal to those indicated on the CRAC schedules.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermal Testing</TTL><BRK/>
+<BRK/>
+<TXT>Plans must provide thermal testing utilizing [chilled water][40 percent ethylene glycol and 60 percent water solution][ and ][hot water] with temperatures 
+equal to those indicated on the CRAC schedules.  Thermal testing must verify CRAC heating, sensible cooling, total cooling, and humidifying performance 
+scheduled on the contract drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Specialized Components</TTL><BRK/>
+<BRK/>
+<TXT>Include procedures for field testing and field adjusting specialized components, such as hot gas bypass control valves, or pressure valves.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Factory Test For Sound Pressure Level</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not include the following sound rating tests in the specification without written permission from the 
+Engineering Field Division's Mechanical Design Branch for a particular project.  Prior to including the following 
+sound testing paragraph, coordinate the following aspects of the requirements:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Determining the sound ratings of CRACs requires specific factory testing.  This testing may need to be witnessed 
+by a representative of the Contracting Officer to verify compliance since no manufacturer to date has performed 
+these sound rating tests.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Sound rating testing will add significant cost to each CRAC and therefore must be covered by the project cost 
+estimate.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Ensure that acceptable sound ratings for each CRAC is indicated.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Determine the A-weighted sound pressure level for the indoor portion of each of the CRACs; [CRAC-1 through CRAC-[_____]].</TXT><BRK/>
+<BRK/>
+<TXT>Each unit must be mounted on a [raised ]floor duplicating of the installation configuration indicated on the contract drawings.  Unit must be located 
+at least<MET> 1.5 meters 150 mm</MET><ENG> 5 feet 6 inches</ENG> from test room walls.  No other equipment must be operating in the test room during sound level testing 
+of subject unit.  Background sound levels must be at least 10 dB below lowest sound pressure level measured on subject unit.  Testing must be conducted 
+by using an ANSI Type 1 or 2 sound level meter located<MET> 1.0 meter</MET><ENG> 3.3 feet</ENG> from the unit under test and<MET> 1.0 meter</MET><ENG> 3.3 feet</ENG> above raised floor.  
+Measure and record A-weighted sound pressure level on all four sides of unit.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Factory Tests Reporting Forms</TTL><BRK/>
+<BRK/>
+<TXT>Each test plan must include the required test reporting forms to be completed by the Contractor's testing representatives.  Submit factory test 
+reports, referencing each tested CRAC serial number, and receive approval before delivery of CRAC to the project site.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL><SUB>CRAC Production Schedule and Factory Test Schedule</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Factory witness testing is expensive and rarely necessary for commonly manufactured mechanical equipment 
+such as CRAC.  Confirm with the facility owner that witness testing is necessary and worth the cost.  If desired, 
+remove the brackets from the "CRAC Production Schedule and Factory Test Schedule" paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Government [will][reserves the right to] witness factory tests for [CRAC-1][ and CRAC-[_____] through CRAC-[_____]].</TXT><BRK/>
+<BRK/>
+<TXT>Provide the CRAC production schedule and factory test schedule for tests to be performed at the manufacturer's test facility.  Submit planned production 
+schedule, and factory test schedule and test location, to the Contracting Officer as soon as it is scheduled but not less than 60 calendar days 
+prior to the scheduled factory test date.  Track this schedule through the production phases and if a scheduled factory test date changes, give 
+advanced notice to Contracting Officer as soon as possible but at least 15 calendar days in advance of the scheduled test dates.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Factory Tests</TTL><BRK/>
+<BRK/>
+<TXT><TST>Conduct the factory testing in compliance with the Contracting Officer approved manufacturer's field test plan, and in accordance with additional 
+field testing requirements specified herein.  Record the required data using the test reporting forms approved of the approved field test plan.  
+Conduct the test for each CRAC for the continuous test period in the approved test plan.  A CRAC shutdown before the continuous test period is 
+completed must result in the test period being started again and run for the required duration.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Deficiency Resolution</TTL><BRK/>
+<BRK/>
+<TXT>The test requirements must be acceptably met; deficiencies identified during the tests must be corrected in compliance with the manufacturer's 
+recommendations and corrections tested as specified in the paragraph MANUFACTURER'S FACTORY TEST PLANS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Factory Test Reports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Use the test reporting forms approved in the factory test plan.  Final test report forms must be typed including data entries and remarks.  Completed 
+test report forms for each CRAC must be reviewed, approved, and signed by the Manufacturer's test director.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>SEISMIC REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>CRAC units must be seismically certified in accordance with the requirements in Section <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR HVAC.  Provide seismic 
+bracing in accordance with Section <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR HVAC.</TXT><BRK/>
+<BRK/></SPT>
+]</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>CRAC System</TTL><BRK/>
+<BRK/>
+<TXT>Installation of each CRAC system including equipment, materials, installation, workmanship, fabrication, assembly, erection, examination, inspection, 
+and testing, must be in accordance with <RID>ASME B31.1</RID>, <RID>ASME B31.5</RID>, <RID>NFPA 70</RID>, as modified and supplemented by the requirements of this section and the 
+CRAC manufacturer's written installation instructions.</TXT><BRK/>
+<BRK/>
+<TXT>Install all work so that parts requiring periodic inspection, operation, maintenance, and repair are readily accessible.  Install concealed valves, 
+expansion joints, controls, dampers, and equipment requiring access, in locations freely accessible through access doors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation Instructions</TTL><BRK/>
+<BRK/>
+<TXT>Provide a manufacturer's <SUB>installation manual for each type of CRAC</SUB>.[  Provide a manufacturer's <SUB>installation manual for each type of aisle containment 
+system</SUB>.][  Provide a manufacturer's <SUB>installation manual for each type of rack mounted fan</SUB>.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operation and Maintenance Data</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>Computer Room Air Conditioner Operation and Maintenance Data</SUB> in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections to Existing Systems</TTL><BRK/>
+<BRK/>
+<TXT>Notify the Contracting Officer in writing at least 15 calendar days prior to the date the connections are required.  Obtain approval before interrupting 
+service.  Provide materials required to make connections into existing systems and perform excavating, backfilling, compacting, and other incidental 
+labor as required.  Provide labor and tools for making actual connections to existing systems.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion and before final acceptance of work, test each CRAC subsystem in service to demonstrate compliance with the contract requirements, 
+including field testing specified below.  Adjust controls and balance systems prior to final acceptance of completed systems.  Test controls through 
+every cycle of operation.  Test safety controls to demonstrate performance of required function.  Correct defects in work provided and repeat tests.  
+Provide steam, fuel, water, electricity, instruments, connecting devices, and personnel for tests.  Flush and clean piping before placing in operation.  
+Clean equipment, piping, strainers, and ducts.  Prior to commencement of field testing, remove all filters and provide new filters.  Perform and 
+document that proper <SUB>Indoor Air Quality During Construction</SUB> procedures have been followed; this includes providing documentation showing that after 
+construction ends, and prior to occupancy, new filters were provided.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD TESTING</TTL><BRK/>
+<BRK/>
+<TXT>Provide field test plan[s], field test schedule[s], field test[s] and field test report[s] on each of the CRAC[s].  Field test each CRAC for Contracting 
+Officer acceptance in accordance with the CRAC manufacturer's approved field test plan.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Manufacturer's Field Test Plans</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit field test plans developed by the manufacturer for each CRAC; [submit the field test plans along with the factory test plans specified herein 
+before][submit the field test plans at least 90 calendar days prior to planned date of the field test].  Field test plans developed by the installing 
+Contractor, or the equipment sales agency furnishing the CRAC, will not be acceptable.</TXT><BRK/>
+<BRK/>
+<TXT>The Contracting Officer will review and approve the field test plan for each of the listed CRACs prior to commencement of field testing of the 
+equipment.  The approved field test plans must be followed for the field tests of the CRAC and test reporting.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Coordinated Testing</TTL><BRK/>
+<BRK/>
+<TXT>Indicate in each field test plan when work required by this section requires coordination with test work required by other specification sections.  
+Provide test procedures for the simultaneous or integrated testing of: CRAC controls which interlock and interface with controls factory prewired[; 
+and external controls for the CRAC provided under [Section <SRF>23 09 53.00 20</SRF> SPACE TEMPERATURE CONTROL SYSTEMS][Section <SRF>23 09 00</SRF> INSTRUMENTATION AND 
+CONTROL FOR HVAC]].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Prerequisite Testing</TTL><BRK/>
+<BRK/>
+<TXT>Each CRAC for which performance testing is dependent upon the completion of the work covered by Section <SRF>23 05 93</SRF> TESTING, ADJUSTING AND BALANCING 
+FOR HVAC must have that work completed as a prerequisite to testing work under this section.  Indicate in each field test plan when such prerequisite 
+work is required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Procedure</TTL><BRK/>
+<BRK/>
+<TXT>Indicate in each field test plan the CRAC manufacturer's published start-up, and field acceptance test procedures.  Include in each test plan a 
+detailed step-by-step procedure for testing automatic controls provided by the manufacturer.</TXT><BRK/>
+<BRK/>
+<TXT>Procedures must be structured to test the controls through all modes of control to confirm that the controls are performing with the intended sequence 
+of control.</TXT><BRK/>
+<BRK/>
+<TXT>Controllers must be verified to be properly calibrated and have the proper set point to provide stable control of their respective equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Variables</TTL><BRK/>
+<BRK/>
+<TXT>Each test plan must list performance variables that are required to be measured or tested as part of the field test.</TXT><BRK/>
+<BRK/>
+<TXT>Include, in the listed performance variables, requirements indicated on the CRAC schedules on the design drawings.  Manufacturer must provide, 
+with each test procedure, a description of acceptable results that have been verified.</TXT><BRK/>
+<BRK/>
+<TXT>Manufacturer must identify the acceptable limits or tolerances within which each tested performance variable must acceptably operate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Configuration</TTL><BRK/>
+<BRK/>
+<TXT>Plans must indicate that tests are to be performed for a minimum of four continuous hours[ in a wet coil condition].  If test period is interrupted, 
+the four hour test period must be started over.  Each test plan must be job specific and must address the particular CRAC[s] and particular conditions 
+which exist with this contract.  Generic or general preprinted test procedures are not acceptable.[  Tests must include [a pressurized raised floor 
+discharge configuration at the specified or indicated height above the floor,][ with or without the air discharge elbows; ][or a top air discharge 
+configuration][ and corrosion protection.]]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tested Variables</TTL><BRK/>
+<BRK/>
+<TXT>Plans must provide for air side testing which includes verification of the airflow, total static pressure; fan drive motor KW, amperage and RPM; 
+and fan RPM. Provide entering air temperatures equal to those indicated on the CRAC schedules.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermal Testing</TTL><BRK/>
+<BRK/>
+<TXT>Plans must provide thermal testing utilizing [chilled water][40 percent ethylene glycol and 60 percent water solution][ and ][hot water] with temperatures 
+equal to those indicated on the CRAC schedules.  Thermal testing must verify CRAC heating, sensible cooling, total cooling, and humidifying performance 
+scheduled on the contract drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Specialized Components</TTL><BRK/>
+<BRK/>
+<TXT>Include procedures for field testing and field adjusting specialized components, such as hot gas bypass control valves, or pressure valves.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Test Reporting Forms</TTL><BRK/>
+<BRK/>
+<TXT>Each test plan must include the required test reporting forms to be completed by the Contractor's testing representatives.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Field Test Schedule</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Notify the Contracting Officer in writing at least 30 calendar days prior to the testing.  Within 30 calendar days after acceptable completion 
+of testing, submit each test report for the review and approval of the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Test Representative</TTL><BRK/>
+<BRK/>
+<TXT>Provide a factory trained field test representative authorized by the CRAC manufacturer to oversee the complete execution of the field testing.  
+This test representative must also review, approve, and sign the completed field test report.  Signatures must be accompanied by the person's name 
+typed.</TXT><BRK/>
+<BRK/>
+<TXT>Submit <SUB>credentials of the manufacturer's field test representative</SUB> proposed, including current telephone number, to the Contracting Officer for 
+review and approval.  Submit these credentials with the written advance notice of the field tests.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Tests</TTL><BRK/>
+<BRK/>
+<TXT><TST>Conduct the field testing in compliance with the Contracting Officer approved manufacturer's field test plan, and in accordance with additional 
+field testing requirements specified herein.  Record the required data using the test reporting forms approved of the approved field test plan.  
+Conduct the test for each CRAC for a continuous 24-hour test period.  A CRAC shutdown before the continuous 24-hour test period is completed must 
+result in the 24-hour test period being started again and run for the required duration.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Deficiency Resolution</TTL><BRK/>
+<BRK/>
+<TXT>The test requirements must be acceptably met; deficiencies identified during the tests must be corrected in compliance with the manufacturer's 
+recommendations.  Corrections must be tested again in compliance with the requirements specified in the paragraph MANUFACTURER'S FIELD TEST PLANS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Field Test Reports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Use the test reporting forms approved in the field test plan.  Final test report forms must be typed, including data entries and remarks.  Completed 
+test report forms for each CRAC must be reviewed, approved, and signed by the Contractor's test director and the QC manager.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>INSTRUCTION TO GOVERNMENT PERSONNEL</TTL><BRK/>
+<BRK/>
+<TXT>Provide the services of competent instructors to give full instruction to the designated Government personnel in the adjustment, operation, and 
+maintenance, including pertinent safety requirements, of the specified equipment or system.  Instructors must be thoroughly familiar with all parts 
+of the installation and must be trained in operating theory as well as practical operation and maintenance work.</TXT><BRK/>
+<BRK/>
+<TXT>Instruction must be given during the first regular work week after the equipment or system has been accepted and turned over to the Government 
+for <NED/>regular operation.  Provide [4][_____] hours of training for each type of CRAC specified.[  Provide [2][_____] hours of training for each [aisle 
+containment system][ and ][rack mounted fan] specified.]</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/>
+ </SEC>

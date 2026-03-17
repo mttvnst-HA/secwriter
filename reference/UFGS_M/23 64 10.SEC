@@ -1,0 +1,2075 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 64 10 (May 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="9.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="9.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="64.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 64 10 (November 2016)<BRK/></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 64 10</SCN><BRK/>
+<BRK/>
+<STL>WATER CHILLERS, VAPOR COMPRESSION TYPE</STL><BRK/>
+<DTE>05/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>water chilling equipment</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Chiller performance and capacity data must be shown in the equipment schedule on the drawings and must 
+contain the following minimum information:  Equipment tag, type of compressor, refrigerant type, variable speed 
+drive requirements (if applicable), vibration isolation type, site elevation, electrical requirements including 
+minimum Short Circuit Current Rating (SCCR) and MOCP, efficiency and relevant ANSI/ASHRAE Standard, capacity and 
+performance data and associated flow and pressure drop data, maximum allowable sound pressure levels. </NPR><BRK/>
+<BRK/>
+<NPR>Drawing information must include, as a minimum, accurate chiller footprint, required service clearances including 
+overhead and tube pull clearances, air circulation clearances, electrical connection/panel NEC service clearances, 
+piping connections and accessories details, refrigerant relief piping layout for indoor chillers showing compliance 
+with the ANSI/ASHRAE 15 and the Mechanical Code, refrigerant leak detection system(s) for indoor chillers and 
+associated required exhaust and ventilation systems, emergency "CHILLER SYSTEM EMERGENCY STOP" stations and "EMERGENCY 
+EXHAUST SYSTEM START" stations as required by the Mechanical Code</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AIR-CONDITIONING, HEATING AND REFRIGERATION INSTITUTE (AHRI)</ORG><BRK/><BRK/><RID>AHRI 450</RID><RTL>(2007; R 2024) Water-Cooled Refrigerant Condensers, Remote Type</RTL><BRK/><BRK/><RID>AHRI 460</RID><RTL>(2024) Performance Rating of Remote Mechanical-Draft Air-Cooled Refrigerant COndensers</RTL><BRK/><BRK/><RID>AHRI 480</RID><RTL>(2007) Refrigerant-Cooled Liquid Coolers, Remote Type</RTL><BRK/><BRK/><RID>AHRI 550/590 I-P</RID><RTL>(2023) Performance Rating Of Water-Chilling and Heat Pump Water-Heating Packages Using the Vapor Compression Cycle</RTL><BRK/><BRK/><RID>AHRI 575</RID><RTL>(2017; R 2020) Method of Measuring Machinery Sound Within an Equipment Space</RTL><BRK/><BRK/><RID>AHRI 580</RID><RTL>(2014; R2022) Performance Rating of Non-condensable Gas Purge Equipment for Use with Low Pressure Centrifugal Liquid Chillers</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN BEARING MANUFACTURERS ASSOCIATION (ABMA)</ORG><BRK/><BRK/><RID>ABMA 9</RID><RTL>(2015) Load Ratings and Fatigue Life for Ball Bearings</RTL><BRK/><BRK/><RID>ABMA 11</RID><RTL>(2014; R 2020) Load Ratings and Fatigue Life for Roller Bearings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ANSI/ASHRAE 15 &amp; 34</RID><RTL>(2022) ASHRAE Standard 15-Safety Standard for Refrigeration Systems and ANSI/ASHRAE Standard 34-Designation and Safety Classification of Refrigerants</RTL><BRK/><BRK/><RID>ASHRAE 90.1 - IP</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/><RID>ASHRAE 90.1 - SI</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME BPVC SEC VIII D1</RID><RTL>(2023) BPVC Section VIII-Rules for Construction of Pressure Vessels Division 1</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS Z49.1</RID><RTL>(2021) Safety in Welding, Cutting and Allied Processes</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A307</RID><RTL>(2023) Standard Specification for Carbon Steel Bolts, Studs, and Threaded Rod 60 000 PSI Tensile Strength</RTL><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM D520</RID><RTL>(2025) Standard Specification for Zinc Dust Pigment</RTL><BRK/><BRK/><RID>ASTM E84</RID><RTL>(2025) Standard Test Method for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/><RID>ASTM F104</RID><RTL>(2011; R 2020) Standard Classification System for Nonmetallic Gasket Materials</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/><RID>NEMA MG 10009</RID><RTL>(2022) Energy Management Guide for Selection and Use of Single-Phase Motors</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 37</RID><RTL>(2024; TIA 24-1) Standard for the Installation and Use of Stationary Combustion Engines and Gas Turbines</RTL><BRK/><BRK/><RID>NFPA 54</RID><RTL>(2024) National Fuel Gas Code</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY OF AUTOMOTIVE ENGINEERS INTERNATIONAL (SAE)</ORG><BRK/><BRK/><RID>SAE J537</RID><RTL>(2023) Storage Batteries</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>40 CFR 82</RID><RTL>Protection of Stratospheric Ozone</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 1236</RID><RTL>(2015; Reprint Feb 2021) UL Standard for Battery Chargers and Charging Engine-Starter Batteries</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<TAI OPT="ARMY"><ITM><SUB>Posted Instructions</SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Verification of Dimensions</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Performance Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Demonstrations</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Refrigerant</SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Water Chiller - Field Acceptance Test Plan</SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>[Scroll][Reciprocating][Rotary Screw] Type Water Chiller[s]</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Centrifugal Type Water Chiller[s]</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Air-Source Heat Pump Type Water Chiller[s] (Non-Reversible)</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Water-Source Heater-Chiller Type Water Chiller[s] (Non-Reversible)</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Air-Source Heat Pump Type Water Chiller[s] (Reversible)</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Water-Source Heater-Chiller Type Water Chiller[s] (Reversible)</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Water-Source Multipipe Type Water Chiller[s] (Simultaneous Heating and Cooling)</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Split-System Water Chiller[S]</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Field Acceptance Testing</SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Water Chiller - Field Acceptance Test Report</SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Factory Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Performance Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Test Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Refrigeration System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Refrigeration Technician Certification</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Water Chiller - Installation Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Course Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Indoor Air Quality During Construction</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CERTIFICATIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Refrigeration Technician Certification</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph requires a certification for technicians who work on equipment that could release 
+Class I or II refrigerants, such as R-123, into the atmosphere.  This is required as of January 1, 2018 to meet 
+the requirements of 40 CFR 82, Subpart F.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All technicians working on equipment that contain Class I or II refrigerants must be certified as a Section 608 Technician to meet requirements 
+in <RID>40 CFR 82</RID>, Subpart F.  Provide copies of technician certifications to the Contracting Officer at least 14 calendar days prior to work on any 
+equipment containing these refrigerants.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SAFETY REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Exposed moving parts, parts that produce high operating temperature, parts which may be electrically energized, and parts that may be a hazard 
+to operating personnel must be insulated, fully enclosed, guarded, or fitted with other types of safety devices.  Install safety devices so that 
+proper operation of equipment is not impaired.  Welding and cutting safety requirements must be in accordance with <RID>AWS Z49.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect stored items from the weather, humidity and temperature variations, dirt and dust, or other contaminants.  Proper protection and care of 
+all material both before and during installation is the Contractor's responsibility.  Any materials found to be damaged must be replaced at the 
+Contractor's expense.  During installation, piping and similar openings must be capped to keep out dirt and other foreign matter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PROJECT REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Verification of Dimensions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must become familiar with all details of the work, verify all dimensions in the field, and advise the Contracting Officer of any 
+discrepancy before performing any work.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Job specifications will be written to avoid restrictions on specific types of refrigerant (excluding CFC 
+refrigerants) in order to encourage competitive bidding of available product offerings.</NPR><BRK/>
+<BRK/>
+<NPR>Electric chillers are required to meet performance requirements specified by FEMP.  The link for energy requirements 
+for air-cooled chillers is found at:<URL HREF="https://www.energy.gov/femp/purchasing-energy-efficient-air-cooled-electric-chillers">https://www.energy.gov/femp/purchasing-energy-efficient-<BRK/>
+air-cooled-electric-chillers</URL></NPR><BRK/>
+<BRK/>
+<NPR>Information on requirements for water-cooled chillers and energy requirements for water-cooled chillers can be 
+found at:<BRK/>
+<URL HREF="https://www.energy.gov/femp/purchasing-energy-efficient-water-cooled-electric-chillers">https://www.energy.gov/femp/purchasing-energy-efficient-<BRK/>
+water-cooled-electric-chillers</URL></NPR><BRK/>
+<BRK/>
+<NPR>These specifications conform to the efficiency requirements as defined in Public Law (PL) 109-58 - "Energy Policy 
+Act of 2005" for federal procurement of energy-efficient products. Equipment selected will have as a minimum the 
+efficiency ratings.</NPR><BRK/>
+<BRK/>
+<NPR>Performance requirements for air-cooled chillers are provided in both kilowatt (kW)/ton and energy efficiency 
+ratio (EER or Btu/watt) units for convenience. When comparing only air-cooled chillers, EER (Btu/watt) is a common 
+metric. When comparing air-cooled and water-cooled chillers, kW/ton is a common metric. Performance requirements 
+for water-cooled chillers are provided in kW/ton.</NPR><BRK/>
+<BRK/>
+<NPR>Project specific performance characteristics must be based on the project site elevation above sea level, and 
+clearly noted as such on the submittal.</NPR><BRK/>
+<BRK/>
+<NPR>Equipment having a lower efficiency than FEMP requirements may be specified if the designer determines the equipment 
+to be more life-cycle cost effective using the life-cycle cost analysis methodology and procedure in 10 CFR 436.</NPR><BRK/>
+<BRK/>
+<NPR>The driving forces in the procurement of higher efficient equipment are Executive Orders 13423 and 13514.</NPR><BRK/>
+<BRK/>
+<NPR>When editing this specification to eliminate a type of chillers technology (oil-free magnetic bearings compressors 
+versus oil-lubricated compressors), the design analysis must include both calculations to demonstrate that the 
+edit is the most LCC effective and manufacturer's literature demonstrating that this edit does not result in a 
+sole-source chiller procurement.  However, for Army and Air Force projects, the installation may have a policy 
+requiring a sole-source for chillers.  Coordinate with the Installation to determine the required chiller provider, 
+and seek sole-source approvals as necessary.</NPR><BRK/>
+<BRK/>
+<NPR>Minimum chiller efficiencies must be specified in the chiller schedule on the drawings and include the applicable 
+AHRI rating standard.  Any specified chiller efficiencies in the specification needs to be avoided.</NPR><BRK/>
+<BRK/>
+<NPR>Use minimum full load and part load efficiency ratings to specify electrically driven, air-cooled and water-cooled 
+water chillers.</NPR><BRK/>
+<BRK/>
+<NPR>Projects which include vapor-compression type water chillers will comply with the safety standards defined in 
+ASHRAE 15.  Designers will be responsible for thoroughly researching and implementing the ASHRAE 15 safety requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>STANDARD COMMERCIAL PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Materials and equipment must be standard Commercial cataloged products of a manufacturer regularly engaged in the manufacturing of such products, 
+which are of a similar material, design and workmanship.  These products must have a two year record of satisfactory field service prior to bid 
+opening.  The two year record of service must include applications of equipment and materials under similar circumstances and of similar size.  
+Products having less than a two year record of satisfactory field service is acceptable if a certified record of satisfactory field service for 
+not less than 6000 hours can be shown.  The 6000 hour service record must not include any manufacturer's prototype or factory testing.  Satisfactory 
+field service must have been completed by a product that has been, and presently is being sold or offered for sale on the commercial market through 
+the following copyrighted means:  advertisements, manufacturer's catalogs, or brochures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MANUFACTURER'S STANDARD NAMEPLATES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In a salt water environment, substitute acceptable non-corroding metal such as but not limited to nickel-copper, 
+304 stainless steel, or monel.  Aluminum is unacceptable.  Nomenclature (or system identification) should be established 
+by the designer.</NPR><BRK/>
+<BRK/>
+<NPR>Choose first bracketed paragraph for Army projects.  Second bracketed paragraph for Navy projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Major equipment including chillers, compressors, compressor drivers, condensers, water coolers, receivers, refrigerant leak detectors, heat exchanges, 
+fans, and motors must have the manufacturer's name, address, type or style, model or serial number, and catalog number on a plate secured to the 
+item of equipment.  Plates must be durable and legible throughout equipment life.  Fix plates in prominent locations with nonferrous screws or 
+bolts.</TXT><BRK/>
+<BRK/>
+][<TXT>Nameplates are required on major components if the manufacturer needs to provide specific engineering and manufacturing information pertaining 
+to the particular component.  Should replacement of this component be required, nameplate information must insure correct operation of the unit 
+after replacement of this component.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>ELECTRICAL WORK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where motor starters for mechanical equipment are provided in motor-control centers, the references to 
+motor starters will be deleted.</NPR><BRK/>
+<BRK/>
+<NPR>Show the electrical characteristics, motor starter type(s), enclosure type, and maximum rpm on the drawings in 
+the equipment schedules.</NPR><BRK/>
+<BRK/>
+<NPR>Where reduced-voltage motor starters are recommended by the manufacturer or required otherwise, specify and coordinate 
+the type(s) required in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Reduced voltage starting is required when 
+full voltage starting will interfere with other electrical equipment and circuits and when recommended by the 
+manufacturer.  Where adjustable speed drives (ASD) are specified, reference Section <SRF>26 29 23</SRF> ADJUSTABLE SPEED 
+DRIVE (ASD) SYSTEMS UNDER 600 VOLTS.  The methods for calculating the economy of using an adjustable speed drive 
+is described in UFC 3-520-01, "Interior Electrical Systems".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide motors, controllers, integral disconnects, contactors, and controls with their respective pieces of equipment, except controllers 
+indicated as part of motor control centers.  Provide electrical equipment, including motors and wiring, as specified in Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Manual or automatic control and protective or signal devices required for the operation specified 
+and control wiring required for controls and devices specified, but not shown, must be provided.  For packaged equipment, the manufacturer 
+must provide controllers including the required monitors and timed restart.</OLI><BRK/>
+<BRK/>
+<OLI>For single-phase motors, provide high-efficiency type, fractional-horsepower alternating-current motors, electronically commutated motors,  
+including motors that are part of a system, in accordance with <RID>NEMA MG 10009</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>For polyphase motors, provide squirrel-cage medium induction motors, including motors that are part of a system, and that meet the efficiency 
+ratings for premium efficiency motors in accordance with <RID>NEMA MG 00001</RID>.</OLI><BRK/>
+<TAI OPT="ARMY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Bracketed sentence "Motor bearings..." to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<OLI>Provide motors in accordance with <RID>NEMA MG 00001</RID> and of sufficient size to drive the load at the specified capacity without exceeding the 
+nameplate rating of the motor.  Motors must be rated for continuous duty with the enclosure specified.  Motor duty requirements must allow 
+for maximum frequency start-stop operation and minimum encountered interval between start and stop.  Motor torque must be capable of accelerating 
+the connected load within 20 seconds with 80 percent of the rated voltage maintained at motor terminals during one starting period.  Provide 
+motor starters complete with thermal overload protection and other necessary appurtenances.<TAI OPT="ARMY">[  Fit motor bearings with grease supply fittings 
+and grease relief to outside of the enclosure.]</TAI>  Motor enclosure type may be either TEAO or TEFC.</OLI><BRK/>
+<BRK/>
+<OLI>[Where two-speed motors are indicated, variable-speed controllers may be provided to accomplish the same function.  ][Use adjustable frequency 
+drives for all variable-speed motor applications.  ]Provide variable frequency drives for motors as specified in Section <SRF>26 29 23</SRF> ADJUSTABLE 
+SPEED DRIVE (ASD) SYSTEMS UNDER 600 VOLTS.</OLI><BRK/>
+<BRK/>
+<OLI>Provide inverter duty premium efficiency motors for use with variable frequency drives.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SELF-CONTAINED WATER CHILLER[S], VAPOR COMPRESSION TYPE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typically, units<MET> 1760 kW</MET><ENG> 500 tons</ENG> or smaller are fully assembled and run-tested at the factory.  Units 
+larger than<MET> 1760 kW</MET><ENG> 500 tons</ENG> are typically shipped and then assembled, charged, and run-tested in the field.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Unless necessary for delivery purposes, units must be assembled, leak-tested, charged (refrigerant[ and oil]), and adjusted at the factory.  In 
+lieu of delivery constraints, a chiller may be assembled, leak-tested, charged (refrigerant[ and oil]), and adjusted at the job site by a factory 
+representative.  Unit components delivered separately must be sealed and charged with a nitrogen holding charge.  Unit assembly must be completed 
+in strict accordance with manufacturer's recommendations.  Parts weighing<MET> 23 kg</MET><ENG> 50 pounds</ENG> or more which must be removed for inspection, cleaning, 
+or repair, such as motors, gear boxes, cylinder heads, casing tops, condenser, and cooler heads, must have lifting eyes or lugs.  Chiller must 
+include all customary auxiliaries deemed necessary by the manufacturer for safe, controlled, automatic operation of the equipment.  Provide chiller 
+with a single point wiring connection for incoming power supply, unless noted otherwise on the drawings.  Chiller must operate within capacity 
+range and speed recommended by the manufacturer.  Chiller must operate at partial load conditions without increased vibration over normal vibration 
+at full load, and must be capable of continuous operation down to the specified minimum capacity.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>[Scroll][Reciprocating][Rotary Screw] Type Water Chiller[s]</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These type units are typically available in capacities of<MET> 1760 kW</MET><ENG> 500 tons</ENG> or less.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller must be certified for performance per <RID>AHRI 550/590 I-P</RID>.  If specified performance is outside of the Application Rating Conditions of <RID>AHRI 550/590 I-P</RID>
+, Table 2 then the chiller's performance must be rated in accordance with <RID>AHRI 550/590 I-P</RID>.  In addition, project specific performance data must 
+be based on the project site elevation above sea level, and clearly noted as such on the submittal.  Chiller must conform to <RID>ANSI/ASHRAE 15 &amp; 34</RID>
+.  As a minimum, chiller must include the following components as defined in paragraph CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Refrigerant and oil</OLI><BRK/>
+<BRK/>
+<OLI>Structural base</OLI><BRK/>
+<BRK/>
+<OLI>Chiller refrigerant circuit per compressor</OLI><BRK/>
+<BRK/>
+<OLI>Controls package</OLI><BRK/>
+<BRK/>
+<OLI>Scroll, reciprocating, or rotary screw compressor</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver,[ electric motor][ gas-engine]</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver connection</OLI><BRK/>
+<BRK/>
+<OLI>Water cooler (evaporator)</OLI><BRK/>
+<BRK/>
+<OLI>[Air-cooled condenser coil][Water-cooled condenser]</OLI><BRK/>
+<BRK/>
+[<OLI>Heat recovery condenser</OLI><BRK/>
+<BRK/>
+][<OLI>Receiver</OLI><BRK/>
+<BRK/>
+][<OLI>[Air-Source Economizer][Water-source Economizer]</OLI><BRK/>
+<BRK/>
+]<TAI OPT="ARMY"><NTE><AST/><BRK/>
+<NPR>NOTE:  Tools to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Tools</OLI><BRK/>
+<BRK/>
+]</TAI></OLG></SPT><SPT><TTL><SUB>Centrifugal Type Water Chiller[s]</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These type units are typically available in capacities of<MET> 528 kW</MET><ENG> 150 tons</ENG> or more.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller must be certified for performance per <RID>AHRI 550/590 I-P</RID>.  If specified performance is outside of the Application Rating Conditions of <RID>AHRI 550/590 I-P</RID>
+, Table 2 then the chiller's performance must be rated in accordance with <RID>AHRI 550/590 I-P</RID>.  In addition, project specific performance data must 
+be based on the project site elevation above sea level, and clearly noted as such on the submittal.  Chiller must conform to <RID>ANSI/ASHRAE 15 &amp; 34</RID>
+.  As a minimum, chiller must include the following components as defined in paragraph CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Refrigerant[ and oil]</OLI><BRK/>
+<BRK/>
+<OLI>Structural base</OLI><BRK/>
+<BRK/>
+<OLI>Chiller refrigerant circuit per compressor</OLI><BRK/>
+<BRK/>
+<OLI>Controls package</OLI><BRK/>
+<BRK/>
+<OLI>Centrifugal compressor</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver,[ electric motor][ gas-engine]</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver connection</OLI><BRK/>
+<BRK/>
+<OLI>Water cooler (evaporator)</OLI><BRK/>
+<BRK/>
+<OLI>Water-cooled condenser</OLI><BRK/>
+<BRK/>
+[<OLI>Heat recovery condenser coil</OLI><BRK/>
+<BRK/>
+][<OLI>Receiver</OLI><BRK/>
+<BRK/>
+]<OLI>Purge system for chillers which operate below atmospheric pressure</OLI><BRK/>
+<BRK/>
+[<OLI>Water-Source Economizer</OLI><BRK/>
+<BRK/>
+]<TAI OPT="ARMY"><NTE><AST/><BRK/>
+<NPR>NOTE:  Tools to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Tools</OLI><BRK/>
+<BRK/>
+]</TAI></OLG></SPT><SPT><TTL><SUB>Air-Source Heat Pump Type Water Chiller[s] (Non-Reversible)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These type units use their condenser to indirectly generate coincidental hot water for heating, typically 
+available up to<MET> 457 kW</MET><ENG> 130 tons</ENG> of cooling.  BTUH heating output and supply temperature of hot water generated 
+depend on many factors and must be discussed with the chiller manufacturer early in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller must be certified for performance per <RID>AHRI 550/590 I-P</RID>.  If specified performance is outside of the Application Rating Conditions of <RID>AHRI 550/590 I-P</RID>
+, Table 2 then the chiller's performance must be rated in accordance with <RID>AHRI 550/590 I-P</RID>.  In addition, project specific performance data must 
+be based on the project site elevation above sea level, and clearly noted as such on the submittal.  Chiller must perform heat pump functions such 
+that, while producing chilled water, its air-cooled condenser system is used to generate heating hot water of capacity and temperature as noted 
+on the drawings.  Chiller must conform to <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  As a minimum, chiller must include the following components as defined in paragraph 
+CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Scroll compressor(s)</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant and oil</OLI><BRK/>
+<BRK/>
+<OLI>Structural base</OLI><BRK/>
+<BRK/>
+<OLI>Chiller refrigerant circuit per compressor</OLI><BRK/>
+<BRK/>
+<OLI>Controls Package <BRK/>
+<BRK/>
+Controls package must include self-contained DDC-based software to control the chiller's heat pump functions to generate chilled water 
+and incidental hot water via its condenser system.</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver connection</OLI><BRK/>
+<BRK/>
+<OLI>Water cooler (evaporator)</OLI><BRK/>
+<BRK/>
+<OLI>Air-cooled condenser coil</OLI><BRK/>
+<BRK/>
+<OLI>Heat recovery condenser</OLI><BRK/>
+<BRK/>
+<OLI>Receiver</OLI><BRK/>
+<BRK/>
+<TAI OPT="ARMY"><NTE><AST/><BRK/>
+<NPR>NOTE:  Tools to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Tools</OLI><BRK/>
+<BRK/>
+]</TAI></OLG></SPT><SPT><TTL><SUB>Water-Source Heater-Chiller Type Water Chiller[s] (Non-Reversible)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typically available up to<MET> 7034 kW</MET><ENG> 2000 tons</ENG> of cooling, when in cooling mode these type units control to 
+a chilled water temperature setpoint, and use their condenser to directly generate coincidental hot water for 
+heating.  When in heating mode, these units control to a condenser water temperature setpoint and provide coincidental 
+chilled water on the evaporator side.  BTUH heating outputs and supply temperature of hot water generated depend 
+on many factors and must be discussed with the chiller manufacturer early in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller must be certified for performance per <RID>AHRI 550/590 I-P</RID>.  If specified performance is outside of the Application Rating Conditions of <RID>AHRI 550/590 I-P</RID>
+, Table 2 then the chiller's performance must be rated in accordance with <RID>AHRI 550/590 I-P</RID>.  In addition, project specific performance data must 
+be based on the project site elevation above sea level, and clearly noted as such on the submittal.  Chiller must conform to <RID>ANSI/ASHRAE 15 &amp; 34</RID>
+.  Chiller must have two modes of operation, Cooling Mode - chilled water production with simultaneous coincidental hot water production via the 
+condenser, and Heating Mode - hot water production with simultaneous coincidental chilled water production via the evaporator, of capacities and 
+temperatures as noted on the drawings.  As a minimum, chiller must include the following components as defined in paragraph CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Scroll, screw or centrifugal compressor(s)</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant[ and oil]</OLI><BRK/>
+<BRK/>
+<OLI>Structural base</OLI><BRK/>
+<BRK/>
+<OLI>Chiller refrigerant circuit per compressor</OLI><BRK/>
+<BRK/>
+<OLI>Controls package<BRK/>
+<BRK/>
+In addition, the controls package must include self-contained DDC-based software to control the chiller's production of chilled water and 
+hot water via cooling-heating mode selection.</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver connection</OLI><BRK/>
+<BRK/>
+<OLI>Water cooler (evaporator)</OLI><BRK/>
+<BRK/>
+<OLI>Water-cooled condenser</OLI><BRK/>
+<BRK/>
+<OLI>Receiver</OLI><BRK/>
+<BRK/>
+<OLI>Purge system for chillers which operate below atmospheric pressure</OLI><BRK/>
+<BRK/>
+<TAI OPT="ARMY"><NTE><AST/><BRK/>
+<NPR>NOTE:  Tools to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Tools</OLI><BRK/>
+<BRK/>
+]</TAI></OLG></SPT><SPT><TTL><SUB>Air-Source Heat Pump Type Water Chiller[s] (Reversible)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These type units use reversing valves to either produce chilled water for cooling, or hot water for heating, 
+but cannot do both simultaneously, typically available up to<MET> 809 kW</MET><ENG> 230 tons</ENG> of cooling.  BTUH heating output 
+and supply temperature of hot water generated depend on many factors and must be discussed with the chiller manufacturer 
+early in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller must be certified for performance per <RID>AHRI 550/590 I-P</RID>.  If specified performance is outside of the Application Rating Conditions of <RID>AHRI 550/590 I-P</RID>
+, Table 2 then the chiller's performance must be rated in accordance with <RID>AHRI 550/590 I-P</RID>.  In addition, project specific performance data must 
+be based on the project site elevation above sea level, and clearly noted as such on the submittal.  Chiller must have refrigeration reversing 
+valve(s) to provide two modes of non-simultaneous operation, Cooling Mode - chilled water production, and Heating Mode - hot water production, 
+of capacities and temperatures as noted on the drawings.  Chiller must conform to <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  As a minimum, chiller must include 
+the following components as defined in paragraph CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Scroll compressor(s)</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant and oil</OLI><BRK/>
+<BRK/>
+<OLI>Structural base</OLI><BRK/>
+<BRK/>
+<OLI>Chiller refrigerant circuit per compressor</OLI><BRK/>
+<BRK/>
+<OLI>Controls package<BRK/>
+<BRK/>
+In addition, the controls package must include self-contained DDC-based software to control the chiller's production of chilled water or 
+hot water via cooling-heating mode selection.</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver connection</OLI><BRK/>
+<BRK/>
+<OLI>Water cooler (evaporator)</OLI><BRK/>
+<BRK/>
+<OLI>Air-cooled condenser coil</OLI><BRK/>
+<BRK/>
+<OLI>Receiver</OLI><BRK/>
+<BRK/>
+<TAI OPT="ARMY"><NTE><AST/><BRK/>
+<NPR>NOTE:  Tools to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Tools</OLI><BRK/>
+<BRK/>
+]</TAI></OLG></SPT><SPT><TTL><SUB>Water-Source Heater-Chiller Type Water Chiller[s] (Reversible)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These type units use reversing valves to either produce chilled water for cooling, or hot water for heating, 
+but cannot do both simultaneously, typically available up to<MET> 2814 kW</MET><ENG> 800 tons</ENG> of cooling (80-ton modules).  BTUH 
+heating output and supply temperature of hot water generated depend on many factors and must be discussed with 
+the chiller manufacturer early in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller must be certified for performance per <RID>AHRI 550/590 I-P</RID>.  If specified performance is outside of the Application Rating Conditions of <RID>AHRI 550/590 I-P</RID>
+, Table 2 then the chiller's performance must be rated in accordance with <RID>AHRI 550/590 I-P</RID>.  In addition, project specific performance data must 
+be based on the project site elevation above sea level, and clearly noted as such on the submittal.  Chiller must have refrigeration reversing 
+valve(s) to provide two modes of non-simultaneous operation, Cooling Mode - chilled water production and Heating Mode - hot water production, of 
+capacities and temperatures as noted on the drawings.  Chiller must conform to <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  As a minimum, chiller must include the 
+following components as defined in paragraph CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Scroll compressor(s)</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant and oil</OLI><BRK/>
+<BRK/>
+<OLI>Structural base</OLI><BRK/>
+<BRK/>
+<OLI>Chiller refrigerant circuit per compressor</OLI><BRK/>
+<BRK/>
+<OLI>Controls package.<BRK/>
+<BRK/>
+In addition, the controls package must include self-contained DDC-based software to control the chiller's production of chilled water or 
+hot water via cooling-heating mode selection.</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver connection</OLI><BRK/>
+<BRK/>
+<OLI>Water cooler (evaporator)</OLI><BRK/>
+<BRK/>
+<OLI>Water-cooled condenser</OLI><BRK/>
+<BRK/>
+<OLI>Receiver</OLI><BRK/>
+<BRK/>
+<TAI OPT="ARMY"><NTE><AST/><BRK/>
+<NPR>NOTE:  Tools to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Tools</OLI><BRK/>
+<BRK/>
+]</TAI></OLG></SPT><SPT><TTL><SUB>Water-Source Multipipe Type Water Chiller[s] (Simultaneous Heating and Cooling)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typically available up to 480 tons of cooling (60-ton modules).  Each module can be indexed to heating 
+or cooling, thus multiple-module machines can simultaneously deliver chilled water and heating hot water as a 
+package thru a series of pipe and valve configurations.  BTUH heating outputs and supply temperature of hot water 
+generated depend on many factors and must be discussed with the chiller manufacturer early in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller must be certified for performance per <RID>AHRI 550/590 I-P</RID>.  If specified performance is outside of the Application Rating Conditions of <RID>AHRI 550/590 I-P</RID>
+, Table 2 then the chiller's performance must be rated in accordance with <RID>AHRI 550/590 I-P</RID>.  In addition, project specific performance data must 
+be based on the project site elevation above sea level, and clearly noted as such on the submittal.  Chiller must be of modular design such that 
+each module can be indexed to heating mode or cooling mode, providing simultaneously production of chilled water and hot water as a package through 
+a series of pipe and automatic valve configurations.  Chiller must conform to <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  As a minimum, chiller must include the 
+following components as defined in paragraph CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Scroll compressor(s)</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant and oil</OLI><BRK/>
+<BRK/>
+<OLI>Structural base</OLI><BRK/>
+<BRK/>
+<OLI>Chiller refrigerant circuit per compressor</OLI><BRK/>
+<BRK/>
+<OLI>Controls package.<BRK/>
+<BRK/>
+In addition, the controls package must include self-contained DDC-based software to control the chiller's simultaneous production of chilled 
+water and hot water via associated indexing and automatic control valves.</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver connection</OLI><BRK/>
+<BRK/>
+<OLI>Water cooler (evaporator)</OLI><BRK/>
+<BRK/>
+<OLI>Water-cooled condenser</OLI><BRK/>
+<BRK/>
+<OLI>Receiver</OLI><BRK/>
+<BRK/>
+<TAI OPT="ARMY"><NTE><AST/><BRK/>
+<NPR>NOTE:  Tools to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Tools</OLI><BRK/>
+<BRK/>
+]</TAI></OLG></SPT></SPT><SPT><TTL><SUB>SPLIT-SYSTEM WATER CHILLER[S]</SUB>, VAPOR COMPRESSION TYPE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typically, units<MET> 1760 kW</MET><ENG> 500 tons</ENG> or smaller are fully assembled and run-tested at the factory.  Units 
+larger than<MET> 1760 kW</MET><ENG> 500 tons</ENG> are typically shipped and then assembled, charged, and run-tested in the field.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Total chiller system must be certified for performance per <RID>AHRI 550/590 I-P</RID>.  If chiller is not in scope of <RID>AHRI 550/590 I-P</RID> then chiller must 
+be rated in accordance with <RID>AHRI 550/590 I-P</RID>.  Individual chiller components must be constructed and rated in accordance with the applicable AHRI 
+standards.  In addition, project specific performance data must be based on the project site elevation above sea level, and clearly noted as such 
+on the submittal.  Chiller system must conform to <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  The chiller must be<MET> <RID>ASHRAE 90.1 - SI</RID></MET><ENG> <RID>ASHRAE 90.1 - IP</RID></ENG> compliant and 
+meet 10 CFR Part 433, 434 and 435 efficiency performance standards for federal construction.  The manufacturer must provide certification of compliance.  
+Chiller must be assembled, leak-tested, charged (refrigerant[ and oil]), and adjusted at the job site in strict accordance with manufacturer's 
+recommendations.  Unit components delivered separately must be sealed and charged with a nitrogen holding charge.  Unit assembly must be completed 
+in strict accordance with manufacturer's recommendations.  Chiller must operate within capacity range and speed recommended by the manufacturer.  
+Parts weighing<MET> 23 kg</MET><ENG> 50 pounds</ENG> or more which must be removed for inspection, cleaning, or repair, must have lifting eyes or lugs.  Chiller must 
+include all customary auxiliaries deemed necessary by the manufacturer for safe, controlled, automatic operation of the equipment.  Chiller's water 
+cooler must be provided with[ standard][ marine] water boxes with[ grooved mechanical][ flanged][ welded] connections.  Chillers must operate at 
+partial load conditions without increased vibration over normal vibration at full load, and must be capable of continuous operation down to the 
+specified minimum capacity.  As a minimum, chiller must include the following components as defined in paragraph CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Refrigerant[ and oil]</OLI><BRK/>
+<BRK/>
+<OLI>Structural base</OLI><BRK/>
+<BRK/>
+<OLI>Chiller refrigerant circuit per compressor</OLI><BRK/>
+<BRK/>
+<OLI>Controls package</OLI><BRK/>
+<BRK/>
+[<OLI>Receiver</OLI><BRK/>
+<BRK/>
+]<TAI OPT="ARMY"><NTE><AST/><BRK/>
+<NPR>NOTE:  Tools to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Tools</OLI><BRK/>
+<BRK/>
+]</TAI></OLG><SPT><TTL>Compressor-Chiller Unit</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These type units are typically available in capacities of<MET> 1406 kW</MET><ENG> 400 tons</ENG> or less.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>As a minimum, the compressor-chiller unit must include the following components as defined in paragraph CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Scroll, reciprocating, or rotary screw compressor</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver, electric motor</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver connection</OLI><BRK/>
+<BRK/>
+<OLI>Water cooler (evaporator)</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Condensing Unit</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: These type units are typically available in capacities of<MET> 1406 kW</MET><ENG> 400 tons</ENG> or less.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>As a minimum, the condensing unit must include the following components as defined in paragraph CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Scroll, reciprocating, or rotary screw compressor</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver, electric motor</OLI><BRK/>
+<BRK/>
+<OLI>Compressor driver connection</OLI><BRK/>
+<BRK/>
+<OLI>Air or water cooled condenser</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Remote Water Cooler (Evaporator)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Confirm the current standard fouling factor with AHRI.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Shell and Tube Type</TTL><BRK/>
+<TAI OPT="ARMY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coil bundles to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Cooler must be constructed and rated in accordance with <RID>AHRI 480</RID>.  Cooler must be of the shell-and-coil or shell-and-tube type design.  Cooler's 
+refrigerant side must be designed and factory pressure tested to comply with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  Cooler's water side must be designed and 
+factory pressure tested for not less than<MET> [1,000][1,700][2,000] kPa</MET><ENG> [150][250][300] psi</ENG>.  Cooler shell must be constructed of seamless or welded 
+steel.<TAI OPT="ARMY">[  Coil bundles must be totally removable and arranged to drain completely.]</TAI>  Tubes must be seamless copper, plain, integrally finned with 
+smooth bore or integrally finned with enhanced bore.  Each tube must be individually replaceable.  Tubes must be installed into carbon mild steel 
+tube sheets by rolling.  Tube baffles must be properly spaced to provide adequate tube support and cross flow.  Cooler must be skid-mounted.  Refrigerant 
+circuit must be complete with liquid solenoid valve and expansion device capable of modulating to the minimum step of capacity unloading.  For 
+the water side of water cooler, performance must be based on a fluid velocity not less than<MET> 0.91 m/s</MET><ENG> 3 fps</ENG> and not more than<MET> 3.7 m/s</MET><ENG> 12 fps</ENG> and 
+a fouling factor per <RID>AHRI 550/590 I-P</RID>.[  Evaporator must be provided with electric freeze protection type.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Brazed Plate Type</TTL><BRK/>
+<BRK/>
+<TXT>Cooler must be rated in accordance with <RID>AHRI 480</RID>.  Cooler must be of the brazed plate design.  Cooler's refrigerant side must be designed and factory 
+pressure tested to comply with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  Cooler's water side must be designed and factory pressure tested for not less than<MET> [1,000][1,700][2000] 
+kPa</MET><ENG> [150][250][300] psi</ENG>.  Cooler shell must be constructed of stainless steel plates brazed together with copper.  Refrigerant circuit must be 
+complete with liquid solenoid valve and expansion device capable of modulating to the minimum step of capacity unloading.  For the water side of 
+water cooler, performance must be based on a fluid velocity not less than<MET> 0.91 m/s</MET><ENG> 3 fps</ENG> and not more than<MET> 3.7 m/s</MET><ENG> 12 fps</ENG> and a fouling factor 
+per <RID>AHRI 550/590 I-P</RID>.[  Evaporator must be provided with electric freeze protection type.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Remote Air-Cooled Condenser</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Louvered panels beneath the condenser are only available for certain models and certain manufacturers and 
+can affect performance.  Verify their need and availability before specifying.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Condenser must be a factory-fabricated and assembled unit, consisting of coils, fans, and condenser fan motors.  Condenser must be rated in accordance 
+with <RID>AHRI 460</RID>.  Louvered panel coil guards must be provided by the manufacturer to prevent physical damage to the coil.[  In addition, provide 
+louvered panels below the coils to provide additional protection of underneath components.]  Manufacturer must certify that the condenser and associated 
+equipment are designed for the submitted condensing temperature.  For design conditions, if matched combination catalog ratings matching remote 
+condensers to compressors are not available, the Contractor must furnish a cross-plotting of the gross heat rejection of the condenser against 
+the gross heat rejection of the compressor, for the design conditions to show the compatibility of the equipment furnished.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Condenser Casing</TTL><BRK/>
+<BRK/>
+<TXT>Condenser casing must be aluminum not less than<MET> [1.016][2.032] mm</MET><ENG> [0.040][0.080] inch</ENG> or hot-dip galvanized steel not lighter than 18 gauge<MET> 1.311 
+mm</MET><ENG> 0.0516 inch</ENG>.[  Condensers having horizontal air discharge must be provided with discharge baffle to direct air upward, constructed of the same 
+material and thickness as the casing].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coil</TTL><BRK/>
+<BRK/>
+<TXT>[Condenser coil must be of the extended-surface fin-and-tube type and must be constructed of seamless[ copper][ or][ aluminum] tubes with compatible[ 
+copper][ or][ aluminum] fins.  Fins must be soldered or mechanically bonded to the tubes and installed in a metal casing.  Coils must be circuited 
+and sized for a minimum of<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> subcooling and full pump-down capacity.  Coil must be factory leak and pressure tested after 
+assembly in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.][The condenser coil must be of the microchannel heat exchanger technology (MCHX) type consisting 
+of a series of flat tubes containing a series of multiple, parallel flow microchannels layered between the refrigerant manifolds in a two-pass 
+arrangement.  Provide coils constructed of aluminum alloys for fins, tubes, and manifolds.  Coil must be factory leak and pressure tested after 
+assembly in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.]</TXT><BRK/>
+<BRK/>
+[<TXT>Coil must be entirely coated in accordance with the requirements of paragraph COIL CORROSION PROTECTION.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Fans</TTL><BRK/>
+<TAI OPT="ARMY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Belt drives to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Provide centrifugal or propeller type fans as best suited for the application.  Fans must be direct<TAI OPT="ARMY">[ or][ V-belt]</TAI> driven.<TAI OPT="ARMY">[  Belt drives must be 
+completely enclosed within the unit casing or equipped with a guard.][  When belt drive is provided, an adjustable sheave to furnish not less than 
+20 percent fan-speed adjustment must be provided.  Sheave sets must be matched and selected to provide the capacity indicated at the approximate 
+midpoint of the adjustment.]</TAI>  Fans must be statically and dynamically balanced.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Condenser Sizing</TTL><BRK/>
+<BRK/>
+<TXT>Size condensers for full capacity at<MET> 16.67 degrees C</MET><ENG> 30 degrees F</ENG> temperature difference between entering outside air and condensing refrigerant.  
+Subcooling must not be considered in determining compressor and condenser capacities.  For design conditions, submittal must include a cross-plot 
+of net refrigeration effect of compressor to establish net refrigeration effect and compatibility of equipment furnished.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Low Ambient Control</TTL><BRK/>
+<BRK/>
+<TXT>Provide factory mounted head pressure control for operation during low ambient conditions.  Head pressure must be controlled by[ fan cycling,][ 
+fan speed control,][ condenser refrigerant flooding].  Low ambient control must permit compressor operation below<MET> [4.4][minus 17.7][_____] degrees 
+C</MET><ENG> [40][zero][_____] degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Ambient Unloading</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  High Ambient control may be required for water cooled chillers utilizing river or lake water.  Verify historic 
+peak water temperature for the specific site.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide unloading capability to allow operation in high ambient conditions [[_____]<MET> degrees C</MET><ENG> degrees F</ENG>] above design conditions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Remote Water-Cooled Condenser</TTL><BRK/>
+<TAI OPT="ARMY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coil bundles to be used in Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Condenser must be a factory-fabricated and assembled unit constructed and rated in accordance with <RID>AHRI 450</RID>.  Condenser may be of either the shell-and-coil 
+or shell-and-tube type design.  Condenser's refrigerant side must be designed and factory pressure tested to comply with <RID>ANSI/ASHRAE 15 &amp; 34</RID>
+.  Condenser's water side must be designed and factory pressure tested for not less than<MET> [1,000][1,700][2000] kPa</MET><ENG> [150][250][300] psi</ENG>.  Condensers 
+must be complete with pressure relief valve or rupture disk, water drain connections, refrigerant charging valve, refrigerant valves, liquid-level 
+indicating devices, and stand or saddle.  Low pressure refrigerant condenser must be provided with a purge valve located at the highest point in 
+the condenser to purge non-condensibles trapped in the condenser.  Condenser shell must be constructed of seamless or welded steel.<TAI OPT="ARMY">[  Coil bundles 
+must be totally removable and arranged to drain completely.]</TAI>  Tubes may be either seamless copper, plain, integrally finned with smooth bore or 
+integrally finned with enhanced bore.  Each tube must be individually replaceable, except for the coaxial tubes.  Tubes must be installed into 
+carbon mild steel tube sheets by rolling.  Tube baffles must be properly spaced to provide adequate tube support and cross flow.  Condenser performance 
+must be based on water velocities not less than<MET> 0.91 m/s</MET><ENG> 3 fps</ENG> nor more than<MET> 3.7 m/s</MET><ENG> 12 fps</ENG> and a fouling factor per <RID>AHRI 550/590 I-P</RID>.  Water-cooled 
+condensers may be used for refrigerant storage in lieu of a separate liquid receiver, if the condenser storage capacity is 20 percent in excess 
+of the fully charged system for remote water cooled condensers.  As a minimum, the condenser must include the following components as defined in 
+paragraph CHILLER COMPONENTS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Liquid-level indicating devices.</OLI><BRK/>
+<BRK/>
+<OLI>Companion flanges, bolts, and gaskets for flanged water connections.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>CHILLER COMPONENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate the type of chiller components required with the type of chiller specified in the previous paragraphs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Refrigerant</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Chillers must operate on a refrigerant with an ODP equal to 0 and a maximum Global Warming Potential (GWP) 
+of 700.  R-32, R-454B, R-513A, R-514A, R-515B, R-1233zd, R-1234ze all meet this requirement.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Refrigerants must be one of the fluorocarbon gases.  Refrigerants must have number designations and safety classifications in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID>
+.  CFC-based refrigerants are prohibited.  Refrigerants must have an Ozone Depletion Potential (ODP) no greater than 0.0 and a maximum Global Warming 
+Potential (GWP) of 700.  Provide SDS sheets for all refrigerants.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Structural Base</TTL><BRK/>
+<BRK/>
+<TXT>Chiller and individual chiller components must be provided with a factory-mounted structural steel base (welded or bolted) or support legs.   Chiller 
+and individual chiller components must be isolated from the building structure by means of[ molded neoprene isolation pads.][ vibration isolators 
+with published load ratings.  Vibration isolators must have isolation characteristics as recommended by the manufacturer for the unit supplied 
+and the service intended.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chiller Refrigerant Circuit</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Filter dryers are not needed on chillers which make use of a purge system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller refrigerant circuit must be completely piped and factory leak tested in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.[  For multicompressor 
+units, not less than two independent refrigerant circuits must be provided.]  Circuit must include as a minimum a[ combination filter and drier,] 
+combination sight glass and moisture indicator, an electronic or thermostatic expansion valve with external equalizer or float valve, charging 
+ports, compressor service valves for field-serviceable compressors, and superheat adjustment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controls Package</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For large water-cooled chillers (centrifugal or rotary screw), motor starters and disconnects switches 
+which are to be remotely-mounted are not typically supplied by the chiller manufacturer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide chillers with a complete[ factory-mounted][ remote-mounted where indicated], microprocessor based operating and safety control system.  
+Controls package must contain as a minimum a digital display, an on-auto-off switch,[ motor starters,][ variable frequency motor controller,][ 
+disconnect switches,] power wiring, and control wiring.  Controls package must provide operating controls, monitoring capabilities, programmable 
+setpoints, safety controls, and<TAI OPT="NAVY"> [BAS]</TAI><TAI OPT="ARMY"> [UMCS]</TAI> interfaces as defined below.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Operating Controls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For proper startup and head pressure controls, enter the winter design temperature to which the equipment 
+will be subjected.  Coordinate this temperature with manufacturers to assure available equipment.</NPR><BRK/>
+<BRK/>
+<NPR>A cooling tower bypass line and modulating control valve should be evaluated and incorporated into a design which 
+requires chiller operation in ambient temperatures less than<MET> 13 degrees C</MET><ENG> 55 degree F</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller must be provided with the following adjustable operating controls as a minimum.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Leaving chilled water temperature control</OLI><BRK/>
+<BRK/>
+<OLI>Adjustable timer or automated controls to prevent a compressor from short cycling</OLI><BRK/>
+<BRK/>
+<OLI>Automatic lead/lag controls (adjustable) for multi-compressor units</OLI><BRK/>
+<BRK/>
+<OLI>Load limiting</OLI><BRK/>
+<BRK/>
+<OLI>System capacity control to adjust the unit capacity in accordance with the system load and the programmable setpoints.  Controls must automatically 
+re-cycle the chiller on power interruption.</OLI><BRK/>
+<BRK/>
+[<OLI>Startup and head pressure controls for air-cooled condensers to allow system operation at all ambient temperatures down to [_____] degrees<MET>
+ C</MET><ENG> F</ENG>.</OLI><BRK/>
+<BRK/>
+][<OLI>Fan sequencing for air-cooled condenser</OLI><BRK/>
+<BRK/>
+][<OLI>Start-up and head pressure controls for water-cooled condensers to allow system operation down to [_____] degrees<MET> C</MET><ENG> F</ENG> entering condenser 
+water temperature.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Monitoring Capabilities</TTL><BRK/>
+<BRK/>
+<TXT>During normal operations, the control system must be capable of monitoring and displaying the following operating parameters.  Access and operation 
+of display must not require opening or removing any panels or doors.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Entering and leaving chilled water temperatures</OLI><BRK/>
+<BRK/>
+<OLI>[Entering and leaving chilled water pressure][Chilled water flow]</OLI><BRK/>
+<BRK/>
+<OLI>[Entering and leaving condenser water pressure][Condenser water flow]</OLI><BRK/>
+<BRK/>
+<OLI>Self diagnostic</OLI><BRK/>
+<BRK/>
+<OLI>Operation status</OLI><BRK/>
+<BRK/>
+<OLI>Operating hours</OLI><BRK/>
+<BRK/>
+<OLI>Number of starts</OLI><BRK/>
+<BRK/>
+<OLI>Compressor status (on or off)</OLI><BRK/>
+<BRK/>
+<OLI>Compressor load (percent)</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant discharge and suction pressures</OLI><BRK/>
+<BRK/>
+<OLI>Magnetic bearing levitation status (if applicable)</OLI><BRK/>
+<BRK/>
+<OLI>Magnetic bearing temperatures (if applicable)</OLI><BRK/>
+<BRK/>
+<OLI>Oil pressure (if applicable)</OLI><BRK/>
+<BRK/>
+[<OLI>Condenser water entering and leaving temperatures</OLI><BRK/>
+<BRK/>
+][<OLI>Number of purge cycles over the last 7 days</OLI><BRK/>
+<BRK/>
+]</OLG></SPT><SPT><TTL>Configurable Setpoints</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Small sized chillers may not have security setting capabilities.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The control system must be capable of being configured directly at the unit's interface panel.[  No parameters may be capable of being changed 
+without first entering a security access code.]  The programmable setpoints must include the following as a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Leaving Chilled Water Temperature</OLI><BRK/>
+<BRK/>
+[<OLI>Leaving Condenser Water Temperature</OLI><BRK/>
+<BRK/>
+][<OLI>Time Clock/Calendar Date</OLI><BRK/>
+<BRK/>
+]</OLG></SPT><SPT><TTL>Safety Controls with Manual Reset</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Conventional compressors with oil-lubricated bearings will require low oil flow protection.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller must be provided with the following safety controls which automatically shutdown the chiller and which require manual reset.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Low chilled water temperature protection</OLI><BRK/>
+<BRK/>
+<OLI>High condenser refrigerant discharge pressure protection</OLI><BRK/>
+<BRK/>
+<OLI>Low evaporator pressure protection</OLI><BRK/>
+<BRK/>
+<OLI>Chilled water flow detection</OLI><BRK/>
+<BRK/>
+<OLI>High motor winding temperature protection</OLI><BRK/>
+<BRK/>
+<OLI>Low oil flow protection (if applicable)</OLI><BRK/>
+<BRK/>
+<OLI>Magnetic bearing controller (MBC), Internal fault (if applicable)</OLI><BRK/>
+<BRK/>
+<OLI>MBC, High bearing temperature (if applicable)</OLI><BRK/>
+<BRK/>
+<OLI>MBC, Communication fault (if applicable)</OLI><BRK/>
+<BRK/>
+<OLI>MBC, Power supply fault (if applicable)</OLI><BRK/>
+<BRK/>
+[<OLI>Motor current overload and phase loss protection</OLI><BRK/>
+<BRK/>
+]</OLG></SPT><SPT><TTL>Safety Controls with Automatic Reset</TTL><BRK/>
+<BRK/>
+<TXT>Chiller must be provided with the following safety controls which automatically shutdown the chiller and which provide automatic reset.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Over/under voltage protection</OLI><BRK/>
+<BRK/>
+<OLI>Chilled water flow interlock</OLI><BRK/>
+<BRK/>
+<OLI>MBC, Vibration (if applicable)</OLI><BRK/>
+<BRK/>
+<OLI>MBC, No levitation (if applicable)</OLI><BRK/>
+<BRK/>
+[<OLI>Phase reversal protection</OLI><BRK/>
+<BRK/>
+]</OLG></SPT><SPT><TTL>Remote Alarm</TTL><BRK/>
+<BRK/>
+<TXT>During the initiation of a safety shutdown, a chiller's control system must be capable of activating a remote alarm bell.  In coordination with 
+the chiller, the Contractor must provide an alarm circuit (including transformer if applicable) and a minimum<MET> 100 mm</MET><ENG> 4 inch</ENG> diameter alarm bell.  
+Alarm circuit must activate bell in the event of machine shutdown due to the chiller's monitoring of safety controls.  The alarm bell must not 
+sound for a chiller that uses low-pressure cutout as an operating control.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Utility Monitoring and Control System Interface</TTL><BRK/>
+<BRK/>
+<TXT>Provide a Utility Monitoring and Control System (UMCS) interface meeting the requirements of Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC 
+and the requirements of[ Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS][ or][ Section 
+<SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS].  The interface must provide all system operating conditions, 
+capacity controls, and safety shutdown conditions as network points.  In addition, the following points must be overridable via the network interface:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Unit Start/Stop</OLI><BRK/>
+<BRK/>
+[<OLI>Leaving Chilled Water Temperature Setpoint</OLI><BRK/>
+<BRK/>
+][<OLI>Leaving Condenser Water Temperature Setpoint</OLI><BRK/>
+<BRK/>
+]</OLG></SPT></SPT><SPT><TTL>Compressor(s)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  Reciprocating compressors are used by very few manufacturers, typically for special applications such as 
+refrigeration.  Efficiency and production costs have pushed most comfort cooling application manufacturers to 
+scroll compressors.  Reciprocating compressors for refrigeration applications are specified in Sections 
+<SRF>23 63 00.00</SRF> COLD STORAGE REFRIGERATION SYSTEMS and <SRF>23 69 00.00 20</SRF> REFRIGERATION EQUIPMENT FOR COLD STORAGE.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Scroll Compressor(s)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  Designer must consider unloading for more precise leaving water temperature control.  Also, chiller manufacturers 
+recommend minimum system volumes to prevent short-cycling of the chiller(s) to promote long chiller life and good 
+chilled water temperature control, especially in smaller chilled water systems.  In small systems it may be necessary 
+to install an inertia tank in the chilled water loop to achieve the required minimum system volume.  Check the 
+requirements of the chiller manufacturer and provide an insulated inertia tank of sufficient volume when required.  
+Install the chilled water storage tank downstream of the chiller and upstream of the cooling coils.  The designer 
+should provide calculations to demonstrate compliance with this requirement. Volumes for components may be estimated 
+where manufacturer's data is not available.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Compressors must be of the hermetically sealed design.  Compressors must be mounted on vibration isolators to minimize vibration and noise.  Rotating 
+parts must be statically and dynamically balanced at the factory to minimize vibration.  Lubrication system must be centrifugal pump type equipped 
+with a means for determining oil level and an oil charging valve.  Crankcase oil heater must be provided.[  Provide continuous compressor unloading 
+to[ 10 percent][ 15 percent] of full-load capacity by way of variable speed compressor motor controller or variable unloading of the scroll.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rotary Screw Compressor(s)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If an open drive (air cooled) motor is used, provide mechanical ventilation if required to reject the additional 
+heat added to the space at the source.  The additional mechanical ventilation should be counted into the efficiency 
+calculations for the chiller.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Compressors must operate stably for indefinite time periods to at least 25 percent capacity reduction without gas bypass external to the compressor.  
+Provision must be made to insure proper lubrication of bearings and shaft seals on shutdown with or without electric power supply.  Rotary screw 
+compressors must include:</TXT><BRK/>
+<BRK/>
+<OLG><BRK/>
+<OLI>An open or hermetic, positive displacement, oil-injected design directly driven by the compressor driver.  Allow access to internal compressor 
+components for repairs, inspection, and replacement of parts.</OLI><BRK/>
+<BRK/>
+<OLI>Rotors must be solid steel, possessing sufficient rigidity for proper operation.</OLI><BRK/>
+<BRK/>
+<OLI>A maximum rotor operating speed no greater than 3600 RPM.  Provide cast iron rotor housing.</OLI><BRK/>
+<BRK/>
+<OLI>Casings of cast iron, precision machined for minimal clearance about periphery of rotors with minimal clearance at rotor tops and rotor 
+ends.</OLI><BRK/>
+<BRK/>
+<OLI>A lubrication system of the forced-feed type that provides oil at the proper pressure to all parts requiring lubrication.</OLI><BRK/>
+<BRK/>
+<OLI>Bearing housing must be conservatively loaded and rated for an L(10) life of not less than 200,000 hours.  Shaft main bearings of the sleeve 
+type with heavy duty bushings or rolling element type in accordance with <RID>ABMA 9</RID> or <RID>ABMA 11</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>A differential oil pressure or flow cutout to allow the compressor to operate only when the required oil pressure or flow is provided to 
+the bearings.</OLI><BRK/>
+<BRK/>
+<OLI>[A temperature- or pressure-initiated, hydraulically actuated, single-slide-valve, capacity-control system to provide minimum automatic 
+capacity modulation from 100 percent to 15 percent.  ][Use a Variable Frequency Drive (VFD) to modulate capacity modulation from 100 percent 
+to 15 percent.]</OLI><BRK/>
+<BRK/>
+<OLI>An oil separator and oil return system to remove oil entrained in the refrigerant gas and automatically return the oil to the compressor.</OLI><BRK/>
+<BRK/>
+<OLI>Crankcase oil heaters must be provided.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Centrifugal Compressor(s)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Conventional compressors will require provisions to ensure proper lubrication of bearings.</NPR><BRK/>
+<BRK/>
+<NPR>When centrifugal chillers are used for heat recovery duty, the entering heat recovery condenser water temperature 
+is usually controlled to between<MET> 35 and 40 degrees C</MET><ENG> 95 and 105 degrees F</ENG> so that the water temperature leaving 
+the heat recovery condenser is high enough to be used as a heat source.  Under these conditions, the chiller will 
+be operating at a higher head pressure than normally encountered.  At these high head conditions, the centrifugal 
+compressor may surge at part-load conditions of as high as 30 percent to 40 percent depending upon the conditions 
+to which the chiller is subjected.  In these cases, the designer should survey the manufacturers to determine 
+at what load the available chillers will surge, at the conditions and loads to be encountered at the site.  The 
+bracketed sentences will be removed from the centrifugal chiller paragraph and replaced with the appropriate capacity 
+control requirements.  The designer should also consider multiple chillers to satisfy the load and to partition 
+the loading to the chillers such that the heat recovery chiller load is sufficiently high to avoid surge.  When 
+examining heat recovery, full consideration should be given to the effect of<MET> 35-40 degrees C</MET><ENG> 95-105 degree F</ENG> water 
+and the resulting power requirements of the chiller on the economic benefit of heat recovery.</NPR><BRK/>
+<BRK/>
+<NPR>If an open drive (air cooled) motor is used, provide mechanical ventilation if required to reject the additional 
+heat added to the space at the source.  The additional mechanical ventilation should be counted into the efficiency 
+calculations for the chiller.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Centrifugal compressors may be either single or multistage, having dynamically balanced impellers, either direct or gear driven by the compressor 
+driver.  Impellers must be over-speed tested at 1.2 times the impeller-shaft speed.  Impeller shaft must be steel with sufficient rigidity for 
+proper operation at any required operating speed.  Compressors must be capable of variable speed operation and may have either oil-free bearing 
+drives or oil-lubricated bearing drives.  Centrifugal compressors must include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Shaft main bearings that are either oil lubricated, oil free ceramic or magnetic levitated.  The oil lubricated bearings must be the rolling 
+element type in accordance with <RID>ABMA 9</RID> or <RID>ABMA 11</RID>, journal type with bronze or babbitt liners, or of the aluminum-alloy one-piece insert 
+type.  Oil lubricated or oil free ceramic bearings must be rated for an L(10) life of not less than 200,000 hours.  Magnetic levitated 
+main shaft bearings must be in accordance with ISO 14839-1, ISO 14839-2, ISO 14839-3, ISO 14839-4, and provided with radial and axial magnetic 
+levitated bearings (combination permanent and electro magnets) to levitate the shaft thereby eliminating metal to metal contact and thus 
+eliminating the need for oil.  The active magnetic bearings must be equipped with an automatic vibration reduction and balancing system.  
+Each bearing position must be sensed by position sensors and provide real time positioning of the rotor shaft, controlled by on-board digital 
+electronics.  In the event of a power failure, the magnetic bearings must remain in operation throughout the compressor coast-down using 
+a reserve power supply.  Provide mechanical bearings designed for emergency touchdowns, as a backup to the magnetic bearings.</OLI><BRK/>
+<BRK/>
+<OLI>Casing of cast iron, aluminum, or steel plate with split sections gasketed and bolted or clamped together.</OLI><BRK/>
+<BRK/>
+<OLI>Lubrication system of the forced-feed type that provides oil at the proper pressure to all parts requiring lubrication.</OLI><BRK/>
+<BRK/>
+<OLI>Provisions to ensure proper lubrication of bearings and shaft seals prior to starting and upon stopping with or without electric power 
+supply (if applicable).  On units providing forced-feed lubrication prior to starting, a differential oil pressure cutout interlocked with 
+the compressor starting equipment must allow the compressor to operate only when the required oil pressure is provided to the bearings 
+(if applicable).</OLI><BRK/>
+<BRK/>
+<OLI>Oil sump heaters controlled as recommended by the manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Temperature-or pressure-actuated pre-rotation vane, variable geometry diffuser or suction damper to provide automatic capacity modulation 
+from 100 percent capacity to 25 percent capacity.  If operation to 25 percent capacity cannot be achieved without providing gas bypass 
+external to the compressor, then the Contractor must indicate in the equipment submittal the load percent at which external hot gas bypass 
+is required to prevent surge and to provide the specified capacity reduction and its impact on performance.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Compressor Driver, Electric Motor</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If an open drive (air cooled) motor is used, provide mechanical ventilation if required to reject the additional 
+heat added to the space at the source.  The additional mechanical ventilation should be counted into the efficiency 
+calculations for the chiller.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Components such as motors,[ starters,][ variable speed drives,] and wiring must be in accordance with paragraph ELECTRICAL WORK.  [Motor starter 
+][Variable frequency drive ]must be[ unit mounted][ remote mounted] as indicated with[ starter][ variable frequency drive] type, wiring, and accessories 
+coordinated with the chiller manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Compressor Driver, Gas-Engine</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Natural gas-engine drives are used in conjunction with either reciprocating, rotary, or centrifugal type 
+compressors.</NPR><BRK/>
+<BRK/>
+<NPR>Before considering natural gas chillers, consider federal Executive Order 14057.  In addition, compliance with 
+DoD and each applicable service agency electrification policy is required.</NPR><BRK/>
+<BRK/>
+<NPR>The decision to use a heavy duty industrial type engine as compared to a standard automotive type engine will 
+be based strictly on an economic comparison.  The standard automotive type engines have a much lower initial cost, 
+but they must be replaced or overhauled much more often.  Also note that typically, standard automotive type engines 
+are only available for chillers with a capacity of<MET> 1760 kW</MET><ENG> 500 tons</ENG> or less.</NPR><BRK/>
+<BRK/>
+<NPR>Guidance to Project Designers:  When specifying natural gas-engine drive chillers, close coordination with the 
+DPW (customer) must be exercised.  The designer should inform the DPW that preventive maintenance and periodical 
+overhaul of the gas-engine drives is essential to ensure continued operation, and that energy demand savings are 
+realized.  While the initial cost of gas-engine drives is much lower than other types, gas-engine drives require 
+more frequent maintenance and overhaul.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Gas-engine compressor driver must operate on natural gas and be in accordance with <RID>NFPA 37</RID> and <RID>NFPA 54</RID>.  Engine must be designed for stationary 
+applications and include all ancillaries necessary for operation.  Engine must be a manufacturer's standard production model and be specifically 
+designed for chiller operation.  Engine must include as a minimum a[ heavy duty industrial][ standard automotive] grade block, starting system, 
+lubrication system, coolant system, engine heat exchanger,[ engine cooling radiator,] fuel supply system, electronic ignition, and controls package.  
+Engine must be either[ naturally aspirated,][ supercharged,][ or][ turbocharged] and include appropriate air filters.  Engine must be 2- or 4-stroke-cycle 
+and compression-ignition type.  Engine must be vertical in-line, V- or opposed-piston type, with a solid cast block or individually cast cylinders.  
+Engine must have a minimum of 2 cylinders.  Opposed-piston type engines must have not less than 4 cylinders.  Engine block must have a coolant 
+drain port.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Starting System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify either an electric or pneumatic type starting system.  Electric type system will be used for most 
+applications.  For installations where a compressed air system exists or is to be installed, a pneumatic starting 
+system should be considered.</NPR><BRK/>
+<BRK/>
+<NPR>For pneumatic start systems size air receiver tank and compressor per manufacturer's recommendations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Engine starting system must be either the[ electric][ pneumatic] type and be of sufficient capacity, at the maximum temperature specified, to crank 
+the engine without damage or overheating.[  Electric starting system must operate on a [24][_____]-volt DC system utilizing a negative circuit 
+ground.  A starting battery system must be provided and must include the battery, corrosion resistant battery rack, intercell connectors, spacers, 
+automatic battery charger with overcurrent protection, metering and relaying.  Battery must be in accordance with <RID>SAE J537</RID>.  Battery charger must 
+conform to <RID>UL 1236</RID> and be the current-limiting type with overcurrent protection.][  Pneumatic starting system must be as specified in Section 
+<SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE, for a working pressure of<MET> 1.03 MPa</MET><ENG> 150 psi</ENG>.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lubrication System</TTL><BRK/>
+<BRK/>
+<TXT>Engine must be provided with a pressurized oil lubrication system.  System must include a lubrication oil pump that is engine driven.  One full-flow 
+filter must be provided for each pump.  Filters must be readily accessible and capable of being changed without disconnecting the piping or disturbing 
+other components.  System pressure must be regulated as recommended by the engine manufacturer.  A pressure relief valve must be provided on the 
+crankcase.  Crankcase breathers must be piped to the outside.  System must be readily accessible for servicing such as draining, refilling, and 
+overhauling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coolant System</TTL><BRK/>
+<BRK/>
+<TXT>Engine must include an automatic engine jacket water cooling system.  Water must be circulated through the system with an engine-driven circulating 
+pump.[  System coolant must use a combination water and ethylene-glycol sufficient for freeze protection at the minimum temperature specified.]</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Engine Heat Exchanger</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If engine heat exchanger is used the cooling tower must be sized to include heat rejected from both engine 
+and chiller.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Engine heat exchanger must be of the shell-and-tube type construction and be in accordance with <RID>ASME BPVC SEC VIII D1</RID>.  Shell material must be 
+carbon steel.  Tubes must be seamless copper or copper-nickel.  Tubes must be individually replaceable.  Unit's waterside working pressure must 
+be rated for not less than<MET> 1,000 kPa</MET><ENG> 150 psig</ENG> and factory tested at 150 percent of design working pressure.  Water connections larger than<MET> 75 mm</MET><ENG>
+ 3 inches</ENG> must be ASME Class 1500 flanged.  Unit must be provided with gasketed removable covers, drains, and vents.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Engine Cooling Radiator</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  An engine cooling radiator will be needed to satisfy an engine's cooling requirements if cooling tower 
+water or heat recovery is not used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Heat exchanger may be factory coated with corrosive resistant film, provided that correction measures are taken to restore the heat rejection capability 
+of the radiator to the initial design requirement via over sizing, or other compensating methods.  Internal surfaces must be compatible with liquid 
+fluid coolant used.  Materials and coolant are subject to approval by the Contracting Officer.  Heat exchangers must be the pressure type incorporating 
+a pressure valve, vacuum valve and a cap.  Caps must be designed for pressure relief prior to removal.  Each heat exchanger and the entire cooling 
+system must be capable of withstanding a minimum pressure of<MET> 48 kPa</MET><ENG> 7 psi</ENG> and must be protected with a strong grille or screen guard.  Each heat 
+exchanger must have at least 2 tapped holes; one must be equipped with a drain cock, the rest must be plugged.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Fuel Supply System</TTL><BRK/>
+<BRK/>
+<TXT>Engine fuel supply system must be factory mounted.  System must include as a minimum a solenoid shut-off valve, a gas pressure regulator, and carburetors 
+(including a throttle body assembly) or fuel injectors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controls Package</TTL><BRK/>
+<BRK/>
+<TXT>The controls for the gas-engine must be incorporated into the overall controls package for the water chiller.  The engine controls must be capable 
+of monitoring, displaying, and controlling, as applicable, the following conditions.  The control system must be capable of communicating all data 
+to a remote integrated DDC processor through a single shielded cable.  The data must include as a minimum all system operating conditions, capacity 
+controls, and safety shutdown conditions.  The control system must also be capable of receiving at a minimum the following operating conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Coolant-fluid inlet and outlet temperatures</OLI><BRK/>
+<BRK/>
+<OLI>Lubricating-oil inlet and outlet temperatures and pressures</OLI><BRK/>
+<BRK/>
+<OLI>Engine run-time hours</OLI><BRK/>
+<BRK/>
+<OLI>Engine current status mode (on/off)</OLI><BRK/>
+<BRK/>
+<OLI>Engine speed</OLI><BRK/>
+<BRK/>
+<OLI>Percent engine load</OLI><BRK/>
+<BRK/>
+<OLI>Engine jacket temperature</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Exhaust Piping</TTL><BRK/>
+<BRK/>
+<TXT>Exhaust piping must be <RID>ASTM A53/A53M</RID> Schedule 40 seamless black iron, exhaust piping installation must be per the engine manufacturer's recommendations, 
+except as modified herein.  Horizontal sections of exhaust piping must be sloped downward away from the engine to a drip leg for collection of 
+condensate with drain valve and cap.  Changes in direction must be long radius.  Exhaust piping and mufflers must be insulated in accordance with 
+Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL SYSTEMS.  Vertical exhaust piping must be provided with a hinged, gravity-operated, self-closing, 
+rain cover.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Exhaust Muffler</TTL><BRK/>
+<BRK/>
+<TXT>Engine must be provided with a chamber type exhaust muffler.  The muffler must be of welded steel and designed for[ outside][ inside][ vertical][ 
+horizontal] mounting.  Eyebolts, lugs, flanges, or other items must be provided as necessary for support in the location and position indicated.  
+Pressure drop through the muffler must not exceed the recommendations of the engine manufacturer.  Outside mufflers must be zinc coated or painted 
+with high temperature[ [_____]<MET> degrees C</MET><ENG> degrees F</ENG>] resisting paint.  The muffler and exhaust piping together must reduce the noise level to less 
+than [_____] dBa at a distance of<MET> 22.9 m</MET><ENG> 75 feet</ENG> from the end of the exhaust piping with the chiller operating at 100 percent of rated output capacity.  
+The muffler must have a drain valve, nipple, and cap at the low-point of the muffler.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Exhaust System Connections</TTL><BRK/>
+<BRK/>
+<TXT>Flexible connectors must be provided at the exhaust piping connection to the engine.  An expansion joint must be provided in the exhaust piping 
+at the muffler connection.  Flexible connectors and expansion joints must have flanged connections.  Flexible sections must be made of convoluted 
+seamless tube without joints or packing.  Expansion joints must be the bellows type.  Expansion and flexible elements must be stainless steel suitable 
+for engine exhaust gas at<MET> 649 degrees C</MET><ENG> 1200 degrees F</ENG>.  Flexible connectors and expansion joints must be capable of absorbing vibration from the 
+engine and compensation for thermal expansion and contraction.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Compressor Driver Connections</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the first set of brackets if a large water-chilling package is specified.  Delete the second set 
+of brackets if a condensing and compressing unit or a small water-chilling package is used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Each compressor must be driven by a V-belt drive or direct connected through a flexible coupling, except that flexible coupling is not required 
+on hermetic units.  V-belt drives must be designed for not less than 150 percent of the driving motor capacity.  Flexible couplings must be of 
+the type that does not require lubrication.][Each machine driven through speed-increasing gears must be so designed as to assure self-alignment, 
+interchangeable parts, proper lubrication system, and minimum unbalanced forces.  Bearings must be of the sleeve or roller type.  Gear cases must 
+be oil tight.  Shaft extensions must be provided with seals to retain oil and exclude all dust.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Cooler (Evaporator)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Confirm the current standard fouling factor with AHRI.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Cooler must be of the shell-and-coil or shell-and-tube type design.  Cooler shell must be constructed of seamless or welded steel.  Coil bundles 
+must be totally removable and arranged to drain completely.  Tubes must be seamless copper, plain, integrally finned with smooth bore or integrally 
+finned with enhanced bore.  Each tube must be individually replaceable.  Tubes must be installed into carbon mild steel tube sheets by rolling.  
+Tube baffles must be properly spaced to provide adequate tube support and cross flow.  Performance must be based on a water velocity not less than<MET>
+0.91 m/s</MET><ENG> 3 fps</ENG> nor more than<MET> 3.7 m/s</MET><ENG> 12 fps</ENG> and a fouling factor per <RID>AHRI 550/590 I-P</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Brazed plate heat exchanger must be constructed of 304 or 316 stainless steel, designed to a refrigerant-side working pressure of<MET> 3,000 kPa</MET><ENG> 430 
+psig</ENG> and a waterside working pressure of<MET> 1,000 kPa</MET><ENG> 150 psig</ENG>.  Evaporator must be factory tested at 1.1 times maximum allowable refrigerant side 
+working pressure and 1.5 times maximum allowable water side working pressure.[  Provide cooler heaters to protect the evaporator to an ambient 
+of<MET> minus 29 degrees C</MET><ENG> minus 20 degrees F</ENG>.]  Provide cooler with factory-installed flow switches.  All water connections must use either flanged 
+or grooved-pipe connections.  Factory insulate all cold surfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air-Cooled Condenser Coil</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Standard coil construction is copper tubes with aluminum fins.  For excessively corrosive atmospheres, 
+either copper tubes with copper fins or aluminum tubes with aluminum fins should be considered.  For additional 
+corrosion protection, specify the manufacturer's standard epoxy or vinyl coating.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Condenser coil must be of the extended-surface fin-and-tube type and must be constructed of seamless[ copper][ or][ aluminum] tubes with compatible[ 
+copper][ or][ aluminum] fins.  Fins must be soldered or mechanically bonded to the tubes and installed in a metal casing.  Coils must be circuited 
+and sized for a minimum of<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> subcooling and full pump-down capacity.  Coil must be factory leak and pressure tested after 
+assembly in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.][The condenser coil must be of the microchannel heat exchanger technology (MCHX) type consisting 
+of a series of flat tubes containing a series of multiple, parallel flow microchannels layered between the refrigerant manifolds in a two-pass 
+arrangement.  Provide coils constructed of aluminum alloys for fins, tubes, and manifolds.  Coil must be factory leak and pressure tested after 
+assembly in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.]</TXT><BRK/>
+<BRK/>
+[<TXT>Coil must be entirely coated in accordance with the requirements of paragraph COIL CORROSION PROTECTION.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Water-Cooled Condenser Coil</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Confirm the current standard fouling factor with AHRI.</NPR><BRK/>
+<BRK/>
+<NPR>If current data supports the use of river/lake water for cooling tower operation and historic data proves it to 
+be beneficial to the system and proves to be more resilient and economically superior, then the use of lake/river 
+water may be considered.  Ultimately, the engineer designing the system should obtain all of the data and make 
+the decision in coordination with the stakeholders.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Condenser must be of the shell-and-coil or shell-and-tube type design.  Condenser's refrigerant side must be designed and factory pressure tested 
+to comply with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  Condenser's water side must be designed and factory pressure tested for not less than<MET> [1,000][1,700][2000] 
+kPa</MET><ENG> [150][250][300] psi</ENG>.  Condensers must be complete with refrigerant relief valve/rupture disc assembly, water drain connections, and refrigerant 
+charging valve.  Low pressure refrigerant condenser must be provided with a purging device to purge non-condensibles trapped in the condenser while 
+keeping refrigerant emissions below requirements of ASHRAE Std 147.  Purge units must be certified per <RID>AHRI 580</RID>.  Condenser shell must be constructed 
+of seamless or welded steel.  Coil bundles must be totally removable and arranged to drain completely.  Tubes must be seamless copper, plain, integrally 
+finned with smooth bore or integrally finned with enhanced bore.  Each tube must be individually replaceable, except for the coaxial tubes.  Tube 
+baffles must be properly spaced to provide adequate tube support and cross flow.  Performance must be based on water velocities not less than<MET> 0.91 
+m/s</MET><ENG> 3 fps</ENG> nor more than<MET> 3.7 m/s</MET><ENG> 12 fps</ENG> and a fouling factor per <RID>AHRI 550/590 I-P</RID>.  Water-cooled condensers may be used for refrigerant storage 
+in lieu of a separate liquid receiver, if the condenser storage capacity is 5 percent in excess of the fully charged system for single packaged 
+systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heat Recovery Condenser Coil</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer will conduct feasibility studies to determine if a heat recovery condenser is an economical 
+addition to the system.  Heat recovery condensers generally come in two sizes.  The smaller of the two is generally 
+sized to reject the superheat to the domestic water.  The larger is sized to reject the same amount of heat as 
+the standard condenser.  The drawings will indicate the heat rejection capacity of the heat recovery condenser 
+and the temperatures of the water to which it must reject the heat.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Condenser must be of the shell-and-coil or shell-and-tube type design and must not be a part of the standard condenser.  Condenser must be provided 
+and installed by the chiller manufacturer.  Condenser's refrigerant side must be designed and factory pressure tested to comply with <RID>ANSI/ASHRAE 15 &amp; 34</RID>
+.  Condenser's water side must be designed and factory pressure tested for not less than<MET> [1,000][1,700][2000] kPa</MET><ENG> [150][250][300] psi</ENG>.  Condenser 
+must have performance characteristics as indicated on the drawings.  Condenser shell must be constructed of seamless or welded steel.  Coil bundles 
+must be totally removable and arranged to drain completely.  Tubes must be seamless copper, plain, integrally finned with smooth bore or integrally 
+finned with enhanced bore.  Each tube must be individually replaceable, except for the coaxial tubes.  Tube baffles must be properly spaced to 
+provide adequate tube support and cross flow.  Performance must be based on water velocities not less than<MET> 0.91 m/s</MET><ENG> 3 fps</ENG> nor more than<MET> 3.7 m/s</MET><ENG>
+ 12 fps</ENG> and a fouling factor per <RID>AHRI 550/590 I-P</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Receivers</TTL><BRK/>
+<BRK/>
+<TXT>Receiver must bear a stamp certifying compliance with <RID>ASME BPVC SEC VIII D1</RID> and must meet the requirements of <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  Inner surfaces 
+must be thoroughly cleaned by sandblasting or other approved means.  Each receiver must have a storage capacity not less than 20 percent in excess 
+of that required for the fully-charged system.  Each receiver must be equipped with inlet, outlet drop pipe, drain plug, purging valve, relief 
+valves of capacity and setting required by <RID>ANSI/ASHRAE 15 &amp; 34</RID>, and two bull's eye liquid-level sight glasses.  Sight glasses must be in the 
+same vertical plane, 90 degrees apart, perpendicular to the axis of the receiver, and not over<MET> 75 mm</MET><ENG> 3 inches</ENG> horizontally from the drop pipe measured 
+along the axis of the receiver.  In lieu of bull's eye sight glass, external gauge glass with metal glass guard and automatic closing stop valves 
+may be provided.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chiller Purge System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refrigeration systems which operate below atmospheric pressure (i.e., R-123 machines) will require a refrigerant 
+purge piping system.  Indicate the routing of the piping on the drawings.  Require the Contractor to delete the 
+piping if a purge system is not required for the type of chiller that is to be provided.  Indicate that it will 
+be the Contractor's responsibility to size the piping based upon the chiller manufacturer's recommendations.  
+Purge discharge piping may be connected to the pressure-relief piping on the chiller side of the piping's vibration 
+isolators.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chillers which operate at pressures below atmospheric pressure must be provided with a purge system.  Purge system must automatically remove air, 
+water vapor, and non-condensible gases from the chiller's refrigerant while keeping refrigerant emissions below requirements of ASHRAE Std 147.  
+Purge units must be certified per <RID>AHRI 580</RID>.  Purge system must condense, separate, and return all refrigerant back to the chiller.  An oil separator 
+must be provided with the purge system if required by the manufacturer.  Purge system must not discharge to occupied areas, or create a potential 
+hazard to personnel.  Purge system must include a purge pressure gauge, number of starts counter, and an elapsed time meter.  Purge system must 
+include lights or an alarm which indicate excessive purge or an abnormal air leakage into chiller.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="ARMY"><SPT><TTL>Tools</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Tools to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>One complete set of special tools, as recommended by the manufacturer for field maintenance of the system, must be provided.  Tools must be mounted 
+on a tool board in the equipment room or contained in a toolbox as directed by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>ACCESSORIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Refrigerant Leak Detector</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refrigerant leak detectors will be provided as required by the "System Application Requirements" in ASHRAE 
+15.</NPR><BRK/>
+<BRK/>
+<NPR>When a detector is required, the location will be indicated on the drawings.  Detectors are best located between 
+the refrigeration system and the room exhaust.  Sampling points from a detector will be located a maximum of<MET> 460 
+mm</MET><ENG> 18 inches</ENG> above the finished floor since all commonly-used refrigerants are heavier than air.</NPR><BRK/>
+<BRK/>
+<NPR>As a rule of thumb, the distance between any refrigeration system and a refrigerant sampling point should not 
+exceed<MET> 15.24 m</MET><ENG> 50 feet</ENG>.  In order to meet the recommended<MET> 15.24 m</MET><ENG> 50 foot</ENG> distance, a mechanical room can be provided 
+with either multiple detectors each with single sampling points or with one detector that has the capability of 
+monitoring at multiple sampling points.  If multiple sampling points are required, enter the number in the appropriate 
+blank below.</NPR><BRK/>
+<BRK/>
+<NPR>Per ASHRAE 15, when a detector senses refrigerant it must activate an alarm and initiate the room ventilation 
+system.  In regards to alarms, as a minimum, indicate that the detector will energize a light on or near the detector 
+as well as a second light installed on the outside wall next to the mechanical room entrance.  The exterior light 
+will be provided with a sign that warns personnel entering the mechanical room of a refrigerant release and that 
+a SCBA is required to enter.  If applicable to the installation, include an audible alarm on the exterior of the 
+mechanical room.  Include the electrical design for the alarm system on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>As an additional item, ASHRAE 15 states that open-flame devices such as boilers cannot be installed in the same 
+area as a refrigeration system, unless either combustion air for the open-flame device is ducted straight from 
+outside to the device; or the alarm relay from the detector is used to automatically shutdown the combustion process 
+in the event of refrigerant leakage.  Indicate all applicable alarm controls on the drawings.<TAI OPT="ARMY"><BRK/>
+<BRK/>
+The last bracketed sentence in the paragraph below is for Army projects only.  Delete the information in the last 
+bracketed sentences if a Building Control Network (BCN) is not applicable to the design.</TAI></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Detector must be the continuously-operating, halogen-specific type.  Detector must be appropriate for the refrigerant in use.  Detector must be 
+specifically designed for area monitoring and must include[ a single sampling point][ [_____] sampling points] installed where indicated.  Detector 
+design and construction must be compatible with the temperature, humidity, barometric pressure and voltage fluctuations of the operating area.  
+Detector must have an adjustable sensitivity such that it can detect refrigerant at or above 3 parts per million (ppm).  Detector must be supplied 
+factory-calibrated for the appropriate refrigerant(s).  Detector must be provided with an alarm relay output which energizes when the detector 
+detects a refrigerant level at or above the TLV-TWA (or toxicity measurement consistent therewith) for the refrigerant(s) in use.  The detector's 
+relay must be capable of initiating corresponding alarms and ventilation systems as indicated on the drawings.  Detector must be provided with 
+a failure relay output that energizes when the monitor detects a fault in its operation.<TAI OPT="ARMY">[  Detector must be compatible with the facility's Building 
+Control Network (BCN).  The BCN must be capable of generating an electronic log of the refrigerant level in the operating area, monitoring for 
+detector malfunctions, and monitoring for any refrigerant alarm conditions.]</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Relief Valve/Rupture Disc Assembly</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ASHRAE 15 requires refrigeration systems to be protected with a pressure-relief device that will safely 
+relieve pressure due to fire or other abnormal conditions.  A relief valve/rupture disc assembly is the optimum 
+solution.  The rupture disc will provide visual indication of a release while also providing immediate shutoff 
+once a safe pressure is achieved.</NPR><BRK/>
+<BRK/>
+<NPR>Designer will indicate on the drawings the location of each new relief valve/rupture disc assembly as well as 
+the routing and size of corresponding pressure-relief piping.  The routing and size of new pressure-relief piping 
+will be per ASHRAE 15.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The assembly must be a combination pressure relief valve and rupture disc designed for refrigerant usage.  The assembly must be in accordance with <RID>
+ASME BPVC SEC VIII D1</RID> and <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  The assembly must be provided with a pressure gauge assembly that provides local indication 
+if a rupture disc is broken.  Rupture disc must be the non-fragmenting type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Signs</TTL><BRK/>
+<BRK/>
+<TXT>Refrigerant signs must be a medium-weight aluminum type with a baked enamel finish.  Signs must be suitable for indoor or outdoor service.  Signs 
+must have a white background with red letters not less than<MET> 13 mm</MET><ENG> 0.5 inches</ENG> in height.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Installation Identification</TTL><BRK/>
+<BRK/>
+<TXT>Each new refrigerating system must be provided with a refrigerant sign which indicates the following as a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Contractor's name.</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant number and amount of refrigerant.</OLI><BRK/>
+<BRK/>
+<OLI>The lubricant identity and amount.</OLI><BRK/>
+<BRK/>
+<OLI>Field test pressure applied.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Controls and Piping Identification</TTL><BRK/>
+<BRK/>
+<TXT>Refrigerant systems containing more than<MET> 50 kg</MET><ENG> 110 lb</ENG> of refrigerant must be provided with refrigerant signs which designate the following as a 
+minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Valves or switches for controlling the refrigerant flow[, the ventilation system,] and the refrigerant compressor(s).</OLI><BRK/>
+<BRK/>
+<OLI>Pressure limiting device(s).</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Automatic Tube Brush Cleaning System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph unless specifically required by the onsite staff.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Brush and Basket Sets</TTL><BRK/>
+<BRK/>
+<TXT>One brush and basket set (one brush and two baskets) must be furnished for each condenser tube.  Brushes must be made of nylon bristles, with titanium 
+wire.  Baskets must be polypropylene.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flow-Diverter Valve</TTL><BRK/>
+<BRK/>
+<TXT>Each system must be equipped with one flow-diverter valve specifically designed for the automatic tube brush cleaning system and have parallel 
+flow connections.  The flow-diverter valve must be designed for a working pressure of<MET> [1,000][1,700][2000] kPa</MET><ENG> [150][250][300] psig</ENG>.  End connections 
+must be flanged.  Each valve must be provided with an electrically operated air solenoid valve and position indicator.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Panel</TTL><BRK/>
+<BRK/>
+<TXT>The control panel must provide signals to the diverter valve at a preset time interval to reverse water flow to drive the tube brushes down the 
+tubes and then signal the valve to reverse the water flow to drive the brushes back down the tubes to their original position.  The controller 
+must have the following features as a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Timer to initiate the on-load cleaning cycle.</OLI><BRK/>
+<BRK/>
+<OLI>Manual override of preset cleaning cycle.</OLI><BRK/>
+<BRK/>
+<OLI>Power-on indicator.</OLI><BRK/>
+<BRK/>
+<OLI>Diverter-position indicator.</OLI><BRK/>
+<BRK/>
+<OLI>Cleaning-cycle-time adjustment</OLI><BRK/>
+<BRK/>
+<OLI>Flow-switch bypass.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Gaskets</TTL><BRK/>
+<BRK/>
+<TXT>Gaskets must conform to <RID>ASTM F104</RID> - classification for compressed sheet with nitrile binder and acrylic fibers for maximum<MET> 371 degrees C</MET><ENG> 700 degrees 
+F</ENG> service.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bolts and Nuts</TTL><BRK/>
+<BRK/>
+<TXT>Bolts and nuts, except as required for piping applications, must be in accordance with <RID>ASTM A307</RID>.  The bolt head must be marked to identify the 
+manufacturer and the standard with which the bolt complies in accordance with <RID>ASTM A307</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FABRICATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Factory Coating</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For equipment to be installed outdoors, adequate protection must be specified.  Manufacturers must submit 
+evidence that unit specimen have passed the specified salt spray fog test.  A 125 hour test must be specified 
+in a noncorrosive environment and a 500 hour test will be specified in a corrosive environment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Unless otherwise specified, equipment and component items, when fabricated from ferrous metal, must be factory finished with the manufacturer's 
+standard finish, except that items located outside of buildings must have weather resistant finishes that withstands [125][500] hours exposure 
+to the salt spray test specified in <RID>ASTM B117</RID> using a 5 percent sodium chloride solution.  Immediately after completion of the test, the specimen 
+must show no signs of blistering, wrinkling, cracking, or loss of adhesion and no sign of rust creepage beyond<MET> 3 mm</MET><ENG> 1/8 inch</ENG> on either side of 
+the scratch mark.  Cut edges of galvanized surfaces where hot-dip galvanized sheet steel is used must be coated with a zinc-rich coating conforming 
+to <RID>ASTM D520</RID>, Type I.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Factory Applied Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Chiller must be provided with factory installed insulation on surfaces subject to sweating including the water cooler, suction line piping, economizer, 
+and cooling lines.  Insulation on heads of coolers may be field applied, however it must be installed to provide easy removal and replacement of 
+heads without damage to the insulation.  Where motors are the gas-cooled type, factory installed insulation must be provided on the cold-gas inlet 
+connection to the motor per manufacturer's standard practice.  Factory insulated items installed outdoors are not required to be fire-rated.  As 
+a minimum, factory insulated items installed indoors must have a flame spread index no higher than 75 and a smoke developed index no higher than 
+150.  Factory insulated items (no jacket) installed indoors and which are located in air plenums, in ceiling spaces, and in attic spaces must have 
+a flame spread index no higher than 25 and a smoke developed index no higher than 50.  Flame spread and smoke developed indexes must be determined 
+by <RID>ASTM E84</RID>.  Insulation must be tested in the same density and installed thickness as the material to be used in the actual construction.  Material 
+supplied by a manufacturer with a jacket must be tested as a composite material.  Jackets, facings, and adhesives must have a flame spread index 
+no higher than 25 and a smoke developed index no higher than 50 when tested in accordance with <RID>ASTM E84</RID>.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Coil Corrosion Protection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Research local conditions to determine the corrosiveness of the environment.  Where condenser or evaporator 
+coils are exposed to corrosive atmospheres such as seacoast applications, carefully consider the coil and fin 
+combinations specified.  Standard coil construction is typically copper tubes with aluminum fins.  For more corrosive 
+environments, either copper tubes with copper fins or aluminum tubes with aluminum fins should be considered.</NPR><BRK/>
+<BRK/>
+<NPR>For maximum coil protection, include the requirements of this paragraph.  This paragraph addresses phenolic, vinyl, 
+and epoxy type coatings.  For coils with relatively close fin spacing the phenolic or epoxy coating are the preferred 
+types as these have less tendency to bridge across the fins than vinyl.  In addition, the phenolic and epoxy type 
+coatings can typically provide better thermal conductivity than vinyl.</NPR><BRK/>
+<BRK/>
+<NPR>If coatings are specified, note that a coil's heat transfer capacity can be reduced anywhere between 1 to 5 percent; 
+total unit capacity may have to be increased as a result.  Provide coil coatings with 3,000 hour salt spray compliance 
+for seacoast installations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide coil with a uniformly applied[ epoxy electrodeposition][ phenolic][ vinyl] type coating to all coil surface areas without material bridging 
+between fins.  Submit product data on the type coating selected, the coating thickness, the application process used, the estimated heat transfer 
+loss of the coil, and verification of conformance with the salt spray test requirement.  Coating must be applied at either the coil or coating 
+manufacturer's factory.  Coating process must ensure complete coil encapsulation.  Coating must be capable of withstanding a minimum [1,000][3,000] 
+hours exposure to the salt spray test specified in <RID>ASTM B117</RID> using a 5 percent sodium chloride solution.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL><SUB>FACTORY TESTS</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Chiller Performance Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Currently, most chiller manufacturers do not have the ability to factory performance test anything other 
+than water-cooled chillers (centrifugal or rotary screw) which have flooded evaporators.  In addition, most testing 
+facilities are only setup to test chillers<MET> 1054 kW</MET><ENG> 300 tons</ENG> or larger in capacity.  The ability to performance 
+test small DX systems (water- or air-cooled) is almost non-existent.</NPR><BRK/>
+<BRK/>
+<NPR>Chiller performance testing is a very expensive requirement and should be carefully evaluated before including 
+it into a job specification.  The AHRI certification program has gone a long way in recent years of assuring chiller 
+performance as specified.  The need for a performance test will be evaluated against the customer's requirements 
+and the criticality of the installation.  When a chiller performance test is not required, ensure that paragraph 
+SUBMITTALS is edited to remove the requirements for factory tests in SD-03 and SD-06.</NPR><BRK/>
+<BRK/>
+<NPR>If a performance test is deemed necessary to assure that the capacity and efficiencies specified will be met, 
+then include this paragraph.  Testing should only be specified on water-cooled chillers between<MET> 1054 and 5622 
+kW</MET><ENG> 300 and 1600 tons</ENG>.  Tests may be specified for smaller chillers in critical applications where the tests are 
+felt justified, however, the designer must determine in the design stage if such tests are available.  In no case 
+should a test be required on more than one unit of multiple, identical capacities.</NPR><BRK/>
+<BRK/>
+<NPR>The AHRI testing of chillers allows a deviation to chiller capacity of up to 5 percent at full load.  Load calculations 
+should consider this tolerance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Contractor and proposed chiller manufacturer must be responsible for performing the chiller factory test to validate the specified full load 
+capacity, full load EER, and[ IPLV][ NPLV] in accordance with <RID>AHRI 550/590 I-P</RID> except as indicated.  The Contractor and chiller manufacturer must 
+provide to the Government a certified chiller factory test report in accordance with <RID>AHRI 550/590 I-P</RID> to confirm that the chiller performs as specified.  
+Tests must be conducted in an AHRI certified test facility in conformance with <RID>AHRI 550/590 I-P</RID> procedures and tolerances, except as indicated.  
+At a minimum, chiller capacity must be validated to meet the scheduled requirements indicated on the drawings.  Tolerance or deviation must be 
+in strict accordance with <RID>AHRI 550/590 I-P</RID>.  Stable operation at minimum load of [10][_____] percent of total capacity must be demonstrated during 
+the factory test.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Temperature Adjustments</TTL><BRK/>
+<BRK/>
+<TXT>Temperature adjustments must adhere to <RID>AHRI 550/590 I-P</RID> to adjust from the design fouling factor to the clean tube condition.  Test temperature 
+adjustments must be verified prior to testing by the manufacturer.  There must be no exceptions to conducting the test with clean tubes with the 
+temperature adjustments per <RID>AHRI 550/590 I-P</RID>.  The manufacturer must clean the tubes prior to testing to obtain a test fouling factor of 0.0000.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Instrumentation</TTL><BRK/>
+<BRK/>
+<TXT>The factory test instrumentation must be per <RID>AHRI 550/590 I-P</RID> and the calibration must be traceable to the National Institute of Standards and 
+Technology.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Adjustments</TTL><BRK/>
+<BRK/>
+<TXT>If the equipment fails to perform within allowable tolerances, the manufacturer must be allowed to make necessary revisions to his equipment and 
+retest as required.[  The manufacturer must assume all expenses incurred by the Government to witness the retest.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Chiller Sound Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Require factory sound tests for chiller applications where sound levels are a critical issue.  Typically, 
+factory sound tests are only performed on large centrifugal and rotary screw machines.  As a minimum if a factory 
+sound test is not deemed necessary, indicate the maximum allowable sound level requirements for all applicable 
+chiller components on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>In the paragraph below, select 85 decibels if military personnel (90 decibels for civilian personnel) will operate 
+the equipment without hearing protection.  Other decibel requirements may be specified if hearing protection is 
+provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chillers must be sound tested at the factory prior to shipment to confirm the sound pressure level specified herein.  Tests and data must be conducted 
+and measured in strict accordance with <RID>AHRI 575</RID> at the full load system operating conditions.  The chiller sound pressure level, in decibels (dB), 
+with a reference pressure of 20 micropascals, must not exceed [85][90][_____] dB, A weighted.  Ratings must be in accordance with <RID>AHRI 575</RID>.  No 
+reduction of entering condenser water temperature or raising of leaving chilled water temperature is allowed.  A minimum of 75 percent of the sound 
+data points must be taken along the length of the machine, and established as the minimum percentage of total possible points used to determine 
+sound levels.  In the event that the chiller does not meet the dBA sound pressure level, the manufacturer must, at his expense, provide sufficient 
+attenuation to the machine to meet the specified value.  This attenuation must be applied in such a manner that it does not hinder the operation 
+or routine maintenance procedures of the chiller.  The attenuation material, adhesives, coatings, and other accessories must have surface burning 
+characteristics as determined by <RID>ASTM E84</RID>.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>SUPPLEMENTAL COMPONENTS/SERVICES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Chilled and Condenser Water Piping and Accessories</TTL><BRK/>
+<BRK/>
+<TXT>Chilled and condenser water piping and accessories must be provided and installed in accordance with Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, AND 
+CONDENSER WATER PIPING SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Piping</TTL><BRK/>
+<BRK/>
+<TXT>Refrigerant piping for split-system water chillers must be provided and installed in accordance with Section <SRF>23 23 00</SRF> REFRIGERANT PIPING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cooling Tower</TTL><BRK/>
+<BRK/>
+<TXT>Cooling towers must be provided and installed in accordance with Section <SRF>23 65 00</SRF> COOLING TOWERS AND REMOTE EVAPORATIVELY-COOLED CONDENSERS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Temperature Controls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify this paragraph as required to coordinate the central equipment controls with the air-side system 
+controls.  In projects where this section of the specifications is intended to produce control equipment for existing 
+air-side systems, this paragraph will be rewritten to secure controls to match existing controls and to properly 
+integrate the specified controls into the existing temperature control system.</NPR><BRK/>
+<BRK/>
+<NPR>A sequence of control, a schematic of controls, and a ladder diagram should be included on the drawings for each 
+major system component such as cooling tower fan, chilled water pump, condenser water pump, in order to define 
+the overall system operation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chiller control packages must be fully coordinated with and integrated[ into the temperature control system indicated in Section <SRF>23 30 00</SRF> HVAC 
+AIR DISTRIBUTION and[ Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC][ and][ Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC 
+AND OTHER BUILDING CONTROL SYSTEMS][ or][ Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS]][ into 
+the existing air-conditioning system].</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Installation of water chiller systems including materials, installation, workmanship, fabrication, assembly, erection, examination, inspection, 
+and testing must be in accordance with the manufacturer's written installation instructions, including the following:</TXT><BRK/>
+<BRK/>
+[<ITM INDENT="-0.33">(1) <SUB>Water chiller - installation instructions</SUB></ITM><BRK/>
+<BRK/>
+]<SPT><TTL>Installation Instructions</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's standard catalog data, at least [5][_____] weeks prior to the purchase or installation of a particular component, highlighted 
+to show features such as materials, dimensions, options, performance and efficiency.  Data must include manufacturer's recommended installation 
+instructions, and start-up procedures and checklists.  Data must be adequate to demonstrate compliance with contract requirements.</TXT><BRK/>
+<BRK/>
+<TXT>All recommendations stated in the installation instructions or other similar manufacturer's published literature must be considered mandatory and 
+part of the contract documents.  Any discrepancies to the engineered drawings and specifications must be brought to the attention of the COR.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Vibration Isolation</TTL><BRK/>
+<BRK/>
+<TXT>If vibration isolation is specified for a unit, vibration isolator literature must be included containing catalog cuts and certification that the 
+isolation characteristics of the isolators provided meet the manufacturer's recommendations.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="ARMY"><SPT><TTL><SUB>Posted Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide posted instructions, including equipment layout, wiring and control diagrams, piping, valves and control sequences, and typed condensed 
+operation instructions.  The condensed operation instructions must include preventative maintenance procedures, methods of checking the system 
+for normal and safe operation, and procedures for safely starting and stopping the system.  The posted instructions must be framed under glass 
+or laminated plastic and be posted where indicated by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Verification of Dimensions</TTL><BRK/>
+<BRK/>
+<TXT>Provide a letter including the date the site was visited, conformation of existing conditions, and any discrepancies found.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Performance Test Schedules</TTL><BRK/>
+<BRK/>
+<TXT>Provide a schedule, at least [2][_____] weeks prior to the start of related testing, for the system performance tests.  The schedules must identify 
+the proposed date, time, and location for each test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Certificates</TTL><BRK/>
+<BRK/>
+<TXT>Where the system, components, or equipment are specified to comply with requirements of AGA, NFPA, AHRI, ANSI/ASHRAE, ASME, or UL, proof of such 
+compliance must be provided.  The label or listing of the specified agency must be acceptable evidence.  In lieu of the label or listing, a written 
+certificate from an approved, nationally recognized testing organization equipped to perform such services, stating that the items have been tested 
+and conform to the requirements and testing methods of the specified agency may be submitted.  When performance requirements of this project's 
+drawings and specifications vary from standard AHRI rating conditions, computer printouts, catalog, or other application data certified by AHRI 
+or a nationally recognized laboratory as listed in this Certificates section must be included.  If AHRI does not have a current certification program 
+that encompasses such application data, the manufacturer may self certify that his application data complies with project performance requirements 
+in accordance with the specified test standards.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operation and Maintenance Manuals</TTL><BRK/>
+<BRK/>
+<TXT>Provide [six][_____] complete copies of an operation manual in bound<MET> 216 by 279 mm</MET><ENG> 8 1/2 by 11 inch</ENG> booklets listing step-by-step procedures required 
+for system startup, operation, abnormal shutdown, emergency shutdown, and normal shutdown at least [4][_____] weeks prior to the first training 
+course.  The booklets must include the manufacturer's name, model number, and parts list.  The manuals must include the manufacturer's name, model 
+number, service manual, and a brief description of all equipment and their basic operating features.  [Six][_____] complete copies of maintenance 
+manual in bound<MET> 216 by 279</MET><ENG> 8 1/2 by 11 inch</ENG> booklets listing routine maintenance procedures, possible breakdowns and repairs, and a trouble shooting 
+guide.  The manuals must include piping and equipment layouts and simplified wiring and control diagrams of the system as installed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections to Existing Systems</TTL><BRK/>
+<BRK/>
+<TXT>Notify the Contracting Officer in writing at least 15 calendar days prior to the date the connections are required.  Obtain approval before interrupting 
+service.  Furnish materials required to make connections into existing systems and perform excavating, backfilling, compacting, and other incidental 
+labor as required.  Furnish labor and tools for making actual connections to existing systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Refrigeration System</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Equipment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Determine in the initial stages of design the approximate distances required for maintenance clearances 
+of all new equipment.  The maintenance clearances will be used in determining the final layout of the equipment.</NPR><BRK/>
+<BRK/>
+<NPR>For installations where noise and vibration transmission to the building must be reduced, the maximum tolerable 
+transmissibility, in percent, should be determined and the blank filled in with the appropriate value.  When it 
+is not necessary to specify the percent of transmissibility, the item in the brackets will be deleted and brackets 
+removed.  Recommended transmissibility in percentages are:  10 percent for equipment mounted in very critical 
+areas; 10 to 20 percent for critical areas; and 20 to 40 percent for noncritical areas.  The drawings should be 
+checked to ensure that all structural and equipment connection factors and the conditions surrounding the equipment 
+to be provided with the vibration isolation units favorably influence the effectiveness of the isolators.  Where 
+many items of equipment require different transmission values, based on the equipment location, the specification 
+may be revised to indicate the appropriate values on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Refrigeration equipment and the installation thereof must conform to <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  Necessary supports must be provided for all equipment, 
+appurtenances, and pipe as required, including frames or supports for compressors, pumps, cooling towers, condensers, water coolers, and similar 
+items.  Compressors must be isolated from the building structure.  If mechanical vibration isolators are not provided, vibration absorbing foundations 
+must be provided.  Each foundation must include isolation units consisting of machine and floor or foundation fastenings, together with intermediate 
+isolation material.  Other floor-mounted equipment must be set on not less than a<MET> 150 mm</MET><ENG> 6 inch</ENG> concrete pad doweled in place.  Concrete foundations 
+for floor mounted pumps must have a mass equivalent to three times the weight of the components, pump, base plate, and motor to be supported.  
+In lieu of concrete pad foundation, concrete pedestal block with isolators placed between the pedestal block and the floor may be provided.  Concrete 
+pedestal block must be of mass not less than three times the combined pump, motor, and base weights.  Isolators must be selected and sized based 
+on load-bearing requirements and the lowest frequency of vibration to be isolated.  Isolators must limit vibration to [_____] percent at lowest 
+equipment rpm.  Lines connected to pumps mounted on pedestal blocks must be provided with flexible connectors.  Foundation drawings, bolt-setting 
+information, and foundation bolts must be furnished prior to concrete foundation construction for all equipment indicated or required to have concrete 
+foundations.  Concrete for foundations must be as specified in Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.  Equipment must be properly leveled, aligned, 
+and secured in place in accordance with manufacturer's instructions.  All recommendations stated in the installation instructions or other similar 
+manufacturer's published literature must be considered mandatory and part of the contract documents.  Any discrepancies to the engineered drawings 
+and specifications must be brought to the attention of the COR.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Refrigerant Charging</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Initial Charge:  Upon completion of all the refrigerant pipe tests, the vacuum on the system must be broken by adding the required charge 
+of dry refrigerant for which the system is designed, in accordance with the manufacturer's recommendations.  Contractor must provide the 
+complete charge of refrigerant in accordance with manufacturer's recommendations.  Upon satisfactory completion of the system performance 
+tests, any refrigerant that has been lost from the system must be replaced.  After the system is fully operational, service valve seal 
+caps and blanks over gauge points must be installed and tightened.</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant Leakage:  If a refrigerant leak is discovered after the system has been charged, the leaking portion of the system must immediately 
+be isolated from the remainder of the system and the refrigerant must be pumped into the system receiver or other suitable container.  
+The refrigerant must not be discharged into the atmosphere.</OLI><BRK/>
+<BRK/>
+<OLI>Contractor's Responsibility:  The Contractor must, at all times during the installation and testing of the refrigeration system, take steps 
+to prevent the release of refrigerants into the atmosphere.  The steps must include, but not be limited to, procedures that minimize the 
+release of refrigerants to the atmosphere and the use of refrigerant recovery devices to remove refrigerant from the system and store the 
+refrigerant for reuse or reclaim.  At no time must more than<MET> 85 g</MET><ENG> 3 ounces</ENG> of refrigerant be released to the atmosphere in any one occurrence.  
+Any system leaks within the first year must be repaired in accordance with the specified requirements including material, labor, and refrigerant 
+if the leak is the result of defective equipment, material, or installation.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Oil Charging</TTL><BRK/>
+<BRK/>
+<TXT>Except for factory sealed units, two complete charges of lubricating oil for each compressor crankcase must be furnished.  One charge must be used 
+during the performance testing period, and upon the satisfactory completion of the tests, the oil must be drained and replaced with the second 
+charge.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Mechanical Room Ventilation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For mechanical rooms which are intended to house refrigeration equipment, designers will use ASHRAE 15 
+to determine applicable design criteria.  Delete this paragraph if a mechanical room is not applicable to the 
+design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mechanical ventilation systems must be in accordance with Section <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Field Applied Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Field installed insulation must be as specified in Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL SYSTEMS, except as defined differently herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Painting</TTL><BRK/>
+<BRK/>
+<TXT>Painting required for surfaces not otherwise specified, and finish painting of items only primed at the factory are specified in Section 
+<SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FACTORY TEST SCHEDULING AND REPORTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>Factory Test Schedule</SUB> which identify the date, time, and location for each test.  Schedules must be submitted for the Chiller Performance 
+Tests[ and the Chiller Sound Test].[  The Chiller Performance Test schedule must also allow the witnessing of the test by a Government Representative.]</TXT><BRK/>
+<BRK/>
+<TXT>[Six][_____] copies of the certified test report must be forwarded to the Government for approval prior to project acceptance.  Calibration curves 
+and information sheets for all instrumentation must be included.  Provide copies in bound<MET> 216 by 279 mm</MET><ENG> 8 1/2 by 11 inch</ENG> booklets.  Reports must 
+certify the compliance with performance requirements and follow the format of the required testing standard for the Chiller Performance Tests[ 
+and the Chiller Sound Tests].  Test report must include certified calibration report of all test instrumentation.  Calibration report must include 
+certification that all test instrumentation has been calibrated within 6 months prior to the test date, identification of all instrumentation, 
+and certification that all instrumentation complies with requirements of the test standard.  Test report must be submitted [1][_____] week after 
+completion of the factory test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MANUFACTURER'S FIELD SERVICE</TTL><BRK/>
+<BRK/>
+<TXT>The services of a factory-trained representative must be provided for overseeing of the installation, start-up, and initial operation of the chiller 
+including field acceptance testing.  The representative must advise on the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Hermetic machines:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Testing hermetic water-chilling unit under pressure for refrigerant leaks; evacuation and dehydration of machine to an absolute 
+pressure of not over 300 micrometers.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Charging the machine with refrigerant.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Starting the machine.</OLI><BRK/>
+<BRK/>
+<OLI>Open Machines:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Erection, alignment, testing, and dehydrating.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Charging the machine with refrigerant.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Starting the machine.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>CLEANING AND ADJUSTING</TTL><BRK/>
+<BRK/>
+<TXT>Equipment must be wiped clean, with all traces of oil, dust, dirt, or paint spots removed.  Provide temporary filters for all fans that are operated 
+during construction.  Perform and document that proper <SUB>Indoor Air Quality During Construction</SUB> procedures have been followed; this includes providing 
+documentation showing that after construction ends, and prior to occupancy, new filters were provided and installed.  System must be maintained 
+in this clean condition until final acceptance.  Bearings must be properly lubricated with oil or grease as recommended by the manufacturer.  Belts 
+must be tightened to proper tension.  Control valves and other miscellaneous equipment requiring adjustment must be adjusted to setting indicated 
+or directed.  Fans must be adjusted to the speed indicated by the manufacturer to meet specified conditions.  At least one week before the official 
+equipment warranty start date, all condenser coils on air-cooled water chillers and split-system water chillers must be cleaned in accordance with 
+the chiller manufacturer's instructions.  All recommendations stated in the installation instructions or other similar manufacturer's published 
+literature must be considered mandatory and part of the contract documents.  Any discrepancies to the engineered drawings and specifications must 
+be brought to the attention of the COR.  This work covers two coil cleanings.  The condenser coils must be cleaned with an approved coil cleaner 
+by a service technician, factory trained by the chiller manufacturer.  The condenser coil cleaner must not have any detrimental affect on the materials 
+or protective coatings on the condenser coils.  Testing, adjusting, and balancing must be as specified in Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, 
+AND BALANCING FOR HVAC.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FIELD ACCEPTANCE TESTING</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Test Plans</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Manufacturer's Test Plans:  Within [120][_____] calendar days after contract award, submit the following plans:</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2"><SUB>Water chiller - Field Acceptance Test Plan</SUB><BRK/>
+<BRK/>
+Field acceptance test plans must be developed by the chiller manufacturer detailing recommended field test procedures for that 
+particular type and size of equipment.  Field acceptance test plans developed by the installing Contractor, or the equipment 
+sales agency furnishing the equipment, is not acceptable.<BRK/>
+<BRK/>
+The Contracting Officer must review and approve the field acceptance test plan for each of the listed equipment prior to commencement 
+of field testing of the equipment.  The approved field acceptance tests of the chiller and subsequent test reporting.</OLI><BRK/>
+<BRK/>
+]<TAI OPT="NAVY"><NTE><AST/><BRK/>
+<NPR>NOTE:  In the paragraph below, specification Section <SRF>23 09 53.00 20</SRF> SPACE TEMPERATURE CONTROL SYSTEMS are for 
+Navy projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></TAI>
+<OLI>Coordinated testing:  Indicate in each field acceptance test plan when work required by this section requires coordination with test work 
+required by other specification sections.  Furnish test procedures for the simultaneous or integrated testing of tower system controls 
+which interlock and interface with controls for the equipment provided under<TAI OPT="NAVY">[ Section <SRF>23 09 53.00 20</SRF>, SPACE TEMPERATURE CONTROL SYSTEMS]</TAI>
+[ Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC][ Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING 
+CONTROL SYSTEMS][ or][ Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS].</OLI><BRK/>
+<BRK/>
+<OLI>Prerequisite testing:  Chillers for which performance testing is dependent upon the completion of the work covered by Section <SRF>23 05 93</SRF> 
+TESTING, ADJUSTING, AND BALANCING FOR HVAC must have that work completed as a prerequisite to testing work under this section.  Indicate 
+in each field acceptance test plan when such prerequisite work is required.</OLI><BRK/>
+<BRK/>
+<OLI>Test procedure:  Indicate in each field acceptance test plan each equipment manufacturers published installation, start-up, and field acceptance 
+test procedures.  Include in each test plan a detailed step-by-step procedure for testing automatic controls provided by the manufacturer.<BRK/>
+<BRK/>
+    Each test plan must include the required test reporting forms to be<BRK/>
+    completed by the Contractor's testing representatives.  Procedures<BRK/>
+    must be structured to test the controls through all modes of<BRK/>
+    control to confirm that the controls are performing with the<BRK/>
+    intended sequence of control.<BRK/>
+<BRK/>
+    Controller must be verified to be properly calibrated and have the<BRK/>
+    proper set point to provide stable control of their respective<BRK/>
+    equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Performance variables:  Each test plan must list performance variables that are required to be measured or tested as part of the field test.<BRK/>
+<BRK/>
+    Include in the listed variables performance requirements indicated<BRK/>
+    on  the equipment schedules on the design drawings.  Chiller<BRK/>
+    manufacturer must furnish with each test procedure a description of<BRK/>
+    acceptable results that have been verified.<BRK/>
+<BRK/>
+    Chiller manufacturer must identify the acceptable limits or<BRK/>
+    tolerance within which each tested performance variable must<BRK/>
+    acceptably operate.</OLI><BRK/>
+<BRK/>
+<OLI>Job specific:  Each test plan must be job specific and must address the particular cooling towers and particular conditions which exist 
+in this contract.  Generic or general preprinted test procedures are not acceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Specialized components:  Each test plan must include procedures for field testing and field adjusting specialized components, such as hot 
+gas bypass control valves, or pressure valves.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Testing</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Each water chiller system must be field acceptance tested in compliance with its approved field acceptance test plan and the resulting 
+following field acceptance test report submitted for approval:</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2"><SUB>Water chiller - Field Acceptance Test Report</SUB></OLI><BRK/>
+<BRK/>
+]<OLI>Manufacturer's recommended testing:  Conduct the manufacturer's recommended field testing in compliance with the approved test plan.  Furnish 
+a factory trained field representative authorized by and to represent the equipment manufacturer at the complete execution of the field 
+acceptance testing.</OLI><BRK/>
+<BRK/>
+<OLI>Operational test:  Conduct a continuous 24 hour operational test for each item of equipment.  Equipment shutdown before the test period 
+is completed must result in the test period being started again and run for the required duration.  For the duration of the test period, 
+compile an operational log of each item of equipment.  Log required entries every two hours.  Use the test report forms for logging the 
+operational variables.</OLI><BRK/>
+<BRK/>
+<OLI>Notice of tests:  Conduct the manufacturer's recommended tests and the operational tests; record the required data using the approved reporting 
+forms.  Notify the Contracting Officer in writing at least 15 calendar days prior to the testing.  Within 30 calendar days after acceptable 
+completion of testing, submit each test report for review and approval.</OLI><BRK/>
+<BRK/>
+<OLI>Report forms:  Type data entries and writing on the test report forms.  Completed test report forms for each item of equipment must be 
+reviewed, approved, and signed by the Contractor's test director.  The manufacturer's field test representative must review, approve, and 
+sign the report of the manufacturer's recommended test.  Signatures must be accompanied by the person's name typed.</OLI><BRK/>
+<BRK/>
+<OLI>Deficiency resolution:  The test requirements acceptably met; deficiencies identified during the tests must be corrected in compliance 
+with the  manufacturer's recommendations and corrections retested in order to verify compliance.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>SYSTEM PERFORMANCE TESTS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>All reports must be signed and submitted in electronic format.[  In addition, [six][_____] copies of the report must be provided in bound<MET> 216 by 
+279 mm</MET><ENG> 8 1/2 by 11 inch</ENG> booklets].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Before each refrigeration system is accepted, tests to demonstrate the general operating characteristics of all equipment must be conducted by 
+the manufacturer's approved start-up representative experienced in system start-up and testing, at such times as directed.  Tests must cover a 
+period of not less than [48][_____] hours for each system and must demonstrate that the entire system is functioning in accordance with the drawings 
+and specifications.  Corrections and adjustments must be made as necessary and tests must be re-conducted to demonstrate that the entire system 
+is functioning as specified.  Prior to acceptance, service valve seal caps and blanks over gauge points must be installed and tightened.  Any refrigerant 
+lost during the system startup must be replaced.  If tests do not demonstrate satisfactory system performance, deficiencies must be corrected and 
+the system must be retested.  Tests must be conducted in the presence of the Contracting Officer.  Water and electricity required for the tests 
+must be furnished by the Government.  Any material, equipment, instruments, and personnel required for the test must be provided by the Contractor.  
+Field tests must be coordinated with Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING FOR HVAC.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Report</TTL><BRK/>
+<BRK/>
+<TXT>The report must document compliance with the specified performance criteria upon completion and testing of the system.  The report must indicate 
+the number of days covered by the tests and any conclusions as to the adequacy of the system.  The report must also include the following information 
+and must be taken at least three different times at outside dry-bulb temperatures that are at least<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> apart:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Date and outside weather conditions.</OLI><BRK/>
+<BRK/>
+<OLI>The load on the system based on the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The refrigerant used in the system.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Condensing temperature and pressure.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Suction temperature and pressure.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Running current, voltage and proper phase sequence for each phase of all motors.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The actual on-site setting of all operating and safety controls.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Chilled water pressure, flow and temperature in and out of the chiller.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The position of the[ capacity-reduction gear][ gas supply control valve][ fuel oil supply valve] at machine off, one-third loaded, 
+one-half loaded, two-thirds loaded, and fully loaded.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>DEMONSTRATIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Contractor must conduct a training course for the operating staff as designated by the Contracting Officer.  The training period must consist of 
+a total [_____] hours of normal working time and start after the system is functionally completed but prior to final acceptance tests.  The training 
+course must cover all of the items contained in the approved <SUB>operation and maintenance manuals</SUB> as well as demonstrations of routine maintenance 
+operations.</TXT><NED/><BRK/>
+<BRK/>
+<TXT>Provide a <SUB>Training Course Schedule</SUB>, at least [2][_____] weeks prior to the date of the proposed training course, which identifies the date, time, 
+and location for the training.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

@@ -1,0 +1,1337 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-46 53 62 (May 2021)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-46 53 62 (February 2011)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 46 53 62</SCN><BRK/>
+<BRK/>
+<STL>CONTINUOUS LOOP REACTOR (CLR) WASTEWATER TREATMENT SYSTEM</STL><BRK/>
+<DTE>05/21</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>continuous loop 
+reactor wastewater treatment system</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN BEARING MANUFACTURERS ASSOCIATION (ABMA)</ORG><BRK/><BRK/><RID>ABMA 9</RID><RTL>(2015) Load Ratings and Fatigue Life for Ball Bearings</RTL><BRK/><BRK/><RID>ABMA 11</RID><RTL>(2014; R 2020) Load Ratings and Fatigue Life for Roller Bearings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN GEAR MANUFACTURERS ASSOCIATION (AGMA)</ORG><BRK/><BRK/><RID>AGMA 6013</RID><RTL>(2006A; R2016) Standard for Industrial Enclosed Gear Drives</RTL><BRK/><BRK/><RID>ANSI/AGMA 6113</RID><RTL>(2016B) Standard for Industrial Enclosed Gear Drives (Metric Edition)</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF CIVIL ENGINEERS (ASCE)</ORG><BRK/><BRK/><RID>ASCE 2-06</RID><RTL>(2007) Measurement of Oxygen Transfer in Clean Water</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B16.1</RID><RTL>(2020) Gray Iron Pipe Flanges and Flanged Fittings Classes 25, 125, and 250</RTL><BRK/><BRK/><RID>ASME B31.1</RID><RTL>(2024) Power Piping</RTL><BRK/><BRK/><RID>ASME BPVC SEC IX</RID><RTL>(2017; Errata 2018) BPVC Section IX-Welding, Brazing and Fusing Qualifications</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WATER WORKS ASSOCIATION (AWWA)</ORG><BRK/><BRK/><RID>AWWA C110/A21.10</RID><RTL>(2021) Ductile-Iron and Gray-Iron Fittings</RTL><BRK/><BRK/><RID>AWWA C111/A21.11</RID><RTL>(2023) Rubber-Gasket Joints for Ductile-Iron Pressure Pipe and Fittings</RTL><BRK/><BRK/><RID>AWWA C115/A21.15</RID><RTL>(2020) Flanged Ductile-Iron Pipe With Ductile-Iron or Gray-Iron Threaded Flanges</RTL><BRK/><BRK/><RID>AWWA C151/A21.51</RID><RTL>(2023) Ductile-Iron Pipe, Centrifugally Cast</RTL><BRK/><BRK/><RID>AWWA C200</RID><RTL>(2023) Steel Water Pipe - 6 In. (150 mm) and Larger</RTL><BRK/><BRK/><RID>AWWA C500</RID><RTL>(2019) Metal-Seated Gate Valves for Water Supply Service</RTL><BRK/><BRK/><RID>AWWA C504</RID><RTL>(2023) Standard for Rubber-Seated Butterfly Valves</RTL><BRK/><BRK/><RID>AWWA C508</RID><RTL>(2025) Swing-Check Valves for Waterworks Service, 2 In. Through 48-In. (50-mm Through 1,200-mm) NPS</RTL><BRK/><BRK/><RID>AWWA C509</RID><RTL>(2023) Resilient-Seated Gate Valves for Water Supply Service</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS B2.1/B2.1M</RID><RTL>(2021) Specification for Welding Procedure and Performance Qualification</RTL><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A36/A36M</RID><RTL>(2019) Standard Specification for Carbon Structural Steel</RTL><BRK/><BRK/><RID>ASTM A48/A48M</RID><RTL>(2022) Standard Specification for Gray Iron Castings</RTL><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A167</RID><RTL>(2011) Standard Specification for Stainless and Heat-Resisting Chromium-Nickel Steel Plate, Sheet, and Strip</RTL><BRK/><BRK/><RID>ASTM A307</RID><RTL>(2023) Standard Specification for Carbon Steel Bolts, Studs, and Threaded Rod 60 000 PSI Tensile Strength</RTL><BRK/><BRK/><RID>ASTM A420/A420M</RID><RTL>(2025a) Standard Specification for Piping Fittings of Wrought Carbon Steel and Alloy Steel for Low-Temperature Service</RTL><BRK/><BRK/><RID>ASTM A707/A707M</RID><RTL>(2025) Standard Specification for Forged Carbon and Alloy Steel Flanges for Low-Temperature Service</RTL><BRK/><BRK/><RID>ASTM D1785</RID><RTL>(2021) Standard Specification for Poly(Vinyl Chloride) (PVC), Plastic Pipe, Schedules 40, 80, and 120</RTL><BRK/><BRK/><RID>ASTM D2241</RID><RTL>(2020) Standard Specification for Poly(Vinyl Chloride) (PVC) Pressure-Rated Pipe (SDR Series)</RTL><BRK/><BRK/><RID>ASTM D2564</RID><RTL>(2020) Standard Specification for Solvent Cements for Poly(Vinyl Chloride) (PVC) Plastic Piping Systems</RTL><BRK/><BRK/><RID>ASTM D3139</RID><RTL>(2019) Joints for Plastic Pressure Pipes Using Flexible Elastomeric Seals</RTL><BRK/><BRK/><RID>ASTM D3308</RID><RTL>(2012; R 2022) Standard Specification for PTFE Resin Skived Tape</RTL><BRK/><BRK/><RID>ASTM F477</RID><RTL>(2014; R 2021) Standard Specification for Elastomeric Seals (Gaskets) for Joining Plastic Pipe</RTL><BRK/><BRK/></REF><REF><ORG>MANUFACTURERS STANDARDIZATION SOCIETY OF THE VALVE AND FITTINGS INDUSTRY (MSS)</ORG><BRK/><BRK/><RID>MSS SP-58</RID><RTL>(2025) Pipe Hangers and Supports - Materials, Design and Manufacture, Selection, Application, and Installation</RTL><BRK/><BRK/><RID>MSS SP-80</RID><RTL>(2019) Bronze Gate, Globe, Angle, and Check Valves</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA ICS 1</RID><RTL>(2022) Standard for Industrial Control and Systems: General Requirements</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY FOR PROTECTIVE COATINGS (SSPC)</ORG><BRK/><BRK/><RID>SSPC SP 6/NACE No.3</RID><RTL>(2007) Commercial Blast Cleaning</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Treatment System Installation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufactured Units</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Framed Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Written Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welding</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Field Tests and Inspections</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Furnish test results in booklet form not less than 30 days prior to the date of work completion.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operating and Maintenance Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  [Six] [_____] [hard] [optical disc] copies.</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE MATERIAL SUBMITTALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Extra Materials</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>spare parts</SUB> data for all materials and for each different item of equipment specified, after approval 
+of the detail drawings, and not later than [3] [_____] months prior to the date of work completion.  Include 
+in the data a complete list of parts and supplies, with current unit prices and source of supply.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect from damage, deterioration, weather, humidity and temperature variations, dirt and dust, or other contaminants, 
+equipment in storage as required by the manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A continuous loop reactor or oxidation ditch utilizes biological action 
+to degrade organics in the wastewater.  Consideration should be given to wastewaters 
+from industrial facilities to ensure there are no components detrimental to 
+microorganisms.  In addition, Army facilities utilizing continuous loop reactors 
+should include pretreatment equipment such as bar screens, comminuters and a 
+grit chamber as required by the process conditions.  Final clarification, sludge 
+handling and disinfection equipment is also generally required.  These and other 
+possible components of the complete treatment system guide are not covered under 
+this section.</NPR><BRK/>
+<BRK/>
+<NPR>Continuous loop reactors can take on many shapes (racetrack, folded U, concentric 
+multi-channel, etc.) and configurations (serus, parallel, etc.).  The designer 
+is required to consider these options for space limitations, construction cost 
+considerations, maintenane cost considerations, etc.</NPR><BRK/>
+<BRK/>
+<NPR>As required for military construction, only sprayed concrete (shotcrete) or 
+placed reinforced concrete will be acceptable for the basin construction.  Clay 
+lined or synthetic membrane lined basins (even those protected from erosion) 
+are not acceptable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The work required by this section consists of furnishing and installing a continuous loop reactor (CLR).  The 
+system specified is a modified form of the activated sludge process and classified as an extended aeration system.  
+The basin is to be constructed of an [earthen channel with an impervious sprayed concrete surface] [reinforced 
+concrete structure], constructed at the depth and configuration indicated.  The basin includes all aeration/mixing 
+equipment, [piping,] [pumps,] [baffles,] [weirs] and [turning walls] necessary for proper performance and operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Design Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Some states and regulatory agencies require a minimum detention time 
+of 24 hours.  Check the governing regulations for activated sludge/extended 
+aeration processes for the project location.</NPR><BRK/>
+<BRK/>
+<NPR>Insert average daily and peak daily flow rates and the required BOD5 removal 
+efficiency.  Typically, 90-95 percent removal can be achieved in a continuous 
+loop reactor.  Comply with UFC 3-240-02 to determine design criteria.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Treatment of the wastewater is accomplished by contact with the waste activated sludge in the CLR for a minimum 
+of [18] [_____] hours.  Size the CLR for an average daily flow of [_____]<MET> L/second</MET><ENG> mgd</ENG> and a peak daily flow 
+of [_____]<MET> L/second</MET><ENG> mgd</ENG>.  The CLR is required to remove a minimum of [_____] percent of the influent five day 
+BOD at the average daily flow rate and influent five day BOD.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mixing Parameters</TTL><BRK/>
+<BRK/>
+<TXT>The aeration/mixing system selected provides the propelling force for circulation and mixing of the basin contents.  
+Size the aeration/mixing unit(s) to maintain an average horizontal velocity of not less than<MET> [0.305] [_____] 
+m/second</MET><ENG> [1.0] [_____] fps</ENG> throughout the basin and maintain a uniform mixed liquor suspended solids (MLSS) concentration 
+throughout the basin at MLSS concentrations up to [5000] [_____] mg/L, with one aeration/mixing device not operating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Aeration Parameters</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Actual Oxygen Requirement (AOR) is calculated by the designer.  The 
+oxygen required for oxidation of BOD and the oxygen required for nitrification 
+must be included in the AOR.  Typical values are<MET> 0.82 kg</MET><ENG> 1.8 pounds</ENG> of oxygen 
+per<MET> 0.45 kg</MET><ENG> 1.0 pound</ENG> of BOD applied and<MET> 2.1 kg</MET><ENG> 4.6 pounds</ENG> of oxygen per<MET> 0.45 
+kg</MET><ENG> 1.0 pound</ENG> of TKN applied.  The alpha coefficient is defined as the ratio 
+of the oxygen transfer in the wastewater to the oxygen transfer in clean water 
+and may vary from 0.2 to 1.5.  The alpha coefficient is a direct multiplier 
+in determining oxygen transfer capabilities and is affected by mixed liquor 
+temperature, liquid depth and basin geometry, the level of turbulence, mixing 
+patterns and the nature of dissolved organics and mineral constituents in the 
+wastewater and even the type of aeration equipment.  Fine bubble aeration systems 
+typically have lower alpha values than mechanical aeration systems.  Because 
+of this variation in alpha value a default value is not shown below.  The Beta 
+coefficient is defined as the ratio of oxygen saturation level for the wastewater 
+(mixed liquor) to the oxygen saturation level for tap water.  Theta is a temperature 
+correction coefficient for oxygen transfer efficiency (OTE).  Values of 1.020 
+to 1.028 are normally used for diffused air systems, while a value of 1.024 
+is normally used for mechanical aeration systems.</NPR><BRK/>
+<BRK/>
+<NPR>An OTE of<MET> 0.507 mg oxygen per joule</MET><ENG> 3.0 lb. oxygen/hp-hr</ENG> under standard conditions 
+is an average value for aeration equipment commonly used in closed loop reactor 
+applications.  Designer should contact the aerator manufacturer for the OTE 
+of a particular aerator.  An aeration system in this range will provide oxygen 
+transfer for an average power cost.  Insert the efficiency value desired for 
+the particular design.</NPR><BRK/>
+<BRK/>
+<NPR>The requirement to maintain a minimum dissolved oxygen concentration of 0.5 
+mg/L should be omitted if the designer has provided for an anoxic zone within 
+the reactor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Base the aeration/mixing system selected upon the following process requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Actual Oxygen Requirement (AOR) [_____]<MET> kg oxygen/day</MET><ENG> lbs. oxygen/day</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Alpha Coefficient [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Beta Coefficient [0.95] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Theta Coefficient [1.024] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Wastewater temperature<MET> [20] [_____] degrees C</MET><ENG> [68] [_____] degrees F</ENG>.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Select the aeration/mixing system to provide no less than [_____]<MET> mg oxygen/joule</MET><ENG> lb. oxygen/hp-hr</ENG> under standard 
+(clean water) conditions [and to maintaining a dissolved oxygen concentration of not less than [0.5] [_____] 
+mg/L anywhere in the CLR].  Provide factory test results for a similar treatment application and configuration 
+to substantiate the OTE.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>MANUFACTURED UNITS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a complete list of equipment and materials, including manufacturer's descriptive and technical literature; 
+performance charts and curves; catalog cuts; installation instructions; and a recommendation on quantities of 
+spare parts to have on hand at all times for each piece of equipment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment which are the standard products of a manufacturer regularly engaged in the manufacture 
+of the products and which essentially duplicate items that have been in satisfactory use in similar facilities 
+for at least 2 years prior to bid opening.  Ensure all aeration/mixing equipment, associated accessories, and 
+appurtenances is supplied by the same manufacturer.  Ensure equipment is supported by a service organization 
+that is, in the opinion of the Contracting Officer, reasonably convenient to the site.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Provide pumps, blowers and motors with the manufacturer's name, address, type or style, model or serial number, 
+and catalog number on a stainless steel plate permanently secured to the item of equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protection of Moving Parts</TTL><BRK/>
+<BRK/>
+<TXT>Completely enclose, chains, couplings, and other moving parts by use of guards to prevent accidental personal 
+injury.  Configure guards to be removable or so arranged as to allow access to the equipment for maintenance.  
+If equipment is housed in a lockable housing, ensure housing provides sufficient protection and no additional 
+guards are necessary.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Disc and Rotor Aerators</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The paragraphs that follow contain optional types of aeration systems 
+which may be used by the designer.  Only the paragraphs applying to the selected 
+system should be left and the others removed.  However, if the disc and rotor 
+option is selected note that these aerators can normally be substituted, one 
+for the other, in the same basin configuration so that both disc and rotors 
+may be specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Aeration Mechanism</TTL><BRK/>
+<BRK/>
+<TXT>Provide the [disc] [or] [rotor] aeration system as indicated.  Provide complete units and include [disc] [or] 
+[rotor] assemblies, shaft, or torque tube, drive unit, bearings, supports and all appurtenances necessary for 
+the proper operation of the equipment.  Design the [disc] [or] [rotor] aeration system for continuous operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Disc Assembly</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Twelve individual discs or rotors in an assembly are typical.  The diameter 
+of the unit is variable and should be designed based upon basin configuration, 
+oxygen transfer rates, velocity and efficiency requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide each assembly with individually molded [plastic] [fiberglass] discs, [_____]<MET> mm</MET><ENG> inch</ENG> in diameter and 
+mounted not less than<MET> 150 mm</MET><ENG> 6 inch</ENG> on center.  Provide the number and spacing of disc assemblies indicated.  
+Secure the disc assemblies to the shaft with a clamp ring, by using a keyed shaft or by another method to hold 
+the assembly tightly, ensure no slippage, and provide continuous proper alignment.  Split the discs into two 
+sections for attachment or removal without disassembling the shafting.  Supply stainless steel positioning bolts 
+to hold the two halves together on the shaft.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rotor Assembly</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Twelve individual discs or rotors in an assembly are typical.  The diameter 
+of the unit is variable and should be designed based upon basin configuration, 
+oxygen transfer rates, velocity and efficiency requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each blade assembly consists of [12] [_____] individual or six dual [stainless steel] [plastic] [epoxy coated 
+steel] [hot-dipped galvanized steel] blades, [_____]<MET> mm</MET><ENG> inch</ENG> in diameter mounted not less than<MET> 150 mm</MET><ENG> 6 inch</ENG> 
+on center.  Provide the number and spacing of rotor assemblies indicated.  Secure the blade assemblies to the 
+shaft with a clamp ring, by using a keyed shaft, by compression between the assembly blades and the shaft or 
+by another method to hold the assembly tightly, ensure no slippage, and provide continuous proper alignment.  
+Provide the blades so they are removable by unbolting.  Welding blades to the shaft is not allowed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Velocity Baffles</TTL><BRK/>
+<BRK/>
+<TXT>Provide velocity baffles at the indicated locations and alignment and in accordance with all structural and installation 
+requirements as recommended by the manufacturer of the aeration mechanism.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Splash Plates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If outboard bearings are not required or if they are designed to be wetted, 
+or if protective covering hoods include splash protection delete this paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mount fabricated [steel] [aluminum] [stainless steel] plates in the vertical concrete walls at the drive assembly 
+and outboard bearings and bolt to the frames as indicated.  Ensure the opening in the wall formed by the splash 
+plate is of sufficient width for removal of shafts.  Where the shaft passes through the splash plates, provide 
+a rubber gasket seal on both sides to seal water from the service area.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disc and Rotor Immersion Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  To maintain the water level within the recommended range it is very important 
+that the effluent weir be sized properly and be manually adjustable.</NPR><BRK/>
+<BRK/>
+<NPR>The immersion depth will vary with the diameter of rotor selected.  The depths 
+indicated assume a standard<MET> 1220 mm</MET><ENG> 48 inch</ENG> diameter unit.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>To ensure the most efficient operation of the aeration system and to avoid damage to the drive system the [operate 
+disc with a minimum immersion of<MET> [300] [_____] mm</MET><ENG> [12] [_____] inch</ENG> and a maximum immersion of<MET> [535] [_____] 
+mm</MET><ENG> [21] [_____] inch</ENG>] [operate rotor blades with a minimum immersion of<MET> [100] [_____] mm</MET><ENG> [4] [_____] inch</ENG> and 
+a maximum immersion of<MET> [355] [_____] mm</MET><ENG> [14] [_____] inch</ENG>].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shafts and Bearings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  There are no apparent mechanical or operational advantages in stub shafts 
+and continuous through shafts.  Different manufacturers market different shafts.  
+Check with potential manufacturers before specifying shaft type.  Contractor 
+should usually be allowed to use either shaft.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Support the [disc] [or] [rotor] assembly at both ends by a shaft fabricated of steel conforming to <RID>ASTM A36/A36M</RID>
+.  Provide a [solid steel shaft] [steel torque tube shaft with a minimum<MET> 9.5 mm</MET><ENG> 0.375 inch</ENG> wall thickness].  
+Furnish each [disc] [or] [rotor] assembly support bearing assemblies.  Ensure bearings are waterproof, self-aligning 
+and consist of a cast-iron pillow block set on adjustable anchor plates.  Provide grease lubricated bearings 
+with a minimum L-10 life of 100,000 hours in accordance with <RID>ABMA 9</RID> or <RID>ABMA 11</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protective Covering</TTL><BRK/>
+<BRK/>
+<TXT>Provide an [ultraviolet light protected fiberglass] [_____] cover, extending over the length of each aeration 
+unit.  Design the cover to protect all adjacent structures from splashing caused by the units.  Mount the cover 
+independent of the aeration equipment and install in accordance with the manufacturer's requirements.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Drive System</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Reducer</TTL><BRK/>
+<BRK/>
+<TXT>Construct the drive system reducer to maintain alignment of bearings and gearing while absorbing the external 
+loads of the [disc] [or] [rotor] assembly.  Design the unit to continuously withstand all internal loadings developed 
+at the full load motor<MET> wattage</MET><ENG> horsepower</ENG>, including motor starting torques up to 250 percent of motor running 
+torques.  Design the unit to also withstand all external loadings produced by torque, out-of-balance and vibration 
+resulting from operating conditions.  Provide a speed reducer with lifting lugs.  Vent the interior of the gear 
+case by use of an approved breather, constructed to retard the entrance of water vapor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Housing</TTL><BRK/>
+<BRK/>
+<TXT>Construct drive to be weatherproof and made of steel in accordance with <RID>ASTM A36/A36M</RID> or high grade cast-iron 
+in accordance with <RID>ASTM A48/A48M</RID>.  Apply a protective coating that will not peel, crack or discolor at continuous 
+operating temperatures up to<MET> 121 degrees C</MET><ENG> 250 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rating</TTL><BRK/>
+<BRK/>
+<TXT>Provide drive gearing with a minimum service factor of at least [1.4] [_____] times the rated brake horsepower 
+of the drive motor.  Ensure gear reduction system is suitable for continuous operation and moderate shock loading 
+in accordance with <MET><RID>ANSI/AGMA 6113</RID></MET><ENG><RID>AGMA 6013</RID></ENG> for gear motor reducers or gear motors using helical and spiral bevel 
+gears.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Provide power transmission bearings that are of the antifriction type and have a minimum L-10 life of 100,000 
+hours at maximum operating speed in accordance with <RID>ABMA 9</RID> or <RID>ABMA 11</RID>.  Ensure bearings are fully sealed and 
+protected from water spray.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lubrication</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If lubricating pumps are not used delete subparagraph b. and edit accordingly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide lubrication by [gears running in an oil bath] [an oil slinger] [pumps].  Provide the drive with 
+an oil "dam", spring loaded lip seals or other means of positive protection against lubricant leakage 
+around the output shaft.  Also provide an oil level gauge or sight glass and drain fittings.  Ensure 
+the thermal rating of the gear reducer exceeds the design load or provide proper cooling.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure lubricating pumps are removable for maintenance without disassembly of the drive and/or removal 
+of the motor.  Provide either a low pressure or low oil level switch to shut off the unit in the event 
+of insufficient lubrication.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Couplings</TTL><BRK/>
+<BRK/>
+<TXT>Transmit power from the motor to the gear reduction system by means of [a flexible coupling, direct drive of 
+the non-lubricated type, manufacturer's standard, selected to provide a minimum service factor of 2.0] [sheaves 
+and [V-belts] [chains].  To reduce the output speed, provide removable sheaves.] Cover the assembly with a suitable 
+guard and protect from splashing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Mounting</TTL><BRK/>
+<BRK/>
+<TXT>Provide a base mounted drive system which is separately mounted on a concrete pier or a shaft mounted drive system 
+which is supported by the drive side rotor bearing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Low Speed Surface Aerators</TTL><BRK/>
+<BRK/>
+<TXT>Furnish and install low speed mechanical surface aerators as indicated.  Ensure each supplied unit is complete 
+and include an electric motor, a gear reducer, shaft and impeller driven at a constant speed, and all necessary 
+fasteners, stabilizers, anchoring devices, and other mechanical and structural appurtenances necessary for the 
+mounting and operation of the units.  Design the aerators for continuous operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Impeller Shaft</TTL><BRK/>
+<BRK/>
+<TXT>Construct the shaft of [carbon steel] [_____] and size to withstand all torque loads and bending moments produced 
+by operation of the system.  Design the shaft and bearing assembly to allow operation below 80 percent of its 
+natural frequency without the use of stabilizing devices.  Ensure the shaft is constructed so its deflection 
+will not affect the alignment of the antifriction bearings or cause misalignment of the gearing during the mixing/aeration 
+operation.  Ensure the shaft supporting the impeller is removable from the drive assembly, without disassembly 
+of the gear box.  Use rolling, antifriction type bearings on the impeller shaft which have a minimum L-10 life 
+of 100,000 hours in accordance with <RID>ABMA 9</RID> or <RID>ABMA 11</RID>.  Support the entire weight of the shaft and impeller by 
+a thrust bearing integral with the gear reducer.  Use a rigid coupling to connect the shaft and turbine assembly 
+to the output shaft of the reducer.  Provide bearings on the shaft that are either grease or oil lubricated, 
+and are positively sealed against penetration of moisture, or leakage of lubricant down the shaft. Include provisions 
+for checking the adequacy of lubrication.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impeller</TTL><BRK/>
+<BRK/>
+<TXT>Construct the impeller of [carbon steel] [_____] and positively fasten it to the shaft with all [carbon steel] 
+[_____] hardware. Provide means for adjustment of the impeller.  If the adjustment is on the shaft, provide means 
+to prevent the impeller from dropping off the shaft during adjustment.  Impeller submergence to ensure the most 
+efficient operation of the aeration system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive System</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Reducer</TTL><BRK/>
+<BRK/>
+<TXT>Construct the drive system reducer to maintain alignment of bearings and gearing while absorbing the external 
+loads of the impeller.  Design the unit to withstand continuously all internal loadings developed at the full 
+load motor<MET> wattage</MET><ENG> horsepower</ENG>, including motor starting torques up to 250 percent of motor running torques.  
+Design the unit to also withstand all external loadings produced by torque, thrust, out-of-balance and vibration 
+resulting from operating conditions.  Provide the speed reducer with lifting lugs.  Vent the interior of the 
+gear case by means of an approved breather, constructed to retard the entrance of water vapor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Housing</TTL><BRK/>
+<BRK/>
+<TXT>Construct the drive housing to be waterproof and made of steel in accordance with <RID>ASTM A36/A36M</RID> or high grade 
+cast-iron conforming to <RID>ASTM A48/A48M</RID>.  Apply a protective coating that will not peel, crack or discolor at continuous 
+operating temperatures up to<MET> 121 degrees C</MET><ENG> 250 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rating</TTL><BRK/>
+<BRK/>
+<TXT>Provide gearing with a minimum service factor of at least [2.5] [_____] times the rated brake horsepower of the 
+drive motor.  Ensure the gear reduction system is suitable for continuous operation and moderate shock loading 
+in accordance with <MET><RID>ANSI/AGMA 6113</RID></MET><ENG><RID>AGMA 6013</RID></ENG> for motor reducers or gear motors using helical and spiral bevel gears.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Use power transmission bearings of the antifriction type which have a minimum L-10 life of 100,000 hours at maximum 
+operating speed in accordance with <RID>ABMA 9</RID> or <RID>ABMA 11</RID>. Ensure bearings are fully sealed and protected from water 
+spray.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lubrication</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If lubricating pumps are not used delete subparagraph b. and edit accordingly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide for lubrication by [gears running in an oil bath] [an oil slinger] [pumps].  Provide drive with 
+an oil "dam" or other means of positive protection against lubricant leakage around the output shaft.  
+Also provide an oil level gauge or sight glass and drain fittings.  Ensure the thermal rating of the 
+gear reducer exceeds the design load.  If this is not the case, then provide a proper means of cooling.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure lubricating pumps are removable for maintenance without disassembly of the drive and/or removal 
+of the motor.  Provide either a low pressure or low oil level switch to shut off the unit in the event 
+of insufficient lubrication.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Couplings</TTL><BRK/>
+<BRK/>
+<TXT>Transmit power from the motor to the gear reduction system by a non-lubricated coupling which is direct driven.  
+Use manufacturer's standard couplings selected to provide a minimum service factor of 2.0.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Mounting</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  To maintain the water level within the recommended range it is very important 
+that the effluent weir be sized properly and be manually adjustable.  Verify 
+immersion depth with potential manufacturers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Construct a [structural bridge of steel conforming to <RID>ASTM A36/A36M</RID>] [concrete bridge] and support assembly designed 
+to mount each aeration unit as indicated.  Structurally anchor the bridge assembly to the basin walls.  To ensure 
+the most efficient operation of the aeration system, mount the aerator with the top of the impeller blades<MET> [50] 
+[_____] mm</MET><ENG> [2] [_____] inch</ENG> above the minimum water surface elevation. Ensure the blades are not submerged more 
+than<MET> [200] [_____] mm</MET><ENG> [8] [_____] inch</ENG> at the maximum water surface elevation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protective Covering</TTL><BRK/>
+<BRK/>
+<TXT>The manufacturer is required to supply an [ultraviolet light protected fiberglass] [_____] cover for each aeration 
+unit.  Design the cover to protect all adjacent structures from splashing caused by the unit.  Mount the cover 
+independent of the aeration equipment and be install it in accordance with the manufacturer's requirements.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Submerged Turbine Draft Tube Aerators</TTL><BRK/>
+<BRK/>
+<TXT>Furnish and install the submerged turbine draft tube aeration system as indicated.  Provide the unit complete 
+to include blowers, drive unit, turbine aerator unit and supports, draft tube assembly, and all appurtenances 
+necessary for the proper operation of the equipment.  Design the aerators for continuous operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Impeller Shaft</TTL><BRK/>
+<BRK/>
+<TXT>Construct the shaft of [carbon steel] [_____] and size it to withstand all torque loads and bending moments produced 
+by operation of the system.  Design the shaft and bearing assembly to allow operation below 80 percent of its 
+natural frequency without the use of stabilizing devices.  Construct the shaft so that its deflection will not 
+affect the alignment of the antifriction bearings or cause misalignment of the gearing during the mixing/aeration 
+operation.  Ensure the shaft supporting the impeller is removable from the drive assembly, without disassembly 
+of the gear box.  Use rolling, antifriction type bearings on the impeller shaft with a minimum L-10 life of 100,000 
+hours in accordance with <RID>ABMA 9</RID> or <RID>ABMA 11</RID>.  Support the entire weight of the shaft and turbine by means of a 
+thrust bearing installed integrally with the gear reducer.  Use a rigid coupling to connect the shaft and turbine 
+assembly to the output shaft of the reducer.  Provide bearings on the shaft that are either grease or oil lubricated 
+and are positively sealed against penetration of moisture or leakage of lubricant down the shaft. Provide means 
+for checking the adequacy of lubrication.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impeller</TTL><BRK/>
+<BRK/>
+<TXT>Construct the impeller of [carbon steel] [_____] and positively fasten it to the shaft with all [carbon steel] 
+[_____] hardware. The impeller is required to be removable from the shaft.  Means for adjustment of the impeller.  
+If the adjustment is on the shaft, provide a means to prevent the impeller from dropping off the shaft during 
+adjustment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive System</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Reducer</TTL><BRK/>
+<BRK/>
+<TXT>Construct the drive system reducer to maintain alignment of bearings and gearing while absorbing the external 
+loads of the impeller.  Design the unit to continuously withstand all internal loadings developed at the full 
+load motor<MET> wattage</MET><ENG> horsepower</ENG>, including motor starting torques up to 250 percent of motor running torques.  
+Design the unit to withstand all external loadings produced by torque, thrust, out-of-balance and vibration resulting 
+from operating conditions.  Provide lifting lugs with the speed reducer.  Vent the interior of the gear case 
+using an approved breather, constructed to retard the entrance of water vapor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Housing</TTL><BRK/>
+<BRK/>
+<TXT>Provide a weatherproof drive housing constructed of steel in accordance with <RID>ASTM A36/A36M</RID> or high grade cast-iron 
+conforming to <RID>ASTM A48/A48M</RID>.  Apply a protective coating that will not peel, crack or discolor at continuous 
+operating temperatures up to<MET> 121 degrees C</MET><ENG> 250 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rating</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the gearing has a minimum service factor of at least [2.0] [_____] times the rated brake horsepower of 
+the drive motor.  Ensure the gear reduction system is suitable for continuous operation and moderate shock loading 
+in accordance with <MET><RID>ANSI/AGMA 6113</RID></MET><ENG><RID>AGMA 6013</RID></ENG> for motor reducers or gear motors using helical and spiral bevel gears.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Provide power transmission bearings that are antifriction type and have a minimum L-10 life of 100,000 hours 
+at maximum operating speed in accordance with ABMA 9 or <RID>ABMA 11</RID>.  Ensure bearings used are fully sealed and protected 
+from water spray.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lubrication</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If lubricating pumps are not used delete subparagraph b. and edit accordingly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide lubrication by [gears running in an oil bath] [an oil slinger] [pumps].  Provide drive with an 
+oil "dam" or other means of positive protection against lubricant leakage around the output shaft.  Also 
+provide an oil level gauge or sight glass and drain fittings.  Ensure the thermal rating of the gear 
+reducer exceed the design load or provide proper cooling.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure all lubricating pumps are removable for maintenance without disassembly of the drive and/or removal 
+of the motor.  Provide either a low pressure or low oil level switch to shut off the unit in the event 
+of insufficient lubrication.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Couplings</TTL><BRK/>
+<BRK/>
+<TXT>Transmit power from the motor to the gear reduction system by using a non-lubricated coupling, direct driven.  
+Ensure all couplings are the manufacturer's standard and select to provide a minimum service factor of 2.0.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Draft Tube</TTL><BRK/>
+<BRK/>
+<TXT>Each draft tube consists of upper and lower sections of epoxy coated steel.  The upper section consists of the 
+suction cone, supports for connection to the turbine support assembly, air distribution assembly, deflection-limiting 
+system, flow direction baffles, and supports for connection to the bottom section.  The bottom section is required 
+to be [_____]<MET> mm</MET><ENG> feet</ENG> long, sufficient to carry the design flow with minimal pressure drop.  Shape bottom section 
+to carry the wastewater to a sufficient depth to dissolve the required oxygen and direct the flow forward in 
+the channel.  The draft tube is required to be [_____]<MET> mm</MET><ENG> inch</ENG> in diameter with a<MET> 6 mm</MET><ENG> 1/4 inch</ENG> minimum wall 
+thickness, and equipped with grout rings as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mounting</TTL><BRK/>
+<BRK/>
+<TXT>Construct a [structural bridge of steel conforming to <RID>ASTM A36/A36M</RID>] [concrete bridge] and support assembly designed 
+to mount each aerator as indicated.  The bridge assembly is required to be sufficient to support the turbine 
+aerator, suction cone, air sparge assembly and the flow directional baffle assembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air Supply Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide blower(s) that conform to Section <SRF>46 51 00.00 10</SRF> AIR AND GAS DIFFUSION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Jet Aeration</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Jet aeration systems require that preliminary treatment system be included 
+upstream of the CLR to remove grit and other larger particles to reduce the 
+likelihood of plugging the nozzles.</NPR><BRK/>
+<BRK/>
+<NPR>The aeration equipment covered in this specification is listed below along with 
+some general requirements for their use.  For further assistance in determining 
+the applicability of the CLR, refer to UFC 3-230-14A and for design criteria 
+refer to UFC 3-240-02.</NPR><BRK/>
+<BRK/>
+<NPR>a.  Disc or Rotor (Brush) Aerators:  This type of aeration system creates surface 
+agitation to provide oxygen transfer and imparts a horizontal velocity by the 
+rotation of the unit.  The channel may be constructed with either sloped or 
+vertical side walls.  Typically the channels are constructed<MET> 2.4 m</MET><ENG> 8 feet</ENG> to<MET>
+ 3.7 m</MET><ENG> 12 feet</ENG> deep.  Channels greater than<MET> 2 m</MET><ENG> 7 feet</ENG> deep may require a velocity 
+baffle downstream of the aeration unit to help impart a downward velocity to 
+the wastewater and improve mixing along the channel bottom.  The CLR should 
+not be constructed with a sidewater depth greater than<MET> 4.3 m</MET><ENG> 14 feet</ENG> if disc 
+or brush aerators are specified.  In addition, turning walls are recommended 
+at each bend to maintain channel velocities around the corners.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Low Speed Surface Aerators:  This type of aeration system creates surface 
+agitation to provide oxygen transfer and imparts a velocity to the wastewater 
+by the swirling action created by the impeller.  The aerators must be placed 
+at the turns in the channel to achieve effective horizontal velocity.  At bends 
+where aerators are not located, turning walls are recommended to maintain channel 
+velocities around the corners.  Floating aerators should not be considered for 
+use in a CLR application due to the area required for the pontoons.  The channel 
+may be constructed with either sloped or vertical side walls.  With this equipment, 
+vertical side walls are recommended at the turns.  Channel depths will vary 
+from<MET> 2 to 5 m</MET><ENG> 6 to 16 feet</ENG>).  Draft tubes should be provided when recommended 
+by the manufacturer.</NPR><BRK/>
+<BRK/>
+<NPR>c.  Submerged Turbine Aerators:  Submerged turbine aerators used in CLR's utilize 
+a downward pumping impeller to force an air and water mixture through a draft 
+tube that extends below the bottom of the basin and through a barrier wall extending 
+across the basin.  The barrier wall may be constructed of concrete, compacted 
+clay or reinforced earth.  The turbine's impeller should be located at a depth 
+of approximately 20 percent of the basin sidewater depth.  The air is discharged 
+through a sparge ring below the impeller and becomes entrained in the downward 
+flow of water through the draft tube.  The system requires an air blower, as 
+well as the turbine unit.  However, the system offers turn down flexibility 
+because the turbine and blower are operated independent of each other.  Sloped 
+or vertical walls are acceptable with this system and the basin should have 
+a single side water depth within the range of<MET> 2.4 to 5 m</MET><ENG> 8 to 16 foot</ENG> sidewater 
+depth.  In addition, turning walls are recommended at each bend to maintain 
+channel velocities around the corners.</NPR><BRK/>
+<BRK/>
+<NPR>d.  Jet Aeration:  Jet aeration combines air flow and pumped liquid in a vortex 
+jet nozzle which is discharged just above the channel floor.  The jet system 
+consists of a recirculation pumping system and an air blower, each feeding headers 
+that discharge through the jet nozzles.  The typical configuration utilizes 
+a concrete basin with a<MET> 3.7 to 6 m</MET><ENG> 12 to 20 foot</ENG> sidewater depth, preferably 
+with vertical side walls.  In addition, turning walls are recommended at each 
+bend to maintain channel velocities around the corners.  The jet nozzles can 
+be fixed or they can be mounted on removable or swing headers to facilitate 
+maintenance.  Removable and swing header systems will require the construction 
+of thrust blocks located behind the nozzles to prevent any deflection caused 
+by the jet action.</NPR><BRK/>
+<BRK/>
+<NPR>e.  Diffused Aeration/Low Speed Mixer System:  In this system, a coarse, medium 
+or fine bubble diffused aeration system is used in conjunction with a submerged 
+low speed mixing unit that supplies the horizontal velocity.  The propeller 
+type mixer, mounted on guide rails, is positioned immediately upstream of the 
+diffusers.  Vertical or sloping side walls are acceptable with basin sidewater 
+depth ranging between<MET> 3.7 to 6 m</MET><ENG> 12 to 20 foot</ENG>.  In addition, turning walls 
+are recommended at each bend to maintain channel velocities around the corners. 
+Vertical side walls are recommended in the area of the diffusers to maximize 
+oxygen transfer. Consideration should also be given to providing a removable 
+or swing header system to facilitate maintenance of the diffusers.</NPR><BRK/>
+<BRK/>
+<NPR>f.  System Choice:  Since the configuration of the channel will vary with the 
+type of equipment selected, the choice of aeration system must be decided upon 
+first.  Each aeration system listed above is specified herein.  Only the paragraphs 
+applying to the aeration system selected should be included in the specification.  
+All paragraphs and subparagraphs for the other aeration systems should be deleted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the jet aeration system as indicated.  The system includes air-liquid jet manifolds, [vertical propeller] 
+[submerged centrifugal] pumps, pneumatic backflush system, air blowers, and all in-basin air and liquid piping 
+and supports.  Design the jet aeration system for continuous operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Submerged Jets</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The nozzle size will affect the performance of the system by changing 
+the water and air mixture. The standard nozzle size is<MET> 40 mm</MET><ENG> 1-1/2 inches</ENG>, however, 
+the process requirements should be checked to determine proper nozzle size.  
+The number and size of nozzles is site specific and is effected by the tank 
+size, solids concentration, oxygen demand requirements and other factors.  Designer 
+should contact the equipment manufacturer for information on nozzle sizing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The jet aeration system consists of [fiberglass reinforced plastic] [_____] jet nozzles, oriented in a common 
+direction and attached to a common manifold.  The manifold consists of separate liquid and air piping so that 
+the air and liquid do not mix prior to reaching the mixing chamber of the jet.  The liquid portion of the manifold 
+is required to provide uniform distribution of mixed liquor from the inlet of the manifold to each of the jets.  
+The jets consist of 2 nozzles and a mixing chamber constructed integrally with the manifold.  The primary jet 
+directs the mixed liquor into the mixing chamber where air is introduced and combined with the liquid.  The air-liquid 
+mixture then discharges into the secondary nozzle and, hence horizontally into the basin.  Carefully mold the 
+two nozzles to maintain proper alignment and tolerances.  To reduce the likelihood of plugging, each jet nozzle 
+has a minimum intake and discharge diameter of<MET> 40 mm</MET><ENG> 1-1/2 inches</ENG>.  Construct the manifold assembly of [fiberglass 
+reinforced plastic] [epoxy coated carbon steel] [_____].  Design the manifold to withstand all normal stresses 
+encountered in shipping, handling and operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Recirculation Pumps</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the applicable pump from the following paragraphs:</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Vertical Propeller Pump</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Vertical propeller pump manufacturer design manuals should be consulted 
+to determine spacing of pumps to avoid influence of the pump suctions.</NPR><BRK/>
+<BRK/>
+<NPR>Pumps should be identified on the drawings by a number.  Insert the identification 
+number in part b. of this paragraph; part b. should be repeated as necessary 
+for pumps of the same type with different operating characteristics.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>General:  Install the pumping system as indicated and ensure it is suitable for outdoor installation. 
+Design the unit, consisting of vertical shaft, [single] [multistage] propeller type pump and motor to 
+operate safely in the reverse direction of rotation, due to water returning through the pump.  Carry 
+the weight of the revolving parts of the pump, including the unbalanced hydraulic thrust of the propeller, 
+by means of a thrust bearing in the motor.  Support the pump from a base plate by means of a vertical 
+column having horizontal discharge located below the base plate.</OLI><BRK/>
+<BRK/>
+<OLI>Pump Characteristics:  Provide pump number(s) [_____] having the following operating characteristics:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Pump Service.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Design Operating Point:  [_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent efficiency.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Maximum Operating Point:  [_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent 
+efficiency.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Minimum Operating Point:  [_____]<MET> L/second</MET><ENG> gpm</ENG> flow, [_____]<MET> mm</MET><ENG> feet</ENG> head, [_____] percent 
+efficiency.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Propeller Type:  [_____].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Discharge Diameter:  [_____]<MET> mm</MET><ENG> inch</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Bell Diameter:  [_____]<MET> mm</MET><ENG> inch</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Column Length:  [_____]<MET> mm</MET><ENG> feet</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Operating Speed:  [_____] rpm.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Minimum Bell Submergence:  [_____]<MET> mm</MET><ENG> inch</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Pump Control:  [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Pump Column and Discharge Elbow:  Construct the pump supporting column of steel pipe with a minimum<MET> [6] 
+[_____] mm</MET><ENG> [1/4] [_____] inch</ENG> thickness.  Use a flanged discharge opening  for connection to the discharge 
+pipe.  Use long radius discharge elbows made of [welded steel] [cast-iron].</OLI><BRK/>
+<BRK/>
+<OLI>Base Plate:  Suspend the pumping unit from a base plate of adequate structural design to support the 
+weight of the complete unit filled with water.  Fabricate the base plate of cast iron or steel and size 
+to allow the entire pump to be removed, with the discharge flange attached.  Use stainless steel base 
+plate mounting hardware.  Locate the packing box on or above the base plate to provide for easy maintenance.  
+Mount the motor above the pump.</OLI><BRK/>
+<BRK/>
+<OLI>Suction Bell and Impeller Housing:  Construct the suction bell and impeller housing of [ductile] [cast] 
+iron [_____] and design for easy removal of the propeller and lower bearing.  Provide the suction bell 
+with a flared inlet designed to reduce entrance loss and provide with flanges to adequately support the 
+lower bearing and support the weight of the propeller and propeller shaft.</OLI><BRK/>
+<BRK/>
+<OLI>Propeller:  Construct the pump propeller using [bronze] [_____] and balance propeller statically and 
+dynamically to reduce vibration and wear.</OLI><BRK/>
+<BRK/>
+<OLI>Propeller Shaft:  Size the propeller shaft to operate without objectionable distortion or vibration in 
+both forward and reverse rotation.  Fabricate the propeller shaft using [stainless steel] [_____] and 
+direct couple propeller shaft to the line shaft.  Ensure the propeller shaft is adjustable with reference 
+to the bowl.  Construct the line shaft of [carbon steel] [_____] and extend as one unit to the motor 
+shaft.  Enclose the line shaft in a water-tight steel column.</OLI><BRK/>
+<BRK/>
+<OLI>Bearings:  Ensure the pump is equipped with a [bronze] [_____] sleeve bearing immediately above the propeller, 
+and a [bronze] [_____] lower support bearing below the propeller.  For line shafts greater than<MET> 3 m</MET><ENG> 10 
+feet</ENG> in length, also provide [bronze] [_____] intermediate shaft bearings.  Install the intermediate 
+shaft bearings inside the water-tight steel column.  At the top of the line shaft, include a [bronze] 
+[_____] tension bearing with a tension nut and tension ring.  Ensure all bearings are easily replaceable 
+and spaced to provide adequate support for the shaft and to prevent vibration.  Use bearings with an 
+L-10 life of 100,000 hours in accordance with <RID>ABMA 9</RID> or <RID>ABMA 11</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Lubrication:  Equip the pump with an automatic lubricating system which supplies grease lubricant to 
+all but the lower support bearings.  Grease pack the lower support bearings.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Submersible Centrifugal Pumps</TTL><BRK/>
+<BRK/>
+<TXT>Provide submersible centrifugal pumps used for the jet aeration system in accordance with Section <SRF>22 13 29</SRF> SANITARY 
+SEWERAGE PUMPS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Self-Priming Centrifugal Pumps</TTL><BRK/>
+<BRK/>
+<TXT>Provide self-priming centrifugal pumps used for the jet aeration system in accordance with Section <SRF>22 13 29</SRF> SANITARY 
+SEWERAGE PUMPS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Vertical Turbine Pumps</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Vertical turbine pump manufacturer design manuals should be consulted 
+to determine spacing of pumps to avoid influence of the pump suctions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide vertical turbine pumps used for the jet aeration system in accordance with Section <SRF>23 21 23</SRF> HYDRONIC 
+PUMPS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Suction Screens</TTL><BRK/>
+<BRK/>
+<TXT>Mount a [stainless steel] [_____] screen to the suction of the pump.  Provide a screen sized to ensure nothing 
+larger than<MET> 25 mm</MET><ENG> 1 inch</ENG> in diameter to pass.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Blowers</TTL><BRK/>
+<BRK/>
+<TXT>Provide blowers in accordance with Section <SRF>46 51 00.00 10</SRF> AIR AND GAS DIFFUSION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Diffused Aeration/Slow Speed Mixer System</TTL><BRK/>
+<BRK/>
+<TXT>Furnish and install the diffused aeration/slow speed mixer system as indicated.  Provide a complete system including 
+air supply, distribution and diffuser equipment designed to satisfy the oxygen requirement, and the adequate 
+number of submersible mixing units to create and maintain a horizontal velocity in the basin and maintain solids 
+suspension.  The air supply and distribution system includes blowers, piping, valves, diffusers, supports and 
+all necessary appurtenances to ensure proper operation of the equipment.  The mixing units consist of a propeller 
+driven by a [submersible electric motor] [hydraulic system], a support structure that allows the unit to be easily 
+removed from the basin, and all cables and appurtenances necessary to ensure proper operation of the equipment.  
+Design the combined system for continuous operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Diffused Aeration System</TTL><BRK/>
+<BRK/>
+<TXT>Provide the diffused aeration and blower system as specified in Section <SRF>46 51 00.00 10</SRF> AIR AND GAS DIFFUSION 
+SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Slow Speed Mixer (With Submersible Electric Motor)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer will allow bids on either hydraulic motors or electric motors 
+unless job requirements warrant eliminating one of the options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure all components of the mixer, including the motor, are capable of continuous underwater operation while 
+the mixer blade is either completely submerged or partly submerged.  In addition, ensure all components of the 
+mixer, including motor, are capable of continuous operation in air, completely unsubmerged, for a minimum of 
+[2] [_____] hours.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Mixer Propeller</TTL><BRK/>
+<BRK/>
+<TXT>Construct the propeller of [<RID>ASTM A167</RID>, Type 304 stainless steel] [cast-iron] [molded fiberglass] [_____] and 
+shape so that no solids, fibrous material and other material found in normal wastewater applications collects 
+on the blades.  Dynamically balance the propeller to<MET> [5.3] [_____] N/meter</MET><ENG> [0.03] [_____] pounds/inch</ENG> and [internally 
+key it for engagement with the shaft] [ensure it slides onto the shaft and is securely fastened with a screw 
+washer and sleeve] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive System</TTL><BRK/>
+<BRK/>
+<TXT>Provide each mixer be direct-driven, close-coupled, completely submersible units.  Use mixer motors that are 
+squirrel-cage induction, shell type design, housed in an air-filled, watertight chamber.  Insulate the stator 
+winding with moisture-resistant Class F insulation in accordance with <RID>NEMA MG 00001</RID> and design for continuous 
+duty.  Ensure the cable entry is an integral part of the stator casing and is leakproof.  In addition, machine 
+all mating surfaces where water tight sealing is required and fit with [nitrile] [_____] rubber O-rings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shafts and Seals</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the mixer motor shaft is integral with the propeller shaft and rotates on two permanently lubricated bearings.  
+Provide ball bearings with a minimum L-10 life of 100,000 hours as defined by <RID>ABMA 9</RID> or <RID>ABMA 11</RID>.  Provide each 
+mixer with a tandem mechanical rotating shaft seal system on the propeller shaft.  Provide lapped end face type 
+seals and run them in an oil reservoir.  The inner seal is required to contain one stationary and one positively 
+driven rotating ceramic ring.  The outer seal is required to contain one stationary and one positively driven 
+rotating tungsten carbide ring.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mounting</TTL><BRK/>
+<BRK/>
+<TXT>Configure mixer capable of being raised and lowered from the basin for ease of repair and maintenance.  Mount 
+the mixer on and guide by a sliding bracket constructed to withstand all thrust created by the mixer.  Provide 
+a lifting cable and winch mechanism to permit raising and lowering of the mixer on the sliding bracket.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Slow Speed Mixer (With Hydraulic Motors)</TTL><BRK/>
+<BRK/>
+<TXT>Each hydraulic horizontal mixer consists of a hydraulic power unit and motor, a direct drive shaft and propeller, 
+hydraulic lines, and all mounting and support brackets to provide for proper operation.  In addition, all components 
+of the mixer are required to capable of continuous operation in air, completely unsubmerged, for a minimum of 
+[2] [_____] hours.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Mixer Propeller</TTL><BRK/>
+<BRK/>
+<TXT>Construct the propeller of [cast-iron] [molded fiberglass] [_____] and shaped so that no solids, fibrous material 
+and other material found in normal wastewater applications collects on the blades.  Dynamically balance the propeller 
+to<MET> [5.3] [_____] N/meter</MET><ENG> [0.03] [_____] pounds/inch</ENG> and [internally key it for engagement with the shaft] [ensure 
+it slides onto the shaft and is securely fastened with a screw washer and sleeve] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive System</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Hydraulic Motor:  Provide hydraulic motor of the low speed, high torque, fixed displacement type to drive 
+the propeller.  Ensure the hydraulic motor is capable of withstanding end thrust loads of not less than<MET>
+ 4.45 kN</MET><ENG> 1000 pounds</ENG> either into or out from the motor.  Ensure hydraulic motor is rated for a B-10 life 
+of not less than 100,000 hours in accordance with <RID>ABMA 9</RID> or <RID>ABMA 11</RID>.  Connect the hydraulic motor to 
+the hydraulic pump with a hose having a continuous pressure rating of not less than<MET> 20.7 MPa</MET><ENG> 3000 psi</ENG>
+.</OLI><BRK/>
+<BRK/>
+<OLI>Hydraulic Pump:  Enclose the hydraulic pump in the hydraulic reservoir and mount directly to the electric 
+motor adapter.  Ensure the hydraulic pump has a continuous pressure rating of not less than<MET> 13.8 MPa</MET><ENG> 
+2000 psi</ENG>.  Ensure the hydraulic fluid flow control mechanism lock and is fully adjustable to allow for 
+infinitely variable speed control.</OLI><BRK/>
+<BRK/>
+<OLI>Reservoir and Accessories:  Construct the hydraulic reservoir of steel.  Include a filler/breather assembly, 
+and a fluid level/temperature gauge and clean-out cover.  Connect the hydraulic reservoir to the hydraulic 
+motor with a hose having a continuous pressure rating greater than the rating of the hydraulic pump but 
+not less than<MET> 20.7 MPa</MET><ENG> 3000 psi</ENG>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Mounting</TTL><BRK/>
+<BRK/>
+<TXT>Provide mixer capable of being raised and lowered from the basin for ease of repair and maintenance.  Mount the 
+mixer on and guide by a sliding bracket constructed to withstand all thrust created by the mixer.  Provide a 
+lifting cable and winch mechanism to permit raising and lowering of the mixer on the sliding bracket.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Lubrication Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide an adequate means of lubrication for all moving parts subject to wear.  Except as otherwise specified, 
+lubricate using grease or oil.  Provide grease fittings for all grease-type bearings.  If bearings are not easily 
+accessible, provide grease tubing in a convenient location.  Provide bearings with relief ports to prevent build-up 
+of pressures which might damage the bearings or seals.  Size oil reservoirs liberally and provide with an opening 
+for filling, an overflow opening at the proper location to prevent overfilling, and a drain opening at the lowest 
+point.  Vent reservoirs to prevent pressure build-up.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Motors</TTL><BRK/>
+<BRK/>
+<TXT>Utilize a squirrel-cage induction motor suitable for continuous duty. Provide motor with a non-overloading power 
+rating for any conditions under which the driven equipment function.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Frame</TTL><BRK/>
+<BRK/>
+<TXT>Select the motor frame size in accordance with <RID>NEMA MG 00001</RID>.  Ensure that motors of the same rating, mounting, 
+and characteristics are interchangeable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Design</TTL><BRK/>
+<BRK/>
+<TXT>Induction motors are required to be Design B as defined in <RID>NEMA MG 00001</RID>, with normal torque and low starting 
+current.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Enclosure</TTL><BRK/>
+<BRK/>
+<TXT>Provide a totally enclosed fan cooled enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Terminal Boxes</TTL><BRK/>
+<BRK/>
+<TXT>Size cast-iron terminal boxes for the space required, for the allowable bending radius and stiffness of the motor 
+supply cables, and for terminating a grounding conductor.  Provide gaskets for the terminal boxes and threaded 
+conduit entrances or hubs.  Ensure terminal boxes are rotatable for connection from any one of four directions 
+at 90 degree intervals with a motor lead seal and separator gasket provided between the motor frame and terminal 
+box.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Provide grease lubricated, shielded, antifriction steel ball bearings and grease with a moisture resistant grease.  
+Ensure all grease fittings and excess grease purge plugs are readily accessible and locate externally so that 
+bearing lubricant can be changed without removing fan housing or dismantling the motor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Windings</TTL><BRK/>
+<BRK/>
+<TXT>Provide nonhygroscopic, epoxy coated motor windings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motor Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Ensure motor rotors receive a standard dynamic balance.  Ensure the maximum amplitude (peak to peak) of motor 
+vibration, as measured at the bearing housing, and the method of measurement are in accordance with <RID>NEMA MG 00001</RID>
+.  Ensure motor characteristics such as<MET> wattage</MET><ENG> horsepower</ENG>, speed, rpm, voltage and phase requirements and insulation 
+class are provided as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motor Controls</TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA ICS 1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Special Tools</TTL><BRK/>
+<BRK/>
+<TXT>Provide one set of special tools, calibration devices, and instruments required for operation, calibration and 
+maintenance of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Ensure materials and equipment conform to the following requirements.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Steel Plates, Shapes and Bars</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A36/A36M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Furnish and install piping as indicated and ensure it is in accordance with the applicable standard specification.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Steel Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A53/A53M</RID>, all pipe sizes.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Flanged Joints:  <RID>ASTM A707/A707M</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Slip Joints:  <RID>AWWA C200</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Mechanical Joints:  <RID>AWWA C200</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Welded Joints:  <RID>AWS D1.1/D1.1M</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Bolts:  <RID>ASTM A307</RID>, Grade B.</OLI><BRK/>
+<BRK/>
+<OLI>Fittings:  <RID>ASTM A420/A420M</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Ductile-Iron Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C115/A21.15</RID>, all pipe sizes.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Flanged Pipe:  <RID>AWWA C115/A21.15</RID> with <RID>ASME B16.1</RID>, Class 125 flanges.</OLI><BRK/>
+<BRK/>
+<OLI>Rubber-Gasket Joints:  <RID>AWWA C111/A21.11</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Fittings:  <RID>AWWA C110/A21.10</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Push-On Joints:  <RID>AWWA C151/A21.51</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Bolts and Nuts:  <RID>ASTM A307</RID>, Grade B.</OLI><BRK/>
+<BRK/>
+<OLI>Coatings and Linings:  Provide bituminous coating on all buried piping.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Polyvinyl Chloride (PVC) Pipe and Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Provide PVC pipe and fittings less than<MET> 102 mm</MET><ENG> 4-inch</ENG> diameter in accordance with <RID>ASTM D1785</RID> or <RID>ASTM D2241</RID>.  
+Provide PVC pipe and fittings<MET> 102 mm</MET><ENG> 4 inch</ENG> in diameter and larger in accordance with <RID>ASTM D2241</RID> and ensure they 
+have push-on joints.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Push-On Joints:  <RID>ASTM D3139</RID> or <RID>ASTM F477</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Solvent Cement:  <RID>ASTM D2564</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pipe Hangers and Supports</TTL><BRK/>
+<BRK/>
+<TXT><RID>MSS SP-58</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Gate Valves</TTL><BRK/>
+<BRK/>
+<TXT>Gate valves are required to withstand a working pressure of not less than<MET> 1.03 MPa</MET><ENG> 150 psi</ENG>.  Ensure valves have 
+a clear waterway equal to the full diameter of the valve, and are opened by turning counterclockwise.  On operating 
+nut or wheel handle, provide an arrow, cast in metal, indicating the direction of opening.  For valves used for 
+buried service, provide with non-rising stem (NRS), <MET>50 mm</MET><ENG> 2 inch</ENG> square nut operated with joints applicable to 
+the pipe or installation.  Furnish buried valves with extension stems comprised of socket, extension stem and 
+operating nut, that are long enough to bring operating nut to within<MET> 150 mm</MET><ENG> 6 inch</ENG> of grade.  Furnish one<MET> 1.2 
+m</MET><ENG> 4 foot</ENG> "T" handle valve wrench for each quantity of six buried valves.  For gate valves which are exposed or 
+installed inside, provide outside screw and yoke (OS&amp;Y), handwheel operated with flanged ends unless otherwise 
+indicated.  Flanges are not to be buried.  Provide a approved pit for all flanged connections.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Valves smaller than<MET> 75 mm</MET><ENG> 3 inch</ENG> are required to be all bronze conforming to <RID>MSS SP-80</RID>, Type 1, Class 
+150.</OLI><BRK/>
+<BRK/>
+<OLI>Valves<MET> 75 to 305 mm</MET><ENG> 3 to 12 inch</ENG> in size are required to be resilient-seated gate valves conforming to <RID>
+AWWA C509</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Valves<MET> 355 mm</MET><ENG> 14 inch</ENG> and larger are required to be iron body, bronze mounted conforming to <RID>AWWA C500</RID>
+.  Provide solid wedge type valves.  Equip valves with gearing to reduce operating effort.  Equip all 
+valves installed in horizontal lines in the horizontal position with stems horizontal with bronze track, 
+roller and scrapers to support the weight of the gate for its full length of travel.  Fit valves installed 
+in vertical pipe lines with stems horizontal with slides to assist the travel of the gate assembly.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Plug Valves</TTL><BRK/>
+<BRK/>
+<TXT>Plug valves are required to be eccentric type capable of withstanding a minimum working pressure of<MET> 1.03 MPa</MET><ENG> 
+150 psi</ENG>.  Provide flange valve conforming to <RID>ASME B16.1</RID>, Class 125.  Provide mechanical or push-on type rubber 
+gasket joint ends conforming to <RID>AWWA C110/A21.10</RID> and <RID>AWWA C111/A21.11</RID>.  Ensure port area for valves is at least 
+80 percent of full pipe area.  Valve bodies, plugs or discs, seats, shafts, shaft seals and actuators are required 
+to conform to <RID>AWWA C504</RID>.  Valves are required to open counterclockwise and the operating nut or wheel have an 
+arrow, cast in metal, indicating the direction of opening.  Ensure valves meet all performance, leakage, and 
+hydrostatic tests required by <RID>AWWA C504</RID>.  On request, furnish a certified statement from the manufacturer that 
+proof-of-design tests were carried out as described in <RID>AWWA C504</RID> and all requirements were successfully met.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Check Valves</TTL><BRK/>
+<BRK/>
+<TXT>Check valves are required to permit free flow of sewage forward and provide a positive check against backflow.  
+Check valves are required to withstand a minimum working pressure of<MET> 1.03 MPa</MET><ENG> 150 psi</ENG> or as indicated.  Provide 
+iron body check valves.  Directly cast on the body the manufacturer's name, initials, or trademark and also the 
+size of the valve, working pressure, and direction of flow.  Flanges are required to be the<MET> 56 kg</MET><ENG> 125 pound</ENG> type 
+complying with <RID>ASME B16.1</RID>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide ball check valves with flanged or threaded ends and the non-slam type.  Construct ball of stainless 
+steel unless otherwise specified.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure swing check valves comply with <RID>AWWA C508</RID>, are bronze mounted, and have flanged ends.  Equip check 
+valves with [outside lever and spring] [_____].</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Joint Compound</TTL><BRK/>
+<BRK/>
+<TXT>For joint compound for threaded joints, use a stiff mixture of graphite and oil, inert filler and oil, or a graphite 
+compound.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joint Tape</TTL><BRK/>
+<BRK/>
+<TXT>Ensure joint tape for threaded joints complies with <RID>ASTM D3308</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>Verify all dimensions in the field, and advise the Contracting Officer of any discrepancy in the contract documents 
+before performing the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>TREATMENT SYSTEM INSTALLATION</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit drawings containing complete wiring and schematic diagrams; equipment layout and anchorage; and any other 
+details required to demonstrate that the system has been coordinated and functions as a unit.  Drawings are to 
+show the proposed layout and anchorage of equipment in appurtenances and equipment relationship to other parts 
+of the work including clearances required for maintenance and operation.  Submit all submittals for this system 
+at the same time.  It is not acceptable to piecemeal submittals.</TXT><BRK/>
+<BRK/>
+<TXT>Perform all excavation, filling, and backfilling in accordance with Section <SRF>31 00 00</SRF> EARTHWORK.  Install reinforced 
+concrete, of the size and design indicated, in accordance with Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Welding</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Weld piping in accordance with <RID>AWS D1.1/D1.1M</RID> using welders certified to have passed tests using procedures in 
+accordance with <RID>AWS B2.1/B2.1M</RID> or <RID>ASME BPVC SEC IX</RID>.  Ensure the welder or welding operator applies the assigned 
+personal symbol near each weld made, as a permanent record.  Weld structural members in accordance with Section 
+<SRF>05 05 23.16</SRF> STRUCTURAL WELDING.  Welding and nondestructive testing procedures are specified in Section 
+<SRF>40 05 13.96</SRF> WELDING PROCESS PIPING.</TXT><BRK/>
+<BRK/>
+<TXT>Submit a copy of qualified procedures and a list of names and identification symbols of qualified welders and 
+welding operators.  Welding procedures qualified by others, and welders and welding operators qualified by another 
+employer may be accepted as permitted by <RID>ASME B31.1</RID>.  Notify the Contracting Officer 24 hours in advance of tests 
+and perform the tests at the work site if practicable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe and Valve Installation</TTL><BRK/>
+<BRK/>
+<TXT>Install piping with all joints tight and with no undue marring of finishes.  Ensure installed piping, valves, 
+and fittings is free from strain and excessive stresses caused by weight or misalignment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Flanged Joints</TTL><BRK/>
+<BRK/>
+<TXT>Tighten bolts uniformly to prevent overstressing flanges and misalignment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Screwed Joints</TTL><BRK/>
+<BRK/>
+<TXT>Make screwed joints tight with joint compound, applied to the male threads only, or with joint tape.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Push-On Joints for PVC Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Bevel pipe ends to facilitate assembly.  Mark pipe to indicate when the pipe is fully seated.  Lubricate gaskets 
+to prevent displacement.  Exercise care to ensure that the gasket remains in proper position in the bell or coupling 
+while joints are made.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Solvent-Weld Joints for PVC Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Weld joints in accordance with the manufacturer's written instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<TXT>Installed and locate valves for easy access for operation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Equipment Installation</TTL><BRK/>
+<BRK/>
+<TXT>Install equipment in accordance with the manufacturer's written instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electrical Work</TTL><BRK/>
+<BRK/>
+<TXT>Perform electrical work in accordance with the applicable requirements of Section [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Painting</TTL><BRK/>
+<BRK/>
+<TXT>Paint all metal surfaces, except aluminum, bronze, brass, galvanized steel, and stainless steel.  Perform surface 
+preparation and painting in the field.  Finish manufactured items, such as motors and switchboards, per with 
+the manufacturer's standard finish.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Preparation and Application</TTL><BRK/>
+<BRK/>
+<TXT>Prepare ferrous metal surfaces in accordance with <RID>SSPC SP 6/NACE No.3</RID> and painted with a three coat MIL-DTL-24441 
+epoxy painted to achieve a total dry film thickness of 150 microns (6 mils).  The contractor may substitute Master 
+Painter's Institute (MPI) #120 Epoxy, High build, Self-Priming, Low Gloss, for MIL-DTL-24441.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coating Examination</TTL><BRK/>
+<BRK/>
+<TXT>Examine all coatings for flaws and test for thickness and holidays. Measure the thickness of coatings wet and 
+dry using a commercial film thickness gauge.  Notify the Contracting Officer in advance of any painting.  Do 
+not apply additional coats until the previous coat has been approved.  Perform all repair or additional coatings 
+at no additional cost to the government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coating Repair</TTL><BRK/>
+<BRK/>
+<TXT>If welding is required after application of the coating or if the coating is damaged in any way, repair by preparing 
+the affected area in compliance with <RID>SSPC SP 6/NACE No.3</RID> and reapply the coating to that area. If holidays are 
+detected or film thickness is insufficient, prepare the surface and apply additional coats in the affected area 
+in compliance with the manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Field Tests And Inspections</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Supply water required for the field tests.  Give the Contracting Officer [14] [_____] days prior notice of the 
+dates and times for acceptance tests to allow the Contracting Officer the ability to witness all field tests.  
+Rectify any deficiencies found.  All work affected by such deficiencies required to be completely retested at 
+the Contractor's expense.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><TST>Basin Leakage Test</TST></TTL><BRK/>
+<BRK/>
+<TXT>After completion of the installation and as soon as practical, conduct a leakage test on the CLR basin.  Fill 
+the basin with clean water and leave standing for 24 hours.  Basin leakage is not allowed to exceed<MET> 25 mm</MET><ENG> 1 inch</ENG>
+ drop in water surface elevation in 24 hours.  Repair leaks encountered and retest the basin.  Ensure the basin 
+is watertight prior to proceeding with the tests specified below.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST>Operating Tests</TST></TTL><BRK/>
+<BRK/>
+<TXT>After completion of the installation and as soon as practical, perform an operating test of the CLR and all equipment 
+to demonstrate that the system functions properly.  Include all manufacturer's recommended tests for equipment 
+vibration, horizontal and vertical alignment and structural integrity.  Check and verify<MET> wattage</MET><ENG> horsepower</ENG> [and 
+air flow rates] against the manufacturer's design data for the specified equipment.  Ensure the aerator<MET> wattage</MET><ENG>
+ horsepower</ENG> meets nameplate plus or minus five percent.  After completion of all tests, adjust the system for 
+proper operation in accordance with the manufacturer's written instructions and the operating and maintenance 
+instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST>Velocity Test</TST></TTL><BRK/>
+<BRK/>
+<TXT>After completion of the basin leakage and operating tests, conduct a velocity test on the basin.  Record velocity 
+cross-sections at a distance of<MET> 3 m</MET><ENG> 10 feet</ENG> upstream of the shaft centerline of each aerator.  Cross-sections 
+consist of a minimum of 16 velocity measurements equidistantly spaced so that the distance between measurement 
+points does not exceed<MET> 1.2 m</MET><ENG> 4 feet</ENG> vertically or horizontally.  Begin measurement points at approximately<MET> 0.6 
+m</MET><ENG> 2 feet</ENG> from walls.  The average velocity at each cross-section is not to be less than<MET> 0.3 m/s</MET><ENG> 1.0 fps</ENG>.  Where 
+average velocities are found to be less than that specified, make modifications to the system as needed to produce 
+the required velocities at no extra cost to the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST>Standard Oxygen Transfer Efficiency Test (S.O.T.E.)</TST></TTL><BRK/>
+<BRK/>
+<TXT>After completion of the velocity test, perform an S.O.T.E. test in accordance with <RID>ASCE 2-06</RID>.  The aeration system 
+oxygenation capacity is not allowed to be less than<MET> [1.4] [_____] kg</MET><ENG> [3] [_____] pounds</ENG> of oxygen per<MET> watt</MET><ENG> horsepower</ENG>
+ per hour with [_____] aeration units operating at a combined power draw of [_____]<MET> watts</MET><ENG> horsepower</ENG>.  Repeat 
+tests in the same water until ten tests have been run or until the total dissolved solids (TDS) exceed 2000 mg/L.  
+Plot a minimum to maximum power curve from the results.  Base power input on wire power.  Use a nationally recognized 
+independent testing laboratory for all tests.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reporting Test Results</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion and testing of the installed system, submit test reports  that show all field tests performed 
+to adjust each component and all field tests performed to prove compliance with the specified performance criteria.  
+Indicate the final position of controls in each test report.  Report results in accordance with paragraph 9.0 
+"REPORTING" of <RID>ASCE 2-06</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Manufacturer's Services</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Supervise Installation, Adjustment, and Testing</TTL><BRK/>
+<BRK/>
+<TXT>Obtain the services of the manufacturer's representative experienced in the installation, adjustment, and operation 
+of the equipment specified to supervise the installation, adjustment and testing of the equipment in accordance 
+with <SUB>manufacturer's written instructions</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Training</TTL><BRK/>
+<BRK/>
+<TXT>Conduct a training course for the operating staff as designated by the Contracting Officer.  Provide a training 
+period consisting of a total of [_____] hours of normal working time and start after the system is functionally 
+complete but prior to final acceptance tests.  Ensure all field instruction covers all of the items contained 
+in the Operating and Maintenance Instructions, as well as demonstrations of routine maintenance operations.  
+Notify the Contracting Officer at least 14 days prior to date of proposed conduction of the training course.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Framed Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit approved wiring and control diagrams showing the complete layout of the entire system, including equipment, 
+piping valves, and control sequence, framed under glass or in approved laminated plastic, for posting where directed.  
+In addition, prepare in typed form condensed operating instructions explaining preventive maintenance procedures, 
+methods of checking the system for normal safe operation, and procedures for safely starting and stopping the 
+system.  Frame as specified above for the wiring and control diagrams and post beside the diagrams.  Post the 
+framed instructions before acceptance testing of the systems</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Operating And Maintenance Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Furnish instructions including the manufacturer's name, model number, service manual, parts list, and brief description 
+of all equipment and their basic operating features.  Permanently bind each set and include a hard cover.  Inscribe 
+the following identification on the covers: the words "OPERATING AND MAINTENANCE INSTRUCTIONS," name and location 
+of the facility, name of the Contractor, and contract number.  Ensure information includes, but is not necessarily 
+limited to, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>System layout showing piping, valves, and controls.</OLI><BRK/>
+<BRK/>
+<OLI>Approved wiring and control diagrams.</OLI><BRK/>
+<BRK/>
+<OLI>A control sequence describing startup, operation, and shutdown.</OLI><BRK/>
+<BRK/>
+<OLI>Operating and maintenance instructions for each piece of equipment, including lubrication instructions 
+and troubleshooting guide.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's bulletins, cut sheets and descriptive data, parts lists, and recommended spare parts.</OLI><BRK/>
+<BRK/>
+<OLI>Simplified diagrams for the system as installed.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

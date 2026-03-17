@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-01 78 24.00 10 (May 2023)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-01 78 24.00 10 (May 2018)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 01 78 24.00 10</SCN><BRK/>
+<BRK/>
+<STL>FACILITY DATA REQUIREMENTS</STL><BRK/>
+<DTE>05/23</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements <SCP>for maintenance and 
+turnover of electronic Facility Data for use by O&amp;M personnel and systems 
+of record.</SCP>  <BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Consult the appropriate Administering Public Works Office on all construction 
+contracts under the stated threshold values to determine if insertion of this 
+guide specification is required.<BRK/>
+<BRK/>
+Always use and include UFGS <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES, <SRF>01 78 00</SRF> CLOSEOUT 
+SUBMITTALS, and UFGS <SRF>01 78 23</SRF>, OPERATION AND MAINTENANCE DATA, with this section.  
+Also include UFGS <SRF>01 33 16.00 10</SRF> DESIGN DATA (DESIGN AFTER AWARD) as applicable.<BRK/>
+<BRK/>
+This specification may be included in A-E services (design-only), design-build 
+or design-bid-build (construction-only) contracts.  Remove all specification 
+requirements for construction deliverables in design-only contracts.  Remove 
+all specification requirements for design deliverables in construction-only 
+Contracts.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Facility Data Requirements are divided into two primary deliverables: <BRK/>
+<BRK/>
+a.  Facility Data Workbook (FDW):  A pre-formatted spreadsheet template used 
+by the designer or Contractor to compile data on facility Assets and Attributes 
+that the Government wishes to manage via electronic means.<BRK/>
+<BRK/>
+b.  Facility Document Set (FDS):  An electronically compiled document containing 
+the following project information:<BRK/>
+<BRK/>
+      (1) For A-E services (design-only) contracts, the FDS contains the "Design 
+Complete" or "Issued for Construction" (IFC) design drawings, specifications, 
+and design analysis.<BRK/>
+<BRK/>
+      (2) For design-bid-build (construction-only) and design-build contracts, 
+the FDS contains all Government-Approved Data Packages required by <SRF>01 78 23</SRF> 
+OPERATION AND MAINTENANCE DATA and final, Government-Approved Record Drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Facility Document Set (FDS) is archived with and serves as a supplement 
+to the Facility Data Workbook (FDW).  Together, these two documents comprise 
+the Facility Data deliverables required by this specification.<BRK/>
+<BRK/>
+See "DEFINITIONS" listed in this specification for more information regarding 
+these deliverables.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Thoroughly edit this section throughout and coordinate with other electronic 
+data requirements stipulated by the project and Owner requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Facility Data Exchange information is available at  <URL HREF="https://cadbim.usace.army.mil">https://cadbim.usace.army.mil</URL>
+.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Proper procurement of deliverables described in this specification requires 
+a high degree of coordination between this specification, <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES, <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS, and <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE 
+DATA.  Ensure that submittal and deliverable content and formatting requirements 
+are organized in a manner that do not present conflicting requirements.  Edit 
+these specifications as necessary to present requirements that build on one 
+another.  Do not include requirements that are redundant or are duplicated elsewhere 
+in the project specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification contains bracketed options for an array of procurement 
+methods. This specification may be used on design-only contracts, design-build 
+contracts, and design-bid-build contracts. Edit the specification references 
+below as applicable using the appropriate bracketed options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>This specification requires the collection, organization, and turnover of electronic Facility Data for specific 
+assets designed and constructed as part of this contract.  Provide a Facility Document Set (FDS) and Facility 
+Data Workbook (FDW) as defined in this specification.  See Sections <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES, <SRF>01 78 00</SRF> CLOSEOUT 
+SUBMITTALS,<TAI OPT="CONSTRUCTION SUBMITTAL REQUIRED">[ and][ <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA,]</TAI><TAI OPT="DESIGN SUBMITTAL REQUIRED">[ and][ <SRF>01 33 16.00 10</SRF> DESIGN DATA (DESIGN AFTER 
+AWARD)]</TAI>[_____] for additional Facility Data delivery requirements.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification. The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+ <BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+ <BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO 19005-3</RID><RTL>(2012) Document Management -- Electronic Document File Format for Long-Term Preservation -- Part 3: Use of ISO 32000-1 with Support for Embedded Files (PDF/A-3)</RTL><BRK/><BRK/><RID>ISO 32000-1</RID><RTL>(2008) Document Management -- Portable Document Format -- Part 1: PDF 1.7</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS AND ABBREVIATIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Assets</TTL><BRK/>
+<BRK/>
+<TXT>Assets are specific items of property or equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Attributes</TTL><BRK/>
+<BRK/>
+<TXT>Attributes are individual pieces of Facility Data that describe facilities and their associated assets.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Facility Data</TTL><BRK/>
+<BRK/>
+<TXT>Information defined and collected in the Facility Data Workbook (FDW) and Facility Document Set (FDS).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Facility Document Set (FDS)</TTL><BRK/>
+<BRK/>
+<TXT>An electronically compiled and organized document containing the supporting documents and data used to populate 
+the Facility Data Workbook during its respective phase of development.</TXT><BRK/>
+<OLG><BRK/>
+<TAI OPT="DESIGN SUBMITTAL REQUIRED">[<OLI>For design-based deliverables, the FDS contains the "Design Complete" or "Issued for Construction" (IFC) 
+design drawings, specifications, and design analysis.</OLI>]</TAI><BRK/>
+<TAI OPT="CONSTRUCTION SUBMITTAL REQUIRED">[<OLI>For construction-based deliverables, the FDS is comprised of the project Operation and Maintenance Data 
+Packages and Government-Approved Record drawings.]</OLI></TAI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Facility Data Workbook (FDW)</TTL><BRK/>
+<BRK/>
+<TXT>A pre-formatted spreadsheet template used to compile Asset, Attribute, Facility, and Space Data that the Government 
+wishes to manage via electronic means.  The FDW also contains all requirements associated with proper collection, 
+organization, and turnover of the Facility Data.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Facility Data Project Execution Plan (FDPxP)</TTL><BRK/>
+<BRK/>
+<TXT>A document that describes the clear and organized plan for the collection, organization, and turnover of the 
+Facility Data deliverables required by this specification.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>UNITS OF MEASURE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For design-bid-build contracts, choose the first bracketed option (referring 
+to contract documents).  For design-only or design-build contracts, choose the 
+second bracketed option for Section <SRF>01 33 16.00 10 </SRF>DESIGN DATA (DESIGN AFTER 
+AWARD).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Facility Data deliverables utilizing the units of measure[ identified in the contract documents.][ required 
+by[ <SRF>01 33 16.00 10</SRF> DESIGN DATA (DESIGN AFTER AWARD)][_____].]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G".  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.   
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy,   and Air Force.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If desired, it is possible (but not required) that FDW and FDS submittals 
+be duplicated and individually named for ease of tracking by the Government.  
+Each facility named in "Part 2" will require a separate FDW and FDS delivered 
+to the Government.  Tracking, review, and approval of those deliverables may 
+be easier if they are tracked individually for each facility.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Facility Data Project Execution Plan</SUB>(FDPxP)</ITM><BRK/>
+<BRK/>
+<TAI OPT="DESIGN SUBMITTAL REQUIRED">[<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Facility Data Workbook, Design</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Facility Document Set, Design</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]</TAI><BRK/>
+<BRK/>
+[<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Facility Data Workbook, Construction Progress</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Facility Document Set, Construction Progress</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]<BRK/>
+<BRK/>
+[<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Facility Data Workbook, Construction Final</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Facility Document Set, Construction Final</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]<BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Design-Build Contracts, there is no necessity for the Designer of 
+Record to maintain Facility Data during project design.<BRK/>
+<BRK/>
+A Design-Build Contractor may require that a Designer of Record assemble or 
+maintain Facility Data in order to meet Contract Requirements, but that should 
+be treated as an extension of construction services. A properly constructed 
+FDPxP should address this working relationship and Government reviewers should 
+consider this when reviewing that documentation.<BRK/>
+<BRK/>
+This specification may be edited to require design-based deliverables in design-only 
+contracts. Project teams should consider the necessity of this and employ those 
+requirements as warranted. Edit this specification as applicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Facility Data Project Execution Plan</SUB> (FDPxP)</TTL><BRK/>
+<BRK/>
+<TXT>Provide the Government with a plan for the collection, organization, and turnover of the Facility Data deliverables 
+to the Government.[  The Contractor may consolidate BIM PxP requirements defined in[<SRF> 01 33 16.00 10</SRF> DESIGN DATA 
+(DESIGN AFTER AWARD)][ and][_____] and FDPxP requirements defined herein and integrate them into a single, consolidated 
+BIM/Facility Data PxP for Government approval.]  At a minimum, include the following items in the FDPxP:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Front Matter</TTL><BRK/>
+<BRK/>
+<TXT>Provide a Cover Page, Table of Contents, and Executive Summary/Objectives.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Project Information</TTL><BRK/>
+<BRK/>
+<TXT>List the Project Owner, Project Name, Project Location and address, Contract Type, Project Description, Project/Contract 
+Number, Project Milestones.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Submittal Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Identify delivery schedule for all deliverables in compliance with the submission requirements identified in 
+this specification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Personnel</TTL><BRK/>
+<BRK/>
+<TXT>Identify key personnel involved in the development of the Facility Data deliverables including Contractor and 
+Government personnel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Facility Data Workbook(s)</TTL><BRK/>
+<BRK/>
+<TXT>Identify Facility and Space Data as applicable at time of FDPxP submission.  Individually list every asset group 
+from the FDW Requirements that will require Facility Data collection.  No attribute data is required at this 
+time.  Identify asset groups from the FDW Requirements that are not required within the scope of this Contract.  
+Document the version of FDW to be used through the duration of the project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Facility Document Set(s)</TTL><BRK/>
+<BRK/>
+<TXT>Define structure and format of the submittal.  Provide a comprehensive outline of the final FDS to be delivered.  
+Organize the outline with headings, titles, and descriptions such that the Government may ascertain that working 
+documents comply with the formatting requirements defined by this specification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protocols</TTL><BRK/>
+<BRK/>
+<TXT>Detailed procedures:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Facility Data documentation/collection process.</OLI><BRK/>
+<BRK/>
+<OLI>Facility Document Set production/development process.</OLI><BRK/>
+<BRK/>
+<OLI>Collaboration procedures including strategy, meetings, communication, and subcontractor/consultant involvement.</OLI><BRK/>
+<BRK/>
+<OLI>Quality Control, including site verification of FDW, as applicable.</OLI><BRK/>
+<BRK/>
+<OLI>File and folder naming structure.</OLI><BRK/>
+<BRK/>
+<OLI>Hardware and software being used for collection and organization of Facility Data.  Identify type, format, 
+and anticipated organization of digital storage media to be provided as part of required deliverables.  
+Include means and methods for checking deliverables for malicious content.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Meetings</TTL><BRK/>
+<BRK/>
+<TXT>To assure that Facility Data requirements are being met through the duration of the project, organize the following 
+meetings and discuss the subsequent topics:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>[Post-Award Kickoff Meeting][Pre-Construction Meeting]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Design-Bid-Build, choose the Pre-Construction Meeting bracketed option 
+and coordinate requirements with 01 30 00 ADMINISTRATIVE REQUIREMENTS..  For 
+design-build or design-only contracts, choose the Post-Award Kickoff Meeting 
+bracketed option and coordinate requirements with 01 33 16 DESIGN DATA (DESIGN 
+AFTER AWARD).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>At a minimum, discuss the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The requirement for Facility Data deliverables under this contract.</OLI><BRK/>
+<BRK/>
+<OLI>Primary roles and responsibilities associated with the development and delivery of the Facility Data 
+deliverables, and.</OLI><BRK/>
+<BRK/>
+<OLI>Identify and agree upon a date and attendance list for the meetings described below:</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>FDPxP Coordination Meeting</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the Commissioning Authority bracketed option below when Commissioning 
+is required for this project.<BRK/>
+<BRK/>
+Choose Designer of Record (DOR) for design-only and design-build contracts.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Facilitate a meeting following submission and Government review of the FDPxP.  Include the Facility Data 
+Preparer(s),[ Designer of Record (DOR),], Quality Control (QC) Manager,<TAI OPT="COMMISSIONING AUTHORITY">[Commissioning Authority (CA),]</TAI>
+ Government's Facility Data Proponent, Contracting Officer's Representative, and[ Directorate of Public 
+Works (DPW)][ Base Civil Engineer (BCE)] Facilities Management Specialist (FMS).[  Also include Government 
+personnel required for obtaining security clearances and waivers for proper Facility Data collection 
+in this meeting.]</OLI><BRK/>
+<BRK/>
+<OLI>The purpose of this meeting is to coordinate the efforts necessary by contract parties to ensure an accurate 
+collection, preparation, quality control, and submittal of these deliverables.</OLI><BRK/>
+<BRK/>
+<OLI>The FDPxP serves as the primary agenda for this meeting. At a minimum, discuss the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Processes and methods of gathering facility data during construction.  Discuss and obtain special 
+permissions and waivers as necessary (such as photo waivers and data encryption);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Contractor Quality Control practices and procedures;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Corrective actions necessary for Government approval of FDPxP;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Necessity for additional or recurring Facility Data Coordination Meetings outside of those 
+required by this specification, as requested by the Contractor.  Intent of these meetings would 
+be to maintain regular contact between responsible parties of the Contractor and Government 
+with regard to development of the facility data deliverables. Conduct status meetings with 
+a frequency agreed upon at this meeting.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For design-bid-build contracts, design submittals are most often not 
+necessary (require construction submittals only).  For design-only contracts, 
+design submittals are likely the only deliverable. For design-build contracts, 
+both design and construction submittals may be requested, but construction submittals 
+are the only required deliverable. Edit the specification as applicable using 
+the appropriate bracketed options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<SPT><TTL>Submittal Coordination Meeting</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Facilitate a meeting following submission and Government review of each design or progress submittal 
+of the Facility Data.  Include the Facility Data Preparer(s), Designer of Record (DOR), Quality Control 
+(QC) Manager,<TAI OPT="COMMISSIONING AUTHORITY">[ Commissioning Authority (CA),]</TAI> Government's Facility Data Proponent, Contracting Officer's 
+Representative, and[ Directorate of Public Works (DPW)][ Base Civil Engineer (BCE)] Facilities Management 
+Specialist (FMS).  Include Mechanical, Electrical, Plumbing, and Fire Protection subcontractors as applicable.</OLI><BRK/>
+<BRK/>
+<OLI>The purpose of this meeting is to demonstrate ongoing compliance with the requirements identified in 
+this specification.</OLI><BRK/>
+<BRK/>
+<OLI>The applicable deliverables, along with Government remarks associated with review of these submittals 
+serve as the primary guide and agenda for this meeting.  At a minimum, discuss the following during this 
+meeting:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Review assets, applicable attributes, facility, and space data in FDW at time of submittal;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Demonstrate Quality Control and site verification procedures, as applicable, by Contractor 
+QC;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Review contents and organization of FDS at time of submittal;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Discuss Government review comments and unresolved items preventing completion and Government 
+approval of the Facility Data Workbook and Facility Document Set.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Facility Turnover and Contract Closeout</TTL><BRK/>
+<BRK/>
+<TXT>Include the <SUB>Facility Document Set, Construction Final</SUB> as a deliverable in Facility Turnover and Contract Closeout 
+procedures as defined in[ <SRF>01 33 16.00 10</SRF> DESIGN DATA (DESIGN AFTER AWARD)][ and][ <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Facility Data Workbook Quality Requirements</TTL><BRK/>
+<BRK/>
+<TXT>For each submittal, ensure that the information contained in the FDW(s) reflects the minimum content requirements 
+defined in the PART 3 EXECUTION portion of this section.  Ensure that information provided as part of the FDW(s) 
+conforms to the standards described below</TXT>:<BRK/>
+<OLG><BRK/>
+<OLI>Compile FDW(s) using approved spreadsheet templates.  Do not alter the formatting or organizational layout 
+of the templates.  For this Contract, templates are [available for download from the USACE CAD/BIM Technology 
+Center website, site information provided in the PART 2 PRODUCTS portion of this section]<TAI OPT="ATTACH  PRE-POPULATED FDW">[attached to 
+this specification. Editable copies of the templates will be provided upon Contract Award]</TAI>.</OLI><BRK/>
+<BRK/>
+<OLI>Instructions for the proper maintenance and completion of these FDWs are contained in the FDW Requirements 
+contained within the FDW template.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Facility Document Set Quality Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The paragraph below contains bracketed options for submittal quality 
+requirements. Unless <SRF>01 33 00</SRF> SUBMITTAL REQUIREMENTS and <SRF>01 78 23</SRF> OPERATION 
+AND MAINTENANCE DATA clearly identify submittal quality requirements across 
+all project submittals, select the "below:" bracket and include all quality 
+requirements listed below.  Quality metrics are default values and may be edited 
+to suit project needs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure that information provided as part of each FDS conforms to the electronic and data formatting standards 
+identified[ in <SRF>01 33 16.00 10</SRF> DESIGN DATA (DESIGN AFTER AWARD)][ in <SRF>01 33 00</SRF> SUBMITTAL REQUIREMENTS and 
+<SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.][ below:]</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Document Files</TTL><BRK/>
+<BRK/>
+<TXT>Utilize PDF file format in accordance with <RID>ISO 32000-1</RID> and <RID>ISO 19005-3</RID> for all document-based files.  Provide 
+files from original sources, text-searchable, and saved in "Standard" (uncompressed) resolution.  Bookmark and 
+label files as defined in the PART 2 PRODUCTS portion of this section.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Photograph Files</TTL><BRK/>
+<BRK/>
+<TXT>If photographs are required, utilize JPEG file format for all photograph and image files.  Provide full-color 
+photos with photo resolution of not less than 4 megapixels and not more than 12 megapixels.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a copy of installation-specific letters or waivers allowing permission to take installed equipment photographs 
+on this Contract.  Waivers need not be attached to every photo, only one copy of each permission letter need 
+be included in the Government deliverables.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Drawing Files</TTL><BRK/>
+<BRK/>
+<TXT>Provide all drawings required by this specification in full-size PDF format in accordance with <RID>ISO 32000-1</RID> and <RID>
+ISO 19005-3</RID>.  Produce PDF files from original sources, text-searchable, and saved in "Standard" (uncompressed) 
+resolution whenever possible.  Bookmark and label files as defined in the PART 2 PRODUCTS portion of this section.</TXT><BRK/>
+<BRK/>
+<TXT>Submission of scanned or photocopied drawing files is prohibited.  Only vector-preserved PDF files are acceptable.</TXT>
+ <BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Facility Document Set Integrity Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Ensure that information provided as part of each FDS conforms to the integrity standards identified below:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>File Protection</TTL><BRK/>
+<BRK/>
+<TXT>Do not restrict data files, document files or photographic files from being printed, exported, modified or copied.  
+Do not deliver files with restrictions such as expiration date and locks for access, viewing, archiving, or editing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer-Specific Documents</TTL><BRK/>
+<BRK/>
+<TXT>Provide text-searchable, vector-based document files from the manufacturer's online or electronic documentation.  
+Color documents are preferred.  Provide documents specific to the product(s) installed under this Contract.  
+When possible, do not submit document files containing multiple product catalogs from the same manufacturer, 
+or product data from multiple manufacturers in the same file.  Provide documents directly from the manufacturer 
+whenever possible.  Do not provide scanned copies of hardcopy documents.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The paragraph below contains bracketed options for submittal delivery 
+requirements. Unless <SRF>01 33 00</SRF> SUBMITTAL REQUIREMENTS and <SRF>01 78 23</SRF> OPERATION 
+AND MAINTENANCE DATA clearly identify submittal delivery requirements across 
+all project submittals, include both bracketed options in this paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Deliver facility data submittals in an organized and legible manner.  Provide submittals adhering to the requirements 
+of [<SRF>01 33 16.00 10</SRF> DESIGN DATA (DESIGN AFTER AWARD)][ of <SRF>01 33 00</SRF> SUBMITTAL REQUIREMENTS and <SRF>01 78 23</SRF> OPERATION 
+AND MAINTENANCE DATA][ described below].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Number of Copies</TTL><BRK/>
+<BRK/>
+<TXT>Provide [three] [_____] identical copies of disks for approval; for each submittal and each facility required. 
+Provide on approved electronic media (one copy per disk or set of disks) as defined below.  Provide submittal 
+files on electronic storage media in compliance with the quality requirements identified in this specification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Malicious Content</TTL><BRK/>
+<BRK/>
+<TXT>Scan all files for malicious viruses using a commercially available scanning program that is routinely updated 
+to identify and remove current virus threats.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Storage Media</TTL><BRK/>
+<BRK/>
+<TXT>Provide facility data on disk-based (DVD-R/RW) media.  Deviations from the required storage media must be approved 
+by the Government.  Select and apply technology used for electronic data transmission to ensure that the full 
+Facility Data submittal for each facility is provided on one single disk, whenever possible.  When separation 
+of the submittal is required, first separate the FDS and the FDW onto separate media.  Second, separate FDS into 
+logical segments or components.  Further divisions must be documented in the FDPxP and approved by the Government. </TXT><BRK/>
+<BRK/>
+<TXT>Provide Facility Data on disk-based (DVD-R/RW) media.  Deviations from the required storage media must be approved 
+by the Government.  Select and apply technology used for electronic data transmission to ensure that the full 
+Facility Data submittal for each facility is provided on one single disk, whenever possible.  When separation 
+of the submittal is required, first separate the FDS and the FDW onto separate media.  Second, separate FDS into 
+logical segments or components.  Further divisions must be documented in the FDPxP and approved by the Government. </TXT><BRK/>
+<OLG><BRK/>
+<OLI>Apply a label directly printed to storage media.  Do not provide adhesive, paper-based labels.  List 
+the name of the facility, Project, Project location, Contract number, Designer of Record firm/Prime Contractor 
+company's name, title of submission, and security classification (in accordance with the appropriate 
+security classification labeling regulations) on the label.  If multiple disks are provided, clearly 
+document the contents of each disk on the label.</OLI><BRK/>
+<BRK/>
+<OLI>Include the name and contact information of the individual who produced the final data disk to ensure 
+that problems with the data or media can be easily resolved.</OLI><BRK/>
+<BRK/>
+<OLI>When browsed on a computer, the disk must display the following folders and their associated content:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Facility Data Workbook (containing 1 FDW per facility);</OLI><BRK/>
+<OLI LEVEL="2">Facility Document Set (containing 1 FDS per facility);</OLI><BRK/>
+<OLI LEVEL="2">FDPxP (containing 1 PxP per contract);</OLI><BRK/>
+<OLI LEVEL="2">Readme (Containing 1 TXT, PDF, or HTML file with general use information, organizational instructions, 
+and basic preparer contact information.  Include all information included on the storage media label).<BRK/>
+<BRK/></OLI>
+</OLG></SPT>[<SPT><TTL>Encryption</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The paragraph contains bracketed options for data encryption.  Data encryption 
+is only required if expressly required by the project.</NPR><BRK/>
+<BRK/>
+<NPR>Add detailed encryption requirements if available.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Encrypt deliverable data as directed by [District][Area][Resident][Project] Office Engineer.  Document the encryption 
+to be used in the FDPxP.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>FACILITIES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The paragraph below requires the Designer of Record to identify the individual 
+facilities for which Facility Data deliverables be separated under this Contract.  
+For simple projects (such as single-building, site) there need be only one facility 
+listed.  For more complex projects (such as multiple-building, building complex, 
+multiple sites) multiple facilities may be identified.<BRK/>
+<BRK/>
+For each facility listed, one each FDS and FDW will be delivered to the Government 
+under this specification. The specifier must consider this and coordinate with 
+the appropriate Administering Public Works or Real Property Office(s) to determine 
+the best way to identify facilities, and by extension, the number of deliverables 
+required for this Contract.<BRK/>
+<BRK/>
+Provide clear designations of facilities. Include facility name (as identified 
+on form DD1391), PN, RPUID and other appropriate designations in the paragraph 
+below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Facilities that require individual (separate and complete) Facility Data deliverables as described in this specification 
+are as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>[_____]</OLI><BRK/>
+[<OLI>[_____]</OLI>]<BRK/>
+[<OLI>[_____]</OLI>]<BRK/>
+[<OLI>[_____]</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>FACILITY DATA WORKBOOK(S)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Facility Data Workbook(XLSM format) templates are located at the 
+following location: <URL HREF="https://cadbimcenter.erdc.dren.mil">https://cadbimcenter.erdc.dren.mil</URL>.  Require the Contractor 
+to use the most current FDW template unless specific Project constraints are 
+identified.  It is not necessary to utilize the bracketed option to attach a 
+pre-populated FDW unless specific Project constraints dictate its necessity.</NPR><BRK/>
+<BRK/>
+<NPR>If an FDW is attached, provide the Contractor with an native .xlsm file whenever 
+possible. A PDF may be attached for bidding purposes, but the preference should 
+be to transfer an editable file upon Contract Award.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide one compiled FDW for each facility identified above.  Complete all portions of each FDW including facility, 
+space, asset, and attribute data in compliance with the FDW Requirements.  <TAI OPT="ATTACH  PRE-POPULATED FDW">[ An FDW with pre-populated basis-of-design 
+information is attached to this section. The Government will provide electronic copy of the attached FDW(s) to 
+the Contractor upon award in [.xlsm][PDF][_____] format.]</TAI>[ Download the current FDW template (.xlsm format) from 
+the USACE CAD/BIM Technology Center website at <URL HREF="https://cadbimcenter.erdc.dren.mil">https://cadbimcenter.erdc.dren.mil</URL>.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Spaces</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section includes minimum space definition requirements for the FDW. 
+Provide additional requirements as appropriate for project and stakeholder.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide data for all applicable spaces in the facility. Minimum space definitions are as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide all rooms as defined in the design documents.</OLI><BRK/>
+<OLI>If not otherwise defined, provide a minimum of one "roof" space in the FDW.</OLI><BRK/>
+<OLI>If not otherwise defined, provide a minimum of one "site" space in the FDW.</OLI><BRK/>
+<OLI>Provide all spaces not otherwise described, but necessary to accurately indicate the location of all 
+FDW assets required by this specification.</OLI><BRK/>
+[<OLI>_____</OLI><BRK/>
+]</OLG><BRK/></SPT>
+<SPT><TTL>Assets</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Compile an FDW that contains the[_____,] maintainable and warrantable equipment (assets) associated with 
+each facility.  This includes assets in contract scope and within the project extents. See <SRF>01 78 00</SRF> CLOSEOUT 
+SUBMITTALS <TAI OPT="CONSTRUCTION SUBMITTAL REQUIRED">[and <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA ]</TAI>for related requirements. Assets include, but 
+are not limited to, those types described in the "Required Assets" portion of the FDW template[, those 
+assets listed in the table below,] and additional assets defined in the FDPxP.  Itemized FDW asset entries 
+(instance-based). Entries indicative of multiple assets (type-based) are not allowed.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The FDW Template contains a list of baseline required assets that should 
+be adequate for most projects. The specifier should review the FDW required 
+assets and engage the appropriate Administering Public Works Office to determine 
+whether the project or stakeholders require additional asset facility data be 
+collected beyond those defined in the FDW template. A few assets that could 
+be considered are listed in the table as examples, but add, edit, or delete 
+the table according to project requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+[<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL AUTOWIDTH="0" WIDTH="209.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="375.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING">SUPPLEMENTAL ASSET LIST (INCLUDE IN ADDITION TO "REQUIRED ASSETS" LISTED IN FDW TEMPLATE)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Asset</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Description
+/Example</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">[Fixtures, Furnishings, and Equipment]<BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Furniture, systems furniture, appliances, and other significant items of equipment]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL>
+<DTA TYPE="STRING">[Kitchen Equipment and Fixtures
+]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Kitchen and foodservice equipment including but not limited to stoves, steamers, accessory hoods, cooking devices, refrigeration devices]<BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL>
+<DTA TYPE="STRING">[Valves]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[All operable valves in facility including but limited to those installed in plumbing, HVAC, and fire protection systems.]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">[Tanks and Vaults]<BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Items such as expansion tanks, septic tanks, oil-water separators, grease separators]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">[Material Handling Equipment]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Items such as cranes, coveyor belts, equipment lifts]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">[DDC and EMCS Equipment]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Panels and consoles associated with the facility automation and control systems integration.]<BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">[All Inspectable Equipment]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__________]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="28.50">
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__________]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB>]<TXT>Document assets applicable to the scope of this project in the 
+FDPxP.</TXT><BRK/>
+<BRK/>
+<OLI>Sub-component assets that are an integral and functional part of another component (e.g. An electric 
+motor that serves as part of an air-handling unit) need not be duplicated or listed separately as its 
+own asset.</OLI><BRK/>
+<BRK/>
+<OLI>Definitions, descriptions, and formatting requirements for these assets can be found in the FDW Requirements 
+contained within the FDW template. </OLI><BRK/>
+<BRK/>
+<OLI>If an asset type is not included in the scope of the Project, no Facility Data (assets or attributes) 
+are to be included in the FDW (even as a placeholder) for that asset type. </OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Attributes</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Populate each individual asset with all required attributes defined in the "Required Attributes" portion 
+of the FDW template.</OLI><BRK/>
+<BRK/>
+<OLI>Definitions, descriptions, and formatting requirements for these attributes can be found in the FDW Requirements 
+contained within the FDW template.</OLI><BRK/>
+<BRK/>
+<OLI>If an attribute is not applicable, populate that field with "[N/A][_____]."  Do not leave it blank.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For design-bid-build contracts, design submittals are typically not necessary; 
+require construction submittals only.  For design-only contracts, design submittals 
+are the only required deliverable. For design-build contracts, both design and 
+construction submittals may be requested, but construction submittals are the 
+only required deliverable. Edit the specification as applicable using the appropriate 
+bracketed options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<SPT><TTL>FACILITY DOCUMENT SET</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Organization</TTL><BRK/>
+<BRK/>
+<TXT>Organize the FDS in a hierarchical manner as follows.  Use electronic bookmarks to create an easily navigable 
+document.  The first and primary hierarchical level must contain the following bookmarks:</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>"Design Data" - See subordinate hierarchical requirements in the "DESIGN DATA HIERARCHY" paragraph.</OLI> <BRK/>
+][<BRK/>
+<OLI>"O&amp;M Data" - See subordinate hierarchical requirements in the "O&amp;M DATA HIERARCHY" paragraph.</OLI> <BRK/>
+][<BRK/>
+<OLI>"Record Drawings" - See subordinate hierarchical requirements in paragraph RECORD DRAWINGS HIERARCHY.</OLI>]<BRK/></OLG>
+<BRK/>
+<BRK/>
+<TAI OPT="DESIGN SUBMITTAL REQUIRED">[<SPT><TTL>Design Data Hierarchy</TTL><BRK/>
+<BRK/>
+<TXT>Under "Design Data," provide all Government-Approved "Design Complete" or "Issued for Construction" design documents 
+as defined in[<SRF> 01 33 16.00 10</SRF> DESIGN DATA (DESIGN AFTER AWARD)][____], including:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Design Drawings - Provide the Government-Approved, "Design Complete" or "Issued for Construction" design 
+drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Design Specifications - Provide the Government-Approved, "Design Complete" or "Issued for Construction" 
+design specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Design Analysis - Provide the "Design Complete" or "Issued for Construction" Government-Approved Design 
+Analysis.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</TAI><TAI OPT="CONSTRUCTION SUBMITTAL REQUIRED">[<SPT><TTL>O&amp;M Data Hierarchy</TTL><BRK/>
+<BRK/>
+<TXT>Under "O&amp;M Data" provide all Government-Approved O&amp;M Data Packages as defined in <SRF>01 78 23</SRF> OPERATION AND 
+MAINTENANCE DATA and as required by technical specifications contained within this contract.  Further organize 
+this information under the following hierarchical levels:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The contract specification and title under which the Data Package and the associated equipment or system 
+references. (e.g. 26 23 00 - LOW-VOLTAGE SWITCHGEAR)</OLI><BRK/>
+<BRK/>
+<OLI>The Data Package Number as defined in <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA. (e.g. Data Package 2)</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Record Drawings Hierarchy</TTL><BRK/>
+<BRK/>
+<TXT>Under "Record Drawings" provide an electronic copy of the Government-Approved record drawings, as specified in 
+<SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS, for the project in PDF format.  Further group discipline sheets under the following 
+hierarchical levels:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The full discipline heading represented by the contents of the sheet and as shown in the Record Drawing 
+Sheet Index.  Organize these headings in the order that the drawings set is organized. (General, Civil, 
+Structural, Architectural, Interiors, Plumbing, Mechanical, Electrical, Telecommunications)</OLI><BRK/>
+<BRK/>
+<OLI>The Sheet ID and Sheet Name as found in the Record Drawing Sheet Index and in accordance with the AEC 
+CAD Standard referenced in <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS. (e.g. G-001 - LEGEND; CS101 - SITE PLAN AREA 
+101; A-101 - OVERALL FIRST FLOOR PLAN; P-601 - FIRST FLOOR DWS WATER RISER DIAGRAM)</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</TAI></SPT></SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For design-bid-build contracts, design submittals are typically not necessary 
+(require construction submittals only).  For design-only contracts, design submittals 
+are the only required deliverable. For design-build contracts, both design and 
+construction submittals may be requested, but construction submittals are the 
+only required deliverable. Edit the specification as applicable using the appropriate 
+bracketed options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="DESIGN SUBMITTAL REQUIRED">[<SPT><TTL>DESIGN SUBMITTALS</TTL><BRK/>
+<BRK/>
+<TXT>Submit the Facility Data Workbook and Facility Document Set design submittals together. Meet the following completeness 
+and formatting requirements listed below:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide <SUB>Facility Data Workbook, Design</SUB> submittals(s) when at "Design Complete" or "Issued for Construction" 
+phase as defined by [<SRF>01 33 16.00 10</SRF> DESIGN DATA (DESIGN AFTER AWARD)][_____]. Populate the FDW with all 
+data required for the design submittal, detailed in the FDW Requirements. Clearly identify assets or 
+asset groups missing in the "variations" section of the ENG Form 4025 Transmittal Form provided with 
+the submittal.  See the FDW Requirements contained within the FDW template for a list of attributes to 
+be completed for this submittal. Intent of this submittal is to populate the FDW with all design-based 
+asset information prior to Project advertisement or construction.  </OLI><BRK/>
+<BRK/>
+<OLI>Submit individual FDW templates for each facility identified in the "FACILITIES" paragraph.  While FDWs 
+will not be complete at this phase, provide accurate and correctly formatted data according to the FDW 
+Requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Submit <SUB>Facility Document Set, Design</SUB> submittal as defined in Part 2 of this specification.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</TAI>[<SPT><TTL>CONSTRUCTION PROGRESS SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: For Construction Progress FDW submittal, recommended delivery is 60 days 
+prior to BOD for small projects and 90 days prior to BOD on large projects. 
+Specifier may insert alternative delivery date if project requirements dictate 
+differently.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit the FDW and FDS construction progress submittals together.  Meet the following completeness and formatting 
+requirements listed below:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide <SUB>Facility Data Workbook, Construction Progress</SUB> submittal(s) when all assets are identified, but 
+not later than [60][90][__] days prior to Beneficial Occupancy Date (BOD) as identified in the Government-Approved 
+construction schedule.  Clearly identify assets or asset groups missing in the "variations" section of 
+the ENG Form 4025 Transmittal Form provided with the submittal.  Populate assets with front-loaded attribute 
+data that is available at the time of asset input.  See the FDW Requirements contained within the FDW 
+template for a list of attributes to be completed for this submittal.  </OLI><BRK/>
+<BRK/>
+<OLI>Submit individual FDW templates for each facility identified in the "FACILITIES" paragraph.  While FDWs 
+are not required to be complete for this submittal, provide accurate and correctly formatted data according 
+to the FDW Requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a sample or working <SUB>Facility Document Set, Construction Progress</SUB> submittal containing "draft" 
+or "example" documents that are organized in the manner defined by this specification.  Draft or example 
+documents need not be technically accurate or complete in their content, but defined and separated in 
+a manner such that all organizational and formatting requirements defined by this specification may be 
+evaluated.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>CONSTRUCTION FINAL SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Unlike the Construction Progress Submittal, it is unlikely that the Contractor 
+will be able to submit the full Construction Final Submittal at one time.  The 
+FDW(s) are most beneficially submitted during commissioning of building systems, 
+prior to the Beneficial Occupancy Date (BOD).  Components of the FDS can only 
+be compiled and finalized after Government-Acceptance of its individual components 
+(Record Drawings, O&amp;M Data Packages).  This will likely not occur until 
+after BOD.  Specifier should edit this specification with this understanding 
+and tailor this paragraph as necessary to comply with individual project requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Facility Data, Construction Final Submittal, recommended delivery 
+is 60 days after BOD for small projects and 90 days after BOD on large projects.  
+Specifier may insert alternative delivery dates if project requirements dictate 
+differently.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit the FDW and FDS construction final submittals  [as they are completed][__________].  Coordinate the <SUB>Facility 
+Data Workbook, Construction Final</SUB> submittal with data verification procedures as defined in the accepted FDPxP.  
+Provide the <SUB>Facility Document Set, Construction Final</SUB> submittal only after Government acceptance of its individual 
+components as defined by[ <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS][ and][ <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA]. </TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>FACILITY DATA WORKBOOK VERIFICATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the Commissioning Authority bracketed option below when Commissioning 
+is being required by this project. Insert the appropriate commissioning specification 
+number and title used on this project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: On-site verification of Facility Data contained in the FDW(s) is required 
+for assurance of quality data.  The best time to verify this data is during 
+facility commissioning procedures.  If commissioning of building systems is 
+part of the scope of this project, require that the Contractor align verification 
+of FDW with commissioning.  If commissioning is not required for the project, 
+Data Verification is most beneficial during Contract Closeout, prior to BOD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Verify the FDW through the quality control personnel and procedures as defined in the FDPxP.<TAI OPT="COMMISSIONING AUTHORITY">[  Coordinate and 
+conduct verification with commissioning procedures defined in [_____].]</TAI>  One-hundred percent accuracy of FDW 
+information is required for Government acceptance of the <TAI OPT="DESIGN SUBMITTAL REQUIRED">[ Facility Data Workbook, Design submittal]</TAI>[ and]<TAI OPT="CONSTRUCTION SUBMITTAL REQUIRED">[ Facility 
+Data Workbook, Construction Final submittal]</TAI>.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>  <BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following bracketed option for "Attachments" should only be included 
+if the Project requires a pre-populated FDW be included in the contract. If 
+a pre-populated FDW is necessary, edit the "FACILITY DATA WORKBOOK(S)" and "Facility 
+Data Workbook Quality Requirements" paragraphs above to indicate as such and 
+include the bracketed reference below. Print a PDF copy of the pre-populated 
+FDW and attach to the end of this specification in the contract solicitation. 
+Preserve a copy of the pre-populated FDW for turnover to the Contractor upon 
+Contract Award.</NPR><BRK/>
+<BRK/>
+<NPR>If a pre-populated FDW is not necessary, remove this bracketed option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="ATTACH  PRE-POPULATED FDW">--Attachments--<BRK/>
+Project Facility Data Worksheets</TAI><BRK/>
+<BRK/>
+<END/><BRK/></SEC>

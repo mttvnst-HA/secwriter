@@ -1,0 +1,3349 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="226.50"/>
+      <COL AUTOWIDTH="0" WIDTH="223.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-04 20 00 (May 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-04 20 00 (November 2015)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 04 20 00</SCN><BRK/>
+<BRK/>
+<STL>UNIT MASONRY</STL><BRK/>
+<DTE>05/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>reinforced and nonreinforced 
+masonry</SCP>.  This includes reinforced single wythe masonry walls, cavity walls, 
+masonry veneer, composite walls, partition walls and other masonry wall types.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers reinforced and unreinforced masonry and 
+must be tailored to reflect the type of construction used in the design.</NPR><BRK/>
+<BRK/>
+<NPR>In general, reinforced masonry is defined as masonry construction which contains 
+vertical bar reinforcement, horizontal bar or joint reinforcement, mortar, and 
+grout combined in a manner that the component materials will act together (where 
+masonry resists the compression and reinforcement resists the tension) to resist 
+the design loading conditions.  Design will conform to The Masonary Society 
+(TMS) Book.</NPR><BRK/>
+<BRK/>
+<NPR>Masonry not meeting the above definition but bonded together with mortar and 
+containing, if necessary, the minimum amount of reinforcement for crack control 
+and vertical stiffeners, is classified as unreinforced masonry.</NPR><BRK/>
+<BRK/>
+<NPR>Masonry design must comply with UFC 3-301-01 Structural Engineering.  Following 
+are some pertinent modifications to the 2024 ICC IBC from that UFC standard.<BRK/>
+<BRK/>
+a.  Masonry may be designed by allowable stress design or strength design, but 
+empirical design is not permitted.<BRK/>
+<BRK/>
+b.  Masonry must be designed as reinforced unless the element is isolated from 
+the structure so that vertical and lateral forces are not imparted to the element.<BRK/>
+<BRK/>
+c.  Coupling beams must be designed in accordance with paragraph 14.4.5.3 of 
+ASCE 7-22.<BRK/>
+<BRK/>
+d.  Shear walls are required to be in running bond construction.<BRK/>
+<BRK/>
+e.  Below-grade masonry walls and elevator shaft masonry walls must be grouted solid.<BRK/>
+<BRK/>
+f.  Corrugated metal brick ties are not permitted.<BRK/>
+<BRK/>
+g.  Horizontal joint reinforcement is required to be continuous around corners 
+and through wall intersections, unless the intersecting walls are separated.  
+Splicing of joint reinforcement in accordance with TMS provides continuity.<BRK/>
+<BRK/>
+h.  Concrete masonry control joint spacing and placement are required to comply 
+with NCMA TEK 10-2D or 10-3.<BRK/>
+<BRK/>
+i.  Clay brick masonry expansion joint spacing, placement, and size are required 
+to comply with BIA Technical Notes 18 and 18A. <BRK/>
+<BRK/>
+j.  The lateral deflection for framing supported brick veneer is required to 
+be limited to L/600.<BRK/>
+<BRK/>
+k.  Details for masonry veneer/steel stud wall assemblies should comply with 
+BIA Technical Note 28B.</NPR><BRK/>
+<BRK/>
+<NPR>UFC 3-301-01 Appendix B also provides the following "best practices".<BRK/>
+<BRK/>
+a.  The base of masonry veneer should be placed on a shelf angle or a foundation 
+ledge that is at least<MET> 100 mm</MET><ENG> 4 inches</ENG> lower than the base of the steel stud 
+wall.  The width of this shelf angle or foundation ledge must accommodate the 
+masonry veneer and cavity, and should not be less than two-thirds of the veneer 
+thickness plus the minimum air space.<BRK/>
+<BRK/>
+b.  Shelf angles should be hot-dip galvanized structural steel members. Angles 
+should be provided approximately<MET> 3 m</MET><ENG> 10 feet</ENG> long segments, with gaps between 
+segments.  Gaps should be detailed to allow for thermal expansion and contraction 
+of the steel in angle runs and at building corners. At building corners, corner 
+pieces with each leg no less than<MET> 1.2 m</MET><ENG> 4 feet</ENG> in length should be detailed, 
+where possible.  Limit deflection of horizontal legs of shelf angles to<MET> 1.6 
+mm</MET><ENG> 1/16 inch</ENG> at the end of the horizontal leg.  Include rotation of the shelf 
+angle support in the deflection limit calculation.</NPR><BRK/>
+<BRK/>
+<NPR>Masonry design in DOD buildings must comply with UFC 3-301-01, Seismic design 
+of Buildings.  Following are some pertinent modifications to the 2024 ICC IBC 
+from that UFC standard.<BRK/>
+<BRK/>
+a.  Design anchors in masonry in accordance with TMS. Additionally, at least 
+one of the following must be satisfied.<BRK/>
+<BRK/>
+b.  Design anchors to be governed by the tensile or shear strength of a ductile 
+steel element.<BRK/>
+<BRK/>
+c.  Design anchors for the maximum load that can be transmitted to the anchors 
+from a ductile attachment, considering both material overstrength and strain 
+hardening of the attachment.<BRK/>
+<BRK/>
+d.  Design anchors for the maximum load that can be transmitted to the anchors 
+by a non-yielding attachment.<BRK/>
+<BRK/>
+e.  Design anchors for the maximum load obtained from design load combinations 
+that include E, with E multiplied by Omega<SBS>0</SBS>.<BRK/>
+<BRK/>
+f.  Post-installed anchors in masonry must be prequalified for seismic applications 
+in accordance with approved qualification procedures.<BRK/>
+<BRK/>
+g.  Reinforcement must be continuous around wall corners and through wall intersections, 
+unless the intersecting walls are separated. Reinforcement that is spliced in 
+accordance with applicable provisions of TMS is considered continuous.<BRK/>
+<BRK/>
+h.  Only include horizontal reinforcement that is continuous in the wall or 
+element in computing the area of horizontal reinforcement. Intermediate bond 
+beam steel properly designed at control joints is considered continuous.<BRK/>
+<BRK/>
+i.  Where concrete abuts structural masonry, and the joint between the materials 
+is not designed as a separation joint, the joint must conform to the requirements 
+of ASCE 7-22.</NPR><BRK/>
+<BRK/>
+<NPR>Masonry design must meet the requirements of the following UFCs if applicable: 
+UFC 3-340-01 "Design and Analysis of Hardened Structures to Resist conventional 
+Weapons Effects; UFC 3-340-02 "Structures to Resist the Effects of Accidental 
+Explosions"; and UFC 4-023-03 "Design of Buildings to Resist Progressive Collapse" </NPR><BRK/>
+<BRK/>
+<NPR>Show the following information on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Locations and dimensions of each type of masonry work; wall sections and 
+anchor details.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Color, texture, and size of brick and color of mortar if other than natural 
+gray.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Bond pattern if other than running bond.</NPR><BRK/>
+<BRK/>
+<NPR>4.  All flashing locations and details.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Control joint and expansion joint locations and details.</NPR><BRK/>
+<BRK/>
+<NPR>6.  Special brick shapes if required.</NPR><BRK/>
+<BRK/>
+<NPR>7.  Compressive strength (f'm) of units, mortar, grout, or entire assembly and 
+fy of reinforcement.</NPR><BRK/>
+<BRK/>
+<NPR>8.  Reinforcement lateral tie, splice, and bond beam details.</NPR><BRK/>
+<BRK/>
+<NPR>9.  Size and location of any pipes, ducts, door and window framing, or other 
+embedded items.</NPR><BRK/>
+<BRK/>
+<NPR>10.  Equivalent thickness, in accordance with ACI216.1, or UL assembly for fire 
+rated walls.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN CONCRETE INSTITUTE (ACI)</ORG><BRK/><BRK/><RID>ACI 216.1</RID><RTL>(2014) Code Requirements for Determining Fire Resistance of Concrete and Masonry Construction Assemblies</RTL><BRK/><BRK/><RID>ACI 318</RID><RTL>(2019; R 2022) Building Code Requirements for Structural Concrete (ACI 318-19) and Commentary (ACI 318R-19)</RTL><BRK/><BRK/><RID>ACI 318M</RID><RTL>(2019; Errata 2022) Building Code Requirements for Structural Concrete &amp; Commentary</RTL><BRK/><BRK/><RID>ACI SP-66</RID><RTL>(2004) ACI Detailing Manual</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A153/A153M</RID><RTL>(2023) Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware</RTL><BRK/><BRK/><RID>ASTM A167</RID><RTL>(2011) Standard Specification for Stainless and Heat-Resisting Chromium-Nickel Steel Plate, Sheet, and Strip</RTL><BRK/><BRK/><RID>ASTM A185/A185M</RID><RTL>(2007) Standard Specification for Steel Welded Wire Reinforcement, Plain, for Concrete</RTL><BRK/><BRK/><RID>ASTM A615/A615M</RID><RTL>(2025) Standard Specification for Deformed and Plain Carbon-Steel Bars for Concrete Reinforcement</RTL><BRK/><BRK/><RID>ASTM A641/A641M</RID><RTL>(2019; R 2025) Standard Specification for Zinc-Coated (Galvanized) Carbon Steel Wire</RTL><BRK/><BRK/><RID>ASTM A653/A653M</RID><RTL>(2025a) Standard Specification for Steel Sheet, Zinc-Coated (Galvanized) or Zinc-Iron Alloy-Coated (Galvannealed) by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM A951/A951M</RID><RTL>(2011) Standard Specification for Steel Wire for Masonry Joint Reinforcement</RTL><BRK/><BRK/><RID>ASTM A996/A996M</RID><RTL>(2016) Standard Specification for Rail-Steel and Axle-Steel Deformed Bars for Concrete Reinforcement</RTL><BRK/><BRK/><RID>ASTM A1008/A1008M</RID><RTL>(2025) Standard Specification for Steel, Sheet, Cold-Rolled, Carbon, Structural, High-Strength Low-Alloy, High-Strength Low-Alloy with Improved Formability, Required Hardness, Solution Hardened, and Bake Hardenable</RTL><BRK/><BRK/><RID>ASTM A1064/A1064M</RID><RTL>(2024) Standard Specification for Carbon-Steel Wire and Welded Wire Reinforcement, Plain and Deformed, for Concrete</RTL><BRK/><BRK/><RID>ASTM B370</RID><RTL>(2022) Standard Specification for Copper Sheet and Strip for Building Construction</RTL><BRK/><BRK/><RID>ASTM C27</RID><RTL>(1998; R 2022) Fireclay and High-Alumina Refractory Brick</RTL><BRK/><BRK/><RID>ASTM C55</RID><RTL>(2025) Standard Specification for Dry-Cast Concrete Building Brick</RTL><BRK/><BRK/><RID>ASTM C62</RID><RTL>(2023) Standard Specification for Building Brick (Solid Masonry Units Made from Clay or Shale)</RTL><BRK/><BRK/><RID>ASTM C67/C67M</RID><RTL>(2025) Standard Test Methods for Sampling and Testing Brick and Structural Clay Tile</RTL><BRK/><BRK/><RID>ASTM C73</RID><RTL>(2023) Standard Specification for Calcium Silicate Brick (Sand-Lime Brick)</RTL><BRK/><BRK/><RID>ASTM C90</RID><RTL>(2024a) Standard Specification for Loadbearing Concrete Masonry Units</RTL><BRK/><BRK/><RID>ASTM C126</RID><RTL>(2022) Standard Specification for Ceramic Glazed Structural Clay Facing Tile, Facing Brick, and Solid Masonry Units</RTL><BRK/><BRK/><RID>ASTM C129</RID><RTL>(2025) Standard Specification for Dry-Cast Nonloadbearing Concrete Masonry Units</RTL><BRK/><BRK/><RID>ASTM C207</RID><RTL>(2024) Standard Specification for Hydrated Lime for Masonry Purposes</RTL><BRK/><BRK/><RID>ASTM C216</RID><RTL>(2024) Standard Specification for Facing Brick (Solid Masonry Units Made from Clay or Shale)</RTL><BRK/><BRK/><RID>ASTM C270</RID><RTL>(2025b) Standard Specification for Mortar for Unit Masonry</RTL><BRK/><BRK/><RID>ASTM C315</RID><RTL>(2007; R 2021) Standard Specification for Clay Flue Linings and Chimney Pots</RTL><BRK/><BRK/><RID>ASTM C476</RID><RTL>(2023) Standard Specification for Grout for Masonry</RTL><BRK/><BRK/><RID>ASTM C494/C494M</RID><RTL>(2024) Standard Specification for Chemical Admixtures for Concrete</RTL><BRK/><BRK/><RID>ASTM C586</RID><RTL>(2011) Standard Test Method for Potential Alkali Reactivity of Carbonate Rocks as Concrete Aggregates (Rock-Cylinder Method)</RTL><BRK/><BRK/><RID>ASTM C616/C615M</RID><RTL>(2011) Standard Specification for Granite Dimension Stone</RTL><BRK/><BRK/><RID>ASTM C616/C616M</RID><RTL>(2010) Standard Specification for Quartz-Based Dimension Stone</RTL><BRK/><BRK/><RID>ASTM C641</RID><RTL>(2023) Standard Test Method for Iron Staining Materials in Lightweight Concrete Aggregates</RTL><BRK/><BRK/><RID>ASTM C652</RID><RTL>(2022) Standard Specification for Hollow Brick (Hollow Masonry Units Made from Clay or Shale)</RTL><BRK/><BRK/><RID>ASTM C744</RID><RTL>(2021) Standard Specification for Prefaced Concrete and Calcium Silicate Masonry Units</RTL><BRK/><BRK/><RID>ASTM C780</RID><RTL>(2025a) Standard Test Methods for Preconstruction and Construction Evaluation of Mortars for Plain and Reinforced Unit Masonry</RTL><BRK/><BRK/><RID>ASTM C979/C979M</RID><RTL>(2024) Standard Specification for Pigments for Integrally Colored Concrete</RTL><BRK/><BRK/><RID>ASTM C1019</RID><RTL>(2025) Standard Test Method for Sampling and Testing Grout for Masonry</RTL><BRK/><BRK/><RID>ASTM C1314</RID><RTL>(2014) Standard Test Method for Compressive Strength of Masonry Prisms</RTL><BRK/><BRK/><RID>ASTM C1384</RID><RTL>(2012a) Standard Specification for Admixtures for Masonry Mortars</RTL><BRK/><BRK/><RID>ASTM C1405</RID><RTL>(2015) Standard Specification for Glazed Brick (Single Fired, Brick Units)</RTL><BRK/><BRK/><RID>ASTM C1611/C1611M</RID><RTL>(2021) Standard Test Method for Slump Flow of Self-Consolidating Concrete</RTL><BRK/><BRK/><RID>ASTM C1634</RID><RTL>(2011) Standard Specification for Concrete Facing Brick</RTL><BRK/><BRK/><RID>ASTM D2000</RID><RTL>(2018; R 2024) Standard Classification System for Rubber Products in Automotive Applications</RTL><BRK/><BRK/><RID>ASTM D2287</RID><RTL>(2019) Nonrigid Vinyl Chloride Polymer and Copolymer Molding and Extrusion Compounds</RTL><BRK/><BRK/><RID>ASTM E514/E514M</RID><RTL>(2020) Standard Test Method for Water Penetration and Leakage Through Masonry</RTL><BRK/><BRK/></REF><REF><ORG>THE MASONRY SOCIETY (TMS)</ORG><BRK/><BRK/><RID>TMS 402/602</RID><RTL>(2022) Building Code Requirements and Specification for Masonry Structures</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Cut CMU</SUB> Drawings; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Reinforcement <SUB>Detail Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Hot Weather Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cold Weather Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Clay or Shale Brick</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Glazed Structural Clay Facing Tile</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Glazed Brick</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="NAVY"><ITM><SUB>Salvaged Brick</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="CMU"><ITM><SUB>Cement</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+</TAI><ITM><SUB>Cementitious Materials</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="INSULATION"><ITM><SUB>Insulation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/></TAI>
+<BRK/>
+<LST><SUB>SD-04 Samples</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Mock-Up Panel</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="BRICK"><ITM><SUB>Clay or Shale Brick</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Glazed Structural Clay Facing Tile</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Glazed Brick</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="CMU"><ITM><SUB>Concrete Masonry Units (CMU)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<TAI OPT="CMU"><TAI OPT="BRICK"><ITM><SUB>Concrete Brick</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+</TAI><TAI OPT="STONE"><ITM><SUB>Dimension Stone Units</SUB>; <SUB>G<TAI OPT="ARMY">, [____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Admixtures for Masonry Mortar</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Anchors, Ties, and Bar Positioners</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Joint Reinforcement</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Clay Masonry Expansion-Joint Materials</SUB>; <SUB>G<TAI OPT="ARMY">, [____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="INSULATION"><ITM><SUB>Insulation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/></TAI>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Masonry Compressive Strength</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="CMU"><ITM><SUB>Fire-Rated Concrete Masonry Units</SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Bracing Calculations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<TAI OPT="BRICK"><ITM><SUB>Efflorescence Test</SUB></ITM><BRK/>
+<BRK/></TAI>
+<TAI OPT="CMU"><ITM><SUB>Fire-Rated Concrete Masonry Units</SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Field Testing of Mortar</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Testing of Grout</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Prism Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Single-Wythe Masonry Wall Water Penetration Test</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<TAI OPT="BRICK,CMU"><ITM><SUB>Clay or Shale Brick</SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Glazed Structural Clay Facing Tile</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Glazed Brick</SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="CMU"><ITM><SUB>Concrete Masonry Units (CMU)</SUB></ITM><BRK/>
+<BRK/></TAI>
+<TAI OPT="BRICK,CMU"><ITM><SUB>Concrete Brick</SUB></ITM><BRK/>
+<BRK/></TAI>
+<TAI OPT="PC ITEMS"><ITM><SUB>Precast Concrete Units</SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Cementitious Materials</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Admixtures for Masonry Mortar</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Admixtures for Grout</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Anchors, Ties, and Bar Positioners</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Joint Reinforcement</SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="INSULATION,NAVY"><ITM><SUB>Insulation</SUB></ITM><BRK/>
+<BRK/></TAI>
+<TAI OPT="INSULATION"><ITM><SUB>Insulation</SUB></ITM><BRK/></TAI>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Admixtures for Masonry Mortar</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Admixtures for Grout</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Take-Back Program</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM>Recycled Content of <SUB>Clay Units</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="CMU"><ITM><SUB>Recycled Content</SUB> of Cement; <SUB>S</SUB></ITM><BRK/>
+<BRK/></TAI>
+</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Masonry Mock-Up Panels</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A sample panel is a small element of constructed masonry units, usually<MET>
+ 1.22 m x 1.22 m</MET><ENG> 4 ft x 4 ft</ENG>.  A mock-up is a wall segment constructed to show 
+all materials used in the construction as well as typical workmanship.  Mock-up 
+panels will be required for structures having over<MET> 185 square meters</MET><ENG> 2,000 square 
+feet</ENG> of exterior wall area, including openings, and for smaller structures where 
+appearance is important.  The list of items to be shown by the sample panel 
+will be edited to provide only the representative items.  Typical installation 
+of electrical conduit and boxes may be illustrated by the sample panel when 
+deemed appropriate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Mock-Up Panel Location</TTL><BRK/>
+<BRK/>
+<TXT>After material samples are approved and prior to starting masonry work, construct a <SUB>mock-up panel</SUB> for each type 
+and color of masonry required.  At least 48 hours prior to constructing the panel or panels, submit written notification 
+to the Contracting Officer.  Do not build-in mock-up panels as part of the structure; locate mock-up panels where 
+directed.  Construct portable mock-up panels or locate in an area where they will not be disrupted during construction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mock-Up Panel Configuration</TTL><BRK/>
+<BRK/>
+<TXT>Construct mock-up panels L-shaped or otherwise configured to represent all of the wall elements.  Construct panels 
+of the size necessary to demonstrate the acceptable level of workmanship for each type of masonry represented 
+on the project.  Provide a straight panel or a leg of an L-shaped panel of minimum size<MET> 2.5 m</MET><ENG> 8 feet</ENG> long by<MET> 
+[1.2][1.8] m</MET><ENG> [4][6] feet</ENG> high.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mock-Up Panel Composition</TTL><BRK/>
+<BRK/>
+<TXT>Show full color range, texture, and bond pattern of the masonry work.  Demonstrate mortar joint tooling; grouting 
+of reinforced vertical cores, collar joints, bond beams, and lintels; positioning, securing, and lapping of reinforcing 
+steel; positioning and lapping of joint reinforcement (including prefabricated corners); and cleaning of masonry 
+work during the construction of the panels.  Also include installation or application procedures for anchors, 
+wall ties,<TAI OPT="CMU">CMU control joints,</TAI><TAI OPT="BRICK"> brick expansion joints,</TAI><TAI OPT="INSULATION"> insulation,</TAI> flashing,<TAI OPT="BRICK"> brick soldier, row lock courses and 
+weeps</TAI>.  Include a [a masonry bonded corner][a stacked bond corner][a bond beam corner][ and ][parging][ and ][installation 
+of electrical boxes and conduit].  When the panel represents reinforced masonry, include a<MET> 610 by 610 mm</MET><ENG> 2 by 
+2 foot</ENG> opening placed at least<MET> 610 mm</MET><ENG> 2 feet</ENG> above the panel base and<MET> 610 mm</MET><ENG> 2 feet</ENG> away from all free edges, 
+corners, and control joints.  Provide required reinforcing around this opening as well as at wall corners and 
+control joints.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mock-Up Panel Construction Method</TTL><BRK/>
+<BRK/>
+<TXT>Where anchored veneer walls or cavity walls are required, demonstrate and receive approval for the method of 
+construction; i.e., either bring up the two wythes together or separately, with the insulation and appropriate 
+ties placed within the specified tolerances across the cavity.  Demonstrate provisions to preclude mortar or 
+grout droppings in the cavity and to provide a clear open air space of the dimensions shown on the drawings.  
+Where masonry is to be grouted, demonstrate and receive approval on the method that will be used to bring up 
+the masonry wythes; support the reinforcing bars; and grout cells, bond beams, lintels, and collar joints using 
+the requirements specified herein.  When water-repellent is specified to be applied to the masonry, apply the 
+approved product to the mock-up panel.  Construct panels on a properly designed concrete foundation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mock-Up Panel Purpose</TTL><BRK/>
+<BRK/>
+<TXT>The completed panels is used as the standard of workmanship for the type of masonry represented.  Do not commence 
+masonry work until the mock-up panel for that type of masonry construction has been completed and approved.  
+Protect panels from the weather and construction operations until the masonry work has been completed and approved.  
+Perform cleaning procedures on the mockup and obtain approval of the Contracting Officer prior to cleaning the 
+building.  After completion of the work, completely remove the mock-up panels, including all foundation concrete, 
+from the construction site.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Special Masonry Inspector Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Refer to Section <SRF>01 45 35</SRF> SPECIAL INSPECTIONS for qualifications and responsibilities of the masonry construction 
+special inspector.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Deliver, store, handle, and protect material to avoid chipping, breakage, and contact with soil or contaminating 
+material.  Store and prepare materials in already disturbed areas to minimize project site disturbance and size 
+of project site.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Masonry Units</TTL><BRK/>
+<BRK/>
+<TXT>Cover and protect masonry units from precipitation.  Conform to handling and storage requirements of <RID>TMS 402/602</RID>
+.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Pack  glazed brick, glazed structural clay tile, and prefaced concrete masonry units in the manufacturer's 
+standard paper cartons, trays, or shrink wrapped pallets with a divider between each unit.  Do not stack 
+pallets.  Do not remove units from cartons until cartons are placed on scaffolds or in the location where 
+units are to be laid.</OLI><BRK/>
+<BRK/>
+<OLI>Mark prefabricated lintels on top sides to show either the lintel schedule number or the number and size 
+of top and bottom bars.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reinforcement, Anchors, and Ties</TTL><BRK/>
+<BRK/>
+<TXT>Store steel reinforcing bars, coated anchors, ties, and joint reinforcement above the ground.  Maintain steel 
+reinforcing bars and uncoated ties free of loose mill scale and loose rust.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cementitious Materials, Sand and Aggregates</TTL><BRK/>
+<BRK/>
+<TXT>Deliver cementitious and other packaged materials in unopened containers, plainly marked and labeled with manufacturers' 
+names and brands.  Store cementitious material in dry, weathertight enclosures or completely cover.  Handle cementitious 
+materials in a manner that will prevent the inclusion of foreign materials and damage by water or dampness.  
+Store sand and aggregates in a manner to prevent contamination and segregation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>[PROJECT][SITE] CONDITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>TMS 402/602</RID> for hot and cold weather masonry erection.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Hot Weather Procedures</SUB></TTL><BRK/>
+<BRK/>
+<TXT>When ambient air temperature exceeds<MET> 38 degrees C</MET><ENG> 100 degrees F</ENG>, or exceeds<MET> 32 degrees C</MET><ENG> 90 degrees F</ENG> and the 
+wind velocity is greater than<MET> 13 km/h</MET><ENG> 8 mph</ENG>, comply with <RID>TMS 402/602</RID> Article 1.8 D for:  preparation prior to 
+conducting masonry work; construction while masonry work is in progress; and protection for newly completed masonry.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Cold Weather Procedures</SUB></TTL><BRK/>
+<BRK/>
+<TXT>When ambient temperature is below<MET> 4 degrees C</MET><ENG> 40 degrees F</ENG>, comply with <RID>TMS 402/602</RID> Article 1.8 C for: preparation 
+prior to conducting masonry work; construction while masonry work is in progress; and protection for newly completed 
+masonry.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Design - Specified Compressive Strength of Masonry</TTL><BRK/>
+<BRK/>
+<TXT>The specified compressive strength of masonry, f'm, is[ as indicated for each type of masonry][ indicated in 
+a schedule in this Specification][_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance - Verify <SUB>Masonry Compressive Strength</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Unit Strength Method can be used for clay masonry with units in accordance 
+with ASTM C216, ASTM C62, or ASTM C652, with bed joints not exceeding<MET> 16 mm</MET><ENG> 
+5/8 inch</ENG>, and with grout in accordance with ASTM C476, where grout compressive 
+strength is at least equal to f'm.  It can also be used for concrete masonry 
+with units in accordance with ASTM C90 or ASTM C55, with bed joints and grout 
+same as clay masonry.  The Prism Test Method must be used when the Unit Strength 
+Method, which is conservative, is insufficient to verify compliance and when 
+the above-listed parameters are not met.  The Prism Test Method may be used 
+at any time, at the Contractor's option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Verify specified compressive strength of masonry using the "Unit Strength Method" of <RID>TMS 402/602</RID>.  Submit calculations 
+and certifications of unit and mortar strength.</TXT><BRK/>
+<BRK/>
+<TXT>Verify specified compressive strength of masonry using the "Prism Test Method" of <RID>TMS 402/602</RID> when the "Unit 
+Strength Method" cannot be used.  Submit test results.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MANUFACTURED UNITS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Do not change the source of materials, which will affect the appearance of the finished work, after the work 
+has started except with Contracting Officer's approval.  Submit test reports from an approved independent laboratory.  
+Certify test reports on a previously tested material as the same materials as that proposed for use in this project.  
+Submit certificates of compliance stating that the materials meet the specified requirements.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="BRICK,NAVY"><SPT><TTL><SUB>Clay or Shale Brick</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The manufacturer's name and color number or color range will be indicated 
+on the drawings along with the following note:  "Colors or color ranges indicated 
+are for identification purposes only and are not intended to limit selection 
+of similar color or color range from other manufacturers."</NPR><BRK/>
+<BRK/>
+<NPR>Grade SW brick provides a high degree of resistance to frost action and deterioration 
+by weathering.  Grade MW brick provides a moderate degree of resistance and 
+is only suitable for exterior use in certain parts of the country.  Refer to 
+ASTM C216.</NPR><BRK/>
+<BRK/>
+<NPR>Types FBS and HBS brick are for general use where normal size variation and 
+chippage is acceptable.  Types FBX and HBX permit less variation in size and 
+chippage and are; therefore, more expensive.  Types FBA and HBA permit larger 
+variations for special architectural effect.</NPR><BRK/>
+<BRK/>
+<NPR>Bricks of various sizes are available and, if for architectural reasons, other 
+sized bricks are included in the design, specify the size by listing the specified 
+(not nominal) dimensions and not by name because names can vary.  If larger 
+units are required, change the specified dimensions.  Nominal dimensions should 
+not be used as they may result in confusion with specified size.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Sample Submittal</TTL><BRK/>
+<BRK/>
+<TXT>Submit brick samples as specified, showing the color range and texture of clay or shale brick.  Limit units used 
+on the project to those that conform to the approved sample.  Submit sample of colored mortar with applicable 
+masonry unit and color samples of three stretcher units and one unit for each type of special shape.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Uniformity</TTL><BRK/>
+<BRK/>
+<TXT>[Manufacture bricks at one time and from the same run.  ]Deliver clay or shale brick units factory-blended to 
+provide a uniform appearance and color range in the completed wall.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Recycled Content</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use of materials with recycled content, calculated on the basis of post-industrial 
+and post-consumer percentage content, contributes to meeting the requirements 
+of Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING.  Designer must 
+verify that products meeting the indicated minimum recycled content are available, 
+preferably from at least three sources, to ensure adequate competition.  Use 
+this paragraph if choosing recycled content.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide <SUB>clay units</SUB> containing a minimum of [0][5][_____] percent post-consumer recycled content, and a minimum 
+of [10][20][_____] percent post-industrial recycled content.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Efflorescence Test</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph in areas where efflorescence has not been a problem.  
+Efflorescence is generally the result of poor design and detailing.  Properly 
+covered or flashed walls are generally free of efflorescence.  Efflorescence 
+testing is generally not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Test clay brick that will be exposed to weathering for efflorescence in accordance with <RID>ASTM C67/C67M</RID>.  Schedule 
+tests far enough in advance of starting masonry work to permit retesting if necessary.  Units meeting the definition 
+of "effloresced" are subject to rejection.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Solid Clay or Shale Brick</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify ASTM C216 facing brick where aesthetic value is a prime consideration 
+or to match existing construction.  ASTM C216 may be replaced with ASTM C62 
+for projects where brick in accordance with ASTM C62 provides aesthetic appearance 
+that does not detract from the design, is generally available and predominantly 
+used in the area, and the specific brick will blend with existing or adjacent 
+architecture.</NPR><BRK/>
+<BRK/>
+<NPR>If larger units, such as closure size (<MET>92 mm x 92 mm x 194 mm</MET><ENG>3-5/8 inch x 3-5/8 
+inch x 7-5/8 inch</ENG>) or utility size (<MET>92 mm x 92 mm x 295 mm</MET><ENG>3-5/8 inch x 3-5/8 
+inch x 11-5/8 inch</ENG>). </NPR><BRK/>
+<BRK/>
+<NPR>Compressive strength of the brick units only needs to be specified when it is 
+used structurally; a veneer wythe is nonstructural.  Ccommonly available face 
+brick are produced to much higher compressive strength than the minimum required 
+by ASTM C216.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide solid clay or shale brick in accordance with[ <RID>ASTM C216</RID>, Type [FBS][FBA][FBX]][ <RID>ASTM C62</RID>].[  Provide 
+brick with minimum compressive strength of [_____]<MET> MPa</MET><ENG> psi</ENG>.]  Where brick cores, recesses, or deformation would 
+be exposed to view, provide 100 percent solid units.  Provide brick with texture and color tange to match the 
+brick [on display at [_____]][indicated].</TXT><BRK/>
+<BRK/>
+<TXT>Provide brick with specified sizes.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Modular size,<MET> 92 mm</MET><ENG> 3-5/8 inches</ENG> thick,<MET> 57 mm</MET><ENG> 2-1/4 inches</ENG> high, and<MET> 194 mm</MET><ENG> 7-5/8 inches</ENG> long.</OLI><BRK/>
+<BRK/>
+<OLI>Closure size,<MET> 92 mm</MET><ENG> 3-5/8 inches</ENG> thick,<MET> 92 mm</MET><ENG> 3-5/8 inches</ENG> high, and<MET> 194 mm</MET><ENG> 7-5/8 inches</ENG> long.</OLI><BRK/>
+<BRK/>
+<OLI>Utility size,<MET> 92 mm</MET><ENG> 3-5/8 inches</ENG> thick,<MET> 92 mm</MET><ENG> 3-5/8 inches</ENG> high, and<MET> 295 mm</MET><ENG> 11-5/8 inches</ENG> long.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hollow Clay or Shale Brick</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For exposed exterior and interior masonry, Type HBX brick is manufactured 
+to tighter tolerances and less chippage than Type HBS, but is also more expensive.  
+Type HBS is for general use where greater variation is allowed.  For architectural 
+effects resulting from nonuniformity in size, use Type HBA.  Use Type HBB where 
+color and texture are not a consideration and a greater variation in size is 
+permitted.</NPR><BRK/>
+<BRK/>
+<NPR>Commonly available hollow brick are produced to much higher compressive strength 
+than the minimum required by ASTM C652.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide hollow clay or shale brick in accordance with <RID>ASTM C652</RID>, Type [HBS][HBX][HBA][HBB].</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide brick size of [_____]<MET> mm</MET><ENG> inches</ENG> thick, [_____]<MET> mm</MET><ENG> inches</ENG> high, and [_____]<MET> mm</MET><ENG> inches</ENG> long.</OLI><BRK/>
+<BRK/>
+<OLI>Where vertical reinforcement is shown in hollow brick, provide hollow brick designed to provide precise 
+vertical alignment of the cells, with minimum cell dimension of<MET> 64 mm</MET><ENG> 2-1/2 inches</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide hollow brick with minimum compressive strength of [_____]<MET> MPa</MET><ENG> psi</ENG>.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refractory Brick</TTL><BRK/>
+<BRK/>
+<TXT>Provide brick units in accordance with <RID>ASTM C27</RID>, low-duty type, [_____]<MET> mm</MET><ENG> inches</ENG> thick, [_____]<MET> mm</MET><ENG> inches</ENG> high, 
+and [_____]<MET> mm</MET><ENG> inches</ENG> long.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Glazed Brick</SUB> and <SUB>Glazed Structural Clay Facing Tile</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the designation of ceramic glazed brick and glazed structural 
+clay facing tile on the project drawings, or use the schedule to indicate locations.  
+Delete the schedule if it is not used.</NPR><BRK/>
+<BRK/>
+<NPR>ASTM C1405 applies to brick units fired with a glaze in a single process; ASTM 
+C126 applies to brick units fired then fired again with a glaze.  ASTM C126 
+also applies to hollow facing tiles.  For both standards, specify Grade SS (select) 
+for walls laid in stack bond; Grade S (standard) is supplied if nothing is specified.  
+Type I indicates a single glazed face while Type II is double faced. Type I 
+is the default.</NPR><BRK/>
+<BRK/>
+<NPR>Normally, prefaced ASTM C1634 concrete masonry units will be specified as a 
+Contractor's option to ceramic glazed structural clay facing units.  Structurally, 
+the units will be considered as equal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [ceramic glazed brick][glazed facing tile] indicated as [_____], in accordance with <RID>ASTM C1405</RID>[ <RID>ASTM C126</RID>
+], Type I, Grade [SS][S], glaze as indicated.  In two-faced walls, Type II units may be used for the base course.  
+Provide all shapes and sizes for a complete installation.  Use bullnose units along sills and caps and at vertical 
+external corners including door jambs, window jambs, and other such openings.  Provide coved base units to meet 
+finished floor surfaces where ceramic tile floor occurs.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Where backs of units will be exposed in unfinished rooms, provide smooth backs, free from glaze.  Where 
+backs of units will receive plaster, provide scored, combed, or otherwise roughened backs.</OLI><BRK/>
+<BRK/>
+<OLI>Provide unit surfaces, to receive mortar, reasonably free from glaze and suitable for receiving mortar.</OLI><BRK/>
+<BRK/>
+<OLI>Provide tile for fire rated walls with the percent of solid required for that rating.</OLI><BRK/>
+<BRK/>
+<OLI>Structural Clay Facing Tile Schedule</OLI></OLG><LST INDENT="-0.33"><BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="2">
+      <COL AUTOWIDTH="0" WIDTH="108.00"/>
+      <COL AUTOWIDTH="0" WIDTH="108.00"/>
+      <COL AUTOWIDTH="0" WIDTH="108.00"/>
+      <COL AUTOWIDTH="0" WIDTH="108.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Location</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Nominal Face Dimensions</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Color of Field</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Color of Base</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/></SPT>
+<TAI OPT="NAVY"><SPT><TTL><SUB>Salvaged Brick</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use of salvaged/recovered materials contributes to meeting the requirements 
+of Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING.</NPR><BRK/>
+<BRK/>
+<NPR>Include bracketed wording if bricks will be in structures used for children 
+or residences.  Indicate on drawings locations where salvaged brick is acceptable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use [lead-free] salvaged bricks and other masonry units in place of new bricks or masonry units as indicated.[  
+Wash bricks salvaged from foundries or industrial buildings with appropriate metal-dust removing cleaner.]  When 
+using salvaged brick, select salvaged exterior face bricks from exterior locations.</TXT><BRK/>
+<BRK/>
+<TXT>Provide salvaged bricks that meet standards of new bricks otherwise used in application, and cleaned of all mortar 
+prior to use.  Submit documentation certifying products are from salvaged/recovered sources.  Indicate relative 
+dollar value of salvaged content products to total dollar value of products included in project.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="PC ITEMS"><SPT><TTL>Flue Linings and Thimbles</TTL><BRK/>
+<BRK/>
+<TXT>Provide units in accordance with <RID>ASTM C315</RID>, and are free from fractures.  Provide sizes and shapes as indicated.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT></TAI><TAI OPT="CMU"><SPT><TTL>Concrete Units</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Aggregates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where sufficient evidence based on previous construction experience indicates 
+concrete masonry units manufactured from aggregate from a specific source may 
+be subject to excessive popouts and/or staining, contract specifications may 
+be written to exclude such aggregate.  Delete this article when the concrete 
+units will not be exposed to view.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Test lightweight aggregates, and blends of lightweight and heavier aggregates in proportions used in producing 
+the units, for stain-producing iron compounds in accordance with <RID>ASTM C641</RID>,visual classification method.  Do 
+not incorporate aggregates for which the iron stain deposited on the filter paper exceeds the "light stain" classification.</TXT><TAI OPT="NAVY"><BRK/>
+<BRK/>
+<TXT>Use industrial waste by-products (air-cooled slag, cinders, or bottom ash), ground waste glass and concrete, 
+granulated slag, and expanded slag in aggregates.</TXT></TAI><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Concrete Masonry Units (CMU)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Concrete units may be produced in three weight classifications.  It is 
+important that the weight classification desired be designated.</NPR><BRK/>
+<BRK/>
+<NPR>Low alkali cement maybe specified for use in CMU if efflorescence caused by 
+the use of available cement is a problem.  However, these cements are difficult 
+to obtain in some regions where sulfates are not an issue.  Also, alkali-silica 
+reactivity (ASR) is not as big an issue in concrete masonry units as it is in 
+cast-in-place concrete.  If efflorescence is not a problem, or if the CMU will 
+not be exposed to weather, delete the first sentence.</NPR><BRK/>
+<BRK/>
+<NPR>Specify lightweight aggregate where required for fire-resistive or "U" value 
+purposes.  Coordinate with structural and mechanical designers.  Otherwise, 
+unit density is at the option of the contractor, including single wythe, grouted 
+walls.</NPR><BRK/>
+<BRK/>
+<NPR>For single-wythe, concrete masonry unit exterior walls, specify water-repellant 
+admixture for both the masonry units and the mortar.</NPR><BRK/>
+<BRK/>
+<NPR>See addition information regarding use of recycled content materials in  Section 
+<SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL><SUB>Cement</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Use only cement that has a low alkali content and is of one brand.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Recycled Content</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Provide units with a minimum of [5][10][_____] percent post-consumer recycled content, or a minimum of [20][40][_____] 
+percent post-industrial recycled content, based on mass, cost, or volume.][Units may contain post-consumer or 
+post-industrial recycled content.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Size</TTL><BRK/>
+<BRK/>
+<TXT>Provide units with specified dimension of [_____]<MET> mm</MET><ENG> inches</ENG> wide, [_____]<MET> mm</MET><ENG> inches</ENG> high, and [_____]<MET> mm</MET><ENG> inches</ENG>
+ long. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>[For units that are to be plastered or stuccoed, provide surfaces that are sufficiently rough to provide bond.][[Elsewhere, 
+provide][Provide] units with exposed surfaces that are smooth and of uniform texture.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Weather Exposure</TTL><BRK/>
+<BRK/>
+<TXT>Provide concrete masonry units with water-repellant admixture added during manufacture where units will be exposed 
+to weather.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unit Types</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Hollow Load-Bearing Units:  <RID>ASTM C90</RID>, lightweight [or medium weight][or normal weight].  Provide load-bearing 
+units for exterior walls, foundation walls, load-bearing walls, and shear walls.</OLI><BRK/>
+<BRK/>
+<OLI>Hollow Non-Load-Bearing Units:  <RID>ASTM C129</RID>, lightweight [or medium weight][or normal weight].  Load-bearing 
+units may be provided in lieu of non-load-bearing units.</OLI><BRK/>
+<BRK/>
+<OLI>Solid Load-Bearing Units:  <RID>ASTM C90</RID>, lightweight [or medium weight][or normal weight] units.  Provide 
+solid units as indicated.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Jamb Units</TTL><BRK/>
+<BRK/>
+<TXT>Provide jamb units of the shapes and sizes to conform with wall units.  Solid units may be incorporated in the 
+masonry work where necessary to fill out at corners, gable slopes, and elsewhere as approved.</TXT><BRK/>
+<BRK/>
+<TXT>Provide sash jamb units with a<MET> 19 by 19 mm</MET><ENG> 3/4 by 3/4 inch</ENG> groove near the center at end of each unit.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Architectural Units</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where architectural units are used, local sources should be checked to 
+determine available shapes, sizes, patterns, and colors.  Desired unit pattern 
+should be clearly indicated.  Delete integral coloring if units will be painted 
+or if natural color is satisfactory.  Concrete masonry veneer wythes should 
+be 100 percent solid units to minimize trapping water which could lead to damage 
+from freezing, mildew, and efflorescence.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide architectural units with patterned face shell:  [fluted][vertical scored][split ribbed][_____].</TXT><BRK/>
+<BRK/>
+<TXT>Provide units that are integrally colored during manufacture, with color [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Patterned, Decorative Screen Units</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Manufacturer's catalogs will be consulted for patterned units that are 
+locally available.  Optional designs of patterned units will be shown as necessary 
+for competitive bidding.</NPR><BRK/>
+<BRK/>
+<NPR>Concrete masonry units in accordance with applicable requirements of ASTM C129 
+are suitable for interior nonload-bearing screens, and may be specified where 
+required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide patterned, decorative screen units in accordance with [<RID>ASTM C90</RID>][<RID>ASTM C129</RID>].  Provide units that have 
+uniform through-the-wall pattern, color, and texture.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Fire-Rated Concrete Masonry Units</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The thickness of fire-rated walls as well as the required fire rating 
+will be indicated on the drawings.  Such walls will be shown as continuous from 
+floor to deck above.  Sections and details of these walls will clearly indicate 
+the extent of such walls.  Solid grouted hollow concrete units and concrete 
+brick masonry<MET> 150 mm</MET><ENG> 6 inches</ENG> or greater in thickness will be considered a 4-hour 
+fire-rated wall regardless of aggregate type.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For indicated fire-rated construction, provide concrete masonry units of minimum equivalent thickness for the 
+fire rating indicated and the corresponding type of aggregates indicated in TABLE I.  Units containing more than 
+one of the aggregates listed in TABLE I will be rated by linear interpolation based on the percent by dry-rodded 
+volume of each aggregate used in manufacturing the units. </TXT><BRK/>
+<TAB HEADERROWS="2">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="8" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="150.75"/>
+      <COL AUTOWIDTH="0" WIDTH="47.25"/>
+      <COL AUTOWIDTH="0" WIDTH="48.00"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="40.50"/>
+      <COL AUTOWIDTH="0" WIDTH="45.75"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="42.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="7" STYLEID="s50">
+<DTA TYPE="STRING">TABLE I<BRK/>FIRE-RATED CONCRETE MASONRY UNITS</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Aggregate Type</DTA>
+         </CEL>
+         <CEL MERGEACROSS="6" STYLEID="s50">
+<DTA TYPE="STRING">Minimum Equivalent Thickness for Fire-Resistance Rating,<MET> mm</MET><ENG> inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1/2 hour</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3/4 hour</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1 hour</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1-1/2 hour</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2 hours</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3 hours</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4 hours</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL>
+<DTA TYPE="STRING">Calcareous or siliceous gravel (other than limestone)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>50.8</MET><ENG>2.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>70.0</MET><ENG>2.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>71.1</MET><ENG>2.8
+</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>91.4</MET><ENG>3.6</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>106.7</MET><ENG>4.2</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>134.6</MET><ENG>5.3</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>157.5</MET><ENG>6.2</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="34.50">
+         <CEL>
+<DTA TYPE="STRING">Limestone, cinders, or air-cooled slag</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>48.3</MET><ENG>1.9</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>58.4</MET><ENG>2.3</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>68.6</MET><ENG>2.7</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>86.4</MET><ENG>3.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>101.6</MET><ENG>4.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>127</MET><ENG>5.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>149.9</MET><ENG>5.9</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL>
+<DTA TYPE="STRING">Expanded clay, expanded shale, or expanded slate</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>45.7</MET><ENG>1.8</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>55.9</MET><ENG>2.2</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>66.0</MET><ENG>2.6</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>83.8</MET><ENG>3.3</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>91.4</MET><ENG>3.6</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>111.8</MET><ENG>4.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>129.5</MET><ENG>5.1</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="40.50">
+         <CEL>
+<DTA TYPE="STRING">Expanded slag or pumice</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>38.1</MET><ENG>1.5</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>48.3</MET><ENG>1.9</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>53.3</MET><ENG>2.1</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>68.6</MET><ENG>2.7</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>81.3</MET><ENG>3.2</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>101.6</MET><ENG>4.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>119.4</MET><ENG>4.7</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/></TAB><BRK/>
+<TXT>Determine equivalent thickness in accordance with <RID>ACI 216.1</RID>.  Where walls are to receive plaster or be faced 
+with brick, or otherwise form an assembly; include the thickness of plaster or brick or other material in the 
+assembly in determining the equivalent thickness.  Submit calculation results.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Prefaced Concrete Masonry Units</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Bullnose units will be specified only in cases where sharp corners are 
+considered objectionable, such as in heavy traffic areas.  If bullnose units 
+are specified, the locations of use will be detailed on the drawings and/or 
+listed in this paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prefaced concrete masonry units [may][may not] be provided in lieu of ceramic glazed structural clay facing tile 
+units.  Where prefaced concrete masonry units are provided, concrete masonry unit backing may be omitted when 
+the nominal thickness of the prefaced concrete masonry units is the same as the total indicated nominal thickness 
+of the facing tile plus the backing.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide prefaced concrete masonry units in accordance with <RID>ASTM C744</RID> using masonry units in accordance 
+with <RID>ASTM C90</RID>, with the facing turned over the edges and ends of the unit at least<MET> 9.5 mm</MET><ENG> 3/8 inch</ENG> in 
+the direction of the thickness of the unit to form a lip at least<MET> 1.6 mm</MET><ENG> 1/16 inch</ENG> thick.  Limit variation 
+in color and texture to that in the approved sample.</OLI><BRK/>
+<BRK/>
+<OLI>Provide all shapes and sized for a complete installation.  Use bullnose units along sills and caps and 
+at vertical external corners including door jambs, window jambs, and other such openings with a bullnose 
+radius of<MET> 25 mm</MET><ENG> 1 inch</ENG>.  Cove base units to meet finished floor surfaces where ceramic tile floor occurs.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<TAI OPT="BRICK"><SPT><TTL><SUB>Concrete Brick</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ASTM C1634 concrete brick are used for high strength and resistance to 
+moisture penetration.    Split face brick (solid concrete facing units), where 
+required by design, should be added to this paragraph.  A particular color and 
+texture may be specified when locally available and competitively priced.  Sizes 
+may be specified for brick or split face brick where required by the design.</NPR><BRK/>
+<BRK/>
+<NPR>ASTM C55 concrete brick are used for lesser strength and moisture resistance, 
+and where appearance is of low importance.</NPR><BRK/>
+<BRK/>
+<NPR>ASTM C73 sand-lime brick may be used on the interior or exterior.  Where limited 
+to interior use, Grade MSW may be specified as an option to Grade SW.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Common Concrete Brick</TTL><BRK/>
+<BRK/>
+<TXT>Provide common concrete brick in accordance with <RID>ASTM C55</RID>.  Common concrete brick may be used where necessary 
+for filling out in concrete masonry unit construction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Concrete Brick for Facing</TTL><BRK/>
+<BRK/>
+<TXT>Provide concrete brick for exposed applications that conforms to <RID>ASTM C1634</RID>.  Submit samples as specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sand-Lime Brick</TTL><BRK/>
+<BRK/>
+<TXT>Provide calcium-silicate (sand-lime) that conforms to <RID>ASTM C73</RID>, Grade SW, approximately<MET> 92 mm thick, 57 mm high, 
+194 mm long</MET><ENG> 3-5/8 inches thick, 2-1/4 inches high, and 8 inches long or modular</ENG>, with smooth surfaces and natural 
+color.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI></SPT></TAI><TAI OPT="PC ITEMS"><SPT><TTL><SUB>Precast Concrete Units</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Architectural Cast Stone is a refined architectural concrete building 
+unit manufactured to simulate natural cut stone and may be specified in lieu 
+of precast concrete. It exceeds minimum requirements for compressive strength 
+and weathering qualities essential for common installations and may be a suitable 
+replacement for natural cut limestone, brownstone, sandstone, bluestone, granite, 
+slate, keystone, travertine, and other natural building stones. When specified 
+for use in climates that experience freeze-thaw, its durability can be demonstrated 
+by field performance of similar products in similar exposures for many years, 
+or it can be tested by a modified version of ASTM C666, Procedure A, per Cast 
+Stone Institute literature. Cast stone masonry products may be used as architectural 
+feature, trim, and ornament, facing or other non-structural use in buildings 
+and other structures.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide precast concrete trim, lintels, copings, splashblocks and sills that are factory-made units in 
+a plant regularly engaged in producing precast concrete units.  Unless otherwise indicated, provide precast 
+concrete with minimum<MET> [28][20] MPa</MET><ENG> [4,000][3000] psi</ENG> compressive strength, in accordance with Section 
+<SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE using<MET> 13 mm</MET><ENG> 1/2 inch</ENG> to No. 4 nominal-size coarse aggregate, and with 
+reinforcement required for handling of the units.  Maintain minimum clearance of<MET> 19 mm</MET><ENG> 3/4 inch</ENG> between 
+reinforcement and faces of units.</OLI><BRK/>
+<BRK/>
+<OLI>Unless precast-concrete items have been subjected during manufacture to saturated-steam pressure of at 
+least<MET> 827 kPa</MET><ENG> 120 psi</ENG> for at least 5 hours, either damp-cure for 24 hours or steam-cure and then age 
+under cover for 28 days or longer.  In precast concrete members weighing over<MET> 35 kg</MET><ENG> 80 pounds</ENG> provide 
+built-in loops of galvanized wire or other approved provisions for lifting and anchoring.</OLI><BRK/>
+<BRK/>
+<OLI>Fabricate units with beds and joints at right angles to the face, with sharp true arises and with drip 
+grooves on the underside where units overhang walls.  Form exposed-to-view surfaces free of surface voids, 
+spalls, cracks, and chipped or broken edges and with uniform appearance and color.  Unless otherwise 
+specified, provide units with a smooth dense finish.</OLI><BRK/>
+<BRK/>
+<OLI>Prior to installation, wet and inspect each unit for crazing.  Items showing evidence of dusting, spalling, 
+crazing, or having surfaces treated with a protective coating will be rejected.</OLI><BRK/>
+<BRK/>
+<OLI>Submit specified factory certificates.</OLI><BRK/>
+<BRK/>
+<OLI>Provide architectural cast stone masonry trim, copings, heads, and sills that are manufactured in a plant 
+by a producer regularly engaged in producing cast stone.  Provide cast stone units that comply with ASTM 
+C1364.  Submit test reports and three exemplars of the same cast stone product installed in similar projects 
+in similar climatic conditions.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Precast Concrete Lintels</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert strength of concrete; precast lintels usually range from<MET> 17 to 
+25 MPa</MET><ENG> 2500 to 3500 psi</ENG>.  Alternatively, reinforced masonry lintels may be designed 
+in accordance with TMS 402/602.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide precast concrete lintels, unless otherwise shown, of a thickness equal to the wall and reinforced with 
+minimum two No. 4 bars for the full length.  Provide top and bottom bars for lintels over<MET> 914 mm</MET><ENG> 36 inches</ENG> in 
+length.  Provide at least<MET> 200 mm</MET><ENG> 8 inches</ENG> bearing at each end.  Label the top of lintels and clearly mark each 
+lintel to show location in the structure.  Design reinforced lintels in accordance with<MET> <RID>ACI 318M</RID></MET><ENG> <RID>ACI 318</RID></ENG> for 
+flexural and shear strength, using concrete with a minimum 28 day compressive strength of [_____]<MET> MPa</MET><ENG> psi</ENG>.  Limit 
+lintel deflection due to dead plus live load to L/600 or<MET> 7.6 mm</MET><ENG> 0.3 inches</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Precast Concrete Sills and Copings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Lug sills, which are longer than the window opening, eliminate the vulnerable 
+head joint that occurs at the end of slip sills, which are the same length as 
+the window opening.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Cast sills and copings washes.  For windows having mullions, cast sills in sections with head joints at mullions 
+and a<MET> 6 mm</MET><ENG> 1/4 inch</ENG> allowance for mortar joints.  Roughen the ends of sills, except a<MET> 19 mm</MET><ENG> 3/4 inch</ENG> wide margin 
+at exposed surfaces, for bond.  Provide rounded nosings on treads of door sills.[  Reinforce sills with not less 
+than two<MET> No. 15</MET><ENG> No. 4</ENG> bars.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="STONE"><SPT><TTL><SUB>Dimension Stone Units</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The stone specified herein is for structures requiring a limited quantity 
+of cut stone.  Where previous experience indicates difficulty in obtaining precast 
+concrete trim of the specified quality, stone may be specified as a Contractor's 
+option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide dimension stone for trim, sills, lintels, and copings cut to the design shown and in accordance with:<BRK/>
+<TAB HEADERROWS="0" WIDTH="98">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="65.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="104.25"/>
+      <COL AUTOWIDTH="0" WIDTH="277.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Limestone</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><RID>ASTM C586</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Standard buff color with a smooth machine finish free from tool marks</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sandstone</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><RID>ASTM C616/C616M</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Standard grade, buff, gray, or buff brown, with a smooth finish free from clay pits and tool marks</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Granite</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><RID>ASTM C616/C615M</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Commercial grade of medium or moderately coarse grain, with a light or medium gray or light pink color</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+Provide a smooth machine finish on washes, 4-cut finish on treads, and 6-cut or equivalent machine finish on 
+other exposed surfaces.  Except when supported by a steel member, provide lintels<MET> 100 mm</MET><ENG> 4 inches</ENG> or more in 
+thickness from face to back edge and of the depth required to support the masonry over the opening.  Fabricate 
+stone with beds and joints at right angles to the face, and with sharp, true arises.  Provide copings and sills 
+with washes, and where overhanging the walls, with drips cut on the underside.  Submit samples as specified.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>EQUIPMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The requirement for spare vibrator may be deleted on small projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Vibrators</TTL><BRK/>
+<BRK/>
+<TXT>   Maintain at least one spare vibrator on site at all times.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grout Pumps</TTL><BRK/>
+<BRK/>
+<TXT>Pumping through aluminum tubes is not permitted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Masonry Saws</TTL><BRK/>
+<BRK/>
+<TXT>Masonry saws must have guards with a semi-circular enclosure over the blade. A method for retaining blade fragments 
+must be incorporated into the design of the semi-circular enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Griders</TTL><BRK/>
+<BRK/>
+<TXT>Masonry grinders you must have appropriate guards, ensure the work rest is set close to the wheel (typically 
+within<MET> 3.175 mm</MET><ENG> 1/8 inch</ENG>).</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Mortar Materials</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to ASTM C270 for specifying mortar, which allows mortar to be specified 
+by proportions (ASTM C270 Table 1) or properties (ASTM C270 Table 2) but not 
+both.  Acceptable cementitious materials are listed in the standard, though 
+not all are appropriate for all applications.  For instance, some cements are 
+used for high early strength or for sulfate resistance.  See Table Hydraulic 
+Cements for Masonry Mortar below for comparable designations between different 
+cement specifications.  Also, ASTM C270 Appendix X1 contains guidance on selection 
+and use of mortar for unit masonry by location (exterior, interior, above grade, 
+below grade) and building segment type (wall, partition, foundation, etc.).</NPR><BRK/>
+<BRK/>
+<NPR>Mortar that complies with ASTM C1714 for Unit Masonry, meets the requirements 
+of ASTM C270. These mortars are preblended dry in a factory and delivered to 
+the job-site in packages (bags or silos or trucks).</NPR><BRK/>
+<BRK/>
+<NPR>A good rule of thumb is to specify the weakest mortar that will perform adequately, 
+not the strongest. In accordance with TMS, mortar in masonry elements that are 
+part of the seismic force-resisting system in Seismic Design Category D or higher 
+must be Type S or Type M, and must use portland cement/lime or mortar cement 
+as their cementitious material (masonry cement is not permitted).  Therefore, 
+these masonry members must be indicated on the Drawings.  Type O mortar should 
+not be used in new construction.</NPR> <BRK/>
+<BRK/>
+<NPR>Laboratory testing of mortar is only required for acceptance of mortar mixes 
+under the property specifications of ASTM C270. Field testing of mortars, conducted 
+under ASTM C780, is used to verify consistency of materials and procedures, 
+not mortar strength.  While field testing of mortar strength is not recommended, 
+it can provide information about degree of quality control exercised during 
+mortar production at the construction site if compared to preconstruction test 
+values.  However, compressive test results for mortar are evaluated after 28 
+days, so mortar-aggregate ratio testing per ASTM C780, which can take as little 
+as four hours, may be more useful for evaluating mortar consistency.  Observation 
+of mortar mixing, to verify proper proportioning, is the best evaluator of mortar 
+consistency and quality.</NPR><BRK/>
+<BRK/>
+<NPR>For white mortar, specify white cement.  For colored mortar, white cement or 
+gray cement may be specified, depending on the desired color. Color is achieved 
+by adding pigments at the time of mixing or by selecting preblended colored 
+cementitious materials or preblended colored mortar materials. Excessive use 
+of pigments to achieve mortar color may reduce both compressive and tensile 
+strengths of masonry.  Conformance to maximum percentages indicated will limit 
+loss of strength to acceptable amounts.  Due to their fine particle size, coloring 
+pigments increase water demand.</NPR> <BRK/>
+<BRK/>
+<NPR>Where efflorescence is a concern, techniques for minimizing its occurrence are 
+described in ASTM C1400.  Techniques include: minimizing water penetration into 
+the wall, such as by use of overhangs; facilitating drainage of water in the 
+wall; avoiding contact between dissimilar masonry units; and minimizing potential 
+efflorescence compounds in the wall materials.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Cementitious Materials</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING and include 
+additive options unless designer determines that justification for non-use exists.  
+Supplementary cementitious materials are often included as ingredients in mortar 
+that conforms to ASTM C595 blended cements or ASTM C1157 hydraulic cements.  
+See "Hydraulic Cements for Masonry Mortar" table below for different ASTM C150, 
+C595, and C1157 cements that are allowed in masonry mortar by ASTM C270.  For 
+example, high-early strength cement may be used when constructing in cold weather.  
+Contractors select cementitious materials based on performance, availability, 
+and familiarity, and the Contracting Officer should be aware that more than 
+one cement designation can satisfy the same need, such as high early strength.</NPR><BRK/>
+<TAB HEADERROWS="3">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="12">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="112.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="112.50"/>
+      <COL AUTOWIDTH="0" WIDTH="112.50"/>
+      <COL AUTOWIDTH="0" WIDTH="112.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3" STYLEID="s51">
+<DTA TYPE="STRING">Hydraulic Cements for Masonry Mortar</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50"/>
+         <CEL MERGEACROSS="2" STYLEID="s51">
+<DTA TYPE="STRING">Cement Specification<SPS>+</SPS></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">ASTM C150 portland cements</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">ASTM C595 blended hydraulic cements<SPS>*</SPS></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">ASTM C595 blended hydraulic cements<SPS>*</SPS></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">General Purpose</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">I</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">IL<BRK/>IS(&lt;70)<BRK/>IP<BRK/>IT(S&lt;70)</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">GU</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Moderate heat of hydration</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">II(MH)</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">IL(MH)<BRK/>IS(&lt;70)(MH)<BRK/>IP(MH)<BRK/>IT(S&lt;70)(MH)<BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">MH</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">High early strength</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">III</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">-</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">HE</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Low heat of hydration</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">IV</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">IL(LH)<BRK/>IS(&lt;70)(LH)<BRK/>IP(LH)<BRK/>IT(S&lt;70)(LH)<BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">LH</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Moderate sulfate resistance</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">II, II(MH)</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">IS(&lt;70)(MS)<BRK/>IP(MS)<BRK/>IT(S&lt;70)(MS)<SPS>**</SPS><BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">MS</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">High sulfate resistance</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">V</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">IS(&lt;70)(HS)<BRK/>IP(HS)<BRK/>IT(S&lt;70)(HS)<SPS>**</SPS><BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">HS</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="51.75">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING">*Type IT(S&lt;70) cements are ternary blended cements with less than 70 percent by mass slag cement content. For this table, this includes ternary blended cements with pozzolans and limestone (no slag cement) as the non-portland ingredients.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING">**Type IT cements with between 5 and 15 percent (by mass) limestone content are not permitted to be used in sulfate exposure applications, pending results of research.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING">+Air-entrained counterparts for cements listed are also allowed in masonry mortar per the proportioning requirements of ASTM C270.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide cementitious materials that conform to those permitted by <RID>ASTM C270</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydrated Lime and Alternates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Higher lime content increases workability and water retentivity. Allowable 
+lime materials include ASTM C207 hydrated lime and ASTM C5 quicklime.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide lime that conforms to one of the materials permitted by <RID>ASTM C207</RID> for use in combination with portland 
+cement, hydraulic cement, and blended hydraulic cement.  Do not use lime in combination with masonry cement or 
+mortar cement.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Colored Mortar</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate on the drawings locations of colored mortar.  Maximum allowable 
+pigment dosages are based on ASTM C270 Appendix X1 and TMS Article 2.6 A.2.   
+When pigments in accordance with ASTM C979 are used at maximum permitted dosage, 
+28-day strength of colored mortar is not less than 90 percent of the control 
+mix and water-cementitious materials ratio is no more than 110 percent of the 
+control mix.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use mortar pigment in accordance with <RID>ASTM C979/C979M</RID>.  Add pigment to mortar to produce a uniform color matching 
+[_____].  Furnish pigments in accurately pre-measured and packaged units that can be added to a measured amount 
+of cementitious materials or supply pigments via preblended cementitious materials or dry mortar mix.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>In masonry cement or mortar cement, do not exceed [5][_____] percent of cement weight for mineral oxide 
+pigment; do not exceed [1][_____] percent of cement weight for carbon black pigment.</OLI><BRK/>
+<BRK/>
+<OLI>In cement-lime mortar mix, do not exceed [10][_____] percent of cementitious materials' weight for mineral 
+oxide pigment; do not exceed [2][_____] percent of cementitious materials' weight for carbon black pigment.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Admixtures for Masonry Mortar</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Admixtures can improve performance of mortar and are specified for beneficial 
+purposes, but potential negative side effects include an increased risk of efflorescence, 
+reduced strength of mortar, and corrosion of embedded steel items.  Admixtures 
+in accordance with ASTM C1384 have limited negative side effects and meet the 
+minimum requirements for improvement in performance of the desired attribute, 
+such as rate of set, water-repellency, or bond.</NPR><BRK/>
+<BRK/>
+<NPR>Showers, kitchens, and single-wythe concrete masonry unit exterior walls should 
+be built with concrete block containing integral water-repellent admixture. 
+When water repellents are used in concrete masonry, the mortar should contain 
+a compatible water-repellent admixture.  A complementary material from the same 
+manufacturer and of the same brand is designed to be compatible with the block 
+admixture.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>In cold weather, use a non-chloride based accelerating admixture in accordance with <RID>ASTM C1384</RID>, unless Type III 
+portland cement is used in the mortar.</TXT><BRK/>
+<BRK/>
+<TXT>In showers and kitchens, use mortar that contains a water-repellent admixture in accordance with <RID>ASTM C1384</RID>.  
+Provide a water-repellent admixture, in accordance with <RID>ASTM C1384</RID> and of the same brand and manufacturer as 
+the block's integral water-repellent, in the mortar used to place concrete masonry units that have an integral 
+water-repellent admixture.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Aggregate and Water</TTL><BRK/>
+<BRK/>
+<TXT>Provide aggregate (sand) and water that conform to materials permitted by <RID>ASTM C270</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Grout and Ready-Mix Grout Materials</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Acceptable cements for masonry grout are listed in ASTM C476 and are 
+summarized in Table "Hydraulic Cements for Masonry Grout Construction in ASTM 
+C476" below. Check the local availability of specific cements as all cements 
+are not available everywhere.  Per ASTM C476, other acceptable cementitious 
+materials for masonry grout are fly ash and slag and small quantities of lime.  
+Note that masonry cement and mortar cement are not permitted to be used in grout.  
+When high-early strength cement, such as Type III Portland cement, is used for 
+cold weather construction, the protection period for grouted masonry may be 
+reduced.</NPR><BRK/>
+<TAB HEADERROWS="2">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="5" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="90.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="90.00"/>
+      <COL AUTOWIDTH="0" WIDTH="90.00"/>
+      <COL AUTOWIDTH="0" WIDTH="90.00"/>
+      <COL AUTOWIDTH="0" WIDTH="90.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="4" STYLEID="s51">
+<DTA TYPE="STRING">Hydraulic Cements for Masonry Grout Construction in ASTM C476</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Cement specification*</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">General Purpose</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">High early strength</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Moderate sulfate resistance</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">High sulfate resistance</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">ASTM C150 portland cements</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">I</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">III</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">II</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">-</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">ASTM C595 blended hydraulic cements**</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">IS(&lt;70)<BRK/>IP<BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">-</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">IS(&lt;70)(MS)</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">-</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">ASTM C1157 hydraulic cements</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">GU</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">HE</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">MS</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">HS</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL MERGEACROSS="4" STYLEID="s50">
+<DTA TYPE="STRING">* Air-entrained counterparts for these cements listed are also allowed in masonry grout. However, use of air-entrainment is not recommended when the grout will be used to bond reinforcement to the masonry units.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="4" STYLEID="s50">
+<DTA TYPE="STRING">**</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/></TAB><AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Cementitious Materials for Grout</TTL><BRK/>
+<BRK/>
+<TXT>Provide cementitious materials that conform to those permitted by <RID>ASTM C476</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Admixtures for Grout</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Admixtures, including air entrainment, may contribute to efflorescence 
+and may adversely affect the strength of the mix or the protection of embedded 
+steel items.  Admixtures in accordance with C494/C494M Type F or G water reducing 
+admixtures and viscosity-modifying admixtures are permitted, but others, such 
+as integral waterproofing compounds, accelerators, and others, require approval 
+from purchaser.</NPR><BRK/>
+<BRK/>
+<NPR>When concrete masonry and clay brick units are highly absorbent, a grouting 
+aid admixture may be desirable to reduce early water loss, promote bonding, 
+and produce slight expansion to help ensure complete filling of cavities.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Water-reducing admixtures in accordance with <RID>ASTM C494/C494M</RID> Type F or G and viscosity-modifying admixtures in 
+accordance with <RID>ASTM C494/C494M</RID> Type S are permitted for use in grout.  Other admixtures require approval by 
+the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<TXT>In cold weather, a non-chloride based accelerating admixture may be used subject to approval by the Contracting 
+Officer; use accelerating admixture that is non-corrosive and in accordance with <RID>ASTM C494/C494M</RID>, Type C.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Aggregate and Water</TTL><BRK/>
+<BRK/>
+<TXT>Provide fine and coarse aggregates and water that conform to materials permitted by <RID>ASTM C476</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>MORTAR AND GROUT MIXES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Some preblended mortars may require special mixing procedures.  If so, 
+follow manufacturers published recommendations.</NPR><BRK/>
+<BRK/>
+<NPR>Indicate seismic force-resisting masonry elements on the Drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Mortar Mix</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide mortar Type [N][S][M] unless specified otherwise herein.[  Do not use masonry cement in the mortar.][  
+Do not use air-entrainment in the mortar.]</OLI><BRK/>
+<BRK/>
+<OLI>Use <RID>ASTM C270</RID> Type [S][M] cement-lime mortar or mortar cement mortar for seismic-force-resisting elements 
+indicated.</OLI>[<BRK/>
+<BRK/>
+<OLI>Provide mortar that conforms to <RID>ASTM C270</RID>. Use Type [M][S][N] mortar[ for foundation walls][, basement 
+walls,][ and in piers].</OLI>][<BRK/>
+<BRK/>
+<OLI>Provide Type N or S mortar for non-load-bearing, non-shear-wall interior masonry.</OLI>][<BRK/>
+<BRK/>
+<OLI>Provide approved commercial fire clay mortar or refractory cement (calcium-aluminate) mortar for fire 
+brick and flue liners.</OLI>]<BRK/>
+<BRK/>
+<OLI>For field-batched mortar, measure component materials by volume.  Use measuring boxes for materials that 
+do not come in packages, such as sand, for consistent batching.  Mix cementitious materials and aggregates 
+between 3 and 5 minutes in a mechanical batch mixer with a sufficient amount of water to produce a workable 
+consistency.  Do not hand mix mortar unless approved by the Contracting Officer.  Maintain workability 
+of mortar by remixing or retempering.  Discard mortar that has begun to stiffen or is not used within 
+2-1/2 hours after initial mixing.</OLI><BRK/>
+<BRK/>
+<OLI>For preblended mortar, follow manufacturer's mixing instructions.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grout and Ready Mix Grout Mix</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Grout strength must be at least as great as the specified compressive 
+strength of masonry (f'm) but not less than<MET> 14 MPa</MET><ENG> 2000 psi</ENG> at 28 days.   Revise 
+specification when grout compressive strength is required to be in excess of<MET>
+ 14 MPa</MET><ENG> 2000 psi</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>Choice of fine or coarse grout depends on width of grout space and pour height; 
+tabulated limitation can be found in TMS.  The Contractor usually has the option 
+to select grout type, but under special circumstances, the Engineer-of-Record 
+may want to define grout type.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use grout that conforms to <RID>ASTM C476</RID>, [fine][coarse].  Use conventional grout with a slump between<MET> 203 and [279][_____] 
+mm</MET><ENG> 8 and [11][_____] inches</ENG>.  Use self-consolidating grout with slump flow of<MET> 610 to 762 mm</MET><ENG> 24 to 30 inches</ENG> and 
+a visual stability index (VSI) not greater than 1.  Provide minimum grout strength of<MET> [14][_____] MPa</MET><ENG> [2000][_____] 
+psi</ENG> in 28 days, as tested in accordance with <RID>ASTM C1019</RID>.  Do not change proportions and do not use materials 
+with different physical or chemical characteristics in grout for the work unless additional evidence is furnished 
+that grout meets the specified requirements.  Use ready-mixed grout that conforms to <RID>ASTM C476</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ACCESSORIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Grout Barriers</TTL><BRK/>
+<BRK/>
+<TXT>Grout barriers for vertical cores that consist of fine mesh wire, fiberglass, or expanded metal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Anchors, Ties, and Bar Positioners</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  By definition, ties are connections between masonry wythes, anchors connect 
+masonry to the structure and connect veneer to its backing, and fasteners are 
+for attachment of non-masonry items to masonry.  The anchors and ties specified 
+in this paragraph are primarily used to laterally tie masonry veneer to backup 
+elements.  Anchors and ties not incorporated in the design should be deleted.  
+If special anchors or ties are required by the design, they will be specified 
+to meet the necessary requirements.  Standard anchors and ties can be used in 
+cavities up to<MET> 114 mm</MET><ENG> 4.5 inches</ENG> wide.</NPR><BRK/>
+<BRK/>
+<NPR>The required minimum zinc coating thicknesses for wire ties, anchors, and joint 
+reinforcement are shown in the following table and are based on exposure:</NPR><BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="175.50"/>
+      <COL AUTOWIDTH="0" WIDTH="130.50"/>
+      <COL AUTOWIDTH="0" WIDTH="144.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="63.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Exposure</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Finish</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Wt. of Coating in<MET> Gram Per Sq. Meter</MET><ENG> Oz. Per Sq. Foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="50.25">
+         <CEL>
+<DTA TYPE="STRING">Joint reinforcement, interior walls</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A641/A641M</RID></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>31 </MET><ENG>0.1</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="75.00">
+         <CEL>
+<DTA TYPE="STRING">Wire ties or anchors</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A53/A153M</RID></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>458 </MET><ENG>1.50</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="75.00">
+         <CEL>
+<DTA TYPE="STRING">Steel plates and bars</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A153/A153M</RID> Class B or <RID>ASTM A123/A123M</RID> as applicable to size and form</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="96.00">
+         <CEL>
+<DTA TYPE="STRING">Joint reinforcement in exterior walls or interior walls exposed to moist environments (e.g. natatoria and food processing)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A153/A153M</RID></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>458 </MET><ENG>1.50</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="52.50">
+         <CEL>
+<DTA TYPE="STRING">Sheet metal ties or anchors in masonry exposed to weather</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A153/A153M</RID><BRK/>Class B</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>458 </MET><ENG>1.50</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="55.50">
+         <CEL>
+<DTA TYPE="STRING">Sheet metal ties or anchors</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A653/A653M</RID> (Class G60)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>180 </MET><ENG>.60</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/></TAB><AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Fabricate anchors and ties without drips or crimps.  Size anchors and ties to provide a minimum of<MET> 16 
+mm</MET><ENG> 5/8 inch</ENG> mortar cover from each face of masonry.</OLI><BRK/>
+<BRK/>
+<OLI>Fabricate steel wire anchors and ties from wire in accordance with <RID>ASTM A1064/A1064M</RID> and hot-dip galvanize 
+in accordance with <RID>ASTM A153/A153M</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Fabricate joint reinforcement in accordance with <RID>ASTM A951/A951M</RID>.  Hot dip galvanize joint reinforcement 
+in exterior walls and in interior walls exposed to moist environment in accordance with <RID>ASTM A153/A153M</RID>
+.  Galvanize joint reinforcement in other interior walls in accordance with <RID>ASTM A641/A641M</RID>; coordinate 
+with paragraph JOINT REINFORCEMENT below.</OLI><BRK/>
+<BRK/>
+<OLI>Fabricate sheet metal anchors and ties in accordance with <RID>ASTM A1008/A1008M</RID>.  Hot dip galvanize sheet 
+metal anchors and ties in exterior walls and in interior walls exposed to moist environment in accordance 
+with <RID>ASTM A153/A153M</RID> Class B.  Galvanize sheet metal anchors and ties in other interior walls in accordance 
+with <RID>ASTM A653/A653M</RID>, Coating Designation G60.</OLI><BRK/>
+<BRK/>
+<OLI>Submit two anchors, ties and bar positioners of each type used, as samples.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wire Mesh Anchors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Wire mesh anchors will only be used to connect interior non-bearing walls 
+to other intersecting interior non-bearing masonry walls.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide wire mesh anchors of<MET> 6 mm</MET><ENG> 1/4 inch</ENG> mesh galvanized hardware cloth, in accordance with <RID>ASTM A185/A185M</RID>
+, with length not less than<MET> 305 mm</MET><ENG> 12 inches</ENG>, at intersections of interior non-bearing masonry walls.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wall Ties for Multi-Wythe Masonry Construction</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Wall ties will be specified to provide an option to the typically used 
+continuous joint reinforcement to anchor the outer wythe to the inner wythe 
+of multiple wythe masonry construction.  Vertical spacing will normally be<MET> 400 
+mm</MET><ENG> 16 inches</ENG> on center and horizontal spacing of the unit ties will normally 
+be<MET> 600 mm</MET><ENG> 24 inches</ENG> on center.</NPR><BRK/>
+<BRK/>
+<NPR>Rectangular ties may be used with either solid or hollow units.  The maximum 
+wall area per rectangular tie of wire size<MET> MW11</MET><ENG> W1.7</ENG> is<MET> 0.25 m2</MET><ENG> 2-2/3 ft2</ENG>; when 
+the wire size is<MET> MW18</MET><ENG> W2.8</ENG> the maximum wall area per tie is<MET> 0.42 m2</MET><ENG> 4.5 ft2</ENG>. 
+There are additional requirements for wall ties based on how the masonry is 
+designed (veneer or engineered non-composite), spacing, and seismic design category 
+of buildings with veneer.</NPR><BRK/>
+<BRK/>
+<NPR>Adjustable wall ties are normally used when constructing one wythe independent 
+of the other.  The preferred method of construction, however, is to bring the 
+wythes up together.  Delete the sentences pertaining to adjustable ties when 
+they are not permitted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide rectangular-shaped wall ties, fabricated of hot-dipped galvanized[<MET> MW11</MET><ENG> W1.7</ENG>][<MET> MW18</MET><ENG> W2.8</ENG>] diameter steel 
+wire.  Provide rectangular wall ties no less than<MET> 100 mm</MET><ENG> 4 inches</ENG> wide.</TXT><BRK/>
+<BRK/>
+<TXT>Provide adjustable type wall ties, if approved for use, that consist of two essentially U-shaped elements fabricated 
+of minimum<MET> MW18</MET><ENG> W2.8</ENG> diameter steel wire or pintle type ties that are inserted to eyes of horizontal joint reinforcement, 
+hot-dip galvanized.  Provide adjustable ties with double pintle legs and allows a maximum offset of<MET> 32 mm</MET><ENG> 1-1/4 
+inch</ENG> between each element of the tie and maximum distance between connecting parts no more than<MET> 2 mm</MET><ENG> 1/16 inch</ENG>
+.  Form the pintle and eye elements so that both can be in the same plane.  Wall ties may also be of a continuous 
+type in accordance with paragraph JOINT REINFORCEMENT.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dovetail Anchors</TTL><BRK/>
+<BRK/>
+<TXT>Provide dovetail anchors of<MET> 5 mm</MET><ENG> 3/16 inch</ENG> diameter steel wire, triangular shaped, and attached to a<MET> 12 gauge</MET><ENG>
+ 12 gauge</ENG> or heavier steel dovetail section.  Use these anchors to connect the exterior masonry wythe as it passes 
+over the face of concrete columns, beams, or walls.  Fill cells immediately above and below these anchors unless 
+solid units are used.  Furnish dovetail slots, which are specified to be installed by others, in accordance with 
+Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Adjustable Anchors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Adjustable anchors will be used to anchor masonry to structural steel 
+columns or beams.  Such anchors will be either be detailed on the drawings, 
+or the capacity requirements will be given in the specification and the contractor 
+will be required to submit test data to verify compliance.  Select the appropriate 
+option.</NPR><BRK/>
+<BRK/>
+<NPR>Adjustable anchors may also be used to connect veneer to its backing.  Adjustable 
+anchors are required when the backing for the veneer is steel stud framing or 
+concrete.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Anchorage to Structural Steel</TTL><BRK/>
+<BRK/>
+<TXT>Provide [hot-dip galvanized][stainless steel] adjustable anchors for connecting masonry walls to the structural 
+steel frame[ as detailed on the drawings][ that have [_____]<MET> kg</MET><ENG> pounds</ENG> capacity in both tension and compression 
+for the span indicated when placed at [_____]<MET> mm</MET><ENG> inches</ENG> on center; submit test data to verify compliance].[  
+Provide zinc-rich paint for touching up paint after welding galvanized anchors to structural steel.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anchorage of Veneer to Light Gauge Steel or Concrete Backing</TTL><BRK/>
+<BRK/>
+<TXT>Use one of the following types of adjustable anchors to connect veneer to light gauge steel or concrete backing:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>sheet metal at least<MET> 22 mm</MET><ENG> 7/8 inch</ENG> wide,<MET> 1.5 mm</MET><ENG> 0.06 inch</ENG> thick, and with corrugations having a wavelength 
+of<MET> 7.6 to 12.7 mm</MET><ENG> 0.3 to 0.5 inch</ENG> and an amplitude of<MET> 1.5 to 2.5 mm</MET><ENG> 0.06 to 0.10 inch</ENG> or bent, notched 
+or punched to provide equivalent performance;</OLI><BRK/>
+<BRK/>
+<OLI>wire anchors of minimum size<MET> MW11</MET><ENG> W1.7</ENG> with ends bent to form a minimum<MET> 50 mm</MET><ENG> 2 inches</ENG> extension and 
+without drips;</OLI><BRK/>
+<BRK/>
+<OLI>or wire pintle anchors used in conjunction with joint reinforcement.</OLI></OLG><BRK/>
+<BRK/>
+<TXT>Do not exceed<MET> 1.6 mm</MET><ENG> 1/16 inch</ENG> clearance between connecting parts of the tie.  Assemble adjustable anchors to 
+prevent disengagement.  Provide pintle anchors with one or more pintle legs of wire size<MET> MW18</MET><ENG> W2.8</ENG> and an offset 
+not exceeding<MET> 32 mm</MET><ENG> 1-1/4 inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Veneer Anchor Screws</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph should be edited to reflect the design option selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide screws for attachment of veneer anchors to cold-formed steel framing members of size [No. 12][as indicated][as 
+required by design to provide the needed pullout load capacity but not less than No. 12].  Provide length of 
+screws such that the screws penetrate the holding member by not less than<MET> 16 mm</MET><ENG> 5/8 inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bar Positioners</TTL><BRK/>
+<BRK/>
+<TXT>Factory-fabricate bar positioners, used to prevent displacement of reinforcing bars during the course of construction, 
+from 9 gauge steel wire or equivalent, and hot-dip galvanized.  Bar positioners must be suitable for intended 
+use and be corrosion resistant steel.  Bar positioners not fully contained within the wythe must be hot-dip galvanized.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Joint Reinforcement</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Location of horizontal joint reinforcement should be shown on the drawings.  
+Reinforcement will have one longitudinal wire in each mortar bed.  Truss-type 
+joint reinforcement will not be used.  Adjustable joint reinforcement assemblies 
+may be used in certain types of construction where it is feasible to construct 
+one wythe independent of the other.  If the type of design does not permit this 
+type of construction, delete the sentences pertaining to adjustable joint reinforcement assemblies.<BRK/>
+<BRK/>
+Various combinations of wire sizes are available and are usually designated 
+as follows:<BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="107.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="107.25"/>
+      <COL AUTOWIDTH="0" WIDTH="107.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Long. wires</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Cross wires</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Standard</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>3.8 mm</MET><ENG>9 gauge (0.1483 inch)</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>3.8 mm</MET><ENG>9 gauge (0.1483 inch)</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Heavy Duty</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>4.8 mm</MET><ENG>3/16 inch (0.1875 inch)</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>3.8 mm</MET><ENG>9 gauge (0.1483 inch)</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="53.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Extra Heavy Duty</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>4.8 mm</MET><ENG>3/16 inch (0.1875 inch)</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>4.8 mm</MET><ENG>3/16 inch (0.1875 inch)</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/></TAB></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Factory fabricate joint reinforcement in accordance with <RID>ASTM A951/A951M</RID>, welded construction.  Provide ladder 
+type joint reinforcement, having one longitudinal wire in the mortar bed of each face shell for hollow units 
+and one wire for solid units and with all wires a minimum of [9][_____] gauge.  Size joint reinforcement to provide 
+a minimum of<MET> 16 mm</MET><ENG> 5/8 inch</ENG> cover from each face.  Space crosswires not more than<MET> 400 mm</MET><ENG> 16 inches</ENG>.  Provide 
+joint reinforcement for straight runs in flat sections not less than<MET> 3 m</MET><ENG> 10 feet</ENG> long.  Provide joint reinforcement 
+with factory formed corners and intersections.  If approved for use, joint reinforcement may be furnished with 
+adjustable wall tie features.  Submit one piece of each type used, including corner and wall intersection pieces, 
+showing at least two cross wires.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reinforcing Steel Bars</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ASTM A615/615M is typically used.  Only use weldable bars if welding 
+is unavoidable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide reinforcing steel bars and rods in accordance with <RID>ASTM A615/A615M</RID> or <RID>ASTM A996/A996M</RID>, Grade 60.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Concrete Masonry Control Joint Keys</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Control joint keys are generally not required vertically when the concrete 
+masonry spans vertically and no shear transfer is required across control joints.  
+Delete paragraph when not required.  Control joints will be detailed on the 
+drawings.  When control joint keys are not required by design, such as at reinforced 
+bond beams, the control joint detail will show the head joint completely filled 
+with mortar for the width of the wythe; but joints will be flush, raked, or 
+raked and sealed as required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide control joint keys of a factory fabricated solid section of natural or synthetic rubber (or combination 
+thereof) in accordance with <RID>ASTM D2000</RID> M2AA-805 with a minimum durometer hardness of 80 or polyvinyl chloride 
+in accordance with <RID>ASTM D2287</RID> Type PVC 654-4 with a minimum durometer hardness of 85.  Form the control joint 
+key with a solid shear section not less than<MET> 16 mm</MET><ENG> 5/8 inch</ENG> thick and<MET> 10 mm</MET><ENG> 3/8 inch</ENG> thick flanges, with a tolerance 
+of plus or minus<MET> 1.5 mm</MET><ENG> 1/16 inch</ENG>, to fit neatly, but without forcing, in masonry unit jamb sash grooves.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Clay Masonry Expansion-Joint Materials</SUB></TTL><BRK/>
+<TAI OPT="NAVY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Using interior low-VOC products contributes to meeting the requirements 
+of Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Provide backer rod and sealant, adequate to accommodate joint compression and extension equal to 50 percent of 
+the width of the joint.  Provide the backer rod of compressible rod stock of closed cell polyethylene foam, polyurethane 
+foam, butyl rubber foam, or other flexible, nonabsorptive material as recommended by the sealant manufacturer.  
+Provide sealant in accordance with Section <SRF>07 92 00</SRF> JOINT SEALANTS<TAI OPT="NAVY"> with a maximum volatile organic compound (VOC) 
+content of 600 grams/liter</TAI>.</TXT><BRK/>
+<BRK/>
+<TXT>Submit one piece of each type of material used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Through Wall Flashing and Weeps</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Require flashing in exterior masonry walls, including single-wythe construction, 
+at all obstructions such as bond beams, sills, lintels, shelf angles, and concrete 
+tie beams.  The wall design and detailing must conform to National Concrete 
+Masonry Association (NCMA) publications:  TEK 19-2B, "Design for Dry Single-Wythe 
+Concrete Masonry Walls"; TEK 19-4A, "Flashing Strategies for Concrete Masonry 
+Walls"; TEK 19-5A, "Flashing Details for Concrete Masonry Walls"; TEK 10-2D, 
+"Control Joints for Concrete Masonry Walls"; and BIA Technical Notes 7 Water 
+Penetration, Resistance.  Show locations and details on project drawings.  This 
+is a regional requirement which must be used, when applicable, for NAVFAC SE 
+projects; when appropriate, the requirements may be used for projects in other 
+areas.</NPR><BRK/>
+<BRK/>
+<NPR>Copper may stain masonry and deteriorate in high chloride environments.  The 
+use of copper flashing should be restricted for use in historical buildings 
+to maintain consistency with existing copper flashing.  Deformed copper may 
+be specified only when mortar must bond to the flashing, such as under copings 
+without dowels.</NPR><BRK/>
+<BRK/>
+<NPR>Through wall flashing of single wythe walls is not appropriate for all applications.  
+Omit this section when design requires seismic shear resistance of the masonry 
+wall.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Provide coated copper, copper or stainless steel sheet, self-adhesive rubberized sheet, or reinforced membrane 
+sheet flashing[ except that flashing indicated to terminate in reglets must be metal or coated-metal flashing][ 
+and][ except that the material must be one which is not adversely affected by dampproofing material.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coated-Copper Flashing</TTL><BRK/>
+<BRK/>
+<TXT>Provide<MET> 0.2 kg</MET><ENG> 7 ounce</ENG>, electrolytic copper sheet, uniformly coated on both sides with acidproof, alkaliproof, 
+asphalt impregnated kraft paper or polyethylene sheets.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Copper or Stainless Steel Flashing</TTL><BRK/>
+<BRK/>
+<TXT>Provide copper sheet, in accordance with <RID>ASTM B370</RID>, minimum<MET> 450 kg</MET><ENG> 16 ounce</ENG> weight; or stainless steel, <RID>ASTM A167</RID>
+, Type 304 or 316, <MET>0.4 mm</MET><ENG> 0.015 inch</ENG> thick, No. 2D finish.[  Where indicated, provide with factory-fabricated 
+deformations that mechanically bond flashing against horizontal movement in all directions, where deformations 
+consist of dimples, diagonal corrugations, or a combination of dimples and transverse corrugations.]</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Reinforced Membrane Flashing</TTL><BRK/>
+<BRK/>
+<TXT>Provide polyester film core with a reinforcing fiberglass scrim bonded to one side.  Provide membrane that is 
+impervious to moisture, flexible, is not affected by caustic alkalis, and after being exposed for not less than 
+1/2 hour to a temperature of<MET> 0 degrees C</MET><ENG> 32 degrees F</ENG>, shows no cracking when, at that temperature, it is bent 
+180 degrees over a<MET> 2 mm</MET><ENG> 1/16 inch</ENG> diameter mandrel and then bent at the same point over the same size mandrel 
+in the opposite direction 360 degrees.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Rubberized Flashing</TTL><BRK/>
+<BRK/>
+<TXT>Provide self-adhesive rubberized asphalt sheet flashing consisting of<MET> 0.8 mm</MET><ENG> 32-mil</ENG> thick pliable and highly 
+adhesive rubberized asphalt compound bonded completely and integrally to<MET> 0.2 mm</MET><ENG> 8-mil</ENG> thick, high density, cross-laminated 
+polyethylene film to produce an overall thickness of<MET> 1 mm</MET><ENG> 40 mils</ENG>. Provide rubberized, asphalt-based mastic and 
+surface conditioner that are each approved by flashing manufacturer for use with flashing material.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Weep Ventilators</TTL><BRK/>
+<BRK/>
+<TXT>Provide weep ventilators that are prefabricated from stainless steel or plastic.  Provide inserts with grill 
+or louver-type openings designed to allow the passage of moisture from cavities and to prevent the entrance of 
+insects, and with a rectangular closure strip to prevent mortar droppings from clogging the opening.  Provide 
+ventilators with compressible flanges to fit in a standard<MET> 10 mm</MET><ENG> 3/8 inch</ENG> wide mortar joint and with height equal 
+to the nominal height of the unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Single-Wythe Exterior Wall CMU Flashing System</TTL><BRK/>
+<BRK/>
+<TXT>In single-wythe exterior CMU walls, provide a system of CMU cell flashing pans and interlocking CMU web covers 
+made from UV-resistant, high-density polyethylene.  For exterior CMU walls, provide a flashing/weep system in 
+open cores that do not receive grout.  Cell flashing pans are to have integral weep spouts built into mortar 
+bed joints that extend into the cell to prevent clogging with mortar.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Metal Drip Edge</TTL><BRK/>
+<BRK/>
+<TXT>Provide stainless steel drip edge,<MET> 0.4 mm</MET><ENG> 15-mil</ENG> thick, hemmed edges, with down-turned drip at the outside edge 
+and upturned dam at the inside edge for use with membrane flashings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><TAI OPT="INSULATION"><SPT><TTL>Rigid Board-Type <SUB>Insulation</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert the appropriate thickness and R-Value to be used for the insulation.  
+The total R-value for the insulation and the total thickness of the insulation 
+must be coordinated to fit the space provided within the wall cavity.  The thickness 
+of the insulation must allow for not less than<MET> 19 mm</MET> <ENG>3/4 inch</ENG> air space between 
+the insulation and the facing veneer.  This will limit the insulation thickness 
+to<MET> 50 mm</MET><ENG> 2 inches</ENG> in a<MET> 70 mm</MET><ENG> 2-3/4 inch</ENG>) cavity space.  If greater insulation 
+thickness is required the masonry wall must be designed to provide a larger 
+cavity.</NPR><BRK/>
+<BRK/>
+<NPR>To assure adequate competition, an R-value should be chosen that allows several 
+products to meet the specified thickness.<ENG>  The range of design R-values (in 
+IP units) for foam insulations given by ASHRAE is 5 to 7 per inch.</ENG>  Verify range 
+available from manufacturers.  An aged R-value in<MET> SI units of 2</MET><ENG> IP units of 
+11</ENG>) can be readily achieved with<MET> 50 mm</MET><ENG> 2 inches</ENG> of insulation.</NPR><BRK/>
+<BRK/>
+<NPR>Cellular plastic insulations (polystyrene, polyurethane and polyisocyanurate) 
+are thermally efficient, however, certain precautions should be observed in 
+their use due to high smoke development and toxicity of the smoke generated 
+by the burning of these materials.  Cellular plastic insulations should only 
+be used in anchored veneer masonry walls where the insulation is completely 
+isolated from the interior of the building by masonry, including all penetrations 
+of the interior wythe.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide rigid board-type insulation in accordance with Section <SRF>07 21 13</SRF> BOARD AND BLOCK INSULATION.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>Prior to start of work, verify the applicable conditions in accordance with <RID>TMS 402/602</RID>, inspection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PREPARATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Stains</TTL><BRK/>
+<BRK/>
+<TXT>Protect exposed surfaces from mortar and other stains.  When mortar joints are tooled, remove mortar from exposed 
+surfaces with fiber brushes and wooden paddles.  Protect base of walls from splash stains by covering adjacent 
+ground with sand, sawdust, or polyethylene.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Loads</TTL><BRK/>
+<BRK/>
+<TXT>Do not apply uniform loads for at least 36 hours or concentrated loads for at least 72 hours after masonry is 
+constructed.  Provide temporary bracing as required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Concrete Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>Where masonry is to be placed, clean concrete of laitance, dust, dirt, oil, organic matter, or other foreign 
+materials and slightly roughen to provide a surface texture with a depth of at least<MET> 3 mm</MET><ENG> 1/8 inch</ENG>.  Sandblast, 
+if necessary, to remove laitance from pores and to expose the aggregate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shelf Angles</TTL><BRK/>
+<BRK/>
+<TXT>Adjust shelf angles as required to keep the masonry level and at the proper elevation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bracing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  TMS, Article 3.3 E Commentary references "Standard Practice for Bracing 
+Masonry Walls Under Construction" for guidance on wall bracing requirements.  
+Design wind pressure for bracing design is lower than that required by building 
+code for long term building performance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide bracing and scaffolding necessary for masonry work.  Design bracing to resist wind pressure as required 
+by OSHA and local codes and submit <SUB>bracing calculations</SUB>, sealed by a registered professional engineer.  Do not 
+remove bracing in less than 10 days.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ERECTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify bond pattern for each type of masonry.  Where more than one bond 
+pattern is required, the drawings should indicate the location and extent of 
+each bond pattern.  Bond patterns for reinforced hollow masonry construction 
+should be such that cores of units will be in vertical alignment.  Perfect vertical 
+alignment of cells may require special masonry units.  Where stacked bond is 
+specified in reinforced hollow masonry, provide horizontal reinforcing bars 
+at maximum<MET> 1220 mm</MET><ENG> 4 foot</ENG> intervals or horizontal joint reinforcement must be 
+required in every other horizontal joint to provide mechanical bond between 
+adjacent units.  When veneer is specified to be laid in stack bond and the project 
+is in Seismic Design Category E or higher, horizontal joint reinforcement consisting 
+of a single wire size<MET> MW11</MET><ENG> W1.7</ENG> is required at a maximum spacing of<MET> 460 mm</MET><ENG> 18 
+inches</ENG>.  The use of stacked bond is discouraged and should only be permitted 
+for small wall areas to give an architectural feature, such as for a building 
+entrance detail.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<OLG><BRK/>
+<OLI> Coordinate masonry work with the work of other trades to accommodate built-in items and to avoid cutting 
+and patching.  Lay masonry units in [running][stacked][the indicated] bond pattern.  Lay facing courses 
+level with back-up courses, unless the use of adjustable ties has been approved in which case the tolerances 
+is plus or minus<MET> 13 mm</MET><ENG> 1/2 inch</ENG>.  Adjust each unit to its final position while mortar is still soft and 
+has plastic consistency.</OLI><BRK/>
+<BRK/>
+<OLI>Remove and clean units that have been disturbed after the mortar has stiffened, and relay with fresh 
+mortar.  Keep air spaces, cavities, chases, expansion joints, and spaces to be grouted free from mortar 
+and other debris.  Select units to be used in exposed masonry surfaces from those having the least amount 
+of chipped edges or other imperfections detracting from the appearance of the finished work.</OLI><BRK/>
+<BRK/>
+<OLI>When necessary to temporarily discontinue the work, step (rack) back the masonry for joining when work 
+resumes.  Toothing may be used only when specifically approved by the Contracting Officer.  Before resuming 
+work, remove loose mortar and thoroughly clean the exposed joint.  Cover the top of walls subjected to 
+rain or snow with nonstaining waterproof covering or membrane when work is not in process.  Extend the 
+covering a minimum of<MET> 610 mm</MET><ENG> 2 feet</ENG> down on each side of the wall and hold securely in place.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure that units being laid and surfaces to receive units are free of water film and frost.  Lay solid 
+units in a nonfurrowed full bed of mortar.  Bevel mortar for veneer wythes and slope down toward the 
+cavity side.  Shove units into place so that the vertical joints are tight.  Completely fill vertical 
+joints between solid units with mortar, except where indicated at control, expansion, and isolation joints.  
+Place hollow units so that mortar extends to the depth of the face shell at heads and beds, unless otherwise 
+indicated.  Mortar will be permitted to protrude up to<MET> 13 mm</MET><ENG> 1/2 inch</ENG> into the space or cells to be grouted.  
+Provide means to prevent mortar from dropping into the space below or clean grout spaces prior to grouting.</OLI><BRK/>
+<BRK/>
+<OLI>In multi-wythe construction with collar joints no more than<MET> 20 mm</MET><ENG> 3/4 inch</ENG> wide, bring up the inner wythe 
+not more than<MET> 400 mm</MET><ENG> 16 inches</ENG> ahead of the outer wythe.  Fill collar joints with mortar during the laying 
+of the facing wythe, and do not lag the laying of the facing wythe by back-buttering each unit as it 
+is laid.</OLI></OLG><BRK/>
+<BRK/>
+<SPT><TTL>Jointing</TTL><BRK/>
+<BRK/>
+<TXT>Tool mortar joints when the mortar is thumbprint hard.  Tool horizontal joints after tooling vertical joints.  
+Brush mortar joints to remove loose and excess mortar.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Tooled Joints</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Tooling any joint densifies the mortar bonding.  Joints in exterior masonry 
+walls exposed to weather will be tooled with an approved mortar jointer, typically 
+a concave jointer.  Other joints that are suitable for weathertight construction 
+and may be considered for architectural purposes are:  Vee, Beaded, or Weathered 
+types.  Exposed to view or painted interior masonry walls will also be tooled, 
+typically with a slightly concaved joint, but may also be tooled with other 
+joint types as architecturally desired.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Tool mortar joints in exposed exterior and interior masonry surfaces [concave][_____], using a jointer that is 
+slightly larger than the joint width so that complete contact is made along the edges of the unit.  Perform tooling 
+so that the mortar is compressed and the joint surface is sealed.  Use a jointer of sufficient length to obtain 
+a straight and true mortar joint.  No exterior joints are to be left un-tooled.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flush Joints</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Label "wet areas" on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Flush cut mortar joints in concealed masonry surfaces and joints at electrical outlet boxes in wet areas.  Finish 
+flush cut joints by cutting off the mortar flush with the face of the wall.  Point joints in unparged masonry 
+walls below grade tight.  For architectural units, such as fluted units, completely fill both the head and bed 
+joints and flush cut.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Door and Window Frame Joints</TTL><BRK/>
+<BRK/>
+<TXT>On the exposed interior side of exterior frames, rake joints between frames and abutting masonry walls to a depth 
+of<MET> 10 mm</MET><ENG> 3/8 inch</ENG>.  On the exterior side of exterior frames,rake  joints between frames and abutting masonry 
+walls to a depth of<MET> 10 mm</MET><ENG> 3/8 inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joint Widths</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Construct brick masonry with mortar joint widths equal to the difference between the specified and nominal 
+dimensions of the unit, within tolerances permitted by <RID>TMS 402/602</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide<MET> 10 mm</MET><ENG> 3/8 inch</ENG> wide mortar joints in concrete masonry, except for prefaced concrete masonry units.</OLI><BRK/>
+<BRK/>
+<OLI>Provide<MET> 10 mm</MET><ENG> 3/8 inch</ENG> wide mortar joints on unfaced side of prefaced concrete masonry units and not 
+less than<MET> 5 mm</MET><ENG> 3/16 inch</ENG> nor more than<MET> 6 mm</MET><ENG> 1/4 inch</ENG> wide on prefaced side.</OLI><BRK/>
+<BRK/>
+<OLI>Maintain mortar joint widths within tolerances permitted by <RID>TMS 402/602</RID></OLI></OLG><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cutting and Fitting</TTL><BRK/>
+<BRK/>
+<TXT>Use full units of the proper size wherever possible, in lieu of cut units.  Locate cut units where they would 
+have the least impact on the architectural aesthetic goals of the facility.  Perform cutting and fitting, including 
+that required to accommodate the work of others, by masonry mechanics using power masonry saws.  Concrete masonry 
+units are to be wet cut. If wet cutting is not possible dry cutting may be performed provided that OSHA compliant 
+respirators are used by employees. .  Before being placed in the work, dry wet-cut units to the same surface-dry 
+appearance as uncut units being laid in the wall.  Provide cut edges that are clean, true and sharp.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Carefully make openings in the masonry so that wall plates, cover plates or escutcheons required by the 
+installation will completely conceal the openings and will have bottoms parallel with the masonry bed 
+joints.  Provide reinforced masonry lintels above openings over<MET> 300 mm</MET><ENG> 12 inches</ENG> wide for pipes, ducts, 
+cable trays, and other wall penetrations, unless steel sleeves are used.</OLI><BRK/>
+<BRK/>
+<OLI>Do not reduce masonry units in size by more than one-third in height and one-half in length.  Do not 
+locate cut products at ends of walls, corners, and other openings.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unfinished Work</TTL><BRK/>
+<BRK/>
+<TXT>Rack back unfinished work for joining with new work.  Toothing may be resorted to only when specifically approved 
+by the Contracting Officer.  Remove loose mortar and thoroughly clean the exposed joints before laying new work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Clay Masonry Expansion Joints</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Expansion joints in clay or shale masonry will be located and detailed 
+on the drawings. The wall design and detailing must conform to BIA Technical 
+Notes 18A Accommodating Expansion of Brickwork.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide clay masonry expansion joints as indicated.  Construct by [leaving a gap][filling with a compressible 
+foam pad].  Ensure that no mortar or other noncompressible materials are within the joint.  Install backer rod 
+and sealant in accordance with Section <SRF>07 92 00</SRF> JOINT SEALANTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Joints</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Control joints will be located and detailed on the drawings.  The wall 
+design and detailing for movement control must conform to National Concrete 
+Masonry Association (NCMA) publications:  TEK 10-01A, and 10-02D or 10-03 or 
+10-04, as applicable.  When control joint keys are required, it is the Contractor's 
+option to use either special control joint units or sash jamb units with control 
+joint keys.  If one is preferred over the other in the design, edit this paragraph 
+accordingly and provide specific details on the drawings.  Follow NCMA TEK 14-18B 
+"Seismic Design and Detailing Requirements for Masonry Structures" for guidance 
+on control joints in seismic zones.    Where horizontal shear reinforcement 
+is needed by design, however, the reinforcement must be continuous through the 
+control joint.  Select the appropriate option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide control joints in concrete masonry as indicated.  Construct by [raking out mortar within the head joint][using 
+special control-joint units][using sash jamb units with control joint key][using open end stretcher units placed 
+with the closed end at the joint] in accordance with the details shown on the Drawings.  Form a continuous vertical 
+joint at control joint locations, including through bond beams, by utilizing half blocks in alternating courses 
+on each side of the joint.  Interrupt the control joint key in courses containing continuous bond beam reinforcement.[  
+Do not interrupt the horizontal reinforcement and grout at the control joint.][  Interrupt the horizontal reinforcement 
+and grout in bond beams at the control joint except in bond beams at the floor and roof diaphragms.]</TXT><BRK/>
+<BRK/>
+<TXT>Where mortar was placed in the joint, rake both faces of the control joints to a depth of<MET> 19 mm</MET><ENG> 3/4 inch</ENG>.  Install 
+backer rod and sealant on both faces in accordance with Section <SRF>07 92 00</SRF> JOINT SEALANTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Decorative Architectural Units</TTL><BRK/>
+<BRK/>
+<TXT>Place decorative masonry units with the patterned face shell properly aligned in the completed wall.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><TAI OPT="BRICK"><SPT><TTL>Clay or Shale Brick Masonry</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify type of bond required, if other than running bond is desired.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Brick Placement</TTL><BRK/>
+<BRK/>
+<TXT>Blend all brick at the jobsite from several cubes to produce a uniform appearance when installed.  An observable 
+"banding" or "layering" of colors or textures caused by improperly mixed brick is unacceptable.  Lay brick facing 
+with the better face exposed.  Lay brick in running bond with each course bonded at corners, unless otherwise 
+indicated.  Lay molded brick with the frog side down.  Do not lay brick that is cored, recessed, or has other 
+deformations in a manner that allows those deformations to be exposed to view; lay 100 percent solid units in 
+these areas.  Completely fill head and bed joints of solid units with mortar.  Lay hollow units with mortar joints 
+as specified for concrete masonry units.[  Lay fire brick by dipping each brick in a soft mixture of fire clay 
+and water and then rubbing the brick into place with joints as thin as practicable or provide refractory mortar 
+with joints not more than<MET> 10 mm</MET><ENG> 3/8 inch</ENG> thick.]</TXT><BRK/>
+<BRK/>
+<TXT>Place exterior face of salvaged bricks towards the exterior.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wetting of Units</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If clay, shale brick, or hollow brick is specified, include wetting requirements 
+for units having an initial rate of absorption (IRA) of more than<MET> 0.155 gm per 
+minute per square cm</MET><ENG> 1 gm per minute per square inch</ENG> of bed surface.</NPR><BRK/>
+<BRK/>
+<NPR>IRA is measured in the laboratory and reported in test results.  However, the 
+IRA can increase under hot weather conditions in the field.  The wax pencil 
+test can approximate the field IRA condition.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Wet clay, shale brick, or hollow brick units having an initial rate of absorption of more than<MET> 0.155 gm per minute 
+per square cm</MET><ENG> 1 gram per minute per square inch</ENG> of bed surface in accordance with <RID>ASTM C67/C67M</RID>.  Ensure that 
+each unit is nearly saturated when wetted but surface dry when laid.</TXT><BRK/>
+<BRK/>
+<TXT>Test clay or shale brick daily on the job, prior to laying, as follows:  Using a wax pencil, draw a circle the 
+size of a quarter on five randomly selected bricks.  Apply 20 drops of water with a medicine dropper to the surface 
+within the circle on each brick.  If the average time that the water is completely absorbed in the five bricks 
+is less than 1-1/2 minutes, wet bricks represented by the five bricks tested.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Brick Sills</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Brick sills are more susceptible to freeze-/thaw damage and should be 
+carefully considered in freezing climates.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Lay brick on edge, slope not less than<MET> 19 mm</MET><ENG> 3/4 inch</ENG> downward to the outside, and project not less than<MET> 26 mm</MET><ENG>
+ 1 inch</ENG> beyond the face of the wall to form a wash and drip.  Fill all joints solidly with mortar and tool.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reinforced Brick Walls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Multi-wythe walls with masonry headers are more susceptible to water 
+penetration and efflorescence.</NPR><BRK/>
+<BRK/>
+<NPR>Show required length of reinforcing bar lap splices on the Drawings or by a 
+schedule in the Specification. Required lap length of bars may be different 
+depending on whether the masonry is designed by allowable stress or by strength.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide two wythes of brick separated by a [_____]<MET> mm</MET><ENG> inch</ENG> wide continuous space filled with [grout][bricks "floated" 
+in grout] and reinforced as indicated.  Bevel mortar beds away from grout space to prevent projection into grout 
+space when bricks are shoved in place.  Deeply furrowed bed joints will not be permitted.  Lay exterior wythe 
+of brick to the height of each grout pour in advance of interior wythe.  Clean grout space and set reinforcing 
+before laying interior wythe.  Provide metal ties to prevent spreading of the wythes and to maintain vertical 
+alignment of walls.  Place reinforcement and grout in accordance with paragraph BAR REINFORCEMENT INSTALLATION 
+and paragraph PLACING GROUT in this Section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chimneys</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If a chimney wall is<MET> 200 mm</MET><ENG> 8 inches</ENG> or less in thickness, the space 
+between the flue liner and brickwork should be kept clean and clear to avoid 
+cracking the brickwork.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Construct chimneys of brick with clay flue linings of the sizes indicated.  Extend flue linings from<MET> 300 mm</MET><ENG> 12 
+inches</ENG> below the smoke inlet to<MET> 100 mm</MET><ENG> 4 inches</ENG> above the chimney cap.  Place thimbles as indicated, flush with 
+inside of or up to<MET> 25 mm</MET><ENG> one inch</ENG> into the flue lining.  Set linings in fire clay mortar or refractory mortar 
+and fill and smooth the joints on the inside.  Set each section of flue lining before surrounding brickwork reaches 
+top of flue lining section below.  Build brickwork around lining, and [fill the space][leave a<MET> 25 mm</MET><ENG> one inch</ENG>
+ airspace] between lining and brickwork[ with grout].[  Seal top of airspace before installing chimney cap.]  
+Do not cut linings after they are installed in chimney.  Unless indicated otherwise, provide a chimney cap of 
+air-entrained concrete.  Slope cap to a minimum edge thickness of<MET> 50 mm</MET><ENG> 2 inches</ENG> and reinforce with two rings 
+of No. 3 gage galvanized steel wire.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Partitions</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Construct partitions continuous from floor to underside of floor or roof deck where shown.  Fill openings 
+in firewalls around joists and other structural members as indicated or approved.  Where suspended ceilings 
+on both sides of partitions are indicated, the partitions other than those shown to be continuous may 
+be stopped approximately<MET> 100 mm</MET><ENG> 4 inches</ENG> above the ceiling level.  Construct an isolation joint in the 
+intersection between partitions and structural or exterior walls.</OLI><BRK/>
+<BRK/>
+<OLI>Tie interior partitions having<MET> 100 mm</MET><ENG> 4 inch</ENG> nominal thickness units to intersecting partitions of<MET> 100 
+mm</MET><ENG> 4 inch</ENG> units, <MET>125 mm</MET><ENG> 5 inches</ENG> into partitions of<MET> 150 mm</MET><ENG> 6 inch</ENG> units, and<MET> 175</MET><ENG> 7 inches</ENG> into partitions 
+of<MET> 200 mm</MET><ENG> 8 inch</ENG> or thicker units.  Fill cells within vertical plane of ties solid with grout for full 
+height of partition or solid masonry units may be used.  Tie interior partitions over<MET> 100 mm</MET><ENG> 4 inches</ENG>
+ thick together with joint reinforcement.  Provide joint reinforcement with prefabricated pieces at corners 
+and intersections of partitions.</OLI><BRK/>
+<BRK/>
+<OLI>Double-Faced Bases or Partitions:  Construct double-faced clay unit bases and partitions of two-unit 
+construction.  Bond units by overlapping from opposite faces of the wall,<MET> 50 mm for 150 mm</MET><ENG> 2 inches for 
+6 inch</ENG> thick partitions and<MET> 100 mm for 200 mm</MET><ENG> 4 inches for 8 inch</ENG> thick or greater.  A single wythe prefaced 
+concrete masonry base or partition may be made with double faced units.</OLI></OLG><BRK/>
+<BRK/></SPT>
+</SPT></TAI><SPT><TTL>Anchored Veneer Construction</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Construct exterior masonry wythes to the thickness indicated on the drawings.  Provide a minimum [_____]<MET>
+ mm</MET><ENG> inch</ENG> air space behind the masonry veneer.  Provide means to ensure that the cavity space and flashings 
+are kept clean of mortar droppings and other loose debris.  Maintain chases and raked-out joints free 
+from mortar and debris.</OLI><BRK/>
+<BRK/>
+<OLI>Place masonry [in running bond pattern.][in stacked bond pattern.][  Place longitudinal reinforcement, 
+consisting of at least one continuous hot-dip galvanized<MET> MW11</MET><ENG> W 1.7 (9gauge)</ENG> steel wire, in the veneer 
+wythe when laid in stack bond.]</OLI><BRK/>
+<BRK/>
+<OLI>For veneer over stud framing, do not install veneer until the exterior sheathing, moisture barrier, veneer 
+anchors and flashing have been installed on the backing.  Take extreme care to avoid damage to the moisture 
+barrier and flashing during construction of the masonry veneer.  Repair or replace portions of the moisture 
+barrier and flashing that are damaged prior to completion of the veneer.  Provide a continuous cavity 
+as indicated.</OLI><BRK/>
+<BRK/>
+<OLI>For veneer with a masonry backup wythe, lay up both the inner and the outer wythes together except when 
+adjustable joint reinforcement assemblies are approved for use.  When both wythes are not brought up 
+together, install through-wall flashings with the exterior wythe, securing the top edge of the flashing 
+with a termination bar and sealant, or protect flashings that are installed with the interior wythe from 
+damage until they are fully enclosed in the wall.</OLI><BRK/>
+<BRK/>
+<OLI>Provide anchors (ties) to connect the veneer to its backing in sufficient quantity to comply with the 
+following requirements: maximum wall area per anchor {tie) of [_____], and maximum vertical spacing of 
+[_____], and maximum horizontal spacing of [_____].  Provide additional anchors around openings larger 
+than<MET> 406 mm</MET><ENG> 16 inch</ENG> in either direction. Space anchors around perimeter of opening at a maximum of [<MET>0.91 
+m</MET><ENG>3 feet</ENG>][<MET>610 mm</MET><ENG>24 inches</ENG>] on center.  Place anchors within<MET> 305 mm</MET><ENG> 12 inches</ENG> of openings.  Anchors with 
+drips are not permitted.</OLI><BRK/>
+<BRK/>
+<OLI>With solid units, embed anchors in mortar joint and extend into the veneer a minimum of<MET> 38 mm</MET><ENG> 1-1/2 inch</ENG>
+, with at least<MET> 16 mm</MET><ENG> 5/8 inch</ENG> mortar cover to the outside face.</OLI><BRK/>
+<BRK/>
+<OLI>With hollow units, embed anchors in mortar or grout and extend into the veneer a minimum of<MET> 38 mm</MET><ENG> 1-1/2 
+inch</ENG>, with at least<MET> 16 mm</MET><ENG> 5/8 inch</ENG> mortar or grout cover to outside face.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Composite Walls</TTL><BRK/>
+<BRK/>
+<TXT>Tie masonry wythes together with joint reinforcement or with unit wall ties.  Embed wall ties at least<MET> 38 mm</MET><ENG> 
+1-1/2 inch</ENG> into mortar of solid units and at least<MET> 13 mm</MET><ENG> 1/2 inch</ENG> into the mortar of the outer face shell of 
+hollow units.  Provide at least one tie every<MET> 0.25 square m</MET><ENG> 2.67 square feet</ENG> for wire size<MET> MW11</MET><ENG> W1.7</ENG> and at least 
+one tie every<MET> 0.42 square m</MET><ENG> 4.50 square feet</ENG> for wire size<MET> MW18</MET><ENG> W2.8</ENG>.  Space ties at a maximum of<MET> 900 mm</MET><ENG> 36 inches</ENG>
+ horizontally and<MET> 610 mm</MET><ENG> 24 inches</ENG> vertically.  Do not cross expansion joints or control joints with ties.  Fill 
+collar joints between masonry facing and masonry backup solidly with grout.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reinforced, Single Wythe Concrete Masonry Units Walls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For single-wythe, concrete masonry unit exterior walls, specify water-repellant 
+application for the constructed masonry walls or specify integral water repellent 
+admixture for both the masonry units and the mortar.  Units with an impervious 
+coating, such as glazed-faced units, do not require a water-repellent.  This 
+is a regional requirement which must be used, when applicable, for NAVFAC SE 
+projects; when appropriate, the requirements may be used for projects in other 
+areas.</NPR><BRK/>
+<BRK/>
+<NPR>Show required length of reinforcing bar lap splices on the Drawings or by a 
+schedule in the Specification.  Required lap length of bars may be different 
+depending on whether the masonry is designed by allowable stress or by strength.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Concrete Masonry Unit Placement</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Fully bed units used to form piers, pilasters, columns, starting courses on footings, solid foundation 
+walls, lintels, and beams, and where cells are to be filled with grout in mortar under both face shells 
+and webs.  Provide mortar beds under both face shells for other units.  Mortar head joints for a distance 
+in from the face of the unit not less than the thickness of the face shell.</OLI><BRK/>
+<BRK/>
+<OLI>Solidly grout foundation walls below grade.</OLI><BRK/>
+<BRK/>
+<OLI>Stiffen double walls at wall-mounted plumbing fixtures by use of strap anchors, two above each fixture 
+and two below each fixture, located to avoid pipe runs, and extending from center to center of each wall 
+within the double wall.  Adequately reinforce walls and partitions for support of wall-hung plumbing 
+fixtures when chair carriers are not specified.</OLI><BRK/>
+<BRK/>
+<OLI>Submit drawings showing elevations of walls exposed to view and indicating the location of all <SUB>cut CMU</SUB>
+ products.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preparation for Reinforcement</TTL><BRK/>
+<BRK/>
+<TXT>Lay units in such a manner as to preserve the unobstructed vertical continuity of cores to be grouted.  Remove 
+mortar protrusions extending<MET> 13 mm</MET><ENG> 1/2 inch</ENG> or more into cells before placing grout.  Position reinforcing bars 
+accurately as indicated before placing grout.  Where vertical reinforcement occurs, fill cores solid with grout 
+in accordance with paragraph PLACING GROUT in this Section.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cavity Walls (Multi-Wythe Noncomposite Walls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include dampproofing or air barrier requirements in geographic areas 
+where these are required or as an acceptable practices.  Now that masonry wall 
+cavities are usually at least half full of rigid board insulation, and the backup 
+wythe is usually completed before the brickwork is started, the wood strip method 
+of keeping the cavities clean is neither practicable nor effective.  A mortar 
+divertingal placed at the bottom of the cavity will provide a path for water 
+to drain through the weep holes.  The specified method for concrete masonry 
+unit and brick cavity wall is effective, but may be deleted if the specifier 
+is reluctant to require it.  Care must be taken (1) to prevent damage to mortar 
+joints, especially adjacent to the washout holes, and (2) to prevent accumulation 
+of water at the bottom of the wall.  The cavities must be inspected to verify 
+that they are clean and functional.</NPR><BRK/>
+<BRK/>
+<NPR>Refer to "Maximum Spacing and Wall Area for Ties" table for maximum wall area 
+per tie, and maximum vertical and horizontal spacing of ties based on tie type 
+per TMS.</NPR><BRK/>
+<TAB HEADERROWS="4">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="6" ROWCOUNT="8">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="72.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="72.75"/>
+      <COL AUTOWIDTH="0" WIDTH="72.75"/>
+      <COL AUTOWIDTH="0" WIDTH="72.75"/>
+      <COL AUTOWIDTH="0" WIDTH="85.50"/>
+      <COL AUTOWIDTH="0" WIDTH="73.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="5" STYLEID="s51">
+<DTA TYPE="STRING">Maximum Spacing and Wall Area for Veneer Anchors</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEDOWN="2" STYLEID="s51">
+<DTA TYPE="STRING">Masonry Design Approach</DTA>
+         </CEL>
+         <CEL MERGEACROSS="4" STYLEID="s51">
+<DTA TYPE="STRING">Unit Anchor Type and Size</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">Adjustable</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Non- Adjustable</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Non- Adjustable</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Joint Reinforcement</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Sheet Metal</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">All Sizes</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>MW11</MET><ENG>W1.7 Wire</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>MW18</MET><ENG>W2.8 Wire</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>MW11</MET><ENG>W1.7 Wire</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>&gt;</HL1><MET> 1.5mm</MET><ENG>0.06 inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING">Allowable Stress Design, Strength Design and Prestressed Design</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="72.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Area per Tie</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>0.16 m<SPS>2</SPS></MET><ENG>1.77 ft<SPS>2</SPS></ENG><BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.25 m<SPS>2</SPS></MET><ENG>2.67 ft<SPS>2</SPS></ENG><BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.42 m<SPS>2</SPS></MET><ENG>4.50 ft<SPS>2</SPS></ENG><BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Same as non-adjustable unit ties of same wire size</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Not permitted</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Horizontal Spacing</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>406 mm</MET><ENG>16 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>914 mm</MET><ENG>36 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>914 mm</MET><ENG>36 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>406 mm</MET><ENG>16 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Vertical Spacing</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>406 mm</MET><ENG>16 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>610 mm</MET><ENG>24 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>610 mm</MET><ENG>24 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>610 mm</MET><ENG>24 inch</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<NPR>For NAVFAC SE projects, use second bracketed statement in the eighth sentence.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a continuous cavity as indicated.  Bevel mortar beds away from cavity to prevent projection into cavity 
+when bricks are shoved in place.  Keep cavities clear and clean of mortar droppings.[  At the bottom of cavity 
+walls, in the course immediately above the through-wall flashing, temporarily omit one brick every<MET> 1200 mm</MET><ENG> 4 
+feet</ENG>.  Clean mortar droppings and debris out of the cavity through the temporary openings at least once each 
+day masonry is laid, and more often when required to keep the cavities clean.  Fill in the openings with bricks 
+and mortar after the wall is complete and the cavity has been inspected and found clean.][  Dampproof cavity 
+face of interior wythe in accordance with Section <SRF>07 11 13</SRF> BITUMINOUS DAMPPROOFING.]</TXT><BRK/>
+<BRK/>
+<TXT>Securely tie the two wythes together with horizontal joint reinforcement, or provide ties to connect the masonry 
+wythes in sufficient quantity to comply with the following requirements: maximum wall area per tie of [_____], 
+and maximum vertical spacing of [_____], and maximum horizontal spacing of [_____].  Provide additional ties 
+around openings larger than<MET> 405 mm</MET><ENG> 16 inches</ENG> in either direction. Space ties around perimeter of opening at a 
+maximum of<MET> 910 mm</MET><ENG> 3 feet</ENG> on center.  Place ties within<MET> 305 mm</MET><ENG> 12 inches</ENG>of openings.  Ties with drips are not 
+permitted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anchorage</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If spacing of anchors varies from that specified, edit these paragraphs 
+accordingly.</NPR><BRK/>
+<BRK/>
+<NPR>For intersecting structural masonry walls, delete the types of anchorage that 
+are not permitted for the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Anchorage to Concrete</TTL><BRK/>
+<BRK/>
+<TXT>Anchor masonry to the face of concrete columns, beams, or walls with dovetail anchors spaced not over<MET> 400 mm</MET><ENG> 
+16 inches</ENG> on centers vertically and<MET> 600 mm</MET><ENG> 24 inches</ENG> on center horizontally.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anchorage to Structural Steel</TTL><BRK/>
+<BRK/>
+<TXT>Anchor masonry to vertical structural steel framing with adjustable steel wire anchors spaced not over<MET> 400 mm</MET><ENG>
+ 16 inches</ENG> on centers vertically, and if applicable, not over<MET> 600 mm</MET><ENG> 24 inches</ENG> on centers horizontally.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anchorage at Intersecting Walls</TTL><BRK/>
+<BRK/>
+<TXT>Provide wire mesh anchors at maximum<MET> 400 mm</MET><ENG> 16 inches</ENG> spacing at intersections of interior non-bearing masonry 
+walls.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Details will be shown on the drawings which illustrate corners and intersections 
+of structural bond beam reinforcement and factory-formed joint reinforcement.  
+When joint reinforcement is not used, delete prefabricated corners or tee pieces.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Anchor structural masonry walls with [reinforced bond beams spaced no more than [_____]<MET> mm</MET><ENG> feet</ENG> on center][horizontal 
+joint reinforcement spaced no more than [_____]<MET> mm</MET><ENG> feet</ENG> on center][overlapping masonry units][strap anchors of 
+minimum size<MET> 6 mm</MET><ENG> 1/4 inch</ENG> x<MET> 38 mm</MET><ENG> 1-1/2 inch</ENG> x<MET> 710 mm</MET><ENG> 28 inches</ENG> including<MET> 50 mm</MET><ENG> 2 inch)</ENG> 90 degree bends at each 
+end to form U or Z shape at maximum spacing<MET> 1220 mm</MET><ENG> 48 inches</ENG>, grouted into the wall], unless the drawings indicate 
+a movement joint at the intersection.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Lintels</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Masonry Lintels</TTL><BRK/>
+<BRK/>
+<TXT>Construct masonry lintels with lintel units filled solid with grout in all courses and reinforced with a minimum 
+of two No. 4 bars in the bottom course unless otherwise indicated.  Extend lintel reinforcement beyond each side 
+of masonry opening 40 bar diameters or<MET> 600 mm</MET><ENG> 24 inches</ENG>, whichever is greater.  Support reinforcing bars in place 
+prior to grouting and locate<MET> 13 mm</MET><ENG> 1/2 inch</ENG> above the bottom inside surface of the lintel unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Precast Concrete and Steel Lintels</TTL><BRK/>
+<BRK/>
+<TXT>Provide precast concrete and steel lintels as shown on the Drawings.  Set lintels in a full bed of mortar with 
+faces plumb and true.  Provide steel and precast lintels with a minimum bearing length of<MET> 200 mm</MET><ENG> 8 inches</ENG> unless 
+otherwise indicated.  In partially grouted masonry, provide fully grouted units under the full lintel bearing 
+length, unless otherwise indicated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Sills and Copings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coping and sills exceeding<MET> 1200 mm</MET><ENG> 4 feet</ENG> should be mechanically anchored 
+and detailed on the project drawings.  Where such anchors penetrate through-wall 
+flashing, sealing of the penetration should be required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Set sills and copings in a full bed of mortar with faces plumb and true.  Slope sills and copings to drain water.  
+Mechanically anchor copings and sills longer than<MET> 1200 mm</MET><ENG> 4 feet</ENG> as indicated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Bar Reinforcement Installation</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Preparation</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>detail drawings</SUB> showing bar splice locations.  Identify bent bars  on a bending diagram and reference 
+and locate such bars on the drawings.  Show wall dimensions, bar clearances, and wall openings.  Utilize bending 
+details that conform to the requirements of <RID>ACI SP-66</RID>.  No approval will be given to the shop drawings until 
+the Contractor certifies that all openings, including those for mechanical and electrical service, are shown.  
+If, during construction, additional masonry openings are required, resubmit the approved shop drawings with the 
+additional openings shown along with the proposed changes.  Clearly highlight location of these additional openings.  
+Provide wall elevation drawings with minimum scale of<MET> 1 to 50</MET><ENG> 1/4 inch per foot</ENG>.  Submit drawings including plans, 
+elevations, and details of wall reinforcement; details of reinforcing bars at corners and wall intersections; 
+offsets; tops, bottoms, and ends of walls; control and expansion joints; lintels; and wall openings.</TXT><BRK/>
+<BRK/>
+<TXT>Clean reinforcement of loose, flaky rust, scale, grease, mortar, grout, and other coatings that might destroy 
+or reduce its bond prior to placing grout.  Do not use bars with kinks or bends not shown on the approved shop 
+drawings.  Place reinforcement prior to grouting.  Unless otherwise indicated, extend vertical wall reinforcement 
+to within<MET> 50 mm</MET><ENG> 2 inches</ENG> of tops of walls. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Positioning Bars</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Accurately place vertical bars within the cells at the positions indicated on the drawings.  Maintain 
+a minimum clearance of<MET> 13 mm</MET><ENG> 1/2 inch</ENG> between the bars and masonry units.  Provide minimum clearance 
+between parallel bars of<MET>13 mm</MET><ENG> 1/2 inch</ENG> between the bars and masonry units for coarse grout and a minimum 
+clearance of<MET> 6 mm</MET><ENG> 1/4 inch</ENG> between the bars and masonry units for fine grout.  Provide minimum clearance 
+between parallel bars of<MET> 25 mm</MET><ENG> 1 inch</ENG> or one diameter of the reinforcement, whichever is greater.  Vertical 
+reinforcement may be held in place using bar positioners located near the ends of each bar and at intermediate 
+intervals of not more than 192 diameters of the reinforcement or by other means to prevent displacement 
+beyond permitted tolerances.  As masonry work progresses, secure vertical reinforcement to prevent displacement 
+beyond allowable tolerances.</OLI><BRK/>
+<BRK/>
+<OLI>Wire column and pilaster lateral ties in position around the vertical reinforcing bars.  Place lateral 
+ties in contact with the vertical reinforcement and do not place in horizontal mortar bed joints.</OLI><BRK/>
+<BRK/>
+<OLI>Position horizontal reinforcing bars as indicated.  Stagger splices in adjacent horizontal bars, unless 
+otherwise indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Form splices by lapping bars as indicated.  Do not cut, bend or eliminate reinforcing bars.  Foundation 
+dowel bars may be field-bent when permitted by <RID>TMS 402/602</RID>.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Splices of Bar Reinforcement</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must determine the required lap splice lengths and indicate 
+on the project documents.  Required lap splice length may vary depending upon 
+whether the masonry is designed by allowable stress or strength.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Lap splice reinforcing bars as indicated.  When used, provide welded or mechanical connections that develop at 
+least 125 percent of the specified yield strength of the reinforcement.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Placing Grout</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Mechanical consolidation of self-consolidating grout should not be performed 
+because it may cause segregation.  When placing self-consolidating grout, the 
+properties listed in ASTM C476 should be verified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Fill cells containing reinforcing bars with grout.  Solidly grout hollow masonry units in walls or partitions 
+supporting plumbing, heating, or other mechanical fixtures, voids at door and window jambs, and other indicated 
+spaces.  Solidly grout cells under lintel bearings on each side of openings for full height of openings.  Solidly 
+grout walls below grade, lintels, and bond beams.  Units other than open end units may require grouting each 
+course to preclude voids in the units.</TXT>  <BRK/>
+<BRK/>
+<TXT>Discard site-mixed grout that is not placed within 1-1/2 hours after water is first added to the batch or when 
+the specified slump is not met without adding water after initial mixing. Discard ready-mixed grout that does 
+not meet the specified slump without adding water other than water that was added at the time of initial discharge.  
+Allow sufficient time between grout lifts to preclude displacement or cracking of face shells of masonry units.  
+Provide a grout shear key between lifts when grouting is delayed and the lower lift loses plasticity.  If blowouts, 
+flowouts, misalignment, or cracking of face shells should occur during construction, tear down the wall and rebuild.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Vertical Grout Barriers for Multi-Wythe Composite Walls</TTL><BRK/>
+<BRK/>
+<TXT>In multi-wythe composite walls, provide grout barriers in the collar join not more than<MET> 9 m</MET><ENG> 30 feet</ENG> apart, or 
+as required, to limit the horizontal flow of grout for each pour.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Horizontal Grout Barriers</TTL><BRK/>
+<BRK/>
+<TXT>Embed horizontal grout barriers in mortar below cells of hollow units receiving grout.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grout Holes and Cleanouts</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Grout Holes</TTL><BRK/>
+<BRK/>
+<TXT>Provide grouting holes in slabs, spandrel beams, and other in-place overhead construction.  Locate holes over 
+vertical reinforcing bars or as required to facilitate grout fill in bond beams.  Provide additional openings 
+spaced not more than<MET> 400 mm</MET><ENG> 16 inches</ENG> on centers where grouting of hollow unit masonry is indicated.  Fom such 
+openings not less than<MET> 100 mm</MET><ENG> 4 inches</ENG> in diameter or<MET> 75 by 100 mm</MET><ENG> 3 by 4 inches</ENG> in horizontal dimensions.  Upon 
+completion of grouting operations, plug and finish grouting holes to match surrounding surfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleanouts for Hollow Unit Masonry Construction</TTL><BRK/>
+<BRK/>
+<TXT>For hollow masonry units. provide cleanout holes at the bottom of every grout pour in cores containing vertical 
+reinforcement when the height of the grout pour exceeds<MET> 1.6 m</MET><ENG> 5 feet 4 inches</ENG>.  Where all cells are to be grouted, 
+construct cleanout courses using bond beam units in an inverted position to permit cleaning of all cells.  Provide  
+cleanout holes at a maximum spacing of<MET> 800 mm</MET><ENG> 32 inches</ENG> where all cells are to be filled with grout.</TXT><BRK/>
+<BRK/>
+<TXT>Establish a new series of cleanouts if  grouting operations are stopped for more than 4 hours.  Provide cleanouts 
+not less than<MET> 75 by 75 mm</MET><ENG> 3 by 3 inch</ENG> by cutting openings in one face shell.  Manufacturer's standard cutout 
+units may be used at the Contractor's option.  Do not cleanout holes until masonry work, reinforcement, and final 
+cleaning of the grout spaces have been completed and inspected.  For walls which will be exposed to view, close 
+cleanout holes in an approved manner to match surrounding masonry.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleanouts for Multi-Wythe Composite Masonry Construction</TTL><BRK/>
+<BRK/>
+<TXT>Provide cleanouts for construction of walls that incorporate a grout filled cavity between solid masonry wythes, 
+provide cleanouts at the bottom of every pour by omitting every other masonry unit from one wythe.  Establish 
+a new series of cleanouts if grouting operations are stopped for more than 4 hours.  Do not plug cleanout holes 
+until masonry work, reinforcement, and final cleaning of the grout spaces have been completed and inspected.  
+For walls which will be exposed to view, close cleanout holes in an approved manner to match surrounding masonry.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Grout Placement</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The requirements listed are for normal grouting procedures.  Other options, 
+such as higher grout lifts, higher grout pours, or alternate methods of keeping 
+the grout space clean, may be acceptable if proven through the process of constructing 
+and examining a grout demonstration panel.</NPR><BRK/>
+<BRK/>
+<NPR>A grout pour is the total height of masonry to be grouted prior to erection 
+of additional masonry.  A grout lift is an increment of grout placement within 
+a grout pour.  A grout pour is filled by one or more lifts of grout.  Maximum 
+grout pour height is based on grout type (fine or coarse) and dimensions of 
+grout space, per TMS Table 6.  Fine grout has sand as the only aggregate while 
+coarse grout uses both sand and pea gravel up to<MET> 10 mm</MET><ENG> 3/8 inch</ENG> diameter.  Coarse 
+grout is preferred when grout will be placed in relatively large cross-sectional 
+areas because shrinkage of the grout is reduced.</NPR><BRK/>
+<BRK/>
+<NPR>By following the TMS grout pour and lift recommendations and using grout of 
+the proper consistency, grout placement occurs at a rate that does not cause 
+displacement of masonry due to hydrostatic pressure of grout.  Self-consolidating 
+grout (SCG) attains its flow primarily from superplasticizing admixtures, not 
+water, so it exerts a lower hydrostatic pressure than conventional grout during 
+placement.  Grout should be placed as rapidly as practical by methods that do 
+not cause segregation and that minimize splatter on reinforcement and surrounding 
+masonry.  Conventional grout lifts should be consolidated (and reconsolidated) 
+by mechanical vibration before the next lift is placed.  SCG does not need to 
+be consolidated.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>A grout pour is the total height of masonry to be grouted prior to erection of additional masonry.  A grout lift 
+is an increment of grout placement within a grout pour.  A grout pour is filled by one or more lifts of grout.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Lay masonry to the top of a pour permitted by <RID>TMS 402/602</RID> Table 6, based on the size of the grout space 
+and the type of grout.  Prior to grouting, remove masonry protrusions that extend<MET> 13 mm</MET><ENG> 1/2 inch</ENG> or more 
+into cells or spaces to be grouted.  Provide grout holes and cleanouts in accordance with paragraph GROUT 
+HOLES AND CLEANOUTS above when the grout pour height exceeds<MET> 1.6 m</MET><ENG> 5 feet 4 inches</ENG>.  Hold reinforcement, 
+bolts, and embedded connections rigidly in position before grouting is started. Do not prewet concrete 
+masonry units.</OLI><BRK/>
+<BRK/>
+<OLI>Place grout using a hand bucket, concrete hopper, or grout pump to fill the grout space without segregation 
+of aggregate.  Operate grout pumps to produce a continuous stream of grout without air pockets, segregation, 
+or contamination.</OLI><BRK/>
+<BRK/>
+<OLI>If the masonry has cured at least 4 hours, grout slump is maintained between<MET> 250 and 275 mm</MET><ENG> 10 to 11 
+inches</ENG>, and no intermediate reinforced bond beams are placed between the top and bottom of the pour height, 
+place conventional grout in lifts not exceeding<MET> 3.9 m</MET><ENG> 12 feet 8 inches</ENG>.  For the same curing and slump 
+conditions but with intermediate bond beams, limit conventional grout lift to the bottom of the lowest 
+bond beam that is more than<MET> 1.6 m</MET><ENG> 5 feet 4 inches</ENG> above the bottom of the lift, but do not exceed<MET> 3.9 
+m</MET><ENG> 12 feet 8 inches</ENG>.  If masonry has not cured at least 4 hours or grout slump is not maintained between<MET>
+ 250 and 275 mm</MET><ENG> 10 to 11 inches</ENG>, place conventional grout in lifts not exceeding<MET> 1.6 m</MET><ENG> 5 feet 4 inches</ENG>
+.</OLI><BRK/>
+<BRK/>
+<OLI>Consolidate conventional grout lift and reconsolidate after initial settlement before placing next lift.  
+For grout pours that are<MET> 300 mm</MET><ENG> 12 inches</ENG> or less in height, consolidate and reconsolidate grout by mechanical 
+vibration or puddling.  For grout pours that are greater than<MET> 300 mm</MET><ENG> 12 inches</ENG> in height, consolidate 
+and reconsolidate grout by mechanical vibration.  Apply vibrators at uniformly spaced points not further 
+apart than the visible effectiveness of the machine.  Limit duration of vibration to time necessary to 
+produce satisfactory consolidation without causing segregation.  If previous lift is not permitted to 
+set, dip vibrator into previous lift.  Do not insert vibrators into lower lifts that are in a semi-solidified 
+state.  If lower lift sets prior to placement of subsequent lift, form a grout key by terminating grout 
+a minimum of<MET> 38 mm</MET><ENG> 1-1/2 inch</ENG> below a mortar joint.  Vibrate each vertical cell containing reinforcement 
+in partially grouted masonry.  Do not form grout keys within beams.</OLI><BRK/>
+<BRK/>
+<OLI>If the masonry has cured 4 hours, place self-consolidating grout (SCG) in lifts not exceeding the pour 
+height.  If masonry has not cured for at least 4 hours, place SCG in lifts not exceeding<MET> 1.6 m</MET><ENG> 5 feet 
+4 inches</ENG>.  Do not mechanically consolidate self-consolidating grout.  Place self-consolidating grout 
+in accordance with manufacturer's recommendations.</OLI><BRK/>
+<BRK/>
+<OLI>Upon completion of each day's grouting, remove waste materials and debris from the equipment, and dispose 
+of outside the masonry.</OLI></OLG><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Joint Reinforcement Installation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Location of horizontal joint reinforcement should be shown on the drawings 
+with the maximum vertical spacing normally being<MET> 400 mm</MET><ENG> 16 inches</ENG>.  A<MET> 150 mm</MET><ENG>
+ 6 inch</ENG> lap splice length is sufficient for joint reinforcement whose only purpose 
+is shrinkage control.  Joint reinforcement that is used structurally may need 
+longer lap splices.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install joint reinforcement at<MET> 400 mm</MET><ENG> 16 inches</ENG> on center unless otherwise indicated.  Lap joint reinforcement 
+not less than<MET> [150][_____] mm</MET><ENG> [6][_____] inches</ENG>.  Install prefabricated sections at corners and wall intersections.  
+Place the longitudinal wires of joint reinforcement in mortar beds to provide not less than<MET> 16 mm</MET><ENG> 5/8 inch</ENG> cover 
+to either face of the unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bond Beams</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Bond beams that are continuous over openings will be reinforced to serve 
+as lintels.</NPR><BRK/>
+<BRK/>
+<NPR>Bond beams at floor lines and roofs, where the beam acts as a tension tie for 
+the diaphragm, are typically reinforced continuously through masonry movement 
+joints, and the mortar is raked back and finished with backer rod and sealant. 
+Intermediate bond beams are typically detailed with the reinforcement interrupted, 
+but doweled, at control joints and again finished with raked back mortar, backer 
+rod and sealant.</NPR><BRK/>
+<BRK/>
+<NPR>Interior control joints are raked to weaken the joint to focus cracks in the 
+control joint and caulked so that 1) cracks don't show and 2) provide a second 
+line of defense should moisture try to travel through the cracks in the control 
+joint.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Reinforce and grout bond beams as indicated and as described in paragraphs above.  Install grout barriers under 
+bond beam units to retain the grout as required, unless wall is fully grouted or solid bottom units are used.  
+For high lift grouting in partially grouted masonry, provide grout retaining material on the top of bond beams 
+to prevent upward flow of grout.  Ensure that reinforcement is continuous, including around corners, except through 
+control joints or expansion joints, unless otherwise indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flashing and Weeps</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install through-wall flashing at obstructions in the cavity and where indicated on Drawings.  Ensure 
+continuity of the flashing at laps and inside and outside corners by splicing in a manner approved by 
+the flashing manufacturer.  Ensure that the top edge of the flashing is sealed by [turning the flashing<MET>
+ 13 mm</MET><ENG> 1/2 inch</ENG> into the mortar bed joint of backup masonry][attaching a termination bar and applying 
+compatible sealant at the top edge of the termination bar][lapping a minimum of<MET> 150 mm</MET><ENG> 6 inches</ENG> under 
+the weather resistive barrier][securing the sheet metal flashing into a reglet cast into the concrete 
+backup].  Terminate the horizontal leg of the flashing [by extending the sheet metal<MET> 13 mm</MET><ENG> 1/2 inch</ENG> beyond 
+the outside face of masonry and turning downward with a hemmed drip][terminating the fabric flashing<MET> 
+13 mm</MET><ENG> 1/2 inch</ENG> short of the outside face of masonry and adhering the flashing to a sheet metal drip edge][extending 
+the fabric flashing beyond the outside face of masonry and, when construction is complete, cutting the 
+flashing flush with the face of masonry].  Provide sealant below the drip edge of through-wall flashing.</OLI><BRK/>
+<BRK/>
+<OLI>Wherever through-wall flashing occurs, provide weep holes to drain flashing to exterior at acceptable 
+locations as indicated.  Provide weeps of [open head joints][weep ventilators].  Locate weeps not more 
+than<MET> 600 mm</MET><ENG> 24 inches</ENG> on centers in mortar joints of the exterior wythe directly on the horizontal leg 
+of through-wall flashing over foundations, bond beams, and any other horizontal interruptions of the 
+cavity.  Place weep holes perfectly horizontal or slightly canted downward to encourage water drainage 
+outward and not inward.  Other methods may be used for providing weeps when spacing is reduced to<MET>406 
+mm</MET><ENG> 16 inches</ENG> on center and approved by the Contracting Officer.  Maintain weeps free of mortar and other 
+obstructions.</OLI><BRK/>
+<BRK/>
+<OLI>Install single-wythe CMU flashing system in bed joints of CMU walls where CMU cells are open.  Install 
+CMU cell pans with upturned edges located below face shells and webs of CMUs above and with weep spouts 
+aligned with face of wall on the exterior side.  Install CMU web covers so that they cover upturned edges 
+of CMU cell pans at CMU webs and extend from face shell to face shell.</OLI></OLG><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>APPLICATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Insulation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify taping or sealing of board joints when the insulation must act 
+as the air or vapor barrier.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Insulate cavity walls (multi-wythe noncomposite masonry walls), where shown, by installing board-type insulation 
+on the cavity side of the inner wythe.  Apply board type insulation directly to the masonry or thru-wall flashing 
+with adhesive.  Neatly fit insulation between obstructions without impaling insulation on ties or anchors.  Apply 
+insulation in parallel courses with vertical joints breaking midway over the course below and in moderate contact 
+with adjoining units without forcing.  Cut to fit neatly against adjoining surfaces.[  Tape or seal the joints 
+between the boards.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Interface with Other Products</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Label "wet locations" on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Built-In Items</TTL><BRK/>
+<BRK/>
+<TXT>Fill spaces around built-in items with mortar.  Point openings around flush-mount electrical outlet boxes in 
+wet locations with mortar.  Embed anchors, ties, wall plugs, accessories, flashing, pipe sleeves and other items 
+required to be built-in  as the masonry work progresses.  Fully embed anchors, ties and joint reinforcement in 
+the mortar.  Fill cells receiving anchor bolts and cells of the first course below bearing plates with grout, 
+unless otherwise indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Door and Window Frame Joints</TTL><BRK/>
+<BRK/>
+<TXT>On the exposed interior and exterior sides of exterior frames, rake joints between frames and abutting masonry 
+walls to a depth of<MET> 10 mm</MET><ENG> 3/8 inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearing Plates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The bearing details must be shown on the drawings.  The thermal effects 
+must be considered for steel beams bearing on masonry to prevent cracking of 
+masonry walls due to thermal expansion of steel framing members.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Set bearing plates for beams, joists, joist girders and similar structural members to the proper line and elevation 
+with damp-pack bedding mortar, except where non-shrink grout is indicated.  Provide bedding mortar and non-shrink 
+grout s specified in Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Tolerances</TTL><BRK/>
+<BRK/>
+<TXT>Lay masonry plumb, true to line, with courses level within the tolerances of <RID>TMS 402/602</RID>, Article 3.3 F.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Tests</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Field Testing of Mortar</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Field testing of mortar should be limited or avoided.  Better information 
+can be obtained by observing mortar batching to confirm that proper proportions 
+and mixing procedures have been followed.  When field testing is required, verification 
+of proportions is preferred to mortar compressive strength testing.  Results 
+are available in a matter of hours rather than days or weeks. Proportions of 
+fresh mortars can be determined by running the mortar aggregate ratio test of 
+ASTM C780 Appendix A4.  Mortar compressive strength, tested in accordance with 
+ASTM C780 Appendix 6, is not required or expected to meet the property requirements 
+of ASTM C270 Table 2 and has more meaningful comparisons to preconstruction 
+test values to evaluate consistency.   Therefore, when mortar is tested for 
+compressive strength, testing must be performed prior to construction as well 
+as during construction.  Frequency of testing, if any, depends on the size and 
+complexity of the project.  Modify paragraph below to advise required frequency 
+of testing and type(s) of testing required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform mortar testing at the following frequency:  [_____] times per [_____].  For each required mortar test, 
+provide a minimum of three mortar samples.  Perform initial mortar testing prior to construction for comparison 
+purposes during construction.</TXT><BRK/>
+<BRK/>
+<TXT>Prepare and test mortar samples for mortar aggregate ratio in accordance with <RID>ASTM C780</RID> Appendix A4.  [Prepare 
+and test mortar compressive strength specimens in accordance with <RID>ASTM C780</RID> Appendix A6.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Field Testing of Grout</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Perform grout testing at the following frequency:  [_____] times per [_____].  For each required grout 
+property to be evaluated, provide a minimum of three specimens.</OLI><BRK/>
+<BRK/>
+<OLI>Sample and test conventional and self-conslidating grout for compressive strength and temperature in 
+accordance with <RID>ASTM C1019</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Evaluate slump in conventional grout in accordance with <RID>ASTM C1019</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Evaluate slump flow and visual stability index of self-consolidating grout in accordance with <RID>ASTM C1611/C1611M</RID>
+.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<TAI OPT="BRICK"><SPT><TTL>Clay Brick Efflorescence Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph in areas where efflorescence has not been a problem.  
+Efflorescence is generally the result of poor design and detailing and/or poor 
+quality of construction.  Properly covered and/or flashed walls with a good 
+drainage and weep system are generally free of efflorescence.  Efflorescence 
+testing is generally not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Test clay brick that will be exposed to weathering for efflorescence in accordance with <RID>ASTM C67/C67M</RID>.  Schedule 
+tests far enough in advance of starting masonry work to permit retesting if necessary.  Units meeting the definition 
+of "effloresced" are subject to rejection.</TXT><BRK/>
+<BRK/></SPT>
+</TAI>[<SPT><TTL><SUB>Prism Tests</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Prism testing will only be required for structures requiring masonry 
+compressive strengths higher than those indicated by the conservative values 
+derived by the Unit Strength Method.  When the compressive strength of masonry 
+can be verified by the Unit Strength method, prism testing normally will not 
+be required.  Delete this paragraph when prism testing is not required.  When 
+prism test results are lower than the specified compressive strength, handling 
+and testing of the prism specimens should be reviewed for compliance to the 
+requirements contained in the ASTM standard.</NPR><BRK/>
+<BRK/>
+<NPR>Indicate the specified compressive strength of masonry in paragraph SYSTEM DESCRIPTION 
+or on the Drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform at least one prism test sample for each<MET> 465 square meters</MET><ENG> 5,000 square feet</ENG> of wall but not less than 
+three such tests for any building.  Evaluate three prisms in each test.  Fabricate, store, handle, and test prisms 
+in accordance with <RID>ASTM C1314</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Seven-day tests may be used provided the relationship between the 7- and 28-day strengths of the masonry is established 
+by the tests of the materials used.  If the compressive strength of any prism falls below the specified value 
+by more than<MET> 3.5 MPa</MET><ENG> 500 psi</ENG>, take steps to assure that the load-carrying capacity of the structure is not jeopardized.  
+If the likelihood of low-strength masonry is confirmed and computations indicate that the load-carrying capacity 
+may have been significantly reduced, tests of cores drilled, or prisms sawed, from the area in question may be 
+required.  In such case, take three specimens for each prism test more than<MET> 3.5 MPa</MET><ENG> 500 psi</ENG> below the specified 
+value.  Masonry in the area in question will be considered structurally adequate if the average compressive strength 
+of three specimens is equal to or exceeds the specified value.  Additional testing of specimens extracted from 
+locations represented by erratic core or prism strength test results will be permitted.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Single-Wythe Masonry Wall Water Penetration Test</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include masonry wall water penetration testing only for single-wythe 
+masonry wall constructions where wall water penetration will impair mission-critical 
+operations, create an immediate safety hazard, or have a detrimental impact 
+on interior finishes.  Testing evaluates the assembled wall test panel and does 
+not assure compliant wall construction in the field.  As an option additional 
+testing may be performed on the actual wall construction in accordance with 
+ASTM C1601.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to start of field construction of the single-wythe concrete masonry wall, perform masonry wall water penetration 
+test on mock-up wall assemblies consisting of the identical design, materials, mix, and construction methods 
+as the actual wall construction and in accordance with <RID>ASTM E514/E514M</RID>.  Prepare a minimum of three specimens 
+and cure for minimum 28 days prior to testing.  Construct panels by the same methods, processes, and applications 
+to be used on the project's construction site.  Spray test for 6 hours on each specimen.  If water is visible 
+on back of test panels during the test and areas of dampness on the backside of the test panels do not exceed 
+25 percent of the wall area, the panels will be considered to have passed.  Dampness is defined as any area of 
+surface darkening or discoloration due to moisture penetration or accumulation below the observed surface.</TXT> <BRK/>
+<BRK/>
+<TXT>Construct additional test panels for each failed test performed until three test panels pass the test.  Factors 
+that can affect test performance include materials, mixing, and quality of application and workmanship. Materials, 
+mixing, and methods adjustments may be necessary in order to provide construction that passes the water penetration 
+test.  Document and record the test specimen construction materials and application and provide written test 
+report in accordance with <RID>ASTM E514/E514M</RID>, supplemented by a detailed discussion of the specifics of test panel 
+construction, application methods and processes used, quality of construction, and any variances or deviations 
+that may have occurred between test panels during test panel construction.  For failed test panels, identify 
+in the supplemental report the variances, deficiencies or flaws that contributed to test panel failure and itemize 
+the precautions to be taken in field construction of the masonry wall to prevent similar deficiencies and assure 
+the wall construction replicates test panel conditions that pass the water penetration test.  Submit the complete, 
+certified test report, including supplemental report, to the Contracting Officer prior to start of single-wythe 
+concrete masonry wall construction. Significant changes to materials, proportions, or construction techniques 
+from those used in the passing water penetration test are grounds for performing new tests, at the discretion 
+of the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Special Inspection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must indicate on the drawings all locations and all features 
+for which special inspection and testing is required.  This includes indicating 
+the locations of all structural components and connections requiring inspection.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform special inspections and testing in accordance with Section <SRF>01 45 35</SRF> SPECIAL INSPECTIONS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>POINTING AND CLEANING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Cleaning of masonry using water pressure may be necessary, but the pressure 
+used should be the minimum required to successfully clean the masonry surface.  
+Saturating the masonry wall in the cleaning process should be avoided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>After mortar joints have attained their initial set, but prior to hardening, completely remove mortar and grout 
+daubs and splashings from masonry-unit surfaces that will be exposed or painted.  Before completion of the work, 
+rake out defects in joints of masonry to be exposed or painted, fill with mortar, and tool to match existing 
+joints.  Immediately after grout work is completed, remove scum and stains that have percolated through the masonry 
+work using a low pressure stream of water and a stiff bristled brush.  Do not clean masonry surfaces, other than 
+removing excess surface mortar, until mortar in joints has hardened.  Leave masonry surfaces clean, free of mortar 
+daubs, dirt, stain, and discoloration, including scum from cleaning operations, and with tight mortar joints 
+throughout.  Do not use metal tools and metal brushes for cleaning.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Dry-Brushing Concrete Masonry</TTL><BRK/>
+<BRK/>
+<TXT>Dry brush exposed concrete masonry surfaces at the end of each day's work and after any required pointing, using 
+stiff-fiber bristled brushes.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="BRICK"><SPT><TTL>Clay Brick Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>Clean exposed clay brick masonry surfaces to obtain surfaces free of stain, dirt, mortar and grout daubs, efflorescence, 
+and discoloration or scum from cleaning operations.  Perform cleaning in accordance with the approved cleaning 
+procedure demonstrated on the mockup.</TXT><BRK/>
+<BRK/>
+<TXT>After cleaning, examine the sample panel of similar material for discoloration or stain as a result of cleaning.  
+If the sample panel is discolored or stained, change the method of cleaning to ensure that the masonry surfaces 
+in the structure will not be adversely affected.  Water-soak exposed masonry surfaces and then clean with a proprietary 
+masonry cleaning agent specifically recommended for the color and texture by the clay brick manufacturer and 
+manufacturer of the cleaning product.  Apply the solution with stiff fiber brushes, followed immediately by thorough 
+rinsing with clean water.  Use proprietary cleaning agents in accordance with the cleaning product manufacturer's 
+printed recommendations.  Remove efflorescence in accordance with the brick manufacturer's recommendations.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>CLOSE-OUT <SUB>TAKE-BACK PROGRAM</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Take-back programs refer to programs in which the product manufacturer 
+"takes-back" scrap material and/or packaging associated with its product.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Collect information from manufacturer for take-back program options.  Set aside [masonry units, full and partial][scrap][packaging][_____] 
+to be returned to manufacturer for recycling into new product.  When such a service is not available, seek local 
+recyclers to reclaim the materials.  Submit documentation that includes contact information, summary of procedures, 
+and the limitations and conditions applicable to the project.  Indicate manufacturer's commitment to reclaim 
+materials for recycling and/or reuse.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PROTECTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Covering masonry walls is required for protection from detrimental moisture 
+intrusion, which can result in efflorescence, or as required by cold weather 
+masonry construction provisions.  In certain geographical areas, vertical reinforcement 
+may be placed prior to installation of masonry units, which can significantly 
+interfere with covering masonry walls.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Protect facing materials against staining.  Cover top of walls with nonstaining waterproof covering or membrane 
+to protect from moisture intrusion when work is not in progress.  Continue covering the top of the unfinished 
+walls until the wall is waterproofed with a complete roof or parapet system.  Extend covering a minimum of<MET> 600 
+mm</MET><ENG> 2 feet</ENG> down on each side of the wall and hold securely in place.  Before starting or resuming work, clean 
+top surface of masonry in place of loose mortar and foreign material.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

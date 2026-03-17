@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-08 71 63.10 (November 2022)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-08 71 63.10 (February 2021)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 08 71 63.10</SCN><BRK/>
+<BRK/>
+<STL>ELECTRICAL LOCKING CONTROL FOR BRIGS</STL><BRK/>
+<DTE>11/22</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>locking control systems which control all electrically 
+controlled hardware and motorized gates and doors, including but not limited to solenoid locks</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The system monitors and annunciates the status condition of electrically equipped hardware, doors, gates, 
+control conditions, security conditions, call-in signals, and other functions as specified herein.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the following information on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Location of locking control panels.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Electrified door hardware.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Homerun indications from electrified door hardware to appropriate locking control panel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE C37.90.1</RID><RTL>(2023; ERTA) Standard for Surge Withstand Capability (SWC) Tests for Relays and Relay Systems Associated with Electric Power Apparatus</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA ICS 1</RID><RTL>(2022) Standard for Industrial Control and Systems: General Requirements</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>System Components</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Configure the <SUB>locking control systems</SUB> from locking control panels, logic units, relay terminal equipment, and wiring.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Locking control panels:  Provide mounting for various control switches, audible annunciators, and visual annunciators which provide control 
+and annunciation interface between the staff and the locking control system.</OLI><BRK/>
+<BRK/>
+<OLI>Logic units:  Provide logic transactions necessary to implement the functional operation of the locking control system</OLI>.<BRK/>
+<BRK/>
+<OLI>Relay terminal equipment:  Provide relay terminal equipment, with terminal facilities for field wiring and relay equipment for the conversion 
+of low energy system control to high energy control signals, as necessary to control and operate devices as specified in this section.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>General Control and Annunciation</TTL><BRK/>
+<BRK/>
+<TXT>The following paragraphs describe the operation for various devices controlled and annunciated at locking control panels.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Hardware</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with door schedule shown in the architectural drawing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide operational and annunciation provisions for each electrically controlled and monitored hardware set as specified herein.  Refer to architectural 
+door schedule for door hardware information.  Provide hardware type in accordance with Section <SRF>08 71 63</SRF> DETENTION HARDWARE.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Annunciation:  Annunciate each door and gate equipped to be monitored and controlled in the following manner.  Single red indicator on 
+the locking control panel illuminates on nonsecure condition at the door or gate.  On swing doors and gates, the annunciation occurs on 
+the first movement of the locking mechanism.  Door and gate position switches causes the annunciation on nonsecured position.  Monitor 
+secured status of controlled doors and gates by either two or more position switches which include but are not limited to door on gate 
+position, lockbar position, roller bolt position, latch-bolt position, and motor limit switches.  Annunciate nonsecure condition by any 
+one nonsecure switch on a given hardware set.</OLI><BRK/>
+<BRK/>
+<OLI>Cell and shower door solenoid:  Where cell doors are equipped with solenoid locks, the following operation applies.  Pressing the "unlock" 
+switch of an "unlock - lock" pair of membrane switches on a locking control panel causes the hardware to unlock and remain unlocked until 
+the "lock" switch is pressed.  When the "lock" action is taken, the lock bolt extends, regardless of whether the door has been opened or 
+not, except on deadbolt locks.  Group unlock provisions must allow hardware to be held unlocked.</OLI><BRK/>
+<BRK/>
+<OLI>Corridor and miscellaneous solenoid:  Where corridor and other doors are equipped with solenoid locks, and the specific door operation 
+is not given elsewhere in this section, the following operation applies.  Pressing the "unlock" switch of an "unlock/lock" pair of membrane 
+switches on a locking control panel causes the hardware to unlock and remain unlocked until the "lock" switch is pressed.  When the "lock" 
+action is taken, the lock bolt extends, regardless of the door having been opened or not, except on deadbolt locks.</OLI><BRK/>
+<BRK/>
+<OLI>Key relock doors solenoid:  Where fire egress doors are equipped with hardware which, when electrically unlocked, requires a key action 
+at the door to relock, the following operation applies: Unlocking the door requires the simultaneous pressing of two unlock membrane switches.  
+Releasing the switches on the locking control panel causes the operating power to return to the locked state.</OLI><BRK/>
+<BRK/>
+<OLI>Deadbolt solenoid locks:  Where doors are equipped with electrically operated deadbolt locks, the operation is as specified for solenoid 
+locks on noncell doors, except the bolt must not extend until the controls are in the "lock" condition and the door is closed.</OLI><BRK/>
+<BRK/>
+<OLI>Motorized overhead gates:  Where motor operated gates are installed, the following operation applies.  Pressing the "open" momentary action 
+switch causes the gate to travel to the locked open position unless the "stop" momentary action switch is pressed, which will stop the 
+travel of the gate.  Pressing the "close" momentary action switch causes the gate to travel to the locked closed position unless the "stop" 
+switch is pressed. Pressing the "open" or "close" switch while the gate is traveling in the opposite direction must have no effect.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Hardware Related Functions</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Architectural door schedule should indicate those doors that require interlocking.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify night secure function for housing unit locking control panels that control prisoner cells and shower 
+doors.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Group control:  For pretrial and female locking control panels requiring group operation of hardware, the following operation applies:  
+Pressing the "open" or "unlock" membrane switch  causes hardware in the associated group to unlock and cause the group control red LED 
+to illuminate.  Pressing the "off" switch causes the hardware to react to the condition required by the individual hardware controls, and 
+the group annunciator extinguishes.  On group unlock, solenoid locks unlocks in half second intervals.</OLI><BRK/>
+<BRK/>
+<OLI>Interlocks:  Where two or more doors with electric hardware form a Sallyport or where interlocks between hardware sets occur, the operation 
+of the individual hardware sets are as specified in this section with the following modifications.  The controls must allow only one of 
+the hardware sets to be in the nonsecured condition at any given time unless the interlock bypass function is activated.  Upon simultaneously 
+pressing the two interlock bypass switches, the red interlock bypass LED flashes on panels which control hardware in the same interlock 
+scheme and allow the operator to control hardware with no interlock restrictions.  By pressing the interlock bypass switch the second time, 
+the interlock scheme reactivates.  Provide locking control panels controlling interlocked doors with the interlock bypass switch and annunciator 
+provisions.  An amber "interlock active" LED illuminates on panels controlling hardware in a given interlock scheme when one or more of 
+the interlocked doors are nonsecured.  A separate annunciator for each interlock scheme on each controlling panel annunciates the "interlock 
+active" condition.  Once an interlock scheme has become active, activation of other unlock controls for hardware in the same scheme must 
+have no effect and where the controls are specified as maintained contact devices and more than one has been placed in the unlock condition 
+while the interlocks are active, upon resecuring of the original hardware one and only one of the additional doors will open in response 
+to the multiple unlock switch position.  Upon simultaneous operation of central devices in an interlock scheme, one and only one will cause 
+a hardware set to become nonsecure.</OLI><BRK/>
+<BRK/>
+<OLI>Monitored doors and gates:  Doors which are equipped with hardware which monitors the secure status and are not electrically operated, 
+is monitored in the following manner:  The door or gate red LED functions as specified for annunciation above, except as described in this 
+paragraph.  Control panels monitoring monitored-only doors and gates provides night secure provisions.  The night secure provisions secures 
+all doors and gates unless specific groups are required.  Once the doors or gates are secured, this function alerts the control officer 
+of unsecured conditions.  Pressing the night secure switch on membrane switch panels causes the secure mode to become active and the secure 
+green LED to illuminate.  Upon activation, hardware in the nonsecure condition or hardware which becomes nonsecure causes an audible alarm 
+to sound and the status LED for the nonsecure hardware to latch illuminated until reset.  Pressing the silence switch silences the audible 
+alarm.  The secure function annunciates subsequent alarms audibly and visually in the manner specified above.  Pressing the secure reset 
+switch releases latched indicators, extinguish the secure green LED, and return the panel to normal operation.</OLI><BRK/>
+<BRK/>
+<OLI>Shower and cell call-in:  For the shower and cell doors in the pretrial and female areas, the following operation applies: Pressing the 
+momentary action pushbutton in the cell or shower causes an amber LED associated with the cell or shower on the locking control panel to 
+flash and an audible signal sounds.  Pressing the control panel momentary action silence switch on the control panel silences the audible 
+signal and cause the LED to illuminate constantly.  Pressing the control panel momentary action call-in reset switch extinguishes the LED.  
+Once an individual cell or shower has been received at the control panel and has been silenced, additional activations of the same cell 
+or shower call-in switch must have no effect.  Silencing one call-in will not inhibit other calls from being received.</OLI><BRK/>
+<BRK/>
+<OLI>Control panel enable/disable keyswitch:  Equip the locking control panel located at the reception counter with a keyswitch mounted on the 
+front that enables and disables the locking panel control functions.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Battery Power</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>batteries</SUB>, complete with charging system as back-up power, in the event of a utility and emergency power failure.  Provide adequate capacity 
+to supply locking control system electrical load for a period of four hours.  On restoration of utility or emergency power, the batteries must 
+automatically be recharged.  Battery backup provides power to support input status and LED annunciations, output controls, and memory retention. 
+Battery backup power is not required for power source which actually operates the locking door or gate hardware.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Locking Control Systems</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Security Equipment Cabinets</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Graphic Locking Control Panels</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Linear Locking Control Panels</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Control Devices</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Light Emitting Diodes</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Audible Signal Devices</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control Power Transformer</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Batteries</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Auxiliary Relays</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>DC Power Supply</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wiring Materials</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit specifications and data sheets.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM>Locking Control <SUB>System Components</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit manufacturer's certificates attesting that materials meet specified requirements.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Graphic Locking Control Panels</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Linear Locking Control Panels</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Security Equipment Cabinets</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit construction specifications.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Locking Control Systems</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit operation and maintenance data in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.  Include as-built 
+wiring diagrams complete with conductor color codes, conductor number, and termination identification.  General system descriptions 
+included in manufacturer's catalogs or advertising media will not be acceptable in meeting the operation and maintenance manual 
+requirement.</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<TXT>Programmable controller must be the product of a manufacturer engaged in the production of controllers for industrial applications.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Drawing Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Submit installation drawings and wiring diagram for the overall system and for each of the following major components.  Show how each item of equipment 
+will function in the system and include an overall system schematic indicating relationship of components.  Prior to preparation of drawings, review 
+the electrical and operational characteristics of each electrically controlled and monitored hardware.  Include a layout of devices to be installed 
+in nongraphic locking control panel.  Include cabinet dimensions, full dimensional drawings, and layout of equipment to be installed within security 
+equipment cabinets. Include full dimensional drawings of graphic panels and nongraphic panels. Include layout of each display panel at a minimum 
+of one-half full scale illustrating graphic layout orientation for area and position of devices required in console, as well as dimensional drawing 
+of housing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EXTRA PARTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Programmable Controller</TTL><BRK/>
+<BRK/>
+<TXT>At final inspection, furnish one spare controller composed of one fully equipped processor, 1 percent space I/O interface boards (minimum of one), 
+and 1 percent spare I/O modules (minimum of one of each type used).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Erasable Program Read-Only Memory (EPROM)</TTL><BRK/>
+<BRK/>
+<TXT>Provide one spare EPROM loaded with the proper software for each programmable controller and located with the controller in a protective enclosure.  
+Mark the enclosure "SPARE EPROM" and physically identify the EPROM for use in the specific controller.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>LOCKING CONTROL PANEL COMPONENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Switches</TTL><BRK/>
+<BRK/>
+<TXT>Provide unembossed, nontactile, momentary contact membrane-type switches for <SUB>control devices</SUB> installed in the graphic and linear panels.  Provide 
+operating force of membrane-type switches of<MET> 2.22 N</MET><ENG> 8 ounces</ENG>.  Supply membrane switches with silver contacts and proper circuitry to perform functions 
+as specified in this section.  Supply membrane switches in modules with no more than four individual switches in each.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Light Emitting Diodes</SUB> (LED)</TTL><BRK/>
+<BRK/>
+<TXT>Provide T 1 3/4 light emitting diodes (LED) visual indicators with resistors and protective diodes as required for operation at 24 volts dc.  Provide 
+indicators rated at a minimum of 4 million hours of operation at 20 milliamps dc and produce a minimum of 147 and 570 lumens/watt for red and yellow 
+devices, respectively.  Size resistors saccording to the manufacturer's instructions and adjusted to produce uniform brightness among LEDs.  Mount 
+resistors and protective diodes on standoff terminal blocks mounted adjacent to the LED served on the underside of the panel.  Mounting hardware 
+must not be visible from the face of the panel.  Resistors and protective diodes may be an integral part of the LED.  Include a red LED in the 
+panels for each electrically controlled and monitored door.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Press to Test</TTL><BRK/>
+<BRK/>
+<TXT>Each locking control panel must contain a "press to test" pushbutton which tests visual and <SUB>audible signal devices</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>GRAPHIC LOCKING CONTROL PANELS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide graphic type locking control panels for housing unit control panels that control prisoner cell, 
+shower, or for locking control panels that control remote doors such as exterior doors.  Specify linear type for 
+all others.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Metal Control Cabinets</TTL><BRK/>
+<BRK/>
+<TXT>Provide graphic panel for locking system controls for installation in metal control cabinets as specified in this section.  Custom build each graphic 
+panel for the specific area to be controlled.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Construction</TTL><BRK/>
+<BRK/>
+<TXT>Construct graphic panel of 14 gage sheet steel with<MET> 38 mm</MET><ENG> 1 1/2 inch</ENG> flange on all sides and cover for mounting devices hinged to frame at top.  
+Provide continuous piano-type hinge.  Secure panel to metal control cabinet with flathead, No. 8,<MET> 38 mm</MET><ENG> 1 1/2 inch</ENG> flathead wood screw steel bolts 
+on centers not exceeding<MET> 200 mm</MET><ENG> 8 inches</ENG>.  Overall general dimensions indicated are maximum dimensions.  Coordinate mounting dimensions and support 
+requirements with metal control cabinet installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Finish</TTL><BRK/>
+<BRK/>
+<TXT>Prime finish surfaces of the graphic panel, except that portion containing the graphic display, with rust inhibiting paint and two coats of hammertone 
+finish gray enamel.  Attach a reverse silkscreen polyester plastic film or lexan panel with nomenclature set forth in this specification to the 
+graphic panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Graphic Display - Floor Plan Area</TTL><BRK/>
+<BRK/>
+<TXT>Provide graphic display of building floor plan area containing locking devices to be controlled.  Display must graphically illustrate each electric-operated 
+locking device to be controlled and also include legends of<MET> 5 mm</MET><ENG> 3/16 inch</ENG> high letters in contrasting color.  Provide graphic display in accordance 
+with typical graphic display panel indicated, modified as required for the specific area and orientation of the building to be controlled.  Scale 
+of the graphic display may not be less than<MET> 3 mm per 300 mm</MET><ENG> 1/8 inch per foot</ENG>.  Make display with not more than eight colors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Group wiring on underside of graphic display and lace with nylon tie straps, support on intervals a maximum of<MET> 200 mm</MET><ENG> 8 inches</ENG> and terminate on 
+identified terminal blocks at top of panel adjacent to hinged side.  Strand wiring spanning hinge on conductors.  Terminate conductors with crimp-type 
+lugs of both sets of terminal blocks.  Leave<MET> 150 mm</MET><ENG> 6 inches</ENG> of slack in conductors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Graphic Display - Central Control Room</TTL><BRK/>
+<BRK/>
+<TXT>Provide a facility site plan graphic display of central control room main graphic locking panel.  Control or monitor exterior doors from this panel.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>LINEAR LOCKING CONTROL PANELS</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Linear Panels</TTL><BRK/>
+<BRK/>
+<TXT>Provide linear panels as indicated and as specified to control groups of designated electric-operated locking devices.  Manufacture and install 
+linear locking control panels with same type materials and process as graphic locking control panels and identical except that graphic floor plan 
+display is not required.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WIRING REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Power Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Provide No. 14 THWN or XHHW conductors for solenoid-operated lock sets operating at 120 volts.  Connect solenoid-operated lock sets operating at 
+24 V ac or dc with No. 16 MTW conductors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Provide class one signaling circuits as defined by Article 725 <RID>NFPA 70</RID> for status indicator wiring.  Install No. 16 MTW conductors in common conduit 
+and equipment enclosures with other conductors for locking devices within limitations defined by Article 725-15 <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Wiring Materials</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Use solid copper conductors for wiring systems.  Stranded conductors will be acceptable only where all terminations can be made to screw type lug.  
+Where stranded conductors are used, make all terminations with crimp type lug, size correctly for termination, and apply to conductor with crimping 
+tool intended for use with lug used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Color Coding</TTL><BRK/>
+<BRK/>
+<TXT>Color-code wiring systems, providing each conductor for individual lock sets and operating mechanisms with a distinctive color.  Use white only 
+for neutral conductors, and use green only for grounding conductors.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DISCRETE ELECTRONIC LOCKING CONTROL SYSTEM</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Logic Units</TTL><BRK/>
+<BRK/>
+<TXT>Discrete electronic locking control system consisting of logic units in the form of printed circuit boards, relay terminal equipment, and associated 
+hardware and wiring.  Control system must accept input control information from and send output status information to graphic and linear type locking 
+control panels.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Printed Circuit Boards</TTL><BRK/>
+<BRK/>
+<TXT>Logic units provided with circuitry necessary to perform the functions as specified.  Mount circuit boards in a card cage frame, arranged to allow 
+front and back access.  Provide wiring connections to printed circuit boards capable of being connected to allow field replacement of printed circuit 
+board with no disconnection or desoldering of wiring.  Rack mount card cage frame in security equipment cabinets.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Relay Terminal Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Consisting of electronic relays that switch the power wiring for locking and control devices.  Control relays must be optically isolated, solid 
+state type devices, rated for at least 50 percent more than connected load, capable of handling all connected load voltages, and provide a minimum 
+of 2500 volts root mean square (RMS) isolation.  Group and lace wiring with nylon tie straps, supported in intervals not to exceed<MET> 200 mm</MET><ENG> 8 inches</ENG>
+ and terminated on identified terminal blocks.  Rack mount relay terminal equipment in security equipment cabinets.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PROGRAMMABLE CONTROLLERS</TTL><BRK/>
+<BRK/>
+<TXT>Programmable controllers may be provided in lieu of discrete electronic locking control for locking control, door monitoring, annunciation and 
+other specified functions.  Provide all necessary logic functions, timing functions, input points, output points, memory, communication capabilities 
+and software for the operating features specified in this section.  Individual input/output, (I/O), interface boards and I/O modules are considered 
+part of the controller even if physically separated.  Controller must be general purpose in nature, not custom designed and built for an isolated 
+application, and not location specific in its construction.  Controller may be made location specific and operationally customized by installing 
+EPROM with applicable software and making the I/O interface boards system specific by setting the proper address via DIP switches or plug-in headers, 
+and installing the proper I/O modules.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Logic Functions</TTL><BRK/>
+<BRK/>
+<TXT>Include, but do not limit to logical AND, OR, and INVERT functions implemented in sufficient levels to provide specified operating features.  Arrange 
+logic in such a manner as to prevent unsecure conditions from arising as a result of power failure to part or all of the control power system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Timing Functions</TTL><BRK/>
+<BRK/>
+<TXT>Include, but do not limit to on-delay, off-delay, pulsing and stepping functions with programmable timing in sufficient variations and quantities 
+to provide specified operating features.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Input/Output</TTL><BRK/>
+<BRK/>
+<TXT>Plug-in mounted on the I/O interface boards and held securely by screw type fasteners.  Provide I/O modules as solid state devices providing a 
+minimum of 2500 volts RMS (root means square) isolation.  Provide output point modules rated for both voltage and load of device controlled including 
+constant duty and inrush currents.  In the event of power failure, output points controlling electrical locks and gates must fail in the secure 
+condition, except shower points.  Provide input point modules compatible with input device and voltage connected.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Software</TTL><BRK/>
+<BRK/>
+<TXT>Provide system and operating software and fixed data base contained in erasable program read only memory.  Provide operating data base contained 
+in random access memory backed up with a minimum of 48 hours of rechargeable batteries.  Charge must be maintained by the controller.  Develop 
+operating software for each controller on an individual basis.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Processor</TTL><BRK/>
+<BRK/>
+<TXT>Controller processor communicates to and from the I/O interface boards via a multipair, bidirectional communication bus incorporating digital multiplexing 
+techniques.  Communications facilities must allow the processor to communicate with remotely located I/O interface boards at a distance of up to<MET>
+ 305 meters</MET><ENG> 1000 feet</ENG>.  Where operational features require two or more controllers to interact, hard wire the interaction, point for point.  Optionally, 
+data communication may be provided for controller to controller interaction provided operational considerations remain unchanged.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Interface</TTL><BRK/>
+<BRK/>
+<TXT>Standard printed circuit boards containing the necessary coding/decoding solid state circuits for communicating with the processor, method of setting 
+board address as required in this section, LED indicators which display the status of each point and plug-in input/output modules.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Voltage</TTL><BRK/>
+<BRK/>
+<TXT>Provide controller that operates on 105 to 130 V ac, 60 Hz and contains an integral circuit breaker for overload protection.  Controller must operate 
+properly in environmental conditions of zero to 60 degrees C in up to 95 percent humidity (noncondensing).  Controller must conform to electrical 
+noise standards of <RID>IEEE C37.90.1</RID> and <RID>NEMA ICS 1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Speed</TTL><BRK/>
+<BRK/>
+<TXT>Provide controller speed such that no delay is noticed between the initiation of a control function such as operating a switch or opening a monitored 
+door, and the resulting control action.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>CONTROL POWER TRANSFORMER</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide control power transformers to supply low voltage, 24 V ac power for locking control or signaling devices.  Provide transformer with secondary, 
+24 V ac output with circuit breaker type overload interruption.  Provide transformer rated for not less than 20 percent of load imposed on transformer 
+of most severe loading condition.  Provide power source for control power transformer from building emergency power system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>DC POWER SUPPLY</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Low Voltage Power Supply Units</TTL><BRK/>
+<BRK/>
+<TXT>Provide low voltage dc power supply units to provide 24-volt regulated, filtered dc power for locking controls, dc locks and signal devices.  Provide 
+24 V dc output power with ampere rating not less than 150 percent of load imposed on power supply under most severe conditions of load.  The dc 
+output must be fused.  Regulate output voltage within plus or minus 5 percent from no load to full load.  Power supply unit must be U.L. listed.  
+Provide power source for dc power supply unit from panelboards that are fed from emergency generator.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Multiple Power Supplies</TTL><BRK/>
+<BRK/>
+<TXT>Where low voltage dc requirements for control devices operated at maximum load exceed output of a single power supply, provide multiple power supplies 
+and subdivide loads to prevent overloading the power supply unit.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>SECURITY EQUIPMENT CABINETS</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Location</TTL><BRK/>
+<BRK/>
+<TXT>Provide cabinets where indicated to house auxiliary control system components such as power supplies, control power transformers, <SUB>auxiliary relays</SUB>
+, and amplifiers.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Construction</TTL><BRK/>
+<BRK/>
+<TXT>Provide surface mounted cabinets, constructed of code-gage steel, and finished on all surfaces with rust inhibiting prime coat and two coats of 
+flat medium gray enamel paint.  Provide hinged door and flush mounted lock and latch.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>METAL CONTROL CABINETS</TTL><BRK/>
+<BRK/>
+<TXT>Provide cabinet to house locking control equipment.  Furnish multiple cabinets assembled to form a single unit with space to accommodate equipment 
+required to be installed therein.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Construction</TTL><BRK/>
+<BRK/>
+<TXT>Provide louvered cabinet sides, 16 gage sheet steel attached to 14 gage,<MET> 12.7 mm</MET><ENG> 1/2 inches</ENG> wide angle frames from the inside with bolts.  Provide 
+cabinet front with hinged, lockable louvered doors, keyed alike.  Provide cabinet rear panel of solid sheet steel unless the cabinet is mounted 
+against a solid wall, in which case, a back is not required.  Prime and paint trim, braces, angles, and exterior sides.  Visual parts outside the 
+cabinet will be beige.  Provide cabinet with<MET> 305 mm</MET><ENG> 12 inch</ENG> writing surface the same width as the cabinet mounted approximately<MET> 760 mm</MET><ENG> 30 inches</ENG>
+ above the floor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sloped Turrets</TTL><BRK/>
+<BRK/>
+<TXT>Provide the top part of the cabinets with sloped fonts.  The approximate slope of the turret off the horizontal axis should be<MET> 0.523 rad</MET><ENG> 30 degrees</ENG>
+.  Provide cabinets<MET> 635 mm</MET><ENG> 25 inches</ENG> front to back unless indicated otherwise, and a maximum overall height of<MET> 1065 mm</MET><ENG> 42 inches</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cooling Fan</TTL><BRK/>
+<BRK/>
+<TXT>Provide a cooling fan located on the interior of the panel side with a capacity of<MET> 9.63 cubic meter</MET><ENG> 340 cubic feet</ENG> per minute equipped with a integral 
+charcoal filter.  Position the fan intake as low as possible in the cabinet.  The fan must be fused, operate at 120 volts, and operate continuously.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Groupings</TTL><BRK/>
+<BRK/>
+<TXT>Group conductors by systems and tie with nylon tie straps. Shape wire bundles for support from top and sides of structure.  Do not attach support 
+devices to removable panels.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protection</TTL><BRK/>
+<BRK/>
+<TXT>Where groups of conductors or single conductor pass through metal framing or panels, protect conductors with rubber or plastic grommets.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Locking Control Panels</TTL><BRK/>
+<BRK/>
+<TXT>Install graphic locking control panels and linear locking control panels in metal control cabinets as specified.  Coordinate installation of locking 
+control panels in metal control cabinets with respect to dimensions, mounting and accessibility.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Equipment Cabinets</TTL><BRK/>
+<BRK/>
+<TXT>Install security equipment cabinets for locking control systems in the security equipment or electrical room closest to the associated locking 
+control panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Junction Boxes</TTL><BRK/>
+<BRK/>
+<TXT>Provide junction boxes required for locking systems wiring in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Do not install junction 
+boxes and pull boxes in areas accessible to prisoners.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Conduit Systems</TTL><BRK/>
+<BRK/>
+<TXT>Provide conduit systems required for locking systems wiring in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wiring Systems</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Wiring Specification</TTL><BRK/>
+<BRK/>
+<TXT>The work under this section includes the installation of wiring for the electrically operated locks, gates, and doors.  The actual connections 
+to individual locks, doors, and gates and the actual connections in the control panels and consoles is also included under this section.  Coordinate 
+this portion of the work with the detention hardware manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grouping</TTL><BRK/>
+<BRK/>
+<TXT>Group conductors within junction boxes, pull boxes, and equipment enclosures and lace with nylon tie straps with identification tabs, in individual 
+sets servicing individual lock sets or operating mechanisms.  Identify conductor groups on the strap with respect to room or operator served.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Continuous Runs</TTL><BRK/>
+<BRK/>
+<TXT>Do not splice locking system conductors.  Conductors must be continuous between locksets and termination point for control panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT>Protect communication and data equipment against surges induced on control, sensor, and data cables.  Provide cables and conductors which serve 
+as control, sensor or data conductors with surge protection circuits installed at each end that meets the <RID>IEEE C37.90.1</RID> surge withstand capability 
+test.  Do not use fuses for surge protection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Provide grounding of wiring for locking control system in accordance with <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Install wiring for locking control system in accordance with <RID>NFPA 70</RID> and the approved locking control system wiring diagram.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>PROTECTION OF EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Due to the sensitivity of the locking control equipment to dust, dirt, condensing humidity, and other products normally found on construction sites, 
+take precautions to ensure that the equipment is kept clean.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT><TST>Upon 7-days notice to the Contracting Officer, conduct the following tests in the presence of the Contracting Officer.</TST></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Locking Control System Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>Perform an operational system test to verify conformance of locking control system to this specification.  Tests include the activation of all 
+individual and group locking controls keep verification of operation, and verification of status annunciation of controlled devices.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Retesting</TTL><BRK/>
+<BRK/>
+<TXT>Rectify deficiencies indicated by test and completely retest work affected by such deficiencies.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TRAINING</TTL><BRK/>
+<BRK/>
+<TXT><TST>Upon completion of the work and at a time designated by the Contracting Officer, furnish a competent technician regularly employed or authorized 
+by the manufacturer of the locking control system to instruct Government personnel in the proper operation, troubleshooting, maintenance, safety, 
+and emergency procedures of the locking control system.</TST>  Provide a period of instruction of four eight-hour working days.  Conduct the training 
+at the job site.  The Government has the option to record the training session.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EQUIPMENT SCHEDULES</TTL><BRK/>
+<BRK/>
+<TXT>The equipment schedules for locking control panels contained in this section of the specifications represent the type of control functions and 
+status indication devices required in each locking control panel.  Switches and LEDs must conform to the requirements for control devices and visual 
+indicators as specified.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Panel schedule is a sample to be used as a guide by the writer for developing locking panel.  Information 
+on the schedules should be as follows: the name of locking control panel, type (graphic or linear), mounting (metal 
+control cabinet), and location.  Also list the function (e.g., press to test switch, silence switch, interlock 
+bypass, interlock active, etc.) and quantity.  These functions are individually described in this section.  Under 
+"REMARKS" include a brief description of the function.  Finally, list the quantity and type of all security and 
+builders hardware controlled or monitored by the locking control panel.  Refer to architectural door schedule 
+for type of door hardware.</NPR><BRK/>
+<AST/><BRK/>
+<PGE/><BRK/></NTE>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="RIGHT"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="19">
+      <COL AUTOWIDTH="0" WIDTH="69.75"/>
+      <COL AUTOWIDTH="0" WIDTH="210.00"/>
+      <COL AUTOWIDTH="0" WIDTH="305.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">EQUIPMENT SCHEDULE</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Locking Control Panel:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Female Area</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Type:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Graphic</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Mounting:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Metal Cabinet</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Location:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Female Control Area</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1" STYLEID="s51"/>
+         <CEL INDEX="3">
+<DTA TYPE="STRING"><HL4>DEVICE REQUIREMENTS</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Quantity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Remarks</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type or Function</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Press to Test</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Illuminates all LED's on panel.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Signal Silence</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Silences all audible signals.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Interlock Bypass</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Disables the interlock capability so that any number of doors may be open at one time.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Cell Call-in</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Shower Call-in</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Smoke Detector Indicators (Exhaust Duct Chase Mounted)</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Group Unlock</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Unlocks all cell and shower doors</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">SH-7</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Cell door hardware</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">SH-1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Cell door hardware</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">SH-16</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Shower door hardware</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">SH-2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Sallyport dayroom door</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">SH-2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Sallyport door</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

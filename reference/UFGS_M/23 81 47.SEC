@@ -1,0 +1,2229 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-23 81 47 (February 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 81 47 (August 2008)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 81 47</SCN><BRK/>
+<BRK/>
+<STL>WATER-LOOP AND GROUND-LOOP HEAT PUMP SYSTEMS</STL><BRK/>
+<DTE>02/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>water source heat pump systems and ground source closed-loop 
+heat pump systems</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>This specification is based on two contract approaches for providing these systems:  separate design and contractor 
+installed systems (Design-Bid-Build) and contractor design and installed systems (Design-Build or performance 
+based contracting).  The designer selects required preference for the contract approach.  Contractor design and 
+install is limited to ground source closed-loop heat pump systems.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  There are two main types of ground source heat pump system: closed loop systems and open systems.  Open systems 
+use and dispose of ground water.  There are variations of closed loop systems based on the configuration of pipe 
+orientations.  This specification covers only closed-loop systems.  This specification also covers water loop 
+systems that are of the not ground-source type.</NPR><BRK/>
+<BRK/>
+<NPR>2.  System design requirements must conform to UFC 3-410-01 "Heating, Ventilating, and Air Conditioning Systems", 
+ASHRAE Ground-Source Heat Pumps Manual - ASHRAE Item 90376 (ISBN1-883413-52-4),<MET> ASHRAE 90.1 - SI</MET><ENG> ASHRAE 90.1 - 
+IP</ENG> including paragraph 6.5.2.2.3, and IGSHPA Design Manuals.</NPR><BRK/>
+<BRK/>
+<NPR>3.  The designer must become familiar with the local and state regulations regarding geothermal wells and water 
+wells.  Design and specify the heat exchanger systems to meet the specific local and state regulations that may 
+be required, such as:<BRK/>
+a.  Well driller licensing<BRK/>
+b.  Pump installer licensing<BRK/>
+c.  Well construction permit<BRK/>
+d.  State approved well permit<BRK/>
+e.  Allowable grout requirements<BRK/>
+f.  Allowable heat transfer fluids<BRK/>
+g.  Allowable pipe materials<BRK/>
+h.  Well construction log record<BRK/>
+i.  Authorization to Install and Operate<BRK/>
+j.  Antifreeze fluid<BRK/>
+k.  Water treatment chemicals<BRK/>
+l.  Corrosion inhibitors</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the following information on the project design drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Design parameters for each item of equipment including capacity, efficiency, sound ratings, motor speeds, 
+electrical characteristics, and special features.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Design heat pump systems for energy efficiency in compliance with FEMP/Energy Star requirements specified 
+at <URL>www.eere.energy.gov/femp/procurement</URL> and <URL>www.energystar.gov/products</URL>.  In selection of equipment, consider 
+life cycle cost. Select the most efficient equipment for which there are at least two products available for the 
+designed capacity.  Indicate the equipment operating requirements, including efficiency, on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>3.  The locations of access doors for valves.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Show configuration, slope and location of each piping system such as: above or below floors, above or below 
+ceilings, above or below roofs, above or below ground.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Show a piping diagram with valves, flushing station, fill station, flexible connections, hose kits, Pete's 
+plugs, drains, and other required hydronic accessories.  Show location, sizes, and type of each valve.</NPR><BRK/>
+<BRK/>
+<NPR>6.  Show water flow rate, entering and leaving water temperatures, air flow rate, and entering and leaving air 
+temperatures for both cooling and heating loads.  Show a water-loop and/or ground-loop heat pump schedule.  Show 
+a well depth schedule.</NPR><BRK/>
+<BRK/>
+<NPR>7.  Show a ground-loop heat pump well and piping plan.  Show recommended minimum distance between wells.  Show 
+the well pattern arrangement.  Show any existing utilities.</NPR><BRK/>
+<BRK/>
+<NPR>8.  Scale ranges for pressure gages and thermometers.</NPR><BRK/>
+<BRK/>
+<NPR>9.  Show control schemes.  Show optional desuperheater for domestic water use where necessary.</NPR><BRK/>
+<BRK/>
+<NPR>10.  Design working pressures and temperatures for each system.</NPR><BRK/>
+<BRK/>
+<NPR>11.  Only drawings (not specifications) shall indicate capacity, efficiency, dimensions, details, plan views, 
+sections, elevations and location of equipment; and space required for equipment maintenance.</NPR><BRK/>
+<BRK/>
+<NPR>12.  Show specific geothermal well requirements as they relate to local and state regulations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 52.2</RID><RTL>(2025) Method of Testing General Ventilation Air-Cleaning Devices for Removal Efficiency by Particle Size</RTL><BRK/><BRK/><RID>ASHRAE 62.1</RID><RTL>(2016) Ventilation for Acceptable Indoor Air Quality</RTL><BRK/><BRK/><RID>ASHRAE 188</RID><RTL>(2021) Legionellosis: Risk Management for Building Water Systems</RTL><BRK/><BRK/><RID>ASHRAE FUN IP</RID><RTL>(2025) Fundamentals Handbook, I-P Edition</RTL><BRK/><BRK/><RID>ASHRAE FUN SI</RID><RTL>(2025) Fundamentals Handbook, SI Edition</RTL><BRK/><BRK/><RID>ASHRAE Item 90376</RID><RTL>(1997) Ground-Source Heat Pumps, Design of Geothermal Systems for Commercial and Institutional Buildings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B31.5</RID><RTL>(2022) Refrigeration Piping and Heat Transfer Components</RTL><BRK/><BRK/><RID>ASME B31.9</RID><RTL>(2025) Building Services Piping</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM B265</RID><RTL>(2025) Standard Specification for Titanium and Titanium Alloy Strip, Sheet, and Plate</RTL><BRK/><BRK/><RID>ASTM B333</RID><RTL>(2025) Standard Specification for Nickel-Molybdenum Alloy Plate, Sheet, and Strip</RTL><BRK/><BRK/><RID>ASTM B424</RID><RTL>(2022) Standard Specification for Ni-Fe-Cr-Mo-Cu Alloy (UNS N08825 and UNS N08221, and UNS N06845) Plate, Sheet, and Strip</RTL><BRK/><BRK/><RID>ASTM D92</RID><RTL>(2012a) Standard Test Method for Flash and Fire Points by Cleveland Open Cup Tester</RTL><BRK/><BRK/><RID>ASTM D1177</RID><RTL>(2017) Standard Test Method for Freezing Point of Aqueous Engine Coolants</RTL><BRK/><BRK/><RID>ASTM D2513</RID><RTL>(2018a) Standard Specification for Polyethylene (PE) Gas Pressure Pipe, Tubing, and Fittings</RTL><BRK/><BRK/><RID>ASTM D2657</RID><RTL>(2007; R 2015) Heat Fusion Joining Polyolefin Pipe and Fittings</RTL><BRK/><BRK/><RID>ASTM D2683</RID><RTL>(2020) Standard Specification for Socket-Type Polyethylene Fittings for Outside Diameter-Controlled Polyethylene Pipe and Tubing</RTL><BRK/><BRK/><RID>ASTM D3035</RID><RTL>(2022) Polyethylene (PE) Plastic Pipe (DR-PR) Based on Controlled Outside Diameter</RTL><BRK/><BRK/><RID>ASTM D3261</RID><RTL>(2016) Standard Specification for Butt Heat Fusion Polyethylene (PE) Plastic Fittings for Polyethylene (PE) Plastic Pipe and Tubing</RTL><BRK/><BRK/><RID>ASTM D3350</RID><RTL>(2021) Polyethylene Plastics Pipe and Fittings Materials</RTL><BRK/><BRK/><RID>ASTM D3892</RID><RTL>(2015) Standard Practice for Packaging/Packing of Plastics</RTL><BRK/><BRK/><RID>ASTM F402</RID><RTL>(2018) Standard Practice for Safe Handling of Solvent Cements, Primers, and Cleaners Used for Joining Thermoplastic Pipe and Fittings</RTL><BRK/><BRK/><RID>ASTM F714</RID><RTL>(2024) Standard Specification for Polyethylene (PE) Plastic Pipe (DR-PR) Based on Outside Diameter</RTL><BRK/><BRK/><RID>ASTM F1105</RID><RTL>(2009; R 2025) Standard Practice for Preparing Aircraft Cleaning Compounds, Liquid-Type, Temperature-Sensitive, or Solvent-Based, for Storage Stability Testing</RTL><BRK/><BRK/><RID>ASTM F1290</RID><RTL>(2019) Standard Practice for Electrofusion Joining Polyolefin Pipe and Fittings</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL GROUND SOURCE HEAT PUMP ASSOCIATION (IGSHPA)</ORG><BRK/><BRK/><RID>CSA/IGSHPA C448</RID><RTL>(2016; R 2021) Design and Installation of Ground Source Heat Pump Systems for Commercial and Residential Buildings</RTL><BRK/><BRK/><RID>IGSHPA 21015</RID><RTL>(2000) Grouting for Vertical GHP Systems</RTL><BRK/><BRK/><RID>IGSHPA 21020</RID><RTL>(1988) Closed-Loop/Ground-Source Heat Pump System/Installation Guide</RTL><BRK/><BRK/><RID>IGSHPA 21035</RID><RTL>(2017) Design and Installation Standards</RTL><BRK/><BRK/><RID>IGSHPA 21060</RID><RTL>(1989) Soil and Rock Classification Field Manual</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO 13256-1</RID><RTL>(2021) Water-Source Heat Pumps - Testing and Rating for Performance - Part 1:  Water-to-Air and Brine-to-Air Heat Pumps</RTL><BRK/><BRK/><RID>ISO 13256-2</RID><RTL>(2021 ) Water-Source Heat Pumps - Testing and Rating for Performance - Part 2:  Water-to-Water and Brine-to-Water Heat Pumps</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/><RID>NEMA MG 10009</RID><RTL>(2022) Energy Management Guide for Selection and Use of Single-Phase Motors</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 704</RID><RTL>(2022) Standard System for the Identification of the Hazards of Materials for Emergency Response</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL INSTITUTE OF STANDARDS AND TECHNOLOGY (NIST)</ORG><BRK/><BRK/><RID>NIST HB 135</RID><RTL>(1995; Annual Suppl 2010) Life Cycle Costing Manual for the Federal Energy Management Program</RTL><BRK/><BRK/></REF><REF><ORG>NSF INTERNATIONAL (NSF)</ORG><BRK/><BRK/><RID>NSF/ANSI 600</RID><RTL>(2023) Health Effects Evaluation and Criteria for Chemicals in Drinking Water</RTL><BRK/><BRK/></REF><REF><ORG>SHEET METAL AND AIR CONDITIONING CONTRACTORS' NATIONAL ASSOCIATION (SMACNA)</ORG><BRK/><BRK/><RID>SMACNA 1966</RID><RTL>(2020) HVAC Duct Construction Standards Metal and Flexible, 4th Edition</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF ENERGY (DOE)</ORG><BRK/><BRK/><RID>Energy Star</RID><RTL>Energy Star Energy Efficiency Labeling System (FEMP)</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>29 CFR 1910</RID><RTL>Occupational Safety and Health Standards</RTL><BRK/><BRK/><RID>40 CFR 82</RID><RTL>Protection of Stratospheric Ozone</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 94</RID><RTL>(2023; Reprint Jan 2024) UL Standard for Safety Tests for Flammability of Plastic Materials for Parts in Devices and Appliances</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  Select fourth sentence for water-loop heat pump systems and fifth sentence for ground-loop heat pump systems.</NPR><BRK/>
+<BRK/>
+<NPR>2. For contractor design and installed systems (performance based contracting), select bracketed "Design and".  
+Tailoring is added for design-build optional brackets.  For projects that have separate design and contractor 
+installed work, do not select "Design and" brackets.  Select the appropriate brackets.</NPR><BRK/>
+<BRK/>
+<NPR>3.  For water to air applications that have ductwork to distribute hot or cold air and to provide humidity control, 
+use ARI/ISO 13256-1 as the standard for water source heat pumps.</NPR><BRK/>
+<BRK/>
+<NPR>4.  For water to water applications such as in hydronic or circulating fluid systems, domestic water heating systems, 
+and radiant heating systems, use ISO 13256-2 as the standard for water source heat pumps.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="DESIGN-BUILD">[Design and ]</TAI>Provide[ new][ and modify existing][ ground-loop][ water-loop] heat pump systems complete and ready for operation.  Systems include 
+heat pumps, system equipment, piping, pumps, electrical equipment, controls,[ wells,] and[ ground heat exchanger][ condenser].  <TAI OPT="DESIGN-BUILD">[Design and ]</TAI>Installation 
+of[ ground-loop][ water-loop] heat pump systems including equipment, materials, installation, workmanship, fabrication, assembly, erection, examination, 
+inspection, and testing must be in accordance with <RID>ASME B31.9</RID>, <RID>ASME B31.5</RID>,<MET> <RID>ASHRAE FUN SI</RID></MET><ENG> <RID>ASHRAE FUN IP</RID></ENG>, <RID>IGSHPA 21015</RID>, <RID>IGSHPA 21020</RID>, <RID>IGSHPA 21035</RID>
+, <RID>CSA/IGSHPA C448</RID>, <RID>IGSHPA 21060</RID>, <RID>NFPA 70</RID>, <RID>ASHRAE Item 90376</RID>,[ <RID>ISO 13256-2</RID>][ <RID>ISO 13256-1</RID>] and[ <RID>ISO 13256-2</RID>] as supplemented and modified by this 
+section.[  Provide water-loop heat pump condenser piping under Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, AND CONDENSER WATER PIPING SYSTEMS.][  Provide 
+ground coupled condenser loop piping by the requirements of this section.]</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="DESIGN-BUILD">[<SPT><TTL>GROUND-LOOP HEAT PUMP SYSTEM DESIGN</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert the following paragraphs for design and install projects:  GROUND-LOOP HEAT PUMP SYSTEM DESIGN, 
+CALCULATIONS, DETAIL DRAWINGS, SOIL THERMAL CONDUCTIVITY TESTING, and SYSTEM DESIGNER.  Tailoring is used for 
+Design-Build optional brackets.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Design ground-loop heat pump systems in accordance with the required and advisory provisions of <RID>NFPA 70</RID>, <RID>ASHRAE Item 90376</RID>, <RID>IGSHPA 21020</RID>, <RID>IGSHPA 21035</RID>
+ and <RID>CSA/IGSHPA C448</RID> except as modified herein.  Provide calculations.  Each system must include materials, accessories, and equipment inside and 
+outside the building to provide each system complete and ready for use.  Design and provide each system to give full consideration to optimum well 
+spacing and location, piping, electrical equipment, pumps, ground heat exchanger, and other construction and equipment in accordance with detailed 
+working drawings to be submitted for approval.  Locate ground-loop wells in a consistent pattern that would give the proper spacing between wells 
+and the optimum performance.  Provide <SUB>well and piping system layout drawings</SUB>.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL><SUB>Calculations</SUB></TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Methodology</TTL><BRK/>
+<BRK/>
+<TXT>Submit all calculations as part of the design documentation.  Provide all calculations used to determine the system design of the ground-loop heat 
+pump system.  Provide calculations for the HVAC loads and load profiles.  Calculations must include computer aided design programs that include 
+the effects of thermal interaction between adjacent boreholes.  Include submission of the software name and version, and design parameters.  Design 
+parameters include soil conditions, ground water level, soil heat transfer coefficients and heat transfer coefficient for grout materials.  Heat 
+transfer and other calculations are to be prepared by the System Designer using computer software specifically intended for ground-loop heat pump 
+systems.  The design is to be based on calculations that will provide the most life cycle cost effective ground-loop heat pump system using an 
+expected life of 25 years and must be sized based upon the loads shown on the drawings.  Life cycle cost analysis must be performed as required 
+by the <RID>NIST HB 135</RID> using the current discount rates, factors, and energy cost rates.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Design</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  For ground-loop heat pump systems in the South where there are limited heating requirements and where heat 
+transfer fluids are not required, use the second option regarding the minimum water temperature or the 5th sentence.</NPR><BRK/>
+<BRK/>
+<NPR>2.  In first sentence, the designer should select items required for software output based on anticipated software 
+input.</NPR><BRK/>
+<BRK/>
+<NPR>3.  The designer should select the maximum entering water temperature:  90 degrees F is more conservative and 
+allows longer vertical loops as opposed to the industry standard of<MET> 35 degrees</MET><ENG> 95 degrees</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[The diameter, length, flow, velocity,[ friction loss,][ number and type fittings,][ total friction loss,] and the[ maximum expected expansion 
+and contraction] of the pipe must be indicated in the program output.  An accompanying schematic drawing showing reference points used in the calculations 
+is to be included with the calculations.  The maximum entering water temperature to the heat pumps under the peak air conditioning load design 
+condition should not exceed<MET> [32][35] degrees C</MET><ENG> [90][95] degrees F</ENG>.  The minimum entering water temperature to the heat pumps under the peak heating 
+load design condition should be no lower than<MET> minus 1 degrees C</MET><ENG> 30 degrees F</ENG>.][  The entering water temperature to the heat pumps under peak heating 
+load design is to be<MET> [7.2][10] degrees C</MET><ENG> [45][50] degrees F</ENG> for ground-loop heat pump systems with limited heating requirements.][  Adjacent wells/system 
+will not be spaced closer than<MET> [4.5][6][_____] meters</MET><ENG> [15][20][_____] feet</ENG>.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT>][<SPT><TTL><SUB>Detail Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Prepare and provide<MET> A1 841 by 594 mm</MET><ENG> 24 by 36 inch</ENG> detail working drawings showing the ground-loop heat pump system, layout, assembly and installation 
+details, electrical connection diagrams and wiring diagrams, installation and details of pumps, distribution manifolds, heat pumps, piping, and 
+well field layout.  Show well grouting details in accordance with <RID>IGSHPA 21015</RID>.  Show data essential for proper installation of each system.  Show 
+details, plan view, elevations, and sections of the systems supply and piping.  Drawings must be to scale, show the North arrow, show the graphic 
+scales, equipment schedules, legends, abbreviation definitions, notes, symbol lists, and any key plans.  Provide equipment schedules indicating 
+the pump motor horsepower and power consumption.  Show piping schematic of systems supply, devices, valves, pipe, and fittings.  Show the well 
+field arrangement.  Show point to point <SUB>Electrical Wiring Diagrams</SUB>.  The design and drawings must show the piping lay out, piping sizes to transfer 
+the heat required, including any boring, trenching, installation of piping, and connection to the piping in applicable HVAC System.  Drawings must 
+include any information required to demonstrate that the system has been coordinated and will properly function within the HVAC system and indicate 
+equipment relationship to other parts of the work, including clearances required for operation and maintenance and the test point locations where 
+the ground-loop heat pump system will be monitored during testing.  Submit drawings signed by the System Designer.  Concurrent with submittal of 
+the Detail Drawings, submit certification by the System Designer that the design and calculations conform to all contract requirements, including 
+signed approval of the Soil Thermal Conductivity Test Reports..</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Soil Thermal Conductivity Testing</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  Also known as In Situ Thermal Properties Testing</NPR><BRK/>
+<BRK/>
+<NPR>2.  For Thermal Conductivity Property Testing, this work is to be performed by the designer for systems where 
+the total cooling load is<MET> 700 kW</MET><ENG> 40 tons</ENG> or greater.  This requires the installation of a test well.  This requirement 
+is for both design-build and design-bid-build type projects.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Due to possible variance in soil properties and ground water, it is advisable to perform multiple soil thermal 
+conductivity testing at various locations on the project site.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For projects where the total heating design load for the ground-loop heat pump system exceeds<MET> 140.7 kW</MET><ENG> 480,000 btu/hr</ENG> or the total cooling design 
+load exceeds<MET> 140.7 kW</MET><ENG> 40 tons</ENG>, in situ thermal properties testing will be conducted to determine soil thermal properties prior to the design.  
+These tests must be conducted in accordance with the procedures outlined in <RID>ASHRAE Item 90376</RID> and Part 3.0 herein.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>System Designer</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  This paragraph is intended for design-build projects.  The system designer performs the design of the ground-loop 
+heat pump system.</NPR><BRK/>
+<BRK/>
+<NPR>2.  The designer must select the option for the requirements of the system designer as a professional engineer, 
+a certified GeoExchange Designer, or both.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The ground-loop heat pump system(s) must be designed by an individual who is a[ registered professional engineer][ Certified GeoExchange Designer] 
+and is regularly engaged in the design of the type and capacity of system(s) specified in this project for the immediate 3 years prior to the submittal 
+of the System Designer's Statement of Qualifications.[  Certification as a certified GeoExchange Designer must be kept up to date and maintained 
+with the Association of Energy Engineers.]  The System Designer's Statement of Qualifications must include design experience in ground-loop heat 
+pump systems, geothermal heat pump design, data identifying the location, ground-loop heat pump system type, and capacity of at least three systems 
+designed by the proposed System Designer during that period.  The Contractor must furnish documentation from the owner of each of these three systems 
+verifying that each system has performed in the manner intended for the 6 months prior to submission of the Statement of Qualifications.  Provide 
+a letter no later than [14][_____] calendar days after the Notice to Proceed providing the name and Statement of Qualifications of the individual 
+who will prepare the Design and Calculations.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>]</TAI>[<SPT><TTL><SUB>GROUND SOURCE HEAT PUMP INSTALLER</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  The ground-loop heat pump system is provided by an accredited geoexchange heat pump installer.  The work includes 
+material, installation, and commissioning.  The design of the ground-loop heat pump system is performed by the 
+system designer.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Delete this paragraph for water-loop heat pump systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Work specified in this section must be performed by accredited ground source heat pump (GSHP) installers.  The GSHP installer must be an "Accredited 
+Installer."  Accreditation as an Accredited Installer must be kept up to date and maintained with the International Ground Source Heat Pump Association 
+(IGSHPA).  The Accredited Installer must be engaged in the installation of the type and capacity of the system(s) specified in this project for 
+the immediate 3 years prior to the submittal of the GSHP installer's Statement of Qualifications.  The GSHP installer's Statement of Qualifications 
+must include a copy of IGSHPA Installer Certification and data identifying the location, GSHP system type, and capacity of at least three systems 
+installed under the guidance of the proposed GSHP Installer during that period.  The Contractor must furnish documentation from the owner of these 
+three GSHP systems verifying that each system has performed in the manner intended for the 6 months prior to submission of the Statement of Qualifications.  
+Provide a letter not later than [14][_____] calendar days after the Notice to Proceed, providing the name and Statement of Qualifications of the 
+individual(s) who will serve as Ground Source Heat Pump Installer.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These related requirements are for both water-loop as well as ground-loop water source heat pump systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="ARMY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the following references for ARMY Projects, if required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Requirements for cooling towers are specified in Section <SRF>23 65 00</SRF> COOLING TOWERS AND REMOTE EVAPORATIVELY-COOLED CONDENSERS.  ][Requirements for 
+water heating boilers are specified in Section <SRF>23 52 00</SRF> HEATING BOILERS.]</TXT><BRK/></TAI>
+<TAI OPT="NAVY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the following references for NAVY Projects, if required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Requirements for cooling towers are specified in Sections <SRF>23 64 10</SRF> WATER CHILLERS, VAPOR COMPRESSION TYPE and <SRF>23 65 00</SRF> COOLING TOWERS AND REMOTE 
+EVAPORATIVELY-COOLED CONDENSERS.]</TXT><BRK/>
+<BRK/>
+<TXT>[Requirements for water heating boilers are specified in Section <SRF>23 52 46.00 20</SRF> LOW PRESSURE WATER HEATING BOILERS (OVER 800,000 BTU/HR OUTPUT).]</TXT><BRK/></TAI>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the following references for all Projects, if required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Requirements for metal duct systems are specified in Section <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION.  ][Requirements for above ground piping are specified 
+in Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, AND CONDENSER WATER PIPING SYSTEMS.  ][Requirements for pumps are specified in Section <SRF>23 21 23</SRF> HYDRONIC 
+PUMPS.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<TAI OPT="DESIGN-BUILD"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Insert the following for design and install projects:  "Detail Drawings", "Calculations", "Electrical Wiring 
+Diagrams", "Soil Thermal Conductivity Testing", and "Well and Piping System Layout Drawings".  These submittal 
+items are tailored for DESIGN-BUILD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<ITM><SUB>Detail Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Calculations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Electrical Wiring Diagrams</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Soil Thermal Conductivity Testing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Well and Piping System Layout Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]</TAI><ITM><SUB>System Diagrams</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Water-Source Water-to-Air Heat Pumps</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB><RID>Energy Star</RID> Label for Residential WAHP Product</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Water-Source Water-to-Water Heat Pumps</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB><RID>Energy Star</RID> Label for Residential WWHP Product</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Refrigerants</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ground Heat Exchanger Piping System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Thermally-Enhanced Bentonite Grout</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>High Grade Bentonite Grout</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Cementitious Thermally Enhanced Grout</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Closed Circuit Coolers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Plate Heat Exchangers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Heat Tape</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Antifreeze</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pipe</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fittings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Piping Components</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>U-Bend Assemblies</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Water-Source Water-to-Air Heat Pumps - Field Acceptance Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Water-Source Water-to-Water Heat Pumps - Field Acceptance Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Closed Circuit Coolers - Field Acceptance Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Plate Heat Exchangers - Field Acceptance Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Water-Source Water-to-Air Heat Pumps - Field Acceptance Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Water-Source Water-To-Water Heat Pumps - Field Acceptance Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Closed Circuit Coolers - Field Acceptance Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Plate Heat Exchangers - Field Acceptance Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>ARI/ISO Performance Data For Water Source Heat Pumps</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Qualifications Of Ground Heat Exchanger Fabricators</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications Of Ground Heat Exchanger Installers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM>Qualifications of <SUB>Ground Source Heat Pump Installer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Hydrostatic Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BUILD"><NTE><AST/><BRK/>
+<NPR>NOTE:  Insert the following for design and install projects:  "System Designer".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<ITM><SUB>System Designer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]</TAI><ITM><SUB>Work Coordination and Performance Certificate</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ground Source Heat Pump Installation Certificate</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Well Driller License</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Installer License</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Well Construction Permit</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Approved Well Permit</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Well Construction Log Record</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Test Borehole Well Construction Log Record</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Refrigeration Technician Certification</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Water-Source Water-to-Air Heat Pumps - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Water-Source Water-to-Water Heat Pumps - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Closed Circuit Coolers - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Plate Heat Exchangers - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Heat Tape - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Closed Circuit Coolers - Operating Instructions</SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>On-Site Training</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Water-Source Water-to-Air Heat Pumps</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Water-Source Water-to-Water Heat Pumps</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Closed Circuit Coolers</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Plate Heat Exchangers</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Heat Tape</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>As-Built Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Ground Heat Exchanger Piping System As-Built Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Indoor Air Quality During Construction</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Material and Equipment Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are standard products of manufacturers regularly engaged in the manufacture of such products, which are of 
+a similar material, design and workmanship.  Standard products must have been in satisfactory commercial or industrial use for 2 years prior to 
+bid opening.  The 2-year use must include applications of equipment and materials under similar circumstances and of similar size.  The product 
+must have been for sale on the commercial market through advertisements, manufacturers' catalogs, or brochures during the 2-year period.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a 2-year field service record will be acceptable if a certified record of satisfactory field operation for not less than 
+6000 hours, exclusive of the manufacturer's factory or laboratory tests, can be shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Support</TTL><BRK/>
+<BRK/>
+<TXT>The equipment items must be supported by service organizations.  Submit a certified list of qualified permanent service organizations for support 
+of the equipment which includes their addresses and qualifications.  These service organizations must be located within a[ 1][ 1.5] hour drive 
+of the equipment installation and able to render satisfactory service to the equipment on a regular and emergency basis during the warranty period 
+of the contract.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Nameplate</TTL><BRK/>
+<BRK/>
+<TXT>Each item of equipment is to have a nameplate bearing the manufacturer's name, address, model number, and serial number securely affixed in a conspicuous 
+place; the nameplate of the distributing agent will not be acceptable.  As applicable the <RID>Energy Star</RID> label also affixed to the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Modification of References</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the word, "must" had been substituted 
+for "should" wherever it appears.  Interpret references in these publications to the "authority having jurisdiction", or words of similar meaning, 
+to mean the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Definitions</TTL><BRK/>
+<BRK/>
+<TXT>For the International Code Council (ICC) Codes referenced in the contract documents, advisory provisions are to be considered mandatory, the word 
+"should" must be interpreted as "must."  Reference to the "code official" must be interpreted to mean the "Contracting Officer."  For Navy owned 
+property, references to the "owner" must be interpreted to mean the "Contracting Officer."  For leased facilities, references to the "owner" must 
+be interpreted to mean the "lessor."  References to the "permit holder" must be interpreted to mean the "Contractor."</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Administrative Interpretations</TTL><BRK/>
+<BRK/>
+<TXT>For ICC Codes referenced in the contract documents, the provisions of Chapter 1, "Administrator," do not apply.  These administrative requirements 
+are covered by the applicable Federal Acquisition Regulations (FAR) included in this contract and by the authority granted to the Officer in Charge 
+of Construction to administer the construction of this project.  References in the ICC Codes to sections of Chapter 1, are to be applied appropriately 
+by the Contracting Officer as authorized by his administrative cognizance and the FAR.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Ground Heat Exchanger Piping System As-Built Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide dimensioned as-built drawings of each complete ground heat exchanger piping system, depicting its relationship to other utilities and buildings 
+in its proximity before burying, covering, or concealing. Drawings must be of a quality equivalent to the contract design drawings.  The as-built 
+drawings of the installed ground heat exchanger piping system are to be laminated or stored in a clear plastic envelope and affixed visibly to 
+the heat pump unit or on the wall in the mechanical room if serving a system of multiple heat pumps.  As-built drawings must be submitted with 
+operation and maintenance data.  A permanent label is to be affixed to each heat pump unit indicating basic information for that unit.  The information 
+must include:  nominal flow rate [_____]<MET> l/s</MET><ENG> gpm</ENG>, pressure [_____] drop<MET> kPa</MET><ENG> feet</ENG>, temperature drop/rise [_____]<MET> degree C</MET><ENG> degree F</ENG>, and capacity 
+[_____]<MET> W</MET><ENG> Btu/hr</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>System Diagrams</SUB></TTL><BRK/>
+<BRK/>
+<TXT>After completion, but before final acceptance, submit System diagrams that show the layout of equipment, piping, and circulation pumps, and typed 
+condensed operation manuals explaining preventative maintenance procedures, methods of checking the system for normal, safe operation, and procedures 
+for safely starting and stopping the system.  Provide diagrams framed under glass or laminated plastic.  After approval, these items are to be 
+posted where directed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plastic Piping Heat Fusion Requirements</TTL><BRK/>
+<BRK/>
+<TXT>All plastic pipe must be cut, made up, and installed in accordance with the pipe manufacturer's recommendations.  Heat joining must be performed 
+in accordance with <RID>ASTM D2657</RID>.  Electrofusion joining must be performed in accordance with <RID>ASTM F1290</RID>.  Qualifications for plastic pipe fabricators 
+are given in this section under paragraph QUALIFICATIONS OF GROUND HEAT EXCHANGER FABRICATORS.  Conduct heat fusion tests to verify the quality 
+of the joints.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Ground Heat Exchanger Fabricators</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The experience clause in this section has been approved by a Level 1 Contracting Officer, and may be used 
+without further approval or request for waiver.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The only acceptable method for joining buried pipe systems is by a heat fusion process.  Submit documentation substantiating the following qualifications:  
+ground heat exchanger fabricators are to have completed a heat fusion school in which each participant has performed a heat fusion procedure under 
+direct supervision of an approved manufacturing certification program, or a DOT certified heat fusion technician.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Refrigeration Technician Certification</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph requires a certification for technicians who work on equipment that could release 
+Class I or II refrigerants, such as R-123, into the atmosphere.  This is required as of January 1, 2018 to meet 
+the requirements of 40 CFR 82, Subpart F.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All technicians working on equipment that contain Class I or II refrigerants must be certified as a Section 608 Technician to meet requirements 
+in <RID>40 CFR 82</RID>, Subpart F.  Provide copies of technician certifications to the Contracting Officer at least 14 calendar days prior to work on any 
+equipment containing these refrigerants.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Ground Heat Exchanger Installers</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit documentation substantiating the following qualifications:  installers must have completed an approved manufacturer's certification program 
+and have successfully completed at least two projects with ground heat exchanger work similar in size and complexity to that required for this 
+project within the last 4 years.  In documentation submit licensing requirements as regulated by local and state regulations for well drillers 
+and pump installers.  Submit for each well driller, the <SUB>Well Driller License</SUB>.  For each pump installer, submit the <SUB>Pump Installer License</SUB>.  Certification 
+and licenses for each well driller and pump installer must be in the state where the work occurs.  All required certification and licenses must 
+be kept current.  Out of date licenses and certification will not be accepted.  Submit to contracting officer for approval the licenses and certification.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Materials delivered and placed in storage are to be stored with protection from the weather, excessive humidity variation, excessive temperature 
+variation, dirt, dust or other contaminants.  Proper protection and care of material before, during and after installation is the Contractor's 
+responsibility.  Any material found to be damaged will be replaced at the Contractor's expense.  During installation, piping is to be capped to 
+keep out dirt and other foreign matter.  A material Safety Data Sheet (SDS) in conformance with <RID>29 CFR 1910</RID> Section 1200(g) must accompany each 
+chemical delivered for use in pipe installation.  At a minimum, this includes all solvents, solvent cements, glues and other materials that may 
+contain hazardous compounds.  Handling must be in accordance with <RID>ASTM F402</RID>.  Storage facilities are to be classified and marked in accordance 
+with <RID>NFPA 704</RID>.  Materials must be stored with protection from puncture, dirt, grease, moisture, mechanical abrasions, excessive heat, ultraviolet 
+(UV) radiation damage, or other damage.  Pipe and fittings must be handled and stored in accordance with the manufacturer's recommendation.  Plastic 
+pipe is to be packed, packaged and marked in accordance with <RID>ASTM D3892</RID>.  Upon delivery of piping, fitting, components, and equipment to the site, 
+inspect items for damage and verify items meet project requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SAFETY REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Exposed moving parts, parts that produce high operating temperature, parts which may be electrically energized, and parts that may be a hazard 
+to operating personnel must be insulated, fully enclosed, guarded, or fitted with other types of safety devices.  Safety devices are to be installed 
+so that proper operation of equipment is not impaired.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PROJECT/SITE CONDITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Verification of Dimensions</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor is to become familiar with all details of the work, verify all dimensions indicated in the field, and advise the Contracting Officer 
+of any discrepancy before performing any work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Because of the small scale of the drawings, it is not possible to indicate all offsets, fittings, and accessories that may be required.  The Contractor 
+must carefully investigate the plumbing, fire protection, electrical, structural and finish conditions that would affect the work to be performed 
+and arrange such work accordingly, furnishing required offsets, fittings, and accessories to meet such conditions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Accessibility</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  The following requirement is intended to solicit the installer's help in the prudent location of equipment 
+when he has some control over locations.  However, designers should not rely on it at all since enforcing this 
+requirement in the field would be difficult.</NPR><BRK/>
+<BRK/>
+<NPR>Therefore, the system designer needs to layout and indicate the locations of equipment, control devices, and access 
+doors so that most of the accessibility questions are resolved inexpensively during design.</NPR><BRK/>
+<BRK/>
+<NPR>2.  On Air Force projects, the designer must provide work/service platforms for accessibility around equipment, 
+such as heat pumps connected to condenser loop, which are installed more than two feet above a suspended ceiling 
+or more than 12 feet above the floor.  Refer to 29 CFR 1910 for specific requirements.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Provide on drawings access requirements for unit replacement, compressor replacement, and equipment repair.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install all work so that parts requiring periodic inspection, operation, maintenance, and repair are readily accessible.  Install concealed valves, 
+expansion joints, controls, dampers, and equipment requiring access, in locations freely accessible through access doors.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>COORDINATION OF WORK AND SYSTEM PERFORMANCE</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Pump supports, piping offsets, fittings, and any other accessories required must be furnished as required to provide a complete installation 
+and to eliminate interference with other construction.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a <SUB>Work Coordination and Performance Certificate</SUB>.  Concurrent with submittal of the Detail Drawings and the Calculations, submit 
+a Certificate by[ both] the[ System Designer][ and the][ Ground Source Heat Pump Installer] stating that the drawings and calculations 
+have been coordinated with all related work and the Ground Source Heat Pump System will perform as[ specified][ and indicated].</OLI><BRK/>
+<BRK/>
+<OLI>Submit a <SUB>Ground Source Heat Pump Installation Certificate</SUB>.  Concurrent with submittal of the Test Reports, submit certification by the 
+Ground Source Heat Pump Installer stating that the Ground Source Heat Pump System and related work is installed in accordance with the 
+contract requirements, including signed approval of the test reports.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In accordance with P.L. 109-58 (Energy Policy Act of 2005), Executive Order 13423, and FAR 23.203 Energy-Efficient 
+Products, energy consuming products and systems must meet or exceed the performance criteria for ENERGY STAR qualified 
+or FEMP-designated products as long as these requirements are nonproprietary.  The FEMP and ENERGY STAR product 
+requirements are available on the web at <URL HREF="www.eere.energy.gov/femp/procurement">www.eere.energy.gov/femp/procurement</URL> and <URL HREF="www.energystar.gov/products">www.energystar.gov/products</URL>.  
+Where ENERGY STAR or FEMP products are not applicable, energy consuming products and systems must meet the requirements 
+of<MET> ASHRAE 90.1 - SI</MET><ENG> ASHRAE 90.1 - IP</ENG></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT><SUB>Refrigerants</SUB> containing chlorofluorocarbons (CFC) are prohibited.  Provide refrigerants, or refrigerants with ozone depleting potential (ODP) of 
+0.0.  Provide SDS Sheets for all refrigerants.Refrigerants must comply with all EPA rulings - refer to Code of Federal Regulations (CFR) Part 84<BRK/>
+(<URL HREF="https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84">https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84</URL>)</TXT><BRK/>
+<BRK/>
+<TXT>Product data for integral or appurtenant space temperature controls (STC) supplied with the equipment must include point-to-point electrical wiring 
+diagrams for each STC.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL><SUB>Water-Source Water-to-Air Heat Pumps</SUB> (WAHP)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  Indicate the equipment operating requirements, including efficiency, on the drawings.   Units must have EER 
+and COP ratings meeting or exceeding FEMP/Energy Star requirements.</NPR><BRK/>
+<BRK/>
+<NPR>2.  For housing or residential applications, the designer should consider residential class water source heat 
+pumps as opposed to commercial class heat pump units.  Residential class heat pumps can be provided by the manufacturer 
+with factory installed optional selections of:<BRK/>
+<BRK/>
+a.  A factory installed energy management relay to allow unit control by an external source.<BRK/>
+<BRK/>
+b.  A factory installed internal heat recovery kit for domestic hot water production.<BRK/>
+<BRK/>
+c.  A factory installed ground loop pump kit.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide water-source water-to-air heat pump units factory assembled, designed, tested, and rated in accordance with <RID>ISO 13256-1</RID>.  ][Provide ground-coupled 
+closed-loop water-to-air heat pump (extended range) units factory assembled, designed, tested, and rated in accordance with <RID>ISO 13256-1</RID>.  ]Units 
+are to be <RID>ISO 13256-1</RID> certified, or listed in <RID>ISO 13256-1</RID> directory.  Units must include fans, refrigerant-to-air heat exchangers, filters,[ dampers,] 
+compressor, reversing valve, expansion valve, refrigerant-to-water heat exchangers,[ desuperheater,][ hose kits,] bypass for flushing and purging, 
+and controls.  A permanent label must be affixed to each heat pump unit indicating basic information for that unit.  The information must include:  
+nominal flow rate<MET> l/s</MET><ENG> gpm</ENG>, pressure drop<MET> kPa</MET><ENG> feet</ENG>, temperature drop/rise<MET> degree C</MET><ENG> degree F</ENG>, and capacity<MET> W</MET><ENG> Btu/hr</ENG>.[  For housing or residential 
+applications, provide heat pump units with factory installed[ energy management relay,][ factory installed internal heat recovery kit,][ and a][ 
+factory installed ground loop pump kit].]  Provide certificates of <SUB>ARI/ISO Performance Data For Water Source Heat Pumps</SUB>.[  Provide residential 
+ground-coupled closed-loop water-to-air heat pumps that are <RID>Energy Star</RID> labeled.  Provide proof of <SUB><RID>Energy Star</RID> label for residential WAHP product</SUB>
+.]</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Cabinet:  Provide manufacturer's standard[ galvanized steel][ stainless steel] cabinet[ finished with corrosion resistant epoxy coating 
+or lacquer acrylic].  Provide access panels for inspection and access to internal parts.  Insulate cabinet with minimum<MET> 12 mm</MET><ENG> 1/2 inch</ENG> 
+multi-density, fiberglass insulation with exposed edges sealed or tucked under flanges to prevent introduction of fibers into the airstream.  
+Female threaded pipe condensate drain connections, supply water connections, and return water connections are to be copper threaded fittings 
+mechanically fastened to the cabinet.  Water piping must be insulated.  Construct cabinet with compartments and locate the compressor, 
+reversing valve, and water coil out of the airstream.  Insulate the divider between the compressor and fan sections.  The control box is 
+to be located within the unit.</OLI><BRK/>
+<BRK/>
+<OLI>Fans:  Provide centrifugal type, direct drive fans with permanently lubricated motors.[  Provide motors of the permanent split capacitor 
+(PSC) type with thermal overload protection.][  Provide Electronically Commutated Motor (ECM) microprocessor controlled DC type motor with 
+internal programming factory set for the specific unit and featuring soft start/stop and a delay off feature for maximum efficiency and 
+quiet operation.  There will further be provisions for adjusting the air delivery of the motor and blower by plus or minus 15 percent from 
+rated air flow.]</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant-to-Air Heat Exchanger:  Provide coil constructed of rifled copper tubes with plate aluminum fins designed for refrigerant working 
+pressure of<MET> 3102 kPa</MET><ENG> 450 psi</ENG>.  Fins must be mechanically bonded to tubes.  The condensate drain pan must be epoxy coated and insulated.  
+Provide internal traps on vertical units.  Provide drain pan with overflow protection.  Provide drain pan constructed of[ corrosion-resistant 
+plastic][ galvanized steel][ stainless steel].</OLI><BRK/>
+<BRK/>
+<OLI>Filter Section:  Provide[ replaceable][ (throwaway)][<MET> [25][50] mm </MET><ENG> [1][2] inch</ENG>] thick UL listed[ fiberglass][ permanent washable] type 
+filters with a MERV Rating of[ 8][ 11][ 13] in accordance with <RID>ASHRAE 52.2</RID>.  Mount filters in filter frames and provide access panels or 
+doors for removal and replacement of filters.  Access panels or doors for filter access must be provided with appropriate seals and closure 
+mechanisms to prevent unit leakage and mitigate bypassing of air around the filter.</OLI><BRK/>
+<BRK/>
+<OLI>Compressor:  Provide hermetically sealed type compressor, installed on vibration isolators enclosed in an acoustically treated enclosure.  
+Provide high and low pressure switches, low suction temperature cut-out, motor thermal overload protection, 5 minute anti-recycle timer, 
+and start capacitor kit.  Provide capability to reset compressor lockout circuit at the remote thermostat and at the disconnect.[  Provide 
+units with factory installed sound attenuation package.]</OLI><BRK/>
+<BRK/>
+<OLI>Reversing Valve:  Provide solenoid activated refrigerant reversing valves energized only during the cooling mode and designed to fail in 
+the heating position.</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant-to-Water Heat Exchangers:  Provide two-position automatic valve interlocked to shut off water flow when the compressor is off.  
+Provide refrigerant-to-water heat exchangers of coaxial type (tube-in-tube), with inner[ cupronickel][ copper] water tube and outer steel 
+refrigerant tube.  The refrigerant side of the heat exchanger is to be tested and rated for<MET> 3102 kPa</MET><ENG> 450 psig</ENG> refrigerant working pressure.  
+The water side of the heat exchanger is to be tested and rated for<MET> 2758 kPa</MET><ENG> 400 psig</ENG> working pressure.  A parallel capillary tube/thermal 
+expansion valve assembly must provide superheat over the entire liquid temperature range.  Refrigerant-to-water heat exchangers and refrigerant 
+piping must be insulated to prevent condensation on the piping containing low temperature water.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  For heat pump units serving a water-loop application, the inlet water temperature range to the heat exchanger 
+is to be[<MET> 1 to 43 degree C</MET><ENG> 34 to 110 degree F</ENG>.  For heat pump units serving a ground-loop, the inlet water temperature 
+range to the heat exchanger is to be][<MET> 7 to 32 degree C</MET><ENG> 45 to 90 degree F</ENG>] liquid temperature range.  Show these 
+ranges on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Extended range heat pumps usually provide performance in the range of<MET> minus 4 to 38 degrees C</MET><ENG> 25 to 100 degrees 
+F</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Low temperature applications such as boiler and closed loop cooling tower or dry cooler usually provide performance 
+in the range of<MET> 4 to 43 degrees C</MET><ENG> 40 to 110 degrees F</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide on the drawings a sequence of operation, control schematic, and applicable points on the control 
+points schedule for the heat pump and desuperheater.</NPR><BRK/>
+<BRK/>
+<NPR>Check<MET> ASHRAE 90.1 - SI</MET><ENG> ASHRAE 90.1 - IP</ENG> Chapter 6 to determine whether heat recovery for service water heating 
+is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Factory-Installed Domestic Hot Water Desuperheater:  Provide desuperheater of vented double-wall construction and factory installed within 
+indoor heat pump cabinet.  Provide desuperheater units factory assembled, designed, tested, and rated.</OLI><BRK/>
+<BRK/>
+<OLI>Provide with the desuperheater, factory-installed water pump powered by a sealed magnetic drive motor, water line thermostat, secondary 
+safety thermostat to prevent scalding, internal fuse, internally mounted disconnect switch, outside air thermostat, manual on-off switch, 
+low refrigerant gas temperature limit switch, air bleed port, and refrigerant ports.  Units must be UL listed.  Desuperheater units must 
+be UL listed.  Units must be provided by the[ ground source][ water source] closed loop heat pump manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Controls:  The manual on- off switch is to be a push button type with a cover.  Provide an indicating light next to the switch to indicate 
+the desuperheater pump energized mode.[  Provide an outside air thermostat with sun shield set for<MET> 4 degree C</MET><ENG> 40 degree F</ENG>.  The outside 
+air thermostat de-energizes the desuperheater pump.]  Provide in the water return to the desuperheater unit, a high water temperature limit 
+with adjustable settings, which de-energizes the desuperheater pump at<MET> 60 degree C</MET><ENG> 140 degree F</ENG>  Also provide low refrigerant gas temperature 
+limit which de-energizes the desuperheater pump and is set to open at<MET> 38 degree C</MET><ENG> 100 degree F</ENG>.</OLI><BRK/>
+<BRK/>
+][<OLI>Emergency Heater:  Provide UL or ETL listed, electric resistance heater with internal fusing integral with heat pump unit; fan must run 
+until heater cools.  Locate downstream of indoor coil.  The emergency heater coil is to be provided as a supplementary electric heater.  
+The heater must be provided with a rack, control box with hinged cover, safety limits, and relay.  Control voltage of the heater must be 
+compatible with the heat pump.  The electric heater must be provided by the heat pump manufacturer.  The control of the electric heater 
+must only be utilized as second stage heating.  The first stage heating is to be normal heat pump operations.</OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  For residential or housing projects, discuss with customer's or activity's housing department the need 
+for emergency back-up electric heater.  The designer should consider using an emergency heater for situations 
+such as very cold weather and equipment outages.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The functionality of the hose kits are:</NPR><BRK/>
+<BRK/>
+<NPR>a.  Allow ease and convenience of maintenance and installation of the heat pump units.</NPR><BRK/>
+<BRK/>
+<NPR>b.  The hose kits allow the ease and convenience of purging and flushing of the system piping.</NPR><BRK/>
+<BRK/>
+<NPR>c.  The hose kits also minimize vibration transmission from the heat pump units to the system piping.</NPR><BRK/>
+<BRK/>
+<NPR>Designer must review hose kit pressure drop and include in pump head calculations to assure adequate pump head 
+capacity is scheduled to accommodate the use of hose kits.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Hose Kits:  Provide hose kits with two<MET> 0.6 m</MET><ENG> 2 foot</ENG> long metal (stainless steel) braided hoses with swivel connectors on one end, an manual 
+flow control valve with test ports, two shutoff ball valves with memory stops (one with test port), blow down ball valve, and Y-strainer.  
+Hoses must be fire rated to meet <RID>UL 94</RID>.  Provide hoses with a maximum working pressure of<MET> 2067 kPa</MET><ENG> 300 psi</ENG>.[  For residential or housing 
+applications, provide flexible hose kits using heavy-duty radiator rubber hose kits.  Provide a bypass around the heat pump unit condenser 
+coil.]</OLI><BRK/>
+<BRK/>
+]<OLI>Bypass for Purging and Flushing:  Provide a bypass around the heat pump unit condenser coil.  The bypass is to include isolation valves 
+and piping that allows for purging and flushing of the system piping.  Provide the necessary flushing pump, hoses, and isolation valves.</OLI><BRK/>
+<BRK/>
+<OLI>Hanger Kits:  Provide horizontal units with hanger kits consisting of galvanized steel brackets, bolts, washers, and vibration isolators.  
+The hanger kit must be designed to support the unit from below and suspend from threaded rods.</OLI><BRK/>
+<BRK/>
+<OLI>Floor Mounted Units:  Floor mounted units must be installed in accordance with manufacturer's installation requirements.  Provide concrete 
+housekeeping pads when installing within mechanical equipment rooms .</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Microprocessor based controls should normally be utilized on large projects.  Electromechanical controls 
+should be used on small installations, housing, and remote location projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Controls:  Controls and safety devices must be factory wired and mounted within the control box of the unit cabinet.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide a microprocessor based controller that communicates with an electronic multi-stage space thermostat.  The microprocessor 
+must control sequencing, high and low pressure switch monitoring, freeze protection, lockout control, night setback, emergency 
+shutdown, short cycle protection, random start, LED mode and fault indicators, fault memory, input and output diagnostics, and 
+a communications port.  Provide a factory-installed low voltage terminal block for field control wiring and a low voltage transformer.[  
+Provide communications capability for remote direct digital control (DDC).  Use standard communication protocol such as[ LonWorks,][ 
+BACnet,] or other [_____] protocol.][  Provide a hand held, remote service terminal from the heat pump manufacturer capable of 
+interfacing with heat pump unit microprocessor controller to perform diagnostics, data retrieval, and calibration functions.  
+When in the heating mode, where there is a continued drop in room temperature, the controller is to energize the second stage 
+of heating, which would be the emergency heater.  Provide night setback.  The controller is to raise the night setback temperature 
+gradually.  Provide 7 day schedule capability.]</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Provide 24 volt electromechanical controls supplied with a low voltage transformer, controls for compressor, reversing valve, 
+and fan motor operation.  Controls are to include a random start relay, a night setback relay, a compressor cycling relay for 
+demand load shedding, and a condensate overflow switch.  Provide a low voltage terminal block for field control wiring.</OLI><BRK/>
+<BRK/>
+]<OLI LEVEL="2">[The ECM interface board is to include a screw type terminal board for a thermostat connection, LED's to indicate thermostat 
+status and air delivery.][  Provide a factory installed energy management relay to allow unit control by an external source.]</OLI><BRK/>
+<BRK/>
+<OLI>Space Temperature Controls:  Provide electronic multi-stage, auto-changeover, adjustable thermostats with OFF-HEAT-AUTO-COOL-EMERGENCY 
+system switch and AUTO-ON fan switch.  Thermostats must be the programmable type and are to be furnished by the unit manufacturer.[  Thermostats 
+must have the <RID>Energy Star</RID> rating.]  Provide 7 day schedule capability.  Provide with battery back-up.  The thermostat must have night setback 
+and can raise the night setback temperature gradually.  When in the heating mode, where there is a continued drop in room temperature, 
+the thermostat must energize the second stage of heating, which would be the emergency heater.  Provide relays, transformers, contractors, 
+and control wiring between thermostats and unit.  Thermostats must read out in degrees C and degrees F</OLI>.<BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Water-Source Water-to-Water Heat Pumps</SUB> (WWHP)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  In compliance with FEMP/Energy Star requirements, closed loop units shall have minimum EER of 16.1 and minimum 
+heating performance COP of 3.1; open loop units shall have minimum EER of 20.1 and a minimum heating performance 
+COP of 3.5.  Indicate the equipment operating requirements, including efficiency, on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>2.  For housing or residential applications, the designer should consider residential class water source heat 
+pumps as opposed to commercial class heat pump units.  Residential class heat pumps can be provided by the manufacturer 
+with factory installed optional selections of:<BRK/>
+<BRK/>
+a.  A factory installed energy management relay to allow unit control by an external source.<BRK/>
+<BRK/>
+b.  A factory installed internal heat recovery kit for domestic hot water production.<BRK/>
+<BRK/>
+c.  A factory installed ground loop pump kit.</NPR><BRK/>
+<BRK/>
+<NPR>3.  For projects where the water-to-water heat pump unit is used for domestic water heating, the plumbing code 
+shall be followed.  Refer to the International Plumbing Code.  To prevent cross connection or contamination of 
+the potable water supply from the refrigerant in the heat pump unit, several approaches should be considered:<BRK/>
+<BRK/>
+a.  Consider using a desuperheater.  Check<MET> ASHRAE 90.1 - SI</MET><ENG> ASHRAE 90.1 - IP</ENG> Chapter 6 to determine whether heat 
+recovery for service water heating is required.<BRK/>
+<BRK/>
+b.  Consider using a double wall heat exchanger that is vented.<BRK/>
+<BRK/>
+c.  Consider using a secondary heat exchange in the water circuit such as a plate heat exchanger.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide water-source water-to-water heat pump units factory assembled, designed, tested, and rated in accordance with <RID>ISO 13256-2</RID>.  ][Provide 
+ground-coupled closed-loop water-to-water heat pump (extended range) units factory assembled, designed, tested, and rated in accordance with <RID>ISO 13256-2</RID>
+.  ]Units must be listed by ETL, or listed in <RID>ISO 13256-2</RID>.  Units are to include compressor, reversing valve, expansion valve, refrigerant-to-water 
+condensing coil, refrigerant-to-water evaporator coil,[ desuperheater,][ hose kits,][ dampers,] bypass for flushing and purging, and controls.  
+A permanent label must be affixed to each heat pump unit indicating basic information for that unit.  The information is to include:  nominal flow 
+rate<MET> l/s</MET><ENG> gpm</ENG>, pressure drop<MET> kPa</MET><ENG> feet</ENG>, temperature drop/rise<MET> degree C</MET><ENG> degree F</ENG>, and capacity<MET> W</MET><ENG> Btu/hr</ENG>.[  For housing or residential applications, 
+provide heat pump units with factory installed[ energy management relay,][ factory installed internal heat recovery kit,][ and a][ factory installed 
+ground loop pump kit].]  Provide certificates of <SUB>ARI/ISO Performance Data For Water Source Heat Pumps</SUB>.[  Provide residential water-source water-to-water 
+heat pumps that are <RID>Energy Star</RID> labeled.  Provide proof of <SUB><RID>Energy Star</RID> label for residential WWHP product</SUB>.]</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Cabinet:  Provide manufacturer's standard[ galvanized steel][ stainless steel] cabinet[ finished with corrosion resistant epoxy coating 
+or lacquer acrylic].  Provide access panels for inspection and access to internal parts.  Insulate cabinet with minimum<MET> 12 mm</MET><ENG> 1/2 inch</ENG> 
+multi-density, fiberglass insulation.  Provide copper or stainless steel female threaded pipe connections for supply water and return water 
+connections; these connections are to be mechanically fastened to the cabinet.  Water piping must be insulated.</OLI><BRK/>
+<BRK/>
+<OLI>Compressor:  Provide hermetically sealed type compressor, installed on vibration isolators enclosed in an acoustically treated enclosure.  
+Provide high and low pressure switches, low suction temperature cut-out, motor thermal overload protection, 5 minute anti-recycle timer, 
+and start capacitor kit.  Provide capability to reset compressor lockout circuit at the remote thermostat and at the disconnect.[  Provide 
+units with factory installed sound attenuation package.]</OLI><BRK/>
+<BRK/>
+<OLI>Reversing Valve:  Provide solenoid activated refrigerant reversing valves energized only during the cooling mode and designed to fail in 
+the heating position.</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant-to-Water Heat Exchangers:  Provide refrigerant-to-water heat exchangers of coaxial type (tube-in-tube), with inner [cupronickel][copper] 
+water tube and outer steel refrigerant tube.  The refrigerant side of the heat exchanger is to be tested and rated for<MET> 3102 kPa</MET><ENG> 450 psig</ENG>
+ refrigerant working pressure.  The water side of the heat exchanger is to be tested and rated for<MET> 2758 kPa</MET><ENG> 400 psig</ENG> working pressure.  
+A parallel capillary tube/thermal expansion valve assembly must provide superheat over the entire liquid temperature range.  Refrigerant-to-water 
+heat exchangers and refrigerant piping must be insulated to prevent condensation on the piping containing low temperature water.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  For heat pump units serving a water-loop application, the inlet water temperature range to the heat exchanger 
+is to be<MET> 1 to 43 degree C </MET><ENG> 34 to 110 degree F </ENG>.  For heat pump units serving a ground-loop application, the inlet 
+water temperature range to the heat exchanger is to be<MET> 7 to 32 degree C </MET><ENG> 45 to 90 degree F </ENG> liquid temperature 
+range.  Show these ranges on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Extended range heat pumps usually provide performance in the range of<MET> minus 4 to 38 degrees C</MET><ENG> 25 to 100 degrees 
+F</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Low temperature applications such as boiler and closed loop cooling tower or dry cooler usually provide performance 
+in the range of<MET> 4 to 43 degrees C</MET><ENG> 40 to 110 degrees F</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Factory-Installed Domestic Hot Water Desuperheater:  Provide desuperheater of vented double-wall construction and factory installed within 
+indoor heat pump cabinet.  Provide desuperheater units factory assembled, designed, tested, and rated.</OLI><BRK/>
+<BRK/>
+<OLI>Provide with the desuperheater, factory-installed water pump powered by a sealed magnetic drive motor, water line thermostat, secondary 
+safety thermostat to prevent scalding, internal fuse, internally mounted disconnect switch, outside air thermostat, manual on-off switch, 
+low refrigerant gas temperature limit switch, air bleed port, and refrigerant ports.  Units must be UL listed.  Desuperheater units must 
+be UL listed.  Units must be provided by the[ ground source][ water source] closed loop heat pump manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Controls:  The manual on- off switch is to be a push button type with a cover.  Provide an indicating light next to the switch to indicate 
+the desuperheater pump energized mode.[  Provide an outside air thermostat with sun shield set for<MET> 4 degree C</MET><ENG> 40 degree F</ENG>.  The outside 
+air thermostat de-energizes the desuperheater pump.]  Provide in the water return to the desuperheater unit, a high water temperature limit 
+with adjustable settings, which de-energizes the desuperheater pump at<MET> 60 degree C</MET><ENG> 140 degree F</ENG>.  Also provide low refrigerant gas temperature 
+limit which de-energizes the desuperheater pump and is set to open at<MET> 38 degree C</MET><ENG> 100 degree F</ENG></OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE: Provide on the drawings a sequence of operation and control schematic for the heat pump and desuperheater. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Hose Kits:  Provide hose kits including two<MET> 0.6 m</MET><ENG> 2 foot</ENG> long metal (stainless steel) braided hoses with swivel connectors on one end,[ 
+a flow control valve with test ports,] two shutoff ball valves with memory stops (one with test port), blow down ball valve, and Y-strainer.  
+Hoses must be fire rated to meet <RID>UL 94</RID>.  Provide hoses with a maximum working pressure of<MET> 2067 kPa</MET><ENG> 300 psi</ENG>.[  For residential applications, 
+provide flexible hose kits using heavy-duty radiator rubber hose kits.  Provide a bypass around the heat pump unit condenser coil.]</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The functionality of the hose kits are:</NPR><BRK/>
+<BRK/>
+<NPR>-Allow ease and convenience of maintenance and installation of the heat pump units.</NPR><BRK/>
+<BRK/>
+<NPR>-The hose kits allow the ease and convenience of purging and flushing of the system piping.</NPR><BRK/>
+<BRK/>
+<NPR>-The hose kits also minimize vibration transmission from the heat pump units to the system piping.</NPR><BRK/>
+<BRK/>
+<NPR>Designer must review hose kit pressure drop and include in pump head calculations to assure adequate pump head 
+capacity is scheduled to accommodate the use of hose kits.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Bypass for Purging and Flushing:  Provide a bypass around the heat pump unit condenser coil.  The bypass includes isolation valves and 
+piping that allows for purging and flushing of the system piping.  Provide the necessary flushing pump, hoses, and isolation valves.</OLI><BRK/>
+<BRK/>
+<OLI>Hanger Kits:  Provide units with hanger kits consisting of galvanized steel brackets, bolts, washers, and vibration isolators.  The hanger 
+kit must be designed to support the unit from below and suspend from threaded rods.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Microprocessor based controls should normally be utilized on large projects.  Electromechanical controls 
+should be used on small installations, housing, and remote location projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Controls:  Controls and safety devices must be factory wired and mounted within the control box of the unit cabinet.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide a microprocessor based controller.  The microprocessor must control sequencing, high and low pressure switch monitoring, 
+freeze protection, lockout control, night setback, emergency shutdown, short cycle protection, random start, LED mode and fault 
+indicators, fault memory, input and output diagnostics, and a communications port.  Provide a factory-installed low voltage terminal 
+block for field control wiring and a low voltage transformer.[  Provide communications capability for remote direct digital control 
+(DDC).  Use standard communication protocol such as[ LonWorks,][ BACnet,] or other [_____] protocol.][  Provide a hand held, 
+remote service terminal from the heat pump manufacturer capable of interfacing with heat pump unit microprocessor controller 
+to perform diagnostics, data retrieval, and calibration functions.]</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Provide 24 volt electromechanical controls supplied with a low voltage transformer, pump relay, controls for compressor, reversing 
+valve coil, and lock out relay.  Controls are to include a random start relay, a night setback relay, and a compressor cycling 
+relay for demand load shedding, and a condensate overflow switch.  Provide a low voltage terminal block for field control wiring.</OLI><BRK/>
+<BRK/>
+]<OLI>Space Temperature Controls:  Provide electronic multi-stage, auto-changeover, adjustable thermostats with OFF-HEAT-AUTO-COOL-EMERGENCY 
+system switch and AUTO-ON fan switch.  Thermostats are to be furnished by the unit manufacturer.  Provide relays, transformers, contractors, 
+and control wiring between thermostats and unit.  Thermostats must read out in degrees C and degrees F.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Closed Circuit Coolers</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  It has been proposed as a forthcoming action that this specification paragraph for the closed circuit cooler 
+be moved into Section <SRF>23 64 10</SRF> WATER CHILLERS, VAPOR COMPRESSION TYPE or Section <SRF>23 65 00</SRF> COOLING TOWERS AND REMOTE 
+EVAPORATIVELY-COOLED CONDENSERS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Fan and Casing:  Construct the fan section (up to top of intake louvers) of heavy gage stainless steel and construct casing of hot-dip 
+galvanized steel.  Standard pan accessories must include louver access, overflow, drain, Type 304 stainless steel strainers, and brass 
+make-up valve with plastic float.</OLI><BRK/>
+<BRK/>
+<OLI>Axial Propeller Fans:  Fans are to be heavy duty axial propeller type, statically balanced.  Construct fans with aluminum alloy blades, 
+and install in a closed fitted cowl with venturi air inlet.</OLI><BRK/>
+<BRK/>
+<OLI>Fan Motors:  Motors are to be totally enclosed, ball bearing type, and suitable for outdoor service.  Motors 1 Hp and greater must be the 
+premium efficiency type in accordance with <RID>NEMA MG 00001</RID>.  Fan motor speed control is to be provided for motors 7.5 hp or larger.</OLI><BRK/>
+<BRK/>
+<OLI>Drive:  Fan drive is to be multi-groove, solid V-belt type with taper lock sheaves designed for 150 percent of nameplate<MET> kW</MET><ENG> HP</ENG>.  Fan and 
+motor sheave must be aluminum alloy construction.  Belt adjustment is to be accomplished from exterior of unit.</OLI><BRK/>
+<BRK/>
+<OLI>Heat Transfer Coil:  The coil must be steel, encased in steel framework with the entire assembly hot-dip galvanized after fabrication.  
+Arrange tubes in a self-spacing, staggered pattern in the direction of airflow for maximum heat transfer efficiency and minimum pressure 
+drop, without the use of additional spacers between the coil tubes.  Design coil with sloping tubes for free drainage of liquid and test 
+to<MET> 2413 kPa</MET><ENG> 350 psi</ENG> air pressure under water.</OLI><BRK/>
+<BRK/>
+<OLI>Water Distribution System:  The system must provide a water flow rate of not less than<MET> .3846 l/sec</MET><ENG> 6 gpm</ENG> over each square foot of unit 
+face area to ensure proper flooding of the coil.  Construct spray header of Schedule 40 polyvinyl chloride (PVC) pipe for corrosion resistance.  
+Spray branches are to be removable for cleaning.  Distribute water over the entire coil surface by spray nozzles (<MET>381 by 8 mm </MET><ENG>15 by 5/16 
+inch </ENG>orifice) with internal sludge ring to eliminate clogging.  Thread nozzles into spray header to provide easy removal for maintenance.</OLI><BRK/>
+<BRK/>
+<OLI>Water Recirculation Pump:  The pump is to be close-coupled, centrifugal type with mechanical seal, installed vertically at the factory 
+to allow free drainage at shutdown.</OLI><BRK/>
+<BRK/>
+<OLI>Eliminators:  Construct eliminators of inert PVC in easily handled sections.  Provide with eliminator design that incorporates three changes 
+in air direction to ensure complete removal of entrained moisture from the discharge airstream.  Maximum drift rate must be less than 0.001 
+percent of the circulating water rate.</OLI><BRK/>
+<BRK/>
+<OLI>Construct Louvers From PVC:  Mount louvers in removable frames for maintenance access to the pan.  Louvers are to have a minimum of two 
+changes in air direction to prevent splash out and block direct sunlight.</OLI><BRK/>
+<BRK/>
+<OLI>Finish:  Apply corrosion protection system to the outside of galvanized surfaces.  Construct non-stainless metal components of mill hot-dip 
+galvanized steel.  Coat component edges and welds with a 95 percent pure zinc-rich compound.  Include degreasing, cleaning, and a light 
+surface burnishing in preparation for coating.  The coating is to be suitable for field repair with the same original coating material 
+applied in the same manner.</OLI><BRK/>
+<BRK/>
+<OLI>Electric Pan Heater Package:  Provide electric pan heater package consisting of electric immersion heaters, heater thermostat, and low 
+water cutout, all installed in pan.  Size heaters to maintain<MET> plus 5 degrees C</MET><ENG> plus 40 degrees F</ENG> pan water temperature with the fans off 
+at outdoor design conditions indicated on drawings.  Control the heaters with a thermostat, and provide water cutout to prevent heaters 
+from cycling on unless they are completely submerged.  Provide heater contactor and wiring under Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION 
+SYSTEM.</OLI><BRK/>
+<BRK/>
+[<OLI>Discharge Hood With Positive Closure Dampers:  Provide unit with discharge hood, positive closure dampers, and 120-volt actuator for reduction 
+of heat loss during idle periods of winter time operation.  Construct the discharge hood and dampers of hot dipped galvanized steel.  Equip 
+hoods with access panels to facilitate maintenance on the eliminators and water distribution system.  Factory assemble the dampers, damper 
+actuator, and linkage.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>][<SPT><TTL><SUB>Plate Heat Exchangers</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  Plate heat exchangers provide flexibility for the designer.  Plate heat exchangers are recommended where there 
+is a requirement to isolate the outside loop that may have a glycol antifreeze fluid from the inside loop - where 
+separation is necessary from the inside loop due to different heat transfer fluids.  Also plate heat exchangers 
+should be considered for use with systems using closed circuit coolers or cooling towers to isolate the ground 
+heat exchanger loops from the building terminal loops.</NPR><BRK/>
+<BRK/>
+<NPR>2.  It has been proposed as a forthcoming action that this specification paragraph for the plate heat exchanger 
+be moved into Section <SRF>23 64 10</SRF> WATER CHILLERS, VAPOR COMPRESSION TYPE or Section <SRF>23 65 00</SRF> COOLING TOWERS AND REMOTE 
+EVAPORATIVELY-COOLED CONDENSERS.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Provide the following flat plate heat exchanger information on the drawing:<BRK/>
+<BRK/>
+a.  Maximum water pressure drop through clean plates and headers in<MET> kPa</MET><ENG> psi</ENG> at the flow rates and temperatures indicated.<BRK/>
+<BRK/>
+b.  Minimum rate of turbulent flow in<MET> l/sec</MET><ENG> gpm</ENG> through any two plate segment.<BRK/>
+<BRK/>
+c.  Minimum plate thickness in<MET> mm</MET><ENG> inch</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Plates, frames, and gaskets are to be designed for a working pressure of<MET> 2.07 MPa</MET><ENG> 300 psi</ENG> and factory tested at<MET> 31.0 MPa</MET><ENG> 450 psi</ENG>.  Medium temperature 
+water, low temperature water, and pressure relief valve connections are to be located in accordance with the manufacturer's standard practice.  
+Connections larger than<MET> 80 mm</MET><ENG> 3 inches</ENG> must be ASME<MET> 2.07 MPa</MET><ENG> 300 pound</ENG> flanged.  Plates are to be corrugated[ Type 304 stainless steel][ Type 316 
+stainless steel][ nickel-iron-chromium alloy conforming to <RID>ASTM B424</RID>][ nickel-molybdenum alloy conforming to <RID>ASTM B333</RID>][ titanium alloy conforming 
+to <RID>ASTM B265</RID>].</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>ELECTRICAL WORK<BRK/></TTL>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  Show the electrical characteristics, motor starter type(s), enclosure type, and maximum rpm in the equipment 
+schedules on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Where reduced-voltage motor starters are recommended by the manufacturer or required otherwise, specify and 
+coordinate the type(s) required in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Reduced-voltage starting is 
+required when full voltage starting will interfere with other electrical equipment and circuits and when recommended 
+by the manufacturer.  Where adjustable speed drives (ASD) are specified, reference Section <SRF>26 29 23</SRF> ADJUSTABLE 
+SPEED DRIVE (ASD) SYSTEMS UNDER 600 VOLTS.  The methods for calculating the economy of using an adjustable speed 
+drive is described in UFC 3-520-01, "Interior Electrical Systems".</NPR><BRK/>
+<BRK/>
+<NPR>3.  Use the bracketed item where polyphase motors are part of an assembly.  Premium efficiency motors are required 
+by Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM for individual motors that are not part of an assembly.</NPR><BRK/>
+<BRK/>
+<NPR>4.  For Air Force projects, the base or activity will designate which electrical specification section applies.</NPR><BRK/>
+<BRK/>
+<NPR>5.  The designer should show the motor starter size with the pump schedule.  The pump schedule should be shown 
+on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide electrical motor driven equipment specified complete with motors, motor starters, and controls as specified herein and in Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Provide high efficiency type, single-phase, fractional-horsepower alternating-current motors, including 
+motors that are part of a system, in accordance with <RID>NEMA MG 10009</RID>.  In addition to the requirements of Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION 
+SYSTEM, provide polyphase, squirrel-cage medium induction motors, including motors that are part of a system, that meet the efficiency 
+ratings for premium efficiency motors in accordance with <RID>NEMA MG 00001</RID>.  Provide motors in accordance with <RID>NEMA MG 00001</RID> and of sufficient 
+size to drive the load at the specified capacity without exceeding the nameplate rating of the motor.</OLI><BRK/>
+<BRK/>
+<OLI>Motors are to be rated for continuous duty with the enclosure specified.  Motor duty requirements must allow for maximum frequency start-stop 
+operation and minimum encountered interval between start and stop.  Motor torque must be capable of accelerating the connected load within 
+20 seconds with 80 percent of the rated voltage maintained at motor terminals during one starting period.</OLI><BRK/>
+<BRK/>
+<OLI>Motor bearings are to be fitted with grease supply fittings and grease relief to outside of the enclosure.</OLI><BRK/>
+<BRK/>
+<OLI>Manual or automatic control and protective or signal devices required for the operation specified and any control wiring required for controls 
+and devices specified, but not shown, are to be provided.  For packaged equipment, the manufacturer is to provide controllers including 
+the required monitors and timed restart.</OLI><BRK/>
+<BRK/>
+[<OLI>Where two-speed or variable-speed motors are indicated, solid-state variable-speed controller may be provided to accomplish the same function.  
+Use solid-state variable -speed controllers for motors rated 7.45 kW (10 hp) or less and adjustable frequency drives for larger motors.][  
+Provide variable frequency drives for motors as specified in Section <SRF>26 29 23</SRF> ADJUSTABLE SPEED DRIVE (ASD) SYSTEMS UNDER 600 VOLTS.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>[<SPT><TTL>ABOVEGROUND PIPING SYSTEMS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1  Generally the above ground piping pertains to the interior building systems and the interior loop.  Consider 
+using a plate heat exchanger to avoid pumping glycol heat transfer fluids around the building.  Minimize exposure 
+of glycol fluids to personnel.  For the interior building systems, consider using steel or copper piping.  For 
+the outside ground loop piping, use high density polyethylene piping.</NPR><BRK/>
+<BRK/>
+<NPR>2  For the interior loop, the designer should consider air separation and water treatment.</NPR><BRK/>
+<BRK/>
+<NPR>3  Refer to other sections for above ground piping systems, such as Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, CONDENSER 
+WATER PIPING SYSTEMS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide above ground piping as specified in Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, CONDENSER WATER PIPING SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>GROUND HEAT EXCHANGER PIPING SYSTEM</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When specifying pipe and fittings for the project, ensure that the total system pressure and temperature 
+does not exceed the performance capabilities of the pipe and fittings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide high density polyethylene <SUB>pipe</SUB>, <SUB>fittings</SUB>, and <SUB>piping components</SUB> for the underground portions of the ground heat exchanger.  Use of polyvinyl 
+chloride (PVC) or polybutylene pipe and fittings is not permitted.[  Provide high density polyethylene pipe coiled on reel, with U-bend factory 
+installed, pipe pre-marked for depth, and U-bend connections factory tested.  Because of their size and weight, coiled PE piping require appropriate 
+equipment and procedures for safe handling, installation, and use.  Reels and coiled pipe must allow easy and thorough inspection of the pipe exterior 
+for any shipping and handling damage.  The reel is to be capable of securing the pipe coil while the pipe is being pressure tested.  The reel and 
+pipe coil are to allow easy access and handling while spooling the pipe coil off the reel for insertion into the bore hole.]  Pipe coil on reel 
+must be factory marked to show depth graduations.</TXT><BRK/>
+<BRK/>
+<TXT>For the pipe and piping components submittals, include recommendations for the connection of joints, including the preparation of joints for the 
+electrofusion process.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>High Density Polyethylene Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Pipe is to be manufactured from virgin high density polyethylene extrusion material in accordance with <RID>ASTM D2513</RID> with PE345434C or PE355434C cell 
+classification and UV stabilizer of C, D, or E as specified in <RID>ASTM D3350</RID>.  Provide <RID>ASTM D3035</RID> pipe with a standard dimension ratio (SDR) of 11.0 
+for pipe less than<MET> 32 mm</MET><ENG> 1.25 inches</ENG> diameter.  Provide <RID>ASTM F714</RID>, Schedule 40 or <RID>ASTM D3035</RID> pipe with a minimum SDR of 13.5 for pipe<MET> 32 mm</MET><ENG> 1.25 
+inches</ENG> diameter or greater, and a minimum SDR of 17.0 for pipe<MET> 75 mm</MET><ENG> 3 inches</ENG> diameter or greater.  Provide <RID>ASTM D3035</RID> pipe in vertical bores greater 
+than<MET> 60 m</MET><ENG> 200 feet</ENG> and up to<MET> 107 m</MET><ENG> 350 feet</ENG> deep with a SDR of 11.0.  Provide <RID>ASTM D3035</RID> pipe in vertical bores greater than<MET> 107 m</MET><ENG> 350 feet</ENG> deep 
+with a SDR of 9.0.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>ASTM D3261</RID> butt and saddle fusion fittings and <RID>ASTM D2683</RID> socket fusion fittings manufactured in accordance with <RID>ASTM D2513</RID>.  Barbed fittings, 
+compression type fittings, mechanical joint fittings, grove fittings, and hose clamps are not permitted in polyethylene[ or polybutylene] pipe 
+systems.  All pipe fittings underground must be fusion type joints.  Flange joints and fittings are not to be provided on underground piping.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Threaded Transition Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>ASTM D2513</RID> reinforced threaded [steel][brass]-to-polyethylene fittings.  Fittings must have a factory applied external epoxy coating.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>U-Bend Assemblies</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide factory-assembled and fused, injection-molded, 180 degree, U-bend assemblies equipped with anti-buoyancy devices.  U-bend assemblies must 
+be used for the vertical well field vertical loop heat exchangers.  U bend assemblies must be prefabricated assemblies with u-bends and continuous 
+pipe.  The assemblies must be pre-marked[ by the manufacturer] with depth graduations.  Each assembly must be the indicated length of the vertical 
+loop heat exchanger.  Each assembly must be factory pressure tested to<MET> 689.5 kPa gage</MET><ENG> 100 psig</ENG>.  Each assembly must be provided with a factory 
+pressure test report.  Each U-bend assembly must be temporarily capped to prevent the entry of dirt during storage and installation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PIPING ACCESSORIES</TTL><BRK/>
+<BRK/>
+<TXT>Provide piping accessories for above ground piping as specified in Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, CONDENSER WATER PIPING SYSTEMS.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Tracer Wire for Nonmetallic Piping</TTL><BRK/>
+<BRK/>
+<TXT>Provide bare copper or aluminum wire not less than<MET> 2.5 mm</MET><ENG> 0.10 inch</ENG> in diameter in sufficient length to be continuous over each separate run of 
+nonmetallic pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Casings</TTL><BRK/>
+<BRK/>
+<TXT>Provide rigid nonmetallic conduit and fittings (PVC) as pipe casings at floor penetrations and underground building entries for the entry of ground 
+heat exchanger piping.  The conduit is to serve as a casing for ease of installation and removal of the piping into the building.   The pipe casing 
+diameter is to be at least four times the diameter of the carrier pipe to allow "pulling the pipe through the casing".  Provide rigid nonmetallic 
+conduit and fittings specified complete with fittings and necessary hardware as specified herein[ and in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION 
+SYSTEM].</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use for small systems where the PVC conduit act as a casing and allows ease of installation of the high 
+density polyethylene piping into the building.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAB WIDTH="43">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="44.25"/>
+      <COL AUTOWIDTH="0" WIDTH="102.75"/>
+      <COL AUTOWIDTH="0" WIDTH="44.25"/>
+      <COL AUTOWIDTH="0" WIDTH="85.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Carrier Pipe Size</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Casing Size</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">(mm)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">(Inches)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">(mm)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">(Inches)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">19</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3/4</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">25</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">32</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1-1/4</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">38</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1-1/2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">150</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">6</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">50</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT><SPT><TTL><SUB>HEAT TAPE</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  The designer should avoid requiring exposed piping outside on the drawings.  All ground source heat pump system 
+piping should be designed and installed underground below the frost line.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Water source heat pump system piping to a closed circuit cooling tower or other heat transfer device should 
+be designed and installed underground below the frost line.</NPR><BRK/>
+<BRK/>
+<NPR>3.  The designer should consider heat tracing any exposed piping and valves, depending on the climate, such as 
+piping exposed at a closed circuit cooling tower or water piping to a condenser.</NPR><BRK/>
+<NPR><BRK/>
+4.  Where piping is required to be exposed outside, the designer should consider using steel or copper pipe and 
+fittings.  The designer should provide heat tape on steel or copper pipe.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide UL listed parallel conduction type heat tape, with electrical characteristics indicated, and adjustable thermostat for outdoor aboveground 
+winterized piping.  The heat trace system is to meet requirements of the <RID>NFPA 70</RID>, Section 427.  The tape is not to be affected by direct sunlight, 
+ambient temperature, operating temperature, rain, or salt laden atmosphere.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Heat Tape Construction</TTL><BRK/>
+<BRK/>
+<TXT>Provide flexible, parallel circuit construction consisting of a continuous self-limiting resistance, conductive inner core material between two 
+parallel copper bus wires, designed for cut-to-length at the job site and for wrapping around valves and complex fittings.  Self-regulation must 
+prevent overheating and burnouts even where the cable overlaps itself.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide end seals for ends of circuits.  Wire at the ends of circuits are not to be tied together.</OLI><BRK/>
+<BRK/>
+<OLI>Provide sufficient cable, as recommended by the manufacturer, to keep the pipe surface at<MET> 1.1 degrees C</MET><ENG> 34 degrees F</ENG> minimum during winter 
+outdoor design temperature[ of [_____]] [as indicated], but not less than the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><MET> 80 mm</MET><ENG> 3 inch</ENG> pipe and smaller with<MET> 25 mm</MET><ENG> one inch</ENG> thick insulation,<MET> 4 watts/0.3 m</MET><ENG> 4 watts/feet</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><MET> 100 mm</MET><ENG> 4 inch</ENG> pipe and larger<MET> 38 mm</MET><ENG> 1.5 inch</ENG> thick insulation,<MET> 8 watts/0.3 m</MET><ENG> 8 watts/feet</ENG> of pipe.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Electrical Accessories</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Power supply connection fitting and stainless steel mounting brackets.  Provide stainless steel worm gear clamp to fasten bracket to pipe.</OLI><BRK/>
+<BRK/>
+<OLI><MET> 13 mm</MET><ENG> 0.5 inch</ENG> wide fiberglass reinforced pressure sensitive cloth tape to fasten cable to pipe at<MET> 305 mm</MET><ENG> 12 inch</ENG> intervals.</OLI><BRK/>
+<BRK/>
+<OLI>Pipe surface temperature control thermostat is to be cast aluminum, NEMA 4 (watertight) enclosure,<MET> 15 mm</MET><ENG> 0.5 inch</ENG> NPT conduit hub, SPST 
+switch rated 20 amperes at 480 volts ac, with capillary and copper bulb sensor.  Set thermostat to maintain pipe surface temperature at 
+not less than<MET> 1.1 degrees C</MET><ENG> 34 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Signs must be manufacturer's standard (NEC), stamped "ELECTRIC TRACED" located on the insulation jacket at<MET> 3 mm</MET><ENG> 10 feet</ENG> intervals along 
+the pipe on alternating sides.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>AUXILIARY DRAIN PAN, DRAIN CONNECTIONS, AND DRAIN LINES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate on the design drawings the locations of access doors for valves.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide galvanized steel auxiliary drain pans under units where indicated.  Provide separate drain lines for the unit drain and auxiliary drain 
+pans.  Drain pans are to be fully and freely draining in compliance with <RID>ASHRAE 62.1</RID>.  Trap drain pans to ensure complete pan drainage.  Provide 
+drain lines full size of drain opening.  Traps and piping to drainage disposal points to conform to Section <SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>ANTIFREEZE</SUB> PROTECTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  Antifreeze solutions may be necessary in colder climates where the temperature of the ground heat exchanger 
+fluid falls below the freezing point of water.</NPR><BRK/>
+<BRK/>
+<NPR>2.  The designer should determine the need for antifreeze based on analysis of the system, loads, and the resulting 
+fluid temperatures over the annual cycle.</NPR><BRK/>
+<BRK/>
+<NPR>3.  The designer should determine the amount of antifreeze required.  The designer should not specify beyond what 
+is required.  The heat transfer fluid with antifreeze affects the pump power consumption and also quantity the 
+heat transfer from the heat pump.  Specify percent antifreeze solution in paragraph below.</NPR><BRK/>
+<BRK/>
+<NPR>4.  The designer is to comply with local, state, and federal regulations regarding the use of antifreeze in the 
+ground loop heat exchangers.</NPR><BRK/>
+<BRK/>
+<NPR>5.  The designer should always evaluate the life-health safety risk and impact of the selected heat transfer fluid.</NPR><BRK/>
+<BRK/>
+<NPR>6.  The designer should indicate the percentage of antifreeze required for the heat transfer fluid on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [_____] percent[ ethylene glycol][ propylene glycol] antifreeze fluid in a water based solution which meets local, State, and Federal requirements 
+and is acceptable to heat pump component manufacturers.  The antifreeze and water-based heat transfer fluid are to be used in closed-loop ground 
+source heat pump systems for the transfer of energy to provide heating and cooling.  The heat transfer fluid is to contain the necessary corrosion 
+inhibitors to protect pipe and equipment from attack by the antifreeze solution utilized.  The mixture of antifreeze and corrosion inhibitors in 
+a water based solution is defined as a heat transfer fluid.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Biodegradability</TTL><BRK/>
+<BRK/>
+<TXT>The heat transfer fluid is not to be less than 90 percent biodegradable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Properties of the Heat Transfer Fluid</TTL><BRK/>
+<BRK/>
+<TXT>The heat transfer fluid is to conform to the following requirements, and tests must be performed in accordance with specified test methods on the 
+fluid.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Flash Point</TTL><BRK/>
+<BRK/>
+<TXT>The flash point of the heat transfer fluid is to not be lower than<MET> 90 degrees C</MET><ENG> 194 degrees F</ENG>, determined in accordance with <RID>ASTM D92</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Biological Oxygen Demand (BOD)</TTL><BRK/>
+<BRK/>
+<TXT>For 5 days the BOD, at<MET> 10 degrees C</MET><ENG> 50 degrees F</ENG>, must not exceed<MET> 0.2 gram</MET><ENG> 0.007 ounce</ENG> oxygen per gram nor be less than<MET> 0.1 gram</MET><ENG> 0.0035 ounce</ENG> oxygen 
+per gram.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Freezing Point</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer should determine the resulting freeze point of the heat transfer fluid after careful analysis.  
+The designer should indicate the required freezing point of the heat transfer fluid. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The freezing point must not exceed<MET> minus 9 degrees C</MET><ENG> 15 degrees F</ENG>, determined in accordance with <RID>ASTM D1177</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Toxicity</TTL><BRK/>
+<BRK/>
+<TXT>The toxicity is not to be less than LD 50 (oral-rats) of<MET> 5 grams</MET><ENG> 0.175 ounce</ENG> per kilogram.  The NFPA hazardous material rating for health must 
+not be more than 1 (slight).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Storage Stability</TTL><BRK/>
+<BRK/>
+<TXT>The heat transfer fluid, tested in accordance with <RID>ASTM F1105</RID>, must neither show separation from exposure to heat or cold nor show an increase 
+in turbidity.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Quality</TTL><BRK/>
+<BRK/>
+<TXT>The heat transfer fluid, is to be homogeneous, uniform in color, and free from skins, lumps, and foreign materials detrimental to usage of the 
+fluid.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>CHEMICAL FEED PROVISIONS</TTL><BRK/>
+<BRK/>
+<TXT>Provide chemical feed provisions as specified in Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, CONDENSER WATER PIPING SYSTEMS.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Aboveground Condenser Water Piping System</TTL><BRK/>
+<BRK/>
+<TXT>Add borate-nitrite corrosion inhibitors, acceptable to heat pump component manufacturers, to initial fill water for heating and cooling water systems 
+in concentrations of[<MET> 0.0039 liter/liter</MET><ENG> 0.5 ounce/gal</ENG>] of system water if corrosion inhibitors are not contained in freeze protection solution 
+in the ground heat exchanger loop.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Chilled/Hot Water Piping System</TTL><BRK/>
+<BRK/>
+<TXT>Add borate-nitrite corrosion inhibitors, acceptable to heat pump component manufacturers, to initial fill water for heating and cooling water systems 
+in concentrations of[<MET> 0.0039 liter/liter</MET><ENG> 0.5 ounce/gal</ENG>] of system water if corrosion inhibitors are not contained in freeze protection solution 
+in the ground heat exchanger loop.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Ground Heat Exchanger Piping</TTL><BRK/>
+<BRK/>
+<TXT>Provide corrosion inhibitors acceptable to heat pump manufacturers with concentrations suitable for each system[ and appropriate for the antifreeze 
+used].</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>]<SPT><TTL>PAINTING OF NEW EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>New equipment painting is to be factory applied or shop applied, and must be as specified herein.  New equipment surfaces constructed of non-ferrous 
+surfaces and materials do not have to be factory or shop painted.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Factory Painting Systems</TTL><BRK/>
+<BRK/>
+<TXT>Manufacturer's standard factory painting systems may be provided subject to certification that the factory painting system applied will withstand 
+125 hours in a salt-spray fog test, except that equipment located outdoors which is to withstand [125][500][3000] hours in a salt-spray fog test. 
+Field applied coatings are not acceptable.  Provide a factory coating system on the fins of exterior heat transfer equipment that meets ASTM B117.85 
+salt-fog test duration for [125][500][3000] hr.  Salt-spray fog test is to be in accordance with <RID>ASTM B117</RID>, and for that test the acceptance criteria 
+must be as follows:  immediately after completion of the test, the paint must show no signs of blistering, wrinkling, or cracking, and no loss 
+of adhesion; and the specimen must show no signs of rust creepage beyond<MET> 3 mm</MET><ENG> 0.125 inch</ENG> on either side of the scratch mark.</TXT><BRK/>
+<BRK/>
+<TXT>The film thickness of the factory painting system applied on the equipment is not to be less than the film thickness used on the test specimen.  
+If manufacturer's standard factory painting system is being proposed for use on surfaces subject to temperatures above<MET> 50 degrees C</MET><ENG> 120 degrees 
+F</ENG>, the factory painting system is to be designed for the temperature service.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shop Painting Systems for Metal Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>Clean, pretreat, prime and paint metal surfaces; except stainless steel, aluminum, or bronze alloy surfaces need not be painted.  Apply coatings 
+to clean dry surfaces.  Clean the surfaces to remove dust, dirt, rust, oil and grease by wire brushing and solvent degreasing prior to application 
+of paint, except metal surfaces subject to temperatures in excess of<MET> 50 degrees C</MET><ENG> 120 degrees F</ENG> must be cleaned to bare metal.</TXT><BRK/>
+<BRK/>
+<TXT>Where more than one coat of paint is specified, apply the second coat after the preceding coat is thoroughly dry.  Lightly sand damaged painting 
+and retouch before applying the succeeding coat. Color of finish coat is to be aluminum or light gray.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Temperatures Less Than<MET> 50 Degrees C</MET><ENG> 120 Degrees F</ENG>: Immediately after cleaning, the metal surfaces subject to temperatures less than<MET> 50 
+degrees C</MET><ENG> 120 degrees F</ENG> must receive one coat of pretreatment primer applied to a minimum dry film thickness of<MET> 0.0076 mm</MET><ENG> 0.3 mil</ENG>, one 
+coat of primer applied to a minimum dry film thickness of<MET> 0.0255 mm</MET><ENG> one mil</ENG>; and two coats of enamel applied to a minimum dry film thickness 
+of<MET> 0.0255 mm</MET><ENG> one mil</ENG> per coat.</OLI><BRK/>
+<BRK/>
+<OLI>Temperatures Between<MET> 50 and 205 Degrees C</MET><ENG> 120 and 400 Degrees F</ENG>:  Metal surfaces subject to temperatures between<MET> 50 and 205 degrees C</MET><ENG> 120 
+and 400 degrees F</ENG> are to receive two coats of<MET> 205 degrees C</MET><ENG> 400 degrees F</ENG> heat-resisting enamel applied to a total minimum thickness of<MET>
+ 0.05 mm</MET><ENG> 2 mils</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Temperatures Greater Than<MET> 205 Degrees C</MET><ENG> 400 Degrees F</ENG>: Metal surfaces subject to temperatures greater than<MET> 205 degrees C</MET><ENG> 400 degrees F</ENG> 
+are to receive two coats of<MET> 315 degrees C</MET><ENG> 600 degrees F</ENG> heat-resisting paint applied to a total minimum dry film thickness of<MET> 0.05 mm</MET><ENG> 2 
+mils</ENG>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>BENTONITE GROUT</TTL><BRK/>
+<BRK/>
+<TXT>Provide bentonite grout mixture for pressure grouting and sealing the bore hole of the vertical well.  Provide grouting of wells in accordance 
+with <RID>IGSHPA 21015</RID>.  The grout selected is to meet <RID>NSF/ANSI 600</RID>.  The grout is to meet all local and state rules and regulations.  The bentonite 
+will be a slurry that will be tremie grouted from the bottom of the boring to the surface in accordance with the IGSHPA installation manual.  The 
+contractor will work quickly to assure that there are no air voids forming as a result of the bentonite placing.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL><SUB>High Grade Bentonite Grout</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Check with local and State requirements regarding the use of bentonite for sealing of the bore hole.  Consider 
+the use of high grade bentonite grout where thermal performance is not an issue.  The thermal conductivity of 
+the grout will have to be considered the designer in the heat transfer calculation and well design and sizing.  
+High grade bentonite grout is usually used for wells that have unconsolidated (sand and gravel or soil like) aquifers.  
+The high grade bentonite grout mixture consists of 50 pounds of bentonite mixed with 23 gallons of potable water 
+which gives a mixture of 27 gallons of high grade bentonite grout.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide high grade bentonite grout mixture.  The grout is to be mixed with potable water.  The grout is to be mixed per manufacturer instructions.  
+The thermoconductivity of the grout must be<MET> 0.744 W/mK</MET><ENG> 0.43 Btu/hr-ft-F</ENG> or greater.  The minimum solids content must be 23 percent.  The target 
+grout weight must be<MET> 1140 kg/m3</MET><ENG> 9.5 lb/gallons</ENG> to<MET> 1176 kg/m3</MET><ENG> 9.8 lb/gallon</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Thermally-Enhanced Bentonite Grout</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Check with local and State requirements regarding the use of bentonite for sealing of the bore hole.  Use 
+thermally enhanced bentonite grout mixture where the thermal characteristic of the well is critical to the performance 
+of the well system.  The thermal conductivity of the grout will have to be considered by the designer in the heat 
+transfer calculation and well design and sizing.  Thermally enhanced bentonite grout is usually used for wells 
+that have unconsolidated (sand and gravel or soil like) aquifers.  The thermally enhanced bentonite grout mixture 
+consists of 54 pounds of bentonite mixed with 350 pounds of silica sand, and 21.5 gallons of potable water which 
+gives a mixture of 41 gallons of thermally enhanced bentonite grout.with a solids content of 69 percent, a weight 
+of 14.2 lb/gallon, and a thermal conductivity of 1.12 Btu/hr-ft F.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide thermally enhanced bentonite grout mixture.  Thermally enhanced bentonite grout mixture is to be a high solids bentonite grout.  The grout 
+is to be mixed per the manufacturer instructions.  Potable water is to be used for mixing the grout.  Grout is to have a minimum solids content 
+of 65 to 70 percent.  The thermal conductivity of the grout mixture compound must be a minimum of<MET> 1.73 W/mK</MET><ENG> 1.0 Btu/hr-ft-F</ENG> or greater.  The target 
+grout weight must be<MET> 1596 kg/m3</MET> <ENG>13.3 lb/gallons</ENG> to<MET> 1728 kg/m3</MET><ENG> 14.4 lb/gallon</ENG>.  The thermally-enhanced bentonite grout must have a thermal enhancement 
+compound consisting of a high-grade silica compound that constitutes a minimum of 50 percent by weight of the aqueous slurry.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Cementitious Thermally Enhanced Grout</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use cementitious thermally enhanced bentonite grout mixture where the thermal characteristic of the well 
+is critical to the performance of the well system.  The thermal conductivity of the grout will have to be considered 
+by the designer in the heat transfer calculation and well design and sizing.  Cementitious thermally enhanced 
+bentonite grout is usually used for wells that have consolidated (rock, limestone, sandstone, bed rock, granite, 
+etc) aquifers.  Use this grout where the ground water has a pH less than 5.0 and/or a total dissolved solids content 
+greater than 1000 ppm.  The cementitious thermally enhanced bentonite grout mixture consists of 94 pounds of portland 
+cement mixed with 200 pounds of silica sand, 1.04 pounds of 200 mesh sodium bentonite, 6.19 gallons of potable 
+water, and 21 fluid ounces of a superplasticizer (sulfonated naphthalene) which gives a mixture of 19 gallons 
+of cementitious thermally enhanced bentonite grout.with a weight of 18 lb/gallon, and a thermal conductivity of 
+1.4 Btu/hr-ft F.  For salt water zones, use a grouting material that is resistant to salt water.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide cementitious thermally enhanced grout mixture.  The cementitious thermally enhanced grout mixture is to be a high solids sodium bentonite 
+grout with portland cement, potable water, silica sand compound, and a super plasticizer compound.  The grout is to be mixed per the manufacturer 
+instructions.  Use potable water for mixing the grout.  The thermal conductivity of the grout mixture compound is to be a minimum of<MET> 2.42 W/mK</MET><ENG> 
+1.4 Btu/hr-ft-F</ENG> or greater.  The target grout weight must be<MET> 1920 kg/m3</MET><ENG> 16 lb/gallon</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>CONTROLS</TTL><BRK/>
+<BRK/>
+<TXT>Controls for the[ ground-loop][ water-loop] heat pump systems complete and ready for operation to be integrated with the HVAC system controls package 
+specified in Section<TAI OPT="NAVY">[ <SRF>23 09 53.00 20</SRF> SPACE TEMPERATURE CONTROL SYSTEMS,]</TAI> <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.  Systems include heat pumps, 
+system equipment, piping, pumps, electrical equipment, controls,[ wells,] and condenser   Controls are to be designed in accordance with the manufacturer's 
+recommendations and to comply with the sequence of controls shown on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Heat Pump System</TTL><BRK/>
+<BRK/>
+<TXT>Maintenance access to each piece of equipment is not to be compromised by any type of piping, electrical conduit, or any other utility.  Further, 
+install equipment in accordance with <RID>NFPA 70</RID> and with the manufacturer's written installation instructions, including the following:</TXT><BRK/>
+<BRK/>
+[<ITM INDENT="-0.33">    <SUB>Water-Source Water-to-Air Heat Pumps - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+][<ITM INDENT="-0.33">    <SUB>Water-Source Water-to-Water Heat Pumps - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+][<ITM INDENT="-0.33">    <SUB>Closed Circuit Coolers - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+][<ITM INDENT="-0.33">    <SUB>Plate Heat Exchangers - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+][<ITM INDENT="-0.33">    <SUB>Heat Tape - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+][<ITM INDENT="-0.33">    <SUB>As-Built Drawings</SUB> of the installed systems.  As-built drawings are to also show and document the as-constructed locations 
+of the well field with dimensions, including all wells and loop fields.</ITM><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Closed Circuit Cooler Installation</TTL><BRK/>
+<BRK/>
+<TXT>Installation, operation and maintenance of the closed circuit cooler must be in compliance with the requirements of <RID>ASHRAE 188</RID>.  Provide <SUB>Closed 
+Circuit Coolers - Operating Instructions</SUB> defining required maintenance, cleaning and operating procedures for the mitigation of legionellosis in 
+accordance with <RID>ASHRAE 188</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections to Existing Systems</TTL><BRK/>
+<BRK/>
+<TXT>Notify the Contracting Officer in writing at least 15 calendar days prior to the date the connections are required.  Obtain approval before interrupting 
+service.  Furnish materials required to make connections into existing systems and perform excavating, backfilling, compacting, and other incidental 
+labor as required.  Furnish labor and tools for making actual connections to existing systems.  Flush existing systems in accordance with paragraph 
+FLUSHING AND PURGING GROUND HEAT EXCHANGER prior to making connections.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ABOVEGROUND PIPING</TTL><BRK/>
+<BRK/>
+<TXT>Provide above ground piping as specified in Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, CONDENSER WATER PIPING SYSTEMS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Cleaning of Piping:  Keep interior and ends of new piping and existing piping, affected by Contractor's operations, cleaned of water and 
+foreign matter during installation by using plugs or other approved methods.  When work is not in progress, securely close open ends of 
+pipe and fittings to prevent entry of water and foreign matter.  Inspect piping before placing into position.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  It is extremely important to vent and purge all air out of the loops, especially the plastic piping systems.  
+Leaving any air in the piping could lead to potential flow blockage and could lead to a catastrophic pipe failure 
+by explosion.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Flushing and Purging of Piping:  Before connection of the header to the polyethylene  ground heat exchanger loops, flush and purge the 
+entire aboveground piping system thoroughly in accordance with <RID>IGSHPA 21020</RID> recommendations and leave filled with clean water.  If the 
+header is not immediately joined to the ground heat exchanger loop, the open ends are to be taped or capped.  Purge and vent the above 
+ground system piping of all air.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>EARTHWORK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:  For the designer to consider - geothermal piping do not require trenches with graded bottoms, load bearing 
+bottoms, or sand fill bedding unless the piping is on rock.  Backfill trenches with soil fine enough to fill completely 
+around the pipe.  Compacting to<MET> 150 mm</MET><ENG> 6 inch</ENG> lifts is not required.</NPR><BRK/>
+<BRK/>
+<NPR>a.  Consider for large systems:  Lay all supply piping in an orderly way  in one trench.  Consider the same trench 
+method for return systems.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Consider for residential systems:  consider geothermal piping on one side of trench for utilities.</NPR><BRK/>
+<BRK/>
+<NPR>c.  Aside from building entries or vault connection areas, the geothermal pipe loops are flexible, and contract 
+and expand due to temperature variations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Earthwork to be performed in accordance with applicable provisions of Section <SRF>31 00 00</SRF> EARTHWORK, except that bentonite and thermally enhanced 
+grouts to be used where indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUND HEAT EXCHANGER PIPING</TTL><BRK/>
+<BRK/>
+<TXT>Examine areas and conditions under which ground heat exchanger systems will be installed.  Prior to excavation, trenching, or drilling, locate 
+and mark buried utilities.  Do not proceed with work until approved by the Contracting Officer.  Sharp bends and mitered joints are to not be used 
+in piping.  Provide fittings for changes in direction when minimum bend radius, as recommended by the pipe manufacturer, is exceeded.  All pipe 
+bends are to be radius type elbows.  Make changes in piping sizes through tapered concentric fittings.  Leaks are to be "cut-out" and repaired 
+in accordance with the pipe manufacturer's recommendations.  Direct buried threaded or flanged connections are not permitted.  Prior to installation 
+of the ground heat exchanger systems, verify that the installers are certified Ground Heat Exchanger Installers.  Inspect all piping for damage 
+prior to installation.  Installation to follow IGSHPA guidelines as well as local, state, and Federal guidelines and regulations.  Upon delivery 
+of piping, inspect the pipe for damage and verify that the pipe meets the project specifications.  Prior to installation of pipe, carefully inspect 
+pipe for damage.  Do not use the pipe if it has a cut or a gouge that is more than 10 per cent of the minimum wall thickness of the pipe.[  Provide 
+reels and pipe coil.  Reels to be be used to securely hold the pipe coil while being pressure tested.  When inserting the pipe into the bore hole, 
+spool off pipe from the reel into the hole.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Vertical Well Fields</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must become familiar with the local and state regulations regarding geothermal wells and water 
+wells.  The designer must modify these specifications in accordance to the local and state regulations.  The designer 
+must design and specify the heat exchanger systems to meet the specific local and state regulations and statutes 
+that may be required, such as:<BRK/>
+<BRK/>
+a.  Well driller licensing and certification<BRK/>
+b.  Pump installer licensing<BRK/>
+c.  Well construction permit<BRK/>
+d.  Local and/or State approved well permit<BRK/>
+e.  Allowable grout requirements<BRK/>
+f.  Allowable heat transfer fluids<BRK/>
+g.  Allowable pipe materials<BRK/>
+h.  Well construction log record<BRK/>
+i.  Well abandonment and abandonment records<BRK/>
+j.  Well closing and closing records.<BRK/>
+k.  Antifreeze fluids, if any<BRK/>
+l.  Water treatment chemicals, if any<BRK/>
+m.  Corrosion inhibitors, if any<BRK/>
+n.  Groundwater conservation<BRK/>
+o.  Protection of different aquifers<BRK/>
+p.  Authorization to install and operate</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each vertical well and ground heat exchanger loop is to have a <SUB>Well Construction Permit</SUB> as required by local and state regulations.  In addition, 
+each well and ground heat exchanger loop is to have a local [and][or] state <SUB>Approved Well Permit</SUB> as required by local and state regulations.  The 
+contractor must maintain these permits during the construction contract period.  Submit a copy of the permits with the As-built documentation.  
+Construction and installation of each well are to be in accordance to these permits.  Each well is to be performed by a state [_____] certified 
+well driller.  Certifications are to be in the state where the work occurs. Prior to installation of wells, verify the the well drillers and pump 
+installers are certified.  For any well that is abandon, abandonment must be performed in accordance to local and state regulations.  Provide abandonment 
+records with certification to the contracting officer for review and submittal to the state.  For any well that is closed, closing to be performed 
+in accordance to local and state regulations.  Provide closing records with certification to the contracting officer for review and submittal to 
+the state.  All well submittals and records are to have the names of the well drillers and pump installers, copies of their certifications.</TXT><BRK/>
+<BRK/>
+<TXT>Each U-bend loop is to be factory assembled, laid out straight, taped to reduce springback, and water pressure tested at<MET> 689 kPa</MET><ENG> 100 psi</ENG> for leaks 
+and flow by <RID>IGSHPA 21020</RID> recommended procedures before the hole is bored.  Comply with all local and state codes, regulations, and requirements 
+during the construction of the vertical wells or bore holes.  Submit for each vertical well a <SUB>Well Construction Log Record</SUB>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The borehole is to be constructed[ in accordance with all local and state regulations and guidelines for geothermal wells][ as indicated].  
+Where any discrepancy exists between local and state codes, regulations, and requirements and this specification, the more stringent requirement 
+applies.  The U-bend is to be factory assembled and pressure tested to<MET> 689.5 kPa gage</MET><ENG> 100 psig</ENG> prior to insertion into the vertical bore.  
+All connections are to be by heat fusion.  When inserting the U-bend assembly into the bore hole, use the depth graduations as another 
+means of verification of depth of the bore hole.  There is to be no joint in either leg of each vertical loop except for the factory assembled 
+connection at the U-bend.</OLI><BRK/>
+<BRK/>
+<OLI>Vertical bores are to be<MET> 1.5 m</MET><ENG> 5 feet</ENG> deeper than the length of the U-bend assembly loop, be clean (no casing), and of sufficient diameter 
+to facilitate the installation of the U-bend assembly and a third pipe for pressure grouting.  Fill the loop with water and pressurize 
+to<MET> 276 kPa</MET><ENG> 40 psi</ENG> to prevent the pipe from being crushed by backfill material.  Temporarily cap the ends of the U-bend assemblies until 
+the actual testing begins.  The cap must be fused to the pipe end in order to hold the pressure.  Pressure testing can be performed while 
+the bore hole is being drilled.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The loop must be filled with water prior to insertion into the hole that has drilling mud and/or water 
+in it.  However, for dry holes (drilled with air and have very little water in them), consider installing tubing 
+without water and fill and test after insertion.  The disadvantage with this is during pressure testing - leaks 
+will be hard to see visually.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Backfill the bores from the bottom up with a bentonite grout material and grouting process in conformance with <RID>IGSHPA 21015</RID> to ensure pipe 
+contact and compliance with local and State requirements for sealing.  Prepare and mix bentonite grout in accordance with manufacturer's 
+recommendations for water-to-mix ratio.  Place grouting materials using a pressure pump with a tremie pipe system.  Install the grouting 
+material from the bottom to the top of the vertical borehole.  If any settling occurs during the initial 24-hour period after installation, 
+add additional material to insure the grouting material remains at the desired surface level.  The bores are not to contain large, sharp, 
+or jagged rocks or debris.  Take reasonable and prudent care during installation and backfilling to not crush, cut, or kink the pipe.</OLI><BRK/>
+<BRK/>
+<OLI>In the event that a geological formation is encountered, that prevents the grouting material from forming a solid seal, either a<MET> 9.5 mm</MET><ENG>
+ 3/8 inch</ENG> or<MET> 19 mm</MET><ENG> 3/4 inch</ENG> cementitious bentonite grout material may be used to seal the specific formation zone.  Notify the contracting 
+officer of any problems encountered.  Upon completion of the specific zone, resume grouting until the desired surface of the vertical well 
+or bore hole is reached.</OLI><BRK/>
+<BRK/>
+<OLI>During installation of the vertical well, maintain a water and soils log indicating depth of water encountered, materials encountered, 
+depth intervals of materials, and physical description.  If water is encountered, indicate in the log the depths at which it was encountered, 
+and the static water level.  Include in the log the type of drill rig used, the actual drilling time to complete the bore hole.</OLI><BRK/>
+<BRK/>
+<OLI>In absence of other requirements or as indicated, provide u-bend assemblies having the following pipe diameters for the u-bend assembly 
+length as follows:</OLI><BRK/>
+<BRK/>
+<OLI><MET> 19 mm</MET><ENG> 3/4 inch</ENG> diameter for<MET> 30 to 60 m</MET><ENG> 100 to 200 feet</ENG> loop length</OLI><BRK/>
+<BRK/>
+<OLI><MET> 25 mm</MET><ENG> 1 inch</ENG> diameter for<MET> 45 to 90 m</MET><ENG> 150 to 300 feet</ENG> loop length</OLI><BRK/>
+<BRK/>
+<OLI><MET> 32 mm</MET><ENG> 1-1/4 inch</ENG> diameter for<MET> 76 to 150 m</MET><ENG> 250 to 500 feet loop length</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Show and identify each well location on as built drawings.[  Provide a tracer wire system.][  The tracer wire system is to include a locator 
+device to identify the well field.  Locate the locator device in the mechanical room.]</OLI><BRK/>
+<BRK/>
+<OLI>Minimum vertical well distance:  In absence of other requirements or as indicated, provide a minimum well separation distance between wells 
+of<MET> 4.572 [_____] m</MET><ENG> 15 [_____] feet</ENG>.  Provide a minimum separation distance between wells and building foundation walls of<MET> 6.0 [_____]m</MET><ENG> 
+20 [_____] feet.</ENG></OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Horizontal Well Fields and Header Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For insulation on buried piping:  The intent with the option or bracketed requirement noted below is to 
+prevent frost heave.  The specifying engineer/designer should delete the option where fluid temperatures are not 
+below<MET> 1.7 degrees C</MET><ENG> 35 degrees F</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Horizontal trenches for ground heat exchanger piping may be dug with a chain type trenching machine or a backhoe.  Bury the piping a minimum of<MET>
+ 1.2 m</MET><ENG> 48 inches</ENG> deep or as indicated.  Make joints while pipe is laying beside the trench.  If the soil contains rocks, dig the trench<MET> 152 mm</MET><ENG> 
+6 inches</ENG> deeper than required and install a base of<MET> 152 mm</MET><ENG> 6 inches</ENG> of fines or sand before placing the pipe.[  Buried piping in systems containing 
+antifreeze and installed within<MET> 1.5 m</MET><ENG> 60 inches</ENG> of any building wall, structure, or pipe to be insulated with R-2 minimum closed cell insulation.]  
+After the piping is installed, tested, and flushed, purged, inspected, and approved while still under pressure, backfill<MET> 152 mm</MET><ENG> 6 inches</ENG> above 
+with fines or sand.  Complete backfill in accordance with <RID>IGSHPA 21020</RID> recommended procedures.  When laying pipe in trench, insure the bottom of 
+the trench is smooth, free from rocks and debris.  When laying pipe, use a fine to medium backfill to fill trench.  If there are multiple pipes 
+in the trench, insure each pipe is completely surrounded and supported with backfill before the next pipe is installed.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Piping at Building Entries</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For ease of pipe installation of small systems, consider using PVC conduit as a means of a pipe casing 
+for pipe entries into buildings. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install a rigid non-metallic conduit (PVC) as a pipe casing at building entries and floor penetration.  The casing allows ease of installation 
+of the ground heat exchanger piping into the building.  The conduit should extend<MET> 610 mm</MET><ENG> 24 inches</ENG> from the building foundation.  The conduit should 
+end <MET>152 mm</MET><ENG>6 inches</ENG> above the floor.  The ends of the conduit where the pipe is located, fill the annular space with insulation and a silicone seal.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Polyethylene Piping</TTL><BRK/>
+<BRK/>
+<TXT>Install piping in accordance with manufacturer's written instructions.  Do not use polybutylene piping.  Join piping components by a heat fusion 
+method that conforms the piping manufacturer's recommendation for this application.  During installation, keep trash, soil, and foreign objects 
+out of the pipe.  Tape or cap ends of the pipe until the pipe is joined to the circuit.  The vertical loop take-off tee fittings may be made using 
+tee fittings or the saddle fusion process on header piping<MET> 32 mm</MET><ENG> 1.25 inches</ENG> diameter and above.  Completely remove the cutout on the saddle tees.  
+Use bell reductions at pipe reductions.  Use reducing socket tees when fabricating socket type reducing headers.  Avoid sharp bends and mitered 
+elbows and bends in piping.  Consult pipe manufacturer for minimum bend radius.  Install elbow fittings at changes in pipe direction that are tighter 
+than the minimum recommended bend radius.  Use only continuous pipe in vertical U-bend loops.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heat Fusion Process</TTL><BRK/>
+<BRK/>
+<TXT>Joining is to be either by butt, socket, or saddle (for sidewall applications only) fusion in accordance with the manufacturer's Heat Fusion Qualification 
+Guide.  Use socket fusion joints for pipe<MET> 20 mm</MET><ENG> 3/4 inches</ENG> diameter and less.  Use butt fusion joints for pipe greater than<MET> 20 mm</MET><ENG> 3/4 inches</ENG> diameter.  
+Different plastics or grades of plastic are not to be fused together.  When fusing pipe, perform heat fusion tests to verify the quality of the 
+joints.  Notify the Contracting Officer, the results of the heat fusion tests.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressurizing</TTL><BRK/>
+<BRK/>
+<TXT>After assembly of the entire ground loop system, fill the system with water and pressure test to<MET> 689 kPa</MET><ENG> 100 psi</ENG>.  Visually inspect welds prior 
+to backfill of the trenches.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Identification</TTL><BRK/>
+<BRK/>
+<TXT>Install metalized (detectable) warning and identification tape above each horizontal pipe run.  Install tape a minimum of<MET> 152 mm</MET><ENG> 6 inches</ENG> below 
+finish grade.  Install mechanical identification of vertical bore holes and connecting headers.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Tracer Wire</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In lieu of a tracer wire system, consider a a metalized warning tape.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install a continuous length of tracer wire for the full length of each run of nonmetallic pipe.  Attach wire to top of pipe in such manner that 
+it will not be displaced during construction operations.  [Provide a tracer wire system with a locator device for identifying the well field.]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Threaded Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Seal threaded joints with a sealant compatible with the circulating fluid; use of lubricating tape for sealing is not permitted.  Do not thread 
+metal pipe into plastic pipe or vice versa.  Direct buried threaded joints are not permitted.  Threaded joints may be used only above grade, within 
+mechanical spaces, or within valve pits.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD PAINTING AND FINISHING</TTL><BRK/>
+<BRK/>
+<TXT>Requirements for field painting and finishing are specified in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FLUSHING AND PURGING GROUND HEAT EXCHANGER</TTL><BRK/>
+<BRK/>
+<TXT>Before connection of the plastic ground heat exchanger loops to the header, flush and purge each loop thoroughly in accordance with <RID>IGSHPA 21020</RID>
+ recommendations and leave filled with clean water.  If the loop is not immediately joined to the header, it must be taped or capped.  Purge and 
+vent the ground heat exchanger system piping of all air.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ADJUSTMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  All design water and air flowrates are to be indicated on the plans.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Adjust controls and equipment so as to give satisfactory operation.  Adjust entire water temperature control system and place in operation so that 
+water quantities circulated are as indicated.  Adjust and balance air duct systems so that air quantities at outlets are as indicated and so that 
+distribution from supply outlets is free from drafts and has uniform velocity over the face of each outlet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTRUCTING OPERATING PERSONNEL</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion of work and at time designated by Contracting Officer, provide services of water source heat pump manufacturer's technical representative 
+for period of not less than one 8-hour working day for instruction of Government operating personnel in proper operation and maintenance of equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion and before final acceptance of work, test each system in service to demonstrate compliance with the contract requirements.  Adjust 
+controls and balance systems prior to final acceptance of completed systems.  Test controls through every cycle of operation.  Test safety controls 
+to demonstrate performance of required function.  Correct defects in work provided by Contractor and repeat tests.  Furnish fuel, water, electricity, 
+instruments, connecting devices, and personnel for tests.  Flush and clean piping before placing in operation.  Clean equipment, piping, strainers, 
+ducts, and filters.  Perform and document that proper <SUB>Indoor Air Quality During Construction</SUB> procedures have been followed; this includes providing 
+documentation showing that after construction ends, and prior to occupancy, new replaceable filters were provided and installed and permanent filters 
+were cleaned.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Piping Systems Except for Ground Heat Exchanger and Refrigerant</TTL><BRK/>
+<BRK/>
+<TXT>For above ground piping systems, and steel or copper piping systems: Before insulating, hydrostatically test each new piping system at not less 
+than[ 1.5 times the system working pressure][<MET> 1296 kPa gage</MET><ENG> 188 psi</ENG> based on 1.5 times a system pressure of<MET> 862 kpa gage</MET><ENG> 125 psig</ENG>].  Maintain pressure 
+for 2 hours with no leakage or reduction in gage pressure.  Obtain approval before applying insulation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flow Test of Ground Heat Exchanger Piping</TTL><BRK/>
+<BRK/>
+<TXT>Before backfilling the trenches, flush, purge, and vent systems of air and flow test to ensure all portions of the heat exchanger are properly 
+flowing using the procedures recommended by <RID>IGSHPA 21020</RID>.  Utilize a portable temporary purging unit consisting of the following:  high volume, 
+high head purge pump; open reservoir; filter assembly with bypass; flow meter; pressure gage; connecting piping; and connecting hoses.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  These purging and venting requirements are for heat pump systems with a connected loop capacity of<MET> 35.2 kilowatt</MET><ENG>
+ 10 tons</ENG> or less of connected loop capacity.</NPR><BRK/>
+<BRK/>
+<NPR>2.  In larger systems greater than<MET> 35.2 kilowatt</MET><ENG> 10 tons</ENG> of connected loop capacity, the designer must indicate 
+on the drawings a system design that allows purging and venting of air with high horsepower circulating pumps, 
+air ejectors, and valved-off header systems.  A portable purge pump may not be necessary if the ground heat exchanger 
+and indoor piping is free of debris and other construction material.</NPR><BRK/>
+<BRK/>
+<NPR>3.  For larger ground source heat pump systems, greater than<MET> 35.2 Kilowatt</MET><ENG> 10 tons</ENG> of connected loop capacity, 
+the designer should show on the drawings ground exchanger loops with accessible valves and flushing/vent connections 
+inside a building or in manholes for each section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Using a purge pump and the procedures recommended by <RID>IGSHPA 21020</RID>, flush and purge each ground heat exchanger system until free of air, 
+dirt, and debris.  A velocity of<MET> 0.6 m/sec</MET><ENG> 2 feet/sec</ENG> is required in pipe sections to remove the air.  Purge and vent all air from the 
+piping.</OLI><BRK/>
+<BRK/>
+<OLI>Perform the flushing and purging operation with the water source heat pumps isolated by shutoff valves from the ground heat exchanger system.  
+Allow purge pump to run 15 minutes after the last air bubbles have been removed.  After the ground heat exchanger is completely flushed 
+of air and debris, open the isolation valves and permit circulation through the heat pumps until the entire system is flushed and purged.</OLI><BRK/>
+<BRK/>
+<OLI>Utilizing the purging unit and the procedures recommended by <RID>IGSHPA 21020</RID>, conduct a pressure and flow test on the ground heat exchanger 
+to ensure the system is free of blockage.  If the flow test indicates blockage, locate the blockage using the manufacturer's recommendation, 
+remove the blockage, then repeat the purge procedure and conduct the pressure and flow test again until all portions of the system are 
+free flowing.  The flow test is to be observed and approved by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>After purging has been completed, add the required amount of antifreeze to the system to achieve the required solution concentration.  
+[Fill the open reservoir with the quantity of antifreeze required for<MET> minus 9 degree C</MET><ENG> 15 degree F</ENG> freeze protection and run the purge 
+pump 15 minutes to deliver the antifreeze to the system.  Test the solution with a hydrometer to determine the actual freezing point.]</OLI><BRK/>
+<BRK/>
+<OLI>Form 1, "Ground Heat Exchanger Inspection and Test Report" located in Appendix A of this section is to be completed for each system by 
+the[ Contractor][ or QC Manager] after completion of the flow[ and injection of required antifreeze to the system and] before the systems 
+can be backfilled.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Pressure Test of Ground Heat Exchanger Piping</TTL><BRK/>
+<BRK/>
+<TXT>Prior to any cover or backfill of bore holes or trenches and after flow testing, flushing, and purging, the ground heat exchanger piping and headers 
+are to be pressure tested by hydrostatic test.  Isolate the system from all connections to piping.  Ensure that the piping system has been flushed 
+of all dirt and debris.  The piping must then be plugged or capped as necessary in preparation for the hydrostatic test(s).</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Hydrostatic Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The piping is to be hydrostatically pressurized to 150 percent of system pressure [or<MET> [1000][_____] kPa</MET><ENG> [150][_____] psi</ENG>] and monitor piping.  
+If there is any pressure loss or visible leakage during the testing, the leak must be identified and repaired in accordance with the piping components 
+manufacturer's recommendations.  Repeat the test until there is no loss in pressure during the test period.  Provide results of test in test report.  
+During testing, do not exceed the pipe/pipe fitting manufacturer test pressure rating[ or 150 percent of the pipe pressure rating].  Do not pneumatic 
+test the pipe.  Prior to testing, remove all air from the system. Provide test in accordance to IGSHPA standards.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Refrigerant Piping Pressure Test and Evacuation</TTL><BRK/>
+<BRK/>
+<TXT>Perform the following when field piping connections are provided.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Pressure Test:  Test refrigerant piping using dry, oil-free nitrogen, and prove tight at<MET> 2068 kPa</MET><ENG> 300 psi</ENG> on the high side and<MET> 1027 kPa</MET><ENG>
+ 150 psi</ENG> on the low side.  Maintain pressure for 2 hours with no leakage or reduction in gage pressure.</OLI><BRK/>
+<BRK/>
+<OLI>Evacuation:  Use a high vacuum pump and certified micron gage to reduce the absolute pressure on both sides of system simultaneously to<MET>
+ 300 microns</MET><ENG> 300 microns</ENG>.  After reaching this point charge system with proper refrigerant until pressure of<MET> 0 kPa</MET><ENG> 0 psi</ENG> is obtained.  
+Repeat evacuation-charging procedure for two more cycles, totaling to three evacuation-charging cycles.  On final evacuation, secure pump 
+and maintain<MET> 300 microns</MET><ENG> 300 microns</ENG> for 2 hours before charging with required final refrigerant.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Equipment Tests</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Field Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  It needs to be understood that this is a standard operation test, not a continuous operation test.  A long 
+continuous test of more than 24 hours, could artificially and unnecessarily load the ground mass around the ground 
+heat exchanger.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Test each item of equipment in operation,[ for continuous period of not more than 24 hours] under every condition of operation in accordance with 
+each equipment manufacturer's recommendation.  Verify that each item of equipment operating parameters are within limits recommended by the manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Test Plans</TTL><BRK/>
+<BRK/>
+<TXT>Furnish water-source heat pump[ and closed circuit cooler] field test plans developed by each equipment manufacturer detailing recommended field 
+test procedures for each item of equipment.  Field test plans developed by the installing Contractor, or the equipment sales agency furnishing 
+the equipment will not be acceptable.  The Contracting Officer will review and approve the field test plan for each item of equipment listed below 
+prior to commencement of field testing of the equipment.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Equipment Items to Test:</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2"><SUB>Water-Source Water-to-Air Heat Pumps - Field Acceptance Test Plan</SUB></OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2"><SUB>Water-Source Water-to-Water Heat Pumps - Field Acceptance Test Plan</SUB></OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2"><SUB>Closed Circuit Coolers - Field Acceptance Test Plan</SUB></OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2"><SUB>Plate Heat Exchangers - Field Acceptance Test Plan</SUB></OLI><BRK/>
+<BRK/>
+]<OLI>Coordinated Testing:  Indicate in each field test plan when work required by this section requires coordination with test work required 
+by other specification sections.  Furnish test procedures for the simultaneous or integrated testing of equipment controls which interlock 
+and interface with controls factory prewired or external controls for the equipment provided under<TAI OPT="NAVY"> Section <SRF>23 09 53.00 20</SRF> SPACE TEMPERATURE 
+CONTROL SYSTEMS</TAI> <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.</OLI><BRK/>
+<BRK/>
+<OLI>Prerequisite Testing:  Equipment for which performance testing is dependent upon the completion of the work covered by <SRF>23 05 93</SRF> TESTING, 
+ADJUSTING, AND BALANCING FOR HVAC must have that work completed as a prerequisite to testing work under this section.  Indicate in each 
+field test plan when such prerequisite work is required.</OLI><BRK/>
+<BRK/>
+<OLI>Test Procedure:  Indicate in each field test plan each equipment manufacturer's published installation, start-up, and field acceptance 
+test procedures.  Include in each test plan a detailed step-by-step procedure for testing automatic controls provided by the manufacturer.  
+Each test plan is to include the required test reporting forms to be completed by the Contractor's testing representatives.  Structure 
+procedures to test the controls through all modes of control to confirm that the controls are performing with the intended sequence of 
+control.  Controllers are to be verified to be properly calibrated and have the proper set point to provide stable control of their respective 
+equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Performance Variables:  Each test plan lists performance variables that are required to be measured or tested as part of the field test.  
+Include in the listed variables performance requirements indicated on the equipment schedules on the design drawings.  Furnish with each 
+test procedure a description of acceptable results that have been verified.  Identify the acceptable limits or tolerances within which 
+each tested performance variable must acceptably operate.</OLI><BRK/>
+<BRK/>
+<OLI>Job Specific:  Each test plan is to be job specific and to address the particular item of equipment and particular conditions which exist 
+with this contract.  Generic or general preprinted test procedures are not acceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Specialized Components:  Each test plan is to include procedures for field testing and field adjusting specialized components, such as 
+hot gas bypass control valves, or pressure valves.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Field Test Reports</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Equipment Items to Test:</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2"><SUB>Water-Source Water-to-Air Heat Pumps - Field Acceptance Test Report</SUB></OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2"><SUB>Water-Source Water-to-Water Heat Pumps - Field Acceptance Test Report</SUB></OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2"><SUB>Closed Circuit Coolers - Field Acceptance Test Report</SUB></OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2"><SUB>Plate Heat Exchangers - Field Acceptance Test Report</SUB></OLI><BRK/>
+<BRK/>
+]<OLI>Manufacturer's Recommended Test:  Conduct the manufacturer's recommended field testing in compliance with the approved test plan specified 
+above.  Furnish a factory trained field representative authorized by and to represent the equipment manufacturer at the complete execution 
+of the field testing.</OLI><BRK/>
+<BRK/>
+<OLI>Operational Test:  Conduct a standard[ continuous 24 hour] operational test for each item of equipment.  Equipment shutdown before the 
+test period is completed must result in the test period being started again and run for the required duration.  For the duration of the 
+test period, compile an operational log of each item of equipment.  Log required entries every 2 hours.  Use the test report forms for 
+logging the operational variables.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  It needs to be understood that this is a standard operation test, not a continuous operation test.  A long 
+continuous test of more than 24 hours, could artificially and unnecessarily load the ground mass around the ground 
+heat exchanger.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Notice of Tests:  Conduct the manufacturer's recommended tests and the operational tests; record the required data using the approved reporting 
+forms.  Notify the Contracting Officer in writing at least 15 calendar days prior to the testing.  Within 30 calendar days after acceptable 
+completion of testing, submit each test report for review and approval.</OLI><BRK/>
+<BRK/>
+<OLI>Report Forms:  Type data entries and writing on the test report forms.  Completed test report forms for each item of equipment are to be 
+reviewed, approved, and signed by the Contractor's test director and the QC Manager.  The manufacturer's field test representative is to 
+review, approve, and sign the report of the manufacturer's recommended test.  Signatures are required to be accompanied by the person's 
+name, typed.</OLI><BRK/>
+<BRK/>
+<OLI>Deficiency Resolution:  The test requirements acceptably met; deficiencies identified during the tests must be corrected in compliance 
+with the manufacturer's recommendations and corrections retested to verify compliance.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Additional Field Testing</TTL><BRK/>
+<BRK/>
+<TXT>[Requirements for testing, adjusting, and balancing (TAB) of ducts, piping, and equipment are specified in Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, 
+AND BALANCING FOR HVAC.][  Begin testing, adjusting, and balancing only when the entire HVAC system, including controls, has been completed with 
+the exception of performance tests.  Where required, charge the heat pump systems with premixed antifreeze solution (type and concentration as 
+indicated in paragraph ANTIFREEZE PROTECTION) prior to testing, adjusting, and balancing.]</TXT><BRK/>
+<TAI OPT="NAVY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy projects, use this paragraph for each building which has less than<MET> 28.1 kW</MET><ENG> 96,000 Btuh</ENG> of cooling, 
+less than<MET> 372 square meters</MET><ENG> 4000 square feet</ENG> of floor space, or less than 15 supply air outlets.  Include bracketed 
+option for Navy projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+[<TXT>Balance air flows to that indicated in accordance with <RID>SMACNA 1966</RID>, as supplemented and modified by this section.  Begin testing, adjusting, and 
+balancing only when the entire HVAC system, including controls, has been completed with the exception of performance tests.  Where required, charge 
+the heat pump systems with premixed antifreeze solution (type and concentration as indicated in paragraph ANTIFREEZE PROTECTION) prior to testing, 
+adjusting, and balancing.  Submit written certificate to report the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Water source heat pump unit nameplate data, and actual voltage and ampere consumption.</OLI><BRK/>
+<BRK/>
+<OLI>Supply and return terminal airflow, and equipment used to measure airflow.</OLI><BRK/>
+<BRK/>
+<OLI>Water source heat pump<MET> liters/sec</MET><ENG> cfm</ENG> and entering and leaving air temperatures.</OLI><BRK/>
+<BRK/>
+<OLI>Water source heat pump unit condenser water<MET> liters/sec</MET><ENG> gpm</ENG> and entering and leaving temperatures.</OLI><BRK/>
+<BRK/>
+<OLI>Ambient outside air temperature, date, and person testing, balancing, and reporting.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Soil Thermal Conductivity Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTES:<BRK/>
+<BRK/>
+1.  This subparagraph is for the designer to establish the thermal and sub-surface conditions of the thermal well 
+field.</NPR><BRK/>
+<BRK/>
+<NPR>2.  In addition, this paragraph can be utilized as a requirement for the contractor to establish the well field 
+conditions after installation for verification purposes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform soil thermal conductivity testing of the well system project location.  The test will establish the thermal properties for design of the 
+well field and the subsurface conditions at the site.  The test will be performed by performed under the supervision of and certified by the ground 
+source heat pump (GSHP) specialist.  The test will be performed at[ multiple] locations as[ indicated][ determined by the designer].  Each test 
+will contain a minimum of 48 hours of recorded data.[  Use the test for verification of the design and installation.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Soil Thermal Conductivity Testing Set-up</TTL><BRK/>
+<BRK/>
+<TXT>Conduct and perform tests in accordance with the procedures outlined in <RID>ASHRAE Item 90376</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Data Recording and Sensor Accuracy</TTL><BRK/>
+<BRK/>
+<TXT>Record data by means of automatic data logging equipment intended for such purposes and suitable for service of local ambient outside conditions.  
+Protect compensated thermocouple reference junctions, if used, either from separate from the data logging equipment or integral to it, from rapid 
+changes in environmental conditions.  Record data at uniform[ 5 minute] time intervals during the 48 hour test period.  Data recorded will include 
+a minimum time, inlet and outlet temperatures, heater power input, circulating pump power input, and ambient temperatures.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Temperature Measurements:  Measure inlet and outlet temperatures with immersion temperature sensors.  The temperatures sensors must be 
+calibrated every 6 months and have a valid calibrated stamp.  Include the date and results from the most recent calibration in the test 
+report.  Any change-out of the temperature sensor in the system or data logger will require re-calibration.</OLI><BRK/>
+<BRK/>
+[<OLI>Temperature Sensor calibration and accuracy:  The combined rated sensor and data logger accuracy will be [as indicated] plus or minus<MET> 0.5 
+degrees C</MET><ENG> 1 degree F</ENG> or better.  Verify temperature sensor and data logger accuracy and calibration at first use of the testing device 
+during the test.  The testing equipment is to have been calibrated semi-annually by immersion in ice and water bath.  A calibration certificate 
+stamp with date must be on the test device.  The result from the verification test using ice water bath is not to differ from<MET> 0 degrees 
+C</MET><ENG> 32 degrees F</ENG> by more than the required data accuracy.  Additional readings will not differ from one another by more than plus or minus<MET>
+ 0.2 degrees C</MET><ENG> 0.5 degrees F</ENG> when simultaneously immersed in the ice bath.</OLI><BRK/>
+<BRK/>
+]<OLI>Power Measurements:  Measure heater and circulating pump power input.[  Power measurements are to be independently determined by using 
+power transducers with the manufacturer stated accuracy of plus or minus two percent or better at the level of power consumption for the 
+test.]</OLI><BRK/>
+<BRK/>
+<OLI>Flow Rate Measurements:  Measure the flow rate.[  Measure flow rate using a variable flow meter calibrated by the flow meter manufacturer 
+having a rated accuracy of plus or minus two percent of full scale.  Full scale or maximum rated flow for the flow meter is not to exceed 
+actual flow rate by more than 70 percent.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Test Borehole Construction</TTL><BRK/>
+<BRK/>
+<TXT>Prepare the bore hole in a manner in which the heat exchangers will be ultimately installed to the extent possible with respect to the bore hole 
+size, pipe diameter grouting method, and grout types[ as indicated].  The installation of the test bore hole must be as designed for the vertical 
+well field.  The bore hole depth is not to vary more than 5 percent from the indicated design depth.  Materials of the test borehole and heat exchanger 
+must be as utilized in the designed vertical well field.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>At least<MET> 2 m</MET><ENG> 6 feet</ENG> of excess pipe is to be left protruding above grade upon completion of the test borehole construction.  Temporarily 
+cap the ends of the protruding pipes until the actual testing begins.  All local and state codes and regulations will be adhered to during 
+the construction of the test bore hole.  Where any discrepancy exists between local codes and regulations and this specification, the more 
+stringent requirement applies.  The U-tube assembly must be factory assembled and pressure tested to<MET> 689.5 kPa gage</MET><ENG> 100 psig</ENG> prior to insertion 
+into the vertical bore.  All connections are to be by heat fusion.</OLI><BRK/>
+<BRK/>
+<OLI>During the completion of the test borehole, maintain a water well and soils property log.  For each well submit a <SUB>Test Borehole Well Construction 
+Log Record</SUB></OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>[<SPT><TTL><SUB>On-Site Training</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the designer to consider - consider 8 hours of training for residential and light commercial projects.  
+Consider 16 hours for large geothermal projects. Training should be attended by the appropriate operation and 
+maintenance station personnel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The[ System Designer][ Ground Source Heat Pump Specialist] is to conduct a training course for operating and maintenance personnel as designated 
+by the Contracting Officer.  Provide training for a period of [16][_____] hours of normal working time and start after the system is functionally 
+complete but prior to the performance tests.  The on-site training is to cover all of the items contained in the approved Operation and Maintenance 
+Data packages.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>APPENDIX A</TTL><BRK/>
+<BRK/>
+<TXT>Form 1 - Ground Heat Exchanger (Ghx) Inspection And Test Report</TXT><BRK/>
+<PGE/><BRK/>
+<HL4>FORM 1</HL4><BRK/>
+<BRK/>
+<HL4>GROUND HEAT EXCHANGER (GHX) INSPECTION AND TEST REPORT</HL4><BRK/>
+<BRK/>
+<TXT>NOTE:  Use separate form for each GHX loop system.</TXT><BRK/>
+<BRK/>
+<TXT>Building:_________________________ Inspection Date:_______________________</TXT><BRK/>
+<BRK/>
+<TXT>Ground Heat Exchanger No. or Description:_________________________________</TXT><BRK/>
+<BRK/>
+<TXT>Does the ground heat exchanger have a Well Construction Permit?   Permit No.?</TXT><BRK/>
+<BRK/>
+<TXT>Does the ground heat exchanger have an approved well permit?  Permit No.   </TXT><BRK/>
+<BRK/>
+<TXT>List the WSHP Unit No.'s served by this GHX: _____________________________</TXT><BRK/>
+<BRK/>
+<TXT>Ground Heat Exchanger Design Water Flow - _____<MET> liters/sec</MET><ENG> gpm</ENG></TXT><BRK/>
+<BRK/>
+<TXT>Calculated purging flow and press to achieve<MET> 0.61 m</MET><ENG> 2 feet/sec</ENG></TXT><BRK/>
+<BRK/>
+<TXT>Purging:  Flow _____<MET> liters/sec</MET><ENG> gpm</ENG> Head _____<MET> kPa</MET><ENG> psi</ENG>, Duration of test _____ min.</TXT><BRK/>
+<BRK/>
+<TXT>Hydrostatic test pressure _____<MET> kPa</MET><ENG> psi</ENG>; Duration _____ min.</TXT><BRK/>
+<BRK/>
+<TXT>Did the system pass the pressure test? ___________________________________</TXT><BRK/>
+<BRK/>
+<TXT>Is antifreeze required in system?____ If yes, was antifreeze measured?____</TXT><BRK/>
+<BRK/>
+<TXT>Has a dimensioned drawing been prepared, completely and accurately showing the layout of the ground heat exchanger? _________________________________</TXT><BRK/>
+<BRK/>
+<TXT>Does the layout differ substantially from the contract documents? ________</TXT><BRK/>
+<TXT>If so is the deviation approved? _______________</TXT><BRK/>
+<BRK/>
+<TXT>Depth of installed vertical loops is _____<MET>m</MET><ENG> feet</ENG>.  (Design is ____ <MET> m</MET><ENG> feet</ENG>.)</TXT><BRK/>
+<BRK/>
+<TXT>Depth of horizontal piping is _____<MET> m</MET><ENG> feet</ENG>.  (Design is _____<MET>m</MET><ENG> feet</ENG>.)</TXT><BRK/>
+<BRK/>
+<TXT>Are the trenches clear of sharp bends, rocks, or other sharp objects that could restrict flow?___________________</TXT><BRK/>
+<BRK/>
+<TXT>Are all joints heat fused (butt-, socket-, or saddle-fusion)?_____________</TXT><BRK/>
+<TXT>Do the joints have the proper amount of roll-out?_________________________</TXT><BRK/>
+<BRK/>
+<TXT>Has the piping material been cut-out and properly removed from saddle-fusion tees?_______________</TXT><BRK/>
+<BRK/>
+<TXT>Grout Manufacturer?  ______________;  Percent of solids used in grout?________Grout Type?_________Grout Thermal conductivity, k? (give units)______</TXT><BRK/>
+<BRK/>
+<TXT>Was the system backfilled properly with good clean backfill material?_____</TXT><BRK/>
+<BRK/>
+<TXT>Attach the soil boring and water well log sheet for the bore hole?__For each well submit a Well Construction Log Record</TXT><BRK/>
+<BRK/>
+<BRK/>
+<BRK/>
+<BRK/>
+<TXT>Comments:_________________________________________________________________<BRK/>
+__________________________________________________________________________<BRK/>
+__________________________________________________________________________<BRK/>
+__________________________________________________________________________<BRK/>
+__________________________________________________________________________<BRK/>
+__________________________________________________________________________</TXT><BRK/>
+<BRK/>
+<TXT>Inspected and approved this _________ date by ____________________________</TXT><BRK/>
+<BRK/>
+<TXT>Title: ___________________________________________________________________</TXT><BRK/>
+<BRK/></SPT>
+</PRT><BRK/>
+<BRK/>
+    <END/><BRK/></SEC>

@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-23 21 13.00 20 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 2 - 11/19</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Replacing without change<BRK/>UFGS-15185N (September 1999)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 21 13.00 20</SCN><BRK/>
+<BRK/>
+<STL>LOW TEMPERATURE WATER (LTW) HEATING SYSTEM</STL><BRK/>
+<DTE>04/06, CHG 2: 11/19</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>complete low temperature water heating system including 
+hot water piping (supply and return) and terminal units used for heating</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section does not include feedwater treatment equipment or process hot water terminal units.  Piping 
+as used in this specification includes pipe, tubes, flanges, bolting, gaskets, valves, relief devices, fittings, 
+and pressure containing parts of other piping components, hangers and supports, and other equipment items necessary 
+to prevent overstressing of the pressure containing parts.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information should be shown on the drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Layout of heating system.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Location, size, and capacity of finned tube radiators, convectors, unit heaters, flow meters, pumps, and expansion 
+tanks.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification. The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+ <BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+ <BRK/>
+References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ACOUSTICAL SOCIETY OF AMERICA (ASA)</ORG><BRK/><BRK/><RID>ASA S1.4</RID><RTL>(1983; Amendment 1985; R 2006) Specification for Sound Level Meters (ASA 47)</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B1.1</RID><RTL>(2024) Unified Inch Screw Threads (UN, UNR, and UNJ Thread Form)</RTL><BRK/><BRK/><RID>ASME B1.20.1</RID><RTL>(2013; R 2018) Pipe Threads, General Purpose (Inch)</RTL><BRK/><BRK/><RID>ASME B16.1</RID><RTL>(2020) Gray Iron Pipe Flanges and Flanged Fittings Classes 25, 125, and 250</RTL><BRK/><BRK/><RID>ASME B16.3</RID><RTL>(2021) Malleable Iron Threaded Fittings, Classes 150 and 300</RTL><BRK/><BRK/><RID>ASME B16.5</RID><RTL>(2020) Pipe Flanges and Flanged Fittings NPS 1/2 Through NPS 24 Metric/Inch Standard</RTL><BRK/><BRK/><RID>ASME B16.9</RID><RTL>(2024) Factory-Made Wrought Buttwelding Fittings</RTL><BRK/><BRK/><RID>ASME B16.11</RID><RTL>(2021) Forged Fittings, Socket-Welding and Threaded</RTL><BRK/><BRK/><RID>ASME B16.18</RID><RTL>(2021) Cast Copper Alloy Solder Joint Pressure Fittings</RTL><BRK/><BRK/><RID>ASME B16.21</RID><RTL>(2021) Nonmetallic Flat Gaskets for Pipe Flanges</RTL><BRK/><BRK/><RID>ASME B16.22</RID><RTL>(2021) Wrought Copper and Copper Alloy Solder Joint Pressure Fittings</RTL><BRK/><BRK/><RID>ASME B16.24</RID><RTL>(2022) Cast Copper Alloy Pipe Flanges, Flanged Fittings, and Valves Classes 150, 300, 600, 900, 1500, and 2500</RTL><BRK/><BRK/><RID>ASME B16.34</RID><RTL>(2021) Valves - Flanged, Threaded and Welding End</RTL><BRK/><BRK/><RID>ASME B16.36</RID><RTL>(2025) Orifice Flanges</RTL><BRK/><BRK/><RID>ASME B16.39</RID><RTL>(2025) Malleable Iron Threaded Pipe Unions; Classes 150, 250, and 300</RTL><BRK/><BRK/><RID>ASME B18.2.2</RID><RTL>(2022) Nuts for General Applications: Machine Screw Nuts, and Hex, Square, Hex Flange, and Coupling Nuts (Inch Series)</RTL><BRK/><BRK/><RID>ASME B31.9</RID><RTL>(2025) Building Services Piping</RTL><BRK/><BRK/><RID>ASME B40.100</RID><RTL>(2022) Pressure Gauges and Gauge Attachments</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII D1</RID><RTL>(2023) BPVC Section VIII-Rules for Construction of Pressure Vessels Division 1</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF SANITARY ENGINEERING (ASSE)</ORG><BRK/><BRK/><RID>ASSE 1003</RID><RTL>(2020) Performance Requirements for Water Pressure Reducing Valves for Domestic Water Distribution Systems - (ANSI approved 2010)</RTL><BRK/><BRK/><RID>ASSE 1017</RID><RTL>(2023) Performance Requirements for Temperature Actuated Mixing Valves for Hot Water Distribution Systems - (ANSI approved 2010)</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS Z49.1</RID><RTL>(2021) Safety in Welding, Cutting and Allied Processes</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/><RID>ASTM A194/A194M</RID><RTL>(2024) Standard Specification for Carbon Steel, Alloy Steel, and Stainless Steel Nuts for Bolts for High-Pressure or High-Temperature Service, or Both</RTL><BRK/><BRK/><RID>ASTM A307</RID><RTL>(2023) Standard Specification for Carbon Steel Bolts, Studs, and Threaded Rod 60 000 PSI Tensile Strength</RTL><BRK/><BRK/><RID>ASTM B32</RID><RTL>(2020) Standard Specification for Solder Metal</RTL><BRK/><BRK/><RID>ASTM B88</RID><RTL>(2022) Standard Specification for Seamless Copper Water Tube</RTL><BRK/><BRK/><RID>ASTM B88M</RID><RTL>(2020) Standard Specification for Seamless Copper Water Tube (Metric)</RTL><BRK/><BRK/><RID>ASTM D1785</RID><RTL>(2021) Standard Specification for Poly(Vinyl Chloride) (PVC), Plastic Pipe, Schedules 40, 80, and 120</RTL><BRK/><BRK/><RID>ASTM F1007</RID><RTL>(2018; R 2022) Standard Specification for Pipeline Expansion Joints of the Packed Slip Type for Marine Application</RTL><BRK/><BRK/><RID>ASTM F1120</RID><RTL>(1987; R 2024) Standard Specification for Circular Metallic Bellows Type Expansion Joints for Piping Applications</RTL><BRK/><BRK/></REF><REF><ORG>COPPER DEVELOPMENT ASSOCIATION (CDA)</ORG><BRK/><BRK/><RID>CDA A4015</RID><RTL>(2024) Copper Tube Handbook</RTL><BRK/><BRK/></REF><REF><ORG>FOUNDATION FOR CROSS-CONNECTION CONTROL AND HYDRAULIC RESEARCH (FCCCHR)</ORG><BRK/><BRK/><RID>FCCCHR List</RID><RTL>(continuously updated) List of Approved Backflow Prevention Assemblies</RTL><BRK/><BRK/></REF><REF><ORG>MANUFACTURERS STANDARDIZATION SOCIETY OF THE VALVE AND FITTINGS INDUSTRY (MSS)</ORG><BRK/><BRK/><RID>MSS SP-58</RID><RTL>(2025) Pipe Hangers and Supports - Materials, Design and Manufacture, Selection, Application, and Installation</RTL><BRK/><BRK/><RID>MSS SP-67</RID><RTL>(2022) Butterfly Valves</RTL><BRK/><BRK/><RID>MSS SP-70</RID><RTL>(2011) Gray Iron Gate Valves, Flanged and Threaded Ends</RTL><BRK/><BRK/><RID>MSS SP-72</RID><RTL>(2010a) Ball Valves with Flanged or Butt-Welding Ends for General Service</RTL><BRK/><BRK/><RID>MSS SP-80</RID><RTL>(2019) Bronze Gate, Globe, Angle, and Check Valves</RTL><BRK/><BRK/><RID>MSS SP-85</RID><RTL>(2011) Gray Iron Globe &amp; Angle Valves Flanged and Threaded Ends</RTL><BRK/><BRK/><RID>MSS SP-110</RID><RTL>(2010) Ball Valves Threaded, Socket-Welding, Solder Joint, Grooved and Flared Ends</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA ICS 2</RID><RTL>(2000; R 2020) Industrial Control and Systems Controllers, Contactors, and Overload Relays Rated 600 V</RTL><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>SHEET METAL AND AIR CONDITIONING CONTRACTORS' NATIONAL ASSOCIATION (SMACNA)</ORG><BRK/><BRK/><RID>SMACNA 1780</RID><RTL>(2023) HVAC Systems - Testing, Adjusting and Balancing, 4th Edition</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-V-12003</RID><RTL>(1980; Rev F; Am 1; CANC Notice 1) Valves, Plug,  Cast-Iron or Steel, Manually Operated</RTL><BRK/><BRK/></REF><REF><ORG>U.S. GENERAL SERVICES ADMINISTRATION (GSA)</ORG><BRK/><BRK/><RID>CID A-A-1689</RID><RTL>(Rev B) Tape, Pressure-Sensitive Adhesive, (Plastic Film)</RTL><BRK/><BRK/><RID>CID A-A-50543</RID><RTL>(Basic; Notice 2; Notice 3) Heaters, Convection, Steam or Hot Water</RTL><BRK/><BRK/><RID>CID A-A-50544</RID><RTL>(Basic; Notice 2; Notice 3) Radiators, Heating, Steam and Hot Water, Cast Iron</RTL><BRK/><BRK/><RID>CID A-A-50545</RID><RTL>(Basic; Notice 2; Notice 3) Radiator, Heating, Baseboard Panel, Steam and Hot Water</RTL><BRK/><BRK/><RID>CID A-A-50560</RID><RTL>(Basic) Pumps, Centrifugal, Water Circulating, Electric-Motor-Driven</RTL><BRK/><BRK/><RID>CID A-A-59617</RID><RTL>(Basic, Notice 1) Unions, Brass or Bronze, Threaded Pipe Connections and Solder-Joint Tube Connections</RTL><BRK/><BRK/><RID>FS S-R-2834</RID><RTL>(Basic; Notice 1; CANC Notice 1) Radiators:  Heating, Steel, Multifin Type</RTL><BRK/><BRK/><RID>FS WW-H-191</RID><RTL>(Rev E; Notice 2) Heater, Fluid, Industrial (Instantaneous, Steam, Water Converter Type)</RTL><BRK/><BRK/><RID>FS WW-S-2739</RID><RTL>(Basic; Notice 1; Notice 2) Strainers, Sediment:  Pipeline, Water, Air, Gas, Oil, or Steam</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>29 CFR 1910.144</RID><RTL>Safety Color Code for Marking Physical Hazards</RTL><BRK/><BRK/><RID>29 CFR 1910.219</RID><RTL>Mechanical Power Transmission Apparatus</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Section <SRF>23 03 00</SRF> BASIC MECHANICAL MATERIALS AND METHODS applies to this section with additions and modifications specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>Except as specified otherwise, equipment and piping components must be suitable for use in low temperature water heating system.  Except as modified 
+herein, the pressure temperature limitations must be as specified in the referenced standards and specifications.  Pressures in this specification 
+are pressures in<MET> kilopascal (kPa)</MET><ENG> pounds per square inch</ENG> above atmospheric pressure, and temperatures are in degrees<MET> Centigrade (C)</MET><ENG> Fahrenheit 
+(F)</ENG>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Hot Water Heating System</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit plan, elevations, dimensions, capacities, and ratings.  Include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Unit heaters</OLI><BRK/>
+<BRK/>
+<OLI>Convectors</OLI><BRK/>
+<BRK/>
+<OLI>Finned tube radiators</OLI><BRK/>
+<BRK/>
+<OLI>Pumps</OLI><BRK/>
+<BRK/>
+<OLI>Valves</OLI><BRK/>
+<BRK/>
+<OLI>Expansion tanks</OLI><BRK/>
+<BRK/>
+<OLI>Flow measuring equipment</OLI><BRK/>
+<BRK/>
+<OLI>Backflow preventer</OLI><BRK/>
+<BRK/>
+<OLI>Air separating tank</OLI><BRK/>
+<BRK/>
+<OLI>[j.  Boilers]</OLI><BRK/>
+<BRK/>
+<OLI>[k.  Hot water heat exchangers]</OLI><BRK/>
+<BRK/>
+<OLI>[l.  Converters]</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Hot water heating system</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Convectors</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Finned tube radiators</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pumps</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Include pump speed and characteristic curve for performance of impeller selected for each pump.  Curves must indicate capacity 
+vs head, efficiency, and brake power for full range, from shut-off to free delivery.</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Expansion tanks</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flow measuring equipment</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Backflow preventers</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>External air separation tanks</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hot water heating pipe</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Hydrostatic test of piping system</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Auxiliary equipment and accessory tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit test reports in accordance with the paragraph entitled "Field Quality Control."</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Backflow preventer certification</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Report of prior installations</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welding procedures</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welder's qualifications</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Convectors</SUB>, Data Package 3; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Finned tube radiators</SUB>, Data Package 3; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.  Submit a list of qualified service organizations 
+which includes addresses and qualifications.</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Standard Commercial Product for Terminal Units</TTL><BRK/>
+<BRK/>
+<TXT>Terminal units provided must comply with features called out in this specification and must be the manufacturer's standard commercial product.  
+Additional or better features which are not prohibited by this specification but which are a part of the manufacturer's standard commercial product, 
+must be included in the terminal units being furnished.  A standard commercial product is a product which has been sold or is currently being offered 
+for sale, on the commercial market through advertisements or manufacturer's catalogs, or brochures.  Provide Institute of Boiler and Radiator Manufacturer 
+(IBR) or Steel Boiler Institute (SBI) rating for required capacity.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Report of Prior Installations</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a Certificate of Full Approval or a current Certificate of Approval for each design, size, and make of backflow preventer being provided 
+for the project.  Certificate must be from the Foundation for Cross-Connection Control and Hydraulic Research, University of Southern California, 
+and must attest that this design, size, and make of backflow preventer has satisfactorily passed the complete sequence of performance testing and 
+evaluation for the respective level of approval.  A Certificate of Provisional Approval is not acceptable in lieu of the above.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Welding Procedures</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Before performing welding, submit three copies of welding procedure specification for all metals to be used in the work, together with proof of 
+welder's qualification as outlines in <RID>ASME B31.9</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Welder's Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Before welder or operator performs welding, submit three copies of Welder's Performance Qualification Record in conformance with <RID>ASME B31.9</RID>showing 
+that the welder was tested under the approved procedure specification submitted by the Contractor.  In addition, submit each welder's assigned 
+number, letter, or symbol used to identify the work of the welder.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Identification of Welder's Work</TTL><BRK/>
+<BRK/>
+<TXT>Ensure that each welder's assigned number, letter or symbol is affixed immediately upon completion of the weld.  To welders making defective welds 
+after passing a qualification test, give a requalification test.  Upon failing to pass the test, do not permit welder to work in this contract.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Previous Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Welding procedures, welders, and welding operators previously qualified by test may be accepted for this contract without requalification subject 
+to the approval and provided that all the conditions specified in </TXT><BRK/>
+<TXT><RID>ASME B31.9</RID> are met before a procedure can be used.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Brazing and Soldering</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Brazing Procedure</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B31.9</RID>.  Brazing procedure for joints must be as outlined in <RID>CDA A4015</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Soldering, Soldering Preparation, and Procedures for Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B31.9</RID> and as outlined in <RID>CDA A4015</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Backflow Preventer Certification</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a Certificate of Full Approval or a current Certificate of Approval for backflow preventers.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SAFETY STANDARDS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<TXT>Safety in welding and cutting of pipe must conform to <RID>AWS Z49.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Guards</TTL><BRK/>
+<BRK/>
+<TXT>Couplings, motor shafts, gears and other moving parts must be guarded, in accordance with OSHA <RID>29 CFR 1910.219</RID>.  Guards must be cast iron or expanded 
+metal.  Guard parts must be rigid and removable without disassembling the guarded unit.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PIPE AND FITTINGS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Hot Water Heating Pipe</SUB> (Supply and Return)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify Schedule 40, 80, or 120 steel or Type K or L copper as required for temperature and pressure involved.  
+Type M copper should only be specified for drain piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM A53/A53M</RID> electric resistance welded or seamless Schedule [_____] steel pipe [or<MET> <RID>ASTM B88M</RID></MET><ENG> <RID>ASTM B88</RID></ENG> Type [_____] hard drawn Copper tubing].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Provide fittings compatible with the pipe being provided and must conform to the following requirements.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Steel or Malleable Iron Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Sizes<MET> 3 to 50 mm</MET><ENG> 1/8 to 2 inches</ENG>.  <RID>ASME B16.11</RID> steel socket welding or screwed type or <RID>ASME B16.3</RID> for screwed type malleable iron fittings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel, Cast Iron, or Bronze</TTL><BRK/>
+<BRK/>
+<TXT>Sizes<MET> 65 mm</MET><ENG> 2 1/2 inches</ENG> and above.  Steel fitting butt welding type <RID>ASME B16.9</RID> or <RID>ASME B16.5</RID> flanged type.  Cast iron fittings flanged type <RID>ASME B16.1</RID>
+.  Bronze fittings up to<MET> 200 mm</MET><ENG> 8 inch</ENG> size flanged type <RID>ASME B16.24</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings for Copper Tubing</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.18</RID> cast bronze solder joint type or <RID>ASME B16.22</RID> wrought copper solder joint type.  Fittings may be flared or compression joint type.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Unions</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Steel Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>ASME B16.39</RID>, malleable iron unions, threaded connections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Copper Tubing</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>CID A-A-59617</RID>, bronze unions, solder joint end.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dielectric Union</TTL><BRK/>
+<BRK/>
+<TXT>Provide insulated union with galvanized steel female pipe-threaded end and a copper solder joint end conforming with <RID>ASME B16.39</RID>, Class 1, dimensional, 
+strength and pressure requirements.  Union must have a water-impervious insulation barrier capable of limiting galvanic current to one percent 
+of the short-circuit current in a corresponding bimetallic joint.  When dry, insulation barrier must be able to withstand a 600-volt breakdown 
+test.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Flanges</TTL><BRK/>
+<BRK/>
+<TXT>Remove raised faces when used with flanges having a flat face.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Steel Flanges</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.5</RID> forged steel, welding type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cast Iron Screwed Flanges</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bronze Screwed Flanges</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.24</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Drains and Overflows</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Steel Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A53/A53M</RID>, [Electric resistance welded] [Seamless] Schedule 40, Malleable iron or forged steel fittings, screwed or welded joints.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Copper Tubing</TTL><BRK/>
+<BRK/>
+<TXT><MET> <RID>ASTM B88M</RID></MET><ENG> <RID>ASTM B88</RID></ENG>, Type [K,] [L,] [M,] hard drawn, cast brass or wrought copper fittings, Grade Sb5 solder joints.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PVC Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D1785</RID>, Schedule 40, [and Schedule 80 for sizes<MET> 200 mm</MET><ENG> 8 inch</ENG> and larger,] solvent weld joints.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<TXT>Valves must have rising stems and must open when turned counterclockwise.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Gate Valves</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Bronze Gate Valves:  <RID>MSS SP-80</RID>,<MET> 50 mm</MET><ENG> 2 inches</ENG> and smaller, wedge disc, inside screw type not less than Class 150.  Use solder joint ends 
+with copper tubing.</OLI><BRK/>
+<BRK/>
+<OLI>Steel Gate Valves:  <RID>ASME B16.34</RID>, provide with open stem and yoke type with solid wedge or flexible wedge disc and heat and corrosion-resistant 
+steel trim.</OLI><BRK/>
+<BRK/>
+<OLI>Cast Iron Gate Valves:  <RID>MSS SP-70</RID>,<MET> 65 mm</MET><ENG> 2 1/2 inches</ENG> and larger, open stem and yoke type with bronze trim.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Globe and Angle Valves</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Bronze Globe and Angle Valves:  <RID>MSS SP-80</RID>,<MET> 50 mm</MET><ENG> 2 inches</ENG> and smaller, Class 200, except use Class 150 with solder ends for copper tubing.  
+Valves must have renewable seat and discs except solder end valves which must have integral seats.</OLI><BRK/>
+<BRK/>
+<OLI>Steel Globe and Angle Valves:  <RID>ASME B16.34</RID>, provide with heat and corrosion-resistant trim.</OLI><BRK/>
+<BRK/>
+<OLI>Cast Iron Globe and Angle Valves:  <RID>MSS SP-85</RID>,<MET> 65 mm</MET><ENG> 2 1/2 inches</ENG> and larger, with bronze trim, tapped drains and brass plug.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Check Valves</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Bronze Check Valves:  <RID>MSS SP-80</RID>,<MET> 50 mm</MET><ENG> 2 inches</ENG> and smaller, regrinding swing check type, Class 200.</OLI><BRK/>
+<BRK/>
+<OLI>Steel Swing Check Valves:  [<RID>ASME B16.34</RID>], regrinding swing check type, Class 200.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Swing check valves must have bolted caps.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Steel Lift check valves<MET> 50 mm</MET><ENG> 2 inches</ENG> and smaller must have bolted caps.  Lift check valves<MET> 65 mm</MET><ENG> 2 1/2 inches</ENG> and larger must 
+have pressure seal caps.</OLI><BRK/>
+<BRK/>
+<OLI>Cast Iron Check Valves:  <RID>ASME B16.34</RID>,<MET> 65 mm</MET><ENG> 2 1/2 inches</ENG> and larger, bronze trim, non-slam, eccentric disc type for centrifugal pump discharge 
+service.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Temperature Regulating Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>ASSE 1017</RID> copper alloy body with adjustable range thermostat.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Pressure-Reducing Valves</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASSE 1003</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plug Valves</TTL><BRK/>
+<BRK/>
+<TXT><RID>MIL-V-12003</RID>, except that a replaceable valve seat will not be required. [Type I - lubricated, tapered plug] [Type II - non-lubricated, lift-plug] 
+valves.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ball Valves</TTL><BRK/>
+<BRK/>
+<TXT>Flanged or butt-welding ends ball valve must conform to <RID>MSS SP-72</RID>, [bronze] [steel].  Threaded, socket-welding, solder joint, grooved and flared 
+ends must conform to <RID>MSS SP-110</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Radiator Valves</TTL><BRK/>
+<BRK/>
+<TXT>Radiator valves must be angle or straightway pattern, with packed or packless bonnet shutoff globe type, designed especially for hot water heating 
+system.  Valve must be constructed of brass or bronze or copper alloy conforming to ASTM specifications for materials with non-metallic renewable 
+disc and plastic wheel handle for shutoff service.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flow Control Balancing Valves</TTL><BRK/>
+<BRK/>
+<TXT>Copper alloy or cast iron body, copper alloy or stainless internal working parts, and integral pointer that indicates the degree of valve opening.  
+Valves must be suitable for<MET> 862 kPa (gage)</MET><ENG> 125 psig</ENG> at<MET> 87.8 degrees C</MET><ENG> 190 degrees F</ENG> hot water.  Valve must function as a service valve when in 
+fully closed position.  Valve body must have factory-installed tappings for differential pressure meter connections for verification of pressure 
+differential across valve orifice.  Meter connections must have positive check valves or shutoff valves.  Each valve must have metal tag showing 
+the<MET> liters per second</MET><ENG> gallons per minute</ENG> flow for each differential pressure reading.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Butterfly Valves</TTL><BRK/>
+<BRK/>
+<TXT>Conform with <RID>MSS SP-67</RID>, Type I - Tight shut off valve, and [flanged] [screwed] [single flange] [flangeless] valve ends.  Valve body material must 
+be [cast iron] [steel] [bronze] and must be bubble tight for shutoff at<MET> 1034 kPa (gage)</MET><ENG> 150 psig</ENG>.  Flanged and flangeless type valves must have 
+Type 300 series corrosion resistant steel stems and corrosion resistant or bronze discs with molded elastomer disc seals.  Flow conditions must 
+be for the regulation from maximum flow to complete shutoff by way of throttling effect.  Valves must be provided in [closed] [open] system.  Valves 
+smaller than<MET> 200 mm</MET><ENG> 8 inches</ENG> must have throttling handles.  Valves<MET> 200 mm</MET><ENG> 8 inches</ENG> and larger must have totally enclosed manual gear operators 
+with adjustable balance return stops and indicators.  Valves must have a minimum of 7 locking positions and must be suitable for water temperatures 
+up to<MET> 93 degrees C</MET><ENG> 200 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Butterfly Valves<MET> 2 Millimeters</MET><ENG> 2 Inches</ENG> and Smaller</TTL><BRK/>
+<BRK/>
+<TXT>Valves must be one-piece and three-piece design with male or female threaded or soldered end connections and must be bubble tight for shutoff at<MET>
+ 1034 kPa (gage)</MET><ENG> 150 psig</ENG>.  Stem and disc assembly must be of 300 series corrosion resistant steel.  Disc seal assembly must be of 300 series corrosion 
+resistant steel.  Disc seal must be suitable for the liquid being used in the system in which the valve is to be installed.  Valves must be suitable 
+for water temperature up to<MET> 93 degrees C</MET><ENG> 200 degrees F</ENG> and must be capable of operating at the rated pressure of [_____]<MET> kPa (gage)</MET><ENG> psig</ENG>.  Valves 
+must be designed for throttling service use by valve lever and indicator adjustment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Relief Valves</TTL><BRK/>
+<BRK/>
+<TXT>Bronze body, teflon seat, stainless steel stem and springs, automatic, direct pressure actuated, capacities ASME certified and labelled.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valve Operating Mechanisms</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show location of each floor stand, chainwheel or power operator required in the project.  Delete paragraph 
+entitled "Valve Operating Mechanisms" and its subparagraphs if these items are not required in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [floor stands] [chainwheels] [power operators] [and extension stems] where indicated and as specified.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show floor stand details including distance from centerline of valve to top of floor, floor thickness, 
+and handwheel height.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Floor Stands:  Construct for bolting to the floor and include an extension stem and an operating handwheel.  Design an adequately supported 
+and guided extension stems for connection to the valve stem by a sleeve coupling or universal joint.  Floor stands must be cast iron or 
+steel.  Handwheel must identify rotation direction for closing the valve and must be of such diameter as to permit operation of the valve 
+with a force of not more than<MET> 178 N</MET><ENG> 40 pounds</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Chainwheel Operator:  Must be fabricated of cast iron or steel and must include a wheel, endless chain and a guide to keep the chain on 
+the wheel.  Provide galvanized steel endless chain extending to within<MET> one meter</MET><ENG> 3 feet</ENG> of the floor.</OLI><BRK/>
+<BRK/>
+<OLI>Power Operators:  Must be [electric] [pneumatic].  Power operated valves must open and close at rates no slower than<MET> 4 mm per second</MET><ENG> 10 
+inches per minute</ENG> for gate valves and<MET> 1.70 mm per second</MET><ENG> 4 inches per minute</ENG> for globe and angle valves.  Valves must open fully or close 
+tightly without requiring further attention when the actuating control is moved to the open or close position.  A predetermined thrust 
+exerted on the stem during operation resulting from an obstruction in the valve must cause the motor to automatically stop.  Power operators 
+must be complete with all gearing and controls necessary for the size of valve being provided.  Power operators must be designed to operate 
+on the [electric] [compressed air] power supply indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Extension Stem:  Corrosion resisting steel designed for rising and non-rising stems.  Provide in length required to connect the valve stem 
+and the [handwheel] [operating mechanism] and of sufficient cross section to transfer the torque required to operate the valve.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Balancing Valves</TTL><BRK/>
+<BRK/>
+<TXT>Balancing valves must be calibrated bronze body balancing valves with integral ball valve and venturi or valve orifice and valve body pressure 
+taps for flow measurement based on differential pressure readings.  Valve pressure taps and meter connections must have seals and built-in check 
+valves with threaded connections for a portable meter.  Meter must be provided by the same manufacturer and be capable of reading system pressures 
+and must meet the requirements of the paragraph entitled "Flow Measuring Equipment."  Valves must have internal seals to prevent leakage around 
+rotating element and be suitable for full shut-off rated pressure.  Valves must have an operator with integral pointer and memory stop.  Balancing 
+valves must be selected for the required flows as indicated on the plans.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>End Connections</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Flexible Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Provide flexible pipe connectors on piping connected to equipment.  Flexible section must consist of rubber, tetrafluoroethylene resin, corrosion-resistant 
+steel, bronze, monel, or galvanized steel.  Material provided and configuration must be suitable for [pressure,] [vacuum,] [temperature,] and circulating 
+medium.  Flexible section must have [threaded,] [welding,] [soldering,] [flanged] [or] [socket-weld] ends and must be suitable for service intended.  
+Flexible section may be reinforced with metal retaining rings, with built-in braided wire reinforcement and restriction bolts or with wire braid 
+cover suitable for service intended.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel Piping</TTL><BRK/>
+<BRK/>
+<TXT>Screwed or socket welded for<MET> 50 mm</MET><ENG> 2 inches</ENG> and smaller and flanged or butt welded for<MET> 65 mm</MET><ENG> 2 1/2 inches</ENG> and larger.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Screwed Joints With Taper Threads:  <RID>ASME B1.20.1</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Flanged Joints:  Bolting and gaskets must be as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Bolting:  Bolt and stud material <RID>ASTM A307</RID>, Grade B, and nut material <RID>ASTM A194/A194M</RID>, Grade 2.  Bolt, stud, and nut dimensions <RID>
+ASME B18.2.2</RID> threads <RID>ASME B1.1</RID>coarse type with Class 2A fit for bolts and studs, and Class 2B fit for nuts.  Bolts or bolt studs 
+must extend completely through the nuts and may have reduced shanks of a diameter not less than the diameter at root of threads.  
+Carbon steel bolts must have American Standard regular square or heavy hexagon heads and must have American Standard heavy semifinished 
+hexagonal nuts conforming to <RID>ASME B18.2.2</RID>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Gaskets:  <RID>ASME B16.21</RID>, Nonasbestos compressed material<MET> 1 1/2 mm</MET><ENG> 1/16 inch</ENG> thickness full face or self-centering flat ring type 
+and suitable for pressure and temperature of the piping system.</OLI><BRK/>
+<BRK/>
+<OLI>Butt Weld Joints:  <RID>ASME B31.9</RID>.  Backing rings must conform to <RID>ASME B31.9</RID>.  Ferrous rings must not exceed 0.05 percent sulfur; for alloy 
+pipe, backing rings must be of material compatible with the chemical composition of the parts to be welded and preferably of the same composition.  
+Provide continuous machined or split band backing rings.</OLI><BRK/>
+<BRK/>
+<OLI>Socket Weld Joints: <RID>ASME B31.9</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Joints for Copper Tubing</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Solder conforming to <RID>ASTM B32</RID> alloy grade Sb5 or Sn96.  Solder and flux must be lead free (less than 0.2 percent of lead).</OLI>  <BRK/>
+<BRK/>
+<OLI>Copper Tube Extracted Joint:  An extracted mechanical tee joint may be made in copper tube.  Make joint with an appropriate tool by drilling 
+a pilot hole and drawing out the tube surface to form a collar having a minimum height of three times the thickness of the tube wall.  
+To prevent the branch tube from being inserted beyond the depth of the extracted joint, provide dimpled depth stops.  Notch the branch 
+tube for proper penetration into fitting to assure a free flow joint.  Braze extracted joints using a copper phosphorous classification 
+brazing filler metal.  Soldered joints must not be permitted.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Expansion Joints</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Packless Type</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>ASTM F1120</RID>, Type III with fabricated corrosion-resistant steel bellows.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Guided Slip-Tube Type</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>ASTM F1007</RID>, Type IV internally-externally guided, injected semiplastic type packing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Instrumentation</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pressure and Vacuum Gauges</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>ASME B40.100</RID> with restrictor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Indicating Thermometers</TTL><BRK/>
+<BRK/>
+<TXT>Thermometers must be dial type with an adjustable angle suitable for the service.  Provide thermowell sized for each thermometer in accordance 
+with the thermowell specification.  Fluid-filled thermometers (mercury is not acceptable) must have a nominal scale diameter of<MET> 125 mm</MET><ENG> 5 inches</ENG>
+.  Construction must be stainless-steel case with molded glass cover, stainless-steel stem and bulb.  Stem must be straight, length as required 
+to fit well.  Bimetal thermometers must have a scale diameter of<MET> 90 mm</MET><ENG> 3 1/2 inches</ENG>.  Case must be hermetic.  Case and stem must be constructed 
+of stainless steel.  Bimetal stem must be straight and of a length as required to fit the well.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure/Temperature Test Ports</TTL><BRK/>
+<BRK/>
+<TXT>Pressure/Temperature Test Ports must have brass body and EPDM and/or Neoprene valve seals.  Ports must be rated for service between<MET> 2 and 135 degrees 
+C</MET><ENG> 35 and 275 degrees F</ENG> and up to<MET> 3447 kPa (gage)</MET><ENG> 500 psig</ENG>.  Ports must be provided in lengths appropriate for the insulation thickness specified 
+in Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL SYSTEMS and installed to allow a minimum of<MET> 305 mm</MET><ENG> 12 inches</ENG> of access for probe insertion.  
+Provide with screw-on cap attached with a strap or chain to prevent loss when removed.  Ports must be<MET> 8 mm DN</MET><ENG> 1/4 inch NPT</ENG> and accept<MET> 3 mm</MET><ENG> 1/8 
+inch</ENG> diameter probes.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Miscellaneous Pipeline Components</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Air Vent</TTL><BRK/>
+<BRK/>
+<TXT>Provide float type air vent in hydronic systems.  Vent must be constructed of brass or semi-steel body, copper float, and stainless steel valve 
+and valve seat.  Design air vent to suit system operating temperature and pressure.  Provide isolating valve to permit service without draining 
+the system.  Pipe discharge of vent to a drain.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Strainers</TTL><BRK/>
+<BRK/>
+<TXT>Strainers for classes 125 and 250 piping in IPS<MET> 15 to 200 mm</MET><ENG> 1/2 to 8 inches</ENG>, inclusive, <RID>FS WW-S-2739</RID> and locate as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hangers and Supports</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In project locations with Environmental Severity Classification (ESC) of C4 or C5 or high humidity areas 
+as identified in ASHRAE 90.1 as climate zones 0A, 1A, 2A, 3A, 3C, 4C and 5C,include bracketed sentence below to 
+require hot-dipped galvanized hangers where ferrous metals are used.  See UFC 1-200-01 for determination of ESC 
+for project locations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Design and fabrication of pipe hangers, supports, and welding attachments must conform to <RID>MSS SP-58</RID> and <RID>ASME B31.9</RID>.  Hanger types and supports 
+for bare and covered pipe must conform to <RID>MSS SP-58</RID> for the temperature range.[  If ferrous materials are used, provide hot dipped galvanized hangers, 
+inserts and supports.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Sleeves</TTL><BRK/>
+<BRK/>
+<TXT>Sleeves in masonry and concrete walls, floors, and roof slabs must be <RID>ASTM A53/A53M</RID>, Schedule 40 or Standard Weight, hot-dip galvanized steel [ductile-iron 
+or cast-iron] pipe.  Sleeves in partitions must be zinc-coated sheet steel having a nominal weight of not less than<MET> 4.40 kilogram per square meter</MET><ENG>
+ 0.906 pound per square foot</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Escutcheon Plates</TTL><BRK/>
+<BRK/>
+<TXT>Provide one piece or split hinge metal plates for piping passing through floors, walls, and ceilings in exposed spaces.  Provide polished stainless 
+steel plates or chromium-plated finish on copper alloy plates in finished spaces and paint finish on metal plates in unfinished spaces.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>CENTRAL MECHANICAL EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT>[<TTL>Boilers</TTL><BRK/>
+<BRK/>
+<TXT>Provide as specified in [Section <SRF>23 52 43.00 20</SRF> LOW PRESSURE WATER HEATING BOILERS UNDER 800,000 BTU/HR OUTPUT][Section <SRF>23 52 46.00 20</SRF> LOW PRESSURE 
+WATER HEATING BOILERS OVER 800,000 BTU/HR OUTPUT].</TXT><BRK/>
+<BRK/>
+]</SPT><SPT>[<TTL>Hot Water Heat Exchangers</TTL><BRK/>
+<BRK/>
+<TXT>Provide as specified in Section <SRF>23 21 13.23 20</SRF> [HIGH] [MEDIUM] TEMPERATURE WATER SYSTEM WITHIN BUILDINGS.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT>[<TTL>Converters</TTL><BRK/>
+<BRK/>
+<TXT>Steam to hot water converters must conform to <RID>FS WW-H-191</RID> and must have capacity as indicated for the design conditions.  The converters must be 
+designed for support by separate pipe hangers, and [temperature regulator] [vent valve] must be provided.</TXT><BRK/>
+<BRK/>
+]</SPT></SPT><SPT><TTL>PIPING SYSTEM EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Pumps</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide hot water circulating pumps, <RID>CID A-A-50560</RID>, Service A.  Pump casing and flange must be made of close-grained cast iron.  Shaft must be 
+carbon or alloy steel with lubricated bearings and impeller must be bronze.  Select pumps so that the operating point on selected impeller-curve 
+will lie at or to the left of shutoff side of, and not more than 5 percent below, point of maximum efficiency for impeller.  Provide motors of 
+[open] [splash proof] [totally enclosed] type conforming to <RID>NEMA MG 00001</RID> and suitable for electrical characteristic as indicated.  Motor starters 
+must conform to <RID>NEMA ICS 2</RID> [manual] [across the line] [reduced-voltage-start] [part-wind] [wye-delta] type with <RID>NEMA ICS 6</RID>[general purpose] [weather-resistant] 
+[watertight] enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Expansion Tanks</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide welded steel, constructed and <TST>tested hydrostatically in accordance with <RID>ASME BPVC SEC VIII D1</RID></TST>.  Tank must be equipped with all necessary 
+fittings.  The tank and fittings must be pressure rated at least equal to the test pressure of the total system.  Zinc coat the tank inside and 
+out after fabrication by the hot dip process <RID>ASTM A123/A123M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>External Air Separation Tanks</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide tank constructed of steel, designed for not less than<MET> 517 kPa (gage)</MET><ENG> 75 psig</ENG>, and constructed and <TST>tested in accordance with the requirements 
+of <RID>ASME BPVC SEC VIII D1</RID></TST>.  Provide tangential inlet and outlet connections, flanged for sizes<MET> 65 mm</MET><ENG> 2 1/2 inches</ENG> and larger.  Each unit must have 
+an internal design suitable for creating the required vortex and subsequent air separation.  Provide with automatic air release device and galvanized 
+steel strainer.  Provide a blow down connection with a gate valve and piped to nearest floor drain.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Backflow Preventers</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If contract specifications includes Section <SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE in which backflow preventers 
+are specified, delete this paragraph entitled "Backflow Preventers."</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Reduced pressure principle type.  Furnish proof that each make, model/design, and size of backflow preventer being furnished for the project is 
+approved by and has a current "Certificate of Approval" from the [<RID>FCCCHR List</RID>] [or] [local code].  Listing of a particular make, model/design, 
+and size in the current [<RID>FCCCHR List</RID>] [or] [local code] will be acceptable as the required proof.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Flow Measuring Equipment</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Orifice or venturi type.  Flow metering equipment including pitot tubes, venturis, orifice plates, flanges, and indicating meters must be the product 
+of one and the same manufacturer.  Provide flowmeters of [permanent type] [or] [portable type] [type indicated].  Flowmeters must be suitable for 
+service in which they are to be installed. Primary elements of flowmeters must conform to ASME recommendations for flowmeters.  Provide bronze, 
+monel, or stainless steel materials for wetted parts of flow meters.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Orifices:  Square-edge type, made of corrosion and erosion resistant metal and mounted between pipe flanges having factory-made pressure 
+taps provided with shutoff valves.  Orifice flanges must conform to <RID>ASME B16.36</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Tubular Flowmeters:  Flow measuring elements consisting of venturi tubes or pitot tubes where indicated.  Locations and arrangement of 
+piping, both upstream and downstream of flow measuring elements must conform to the manufacturer's published literature.  <TST>Provide each 
+flow measuring element with an integral tab, or a metal tag on a corrosion-resistant steel wire, extending outside pipe covering, and stamped 
+or printed in a visible position with manufacturer's name and address; serial number of meter to which it is to be connected; name, number, 
+or location of equipment served; specified rate of flow; and multiplier to be applied to meter reading.</TST>  Provide taps with shutoff valves 
+and quick connecting hose fittings for portable meters or double ferrule compression fittings for connection to tubing for permanently 
+located meters or recorders.  Tubes must be calibrated in accordance with ASME recommendations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Venturi Tubes:  Certified by the manufacturer for the actual piping configuration and any necessary piping changes required for 
+certification without additional cost to the Government. Throat diameter for each venturi tube must be designed so that at specified 
+rate of flow the scale reading will fall between 50 percent and 80 percent of full scale value.  Select venturi tube sizes from 
+the manufacturer's latest published tables of flow versus differential pressure.  Unrecovered head loss at maximum flow must 
+not exceed 10 percent.  Provide bronze or cast iron tubes with bronze-lined throats, with flanged, threaded, or welded ends to 
+suit piping system.  Provide bodies of fabricated steel and fittings of the same class as piping in which installed.  Two integral 
+meter taps must be provided in each venturi tube.  Connections for attachment to portable flow meter hoses must be readily accessible 
+and not over<MET> 1830 mm</MET><ENG> 6 feet</ENG> above a floor or permanent platform.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Pitot Tube Assemblies:  Provide corrosion-resistant materials. Tubes must be capable of measuring liquid flow through tube elements 
+providing an averaged, interpolated flow measurement from a single, fixed position.  Provide self cleaning elements and impact 
+tube designed to rotate when turned by the operator to protect pressure-sensing elements of tube when not in use.  Location and 
+total amount of pitot tubes required for system flow measurement must be as recommended by the manufacturer and as indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Meters:  Designed for a full scale pressure differential of<MET> 12 kPa</MET><ENG> 50 inches water</ENG> gage for tubular type or<MET> 25 kPa</MET><ENG> 100 inches water</ENG> gage 
+for orifice type.  Dials must have square root or linear scales with developed length of not less than<MET> 305 mm</MET><ENG> 12 inches</ENG>.  Provide flush 
+mounted panel meters that read directly in<MET> liters per second</MET><ENG> gallons per minute</ENG>.  Dials of portable meters must have square root scales 
+reading from<MET> 0 to 6 L/s</MET><ENG> 0 to 100 gpm</ENG> for use with multiplier stamped on orifice or tubular type.  Provide meters designed for not less 
+than<MET> 1378 kPa</MET><ENG> 200 psi</ENG> and protected against pressure surges.  Meter bodies must have taps for venting and draining.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Permanently Mounted Meters:  Each meter must be connected completely [as indicated] [and] [as specified] and provided with the 
+following:  three valve manifold equalizer lines, two block valves, two vent and drain valves, and an integral pulsation damper.  
+Overall accuracy of meters must be plus or minus 2 percent of full scale flow over a range from 20 to 100 percent of full scale 
+flow.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Portable Meters:  Provide meter with a factory-fabricated carrying case with carrying handle.  Provide case fitted to hold meter 
+securely and to accommodate the following accessories:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Two<MET> 4.60 meters</MET><ENG> 15 foot</ENG> lengths of connecting hose with suitable female connectors for connecting from meter to [venturi 
+tube] [orifice flange] [pitot tube] pressure-tap nipples. Provide hose designed for a minimum service pressure of<MET> 
+861 kPa</MET><ENG> 125 psi</ENG> or 150 percent of maximum system service pressure, whichever is greater.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">A completely assembled three-valve manifold with two block valves and vent and drain valves, piped and mounted on 
+a base designed for use laying flat on a stationary surface.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">A bound set of descriptive bulletins, installation and operating instructions, parts list, and a set of curves showing 
+flow versus pressure differential for each orifice, venturi tube, or pitot tube with which meter is to be used.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">A metal instruction plate, secured inside cover, illustrating use of meter.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Provide meters with overall accuracy of plus or minus 5 percent of full scale flow over a range from 20 to 100 percent 
+of full scale flow.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>TERMINAL UNITS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Finned Tube Radiators</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Steel tube and steel fin type <RID>FS S-R-2834</RID>].  [Copper tube and aluminum fin type <RID>CID A-A-50545</RID>, [must have an adjustable damper].]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Convectors</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>CID A-A-50543</RID> and <RID>CID A-A-50544</RID>, of design and capacity not less than that indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unit Heaters</TTL><BRK/>
+<BRK/>
+<TXT>Provide hot water unit heaters as specified in Section <SRF>23 82 00.00 20</SRF> TERMINAL HEATING UNITS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heating and Ventilating Units</TTL><BRK/>
+<BRK/>
+<TXT>Provide fan-coil units, induction units, unit ventilators, and gravity ventilators as specified in Section <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ELECTRICAL EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Provide complete with motors, motor starters, thermal overload protection, and controls.  Equipment and wiring must be in accordance with Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CONTROLS</TTL><BRK/>
+<BRK/>
+<TXT>Provide controls as specified in Section <SRF>23 09 53.00 20</SRF> SPACE TEMPERATURE CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSULATION</TTL><BRK/>
+<BRK/>
+<TXT>Provide shop and field applied insulation as specified in Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ASBESTOS PROHIBITION</TTL><BRK/>
+<BRK/>
+<TXT>Asbestos and asbestos containing products are prohibited.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PREPARATION</TTL><BRK/>
+<BRK/>
+<TXT>Provide storage for equipment and material at the project site.  All parts must be readily accessible for inspection, repair, and renewal.  Protect 
+material and equipment from the weather.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Piping fabrication, assembly, welding, soldering, and brazing must conform to <RID>ASME B31.9</RID>.  Piping must follow the general arrangement shown.  Route 
+piping and equipment within buildings out of the way of lighting fixtures and doors, windows, and other openings.  Run overhead piping in buildings 
+in inconspicuous positions.  Provide adequate clearances from walls, ceilings, and floors to permit welding of joints and application of insulation. 
+Make provision for expansion and contraction of pipe lines.  Make changes in size of water lines with reducing fittings.  Do not bury, conceal, 
+or insulate until piping has been inspected, tested, and approved.  Do not run piping concealed in walls, partitions, underground, or under the 
+floor except as otherwise indicated.  Where pipe passes through building structure, locate pipe joints and expansion joints where they may be inspected.  
+Provide flanged joints where necessary for normal maintenance and where required to match valves and equipment.  Furnish gaskets, packing, and 
+thread compounds suitable for the service.  Provide long radius ells where possible to reduce pressure drops.  Pipe bends in lieu of welding fittings 
+may be used where space permits.  Pipe bends must have a uniform radius of at least five times the pipe diameter and must be free from appreciable 
+flattening, wrinkling, or thinning of the pipe.  Do not use mitering of pipe to form elbows, notching straight runs to form full sized tees, or 
+any similar construction.  Make branch connections over<MET> 50 mm</MET><ENG> 2 inches</ENG> with welding tees except factory made forged welding branch outlets or nozzles 
+having integral reinforcements conforming to <RID>ASME B31.9</RID> may be used, provided the nominal diameter of the branch is at least one pipe size less 
+than the nominal diameter of the run.  Branch connections<MET> 50 mm</MET><ENG> 2 inches</ENG> and under can be threaded or welded.  Run vertical piping plumb and straight 
+and parallel to walls.  Provide sleeves for lines passing through building structure.  Provide a fire seal where pipes pass through fire wall, 
+fire partitions, fire rated pipe chase walls, or floors above grade.  Install piping connected to equipment with flexibility for thermal stresses 
+and for vibration, and support and anchor so that strain from weight and thermal movement of piping is not imposed on the equipment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Hangers and Supports</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise indicated, horizontal and vertical piping attachments must conform to <RID>MSS SP-58</RID>.  Band and secure insulation protection shields 
+without damaging pipe insulation.  Continuous inserts and expansion bolts may be used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grading of Pipe Lines</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise indicated, install horizontal lines of hot water piping to grade down in the direction of flow with a pitch of not less than<MET> 25 
+mm in 9 meters</MET><ENG> one inch in 30 feet</ENG>, except in loop mains and main headers where the flow may be in either direction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Sleeves</TTL><BRK/>
+<BRK/>
+<TXT>Provide sleeves where pipes and tubing pass through masonry or concrete walls, floors, roof, and partitions.  Annular space between pipe, tubing, 
+or insulation and the sleeve must not be less than<MET> 6 mm</MET><ENG> 1/4 inch</ENG>.  Hold sleeves securely in proper position and location before and during construction. 
+Sleeves must be of sufficient length to pass through entire thickness of walls, partitions, or slabs.  Sleeves in floor slabs must extend<MET> 50 mm</MET><ENG>
+ 2 inches</ENG> above finished floor.  Firmly pack space between pipe or tubing and sleeve with oakum and caulk on both ends of the sleeve with plastic 
+waterproof cement which will dry to a firm but pliable mass, or provide a [mechanically adjustable] segmented elastomeric seal.  Seal both ends 
+of penetrations through fire walls and fire floors to maintain fire resistive integrity with UL listed fill, void, or cavity material.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flashing for Buildings</TTL><BRK/>
+<BRK/>
+<TXT>Provide flashing where pipes pass through building roofs, and make outside walls tight and waterproof.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unions and Flanges</TTL><BRK/>
+<BRK/>
+<TXT>Provide unions and flanges to permit easy disconnection of piping and apparatus.  Each connection having a screwed-end valve must have a union.  
+Place unions and flanges no farther apart than<MET> 30 meters</MET><ENG> 100 feet</ENG>.  Install unions downstream of valves and at equipment or apparatus connections.  
+Provide unions on piping under<MET> 50 mm</MET><ENG> 2 inches</ENG> in diameter, and provide flanges on piping<MET> 50 mm</MET><ENG> 2 inches</ENG> and over in diameter.  Provide dielectric 
+unions or flanges between ferrous and non-ferrous piping, equipment, and fittings; except that bronze valves and fittings may be used without dielectric 
+couplings for ferrous-to-ferrous or non-ferrous-to-non-ferrous connections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections for Future Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Locate capped or plugged outlets for connections to future equipment as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Changes in Pipe Size</TTL><BRK/>
+<BRK/>
+<TXT>Provide reducing fittings for changes in pipe size; reducing bushings are not permitted.  In horizontal lines, provide eccentric reducing fittings 
+to maintain the top of the lines in the same plane.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleaning of Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Thoroughly clean each section of pipe, fittings, and valves free of foreign matter before erection.  Prior to erection, hold each piece of pipe 
+in an inclined position and tap along its full length to loosen sand, mill scale and other foreign matter.  For pipe<MET> 50 mm</MET><ENG> 2 inches</ENG> and larger, 
+draw wire brush, of a diameter larger than that of the inside of the pipe, several times through the entire length of pipe.  Before making final 
+connections to apparatus, wash out interior of piping thoroughly with water.  Plug or cap open ends of mains during shutdown periods.  Do not leave 
+lines open where foreign matter might enter the pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<TXT>Install valves in conformance with <RID>ASME B31.9</RID>.  Provide gate valves unless otherwise directed.  Install valves with stems horizontal or above.  
+Locate or equip stop valves to permit operation from floor level, or provide with safe access in the form of walkways or ladders.  Install valves 
+in positions accessible for operation and repair.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Globe Valves</TTL><BRK/>
+<BRK/>
+<TXT>Install globe valves so that the pressure is below the disk and the stem horizontal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Radiators Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide radiator valves on water inlet and balancing valves on water outlet of terminal heating units such as radiation, unit heaters, and fan 
+coil unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Relief Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide valves on pressure tanks, low pressure side of reducing valves, heat exchangers, and expansion tanks.  Select system relief valve so that 
+capacity is greater than make-up pressure reducing valve capacity.  Select equipment relief valve capacity to exceed rating of connected equipment.  
+Pipe relief valve outlet to the nearest floor drain.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pressure Gage</TTL><BRK/>
+<BRK/>
+<TXT>Provide a shut-off valve or pet cock between pressure gages and the line.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermometers</TTL><BRK/>
+<BRK/>
+<TXT>Provide thermometers and thermal sensing elements of control valves with a separable socket.  Install separable sockets in pipe lines in such a 
+manner to sense the temperature of flowing the fluid and minimize obstruction to flow.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Strainers</TTL><BRK/>
+<BRK/>
+<TXT>Provide strainers, with meshes suitable for the services, where indicated, or where dirt might interfere with the proper operation of valve parts, 
+orifices, or moving parts of equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pumps</TTL><BRK/>
+<BRK/>
+<TXT>Select pumps for specified fluid temperatures, are non-overloading in parallel or individual operation, and operate within 25 percent of midpoint 
+of published maximum efficiency curve.  Support piping adjacent to pump such that no weight is carried on pump casings.  Install close coupled 
+and base mounted pumps on concrete base, with anchor bolts, set and level, and grout in place and provide supports under elbows on pump suction 
+and discharge line sizes<MET> 100 mm</MET><ENG> 4 inches</ENG> and over.  Lubricate pump before start-up.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Foundations</TTL><BRK/>
+<BRK/>
+<TXT>Locate equipment foundations as shown on the drawings.  Size, weight, and design must preclude shifting of equipment under operating conditions.  
+Foundations must meet the requirements of the equipment manufacturer.  Concrete must conform to Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE, and grout 
+must be approved non-shrinking.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Installation</TTL><BRK/>
+<BRK/>
+<TXT>Install equipment in accordance with installation instructions of the manufacturers.  Grout equipment mounted on concrete foundations before installing 
+piping.  Install piping in such a manner as not to place a strain on the equipment.  Do not bolt flanged joints tight unless they match.  Grade, 
+anchor, guide, and support piping without low pockets.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleaning of Systems</TTL><BRK/>
+<BRK/>
+<TXT>As installation of the various system components is completed, fill, start, and vent prior to cleaning.  Place terminal control valves in open 
+position.  Add cleaner to closed system at concentration as recommended by manufacturer.  Apply heat while circulating, slowly raising temperature 
+to<MET> 71 degrees C</MET><ENG> 160 degrees F</ENG> and maintain for 12 hours minimum.  Remove heat and circulate to<MET> 38 degrees C</MET><ENG> 100 degrees F</ENG> or less; drain systems 
+as quickly as possible and refill with clean water.  Circulate for 6 hours at design temperatures, then drain.  Refill with clean water and repeat 
+until system cleaner is removed.  Use neutralizer agents on recommendation of system cleaner supplier and approval of Contracting Officer.  Remove, 
+clean, and replace strainer screens.  Inspect, remove sludge, and flush low points with clean water after cleaning process is completed.  Include 
+disassembly of components as required.  Preliminary or final tests are not permitted until cleaning is approved.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Painting of Piping and Equipment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When the project specification does not have a section on field painting, the requirements in Section 
+<SRF>09 90 00</SRF> PAINTS AND COATINGS for cleaning and painting of pipe and equipment, and for painting and stenciling 
+of piping must be included in this section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide in accordance with Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Identification of Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When the project specification does not have a section on field painting, the requirements in Section 
+<SRF>09 90 00</SRF> for cleaning and painting of pipe and equipment, and for painting and stenciling of piping must be included 
+in this section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Identify piping in accordance with OSHA <RID>29 CFR 1910.144</RID>, except that labels or tapes may be used in lieu of painting or stenciling.  Spacing of 
+identification marking on runs must not exceed<MET> 15 meters</MET><ENG> 50 feet</ENG>.  Materials for labels and tapes must conform to <RID>CID A-A-1689</RID>, and must be general 
+purpose type and color class.  Painting and stenciling must conform to Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Perform inspections and tests as specified herein to demonstrate that piping and equipment, as installed, is in compliance with contract requirements.  <TST>
+Start up and operate the system.  During this time, periodically clean the various strainers until no further accumulation of foreign material 
+occurs.</TST>  Exercise care so that minimum loss of water occurs when strainers are cleaned.  Adjust safety and automatic control instruments to place 
+them in proper operation and sequence.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Hydrostatic Test of Piping System</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Test piping systems at one and one-half times system pressure or<MET> 345 kPa (gage)</MET><ENG> 50 psig</ENG> whichever is greater.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Test piping system hydrostatically using water not exceeding<MET> 38 degrees C</MET><ENG> 100 degrees F</ENG>.  Conduct tests in accordance with the requirements of <RID>
+ASME B31.9</RID> and as follows.  Test piping system after all lines have been cleaned and before applying insulation covering.  Remove or valve off 
+from the system, gages, and other apparatus which may be damaged by the test before the tests are made.  Install calibrated test pressure gage 
+in the system to observe any loss in pressure.  Maintain test pressure for a sufficient length of time to enable an inspection of each joint and 
+connection.  Perform tests after installation and prior to acceptance.</TST>Notify the Contracting Officer in writing [_____] days prior to the time 
+scheduled for the tests.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Auxiliary Equipment and Accessory Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Observe and check pumps, accessories, and equipment during operational and capacity tests for leakage, malfunctions, defects, noncompliance with 
+referenced standards, or overloading.</TST></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Backflow Preventers</TTL><BRK/>
+<BRK/>
+<TXT>Backflow preventers must be tested by locally approved and certified backflow assembly testers.  A copy of the test report must be provided to 
+the Contracting Officer prior to placing the domestic water system into operation, or no later than 5 days after the test.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>TESTING, ADJUSTING, AND BALANCING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the first sentence for simple hydronic systems and where Section <SRF>23 05 93</SRF> TESTING, ADJUSTING AND BALANCING 
+FOR HVACis not included in the specifications.  Use the second sentence for all specifications with Section 15996.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Except as specified herein, <TST>perform in accordance with <RID>SMACNA 1780</RID>, Chapter VIII "Hydronic System TAB Procedures," drawings and specifications; 
+prepare complete report of final test results.</TST>]  [Test, adjust, and balance the hydronic system in accordance with Section <SRF>23 05 93</SRF> TESTING, ADJUSTING 
+AND BALANCING FOR HVAC.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Markings of Settings</TTL><BRK/>
+<BRK/>
+<TXT>Following final acceptance of the balancing report, the settings of all valves, splitters, dampers, and other adjustment devices must be permanently 
+marked so that adjustment can be restored if disturbed at anytime.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sound Level Tests</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion of testing and balancing of hydronic systems, conduct sound level tests of conditioned spaces.  Use sound level meter required 
+by <RID>ASA S1.4</RID>, Type 2, calibrated in accordance with NBS standards and guidelines, and accompanied by a certificate of calibration.  Record sound 
+levels in dBA with heating systems off and with heating systems operating.  Record the following data for each room and system:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Background sound level (systems off);</OLI><BRK/>
+<BRK/>
+<OLI>Total sound level corrected for background; and</OLI><BRK/>
+<BRK/>
+<OLI>Sound power rating by manufacturer of the respective outlet.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Test Locations:  Take sound level reading at location<MET> 2 meters</MET><ENG> 6 feet</ENG> from face of each outlet on a line at 45 degrees with face of outlet.  Remedial 
+Action:  If sound level at any observation point exceeds [20] [45] [_____] dBA, take remedial action as directed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SCHEDULE</TTL><BRK/>
+<BRK/>
+<TXT>Some metric measurements in this section are based on mathematical conversion of inch-pound measurement, and not on metric measurement <NED/>commonly 
+agreed to by the manufacturers or other parties.  The inch-pound and metric measurements shown are as follows:</TXT><BRK/>
+<BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="2">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="195.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="195.00"/>
+      <COL AUTOWIDTH="0" WIDTH="195.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Products</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Inch-Pound</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Metric</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">a.</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

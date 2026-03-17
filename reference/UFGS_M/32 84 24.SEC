@@ -1,0 +1,1323 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-32 84 24 (August 2011)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 1 - 05/17</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-32 84 24 (May 2010)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 32 84 24</SCN><BRK/>
+<BRK/>
+<STL>IRRIGATION SPRINKLER SYSTEMS</STL><BRK/>
+<DTE>08/11, CHG 1: 05/17</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>irrigation sprinkler systems</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Some paragraphs may need to be supplemented to meet project requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN PETROLEUM INSTITUTE (API)</ORG><BRK/><BRK/><RID>API Std 598</RID><RTL>(2009) Valve Inspecting and Testing</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 189.1</RID><RTL>(2014) Standard for the Design of High-Performance Green Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B1.2</RID><RTL>(1983; Errata 1992; R 2017) Gages and Gaging for Unified Inch Screw Threads</RTL><BRK/><BRK/><RID>ASME B16.3</RID><RTL>(2021) Malleable Iron Threaded Fittings, Classes 150 and 300</RTL><BRK/><BRK/><RID>ASME B16.15</RID><RTL>(2024) Cast Copper Alloy Threaded Fittings Classes 125 and 250</RTL><BRK/><BRK/><RID>ASME B16.18</RID><RTL>(2021) Cast Copper Alloy Solder Joint Pressure Fittings</RTL><BRK/><BRK/><RID>ASME B16.22</RID><RTL>(2021) Wrought Copper and Copper Alloy Solder Joint Pressure Fittings</RTL><BRK/><BRK/><RID>ASME B40.100</RID><RTL>(2022) Pressure Gauges and Gauge Attachments</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF SANITARY ENGINEERING (ASSE)</ORG><BRK/><BRK/><RID>ASSE 1010</RID><RTL>(2021) Performance Requirements for Water Hammer Arresters</RTL><BRK/><BRK/><RID>ASSE 1020</RID><RTL>(2020; R 2025) Performance Requirements for Pressure Vacuum Breaker Assemblies</RTL><BRK/><BRK/><RID>ASSE Series 5000</RID><RTL>(2022) Cross-Connection Control Professional Qualification Standard</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WATER WORKS ASSOCIATION (AWWA)</ORG><BRK/><BRK/><RID>AWWA C500</RID><RTL>(2019) Metal-Seated Gate Valves for Water Supply Service</RTL><BRK/><BRK/><RID>AWWA C511</RID><RTL>(2017; R 2021) Reduced-Pressure Principle Backflow Prevention Assembly</RTL><BRK/><BRK/><RID>AWWA C651</RID><RTL>(2023) Standard for Disinfecting Water Mains</RTL><BRK/><BRK/><RID>AWWA C901</RID><RTL>(2025) Polyethylene (PE) Pressure Pipe and Tubing, 3/4 In. (19mm) Through 3 In. (76 mm), for Water Service</RTL><BRK/><BRK/><RID>AWWA M14</RID><RTL>(2024) Manual:  Recommended Practice for Backflow Prevention and Cross-Connection Control</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM B32</RID><RTL>(2020) Standard Specification for Solder Metal</RTL><BRK/><BRK/><RID>ASTM B43</RID><RTL>(2020) Standard Specification for Seamless Red Brass Pipe, Standard Sizes</RTL><BRK/><BRK/><RID>ASTM B88</RID><RTL>(2022) Standard Specification for Seamless Copper Water Tube</RTL><BRK/><BRK/><RID>ASTM B88M</RID><RTL>(2020) Standard Specification for Seamless Copper Water Tube (Metric)</RTL><BRK/><BRK/><RID>ASTM D1785</RID><RTL>(2021) Standard Specification for Poly(Vinyl Chloride) (PVC), Plastic Pipe, Schedules 40, 80, and 120</RTL><BRK/><BRK/><RID>ASTM D2241</RID><RTL>(2020) Standard Specification for Poly(Vinyl Chloride) (PVC) Pressure-Rated Pipe (SDR Series)</RTL><BRK/><BRK/><RID>ASTM D2287</RID><RTL>(2019) Nonrigid Vinyl Chloride Polymer and Copolymer Molding and Extrusion Compounds</RTL><BRK/><BRK/><RID>ASTM D2464</RID><RTL>(2015) Standard Specification for Threaded Poly(Vinyl Chloride) (PVC) Plastic Pipe Fittings, Schedule 80</RTL><BRK/><BRK/><RID>ASTM D2466</RID><RTL>(2023) Standard Specification for Poly(Vinyl Chloride) (PVC) Plastic Pipe Fittings, Schedule 40</RTL><BRK/><BRK/><RID>ASTM D2564</RID><RTL>(2020) Standard Specification for Solvent Cements for Poly(Vinyl Chloride) (PVC) Plastic Piping Systems</RTL><BRK/><BRK/><RID>ASTM D2774</RID><RTL>(2021a) Standard Practice for Underground Installation of Thermoplastic Pressure Piping</RTL><BRK/><BRK/><RID>ASTM D2855</RID><RTL>(2020) Standard Practice for the Two-Step (Primer and Solvent Cement) Method of Joining Poly (Vinyl Chloride) (PVC) or Chlorinated Poly (Vinyl Chloride) (CPVC) Pipe and Piping Components with Tapered Sockets</RTL><BRK/><BRK/><RID>ASTM D3261</RID><RTL>(2016) Standard Specification for Butt Heat Fusion Polyethylene (PE) Plastic Fittings for Polyethylene (PE) Plastic Pipe and Tubing</RTL><BRK/><BRK/><RID>ASTM F441/F441M</RID><RTL>(2023) Standard Specification for Chlorinated Poly(Vinyl Chloride) (CPVC) Plastic Pipe, Schedules 40 and 80</RTL><BRK/><BRK/></REF><REF><ORG>FOUNDATION FOR CROSS-CONNECTION CONTROL AND HYDRAULIC RESEARCH (FCCCHR)</ORG><BRK/><BRK/><RID>FCCCHR List</RID><RTL>(continuously updated) List of Approved Backflow Prevention Assemblies</RTL><BRK/><BRK/></REF><REF><ORG>MANUFACTURERS STANDARDIZATION SOCIETY OF THE VALVE AND FITTINGS INDUSTRY (MSS)</ORG><BRK/><BRK/><RID>MSS SP-80</RID><RTL>(2019) Bronze Gate, Globe, Angle, and Check Valves</RTL><BRK/><BRK/><RID>MSS SP-85</RID><RTL>(2011) Gray Iron Globe &amp; Angle Valves Flanged and Threaded Ends</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA ICS 2</RID><RTL>(2000; R 2020) Industrial Control and Systems Controllers, Contactors, and Overload Relays Rated 600 V</RTL><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>NSF INTERNATIONAL (NSF)</ORG><BRK/><BRK/><RID>NSF/ANSI 14</RID><RTL>(2024) Plastics Piping System Components and Related Materials</RTL><BRK/><BRK/></REF><REF><ORG>U.S. GENERAL SERVICES ADMINISTRATION (GSA)</ORG><BRK/><BRK/><RID>CID A-A-51145</RID><RTL>(Rev D; Notice 1; Notice 2; Notice 3; Notice 4) Flux, Soldering, Non-Electronic, Paste and Liquid</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 651</RID><RTL>(2011; Reprint Jan 2026) UL Standard for Safety Schedule 40, 80, Type EB and A Rigid PVC Conduit and Fittings</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use only when using water pumps.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Section <SRF>23 03 00</SRF> BASIC MECHANICAL MATERIALS AND METHODS applies to this section, with additions and modifications specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>This system is designed with a water pressure minimum of [_____]<MET> kPa</MET><ENG> pounds per square inch (psi)</ENG> maximum of [_____]<MET> kPa</MET><ENG> psi</ENG> at connection to main 
+[meter] [building] [backflow prevention device] and [_____]<MET> kPa</MET><ENG>  psi</ENG> at the last head in each zone.[  Provide a <SUB>system pressure calculations</SUB> and <SUB>
+irrigation requirements</SUB> of the area.]  If pressure falls above or below indicated values, Contractor shall notify Contracting Officer.  For <SUB>Irrigation 
+Sprinkler System</SUB>, indicate the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Head, piping, valve, [controller], [sensor] layout.  Provide separate hydrozones for plant materials with different water requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Pipe, valve, backflow preventer, and controller.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the following in freeze-thaw climates only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Invert elevations.  Indicate obstructions interfering with operation.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  At the text below, if source of water supply is from station water system through a service line and water 
+meter, determine amount of water required for station irrigation system from static pressure at point of connection 
+of station main.  These factors are essential in designing for system pressure.  In many cases, water supply is 
+adequate for short durations only.  Provide adequate valves for each zone to irrigate an area effectively.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Water source equipment, including existing mains, piping, valves and meters.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  At the text below, the system pressure and irrigation requirements of the area are determined from water 
+supply, static pressure, soil, plants, freezing conditions, elevation changes, and wind direction and velocity.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>System and supply pressures.</OLI><BRK/>
+<BRK/>
+<OLI>Indicate wiring diagram between existing power source and controller/water pump.</OLI><BRK/>
+<BRK/>
+<OLI>Number and extent of control valve circuits.</OLI><BRK/>
+<BRK/>
+<OLI>Provide details of all irrigation components and accessories.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the following except in Design/Build projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Irrigation Sprinkler System</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Drawings including irrigation legend prepared by a licensed, registered or certified Landscape Architect or Irrigation Specialist.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Piping Materials</SUB>, tubing, and fittings</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Valves</SUB> and Accessories</ITM><BRK/>
+<BRK/>
+<ITM>Sprinkler <SUB>Heads</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Backflow Preventers</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Automatic Controller</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Controller Enclosure</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Solvent Cement</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control Wiring</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Drip Irrigation</SUB> Equipment and ccessories</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Water Hammer Arresters</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Water Meter</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Rain Shut-Off Device</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Freeze Shut-Off Device</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Soil Moisture Sensor</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tapping Tee</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Valve Boxes and Lids</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Drip Head Accessories</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If source of water supply is from station water system through a service line and water meter, determine 
+amount of water required for station irrigation system from static pressure at point of connection of station 
+main.  These factors are essential in designing for system pressure.  In many cases, water supply is adequate 
+for short durations only.  Provide adequate valves for each zone to irrigate an area effectively.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The system pressure and irrigation requirements of the area are determined from water supply, static pressure, 
+soil, plants, freezing conditions, elevation changes, and wind direction and velocity.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>System Pressure Calculations</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Irrigation Requirements</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM>Valves, and Accessories <SUB>Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Backflow Preventers</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pressure Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Operation Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Including verification of sprinkler head layout</ITM><BRK/>
+<BRK/>
+<ITM>  Submit record of pressure tests conducted on recording gage.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Backflow Preventers</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  <RID>ASSE Series 5000</RID>, Submit a certificate of Full Approval or a current Certificate of Approval from <RID>FCCCHR List</RID> for size, and 
+make of backflow preventer being provided for this project.  A Certificate of Provisional Approval will not be acceptable.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Automatic Controller</SUB></ITM><BRK/>
+<BRK/>
+<ITM>Sprinkler <SUB>Heads</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Piping Materials</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Tubing and fittings.</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Backflow Preventers</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Valves</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Solvent Cement</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control Wiring</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Drip Irrigation</SUB> and accessories</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Water Hammer Arresters</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Water Meter</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Rain Shut-Off Device</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Freeze Shut-Off Device</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Soil Moisture Sensor</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit mounting details for automatic controllers.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Piping Materials</SUB> and Fittings, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Sprinkler <SUB>Heads</SUB> and Accessories, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Backflow Preventers</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Valves</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Automatic Controller</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Drip Irrigation</SUB> and Accessories, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Water Hammer Arresters</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Water Meter</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Rain Shut-Off Device</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Freeze Shut-Off Device</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Soil Moisture Sensor</SUB>, Data Package 2; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>2<BRK/>
+<BRK/>
+<ITM>  Submit operation and maintenance data in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.  Include troubleshooting 
+procedures with respect to valve and controller problems.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Controller Charts</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Delivery</TTL><BRK/>
+<BRK/>
+<TXT>Deliver materials in original rolls, packages, cartons, and containers with the name of manufacturer, brand, and model.  Inspect materials delivered 
+to the site for damage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Storage</TTL><BRK/>
+<BRK/>
+<TXT>Store materials on site in enclosures or under protective covering.  Store [plastic piping and] rubber gaskets under cover out of direct sunlight.  
+Do not store materials directly on ground.  Keep inside of pipes and fittings free from dirt and debris.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Handling</TTL><BRK/>
+<BRK/>
+<TXT>Handle and carry pipe, fittings, valves, and accessories in such a manner as to ensure delivery to trench in sound undamaged condition.  Do not 
+drag pipe.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EXTRA STOCK</TTL><BRK/>
+<OLG><BRK/>
+<OLI>[2] [_____] additional sprinkler heads (nozzles, bodies, screens, pressure compensating devices) of each size and type;</OLI><BRK/>
+<BRK/>
+[<OLI>[2] [_____] valve keys for operating manual valves;</OLI><BRK/>
+<BRK/>
+]<OLI>[2] [_____] wrenches for removing and installing each type of head;</OLI><BRK/>
+<BRK/>
+[<OLI>[2] [_____] quick coupler keys and hose swivels;</OLI><BRK/>
+<BRK/>
+]<OLI>[4] [_____] irrigation controller housing keys.</OLI><BRK/>
+<BRK/>
+<OLI>[4] [_____] irrigation controller enclosure keys; and</OLI><BRK/>
+<BRK/>
+<OLI>[2] [_____] hand-held remotes compatible with controller system.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Required Test</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>tests</SUB> signed by an authorized official of a testing laboratory of sprinkler head, valve, automatic controller, emitter heads, vacuum breaker, 
+backflow preventer, and water hammer arrester.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>PIPING MATERIALS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select material with copper, brass, steel, PVC, and PE, according to project requirements. Verify soil 
+and water conditions on site, use copper or plastic pipe where corrosion problems exist.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Copper Tubing and Associated Fittings</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Tubing</TTL><BRK/>
+<BRK/>
+<TXT><MET><RID>ASTM B88M</RID></MET><ENG><RID>ASTM B88</RID></ENG>, Type K.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Sn 95 and Sn 94 are alloy grades with 95 and 94 percent tin base alloy.  Both grades composed of 0.10 percent 
+lead intended for potable water systems.  A maximum of 0.20 percent lead in alloy is suitable for drinking.  Type 
+I flux is used for tin-lead solders for joining metal except aluminum.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASME B16.22</RID> and <RID>ASME B16.18</RID>, solder joint.  Solder, <RID>ASTM B32</RID> alloy Grade Sn95 or Sn94.  Flux, <RID>CID A-A-51145</RID>, Type I.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Red Brass Pipe and Associated Fittings</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM B43</RID>, regular.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.15</RID>, Class 250, cast bronze threaded.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Galvanized Steel Pipe and Associated Fittings</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Schedule 40 is standard weight pipe.  Use of pipe is limited to fixed shrub head risers and reduced pressure 
+type backflow preventers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM A53/A53M</RID>, Schedule 40.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Class 150 is pressure temperature rating of<MET> 1034 kPa at 177 degrees C</MET><ENG> 150 psi at 350 degrees F</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASME B16.3</RID>, Class 150.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Polyvinyl Chloride (PVC) Pipe, Fittings and <SUB>Solvent Cement</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  PVC pipe may be used where frost line is less than<MET> 300 mm</MET><ENG> 12 inches</ENG> deep.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>NSF/ANSI 14</RID>, seal of approval for potable water.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ASTM D1785, PVC 1120, Schedule 40 is Type I, Grade 1 with<MET> 13.8 MPa</MET><ENG> 2.000 psi</ENG> hydrostatic design stress, 
+and wall thickness of Schedule 40.  ASTM D1785, PVC 1120, Schedule 80 is Type I, Grade 2 with<MET> 13.8 MPa</MET><ENG> 2.000 psi</ENG>
+ hydrostatic design stress, and wall thickness of Schedule 80.  ASTM D2241, PVC 1120, SDR 21 is Type I, Grade 
+1 with<MET> 13.8 MPa</MET><ENG> 2,000 psi</ENG> hydrostatic design stress, and standard dimension ratio of 21.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM D1785</RID>, PVC 1120 Schedule [40] [80]; or <RID>ASTM D2241</RID>, PVC 1120 SDR 21, [Class 315][Class 200].[  Provide integral lavender-color pipe for non-potable 
+use.][  Provide ultra-violet resistant piping for on-grade use.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  At the text below, use Schedule 40 PVC fittings when solvent welded.  Do not use threaded Schedule 40 pipe.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Solvent Welded Socket Type:  <RID>ASTM D2466</RID>, Schedule 40.[  Provide lavender-colored fittings.][  Provide ultra-violet resistant fittings.]</OLI><BRK/>
+<BRK/>
+<OLI>Threaded Type:  <RID>ASTM D2464</RID>, Schedule 80.[  Provide lavender-colored fittings.][  Provide ultra-violet resistant fittings.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Solvent Cement</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use for unthreaded PVC pipe and fittings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM D2564</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Polyethylene (PE) Plastic Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C901</RID>, outside diameter (od) base with dimension ratio (DR) of 9.3 to provide<MET> 1034 kPa</MET><ENG> 150 psi</ENG> minimum pressure rating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D3261</RID>, DR of 9.3.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Dielectric Fittings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide dielectric fittings between copper and ferrous metal piping materials.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM F441/F441M</RID>, Schedule 80, CPVC threaded pipe nipples,<MET> 100 mm</MET><ENG> 4 inch</ENG> length.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Drip Irrigation</SUB> Tubing</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D2287</RID>, maximum inside diameter (id) of<MET> [3] [6] [10] [13] [19] [25.40] mm</MET><ENG> [1/8] [1/4] [3/8] [1/2] [3/4] [one] inch</ENG>, vinyl plastic extruded 
+from non-rigid chloride, integrally algae-resistant, homogeneous throughout, smooth inside and outside, free from foreign materials, cracks, serrations, 
+blisters and other effects.  Provide [slip] [barbed] [compression] fittings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Sleeving</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide [PVC] [cast iron] [_____] piping two times the diameter of main or lateral piping.</OLI><BRK/>
+<BRK/>
+<OLI>Provide gray PVC electrical conduit sized according to number of control wires.  Minimum<MET> 50 mm</MET><ENG> 2 inch</ENG> size.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>IRRIGATION AND DRIP SPRINKLER <SUB>HEADS</SUB></TTL><BRK/>
+<BRK/>
+[<TXT>Provide lavender-colored body, nozzle, and/or cap indicator for non-potable use.</TXT><BRK/>
+<BRK/>
+]<SPT><TTL>Fixed Riser Irrigation Heads</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Stream Rotors, Full or Part Circle</TTL><BRK/>
+<BRK/>
+<TXT>Sprinkler body, nozzle, and screen constructed of heavy-duty, ultra-violet resistant plastic.  Heavy duty, stainless steel internal construction 
+with plastic body.[  Provide check valve below each sprinkler body on riser.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gear Rotor Irrigation Head, Full or Part Circle</TTL><BRK/>
+<BRK/>
+<TXT>Single-stream, water lubricated, gear drive type capable of covering [_____]<MET> mm</MET><ENG> feet</ENG> radius [_____]<MET> kPa</MET><ENG> psi</ENG> with distribution rate of [_____]<MET> L/s</MET><ENG>
+ gpm</ENG>.  Part circle sprinkler with an adjustable arc coverage of<MET> 0.52 to 6.28 rad</MET><ENG> 30 to 360 degrees</ENG>.  Stainless steel internal construction with 
+plastic body, with matched precipitation rate nozzles in standard /low/ flat angle trajectories, filter screen, reducible watering radius, and 
+choice of [_____] nozzles.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impact Irrigation Head</TTL><BRK/>
+<BRK/>
+<TXT>Capable of covering [_____]<MET> mm</MET><ENG> feet</ENG> radius at [_____]<MET> kPa</MET><ENG> psi</ENG> with a distribution rate of [_____]<MET> L/s</MET><ENG> gpm</ENG>, and [_____] V pop-up.  Provide one or 
+two nozzles to distribute water, an inlet strainer to prevent debris from clogging nozzles, and non-corrosive [brass] [plastic] head and stainless 
+steel assemblies.  Seal bearing assembly from abrasives.  Provide entire assembly including strainer removable from top of case without disturbing 
+case installation.  Provide plastic housing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Spray Irrigation Heads, Full or Part Circle</TTL><BRK/>
+<BRK/>
+<TXT>Capable of covering [_____]<MET> mm</MET><ENG> feet</ENG> radius at [_____]<MET> kPa</MET><ENG> psi</ENG> with a discharge rate of [_____]<MET> L/s</MET><ENG> gpm</ENG>.  Sprinkler body, nozzle, and screen constructed 
+of heavy-duty, ultra-violet resistant plastic.  Matched precipitation rate [plastic] [brass] nozzle with an adjustable screw capable of regulating 
+the radius and the flow.  Capable of housing under the nozzle; protective, non-clogging filter screen and/or pressure compensating devices.  Screen 
+used in conjunction with the adjusting screw from regulating.[  Provide check valve below each sprinkler body on riser.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Adjustable Flood Bubbler Head</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A water outlet that does not spray water but permits water to bubble and flow to the surrounding plants.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Capable of providing a discharge rate of<MET> [_____] L/s at kPa</MET><ENG> [_____] gpm at psi</ENG>, operating over a pressure range of<MET> 69 to 414 kPa</MET><ENG> 10 to 60 psi</ENG>.  
+Constructed of durable ultra-violet resistant plastic with a plastic inlet filter screen to protect the nozzle against clogging, and a stainless 
+steel adjustable screw, capable of shutting off the bubbler and regulating the flow.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Compensating Flood Bubbler Head</TTL><BRK/>
+<BRK/>
+<TXT>Capable of providing a consistent discharge rate of<MET> [_____] L/s at kPa</MET><ENG> [_____] gpm at [_____] psi</ENG>.  Plastic inlet filter screen bubbler assembly 
+to protect the nozzle against clogging. Permanently assembled design constructed of durable, ultra-violet resistant plastic with a integral rubber 
+flow washer for regulating the discharge rate at an operating pressure range of<MET> 138 to 621 kPa</MET><ENG> 20 to 90 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pop-Up Irrigation Head</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pop-up heads lay flush with the housing, then pop up when the water pressure is activated in system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Stream Rotor Irrigation Head, Full or Part Circle</TTL><BRK/>
+<BRK/>
+<TXT>Sprinkler body, nozzle, and screen constructed of heavy-duty, ultra-violet resistant plastic.  Heavy duty, stainless steel internal construction 
+with plastic body.  Pop-up height of<MET> [75] [100] [150] [300] mm</MET><ENG> [3] [4] [6] [12] inches</ENG> as measured from top of cap at normal installation to middle 
+of nozzle orifice.[  Provide check valve in head.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gear Rotor Irrigation Head, Full or Part Circle</TTL><BRK/>
+<BRK/>
+<TXT>Sprinkler body, nozzle, and screen constructed of heavy-duty, ultra-violet resistant plastic.  Heavy duty, stainless steel internal construction 
+with plastic body and match precipitation rates for standard low or flat angle trajectories.  Single-stream, water lubricated, gear drive type 
+capable of covering [_____]<MET> mm</MET><ENG> feet</ENG> radius [_____]<MET> kPa</MET><ENG> psi</ENG> with distribution rate of [_____]<MET> L/s</MET><ENG> gpm</ENG>.  Part circle sprinkler with an adjustable 
+arc coverage of<MET> 0.52 to 6.28 rad</MET><ENG> 30 to 360 degrees</ENG>.  Pop-up height of<MET> [75] [100] [150] [300] mm</MET><ENG> [3] [4] [6] [12] inches</ENG> as measured from top of 
+cap at normal installation to middle of nozzle orifice.  Provide wiper seal that positively seals against nozzle flange to keep debris out of rotor 
+and cleans debris from pop-up steam as it retracts.[  Provide check valve in head.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impact Irrigation Head</TTL><BRK/>
+<BRK/>
+<TXT>Capable of covering [_____]<MET> mm</MET><ENG> feet</ENG> radius at [_____]<MET> kPa</MET><ENG> psi</ENG> with a distribution rate of [_____]<MET> L/s</MET><ENG> gpm</ENG>.  Provide one or two nozzles to distribute 
+water, an inlet strainer to prevent debris from clogging nozzles, and non-corrosive [brass] [plastic] head and stainless steel assemblies.  Seal 
+bearing assembly from abrasives.  Provide entire assembly including strainer removable from top of case without disturbing case installation.  
+Provide plastic housing.  Pop-up height of<MET> [75] [100] [150] [300] mm</MET><ENG> [3] [4] [6] [12] inches</ENG> as measured from top of cap at normal installation 
+to middle of nozzle orifice.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Spray Irrigation Head, Full or Part Circle</TTL><BRK/>
+<BRK/>
+<TXT>Capable of covering [_____]<MET> mm</MET><ENG> feet</ENG> radius at [_____]<MET> kPa</MET><ENG> psi</ENG> with a discharge rate of [_____]<MET> L/s</MET><ENG> gpm</ENG>.  Sprinkler body, nozzle, and screen constructed 
+of heavy-duty, ultra-violet resistant plastic with wiper seal.  [Brass] [Plastic] nozzle with matched precipitation rate and an adjustable screw 
+capable of regulating the radius and flow.  Capable of housing under the nozzle; protective, non-clogging filter screen and/or pressure compensating 
+devices.  Screen used in conjunction with the adjusting screw from regulating.  Pop-up height of<MET> [75] [100] [150] [300] mm</MET><ENG> [3] [4] [6] [12] inches</ENG>
+ as measured from the top of cap at normal installation to middle of nozzle orifice.[  Provide check valve below each sprinkler body on riser.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Bubbler Irrigation Head</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Adjustable Flood Bubbler</TTL><BRK/>
+<BRK/>
+<TXT>Capable of providing a discharge rate of<MET> [_____] L/s at kPa</MET><ENG> [_____] gpm psi</ENG>.  operating over a pressure range of<MET> 69 to 414 kPa</MET><ENG> 10 to 60 psi</ENG>.  Construct 
+of durable ultra-violet resistant plastic with a plastic inlet filter screen to protect the nozzle against clogging, and a stainless steel adjusting 
+screw, capable of shutting off the bubbler and regulating the flow.  Pop-up height of<MET> [75] [100] [150] [300] mm</MET><ENG> [3] [4] [6] [12] inches</ENG> as measured 
+from top of cap at normal installation to middle of nozzle orifice.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Compensating Flood Bubbler</TTL><BRK/>
+<BRK/>
+<TXT>Capable of providing a consistent discharge rate of<MET> [_____] L/s at kPa</MET><ENG> [_____] gpm at psi</ENG>.  Plastic inlet filter screen bubbler assembly to protect 
+the nozzle against clogging. Permanently assembled design constructed of durable, ultra-violet resistant plastic with an integral rubber flow washer 
+for regulating the discharge rate at an operating pressure range of<MET> 138 to 621 kPa</MET><ENG> 20 to 90 psi</ENG>.  Pop-up height of<MET> [75] [100] [150] [300] mm</MET><ENG> [3] 
+[4] [6] [12] inches</ENG> as measured from top of cap at normal installation to middle of nozzle orifice.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Fixed Drip Head</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Drip head is an outlet device that permits water to drip or trickle from small tubings. Drip irrigation 
+is frequent, slow application of water to specific root zone area of plants.  The goal is to provide a constant 
+level of subsurface moisture to the root ball for most favorable growth.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Multi-Port Outlet Device</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose one of the following options</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Multi-outlet, pressure compensating emitter manifold that is ultra-violet resistant, algae, and heat resistant, non-corrosive PVC material for 
+above or below grade installation.  Integral<MET> 75 micrometers</MET><ENG> 200 mesh</ENG> fabric screen that can be serviced from the top of the unit by unscrewing 
+the top cap.  [Six] [eight] [twelve] [_____], [top] [bottom] mounted outlet ports that will accept<MET> [3] [6] mm</MET><ENG> [1/8] [1/4] inch</ENG> vinyl tubing.  The 
+[six] [eight] [twelve] [_____] ports can be accessed through the top of the unit by unscrewing the lid from the base.  Each outlet port accepts 
+a pressure compensating emitter controlling the flow from<MET> 1.89 to 90.84</MET><ENG> 0.5 to 24.0 gph</ENG> per outlet.  Operating range of unit is<MET> 103 to 345 kPa 
+with 13 mm</MET><ENG> 15 to 50 psi with 1/2 inch</ENG> female national pipe thread (FNPT) inlet.</TXT><BRK/>
+<BRK/>
+][<TXT>Multi-outlet, pressure-compensating emitter constructed of a ultra-violet resistant algae and heat resistant, non-corrosive PVC material.  Diaphragm/flap 
+constructed of a silicone elastomer material.  Pressure-compensated emitter with each outlet delivers a nominal flow of<MET> [1.89] [3.79] [7.57] L/h</MET><ENG>
+ [0.5] [1.0] [2.0] gph</ENG> at<MET> 103 to 345 kPa</MET><ENG> 15 to 50 psi</ENG>.  [Three] [four] [six] [_____] barbed outlet unit that will accept<MET> [3] [6] mm</MET><ENG> [1/8] [3/4] 
+inch</ENG> vinyl tubing with continuous "self flushing" emitter feature.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Single Outlet Pressure Compensating Emission Device</TTL><BRK/>
+<BRK/>
+<TXT>[Pressure compensated] emitter body constructed of ultra-violet, algae, heat resistant and chemical resistant, non-corrosive PVC material.  Diaphragm 
+constructed of a silicone elastomer material. Capable of delivering a nominal flow rate of<MET> [1.89] [3.79] [7.57] [_____] L/h</MET><ENG> [0.5] [1.0] [2.0] [_____] 
+gph</ENG> at a pressure range of<MET> 103 to 345 kPa</MET><ENG> 15 to 50 psi</ENG>.  [A self piercing inlet barb type<MET> 13 mm</MET><ENG> 1/2 inch</ENG> female national pipe thread (FNPT) inlet 
+mounted onto a<MET> 13 mm</MET><ENG> 1/2 inch</ENG> male national pipe thread (MNPT) riser.]  Barbed emitter outlet configuration that will accept<MET> [3] [6] mm</MET><ENG> [1/8] [1/4] 
+inch</ENG> vinyl tubing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Microspray Device</TTL><BRK/>
+<BRK/>
+<TXT>Capable of covering<MET> [0 to 4500] [_____] mm</MET><ENG> [0 to 15] [_____] feet</ENG> radius at [_____]<MET> kPa</MET><ENG> psi</ENG> with a discharge rate of [_____]<MET> L/h</MET><ENG> gph</ENG> with overall 
+pop-up height of<MET> [100] [150] [300] [_____] mm</MET><ENG> [4] [6] [12] [_____] inches</ENG>.  Sprinkler body, nozzle, and screen constructed of heavy-duty, ultra-violet 
+resistant plastic with wiper seal on sprinkler. Matched precipitation rate [brass] [plastic] nozzle with an adjustable screw capable of regulating 
+the radius and flow and capable of housing under the nozzle; protective, non-clogging filter screens and/or pressure compensating devices.  Screen 
+used in conjunction with the adjusting screw for regulating.  Mount with<MET> 13 mm</MET><ENG> 1/2 inch</ENG> female national pipe thread (FNPT) adapter [poly flex riser 
+stake].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>In-Line Tubing Device</TTL><BRK/>
+<BRK/>
+<TXT>Factory installed, heavy-walled flexible polyethylene (PE) tubing, pressure compensating, self-cleaning emitters at spacings of<MET> [300] [450] [600] 
+[_____] mm</MET><ENG> [12] [18] [24] [36] [_____] inches</ENG>.  Emitter flow of<MET> [1.89] [3.79] [7.57] [_____] L/h</MET><ENG> [0.5] [1.0] [2.0] [_____] gph</ENG> with inlet pressure 
+of [_____]<MET> kPa</MET><ENG> psi</ENG>.  Tubing diameter of<MET> [13] [19] mm</MET><ENG> [1/2] [3/4] inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pop-Up Drip Head</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Drip head is an outlet device that permits water to drip or trickle from small tubings.  Drip irrigation 
+is frequent, slow application of water to specific root zone area of plants.  The goal is to provide a constant 
+level of subsurface moisture to the root ball of plant for most favorable growth.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Capable of covering<MET> 0 to 4500 mm</MET><ENG> 0 to 15 feet</ENG> radius at [_____]<MET> kPa</MET><ENG> psi</ENG> with a discharge rate of [_____]<MET> L/h</MET><ENG> gph</ENG> with overall pop-up height of<MET> 
+[100] [150] [300] mm</MET><ENG> [4] [6] [12] inches</ENG>.  Sprinkler body, steam, nozzle, and screen constructed of heavy-duty, ultra-violet resistant plastic 
+with wiper seal on sprinkler.  Provide a heavy-duty, stainless steel retract spring for positive pop-down and a ratcheting system for easy alignment 
+of the pattern.  Matched precipitation rate [brass] [plastic] nozzle with an adjusting screw capable of regulating the radius and flow and capable 
+housing under the nozzle; protective, non-clogging filter screens and/or pressure compensating devices.  Screen used in conjunction with the adjusting 
+screw for regulating.  A side and bottom<MET> 12.70 mm</MET><ENG> 1/2 inch</ENG> female national pipe thread (FNPT) inlet for the<MET> [150] [300] mm</MET><ENG> [6] [12] inch</ENG> model.  
+Mount with<MET> 12.70 mm</MET><ENG> 1/2 inch</ENG> female national pipe thread (FNPT) adapter [poly flex riser stake].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>VALVES</SUB></TTL><BRK/>
+<BRK/>
+[<TXT>Provide lavender-colored assembly for non-potable use.</TXT><BRK/>
+<BRK/>
+]<SPT><TTL>Isolation Valve</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Ball Valves, Less than<MET> 75 mm</MET><ENG> 3 inches</ENG></TTL><BRK/>
+<BRK/>
+<TXT><RID>API Std 598</RID>, [brass] [plastic] body, [threaded] [soldered] ends.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gate Valves,<MET> 75 mm</MET><ENG> 3 inches</ENG> and Larger</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C500</RID>, bottom wedging double discs, parallel seats, non-rising stems, open by counterclockwise turning.  Provide flanged end connections. Provide 
+bronze interior construction of valves including stem containing a maximum 2 percent aluminum and maximum 16 percent zinc.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Control Valves</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pressure Regulating Master Control Valve</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Master valve automatically reduces a higher inlet pressure to a constant lower pressure regardless of supply 
+fluctuations</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Automatic mechanical self-cleaning, self-purging control system having an adjustable pressure setting operated by a solenoid on alternating current 
+(ac) with [0.70] [_____] amperes at [18] [24] volts.  [Direct current (dc) latching with [_____] amperes at [_____] volts.]  Valve shall close 
+slowly and be free of chatter in each diaphragm position.  Provide a manual flow stem to adjust closing speed and internal flushing.  Provide an 
+adjusting screw for setting pressure and schrader valve for monitoring pressure. Provide [one] [two] inlet tappings capable of being installed 
+as a straight pattern valve.  Provide heavy duty [cast iron] [brass] [plastic] valve body with brass seat that is removable and serviceable from 
+top without removing valve body from system.  Maximum working pressure of valve is<MET> 1034 kPa</MET><ENG> 150 psi</ENG> and pilot range from<MET> 69 to 862 kPa</MET><ENG> 10 to 125 
+psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Remote Control Valve, Electrical</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  An activated open and shut-off device for controlling water flow to sprinkler branch line.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Solenoid actuated [globe] [angle] valves of<MET> 20 to 75 mm</MET><ENG> 3/4 to 3 inch</ENG> size, [alternating current (ac), 60/50 cycle [_____] amps in rush current 
+and [_____] amps holding current.]  [Direct current (dc) latching with [_____] amperes at [_____] volts.]  Provide [brass] [plastic] valve housing 
+suitable for service at<MET> 1034 kPa</MET><ENG> 150 psi</ENG> operating pressure.[  Provide pressure regulating module capable of regulating outlet pressure between<MET>
+ 103 to 172 kPa</MET><ENG> 15 to 25 psi</ENG> (plus or minus)<MET> 34 kPa</MET><ENG> 5 psi</ENG> and adjustable screw for setting pressure schrader valve connection for monitoring pressure.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manual Angle Control Valve, Manual Globe Control Valve</TTL><BRK/>
+<BRK/>
+<TXT>Less than<MET> 65 mm</MET><ENG> 2 1/2 inch</ENG> <RID>MSS SP-80</RID>, type 3, Class 150 [threaded] [soldered] ends.  [Angle] [globe] valve<MET> 65 mm</MET><ENG> 2 1/2 inch</ENG> and larger <RID>MSS SP-85</RID>
+, Type II, Class 250 [threaded] [flanged] ends.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Quick Coupling Valves</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A device that permits quick coupling and uncoupling of valves.  It is an effective method of keeping sprinkler 
+out of the way when not in use, eliminating the possibility of damage, injury or theft.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Two piece unit consisting of a coupler water seal valve assembly and a removable upper body to allow spring and key track to be serviced without 
+shutout of main.  Provide brass parts.  Provide [yellow] [lavender] [vinyl] [rubber] lockable lids with springs for positive closure on key removal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hose Bib</TTL><BRK/>
+<BRK/>
+<TXT>One piece consisting of all brass construction with full flow<MET> [13] [19] [25.40] mm</MET><ENG> [1/2] [3/4] [one] inch</ENG> hose connection outlet and [with attached 
+handle] [removable key handle] with gaskets and washers.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drain Valves</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Manual</TTL><BRK/>
+<BRK/>
+<TXT><RID>MSS SP-80</RID>, Type 3, Class 150 [threaded] [soldered] ends for sizes less than<MET> 65 mm</MET><ENG> 2 1/2 inches</ENG>.  <RID>MSS SP-85</RID>, Type II, Class 250 [threaded] [flanged] 
+ends for sizes<MET> 65 mm</MET><ENG> 2 1/2 inches</ENG> and larger.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Automatic</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete automatic drains for warm climate areas.  This saves water to prevent draining<MET> 50 to 100 mm</MET><ENG> 2 to 
+4 inch</ENG> diameter lines during irrigation cycles and avoid continuously saturated soil at drain joints.  Automatic 
+drains are necessary for cold climate areas to prevent freeze damage to sprinklers and pipes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Brass, spring loaded ball drip type,<MET> 1034 kPa</MET><ENG> 150 pounds</ENG> and threaded ends, designed to close at<MET> 1.83 m</MET><ENG> 6 foot</ENG> pressure head with positive seal 
+at<MET> 21 kPa</MET><ENG> 3 psi</ENG> pressure or greater and be open to drain at less than<MET> 21 kPa</MET><ENG> 3 psi</ENG> pressure.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL><SUB>Backflow Preventers</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The purpose of a backflow preventer is to keep contaminated water from flowing back into a potable water 
+distribution system when some abnormality in system causes pressure to be temporarily higher in contaminated part 
+of system than in potable water piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Reduced Pressure Type Backflow Preventers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The purpose of reduced pressure type backflow preventer is to prevent either back siphonage or back pressure 
+from causing a reverse flow and subsequent contamination of potable water supply.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this requirement when system is connected to non-potable water supply system, or when sewage is 
+injected into sprinkler system.  When effluent pumps are down, add a fresh water connection with a reduced pressure 
+backflow preventer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>AWWA C511</RID>.  Provide backflow preventers complete with<MET> 1034 kPa</MET><ENG> 150 psi</ENG> rated flanged [cast iron], [bronze] [brass] mounted [gate] [ball] valve 
+[and strainer], [304] [_____] stainless steel or bronze, internal parts.  Total pressure drop through complete assembly shall be a maximum of<MET> 69 
+kPa</MET><ENG> 10 psi</ENG> at rated flow.  Listing of particular make, model/design, and size in <RID>FCCCHR List</RID> will be acceptable as required proof for testing and 
+certification.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Piping Assembly:  [Red brass pipe and fittings] [Galvanized steel pipe and fittings].</OLI><BRK/>
+<BRK/>
+<OLI>Strainers:  Bronze or brass construction with gasket caps.  Equip units with<MET> 75 micrometers</MET><ENG> No. 200 mesh</ENG> stainless steel screen elements.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Pressure Type Vacuum Breaker</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Vacuum breakers are designed to prevent back siphonage only, and are not effective against backflow due 
+to back pressure.  A vacuum breaker is adequate when it is located aboveground higher than highest irrigation 
+head and its elevation is above areas which may be flooded.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASSE 1020</RID> [bronze] [brass] construction, with one or two check valves, vacuum relief, inlet and discharge shut-offs valves, and field test cocks, 
+and with vacuum relief opening of greater diameter than unit.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Atmospheric Vacuum Breaker</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Atmospheric Vacuum breakers are designed to prevent back siphonage only, and are not effective against 
+backflow due to back pressure.  A atmospheric vacuum breaker is adequate when it is located aboveground higher 
+than highest irrigation head and its elevation is above areas which may be flooded.  Locate atmospheric vacuum 
+breaker downstream of the control valve.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>AWWA M14</RID>, vacuum relief, inlet and discharge openings, and with vacuum relief opening of greater diameter than unit.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></SPT><SPT><TTL>ACCESSORIES AND APPURTENANCES</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Tapping Tee</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Bronze flat, double strap, with neoprene gasket or "O"-ring seal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Water Meter</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ASHRAE 189.1 – 2014 requires a water meter with remote communication capabilities.  Select the first bracketed 
+option if total irrigated landscape area with controllers exceeds<MET> 2322.5 square meters</MET><ENG> 25,000 square feet</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide a submeter in accordance with <RID>ASHRAE 189.1</RID>.  ]Meter to include roll sealed register, magnetic drive, straight reading (odometer shall 
+indicate in<MET> liters</MET><ENG> gallons</ENG>, large numerals, glass lens for legibility,) low flow indicator to detect leaks, tamper proof seal pin to detect theft; 
+sturdy durable, corrosion resistant main case, electrical grounding continuity; nutating disc measuring chamber with minimum head loss.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Drip Head Accessories</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Strainer</TTL><BRK/>
+<BRK/>
+<TXT>Provide strainer at inlet to each drip control valve assembly. Provide polyester fabric screen attached to a PVC frame having the equivalent of<MET>
+ [56] [75] [_____] micrometers</MET><ENG> [150] [200] [_____] mesh</ENG> filtration capacity. Compact "Y" body and cap configuration.  Incorporate flush valves 
+within strainer to clean screen without disassembling unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Riser Adapters</TTL><BRK/>
+<BRK/>
+<TXT>PVC material, [threaded] [barbed] [soldered] to attached drip heads to tubing, pop-up irrigation body, or rigid piping and tubing to rigid piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tubing Stakes</TTL><BRK/>
+<BRK/>
+<TXT>Plastic, plastic coated steel, or other non-corrosive strong material to secure tubing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bug Cap</TTL><BRK/>
+<BRK/>
+<TXT>Provide check valves at end of each emitter outlet distribution line.  Valves shall permit free flow of water with minimum restriction; prevent 
+back siphoning, entry of insects, and contamination into outlet ports.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Subterranean Drip Box and Cover</TTL><BRK/>
+<BRK/>
+<TXT>Construct of ultra-violet resistant PVC.  Two slots in bottom of box to allow for installation of distribution tubing onto the emission device.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Line Flushing Valve</TTL><BRK/>
+<BRK/>
+<TXT>Construct of PVC with maximum flow rate of<MET> 0.95 L/s</MET><ENG> 15 gpm</ENG> with minimum flushing water volume of<MET> 3.79 liters</MET><ENG> one gallon</ENG> at a minimum<MET> 28 kPa</MET><ENG> 4 psi</ENG>
+ to a maximum<MET> 172 kPa</MET><ENG> 25 psi</ENG> at a point of discharge.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valve Boxes</TTL><BRK/>
+<BRK/>
+<TXT>[Cast-iron] [precast concrete [manufactured in accordance with Section <SRF>03 42 13.00 10</SRF> PLANT-PRECAST CONCRETE PRODUCTS FOR BELOW GRADE CONSTRUCTION]] 
+[plastic] valve box for each isolation valve, control valve, [quick coupling valve] [and] [drain valve].  Provide box sizes that are suitable and 
+adjustable for valve used.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Cast the word "IRRIGATION" on cover.</OLI><BRK/>
+<BRK/>
+<OLI>Stencil, engrave, or brand controller and valve sequence on remote control valve cover.  Letters minimum<MET> 10 mm</MET><ENG> 4 inches</ENG> height.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Backflow Preventer Accessories</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pressure Gages</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B40.100</RID>, single style pressure gage for water with<MET> 113 mm</MET><ENG> 4 1/2 inch</ENG> dial, brass or aluminum case, bronze tube, gage cock, pressure snubber, 
+and siphon.  Provide scale range suitable for irrigation systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Water Hammer Arresters</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>ASSE 1010</RID>; stainless steel construction with an encased and sealed bellows compression chamber.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Backflow Preventer Enclosure</TTL><BRK/>
+<BRK/>
+<TXT>Frame to be constructed of<MET> 4.76 mm</MET><ENG> 3/16 inch</ENG> [stainless steel] [steel] angle iron with<MET> 38.10 mm</MET><ENG> 1 1/2 inch</ENG> No. 9 expanded metal covering.  Construct 
+in a [one piece single swing] [two piece double] hinge configuration.  Provisions for pad locking and lighting handles.  Size to fit backflow assembly 
+to installed.  [Color to be [green] [_____].]  Lock for enclosure provided by others.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Concrete Pads</TTL><BRK/>
+<BRK/>
+<TXT>Cast-in-place reinforced concrete construction for reduced pressure type backflow preventers.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Moisture Sensing Device</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Automatic <SUB>Rain Shut-Off Device</SUB></TTL><BRK/>
+<BRK/>
+<TXT>One piece, maintenance and adjustment free, reacts to a minimum<MET> 3.18 mm</MET><ENG> 1/8 inch</ENG> of rain water, unaffected by humidity levels, commercial grade 
+materials, no exposed mechanical switch or electrodes, solid state construction with internal relay operating voltage of 24 to 30 VAC, static charge 
+pretested, maximum switch current of one amp.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Automatic <SUB>Freeze Shut-Off Device</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Construct of a PVC cylinder with a sensing element mounted at top of cylinder capable of interrupting the control valve common wire as temperatures 
+approach<MET> 0 degrees C</MET><ENG> 32 degrees F</ENG>.  Operating voltage 24 VAC, maximum current one amp.  Static charge protection with snubber network.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Soil Moisture Sensor</SUB> Device</TTL><BRK/>
+<BRK/>
+<TXT>24 VAC, field adjustable and capable of interrupting irrigation cycles for pre-determined moisture level at moisture probe location.  Waterproof 
+field adjustment module with bypass switch.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Air/Vacuum Relief</TTL><BRK/>
+<BRK/>
+<TXT>Construct of PVC with a maximum operating pressure of<MET> 965 kPa</MET><ENG> 140 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Water Booster Package</TTL><BRK/>
+<BRK/>
+<TXT>Booster pump package to be a prefabricated system, pre-piped, pre-wired and mounted on a steel skid base minimum<MET> 75 mm</MET><ENG> 3 inch</ENG> welded angle iron 
+or channel brackets, hot dipped galvanized, with a minimum<MET> 14 mm</MET><ENG> 9/16 inch</ENG> holes at each corner for bolting to concrete with anchors.  Field assembled 
+pump systems are not acceptable.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump</TTL><BRK/>
+<BRK/>
+<TXT>Pump to be end suction close coupled or in-line type, bronze impeller and wear rings, bronze shaft sleeve, mechanical seal with high-resist seat, 
+integral flanged suction and discharge connections, keyed motor shaft, back pull-out type, with centerline discharge for automatic venting and 
+Type 304 stainless steel internal parts and fittings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motor</TTL><BRK/>
+<BRK/>
+<TXT>Motor to be [_____] rpm, [_____] hp, [_____] phase, ball bearing design, stainless steel shaft, non-over loading on full range of the impeller 
+curve without use of the service factor and including rodent and insect screens over the openings.  Single phase motors to be totally enclosed 
+fan cooled and open drip-proof with a minimum 1.15 service factor.  Three phase motors to be totally enclosed fan cooled, open drip-proof with 
+a minimum 1.15 service factor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping and Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Piping and fittings to be flanged spools of Schedule 40 steel and Class 150 weld flanges, hot dipped galvanized after fabrication.  Spacer spools 
+to be welded and galvanized.  Companion flanges at suction and discharge header connections to be Schedule 40 steel and galvanized.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gages</TTL><BRK/>
+<BRK/>
+<TXT>Gages shall be<MET> 65 mm</MET><ENG> 2 1/2 inch</ENG> diameter, liquid filled for vibration dampering, 0-200 pounds, stainless steel casing, with brass needle valve 
+shut-off cocks.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Butterfly Valve</TTL><BRK/>
+<BRK/>
+<TXT>Butterfly valves and adjustable handles to be sandblasted and epoxy coated, nuts and bolts to be cad plated, shut off valves to be centerline butterfly 
+lug type, wafer style, drilled and tapped, with bronze disc, capable of remaining installed in the piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Check Valves</TTL><BRK/>
+<BRK/>
+<TXT>A combination pressure reducing and non-slam check valve to be installed with booster pump package to reduce effect of varying suction pressure.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Pump Control Panels</TTL><BRK/>
+<BRK/>
+<TXT>Pump control panels to be 14 gage type UF, type 304 stainless steel with continuous welded seams, door with continuous hinge, all welds passivated 
+to eliminate corrosion, UL listed, NEMA 3R enclosure with holes in bottom to allow for all inlet wiring for main power control accessories and 
+louvers with insect screens on opposite sides for cross ventilation, deadfront, keylockable and padlockable, with main disconnect switch, circuit 
+breaker with adjustable overloads on all legs and adjustable inrush current trip setting on units exceeding 41 amps, heavy duty contactor, 115 
+volt control circuit transformer with circuit breaker disconnect.  A plug-in module type pump start relay shall be mounted and hard wired in the 
+pump panel.  A electronic flow switch with 0-60 seconds adjustable time delay relay, mounted and hard wired in  the pump panel, to operate as a 
+no-flow safety shut down.  NEMA 3R non-fused main disconnect switch, mounted on exterior of pump panel, hard wired to panel circuit breaker.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>][<SPT><TTL>Flow Meter</TTL><BRK/>
+<BRK/>
+<TXT><MET>[25.40] [31] [38] [50] [75] mm</MET><ENG>[one] [1.25] [1.5] [2] [3] inch</ENG> flow meter with a minimum [_____]<MET> L/s</MET><ENG> gpm</ENG>, female national pipe threaded ends and 
+replaceable metering insert.  9 volt direct current output with a pulse rate which is proportional to the<MET> L/s</MET><ENG> gpm</ENG>, a 0.067 amperes fuse link to 
+protect metering insert and 14 gage output feeder wire to be powered by the controller.  Provide [brass] [plastic] meter housing suitable for service 
+at<MET> 1034 kPa</MET><ENG> 150 psi</ENG> operating pressure.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL><SUB>AUTOMATIC CONTROLLER</SUB> [ELECTRICAL] [SOLAR] [BATTERY]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ASHRAE 189.1 requires that PERMANENT irrigation systems be controlled by smart controllers that use evapotranspiration 
+(ET) and weather data to adjust irrigation schedules or utilize an on-site rain or moisture sensor that automatically 
+shuts off the system after a predetermined amount of rainfall or moisture is sensed in the soil utlimately meeting 
+the 80 percentminimum ETc for Irrigation Adequacy and not to exceed 10 percent for Irrigation Excess.<BRK/>
+<BRK/>
+EXCEPTION:  A temporary irrigation system used exclusively for the establishment of new landscape shall be exempt 
+from this requirement.  Temporary irrigation systems shall be removed or permanently disabled at such time that 
+the plant materials are established.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Controller must be[ as indicated on the Drawings ]commercially/industrially rated, [hybid type] [solid state type], for [indoor location] [outdoor 
+location]  with [120-volt single phase service with surge protection] [24 VAC solar] [24 VDC solar] [24 VDC battery], operating with indicated 
+stations, and grounded chassis.  Provide in an enclosure with locking hinge cover.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Controller Features</TTL><BRK/>
+<OLG><BRK/>
+<OLI>[_____]-station controller with [_____] independent programs that can run concurrently.</OLI><BRK/>
+<BRK/>
+<OLI>Allows an [infinite] [4 to 8] [____] number of cycles per day by placing the program in a looping mode.</OLI><BRK/>
+<BRK/>
+<OLI>Ability to be programmed in one second increments, from [one second to 12 hours] [____].</OLI><BRK/>
+<BRK/>
+<OLI>A water budgeting capability in all stations within a program in one percent increments from [one percent to 255 percent] [____].</OLI><BRK/>
+<BRK/>
+<OLI>A programmable watering calendar ranging from [one to 16] [365 day calendar][[_____] to [_____] days].</OLI><BRK/>
+<BRK/>
+<OLI>A single-station timed manual feature that allows a station to be turned on manually for its programmed watering time.</OLI><BRK/>
+<BRK/>
+<OLI>A semi-automatic manual cycle feature.</OLI><BRK/>
+<BRK/>
+<OLI>A true manual operation with safety shut-off at midnight and indicate which station is on by means of L.E.D.S.</OLI><OLI>UL listed, having a re-settable 
+circuit breaker, cadmium plated, weatherproof steel case, and keyed lock.</OLI><BRK/>
+<BRK/>
+[<OLI>A qualifying smart controller utilizing [Evapotranspiration (ET) [with no service fees] and weather data to adjust watering schedules] 
+[moisture sensors in the soil].</OLI><BRK/>
+<BRK/>
+][<OLI>Provide control for master valve or irrigation pump start up</OLI><BRK/>
+<BRK/>
+][<OLI>Have central computer control capability with [the existing central control system on the Base] [the Region's central control system] [_____].</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL><SUB>Controller Enclosure</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Controller Enclosure must be [<RID>NEMA ICS 2</RID>] [<RID>NEMA ICS 6</RID> Type 3R] [_____] mounted [as indicated on the Drawings] [on a concrete pad] [_____].  Enclosure 
+must be [indoor wall mounted plastic cabinet] [outdoor pedestal mounted [plastic] [powder-coated metal, color to be [beige] [___]] [stainless steel][____]].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ELECTRICAL CIRCUITS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Control Wiring</SUB> for Electrically Operated Valves</TTL><BRK/>
+<BRK/>
+<TXT><RID>NFPA 70</RID>, copper conductor<MET> [1.8] [_____] mm</MET><ENG> [14] [_____] gage</ENG> wire, Type UF.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Conduit</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 651</RID>, rigid polyvinyl chloride conduit, Schedule 40.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CONCRETE MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT><MET>[20] [_____] MPa</MET><ENG>[2500] [_____] psi</ENG> compressive concrete strength at 28 days as specified under Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install sprinkler system after site grading has been completed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Trenching</TTL><BRK/>
+<BRK/>
+<TXT>Hand trench around roots to pipe grade when roots of<MET> 50 mm</MET><ENG> 2 inches</ENG> diameter or greater are encountered.  Make width of trench<MET> 100 mm</MET><ENG> 4 inches</ENG> 
+minimum or 1 1/2 times diameter of pipe, whichever is wider.  Backfill and hand tamp over excavation.  When rock is encountered, excavate<MET> 100 mm</MET><ENG>
+ 4 inches</ENG> deeper and backfill with silty sand (SM) or well-graded sand (SW) to pipe grade.  Keep trenches free of obstructions and debris that 
+would damage pipe.  Do not mix subsoil with topsoil.  Bore under existing concrete walks, drives and other obstacles at a depth conforming to bottom 
+of adjacent trenches.  Install pipe sleeve, two pipe diameters larger than sprinkler pipe, to fill bore.[  Rock will be encountered.  Excavate<MET> 
+100 mm</MET><ENG> 4 inches</ENG> deeper and backfill with silty sand (SM) or well graded sand (SW) to pipe grade.]  Prior to backfilling of trench, Contracting 
+Officer shall verify and approve location of all irrigation heads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping System</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Clearances</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Minimum horizontal clearances between lines: <MET> 100 mm for 50 mm</MET><ENG> 4 inches for 2 inch</ENG> pipe and less;<MET> 300 mm for 50 mm</MET><ENG> 12 inches for 2 inch</ENG>
+ pipe and more.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum vertical clearances between lines: <MET> 25 mm</MET><ENG> one inch</ENG>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Minimum Pitch</TTL><BRK/>
+<BRK/>
+<TXT>Down<MET> 150 mm per 30 m</MET><ENG> 6 inches per 100 feet</ENG> in direction of drain valves.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Thrust Blocks</TTL><BRK/>
+<BRK/>
+<TXT>Install thrust blocks at bends, tees, plugs and valves or<MET> [63] [_____] mm</MET><ENG> [2 1/2] [_____] inches</ENG> and larger mainline piping.  Place concrete so 
+that sides subject to thrust or load are against undisturbed earth, and valves and fittings are serviceable after concrete has set.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Minimum Backfill Cover</TTL><BRK/>
+<OLG><BRK/>
+<OLI><MET> [450] [_____] mm</MET><ENG> [18] [_____] inches</ENG> for pressure mainline pipe and valve control wire.</OLI><BRK/>
+<BRK/>
+<OLI><MET> [300] [_____] mm</MET><ENG> [12] [_____] inches</ENG> for non-pressure lateral pipe.</OLI><BRK/>
+<BRK/>
+<OLI><MET> [600] [_____] mm</MET><ENG> [24] [_____] inches</ENG> for all piping under paved or non-paved pedestrian paths.</OLI><BRK/>
+<BRK/>
+<OLI><MET> [900] [_____] mm</MET><ENG> [36] [_____] inches</ENG> for all piping under traffic loads, [farm operations], [freezing temperatures].</OLI><BRK/>
+<BRK/>
+<OLI>Install pipe sleeves at depths indicated in "c" and "d".</OLI><BRK/></OLG>
+<BRK/>
+<TXT>[Rock will be encountered.  Provide minimum<MET> 100 mm</MET><ENG> 4 inches</ENG> of silty sand (SM) or well graded sand (SW) cover on top of all piping.]  Fill remainder 
+of trench or pipe cover to within<MET> 75 mm</MET><ENG> 3 inches</ENG> of top with excavated soil, and compact soil with plate hand-held compactors to same density as 
+undisturbed adjacent soil.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Restoration</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Fill the section number and title for the restoration of pavements in the blank below using proper format 
+per UFC 1-300-02, "Unified Facilities Guide Specifications (UFGS) Format Standard".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fill top<MET> 75 mm</MET><ENG> 3 inches</ENG> with topsoil and compact with same density as surrounding soil.  Restore [turf] and [plants] according to [Section 
+<SRF>32 92 19</SRF> SEEDING,][Section <SRF>32 92 23</SRF> SODDING,][Section <SRF>32 92 26</SRF> SPRIGGING,] [and] [Section <SRF>32 93 00</SRF> EXTERIOR PLANTS].  [Restore pavements according 
+to [_____]].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sterilization</TTL><BRK/>
+<BRK/>
+<TXT>Sprinkler system fed from a potable water system sterilized upstream of backflow preventer in accordance with <RID>AWWA C651</RID>.  Sterilize new water lines 
+for a minimum of 24 hours to meet [local] [state] [federal] health test requirements before placing in service.  Minimum retention period shall 
+be 3 hours.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Piping Installation</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Polyvinyl Chloride (PVC) Pipe</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Solvent-Cemented Joints:  <RID>ASTM D2855</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Threaded Joints:  full cut with a maximum of three threads remain exposed on pipe and nipples.  Make threaded joints tight without recourse 
+to wicks or fillers, other than polytetrafluoroethylene thread tape.</OLI><BRK/>
+<BRK/>
+<OLI>Piping:  <RID>ASTM D2774</RID> or <RID>ASTM D2855</RID>, and pipe manufacturer's instructions.  Install pipe in a serpentine (snaked) manner to allow for expansion 
+and contraction in trench before backfilling.  Install pipes at temperatures over<MET> 4.5 degrees C</MET><ENG> 40 degrees F</ENG>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Soldered Copper Tubing</TTL><BRK/>
+<BRK/>
+<TXT>Ream pipe and remove burrs.  Clean and polish contact surfaces of joint. Flux both male and female ends.  Insert end of tube into fittings full 
+depth of socket.  After soldering, a solder bead shall show continuously around entire joint circumference.  Remove excess acid flux from tubings 
+and fittings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Threaded Brass or Galvanized Steel Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Prior to installation ream pipe.  Cut threads as specified in <RID>ASME B1.2</RID>.  Make joints with pipe joint compound applied to male end only.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Polyethylene (PE) Pipe and Drip Tubing</TTL><BRK/>
+<BRK/>
+<TXT>Bury [drip tubing] [and] [PE pipe]<MET> 300 mm</MET><ENG> 12 inches</ENG> deep.  [Solvent weld] [compression connection] [barbed connection] in accordance with manufacturers 
+recommendation.  Install hose in serpentine manner.  When cutting hose, use a shearing tool such as a pipe cutter, knife or shears.  Use only manufacturer's 
+recommended tool and procedure when installing drip heads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dielectric Protection</TTL><BRK/>
+<BRK/>
+<TXT>Where pipes of dissimilar metal are joined, make connection with dielectric fitting.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Irrigation Heads</TTL><BRK/>
+<BRK/>
+<TXT>Install plumb and level with terrain.  Irrigation heads must not spray directly on or within<MET> 1 meter</MET><ENG> 3-feet</ENG> of building.<BRK/></TXT>
+<BRK/>
+<SPT><TTL>Fixed Riser Irrigation Heads</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Fixed risers allowed in planter beds only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Nozzle mounted on fixed riser minimum<MET> 150 mm</MET><ENG> 6 inches</ENG> above grade in mulched planter beds,<MET> 300 mm</MET><ENG> 12 inches</ENG> above grade in planter beds with groundcover.  
+Provide swing joint assembly attachment between lateral lines and fixed risers.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pop-Up Irrigation Head</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pop-ups required along all pedestrian and vehicular and turf edges.  Pop-ups required in all turf areas.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install plumb and level with terrain.  Provide swing joint assembly attachment between lateral line and pop-up body.  Top of irrigation head shall 
+be flush wit surrounding finish grade.[  In recreational fields, install all pop-up rotors with stainless steel risers<MET> 125 mm</MET><ENG> 5 inches</ENG> below finish 
+grade per manufacturer's recommendations.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drip Heads</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Actual water emission points of drip irrigation system installed above soil surface accomplishes two objectives.  
+It aids visual checking of system for proper operation and it reduces system clogging that can be caused by root 
+intrusion.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install drip heads [in plastic drip box].  Connect drip head to a [rigid PVC nipple] [drip head stake] [directly to tubing].  Attach tubing to 
+barbed fitting and daylight distribution tubing at rootball secured with stake.  Add bug cap at end of secured distribution tubing.  After installing 
+drip heads and before operating system, open end of drop lateral and flush lines clean.  The number of drip heads on a line shall not exceed manufacturer's 
+recommendations for that hose or distribution tubing size and length.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Isolation Valves</TTL><BRK/>
+<BRK/>
+<TXT>Install in a valve box extending from grade to below valve body, with a minimum of<MET> 100 mm</MET><ENG> 4 inches</ENG> cover measured from finish grade to top of valve 
+stem.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Valves</TTL><BRK/>
+<BRK/>
+<TXT>Plumb valve in a valve box extending from grade to below valve body, with minimum of<MET> 100 mm</MET><ENG> 4 inch</ENG> cover measured from grade to top of valve.  
+Install automatic valves beside sprinkler heads with a valve box.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Quick Coupling Valves</TTL><BRK/>
+<BRK/>
+<TXT>[Install in a valve box extending from grade to below valve body, with a minimum of<MET> 100 mm</MET><ENG> 4 inches</ENG> cover measured from finish grade to top of 
+valve stem.][Install<MET> 50 mm</MET><ENG> 2 inches</ENG> above finish grade in planter bed, level with finish grade in turf areas.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hose Bibb</TTL><BRK/>
+<BRK/>
+<TXT>Install [above grade] [below grade in valve box] with support.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drain Valves</TTL><BRK/>
+<BRK/>
+<TXT>Entire system shall be manually or automatically drainable.  Equip low point of each underground line with drain valve draining into an excavation 
+containing gravel.  Cover gravel with building paper.  Backfill with excavated material and<MET> 150 mm</MET><ENG> 6 inches</ENG> of topsoil.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Backflow Preventers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install backflow preventer in new connection to existing water distribution system, between connection and control valves.  Install with 
+concrete pads.  [Install with concrete pads in turf only.]</OLI><BRK/>
+<BRK/>
+<OLI>Flush pipe lines prior to installing device.</OLI><BRK/>
+<BRK/>
+<OLI>Device shall not be installed in pits or where any part of the device could become submerged in standing water</OLI><BRK/>
+<BRK/>
+<OLI>Install device a minimum of<MET> 300 mm</MET><ENG> 12 inches</ENG> from trees, walls, fences, structures and other obstructions.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Reduced Pressure Backflow Preventer</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Protect device by a strainer located upstream.</OLI><BRK/>
+<BRK/>
+<OLI>Install device a minimum of<MET> 300 mm</MET><ENG> 12 inches</ENG> between finish grade and bottom of relief port.</OLI><BRK/>
+<BRK/>
+[<OLI>Where freezing conditions occur, locate device inside a building and pipe the relief valve port through an air gap to a drain.</OLI><BRK/>
+<BRK/>
+][<OLI>Install water meter above grade, upstream of unit of unit as a part of assembly.  Provide galvanized steel support with concrete footing.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Pressure Vacuum Breaker</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Install device in an accessible location to facilitate inspection and servicing.  The device can be installed 
+on a main line to irrigation system upstream of shut-off valves (valves may be located downstream from device).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Install device a minimum of<MET> 300 mm</MET><ENG> 12 inches</ENG> between highest irrigation head and bottom of air relief valve.</OLI><BRK/>
+<BRK/>
+[<OLI>Where freezing conditions occur, locate device inside a building and pipe the relief valve port through an air gap to a drain.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Atmospheric Vacuum Breaker</TTL><BRK/>
+<BRK/>
+<TXT>Install device minimum of<MET> 300 mm</MET><ENG> 12 inches</ENG> between highest irrigation head and bottom of relief valve located downstream of irrigation control 
+valve.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Accessories</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Connection To Existing Water Supply Systems (Tapping Tee)</TTL><BRK/>
+<BRK/>
+<TXT>Use tapping or drilling machine valve and mechanical joint type sleeves for connections to be made under pressure.  Bolt sleeves around mains; 
+bolt valve conforming to <RID>AWWA C500</RID> to the branch.  Open valve, attach drilling machine, make tap, close valve, and remove drilling machine, without 
+interruption of service.  Notify Contracting Officer in writing at least 15 days prior to the date the connections are required; receive approval 
+before any service is interrupted.  Provide materials required to make connections into the existing water supply systems and perform excavating, 
+backfilling, and other incidental labor as required.  Furnish the labor and the tapping or drilling machine for making the actual connections to 
+the existing systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Meter</TTL><BRK/>
+<BRK/>
+<TXT>Install meter upstream of backflow preventer per manufacturer's recommendations and local PWC Utility Department Instructions.[  Plumb meter in 
+a valve box extending from grade to below meter body, with a minimum of<MET> 100 mm</MET><ENG> 4 inch</ENG> cover measured from top of grade to top of meter.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Valve Boxes and Lids</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install with<MET> [0.0283] [_____] cubic meters</MET><ENG> [one] [_____] cu ft</ENG> pea gravel sump below valve.</OLI><BRK/>
+<BRK/>
+<OLI>Support valve box with [brick] [concrete block] [_____].</OLI><BRK/>
+<BRK/>
+[<OLI>Provide wire screen between gravel sump and bottom of valve body for rodent protection.</OLI><BRK/>
+<BRK/>
+]<OLI>For turf areas, install flush with finish grade.</OLI><BRK/>
+<BRK/>
+<OLI>For planter beds, install<MET> 50 mm</MET><ENG> 2 inches</ENG> above finish grade.</OLI><BRK/>
+<BRK/>
+<OLI>For sloped conditions, install valve box level with terrain.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Backflow Preventer Enclosure</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install with concrete pad.</OLI><BRK/>
+<BRK/>
+<OLI>Place hinges so direction of swing will not conflict with other site features.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Rain [and] [Freeze] Shut-Off Device[s]</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install as per manufacturer's recommendations.</OLI><BRK/>
+<BRK/>
+<OLI>For wall mounted controllers, attach device[s] to side of building or eave, minimum<MET> 2400 mm</MET><ENG> 8 feet</ENG> above finish grade and a minimum of<MET> 
+300 mm</MET><ENG> 12 inches</ENG> from building wall or eave.</OLI><BRK/>
+<BRK/>
+<OLI>For pedestal mounted controllers, mount [to side of controller housing] [on top of minimum<MET> [1050] [_____]  mm</MET><ENG> [42] [_____] inches</ENG> high 
+pole outside of irrigation coverage in vandal-resistant enclosure].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Soil Moisture Sensing Device</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Bury the device at depth per manufacturer's recommendation in the effective root zone of hydrozone to be monitored.</OLI><BRK/>
+<BRK/>
+<OLI>Place a sensor-protection [plate] [indicator] [valve box with cover] above the device.</OLI><BRK/>
+<BRK/>
+<OLI>Provide waterproof connection to all field splices in valve boxes.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Air/Vacuum Relief Valve</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide air relief/vacuum valve at highest point of all pressurized mainline systems.  For drip systems, 
+locate at highest point on drip lateral.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Locate at highest point in piping system.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Electrical Circuits</TTL><BRK/>
+<BRK/>
+<TXT>Bury wires beside mainline pipe in same trench.  Provide gray electrical conduit where wires run under paved or non-paved pedestrian paths and 
+vehicular roads.  Tag wires at controller and control valve location with plastic tie wrapped tags.  Provide one control wire to each control valve 
+location and one common wire looped from controller to each control valve.  Provide one separate control valve wire of a different color from controller 
+to each control valve cluster.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Loops</TTL><BRK/>
+<BRK/>
+<TXT>Provide a<MET> 300 mm</MET><ENG> 12 inch</ENG> loop of wire at each valve where controls are connected.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Expansion and Contraction</TTL><BRK/>
+<BRK/>
+<TXT>Bundle multiple tubes or wires and tape together at<MET> [3] [6] m</MET><ENG> [10] [20] foot</ENG> intervals with<MET> 300 mm</MET><ENG> 12 inch</ENG> loop for expansion and contraction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Splices</TTL><BRK/>
+<BRK/>
+<TXT>Make electrical splices waterproof. Locate all field electrical splices in valve boxes.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Automatic Controller</TTL><BRK/>
+<BRK/>
+<TXT>Determine exact location of controllers in field before installation. Coordinate the electrical service to these locations.  Install in accordance 
+with manufacturer's recommendations and <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flushing</TTL><BRK/>
+<BRK/>
+<TXT>After piping, risers, and valves are in place and connected, but prior to installation of sprinkler heads and valves, flush piping system under 
+a full head of water.  Maintain flushing for 3 minutes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Adjustment</TTL><BRK/>
+<BRK/>
+<TXT>After grading, plant installation, and rolling of planted areas, adjust sprinkler heads flush with finished grade.  Make adjustments by providing 
+new nipples of proper length or by use of heads having an approved device, integral with head, which will permit adjustment in height of head without 
+changing piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sterilization</TTL><BRK/>
+<BRK/>
+<TXT>Sprinkler system fed from a potable water system shall be sterilized upstream of backflow preventer in accordance with <RID>AWWA C651</RID>. Sterilize new 
+waterlines for a minimum of 24-hours, to meet [local], [state], [federal], health test requirements before placing in service. Minimum retention 
+period shall be 3 hours.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor will conduct and the Contracting Officer and the QC representative will witness field inspections and field tests specified in this 
+section.  Perform field tests, and provide labor, equipment, and incidentals required for testing.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Pressure Test</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Duration</TTL><BRK/>
+<BRK/>
+<TXT><TST>During pressure test, maintain a hydrostatic pressure of<MET> 1034 kPa</MET><ENG> 150 psi</ENG> without pumping for a period of one hour with an allowable pressure drop 
+of<MET> 35 kPa</MET><ENG> 5 psi</ENG> before backfilling system.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Leaks</TTL><BRK/>
+<BRK/>
+<TXT>Correct leaks.  Make necessary corrections to stop leakage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Retest</TTL><BRK/>
+<BRK/>
+<TXT>Retest system twice until pressure can be maintained for duration of test.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Operation Test</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Accessories</TTL><BRK/>
+<BRK/>
+<TXT><TST>At conclusion of pressure test, install irrigation heads or drip heads, quick coupling assemblies, and hose bib, and test entire system for operation 
+under normal operating pressure.  Make necessary corrections or adjustments to raise or lower pressure for each system if tests results do not 
+match pressure requirements.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Acceptance</TTL><BRK/>
+<BRK/>
+<TXT><TST>Operation test is acceptable if system operates through at least one complete cycle for areas to be irrigated.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Controller Charts</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide one chart for each controller supplied. Indicate in chart area controlled by automatic controller.  The chart is a reduction of the actual 
+plan[s] that will fit the maximum dimensions inside controller housing.  Use black line print for chart and a different pastel or transparent color <NED/>
+to indicate each station area of coverage.  After chart is completed and approved for final acceptance, seal chart between two<MET> 0.5 mm</MET><ENG> 20 mil</ENG> pieces 
+of clear plastic.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

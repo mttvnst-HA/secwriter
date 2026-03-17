@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-35 20 23.13 (February 2022)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">New<BRK/></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 35 20 23.13</SCN><BRK/>
+<BRK/>
+<STL>NATIONAL DREDGING QUALITY MANAGEMENT PROGRAM - SCOW [MONITORING][ AND ][ULLAGE] PROFILE</STL><BRK/>
+<DTE>02/22</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>the National Dredging 
+Quality Management Program for the scow <TAI OPT="MONITORING">monitoring</TAI>[ and ]<TAI OPT="ULLAGE">ullage</TAI> profile</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+When to Choose a Specific Profile Tailoring Option.  Use the following information 
+to determine which profile to choose:<BRK/>
+<BRK/>
+Monitoring Profile - The Monitoring Profile includes scow position, heading, 
+hull status, draft sensors, and displacement tables to give a relative indication 
+of when most of the material has left the scow (or the length of time the material 
+takes to dump).  Increases in draft can show digging locations and changes in 
+loading can show leakage in gross relative terms.<BRK/>
+<BRK/>
+Ullage Profile - The Ullage Profile contains all the instrumentation from the 
+previous profile, adding ullage sensors and ullage volume tables.  This profile 
+may be used when dredging a material like mud, which will (for the most part) 
+seek its own level, and ullage can be accurately measured to get an idea of 
+bin volume.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>The work under this contract requires use of the National Dredging Quality Management Program (DQM)to monitor 
+the dredge's status at all times during the contract and to manage data history.  For the purpose of these specifications, 
+a scow is defined as any non-self-propelled vessel used to transport dredged material.  This includes, but is 
+not limited to, split-hull scows, pocket scows, hopper barges, and deck barges.</TXT><BRK/>
+<BRK/>
+<TXT>This performance-based specification section identifies the minimum required output and the precision and instrumentation 
+requirements.  The requirements may be satisfied using equipment and technical procedures selected by the Contractor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G".  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a 
+"G" or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will review the submittal 
+for the Government.</TAI>  Submit 
+the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>National Dredging Quality Management Program Certification</SUB>, [_____] District; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PAYMENT</TTL><BRK/>
+<BRK/>
+<TXT>Separate payment for installation, operation, and maintenance of the DQM-certified system as specified herein 
+for the duration of the dredging operations is not allowed; all costs in connection therewith are considered 
+a subsidiary obligation of the Contractor and are covered under the contract unit price for dredging in the bidding 
+schedule.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>NATIONAL DREDGING QUALITY MANAGEMENT PROGRAM CERTIFICATION</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Certification</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor is required to have a current certification from DQM for the scow instrumentation system to be 
+used under this contract.  Criteria for certification is based on the most recent specification posted on the 
+DQM website <URL>https://www.sam.usace.army.mil/Missions/Spatial-Data-Branch/Dredging-Quality-Management/</URL>
+, Verify compliance with these criteria by onsite quality assurance (QA) checks conducted by the DQM Support 
+Center Data Acquisition and Analysis Team and by periodic review of the transmitted data.  If a system is installed 
+specifically for this contract, in order to ensure that it is capable of transmitting quality data to the DQM 
+database, the QA checks should take place either prior to the start of the contract or, with prior approval of 
+the local USACE District, as soon as practical after dredging commences.  DQM Certification is valid for one 
+year from the date of certification and is contingent upon the system's ability to meet the performance requirements 
+as outlined in paragraph PERFORMANCE REQUIREMENTS.  If issues with data quality are not corrected within 48 hours, 
+the system certification will be revoked and additional QA checks by the Data Acquisition and Analysis Team may 
+be necessary.  Annual DQM Certification must be based on the following:</TXT><BRK/>
+<BRK/>
+<LST>A series of QA checks as outlined on the DQM website <URL>https://www.sam.usace.army.mil/Missions/Spatial-Data-Branch/Dredging-Quality-Management/</URL></LST><BRK/>
+<BRK/>
+<LST>Verification of data acquisition and transfer as described in <BRK/>
+paragraph PERFORMANCE REQUIREMENTS</LST><BRK/>
+<BRK/>
+<LST>Review of the Dredge Plant Instrumentation Plan (DPIP) as described in paragraph DREDGE PLANT INSTRUMENTATION 
+PLAN (DPIP)</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Quality Assurance (QA)</TTL><BRK/>
+<BRK/>
+<TXT>The Dredging Contractor must have personnel who are familiar with the system instrumentation and who have the 
+ability to recalibrate the sensors on site during the QA process.  The Dredging Contractor must coordinate pickup 
+times and locations and provide transportation to and from any platform with a DQM system to team personnel in 
+a timely manner.  The Dredging Contractor must also have on site for the QA checks a tug capable of towing the 
+scow.  As a general rule, DQM Data Acquisition and Analysis Team personnel will come with personal protective 
+equipment (PPE) consisting of hardhats, steel toe boots, and life jackets.  If additional safety equipment is 
+needed, such as eye protection, safety harnesses, work gloves, or personal location beacons, provide these items 
+to the team while on site.  Submit a test data package to the DQM database from the system on each scow and have 
+it accepted by the DQM Support Center prior to scow compliance checks.  Also submit data collected during the 
+QA Checks from the scow monitoring system to the DQM database and the Data Acquisition and Analysis Team personnel 
+while on site.  It is the Dredging Contractor's obligation to inform the QA team if the location designated for 
+the QA checks has any site-specific safety concerns prior to their arrival on site.</TXT><BRK/>
+<BRK/>
+<TXT>The owner or operator of the scow must contact DQM at <URL>https://www.sam.usace.army.mil/Missions/Spatial-Data-Branch/Dredging-Quality-Management/</URL> on an annual basis, or at least three weeks prior to the proposed beginning of dredging, 
+to schedule QA checks.  This notification is meant to make the Data Acquisition and Analysis Team aware of a 
+target date and the contract on which the plant will be used.  At least one week prior to the target date, the 
+Dredging Contractor must contact the Data Acquisition and Analysis Team and verbally coordinate a specific date 
+and location.  The Contractor must then follow up this conversation with a written email confirmation.  The owner/operator 
+must coordinate the QA checks with all local authorities including, but not limited to, the local USACE Contracting 
+Officer's Representative (COR).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Recertification</TTL><BRK/>
+<BRK/>
+<TXT>Recertification is required for any yard work which produces modification to displacement (for example, a change 
+in scow lines, or repositioning or repainting hull marks), modification to bin volume (change in bin dimensions 
+or addition or subtraction of structure), or changes in sensor type or location; report these changes in the 
+sensor log section of the DPIP.  A system does not have to be transmitting data between jobs; however, in order 
+to retain certification during this period, the system sensors or hardware should not be disconnected or removed 
+from the scow.  If the system is powered down, retain calibration coefficients.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DREDGE PLANT INSTRUMENTATION PLAN (DPIP)</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must have a digital copy of the DPIP on file with the  DQM Support Center.  While working on site, 
+the Contractor must also maintain on the dredge a copy of the DPIP which is easily accessible to Government personnel 
+at all times.  This document must describe the sensors used, configuration of the system, how sensor data will 
+be collected, how quality control on the data will be performed, and how sensors/data reporting equipment will 
+be calibrated and repaired if they fail.  A description of computed scow-specific data and how the sensor data 
+will be transmitted to the DQM database must also be included.  The Contractor must submit to the DQM Support 
+Center any addendum or modifications made to the plan, subsequent to its original submission, prior to start 
+of work.</TXT><BRK/>
+<BRK/>
+<TXT>A complete list of the required DPIP contents is provided on the DQM website <URL>https://www.sam.usace.army.mil/Missions/Spatial-Data-Branch/Dredging-Quality-Management/</URL>.  Submit to the DQM Support Center any addendum or modifications 
+made to the plan, subsequent to its original submission, prior to the start of work.  Any changes to the computation 
+methods must be approved by the DQM Support Center prior to their implementation.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></PRT>
+<PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REQUIREMENTS FOR REPORTED DATA</TTL><BRK/>
+<BRK/>
+<TXT>Provide, operate, and maintain all hardware and software to meet these specifications.  The Contractor is responsible 
+for  replacement, repair, and calibration of sensors and other necessary data acquisition equipment needed to 
+supply the required data.  Complete repairs within 48 hours of any sensor failure.  Notify the Contracting Officer's 
+Representative (COR) upon completion of a repair, replacement, installation, modification, or calibration.  The 
+COR may request recalibration of sensors or other hardware components at any time during the contract as deemed 
+necessary.</TXT><BRK/>
+<BRK/>
+<TXT>Keep a log of sensor repair, replacement, installation, modification, and calibration in the onsite copy of the 
+DPIP.  The log must contain a three-year history of sensor maintenance, including the time of sensor failures 
+(and subsequent repairs), the time and results of sensor calibrations, the time of sensor replacements, and the 
+time that backup sensor systems were initiated to provide the required data.  It must also contain the name of 
+the person responsible for the sensor work.  Install sensors that are capable of collecting parameters within 
+specified accuracies and resolutions indicated in the following subparagraphs.</TXT><BRK/>
+<BRK/>
+<TXT>With the exception of position and any value calculated, reported sensor values should represent a weighted average 
+with the highest and lowest values not included in the calculated average for the given interval.  The averaging 
+routine used should be consistent across all event triggers.  This information should be documented in the DPIP 
+sections that say "Calculations done external to the instrumentation."  These data-reporting requirements cover 
+the collection of electronic data on a scow through the entire dredging cycle.  Disposal events can consist of 
+both open-water disposal and offloading.  Open-water disposal is the placement of material via bottom doors or 
+split hull.  Offloading is the placement of material via either hydraulic or mechanical means.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Scow Name</TTL><BRK/>
+<BRK/>
+<TXT>Assign a unique name for each scow that will remain constant from one dredging operation to the next.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contract Number</TTL><BRK/>
+<BRK/>
+<TXT>The USACE-assigned contract number for the project will be reported.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Load Number</TTL><BRK/>
+<BRK/>
+<TXT>A DQM load number must document the end of a disposal event for a given scow.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Horizontal Positioning</TTL><BRK/>
+<BRK/>
+<TXT>Record horizontal positioning as the geographic coordinates of the vessel as indicated by the location of the 
+Global Positioning System (GPS) antenna.  Obtain all locations using a positioning system operating with a minimum 
+accuracy level of<MET> 1 to 3 meters</MET><ENG> 3 to 10 feet</ENG> horizontal Circular Error Probable (CEP).  Report positions as Latitude/Longitude 
+WGS 84 in decimal degrees.  West Longitude and South Latitude values are reported as negative.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Date and Time</TTL><BRK/>
+<BRK/>
+<TXT>Report the date and time to the nearest second and referenced to Universal Time Coordinated (UTC) based on a 
+24-hour format: yyyy-mm-dd hh:mm:ss.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hull Status</TTL><BRK/>
+<BRK/>
+<TXT>Hull status is meant to reflect a condition when material could be removed or released from the scow.  For this 
+contract, hull status must register closed prior to leaving the disposal area.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Open-Water Disposal</TTL><BRK/>
+<BRK/>
+<TXT>Indicate an open split hull or open bottom door of a scow by reporting an "OPEN" value.  Indicate a closed split 
+hull or closed bottom door of a scow by reporting a "CLOSED" value.  An open status must be indicated as the 
+bin starts to open, and a closed status must be indicated only once the bin is fully closed.  For pocket scows, 
+the open/closed status must correspond to the compartment which is first to open and last to close.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Offloading</TTL><BRK/>
+<BRK/>
+<TXT>Offloading occurs when the scow is being unloaded, either by hydraulic or mechanical means.  When offloading 
+is occurring, a value of "true" must be reported; otherwise, a "false" value must be reported.  The only permissible 
+values are "true" and "false".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Course</TTL><BRK/>
+<BRK/>
+<TXT>Provide scow course-over-ground (COG) using industry-standard equipment.  Provide scow course-over-ground (to 
+the nearest whole degree) with values from 000 (true north) to 359 degrees referenced to a clockwise positive 
+direction convention.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Speed</TTL><BRK/>
+<BRK/>
+<TXT>Provide scow speed-over-ground in knots using industry-standard equipment with a minimum accuracy of 1.0 knot 
+and resolution to the nearest 0.1 knot.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heading</TTL><BRK/>
+<BRK/>
+<TXT>Provide scow heading using industry-standard equipment.  The scow heading must be accurate to within 5 degrees 
+and reported to the nearest whole degree with values from 000 (true north) to 359 degrees referenced to a clockwise 
+positive direction convention.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Draft</TTL><BRK/>
+<BRK/>
+<TXT>Report all draft measurements in feet, tenths, and hundredths with an accuracy of plus or minus 0.1 foot relative 
+to observed physical draft readings.  Report the measurements at a resolution of two decimal places (hundredths 
+of a foot).  The reported forward draft value must be equal to the sum of the visual forward port and starboard 
+draft mark readings divided by two.  The reported aft draft value must be equal to the sum of the visual aft 
+port and starboard draft mark readings divided by two.  Forward draft, aft draft, and average draft will be reported.  
+Place sensors at an optimum location on the scow to be reflective of observed physical draft mark readings at 
+any trim or list.  Minimum accuracies are conditional to relatively calm water.  The reported sensor value is 
+an average of at least ten samples per event, with at least one maximum value and one minimum value removed, 
+and the minimum eight remaining values averaged.  When the average draft is calculated for the purpose of determining 
+displacement, maintain significant digits for average draft such that if forward draft were 0.15 and aft draft 
+were 0.1, then the average draft would be 0.125.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Displacement</TTL><BRK/>
+<BRK/>
+<TXT>Report scow displacement in long tons, based on the most accurate method available for the scow.  The minimum 
+standard of accuracy for displacement is interpolation from the displacement table, based on the average draft.  
+For this contract the density of water used to calculate displacement is [_____]<SPS>*</SPS><MET> kg/cubic meter</MET><ENG> <ENG> lbs/cubic foot</ENG></ENG>
+ and is used for an additional interpolation between the fresh and salt water tables.</TXT><BRK/>
+<BRK/>
+<TXT><SPS>*</SPS>The water density used is project-/location-specific.  Enter the appropriate water density in the blank:</TXT><BRK/>
+<BRK/>
+<LST>Fresh Water:  <MET>1000 kg/m3 (1 g/cm3)</MET><ENG>62.43 lbs/cubic foot</ENG></LST><BRK/>
+<LST>Salt Water:  <MET>1027-1030 kg/m3 (1.027-1.03 g/cm3)</MET><ENG>64.11 - 64.30 lbs/cubic foot</ENG></LST><BRK/>
+<BRK/></SPT>
+<TAI OPT="ULLAGE"><SPT><TTL>Bin Ullage Sounding</TTL><BRK/>
+<BRK/>
+<TXT>Report all ullage soundings in<MET> meters</MET><ENG> feet</ENG>, tenths, and hundredths with an accuracy of plus or minus 0.1 foot 
+with respect to the combing and be representative of the forward and aft extents of the hopper as close to  the 
+centerline as is possible.  Report the measurements at a resolution of two decimal places (hundredths of a foot).  
+If sensors must be offset from the centerline of the bin, they should be offset to opposite sides of the vessel.  
+Forward ullage, aft ullage, and average ullage soundings will be reported.  The reported sensor value is an average 
+of at least ten samples per event, with at least one maximum value and one minimum value removed, and the minimum 
+eight remaining values averaged.  When the average ullage is calculated for the purpose of determining the hopper 
+volume, maintain significant digits for the average ullage such that if the forward ullage were 0.15 and aft 
+ullage were 0.1, then the average ullage would be 0.125.  Special arrangements for pocket scows may be made in 
+consultation with the DQM Support Center.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bin Volume</TTL><BRK/>
+<BRK/>
+<TXT>Report scow bin volume in cubic<MET> meters</MET><ENG> yards</ENG> based on the most accurate method available for the scow.  The minimum 
+standard of accuracy for bin volume is interpolation from the bin volume table based on the average ullage soundings.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>NATIONAL DREDGING QUALITY MANAGEMENT PROGRAM SYSTEM REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor's DQM system must be capable of collecting, displaying, and transmitting information to the DQM 
+database.  The parameters which must be reported to the DQM database include trip number, date and time, hull 
+status, offloading status, scow course, scow speed, scow heading, draft, displacement<TAI OPT="ULLAGE">, ullage, and bin volume</TAI>
+.  Provide an easily accessible, permanent visual display on the scow to show in real time the parameters collected 
+by the system in the same units as the data submitted to the DQM database.  In the event a reported parameter 
+is calculated based on multiple sensors, the sensor values as used in the equation must be able to be viewed 
+in addition to the required parameter.  If a hardware problem occurs, or if a part of the system is physically 
+damaged, the Contractor is be responsible for repairing it within 48 hours of determination of the condition.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Telemetry</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor may select any commercial satellite, cellular phone, or other data communications systems available, 
+as long as it is capable of transmitting real-time data as well as enough additional bandwidth to clear historically 
+queued data when a connection is reobtained.  If connectivity is lost, que and transmit unsent data upon restoration 
+of connectivity.  Delays in pushing real-time data to the DQM database should not exceed four hours.  Exceptions 
+to these requirements may be granted by the DQM Center on a case-by-case basis with consideration for contract-specific 
+requirements, site-specific conditions, and extreme weather events.</TXT><BRK/>
+<BRK/>
+<TXT>The data transmission process from the scow to the DQM database must be automated.  The data may be sent from 
+the scow directly to the DQM database or to a shore-based system.  Data transmitted to the DQM database should 
+be raw data; use repeatable automated software or programming routine to process any shoreside data.  Include 
+a description of this process in the DPIP.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Data Reporting Frequency</TTL><BRK/>
+<BRK/>
+<TXT>Log disposal activities with high temporal and spatial resolution.  Log data as a series of events.  Each set 
+of measurements (time, position, etc.) will be considered an event.  Collect any required information in paragraph 
+REQUIREMENTS FOR REPORTED DATA, that is not an averaged variable (that is, draft and ullage) within 1 second 
+of the reported time.  Measure data with sufficient frequency by the scow system to resolve the events to the 
+accuracy specified in the following table.  Any averaged variable must be collected and computed within this 
+sampling interval.  Reporting intervals must be consistent and not change for the data collected on a given scow.  
+This interval should be documented by the Contractor in the DPIP.</TXT><BRK/>
+<BRK/>
+<TAB WIDTH="98">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="5">
+      <COL AUTOWIDTH="0" WIDTH="70.50"/>
+      <COL AUTOWIDTH="0" WIDTH="249.00"/>
+      <COL AUTOWIDTH="0" WIDTH="69.00"/>
+      <COL AUTOWIDTH="0" WIDTH="69.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING"><HL3>Event Type</HL3></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL3>Event Trigger Descriptions</HL3></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL3>Event Time Resolution</HL3></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL3>Event Position Resolution</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="120.00">
+         <CEL>
+<DTA TYPE="STRING">Loading</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL3> No change in position with hull status closed</HL3><BRK/>An elapsed time of 1 hour since the last event.<BRK/><HL4>NONCLOSURE</HL4><BRK/>In the event a scow has completed an open water disposal and transited back to a holding station without closing the hull, the sampling must be changed to once per hour.<BRK/><BRK/></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1 minute</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">N/A</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">Sailing</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL3>Change in position with hull status closed</HL3><BRK/>Time from the last sample equals 1 minute.<BRK/></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1 second</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">plus or minus <MET>3 m</MET><ENG>10 ft</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="168.00">
+         <CEL>
+<DTA TYPE="STRING">Offloading</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL3>Offloading material, hull status reported as open</HL3><BRK/>A position must be recorded within 1 minute arrival at the offload location and within one secnd of the material starting to be removed from scow.  The time from the last sample equals 1 minute.<BRK/><HL4>STANDBY OFFLOADING</HL4><BRK/>In the even a scow is not being actively offloaded at the offload location for a time equal to one hour, the sampling interval must be equal to once an hour.</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1 second<BRK/><BRK/><BRK/><BRK/><BRK/><BRK/><BRK/><BRK/><BRK/>1 minute</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">plus or minus <MET>3 m</MET><ENG>10 ft</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="227.25">
+         <CEL>
+<DTA TYPE="STRING">Open Water Disposal</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL3>Hull status open</HL3><BRK/>A data point must be recorded within 1 second of the hull status going from closed to open and again within 1 second of the hull status going from open to closed.  Between these events, report the data at equal  interval from 6 to 12 seconds. This interval must always remain consistent for the dredge plant.</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1 second</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">plus or minus <MET>3 m</MET><ENG>10 ft</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<BRK/>
+<TXT>Example: The scow is stationary for 1 hour and 15 minutes, and then it sails to the disposal area.  You should 
+have a "Loading/Stationary" event at time 0, time 1 hour, and time 1 hour and 15 minutes.  Then, for "Sailing," 
+within 1 second of an elapsed time of 1 minute from the 1 hour and 15 minutes event, another event occurs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Data Transmission to the Web Service</TTL><BRK/>
+<BRK/>
+<TXT>Use a Simple Object Access Protocol (SOAP) web service to report sensor data to the DQM database.  Transmit data 
+as it is collected in real time and pushed to the DQM web service.  If the web service is not available or returns 
+an error message, store the data in a queue and transmit upon re-establishment of the connection, starting with 
+the oldest data in the queue and continuing until real-time transmission is restored.  Delays in pushing real-time 
+data to the DQM database should not exceed four hours.  Exceptions to these requirements may be granted by the 
+DQM Support Center on a case-by-case basis with consideration for contract-specific requirements, site-specific 
+conditions, and extreme weather events.</TXT><BRK/>
+<BRK/>
+<TXT>Contact <URL HREF="dqm-support@usace.army.mil">dqm-support@usace.army.mil</URL> to obtain the web service URL and the appropriate key credentials and communication 
+protocol.</TXT><BRK/>
+<BRK/>
+<TXT>The data transmission method call takes two arguments:  a string containing the plant identifier assigned by 
+the DQM Support Center and a second string containing the XML-formatted sensor data.  The method returns the 
+string "OK" if the data is received.  If the data is not received, either the web service or the client application 
+throws an error.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>XML-Formatted Sensor Data String</TTL><BRK/>
+<BRK/>
+<TXT>Pass each scow event as a string on one continuous line of data.  The example below is broken up by variable 
+for ease of reading:<BRK/>
+<BRK/>
+&lt;?xml version="1.0"?&gt;<BRK/>
+&lt;SCOW_DREDGING_DATA version="2.5"&gt;<BRK/>
+   &lt;SCOW_NAME&gt;AU1994&lt;/SCOW_NAME&gt;<BRK/>
+   &lt;PLANT_IDENTIFIER&gt;1999&lt;/PLANT_IDENTIFIER&gt;<BRK/>
+   &lt;CONTRACT&gt;W123BA-09-D-0087_RL01&lt;/CONTRACT&gt;<BRK/>
+   &lt;TRIP_NUMBER&gt;34&lt;/TRIP_NUMBER&gt;<BRK/>
+   &lt;X_POSITION&gt;-81.670632&lt;/X_POSITION&gt;<BRK/>
+   &lt;Y_POSITION&gt;41.528987&lt;/Y_POSITION&gt;<BRK/>
+   &lt;DATE_TIME&gt;2010-08-14 10:50:15&lt;/DATE_TIME&gt;<BRK/>
+   &lt;SCOW_SPEED&gt;0.0&lt;/SCOW_SPEED&gt;<BRK/>
+   &lt;SCOW_COURSE&gt;0.0&lt;/SCOW_COURSE&gt;<BRK/>
+   &lt;HULL_STATUS&gt;OPEN&lt;/HULL_STATUS&gt;<BRK/>
+   &lt;OFFLOADING&gt;FALSE&lt;/OFFLOADING&gt;<BRK/>
+   &lt;SCOW_HEADING&gt;&lt;/SCOW_HEADING&gt;<BRK/>
+   &lt;SCOW_FWD_DRAFT&gt;&lt;/SCOW_FWD_DRAFT&gt;<BRK/>
+   &lt;SCOW_AFT_DRAFT&gt;&lt;/SCOW_AFT_DRAFT&gt;<BRK/>
+   &lt;SCOW_AVG_DRAFT&gt;&lt;/SCOW_AVG_DRAFT&gt;<BRK/>
+   &lt;ULLAGE_FWD&gt;&lt;/ULLAGE_FWD&gt;<BRK/>
+   &lt;ULLAGE_AFT&gt;&lt;/ULLAGE_AFT&gt;<BRK/>
+   &lt;ULLAGE_AVG&gt;&lt;/ULLAGE_AVG&gt;<BRK/>
+   &lt;SCOW_BIN_VOLUME&gt;&lt;/SCOW_BIN_VOLUME&gt;<BRK/>
+   &lt;SCOW_DISPLACEMENT&gt;&lt;/SCOW_DISPLACEMENT&gt;<BRK/>
+   &lt;ADDITIONAL_DATA&gt;Some more scow info, if needed&lt;/ADDITIONAL_DATA&gt;<BRK/>
+&lt;/SCOW_DREDGING_DATA&gt;<BRK/>
+<BRK/>
+Format DATE_TIME values as YYYY-MM-DD HH:MM:SS, as shown above.  If, for any reason, a field has no value, the 
+enclosing XML tags should  be sent with nothing between them (for example, &lt;DRAFT_AFT&gt;&lt;/DRAFT_AFT&gt;).  
+The web service cannot handle a "null" value or any other indicators of no value collected.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contractor Data Backup</TTL><BRK/>
+<BRK/>
+<TXT>Maintain an archive of all data sent to the DQM database during the dredging contract.  The Contracting Officer's 
+Representative (COR) may require, at no increase in the contract price, that the Contractor provide a copy of 
+these data covering specified time periods.  Provide the data in the HTML format which would have been transmitted 
+to the DQM database.  Submit data via storage medium acceptable to the COR.</TXT><BRK/>
+<BRK/>
+<TXT>At the end of the dredging contact, contact the DQM Support Center prior to discarding the data.  The DQM Support 
+Center will verify that all data has been received and appropriately archived before giving the Contractor discard 
+permission.  Record in a separate section at the end of the scow's onsite copy of the DPIP the following information:</TXT><BRK/>
+<BRK/>
+<LST>Person who made the call</LST><BRK/>
+<LST>Date of the call</LST><BRK/>
+<LST>DQM representative who gave permission to discard</LST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PERFORMANCE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor's DQM system must be fully operational at the start of dredging operations and fully certified 
+prior to moving dredge material on the contract (see paragraph NATIONAL DREDGING QUALITY MANAGEMENT PROGRAM CERTIFICATION).  
+To meet contract requirements for operability, in addition to certification, the Contractor's system must provide 
+a data string with values for all parameters while operating, as described within the specifications.  Additionally, 
+all hardware must be compliant with DPIP requirements (see paragraph DREDGE PLANT INSTRUMENTATION PLAN (DPIP)).  
+Quality data strings are considered to be those providing values for all parameters reported when operating according 
+to the specification.  Make repairs necessary to restore data return compliance within 48 hours.  Failure by 
+the Contractor to report the required data within the specified time window for scow measurements (see paragraph 
+DATA REPORTING FREQUENCY, and paragraph DATA TRANSMISSION TO THE WEB SERVICE) and failure to receive DQM certification 
+prior to dredging will result in withholding of up to 10 percent of the contract progress payment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>LIST OF ITEMS TO BE PROVIDED BY THE CONTRACTOR</TTL><BRK/>
+<BRK/>
+<LST>DPIP - <URL>https://dqm.usace.army.mil</URL> </LST><BRK/>
+<TAI OPT="MONITORING"><ITM><URL>https://www.sam.usace.army.mil/Missions/Spatial-Data-Branch/Dredging-Quality-Management/</URL></ITM></TAI><BRK/>
+<TAI OPT="ULLAGE"><ITM>Paragraph DREDGE PLANT INSTRUMENTATION PLAN (DPIP)</ITM></TAI><BRK/>
+<BRK/>
+<LST>DQM SYSTEM</LST><BRK/>
+<ITM>Sensor instrumentation - Paragraph REQUIREMENTS FOR REPORTED DATA</ITM><BRK/>
+<BRK/>
+<LST>SCOW DATA</LST><BRK/>
+<ITM>Event documentation - Paragraph DATA REPORTING FREQUENCY</ITM><BRK/>
+<ITM>Data reports - Paragraph DATA TRANSMISSION TO THE WEB SERVICE</ITM><BRK/>
+<BRK/>
+<LST>QA EQUIPMENT ON THE DREDGE</LST><BRK/>
+<ITM>Clear and accurate draft marks</ITM><BRK/>
+<TAI OPT="ULLAGE"><ITM>Ullage tape</ITM></TAI><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

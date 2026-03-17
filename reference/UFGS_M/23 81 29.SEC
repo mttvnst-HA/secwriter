@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-23 81 29 (February 2020)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 81 29</SCN><BRK/>
+<BRK/>
+<STL>VARIABLE REFRIGERANT FLOW HVAC SYSTEMS</STL><BRK/>
+<DTE>02/20</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>variable refrigerant flow (VRF) type air conditioning 
+and heat pumps systems and accessories</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification uses tailoring options to select the required protocol for control system interfaces 
+for equipment.  These tailoring options are:<BRK/>
+   1. BACnet Only<BRK/>
+   2. LonWorks Only<BRK/>
+<BRK/>
+You have currently SELECTED the following options:<BRK/>
+----------------<BRK/>
+<TAI OPT="BACNET ONLY">  BACnet Only</TAI><BRK/>
+<TAI OPT="LONWORKS ONLY">  LonWorks Only</TAI><BRK/>
+----------------<BRK/>
+If more than one item appears between the dashes above you have included more than one services tailoring option 
+and need to DESELECT tailoring options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This Section MUST be used in conjunction with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC (as 
+well as Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC and either Section <SRF>23 09 23.01</SRF> LONWORKS 
+DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS or Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL 
+CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS).  Be sure to include the appropriate Sections and to select 
+matching protocol tailoring options in each of them.</NPR><BRK/>
+<BRK/>
+<NPR>VRF systems may not be able to meet the open protocol requirements of Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL 
+FOR HVAC, <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS and 
+<SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.  UFC 3-410-02 includes 
+a process by which specific systems can be excepted from some of the open protocol requirement and permitted to 
+implement proprietary communication.  Refer to UFC 3-410-02 for the requirements to permit these exceptions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="ENERGY STAR"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  You have currently SELECTED Energy Star in the tailoring options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SUMMARY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  VRF systems are manufactured with limited dehumidification and outside air ventilation capability.  Selected 
+systems must support an overall design that meets UFC 3-410-01 HEATING, VENTILATING, AND AIR CONDITIONING SYSTEMS 
+for dehumidification and ventilation requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a complete[ Air Source][ Water Source],[ Cooling Only][ Heat Pump][ Simultaneous Heating an Cooling][ Simultaneous Heating an Cooling with 
+Heat Recovery] type Variable Refrigerant Flow (VRF) System consisting of one or more outdoor compressor units and multiple indoor fan coil units 
+as specified in this Section and in accordance with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC applies to the VRF system, and all work under this Section must be in accordance 
+with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC including but not limited to the open system, protocol, installation, submittal, 
+testing and training requirements of that Section.  Unless the specific VRF system being installed is specifically excepted from the open 
+protocol requirements by Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC, the use of <TAI OPT="LONWORKS ONLY">non-<RID>CEA-709.1-D</RID></TAI><TAI OPT="BACNET ONLY"> Non-<RID>ASHRAE 135</RID></TAI> networks are 
+prohibited.</OLI><BRK/>
+<BRK/>
+<OLI>The VRF control system must be in accordance with Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</OLI><BRK/>
+<BRK/>
+<OLI>The complete system must be a tested combination in accordance with <RID>AHRI 1230</RID>.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When specifying a VRF system, coordinate cooling only or heating/cooling selection with VRF system selection.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Provide[ cooling only][ heating /cooling][ two stage heating/cooling] control for each zone.[  Second stage heating will activate supplemental 
+heating.]</OLI><BRK/>
+<BRK/>
+<OLI>For systems which simultaneously heat and cool, the outdoor units must be interconnected to the indoor units through branch selector boxes 
+in accordance with the manufacturer's engineering data detailing each indoor unit.  The indoor units and outdoor must be connected to the 
+branch selector boxes utilizing the manufacturer's specified piping joints and headers.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AIR-CONDITIONING, HEATING AND REFRIGERATION INSTITUTE (AHRI)</ORG><BRK/><BRK/><RID>AHRI 1230</RID><RTL>(2010; Addendum 1 2011; Addendum 2 2014) Performance Rating of Variable Refrigerant Flow (VRF) Multi-Split Air-Conditioning and Heat Pump Equipment</RTL><BRK/><BRK/><RID>ANSI/AHRI 270</RID><RTL>(2008) Sound Rating of Outdoor Unitary Equipment</RTL><BRK/><BRK/><RID>ANSI/AHRI 495</RID><RTL>(2005) Performance Rating of Refrigerant Liquid Receivers</RTL><BRK/><BRK/><RID>ANSI/AHRI 760</RID><RTL>(2014) Performance Rating of Solenoid Valves for Use With Volatile Refrigerants</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ANSI/ASHRAE 15 &amp; 34</RID><RTL>(2022) ASHRAE Standard 15-Safety Standard for Refrigeration Systems and ANSI/ASHRAE Standard 34-Designation and Safety Classification of Refrigerants</RTL><BRK/><BRK/><RID>ASHRAE 90.1 - IP</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/><RID>ASHRAE 90.1 - SI</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/><RID>ASHRAE 135</RID><RTL>(2024; INT 1-3 2025; Errata 1 2025; INT 4-6 2025; Addenda CU 2025) BACnet—A Data Communication Protocol for Building Automation and Control Networks</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B31.5</RID><RTL>(2022) Refrigeration Piping and Heat Transfer Components</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII</RID><RTL>(2015) Boiler and Pressure Vessel Codes:  Section VIII Rules for Construction of Pressure Vessel</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII D1</RID><RTL>(2023) BPVC Section VIII-Rules for Construction of Pressure Vessels Division 1</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS A5.8/A5.8M</RID><RTL>(2019) Specification for Filler Metals for Brazing and Braze Welding</RTL><BRK/><BRK/><RID>AWS Z49.1</RID><RTL>(2021) Safety in Welding, Cutting and Allied Processes</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A307</RID><RTL>(2023) Standard Specification for Carbon Steel Bolts, Studs, and Threaded Rod 60 000 PSI Tensile Strength</RTL><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM D520</RID><RTL>(2025) Standard Specification for Zinc Dust Pigment</RTL><BRK/><BRK/><RID>ASTM E84</RID><RTL>(2025) Standard Test Method for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/><RID>ASTM F104</RID><RTL>(2011; R 2020) Standard Classification System for Nonmetallic Gasket Materials</RTL><BRK/><BRK/></REF><REF><ORG>CONSUMER ELECTRONICS ASSOCIATION (CEA)</ORG><BRK/><BRK/><RID>CEA-709.1-D</RID><RTL>(2014) Control Network Protocol Specification</RTL><BRK/><BRK/></REF><REF><ORG>MANUFACTURERS STANDARDIZATION SOCIETY OF THE VALVE AND FITTINGS INDUSTRY (MSS)</ORG><BRK/><BRK/><RID>MSS SP-58</RID><RTL>(2025) Pipe Hangers and Supports - Materials, Design and Manufacture, Selection, Application, and Installation</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/><RID>NEMA MG 2</RID><RTL>(2014) Safety Standard for Construction and Guide for Selection, Installation and Use of Electric Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-DTL-5541</RID><RTL>(2006; Rev F; Notice 2 2024) Chemical Conversion Coatings on Aluminum and Aluminum Alloys</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF ENERGY (DOE)</ORG><BRK/><BRK/><RID>Energy Star</RID><RTL>Energy Star Energy Efficiency Labeling System (FEMP)</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>40 CFR 82</RID><RTL>Protection of Stratospheric Ozone</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 207</RID><RTL>(2022) UL Standard for Safety Refrigerant-Containing Components and Accessories, Nonelectrical</RTL><BRK/><BRK/><RID>UL 429</RID><RTL>(2013; Reprint Mar 2021) Electrically Operated Valves</RTL><BRK/><BRK/><RID>UL 586</RID><RTL>(2009; Reprint Sep 2022) UL Standard for Safety High-Efficiency Particulate, Air Filter Units</RTL><BRK/><BRK/><RID>UL 900</RID><RTL>(2015; Reprint Aug 2022) UL Standard for SafetyStandard for Air Filter Units</RTL><BRK/><BRK/><RID>UL 1995</RID><RTL>(2015; Reprint Aug 2022) UL Standard for Safety Heating and Cooling Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following submittals are required in addition to submittals specified in Section <SRF>23 09 00</SRF> INSTRUMENTATION 
+AND CONTROL FOR HVAC.  Submittals specified in Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC are required 
+for the VRF system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Qualification Of Installer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Verification Of Existing Conditions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>VRF System Contractor Design Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coil Corrosion Protection</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Standard Catalog Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sample Warranty</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Refrigerant SDS Sheets</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Engineering Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>System Performance Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Service Organizations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Warranty</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Electronic Refrigerant Leak Detector Calibration</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ozone Depleting Substances Technician Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-09 Manufacturer's Field Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Refrigerant Charging</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Posted Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Inventory</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<TXT>Complete VRF systems must be purchased from a single supplier.  The VRF system supplier must be responsible for providing a fully functional VRF 
+system.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>VRF System Contractor Design Drawings</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The refrigerant piping system plans are required to be apart of the approval package by the manufacturer 
+for complete system installations.  Modify Section <SRF>23 23 00</SRF> REFRIGERANT PIPING to indicate that the piping systems 
+plans for the VRF will be packaged with the VRF System Contractor Design Drawings in a single transmittal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select a minimum of five weeks for the shop drawings submittal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit VRF System Contractor Design Drawings drawings [5][_____] weeks prior to purchasing the VRF components in a single transmittal.  Equipment 
+layouts must be drawn to scale.  Shop drawings must be approved by the VRF manufacturers representative.  Include approval with name and contact 
+information of VRF manufacturer's representative in the submittal. Place separation sheets before each of the following items covering each item 
+with title and number.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Equipment layouts which identify assembly and installation details.  Identify scheduled items with indicating marks.  Include manufacturer's 
+selection report for equipment, components and fittings.</OLI><BRK/>
+<BRK/>
+<OLI>Plans and elevations which identify dimensioned clearances required for maintenance and operation.  Show access panels with dimensions.</OLI><BRK/>
+<BRK/>
+<OLI>Foundation drawings, bolt-setting information, and foundation bolts.</OLI><BRK/>
+<BRK/>
+<OLI>Details which include loadings and type of frames, brackets, stanchions, guides, anchors or other supports.  Drawings must conform to Section 
+<SRF>23 05 48.19</SRF> SEISMIC BRACING FOR HVAC.</OLI><BRK/>
+<BRK/>
+<OLI>Installation details which includes refrigerant type and charge weight for the system (not only the factory-supplied outdoor unit).  Indicate 
+factory setpoints for superheat/subcooling, target evaporating/condensing and corresponding refrigerant pressures/temperatures.  Also include 
+saturation reset schedule.</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant piping system plans as required by Section <SRF>23 23 00</SRF> REFRIGERANT PIPING.  Piping layouts must be to scale and piping must have 
+radial and linear dimensions identifying pipe type.  Identify each refrigerant circuit and indicate refrigerant type and mass.  Indicate 
+piping expansion components and directions of thermal expansion.  Piping layouts must be in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Schedules of equipment, valves, and manufacturer fittings.  Mark each item with a common type identifier and unique number.</OLI><BRK/>
+<BRK/>
+<OLI>Calculations for refrigerant mass and pipe expansion.</OLI><BRK/>
+<BRK/>
+<OLI>Sequence of Operations of system and components.</OLI><BRK/>
+<BRK/>
+<OLI>Calculations demonstrating compliance with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Qualifications</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Qualification Of Installer</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  It is the responsibility of the Designer of Record to validate experience when reviewing Qualifications</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select a minimum of three copies of qualifications for submittal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit [3][_____] copies of qualifications prior to installation.  The installers must be trained and qualified to install the same type of VRF 
+system components to be installed under this contract by the same manufacturer.  Include training certificates in submittal.  The installer must 
+have performed three complete installations of VRF systems of the same type and manufacturer that resulted in successful commissioning. Include 
+project VRF installation and product information, location, customer contact information and VRF manufacturer representative contact information.  
+The customer and VRF representative will be contacted to validate information given.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Ozone Depleting Substances Technician Certification</SUB></TTL><BRK/>
+<BRK/>
+<TXT>All technicians working on equipment that contain ozone depleting refrigerants must be certified as a Section 608 Technician to meet requirements 
+in <RID>40 CFR 82</RID>, Subpart F.  Provide copies of technician certifications to the Contracting Officer at least 14 calendar days prior to work on any 
+equipment containing these refrigerants.</TXT><BRK/>
+<BRK/>
+<TXT>If all products do not contain any refrigerants identified in 40 CFR 82, submit all refrigerant SDS sheets and a general statement of exemption 
+from 40 CFR 82 in alternate to the certifications.  Statement of exemption must indicate all equipment containing refrigerants with respective 
+refrigerant types.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are standard products of a manufacturer regularly engaged in the manufacturing of such products, which are 
+of a similar material, design and workmanship.  The standard products must have been in satisfactory commercial or industrial use for 3 years immediately 
+prior to the solicitation of this contract.  The 3 year use includes applications of equipment and materials under similar circumstances and of 
+similar size.  The 3 years' experience must be satisfactorily completed by a product which has been sold on the commercial market through advertisements, 
+manufacturer's catalogs, or brochures.  Products must be supported by a service organization.  Ensure system components are environmentally suitable 
+for the indicated geographic locations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Manufacturer's Engineering Data</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit VRF manufacturer's engineering data with the shop drawings under separate cover.  Strike out irrelevant items and options not to be installed.  
+Provide all input and output reports for all selection procedures required by the manufacturer and as required by this section.  Engineering data 
+must include: </TXT><BRK/>
+<OLG><BRK/>
+<OLI>Selection Procedures:</OLI><BRK/>
+<OLI LEVEL="2">Indoor and Outdoor Units</OLI><BRK/>
+<OLI LEVEL="2">Branch Selector Units</OLI><BRK/>
+<OLI LEVEL="2">Piping Material and Fittings</OLI><BRK/>
+<OLI LEVEL="2">Refrigerant Mass for system</OLI><BRK/>
+<OLI LEVEL="2">Refrigerant Classification</OLI><BRK/>
+<BRK/>
+<OLI>System Efficiency Curves/Data including:</OLI><BRK/>
+<OLI LEVEL="2">Efficiency correlated with OAT</OLI><BRK/>
+<OLI LEVEL="2">At least five (5) data points covering full range of operation</OLI><BRK/>
+<OLI LEVEL="2">Minimum and maximum values over the operational range</OLI><BRK/>
+<OLI LEVEL="2">Efficiency at Standard AHRI conditions.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Manufacturer's Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit VRF manufacturer's instructions with the shop drawings under separate cover.  Strike out irrelevant items and options not to be installed.  
+Provide with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Installation:  Include mechanical, electrical, controls and piping complete installation requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Operation: Include startup, normal operation and shutdown procedures.</OLI><BRK/>
+<BRK/>
+<OLI>Maintenance: Include preventative.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>PROJECT SEQUENCING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include a project sequencing table here or include sequencing for this section in the table for Section 
+<SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Project sequencing must be in accordance with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect stored items from the weather, humidity and temperature variations, dirt and dust, or other contaminants.  Properly protect and care for 
+all material both before and during installation.  Submit an <SUB>inventory</SUB> of all the stored items.  Replace any materials found to be damaged, at 
+no additional cost to the Government.  During installation, keep piping and similar openings capped to keep out dirt and other foreign matter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WARRANTY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Manufacturer's provide up to a 10 year warranty for manufacturer components if the installation is in accordance 
+with the manufacturer specific installation requirements.  All installation requirements for each manufacturer 
+are categorically similar but will require manufacturer specific methods in the selection, designing, installation 
+and commissioning of the complete system.  If installing a complete system, research the specific VRF type such 
+as cooling only, heat pump or simultaneous heating/cooling and determine the maximum common warranty provided 
+among at least three of the manufacturers for the specific system type.  Select the maximum common warranty duration 
+for the warranty duration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide VRF manufactured equipment with the [Manufacturer's Standard Warranty.] [Manufacturer's Standard Warranty or [_____] year manufacturer's 
+warranty, whichever is the longer duration] in addition to the Warranty of Construction.  Submit<SUB> Sample Warranty</SUB> prior to construction.  Compare 
+warranty requirements with the requirements of this contract and identify discrepancies in the submittal that would prevent coverage of warranty 
+by the manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Inapplicable equipment and system requirements will be deleted or modified in all paragraphs to suit the 
+system designed.  Coordinate the standard and design option features typical for each VRF type air conditioning/Heat 
+Pump unit and individual installation.  Care must be taken to avoid specifying design options which are generally 
+unavailable in certain combinations or are inappropriate for the application.</NPR><BRK/>
+<BRK/>
+<NPR>Projects must comply with the safety standards defined in ANSI/ASHRAE 15 &amp; 34.  Designers will be responsible 
+for thoroughly researching and implementing the ANSI/ASHRAE 15 &amp; 34 safety requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All products used to meet this specification must meet the indicated requirements, but not all products specified here will be required by every 
+project.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>MATERIALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Select a minimum of five weeks for the Manufacturer's standard catalog data </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide <SUB>Manufacturer's standard catalog data</SUB>, at least [5 weeks] [_____] prior to the purchase or installation of a particular component, highlighted 
+to show material, size, options, performance charts and curves, in adequate detail to demonstrate compliance with contract requirements.  If field 
+installed vibration isolation is specified for a unit, include vibration isolator literature containing catalog cuts and certification that the 
+isolation characteristics of the isolators provided meet the manufacturer's recommendations.  Submit data for each specified component.  Minimum 
+efficiency requirements must be in accordance with<MET> <RID>ASHRAE 90.1 - SI</RID></MET><ENG> <RID>ASHRAE 90.1 - IP</RID></ENG>.</TXT><BRK/>
+<BRK/>
+<TAI OPT="NAVY,ARMY"><SPT><TTL>Performance Requirements</TTL><BRK/>
+<TAI OPT="AIR FORCE"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not use the following Energy Efficiency paragraph and subparagraphs for Air Force Projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<SPT><TTL>Energy Efficiency</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment meeting the efficiency requirements as stated within this section and provide documentation in conformance with Section 
+<SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING paragraph ENERGY EFFICIENT PRODUCTS.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ENERGY STAR tailoring option is in this subpart.  Research available ENERGY STAR products and if three 
+or more different manufacturers of the same type VRF specified in this SECTION are listed then select ENERGY STAR.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  10 CFR 436.42 specifies that <TAI OPT="ENERGY STAR">ENERGY STAR qualified and </TAI>FEMP designated products may be assumed to be life-cycle 
+cost effective.  Equipment having a lower efficiency may be specified if the designer determines the lower efficiency 
+equipment to be more life-cycle cost effective.  In making such a determination, the designer should rely on the 
+life-cycle cost analysis method in 10 CFR 436, Subpart A.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide energy efficiency curve and data of EFFICIENCY vs. OAT.  Provide at least five data points over the full range of operation capturing the 
+minimums and maximums.</TXT><BRK/>
+<BRK/>
+<TAI OPT="ENERGY STAR"><SPT><TTL>Variable Refrigerant Flow Multi-Split Air Conditioners</TTL><BRK/>
+<BRK/>
+<TXT>Information on <RID>Energy Star</RID> requirements can be found at <URL HREF="https://www.energystar.gov/products/heating_cooling/light_commercial_heating_cooling/light_commercial_hvac_key_product_criteria">https://www.energystar.gov/products/heating_cooling/light_commercial_<BRK/>
+heating_cooling/light_commercial_hvac_key_product_criteria</URL></TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="ENERGY STAR"><SPT><TTL>Variable Refrigerant Flow Multi-Split Heat Pumps</TTL><BRK/>
+<BRK/>
+<TXT>Information on <RID>Energy Star</RID> requirements can be found at <URL HREF="https://www.energystar.gov/products/heating_cooling/light_commercial_heating_cooling/light_commercial_hvac_key_product_criteria">https://www.energystar.gov/products/heating_cooling/light_commercial_<BRK/>
+heating_cooling/light_commercial_hvac_key_product_criteria</URL></TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>Electrical Equipment / Motors</TTL><BRK/>
+<BRK/>
+<TXT>Provide electrical equipment, motors, motor efficiencies, and wiring which are in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  
+Electrical motor driven equipment specified must be provided complete with motors, motor starters, and controls.  Electrical characteristics must 
+be as shown, and unless otherwise indicated and field wiring must be in accordance with manufacturer's instructions.  All motor(s):</TXT><BRK/>
+<OLG><BRK/>
+<OLI><MET> 746 W</MET><ENG> 1 horsepower</ENG> and above must be the premium efficiency type in accordance with <RID>NEMA MG 00001</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Conform to <RID>NEMA MG 00001</RID> and <RID>NEMA MG 2</RID> and be of sufficient size to drive the equipment at the specified capacity without exceeding the 
+nameplate rating.</OLI><BRK/>
+<BRK/>
+<OLI>Continuous duty with the enclosure specified.</OLI><BRK/>
+<BRK/>
+<OLI>Starters must be provided complete with thermal overload protection and other appurtenances necessary for the motor control indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Furnished with a magnetic across-the-line or reduced voltage type starter as required by the manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Duty requirements must allow for maximum frequency start-stop operation and minimum encountered interval between start and stop.</OLI><BRK/>
+<BRK/>
+<OLI>Must be sized for all applicable loads.</OLI><BRK/>
+<BRK/>
+<OLI>Bearings with grease supply fittings must have grease relief to outside of enclosure.</OLI><BRK/>
+<BRK/>
+<OLI>[Manual][Automatic] control and protective or signal devices required for the operation specified and any control wiring required for controls 
+and devices specified, but not shown, must be provided.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  EPA, per the Significant New Alternative Policy rule, reviews refrigerant substitutes on the basis of ozone 
+depletion potential, global warming potential, toxicity, flammability, and exposure potential.  Lists of acceptable 
+and unacceptable substitutes are updated several times each year.  A chronological list of SNAP updates is available 
+at <URL HREF="http://www.epa.gov/ozone/snap/refrigerants/lists/index.html">http://www.epa.gov/ozone/snap/refrigerants/lists/index.html</URL> or from the stratospheric ozone information hotline 
+at 1 (800) 296-1996.  Reducing ozone depletion and global warming potential by reducing or eliminating CFC, and 
+reducing or eliminating HCFC and Halon use in air conditioning equipment is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Refrigerants must have number designations and safety classifications in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  Refrigerants must have an Ozone 
+Depletion Potential (ODP) no greater than 0.0, with the exception of R-123.  Provide <SUB>Refrigerant SDS sheets</SUB> for all refrigerants.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><SPT><TTL>Safety Devices</TTL><BRK/>
+<BRK/>
+<TXT>Exposed moving parts, parts that produce high operating temperature, parts which may be electrically energized, and parts that may be a hazard 
+to operating personnel must be insulated, fully enclosed, guarded, or fitted with other types of safety devices.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CONTROLS</TTL><BRK/>
+<BRK/>
+<TXT>The control system, components and network must be in accordance with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC</TXT>.<BRK/>
+<BRK/>
+<SPT><TTL>Zone Control</TTL><BRK/>
+<BRK/>
+<TXT>Provide a Space Sensor Module, in accordance with Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC, for each fan coil unit unless 
+otherwise indicated in contract drawings and with the following additional requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Displays the current temperature, temperature setpoint, fans status, occupancy status and conditioning mode at the same time.  If information 
+is displayed electronically then it must be illuminated.</OLI><BRK/>
+<BRK/>
+<OLI>Temperature setpoint adjustment in one degree increments.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Keep bracketed text for override button if override is required.  Specify the maximum amount of time for 
+override accumulation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Fans speed control (At least: High-low-Auto).</OLI><BRK/>
+<BRK/>
+[<OLI>Occupancy override button which changes the mode of the zone to occupied for one hour per press of occupancy override button with [3][_____] 
+hours maximum at any instance.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT></SPT><SPT><TTL>INDOOR FAN COIL UNITS</TTL><BRK/>
+<BRK/>
+<TXT>Provide with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Factory complete, tested and pre-wired with all necessary electronic and refrigerant controls.</OLI><BRK/>
+<BRK/>
+<OLI>Equipped with auto-restart function and test run capability either via a switch or controller.</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant: Refrigerant circuits factory-charged with dehydrated inert gas.</OLI><BRK/>
+<BRK/>
+<OLI>Coils: Direct expansion type constructed from copper, aluminum, or copper and aluminum.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If ECM are required, select ECM, otherwise select "or multi-speed."</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Fans: Direct-drive, with statically and dynamically balanced impellers; variable speed [ECM][or multi-speed supporting at least high and 
+low speeds] unless otherwise indicated; motor thermally protected.</OLI><BRK/>
+<BRK/>
+<OLI>Return Air Filter: Washable long-life net filter with mildew proof resin, or replaceable, unless otherwise indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Condensate Drainage: Built-in condensate drain pan with drain connection.</OLI><BRK/>
+<BRK/>
+<OLI>Dedicated electronic modulating refrigerant expansion and flow control.</OLI><BRK/>
+<BRK/>
+<OLI>Unit must be in accordance with <RID>UL 1995</RID> and <RID>AHRI 1230</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>For units with Built-In Condensate Pumps, provide condensate safety shutoff and alarm.  For units without Built-In Condensate Pump, provide 
+built in or field supplied overflow protection.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Concealed-In-Ceiling Units</TTL><BRK/>
+<BRK/>
+<TXT>Provide with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Ducted horizontal discharge and return; galvanized steel cabinet in accordance with Section <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION.</OLI><BRK/>
+<BRK/>
+<OLI>Field adjustable external static pressure switch for high efficiency filter operation.</OLI><BRK/>
+<BRK/>
+<OLI>Switch box accessible from side or bottom.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Recessed Ceiling Units</TTL><BRK/>
+<BRK/>
+<TXT>Provide with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Four-way airflow cassette with central return air grille, for installation in a fixed ceiling, unless otherwise indicated.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with the end user for color selection.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Exposed Housing: [White][_____], impact resistant, with washable decoration panel.</OLI><BRK/>
+<BRK/>
+<OLI>Supply Airflow Adjustment: </OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Via [motorized][manual] louvers which can be horizontally and vertically  adjusted from 0 to 90 degrees.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Field-modifiable to 3-way and 2-way airflow.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Wall Surface-Mounted Units</TTL><BRK/>
+<BRK/>
+<TXT>Provide with the following:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with the end user for color selection.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Finished [white][_____] casing, with removable front grille; sound insulation; wall mounting plate; condensate drain pan.</OLI><BRK/>
+<BRK/>
+<OLI>Airflow Control: Auto-swing louver that closes automatically when unit stops; adjustable discharge angle, set using remote controller; 
+upon restart, discharge angle defaulting to same angle as previous operation.</OLI><BRK/>
+<BRK/>
+<OLI>Fan: Direct-drive cross-flow type.</OLI><BRK/>
+<BRK/>
+<OLI>Condensate Drain Connection: Side (end), not concealed in wall.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>OUTDOOR COMPRESSOR UNIT</TTL><BRK/>
+<BRK/>
+<TXT>Provide with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The outdoor unit must have one or more variable capacity compressors or alternative method resulting in three or more steps of capacity 
+needed to load match the indoor unit fan coils at all times.</OLI><BRK/>
+<BRK/>
+<OLI>The unit must be factory complete, tested and pre-wired with all necessary electronic and refrigerant controls.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select 58 dB(A) at<MET> 1 meter</MET><ENG> 3 feet</ENG> unless otherwise approved by the Contracting Officer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>The sound pressure dB(A) at rated conditions must be a value of [58][_____] decibels at<MET> 1 meter</MET><ENG> 3 feet</ENG> from the front of the unit when 
+rated in accordance with <RID>ANSI/AHRI 270</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>The unit must automatically restart normal operation after a power failure of any duration without reprogramming or manual assistance.</OLI><BRK/>
+<BRK/>
+<OLI>Oil recovery cycle must be automatic occurring  a minimum of 2 hours after start of operation and then at least every 8 hours of operation.</OLI><BRK/>
+<BRK/>
+<OLI>Each outdoor unit must have it's own dedicated power feed, each with disconnect and main power circuit breaker.</OLI><BRK/>
+<BRK/>
+<OLI>The unit must be in compliance with <RID>ANSI/ASHRAE 15 &amp; 34</RID>, factory tested, cleaned, dehydrated, charged, and sealed.  Provide refrigerant 
+charging valves.  Filter-drier must be provided in liquid line.</OLI><BRK/>
+<BRK/>
+<OLI>The outdoor units capacity must meet or exceed the scheduled value in the contract drawings.  The ratio of the outdoor unit capacity to 
+the total connected indoor capacity must be in accordance with the manufacturer's recommendations for selecting the outdoor unit.</OLI><BRK/>
+<BRK/>
+<OLI>Unit must be in accordance with <RID>UL 1995</RID> and <RID>AHRI 1230</RID>.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Air-Cooled</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Input final outside air temperatures used in approved final load calculations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>The unit must must have full design cooling capacity at<MET> [_____] degrees C</MET> <ENG>[_____] degrees F</ENG> dry bulb ambient.</OLI><BRK/>
+<BRK/>
+<OLI>For units other than cooling only, the unit must have full design heating capacity at<MET> [_____] degrees C</MET><ENG> [_____] degrees F</ENG> dry bulb ambient.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Water-Cooled</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide condenser water piping and accessories in accordance with Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, AND CONDENSER WATER PIPING SYSTEMS.</OLI><BRK/>
+<BRK/>
+<OLI>Units must have full capacity at heating and cooling water temperature ranges as identified in the contract drawings.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Casing</TTL><BRK/>
+<BRK/>
+<TXT>Construct the unit of zinc coated, heavy-gage (14-gage minimum) galvanized steel.  Provide cabinet panels with lifting handles and water- and air-tight 
+seal.  Insulate all exposed vertical panels, top covers and base pan.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Compressor</TTL><BRK/>
+<BRK/>
+<TXT>Each compressor system must have the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>High pressure safety switch, and internal thermal overload protection.</OLI><BRK/>
+<BRK/>
+<OLI>Factory installed vibration dampeners on all mounting points.</OLI><BRK/>
+<BRK/>
+<OLI>Factory installed crank case heater or other control logic to ensure reliable operation in freezing environments.</OLI><BRK/>
+<BRK/>
+<OLI>Oil separator with an oil balance circuit.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>COMPONENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Fans</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  AIR FORCE tailoring option is in this subpart.  Select AIR FORCE tailoring option for Air Force projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fan wheel shafts must be supported by either maintenance-accessible lubricated antifriction block-type bearings, or permanently lubricated ball 
+bearings.  Unit fans must be selected to produce the flow rate required at the fan total pressure.  Motor starters, if applicable, must be magnetic 
+across-the-line type with a[n][ open][ dripproof][ totally enclosed][ explosion proof] enclosure.  Thermal overload protection must be of the manual 
+or automatic-reset type.  Fan wheels or propellers must be constructed of aluminum or galvanized steel.  Centrifugal fan wheel housings must be 
+of galvanized steel, and both centrifugal and propeller fan casings must be constructed of aluminum or galvanized steel.  Steel elements of fans, 
+except fan shafts, must be hot-dipped galvanized after fabrication or fabricated of mill galvanized steel.  Mill-galvanized steel surfaces and 
+edges damaged or cut during fabrication by forming, punching, drilling, welding, or cutting must be recoated with an approved zinc-rich compound.  
+Fan wheels or propellers must be statically and dynamically balanced.  Forward curved fan wheels must be limited to [_____]<MET> mm</MET><ENG> inches</ENG>.  Direct-drive 
+fan motors must be of the multiple-speed variety.  Belt-driven fans must have adjustable sheaves to provide not less than [_____] percent fan-speed 
+adjustment.  The sheave size must be selected so that the fan speed at the approximate midpoint of the sheave adjustment will produce the specified 
+air quantity.  Centrifugal scroll-type fans must be provided with streamlined orifice inlet and V-belt drive.  Each drive will be independent of 
+any other drive.  Propeller fans must be[ direct-drive][ V-belt] drive type with[ adjustable][ fixed] pitch blades.  V-belt driven fans must be 
+mounted on a corrosion protected drive shaft supported by either maintenance-accessible lubricated antifriction block-type bearings, or permanently 
+lubricated ball bearings.  Each drive will be independent of any other drive.  Drive bearings must be protected with water slingers or shields.  
+V-belt drives must be fitted with guards where exposed to contact by personnel and[ fixed pitch][ adjustable pitch] sheaves.<TAI OPT="AIR FORCE">  Axial fans may not 
+be used to distribute air through duct systems.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Supplemental Electric Heating Coil</TTL><BRK/>
+<BRK/>
+<TXT>Coil must be an electric duct heater in accordance with <RID>UL 1995</RID> and <RID>NFPA 70</RID>.  Coil must be duct- or unit-mounted.  Coil must be of the[ nickel 
+chromium resistor, single stage, strip][ nickel chromium resistor, single stage, strip or stainless steel, fin tubular] type.  Coil must be provided 
+with a built-in or surface-mounted high-limit thermostat interlocked electrically so that the coil cannot be energized unless the fan is energized.  
+Coil casing and support brackets must be of galvanized steel or aluminum.  Coil must be mounted to eliminate noise from expansion and contraction 
+and be completely accessible for service.  Supplemental Electric Resistance Heating controls must be provided to prevent operation when the heating 
+load can be met by the primary source alone during both steady-state operation and setback recovery.  Supplemental heater operation is permitted 
+during outdoor coil defrost cycles.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air Filters</TTL><BRK/>
+<BRK/>
+<TXT>Air filters must be listed in accordance with requirements of <RID>UL 900</RID>, except high efficiency particulate air filters of 99.97 percent efficiency 
+must be as listed under the label service and must meet the requirements of <RID>UL 586</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coil Frost Protection (Defrost Mode)</TTL><BRK/>
+<BRK/>
+<TXT>Provide each circuit with a manufacturer's standard coil frost protection (Defrost Mode) system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Vessels</TTL><BRK/>
+<BRK/>
+<TXT>Pressure vessels must conform to <RID>ASME BPVC SEC VIII D1</RID> or <RID>UL 207</RID>, as applicable for maximum and minimum pressure or temperature encountered.  Where 
+referenced publications do not apply, test pressure components at 1-1/2 times design working pressure.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Liquid Receiver</TTL><BRK/>
+<BRK/>
+<TXT>Receiver must be rated in accordance with the recommendations of <RID>ANSI/AHRI 495</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Suction Accumulator</TTL><BRK/>
+<BRK/>
+<TXT>Accumulators must comply with <RID>UL 207</RID>.  Accumulators over<MET> 15 cm</MET><ENG> 6 inch</ENG> in diameter must comply with <RID>ASME BPVC SEC VIII</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Vertical Type</TTL><BRK/>
+<BRK/>
+<TXT>Provide heat exchanger or heating element around the U-tube in freezing environments.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Horizontal Type</TTL><BRK/>
+<BRK/>
+<TXT>Provide only in non-freezing environments.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Oil Separator</TTL><BRK/>
+<BRK/>
+<TXT>Separator must be the high efficiency type and be provided with removable flanged head for ease in removing float assembly and removable screen 
+cartridge assembly.  Connections to compressor must be as recommended by the compressor manufacturer.  Separator must be provided with an oil float 
+valve assembly or needle valve and orifice assembly, drain line shutoff valve, sight glass and strainer.  Provide an oil separator for each refrigerant 
+circuit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Oil Reservoir</TTL><BRK/>
+<BRK/>
+<TXT>Reservoir capacity must equal one charge of all connected compressors.  Reservoir must be provided with an external liquid gauge glass, plugged 
+drain, and isolation valves.  Vent piping between the reservoir and the suction header must be provided with a<MET> 35 kPa</MET><ENG> 5 psi</ENG> pressure differential 
+relief valve.  Reservoir must be provided with the manufacturer's standard filter on the oil return line to the oil level regulators.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Internal Dampers</TTL><BRK/>
+<BRK/>
+<TXT>Dampers must be parallel blade type with renewable blade seals and be integral to the unitary unit.  Damper provisions must be provided for each 
+outside air intake, exhaust, economizer, and mixing boxes.  Dampers must[ have minimum position stops][ be linked together][ have[ manual][ automatic] 
+modulation] and operate as specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mixing Boxes</TTL><BRK/>
+<BRK/>
+<TXT>Mixing boxes must match the base unit in physical size and must include equally-sized[ flanged] openings, each capable of full air flow. Arrangement 
+must be as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Piping</TTL><BRK/>
+<BRK/>
+<TXT>Provide refrigerant piping external to equipment in accordance with Section <SRF>23 23 00</SRF> REFRIGERANT PIPING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Condensate Drain Piping</TTL><BRK/>
+<BRK/>
+<TXT>Provide condensate drain piping in accordance with Section <SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ductwork</TTL><BRK/>
+<BRK/>
+<TXT>Provide interface to ductwork in accordance with Section <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Solenoid Valves</TTL><BRK/>
+<BRK/>
+<TXT>Solenoid valves must comply with <RID>ANSI/AHRI 760</RID> and <RID>UL 429</RID>, be suitable for continuous duty rated voltage at maximum and minimum encountered pressure 
+and temperature service conditions.  Solenoid valves must be direct-acting or pilot-operating type, packless, seal capped. Manual lifting provisions 
+must be furnished.  Solenoid coils must comply with <RID>NEMA 250</RID> type 4.  Valves must have safe working pressure of 125 percent of maximum working 
+pressure and a maximum operating pressure differential of at least half of the valve maximum working pressure at 85 percent rated voltage.  Valves 
+must have an operating pressure differential suitable for the fluid phase and refrigerant used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Branch Selector Unit</TTL><BRK/>
+<BRK/>
+<TXT>Branch Selector port control must be provided for each connected indoor unit to enable individual heating and cooling selection year round unless 
+otherwise indicated in the contract drawings.  The cabinet must be galvanized steel.  The branch selector units must be factory assembled, wired, 
+piped and run tested.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EQUIPMENT ACCESSORIES AND MISCELLANEOUS EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Refrigerant Leak Detector</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refrigerant leak detectors will be provided as required by the "System Application Requirements" in ANSI/ASHRAE 
+15 &amp; 34.</NPR><BRK/>
+<BRK/>
+<NPR>When a detector is required, the location will be indicated on the drawings.  Detectors are best located between 
+the refrigeration system and the room exhaust.  Sampling points from a detector will be located a maximum of<MET> 458 
+mm</MET><ENG> 18 inches</ENG> above the finished floor since all commonly-used refrigerants are heavier than air.</NPR><BRK/>
+<BRK/>
+<NPR>As a rule of thumb, the distance between any refrigeration system and a refrigerant sampling point shouldn't exceed<MET>
+ 15 m</MET><ENG> 50 feet</ENG>.  In order to meet the recommended<MET> 15 m</MET><ENG> 50 feet</ENG> distance, a mechanical room can be provided with 
+either multiple detectors each with single sampling points or with one detector that has the capability of monitoring 
+at multiple sampling points.  If multiple sampling points are required, enter the number in the appropriate blank 
+below.</NPR><BRK/>
+<BRK/>
+<NPR>As required by ANSI/ASHRAE 15 &amp; 34, when a detector senses refrigerant it must activate an alarm and initiate 
+the room ventilation system.  In regards to alarms, as a minimum indicate that the detector will energize a light 
+on or near the detector as well as a second light installed on the outside wall next to the mechanical room entrance.  
+The exterior light will be provided with a sign that warns personnel entering the mechanical room of a refrigerant 
+release and that a SCBA is required to enter.  If applicable to the installation, include an audible alarm on 
+the exterior of the mechanical room.</NPR><BRK/>
+<BRK/>
+<NPR>Include the electrical design for the alarm system on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>As an additional item, ANSI/ASHRAE 15 &amp; 34 states that open-flame devices (i.e., boilers, etc.) cannot be 
+installed in the same area as a refrigeration system, unless either combustion air for the open-flame device is 
+ducted straight from outside to the device; or the alarm relay from the detector is used to automatically shutdown 
+the combustion process in the event of refrigerant leakage.  Indicate all applicable alarm controls on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Delete the information in the last bracketed sentences if an EMCS is not applicable to the design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide continuously-operating, halogen-specific type refrigerant leak detector.  Detector must be appropriate for the refrigerant in use.  Detector 
+must be specifically designed for area monitoring and must include[ a single sampling point][ [_____] sampling points] installed where indicated.  
+Detector design and construction must be compatible with the temperature, humidity, barometric pressure and voltage fluctuations of the operating 
+area.  Detector must have an adjustable sensitivity such that it can detect refrigerant at or above 3 parts per million (ppm).  Detector must be 
+supplied factory-calibrated for the appropriate refrigerant(s).  Detector must be provided with an alarm relay output which energizes when the 
+detector detects a refrigerant level at or above the TLV-TWA (or toxicity measurement consistent therewith) for the refrigerant in use.  The detector's 
+relay must be capable of initiating corresponding alarms and ventilation system as indicated on the drawings.  Detector must be provided with a 
+failure relay output that energizes when the monitor detects a fault in its operation.[  Detector must be compatible with the facility's energy 
+or utility management and control system (EMCS/UMCS).  The EMCS/UMCS must be capable of generating an electronic log of the refrigerant level in 
+the operating area, monitoring for detector malfunctions, and monitoring for any refrigerant alarm conditions.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Relief Valve/Rupture Disc Assembly</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ANSI/ASHRAE 15 &amp; 34 requires refrigeration systems to be protected with a pressure-relief device that 
+will safely relieve pressure due to fire or other abnormal conditions.  A relief valve/rupture disc assembly is 
+the optimum solution.  The rupture disc will provide visual indication of a release while also providing immediate 
+shutoff once a safe pressure is achieved.</NPR><BRK/>
+<BRK/>
+<NPR>Designer will indicate on the drawings the location of each new relief valve/rupture disc assembly as well as 
+the routing and size of corresponding pressure-relief piping.  The routing and size of new pressure-relief piping 
+will be in accordance with ANSI/ASHRAE 15 &amp; 34.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The assembly must be a combination pressure relief valve and rupture disc designed for refrigerant usage.  The assembly must be in accordance with <RID>
+ASME BPVC SEC VIII D1</RID> and <RID>ANSI/ASHRAE 15 &amp; 34</RID>.  The assembly must be provided with a pressure gauge assembly which will provide local indication 
+if a rupture disc is broken.  Rupture disc must be the non-fragmenting type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Signs</TTL><BRK/>
+<BRK/>
+<TXT>Refrigerant signs must be a medium-weight aluminum type with a baked enamel finish.  Signs must be suitable for indoor or outdoor service.  Signs 
+must have a white background with red letters not less than<MET> 13 mm</MET><ENG> 0.5 inches</ENG> in height.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Installation Identification</TTL><BRK/>
+<BRK/>
+<TXT>Provide each new refrigeration system with a refrigerant sign which indicates the following as a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Contractor's name.</OLI><BRK/>
+<BRK/>
+<OLI>Refrigerant number and amount of refrigerant.</OLI><BRK/>
+<BRK/>
+<OLI>The lubricant identity and amount.</OLI><BRK/>
+<BRK/>
+<OLI>Field test pressure applied.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Controls and Piping Identification</TTL><BRK/>
+<BRK/>
+<TXT>Provide refrigerant systems containing more than<MET> 50 kg</MET><ENG> 110 lb</ENG> of refrigerant with refrigerant signs which designate the following as a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Valves or switches for controlling the refrigerant flow[, the ventilation system,] and the refrigerant compressor.</OLI><BRK/>
+<BRK/>
+<OLI>Pressure limiting device(s).</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Gaskets</TTL><BRK/>
+<BRK/>
+<TXT>Provide gaskets conforming to <RID>ASTM F104</RID> - classification for compressed sheet with nitrile binder and acrylic fibers for maximum<MET> 370 degrees C</MET><ENG> 
+700 degrees F</ENG> service.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bolts and Nuts</TTL><BRK/>
+<BRK/>
+<TXT>Bolts and nuts must be in accordance with <RID>ASTM A307</RID>.  The bolt head must be marked to identify the manufacturer and the standard with which the 
+bolt complies in accordance with <RID>ASTM A307</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FINISHES</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Coil Corrosion Protection</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Research local conditions to determine the corrosiveness of the environment.  Where condenser or evaporator 
+coils are to be installed in highly corrosive atmospheres, carefully consider the coil and fin combinations specified.  
+Standard coil construction is typically copper tubes with aluminum fins.  For excessively corrosive atmospheres, 
+either copper tubes with copper fins or aluminum tubes with aluminum fins should be considered.</NPR><BRK/>
+<BRK/>
+<NPR>For maximum coil protection, include the requirements of this paragraph.  This paragraph addresses phenolic, vinyl, 
+and epoxy type coatings.  For coils with relatively close fin spacing the phenolic or epoxy coating are the preferred 
+types as these have less tendency to bridge across the fins than vinyl.  In addition, the phenolic and epoxy type 
+coatings can typically provide better thermal conductivity than vinyl.</NPR><BRK/>
+<BRK/>
+<NPR>If coatings are specified, note that a coil's heat transfer capacity can be reduced anywhere between 1 to 5 percent; 
+total unit capacity may have to be increased as a result, see manufacturer's guidance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide coil with a uniformly applied[ epoxy electrodeposition][ phenolic][ vinyl][ epoxy electrodeposition, phenolic, or vinyl] type coating to 
+all coil surface areas without material bridging between fins.  Submit product data on the type coating selected, the coating thickness, the application 
+process used, the estimated heat transfer loss of the coil, and verification of conformance with the salt spray test requirement.  Coating must 
+be applied at either the coil or coating manufacturer's factory.  Coating process must ensure complete coil encapsulation.  Coating must be capable 
+of withstanding a minimum 1,000 hours exposure to the salt spray test specified in <RID>ASTM B117</RID> using a 5 percent sodium chloride solution.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment and Components Factory Coating</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For equipment to be installed outdoors, adequate protection will be specified.  Manufacturers must submit 
+evidence that unit specimen have passed the specified salt spray fog test.  A 100 hour test will be specified 
+in a noncorrosive environment and a 500 hour test will be specified in a corrosive environment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Unless otherwise specified, equipment and component items, when fabricated from ferrous metal, must be factory finished with the manufacturer's 
+standard finish, except that items located outside of buildings must have weather resistant finishes that will withstand [100] [500] hours exposure 
+to the salt spray test specified in <RID>ASTM B117</RID>.  Immediately after completion of the test, the specimen must show no signs of blistering, wrinkling, 
+cracking, or loss of adhesion and no sign of rust creepage beyond<MET> 3 mm</MET><ENG> 1/8 inch</ENG> on either side of the scratch mark.  Cut edges of galvanized surfaces 
+where hot-dip galvanized sheet steel is used must be coated with a zinc-rich coating conforming to <RID>ASTM D520</RID>, Type I.</TXT><BRK/>
+<BRK/>
+<TXT>Where stipulated in equipment specifications of this section, coat finned tube coils of the affected equipment as specified below.  Apply coating 
+at the premises of a company specializing in such work. Degrease and prepare for coating in accordance with the coating applicator's procedures 
+for the type of metals involved. Completed coating must show no evidence of softening, blistering, cracking, crazing, flaking, loss of adhesion, 
+or "bridging" between the fins.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Phenolic Coating</TTL><BRK/>
+<BRK/>
+<TXT>Provide a resin base thermosetting phenolic coating.  Apply coating by immersion dipping of the entire coil.  Provide a minimum of two coats.  
+Bake or heat dry coils following immersions.  After final immersion and prior to final baking, spray entire coil with particular emphasis given 
+to building up coating on sheared edges.  Total dry film thickness must be<MET> 0.064 to 0.076 mm</MET><ENG> 2.5 to 3.0 mils</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chemical Conversion Coating with Polyelastomer Finish Coat</TTL><BRK/>
+<BRK/>
+<TXT>Dip coils in a chemical conversion solution to molecularly deposit a corrosion resistant coating by electrolysis action.  Chemical conversion coatings 
+must conform to <RID>MIL-DTL-5541</RID>, Class 1A.  Cure conversion coating at a temperature of<MET> 43 to 60 degrees C</MET><ENG> 110 to 140 degrees F</ENG> for a minimum of 3 
+hours.  Coat coil surfaces with a complex polymer primer with a dry film thickness of<MET> 0.025 mm</MET><ENG> 1 mil</ENG>.  Cure primer coat for a minimum of 1 hour.  
+Using dip tank method, provide three coats of a complex polyelastomer finish coat.  After each of the first two finish coats, cure the coils for 
+1 hour.  Following the third coat, spray a fog coat of an inert sealer on the coil surfaces.  Total dry film thickness must be<MET> 0.064 to 0.076 mm</MET><ENG>
+ 2.5 to 3.0 mils</ENG>.  Cure finish coat for a minimum of 3 hours. Coating materials must have 300 percent flexibility, operate in temperatures of minus<MET>
+ 46 to plus 104 degrees C</MET><ENG> 50 to plus 220 degrees F</ENG>, and protect against atmospheres of a pH range of 1 to 14.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Vinyl Coating</TTL><BRK/>
+<BRK/>
+<TXT>Apply coating using an airless fog nozzle. For each coat, make at least two passes with the nozzle. Materials to be applied are as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Total dry film thickness,<MET> 0.165 mm</MET><ENG> 6.5 mils</ENG> maximum</OLI><BRK/>
+<BRK/>
+<OLI>Vinyl Primer, 24 percent solids by volume: One coat<MET> 0.051 mm</MET><ENG> 2 mils</ENG> thick</OLI><BRK/>
+<BRK/>
+<OLI>Vinyl Copolymer, 30 percent solids by volume: One coat<MET> 0.114 mm</MET><ENG> 4.5 mils</ENG> thick</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Factory Applied Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Refrigeration equipment must be provided with factory installed insulation on surfaces subject to sweating including the suction line piping.  
+Where motors are the gas-cooled type, factory installed insulation must be provided on the cold-gas inlet connection to the motor in accordance 
+with manufacturer's standard practice.  Factory insulated items installed outdoors are not required to be fire-rated.  As a minimum, factory insulated 
+items installed indoors must have a flame spread index no higher than 75 and a smoke developed index no higher than 150.  Factory insulated items 
+(no jacket) installed indoors and which are located in air plenums, in ceiling spaces, and in attic spaces must have a flame spread index no higher 
+than 25 and a smoke developed index no higher than 50.  Flame spread and smoke developed indexes must be determined by <RID>ASTM E84</RID>.  Insulation must 
+be tested in the same density and installed thickness as the material to be used in the actual construction.  Material supplied by a manufacturer 
+with a jacket must be tested as a composite material.  Jackets, facings, and adhesives must have a flame spread index no higher than 25 and a smoke 
+developed index no higher than 50 when tested in accordance with <RID>ASTM E84</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TESTS, INSPECTIONS, AND VERIFICATIONS</TTL><BRK/>
+<BRK/>
+<TXT>All manufactured units must be inspected and tested, and documentation provided to demonstrate that each unit is in compliance with applicable 
+ANSI/AHRI and UL requirements and that the minimum efficiency requirements of<MET> <RID>ASHRAE 90.1 - SI</RID></MET><ENG> <RID>ASHRAE 90.1 - IP</RID></ENG> have been met.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with all details of the work, submit <SUB>verification of existing conditions</SUB> at least 2 weeks prior to beginning construction, 
+indicating the date the site was visited, confirming existing conditions, and noting any discrepancies found.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>The VRF system must be installed by the contractor identified in Qualification Of Installer.  The contractor must install the VRF system in accordance 
+with the manufacturer's instructions and Shop Drawings.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Equipment General</TTL><BRK/>
+<BRK/>
+<TXT>Provide necessary supports for all equipment, appurtenances, and pipe as required.  Isolate outdoor units from the building structure.  If mechanical 
+vibration isolators are not provided, provide vibration absorbing foundations.  Each foundation must include isolation units consisting of machine 
+and floor or foundation fastenings, together with intermediate isolation material.  In lieu of concrete pad foundation, concrete pedestal block 
+with isolators placed between the pedestal block and the floor may be provided.  Concrete pedestal block must be of mass not less than three times 
+the equipment weight. Concrete for foundations must be as specified in Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.  Equipment must be properly leveled, 
+aligned, and secured in place in accordance with manufacturer's instructions.  Air-source outdoor units must be installed per manufacturer's recommendations 
+and must not blow air in the direction of other outdoor unit intakes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safety Devices</TTL><BRK/>
+<BRK/>
+<TXT>Safety devices must be installed so that proper operation of equipment is not impaired.   Welding and cutting safety requirements must be in accordance 
+with <RID>AWS Z49.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controls</TTL><BRK/>
+<BRK/>
+<TXT>Install Controls in accordance with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC, as indicated by the Points Schedule and to provide the 
+following functionality:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>On/Off selection for each individual fan coil unit and group.</OLI><BRK/>
+<BRK/>
+<OLI>Temperature set point adjustment for each fan coil unit.</OLI><BRK/>
+<BRK/>
+<OLI>Fan speed adjustment for each fan coil.</OLI><BRK/>
+<BRK/>
+<OLI>Heat/cool/automatic changeover mode selection for indoor and outdoor units.</OLI><BRK/>
+<BRK/>
+<OLI>Priority settings for restriction of local access for start/stop, heat/cool mode and set point adjustment.</OLI><BRK/>
+<BRK/>
+<OLI>Temperature limitation in both heating and cooling mode.</OLI><BRK/>
+<BRK/>
+<OLI>Weekly occupancy schedule with start up and shut off times, temperature settings and operation modes. Yearly occupancy schedule for holidays 
+and periods of non-use.</OLI><BRK/>
+<BRK/>
+<OLI>Reset for non-blocking malfunction codes and maintenance warnings.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Provide a Local Display panel as indicated on the points schedule and to provide access to the above specified functionality.  The Local Display 
+Panel must additionally indicate current date and time.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Isolation Valves</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Isolation valve seals can be a possible source of leakage over time.  Provide isolation valves only if 
+required by the end user.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Isolation Valves in accordance with Section <SRF>23 23 00</SRF> REFRIGERANT PIPING.  Provide with service ports on downstream side.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electrical Equipment / Motors</TTL><BRK/>
+<BRK/>
+<TXT>Install electrical equipment, motors, motor efficiencies, and wiring in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Branch Selector Unit</TTL><BRK/>
+<BRK/>
+<TXT>Locate Branch Selector Units inside of the facility with full access for inspection, maintenance and removal.  Locate no more then<MET> 2 meters</MET><ENG> 6 feet</ENG>
+ above finished floor.  The unit must have a minimum clearance of<MET> 30 centimeters</MET><ENG> 12 inches</ENG> from all serviceable sides and be removable without 
+modification to the surroundings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Condensate Removal</TTL><BRK/>
+<BRK/>
+<TXT>Provide condensate removal through gravity flow where possible.  Where gravity flow is not possible, provide a condensate pump sufficient ensure 
+complete removal of condensate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Access Panels</TTL><BRK/>
+<BRK/>
+<TXT>Provide access panels for all concealed equipment, valves, controls, dampers, refrigerant fittings, and other fittings for inspection, maintenance 
+and removal.  Size panel large enough as to be able to remove the part without modification or damage to the surroundings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air Filters</TTL><BRK/>
+<BRK/>
+<TXT>Allow access space for servicing filters.  Install filters with suitable sealing to prevent bypassing of air.  Perform and document that proper 
+indoor air quality during construction procedures have been followed in accordance with Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING, 
+paragraph Indoor Air Quality During Construction; this includes providing documentation showing that after construction ends, and prior to occupancy, 
+new filters were provided and installed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flashing and Pitch Pockets</TTL><BRK/>
+<BRK/>
+<TXT>Provide flashing and pitch pockets for equipment supports and roof penetrations and flashing where piping or ductwork passes through exterior walls 
+in accordance with Section <SRF>07 60 00</SRF> FLASHING AND SHEET METAL.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Identification Tags and Plates</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment, gages, thermometers, valves, and controllers with tags numbers stamped or engraved into the material for their use.  Provide 
+plates and tags of brass or suitable nonferrous rigid material, securely mounted or attached.  Provide minimum letter and numeral size of<MET> 3.18 
+mm</MET><ENG> 1/8 inch</ENG> high.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Signs</TTL><BRK/>
+<BRK/>
+<TXT>Locate refrigerant signs with in reading distance of outdoor unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Applied Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Apply field applied insulation as specified in Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL SYSTEMS, except as defined differently herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pipe Hangers and Supports</TTL><BRK/>
+<BRK/>
+<TXT>Design and fabrication of pipe hangers, supports, and welding attachments must conform to <RID>MSS SP-58</RID>.  Installation of hanger types and supports 
+for bare and covered pipes must conform to <RID>MSS SP-58</RID> for the system temperature range.  Unless otherwise indicated, horizontal and vertical piping 
+attachments must conform to <RID>MSS SP-58</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Piping</TTL><BRK/>
+<BRK/>
+<TXT>Cut pipe to measurements established at the site and work into place without springing or forcing.  Install piping with sufficient flexibility 
+to provide for expansion and contraction due to temperature fluctuation and as indicated in shop drawings.  Where pipe passes through building 
+structure pipe joints must not be concealed, but must be located where they may be readily inspected.  Install piping to be insulated with sufficient 
+clearance to permit application of insulation.  Install piping as indicated and detailed, to avoid interference with other piping, conduit, or 
+equipment.  Except where specifically indicated otherwise, run piping plumb and straight and parallel to walls and ceilings.  Provide sleeves of 
+suitable size for lines passing through building structure.  Braze refrigerant piping with silver solder complying with <RID>AWS A5.8/A5.8M</RID>.  Inside 
+of tubing and fittings must be free of flux.  Clean parts to be jointed with emery cloth and keep hot until solder has penetrated full depth of 
+fitting and extra flux has been expelled.  Cool joints in air and remove flame marks and traces of flux.  During brazing operation, prevent oxide 
+film from forming on inside of tubing by slowly flowing dry nitrogen through tubing to expel air.  Make provisions to automatically return oil 
+on halocarbon systems.  Installation of piping must comply with <RID>ASME B31.5</RID>.  All refrigerant lines external to units must have field applied insulation 
+per Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL SYSTEMS unless otherwise indicated.</TXT><BRK/>
+<BRK/>
+<TXT>All refrigerant lines external to units must be isolated from system vibrations including those generated by compressors, fans, or pumps, to minimize 
+the risk of refrigerant leaks.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Condenser Water Piping</TTL><BRK/>
+<BRK/>
+<TXT>Install condenser water piping and accessories in accordance with Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, AND CONDENSER WATER PIPING SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Solenoid Valve Installation</TTL><BRK/>
+<BRK/>
+<TXT>Install liquid solenoid valves in horizontal lines with stem vertical and with flow in direction indicated on valve.  If not incorporated as integral 
+part of the valve, provide a strainer upstream of the solenoid valve.  Provide service valves upstream of the solenoid valve, upstream of the strainer, 
+and downstream of the solenoid valve.  Remove the internal parts of the solenoid valve when brazing the valve.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Auxiliary Drain Pans, Drain Connections, And Drain Lines</TTL><BRK/>
+<BRK/>
+<TXT>Provide auxiliary drain pans under units located above finished ceilings or over mechanical or electrical equipment.  Pan must extend beyond the 
+limits of the units.  Provide separate drain lines for the unit drain and auxiliary drain pans.  Trap drain pans from the bottom to ensure complete 
+pan drainage.  Provide drain lines full size of drain opening.  Traps and piping to drainage disposal points must conform to Section <SRF>22 00 00</SRF> PLUMBING, 
+GENERAL PURPOSE.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>REFRIGERANT PIPING TESTS</TTL><BRK/>
+<BRK/>
+<TXT>Perform refrigerant piping tests as specified in Section <SRF>23 23 00</SRF> REFRIGERANT PIPING and per manufacturer's recommendations in the presence of 
+the contracting officer.  Use electronic type leak detector with a sensitivity of<MET> 3 grams/year</MET><ENG> 0.1 ounces/year</ENG> and a calibrated reference leak 
+rated at<MET> 5 grams/year</MET><ENG> 0.17 ounces/year</ENG>.  Submit current <SUB>electronic refrigerant leak detector calibration</SUB> certificate prior to testing.  Before 
+testing the refrigerant piping system, perform a test of the leak detector with the reference leak fitting in the presence of the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>REFRIGERANT CHARGING</SUB></TTL><BRK/>
+<BRK/>
+<TXT>After refrigerant piping test and before system performance test, perform evacuation and dehydration procedures in accordance with manufacturers 
+recommendations and requirements and Section <SRF>23 23 00</SRF> REFRIGERANT PIPING.  Evacuate system to a minimum of<MET> 100 microns</MET><ENG> 0.004 inches</ENG> Hg for one 
+hour or per manufacturers requirements.  Use fresh oil in the vacuum pump.  Connect electronic vacuum gauge to system piping for measurement.  
+The refrigerant must be to the weight specified in the shop drawing calculations.  The supplemental refrigerant must be weighed in with an electronic 
+scale.  Supplemental refrigerant must be introduced to the system in a liquid state for refrigerant blends.  Conduct refrigerant charging in the 
+presence of the Contracting Officer.  Submit refrigerant charging report before system performance test.  Outline refrigerant charging procedures 
+in the report.  Report must indicated who performed and witnessed the task.  Provide signatures from all parties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>SYSTEM PERFORMANCE TESTS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select at minimum the default value for the following bracketed items</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Before each VRF system is accepted, conduct tests to demonstrate the general operating characteristics of the VRF as directed by COR/COTR.  Submit 
+[three] [_____] bound copies of the report as<MET> 216 by 279 mm</MET><ENG> 8-1/2 by 11 inch</ENG> booklets.  The report must document compliance with the specified 
+performance criteria upon completion and testing of the system.  The report must indicate the number of days covered by the tests and any conclusions 
+as to the adequacy of the system.  Include manufacturer commissioning report for each VRF system.</TXT><BRK/>
+<BRK/>
+<TXT>For equipment providing heating and cooling the system performance tests must be performed during the heating and cooling seasons.  For systems 
+capable of simultaneous heating and cooling, perform testing of this mode.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Submit a schedule, at least [2] [_____] weeks prior to the start of related testing, for the system performance tests.  The schedules must 
+identify the proposed date, time, and location for each test.  Tests must cover a period of not less than [48] [_____] hours for each system 
+and must demonstrate that the entire system is functioning in accordance with the drawings and specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Make corrections and adjustments, as necessary, tests must be re-conducted to demonstrate that the entire system is functioning as specified.  
+Prior to acceptance, install and tighten service valve seal caps and blanks over gauge points.</OLI><BRK/>
+<BRK/>
+<OLI>If tests do not demonstrate satisfactory system performance, correct deficiencies and retest the system.  Conduct tests in the presence 
+of the Contracting Officer.  Water and electricity required for the tests will be furnished by the Government.  Provide all material, equipment, 
+instruments, and personnel required for the test.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the next item, choose either Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING OF HVAC SYSTEMS or 
+Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Coordinate field tests with [Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING] [Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING OF HVAC SYSTEMS].  
+Submit [3] [_____] copies of the report provided in bound<MET> 216 by 279 mm</MET><ENG> 8-1/2 by 11 inch</ENG> booklets.  The report must document compliance 
+with the specified performance criteria upon completion and testing of the system.  The report must indicate the number of days covered 
+by the tests and any conclusions as to the adequacy of the system.  Submit the report including the following information (where values 
+are taken at least three different times at outside dry-bulb temperatures that are at least<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> apart):</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Date and outside weather conditions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The load on the system based on the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">The refrigerant used in the system.</OLI><BRK/>
+<OLI LEVEL="3">Condensing temperature and pressure.</OLI><BRK/>
+<OLI LEVEL="3">Suction temperature and pressure.</OLI><BRK/>
+<OLI LEVEL="3">Ambient, condensing and coolant temperatures.</OLI><BRK/>
+<OLI LEVEL="3">Running current, voltage and proper phase sequence for each phase of all motors.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The actual on-site setting of operating and safety controls.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Electronic expansion valve superheat - value as determined by field test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Subcooling.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">High and low refrigerant temperature switch set-points</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Low oil pressure switch set-point.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Defrost system timer and thermostat set-points.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Moisture content.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Capacity control set-points.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Field data and adjustments which affect unit performance and energy consumption.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Field adjustments and settings which were not permanently marked as an integral part of a device.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>CLEANING</TTL><BRK/>
+<BRK/>
+<TXT>Equipment must be wiped clean, with all traces of oil, dust, dirt, or paint spots removed.  Temporary filters must be provided for all fans that 
+are operated during construction, and new filters must be installed after all construction dirt has been removed from the building.  System must 
+be maintained in this clean condition until final acceptance.  Bearings must be properly lubricated with oil or grease as recommended by the manufacturer.  
+Belts must be tightened to proper tension.  Control valves and other miscellaneous equipment requiring adjustment must be adjusted to setting indicated 
+or directed.  Fans must be adjusted to the speed indicated by the manufacturer to meet specified conditions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<TXT>Provide closeout activities in addition to and in accordance with Section <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Extra Materials</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>spare parts data</SUB> for each different item of equipment specified, after approval of detail drawings and not later than [2] [_____] months 
+prior to the date of beneficial occupancy.  Include in the data a complete list of parts and supplies, with current unit prices and source of supply, 
+a recommended spare parts list for 1 year of operation, and a list of the parts recommended by the manufacturer to be replaced on a routine basis.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Maintenance Service Providers</TTL><BRK/>
+<BRK/>
+<TXT>Submit a certified list of qualified permanent <SUB>service organizations</SUB>, which includes their addresses and qualifications, for support of the equipment.  
+The service organizations must be reasonably convenient to the equipment installation and be able to render satisfactory service to the equipment 
+on a regular and emergency basis during the warranty period of the contract.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Warranty</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Navy tailoring option is in this subpart.  Select Navy tailoring option for Navy and Marine Corps projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit <SUB>warranty</SUB> certificate to the Contracting Officer.<TAI OPT="NAVY">  Provide warranty management plan in accordance with <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>VRF Operation And Maintenance Manual</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC to include items from this Section by reference.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following in addition to and accordance with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Condensed operating instructions listing step-by-step procedures required for system startup, operation, abnormal shutdown, emergency shutdown, 
+and normal shutdown.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's Engineering Data.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's Instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Shop Drawings on<MET> 279 by 432 mm</MET><ENG> 11 by 17 inches</ENG> sheets.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Posted Instructions</TTL><BRK/>
+<BRK/>
+<TXT>Submit the field <SUB>posted instructions</SUB>, at least [2] [_____] weeks prior to construction completion.  Including equipment layout, wiring and control 
+diagrams, piping, valves and control sequences, and typed condensed operation instructions on one sheet of paper.  The condensed operation instructions 
+must include preventative maintenance procedures, methods of checking the system for normal and safe operation, and procedures for safely starting 
+and stopping the system.  The posted instructions must cover all of the items contained in the approved operation and maintenance manuals as well 
+as demonstrations of routine maintenance operations  The posted instructions must be framed under glass or laminated plastic and be posted where 
+indicated by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Training</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC to include items from this section by reference.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide training, for all items provided under this section, in addition to and accordance with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR 
+HVAC. <NED/>Also include refrigeration leak detection and leak detection response training.  The training period must consist of a total [8] [_____] 
+hours of normal working time for items covered in this section.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

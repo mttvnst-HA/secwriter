@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"Unified Submittals","type":"item","tilePath":"","description":"","url":"Submittals/UnifiedSubmittals.htm"},{"name":"Submittal Formatting Requirements","type":"item","tilePath":"","description":"","url":"Submittals/SubmittalFormattingRequirements.htm"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

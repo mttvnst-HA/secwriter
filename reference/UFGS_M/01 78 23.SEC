@@ -1,0 +1,1248 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-01 78 23 (May 2023)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 2 - 11/25</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-01 78 23 (August 2015)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 01 78 23</SCN><BRK/>
+<BRK/>
+<STL>OPERATION AND MAINTENANCE DATA</STL><BRK/>
+<DTE>05/23, CHG 2: 11/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>Operation and Maintenance (O&amp;M) data packages, 
+manuals and training</SCP>.</NPR><BRK/>
+<TAI OPT="NAVY"><BRK/>
+<NPR>In addition to this Section, use Section <SRF>01 78 24.00 20</SRF> FACILITY DATA WORKBOOK (FDW) on projects at Marine Corps 
+Installations and at Navy Installations, Joint Bases, Department of Defense (DoD) Agencies, or Field Activities 
+where NAVFAC PW is the maintenance provider of the facility for:</NPR><BRK/>
+<BRK/>
+<NPR>   1.  New Construction Projects greater than or equal to $1 Million.</NPR><BRK/>
+<BRK/>
+<NPR>   2.  Major Renovation projects greater than or equal to 50 percent of the Plant Replacement Value (PRV).</NPR><BRK/>
+<BRK/>
+<NPR>For other projects below the threshold, consult the Administering Public Works Facilities Management Division 
+(FMD) to determine if Section <SRF>01 78 24.00 20</SRF> FACILITY DATA WORKBOOK (FDW) is required.</NPR><BRK/></TAI>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification contains tailoring for NAVY, ARMY, COMMISSIONING AUTHORITY, NAVY DESIGN-BUILD, NAVFAC 
+EURAFCENT, AND NAVFAC FE.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE GUIDELINE 1.4</RID><RTL>(2019) Preparing Systems Manuals for Facilities</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM E1971</RID><RTL>(2024) Standard Guide for Stewardship for the Cleaning of Commercial and Institutional Buildings</RTL><BRK/><BRK/><RID>ASTM E2166</RID><RTL>(2016; R 2023) Standard Practice for Organizing and Managing Building Data</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>FC 1-300-09N</RID><RTL>(2024) Navy and Marine Corps Design</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NAVY,NAVY DESIGN-BUILD"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy Design-Build projects, delete <SRF>01 33 00</SRF>, SUBMITTAL PROCEDURES, and replace with SECTION 01 33 00.05 
+20 CONSTRUCTION SUBMITTAL PROCEDURES and SECTION 01 33 10.05 20 DESIGN SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In SD-10 Operation and Maintenance Data, use the bracketed item for Facility Data Workbook only if SECTION 
+<SRF>01 78 24.00 10</SRF> FACILITY DATA REQUIREMENTS or SECTION <SRF>01 78 24.00 20</SRF> FACILITY DATA WORKBOOK (FDW) are not used 
+in the project.  When one of these Sections is included, the Facility Data Workbook is included as a submittal 
+in the Section used and will not be used in this Section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Facility Data Workbook</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Training Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Outline</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Content</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Operation And Maintenance Manual, Progress Submittal</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Operation And Maintenance Manual, Prefinal Submittal</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Operation And Maintenance Manual, Final Submittal</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Training Video Recording</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Validation of Training Completion</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Record Drawings And Utility Systems</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MEETINGS</TTL><BRK/>
+<BRK/>
+<TXT>To assure that Operation and Maintenance Manual and Facility Data Workbook requirements are being met through the duration of the project, organize 
+the following meetings and discuss the subsequent topics:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>[Post-Award Kickoff Meeting] [Pre-Construction Meeting]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use Post-Award Kickoff Meeting for Design-Build Projects, or use Pre-Construction Meeting for Design-Bid-Build 
+Projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>At a minimum, discuss the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The requirement for Operation and Maintenance Manuals and Facility Data deliverables under this contract including coordination meetings</OLI><BRK/>
+<BRK/>
+<OLI>Processes and method of gathering Facility Data information during construction</OLI><BRK/>
+<BRK/>
+<OLI>Primary roles and responsibilities associated with the development and delivery of the Operation and Maintenance Manuals and Facility Data 
+deliverables, and</OLI><BRK/>
+<BRK/>
+<OLI>Identify and agree upon a date and attendance list for the meetings described below:</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Operation and Maintenance Manual and Facility Data Workbook Coordination Meeting</TTL><BRK/>
+<BRK/>
+<TXT>Facilitate a meeting after the [Pre-Construction Meeting] [Post-Award Kickoff Meeting] prior to the submission of the Operation and Maintenance  
+Manual Progress Submittal.  Meeting attendance must include the Contractor's Operation and Maintenance Manual and Facility Data Workbook Preparer, 
+[Designer of Record (DOR), ]Quality Control Manager, [the Commissioning Authority (CxA), ]the Government's Design Manager (DM), Contracting Officer's 
+Representative, and Government's facility data reviewer.  Include any Mechanical, Electrical, and Fire Protection Sub-Contractors.</TXT><BRK/>
+<BRK/>
+<TXT>The purpose of this meeting is to reach a mutual understanding of the scope of work concerning the contract requirements for Operation and Maintenance 
+Manual and coordinate the efforts necessary by both the Government and Contractor to ensure an accurate collection, preparation and timely Government 
+review of Operation and Maintenance Manual.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Submittal Coordination Meeting</TTL><BRK/>
+<BRK/>
+<TXT>Facilitate a meeting following submission and Government review of each design or progress submittal of the Operation and Maintenance Manual and 
+Facility Data Workbook.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Include personnel from the Coordination meeting and any additional personnel identified.</OLI><BRK/>
+<BRK/>
+<OLI>The purpose of this meeting is to demonstrate ongoing compliance with the requirements identified in this specification.  Discuss Government 
+review comments and unresolved items preventing completion and Government approval of the Operation and Maintenance Manuals and Facility 
+Data Workbook (FDW).</OLI><BRK/>
+<BRK/>
+<OLI>The applicable deliverables, along with Government remarks associated with review of these submittals serve as the primary guide and agenda 
+for this meeting.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<TAI OPT="NAVY"><SPT><TTL>Facility Turnover Meeting</TTL><BRK/>
+<BRK/>
+<TXT>Include Operation and Maintenance Manual in NAVFAC Red Zone (NRZ) facility turnover meetings as specified in Section <SRF>01 30 00</SRF>, ADMINISTRATIVE REQUIREMENTS.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL><SUB>FACILITY DATA WORKBOOK</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In this paragraph, choose the first set of brackets if Section <SRF>01 78 24.00 10</SRF> FACILITY DATA REQUIREMENTS 
+for Army projects or <SRF>01 78 24.00 20</SRF> FACILITY DATA WORKBOOK (FDW) for Navy projects is in contract.  Otherwise, 
+choose the second bracketed sentence.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Develop an editable, electronic spreadsheet based on the equipment in the Operation and Maintenance Manuals that contains the information required 
+to start a preventive maintenance program[ as outlined in [<SRF>01 78 24.00 10</SRF> FACILITY DATA REQUIREMENTS][<SRF>01 78 24.00 20</SRF> FACILITY DATA WORKBOOK (FDW)]].[  
+As a minimum, provide Facility Data Workbook as a list of system equipment, location installed, warranty expiration date, manufacturer, model, 
+and serial number.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OPERATION AND MAINTENANCE MANUAL MEDIA</TTL><BRK/>
+<BRK/>
+<TXT>Assemble Operation and Maintenance Manual into an electronically bookmarked file using the most current version of Adobe Acrobat or similar software 
+capable of producing PDF file format.  Provide compact disks (CD) or data digital versatile disk (DVD) as appropriate, so that each one contains 
+operation, maintenance and record files, project record documents, and training videos.  Include a complete bookmarked operation and maintenance 
+directory.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>CD or DVD Label and Disk Holder or Case</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following information on the disk label and disk holder or case:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Building Number</OLI><BRK/>
+<BRK/>
+<OLI>Project Title</OLI><BRK/>
+<BRK/>
+<OLI>Activity and Location</OLI><BRK/>
+<BRK/>
+<OLI>Construction Contract Number</OLI><BRK/>
+<BRK/>
+<OLI>Prepared For: (Contracting Agency)</OLI><BRK/>
+<BRK/>
+<OLI>Prepared By: (Name, title, phone number and email address)</OLI><BRK/>
+<BRK/>
+<OLI>Include the disk content on the disk label</OLI><BRK/>
+<BRK/>
+<OLI>Date</OLI><BRK/>
+<BRK/>
+<OLI>Virus scanning program used</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>O&amp;M Manual Tabbed Hard Copy</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph only if a hard copy is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a hard copy of the O&amp;M manual upon completion of the project.  Provide tabs for each section and subsection for ease of navigation 
+by the user.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>O&amp;M MANUAL CONTENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See Operation and Maintenance Manual template located at <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-01-78-23">www.wbdg.org/dod/ufgs/ufgs-01-78-23</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Organize the bookmarked Operation and Maintenance Manual into the following Parts in accordance with <RID>ASHRAE GUIDELINE 1.4</RID>, and as modified and 
+detailed below.  Word template for O&amp;M Manual is available at:  <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-01-78-23">www.wbdg.org/dod/ufgs/ufgs-01-78-23</URL>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Part 1: Executive Summary</TTL><BRK/>
+<BRK/>
+<TXT>Provide a summary of the information found in the O&amp;M manual including the purpose of the manual and a description of the manual's organization.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Part 2: Facility Design and Construction</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Facility and Systems Description</TTL><BRK/>
+<BRK/>
+<TXT>Provide an overview of the intent for design and use of the facility.  Provide a PDF of the Record Drawings prepared in accordance with [<RID>FC 1-300-09N</RID>
+ and] <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS and bookmarked using the sheet title and sheet number.  Include uncluttered<MET> 279 by 432 mm</MET><ENG> 11 by 17 inches</ENG> floor 
+plans with room numbers, type or function of space, and overall facility dimensions on the floor plans.  Do not include items such as construction 
+instructions, references, or frame numbers.</TXT><BRK/>
+<BRK/>
+<TXT>Detail the overall dimensions of the facility, number of floors, foundation type, expected number of occupants, and facility Category Code list 
+and generally describe all the facility systems and any special building features (for example, HVAC Controls, Sprinkler Systems, Cranes, Elevators, 
+and Generators).  Include photographs marked up and labeled to show key operating components and the overall facility appearance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Basis of Design</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copy of the contract Basis of Design.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contract Documents, RFP, Amendments, and Modifications</TTL><BRK/>
+<BRK/>
+<TXT>Provide the contract construction documents complete, to include specifications, drawings, Request for Proposal, amendments, and modifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Room Inventory of Real Property and Finishes</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is intended to provide data on equipment and materials incorporated in the construction 
+of the project that cannot readily be determined after completion of construction.  The data is expected to be 
+of value for future maintenance, alteration, and repair work.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a list of installed equipment furnished under this contract.  Include all information usually listed on manufacturer's name plate.  Include, 
+as applicable, the following information for each piece of equipment installed: description of item, all dimensions, location by room number, model 
+number, serial number, capacity, name and address of manufacturer, name and address of equipment supplier, condition, spare parts list, manufacturer's 
+catalog, and warranty.  Real property includes, but is not limited to, floor coverings, wall surfaces, ceiling surfaces, windows, roofing, HVAC 
+filters, plumbing fixtures, and lighting fixtures.  Submit the final list [30] [_____] days after transfer of the completed facility.</TXT><BRK/>
+<BRK/>
+<TXT>Include spatial data defining actual net<MET> square meters</MET><ENG> square footage</ENG> and data of each room.  Also include the room finish schedule including room 
+names and numbers. Include schedules in the construction drawings in the room inventory.  Add a column to each schedule to record what was provided 
+by the contractor during construction.  Provide a PDF of room inventory.  Key the designations to the related area depicted on the contract drawings.  
+List the following data:</TXT><BRK/>
+<BRK/>
+<TXT><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="5" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="141.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="139.50"/>
+      <COL AUTOWIDTH="0" WIDTH="141.00"/>
+      <COL AUTOWIDTH="0" WIDTH="141.00"/>
+      <COL AUTOWIDTH="0" WIDTH="180.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="28.50">
+         <CEL MERGEACROSS="4" STYLEID="s51">
+<DTA TYPE="STRING">RECORD OF DESIGNATED EQUIPMENT AND MATERIALS DATA</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="57.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Description</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Specification Section</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Manufacturer and Catalog, Model, and Serial Number</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Composition and Size</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Where Used</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="69.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Part 3: Facilities, Systems, and Assemblies Information</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Organization</TTL><BRK/>
+<BRK/>
+<TXT>Bookmark information in this section using the current version of <RID>ASTM E2166</RID> Uniformat II, UFGS numbers, and document type as outlined in the example 
+below.  Bookmark/tab each item to the third level for easy navigation of the manual.</TXT><BRK/>
+<BRK/>
+<TXT>Example as shown in Table below:</TXT><BRK/>
+<BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="1" ROWCOUNT="16">
+      <COL AUTOWIDTH="0" WIDTH="760.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING"><HL4><HL3>PARTS AND SUBPART NUMBERING</HL3></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">3.1 B20 EXTERIOR CLOSURE (System)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">   3.1.1 B2030 EXTERIOR DOORS (Subsystem)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">       3.1.1.1 B2030110 GLAZED DOORS (Component)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.1 Applicable specifications List in UFGS Format</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.2 Manufacturer's Operations and Maintenance Data</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.3 Approved Submittal</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.4 Coordination/Shop Drawings</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.5 Sequence of Operation for Operating Equipment</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.6 Testing Equipment Information and Performance Data</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.7 Routine Maintenance Requirements</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.8 Repair Procedures</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.9 Emergency Procedures &amp; Locations of Applicable Controls</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.10 Warranties</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.11 Record Drawings and Utility Systems</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="51.75">
+         <CEL>
+<DTA TYPE="STRING">            3.1.1.1.12 Contractor / Supplies Listing and Contact Information</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/></TAB><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Related Specifications</TTL><BRK/>
+<BRK/>
+<TXT>Reference each specification related to the subsystem in this section, and locate the actual specification section in Part 2 of the O&amp;M Manual.  
+List specifications in table format as shown in the below example.</TXT><BRK/>
+<BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="243.75"/>
+      <COL AUTOWIDTH="0" WIDTH="243.75"/>
+      <COL AUTOWIDTH="0" WIDTH="273.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>UFGS Number</HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>Specification Title</HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>Page Spec Begins in Part 2</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Operations and Maintenance Data</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copy of all manufacturer specifications and cutsheets.  Provide text-searchable, high-quality document files from the manufacturer's 
+online or electronic documentation.  Color documents are preferred.  Provide documents specific to the product(s) installed under this Contract.  
+Provide identification and coverage for the parts of each component, assembly, subassembly, and accessory of the end items subject to replacement.  
+Provide Uniformat II Level 3 identification for D20, D30, D40 installed equipment.  When possible, do not submit document files containing multiple 
+product catalogs from the same manufacturer, or product data from multiple manufacturers in the same files.  Provide documents directly from the 
+manufacturer whenever possible. Do not provide scanned copies of hardcopy documents.  Provide identification and coverage for the parts of each 
+component, assembly, subassembly, and accessory of the end items subject to replacement.  Include special hardware requirements, such as requirement 
+to use high-strength bolts and nuts.  Identify parts by make, model, serial number, and source of supply to allow reordering without further identification.  
+Provide clear and legible illustrations, drawings, and exploded views to enable easy identification of the items.  When illustrations omit the 
+part numbers and description, both the illustrations and separate listing must show the index, reference, or key number that will cross-reference 
+the illustrated part to the listed part.  Group the parts shown in the listings by components, assemblies, and subassemblies in accordance with 
+the manufacturer's standard practice.  Parts data may cover more than one model or series of equipment, components, assemblies, subassemblies, 
+attachments, or accessories, such as typically shown in a master part catalog.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Approved Submittals and Certificates</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copy of all submittals documented with the required approval as applicable for each UFGS specification listed in the table outlined in 
+applicable specifications.  Include copies of SD-07 Certificates submittals documented with the required approval, SD-08 Manufacturer's Instructions 
+submittals documented with the required approval, and SD-10 Operation and Maintenance Data submittals documents with the required approval.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Approved Coordination/Shop Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Drawings, diagrams and schedules specifically prepared to illustrate some portion of the work.  Diagrams and instructions from a manufacturer or 
+fabricator for use in producing the product and as aids to the Contractor for integrating the product or system into the project.  Drawings prepared 
+by or for the Contractor to show how multiple systems and interdisciplinary work will be coordinated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Sequence of Operation for Operating Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide record one-line diagrams for each floor, delineating mechanical equipment location within the building.  Provide specific instructions, 
+procedures, and illustrations for the following phases of operation for the installed model and features of each system:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Safety Precautions and Hazards</TTL><BRK/>
+<BRK/>
+<TXT>List personnel hazards and equipment or product safety precautions for operating conditions.  List all residual hazards identified in the Activity 
+Hazard Analysis provided under Section <SRF>01 35 26</SRF> GOVERNMENTAL SAFETY REQUIREMENTS.  Provide recommended safeguards for each identified hazard.  
+Specify if any certifications or licenses are required to operate the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operator Prestart</TTL><BRK/>
+<BRK/>
+<TXT>Provide procedures required to install, set up, and prepare each system for use.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Startup, Shutdown, and Post-Shutdown Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Provide narrative description for Startup, Shutdown and Post-shutdown operating procedures including the control sequence for each procedure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Normal Operations</TTL><BRK/>
+<BRK/>
+<TXT>Provide Control Diagrams with data to explain operation and control of systems and specific equipment.  Provide narrative description of Normal 
+Operating Procedures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Emergency Operations</TTL><BRK/>
+<BRK/>
+<TXT>Provide Emergency Procedures for equipment malfunctions to permit a short period of continued operation or to shut down the equipment to prevent 
+further damage to systems and equipment.  Provide Emergency Shutdown Instructions for fire, explosion, spills, or other foreseeable contingencies.  
+Provide guidance and procedures for emergency operation of utility systems including required valve positions, valve locations and zones or portions 
+of systems controlled.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operator Service Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide instructions for services to be performed by the operator such as lubrication, adjustment, inspection, and recording gauge readings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Environmental Conditions</TTL><BRK/>
+<BRK/>
+<TXT>Provide a list of Environmental Conditions (temperature, humidity, and other relevant data) that are best suited for the operation of each product, 
+component or system.  Describe conditions under which the item equipment should not be allowed to run.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operating Log</TTL><BRK/>
+<BRK/>
+<TXT>Provide forms, sample logs, and instructions for maintaining necessary operating records.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Additional Requirements for Equipment Control Systems</TTL><BRK/>
+<BRK/>
+<TXT>Provide Data Package 5 and the following for all control systems:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide a narrative description on how to perform and apply functions, features, modes, and other operations, including unoccupied operation, 
+seasonal changeover, manual operation, and alarms.  Include detailed technical manual for programming and customizing control loops and 
+algorithms.</OLI><BRK/>
+<BRK/>
+<OLI>Submit complete controls equipment schedules, full as-built sequence of operations, wiring and logic diagrams, Input/Output Tables, equipment 
+schedules, copies of checkout tests and calibrations performed by the Contractor (not Cx tests), and all associates information.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following items c through f below, depending on the project scope.</NPR><BRK/>
+<BRK/>
+<NPR>Make sure these are consistent with Operation and Maintenance Manual.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Full points list.  Provide a listing of rooms with the following information for each room:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Floor</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Room number</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Room name</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Air handler unit ID</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Reference drawing number</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Air terminal unit tag ID</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Heating or cooling valve tag ID</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Minimum cfm</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Maximum cfm</OLI><BRK/>
+<BRK/>
+<OLI>Full print out of all schedules and set points after testing and acceptance of the system.</OLI><BRK/>
+<BRK/>
+<OLI>Full as-built print out of software program.</OLI><BRK/>
+<BRK/>
+<OLI>Marking of system sensors and thermostats on the as-built floor plan and mechanical drawings with their control system designations.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Testing Equipment Information and Performance Data</TTL><BRK/>
+<BRK/>
+<TXT>Include information on test equipment required to perform specified tests and on special tools needed for the operation, maintenance, and repair 
+of components.  Provide final set points.</TXT><BRK/>
+<BRK/>
+<TXT>Include completed prefunctional checklists, functional performance test forms, and monitoring reports.  Include recommended schedule for retesting 
+and blank test forms.  Provide final set points.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Routine Maintenance Requirements</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Preventive Maintenance Plan, Schedule, and Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's schedule for routine preventive maintenance, inspections, condition monitoring (predictive tests) and adjustments required 
+to ensure proper and economical operation and to minimize repairs.  Provide instructions stating when the systems should be retested.  Provide 
+manufacturer's projection of preventive maintenance work-hours on a daily, weekly, monthly, and annual basis including requirements by type of 
+activity.  For periodic calibrations, provide manufacturer's specified frequency and procedures for each separate operation.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Define the anticipated time required to perform each test (work-hours), test apparatus, number of personnel identified by responsibility, 
+and a testing validation procedure permitting the record operation capability requirements within the schedule.  Provide a remarks column 
+for the testing validation procedure referencing operating limits of time, pressure, temperature, volume, voltage, current, acceleration, 
+velocity, alignment, calibration, adjustments, cleaning, or special system notes.  Delineate procedures for preventive maintenance, inspection, 
+adjustment, lubrication and cleaning necessary to minimize repairs.</OLI><BRK/>
+<BRK/>
+<OLI>Repair requirements must inform operators how to check out, troubleshoot, repair, and replace components of the system.  Include electrical 
+and mechanical schematics and diagrams and diagnostic techniques necessary to enable operation and troubleshooting of the system after 
+acceptance.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Lubrication Data</TTL><BRK/>
+<BRK/>
+<TXT>Include the following preventive maintenance lubrication data, in addition to instructions for lubrication required under paragraph OPERATOR SERVICE 
+REQUIREMENTS:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A table showing recommended lubricants for specific temperature ranges and applications.</OLI><BRK/>
+<BRK/>
+<OLI>Charts with a schematic diagram of the equipment showing lubrication points, recommended types and grades of lubricants, and capacities.  
+Provide procedural instructions for Oil Sampling for all equipment.</OLI><BRK/>
+<BRK/>
+<OLI>A Lubrication Schedule showing service interval frequency.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Repair Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Provide instructions and a list of tools required to repair or restore the product or equipment to proper condition or operating standards.  Provide 
+manufacturer's recommended procedures and instructions for correcting problems and making repairs for the installed model and features of each 
+system.  Include potential environmental and indoor air quality impacts of recommended maintenance procedures and materials.  Specify if any certifications 
+or licenses are required to repair the equipment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Troubleshooting Guides and Diagnostic Techniques</TTL><BRK/>
+<BRK/>
+<TXT>Provide step-by-step procedures to promptly isolate the cause of typical malfunctions.  Describe clearly why the checkout is performed and what 
+conditions are to be sought.  Identify tests or inspections and test equipment required to determine whether parts and equipment may be reused 
+or require replacement.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wiring Diagrams and Control Diagrams</TTL><BRK/>
+<BRK/>
+<TXT>Provide point-to-point drawings of wiring and control circuits including factory-field interfaces.  Provide a complete and accurate depiction of 
+the actual job specific wiring and control work.  On diagrams, number electrical and electronic wiring and pneumatic control tubing and the terminals 
+for each type, identically to actual installation configuration and numbering.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Removal and Replacement Instructions</TTL><BRK/>
+<BRK/>
+<TXT>Provide step-by-step procedures and a list of required specialty tools and supplies for removal, replacement, disassembly, and assembly of components, 
+assemblies, subassemblies, accessories, and attachments.  Provide tolerances, dimensions, settings and adjustments required.  Use a combination 
+of text and illustrations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Repair Work-Hours</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's projection of repair work-hours including requirements by type of craft.  Identify, and tabulate separately, repair that 
+requires the equipment manufacturer to complete or to participate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Warranty Information</TTL><BRK/>
+<BRK/>
+<TXT>List and explain the various warranties and clearly identify the servicing and technical precautions prescribed by the manufacturers or contract 
+documents in order to keep warranties in force.  Identify if replacement of a subassembly, attachment or accessory requires the entire assembly 
+to be replaced.  Include warranty information for primary components of the system.  Provide copies of warranties required by Section <SRF>01 78 00</SRF> 
+CLOSEOUT SUBMITTALS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Extended Warranty Information</TTL><BRK/>
+<BRK/>
+<TXT>List all warranties for products, equipment, components, and sub-components whose duration exceeds one year.  For each warranty listed, indicate 
+the applicable specification section, duration, start date, end date, and the point of contact for warranty fulfillment.  Also, list or reference 
+the specific operation and maintenance procedures that must be performed to keep the warranty valid.  Provide copies of warranties required by 
+Section <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Record Drawings and Utility Systems</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The record drawings are the final compilation of actual conditions<BRK/>
+reflected in the as-built drawings.  Provide record drawings as outlined<BRK/>
+in <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS.</TXT><BRK/>
+<BRK/>
+<TXT>Using Record Source Drawings, show and document details of the actual installation of the utility systems, annotate and highlight the Operation 
+and Maintenance information.  Provide the following drawings at a large enough scale to differentiate designated isolation units from surrounding 
+valves and switches.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Personnel Training Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide information available from the manufacturers that is needed for  use in training designated personnel to properly operate and maintain 
+the equipment and systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contractor / Supplier Listing and Contact Information</TTL><BRK/>
+<BRK/>
+<TXT>Provide a list that includes the name, address, telephone number, email and website of the General Contractor and each Subcontractor who installed 
+the product or equipment, or system.  For each item, also provide the name address and telephone number of the manufacturer's representative and 
+service organization that can provide replacements most convenient to the project site.  Provide the name, address, and telephone number of the 
+product, equipment, and system manufacturers.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Part 4: Facility Operations</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Completed Facility Operating Plan</TTL><BRK/>
+<BRK/>
+<TXT>Provide a plan that documents that procedures for the operation of systems and assemblies in the facility.  The systems that should be included 
+in the Operating Plan include, but are not limited to:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Electrical systems and equipment</OLI><BRK/>
+<BRK/>
+<OLI>Mechanical systems and equipment</OLI><BRK/>
+<BRK/>
+<OLI>Fire Protection systems and equipment</OLI><BRK/>
+<BRK/>
+<OLI>Control Systems and equipment</OLI><BRK/>
+<BRK/>
+<OLI>Architectural and Structural systems, fixtures, structures, and equipment</OLI> <BRK/>
+<BRK/>
+<OLI>Vertical transportation such as elevators and escalators</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Testing Equipment and Special Tool Information</TTL><BRK/>
+<BRK/>
+<TXT>Include information on test equipment required to perform specified tests and on special tools needed for the operation, maintenance, and repair 
+of components.  Provide final set points.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Testing and Performance Data</TTL><BRK/>
+<BRK/>
+<TXT>Include completed prefunctional checklists, functional performance test forms, and monitoring reports.  Include recommended schedule for retesting 
+and blank test forms.  Provide final set points.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Approved Field Test Reports and Manufacturer's Field Reports</TTL><BRK/>
+<BRK/>
+<TXT>Compile and provide approved Field Test Reports (SD-06) and Manufacturer's Field Reports (SD-09) submittals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Maintenance Plans, Procedures, Checklists, Records, and Spare Parts Inventory</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Maintenance Schedules</TTL><BRK/>
+<BRK/>
+<TXT>Include recommended maintenance schedules for systems and equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ongoing Commissioning Operational and Maintenance Record Keeping</TTL><BRK/>
+<BRK/>
+<TXT>Include ongoing commissioning and optimization procedures and documentation to monitor and improve the performance of facility systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Janitorial and Cleaning Plans and Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Include a copy of facility cleaning and janitorial plan with procedures and intended chemicals and equipment.</TXT><BRK/>
+<BRK/>
+<TXT>Provide environmentally friendly cleaning recommendations in accordance with <RID>ASTM E1971</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Utility Record Drawings</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Utility Schematic Diagrams</TTL><BRK/>
+<BRK/>
+<TXT>Provide a one-line schematic diagram for each utility system such as power, water, wastewater, and gas/fuel.  Schematic diagram must show from 
+the point where the utility line is connected to the mainline up to the<MET> 1.5 meter</MET><ENG> 5 foot</ENG> connection point to the facility.  Indicate location or 
+area designation for route of transmission or distribution lines; locations of duct banks, manholes/handholes or poles; isolation units such as 
+valves and switches; and utility facilities such as pump stations, lift stations, and substations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Enlarged Connection and Cutoff Plans</TTL><BRK/>
+<BRK/>
+<TXT>Provide enlarged floor plans and provide information between the<MET> 1.5 meter</MET><ENG> 5 foot</ENG> utilities connection point and where utilities connect to facility 
+distribution.  Enlarge floor plans/elevations of the rooms where the utility enters the building and indicate on these plans the locations of the 
+main interiors and exterior connection and cutoff points for the utilities.  Also enlarge floor plans/elevations of the rooms where equipment is 
+located.  Include enough information to enable someone unfamiliar with the facility to locate the connection and cutoff points. Indicate designations 
+such as room number, panel number, circuit breaker, or valve number of each utility and equipment connection and cutoff point, and what that connection 
+and cutoff point controls.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Description of Utility Metering and Monitoring Systems</TTL><BRK/>
+<BRK/>
+<TXT>Provide in narrative format a description of the utility metering and monitoring systems. Include locations, function, and related systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Procedures for Tracking Utility Use and Reporting</TTL><BRK/>
+<BRK/>
+<TXT>Procedures for usage reporting and tracking in support of establishing and monitoring utility budgets and costs, and in developing annual energy 
+reports.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>One-Line Diagrams and Meter Location of System</TTL><BRK/>
+<BRK/>
+<TXT>Provide one-line diagrams and design drawings that highlight meter locations on the site.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Spare Parts and Supply Lists</TTL><BRK/>
+<BRK/>
+<TXT>Provide lists of spare parts and supplies required for repair to ensure continued service or operation without unreasonable delays.  Special consideration 
+is required for facilities at remote locations.  List spare parts and supplies that have a long lead-time to obtain.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Part 5: Training</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copy of training plans used for each type of equipment along with training materials used, arranged in specification sequence.  Provide 
+a copy of training records, sign-in sheets, and agendas.  Include training and documentation on the updating and continued use of the O&amp;M Manual.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Part 6: Cx Project Report and TAB Report</TTL><BRK/>
+<BRK/>
+<TXT>Provide the final Cx Plan and complete Cx reports with evaluation and testing forms and records for each building system.  Include relevant commissioned 
+system assemblies test reports including installers checklists of assemblies.  Provide all Cx Progress Reports, issues and resolutions logs with 
+resolution or status of each item, and a list of any open items and seasonal or additional testing required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Part 7: Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide information describing regulatory and policies compliance requirements or provide a reference to where it is stored.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Part 8: Permits</TTL><BRK/>
+<BRK/>
+<TXT>Provide information requiring frequently asked questions and associated answers or provide a reference to where it is stored.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Part 9: Operations and Maintenance Manual Approval</TTL><BRK/>
+<BRK/>
+<TXT>Provide a signed document stating that the project O&amp;M Manual has been reviewed and confirming agreement with the approach it presents.  Include 
+contact information for the signer for coordination of any future changes.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Part 10: Risk Category V</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include this paragraph when seismic certification of equipment is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For equipment required to be seismically certified according to Sections <SRF>23 05 48.19</SRF> SEISMIC PROTECTION FOR MECHANICAL SYSTEMS and <SRF>26 05 48</SRF> SEISMIC 
+PROTECTION FOR ELECTRICAL EQUIPMENT, documentation demonstrating compliance with certification requirements must be maintained in a file identified 
+as "Equipment Seismic Certification Documentation" within the O&amp;M Manual.  This file must clearly state: "Replacement or modification of seismically 
+certified components must be approved by a qualified professional engineer according to original certification criteria".</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>SCHEDULE OF OPERATION AND MAINTENANCE DATA PACKAGES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The type of O&amp;M data needed for any product, system, or piece of equipment depends upon the complexity 
+of that item.  If not, specify the appropriate Data Package number in the technical section using the Data Package 
+Number from the choices 1 through 5 below.</NPR><BRK/>
+<BRK/>
+<NPR>Data Package 1 is typically used for architectural items requiring simple but specific maintenance and replacement; 
+for example, acoustical ceiling, floor tile or carpeting system.</NPR><BRK/>
+<BRK/>
+<NPR>Data Package 2 is used for an item that is less simple; for example, an item having a motor and some sequence 
+of operation such as a refrigerated drinking fountain.</NPR><BRK/>
+<BRK/>
+<NPR>Data Package 3 is used for a complex piece of equipment, having a specific troubleshooting sequence, but one which 
+does not require an operator on watch; for example, HVAC temperature controls.</NPR><BRK/>
+<BRK/>
+<NPR>Data Package 4 is used for an extremely complex piece of equipment, having an extensive sequence of operation, 
+a complex troubleshooting sequence and one requiring frequent operator attention; at least for start-up and shut-down.  
+Examples include small boilers and small diesel generator sets.</NPR><BRK/>
+<BRK/>
+<NPR>Data Package 5 is used for electrical equipment, components or systems on which, wiring and control diagrams are 
+needed for operation, maintenance or repair.  Examples are 400 Hz frequency converters, annunciator panels and 
+cathodic protection systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the O&amp;M data packages specified in individual technical sections.  O&amp;M Data Packages are one of the components of the O&amp;M Manual.  
+The information required in each type of data package follows:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Package Quality</TTL><BRK/>
+<BRK/>
+<TXT>Documents must be fully legible.  Operation and Maintenance data must be consistent with the manufacturer's standard brochures, schematics, printed 
+instructions, general operating procedures, and safety precautions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Data Package 1</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Safety precautions and hazards</OLI><BRK/>
+<BRK/>
+<OLI>Cleaning recommendations</OLI><BRK/>
+<BRK/>
+<OLI>Maintenance and repair procedures</OLI><BRK/>
+<BRK/>
+<OLI>Warranty information</OLI><BRK/>
+<BRK/>
+<OLI>Extended warranty information</OLI><BRK/>
+<BRK/>
+<OLI>Contractor information</OLI><BRK/>
+<BRK/>
+<OLI>Spare parts and supply list</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Data Package 2</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Safety precautions and hazards</OLI><BRK/>
+<BRK/>
+<OLI>Normal operations</OLI><BRK/>
+<BRK/>
+<OLI>Environmental conditions</OLI><BRK/>
+<BRK/>
+<OLI>Lubrication data</OLI><BRK/>
+<BRK/>
+<OLI>Preventive maintenance plan, schedule, and procedures</OLI><BRK/>
+<BRK/>
+<OLI>Cleaning recommendations</OLI><BRK/>
+<BRK/>
+<OLI>Maintenance and repair procedures</OLI><BRK/>
+<BRK/>
+<OLI>Removal and replacement instructions</OLI><BRK/>
+<BRK/>
+<OLI>Spare parts and supply list</OLI><BRK/>
+<BRK/>
+<OLI>Parts identification</OLI><BRK/>
+<BRK/>
+<OLI>Warranty information</OLI><BRK/>
+<BRK/>
+<OLI>Extended warranty information</OLI><BRK/>
+<BRK/>
+<OLI>Contractor information</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Data Package 3</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Safety precautions and hazards</OLI><BRK/>
+<BRK/>
+<OLI>Operator prestart</OLI><BRK/>
+<BRK/>
+<OLI>Startup, shutdown, and post-shutdown procedures</OLI><BRK/>
+<BRK/>
+<OLI>Normal operations</OLI><BRK/>
+<BRK/>
+<OLI>Emergency operations</OLI><BRK/>
+<BRK/>
+<OLI>Environmental conditions</OLI><BRK/>
+<BRK/>
+<OLI>Operating log</OLI><BRK/>
+<BRK/>
+<OLI>Lubrication data</OLI><BRK/>
+<BRK/>
+<OLI>Preventive maintenance plan, schedule, and procedures</OLI><BRK/>
+<BRK/>
+<OLI>Cleaning recommendations</OLI><BRK/>
+<BRK/>
+<OLI>Troubleshooting guides and diagnostic techniques</OLI><BRK/>
+<BRK/>
+<OLI>Wiring diagrams and control diagrams</OLI><BRK/>
+<BRK/>
+<OLI>Maintenance and repair procedures</OLI><BRK/>
+<BRK/>
+<OLI>Removal and replacement instructions</OLI><BRK/>
+<BRK/>
+<OLI>Spare parts and supply list</OLI><BRK/>
+<BRK/>
+<OLI>Product submittal data</OLI><BRK/>
+<BRK/>
+<OLI>O&amp;M submittal data</OLI><BRK/>
+<BRK/>
+<OLI>Parts identification</OLI><BRK/>
+<BRK/>
+<OLI>Warranty information</OLI><BRK/>
+<BRK/>
+<OLI>Extended warranty information</OLI><BRK/>
+<BRK/>
+<OLI>Testing equipment and special tool information</OLI><BRK/>
+<BRK/>
+<OLI>Testing and performance data</OLI><BRK/>
+<BRK/>
+<OLI>Contractor information</OLI><BRK/>
+<BRK/>
+<OLI>Field test reports</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Data Package 4</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Safety precautions and hazards</OLI><BRK/>
+<BRK/>
+<OLI>Operator prestart</OLI><BRK/>
+<BRK/>
+<OLI>Startup, shutdown, and post-shutdown procedures</OLI><BRK/>
+<BRK/>
+<OLI>Normal operations</OLI><BRK/>
+<BRK/>
+<OLI>Emergency operations</OLI><BRK/>
+<BRK/>
+<OLI>Operator service requirements</OLI><BRK/>
+<BRK/>
+<OLI>Environmental conditions</OLI><BRK/>
+<BRK/>
+<OLI>Operating log</OLI><BRK/>
+<BRK/>
+<OLI>Lubrication data</OLI><BRK/>
+<BRK/>
+<OLI>Preventive maintenance plan, schedule, and procedures</OLI><BRK/>
+<BRK/>
+<OLI>Cleaning recommendations</OLI><BRK/>
+<BRK/>
+<OLI>Troubleshooting guides and diagnostic techniques</OLI><BRK/>
+<BRK/>
+<OLI>Wiring diagrams and control diagrams</OLI><BRK/>
+<BRK/>
+<OLI>Repair procedures</OLI><BRK/>
+<BRK/>
+<OLI>Removal and replacement instructions</OLI><BRK/>
+<BRK/>
+<OLI>Spare parts and supply list</OLI><BRK/>
+<BRK/>
+<OLI>Repair work-hours</OLI><BRK/>
+<BRK/>
+<OLI>Product submittal data</OLI><BRK/>
+<BRK/>
+<OLI>O&amp;M submittal data</OLI><BRK/>
+<BRK/>
+<OLI>Parts identification</OLI><BRK/>
+<BRK/>
+<OLI>Warranty information</OLI><BRK/>
+<BRK/>
+<OLI>Extended warranty information</OLI><BRK/>
+<BRK/>
+<OLI>Personnel training requirements</OLI><BRK/>
+<BRK/>
+<OLI>Testing equipment and special tool information</OLI><BRK/>
+<BRK/>
+<OLI>Testing and performance data</OLI><BRK/>
+<BRK/>
+<OLI>Contractor information</OLI><BRK/>
+<BRK/>
+<OLI>Field test reports</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Data Package 5</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Safety precautions and hazards</OLI><BRK/>
+<BRK/>
+<OLI>Operator prestart</OLI><BRK/>
+<BRK/>
+<OLI>Start-up, shutdown, and post-shutdown procedures</OLI><BRK/>
+<BRK/>
+<OLI>Normal operations</OLI><BRK/>
+<BRK/>
+<OLI>Environmental conditions</OLI><BRK/>
+<BRK/>
+<OLI>Preventive maintenance plan, schedule, and procedures</OLI><BRK/>
+<BRK/>
+<OLI>Troubleshooting guides and diagnostic techniques</OLI><BRK/>
+<BRK/>
+<OLI>Wiring and control diagrams</OLI><BRK/>
+<BRK/>
+<OLI>Maintenance and repair procedures</OLI><BRK/>
+<BRK/>
+<OLI>Removal and replacement instructions</OLI><BRK/>
+<BRK/>
+<OLI>Spare parts and supply list</OLI><BRK/>
+<BRK/>
+<OLI>Product submittal data</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's instructions</OLI><BRK/>
+<BRK/>
+<OLI>O&amp;M submittal data</OLI><BRK/>
+<BRK/>
+<OLI>Parts identification</OLI><BRK/>
+<BRK/>
+<OLI>Testing equipment and special tool information</OLI><BRK/>
+<BRK/>
+<OLI>Warranty information</OLI><BRK/>
+<BRK/>
+<OLI>Extended warranty information</OLI><BRK/>
+<BRK/>
+<OLI>Testing and performance data</OLI><BRK/>
+<BRK/>
+<OLI>Contractor information</OLI><BRK/>
+<BRK/>
+<OLI>Field test reports</OLI><BRK/>
+<BRK/>
+[<OLI>Additional requirements for HVAC control systems</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Changes to Submittals</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer-originated changes or revisions to submitted data if a component of an item is so affected subsequent to acceptance of the 
+O&amp;M Data.  Submit changes, additions, or revisions required by the Contracting Officer for final acceptance of submitted data within 30 calendar 
+days of the notification of this change requirement.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></PRT>
+<PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>TRAINING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use tailored option for Facility Management Specialist for Navy projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to acceptance of the facility by the Contracting Officer for Beneficial Occupancy, provide comprehensive training for the systems and equipment 
+specified in the technical specifications.  The training must be targeted for the <TAI OPT="NAVY">Facilities Management Specialist, </TAI>building maintenance personnel, 
+and applicable building occupants.  Instructors must be well-versed in the particular systems that they are presenting.  Address aspects of the 
+Operation and Maintenance Manual submitted in accordance with Section <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS.  Training must include classroom or field lectures 
+based on the system operating requirements.  The location of classroom training requires approval by the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Training Plan</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring for COMMISSIONING AUTHORITY.</NPR><BRK/>
+<BRK/>
+<NPR>Choose the COMMISSIONING AUTHORITY tailoring option (CxA) to oversee and approve the training plan if the project 
+requires a CxA.  If a CxA is not required, choose the bracketed option for the QC to oversee and approve the training 
+plan and schedule.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit a written training plan to the Contracting Officer for approval at least 60 calendar days prior to the scheduled training.  Training plan 
+must be approved by the [Quality Control Manager (QC)]<TAI OPT="COMMISSIONING AUTHORITY">[Commissioning Authority (CxA)]</TAI> prior to forwarding to the Contracting Officer.  Also, coordinate 
+the training schedule with the Contracting Officer and [QC]<TAI OPT="COMMISSIONING AUTHORITY">[CxA]</TAI>.  Include within the plan the following elements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Equipment included in training</OLI><BRK/>
+<BRK/>
+<OLI>Intended audience</OLI><BRK/>
+<BRK/>
+<OLI>Location of training</OLI><BRK/>
+<BRK/>
+<OLI>Dates of training</OLI><BRK/>
+<BRK/>
+<OLI>Objectives</OLI><BRK/>
+<BRK/>
+<OLI>Outline of the information to be presented and subjects covered including description</OLI><BRK/>
+<BRK/>
+<OLI>Start and finish times and duration of training on each subject</OLI><BRK/>
+<BRK/>
+<OLI>Methods (e.g. classroom lecture, video, site walk-through, actual operational demonstrations, written handouts)</OLI><BRK/>
+<BRK/>
+<OLI>Instructor names and instructor qualifications for each subject</OLI><BRK/>
+<BRK/>
+<OLI>List of texts and other materials to be furnished by the Contractor that are required to support training</OLI><BRK/>
+<BRK/>
+<OLI>Description of proposed software to be used for video recording of training sessions.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Training Content</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In the second sentence, choose the CxA (Commissioning Authority) bracketed option to oversee and approve 
+the training content if the project requires a CxA.  Otherwise, choose the QC bracketed option for the QC to oversee 
+and approve the training content.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The core of this training must be based on manufacturer's recommendations and the operation and maintenance information.  The [QC][CxA] is responsible 
+for overseeing and approving the content and adequacy of the training.  Spend 95 percent of the instruction time during the presentation on the 
+OPERATION AND MAINTENANCE DATA.  Include the following for each system training presentation:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Start-up, normal operation, shutdown, unoccupied operation, seasonal changeover, manual operation, controls set-up and programming, troubleshooting, 
+and alarms.</OLI><BRK/>
+<BRK/>
+<OLI>Relevant health and safety issues.</OLI><BRK/>
+<BRK/>
+<OLI>Discussion of how the feature or system is environmentally responsive.  Advise adjustments and optimizing methods for energy conservation.</OLI><BRK/>
+<BRK/>
+<OLI>Design intent.</OLI><BRK/>
+<BRK/>
+<OLI>Use of O&amp;M Manual Files.</OLI><BRK/>
+<BRK/>
+<OLI>Review of control drawings and schematics.</OLI><BRK/>
+<BRK/>
+<OLI>Interactions with other systems.</OLI><BRK/>
+<BRK/>
+<OLI>Special maintenance and replacement sources.</OLI><BRK/>
+<BRK/>
+<OLI>Tenant interaction issues.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Training Outline</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide the Operation and Maintenance Manual Files (Bookmarked PDF) and a written course outline listing the major and minor topics to be discussed 
+by the instructor on each day of the course to each trainee in the course.  Provide the course outline 14 calendar days prior to the training.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Training Video Recording</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Record classroom training session(s) on video.  Provide to the Contracting Officer two copies of the training session(s) in DVD video recording 
+format.  Capture within the recording, in video and audio, the instructors' training presentations including question and answer periods with the 
+attendees.  The recording camera(s) must be attended by a person during the recording sessions to assure proper size of exhibits and projections 
+during the recording are visible and readable when viewed as training.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unresolved Questions from Attendees</TTL><BRK/>
+<BRK/>
+<TXT>If, at the end of the training course, there are questions from attendees that remain unresolved, the instructor must send the answers, in writing, 
+to the Contracting Officer for transmittal to the attendees, and the training video must be modified to include the appropriate clarifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Validation of Training Completion</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Ensure that each attendee at each training session signs a class roster daily to confirm Government participation in the training.  At the completion 
+of training, submit a signed validation letter that includes a sample record of training for reporting what systems were included in the training, 
+who provided the training, when and where the training was performed, and copies of the signed class rosters.  Provide two copies of the validation 
+to the Contracting Officer, and one copy to the Operation and Maintenance Manual Preparer for inclusion into the Manual's documentation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Quality Control Coordination</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring for COMMISSIONING AUTHORITY.</NPR><BRK/>
+<BRK/>
+<NPR>Choose the COMMISSIONING AUTHORITY tailoring option (CxA) for QC coordination if the project requires a CxA.  
+If a CxA is not required, choose the bracketed option for the QC to approve the training content.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate this training with the [QC]<TAI OPT="COMMISSIONING AUTHORITY">[CxA] </TAI>in accordance with Section <SRF>01 45 00</SRF> QUALITY CONTROL.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTAL SCHEDULING</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Operation and Maintenance Manual, Progress Submittal</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit the Progress submittal when construction is approximately 50 percent complete, to the Contracting Officer for approval.  Provide Operation 
+and Maintenance Manual Files (Bookmarked PDF).  Include the elements and portions of system construction completed up to this point.  The purpose 
+of this submittal is to verify progress is in accordance with contract requirements as discussed during the Operation and Maintenance Manual Coordination 
+Meeting.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Operation and Maintenance Manual, Prefinal Submittal</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the bracketed option of submission of the Prefinal submittal 90 calendar days prior to BOD for MILCON 
+and Special Projects.  Choose 60 calendar days prior to BOD for renovations or repairs, or provide a timeframe 
+practical to the project duration for smaller projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit the 100 percent submittal of the Operation and Maintenance Prefinal Submittal to the Contracting Officer for approval a minimum of[ 90][ 
+60][_____] calendar days prior to the Beneficial Occupancy Date (BOD)..  This submittal must provide a complete, working document that can be used 
+to operate and maintain the facility.  Any portion of the submittal that is incomplete or inaccurate requires the entire submittal to be returned 
+for correction.  Any discrepancies discovered during the Government's review of Operation and Maintenance Progress submittal must be corrected 
+prior to the Prefinal submission.  The Prefinal Submittal must include Operation and Maintenance Manual Files (Bookmarked PDF).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Operation and Maintenance Manual, Final Submittal</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In the first sentence, option for hard copies is tailored for ARMY.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit completed Operation and Maintenance Manual Files (Bookmarked PDF)<TAI OPT="ARMY">[ and [one ][_____] hard copy of the Operation and Maintenance Manuals]</TAI>
+.  The Final submittal is due at BOD.  Any discrepancies discovered during the <NED/>Government's review of the Prefinal submittal, including the Field 
+Verification, must be corrected prior to the Final submission.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NAVFAC EURAFCENT,NAVFAC FE"><SPT><TTL>Final Operation and Maintenance Manual Submittal Translation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for NAVFAC FE and NAVFAC EURAFCENT.  For OCONUS locations, choose the appropriate 
+foreign language that will be used based on the location of the project.  If a foreign translation is not required, 
+delete this bracketed paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a translation in [Italian] [Spanish] [Portuguese] [Greek] [Japanese] [_____] of the Operation and Maintenance Manual in electronic format.  
+Provide drawings, charts and tables in both English and the foreign language.  If required by Contracting Officer, provide a split format showing 
+the foreign language on the left and English translation on the right.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT></PRT>    <END/><BRK/></SEC>

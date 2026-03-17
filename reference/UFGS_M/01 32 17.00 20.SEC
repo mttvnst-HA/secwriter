@@ -1,0 +1,1382 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="393.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="393.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-01 32 17.00 20 (May 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-01 32 17.00 20 (November 2023)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 01 32 17.00 20</SCN><BRK/>
+<BRK/>
+<STL>COST-LOADED NETWORK ANALYSIS SCHEDULES (NAS)</STL><BRK/>
+<DTE>05/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification applies to Design-Bid-Build and Design-Build projects and covers the <SCP>preparation 
+and use of Cost-Loaded Network Analysis Schedules (NAS) for construction using Primavera P6</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Confirm with the Administering FEAD/ROICC/OICC that the project schedule should be prepared under the requirements 
+of this section.  Provide the proposed NAS Specification for the review and acceptance by the PDC5 Construction 
+Schedule Analyst.  Further, this section must be reviewed and approved by the administering FEAD/ROICC/OICC/PDC5 
+Construction Schedule Analyst prior to completion of the Request for Proposal (RFP).  Selected bracketed options 
+[_____] included in this section must be approved by the Administering FEAD/ROICC/OICC.</NPR><BRK/>
+<BRK/>
+<NPR>Coordination is required with Section <SRF>01 20 00</SRF> PRICE AND PAYMENT PROCEDURES with selection of "Earned Value Report" 
+rather than "Schedule of Prices" in that section.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section contains tailoring for Design-Build (DB), Design-Bid-Build (DBB), TABS, and Commissioning 
+(CX).  Use TABS tailoring when Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING FOR HVAC and Section 
+<SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC are included in the contract specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>The cost-loaded Network Analysis Schedule (NAS) is a tool to manage the project, both for Contractor and Government activities.  The NAS is also 
+used to report progress, evaluate time extensions, and provide the basis for progress payments.</TXT><BRK/>
+<BRK/>
+<TXT>For consistency, when scheduling software terminology is used in this section, the terms in Oracle Primavera's scheduling programs are used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>NAS REQUIREMENTS PRIOR TO THE START OF WORK</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Preliminary Scheduling Meeting</TTL><BRK/>
+<BRK/>
+<TXT>Before preparation of the Baseline NAS, and prior to the start of work, meet with the Contracting Officer to discuss the proposed NAS and the requirements 
+of this section.  Propose projected data dates for monthly update NAS for the project and incorporate each monthly update submittal into the submittal 
+register.  Discuss required forms, terminology, and submittal requirements of this section and other requirements related to schedule management 
+for this contract.  Use the NAVFAC-provided Preliminary Scheduling Meeting Guideline in the completion of the intended mutual understanding.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="DESIGN-BID-BUILD"><SPT><TTL>Baseline NAS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for DESIGN-BID-BUILD.</NPR><BRK/>
+<BRK/>
+<NPR>In the first sentence, select the default of "30" calendar days as the standard.  If warranted, the amount of 
+calendar days for projects requiring more time may be tailored based on project size and technical complexity.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit the <SUB>Baseline NAS</SUB> within 30 calendar days after contract award.  Data date must be set to contract award date and no progress recorded for 
+any activity.  Only bonds and the required Preliminary Scheduling Meeting may be recorded as complete prior to acceptance of the Baseline NAS.  
+The acceptance of a Baseline NAS is a condition precedent to:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The Contractor starting demolition work or construction stage(s) of the contract.</OLI><BRK/>
+<BRK/>
+<OLI>Processing Contractor's invoices(s) for any items other than bonds.</OLI><BRK/>
+<BRK/>
+<OLI>Review of any NAS updates.  The contractor is still required to submit monthly NAS updates.  Without an accepted baseline NAS, the Government 
+may return Monthly NAS update as received for record.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Submittal of the Baseline NAS is the Contractor's certification that the submitted NAS meets the requirements of the Contract Documents and represents 
+the Contractor's plan on how the work will be accomplished.  Provide all items listed in paragraph REQUIRED TABULAR REPORTS AND NATIVE P6 XER FILES 
+with baseline NAS submittal.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="DESIGN-BUILD"><SPT><TTL>Baseline NAS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for DESIGN-BUILD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Baseline NAS</TTL><BRK/>
+<BRK/>
+<TXT>Submit the <SUB>Baseline NAS</SUB> at the Post-Award Kickoff (PAK) Meeting or within 30 calendar days after contract award whichever occurs first.  The Baseline 
+NAS must include detailed design activities and a general approach to construction, including summary activities for required phasing and definable 
+areas.  Summary Construction activities must not exceed duration of 60 calendar days, unless approved otherwise by Contracting Officer.  Data date 
+must be set to contract award date and no progress recorded for any activity.</TXT><BRK/>
+<BRK/>
+<TXT>Only bonds and the required Preliminary Scheduling Meeting may be recorded as complete prior to acceptance of the Baseline NAS.  The acceptance 
+of a Baseline NAS is a condition precedent to:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The Contractor submitting the first design submittal.</OLI><BRK/>
+<BRK/>
+<OLI>Processing Contractor's invoices(s)other than that for the bonds.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Post-Award Kickoff (PAK) Meeting and Baseline NAS</TTL><BRK/>
+<BRK/>
+<TXT>Present the Baseline NAS at the PAK Meeting.  Be prepared to discuss the NAS logic emphasizing how the NAS satisfies the design package requirements 
+and incorporates the required government review periods for each design submittal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Construction Baseline NAS</TTL><BRK/>
+<BRK/>
+<TXT>Submit the detailed <SUB>Construction Baseline NAS</SUB> prior to the pre-final design submittal.  The pre-final design submittal will not be reviewed until 
+a Construction Baseline NAS is submitted.</TXT><BRK/>
+<BRK/>
+<TXT>The acceptance of the Construction Baseline NAS is a condition precedent to:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The contractor starting demolition work or construction stage(s) of the contract.</OLI><BRK/>
+<BRK/>
+<OLI>Processing Contractor's invoices for demolition or construction activities.</OLI><BRK/>
+<BRK/>
+<OLI>Review of any construction phase NAS updates.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Submittal of the Construction Baseline NAS must be the Contractor's certification that the submitted NAS meets the requirements of the Contract 
+Documents, and represents the Contractor's plan on how the work will be accomplished.  Provide all items listed in paragraph REQUIRED TABULAR REPORTS 
+AND NATIVE P6 XER FILES with baseline NAS submittal.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI></SPT><SPT><TTL><SUB>WEEKLY LOOK AHEAD SCHEDULE</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Quality Control and Production Integration with NAS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to Section <SRF>01 45 00</SRF>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit the first Look Ahead Schedule 30 days after contract award and continue to submit weekly until contract completion.</TXT><BRK/>
+<BRK/>
+<TXT>Transmit the Weekly Look Ahead Schedule Submittal to the Contracting Officer on the first day of the current week that the Look Ahead Schedule 
+covers and at least one working day prior to any Quality Control meetings.  Contractor is required to provide all attendees at meetings with a 
+copy of the Look Ahead Schedule.  A Look Ahead Schedule is required to be submitted weekly regardless of whether a meeting is held or not.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Weekly Look Ahead Schedule Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the default of "Three-Week" for the number of future weeks to be displayed in the Weekly Look Ahead 
+Schedules.  If the Administering FEAD/ROICC/OICC agree, the option "Four-Week" can be selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prepare and issue a [Four-Week][Three-Week] Look Ahead Schedule to provide a more detailed day-to-day plan of upcoming work identified on the current 
+Network Analysis Schedule.  Requirements include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>For each Look Ahead Schedule activity, identify parent NAS activity number(s).  The parent NAS activity is the activity in the NAS that 
+would incorporate the Look Ahead Schedule activity requirement [and][or] scope of work.</OLI><BRK/>
+<BRK/>
+<OLI>Update schedule each week to show the planned work for the following[ three-week][ four-week] period.  Also include previous week, as-built 
+work, showing actual start and finish dates.</OLI><BRK/>
+<BRK/>
+<OLI>Include upcoming outages, closures, preparatory meetings, and initial meetings, testing and inspections.</OLI><BRK/>
+<BRK/>
+<OLI>Identify any offsite fabrication and production activities.</OLI><BRK/>
+<BRK/>
+<OLI>Clearly identify Longest Path activities on the Weekly Look Ahead Schedule.  Include a key or legend that distinguishes longest path activities.  
+Include all Longest Path activity NAS start/finish dates exceeded [and][or] occurring during this period.</OLI><BRK/>
+<BRK/>
+<OLI>Identify responsibility for each activity.</OLI><BRK/>
+<BRK/>
+<OLI>The detail work plans are to be bar chart type schedules, derived from but maintained separately from the Project NAS on an electronic 
+spreadsheet program and printed on<MET> 299 by 432 mm</MET><ENG> 11 by 17 inch</ENG> sheets as directed by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Activities must not exceed 5 working days in duration and have sufficient level of detail to assign crews, tools and equipment required 
+to complete the work.</OLI><BRK/>
+<TAI OPT="DESIGN-BUILD"><BRK/>
+<OLI>For design-build: Identify any design production and quality control activities, meetings, and charrettes.</OLI><BRK/></TAI>
+<BRK/>
+<OLI>Look Ahead activities are not limited to only onsite work.  Include submittal, offsite fabrication, and procurement activities.  Include 
+design activities, meetings, and coordination when part of scope.</OLI><BRK/>
+<BRK/>
+<TAI OPT="NAVFAC"><OLI>Upload the Weekly Look Ahead Schedules to eCMS as a submittal by the date and time required.</OLI></TAI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>MONTHLY NETWORK ANALYSIS</TTL><BRK/>
+<BRK/>
+<TXT>Submittal of Monthly NAS is the Contractor's certification that the submitted NAS meets the requirements of the Contract Documents and represents 
+the Contractor's plan on how the work will be accomplished.  Provide all items listed in paragraph REQUIRED TABULAR REPORTS AND NATIVE P6 XER FILES 
+with the monthly NAS submittal.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Monthly Update Meeting</TTL><BRK/>
+<BRK/>
+<TXT>Meet with Government representative(s) at monthly intervals to review and agree on the information presented in the Monthly NAS Update. The Monthly 
+Update Meeting must be a separate and distinct meeting from other meetings required of the contract.  As a minimum, accomplish the following with 
+each meeting held monthly:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Prior to the meeting, provide an agenda of proposed topics to be discussed to include but not limited to narrative report and items listed 
+in paragraph REQUIRED TABULAR REPORTS.  Document agenda and minutes with Meeting Minutes object in eCMS for each monthly update meeting.</OLI><BRK/>
+<BRK/>
+<OLI>The Approved Designated Project Scheduler must present the NAS data using Oracle Primavera P6 software and have baseline NAS, monthly update 
+NAS, and Time Impact Analysis native files available to review as necessary.</OLI><BRK/>
+<BRK/>
+<OLI>Review Time Impact Analysis.</OLI><BRK/>
+<BRK/>
+<OLI>Document action items in eCMS Meeting Minutes for necessary revisions to Monthly NAS Update and to address any delays and or problem areas 
+in a timely manner.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Monthly NAS Updates</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>The submission of an accepted, updated NAS to the Government is a condition precedent to the processing of the Contractor's invoice.</OLI><BRK/>
+<BRK/>
+<OLI>Regardless of whether an invoice is being submitted monthly, or no project progress occurred, an updated NAS (or with new data date) must 
+be submitted monthly to the Government.  The Monthly NAS update must be submitted within 5 calendar days of the data date.</OLI><BRK/>
+<BRK/>
+<OLI>Regardless of whether a baseline or other NAS is submitted [and][or] accepted, an updated NAS must be submitted monthly to the Government.  
+Monthly updates submitted before the baseline being accepted may be returned as received for record.</OLI><BRK/>
+<BRK/>
+<OLI>Provide all items listed in paragraph REQUIRED TABULAR REPORTS AND NATIVE P6 XER FILES, with each monthly NAS update submittal.</OLI><BRK/>
+<BRK/>
+<OLI>Activity progress must incorporate as-built events as they occurred and correspond to records including but not limited to submittals and 
+daily production and quality control reports.</OLI><BRK/>
+<BRK/>
+<OLI>Software Settings:  Handle NAS calculations through Retained Logic, not Progress Override.  Out of Sequence progress is not allowed.  Relationships 
+must be changed to reflect as-built relationships.  Show all activity durations and float values in days.  Show activity progress using 
+Remaining Duration.  Set default activity type to "Task Dependent".</OLI><BRK/>
+<BRK/>
+<OLI>Updated NAS must reflect current Contract Completion Date and contract value in accordance with all conformed contract modifications issued 
+prior to data date of NAS update.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>As-Built NAS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>As a condition precedent to the release of retention and making final payment, submit an "As-Built NAS," as the last NAS update showing all activities 
+at 100 percent completion.  This NAS must reflect the exact manner in which the project was actually constructed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CORRESPONDENCE AND TEST REPORTS</TTL><BRK/>
+<BRK/>
+<TXT>Reference NAS Activity IDs that are being addressed in each correspondence (e.g., letters, Submittals, Requests for Information (RFIs), e-mails, 
+meeting minute items, Production and QC Daily Reports, material delivery tickets, photographs) and test report (e.g., concrete, soil compaction, 
+weld, pressure).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ADDITIONAL NETWORK ANALYSIS SCHEDULE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Other specification sections may include additional NAS related requirements, including systems to be inspected, tested and commissioned, and submittal 
+procedures.  Those requirements must be incorporated into the NAS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="DESIGN-BUILD"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Design-Build projects, delete Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and replace with UFGS 01 33 00.05 
+20 CONSTRUCTION SUBMITTAL PROCEDURES and UFGS 01 33 10.05 20 DESIGN SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Government approval/acceptance is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification 
+are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following 
+the "G" classification identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section 
+<SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BID-BUILD,DESIGN-BUILD"><ITM><SUB>Baseline NAS</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<TAI OPT="DESIGN-BUILD"><ITM><SUB>Construction Baseline NAS</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Designated Project Scheduler</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Weekly Look Ahead Schedule</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Monthly NAS Updates</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>As-Built NAS</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SOFTWARE</TTL><BRK/>
+<BRK/>
+<TXT>Prepare and maintain project NAS using Oracle Primavera P6 software in a version compatible with Government's current version.  Submit XER files 
+exported as version 17 or earlier.  Importing data into P6 using data conversion techniques or third party software is cause for rejection of the 
+submitted NAS.  NAS with Performing Organizational Breakdown Structure (POBS) data in any form other than column is cause for rejection.  NAS must 
+be scheduled by using the Schedule command after last entry in Oracle Primavera P6 prior to export for submission to the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>DESIGNATED PROJECT SCHEDULER</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Within 30 calendar days of contract award, submit to the Contracting Officer for approval an individual who will serve as the Designated Project 
+Scheduler.  Include a copy of the candidate's resume with qualifications.  The Designated Project Scheduler is subject to removal by the Contracting 
+Officer for non-compliance with the requirements specified in the Contract.  Payment request will not be processed without an approved Designated 
+Project Scheduler.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>The Designated Project Scheduler must have served as a scheduler and prepared and maintained at least three previous NAS for projects, at least 
+one within the last 5 years of similar size and complexity to this contract, using Oracle Primavera P6.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Duties</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select one of two options concerning the meeting between the Designated Scheduler, Prime Contractor, and 
+Government Representative.  Select the first option for most projects.  Only select the second option if specifically 
+requested by the FEAD/ROICC/OICC Office.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Duties of the Designated Project Scheduler include to be actively involved and be responsible for the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Prepare Baseline NAS.</OLI><BRK/>
+<BRK/>
+<OLI>Prepare monthly NAS updates.</OLI><BRK/>
+<BRK/>
+<OLI>Prepare tabular reports.</OLI><BRK/>
+<BRK/>
+<OLI>Prepare Time Impact Analysis (TIA) as necessary.</OLI><BRK/>
+<BRK/>
+<OLI>Provide certification of contract compliance for each NAS and TIA submittal transmitted to government for review.</OLI><BRK/>
+<BRK/>
+<OLI>Participate with the Prime Contractor and Government Representative in a monthly [teleconference call,][meeting at the job site in-person,] 
+and scheduled with sufficient time to support the Monthly Network Analysis Updates process, to discuss project status, NAS updates, critical 
+activities, potential delays, and contract modifications impacting any project progress.  Have a computer with P6 software available during 
+the meeting.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain the following list item where justified by project size [and][or] complexity.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Be present on the project site full-time during working hours.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT></SPT><SPT><TTL>NETWORK SYSTEM FORMAT</TTL><BRK/>
+<BRK/>
+<TXT>Prepare the NAS in accordance with the following Primavera P6 settings and parameters.  Deviation from these settings and parameters, without prior 
+consent of the Contracting Officer, is cause for rejection of NAS submittal.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>NAS Activity Properties and Level of Detail</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Activity Identification and Organization</TTL><BRK/>
+<TAI OPT="DESIGN-BUILD"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Item a. contains tailoring for DESIGN-BUILD projects, and item e. contains tailoring for sections used 
+in DESIGN-BID-BUILD and DESIGN-BUILD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLG><BRK/>
+<OLI>Identify <TAI OPT="DESIGN-BUILD">design and </TAI>construction activities planned for the project and other activities that could impact project completion if delayed 
+in the NAS.</OLI><BRK/>
+<BRK/>
+<OLI>Each activity must have a unique name.</OLI><BRK/>
+<BRK/>
+<OLI>Identify administrative type activity/milestones, including all pre-construction submittal and permit requirements prior to demolition 
+or construction stage.</OLI><BRK/>
+<BRK/>
+<OLI>Include durations for procurement, Contractor quality control, acceptance testing and training in the NAS.</OLI><BRK/>
+<BRK/>
+<OLI>Include the Government approval time required for the submittals that require Government Approval prior to construction, as indicated in<TAI OPT="DESIGN-BID-BUILD">
+ Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES</TAI><TAI OPT="DESIGN-BUILD"> Section 01 33 10.05 20 DESIGN SUBMITTAL PROCEDURES</TAI>.</OLI><BRK/>
+<BRK/>
+<OLI>Create separate activities for each Phase, Area, Floor Level and Location the activity is occurring.</OLI><BRK/>
+<BRK/>
+<OLI>Do not use activities to represent non-work type reference (e.g., Serial Letter, Request for Information) in NAS.  When RFIs need to be 
+included in NAS, identify Non-work reference with use of added Activity codes (e.g, RFI code, Serial Letter Code).  Document use of added 
+activity codes in narrative report. </OLI><BRK/></OLG>
+<BRK/>
+<TXT>Activity categories included in the NAS are specified below.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Activity Logic</TTL><BRK/>
+<OLG><BRK/>
+<OLI>With the exception of the Contract Award and Contract Completion Date (CCD) milestone activities, activity must not be open-ended; each 
+activity must have at least one predecessor and at least one successor.</OLI><BRK/>
+<BRK/>
+<OLI>Activities must not have open start or open finish (dangling) logic.</OLI><BRK/>
+<BRK/>
+<OLI>Do not use lead or lag logic without Contracting Officer prior approval.  Request for approval must be submitted at the required Preliminary 
+Scheduling Meeting for use in the Baseline NAS and at the required Monthly Network Analysis Update Meeting for use in a monthly updated 
+NAS.</OLI><BRK/>
+<BRK/>
+<OLI>Minimize redundant logic ties.</OLI><BRK/>
+<BRK/>
+<OLI>Once an activity exists on the NAS it must not be deleted or renamed to change the scope of the activity and must not be removed from the 
+NAS logic without approval from the Contracting Officer.  Request for approval must be submitted with the required Monthly NAS Update Narrative.</OLI><BRK/>
+<BRK/>
+<OLI>While an activity cannot be deleted, where said activity is no longer applicable to the NAS, but must remain within the logic stream for 
+historical record, change the activity original and remaining duration to zero and clearly label "(NO LONGER REQUIRED)" after the Activity 
+Name.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Document any such change in the activities' "Notebook," including a date and explanation for the change.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The ID number for a "NO LONGER REQUIRED" activity must not be re-used for another activity.</OLI><BRK/>
+<BRK/>
+<OLI>No activity can be added to the NAS without the prior approval from the Contracting Officer.  Request for approval must be submitted at 
+the required Monthly Network Analysis Update Narrative for use in a monthly updated NAS.</OLI><BRK/>
+<BRK/>
+<OLI>Activity Type for all activities except for milestones must be set to "Task Dependent".  "Level of Effort" Activity Type is not allowed.</OLI><BRK/>
+<BRK/>
+<OLI>Duration Type for all activities except for milestones must be set to "Fixed Duration &amp; Units".</OLI><BRK/>
+<BRK/>
+<OLI>Percent Complete Type for all activities including milestones must be set to "Physical".</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Longest Path Activity Baseline Limitation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain 20 percent threshold baseline in the bracketed item for most projects.  However, for horizontal 
+construction, and the more linear a project, (for example, sidewalk, roadway, fence) this threshold may be increased 
+accordingly to as much as 80 percent, depending on the type of project.  Consult with FEC scheduler if additional 
+guidance is needed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For P6 settings, critical activities are defined as being on the Longest Path.  Longest Path (Critical) Activities must not make up more than [30 
+percent][_____] of all activity within the Construction Baseline NAS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Assigned Calendars</TTL><BRK/>
+<BRK/>
+<TXT>All NAS activity must be assigned calendars that reflect required and anticipated non-work days.</TXT><BRK/>
+<BRK/>
+<TXT>Total work hours/day for all defined calendars is set to 8.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Activity Categories</TTL><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BUILD"><SPT><TTL>Design Activities</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for DESIGN-BUILD projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Design activities must include design decision points and design submittal packages, including critical path submittals for Fast Tracked Phases.  
+Review times for design development packages must be included in the NAS.  Refer to Section 01 33 10.05 20 DESIGN SUBMITTAL PROCEDURES, for specific 
+requirements.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Pre-construction Activities</TTL><BRK/>
+<BRK/>
+<TXT>Examples of pre-construction activities include, but are not limited to, bond approval, permits, pre-construction submittals and approvals.  Include 
+pre-construction activities that are required to be completed prior to the Contractor starting the demolition or construction stage of work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Procurement Activities</TTL><BRK/>
+<BRK/>
+<TXT>Include activities necessary to manage the ordering, fabrication, and delivery of material and equipment.  Procurement activities must not have 
+a duration in excess of 60 calendar days without prior approval by the Contracting Officer.  Include within sequence of off-site assembly and fabrication 
+any quality control and testing being performed.</TXT><BRK/>
+<BRK/>
+<TXT>Examples of procurement activities include, but are not limited to: Material/equipment submittal preparation, submittal and approval of material/equipment; 
+material/equipment fabrication and delivery, and material/equipment on-site.  As a minimum, separate procurement activities must be provided for 
+critical items, long lead items, items requiring Government approval and material/equipment procurement for which payment will be requested in 
+advance of installation.  Show each delivery with relationship tie to the Construction Activity specifically for the delivery.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Government Activities</TTL><BRK/>
+<TAI OPT="DESIGN-BUILD"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The paragraph below includes DESIGN-BUILD tailoring for Design and Construction Start activities.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Government and other agency activities that could impact progress must be clearly identified.  Government activities include, but are not limited 
+to; Government approved submittal reviews, Government conducted inspections/tests, environmental permit approvals by State regulators, utility 
+outages,<TAI OPT="DESIGN-BUILD"> Design Start, Construction Start (including Design/Construction Start for each Fast-Track Phase,</TAI> and delivery of Government Furnished 
+Material/Equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Construction Quality Management (CQM) Activities</TTL><BRK/>
+<BRK/>
+<TXT>The Preparatory and Initial Phase meetings for each Definable Feature of Work identified in the Contractor's Quality Control Plan must be included 
+in the Weekly Look Ahead Schedules.  Preparatory and Initial phase meetings are not required in the NAS, but can be represented by a start milestone 
+linked to successor parent Construction Activity.  The Follow-up Phase must be represented by the Construction Activities themselves in the NAS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Construction Activities</TTL><BRK/>
+<BRK/>
+<TXT>On-site construction activities that are the responsibility of the Contractor or Contractor's subcontractors must not have a duration in excess 
+of 20 working days without prior approval by the Contracting Officer.  Contractor activities must be driven by calendars that reflect Saturdays, 
+Sundays and all Federal Holidays as non-work days, unless otherwise defined in this contract.  Federal Holidays are as defined in Federal Law 5 
+USC 6103.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Turnover and Closeout Activities</TTL><BRK/>
+<BRK/>
+<TXT>Include activities or milestones for items on the NAVFAC Red Zone Checklist/POAM that are applicable to this project.  As a minimum, include required 
+Contractor testing, required Government acceptance inspections on equipment, Pre-Final Inspection, Punch List Completion, Final Inspection and 
+Acceptance.  Add an unconstrained start milestone for the initial NAVFAC Red Zone - Facility Turnover Planning Meeting at approximately 75 percent 
+construction contract completion or six months prior to Contract Completion Date (CCD), whichever is sooner.  Include a separate NAVFAC Red Zone 
+- Facility Turnover Planning Meeting Milestone for each phase if the contract requires construction to be completed in phases.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="TABS"><SPT><TTL>Testing of HVAC - DALT, TAB, and PVT Activities</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph when Section <SRF>23 05 93</SRF> TESTING, ADJUSTING AND BALANCING FOR HVAC and Section 
+<SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC are included in the contract specifications; otherwise, delete.  
+This paragraph is tailored for TABS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include in the baseline NAS, activities and milestones associated with Government acceptance of Duct Air Leakage Test (DALT), Testing, Adjusting, 
+and Balancing (TAB) and Performance Verification Test (PVT) as required and in accordance with Section <SRF>23 05 93</SRF> TESTING, ADJUSTING AND BALANCING 
+FOR HVAC and Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Identify the general area or location(s) for Government Acceptance Testing of DALT, TAB and PVT.</OLI><BRK/>
+<BRK/>
+<OLI>Incorporate into the baseline NAS, time periods required for advance notification of work, and Government submittal review in accordance 
+with Section <SRF>23 05 93</SRF> TESTING, ADJUSTING AND BALANCING FOR HVAC, paragraph DALT AND TAB SUBMITTAL AND WORK SCHEDULE.</OLI><BRK/>
+<BRK/>
+<OLI>Include the following as NAS activities or milestones:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Pre-DALT/TAB/PVT Meeting</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">TAB Design Review Report, Government review</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">TAB Pre-Field Engineering Report, Government review</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">DALT Field Work</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">DALT Field Acceptance Testing</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Certified Final DALT Report, Government review</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Control Contractors PVT Plan, Government review</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Equipment Suppliers PVT Plan, Government review</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Endurance Testing, Government review</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">PVT Field Work</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">PVT Report, Government review</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert the following when Season I or II work is included in the Contract.</NPR><BRK/>
+<BRK/>
+<NPR>DM will coordinate with NAVFAC Contracting to ensure that the overall Period of Performance outlined in the RFP 
+aligns with the overall Contract Completion Date (CCD) which includes the durations for Season I, Season II [and][or] 
+Post-Occupancy activities required for Testing, Adjusting, and Balancing for HVAC systems.</NPR> <BRK/>
+<BRK/>
+<NPR>Further coordination is required with NAVFAC Contracting to ensure that Liquidated Damage (LD) amounts are identified 
+for both the Substantial Completion Milestone as well as the overall Contract Completion Date (CCD).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Include in the baseline schedule, the following cost-loaded activities.  These activities will be successors to the Substantial Completion 
+Milestone and predecessors to the Project Completion Milestone as defined in paragraph PROJECT COMPLETION MILESTONE.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Season I TAB Field Work</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Season I Certified Final TAB Report, Government review</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Season I TAB Field Acceptance Testing</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Season II TAB Field Work</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Season II Certified Final TAB Report, Government review</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Season II TAB Field Acceptance Testing</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert the following when required by, and coordinate the post-occupancy endurance testing and post occupancy 
+PVT Field Work with, Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI LEVEL="2">Post-Occupancy Endurance Testing Government review</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Post-Occupancy PVT Field Work</OLI><BRK/></OLG>
+<BRK/>
+]</SPT></TAI><TAI OPT="CX"><SPT><TTL>Commissioning Activities</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for Commissioning (CX).  Use this paragraph if Section <SRF>01 91 00.15</SRF> BUILDING 
+COMMISSIONING is included in the contract specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include in the baseline NAS activities and milestones associated with Commissioning.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Identify the general area or location(s) of systems for Commissioning Inspection and Testing</OLI><BRK/>
+<BRK/>
+<OLI>Incorporate into the baseline NAS time periods for Government submittal review</OLI> <BRK/></OLG>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>Contract Milestones and Constraints</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Project Start Date Milestones</TTL><BRK/>
+<BRK/>
+<TXT>Include as the first activity on the NAS a start milestone titled, "Contract Award", which must have a Mandatory Start constraint equal to the 
+Contract Award Date.</TXT><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BUILD"><SPT><TTL>Design Phase Completion Milestone</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for DESIGN-BUILD projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include an unconstrained finish milestone on the NAS titled, "Design Phase Completion".  Design Phase Completion is defined as the point in time 
+when all design requirements are complete and approved.  Duration for Government review and approval must be included as predecessor activities 
+to Design Phase Completion.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Post-Award Kickoff (PAK) meeting Milestone</TTL><BRK/>
+<BRK/>
+<TXT>Include an unconstrained finish milestone on the NAS titled, "Post-Award Kickoff Meeting".  The Post Award Kickoff Meeting may be a single day, 
+or it may range over several days.  The intent is to cover all PAK topics, including Partnering and Concept Design Workshop (if required) in one 
+continuous session.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><TAI OPT="DESIGN-BID-BUILD"><SPT><TTL>Pre-Construction Meeting Milestone</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for DESIGN-BID-BUILD projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include an unconstrained finish milestone on the NAS titled, "Pre-Construction Meeting".  The Pre-Construction meeting may be a single day, or 
+it may range over several days.  The intent to cover all the Pre-Con topics, including Partnering and DD1354.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Preconstruction Submittals Finish Milestone</TTL><BRK/>
+<BRK/>
+<TXT>Include an unconstrained finish milestone on the NAS titled, "Preconstruction Submittals".  This milestone is complete when all required preconstruction 
+submittals have been reviewed and approved by the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contractor Mobilization Finish Milestone</TTL><BRK/>
+<BRK/>
+<TXT>Include an unconstrained finish milestone on the NAS titled, "Contractor Mobilization".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>NAVFAC Red Zone - Facility Turnover Planning Meeting Milestones</TTL><BRK/>
+<BRK/>
+<TXT>See paragraph TURNOVER AND CLOSEOUT ACTIVITIES above.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Substantial Completion Milestone</TTL><BRK/>
+<BRK/>
+<TXT>Include an unconstrained finish milestone on the NAS titled "Substantial Completion."  Substantial Completion is defined as the point in time the 
+Government would consider the project ready for beneficial occupancy wherein by mutual agreement of the Government and Contractor, Government use 
+of the facility is allowed while construction access continues in order to complete remaining items (e.g., punch list and other close out submittals).  
+Include a separate Substantial Completion Milestone for each phase if the contract requires construction to be completed in phases.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DD-1354 Finish Milestone</TTL><BRK/>
+<BRK/>
+<TXT>Add unconstrained finish milestone, titled "DD-1354" and scheduled 30 calendar days prior to Substantial Completion, whenever a Form DD-1354 is 
+required in accordance with Section <SRF>01 20 00</SRF> PRICE AND PAYMENT PROCEDURES.  Include a separate DD-1354 Finish Milestone for each phase if the contract 
+requires construction to be completed in phases.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Project Completion Milestone</TTL><BRK/>
+<BRK/>
+<TXT>Include an unconstrained finish milestone on the NAS titled "Project Completion."  Project Completion is defined as the point in time all contract 
+requirements are complete and verified by the Government with a successful Final Inspection in accordance with Section <SRF>01 45 00</SRF> QUALITY CONTROL.  
+This milestone must have the Contract Completion Date (CCD) milestone as its only successor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contract Completion Date (CCD) Milestone</TTL><BRK/>
+<BRK/>
+<TXT>Last NAS entry must be an unconstrained finish milestone titled "Contract Completion (CCD: DD-MM-YY)."  DD-MM-YYYY is the current contract completion 
+date at data date, day-month-year corresponding to P6 Must Finish By Date.  NAS milestone updates of Project Completion finish date for longest 
+path must reflect calculated float as positive or negative based on CCD.  Calculation of NAS updates must be such that if the finish of the "Project 
+Completion" milestone falls after the contract completion date, then negative float is calculated on the longest path.  If the finish of the "Project 
+Completion" milestone falls before the contract completion date, the float calculation must reflect positive float on the longest path.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Additional Milestones</TTL><BRK/>
+<BRK/>
+<TXT>Provide up to five additional milestones as required by Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Work Breakdown Structure &amp; Activity Code</TTL><BRK/>
+<BRK/>
+<TXT>At a minimum, establish a Work Breakdown Structure (WBS) and provide activity codes identified as follows:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Work Breakdown Structure (WBS)</TTL><BRK/>
+<BRK/>
+<TXT>Group all activities and milestones within appropriate WBS elements/levels including, at a minimum, the following:</TXT><BRK/>
+<TAI OPT="DESIGN-BUILD"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following items a.(4) and a.(5) are tailored for DESIGN-BUILD Contracts.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLG><BRK/>
+<OLI>Project Milestones:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Management Milestones</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Project Administrative Meetings</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Permits</OLI><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BUILD"><OLI LEVEL="2">Design Phase</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Design Submittals and Reviews Milestones</OLI><BRK/>
+<BRK/></TAI>
+<OLI>Pre-Construction Phase:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Submittals and Reviews</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Procurement</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Mobilization</OLI><BRK/>
+<BRK/>
+<OLI>Construction Phase:  Create multiple elements/levels in accordance with project specific definable features of work including in WBS descending 
+order as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">General Area</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Type of Work Item</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="4">Location</OLI><BRK/>
+<BRK/>
+<OLI>Project Closeout:  Include activity items such as, but not limited to, Punchlist, Demobilization, O&amp;M, As-built Drawings, Training, 
+and As-built NAS.</OLI><BRK/>
+<BRK/>
+<OLI>Modifications:  Create Conformed and Non-Conformed elements/levels under Modification WBS.  Create multiple elements/levels as the project 
+progresses identified by issue and Fragnet placed in Conformed for modifications issued prior data date, or Non-Conformed for issues not 
+modified to contract prior data date.</OLI><BRK/>
+<BRK/>
+<OLI>Removed Activity:  Activity is "removed" by remaining within logic sequence, eliminating duration and adding "(NO LONGER REQUIRED)" after 
+Activity Name in Activity Table.</OLI><BRK/>
+<TAI OPT="CX"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following item g. is tailored for Commissioning (CX).  Use if Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING 
+is included in the contract specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Commissioning &amp; Testing:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Specific area/locations of commissioning</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Final Testing</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Training</OLI><BRK/></TAI>
+</OLG><BRK/></SPT>
+<SPT><TTL>Responsibility Code</TTL><BRK/>
+<BRK/>
+<TXT>Use "RESP" for Activity Code Name.  All activities in the project NAS must be identified with the resource, including business name, for completing 
+the task.  Activities must not belong to more than one responsible party.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Activity Category Code</TTL><BRK/>
+<BRK/>
+<TXT>Use "CAT" for Activity Code Name for the following Project Level activity codes:</TXT><BRK/>
+<TAI OPT="DESIGN-BUILD"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following item h. is tailored for DESIGN-BUILD Contracts.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLG><BRK/>
+<OLI>Assign "PROC" value to Procurement type activity</OLI><BRK/>
+<BRK/>
+<OLI>Assign "PRE-CON" value to Pre-construction activity</OLI><BRK/>
+<BRK/>
+<OLI>Assign "CONS" value to Construction type activity</OLI><BRK/>
+<BRK/>
+<OLI>Assign "TEST" value to dedicated testing type activities</OLI><BRK/>
+<BRK/>
+<OLI>Assign "CX" value to dedicated Commissioning type activities</OLI><BRK/>
+<BRK/>
+<OLI>Assign "CLOS" value to dedicated Close Out type activity</OLI><BRK/>
+<BRK/>
+<OLI>Assign "OTHR" to other activity not otherwise designated</OLI><BRK/>
+<TAI OPT="DESIGN-BUILD"><BRK/>
+<OLI>Assign "DSGN" value to Design type activity</OLI><BRK/></TAI>
+</OLG><BRK/></SPT>
+<SPT><TTL>Additional Activity Codes</TTL><BRK/>
+<BRK/>
+<TXT>Provide up to an additional five activity codes as required by the Contracting Officer</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Drawing Code</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain either or both of the following two paragraphs where justified by project complexity.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Identify all activities in the project NAS with its respective Drawing Code.  The Drawing Code is the Sheet Number on the primary project drawing 
+which indicates work to be performed.  If an activity does not have an applicable Drawing Code (e.g., Mobilize), the code must be "0000".</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Construction Specification Institute (CSI) Masterformat Code</TTL><BRK/>
+<BRK/>
+<TXT>Identify all activities in the project NAS with its respective Specification Section number.  Activities must not belong to more than one Section 
+number.  If an activity does not have an applicable CSI Code (e.g., Mobilize), the code must be "0000".</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Adverse Weather Lost Work Days</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Check with the FEC's Scheduling Subject Matter Expert or with the FEAD/ROICC/OICC for known site-specific 
+Adverse Weather Delays to determine how to edit this paragraph.  If historical data is not available, choose the 
+first paragraph using NOAA historical monthly averages as the basis for establishing non-workdays.  Note that 
+NOAA historical data may not be available for all OCONUS locations.</NPR><BRK/>
+<BRK/>
+<NPR>If the historical adverse weather data is available, use the second paragraph and table and populate the table 
+with the known data.  Insert the data for each month in the blank, bracketed item provided.  A bracketed choice 
+of 2 days per month is provided only as an option to remind the Designer to insert the actual data.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Use the National Oceanic and Atmospheric Administration's (NOAA) Summary of Monthly Normals report to obtain the historical average number of days 
+each month with precipitation, using a nominal 30-year, greater than<MET> 2.5 mm</MET><ENG> 0.10 inch</ENG> precipitation amount parameter, as indicated on the Station 
+Report for the NOAA location closest to the project site as the basis for establishing a "Weather Calendar" showing the number of anticipated non-workdays 
+for each month due to adverse weather, in addition to Saturdays, Sundays and all Federal Holidays as non-work days.</TXT><BRK/>
+<BRK/>
+][<TXT>Use the following schedule of anticipated monthly non-work days due to adverse weather as the basis for establishing a "Weather Calendar" showing 
+the number of anticipated non-workdays for each month due to adverse weather, in addition to Saturdays, Sundays and all Federal Holidays as non-work 
+days.</TXT><BRK/>
+<TAB HEADERROWS="2">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="12" ROWCOUNT="3">
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="66.00"/>
+      <COL AUTOWIDTH="0" WIDTH="93.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="11">
+<DTA TYPE="STRING"><HL4>MONTHLY ANTICIPATED ADVERSE WEATHER LOST WORK DAY</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">JAN</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">FEB</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">MAR</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">APR</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">MAY</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">JUN</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">JUL</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">AUG</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">SEP</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">OCT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">NOV</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">DEC</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2][_]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+]<TXT>Assign the Weather Calendar to any activity that could be impacted by adverse weather.  The Contracting Officer will issue a modification in accordance 
+with the contract clauses, giving the Contractor a time only extension for the difference of days between the anticipated and actual adverse weather 
+delay if the number of actual adverse weather delay days exceeds the number of days anticipated for the month in which the delay occurs and the 
+adverse weather delayed activities are on the longest path to contract completion in the period when delay occurred.  A lost workday due to weather 
+conditions is defined as a day in which the Contractor cannot work at least 50 percent of the day on the impacted activity.  Impacts resulting 
+from adverse weather must be documented in Narrative Report for the month that it occurred.</TXT><BRK/>
+<BRK/>
+<TXT>Make changes to P6 project calendars to reflect as-built conditions where work occurred where originally anticipated as non-work days, and where 
+work did not occur (lost work day).</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Anticipated Restricted Delays</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph if base access restrictions are anticipated during the project timeframe; otherwise, 
+delete.  Revise number of days and period of time as appropriate for project specific requirements.  Verify with 
+FEAD/ROICC/OICC before this is incorporated to ensure this is applicable to project site. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use anticipated non-working days as defined in Section <SRF>01 14 00</SRF> WORK RESTRICTIONS, use Anticipated Restricted Delays as basis for establishing 
+a "Security Calendar" showing the number of anticipated non-workdays for each month due to anticipated restrictions, in addition to anticipated 
+adverse weather, Saturdays, Sundays and all Federal Holidays as non-work days.  Assign the Security Calendar to any activity that could be impacted 
+by restriction delays.  The Contracting Officer will issue a modification in accordance with the contract clauses, giving the Contractor a time 
+extension for the difference of days between the anticipated and actual lost work days if the number of actual restriction delay days exceeds the 
+number of anticipated for the month in which the delay occurs and the restriction delayed activities are critical to contract completion.  A lost 
+workday due to restriction delay is defined as a day in which the Contractor cannot work at least 50 percent of the day on the impacted activity.</TXT><BRK/>
+<BRK/>
+<TXT>Impacts resulting from restriction delays must be documented in Narrative Report for the month that it occurred.</TXT><BRK/>
+<BRK/>
+<TXT>Make changes to P6 project calendars to reflect as-built conditions where work occurred where originally anticipated as non-work days, and where 
+work did not occur (lost work day).</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Cost Loading</TTL><BRK/>
+<BRK/>
+<TXT>The Project Network Analysis Schedule (NAS) must be cost-loaded and will provide the basis for progress payments.  Earned Value Reports must be 
+derived from and correspond to cost loaded NAS.  Use the Critical Path Method (CPM) and the Precedence Diagram Method (PDM) to satisfy time and 
+cost applications.</TXT><BRK/>
+<BRK/>
+<TXT>Sum of all costs assigned to activities must equal the current contract value as of the data date of the baseline or update NAS.  Activity cost 
+loading must be without front-end loading.  Provide additional documentation if requested by the Contracting Officer. </TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cost Loading Activities</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose 10 percent in the brackets below, unless FEC or FEAD/ROICC/OICC scheduler directs otherwise.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Cost load construction activities.  Define construction activities as on-site work activities that can be traced directly to the construction, 
+alteration, demolition, repair of a project facility, infrastructure, or sitework.</OLI><BRK/>
+<BRK/>
+<OLI>Assign costs for materials which payment will be requested in advance of installation, including their quantities, to their respective 
+procurement activities that were approved by the Contracting Officer.  Assign labor costs, including their quantities, for material and 
+equipment paid for after installation to their respective construction activities.</OLI><BRK/>
+<BRK/>
+<OLI>Costs for mobilization will not be paid as individual pay items with the exception of batch plant set-up, mobilization of dredging equipment 
+or other similar labor-intensive situations.  If payment for mobilization costs are approved, assign costs for demobilization activities.  
+The value of demobilization activities must not be less than 40 percent of the total costs for mobilization activities.  If not approved 
+as a separate line item, evenly disperse over construction activities the costs for mobilization [and][or] demobilization.</OLI><BRK/>
+<BRK/>
+<OLI>The value of commissioning, testing, and closeout WBS section may not be less than [10][_____] percent of the total costs for procurement 
+and construction activities.</OLI><BRK/>
+<BRK/>
+<OLI>ALL activities assigned Government responsibility will have Zero Cost.  No contractor cost should be assigned to an activity designated 
+as a Government responsibility.</OLI><BRK/>
+<BRK/>
+<OLI>Do not include field overhead positions as individual cost loaded activities.  Evenly disperse non-construction costs (e.g., meetings, 
+presentations, submittals, surveys, haul road or storage yard maintenance, dust control, security) and profit to construction activities 
+assigned to the Construction Phase WBS level.</OLI><BRK/>
+<BRK/>
+<OLI>If assigning resources to activities, setting for Calculate costs from units in Resources tab must be unchecked.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Partial Payment</TTL><BRK/>
+<BRK/>
+<TXT>Breakdown unit of measure and cost must be defined within P6 Activity Detail Expenses for partial payment of any cost loaded activity.  Lump sum 
+cost loaded activity will not be partially paid.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>NAS Software Settings and Restrictions</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Activity Constraints:  Date/time constraint(s), other than those required by the contract, are not allowed unless accepted by the Contracting 
+Officer.  Identify any constraints proposed and provide an explanation for the purpose of the constraint in the Narrative Report as described 
+in paragraph REQUIRED TABULAR REPORTS.</OLI><BRK/>
+<BRK/>
+<OLI>Default Progress Data Disallowed:  Actual Start is date work begins on activity with intent to pursue work to substantial completion.  
+Actual Finish is date work is substantially complete to point where successor activity can begin.  Actual dates on the NAS must correspond 
+with activity dates reported on the Contractor Quality Control and Production Reports.</OLI><BRK/>
+<BRK/>
+<OLI>At a minimum, include the following settings and parameters in P6 NAS preparation:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">General:  Define or establish Calendars and Activity Codes at the "Project" level, not the "Global" level.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Admin Drop-Down Menu, Admin Preferences, Time Periods Tab:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Set time periods for P6 to 8.0 Hours/Day, 40.0 Hours/Week, 172.0 Hours/Month and 2000.0 Hours/Year.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Use assigned calendar to specify the number of work hours for each time period:  Must be checked.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Admin Drop-Down Menu, Admin Preferences, Earned Value Tab:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Technique for computing performance percent complete: Use "Activity percent Complete"</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Technique for computing Estimate to Complete: Use "PF = 1".</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Earned Value Calculation:  Use "Budgeted values with current dates".</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Project Level, Dates Tab:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Set "Must Finish By" date to "Contract Completion Date", and set "Must Finish By" time to 05:00pm.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Project Level, Defaults Tab:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Duration Type:  Set to "Fixed Duration &amp; Units".</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Percent Complete Type:  Set to "Physical".</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Activity Type:  Set to "Task Dependent".</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Calendar:  Set to "Standard 5 Day Workweek".  Calendar must reflect Saturday, Sunday and all Federal holidays as non-work 
+days.  Alternative calendars may be used with Contracting Officer approval.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Project Level, Calculations Tab:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Default Price/Unit for activities without resource or role Price/Units:  Set to "$1/h".</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Activity percent complete based on activity steps:  Must be Checked.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Link Budget and At Completion for not started activities:  Must be Checked.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Reset Remaining Duration and Units to Original:  Must be Selected.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Subtract Actual from At Completion:  Must be Selected.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Recalculate Actual units and Cost when duration percent complete changes:  Must be Checked.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Update units when costs change on resource assignments:  Must be Unchecked.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Link Actual to Date and Actual This Period Units and Cost:  Must be Checked.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Project Level, Settings Tab:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Define Critical Activities:  Check "Longest Path".</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Work Breakdown Structure Level, Earned Value Tab:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Technique for Computing Performance Percent Complete:  "Activity percent complete" is selected.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Technique for Computing Estimate to Complete (ETC):  "PF = 1" is selected.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Required Tabular Reports and Native P6 XER Files</TTL><BRK/>
+<BRK/>
+<TXT>Include the following reports with the Baseline, Monthly Update and any other required NAS submittals:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Time Scaled Logic NAS<BRK/>
+<BRK/>
+Provide formatted 11 by 17-inch Time-scaled Logic NAS in color and landscape-oriented with each NAS submittal.  Clearly show activities 
+on the longest path setting Gantt chart longest path activity bars to red.  Group activities by WBS and sort by finish date in ascending 
+order.  Include the following information in column form for each activity and include accompanying Gantt chart:<BRK/></OLI>
+<BRK/>
+<BRK/>
+<OLI LEVEL="2">Activity ID</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Activity Name</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Original Duration</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Remaining duration</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Physical Percent Complete</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Start Date</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Finish Date</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Total Float</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Project-level Calendar</OLI><BRK/>
+<BRK/>
+<OLI>Previous Monthly Update Comparison Time Scaled Logic NAS (Submit with all Monthly NAS Update Submittals.)<BRK/>
+<BRK/>
+Provide formatted 11 by 17-inch Time-scaled Logic NAS in color and landscape-oriented with each monthly NAS update submittal.  Clearly 
+show activities on the current month longest path setting Gantt chart longest path activities bars to red.  Show previous month activities 
+as yellow bars and previous month milestones in yellow within Gantt chart.  Sort by finish date in ascending order.  Filter activities 
+for longest path.  Maintain and assign the accepted previous monthly NAS update or the accepted baseline NAS for the first update submittal 
+as the baseline and primary baseline in P6 before printing the NAS.  Include the following information in column form for each activity 
+and include accompanying Gantt chart:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Activity ID</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Activity Name</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Original Duration</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Current Month Remaining Duration</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Current Month Start Date</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Previous Month Update Start Date (BL Project Start)</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Start Date Delta between Current Month and Previous Month (Variance - BL Project Start Date)</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Current Month Finish Date</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Previous Month Finish Date (BL Project Finish)</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Finish Date Delta between Current Month and Previous Month (Variance - BL Project Start Date)</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Current Month Total Float</OLI><BRK/>
+<BRK/>
+<OLI>P6 native XER file:  Include the back-up native .xer program file compatible with the current Government version of Primavera P6.  Each 
+native NAS file must have a unique file name to include project name and data date using (yyyy-mm-dd) convention.  Each native NAS must 
+have a unique Project ID and Project Name.</OLI><BRK/>
+<BRK/>
+<OLI>Log Report:  P6 Scheduling/Leveling Report.</OLI><BRK/>
+<BRK/>
+<OLI>Narrative Report:  Identify and justify:<BRK/>
+<BRK/>
+Each entry in the Narrative Report must cite the respective Activity ID and Activity Name, the date and reason for any changes, and description 
+of the change.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide Project Summary Data in format below:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Data Date ______</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Award Date: _______</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Original Project Duration: _____ days post Award Date</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Current Project Duration: ______ days post Award Date</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Time percent elapsed: ______ percent at data date </OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Original CCD: _______</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Current CCD:  _______ (thru MOD _______)</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Anticipated CCD: _____ (___ calendar days early/late)</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Original Contract Value: $____________</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Current Contract Value: $_________</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Invoiced Amount: $_________ (____ percent)</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Cost Growth: ____ percent</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">NAS Growth: ____ percent</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">There are a total of ______ activities, ______ activities complete (____ percent), ____ activities in progress (____ 
+percent), _____ activities not started (____ percent).  Of the in progress and not started activities; ____ (____ 
+percent) are on the longest path.  The longest path has duration of _____ calendar days from data-date to anticipated 
+project completion.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Progress made in each area of the project;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Longest Path;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Date/time constraint(s), other than those required by the contract</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Listing of all changes made between the previous monthly NAS update and current monthly NAS update include as a minimum:  added 
+or deleted activities, original and remaining durations for activities that have not started, logic (sequence constraint lag/lead), 
+milestones, planned sequence of operations, longest path, calendars or calendar assignments, and cost loading.  Identify any 
+other changes that relate to calculations within Oracle Primavera P6;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Any decrease in previously reported activity Earned Amount;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Pending items and status thereof, including permits, changes orders, and time extensions;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Status of Contract Completion Date and interim milestones;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Status of Projected Completion Milestone and account of difference in calendar days between previous update Projected Completion 
+Milestone</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Current and anticipated delays listing Activity Names and IDs for impacted activities(describe cause of delay and corrective 
+actions(s) and mitigation measures to minimize);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Description of current and potential future NAS problem areas.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Identification of any weather and restricted lost time as compared to anticipated weather for the month and anticipated restricted 
+days for which the update is submitted.  Impacts resulting from adverse weather must be documented in tabular form showing the 
+calendar month (or billing period) with the days on which construction activity incurred Lost Work Days due to adverse weather.  
+In narrative form, describe the adverse weather cause such as precipitation measurement, temperature, wind or other influencing 
+factors, and why work was impacted.  Identify the construction activity(s) by ID and Name that was (were) scheduled, impacted.</OLI><BRK/>
+<BRK/>
+<OLI>Earned Value Report:  Derive from and correspond to P6 cost loaded Monthly NAS Update.  List all activities having a budget amount cost 
+loaded.  Compile total earnings on the project from notice to proceed to current progress payment request.  Show on the report for each 
+activity:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Current budget;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Previous Physical Percent Complete;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">To-Date Physical Percent Complete;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Previous Earned Value;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">To-Date Earned Value;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Cost This Period;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Cost to Complete.</OLI><BRK/>
+<BRK/>
+<OLI>Schedule Variance Control (SVC) Diagram:  With each NAS submission, provide a SVC diagram representing only the current file showing 1) 
+A Cash Flow Curve indicating planned project cost based on each of projected early and projected late activity finish dates and 2) one 
+curve for Earned Value to-date.  Revise Cash Flow Curves when the contract is modified, or as directed by the Contracting Officer Include 
+a legend on report clearly indication 3 curves: early finish, late finish, and earned-value to date.<BRK/>
+<BRK/>
+Use the following settings in Activity Usage Profile Options:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">In the Data section, under Display, the radio box for Cost must be selected.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">In the Data section, under Filter for Bars/Graphs, the checkbox for Total must be checked.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">In the Show Bars/Curves section:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Under the By Date column, the checkboxes for Baseline, Actual and Remaining Late must be checked. The checkboxes for 
+Budgeted and Remaining Early must be unchecked.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Under the Cumulative column, the checkboxes for Baseline, Actual and Remaining Late must be checked. The checkboxes 
+for Budgeted and Remaining Early must be unchecked.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Set the color for Baseline to green.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Set the color for Actual to blue.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Set the color for Remaining Late to red.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">In the Show Earned Value Curves section, the checkboxes for Planned Value Cost, Earned Value Cost and Estimate at Completion 
+must be unchecked.</OLI><BRK/>
+<BRK/>
+<OLI>Logic Diagram showing timescale from data date to 60 days after data date with filter for longest path.  Leave Group By selection blank 
+and sort by finish date in ascending order.</OLI><BRK/>
+<BRK/>
+<OLI>Logic Diagram showing timescale from data date to contract completion date with filter for longest path.  Leave Group By selection blank 
+and sort by finish date in ascending order.</OLI><BRK/>
+<BRK/>
+<OLI>Baseline or Monthly Update Checklist as applicable completed and certified by Qualified Scheduler.  Contractor Baseline Project Schedule 
+Review, Contractor Monthly Update Schedule Review, and Contractor Baseline Project Schedule, and General Commissioning/HVAC Review Checklist.  
+Checklists can be found on the Whole Building Design Guide website as <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-01-32-17-00-20">Related Materials</URL> to UFGS 01 32 17.00 20.</OLI><BRK/>
+<BRK/>
+<OLI>Screen shot PDF of Primavera P6 Time Periods Settings referenced in paragraph NAS SOFTWARE SETTINGS AND RESTRICTIONS, list item c.(2): 
+ADMIN DROP-DOWN MENU, ADMIN PREFERENCES, TIME PERIODS TAB</OLI><BRK/>
+<BRK/>
+<OLI>Screen shot PDF of Primavera P6 Earned Value Settings referenced in paragraph NAS SOFTWARE SETTINGS AND RESTRICTIONS, list item c.(3): 
+ADMIN DROP-DOWN MENU, ADMIN PREFERENCES, EARNED VALUE TAB</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain the following paragraph where justified by project complexity.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Daily Reported Production Activity:  Submit on a monthly basis, in electronic spreadsheet, summary of daily reported production activity 
+for the reporting month in the update NAS.  Use the following columns for reporting:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Date</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Activity ID</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Work Description</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Contractor</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Billable Hours</OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Include the following when required for project.  See Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR 
+HVAC.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>HVAC/COMMISSIONING KTR Checklist.  See Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC for checklist requirements.  Complete checklist 
+listing all items with baseline submittal.  Complete checklist as required to complete project, submitting complete checklist in intermediately 
+following monthly update submittal.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT></SPT><SPT><TTL>CONTRACT MODIFICATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Time Impact Analysis (TIA)</TTL><BRK/>
+<BRK/>
+<TXT>Submit a Time Impact Analysis with each cost and time proposal for a proposed change.  TIA must illustrate the influence of each change or delay 
+on the Contract Completion Date or milestones.  No time extensions will be granted nor delay damages paid unless a delay occurs which consumes 
+all available Project Float, impacts the longest path, and extends the Projected Completion beyond the Contract Completion Date.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Each TIA must be in both narrative and NAS form.  The narrative must:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Define the scope and conditions of the change;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide start and finish dates of impact to longest path;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Identify and include any accepted NAS referenced in TIA and any changes made to accepted NAS to prepare additional NAS included 
+in the TIA;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Successor(s) and predecessor(s) activities to impact period;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Responsible party;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Describe how the impact originated;</OLI><BRK/>
+<BRK/>
+<OLI>The TIA submission must consist of at least three native XER files:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Fragnet used to define the scope of the changed condition</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Most recent accepted baseline NAS or monthly NAS update as of the time of the impact start date.  If the data date of this NAS 
+is different than the start date of impact, update this NAS to show all activity progress as of the time of the impact start.  
+The impact start date is identified as the time when an existing activity is impeded for either starting or finishing.  This 
+NAS must have a data date that is the same as the identified start date of impact in "a.(2)".  Identify any changes made to most 
+recent accepted NAS.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The impacted NAS that has the Fragnet inserted in the updated NAS from "b.(2)" and the NAS scheduled using the Schedule command 
+in Oracle Primavera P6 so that the new completion date is determined.</OLI><BRK/>
+<BRK/>
+<OLI>For claimed as-built project delay, the inserted Fragnet TIA method must be modified to account for as-built events known to occur after 
+the data date of NAS update used.  Updated NAS for periods following the impact start date will be used and included in submittal to evaluate 
+how the project progressed (as-built) through the finish of impact.  Impact to longest path must be determined for each following update 
+period.</OLI><BRK/>
+<BRK/>
+<OLI>All TIAs must include any mitigation, and must determine the apportionment of the overall delay assignable to each individual delay.  Apportionment 
+must provide identification of delay type and classification of delay by compensable and non-compensable events.  The associated narrative 
+must clearly describe analysis methodology used, and the findings in a chronological listing beginning with the earliest delay event.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Identify and classify types of delay defined as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Force majeure delay (e.g., weather delay):  Any delay event caused by something or someone other than the Government 
+or the Contractor, or the risk of which has not been assigned solely to the Government or the Contractor.  If the 
+force majeure delay is on the longest path, in absence of other types of concurrent delays, the Contractor is granted 
+an extension of contract time, classified as a non-compensable event.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">A Contractor-delay:  Any delay event caused by the Contractor, or the risk of which has been assigned solely to the 
+Contractor.  If the contractor-delay is on the longest path, in absence of other types of concurrent delays, Contractor 
+is not granted extension of contract time, and classified as a non-compensable event.  Where absent other types of 
+delays, and having impact to project completion, Contractor must provide to Contracting Officer a Corrective Action 
+Plan identifying plan to mitigate delay.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">A Government-delay:  Any delay event caused by the Government, or the risk of which has been assigned solely to the 
+Government. If the Government-delay is on the longest path, in absence of other types of concurrent delays, the Contractor 
+is granted an extension of contract time, and classified as a compensable event.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Functional concurrency must be used to analyze concurrent delays, where:  separate delay issues delay project completion, do 
+not necessarily occur at same time, rather occur within same monthly NAS update period at minimum, or within same as-built period 
+under review.  If a combination of functionally concurrent delay types occurs, it is considered Concurrent Delay, which is defined 
+in the following combinations:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Government-delay concurrent with contractor-delay:  excusable time extension, classified non-compensable event.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Government-delay concurrent with force majeure delay:  excusable time extension, classified non-compensable event.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Contractor-delay concurrent with force majeure delay:  excusable time extension, classified non-compensable event.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Pacing delay reacting to another delay (parent delay) equally or more critical than paced activity must be identified prior to 
+pacing.  Contracting Officer will notify Contractor prior to pacing.  Contractor must notify Contracting Officer prior to pacing.  
+Notification must include identification of parent delay issue, estimated parent delay time period, paced activity(s) identity, 
+and pacing reason(s).  Pacing Concurrency is defined as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Government-delay concurrent with contractor-pacing:  excusable time extension, classified compensable event.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Contractor-delay concurrent with Government-pacing:  inexcusable time extension, classified non-compensable event</OLI><BRK/>
+<BRK/>
+<OLI>Submit electronic files containing the narrative and the Native XER NAS files used and or referenced in the time impact analysis.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>PROJECT FLOAT</TTL><BRK/>
+<BRK/>
+<TXT>Project Float is the length of time between the Project Completion Milestone and the Contract Completion Date.  Project Float available in the 
+NAS will not be for the exclusive use of either the Government or the Contractor.</TXT><BRK/>
+<BRK/>
+<TXT>The use of Resource Leveling is prohibited.  Techniques used for the purpose of artificially adjusting activity durations to consume float and 
+influence longest path are prohibited.</TXT><BRK/>
+<BRK/></SPT>
+<NED/></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></PRT>
+<PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></PRT>
+    <END/><BRK/></SEC>

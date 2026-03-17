@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-48 14 00 (May 2017)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>AFCEC</PRA></DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 48 14 00</SCN><BRK/>
+<BRK/>
+<STL>SOLAR PHOTOVOLTAIC SYSTEMS</STL><BRK/>
+<DTE>05/17</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for large scale solar 
+photovoltaics (PV) systems, and related equipment and materials.  Large scale 
+is considered greater than one megawatt capacity and grid connected.  <BRK/>
+<BRK/>
+Adhere to <URL HREF="http://www.wbdg.org/ffc/dod/unified-facilities-criteria-ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="http://www.wbdg.org/ffc/dod/unified-facilities-guide-specifications-ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the following information on the project drawings:<BRK/>
+<BRK/>
+1. Mounting surface features.<BRK/>
+<BRK/>
+2. Locations of solar PV modules, inverters, combiner and junction boxes, conduits 
+and raceways, and other related equipment and materials.<BRK/>
+<BRK/>
+3. Circuit wiring diagram of solar PV system.<BRK/>
+<BRK/>
+4. Troubleshooting instructions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN NATIONAL STANDARDS INSTITUTE (ANSI)</ORG><BRK/><BRK/><RID>ANSI C12.1</RID><RTL>(2014; Errata 2016) Electric Meters - Code for Electricity Metering</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF CIVIL ENGINEERS (ASCE)</ORG><BRK/><BRK/><RID>ASCE 7-10</RID><RTL>(2010; Errata 2011; Supp 1 2013) Minimum Design Loads for Buildings and Other Structures</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A240/A240M</RID><RTL>(2025a) Standard Specification for Chromium and Chromium-Nickel Stainless Steel Plate, Sheet, and Strip for Pressure Vessels and for General Applications</RTL><BRK/><BRK/><RID>ASTM D709</RID><RTL>(2017) Standard Specification for Laminated Thermosetting Materials</RTL><BRK/><BRK/><RID>ASTM E772</RID><RTL>(2015; R 2021) Standard Terminology of Solar Energy Conversion</RTL><BRK/><BRK/><RID>ASTM G173</RID><RTL>(2003; R 2012) Standard Tables for Reference Solar Spectral Irradiances: Direct Normal and Hemispherical on 37 Degree Tilted Surface</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 80</RID><RTL>(2013) Guide for Safety in AC Substation Grounding</RTL><BRK/><BRK/><RID>IEEE 142</RID><RTL>(2007; Errata 2014) Recommended Practice for Grounding of Industrial and Commercial Power Systems - IEEE Green Book</RTL><BRK/><BRK/><RID>IEEE 242</RID><RTL>(2001; Errata 2003) Recommended Practice for Protection and Coordination of Industrial and Commercial Power Systems - Buff Book</RTL><BRK/><BRK/><RID>IEEE 1547</RID><RTL>(2018) Interconnection and Interoperability of Distributed Energy Resources with Associated Electric Power Systems Interfaces</RTL><BRK/><BRK/><RID>IEEE 1547.1A</RID><RTL>(2015) Standard for Conformance Test Procedures for Equipment Interconnecting Distributed Resources with Electric Power Systems -- Amendment 1</RTL><BRK/><BRK/><RID>IEEE 1547A</RID><RTL>(2020) Standard for Interconnecting Distributed Resources with Electric Power Systems - Amendment 1</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/><RID>IEEE Stds Dictionary</RID><RTL>(2009) IEEE Standards Dictionary: Glossary of Terms &amp; Definitions</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL CODE COUNCIL (ICC)</ORG><BRK/><BRK/><RID>ICC IBC</RID><RTL>(2024) International Building Code</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTRICAL TESTING ASSOCIATION (NETA)</ORG><BRK/><BRK/><RID>NETA ATS</RID><RTL>(2025) Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTROTECHNICAL COMMISSION (IEC)</ORG><BRK/><BRK/><RID>ANSI IEC 60529</RID><RTL>(2020) Degrees of Protection Provided by Enclosures</RTL><BRK/><BRK/><RID>IEC 61215</RID><RTL>(2005; ED 2.0) Crystalline Silicon Terrestrial Photovoltaic (PV) Modules - Design Qualification and Type Approval</RTL><BRK/><BRK/><RID>IEC 61646</RID><RTL>(2008; ED 2.0) Thin-Film Terrestrial Photovoltaic (PV) Modules – Design Qualification and Type Approval</RTL><BRK/><BRK/><RID>IEC 62446</RID><RTL>(2018) Photovoltaic (PV) Systems - Requirements for Testing, Documentation, and Maintenance - Part 1:  Grid Connected Systems - Documentation, Commissioning Tests and Inspection</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 70E</RID><RTL>(2024) Standard for Electrical Safety in the Workplace</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 3-301-01</RID><RTL>(2023; with Change 6, 2026) Structural Engineering</RTL><BRK/><BRK/><RID>UFC 3-501-01</RID><RTL>(2024) Electrical Engineering</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>29 CFR 1910</RID><RTL>Occupational Safety and Health Standards</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 96</RID><RTL>(2025) UL Standard for Safety Lightning Protection Components</RTL><BRK/><BRK/><RID>UL 467</RID><RTL>(2022) UL Standard for Safety Grounding and Bonding Equipment</RTL><BRK/><BRK/><RID>UL 1741</RID><RTL>(2010; Reprint Jan 2015) UL Standard for Safety Inverters, Converters, Controllers and Interconnection System Equipment for Use With Distributed Energy Resources</RTL><BRK/><BRK/><RID>UL 2703</RID><RTL>(2015; Reprint Jul 2023) UL Standard for Safety Mounting Systems, Mounting Devices, Clamping/Retention Devices, And Ground Lugs For Use With Flat-Plate Photovoltaic Modules And Panels</RTL><BRK/><BRK/><RID>UL Subject 3703</RID><RTL>(2011; Edition 2014) Outline of Investigation for Solar Trackers</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include Section <SRF>26 08 00</SRF>, APPARATUS INSPECTION AND TESTING on all projects 
+involving medium voltage and specialized power distribution equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Section <SRF>26 08 00</SRF>, APPARATUS INSPECTION AND TESTING apply to this section with additions and modifications specified 
+herein.</TXT><BRK/>
+<BRK/>
+]<NTE><BRK/>
+<AST/><NPR>NOTE:  To expedite interconnection and activity, solicit local utility point 
+of contact, if known.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TXT>Coordinate with local utility interconnection and activity. [Point of contact [_____].]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Unless otherwise specified or indicated, electrical and electronics terms used in these specifications, 
+and on the drawings, are as defined in the <RID>IEEE Stds Dictionary</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Unless otherwise specified or indicated, solar energy conversion terms used in these specifications, 
+and on the drawings, are as defined in <RID>ASTM E772</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Permits are assumed to be obtained by firm holding design responsibility.  
+Ensure this is clarified in contract bid package.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Commissioning Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Commissioning Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Site plan drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Riser diagram and general notes</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Complete solar PV system <SUB>components and interconnection wiring</SUB> diagrams; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Shop Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Installation and Assembly Details</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Photovoltaic Modules</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Inverters</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Disconnect</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Combiner Boxes</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Monitoring equipment</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System wiring</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ground mounting structure</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Sample <SUB>warranty</SUB> certificate; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<ITM>  Submit for all materials to be provided.  Submit data sufficient to indicate conformance to 
+specified requirements.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM>Design <SUB>Calculations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Inverter startup tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Functional Performance Testing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Materials</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Commissioning Agent Qualification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Seismic Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wind Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Data Package 5</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM>Solar <SUB>Posted operating instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Solar <SUB>Training documentation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Final Commissioning Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Warranty</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>As-Built Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE MATERIAL SUBMITTALS</TTL><BRK/>
+<BRK/>
+<TXT>Comply with requirements specified in Section <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the 
+word, "must" had been substituted for "should" wherever it appears.  Interpret references in these publications 
+to the "authority having jurisdiction," or words of similar meaning, to mean the Contracting Officer.  Provide 
+equipment, materials, installation, and workmanship in accordance with the mandatory and advisory provisions 
+of <RID>NFPA 70</RID> unless more stringent requirements are specified or indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Submit minimum of three (3) hard copies of drawings for government approval prior to manufacturing and equipment 
+construction or integration.  Submit <SUB>shop drawings</SUB> at a minimum of <ENG>11 by 17 inches</ENG> in size using a minimum scale 
+of <ENG>1/4 inch per foot</ENG>, for the exception of drawings not requiring scale. Submit <SUB>site plan drawings</SUB> and <SUB>riser 
+diagram and general notes</SUB> at a minimum of <ENG>24 by 36 inches</ENG>.  Submit <SUB>Installation and Assembly Details</SUB> at a minimum 
+of <ENG>24 by 36 inches</ENG>.  Submit at minimum scale of <ENG>1/2 inch per foot</ENG> for overview and <ENG>2 inches per foot</ENG> for detail.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Product Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Submit complete detailed product drawings for the solar PV system consisting of shop drawings and product data 
+sheets. Include in the shop drawings [one][three] [four] wire diagrams, utility interconnection diagrams, switchboard 
+and switchgear drawings layout and arrangement of PV modules, support and mounting mechanism, inverters, combiner 
+boxes, AC and DC disconnects, equipment enclosures, conduits, monitors, meters, and all other accessories associated 
+with the installation of the PV system. Provide equipment dimensions, weights and structural mounting details.</TXT><BRK/>
+<BRK/>
+<TXT>Provide design <SUB>Calculations</SUB>.Include nameplate data, size, and capacity of each PV module.  Include all assumptions 
+such as applicable wind speed, snow and seismic loads.  Include applicable federal, military, industry, and technical 
+society publication references.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Installation and Assembly Drawings and Details</TTL><BRK/>
+<BRK/>
+<TXT>Submit site plan drawings, <SUB>components and interconnection wiring</SUB> and general notes, and installation and assembly 
+Details drawings prior to start of construction.  Include sufficient detail on drawings for all parts of the 
+work to enable the Government to check conformity with the requirements of the contract documents.  Include in 
+the site plan drawings: topographic and utility survey; bore logs; soils report; site plan(s); site construction 
+details; structural drawings; structural construction details; site electrical plan; and site electrical construction 
+details.  Include in the installation and assembly drawings and details: parts lists; assembly drawings; interconnection 
+wiring diagrams; wire and cable schedules; wire and cable termination schedules; instrument plan; instrument 
+and control wire, conduit and cable schedules; instrument wire and cable termination schedule; control diagrams; 
+control sequence of operation; seismic restraint details; and wind restraint details.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>"As-Built" and Record Drawings</TTL><BRK/>
+<BRK/>
+<TXT>After completion of construction, submit <SUB>As-Built Drawings</SUB> prepared and certified by the construction contractor, 
+showing in red ink, on-site changes to the original construction details and all underground utilities measured 
+from field benchmarks, accurate to within 1" of centerline of the utility.  Immediately record for inclusion 
+into the as-built drawings all modifications to original drawings made during installation.  Indicate adequate 
+clearance for operation, maintenance, and replacement of operating equipment devices.  Prepare "as-built" on 
+a minimum of <ENG>24 by 36 inches</ENG> vellum using red ink.</TXT><BRK/>
+<BRK/>
+<TXT>After submittal and approval of "As-built" Drawings, submit Record Drawings, prepared and by the project engineer(s) 
+and architect(s), of the original design drawings reflecting all design changes and contractor noted changes 
+in the "As-Built" drawings.</TXT></SPT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard <SUB>Materials</SUB> and Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such 
+products which are of equal material, design and workmanship.  Provide products with satisfactory commercial 
+or industrial use for [2][_____] years prior to bid opening, and past performance documentation with consistent 
+design and bill of materials.  Include applications of equipment and materials under similar circumstances and 
+of similar size.  Where [two][_____] or more items of the same class of equipment are required, products will 
+be from a single manufacturer; however, the component parts of the item need not be the products of the same 
+manufacturer unless stated in the technical section.</TXT><BRK/>
+<BRK/>
+<TXT>Proof of compliance with requirements of UL, where material or equipment is specified to comply.  The label of 
+or listing in UL Electrical Construction Directory will be acceptable evidence.  In lieu of the label or listing, 
+a written certificate from an approved nationally recognized testing laboratory (NRTL) equipped to perform such 
+services, stating that the items have been tested and conform to the requirements and testing methods of Underwriters 
+Laboratories may be submitted.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a [2][_____]-year field service record will be acceptable if a certified record of 
+satisfactory field operation of not less than [6,000][_____] hours, exclusive of the manufacturers' factory or 
+laboratory tests, is furnished.  These alternative qualifications do not apply to materials in Section 2.2 of 
+Section <SRF>26 31 00</SRF> FACILITY-SCALE SOLAR PHOTOVOLTAIC (PV) SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material and Equipment Manufacturing Date</TTL><BRK/>
+<BRK/>
+<TXT>Do not use products manufactured more than [3][_____] years prior to date of delivery to site, unless specified 
+otherwise.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Operations and Maintenance Data</TTL><BRK/>
+<BRK/>
+<TXT>Submit operation and maintenance <SUB>Data Package 5</SUB> in accordance with Section <SRF>01 78 23</SRF>, OPERATION AND MAINTENANCE 
+DATA and as specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Commissioning Agents</TTL><BRK/>
+<BRK/>
+<TXT>Commissioning Agents Qualifications: Engage commissioning service<BRK/>
+personnel, that specialize in the types of inspections and tests to be<BRK/>
+performed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installers</TTL><BRK/>
+<BRK/>
+<TXT>Demonstrate that installers have successfully installed at least [four][_____] projects that, in aggregate, equal 
+or exceed the size of the proposed project.  Provide references for each of these referenced projects.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Qualified Testing Organization</TTL><BRK/>
+<BRK/>
+<TXT>Engage the services of a qualified testing organization to provide inspection, testing, calibration, and adjustment 
+of the solar PV system and equipment listed herein.  The organization must be independent of the supplier, manufacturer, 
+and installer of the equipment.  The organization must be a First Tier Contractor.</TXT><BRK/>
+<BRK/>
+<TXT>The organization must have been regularly engaged in the testing of electrical materials, devices, installations, 
+and systems for a minimum of [5][_____] years.  The organization must have a calibration program, and test instruments 
+used to be calibrated in accordance with <RID>NETA ATS</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Permitting</TTL><BRK/>
+<BRK/>
+<TXT>The [Owner][Contractor] is responsible for obtaining all necessary development permits and regulatory and utility 
+service provider approvals prior to construction.</TXT><BRK/>
+<BRK/>
+<TXT>The [Owner][Contractor] is responsible for obtaining all necessary electrical and building permits and inspections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Training</TTL><BRK/>
+<BRK/>
+<TXT>Provide training by a factory trained instructor to provide full instructions to designated Government personnel 
+in the operation, maintenance and programming of the specified systems and equipment.  Include safety training 
+for first responders including fire department[, ][_____][ and ][_____] representatives.   </TXT><BRK/>
+<BRK/>
+<TXT>Submit <SUB>Training documentation</SUB> along with the proposed training date[s], at least [14][_____] days prior to date[s] 
+of proposed training course.  Provide training session for [six][_____] personnel specifically oriented to installed 
+equipment, system layout, and user operations.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Store solar PV panel modules in the original packaging according to the manufacturer's guidance, and remain in 
+packaging until day of installation.  If a solar PV module is removed from its packaging, store according to 
+the manufacturer's guidance.  Do not store solar PV panel modules on-site for more than [12][_____] months.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>WARRANTY</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Warrant the overall system for both parts and labor for a minimum period of [5][_____] years.</TXT>  Provide the following 
+component specific warranties:<BRK/>
+<OLG><BRK/>
+<OLI><SUB>Photovoltaic Modules</SUB>:  Minimum warranty period of 25-year for linear minimum output and 10-years for 
+workmanship, material, visual, and manufacturing defects from the date of manufacture followed by an 
+additional fifteen (15) years at not more than 20 percent power loss.</OLI><BRK/>
+<BRK/>
+<OLI><SUB>Ground Mounting Structure</SUB>:  Mounting structure system hardware to be free from defects in the material 
+and workmanship for a minimum period of [10][_____] years.</OLI><BRK/>
+<BRK/>
+<OLI><SUB>Combiner Boxes</SUB>:  Combiner boxes to be free from defects in material and workmanship for a period of [5][_____] 
+years.</OLI><BRK/>
+<BRK/>
+<OLI><SUB>Inverters</SUB>:  Inverters to be from defects in material and workmanship for a minimum period of [20][_____] 
+years.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Provide a list of all applicable warranties for all equipment and components.  Include warranty information, 
+names, addresses, telephone numbers, and procedures for filing a claim and obtaining warranty services.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Inverter Software Upgrades</TTL><BRK/>
+<BRK/>
+<TXT>Provide and install, at no cost or charge, any inverter software upgrades that become available during the warranty 
+period.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Warranty Exclusions</TTL><BRK/>
+<BRK/>
+<TXT>The warranty must cover all system malfunctions and failures except those resulting from misuse, abuse, neglect, 
+fire, vandalism, acts of nature, or other causes beyond the control of the Contractor or manufacturer.</TXT></SPT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CERTIFICATIONS</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>Seismic Certification</SUB>and <SUB>Wind Certification</SUB>, prepared by a licensed professional engineer or National 
+Recognized Testing Laboratory, (NRTL) for all components and assembled systems in accordance with <RID>ICC IBC</RID>,<RID>ASCE 7-10</RID>
+ state and local building codes.  Seismic and wind certifications must demonstrate system will withstand wind 
+and seismic requirements as installed and remain remain online and functional after a seismic or wind event.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>HEALTH AND SAFETY REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Section <SRF>01 35 26</SRF>, GOVERNMENTAL SAFETY REQUIREMENTS applies to this section with additions and modifications specified 
+herein.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>Provide utility scale solar PV system feeding AC power to utility grid in accordance with <RID>IEEE 1547</RID> and local 
+utility regulations.  The PV system must comply with these specifications, all applicable codes and standards, 
+all construction documents, and all local authorities having jurisdiction.</TXT><BRK/>
+<BRK/>
+<TXT>Installation must consist of either a fixed-axis, single- or dual-axis utility scale-ground mount system.  Tracking 
+requirements must comply with local siting requirements regarding reflectivity restrictions and airspace safety 
+requirements. Support structures must either be individual modules or where applicable, groups of panels configured 
+for shade structures.  Provide all necessary accessories for a complete, secure, and operational solar PV system. 
+Commercial-grade and residential-grade rooftop systems are excluded from this UFGS.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Requirements</TTL><BRK/>
+<BRK/>
+<SPT><TTL>System Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>The system characteristics include [_____] minimum rated [kW][MW] DC output, [_____] minimum [kWh][MWh] AC per 
+year, [_____] system voltage, and [fixed axis][tracking [one-][two-]axis] ground-mounted at full load rated power 
+[1][_____] percent mean ambient summer operating temperature.  Rate all electrical equipment for the current 
+and voltage ratings appropriate for the application.</TXT><BRK/>
+<BRK/>
+<TXT>The system must be rated for outdoor installation.  Provide system equipment capable of operating under the location's 
+maximum and minimum documented temperatures during summer and winter times.  The entire system must be rated 
+and warranted to withstand and operate under these conditions.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Capacity Ratings</TTL><BRK/>
+<BRK/>
+<TXT>Specify rated PV system capacity in direct current (DC) [kilo][mega]watts peak under both Standard Test Conditions 
+(STC) and Photovoltaics for Utility Scale Applications (PVUSA) Test Conditions (PTC) ratings.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The STC rating assumes direct current referred as "[k][M]Wdc-STC".  It is also referred as [kilo][mega]watts 
+peak, or "[k][M]Wp".  Specific PV module manufacturer maximum and minimum power data must be specified 
+for this rating.  The STC rating is based on 1,000 watts/m<SPS>2</SPS> solar irradiance, 25 degrees C cell temperature, 
+air mass equal to 1.5, and <RID>ASTM G173</RID> standard spectrum.</OLI><BRK/>
+<BRK/>
+<OLI>The PTC rating is based on 1,000 watts/m<SPS>2</SPS> solar irradiance, 20 degrees C ambient temperature and 1 meter/second 
+wind speed at 10 meters above ground level.</OLI></OLG></SPT><BRK/>
+<BRK/>
+<SPT><TTL>System Wiring</TTL><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The possible exposure to a corrosive environment should be carefully 
+examined. Even when the correct conductor size and the selected joining (connecting) 
+method have satisfied all the IEEE 837 test requirements, it may be prudent 
+to choose a larger conductor size to compensate for some gradual reduction in 
+the conductor cross section during the design life of the installation where 
+the soil environment tends to promote corrosion. Coordinate soil environment 
+with Geotechnical Engineer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<TXT><SUB>System wiring</SUB> [must conform to Section [_____] and ]must be in accordance with Section 690 of <RID>NFPA 70</RID>.  The conductors 
+used must have a temperature rating of [90][_____] degrees C or higher and be sized according to the appropriate 
+DC or AC voltage application.  Cabling exposed to sunlight must be UV resistant.  [All wiring must be copper 
+conductor if Navy eventually takes ownership of system.]</TXT><BRK/>
+<BRK/>
+<TXT>[Provide conduits in accordance with Section [_____].  ]Use galvanized rigid steel conduit above grade and mount 
+on UV resistant high-density polyethylene (HDPE) supports.  Conduit below grade must be Schedule 40 PVC, minimum.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Site Design</TTL><BRK/>
+<BRK/>
+<TXT>Provide adequate space for personnel, vehicles and equipment throughout the PV array to facilitate installation, 
+inspection and maintenance access to all modules.</TXT></SPT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PHOTOVOLTAIC MODULES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include in this section specifying CEC information and requirements for 
+projects abiding by California Energy Commission.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Utilize PV modules with [crystalline silicon][ribbon sheet][thin film] technology and conform to Section
+<SRF> 26 31 00</SRF> FACILITY-SCALE SOLAR PHOTOVOLTAIC (PV) SYSTEMS.  Include bypass diodes with each PV module installed 
+in the module junction box.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Compliance</TTL><BRK/>
+<BRK/>
+<TXT>The PV modules must comply with the Buy American Act[ and must be listed on the California Energy Commission's 
+PTC list][ and must qualify for eligibility under the California Solar Initiative (CSI) Program].  The system 
+must comply with <RID>IEC 61215</RID> or <RID>IEC 61646</RID>.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Electrical Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Provide high-power type PV module(s), with typical peak power of not less than [315][] watts, +/- [3][_____] 
+percent power tolerance, under Standard Test Conditions (STC).  The AC output must not be less than [80][] percent 
+of the DC kWp rating.  The individual current harmonics and TRD are not to exceed the limits specified in <RID>IEEE 1547</RID>
+.</TXT><BRK/>
+<BRK/>
+<TXT>The operating voltage corresponding to the power output mentioned above should be at least [54][_____] volts.  
+The open circuit voltage of the PV modules under STC should be at least [64][_____] volts.  Operate PV module 
+at an ambient temperature range of <MET>[minus 40][_____] degrees C</MET><ENG>[minus 40][_____] degrees F</ENG> to <MET>[plus 85][_____] 
+degrees C</MET><ENG>[plus 185][_____] degrees F</ENG> with [100][_____] percent relative humidity.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Terminal Box</TTL><BRK/>
+<BRK/>
+<TXT>Include a terminal box on the module having a provision for opening for replacing the cable, if required.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Nameplate</TTL><BRK/>
+<BRK/>
+<TXT>Include the following on the module namplate so as to be clearly visible:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Name of the Manufacturer or distinctive logo;</OLI><BRK/>
+<BRK/>
+<OLI>Model or Type Number;</OLI><BRK/>
+<BRK/>
+<OLI>Serial Number;</OLI><BRK/>
+<BRK/>
+<OLI>Year of make;</OLI><BRK/>
+<BRK/>
+<OLI>Peak wattage rating;</OLI><BRK/>
+<BRK/>
+<OLI>Peak voltage; and</OLI><BRK/>
+<BRK/>
+<OLI>Peak current.</OLI></OLG></SPT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INVERTERS</TTL><BRK/>
+<BRK/>
+<TXT>Provide solid state type inverter unit capable of accepting the output of the photovoltaic panels and providing 
+rated output as indicated.  Provide the inverter with monopole, negative grounded, and positive grounded array 
+configuration capabilities.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Listings</TTL><BRK/>
+<BRK/>
+<TXT>Provide inverter listed on the California Energy Commission's PTC list[ and must qualify for eligibility under 
+the CSI Program].  The inverter must be <RID>UL 1741</RID> listed and conform to <RID>IEEE 1547A</RID> and <RID>NFPA 70</RID> standards.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Ratings</TTL><BRK/>
+<BRK/>
+<TXT>Rate the inverter's output as [250][500][_____] kW, [600][1,000][_____] Vdc, 3 phase, [320-600][420-850][_____] 
+maximum power point tracking (MPPT) voltage range.  The peak inverter power conversion efficiency must be [95][97][_____] 
+percent or greater.</TXT><BRK/>
+<BRK/>
+<TXT>Operate inverter at an ambient temperature range of <MET>[minus 20][_____] degrees C</MET><ENG>[minus 4][_____] degrees F</ENG> to <MET>
+[plus 50][_____] degrees C</MET><ENG>[plus 122][_____] degrees F</ENG> with [95][_____] percent humidity (non-condensing).</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Safeties and Protection</TTL><BRK/>
+<BRK/>
+<TXT>Equip each inverter with the following safeties and Protection:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>DC input <SUB>disconnect</SUB>;</OLI><BRK/>
+<BRK/>
+<OLI>Surge protection;</OLI><BRK/>
+<BRK/>
+<OLI>Ground fault interrupter;</OLI><BRK/>
+<BRK/>
+<OLI>Isolation transformer;</OLI><BRK/>
+<BRK/>
+<OLI>AC output disconnect; and</OLI><BRK/>
+<BRK/>
+<OLI>Data <SUB>Monitoring Equipment</SUB>/System.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>The inverter must be able to sustain an overload across its output terminals up the [150][_____] percent load, 
+while supplying any load within its rating and without reducing its output voltage.  Fuse power semiconductors 
+in the inverter with fast acting fuses to prevent cascading failures.  Provide each fuse with a blown fuse and 
+alarm indicating diodes on the control panel.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Features</TTL><BRK/>
+<BRK/>
+<TXT>Include each inverter with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Automatic operation including start-up, shutdown, self-diagnosis, and fault detection;</OLI><BRK/>
+<BRK/>
+<OLI>Digital Signal Processor (DSP) based controls with self-diagnostics and [remote][local] display of operating 
+status;</OLI><BRK/>
+<BRK/>
+<OLI>Over- and under-voltage and frequency protection, shutting down the inverter in compliance with <RID>UL 1741</RID>
+; and</OLI><BRK/>
+<BRK/>
+<OLI>Anti-islanding protection to prevent back-feeding inverter generated power to the grid in the event of 
+a utility outage.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Provide inverter in [floor-mount][wall-mount][support structure mount], NEMA [1][3R][4][4X][6][6P], [steel][aluminum][stainless 
+steel][polymeric] enclosure in accordance with <RID>NEMA 250</RID>.</TXT></SPT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COMBINER BOXES</TTL><BRK/>
+<BRK/>
+<TXT>Provide combiner box[es] in [wall-mount][pole-mount], NEMA [3R][4X][_____], [steel][aluminum][stainless steel] 
+enclosure in accordance with <RID>NEMA 250</RID>.  Include in the combiner box[es] fuses and a bus to combine the outputs 
+of the strings.  Each combiner box must be <RID>UL 1741</RID> listed and operate at an ambient temperature range of <MET>[minus 
+25][_____] degrees C</MET><ENG>[minus 13][_____] degrees F</ENG> to <MET>[plus 57][_____] degrees C</MET><ENG>[plus 135][_____] degrees F</ENG>.  Provide 
+combiner box capable of at least [12][_____] inputs and an input fuse rating of [15][_____] amps.  Include output 
+circuit disconnecting means listed for intended use and purpose.</TXT><BRK/>
+<BRK/>
+<TXT>Provide combiner box output terminals for paralleling two conductors for the PV positive and negative, as well 
+as the equipment ground conductors.  Run set of wires from the combiner box to the inverter.  Combiner output 
+must be compatible with inverter input.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUND MOUNTING STRUCTURES</TTL><BRK/>
+<BRK/>
+<TXT>Provide array ground mounting structure for PV modules that provides the designed panel tilt.  The mounting system 
+must be [ground][tracking] mounting type [, [two][four] rails][, [one][two] axis], and be [<RID>UL 2703</RID>] and [<RID>UL Subject 3703</RID>
+] listed.</TXT><BRK/>
+<BRK/>
+<TXT>Design all structural components in a manner commensurate with attaining a minimum [30][_____] year design life.  
+Array mounting hardware must be compatible with the site considerations and environment.  Aluminum and stainless 
+steel components and hardware are preferred.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Wind and Seismic Ratings</TTL><BRK/>
+<BRK/>
+<TXT>The mounting system and overall installation must be capable to withstand winds of Category [1][2][3][4] or [5] 
+as defined by the Saffir-Simpson Hurrican Wind Scalefor all attachment points and consistent with the manufacturer's <SUB>
+installation instructions</SUB>.  Provide wind certifications for all components and assemblies.</TXT><BRK/>
+<BRK/>
+<TXT>All structures and structural elements must be suitable for Seismic Design Category [_____] in accordance with <RID>
+UFC 3-301-01</RID>, <RID>ICC IBC</RID>, <RID>ASCE 7-10</RID>, and all other applicable building codes and standards pertaining to the erection 
+of such structures.</TXT></SPT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CAST-IN-PLACE CONCRETE</TTL><BRK/>
+<BRK/>
+<TXT>Provide concrete foundations for ground mounting structural members as specified in Section <SRF>03 30 00</SRF> CAST-IN-PLACE 
+CONCRETE and in accordance with manufacturer's recommendations.</TXT><BRK/>
+<BRK/>
+<TXT>Provide mounting assembly and connections where system is to be installed on a concrete structure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>METERING AND POWER MONITORING</TTL><BRK/>
+<BRK/>
+<TXT>Provide and install a revenue grade alternating current (AC) Interval Data Recording (IDR) meter, located on 
+the output side of the inverter, complete with industry standard telemetry for communications with Ethernet, 
+cellular or other common output capabilities.  Meter must conform to the Owner's[, Navy's,] and <HL1>Electrical Company</HL1>
+ metering requirements.[  If the power is tied into the Navy's internal electrical grid, then advanced metering 
+infrastructure (AMI) meters are to be installed.  Provide new AMI meters that are compatible with installation's 
+current AMI system.]  </TXT><BRK/>
+<BRK/>
+<SPT><TTL>Meter Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>The meter must be UL listed and have an operating temperature range of <MET>[minus 20][_____] degrees C</MET><ENG>[minus 4][_____] 
+degrees F</ENG> to <MET>[plus 70][_____] degrees C</MET><ENG>[plus 158][_____] degrees F</ENG> with a humidity range of [95][_____] percent 
+relative humidity (RH) non-condensing.  Provide the meter conforming to <RID>ANSI C12.1</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide meter capable of measuring kWh, Demand, Instantaneous power, volts, amps, watts, VAR and VA per phase.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Power Monitorning System</TTL><BRK/>
+<BRK/>
+<TXT>[Provide and connect][Connect] meter to a power monitoring/data collection system recording solar production 
+through Time of Use (TOU) increments applicable to the installation and utility standards, with a minimum [15][_____] 
+minute intervals and [30][_____] day memory.</TXT></SPT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>POSTED OPERATING INSTRUCTIONS</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>posted operating instructions</SUB> for solar PV system equipment laminated between thermoplastic sheets.  
+After operating instructions are approved, install where directed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MANUFACTURER'S NAMEPLATE</TTL><BRK/>
+<BRK/>
+<TXT>Provide on each equipment item, including PV panels, a nameplate bearing all manufacturer's information securely 
+affixed in a conspicuous place.  Nameplates exposed to weather are to be <RID>ASTM A240/A240M</RID>Type 316 stainless steel 
+with stamped engraving. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD FABRICATED NAMEPLATES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use of the following paragraph where nameplates are fabricated to identify 
+specific equipment designated on drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide field fabricated nameplates in accordance with <RID>ASTM D709</RID> as specified or as indicated on the drawings.  
+Minimum size of nameplates is<MET> 25 by 65 mm</MET><ENG> 1 by 2.5 inches</ENG>.  Lettering is a minimum of<MET> 6.35 mm</MET><ENG> 0.25 inch</ENG> high 
+normal block style.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WARNING SIGNS</TTL><BRK/>
+<BRK/>
+<TXT>Provide clearly visible warning signs for arc flash protection in accordance with <RID>UFC 3-501-01</RID> and <RID>NFPA 70E</RID> for 
+all electrical equipment and components that are required to examine, adjust, service, or maintain while energized.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CABLE TAGS IN MANHOLES, HANDHOLES, AND VAULTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide machine printed polyethylene cable tags for each cable entering or leaving manholes, handholes, and vaults.  
+Do not provide handwritten tags.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING AND BONDING</TTL><BRK/>
+<BRK/>
+<TXT><RID>NFPA 70</RID>, <RID>IEEE 80</RID>, <RID>IEEE 142</RID>, <RID>IEEE 242</RID>, and <RID>IEEE C2</RID>, except that grounds and grounding systems must have a resistance 
+to solid earth ground not exceeding 5 ohms.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Ground Rods</TTL><BRK/>
+<BRK/>
+<TXT>Provide ground rods made of [copper-clad steel] [solid copper] conforming to conform to <RID>UL 467</RID> with minimum diameter 
+of <MET>[19][_____] mm</MET>/<ENG>[3/4][_____] in</ENG> and length of <MET>[3][_____] m</MET>/<ENG>[10][_____] ft</ENG>.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Ground Plates</TTL><BRK/>
+<BRK/>
+<TXT>Provide grounding plates made of [copper-clad steel][iron][stainless steel] [solid copper] conforming to <RID>UL 96</RID>
+.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Ground and Bonding Conductors</TTL><BRK/>
+<BRK/>
+<TXT>Equipment grounding conductors must be insulated stranded copper, except that sizes No. 10 AWG and smaller must 
+be solid copper. Insulation color must be continuous green for all equipment grounding conductors, except that 
+wire sizes No. 4 AWG and larger must be identified per <RID>NFPA 70</RID>NEC.</TXT><BRK/>
+<BRK/>
+<TXT>Bonding conductors must be bare stranded copper, except that sizes No. 10 AWG and smaller must be bare solid 
+copper.  Bonding conductors must be stranded for final connection to motors, transformers, and vibrating equipment.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Ground Connections</TTL><BRK/>
+<BRK/>
+<TXT>Below Grade and Inaccessible Locations: Exothermic-welded type connectors. </TXT><BRK/>
+<BRK/>
+<TXT>Above Grade:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Bonding Jumpers: Listed for use with aluminum and copper conductors.  For wire sizes No. 8 AWG and larger, 
+use compression-type connectors.  For wire sizes smaller than No. 8 AWG, use mechanical type lugs.  Connectors 
+or lugs must use [zinc-plated][cadmium-plated] steel bolts, nuts, and washers.  Bolts must be torqued 
+to the values recommended by the manufacturer.</OLI><BRK/>
+<BRK/>
+<LST>b.   Connection to Building Steel: Exothermic-welded type connectors.</LST><BRK/>
+<BRK/>
+<LST>c.   Connection to Grounding Bus Bars: Listed for use with aluminum and copper conductors.  Use mechanical 
+type lugs, with [zinc-plated][cadmium-plated]/ steel bolts, nuts, and washers. Bolts must be torqued 
+to the values recommended by the manufacturer.</LST><BRK/>
+<BRK/>
+<LST>d.   Connection to Equipment Rack and Cabinet Ground Bars: Listed for use with aluminum and copper conductors.  
+Use mechanical type lugs, with [zinc-plated][cadmium-plated] steel bolts, nuts, and washers. Bolts must 
+be torqued to the values recommended by the manufacturer.</LST></OLG><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>LIGHTNING PROTECTION SYSTEM</TTL><BRK/>
+<BRK/>
+<TXT>Provide Lightning Protection System and components in accordance with Section <SRF>26 41 00</SRF> LIGHTNING PROTECTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use and coordinate paint and coating requirements with Section 
+<SRF>09 90 00</SRF>, PAINTS AND COATINGS when provided in the job.  Use the second bracketed 
+option when Section <SRF>09 90 00</SRF> is not provided or when requirements are beyond 
+what is specified in Section <SRF>09 90 00</SRF>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Site Preparation</TTL><BRK/>
+<BRK/>
+<TXT>Prepare the site for system installation by removing vegetation, grading for adequate drainage and avoid standing 
+water on site, and excavating and compacting foundations for individual module installation.  Provide access 
+roads, pathways, fencing and other improvements as necessary for site access and security.  Provide vegetation 
+barrier to keep surrounding area free from array-shading vegetation as required.</TXT><BRK/>
+<BRK/>
+<TXT>Provide walking and vehicle space throughout the PV array to facilitate installation, inspection, and maintenance 
+access to all modules in accordance with NFPA 70 and IEEE C2.  Maintain a minimum ground clearance of <MET>[3][_____] 
+m</MET><ENG>[10][_____] ft</ENG> <MET>3 m</MET>around arrays.  Maintain a minimum ground clearance of <MET>[1][_____] m</MET>/<ENG>[3][_____] ft</ENG> below arrays 
+for all site-specific conditions including possible array-shading vegetation, ground/vegetation maintenance, 
+and/or array-shading snowfall.  </TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Equipment Installation</TTL><BRK/>
+<BRK/>
+<TXT>Install all equipment and all required wiring for a complete and operational system.  Follow manufacturer's guidelines 
+for the installation of the array components, including mounting hardware and PV modules.  Provide required conductor 
+terminations to devices for a complete system to function as specified and indicated.  Complete installation 
+must comply with all local building codes, manufacturer's instructions, and applicable industry standards.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Conductor Installation</TTL><BRK/>
+<BRK/>
+<TXT>Furnish and install conductors required to connect incoming and outgoing circuits.  Install conductors with conduits, 
+boxes, and terminal cabinets in a totally enclosed installation.  Install buried cable per Section <SRF>33 71 02</SRF> UNDERGROUND 
+ELECTRICAL DISTRIBUTION.  Comply with <RID>IEEE 1547</RID> for interconnection with utility providers.Color-code all conductors 
+per Section <SRF>26 05 19.00 10</SRF>, INSULATED WIRE AND CABLE and as recommended by the equipment manufacturer. </TXT><BRK/>
+<BRK/>
+<TXT>Rate all enclosures for electrical connections and interconnections for [NEMA 6 in accordance with <RID>NEMA 250</RID>] 
+or [IP67 in accordance with <RID>ANSI IEC 60529</RID>].</TXT></SPT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING</TTL><BRK/>
+<BRK/>
+<TXT>Ensure PV system grounding installation is in accordance with <RID>NFPA 70</RID> and <RID>IEEE C2</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Grounding Electrodes</TTL><BRK/>
+<BRK/>
+<TXT>Provide ground rods as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.  Connect grounding 
+conductors to ground rods by exothermic weld[ or compression connector].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FOUNDATIONS OF EQUIPMENT AND ASSEMBLIES</TTL><BRK/>
+<BRK/>
+<TXT>[Conduct soil borings and provide recommended foundation design by a licesened geotechnical engineer.] [Design 
+foundation in accordance with foundation design recommenations.]  Construct equipment foundations.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Ground Mounted Structures</TTL><BRK/>
+<BRK/>
+<TXT>Provide reinforced concrete foundations for ground mounted structures.  Provide 4" reinforced concrete housekeeping 
+pads for electrical equipment other than PV structures.  </TXT><BRK/>
+<BRK/>
+<TXT>Provide excavating and backfilling in accordance with Section <SRF>31 00 00</SRF> EARTHWORK.  Perform concrete work in accordance 
+with Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.  Coordinate provision of utility warning and identification tape 
+with backfill operation. Provide tapes above buried lines at a depth of <ENG>8 to 12 inches</ENG> below finish grade.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD APPLIED PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>Apply field painting as specified in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD FABRICATED NAMEPLATE MOUNTING</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment nameplates as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WARNING SIGN MOUNTING</TTL><BRK/>
+<BRK/>
+<TXT>Provide the number of warning signs required to be readable from each accessible side.  Locate and space signs 
+in accordance with <RID>NFPA 70E</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CABLE TAG INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install cable tags in manholes, handholes, and vaults as specified, including each splice.  Locate tags over 
+any fireproofing, if any, and clearly visible on cabling without disturbance in manholes, handholes, and vaults.</TXT><BRK/>
+<BRK/>
+<TXT>Identify and label all cables per <RID>NFPA 70</RID>.</TXT></SPT><BRK/>
+<BRK/>
+<SPT>[<TTL>FACTORY SYSTEM TESTING</TTL>]<BRK/>
+<BRK/>
+<TXT>[Provide testing of the complete system in accordance with <RID>IEEE 1547.1A</RID>. <RID>IEEE 1547</RID> allows for type testing to 
+be performed on complete systems, multifunction relays, discrete devices, or any combination. If type testing 
+is performed on anything other than a fully integrated system, some of the component times may not be available. 
+In these cases, production and/or commissioning tests must be conducted to fully demonstrate the ability of the 
+complete system to comply with the timing required by IEEE 1547.]</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Manufacturer's Field Service</TTL><BRK/>
+<BRK/>
+<TXT>Provide the services of factory trained and approved field service engineer during system installation, testing 
+and commissioning.</TXT></SPT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>COMMISSIONING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Sections <SRF>01 91 00.15</SRF>  BUILDING COMMISSIONING, are intended for building 
+systems, however, the basic requirements are applicable to PV comissioning processes.  
+Section <SRF>01 91 00.15</SRF> will need to be tailored for PV systems when compiling project 
+specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conduct Commissioning, after the system is installed and is ready for operation, in accordance with Section 
+<SRF>01 91 00.15</SRF>  BUILDING COMMISSIONING, item (6)renewable energy generation, to verify that the completed and installed 
+system meets the requirements of IEEE 1547.  Tailor for non-building systems.  </TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Commissioning Agent Qualification</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Individual qualified in testing protective equipment (e.g., professional engineer, factory-certified technician, 
+licensed electrician with experience in testing protective equipment) must perform or directly supervise commissioning 
+tests.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Commissioning Plan and Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Develop and implement a <SUB>commissioning plan</SUB> and <SUB>commissioning schedule</SUB> in accordance with Section <SRF>01 91 00.15</SRF> 
+BUILDING COMMISSIONING.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Start-up Pre-functional Checklists</TTL><BRK/>
+<BRK/>
+<TXT>Carry out a checklist of startup requirements and conduct a series of safety tests to ensure proper installation, 
+safe operation, and performance conforming to specification.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Functional Performance Testing</TTL><BRK/>
+<BRK/>
+<TXT>Prepare test procedures and conduct functional performance testing of the installed system.  Include the following 
+test requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>All <SUB>inverter startup tests</SUB> as specified by the inverter manufacturer in the inverter operation manual;</OLI><BRK/>
+<BRK/>
+<OLI>Actual power;</OLI><BRK/>
+<BRK/>
+<OLI>Loss of grid;</OLI><BRK/>
+<BRK/>
+<OLI>Grid resume;</OLI><BRK/>
+<BRK/>
+<OLI>Data monitoring check out;</OLI><BRK/>
+<BRK/>
+<OLI>V<SBS>oc</SBS> measurement of every source circuit and log it;</OLI><BRK/>
+<BRK/>
+<OLI>Verify tightness of all wiring terminations;</OLI><BRK/>
+<BRK/>
+<OLI>Verify proper markings and labeling of all wire terminations and enclosures;</OLI><BRK/>
+<BRK/>
+<OLI>Verify startup/shut down procedures;</OLI><BRK/>
+<BRK/>
+<OLI>Verify system [5][_____] minutes delay upon restart;</OLI><BRK/>
+<BRK/>
+<OLI>Verify PV array quick connectors are fully mated and wires are neatly secured;</OLI><BRK/>
+<BRK/>
+<OLI>Verify no debris on the modules, no damaged or broken modules;</OLI><BRK/>
+<BRK/>
+<OLI>Verification and inspections (see IEEE 1547.1 7.2)</OLI><BRK/>
+<BRK/>
+<OLI>Field-conducted type and production tests (see IEEE 1547 7.3))</OLI><BRK/>
+<BRK/>
+<OLI>Unintentional islanding functionality test (see IEEE 1547.1)</OLI><BRK/>
+<BRK/>
+<OLI>Cease-to-energize functionality test (see IEEE 1547.1)</OLI><BRK/>
+<BRK/>
+<OLI>Unintentional islanding functionality test (see IEEE 1547.1)</OLI><BRK/>
+<BRK/>
+<OLI>Cease-to-energize functionality test (see IEEE 1547.1 7.5)</OLI><BRK/>
+<BRK/>
+<OLI>Revised settings (see IEEE 1547.1 7.6)</OLI></OLG></SPT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Functional Performance Testing</SUB> Results</TTL><BRK/>
+<BRK/>
+<TXT>Coordinate, observe and record the results of the functional performance testing.  Coordinate retesting as necessary 
+until satisfactory performance is verified.  Verify the intended operation of individual components and system 
+interactions under various conditions and modes of operation.</TXT><BRK/>
+<BRK/>
+<TXT>Document items of non-compliance in materials, installation or operation.  Immediately address observed non-conformance 
+and deficiencies in terms of notification to responsible parties, and provide recommended actions to correct 
+deficiencies.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Final Commissioning Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Prepare and submit final commissioning report.  Summarize all of the tasks, findings, conclusions, and recommendations 
+of the commissioning process in accordance with <RID>IEC 62446</RID>..  Include the results of all tests and a listing of 
+the final settings. </TXT></SPT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>FINAL ACCEPTANCE</TTL><BRK/>
+<BRK/>
+<TXT>The acceptance of the solar PV system occurs only after all deficiencies identified by the functionalacceptance 
+tests and commissioing report are corrected[, and the system operates successfully during a [30][_____] day initial 
+testing period].</TXT><BRK/>
+<BRK/>
+<TXT>The Contracting Officer must sign appropriate certificates, if equipment and systems are operating satisfactorily 
+in accordance with the specifications, stating the system's operation has been tested and accepted at the end 
+of the final start-up and testing.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Demonstration</TTL><BRK/>
+<BRK/>
+<TXT>Demonstrate, upon completion of functional acceptance tests, that all circuits and devices are in proper operating 
+condition and performing as intended.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Training</TTL><BRK/>
+<BRK/>
+<TXT>Furnish training service by a factory-trained representative for a period of [5][_____] calendar days.  Document 
+that each qualified employee has received the required training in accordance with <RID>29 CFR 1910</RID>.  Maintain all 
+training documentation in a central location for the entire employee's employment duration.  Minimum documentation 
+data includes employee's name, training name, and date(s) of training.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><END/><BRK/></SEC>

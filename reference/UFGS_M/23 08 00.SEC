@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 08 00 (May 2023)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Change 1 - 08/24</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 08 00.00 20 (February 2021)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 08 00</SCN><BRK/>
+<BRK/>
+<STL>COMMISSIONING OF MECHANICAL[ AND PLUMBING] SYSTEMS</STL><BRK/>
+<DTE>05/23, CHG 1: 08/24</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This specification covers <SCP>commissioning requirements for HVAC[ and plumbing] systems</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section contains tailoring options for KTR HIRED COMMISSIONING PROVIDER, GOVT HIRED COMMISSIONING 
+PROVIDER, INTEGRATED SYSTEMS TESTS, DESIGN-BUILD, DESIGN-BID-BUILD, ARMY, and NAVY.</NPR><BRK/>
+<BRK/>
+<NPR>Select KTR HIRED COMMISSIONING PROVIDER tailoring for projects that require the Commissioning Provider to be provided 
+by the Construction Contractor.</NPR><BRK/>
+<BRK/>
+<NPR>Select GOVT HIRED COMMISSIONING PROVIDER tailoring for projects where the Commissioning Provider is retained under 
+a separate contract with the Government.</NPR><BRK/>
+<BRK/>
+<NPR>Select ARMY tailoring for projects that will be managed by the U.S. Army Corps of Engineers (USACE).  Army managed 
+projects will always have a KTR HIRED COMMISSIONING PROVIDER in accordance with Engineering Regulations.  Do NOT 
+select GOVT HIRED COMMISSIONING PROVIDER tailoring for Army managed projects.  Refer to Notes in Section 
+<SRF>01 91 00.15</SRF> BUILDING COMMISSIONING and Engineering Regulations for further information.</NPR><BRK/>
+<TAI OPT="ARMY"><BRK/>
+<NPR>Army Engineering Regulation (ER) 1110-345-723 describes Army project commissioning leadership structure.  In all 
+cases, the construction contractor will be required to provide a Contractor's Commissioning Specialist (CxC), 
+herein referred to as the Lead Commissioning Specialist, to perform the duties listed.  The Army will utilize 
+a Government Commissioning Specialist (CxG) as described in the ER.  Regardless of whether the CxG is provided 
+by Army personnel or third party contract, all communication and coordination with the CxG will be managed through 
+the Contracting Officer via processes established in other specification sections such as Quality Control, and 
+Submittal Procedures.</NPR><BRK/></TAI>
+<BRK/>
+<NPR>Select NAVY tailoring for projects that will be managed by the Naval Facilities Engineering Systems Command (NAVFAC).</NPR><BRK/>
+<BRK/>
+<NPR>Select DESIGN-BUILD tailoring for Design-Build project execution.</NPR><BRK/>
+<BRK/>
+<NPR>Select DESIGN-BID-BUILD tailoring for Design-Bid-Build project execution.</NPR><BRK/>
+<BRK/>
+<NPR>Select INTEGRATED SYSTEMS TESTING tailoring for buildings with central control systems and interactive operation 
+among different systems.  (Examples include mission critical facilities such as hospitals, laboratories, mission 
+operations, or other essential (RCIV) and strategic asset (RCV) facilities.)</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Building Commissioning is a systematic, quality-focused process for enhancing the delivery of a project that focuses on verifying and documenting 
+that all of the commissioned systems and assemblies are planned, designed, installed, tested, operated, and maintained to meet the project requirements.  
+The purpose is to reduce the cost and performance risks associated with delivering facilities projects, and to increase value to owners, occupants, 
+and users.  Comply with specification Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>SEQUENCING AND SCHEDULING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph contains tailoring for ARMY and NAVY.  Tailoring and deletions to this list will 
+require renumbering the list items.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="NAVY">Complete functional performance testing prior to performance verification testing required by Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR 
+HVAC.  </TAI>Complete the following prior to starting Functional Performance Tests of mechanical systems:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>All equipment and systems completed, cleaned, flushed, disinfected, calibrated, tested, and operate in accordance with contract documents 
+and construction plans and specifications</OLI><BRK/>
+<BRK/>
+<OLI>Final DALT Report submitted and approved in accordance with Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING FOR HVAC</OLI><BRK/>
+<BRK/>
+<OLI>Pre-final Testing, Adjusting, and Balancing Report submitted in accordance with Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING FOR 
+HVAC</OLI><BRK/>
+<TAI OPT="ARMY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This item contains tailoring for ARMY.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Performance Verification Tests of the controls systems have been completed and the Performance Verification Test Report has been submitted 
+and approved in accordance with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.</OLI><BRK/></TAI>
+<BRK/>
+<OLI>The Certificate of Readiness submitted and approved in accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING</OLI><BRK/>
+<BRK/>
+[<OLI>Air Leakage Test Reports and Diagnostic Test Reports submitted and approved in accordance with Section <SRF>01 91 19</SRF> BUILDING ENCLOSURE COMMISSIONING</OLI><BRK/>
+<BRK/>
+][<OLI>Tests, Flushing, and Disinfection in accordance with Section [<SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE][<SRF>22 00 70</SRF> PLUMBING FOR HEALTHCARE FACILITIES]</OLI><BRK/>
+<BRK/>
+][<OLI>Inspection and Testing in accordance with Section <SRF>22 33 30</SRF> SOLAR WATER HEATING EQUIPMENT</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Test Equipment</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pipe Flushing, Testing, And Water Treatment Reports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Completed Pre-Functional Checklists</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Seasonal Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Full-Load Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Post-Construction Trend Log Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Certificate Of Readiness</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ACCESSIBILITY REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Equipment, systems, and devices for commissioned systems must be accessible.  Make necessary modifications if systems and devices are not accessible 
+for inspections and testing.</TXT><BRK/>
+<BRK/>
+<TXT>Assist commissioning team in testing by removing equipment covers, opening access panels, and other required activities that assist with visual 
+oversight.  Furnish ladders, flashlights, meters, gauges, or other inspection equipment as necessary.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COORDINATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY and NAVY.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Refer to Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING for requirements pertaining to coordination during the commissioning process.  Coordinate with 
+the<TAI OPT="NAVY"> Commissioning Provider</TAI><TAI OPT="ARMY"> Lead Commissioning Specialist</TAI> in accordance with Section <SRF>01 91 00.15</SRF> and in accordance with the Commissioning Plan to 
+schedule inspections as required to support the commissioning process.  Furnish additional information requested by the<TAI OPT="NAVY"> Commissioning Provider</TAI><TAI OPT="ARMY"> 
+Lead Commissioning Specialist</TAI>.  Coordinate scheduling of Functional Performance Testing with the commissioning team.  Provide plans, reports, notes, 
+and other documentation to the<TAI OPT="NAVY"> Commissioning Provider</TAI><TAI OPT="ARMY"> Lead Commissioning Specialist</TAI> as specified in the commissioning plan, as it is completed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>PIPE FLUSHING, TESTING, AND WATER TREATMENT REPORTS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Test requirements are specified in Division [22 and ]23 piping Sections.  Prepare a pipe system cleaning, flushing, and hydrostatic testing log.  
+Provide cleaning, flushing, testing, and water treatment log and final reports.</TXT><BRK/>
+<BRK/>
+<TXT>Include the following in the pipe system cleaning, flushing, and hydrostatic testing log:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Minimum flushing water velocity.</OLI><BRK/>
+<BRK/>
+<OLI>Water treatment reports.</OLI><BRK/>
+<BRK/>
+<OLI>Tracking checklist for managing and ensuring that all pipe sections have been cleaned, flushed, hydrostatically tested, and chemically 
+treated.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>CERTIFICATE OF READINESS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY and NAVY.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Include the bracketed option Air Leakage Test Reports and Diagnostic Test Reports for Army projects that 
+include this report in Section <SRF>01 91 19</SRF> BUILDING ENCLOSURE COMMISSIONING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit Certificate of Readiness documentation in accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING for all equipment and systems including 
+start-up reports; completed Pre-Functional Checklists; Testing, Adjusting, and Balancing (TAB) Report; Issues Log; HVAC Controls Start-Up Reports<TAI OPT="ARMY">
+; Performance Verification Test Reports;[ and the building envelope Air Leakage Test Reports and Diagnostic Test Reports]</TAI>.  Do not schedule Functional 
+Performance Tests for the system until the Certificate of Readiness for that system receives approval by the Government.  The <TAI OPT="KTR HIRED COMMISSIONING PROVIDER">CxC, </TAI>Quality Control 
+Manager, and the Mechanical, Electrical, Controls, and TAB subcontractor representatives must sign and date the Certificate of Readiness.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>TEST EQUIPMENT</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide all testing equipment required to perform testing for the systems to be commissioned, except for equipment specific to and used by TAB 
+as required by Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING FOR HVAC.  Provide a sufficient quantity of two-way radios for each subcontractor.  
+Submit list of Test Equipment and instrumentation to be used for testing including equipment/instrument identification number, equipment application 
+or planned use, manufacturer, make, model, and serial number, and calibration history with certificates.  Also list special equipment and proprietary 
+tools specific to a piece of equipment required for testing.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Proprietary Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's proprietary test equipment and software required by any equipment manufacturer for programming and start-up, whether specified 
+or not.  Provide manufacturer test equipment, demonstrate its use, and assist in the commissioning process as needed.  Provide data logging equipment 
+and software required to test equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Calibration and Accuracy</TTL><BRK/>
+<BRK/>
+<TXT>Comply with equipment manufacturer's test equipment calibration procedures and intervals.  Recalibrate test instruments immediately after instruments 
+have been repaired resulting from being dropped or damaged.  Affix calibration tags to test instruments.  Furnish calibration records to Contracting 
+Officer upon request.</TXT><BRK/>
+<BRK/>
+<TXT>Provide all testing equipment of sufficient quality and accuracy to test and measure system performance with the tolerances specified.  Unless 
+otherwise noted, the following minimum requirements apply:  Provide temperature sensors and digital thermometers with a certified calibration within 
+the past year to an accuracy of<MET> 0.3 degrees C</MET><ENG> 0.5 degrees F</ENG> and a resolution of plus or minus<MET> 0.1 degrees C</MET><ENG> 0.1 degrees F</ENG>.  Provide pressure sensors 
+with an accuracy of plus or minus 2.0 percent of the value range being measured (not full range of meter) and calibrated within the last year.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>MEETINGS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY and NAVY.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Attend all meetings in accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</TXT><BRK/>
+<BRK/>
+<TXT>Provide timely updates on construction schedule changes to allow the <TAI OPT="NAVY">Commissioning Provider </TAI><TAI OPT="ARMY">Lead Commissioning Specialist </TAI> to execute commissioning 
+process efficiently.  Notify Contracting Officer of anticipated construction delays to commissioning activities not yet performed or not yet scheduled.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COMMISSIONING CONSTRUCTION OBSERVATION CHECKLISTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for INTEGRATED SYSTEMS TESTS and ARMY.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Commissioning construction observation checklists include Pre-Functional Checklists<TAI OPT="INTEGRATED SYSTEMS TEST">, Integrated Systems Test Checklists,</TAI> and Functional Performance 
+Test Checklists.  Provide commissioning construction observation checklists for the Interim and Final Construction Phase Commissioning Plan in 
+accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</TXT><BRK/>
+<BRK/>
+<TAI OPT="ARMY"><TXT>Download example Pre-Functional Checklists<TAI OPT="INTEGRATED SYSTEMS TEST">, Integrated Systems Test Checklists,</TAI> and Functional Performance Test Checklists for Section 
+<SRF>01 91 00.15</SRF> BUILDING COMMISSIONING at the following location:  <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/forms-graphics-tables</URL>.  The checklists submitted in 
+the Interim and Final Construction Phase Commissioning Plans must contain the same level of detail shown in the examples.  The submitted checklists 
+are not required to match the format of the examples.</TXT></TAI><BRK/>
+<BRK/>
+<SPT><TTL>Pre-Functional Checklists</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for KTR HIRED COMMISSIONING PROVIDER, NAVY, and GOVT HIRED COMMISSIONING 
+PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>The Pre-Functional Checklists must include items for physical inspection or testing that demonstrate that installation and start-up of equipment 
+and systems is complete.  Refer to paragraph PRE-FUNCTIONAL CHECKS.  Pre-functional checklists must be tailored to verify the specific installation 
+requirements and details of the construction documents and manufacturer's instructions.</TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>Use the Pre-Functional Checklists prepared by the CxC for physical inspection or testing to demonstrate that installation and start-up of equipment 
+and systems is complete.  Refer to paragraph PRE-FUNCTIONAL CHECKS.</TXT><BRK/>
+<BRK/></TAI>
+</TAI></SPT><SPT><TTL>Functional Performance Test Checklists</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for KTR HIRED COMMISSIONING PROVIDER, NAVY, GOVT HIRED COMMISSIONING 
+PROVIDER, and INTEGRATED SYSTEMS TEST.</NPR><BRK/>
+<BRK/>
+<NPR>This paragraph contains tailoring for ARMY.  Choose bracketed "and the Owner's Project Requirements" for projects 
+that require one.  Refer to specifier notes regarding the Owner's Project Requirements Document in Section 
+<SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>Functional Performance Test Checklists must include procedures that explain, step-by-step, the actions and expected results that will demonstrate 
+that the system performs in accordance with the contract<TAI OPT="ARMY">[ and Owner's Project Requirements Document]</TAI>.  Refer to paragraph FUNCTIONAL PERFORMANCE<TAI OPT="INTEGRATED SYSTEMS TEST">
+ AND INTEGRATED SYSTEMS</TAI> TESTING.  Include the following sections and details appropriate to the systems being tested in the Functional Performance 
+Test Checklists:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Notable system features including information about controls to facilitate understanding of system operation and maintenance</OLI><BRK/>
+<BRK/>
+<OLI>Conclusions and recommendations.  Conclusions must clearly indicate if system does or does not perform in accordance with contract requirements 
+and specifications<TAI OPT="ARMY">[ and Owner's Project Requirements Document]</TAI>.  Recommendation must clearly indicate that the system should or should 
+not be approved by the Government.</OLI><BRK/>
+<BRK/>
+<OLI>Test conditions including date, beginning and ending time, and beginning and ending outdoor air conditions</OLI><BRK/>
+<BRK/>
+<OLI>Attendees</OLI><BRK/>
+<BRK/>
+<OLI>Identification of the equipment involved in the test</OLI><BRK/>
+<BRK/>
+<OLI><HL3>System feature identification</HL3></OLI><BRK/>
+<BRK/>
+<OLI>Point-to-point observations including demonstrating system flow meters and sensors have been calibrated and are correctly displayed on 
+the Operator work station</OLI><BRK/>
+<BRK/>
+<OLI>Actuator operation observations demonstrating actuator responses to commands from the control system</OLI><BRK/>
+<BRK/>
+<OLI>As-found condition of the system operation</OLI><BRK/>
+<BRK/>
+<OLI>List of test items with step numbers along with the corresponding feature or control operation, intended test procedure, expected system 
+response, and pass/fail indication.</OLI><BRK/>
+<BRK/>
+<OLI>Space for comments for each test item.</OLI><BRK/></OLG>
+<BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>Use the Functional Performance Test Checklists prepared by the CxC that list, step-by-step, the actions and expected results that will demonstrate 
+that the system performs in accordance with the contract.  Refer to paragraph FUNCTIONAL PERFORMANCE<TAI OPT="INTEGRATED SYSTEMS TEST"> AND INTEGRATED SYSTEMS</TAI> TESTING.</TXT><BRK/>
+<BRK/></TAI>
+</TAI></SPT><TAI OPT="INTEGRATED SYSTEMS TEST"><SPT><TTL>Integrated Systems Test Checklists</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>This paragraph is tailored for INTEGRATED SYSTEMS TEST and contains tailoring options for KTR HIRED COMMISSIONING 
+PROVIDER and GOVT HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<BRK/>
+<NPR>Choose bracketed "and the Owner's Project Requirements" for projects that require one.  Refer to specifier notes 
+regarding the Owner's Project Requirements Document in Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>Integrated Systems Test Checklists must include test procedures that explain, step-by-step, the actions and expected results that will demonstrate 
+that the interactive operations between systems performs in accordance with the contract<TAI OPT="ARMY">[ and Owner's Project Requirements Document]</TAI>.  Refer to 
+paragraph FUNCTIONAL PERFORMANCE AND INTEGRATED SYSTEMS TESTING.  Include the following sections in the Integrated Systems Test Checklists:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Notable features of the interconnected systems organized by discipline including information to facilitate understanding of system operation</OLI><BRK/>
+<BRK/>
+<OLI>Conclusions and recommendations.  Conclusions must clearly indicate if the systems do or do not perform in accordance with contract requirements 
+and specifications<TAI OPT="ARMY">[and the Owner's Project Requirements Document]</TAI>.  Recommendation must clearly indicate that the systems should or should 
+not be approved by the Government</OLI><BRK/>
+<BRK/>
+<OLI>Test conditions including date and beginning and ending time</OLI><BRK/>
+<BRK/>
+<OLI>Identification of the equipment and systems involved in the test</OLI><BRK/>
+<BRK/>
+<OLI>List of test items with step numbers along with the corresponding feature or control operation, intended test procedure, expected system 
+response, and pass/fail indication.</OLI><BRK/>
+<BRK/>
+<OLI>Space for comments for each test item.</OLI><BRK/></OLG>
+<BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>Use the Integrated Systems Test Checklists prepared by the CxC that list, step-by-step, the actions and expected results that will demonstrate 
+that the interactive operations between systems performs in accordance with the contract.  Refer to paragraph FUNCTIONAL PERFORMANCE AND INTEGRATED 
+SYSTEMS TESTING.</TXT><BRK/>
+<BRK/></TAI>
+</TAI></SPT></TAI></SPT><SPT><TTL>PRE-FUNCTIONAL CHECKS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>This paragraph contains tailoring for ARMY and NAVY.  Choose bracketed "and the Owner's Project Requirements" 
+for projects that require one.  Refer to specifier notes regarding the Owner's Project Requirements Document in 
+Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Pre-Functional Checks are a type of Commissioning Inspection in accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.  Complete one Pre-Functional 
+Checklist for each individual item of equipment or system for each system required to be commissioned including, but not limited to, ductwork, 
+piping, equipment, fixtures, and controls.  Include manufacturer start-up checklists associated with equipment with the submission of the Pre-Functional 
+Checklists.  Provide manufacturer's installation manual for each type of unit.  Indicate commissioning team member inspection and validation of 
+each Pre-Functional Checklist item by initials.  Validation of each Pre-Functional Checklist item by each team member indicates that item conforms 
+to the contract documents and validated design in their area of responsibility.<TAI OPT="ARMY">  Validation of each item by each team member must occur immediately 
+following completion of their respective duties related to the item.</TAI>  Commissioning Specialist validation of each Pre-Functional Checklist item 
+indicates that each item has been installed correctly and in accordance with contract documents<TAI OPT="ARMY">[ and the Owner's Project Requirements Document]</TAI>
+.  Required commissioning team members for Pre-Functional Checks includes the CxC, Mechanical Commissioning Specialist, Quality Control Manager, 
+sub-contractor representative for each trade responsible for construction/installation of the checklist item, and the TAB representative (for items 
+impacting TAB).  Submit the initialed and <SUB>Completed Pre-Functional Checklists</SUB> no later than 7 calendar days after completion of inspection of all 
+checklists items for each system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>STARTUP AND INITIAL CHECKOUT</TTL><BRK/>
+<BRK/>
+<TXT>Document start-up and initial testing procedures, and include in the Completed Pre-Functional Checklists submittal, including:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Startup tests and factory testing reports.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's representative start-up, operating, troubleshooting and maintenance procedures.</OLI><BRK/>
+<BRK/>
+[<OLI>Additional documentation necessary for third party certification programs.</OLI><BRK/>
+<BRK/>
+]<OLI>Perform and clearly document system operational checks and quality control checks as they are completed, and providing a copy to the commissioning 
+team.</OLI><BRK/>
+<BRK/>
+<OLI>Correct deficiencies and sign the Certificate of Readiness for each system before functional performance testing</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DUCT AIR LEAKAGE TEST (DALT) REPORT REVIEW AND VERIFICATION</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Duct Air Leakage Test (DALT) Report Review</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with project team to determine if CxC review of DALT report is necessary.  For Navy projects, 
+in-house personnel are responsible for technical oversight and final acceptance of DALT work.  CxC may be leveraged 
+to support DALT report review as necessary.  This paragraph contains tailoring options for KTR HIRED COMMISSIONING 
+PROVIDER, NAVY, and GOVT HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">The Mechanical System Technical Commissioning Specialist must review the pre-final DALT Report required by Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, 
+AND BALANCING FOR HVAC.  Identify any deficiencies to the Contracting Officer's Representative and the Contractor's Quality Control Personnel and 
+include in the issues log.  </TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">The Commissioning Specialist is responsible for reviewing the pre-final DALT Report required by Section <SRF>23 05 93</SRF> TESTING, 
+ADJUSTING, AND BALANCING FOR HVAC and identifying any deficiencies to the Contracting Officer's Representative and the Contractor's Quality Control 
+Personnel.  </TAI></TAI>All deficiencies must be resolved prior to DALT Report approval.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Duct Air Leakage Test (DALT) Report Verification</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with project team to determine if CxC witnessing DALT verification is necessary.  For Navy projects, 
+in-house personnel are responsible for technical oversight and final acceptance of DALT work.  CxC may be leveraged 
+to support DALT verification as necessary.  This paragraph contains tailoring options for KTR HIRED COMMISSIONING 
+PROVIDER, NAVY,  and GOVT HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">The Mechanical System Technical Commissioning Specialist must witness the DALT Field Acceptance Testing specified by Section <SRF>23 05 93</SRF> TESTING, 
+ADJUSTING, AND BALANCING FOR HVAC and identify any deficiencies to the Contracting Officer's Representative and the Contractor's Quality Control 
+Personnel and include in the issues log.  </TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">The Commissioning Specialist is responsible for witnessing the DALT Field Acceptance Testing specified 
+by Section<SRF> 23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING FOR HVAC and identifying any deficiencies to the Contracting Officer's Representative and 
+the Contractor's Quality Control Personnel.  </TAI></TAI>All deficiencies must be resolved prior to DALT Report approval.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>[<SPT><TTL>TESTING, ADJUSTING, AND BALANCING REPORT REVIEW AND VERIFICATION</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Testing, Adjusting, and Balancing (TAB) Report Review</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with project team to determine if CxC review of TAB report is necessary.  For Navy projects, 
+in-house personnel are responsible for technical oversight and final acceptance of TAB work.  CxC may be leveraged 
+to support TAB report review as necessary.  This paragraph contains tailoring options for KTR HIRED COMMISSIONING 
+PROVIDER, NAVY, and GOVT HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">The Mechanical System Technical Commissioning Specialist must review the pre-final TAB Report required by Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, 
+AND BALANCING FOR HVAC and identify any deficiencies to the Contracting Officer's Representative and the Contractor's Quality Control Personnel 
+and include in the issues log.  </TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">The Commissioning Specialist is responsible for reviewing the pre-final TAB Report required by Section 
+<SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING FOR HVAC and identifying any deficiencies to the Contracting Officer's Representative and the Contractor's 
+Quality Control Personnel.  </TAI></TAI>All deficiencies must be resolved prior to TAB Report approval.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Testing, Adjusting, and Balancing (TAB) Report Verification</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with project team to determine if CxC witnessing TAB verification is necessary.  For Navy projects, 
+in-house personnel are responsible for technical oversight and final acceptance of TAB work.  CxC may be leveraged 
+to support TAB verification as necessary.  This paragraph contains tailoring options for KTR HIRED COMMISSIONING 
+PROVIDER, NAVY, and GOVT HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">The Mechanical System Technical Commissioning Specialist must witness the TAB Field Acceptance Testing specified by Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, 
+AND BALANCING FOR HVAC and identify any deficiencies to the Contracting Officer's Representative and the Contractor's Quality Control Personnel 
+and include in the issues log.  </TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">The Commissioning Specialist is responsible for witnessing the TAB Field Acceptance Testing specified by Section
+<SRF> 23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING FOR HVAC and identifying any deficiencies to the Contracting Officer's Representative and the Contractor's 
+Quality Control Personnel.  </TAI></TAI>All deficiencies must be resolved prior to TAB Report approval.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>][<SPT><TTL>HVAC CONTROLS START-UP AND PERFORMANCE VERIFICATION TEST REVIEW</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with project team to determine if CxC controls submittal review is necessary.  For Navy projects, 
+in-house personnel are responsible for technical oversight and final acceptance of HVAC controls work.  CxC may 
+be leveraged to support controls submittal review as necessary.  This paragraph contains tailoring options for 
+KTR HIRED COMMISSIONING PROVIDER, NAVY, and GOVT HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">The Mechanical System Technical Commissioning Specialist must review the Start-Up Testing Report, PVT Procedures and PVT Reports, including endurance 
+testing trend submittals, required by Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC[ and Section <SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL 
+SYSTEM (UMCS) FRONT END AND INTEGRATION].  The Mechanical System Technical Commissioning Specialist must review each submittal and identify any 
+deficiencies to the Contracting Officer's Representative and the Contractor's Quality Control Personnel and include in the issues log.  </TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"> The Commissioning 
+Specialist is responsible for reviewing the Start-Up Testing Report, PVT Procedures and PVT Reports including endurance testing trend data required 
+by Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC[ and Section <SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL SYSTEM (UMCS) FRONT END AND INTEGRATION] 
+and identifying any deficiencies to the Contracting Officer's Representative and the Contractor's Quality Control Personnel.  </TAI></TAI>All deficiencies 
+must be resolved prior to final acceptance.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>FUNCTIONAL PERFORMANCE<TAI OPT="INTEGRATED SYSTEMS TEST"> AND INTEGRATED SYSTEMS</TAI> TESTING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>This paragraph contains tailoring for ARMY and INTEGRATED SYSTEMS TEST.  Choose bracketed "and the Owner's Project 
+Requirements" for projects that require one.  Refer to specifier notes regarding the Owner's Project Requirements 
+Document in Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Functional Performance<TAI OPT="INTEGRATED SYSTEMS TEST"> and Integrated Systems</TAI> Testing are a type of Commissioning Testing in accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.  
+Conduct Functional Performance Testing in accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING and requirements in this Section.  Prior to 
+Functional Performance Testing, complete all prerequisites in accordance with paragraph SEQUENCING AND SCHEDULING.  Demonstrate that all system 
+components have been installed, that each control device and item of equipment operates, and that the systems operate and perform, including interactive 
+operation between systems, in accordance with contract documents<TAI OPT="ARMY">[ and the Owner's Project Requirements Document]</TAI>.</TXT><BRK/>
+<BRK/>
+<TAI OPT="INTEGRATED SYSTEMS TEST"><TXT>Perform Integrated Systems Tests only after the Functional Performance Tests for each associated system are completed with all deficiencies resolved 
+and after the related Functional Performance Test Checklists have been signed by each commissioning team member.</TXT><BRK/>
+<BRK/></TAI>
+<SPT><TTL>Test Scheduling and Coordination</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph contains tailoring for NAVY and INTEGRATED SYSTEMS TEST.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Schedule and conduct Initial Functional Performance Tests<TAI OPT="NAVY"> as soon as all contract work is completed, regardless of the season</TAI>.  Develop and implement 
+means of artificial loading to demonstrate, to a reasonable level of confidence, the ability of the HVAC systems to handle peak seasonal loads.  
+Schedule Functional Performance Tests for each system only after the Certificate of Readiness has been approved by the Government for the system.  
+Correct all deficiencies identified through any prior review, inspection, or test activity before the start of Functional Performance Tests.</TXT><BRK/>
+<BRK/>
+<TXT>Functional Performance Tests <TAI OPT="INTEGRATED SYSTEMS TEST">and Integrated Systems Tests </TAI>must be performed with the CxC present.  Government reserves the right to witness all 
+tests. Coordinate test schedule with Government representatives.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preparation</TTL><BRK/>
+<BRK/>
+<TXT>Put equipment and systems into operation and continue operation during each working day of functional performance<TAI OPT="INTEGRATED SYSTEMS TEST"> and integrated systems</TAI> testing, 
+as required.  Verify temperature and pressure taps in accordance with Contract Documents.  Provide a pressure/temperature plug at each water sensor 
+which is an input point to control system.</TXT><BRK/>
+<BRK/>
+<TXT>Perform minor adjustments to equipment and systems during Functional Performance Tests as deemed necessary by the commissioning team.  Where calibrated 
+DDC sensors cannot be used to record test data, provide measuring instruments, logging devices, and data acquisition equipment to record data for 
+the complete range of test data for the required test period.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Testing Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Provide all necessary materials and system modifications to produce the necessary flows, pressures, temperatures, and other conditions necessary 
+to execute the test according to the specified conditions.  At completion of the test, return the affected building equipment and systems to their 
+pre-test condition.</TXT><BRK/>
+<BRK/>
+<TXT>Follow the Functional Performance Test from the approved Final Construction Phase Commissioning Plan.  Perform Functional Performance Tests for 
+each item of equipment and each system required to be commissioned.  Verify all sensor calibrations, control responses, safeties, interlocks, operating 
+modes, sequences of operation, capacities, and all other performance requirements comply with contract, regardless of the specific items listed 
+within the checklists provided.  In general, testing must progress from equipment or components to subsystems to systems to interlocks and connections 
+between systems.  Commissioning Specialists are responsible for determining the order of components and systems to be tested.</TXT><BRK/>
+<BRK/>
+<TXT>Indicate validation of each item of equipment and systems tested by signature of each commissioning team member for each test.  The Quality Control 
+Representative, Commissioning Specialists, and Contracting Officer's Representative, if present, must indicate validation after the equipment and 
+systems are free of deficiencies.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Simulating Conditions</TTL><BRK/>
+<BRK/>
+<TXT>Functional performance testing is conducted by simulating conditions at control devices to initiate a control system response.  Before testing, 
+calibrate all sensors, transducers and devices.  Over-writing control input values through the control system is not acceptable unless approved 
+by the Contracting Officer.  Perform each test under conditions that simulate actual conditions as close as is practically possible.  Specific 
+examples of simulating conditions are provided below.  Do not simulate conditions when damage to the system or building may result.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>When varying static pressures inside ductwork cannot be simulated within the duct, and where a sensor signals the controls system to initiate 
+sequences at various duct static pressures, it is acceptable to simulate the various pressures with a Pneumatic Squeeze-Bulb Type Signaling 
+Device with gauge temporarily attached to the sensing tube leading to the transmitter.  It is not acceptable to reset the various set-points, 
+nor to simulate an electric analog signal (unless approved as noted above).</OLI><BRK/>
+<BRK/>
+<OLI>Dirty filter pressure drops can be simulated by partially blocking filter face.</OLI><BRK/>
+<BRK/>
+<OLI>Freeze-stat safeties can be simulated by packing portion of sensor with ice.</OLI><BRK/>
+<BRK/>
+<OLI>High outside air temperatures can be simulated with a hair blower.</OLI><BRK/>
+<BRK/>
+<OLI>Raising entering cooling coil temperatures by activating a heating/preheat coil can be used to simulate entering cooling coil conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Do not use signal generators to simulate sensor signals unless approved by the Contracting Officer, as noted above, for special cases.</OLI><BRK/>
+<BRK/>
+<OLI>Control set points can be altered.  For example, to see the air conditioning compressor lockout work at an outside air temperature below<MET>
+ 12 degrees C</MET><ENG> 55 degrees F</ENG>, when the outside air temperature is above<MET>12 degrees C</MET><ENG> 55 degrees F</ENG>, temporarily change the lockout set point 
+to be <MET>minus 17 degrees C</MET><ENG> 0 degrees F</ENG> above the current outside air temperature.  Caution:  Set points are not to be raised or lowered to 
+a point to cause damage to the components, systems, or the building structure and contents.</OLI><BRK/>
+<BRK/>
+<OLI>Test duct mounted smoke detectors in accordance with the manufacturer's recommendations.  Perform the tests with air system at minimum 
+airflow condition.</OLI><BRK/>
+<BRK/>
+<OLI>Test current sensing relays used for fan and pump status signals to control system to indicate unit failure and run status by resetting 
+the set point on the relay to simulate a lost belt or unit failure while the unit is running.  Confirm that the failure alarm was generated 
+and received at the control system.  After the test is conducted, return the set point to its original set-point or a set-point as indicated 
+by the Contracting Officer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Representative</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A factory trained representative is recommended for major equipment.  Add equipment as required by scope 
+of work and as determined necessary by the project delivery team.</NPR><BRK/>
+<BRK/>
+<NPR>Choose the bracketed paragraph below for systems with package controls.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a factory trained representative authorized by the equipment manufacturer to perform Functional Performance Testing for the following equipment:</TXT><BRK/>
+<BRK/>
+[<LST>Chillers</LST><BRK/>
+<BRK/>
+][<LST>Cooling towers and evaporatively cooled condensers</LST><BRK/>
+<BRK/>
+][<LST>Boilers</LST><BRK/>
+<BRK/>
+][<LST>Packaged Direct-Expansion Refrigeration Equipment, including variable refrigerant flow (VRF) systems</LST><BRK/>
+<BRK/>
+][<LST>Packaged Computer Room [Air Handlers (CRAH)] [Air Conditioners (CRAC)]</LST><BRK/>
+<BRK/>
+][<LST>Booster Pumps</LST><BRK/>
+<BRK/>
+][<LST>Packaged Air Compressors</LST><BRK/>
+<BRK/>
+][<LST>Water Quality and Chemical Treatment Systems</LST><BRK/>
+<BRK/>
+][<LST>Solar Water Heating Systems</LST><BRK/>
+<BRK/>
+]<TXT>Ensure the test representative reviews, approves, and signs the completed field test report. Include person's name with signatures.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="INTEGRATED SYSTEMS TEST"><SPT><TTL>Integrated Systems Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for INTEGRATED SYSTEMS TEST.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Follow the Integrated Systems Test Checklists from the approved Final Construction Phase Commissioning Plan.  Integrated Systems Tests must be 
+performed for the interactive operation between HVAC systems and other systems such as fire protection systems, smoke control systems, or back-up 
+electrical supply.  Verify correct interactive operation, acceptable speed of response, and other contract requirements for both normal and failure 
+modes.  Examples of Integrated Systems Tests include the correct operation of HVAC systems during emergency system activation or correct operation 
+of uninterruptible power supplies or energy generators and connected systems.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Sample Strategy</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for DESIGN-BID-BUILD, DESIGN-BUILD, ARMY, and NAVY.  For Design-Bid-Build, 
+select the percentage sample size for large groups of identical equipment as determined by the project delivery 
+team.  Higher percentages may be appropriate for critical systems or projects or for small numbers of equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="ARMY"><TAI OPT="DESIGN-BID-BUILD">Perform Functional Performance Tests using the following sample strategy.  </TAI></TAI><TAI OPT="NAVY"><TAI OPT="DESIGN-BID-BUILD">Perform Functional Performance Tests using the sample strategy identified 
+herein.  Test all central plant equipment, primary air handling units, and process cooling or heating equipment.  Test all system-level equipment 
+serving multiple zones.  [Twenty-five] [Fifty] [_____] percent sample testing is allowed for large groups of identical equipment with identical 
+controllers serving single zones such as air terminal units, fan coil units, unitary equipment, and plumbing fixtures.  Sample size may be no less 
+than three units.  </TAI></TAI><TAI OPT="DESIGN-BUILD">Refer to Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING for sample strategy.  </TAI>Complete a Functional Performance Test Checklist for 
+each item of equipment or system to be tested.  <TAI OPT="DESIGN-BID-BUILD">During testing, Government representatives may select the specific equipment or system to be tested 
+for sample sizes less than 100 percent.</TAI><TAI OPT="DESIGN-BID-BUILD"><TAI OPT="ARMY">  Equipment Identifiers are as indicated on the design drawings:</TAI></TAI></TXT><BRK/>
+<TAI OPT="DESIGN-BID-BUILD"><TAI OPT="ARMY"><BRK/>
+<LST INDENT="-0.33">Equipment Identifier         Sample Size (Percent)</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">AHU                           [_____]</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">VAV                           [_____]</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">CUH                           [_____]</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">CWP                           [_____]</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">DWH                           [_____]</LST><BRK/>
+<BRK/>
+<TXT>Perform Integrated Systems Tests and complete an Integrated Systems Test Checklist for for all (100 percent) systems and equipment having interactive 
+operation.</TXT><BRK/></TAI>
+</TAI><BRK/>
+<SPT><TTL>100 Percent Sample Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Systems or equipment for which 100 percent sample size are tested fail if one or more of the test procedures results in discovery of a deficiency 
+and the deficiency cannot be resolved within 5 minutes during the test.</TXT><BRK/>
+<BRK/>
+<TXT>Re-test to the extent necessary to confirm that the deficiencies have been corrected without negatively impacting the performance of the rest of 
+the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Less than 100 Percent Sample Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Randomly test each sample group of identical equipment.  If 10 percent of the units in the first sample fail the functional performance tests, 
+test a second sample group, the same size as the first sample group. The second sample must not include any units from the first sample group.</TXT><BRK/>
+<BRK/>
+<TXT>If 10 percent of the units in the second sample fail, test all remaining units.  If at any point frequent failures occur the CxC may stop the testing 
+and require the contractor to perform and document a checkout of the remaining units prior to continuing functional testing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><TAI OPT="INTEGRATED SYSTEMS TEST"><SPT><TTL>INTEGRATED SYSTEMS TEST</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph is tailored for INTEGRATED SYSTEMS TEST.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform Integrated Systems Tests only after the Functional Performance Tests for each associated system are completed with all deficiencies resolved 
+and after the related Functional Performance Test Checklists have been signed by each commissioning team member.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>RETESTING REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Abort tests if any deficiency prevents successful completion of the test or if any required commissioning team member is not present for the test.  
+Re-test only after all deficiencies identified during the original tests have been corrected.</TXT><BRK/>
+<BRK/>
+<TXT>Contracting Officer may withhold payment equivalent to lost time, re-testing, and aborted tests.  These costs may include salary, travel costs, 
+and per diem for Government team members.  Correct deficiencies as identified by the commissioning team and retest the systems to be commissioned.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM ACCEPTANCE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Partial acceptance is acceptance of those parts of the system that could be tested and verified to function 
+in conformance with the construction contract during initial Functional Performance Tests.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Systems may be partially accepted prior to seasonal testing if they comply with all construction contract and accepted design requirements that 
+can be tested during initial Functional Performance Tests.  All test procedures must be successful completed prior to full systems acceptance.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>SEASONAL TESTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Performing seasonal testing under maximum heating or cooling conditions is recommended<TAI OPT="NAVY"> for mission critical 
+or humidity controlled facilities such as hospitals, laboratories, armories, mission operations, or other essential 
+(RCIV) and strategic asset (RCV) facilities</TAI>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform Initial Functional Performance Tests as soon as all contract work is completed, but prior to facility turnover, regardless of the season.</TXT><BRK/>
+<BRK/>
+<TXT>In addition to the Initial Functional Performance Tests, perform Functional Performance Tests of HVAC systems during peak heating and cooling seasons 
+during outdoor air condition design extremes.  Schedule Seasonal Functional Performance Tests in coordination with the Contracting Officer.  Submit <SUB>
+Seasonal Test Report</SUB> within 14 days of test completion.  Include seasonal test report in the Updated Final Commissioning Report as specified in 
+Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING</TXT><BRK/>
+<BRK/>
+<TXT>Execute seasonal functional performance testing, witnessed by the Contracting Officer.  Correct deficiencies and make adjustments to O&amp;M manuals 
+and as-built drawings for applicable issues identified in any seasonal testing.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>FULL-LOAD TESTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Performing full-load testing for equipment serving process loads is recommended for facilities where tight 
+environmental control is required such as simulators, electronic equipment facilities, and industrial process 
+facilities.</NPR><BRK/>
+<BRK/>
+<NPR>When full-load testing cannot be performed under actual loading, retain the bracketed sentence to require artificial 
+loading.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform Initial Functional Performance Tests as soon as all contract work is completed, but prior to facility turnover.  In addition to the Initial 
+Functional Performance Tests, perform Functional Performance Tests of HVAC systems under full-load conditions.[  Develop and implement means of 
+artificial loading to demonstrate the ability of the process cooling systems to handle peak process loads.]  Schedule Full-Load Functional Performance 
+Tests in coordination with the Contracting Officer.  Submit <SUB>Full-Load Test Report</SUB> within 14 days of test completion.</TXT><BRK/>
+<BRK/>
+<TXT>Execute full-load functional performance testing, witnessed by the Contracting Officer. Correct deficiencies and make adjustments to O&amp;M manuals 
+and as-built drawings for applicable issues identified in any full load testing.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>TRAINING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This paragraph contains tailoring options for KTR HIRED COMMISSIONING PROVIDER, NAVY, and GOVT HIRED COMMISSIONING 
+PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>The Mechanical Systems Technical Commissioning Specialist must review the training plan required by Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE 
+DATA and identify any deficiencies to the Contracting Officer's Representative and the Contractor's Quality Control Personnel.</TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>The Commissioning Provider is responsible for overseeing and approving the training plan required by Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE 
+DATA and identifying any deficiencies to the Contracting Officer's Representative and the Contractor's Quality Control Personnel.</TXT><BRK/>
+<BRK/></TAI>
+</TAI><TAI OPT="NAVY"><TXT>Coordinate, schedule, and document all required training.  At a minimum, include the following items in the training report for commissioned systems:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Complete commissioning documentation</OLI><BRK/>
+<BRK/>
+<OLI>Complete O&amp;M data</OLI><BRK/>
+<BRK/>
+<OLI>Complete Training</OLI><BRK/>
+<BRK/>
+<OLI>Purpose of equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Principle of how the equipment works.</OLI><BRK/>
+<BRK/>
+<OLI>Important parts and assemblies.</OLI><BRK/>
+<BRK/>
+<OLI>How the equipment achieves its purpose and necessary operating conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Most likely failure modes, causes and corrections.</OLI><BRK/>
+<BRK/>
+<OLI>On site demonstration.</OLI><NED/><BRK/>
+<BRK/>
+<OLI>Provide updates to O&amp;M manuals based on field modifications.</OLI><BRK/>
+<BRK/>
+<OLI>Provide training of the post-occupancy operations and maintenance staff.</OLI><BRK/></OLG>
+<BRK/></TAI>
+</SPT><SPT><TTL>COMMISSIONING REPORT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring for INTEGRATED SYSTEMS TEST.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include all completed Pre-Functional Checklists and Functional Performance<TAI OPT="INTEGRATED SYSTEMS TEST"> and Integrated Systems Test</TAI> Checklists in the Commissioning Report as 
+specified in Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.  Include the approved TAB Report.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>POST-CONSTRUCTION ENDURANCE TEST</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Post-Construction Endurance Tests evaluate HVAC system performance under actual operating load during normal 
+operation.  This activity is highly recommended.  The Endurance Tests provide improved probability of identifying 
+deficiencies prior to warranty expiration.  If the building operators plan to monitor system performance closely 
+or this activity is not funded, delete this paragraph.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY, NAVY, and KTR HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<BRK/>
+<NPR>Choose bracketed "and the Owner's Project Requirements" for projects that require one.  Refer to specifier notes 
+regarding the Owner's Project Requirements Document in Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform an Endurance Test in accordance with the paragraph<TAI OPT="ARMY"> ENDURANCE TEST</TAI><TAI OPT="NAVY"> ENDURANCE TESTING</TAI> in Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR 
+HVAC once during the peak heating season and once during the peak cooling season during outdoor air condition extremes with the exception that 
+network bandwidth usage measurement and recording is not required.[  Use the Temporary Trending Hardware, if necessary, in accordance with Section 
+<SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.]</TXT><BRK/>
+<BRK/>
+<TXT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">The Mechanical System Commissioning Specialists must review the trend logs from the Endurance Tests to ensure that the systems have stable operation 
+and operate as required by the construction contract<TAI OPT="DESIGN-BUILD">, the accepted design</TAI><TAI OPT="ARMY">[, and the Owner's Project Requirements Document]</TAI>.  The Commissioning 
+Specialists must provide a <SUB>Post-Construction Trend Log Report</SUB> that identifies any deficiencies noted in operation, recommendations for correction, 
+and includes a graphical representation of the trends.  Provide one Trend Log Report for the peak cooling season and one Trend Log Report for the 
+peak heating season.  Submit the Post-Construction Trend Log Reports no later than 14 calendar days following receipt of the trend log data by 
+the Commissioning Specialist.  </TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">Provide a Post-Construction Trend Log Report meeting the same requirements as the Endurance Testing Results Format 
+in Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.  Provide one Trend Log Report for the peak cooling season and one Trend Log Report for 
+the peak heating season.  Submit the Post-Construction Trend Log Reports no later than 14 calendar days following download of the trended data.  </TAI></TAI><NED/>
+Include the Post-Construction Trend Log Reports in the Updated Final Commissioning Report as specified in Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING</TXT><BRK/>
+<BRK/></SPT>
+]</PRT>    <END/><BRK/></SEC>

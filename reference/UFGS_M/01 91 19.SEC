@@ -1,0 +1,2133 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="224.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-01 91 19 (May 2023)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-07 05 23 (August 2019)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 01 91 19</SCN><BRK/>
+<BRK/>
+<STL>BUILDING ENCLOSURE COMMISSIONING</STL><BRK/>
+<DTE>05/23</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers <SCP>building enclosure/envelope commissioning, 
+including requirements for pressure testing a building's air barrier for air 
+leaks.  Minimizing air leakage through an air barrier helps reduce energy costs</SCP>
+.  This specification is applicable to new building construction and major renovations 
+involving upgrades to the building envelope.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE: TO DOWNLOAD UFGS GRAPHICS AND APPENDICES<BRK/>
+Go to <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This UFGS Section contains tailoring options for Contractor (KTR) HIRED 
+COMMISSIONING PROVIDER, GOVT HIRED COMMISSIONING PROVIDER, DESIGN-BUILD, ARMY, 
+and NAVY.<BRK/>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER">Select KTR HIRED COMMISSIONING PROVIDER tailoring for projects that require 
+the Commissioning Provider to be provided by the Construction Contractor.</TAI><BRK/>
+<BRK/>
+<TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">Select GOVT HIRED COMMISSIONING PROVIDER tailoring for projects where the Commissioning 
+Provider is retained under a separate Contract with the Government.</TAI><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BUILD">Select DESIGN-BUILD tailoring for Design-Build project execution.</TAI><BRK/>
+<BRK/>
+<TAI OPT="ARMY">Select ARMY tailoring for projects that will report the real property asset 
+for Air Force or Army.</TAI><BRK/>
+<BRK/>
+<TAI OPT="NAVY">Select NAVY tailoring for projects that will report the real property asset 
+for Navy or Marine Corps.</TAI><BRK/>
+<BRK/>
+Verification of the energy performance of the building envelope is required 
+for all projects that require commissioning and verification in accordance with 
+UFC 1-200-02; facilities that require air barrier inspection and testing are 
+defined within UFC 3-101-01. As directed in UFC 1-200-02, the Commissioning 
+requirements in this Section are based on ASHRAE 90.1 as required for commercial 
+and multi-family high-rise buildings; for projects involving low-rise residential 
+buildings this Section will need to be edited to meet the Commissioning requirements 
+of IECC.  For commissioning requirements of Medical Treatment Facilities, refer 
+to UFC 4-510-01 and edit this Section accordingly. When a project requires this 
+Section, edit and include UFGS Section <SRF>07 27 10</SRF> BUILDING AIR BARRIER SYSTEM 
+for additional performance testing and verification requirements. For projects 
+where more oversight is needed beyond the minimum building envelope requirements 
+of ASHRAE 90.1 and the requirements of Section <SRF>07 27 10</SRF> BUILDING AIR BARRIER 
+SYSTEM, revise this specification accordingly. (Examples include facilities 
+with pressurization or humidity control requirements such as armories, electronic 
+equipment facilities, hospitals, and laboratories.)<BRK/>
+<BRK/>
+Coordinate this Section with the commissioning requirements of ASHRAE 90.1, 
+as required by UFC 1-200-02, "High Performance and Sustainable Building Requirements" 
+paragraph "Commissioning."</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The basis for the air leakage testing within this specification is UFC 
+3-101-01 and the U.S. Army Corps of Engineers Air Leakage Test Protocol for 
+Measuring Air Leakage in Buildings.  This protocol can be found at the following 
+web site: <URL HREF="https://www.wbdg.org/FFC/ARMYCOE/usace_airleakagetestprotocol.pdf">https://www.wbdg.org/FFC/ARMYCOE/usace_airleakagetestprotocol.pdf</URL>.<BRK/>
+<BRK/></NPR>
+<NPR>This specification includes additional recommendations not found in the aforementioned 
+protocol.  These recommendations are based on personal pressure test experience 
+and discussions with industry experts.  <BRK/>
+<BRK/>
+An Excel spreadsheet titled Pressure Test Data Analysis, available for download 
+at <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL>, is an integral 
+part of the building's air barrier pressure test.  Data obtained during the 
+test may be input into the spreadsheet to determine the air barrier's leakage rate. <BRK/>
+<BRK/>
+This specification describes the responsibilities of the Contractor and the 
+Contractor's pressure test agency.  The building designer is responsible for 
+creating, defining and detailing the air barrier envelope.  The Contractor's 
+pressure test agency is responsible for preparing the building envelope for 
+the pressure test, performing the test, recording test results, and returning 
+the building to pre-test conditions.  The test agency is also responsible for 
+performing the calculations to determine if the envelope passed the pressure 
+test.  Diagnostic testing is also the responsibility of the test agency.</NPR><BRK/>
+<BRK/>
+<NPR>This specification does not cover duct and HVAC system pressure testing and 
+is limited to the envelope penetrating dampers as deemed applicable for leakage 
+testing.  Duct and HVAC system pressure testing references can be obtained from 
+ASHRAE Handbook of Fundamentals, HVAC Design Section and Chapters and ASHRAE 
+Standard 215, Method of Test to Determine Leakage of Operation HVAC Air Distribution 
+Systems, should duct and HVAC system pressure testing be required by other specifications.  
+See Section <SRF>23 05 93</SRF>, TESTING, ADJUSTING, AND BALANCING FOR HVAC for duct testing 
+requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>SUMMARY</TTL><BRK/>
+<BRK/>
+<TXT>Use this Section in conjunction with UFGS <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.  Building Enclosure Commissioning 
+(BECx) is an essential part of overall Building Commissioning.  The final BECx report is part of the Final Commissioning 
+Report as defined in <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.  This Section covers Building Enclosure Commissioning 
+for all six surfaces (4 walls, roof, and floor, for a rectangular shaped zone) of a building.  Additional Quality 
+Control and testing requirements for specific components of the building enclosure are described in the Division 
+03 thru 08 UFGS Sections of the project specifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referenced within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN ARCHITECTURAL MANUFACTURERS ASSOCIATION (AAMA)</ORG><BRK/><BRK/><RID>AAMA 501.2</RID><RTL>(2015) Quality Assurance and Diagnostic Water Leakage Field Check of Installed Storefronts, Curtain Walls and Sloped Glazing Systems</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY FOR NONDESTRUCTIVE TESTING (ASNT)</ORG><BRK/><BRK/><RID>ANSI/ASNT CP-105</RID><RTL>(2020) ASNT Standard Topical Outlines for Qualification of Nondestructive Testing Personnel</RTL><BRK/><BRK/><RID>ANSI/ASNT CP-189</RID><RTL>(2020) ASNT Standard for Qualification and Certification of Nondestructive Testing Personnel</RTL><BRK/><BRK/><RID>ASNT SNT-TC-1A</RID><RTL>(2024; Addendum 2025) Recommended Practice for Personnel Qualification and Certification in Nondestructive Testing</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 90.1 - IP</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/><RID>ASHRAE 202</RID><RTL>(2018) Commissioning Process for Buildings and Systems</RTL><BRK/><BRK/><RID>ASHRAE RP-935</RID><RTL>(1998) Protocol for Field Testing of Tall Buildings to Determine Envelope Air Leakage Rate</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM C1193</RID><RTL>(2016) Standard Guide for Use of Joint Sealants</RTL><BRK/><BRK/><RID>ASTM D3464</RID><RTL>(1996; R 2014) Standard Test Method for Average Velocity in a Duct Using a Thermal Anemometer</RTL><BRK/><BRK/><RID>ASTM D4541</RID><RTL>(2022) Standard Test Method for Pull-Off Strength of Coatings Using Portable Adhesion Testers</RTL><BRK/><BRK/><RID>ASTM E779</RID><RTL>(2019) Standard Test Method for Determining Air Leakage Rate by Fan Pressurization</RTL><BRK/><BRK/><RID>ASTM E783</RID><RTL>(2002; R 2018) Standard Test Method for Field Measurement of Air Leakage Through Installed Exterior Windows and Doors</RTL><BRK/><BRK/><RID>ASTM E1105</RID><RTL>(2015; R 2023) Standard Test Method for Field Determination of Water Penetration of Installed Exterior Windows, Skylights, Doors, and Curtain Walls, by Uniform or Cyclic Static Air Pressure Difference</RTL><BRK/><BRK/><RID>ASTM E1186</RID><RTL>(2022) Standard Practices for Air Leakage Site Detection in Building Envelopes and Air Barrier Systems</RTL><BRK/><BRK/><RID>ASTM E1258</RID><RTL>(1988; R 2018) Standard Test Method for Airflow Calibration of Fan Pressurization Devices</RTL><BRK/><BRK/><RID>ASTM E1827</RID><RTL>(2022) Standard Test Methods for Determining Airtightness of Buildings Using an Orifice Blower Door</RTL><BRK/><BRK/><RID>ASTM E2029</RID><RTL>(2011) Standard Test Method for Volumetric and Mass Flow Rate Measurement in a Duct Using Tracer Gas Dilution</RTL><BRK/><BRK/><RID>ASTM E2813</RID><RTL>(2018) Standard Practice for Building Enclosure Commissioning</RTL><BRK/><BRK/><RID>ASTM E2947</RID><RTL>(2021) Standard Guide for Building Enclosure Commissioning</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO 6781</RID><RTL>(1983) Thermal Insulation - Qualitative Detection of Thermal Irregularities in Building Envelopes - Infrared Method</RTL><BRK/><BRK/><RID>ISO 6781-2</RID><RTL>(2010) Performance of Buildings - Detection of Heat, Air, and Moisture Irregularities in Buildings by Infrared Methods - Part2: Equipment Requirements</RTL><BRK/><BRK/><RID>ISO 6781-3</RID><RTL>(2015) Performance of Buildings - Detection of Heat, Air, and Moisture Irregularities in Buildings by Infrared Methods - Part 3: Qualifications of Equipment Operators, Data Analysts, and Report Writers</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>The definitions included here are specific to this Section.  Refer to UFGS <SRF>01 91 00.15</SRF> for definitions that apply 
+to both Sections.  The following terms as they apply to this section:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Air Barrier Envelope</TTL><BRK/>
+<BRK/>
+<TXT>The surface that separates the inside air from the outside air.  The combination of air barrier assemblies and 
+air barrier components, connected by air barrier accessories are designed to provide a continuous barrier to 
+the movement of air through an environmental separator.  A single building may have more than one air barrier 
+envelope.  The air barrier surface includes the top, bottom, and sides of the envelope.  The term "air barrier 
+envelope" is also known as "air barrier system" or simply "air barrier".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air Leakage Rate</TTL><BRK/>
+<BRK/>
+<TXT>A measurement of air infiltration or exfiltration through the building envelope over time.  The air leakage rate 
+is the rate of air flow across the air barrier per unit surface area of the envelope at a defined differential 
+pressure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Basis of Design (BoD)</TTL><BRK/>
+<BRK/>
+<TXT>A document developed by the design team which includes technical concepts, assumptions, calculations, decisions, 
+and product selections to support the Owner's Project Requirements (OPR).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bias Pressure</TTL><BRK/>
+<BRK/>
+<TXT>Also known as zero flow pressure, baseline pressure, offset pressure or background pressure.  With the envelope 
+not artificially pressurized, bias is the differential pressure that always exists between the envelope that 
+has been prepared (sealed) for the pressure test and the outdoors.  Bias pressure is made up of two components, 
+fixed static offset (usually due to stack effect or the HVAC system) and fluctuating pressure (usually due to 
+wind or a moving elevator).  Because of pressure fluctuations many bias pressure readings are recorded and averaged 
+for use in the calculations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Blower Door</TTL><BRK/>
+<BRK/>
+<TXT>Commonly used term for an apparatus used to pressurize and depressurize the space within the building envelope 
+and quantify air leakage through the envelope.  The blower door typically includes a door fan and an air resistant 
+fabric or a series of hard panels that extends to cover and seal the door opening between the fan shroud and 
+door frame.  The door fan is a calibrated fan capable of measuring air flow and is usually placed in the opening 
+of an exterior door. With the air barrier otherwise sealed, air produced by the door fan pressurizes or de-pressurizes 
+the envelope, depending on the fan's orientation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Building Enclosure (or envelope)</TTL><BRK/>
+<BRK/>
+<TXT>The materials, components, systems, and assemblies intended to provide an environmental separator between the 
+interior and exterior or between interior spaces with different environment requirements.  "Enclosure" is used 
+interchangeably with "envelope".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Building Enclosure Commissioning (BECx)</TTL><BRK/>
+<BRK/>
+<TXT>Technical service provided on behalf of the Government to provide a quality-focused process for enhancing the 
+performance of the building enclosure by validating the design phase and verifying during the construction phase 
+that the performance of the building enclosure materials components, assemblies, and systems are designed and 
+installed to meet the Owner's Project Requirements (OPR).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Building Enclosure Commissioning Provider (BECxP)</TTL><BRK/>
+<BRK/>
+<TXT>An entity that functions as part of the overall Commissioning Team and is responsible for validating the design 
+phase and verifying during the construction phase that the performance of the building enclosure materials, components, 
+assemblies, and systems are designed and installed to meet the Owner's Project Requirements (OPR).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Construction Phase</TTL><BRK/>
+<BRK/>
+<TXT>The period of a project following the award of construction Contract to project completion.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Design Phase</TTL><BRK/>
+<BRK/>
+<TXT>The period of the project delivery process when a design supporting the Owner's Project Requirements is developed 
+and translated into Contract Documents.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Environmental Separator</TTL><BRK/>
+<BRK/>
+<TXT>The parts of a building that separate the controlled interior environment from the uncontrolled exterior environment, 
+or that separate spaces within a building that have dissimilar environments.  The term "environmental separator" 
+is also known as the "control layer".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Functional Performance Test (FPT)</TTL><BRK/>
+<BRK/>
+<TXT>A systematic process to verify that controls and other elements of the building project are capable of and configured 
+to operate or perform as required.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Owner's Project Requirements (OPR)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<TAI OPT="NAVY"><NPR>NOTE:  The Owner's Project Requirements (OPR) document may be included as deemed 
+appropriate by the project team or as required by some Third Party Certification 
+(TPC) systems (such as LEED and Green Globes). The preliminary design deliverables 
+and preliminary design authority (PDA) documentation (such as 1391, Basis of 
+Design, and UFCs) constitute the Owner's Project Requirements (OPR) and may 
+be used in lieu of a stand-alone OPR.  If used, the OPR is referenced by the 
+CxC during design review when the specification is tailored for KTR HIRED COMMISSIONING 
+PROVIDER.</NPR></TAI><BRK/>
+<BRK/>
+<TAI OPT="ARMY"><NPR>NOTE:  The Owner's Project Requirements (OPR) document may be included as deemed 
+appropriate by the project team or as required by some Third Party Certification 
+(TPC) systems (such as LEED and Green Globes).  When not otherwise required 
+for TPC, inclusion of the OPR for CxC review may be beneficial for ensuring 
+large or complex projects conform to the Owner's needs.  This may be unnecessary 
+for more typical construction projects.  If used, the OPR is referenced by the 
+CxC during design review and during submittal review, inspections, and testing.</NPR></TAI><BRK/>
+<BRK/>
+<NPR>NOTE:  If used, insert the OPR as Appendix A to Section 01 91 00.15 BUILDING 
+COMMISSIONING.  Include a statement on the OPR cover stating that the document 
+is provided for commissioning review purposes only and is not a Contract requirement.  
+Retain the bracketed references to Owner's Project Requirements (OPR) throughout 
+the specification when one is included.  Delete the bracketed OPR references 
+when the OPR is not included.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>A document that details the stakeholders' requirements for the project and the expectations for how it will be 
+used and operated.  The OPR is provided for commissioning review purposes only and is not a Contract requirement.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Pressure Test</TTL><BRK/>
+<BRK/>
+<TXT>A generic term for a test in which the envelope is either pressurized or de-pressurized with respect to the outdoors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Negative Pressure Test (Depressurization Test)</TTL><BRK/>
+<BRK/>
+<TXT>A test wherein air inside the envelope is drawn to the outdoors.  This places the envelope at a lower (negative) 
+pressure with respect to the outdoors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Positive Pressure Test (Pressurization Test)</TTL><BRK/>
+<BRK/>
+<TXT>A test wherein outdoor air is pushed into the envelope.  This air movement places the envelope at a higher (positive) 
+pressure with respect to the outdoors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Verification &amp; Testing (V&amp;T) Provider</TTL><BRK/>
+<BRK/>
+<TXT>An entity who completes the activities needed to implement the building functional performance testing (FPT) 
+activities or verify that elements of the building project meet stated requirements.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>COMMUNICATION WITH THE GOVERNMENT <TAI OPT="GOVT HIRED COMMISSIONING PROVIDER,NAVY">COMMISSIONING PROVIDER</TAI></TTL><BRK/>
+<BRK/>
+<TXT>For communication responsibilities, see Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NAVY"><SPT><TTL>COMMUNICATION WITH GOVERNMENT ACCCEPTANCE TESTING REPRESENTATIVES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph is tailored for use on NAVY projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The QC Manager must communicate directly with the Government Acceptance Testing Representatives and Contracting 
+Officer's Representative regarding Government acceptance testing activities.  Inform the Contracting Officer's 
+Representative when systems are ready for testing to be witnessed by Government Acceptance Testing Representatives, 
+and allow access to the construction site and system(s) to be tested</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>ENCLOSURE COMPONENTS TO BE COMMISSIONED</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following components are required to be commissioned per ASHRAE 90.1. 
+Select all systems that are part of the scope. Add other systems as required 
+by the scope of the project or required by the applied sustainable third-party 
+certification program.<BRK/>
+<BRK/>
+Whole building air tightness testing is required for all projects as outlined 
+in the Editor's Note for the Part 3 section BUILDING ENVELOPE AIR TIGHTNESS 
+REQUIREMENT; however, this test is performed near the end of the project. Once 
+the building enclosure is fully constructed, installation corrections needed 
+to comply with the test requirements may require substantial disassembly and 
+re-work. Smaller scale tests performed on mock-ups or at the initial installation 
+of building components are recommended to validate the design and installation 
+of building enclosure elements and systems. These tests may include:<BRK/>
+<BRK/>
+   Adhesion tests on liquid-applied or adhered waterproofing and air/weather 
+barrier such as ASTM D4541, Test Method for Pull-off Strength Coatings Using 
+Portable Adhesion Testers.<BRK/>
+   Air leakage testing of fenestration or opaque walls using a site-built test 
+chamber to provide different pressures such as ASTM E783, Test Method for Field 
+Measurement of Air Leakage through Installed Exterior Windows and Doors.<BRK/>
+   Small scale tests of waterproofing or air weather barriers such as the bubble 
+test described in ASTM E1186, Practices for Air Leakage Site Detection in Building 
+Envelopes and Air Barrier Systems.<BRK/>
+   Water penetration tests of fenestration with a site-built test chamber (same 
+chamber as ASTM E783) per ASTM E1105, Test Method for Field Determination of 
+Water Penetration of Installed Exterior Windows, Skylights, Doors, and Curtain 
+Walls by Uniform or Cyclic Static Air Pressure Difference.<BRK/>
+   Water penetration testing using a hose with a calibrated nozzle such as AAMA 
+501.2, Quality Assurance and Diagnostic Water Leakage Field Check of Installed 
+Storefronts, Curtainwall, and Sloped Glazing Systems.<BRK/>
+   Adhesion and cohesion testing of sealants according to ASTM C1193, Guide 
+for Use of Joint Sealants: Field-Applied Sealant Joint Hand Pull Tab.<BRK/>
+   <BRK/>
+Depending on the project complexity, budget, and interior environmental requirements, 
+consider including the small-scale testing listed above on mock-ups or early 
+in the installation of that construction component.  Additional tests not listed 
+may be selected in consultation with the BECxP and Design Team. See ASTM E2813 
+for additional test options.  Select and include additional building enclosure 
+tests required to verify envelope performance as appropriate to the project 
+complexity, OPR, environmental requirements and geographic location.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Verification of the Design and Installation of the Continuous Air Barrier</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Conduct periodic field inspection of the continuous air barrier materials and assemblies, including all 
+penetrations through the six sides of the air barrier, during construction while the continuous air barrier 
+is still accessible for inspection and repair (after installation of all penetrations and wall cladding 
+anchoring devices and before the installation of interior finishes) to verify and document compliance 
+with the requirements.  Conduct inspections at initial installation of each building envelope component 
+and at in-progress construction intervals as stated in Part 3 section titled BUILDING ENVELOPE INSPECTION 
+AND TESTING.</OLI><BRK/>
+<BRK/>
+[<OLI>Conduct Performance Verification Testing of the entire building envelope (systems, components, and assemblies) 
+for air tightness in accordance with Part 3 section titled BUILDING ENVELOPE AIR TIGHTNESS REQUIREMENT.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Inspection of Fenestration and Doors</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Fenestration and Doors must be labeled and inspected to verify compliance with Building Envelope energy 
+requirements, including applicable U-factors, Solar Heat Gain Coefficient (SHGC), Visible Transmittance 
+(VT), and air leakage rates.</OLI><BRK/>
+<BRK/>
+<OLI>Inspect doors and windows for coordination with the insulating plane of the wall, continuity with the 
+air/weather barrier, and flashing. </OLI><BRK/>
+<BRK/>
+<OLI>Inspect operation of doors, closers, and operating mechanisms for conformance with manufacturer's instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Inspect seals and gaskets for fenestration and doors (including loading dock, sectional, and coiling 
+doors) for proper installation and to verify that seals are in good condition.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Inspection of Opaque Roof, Walls, and Floors</TTL><BRK/>
+<BRK/>
+<TXT>Opaque roof, above-grade and below-grade walls, and floors, must be subject to the following inspections during 
+construction:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Use of <RID>ASHRAE 90.1 - IP</RID>-compliant materials and assemblies.</OLI><BRK/>
+<BRK/>
+<OLI>Insulation material meets design specifications and is continuous.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Fenestration Inspections</TTL><BRK/>
+<BRK/>
+<TXT>Conduct inspections of the following fenestration-related items during construction:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Skylights size and location in relation to the designed primary sidelighted area and secondary sidelighted 
+area below.</OLI><BRK/>
+<BRK/>
+<OLI>Roof monitor size and location in relation to the designed primary sidelighted area and secondary sidelighted 
+area below.</OLI><BRK/>
+<BRK/>
+<OLI>Dynamic glazing compliance with SHGC and U-factors, and testing of the operation for conformance with 
+the manufacturer's instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Permanent fenestration projections installation and performance in accordance with <RID>ASHRAE 90.1 - IP</RID> requirements 
+and the Contract documents.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Loading Dock Weatherseal Inspections</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include this paragraph where loading dock weatherseals are a part of 
+the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Inspect loading dock weatherseals for proper installation and to verify the seals are in good condition.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Additional Building Enclosure Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include any additional testing needed to verify performance of the building 
+enclosure elements in this paragraph, with examples in the prior Editor's Note.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<TXT>Conduct the following building enclosure tests on mock-ups or early in the installation of the related building 
+components:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">[     ]</LST><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third-Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Building Enclosure Commissioning Specialist Qualifications</SUB>; <SUB>G <TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Building Enclosure Testing Work Plan</SUB>; <SUB>G <TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Thermal Imaging Camera</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Test Equipment</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Envelope Surface Area Calculations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Completed Building Envelope Inspection Checklists</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pressure Test Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Air Leakage Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Diagnostic Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pressure Test Agency</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Thermographer Qualifications</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Certificate of Readiness</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Training</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>BUILDING ENCLOSURE TESTING WORK PLAN</SUB></TTL><BRK/>
+<BRK/>
+<TXT>For each building enclosure test to be performed, submit the following not later than [120] [_____] calendar 
+days [after Contract award, but] before start of testing work, steps to be taken by the lead test technician 
+to accomplish the required testing.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Memorandum of test procedure.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Proposed dates for conducting the tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Submit detailed test procedures prior to the test.  Provide a plan view showing proposed locations 
+(personnel doors or other similar openings) to install equipment (such as blower doors or flexible 
+ducts for trailer-mounted fans, if used).</OLI><BRK/>
+<BRK/>
+<OLI>Test equipment to be used.</OLI><BRK/>
+<BRK/>
+<OLI>Scaffolding, scissor lifts, power, electrical extension cords, duct tape, plastic sheeting and other 
+Contractor's support equipment required to perform all tests.</OLI><BRK/>
+<BRK/>
+<OLI>Other Contractor's support personnel who will be on site for testing.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>ACCESSIBILITY REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Air barrier components, insulation, fenestration, and doors for commissioned systems must be made accessible 
+for inspections.  Contractor must make necessary modifications at Contractor's own expense if systems and enclosures 
+are not accessible for inspections and testing.  Assist commissioning team in testing and inspections by removing 
+equipment covers, opening access panels, and other required activities that assist with visual oversight.  Furnish 
+ladders, flashlights, meters, gauges, or other inspection equipment as necessary.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NAVY"><SPT><TTL>SCHEDULING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph is tailored for NAVY.  For Navy projects, roof 
+systems are considered critical systems per NAVFACINST 3960.1.  Quality Assurance 
+functions by NAVFAC is done on the roofing systems to ensure Contractor's construction 
+quality control (CQC) program and commissioning deliver a high quality and properly 
+functioning critical system. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<TXT>Notify the Contracting Officer a minimum [14][_____] calendar days in advance of site visits and inspections 
+by the roof system manufacturer technical representative for coordination with the Government Acceptance Testing 
+Representative.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>COORDINATION</TTL><BRK/>
+<BRK/>
+<TXT>Refer to Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING for requirements pertaining to coordination during the commissioning 
+process. Coordinate with the Commissioning Provider in accordance with Section <SRF>01 91 00.15</SRF> and in accordance 
+with the Commissioning Plan to schedule inspections as required to support the commissioning process. Furnish 
+additional information requested by the Commissioning Provider.</TXT><BRK/>
+<BRK/>
+<TXT>Coordinate scheduling of air barrier inspections and air barrier pressure testing with the commissioning team. 
+Upload plans, reports, notes, and other documentation to the Commissioning Provider's web-based commissioning 
+software, or as specified in the commissioning plan, as it is completed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Modification of References</TTL><BRK/>
+<BRK/>
+<TXT>Perform all pressure and diagnostic tests according to the referenced publications listed in paragraph REFERENCES 
+and as modified by this section.  Consider the advisory or recommended provisions, of the referred references, 
+as mandatory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Qualifications</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Building Enclosure Commissioning Specialist Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>See UFGS <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING for the qualification requirements of the Building Enclosure Commissioning 
+Specialist.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Pressure Test Agency</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit, no later than [15] [_____] calendar days after Contract award, information certifying that the pressure 
+test agency is not affiliated with any other company participating in work on this Contract.  The work of the 
+test agency is limited to pressure testing the building envelope, performing a thermography test and fog test, 
+and investigating, through various methods, the location of air leaks through the air barrier.  See Part 3 paragraph 
+PRESSURE TEST AGENCY for additional requirements.  For thermographer qualifications, see paragraph THERMOGRAPHER 
+QUALIFICATIONS.</TXT><BRK/>
+<BRK/>
+<TXT>Use the sample TEST AGENCY QUALIFICATIONS SHEET form (Appendix C), to submit the following information.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Verification of [2][_____] years of experience as an agency in pressure testing commercial or industrial 
+buildings.</OLI><BRK/>
+<BRK/>
+<OLI>List of at least ten commercial/industrial facilities with building envelopes that the agency has tested 
+within the past 2 years.  Include building name, address, and name of prime construction Contractor and 
+Contractor's point-of-contact information.</OLI><BRK/>
+<BRK/>
+<OLI>Confirmation of 2 years of commercial and or industrial building pressure test experience for the lead 
+pressure test technician and the thermographer in using the specified <RID>ASTM E779</RID> or <RID>ASTM E1827</RID> testing 
+standard.  References from five Contracting Officers for facilities where the lead test technician has 
+supervised commercial and or industrial building pressure tests in the last 2 years.</OLI>   <BRK/>
+<BRK/>
+<OLI>Verification that the lead pressure test technician has been employed by a building pressure testing 
+agency in the capacity of a lead pressure test technician for not less than 1 year.</OLI> <BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Thermographer Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>To perform an infrared diagnostic evaluation, use a lead thermographer who has at least an active Level II Certification 
+that is based on the requirements in <RID>ANSI/ASNT CP-105</RID> or <RID>ANSI/ASNT CP-189</RID> and is in accordance with <RID>ASNT SNT-TC-1A</RID>
+.  The course of study is to be specifically focused on infrared thermography for building science.  The thermographer 
+must have at least two years of building science thermography experience in IR testing commercial or industrial 
+buildings. The thermographer must also have experience in building envelopes and building science in order to 
+make effective recommendations to the Contractor should the envelope require additional sealing.  Thermographic 
+equipment operators, data analysts and report writers must comply with the requirements of <RID>ISO 6781-3</RID>.  Submit 
+the thermographer's certificate for approval.  Submit a list of at least ten commercial/industrial buildings 
+on which the thermographer has performed IR thermography in the past two years.  The thermographer is to have 
+a current active certification.  Submit certification at least 60 days prior to thermography testing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Test Reports</TTL><BRK/>
+<BRK/>
+<TXT>No later than 14 days after completion of the pressure test, submit electronic copies of an organized report[ 
+and [_____] bound paper copies in a durable 3-ring binder].  The report is to contain a table of contents, an 
+executive summary, an introduction, a results section and a discussion of the results.  Submit the <SUB>air leakage 
+test report</SUB> as described in paragraph AIR LEAKAGE TEST REPORT.  Submit a <SUB>diagnostic test report</SUB> as described 
+in paragraph LOCATING LEAKS BY DIAGNOSTIC TESTING.  The diagnostic test report is to include the Thermographic 
+Investigation Report and the Fog Test Report (if performed).</TXT><BRK/>
+<BRK/>
+<TXT>Submit field data and completed report forms found in the appendices.  Use the sample forms, Test Agency Qualification 
+Sheet, Air Leakage Test Form and Air Leakage Test Results Form to summarize the tests for the appropriate building 
+envelope.  Submit both electronically populated and field hand filled-in forms.</TXT><BRK/>
+<BRK/>
+<TXT>Report Data.  Include in the report the following information for all tests:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Date of issue</OLI><BRK/>
+<BRK/>
+<OLI>Project title and number</OLI><BRK/>
+<BRK/>
+<OLI>Name, address, and telephone number of testing agency</OLI><BRK/>
+<BRK/>
+<OLI>Dates and locations of samples and tests or inspections</OLI><BRK/>
+<BRK/>
+<OLI>Names of individuals making the inspection or test</OLI><BRK/>
+<BRK/>
+<OLI>Designation of the work and test method</OLI><BRK/>
+<BRK/>
+<OLI>Identification of product and specification section</OLI><BRK/>
+<BRK/>
+<OLI>Complete inspection or test data</OLI><BRK/>
+<BRK/>
+<OLI>Test results and an interpretation of test results</OLI><BRK/>
+<BRK/>
+<OLI>Comments or professional opinion on whether inspected or tested work complies with Contract document 
+requirements</OLI><BRK/>
+<BRK/>
+<OLI>Recommendations on retesting</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLIMATE CONDITIONS SUITABLE FOR A PRESSURE TEST</TTL><BRK/>
+<BRK/>
+<TXT>As the test date approaches, monitor the weather forecast for the test site.  Avoid testing on days forecast 
+to experience high winds, rain, or snow.  Monitor weather forecasts prior to shipping pressure test equipment 
+to the site.  Based on current and forecast weather conditions, the Contracting Officer's representative is to 
+grant final approval for testing to occur.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Rain</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Leakage through some floor, roof, and wall assemblies can be affected 
+by heavy rain when minute cracks and holes become temporarily sealed.  Rain 
+may close potential leaks, making the envelope appear tighter than it would 
+be in drier conditions.  Rainwater can also block pneumatic tubes used in pressure 
+testing thereby altering differential pressure readings. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For safety reasons, avoid testing during rain or if rain is anticipated during testing.  If pneumatic hoses are 
+installed and exposed to rain inspect the hose to ensure rainwater has not migrated into the hose ends.  Orient 
+all exposed hose ends to keep them out of water puddles.  Success in temporarily sealing outdoor ventilation 
+components such as louvers and exhaust fans may also be compromised by rain.  Don't seal roof-mounted ventilation 
+components during times of potential lightning.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wind</TTL><BRK/>
+<BRK/>
+<TXT>Because wind can skew pressure test results, test only on days and at times when winds are anticipated to be 
+the calmest.  Avoid pressure testing during gusty or high wind conditions.  Avoid installing test fans on the 
+windward side of the building if wind gusts during the test are anticipated to be greater than<MET> 16.1 kilometers/hour</MET><ENG>
+ 10 miles per hour</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>CERTIFICATE OF READINESS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY and NAVY.  Select 
+or insert the number of calendar days for desired notification prior to system 
+commissioning tests.  Include the last bracketed sentence when the project requires 
+air tightness testing; whole building envelope air tightness testing is required 
+for projects as outlined in the Editor's Note for the Part 3 section BUILDING 
+ENVELOPE AIR TIGHTNESS REQUIREMENT.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to scheduling the Commissioning Tests as required by this Section, submit Certificate of Readiness documentation 
+in accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING for each enclosure-related system, certifying that 
+inspections have been completed, open issues have been resolved, and the system is ready for the Commissioning 
+Tests.  Documentation would include Building Envelope Inspection Checklists as required within this Section, 
+as well as any inspections or test reports required within each enclosure-related technical specification section.  
+Additional Quality Control and testing requirements for specific components of the building enclosure are described 
+in the Division 03 thru 08 UFGS Sections of the project specifications.</TXT><BRK/>
+<BRK/>
+<TXT>Submit the Certificate of Readiness for each system<TAI OPT="ARMY"> [30][____]</TAI><TAI OPT="ARMY"> calendar days</TAI><TAI OPT="NAVY"> [20][____] working days</TAI> prior to 
+Commissioning Tests of that system.  Do not schedule Commissioning Tests for a system until the Certificate of 
+Readiness is approved by the Government.  [Do not schedule air tightness testing of the building envelope system 
+until Certificates of Readiness and supporting documentation for enclosure-related systems have been submitted, 
+reviewed and approved by the Government.]</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>TEST EQUIPMENT</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide all equipment required to perform testing for the systems and components to be commissioned. Provide 
+all testing equipment of sufficient quality and accuracy to test and measure system performance with the tolerances 
+specified.  Provide a sufficient quantity of two-way radios for each subcontractor.</TXT><BRK/>
+<BRK/>
+<TXT>Submit a signed and dated list of instruments to be used for testing, their application, manufacture, model, 
+serial number, range of operation accuracy, and date of most recent calibration. Calibration data applicable 
+to fan systems must be in accordance with <RID>ASTM E1258</RID>.  Also list special equipment and proprietary tools specific 
+to a piece of equipment required for testing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PRESSURE TEST EQUIPMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The size of the envelope and the abundance of leaks through the envelope 
+determines the type and quantity of pressure testing equipment needed.  A single 
+blower door system usually provides sufficient airflow (<MET>2360 to 3775 L/s</MET><ENG>5000 
+to 8000 CFM</ENG>) to test an average single family residence.  A building the size 
+of a basketball gymnasium may require two or more blower door systems.  Logistically 
+there may be an upper limit to the number of blower door systems that can be 
+installed and operated together.  The author of this specification has anecdotal 
+knowledge of up to 24 blowers being used in one test to deliver about<MET> 90,615 
+L/s</MET><ENG> 192,000 CFM</ENG> at 75 Pa.  This means that a building envelope of up to about<MET>
+ 71,350 sq. m</MET><ENG> 768,000 sq. ft</ENG> can be pressure tested to meet a leakage rate of<MET>
+ 1.27 L per sec/sq. m.</MET><ENG> 0.25 cfm/sq. ft.</ENG> at 75 Pa using blower door equipment.  
+Trailer mounted fans that can typically deliver up to<MET> 28,317 L/s</MET><ENG> 60,000 CFM</ENG> 
+may be used for both pressurization and de-pressurization.  Blower door systems 
+and trailer mounted fans may also be used together in a test.  If blower door 
+systems and trailer mounted fans provide insufficient air for pressure testing, 
+the building's own air handling system can be used in lieu of blower door fans 
+and trailer mounted fans.  Obtaining accurate flow reading when using a building's 
+own air handling system may be especially challenging.  Delete unnecessary pressure 
+test methods as necessary.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Depending on site conditions and size of the envelope, the test may be conducted using [blower door equipment] 
+[and] [trailer-mounted fans] [or the building's own supply air system].  The testing agency is to supply sufficient 
+quantity of blower equipment that will produce a minimum of 75 Pa differential pressure between the envelope 
+and outdoors using the test methods described herein.  Supplying additional blower test equipment to provide 
+additional airflow capacity or to act as a backup is highly recommended. </TXT><BRK/>
+<BRK/>
+<SPT><TTL>Blower Door Fans and Trailer Mounted Fans</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For General Information Only.    <BRK/>
+There currently are only 3 manufacturers of blower door equipment in the United 
+States.  Infiltec, Minneapolis Blower Door and Retrotec.  The author has anecdotal 
+knowledge of blower door and trailer-mounted fan testing being used in Canada, 
+Great Britain, Ireland, Australia and some Scandinavian countries.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each air flow measuring system including blower door fans and trailer mounted fans are to be calibrated within 
+the last 5 years.  Calibrated blower door fans and trailer mounted fans must measure accurately to within plus 
+or minus 5 percent of the flow reading.  Blower door equipment and trailer mounted fans are to be specifically 
+designed to pressurize building envelopes.  Each set of blower door equipment is to include fan(s), digital gage(s), 
+door frame, door fabric or hard panels.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Digital Gages as Test Instruments</TTL><BRK/>
+<BRK/>
+<TXT>Use only digital gages as measuring instruments in the pressure test; analog gages are not acceptable.  The gauges 
+must be accurate to within 1.0 percent of the pressure reading or 0.15 Pa, whichever is greater.  Each gage is 
+to have been calibrated within two years of the test.  The calibration is to be checked against a National Institute 
+of Standards and Technology (NIST, formerly National Bureau of Standards) traceable standard.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>THERMAL IMAGING CAMERA</SUB> REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>The thermal imaging camera used in the thermography test must have a thermal sensitivity (Noise Equivalent Temperature 
+Difference.) of +/-<MET> 0.1 degree C at 30 degrees C</MET><ENG> 0.18 degrees F at 86 degrees F</ENG> or less.  Ensure the camera's 
+operating spectral range falls between 2 and 15 micrometers.  Ensure the camera's IR image viewing screen resolution 
+measures at least 320x240 pixels.  Ensure the camera has a means of recording thermal images seen on the camera 
+viewing screen.  The camera is to display output as individual still frame images that also can be downloaded 
+and inserted into an electronic Thermographic Investigation Report.  All thermographic equipment must comply 
+with the requirements of <RID>ISO 6781-2</RID>.  Submit camera make and model, and catalog information that defines the 
+camera thermal sensitivity for approval.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select and include in Part 1 of this Section and later in Part 3 those 
+building enclosure tests required to verify envelope performance as appropriate 
+to the project complexity, OPR, environmental requirements and geographic location.  
+Tests should be selected through consultation between the BECxP and Design Team.  
+ASTM E2813 provides a list of options for building enclosure tests that might 
+be included.  Note that all testing listed in ASTM E2813 is not required; thus, 
+the text below states to follow ASTM E2947 except where it references ASTM E2813.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<TXT>Conduct building enclosure commissioning in accordance with <RID>ASHRAE 202</RID> and <RID>ASTM E2947</RID> in addition to the requirements 
+herein.  Follow <RID>ASTM E2947</RID> except where it references <RID>ASTM E2813</RID>.  Commissioning must document in sufficient 
+detail compliance of the building envelope with the design intent as defined in the Contract documents.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>MEETINGS</TTL><BRK/>
+<BRK/>
+<TXT>Attend all meetings in accordance with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</TXT><BRK/>
+<BRK/>
+<TXT>Provide timely updates on construction schedule changes so Commissioning Provider has scheduling information 
+needed to execute commissioning process efficiently.  Notify Contracting Officer of anticipated construction 
+delays to commissioning activities not yet performed or not yet scheduled.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="DESIGN-BUILD"><SPT><TTL>DESIGN PHASE COORDINATION MEETING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This Article is tailored for inclusion in DESIGN-BUILD projects only.  
+This Article also includes tailoring for ARMY and NAVY.  Select which design 
+submittal will include the design phase commissioning coordination meeting.  
+Also, select or insert which Government representatives need to be invited to 
+the meeting.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Participate in a design phase commissioning coordination meeting led by the CxC prior to the [35] [50] percent 
+design submittal for systems to be commissioned. The purpose of the meeting is to discuss the commissioning process, 
+including project Contract requirements, lines of communication, roles and responsibilities, schedules, documentation 
+requirements, and to develop a Preliminary BECx Plan.</TXT><BRK/>
+<BRK/>
+<TXT>The Quality Control team, Designer of Record, and the Government <TAI OPT="NAVY">Acceptance Testing Representatives and other 
+Government team members</TAI> must attend this meeting.  Invite the User and<TAI OPT="ARMY">[ a Directorate of Public Works Representative][ 
+a Reserve Support Command Representative][ ]</TAI><TAI OPT="NAVY">[ a Public Works Division Representative][ ]</TAI> to attend this meeting. 
+Meeting may be conducted by teleconferencing.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>PRELIMINARY BECx PLAN</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Article contains tailoring options for DESIGN-BUILD and DESIGN-BID-BUILD 
+projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit the Preliminary BECx Plan no later than 14 calendar days after the <TAI OPT="DESIGN-BUILD">Design Commissioning Coordination </TAI><TAI OPT="DESIGN-BID-BUILD">Commissioning 
+Kickoff </TAI>Meeting.  Submit the Preliminary BECx Plan for inclusion in the <TAI OPT="DESIGN-BUILD">Design Phase </TAI><TAI OPT="DESIGN-BID-BUILD">Interim Construction Phase </TAI>
+Commissioning Plan as identified in Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.  Coordinate the development of 
+this plan with the commissioning plans required in Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.  Outline the commissioning 
+process, commissioning team members and responsibilities, lines of communication, inspections, and documentation 
+requirements for BECx.  Identify the Commissioning Standards chosen for the project. Establish appropriate and 
+quantifiable enclosure related performance metrics, test standards, and test methodology in accordance with referenced 
+standards for inclusion in the Contract documents.  Provide a list of team members for systems to be commissioned 
+with contact information, a list of tests as required to complete the scope of all commissioning and a copy of 
+the project schedule as required by Section <TAI OPT="NAVY"><SRF>01 32 17.00 20</SRF> COST-LOADED NETWORK ANALYSIS SCHEDULE</TAI> <TAI OPT="ARMY">
+<SRF>01 32 01.00 10</SRF> PROJECT SCHEDULE</TAI> for inclusion in the Preliminary BECx Plan.</TXT><BRK/>
+<BRK/>
+<TXT>The Preliminary BECx Plan must include, at a minimum, the following:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">1.  Required performance of commissioned equipment, systems, and assemblies, and results of FPT and verification.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">2.  Summary of compliance of the building and its components, assemblies, controls, and systems with 
+requirements.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">3.  Issues and resolution logs, including itemization of deficiencies found during verification, testing, 
+and commissioning that have not been corrected at the time of report preparation.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">4.  Deferred tests that cannot be performed at the time of report preparation.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">5.  Documentation of the training of operation personnel and building occupants on commissioned systems, 
+and a plan for the completion of any deferred trainings not completed at the time of report preparation.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">6.  A plan for the completion of commissioning and training, including climatic and other conditions 
+required for performance of the deferred tests.</LST><BRK/>
+<BRK/></SPT>
+<TAI OPT="NAVY">[</TAI><SPT><TTL>DESIGN REVIEW</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy, the Design Review is a bracketed selection; select the Design 
+Review paragraph if a design review is required after contract award.  For Army 
+tailoring, the paragraph is not bracketed.  The commissioning design review 
+report is required for Army managed projects and may be required by applicable 
+Sustainability third Party Certification guidelines.  This Article contains 
+tailoring options for ARMY, NAVY, KTR HIRED COMMISSIONING PROVIDER and GOVERNMENT 
+HIRED COMMISSIONING PROVIDER.  Choose bracketed language regarding the Owner's 
+Project Requirements Document for projects that require one (refer to specifier 
+note regarding OPR in paragraph DEFINITIONS for further information).  Select 
+the design submittal on which the design review will occur; depending on the 
+size and complexity of the project, review of multiple design submittals can 
+be included.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  When a KTR hired commissioning provider is used for a DESIGN-BID-BUILD 
+project, the first opportunity for the BECxP to review the project is early 
+in construction.  Leveraging the BECxP's experience in review of the design 
+to identify any remaining problems allows early correction, where correction 
+is necessary.  This can allow major problems to be addressed with minimal time 
+and cost growth during construction.  The Government, in coordination with designers, 
+must review the Design Review Report to determine if any design changes are 
+necessary.  Changes to the construction contract are still at the sole discretion 
+of the Contracting Officer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>The BECxP must review enclosure-related design documents.  The review must occur prior to the [50 percent][PRE-FINAL][FINAL] 
+design submittal. The design review must include verifying that the design for the systems to be commissioned 
+are prepared in accordance with the Contract documents</TXT></TAI><BRK/>
+<BRK/>
+<TXT>Provide a Design Review Report identifying discrepancies or deficiencies that would prevent the systems to be 
+commissioned from operating or performing in accordance with the design requirements or being safely maintained.  
+Submit the building enclosure-related Design Review Report for inclusion in the overall project Design Review 
+Report as identified in Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.  Report must include individual list of each 
+deficiency and corresponding corrective action necessary for proper system performance.  [Identify any discrepancies 
+between the design and the Owner's Project Requirements Document.  The Owner's Project Requirements Document 
+is provided for commissioning review purposes only and does not form a part of the contract documents for this 
+project.]  Submit the Design Review Report no later than [14][__] calendar days<TAI OPT="DESIGN-BID-BUILD"> after approval of the Commissioning 
+Firm and Commissioning Specialists</TAI><TAI OPT="DESIGN-BUILD"> after completing the review of the design</TAI>.  The Contracting Officer,<TAI OPT="NAVY"> Construction 
+Manager,</TAI><TAI OPT="ARMY"> the Contractor's Project Manager,</TAI> the BECxP, and the Designers of Record for the associated systems 
+must meet, discuss, and resolve any outstanding items contained in the report no later than 14 calendar days 
+after submission of the report.<TAI OPT="DESIGN-BUILD">  The BECxP must verify that their review comments have been adequately addressed 
+in subsequent design submittals.</TAI></TXT><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BUILD,GOVT HIRED COMMISSIONING PROVIDER,NAVY"><TXT>The BECxP is responsible for reviewing the design and preparing a Design Review Report identifying discrepancies 
+or deficiencies that would prevent the systems to be commissioned from operating or performing in accordance 
+with the design requirements or being safely maintained.  The Contracting Officer, the CxC, the BECxP, and the 
+Designers of Record for the associated systems must meet, discuss, and resolve any outstanding items contained 
+in the report no later than 14 calendar days after submission of the report.   The BECxP must verify that the 
+review comments have been adequately addressed in subsequent design submittals.</TXT><BRK/>
+<BRK/></TAI>
+<TXT>Give particular attention to the continuity of the air barrier, vapor and moisture control within enclosure assembly, 
+acoustic control of the enclosure assemblies to meet required Outdoor Indoor Transmission Class (OITC) values, 
+flashing, thermal bridges, and resistance to water penetration or ponding.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NAVY">]</TAI><SPT><TTL>FINAL BECx PLAN</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This Article includes tailoring for ARMY and NAVY projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit the Final BECx Plan for inclusion in the Interim Construction Phase Commissioning Plan as identified in 
+Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.  Outline the commissioning process, commissioning team members and 
+responsibilities, lines of communication, and documentation requirements for BECx.   Identify the Commissioning 
+Standards chosen for the project. Identify enclosure related inspections, performance metrics, test standards, 
+and test methodologies in accordance with referenced standards for inclusion in the commissioning process.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a list of team members for systems to be commissioned with contact information, a list of tests as required 
+by this Section as well as <SRF>07 27 10</SRF> BUILDING AIR BARRIER SYSTEM, and a copy of the project schedule as required 
+by Section <TAI OPT="NAVY"><SRF>01 32 17.00 20</SRF> COST-LOADED NETWORK ANALYSIS SCHEDULE</TAI> <TAI OPT="ARMY"><SRF>01 32 01.00 10</SRF> PROJECT SCHEDULE</TAI> for inclusion 
+in the Final BECx Plan. Final BECx plan must be submitted with the Interim Construction Phase Commissioning Plan, 
+and must be updated and included with the Final Construction Phase Commissioning Plan as identified in Section 
+<SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CONSTRUCTION SUBMITTAL REVIEWS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This Article contains tailoring options for KTR HIRED COMMISSIONING PROVIDER, 
+GOVT HIRED COMMISSIONING PROVIDER, and DESIGN BUILD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate construction submittal document reviews for commissioned systems and assemblies with the CxC and BECxP.   
+The commissioning submittal review does not replace the designer of record (DoR) or Government submittal review, 
+in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</TXT><BRK/>
+<BRK/>
+<TXT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">The BECxP must identify construction submittals to be provided by the Contractor for the commissioned systems, 
+and coordinate with the CxC. The BECxP must evaluate construction submittals related to BECx for compliance with 
+the Contract documents.</TAI><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">  The BECxP is responsible for identifying construction submittals to be provided by the 
+Contractor for the commissioned systems and coordinating with the CxC.  The BECxP is responsible for evaluating 
+construction submittals related to BECx for compliance with the Contract documents.</TAI><TAI OPT="DESIGN-BUILD">  The DoR must consider the 
+BECxP's comments and provide direction to the Contractor as necessary.  Provide a copy of final DoR submittal 
+reviews with comment responses to the BECxP.</TAI><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">  Include a copy of the submittal document review transmittal and 
+response in the Commissioning Report.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TEMPLATE BUILDING ENVELOPE INSPECTION CHECKLISTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This Article contains tailoring options for KTR HIRED COMMISSIONING PROVIDER, 
+and GOVT HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>The Building Enclosure Commissioning Specialist must develop the Template Building Envelope Inspection Checklists 
+to verify the building materials and construction maintain the required air tightness of the building envelope 
+system.</TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>Use the Template Building Envelope Inspection Checklists prepared by the CxC to verify the building materials 
+and construction maintain the required air tightness of the building envelope system.</TXT><BRK/>
+<BRK/></TAI>
+<TXT>The Building Envelope Compliance Documentation Form from <RID>ASHRAE 90.1 - IP</RID> User's Manual may be used as an example.  
+The submitted checklist is not required to match the format of the form; however, the checklist must contain 
+the same level of detail as shown on the mandatory provisions of the sample form.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BUILDING ENVELOPE INSPECTION AND TESTING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This Article contains tailoring options for KTR HIRED COMMISSIONING PROVIDER 
+and GOVT HIRED COMMISSIONING PROVIDER.<BRK/>
+<BRK/>
+Edit the frequency of site visits based on the size and complexity of the project.  
+Monthly inspections at a minimum are recommended as air barrier construction 
+progresses; also take into account the complexity of the project (such as lab 
+or medical facility vs. a storage building).  Keep in mind it is best to inspect 
+during initial construction installation of key envelope elements; subpar conditions 
+are difficult to correct in later stages of construction.<BRK/>
+<BRK/>
+Whole building envelope air tightness testing is required for projects as outlined 
+in the Editor's Note for the Part 3 section BUILDING ENVELOPE AIR TIGHTNESS 
+REQUIREMENT; include the last bracketed sentence when the project requires air 
+tightness testing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Demonstrate that all system components have been installed, that each building enclosure component operates, 
+and that the systems operate and perform in accordance with Contract documents and the Owner's Project Requirements. 
+Provide all materials, services, and labor required to perform the Building Envelope Inspections.</TXT><BRK/>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>Document building envelope inspections by the commissioning team using the approved Template Building Envelope 
+Inspection Checklists.  Indicate commissioning team member inspection and validation of each Building Envelope 
+Inspection Checklist item by initials at the time they are inspected and found to be in conformance with Contract 
+requirements.  Inspect checklist items before they become hidden as construction progresses.  Submit the initialed 
+and <SUB>completed Building Envelope Inspection Checklists</SUB> no later than 14 calendar days after completion of inspection 
+of all checklist items.  The BECxP must conduct inspections at initial installation of each building envelope 
+component and a minimum of [monthly][_____] site visits to the site to observe construction of the building envelope 
+in-progress, each time reviewing the in-progress checklists to ensure that the commissioning team is inspecting 
+the building envelope as required. Coordinate inspection requirements with Section <SRF>07 27 10</SRF> BUILDING AIR BARRIER 
+SYSTEM and other Division 7 Specifications.  [The BECxP must witness the building envelope pressure tests and 
+diagnostic tests specified in this Section; review the resulting reports; and provide recommendations for correction 
+of any deficiencies or further testing.]</TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>Participate in periodic building envelope inspections with the commissioning specialists using the approved Template 
+Building Envelope Inspection Checklists to observe and document construction of the building envelope in-progress. 
+Coordinate inspection requirements with Section <SRF>07 27 10</SRF> BUILDING AIR BARRIER SYSTEM and other Division 7 Specifications. 
+Complete the checklists and indicate inspection and validation of each Building Envelope Inspection Checklist 
+item by initials at the time they are inspected.  Notify the Commissioning Specialist and Contracting Officer 
+at least 21 calendar days before checklist items are concealed to ensure inspection items can be observed before 
+construction progresses.  Submit the initialed and Completed Building Envelope Inspection Checklists no later 
+than 14 calendar days after completion of inspection of all checklist items.  [Notify the BECx at least 21 calendar 
+days prior to the building envelope pressure tests and diagnostic tests specified in this Section.]</TXT><BRK/>
+<BRK/></TAI>
+[<SPT><TTL>Additional Building Enclosure Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select and include those building enclosure tests required to verify 
+envelope performance as appropriate to the project complexity, OPR, environmental 
+requirements and geographic location.  Tests should be selected through consultation 
+between the BECxP and Design Team.  ASTM E2813 provides a list of options for 
+building enclosure tests that might be included.  Some options include:<BRK/>
+<BRK/>
+   Adhesion tests on liquid-applied or adhered waterproofing and air/weather 
+barrier such as ASTM D4541, Test Method for Pull-off Strength Coatings Using 
+Portable Adhesion Testers.<BRK/>
+   Air leakage testing of fenestration or opaque walls using a site-built test 
+chamber to provide different pressures such as ASTM E783, Test Method for Field 
+Measurement of Air Leakage through Installed Exterior Windows and Doors.<BRK/>
+   Small scale tests of waterproofing or air weather barriers such as the bubble 
+test described in ASTM E1186, Practices for Air Leakage Site Detection in Building 
+Envelopes and Air Barrier Systems.<BRK/>
+   Water penetration tests of fenestration with a site-built test chamber (same 
+chamber as ASTM E783) per ASTM E1105, Test Method for Field Determination of 
+Water Penetration of Installed Exterior Windows, Skylights, Doors, and Curtain 
+Walls by Uniform or Cyclic Static Air Pressure Difference.<BRK/>
+   Water penetration testing using a hose with a calibrated nozzle such as AAMA 
+501.2, Quality Assurance and Diagnostic Water Leakage Field Check of Installed 
+Storefronts, Curtainwall, and Sloped Glazing Systems.<BRK/>
+   Adhesion and cohesion testing of sealants according to ASTM C1193, Guide 
+for Use of Joint Sealants: Field-Applied Sealant Joint Hand Pull Tab.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLG><BRK/>
+[<OLI>Conduct adhesion tests on liquid-applied and adhered waterproofing and air/weather barrier in accordance 
+with <RID>ASTM D4541</RID>.</OLI><BRK/>
+<BRK/>
+][<OLI>Conduct air leakage testing of fenestration in accordance with <RID>ASTM E783</RID>.</OLI><BRK/>
+<BRK/>
+][<OLI>Conduct small scale bubble tests of waterproofing and air/weather barriers in accordance with <RID>ASTM E1186</RID>
+.</OLI><BRK/>
+<BRK/>
+][<OLI>Conduct water penetration tests of fenestration in accordance with <RID>ASTM E1105</RID>.</OLI><BRK/>
+<BRK/>
+][<OLI>Conduct water penetration tests of installed storefronts, curtainwall, and sloped glazing systems in 
+accordance with <RID>AAMA 501.2</RID>.</OLI><BRK/>
+<BRK/>
+][<OLI>Conduct adhesion and cohesion tests of sealants in accordance with <RID>ASTM C1193</RID>.</OLI><BRK/>
+<BRK/>
+][<OLI>[_____]</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>]</SPT><SPT><TTL>BUILDING ENCLOSURE AIR BARRIER PRESSURE TESTING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pressure Test Agency</TTL><BRK/>
+<BRK/>
+<TXT>Employ an independent agency to conduct the pressure test on the building envelope in accordance with <RID>ASTM E779</RID>
+ and this specification section.  The test agency is to be an independent third-party subcontractor, not an affiliated 
+or subsidiary of the prime Contractor, subcontractors, or A/E firm. The agency is to be regularly engaged in 
+pressure testing of commercial/industrial building envelopes.  If using blower door or trailer-mounted fans, 
+the lead test technician must have at least two years of experience in using such equipment in building envelope 
+pressurization tests.  Formal training using pressure test equipment is highly recommended.  Technicians using 
+the building's air handling system for pressure testing are to have tested at least five commercial/industrial 
+buildings within the past two years with each building having over<MET> 4645 square meters</MET><ENG> 50,000 square feet</ENG> of floor 
+area.  Submit the name, address, and floor areas of each of these five buildings for approval.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Field Work</TTL><BRK/>
+<BRK/>
+<TXT>The lead pressure test technician and thermographer are to be present at the project site while testing is performed 
+and is to be responsible for conducting, supervising, and managing of their respective test work.  Management 
+includes health and safety of test agency employees.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reporting Work</TTL><BRK/>
+<BRK/>
+<TXT>The lead pressure test technician is to prepare, sign, and date the test agenda, equipment list, and submit a 
+certified Air Leakage Test Report.  The thermographer is to prepare, sign, and date the test agenda, equipment 
+list, and submit a certified Thermographic Investigation Report.  The Contractor is to prepare a final report 
+that identifies improvements that were made to the envelope to reduce air leaks [, mitigate thermal bridging][, 
+eliminate moisture migration,][, repair insulation voids] discovered during diagnostic tests.  The Verification 
+&amp; Testing (V&amp;T) providers must certify completion of required verification and FPT and include a plan 
+for the completion of any deferred FPT, including climatic and other conditions required for performance of the 
+deferred tests; include the results of the FPT and verification activities in the completed verification and 
+FPT (functional performance testing) documentation.  Jointly submit all reports.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Envelope Surface Area Calculation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The design architect is responsible for defining the air barrier boundary 
+(all 6 sides), showing the boundaries on the drawings, calculating the air barrier 
+envelope surface area, and showing the calculation result on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The architectural air barrier boundary includes the floor, walls, and ceiling.  After construction of the air 
+barrier envelope is complete, field measure the envelope to ensure the physical measurements match the design 
+drawings and the air barrier envelope surface area calculations are generated.  If the calculation result is 
+not within 10 percent of the defined air barrier boundary calculation result as indicated, submit the envelope 
+surface area calculation and results for review.  [If the air barrier was defined during design but the air barrier 
+envelope surface area was not calculated, calculate it during construction and submit the <SUB>envelope surface area 
+calculations</SUB> and result for review.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preparing The Building Envelope For The Pressure Test</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Testing During Construction</TTL><BRK/>
+<BRK/>
+<TXT>The pressure test cannot be conducted until all components of the air barrier system have been installed.  After 
+all sealing as described herein has been completed, inspect the envelope to ensure it has been adequately prepared.  
+During the pressure test, stop all ongoing construction within and neighboring the envelope which may impact 
+the test or the air barrier integrity.  The pressure test may be conducted before finishes that are not part 
+of the air barrier envelope have been installed.  For example, if suspended ceiling tile, interior gypsum board 
+or cladding systems are not part of the air barrier the test can be conducted before they are installed. Recommend 
+testing prior to installing the finished ceilings and interior wall finishes within the envelope and immediately 
+surrounding it.  The absence of finishes allows for inspection and diagnostic testing of the roof/wall interface 
+and for implementation of repairs to the air barrier, if necessary to comply with the maximum allowed leakage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sealing the Air Barrier Envelope</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The design drawings are to detail architectural treatments necessary 
+to provide a complete air barrier including sealing all interfaces in the air 
+barrier envelope.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Contractor is to seal all penetrations through the air barrier.  Unavoidable penetrations due to electrical 
+boxes or conduit, plumbing, and other assemblies that are not air-tight are to be made so by sealing the assembly 
+and the interface between the assembly and the air barrier or by extending the air barrier over the assembly.  
+Support the air barrier to withstand the maximum positive and negative air pressure to be placed on the building 
+without displacement or damage, and transfer the load to the structure.  Durably construct the air barrier to 
+last the anticipated service life of the assembly and to withstand the maximum positive and negative pressures 
+placed on it during pressure testing.  Do not install lighting fixtures that are equipped with ventilation holes 
+through the air barrier.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sealing Plumbing</TTL><BRK/>
+<BRK/>
+<TXT>Prime all plumbing traps located within the envelope full of water.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Close and Lock Doors</TTL><BRK/>
+<BRK/>
+<TXT>Close and lock all doors and windows in the envelope perimeter.  For doors not equipped with latching hardware, 
+temporarily secure them in the closed position.  Secure the doors in such a way that they remain fully closed 
+even when the maximum anticipated differential air pressure produced during the test acts on them.  Provide signage 
+stating not to open the door and the time and duration of the test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hold Excluded Building Areas at the Outdoor Pressure Level</TTL><BRK/>
+<BRK/>
+<TXT>Keep building areas immediately surrounding but excluded from the test envelope at the outdoor pressure level 
+during the pressure test.  Maintain these areas at the outdoor pressure level by propping exterior doors open, 
+opening windows and de-energizing all air moving devices in or serving these areas.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Maintain an Even Pressure within the Envelope</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the pressure differences within the envelope are minimized by opening all internal air pathways including 
+propping open all interior doors.  Distribute test fans throughout the envelope as necessary to ensure the internal 
+pressures are uniform (within 10 percent of the average differential pressure). Ideally, do not install suspended 
+ceilings until after all pressure tests have been completed.  If, however the envelope includes finished suspended 
+ceiling spaces, temporarily remove approximately 5 percent of all ceiling tiles or a minimum of 1 tile from each 
+isolated suspended ceiling space, whichever comprises the greatest surface area.  Temporarily remove additional 
+ceiling tiles during testing to allow for inspection and diagnostic testing of the ceiling/wall interface.  An 
+alternative to removing ceiling tiles is to measure the differential pressure between each isolated suspended 
+ceiling space and the outdoors when the area below the suspended ceiling is maintained at a differential pressure 
+of 75 Pa with respect to the outdoors.  If the suspended ceiling differential pressure measurement is within 
+ten percent of the 75 Pa pressure below the suspended ceiling no ceiling tiles need to be removed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Maintain Access to Mechanical and Electrical Rooms</TTL><BRK/>
+<BRK/>
+<TXT>Maintain access to mechanical rooms and electrical rooms associated with the envelope to allow for de-energizing 
+ventilation equipment and resetting circuit breakers tripped by blower door equipment, if used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Minimize Potential for Blowing Dust and Debris</TTL><BRK/>
+<BRK/>
+<TXT>Because high velocity air will be blown into and out of the envelope during the test, debris, including dust 
+and litter, may become airborne.   Airborne debris may become trapped or entangled in test equipment, thereby 
+skewing test results.  Ensure areas within and surrounding the envelope are free of dust, litter and construction 
+materials that are easily airborne.  If pressurizing existing, occupied areas, provide adequate notice to building 
+occupants of blowing dust and debris, and general disruption of normal activities during the test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>De-energize Air Moving Devices</TTL><BRK/>
+<BRK/>
+<TXT>De-energize all air moving devices serving the envelope to keep air within the envelope as still as reasonably 
+achievable.  De-energize all fans that deliver air to, exhaust air from, or recirculate air within the envelope. 
+Also, de-energize all fans serving areas adjacent to but excluded from the envelope.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Installing Blower Door Equipment in a Door Opening</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph if blower door equipment will not be used for the 
+pressure test.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Where blower door fans are used, before installing blower door equipment, select a door opening that does not 
+restrict air flow into and out of the envelope and has at least<MET> 1.5 m</MET><ENG> 5 feet</ENG> clear distance in front of and behind 
+the door opening.  Disconnect the door actuator and secure the door open to prevent it from being drawn into 
+the fan-by-fan pressure.  Avoid installing blower door equipment on the windward side of the building.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Building Envelope Air Tightness Requirement</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  UFC 3-101-01 imposes air tightness requirements for all buildings but 
+requires only inspection (and not air tightness leak testing) for the specific 
+building types.  See UFC 3-101-01 for building types which require only inspections.</NPR><BRK/>
+<BRK/>
+<NPR>Seal existing buildings undergoing major renovations, especially the ones located 
+in cold or hot and humid climates, to the same standard as newly constructed 
+ones.  The air barrier boundaries of the conditioned portion may not necessarily 
+follow the exterior boundary of the building; it may only be a part of the whole. 
+For additional guidance, see Air Leakage Test Protocol for Building Envelope 
+at the following site: (https://www.wbdg.org/FFC/ARMYCOE/usace_airleakagetestprotocol.pdf).</NPR><BRK/>
+<BRK/>
+<NPR>The Architectural Plus HVAC test should be applied in the specifications of 
+a Contract when the building is designed such that the HVAC system may operate 
+intermittently and when dampers will be utilized to prevent air leakage out 
+of the conditioned space through the HVAC system.  The Architectural Plus HVAC 
+test may be applied to residential projects with intermittent HVAC system operation 
+or a project in which there is a need to verify mechanical dampers in the HVAC 
+system for leakage performance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For each building envelope, perform the Architectural Only test and if noted below, the Architectural Plus HVAC 
+System test.  The purpose of the pressure (air leakage) test is to determine final compliance with the airtightness 
+requirement by demonstrating the performance of the continuous air barrier. An effective air barrier envelope 
+minimizes infiltration and exfiltration through unintended air paths (leaks).  The tests may be performed in 
+any desired order.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Architectural Only Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>The test envelope is the architectural air barrier boundary as defined on the Contract drawings.  This boundary 
+includes connecting walls, roof and floor which comprise a complete, whole, and continuous three-dimensional 
+envelope.  Perform both a positive pressure test and a negative pressure test on this envelope</TST>, unless otherwise 
+directed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL> Test Goal</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit and include Section <SRF>07 27 10</SRF>, BUILDING AIR BARRIER SYSTEM.  The 
+paragraph of Section <SRF>07 27 10</SRF> titled "Air Barrier Envelope Surface Area and 
+Leakage Requirements" includes the allowable leakage rate.  These rates are 
+different depending on if the test is Architectural Only or Architectural Plus 
+HVAC System.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Input data from the test into the Air Leakage Rate by Fan Pressurization spreadsheet as described in paragraph 
+CALCULATION PROGRAM via the Air Leakage Test Form.  Compare output from the spreadsheet against the maximum allowable 
+leakage defined in Section <SRF>07 27 10</SRF> BUILDING AIR BARRIER SYSTEM.  The envelope passes the test if the leakage 
+rate, as calculated using the spreadsheet, is equal to or lower than the Architectural Only leakage rate goal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preparing the Envelope for the Pressure Test - Seal All Openings through the Air Barrier</TTL><BRK/>
+<BRK/>
+<TXT>Temporarily close all perimeter windows, roof hatches and doors in the envelope perimeter except for those doors 
+that are to remain open to accommodate blower door or trailer mounted fan test equipment installation.  Seal, 
+or isolate all other intentional openings, pathways, and fenestrations through the architectural envelope prior 
+to pressure testing.  Follow the Recommended Test Envelope Conditions identified in <RID>ASTM E1827</RID>, Table 1, for 
+the Closed Envelope condition.  These openings may include boiler flues, fuel-burning water heater flues, fuel-burning 
+kitchen equipment, clothes dryer vents, fireplaces, wall or ceiling grilles, diffusers, and other similar openings.  
+Before sealing flues, close their associated fuel valves and verify the associated pilot lights are extinguished.  
+Prime all plumbing traps located within the envelope full of water.  In lieu of applying tape or plastic, typical 
+temporary sealing materials include tape and sheet plastic or a self-adhesive grille wrap.  Use and apply tape 
+and plastic in a manner that does not deface or remove paint or mar the finish of permanent surfaces.  Be especially 
+aware of residue that remains from tape applied to stainless steel surfaces such as kitchen hoods or rollup doors.  
+For painted surfaces, use tape types that do not remove finish paint when the tape is removed.  If paint is removed 
+from the finished surface, repaint to match existing surfaces.  Secure dampers closed either manually or by using 
+the building's HVAC system controls.  Use the table below for further guidance in building preparation.</TXT><BRK/>
+<TXT><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="17">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="343.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="342.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Building Component</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Envelope Condition</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Air handling units, duct fans</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">As found (open) or temporarily sealed as necessary</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Clothes dryer</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Off</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Clothes dryer vents</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Temporarily sealed</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dampers - intake, exhaust</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Physically closed or closed using control power or temporarily sealed</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Diffusers, registers, grilles within the envelope</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Temporarily sealed</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Doors, personnel type, at the envelope perimeter</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Secured closed</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Doors, personnel type, within the envelope</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Secured (propped) open</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Doors, roll-up type, at the envelope perimeter</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Closed (no additional sealing)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Exhaust hoods</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Closed* and temporarily sealed</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Fireplace hearth</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Temporarily sealed *</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Kitchen hoods</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Temporarily sealed *</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pilot light and associated fuel valve</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Extinguished and closed, respectively</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Vented combustion appliance</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Temporarily sealed *</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Vented combustion appliance exhaust flue</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Off</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Windows</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Secured closed</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="37.50">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">* If the building component has an associated manual or automatic damper, consider securing the damper closed in lieu of temporarily sealing.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Architectural Plus HVAC System Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Architectural Plus HVAC System test should be applied in the specifications 
+of a Contract when the building is designed such that the HVAC system may operate 
+intermittently and when dampers will be used to prevent air leakage out of the 
+conditioned space through the HVAC system.  The Architectural Plus HVAC System 
+test may be applied to residential projects with intermittent HVAC system operation 
+or a project in which there is a need to verify mechanical dampers in the HVAC 
+system for leakage performance.  Include or remove this paragraph as required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>This test envelope includes the architectural air barrier boundary as defined on the Contract drawings plus all 
+HVAC supply, return and exhaust systems that penetrate and terminate within said architectural air barrier boundary 
+and that extends outward from said boundary.  All associated ductwork, intake and exhaust dampers, and air moving 
+devices, including air handling units and fans, are included in this test envelope even if they are physically 
+located outside of the architectural air barrier boundary.  The boundary extends to and includes the low leakage 
+intake and exhaust dampers.  <TST>Perform both a positive pressure test and a negative pressure test on this envelope</TST>
+, unless otherwise indicated.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Test Goal</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit and include Section <SRF>07 27 10</SRF>, BUILDING AIR BARRIER SYSTEM.  The 
+paragraph of Section <SRF>07 27 10</SRF> titled "Air Barrier Envelope Surface Area and 
+Leakage Requirements" includes the allowable leakage rate.  These rates are 
+different depending on if the test is Architectural Only or Architectural Plus 
+HVAC System.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Data from the test is to be input into the Air Leakage Rate by Fan Pressurization spreadsheet as described in 
+paragraph CALCULATION PROGRAM via the Air Leakage Test Form.  If both positive and negative pressure tests were 
+performed, both data sets are to be input in the spreadsheet.  Compare output from the spreadsheet against the 
+leakage rate goal.  The envelope passes the test if the leakage rate, as calculated using the spreadsheet, is 
+equal to or lower than the Architectural Plus HVAC System leakage rate goal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preparing the Building for the Pressure Test</TTL><BRK/>
+<BRK/>
+<TXT>In preparation for this test, de-energize all air moving devices within this envelope by putting their controls 
+in the Unoccupied mode.  This allows the building's HVAC controls to close all associated motorized intake, exhaust, 
+and relief dampers.  Make no other changes to the HVAC systems.  Temporarily sealing diffusers, grilles, registers, 
+kitchen hoods, exhaust hoods, fans, air handling units and all other HVAC system elements with tape or plastic 
+sheeting or any other means is not allowed.  If the envelope includes a fireplace hearth do not seal it with 
+tape and plastic.  Use the table below for further guidance in building preparation.</TXT><BRK/>
+<BRK/>
+<TXT><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="16">
+      <COL AUTOWIDTH="0" WIDTH="343.50"/>
+      <COL AUTOWIDTH="0" WIDTH="342.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Building Component</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Envelope Condition</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Air handling units, duct fans</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">As found (open)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Clothes dryer</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Off</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Clothes dryer vents</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">As found (no preparation)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">Dampers - intake, exhaust</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">As found (no preparation)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Diffusers, registers, grilles within the envelope</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">As found (open)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Doors, personnel type, at the envelope perimeter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Secured closed</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Doors, personnel type, within the envelope</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Secured (propped) open</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Doors, roll-up type, at the envelope perimeter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Closed (no preparation)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Exhaust hoods</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Closed</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Fireplace hearth</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">As found (open)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Kitchen hoods</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">As found (open)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Pilot light and associated fuel valve</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Extinguished and closed, respectively</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Vented combustion appliance</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Off</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING">Vented combustion appliance exhaust flue</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">As found (open)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="55.50">
+         <CEL>
+<DTA TYPE="STRING">Windows</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Secured closed</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+</SPT>]</SPT><SPT><TTL>Conducting The Pressure Test</TTL><BRK/>
+<BRK/>
+<TXT>Notify the Contracting Officer at least ten(10) working days before conducting the pressure tests to provide 
+the Government the opportunity to witness the tests and to monitor weather forecasts for conditions favorable 
+for testing.  Do not pressure test until verifying that the continuous air barrier is in place and installed 
+without failures in accordance with installation instructions.  During the pressure test periodically inspect 
+temporarily sealed items to ensure they are still sealed.  Seals on temporarily sealed items tend to release 
+more readily at higher pressures.  Test data obtained after temporarily sealed items become unsealed cannot be 
+used as input into the calculation program.  Follow the Envelope Pressure Test Procedures in the paragraphs below.  
+Submit detailed <SUB>pressure test procedures</SUB> indicating the test apparatus, the test methods and procedures, and 
+the analysis methods to be employed for the building envelope pressure (air tightness) test.  Submit these procedures 
+not later than 60 days after Notice to Proceed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Extend Pneumatic Tubes and Establish a Reference Differential Pressure </TTL><BRK/>
+<BRK/>
+<TXT>Confirm the various zones within the envelope have a relatively uniform interior pressure distribution by establishing 
+a representative differential pressure between the envelope and the outdoors with blower door or trailer-mounted 
+fans operating.  The number of indoor pressure difference measurements (pneumatic hoses) required depends on 
+the number of interior zones separated by bottle necks that could create significant pressure drops (e.g., doorways 
+and stairwells).  Extend at least four pneumatic hoses (differential pressure monitoring ports) to locations 
+within the envelope that are physically opposite of each other.  In multiple story buildings, especially those 
+over three stories, extend hoses to multiple floors.  Locate the hose ends away from the effects of air discharge 
+from blower test equipment.  Select one of the four (or more) interior hoses, one judged by the test agency to 
+be the most unaffected by air velocity produced by blower test equipment, to serve as the interior reference 
+pressure port.  Extend at least one additional pneumatic hose to the outdoors (outdoor pressure port).  To the 
+end of this hose manifold at least four hoses together and terminate each hose on a different side of the building.  
+With the envelope sealed and the blowers energized, measure the differential pressure using the interior reference 
+pressure port and the four outdoor pressure ports.  Then measure and record the differential pressure by individually 
+using each of the remaining three interior hoses.  Ensure each reading is within plus or minus 10 percent of 
+the reference reading.  Thus, at an average 75 Pa maximum pressure difference across the envelope, the difference 
+between the highest and lowest interior pressure difference measurements should be 15 Pa or less.  If this condition 
+cannot be met, attempt to create additional air pathways within the envelope to minimize pressure differences 
+within the envelope. If necessary, move the interior hose ends.  See step 2.13 of the Air Leakage Test Form in 
+Appendix A.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bias Pressure Readings</TTL><BRK/>
+<BRK/>
+<TXT>With the fan pressurization equipment de-energized and the envelope sealed, obtain the differential pressure 
+between the outdoors and the envelope.  Record 12 bias pressure readings before the pressure test and 12 bias 
+pressure readings after the pressure test.  Each reading is the average of ten or more 1-second measurements.  
+Include positive and negative signs for each reading.  To help dampen bias pressures that significantly contribute 
+to test pressure, reduce temperature differences between indoor and outdoor air.  Temperature differences can 
+be reduced by operating test fan equipment for a few minutes to replace most of the indoor air with outdoor air.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Testing in Both Positive and Negative Directions</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The preferred way to dampen bias pressure due to wind is to test the 
+building envelope in both the pressurization and depressurization directions 
+and average the results.  Bias pressures are nonlinear and cannot be adequately 
+allowed for by merely subtracting the bias from the pressure reading. Testing 
+in both directions more effectively dampens bias pressures thus tolerating the 
+occurrence of larger bias pressures during a test, up to 30 percent of the lowest 
+test pressure.  Allow single direction testing only if testing in both directions 
+cannot logistically be performed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The preferred method for testing a building envelope is to test in both the pressurized and depressurized directions.  
+Testing in one direction is only allowed if opposite direction testing cannot logistically be performed due to 
+test equipment limitations or restrictions.  After obtaining the pre-test bias differential pressure readings, 
+conduct the pressure test.  Record the envelope pressures (in units of Pascals) from one interior pneumatic hose 
+(monitoring port) and the outdoor pneumatic hose(s), averaged or manifolded, with corresponding flows (in units 
+of<MET> L/s</MET><ENG> cfm</ENG>) for each fan.  Record the flow rates at least 10 to 12 positive and 10 to 12 negative building pressure 
+readings.  If conducting both positive and negative pressure tests the lowest allowable test pressure is 40 Pa 
+and the highest test pressure is 85 Pa.  Keep at least 25 Pa difference between the lowest and highest test pressure 
+readings.  Include the 75 Pa pressure value between the lowest and highest readings.  The 10 to 12 readings in 
+each direction are to be roughly evenly spaced along the range of pressures and flows.  After testing is complete 
+de-energize the equipment used to provide pressurization and obtain an additional 10 to 12 post-test bias pressure 
+readings.  None of the bias pressure readings are allowed to exceed 30 percent of the minimum test pressure.  
+If these limits are exceeded the test fails and must be repeated. </TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Single Direction Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Allowing testing in only one direction, acknowledges that very large 
+buildings may require truck or trailer mounted blower equipment that logistically 
+will not easily allow testing in both positive and negative directions.  Because 
+bias pressures will have a greater impact on single-direction tests, the maximum 
+allowable bias pressure under these circumstances is 10 percent of the lowest 
+test pressure.  At these generally higher pressures, the effects due to bias 
+pressure is somewhat masked by the higher test pressure range. Because building 
+envelopes are often leakier when measured in one direction than the other, testing 
+in only one direction is considered less accurate than testing in both directions.  
+Assume for example, that the bias pressure in a<MET> 12 m</MET><ENG>40 foot</ENG> high building envelope 
+where the temperature is<MET> -18 degrees C</MET><ENG> 0 degrees F</ENG> outside and<MET> 20 degrees C</MET><ENG> 
+68 degrees F</ENG> inside and with negligible wind is 10.5 Pa. This bias pressure 
+can typically be assumed to be 5.25 Pa at the top of the building envelope and 
+-5.25 Pa at the bottom of the building envelope.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>After obtaining the 12 aforementioned bias pressure readings, conduct the [positive][negative] pressure test.  
+Obtain flow rates at 10 to 12 roughly evenly spaced pressure readings over a pressure range of 50 to 85 Pa.  
+After the data is recorded, de-energize the blower equipment and obtain an additional 10 to 12 bias pressure 
+readings.  None of the bias pressure readings may exceed 10 percent of the minimum test pressure.  If these limits 
+are exceeded the test fails.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Using a Building's Own Air Handling System to Pressure Test an Envelope</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Very few US standards exist that adequately address the special requirements 
+for pressurizing an envelope using the building's own air handling system.  
+However, ASTM E779 attempts to address this topic.  Canadian General Standards 
+Board reference CAN/CGSB-149.15, "Determination of the Overall Envelope Airtightness 
+of Buildings by Fan Pressurization Method Using the Building's Air Handling 
+Systems" may help the designer better understand this test method.  Using the 
+building's air handling system is a less preferred test method due to the difficulty 
+obtaining accurate readings and should only be used if a door blower fan is 
+not feasible.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Test Setup</TTL><BRK/>
+<BRK/>
+<TXT>Temporarily seal the envelope in a manner similar to that for testing with blower door or trailer-mounted fans.  
+To positively pressurize the envelope, de-energize all ventilation equipment and close all associated dampers, 
+except those outside air intake dampers associated with supply fans that will be used to pressurize the building 
+envelope.  Fully open these dampers.  For the negative pressure test, de-energize all ventilation equipment except 
+for those fans that will be used to de-pressurize the envelope.  All dampers associated with de-energized fans 
+are to be closed and all exhaust dampers associated with fans used to de-pressurize the envelope will be fully 
+opened.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Measuring Airflows</TTL><BRK/>
+<BRK/>
+<TXT>When using the building's own air handling system to pressure test the envelope, air flows can generally be measured 
+using one of the following methods:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>[When testing using the building's own air handling system, ensure flow readings obtained by anemometer 
+comply with <RID>ASTM D3464</RID>.  ]Pitot tube or hot wire anemometer traverse in accordance with <RID>ASTM D3464</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Pressure compensated shrouds (especially recommended for rooftop exhaust fans)</OLI><BRK/>
+<BRK/>
+<OLI>Tracer gas methods for measuring airflows in ducts in accordance with <RID>ASTM E2029</RID>.  Do not use tracer 
+gas decay, constant injection, and constant concentration methods for estimating the total ventilation 
+rate of the envelope.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Outdoor Air Flow Measuring Stations</TTL><BRK/>
+<BRK/>
+<TXT>Air flow stations may be used to measure outdoor airflows if one of the above methods is used to check accuracy 
+of at least one air flow reading for each station or if the design of the HVAC system specifically placed outdoor 
+air flow stations in locations that will yield accurate results.  Field verify the accuracy of readings at the 
+air flow measuring stations before obtaining pressure test readings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pressure Testing - Special Cases</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Pressure Testing a Tall or Large Building Envelope</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this method only if the entire envelope cannot be pressure tested 
+using the methods previously described.  Note that if this method of pressure 
+testing is used, the Architectural Plus HVAC test cannot be performed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Pressure testing the envelope of a tall or large building may be unworkable and unrealistic using blower door 
+or trailer-mounted equipment.  In this case, the test agency may define and pressure test separate zones or floors 
+within the envelope and sum the leakage all of the zones to create an overall envelope leakage rate.  Using this 
+method, the test agency is to comply with the requirements of <RID>ASHRAE RP-935</RID>.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Pressure Testing a Multiple Isolated Zoned Building</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Some buildings may consist of multiple zones that do not share a common 
+air plenum and cannot easily be modified to do so.  Typically, these buildings 
+are dormitories, apartment buildings, hotels and offices wherein occupants enter 
+and leave each zone via a separate, exclusive, exterior door.  Walls and floors 
+isolate each zone such that no discernable air pathway between zones exists.  
+In this case, testing cannot be performed on the entire building envelope; rather, 
+several representative air barrier zones within the building are to be individually 
+pressure tested.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Pressure test each exterior corner zone plus at least an additional 20 percent (as measured by floor area) of 
+remaining zones.  The Contracting Officer is responsible for selecting which of these additional zones to test.  
+If all zones pass the pressure test it is assumed that all untested zones also pass and no further testing is 
+required.  If, however, any zone fails to pass the test's leakage requirements, re-seal, and re-test until it 
+passes in accordance with paragraph FAILED PRESSURE TEST.  Test an additional 20 percent of previously untested 
+zones.  If all tested zones pass, no further testing is needed.  If any zone in this group fails the test re-seal 
+and re-test the zone until it passes.  Continue this process until all the tested zones pass.  When testing a 
+zone, the doors to all adjacent zones that share a common surface with the tested zone are to have their doors 
+opened to the outdoors.  The resulting leakage from the test zoned is that through all six surfaces (4 walls, 
+roof, and floor, for a rectangular shaped zone).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Testing a Building Addition</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  UFC 3-101-01 indicates that pressure testing a new building addition 
+is not required if the interface between new and existing surfaces cannot be 
+(or are not) adequately sealed for testing.  An accurate pressure test can still 
+be performed on the building addition using the method described in this paragraph.  
+If a pressure test is performed on the addition, the surface area calculation 
+should only include those surfaces equipped with an air barrier and not the 
+interface (common) surfaces.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>If the existing building is occupied, coordinate the pressure test with building representatives.  In preparation 
+of the test, de-energize the air handling system serving that portion of the existing building that shares surfaces 
+with the new building addition.  Pressure testing a new building addition may also require pressurizing that 
+part of the existing building that shares surfaces in common with the new building addition.  If an air barrier 
+is applied to the common surfaces separating the existing building from the new addition, prior to the test prop 
+open a sufficient quantity of doors and windows to keep the existing building at the same pressure as the outdoors.  
+If an air barrier is not applied to the common surfaces separating the existing building from the new addition, 
+pressurize that part of the existing building that shares surfaces in common with the building addition to the 
+same level as the as the addition using separate test pressurization equipment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Failed Pressure Test</TTL><BRK/>
+<BRK/>
+<TXT>If the pressure test fails to meet the established criteria, use diagnostic test methods described in paragraph 
+LOCATING LEAKS BY DIAGNOSTIC TESTING to discover the leak locations. Provide additional permanent sealing measures 
+to reduce or eliminate leak sources discovered during diagnostic testing. Retest (perform another pressure test) 
+after sealing has been completed.  Repeat this sequence of documenting test results in the test report, performing 
+diagnostic tests, documenting recommendations for additional sealing measures in the test report, sealing leak 
+locations per recommendations, and re-testing as necessary until the building envelope passes the pressure test 
+and is in compliance with the performance requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Air Leakage Test Report</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit and include Section <SRF>07 27 10</SRF>, BUILDING AIR BARRIER SYSTEM.  The 
+paragraph of Section <SRF>07 27 10</SRF> titled "Air Barrier Envelope Surface Area and 
+Leakage Requirements" includes the allowable leakage rate.  These rates are 
+different depending on if the test is Architectural Only or Architectural Plus 
+HVAC System.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Report volumetric flow rates and corresponding differential pressures in<MET> liters per second (L/s)</MET><ENG> cubic feet per 
+minute (cfm)</ENG> and Pascals (Pa), respectively, on the Air Leakage Test Form sample form found in Appendix A.  Populate 
+the accompanying spreadsheet file titled <ATT>Pressure Test Data Analysis</ATT> with information obtained during the test.  
+The spreadsheet uses equations found in <RID>ASTM E779</RID> as a basis for calculating the envelope leakage rate.  Other 
+similar leakage rate calculation programs cannot be used or submitted for review.  Submit a printout of the data 
+input and output in the report.  Should any air tightness (pressure) test fail, the pressure test report is to 
+include data and results from all previous failed tests along with the final successful test data and results.  
+Indicate if the resulting leakage rate did or did not meet the goal leakage requirement.  Identify and document 
+deficiencies in the building construction upon failure of a test to meet the specified maximum leakage rate.</TXT><BRK/>
+<BRK/>
+<TXT>Test reports on leakage tests performed using fan pressurization must meet <RID>ASTM E779</RID> requirements; reports on 
+tests performed utilizing blower door testing must meet <RID>ASTM E1827</RID> requirements.  Include the Test Agency Qualification 
+Sheet, Air Leakage Test Form and Air Leakage Test Results Form in the written report.  Document every test set-up 
+condition with diagrams and photos to ensure the tests can be made repeatable.  Document all pneumatic hose termination 
+locations.  Record in detail how the building envelope was prepared for the tests.  Also describe in detail which 
+building items were temporarily sealed.  Include photos of test equipment and sealing measures in the report.  
+Include an electronic (pdf) version of all test reports on a CD.  If the building envelope fails to meet the 
+leakage rate goal, provide recommendations to further seal the envelope and document these recommendations in 
+the test report. </TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Locating Leaks By Diagnostic Testing</TTL><BRK/>
+<BRK/>
+<TXT>Use diagnostic test methods described herein to discover obvious leaks through the envelope.  Perform diagnostic 
+tests on the building envelope regardless of the envelope meeting or failing to meet the designated leakage rate 
+goal. Use diagnostic test methods in accordance with <RID>ASTM E1186</RID> and in conjunction with pressurization equipment, 
+as necessary.  Use the thermography diagnostic test to establish a baseline for envelope leakage.  Apply additional 
+diagnostic tests (find, feel, fog or other tests) as necessary to further define leak locations and pathways 
+discovered using thermography or to find additional leaks not readily detected by thermography.  Using a variety 
+of diagnostic tests may help locate leaks that would otherwise go undetected if only a single diagnostic test 
+were used.  Pay special attention to locating leaks at interfaces where there is a change in materials or a change 
+in direction of like materials.  These interfaces, at a minimum, include roof/wall, wall/wall, floor/wall, wall/window, 
+wall/door, wall/louver, roof mounted equipment/roof curb interfaces and all utility penetrations (such as ducts, 
+pipes, and conduit) through the envelope's architecture.  Also use diagnostic tests to check for leakage between 
+the air duct and duct damper, when the damper, under normal control power, is placed in the closed position.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Sealing and Re-Testing</TTL><BRK/>
+<BRK/>
+<TXT>Should leaks be discovered during diagnostic tests, thoroughly document the exact leak locations on a floor plan 
+so that sealing can be later applied, if required or as directed.  If the envelope passes the leakage test, use 
+the diagnostic test procedure described above to identify obvious leakage locations.  Seal the leaks at the discretion 
+of the COR based on the magnitude, location, potential for liquid moisture penetration or retention, potential 
+for condensation, presence of daylight through an architectural surface or if the leakage location could potentially 
+cause rapid deterioration or mold growth of, or in the building envelope materials and assemblies.  Apply sealing 
+measures after diagnostic testing is complete and all pressurization blowers are off.  To verify that the applied 
+sealing measures are effective, re-test for leaks using the same diagnostic methods that discovered the leak.  
+Reseal and retest until the envelope meets the leakage rate goal and all obvious leaks through the envelope are 
+sealed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Find Test</TTL><BRK/>
+<BRK/>
+<TXT>Use visual observation to locate daylight or artificial light streaming from the opposite side of the envelope.  
+Observe all interfaces identified above.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Feel Test</TTL><BRK/>
+<BRK/>
+<TXT>Use the building's air handling system or blower door equipment to negatively pressurize the building envelope, 
+to at least 25 Pa but no greater than 85 Pa, with respect to the outdoors.  The larger the pressure difference, 
+the easier discovering leaks by feeling them becomes.  While inside the envelope, hand feel roof/wall, wall/wall, 
+and floor/wall interfaces and utility penetrations (such as ducts, pipes and conduit) for leaks and note the 
+leak locations on a floor plan.  The "Feel" test may also be used to check for leaks between the ductwork and 
+ductwork damper.  To do this, positively pressurize the envelope and check for air movement from the envelope 
+exterior.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Infrared Thermography Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Generally, thermography can only be performed if there is a sufficiently 
+significant temperature difference, a minimum of<MET> 5 degrees C</MET><ENG> 9 degrees F</ENG> per 
+ASTM E1186 between the indoors and outdoors.  Pressurizing and depressurizing 
+the envelope while performing thermography can help exaggerate leaks, thereby 
+making them more noticeable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate thermography examination with the pressure test agency and the test agency's pressurization equipment.  
+The pressure test agency is to allow adequate time for the thermographer to perform a complete thermographic 
+examination, as described hereinafter, of the envelope interior and exterior, including readings of the roof.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Thermography Test Methods</TTL><BRK/>
+<BRK/>
+<TXT>Before thermographic testing, remove furniture, construction equipment, and all other obstructions both inside 
+and outside the building as necessary to gain a clear field of view.  In the Thermographic Investigation Report, 
+document all areas where obstructions remain.  For exterior thermal examination of the envelope, including readings 
+of the roof, verify that no direct solar radiation has heated the envelope surfaces to be examined for a period 
+of approximately 3 hours for frame construction and for approximately 8 hours for masonry veneer construction.  
+Conduct exterior investigations after sunset, before sunrise, or on an overcast day when the influence of solar 
+radiation can be determined to be minimal.  Limit exterior examinations to times when the influence of solar 
+radiation is minimal, such as after sunset or before sunrise or during an overcast day.  Conduct thermal imaging 
+tests only when wind speeds are less than 8 mph at the time of analysis and at the end of analysis.  Document 
+any variations in wind during the test.  Document all variations of test conditions in the Thermographic Investigation 
+Report. Test only when exterior surfaces are dry. Monitor and document ongoing test parameters, such as the temperatures 
+inside and outside the air barrier envelope, wind speed, and differential pressure.  </TXT><BRK/>
+<BRK/>
+<SPT><TTL>Thermography Testing of the Air Barrier</TTL><BRK/>
+<BRK/>
+<TXT>Test the building envelope in accordance with <RID>ISO 6781</RID>, and <RID>ASTM E1186</RID>.  Perform a complete thermographic inspection 
+consisting of the full inspection of the interior and exterior of the complete air barrier envelope, to include 
+readings of the roof.  Document envelope areas that are inaccessible for testing. Use infrared thermography technology 
+in concert with standard pressurization methods (blower doors, trailer mounted fans or the building's own air 
+handling systems) to locate leaks through the air barrier.  Adjust the HVAC system, if possible, to create or 
+enhance the temperature difference between the envelope interior and exterior.  The minimum allowable temperature 
+difference is<MET> 5 degree C</MET><ENG> 9 degrees F</ENG>.  Maintain this temperature difference for at least 3 hours prior to the 
+test.  Use pressurization methods to establish a minimum of +20 Pa pressure difference with respect to the outdoors 
+while using an infrared camera to view the envelope from outdoors. When viewing with the camera from inside the 
+envelope, keep the envelope at a pressure differential of -20 Pa with respect to the outdoors using pressure 
+testing equipment or the building's own air handling system.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Thermography Test Results</TTL><BRK/>
+<BRK/>
+<TXT>Document the location of all leaks, anomalies, and unusual thermal features on a floor plan or elevation view 
+and catalog them with a visible light picture for locating the defect for correction.  The thermographer is to 
+recommend corrective actions to eliminate the leaks, anomalies, and unusual thermal features.  Where leaks are 
+found perform corrective sealing as necessary to achieve the whole envelope air leakage rate specified.  After 
+sealing, again use thermography in concert with standard pressurization methods to verify that the air leakage 
+has been reduced.  After these leaks have been permanently sealed, note all actions taken on the drawings or 
+in the Thermographic Investigation Report.  Submit the drawings for approval as part of the Thermographic Investigation 
+Report.  Also include thermographic photos that show where leaks were discovered.  Include thermograms using 
+an imaging palette that clearly shows the observed thermal patterns indicating air leakage.  The Contracting 
+Officer's Representative is to witness all testing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Fog Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A fog generator is an electrical device that heats a water-based fluid 
+and converts it into a safe, breathable and relatively buoyant fog.  This fog 
+can be issued towards a building interface from a distance of<MET> 6 m</MET><ENG> 20 feet</ENG> or 
+greater.  Consumer grade fog generators are commonly used for parties or during 
+the Halloween season.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Before using a theatrical fog generator, disable all building smoke detectors as they may alarm when fog is issued.  
+Coordinate fog tests and the disabling of all smoke detectors with the Contracting Officer's representative and 
+the local fire department as necessary.  Use pressure test equipment or the buildings own air handling system 
+to positively pressurize the building envelope to at least 25 Pa but not greater than 85 Pa over the outdoors.  
+Using a theatrical fog generator within the envelope, direct fog at suspected leakage points such as at building 
+interfaces.  Test the following interfaces: roof/wall, wall/wall, floor/wall, wall/window, roof/mounted mechanical 
+equipment.  From the vantage point immediately outside the envelope and opposite that of the interface being 
+tested, observe the effect as the fog is issued.  Detection may also be further enhanced by using a scented fog 
+liquid or a fog liquid that produces a colored fog.  Look for fog and smell for associated odor percolating through 
+the interface.  Also use smoke puffers and smoke sticks as necessary to locate leaks at these and other interface 
+locations. If the Architectural Plus HVAC System pressure test will be/was performed introduce fog into ductwork 
+to check for leakage between ductwork and associated dampers.  After fog testing has ended, reactivate the building 
+smoke detectors, and notify the Contracting Officer and local fire department that the test has ended.  After 
+sealing has been completed retest these areas using fog.  Seal additional leaks that are found.  (Note that theatrical 
+fog may release quantities of the water vapor, glycol, mineral oil, or other media that could damage electronics 
+and interior finishes or cause allergic reactions. Small scale smoke trace could be used as an alternative.  
+See "Effects of Theatrical Smokes and Fogs on Respiratory Health in the Entertainment Industry" at <URL HREF="www.nih.gov">www.nih.gov</URL>
+.)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Diagnostic Test Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Once the diagnostic tests have been completed and the leakage locations identified and sealed, document these 
+procedures, locations, and recommendations in the diagnostic test report.  Submit plan and profile drawings that 
+thoroughly identify leak locations.  Describe in detail all leak locations so that the seal-up crew knows where 
+to apply sealing measures.  After sealing measures have been applied, describe the methods used along with applicable 
+photos of the final sealed condition.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Thermographic Investigation Report</TTL><BRK/>
+<BRK/>
+<TXT>Submit a report of each thermographic investigation identifying the thermal discontinuities in the thermal control 
+layer.  Indicate in the final report locations to which improvements for both the air control layer and the thermal 
+control layer were made to reduce air leaks and correct discontinuities in the thermal control layer.  Include 
+in the report some selected radiometric images of suspected failure points in the air barrier envelope that indicate 
+before and after conditions.[  Devote a chapter(s) of the Thermographic Investigation Report to identifying suspected 
+points of thermal bridging, moisture migration through roofs and walls, and insulation voids.]  Indicate in the 
+final report improvements that were made to the envelope to reduce air leaks.  Include the following items in 
+the report:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Brief description of the building construction</OLI><BRK/>
+ <BRK/>
+<OLI>Types of interior and exterior surface materials used in the building.</OLI><BRK/>
+<BRK/>
+<OLI>Geographical orientation of the building with a description of the exterior surroundings including other 
+buildings, vegetation, landscaping, and surface water drainage.</OLI><BRK/>
+<BRK/>
+<OLI>Camera brand, model and serial number, and most recent calibration date; optional lenses with serial 
+numbers (if applicable)</OLI><BRK/>
+<BRK/>
+<OLI>Thermographer's and Government Inspector's names</OLI><BRK/>
+<BRK/>
+<OLI>Date and time of tests</OLI><BRK/>
+<BRK/>
+<OLI>Air temperature and humidity inside the air barrier envelope</OLI><BRK/>
+<BRK/>
+<OLI>Outdoor air temperature and humidity</OLI><BRK/>
+<BRK/>
+<OLI>General information for the last 12 hours on the solar radiation conditions in the geographic area where 
+the test is being performed.</OLI><BRK/>
+<BRK/>
+<OLI>Ambient conditions such as precipitation and wind direction and speed occurring with the last 24 hours, 
+as applicable.  Refer to specific requirements in each section of each thermographic inspection type 
+for requirements in each specific area.</OLI><BRK/>
+<BRK/>
+<OLI>Documentation of those portions of the building envelope which were not within test conditions when the 
+scan was performed, and which portions were obstructed by adjacent structures, interior furnishings, 
+intervening cavities, or reflective surfaces.</OLI><BRK/>
+<BRK/>
+<OLI>Other relevant information, which may have influenced test results.</OLI><BRK/>
+<BRK/>
+<OLI>Drawings, sketches, floor plans and photographs detailing the locations in the buildings where thermograms 
+were taken detailing possible irregularities in the components being tested.</OLI><BRK/>
+<BRK/>
+<OLI>Thermal images taken during the inspection with their relative locations and written or voiced recorded 
+explanations of the anomaly listed along with visual and reference images.</OLI><BRK/>
+  <BRK/>
+<OLI>An identification of the aspects or components of the building being examined.</OLI><BRK/>
+<BRK/>
+<OLI>Explanations for the type and the extent of each construction defect observed during the inspection.</OLI><BRK/>
+<BRK/>
+<OLI>Any results from additional measurements and investigations.  Identify additional equipment used and 
+support with type, model number, serial number, and date of most recent calibrated.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Fog Test Report</TTL><BRK/>
+<BRK/>
+<TXT>Document all turbulent air flow and dead air spaces within the envelope.  Report fog behavior as it exits from 
+or is entrained within the building.  Include a floor plan in the report that documents the locations where fog 
+passed through the envelope.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Calculation Program</TTL><BRK/>
+<BRK/>
+<TXT>To calculate the envelope leakage rate and other required outputs, input the data obtained during the pressure 
+tests as documented in the Air Leakage Test Form (Appendix A) into the Air Leakage Rate by Fan Pressurization 
+Excel spreadsheet.  This spreadsheet can be found at the following web site: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL>
+.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>After Completion Of The Pressure And Diagnostic Test</TTL><BRK/>
+<BRK/>
+<TXT>After all pressure and diagnostic testing has been completed unseal all temporarily sealed items. Unless otherwise 
+directed by the Contracting Officer, return all dampers, doors, and windows to their pre-test condition.  Remove 
+tape and plastic from all temporarily sealed openings, being careful not to deface painted surfaces.  If paint 
+is removed from finished surfaces, repaint to match existing surfaces.  Unless otherwise directed by the Contracting 
+Officer's representative, return fuel (gas) valves to their pre-test position and relight pilot lights.  Return 
+all fans and air handling units to pre-test conditions.  Restore smoke/fire detectors to operating condition.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Repair And Protection</TTL><BRK/>
+<BRK/>
+<TXT>Repair and protection are the Contractor's responsibility, regardless of the assignment of responsibility for 
+testing, inspection, and similar services.  Upon completion of inspection, testing, or sample taking and similar 
+services, repair damaged construction and restore substrates and finishes, protect construction exposed by or 
+for quality control service activities, and protect repaired construction.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>TRAINING</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This Article contains tailoring options for KTR HIRED COMMISSIONING PROVIDER, 
+and GOVT HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>The Building Enclosure Commissioning Specialist must review the training plan required by Section <SRF>01 78 00</SRF> OPERATION 
+AND MAINTENANCE DATA and identify any deficiencies to the Contracting Officer's Representative and the Contractor's 
+Quality Control Personnel.</TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>The Commissioning Provider is responsible for overseeing and approving the training plan required by Section 
+<SRF>01 78 00</SRF> OPERATION AND MAINTENANCE DATA and identifying any deficiencies to the Contracting Officer's Representative 
+and the Contractor's Quality Control Personnel.</TXT><BRK/>
+<BRK/></TAI>
+<TXT>Coordinate, schedule, and document training of all commissioned systems as required by Section <SRF>01 91 00.15</SRF> BUILDING 
+COMMISSIONING paragraph titled "Training Plan".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FINAL BECx REPORT</TTL><BRK/>
+<BRK/>
+<TXT>The BECx must provide a final BECx report that includes information generated by the BECx process including: 
+BECx meeting minutes, design reports, test reports, the final OPR, BoD, final BECx Plan, issue and resolution 
+log, site observations, as-built drawings (provided by the Contractor), submittals, record of training, and recommended 
+preventive maintenance actions and intervals.</TXT><BRK/>
+<BRK/>
+<TXT>The BECxP must ensure the Final BECx Report is submitted as a portion of the Final Commissioning Report for the 
+project, as defined in Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.  Submit report within 14 calendar days of 
+completion of all commissioning efforts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>APPENDICES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Download appendices from <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL>
+ and insert as specified.  Attachments to this section will be listed in the 
+section table of contents generated through the SpecsIntact print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The following forms are available for download as a MS Word file at <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL>
+.</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33"><ATT>Appendix A - Air Leakage Test Form</ATT></LST><BRK/>
+<LST INDENT="-0.33"><ATT>Appendix B - Air Leakage Test Results Form</ATT></LST><BRK/>
+<LST INDENT="-0.33"><ATT>Appendix C - Test Agency Qualifications Sheet</ATT></LST><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

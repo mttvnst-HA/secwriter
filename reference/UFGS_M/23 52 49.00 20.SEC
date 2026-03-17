@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-23 52 49.00 20 (November 2008)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 2 - 08/18</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 52 49.00 20 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 52 49.00 20</SCN><BRK/>
+<BRK/>
+<STL>STEAM BOILERS AND EQUIPMENT (500,000 - 18,000,000 BTU/HR)</STL><BRK/>
+<DTE>11/08, CHG 2: 08/18</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>steam boilers and related equipment for capacities 
+from<MET> 150 to 5275 kW</MET><ENG> 500,000 to 18,000,000 Btu/Hr</ENG></SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification supersedes the requirements for these boilers and equipment contained in specification 
+52Y.  Some paragraphs may need to be supplemented to meet the project requirements.  The boilers are equipped 
+for oil-, gas-, or oil-and-gas combination firing, as specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information shall be shown on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Dimensions of construction</NPR><BRK/>
+<BRK/>
+<NPR>2.  Relationship of materials</NPR><BRK/>
+<BRK/>
+<NPR>3.  Quantities, location and capacity of equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification. The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ACOUSTICAL SOCIETY OF AMERICA (ASA)</ORG><BRK/><BRK/><RID>ASA S1.4</RID><RTL>(1983; Amendment 1985; R 2006) Specification for Sound Level Meters (ASA 47)</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN INSTITUTE OF STEEL CONSTRUCTION (AISC)</ORG><BRK/><BRK/><RID>AISC 360</RID><RTL>(2016) Specification for Structural Steel Buildings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B40.100</RID><RTL>(2022) Pressure Gauges and Gauge Attachments</RTL><BRK/><BRK/><RID>ASME BPVC SEC I</RID><RTL>(2017) BPVC Section I-Rules for Construction of Power Boilers</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII</RID><RTL>(2015) Boiler and Pressure Vessel Codes:  Section VIII Rules for Construction of Pressure Vessel</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII D1</RID><RTL>(2023) BPVC Section VIII-Rules for Construction of Pressure Vessels Division 1</RTL><BRK/><BRK/><RID>ASME CSD-1</RID><RTL>(2024) Control and Safety Devices for Automatically Fired Boilers</RTL><BRK/><BRK/><RID>ASME PTC 4</RID><RTL>(2013; R 2023) Fired Steam Generators</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/><RID>AWS Z49.1</RID><RTL>(2021) Safety in Welding, Cutting and Allied Processes</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM B75/B75M</RID><RTL>(2020) Standard Specification for Seamless Copper Tube</RTL><BRK/><BRK/><RID>ASTM B88</RID><RTL>(2022) Standard Specification for Seamless Copper Water Tube</RTL><BRK/><BRK/><RID>ASTM B88M</RID><RTL>(2020) Standard Specification for Seamless Copper Water Tube (Metric)</RTL><BRK/><BRK/><RID>ASTM B111/B111M</RID><RTL>(2024) Standard Specification for Copper and Copper-Alloy Seamless Condenser Tubes and Ferrule Stock</RTL><BRK/><BRK/><RID>ASTM B395/B395M</RID><RTL>(2018) Standard Specification for U-Bend Seamless Copper and Copper Alloy Heat Exchanger and Condenser Tubes</RTL><BRK/><BRK/><RID>ASTM D396</RID><RTL>(2021) Standard Specification for Fuel Oils</RTL><BRK/><BRK/><RID>ASTM D888</RID><RTL>(2012; E 2013) Dissolved Oxygen in Water</RTL><BRK/><BRK/></REF><REF><ORG>FM GLOBAL (FM)</ORG><BRK/><BRK/><RID>FM APP GUIDE</RID><RTL>(updated on-line) Approval Guide https://www.approvalguide.com/</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL BOARD OF BOILER AND PRESSURE VESSEL INSPECTORS (NBBI)</ORG><BRK/><BRK/><RID>NBBI NB-27</RID><RTL>(1991) National Board Rules and Recommendations for the Design and Construction of Boiler Blowoff Systems</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 85</RID><RTL>(2025) Boiler and Combustion Systems Hazards Code</RTL><BRK/><BRK/><RID>NFPA 211</RID><RTL>(2019) Standard for Chimneys, Fireplaces, Vents, and Solid Fuel-Burning Appliances</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-B-18897</RID><RTL>(Rev F; CANC Notice 1) Boilers, Steam and Hot Water, Watertube (Straight Bare and Finned Tube), Cast Iron and Firebox, Packaged Type (40,000 to 35,000,000 BTU/HR Thermal Output Capacity)</RTL><BRK/><BRK/></REF><REF><ORG>U.S. GENERAL SERVICES ADMINISTRATION (GSA)</ORG><BRK/><BRK/><RID>CID A-A-50504</RID><RTL>(Basic) Analyzers, Flue-Gas, Orsat-Type, Portable</RTL><BRK/><BRK/><RID>CID A-A-50562</RID><RTL>(Basic) Pump Units, Centrifugal, Water, Horizontal; General Service and Boiler-Feed: Electric-Motor or Steam-Turbine-Driven</RTL><BRK/><BRK/><RID>CID A-A-50566</RID><RTL>(Basic) Monitoring Devices, Emission, Stack Related</RTL><BRK/><BRK/><RID>CID A-A-50573</RID><RTL>(Basic, Notice 1) Water Softener Unit, Lime-Soda Type</RTL><BRK/><BRK/><RID>CID A-A-59249</RID><RTL>(Basic; Notice 1; Notice 2) Filters, Fluid, Pressure, Feedwater</RTL><BRK/><BRK/><RID>FS F-B-2903</RID><RTL>(Basic; Notice 2) Boilers, Steam and or Water, Firetube, Scotch Packaged Type (320,001 to 35,000,000 BTU/HR Thermal Output Capacity)</RTL><BRK/><BRK/><RID>FS F-B-2910</RID><RTL>(Basic) Burners, Single Oil, Gas, and Gas-Oil Combination for Packaged Boilers (320,001 to 125,000,000 BTU/HR Thermal Output Capacity)</RTL><BRK/><BRK/><RID>FS F-F-2901</RID><RTL>(Basic; Notice 1) Feeders, Boiler Water Treatment, By-Pass and Compound Receiver Types</RTL><BRK/><BRK/><RID>FS F-P-2908</RID><RTL>(Basic; Notice 1) Pumping Units, Condensate, Return; and Boiler Feed Package</RTL><BRK/><BRK/><RID>FS TT-P-28</RID><RTL>(Rev H) Paint, Aluminum, Heat Resisting (1200 Degrees F.)</RTL><BRK/><BRK/><RID>FS W-H-2904</RID><RTL>(Basic; Notice 1) Heaters, Fluid, Deaerating (For Water Only) 1,000 to 1,600,000 Pounds Per Hour Capacity</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>29 CFR 1910</RID><RTL>Occupational Safety and Health Standards</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NAVAL FACILITIES ENGINEERING SYSTEMS COMMAND (NAVFAC)</ORG><BRK/><BRK/><RID>NAVFAC MO 225</RID><RTL>(1990) Industrial Water Treatment</RTL><BRK/><BRK/></REF><REF><ORG>WATER QUALITY ASSOCIATION (WQA)</ORG><BRK/><BRK/><RID>WQA S-100</RID><RTL>(2000) Household, Commercial, and Portable Exchange Cation Exchange Water Softeners</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>Describe the performance or design requirements and tolerances of the boiler system.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Heating Surface and Volume Measurements</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit heating surface and volume measurements, including <SUB>heat release calculations</SUB> and <SUB>performance data at minimum, 25 percent, 50 percent, 75 
+percent, and 100 percent load</SUB> sufficient to establish compliance of boilers with heat release requirements.  Base calculations on the specified 
+efficiency and capacity.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Section <SRF>23 03 00</SRF> BASIC MECHANICAL MATERIALS AND METHODS applies, with the additions and modifications stated herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Steam Boiler System</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Heating Surface and Volume Measurements</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Heat Release Calculations</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Performance Data at Minimum, 25 Percent, 50 Percent, 75 Percent, and 100 Percent Load</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Boiler System Start-Up Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit test reports in accordance with section FIELD QUALITY CONTROL.  Submit a detailed written record of the start-up performance, 
+including burner setting data over the entire load range, before the Contractor's and sub-contractor's test personnel leave the 
+site.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Report of Prior Installations</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Engineer</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Start-Up Plan</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Start-Up Certification</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Boilers</SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit evidence that boilers meet requirements of standards specified.  Include with the certificate of compliance acceptable 
+evidence that standards are met.  Acceptable evidence will be the official UL listing mark prescribed in the UL gas and oil equipment 
+list for oil-fired, gas-fired, or gas and oil-fired boiler assemblies, as applicable plus the appropriate official ASME symbol 
+stamp.  In lieu of the above certification, acceptable evidence will be a test report from an independent testing laboratory, 
+indicating that the boilers and accessories have been inspected and tested and meet requirements of the applicable standards specified.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Boilers</SUB>, Data Package 4</ITM><BRK/>
+<BRK/>
+<ITM>  Submit in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Report of Prior Installations</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Boilers shall be shipped to the site of installation as [a] [an] [completely assembled packaged boiler-burner unit] [unassembled package.  A competent 
+installation engineer or technician as stated in paragraph QUALIFICATIONS OF ENGINEER shall assemble an unassembled boiler-burner package in strict 
+accordance with the manufacturer's instructions. ] Boilers and feedwater equipment installed shall be of proven design which has been tested, successfully 
+installed, and operated in commercial or industrial installations.  Submit a certified written report from the boiler and feedwater equipment manufacturer 
+indicating date of installation, type, model, capacity, and address location of installed boilers along with maintenance records and operating 
+conditions including operating load and load swings.  Show that substantially identical equipment of comparable capacity, within 20 percent, has 
+been successfully installed and operated in not less than three installations under similar operating conditions for a period of not less than 
+2 years.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Start-Up and Installation Engineer</TTL><BRK/>
+<BRK/>
+<TXT>Provide the services of a qualified engineer or technician for start-up and tests and installation of equipment as specified below.  More than 
+one engineer or technician may be employed based on the types of specific equipment.  One engineer or technician appointed by the Contractor shall 
+supervise and be responsible for the overall installation, start-up, test, and checkout of systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Engineer</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a printed certified qualification resume of the engineer or technician.  The engineer's or technician's resume shall list applicable experience 
+related to installation, start-up, and testing of equipment and applicable factory training and education.  Qualifications require the engineer 
+to have supervised two installations of similar size and type which are operating satisfactorily.  If more than one engineer or technician is employed, 
+provide a certified resume for each one indicating their specific specialty and item of work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph for boilers under<MET> 2930 kW</MET><ENG> 10,000,000 Btu/hr</ENG> capacity.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an installation engineer or technician to install and supervise the installation of <SUB>steam boiler system</SUB> including instrumentation and boiler 
+controls.  Provide the technician or engineer until the installation of equipment is coordinated and checkout completed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Start-Up Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a written schedule with dates of start-up tests, installation, and checkout of equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Start-Up and Test</TTL><BRK/>
+<BRK/>
+<TXT>Start-up and test engineer or technician shall be approved by the manufacturer of the specific piece of equipment including boiler, boiler controls, 
+boiler instrumentation, and feedwater equipment.  The start-up and test engineer or technician shall remain on the job until the unit has been 
+in successful operation for [_____] days, and has been accepted by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Start-Up Certification</SUB></TTL><BRK/>
+<BRK/>
+<TXT>After installation of equipment, the engineer or technician shall submit a signed certificate or certified written statement that the equipment 
+is installed in accordance with the manufacturer's recommendations.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>BOILERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Only allow option of MIL-B-18897 for low pressure boilers of capacities less than<MET> 2930 kW</MET><ENG> 10,000,000 Btu/h</ENG>
+.  On/off combustion controls may be used for up to<MET> 880 kW</MET><ENG> 3,000,000 Btu/h</ENG>, hi-low-off type may be used for<MET> 585 
+to 1465 kW</MET><ENG> 2,000,000 to 5,000,000 Btu/h</ENG>, and modulating positioning type may be used for over<MET> 880 kW</MET><ENG> 3,000,000 
+Btu/h</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Research local, state, and federal emission standards and place any new or unusual requirements in this 
+specification section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Firetube, packaged type of standard duty conforming to <RID>FS F-B-2903</RID>] [or] [Firetube type (horizontal return tubular and horizontal fire box)] [Water 
+tube type] [Cast iron, sectional type conforming to <RID>MIL-B-18897</RID>] [except that treatment and painting shall be in accordance with manufacturer's 
+standard practice,] Boilers shall have gross output capacity of at least [_____]<MET> kW</MET><ENG> Btu per hour</ENG> when operating at a steam pressure of [_____]<MET> 
+kPa (gage)</MET><ENG> pounds per square inch gage (psig)</ENG> at the site under design conditions when the burner is firing [[No. [_____] oil conforming to [<RID>ASTM D396</RID>
+] having a higher heating value of [_____]<MET> MJ/kg</MET><ENG> Btu per gallon</ENG>] [or] [[natural] [manufactured] [mixed] [liquified petroleum] gas having a higher 
+heating value of [_____]<MET> MJ/kg</MET><ENG> Btu per cubic foot</ENG> and a pressure of [_____] <MET> kPa (gage)</MET><ENG> psig</ENG> at the fuel train connection].]  [Gas fired boilers 
+shall have a steady state combustion efficiency of at least 80 percent when fired at the maximum and minimum rated capacities which are provided 
+and allowed by the controls.] [Oil fired boilers shall have a steady state combustion efficiency of at least 81 percent when fired at the maximum 
+and minimum rated capacities which are provided and allowed by the controls.] Boilers shall comply with local, state, and federal emission regulations 
+for the fuel being used.  Smoke emission shall not exceed Ringlemann No. 1, except during start-up, cleaning, or soot blowing.  Boiler furnaces 
+shall be equipped with combustion control safety devices conforming to [<RID>ASME CSD-1</RID>, for boilers of less than<MET> 3660 kW</MET><ENG> 12,500,000 BTU/HR</ENG> thermal 
+heating capacity.] [<RID>NFPA 85</RID>, for boilers with thermal heating capacity of<MET> 3660 kW</MET><ENG> 12,500,000 BTU/HR</ENG> or larger.]  [Burners and controls for boilers 
+conforming to <RID>MIL-B-18897</RID> shall conform to <RID>FS F-B-2910</RID>.] Burners of the rotary type are not acceptable.  Programming controls shall be of the automatic 
+[recycling] [non recycling] type and shall incorporate means for automatic self-checking of the circuit at the beginning of each start-up cycle.  
+Include a repetitive self-checking circuit to check components at intervals not to exceed the specified flame failure response time in [<RID>FS F-B-2910</RID>
+] [or] [<RID>FS F-B-2903</RID>] [as applicable] during the entire period of burner operation.  Combustion controls, shall be of the [on-off], [hi-low-off] 
+[modulating-positioning] type.  [Provide connections for remote starting or stopping of the boilers.]  [Explosion relief doors are required.]  
+[Provide steam operated feedwater injectors.]  [Cast iron boilers shall be of the sectional type and shall conform to the requirements above and 
+as specified.  Boilers shall be [automatic] [semi-automatic,] [or] [manual] start.]  [For each boiler, provide a steam operated soot blower made 
+of materials that shall withstand expected temperatures.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Boiler Connections</TTL><BRK/>
+<BRK/>
+<TXT>Requirements for interconnecting piping, insulation, fuel supply, [vibration isolation,] [_____], and other related work necessary to provide a 
+complete and operable steam system, whether or not specifically mentioned above, shall conform to applicable requirements of other UFGS sections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Boiler Instrumentation</TTL><BRK/>
+<BRK/>
+<TXT>In addition to the instruments required by the boiler specifications referenced above, provide the following instruments and locate where shown 
+and where recommended by instrument manufacturer:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A flue gas temperature gage.</OLI><BRK/>
+<BRK/>
+<OLI>A draft gage, [single point] [two point], conforming to <RID>ASME B40.100</RID>.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the applicable paragraph(s) from the following:</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These instruments are not normally required on boilers under<MET> 2930 kW</MET><ENG> 10,000,000 Btu/h</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>A carbon dioxide recorder to measure, record, and indicate the percentage by volume of carbon dioxide detected in the flue gas.  Flush 
+mount the recording unit and furnish with locking device and master key.  The carbon dioxide recorder shall in other respects conform to <RID>
+CID A-A-50566</RID>.</OLI>]<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These instruments are not normally required on boilers under<MET> 2930 kW</MET><ENG> 10,000,000 Btu/h</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>A complete oxygen analyzer system to measure oxygen content of flue gases generated by combustion of [gas] [or] [oil] as specified in paragraph 
+BOILERS shall be provided for each boiler.  The output of the analyzer shall range from zero to [_____] [25] percent oxygen:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide a complete aspirating system with proper connection to stack, necessary steam or water aspirating facilities, and piping 
+of proper specification to analyzer.  Provide piping in accordance with the oxygen analyzer manufacturer's recommendations and 
+install tight.  Install equipment in accordance with the manufacturer's instructions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide a paramagnetic analyzer.  Analyzer shall provide oxygen analysis in the zero and 25 percent oxygen range, and have means 
+of calibration.  Provide zero range and span adjustments as required.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Analyzer output and recorder input shall be compatible.  Provide, connect, and place in proper operation necessary transducers.  
+Follow special instructions relating to electrical transmission between analyzer and recorder as to the application of shielded 
+wiring in conduit.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Check the system with two calibrating gases as follows:  (a) 100 percent nitrogen, and (b) 3.5 percent oxygen and remainder nitrogen.</OLI><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These instruments are not normally required on boilers under<MET> 2930 kW</MET><ENG> 10,000,000 Btu/h</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Direct Probe In-Situ Type:  Oxygen analyzer shall be the direct probe type utilizing an in-situ zirconium sensing element.  Insert element 
+directly in the process flue gas stream and in direct contact with process gasses.  Sensing element shall be contained within a protective 
+shield mounted to the duct work by means of an adapter plate, all furnished by the manufacturer.  Analyzer shall be equipped with a facility 
+to allow daily automatic calibration check without removing the analyzer from the process.  That is, sample gases may be injected directly 
+on the sensing element while the analyzer is in the process.  In order to eliminate the temperature effect of the flue gases, maintain 
+the cell temperature in the probe at<MET> 843 degrees C</MET><ENG> 1,550 degrees F</ENG> by means of an externally mounted temperature controller equipped with 
+cold junction compensation and coupled to the probe with at least<MET> 6 meters</MET><ENG> 20 feet</ENG> of flexible cable.  Analyzer shall be <RID>FM APP GUIDE</RID> approved 
+and certified for "in-stack" analysis technique.  Output signal range shall be 4 to 20 milliamps and shall represent 0.25 percent to 25 
+percent oxygen as a logarithmic function, 0.1 percent to 10 percent oxygen as a logarithmic function, or zero percent to 10 percent as 
+a linear function.  [Circular chart recorder shall consist of a two-pen recording control mechanism having 110 volt ac electric motor drive.  
+Chart shall be<MET> 300 mm</MET><ENG> 12 inch</ENG> diameter and have 24-hour revolution.  Output control signal will be<MET> 20 to 103 kPa (gage)</MET><ENG> 3 to 15 psig</ENG> pneumatic.  
+Sufficient blank charts and four ink cartridges per pen for 400 days operation shall be provided.  Recorder shall have a dual 30 degrees 
+strip indicator.  Strip indicator and chart paper scale shall be logarithmic or linear and consistent with the analyzer signal conditioning.] 
+[Strip chart recorder shall consist of a two pen solid state electronic recording/controlling mechanism.  Strip chart shall be<MET> 100 mm</MET><ENG> 4 
+inches</ENG> wide and shall be driven at a speed of<MET> 19 mm per hour</MET><ENG> 3/4 inch per hour</ENG>.  Recording/controlling mechanism will operate on 110 volt 
+ac power.  Recorder shall be furnished with twelve usable 24-hour logarithmic or linear charts consistent with the analyzer signal conditioning.  
+Inking system shall be a breakaway inking system with replaceable fiber tip pens and 12 ink cartridges.  Strip chart recorder/controller 
+shall have vertical scale and horizontal driven chart.  Output control signal will be 4 to 20 milliamps dc.]  Flue gas temperature scale 
+shall be<MET> 149 to 427 degrees C</MET><ENG> 300 to 800 degrees F</ENG>.  Entire system response shall be not more than 3 seconds.</OLI><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These instruments are not normally required on boilers under<MET> 2930 kW</MET><ENG> 10,000,000 Btu/h</ENG>.  However, smoke 
+density recorders are mandatory for all residual oil fired boilers having capacities above<MET> 2930 kW</MET><ENG> 10,000,000 
+Btu/h</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>A smoke density [indicator] [recorder] of the [density limit] [continuous density] type with a scale calibrated in Ringlemann units.  Indicating 
+and recording systems shall include circuits for the audible warning of the maximum smoke density-limit.  Supply a vibrating electric horn 
+to sound the audible signal.  Otherwise the smoke density [indicator] [recorder] shall conform to <RID>CID A-A-50566</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Boiler Plant Controls and Instruments</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following plant [controls and] instruments:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Orsat Gas Analyzer : Provide a flue gas analyzer, Orsat type, conforming to <RID>CID A-A-50504</RID>.  Analyzer shall determine the CO2, CO, and O2 
+in the flue gas and shall be complete with chemicals and accessories for use in such determinations.</OLI><BRK/>
+<BRK/>
+<OLI>Steam flow recorder: to remotely indicate, record, and totaling the steam flow per hour through the steam header.  Provide the panel-mounted 
+indicating recorder with a tamper proof case.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert section number(s) for oil and/or gas piping systems in the blanks below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Volumetric fuel flow meters in accordance with [_____] [and [_____]].</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The value of tolerance limit shall be 3 percent for modulating positioning type, shall be 5 percent for 
+high/low/off type, and shall be 6 percent for on/off type.  See paragraph 3 for which type of combustion control 
+is specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Master Combustion Control:  Provide a common boiler master controller on the free standing boiler instrument and control panel to control 
+all boilers with each individual boiler controller acting as a submaster controller.  Boiler master control system shall provide for base 
+loading one [or more] boilers.  Base loaded boiler(s) shall be selected manually by an externally accessible switch.  On call for heat, 
+lead boiler shall cut in and moderate firing rate to satisfy demands.  When maximum desired firing rate is reached, lag boiler or boilers 
+shall cut in.  Only one boiler shall be on modulating firing at one time.  Maximum desired firing rate for base loaded boiler shall be 
+adjusted initially for boiler peak efficiency and shall be capable of easy manual adjustment by operating engineer.  Provide adequate indicators 
+approved by the Contracting Officer to show the method of loading of each boiler, and load being carried by it.  Make adjustments at front 
+of panel and no linkage adjustment shall be necessary.  Combustion control system shall be capable of maintaining the plant steam pressure 
+at the main header within the tolerance limits of plus or minus [_____] percent expressed as a percent of the set point values.  The specified 
+tolerance shall apply to a load which, within a one-minute period, swings from a steady-state condition to an increase (or decrease) in 
+load equal to a maximum of 10 percent of the plant.  Regulation tolerances shall apply to any steady state condition within the plant turndown 
+ratio of [_____].  Combustion efficiency shall not be less than that specified in the boiler specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Pressure gage conforming to <RID>ASME B40.100</RID> or indicating steam pressure in main steam header, [for indicating atomizing steam pressure,] 
+and for indicating feedwater pressure.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Boiler Control and Instrument Cabinet(s)</TTL><BRK/>
+<BRK/>
+<TXT>Provide boiler control and instrument cabinet(s) as specified in the referenced boiler specification(s) and may be mounted either on the boiler 
+front or adjacent thereto.  The arrangement may consist of a boiler mounted cabinet containing controls normally provided by the manufacturer and 
+a supplementary cabinet containing additional controls and instruments required herein.  Mount [plant master combustion control] [and] [steam flow 
+recorder] on or adjacent to control panel for number [_____] boiler.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Free-Standing Multi-Boiler Plant Control and Instrument Panel</TTL><BRK/>
+<BRK/>
+<TXT>Provide a free-standing panel and locate as indicated.  The panel shall contain all individual and multi-boiler controls, monitoring system, and 
+panel-mounted instruments specified herein and in the reference specifications, except that flame safeguard system may remain separately mounted 
+in a cabinet at each boiler.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Control Panel Construction</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the applicable paragraph(s) from the following:</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete inapplicable paragraph(s).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Construct control panel of not less than<MET> 3 mm</MET><ENG> 11 gage</ENG> reinforced steel for face, top, and sides.  The enclosed panel shall be not less than <MET> 610 
+mm</MET><ENG> 24 inches</ENG> in depth with inside rigidly welded braces.  Design control panel so that all indicating and recording devices and manually operated 
+switches shall be flush mounted in a gasketed removable-top front panel with indicating and recording devices at eye-level.  Provide a similar 
+removable-top rear panel located opposite front panel to facilitate wiring, piping, and maintenance.  Install other operating controls on a sub-panel 
+within the enclosure.  Access to panel enclosure shall be through gasketed, double piano-hinged doors of not less than<MET> 1.52 mm</MET><ENG> 16 gage</ENG> steel.  
+The doors shall be reinforced to prevent sagging and shall be provided with a three point compression type fastener and polished key lock handle.  
+Include a full width fluorescent lighting canopy also.  Prime coat complete control panel and lighting canopy and finished in baked enamel.  Identify 
+flush-mounted devices on panel with engraved lamicore nameplates.  Adequately reinforce, skirt, and suitably design panel base to permit anchoring 
+to the floor or foundation.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Control Panel Wiring and Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete inapplicable paragraph(s).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Control panel shall be factory pre-wired in accordance with <RID>NFPA 70</RID>.  Wire shall be thermoplastic Type THW, THWN, XHHW, or UL approved for the 
+intended use, color or number coded, and run in plastic ducts to numbered terminal blocks.  Control circuits shall be separately fused with properly 
+rated cartridge type fuses.  Power leads to and from magnetic starters and contractors shall terminate at terminal blocks so that field wiring 
+is necessary only from terminal blocks to external equipment.  Control leads to and from external control devices shall terminate at separate terminal 
+blocks from power leads.  Steam-, draft-, and air-operated devices shall be factory piped to permanently affixed external connections.  Pneumatic 
+signals shall be either<MET> 20 to 103 kPa (gage)</MET><ENG> 3 to 15 psig</ENG> or<MET> 20 to 207 kPa (gage)</MET><ENG> 3 to 30 psig</ENG>.  Piping connections to indicators shall be copper 
+tubing conforming to<MET> <RID>ASTM B88M</RID></MET><ENG> <RID>ASTM B88</RID></ENG>.  The boiler operating switch shall be a dust-tight sealed snap-action type.  The precision switches shall 
+have cadmium, silver, or platinum contacts, wiping action type, rated at 10 amperes.  Electrically or pneumatically tested, controls and equipment 
+shall be to simulate complete operational sequence.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Hot Water Heater</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Hot water heaters are only used on boilers operating at<MET> 103 kPa</MET><ENG> 15 psi</ENG> or less.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[The] [Each] [Number [_____]] boiler shall be equipped with internal hot water heating coils conforming to the <RID>ASME BPVC SEC VIII</RID>.  Heaters shall 
+have gasketed cast iron or steel flange mountings and shall be designed, fabricated, and tested to withstand<MET> 207 kPa (gage)</MET><ENG> 30 psig</ENG> maximum working 
+pressure at<MET> 121 degrees C</MET><ENG> 250 degrees F</ENG>.  The heating coil shall be finned tube type not less than<MET> 19 mm</MET><ENG> 3/4 inch</ENG> outside diameter and shall be 
+constructed of seamless copper or copper alloy that meet the requirements of [<RID>ASTM B75/B75M</RID>,] [<RID>ASTM B111/B111M</RID>,] or [<MET><RID>ASTM B395/B395M</RID></MET><ENG> <RID>ASTM B395/B395M</RID></ENG>
+].  The heating coil while submerged in water under pneumatic pressure shall withstand<MET> 2068 kPa (gage)</MET><ENG> 300 psig</ENG>.  The pressure drop through the 
+coil at maximum temperature and draw rate shall not exceed<MET> 34 kPa (gage)</MET><ENG> 5 psig</ENG>, unless otherwise indicated.  The coils shall terminate in threaded 
+inlet and outlet connections on the exterior of the boiler and shall be designed for the indicated temperature rise and maximum draw rate.  When 
+applicable, provide instrumentation for metering hot water production load on boiler.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Noise Levels</TTL><BRK/>
+<BRK/>
+<TXT>Noise measurements and exposure analyses should be conducted under the overall supervision of an industrial hygienist or suitably qualified medical 
+officer from the Navy Regional Medical Center (NRMC).  Safety personnel, engineers and others who have been certified by the Chief, Bureau of Medicine 
+and Surgery (BUMED) also may supervise the work.  Exposure limits for potentially hazardous noise levels of 85 dBA, continuous or intermittent, 
+and 140 dB peak sound pressure, impulse or impact, shall be maintained.  The sound level meter shall conform as a minimum to the Type 2 requirements 
+cited in <RID>ASA S1.4</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>BOILER BREECHING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Round Breeching</TTL><BRK/>
+<BRK/>
+<TXT>Construct round breeching of black iron or steel in accordance with <RID>NFPA 211</RID> for metal connectors for medium-heat appliances and shall be constructed 
+with welded beams and joints.  Round breechings also may consist of approved factory-built chimney sections for medium-heat appliances if the sections 
+are joined together with continuous welds, flanges, or couplings.  Provided suitable cleanouts that will permit cleaning the entire breeching without 
+dismantling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rectangular Breeching</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specifier should check structural steelwork section of the project specification, if used, as well as notes 
+on structural drawings to ensure against conflict of requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Structural materials shall comply with the applicable sections of <RID>AISC 360</RID>.  Shop connections may be welded or bolted as required for joining breeching 
+to equipment.  Supply hot dipped galvanized bolts and lock washers for bolted connections.  Bolts shall be not less than<MET> 10 mm</MET><ENG> 3/8 inch</ENG> in diameter, 
+and spaced not more than<MET> 76 mm</MET><ENG> 3 inches</ENG> apart.  Furnish bolted joints with<MET> 3.20 mm</MET><ENG> 1/8 inch</ENG> thick non-asbestos gaskets.  Breeching [plate] shall 
+be not less than [12 MS gage steel][<MET> 4.80 mm</MET><ENG> 3/16 inch</ENG> thick].  Welds shall conform to <RID>AWS D1.1/D1.1M</RID>.  Breeching system shall provide for maximum 
+expansion and contraction.  Expansion joints shall be of the guided flexible crease type with flexible element of not less than<MET> 1.60 mm</MET><ENG> 0.0625 
+inch</ENG> thick stainless steel.  Provide access doors and cast iron or reinforced steel plate with non-asbestos gaskets<MET> 3.20 mm</MET><ENG> 1/8 inch</ENG> thick and 
+positive closing latches of sufficient number to ensure a gas-tight seal.  Thoroughly clean breeching of rust and scale after fabrication by commercial 
+sand blasting.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Breeching Hangers</TTL><BRK/>
+<BRK/>
+<TXT>Design breeching hangers to carry not less than five times the breeching weight.  Hangers for round breeching shall be of the band type with hanger 
+rods.  Provide steel trapeze type hangers for rectangular breeching with angle support member and hanger rods.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleanout Doors</TTL><BRK/>
+<BRK/>
+<TXT>Secure cleanout doors to the ends and sides of the breeching where indicated or where required to effectively clean the breeching.  Construct cleanout 
+doors of a gage steel not less than that of the breeching and secure to a<MET> 32 by 32 inch</MET><ENG> 1 1/4 by 1 1/4 inch</ENG> angle frame not less than<MET> 3.20 mm</MET><ENG> 1/8 
+inch</ENG> in thickness with mounting bolts welded to the angle frame and spaced not over<MET> 152 mm</MET><ENG> 6 inches</ENG> on center; provide<MET> 1.60 mm</MET><ENG> 1/16 inch</ENG> thick 
+long fiber non-asbestos gasket between cleanout doors and frames.  Doors shall be squared and shall be full height of diameter or side of breeching 
+up to a size of<MET> 610 mm by 610 mm</MET><ENG> 24 inches by 24 inches</ENG> maximum, except that cleanout doors less than<MET> 305 mm</MET><ENG> 12 inches</ENG> in height shall be rectangular 
+and shall be<MET> 305 mm</MET><ENG> 12 inches</ENG> in length.  Plug type cleanouts are not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stacks</TTL><BRK/>
+<BRK/>
+<TXT>Stacks shall be constructed of not less than [12] [10] MS gage steel, welded construction, and of proper size to adequately serve the respective 
+boiler.  Stacks shall project above the boiler house roof not less than that indicated and shall be supported by a substantial steel framework.  
+Provide structural steel framework at boiler room roof around each stack and attached to roof joints to brace stack against swaying and to support 
+new roof curb and stub stack.  Construct stacks as indicated to include automatic damper access door, gas sampling connection, smoke density indicator, 
+temperature sensing connection, and other features shown or required.  When rain can fall into contact with internal boiler parts, provide stub 
+stacks with rain caps or hoods.  Provide stacks with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide curb openings in roof and properly flash and counterblock to roofing.  Furnish and install flashing hoods around stacks and over 
+roof curbs.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a bellows type flexible [fabric] [_____] type expansion joint approximately<MET> 152 mm</MET><ENG> 6 inches</ENG> wide in the stacks at the location 
+shown.  Joint system shall consist of<MET> 4.80 mm</MET><ENG> 3/16 inch</ENG> steel plate welded to inside of bottom section of stack.  Top section of stack 
+shall be free to move up and down outside the plate.  Weld steel reinforcing angles around both top and bottom sections of stack.  Fit 
+and weld to the angles an expansion angle type bellows of 12 gage steel.</OLI><BRK/>
+<BRK/>
+<OLI>Clean stacks of dirt, rust, oil and grease by wire brushing and solvent degreasing and give one shop coat of heat-resisting aluminum paint 
+conforming to <RID>FS TT-P-28</RID> on the inside and outside.  The coat of paint shall have a minimum dry film thickness of one mil.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>BLOWDOWN EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Furnish  the [boiler] [plant] with all equipment, tanks, and controls necessary for bottom [and continuous] blowdown of the boilers.  The equipment 
+for bottom blowdown systems shall include a [blowdown tank] [and sample cooler].  [Continuous blowdown systems shall be of the packaged, proportional 
+type consisting essentially of a heat exchanger, flow control valve, surge tank, [and] sample cooler, [and blowdown control console with test sink].]  
+Install and pipe blowdown equipment as indicated, and conform to recommendations of the <RID>NBBI NB-27</RID>, Recommended Rules for National Board Boiler 
+Blowoff Equipment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Bottom Blowdown Tank</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Cathodic protection or magnesium anodes only required when steel tank is buried.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Blowdown tank shall be fabricated of welded steel plate in accordance with <RID>ASME BPVC SEC VIII</RID>.  Tank shall be a vertical cylindrical tank designed 
+for the working pressure of the boiler(s).  Tank shall be equipped with a tangential blowdown inlet located so as to impinge on a carbon steel 
+wear plate extending at least 180 degrees around the interior circumference of the tank from the point of inlet.  Tank shall be equipped with an 
+internal overflow, vent, drain, safety relief valve, and gage glass with try cocks, blowdown cock, and guard.  Tank interior shall be protected 
+by an epoxy coating system suitable for continuous water immersion and operation at a minimum temperature of<MET> [121] [149] degrees C</MET><ENG> [250] [300] 
+degrees F</ENG>.  The tank [shall be fitted [with renewable magnesium anodes] [with cathodic protection equipment] to minimize galvanic corrosion of 
+the exterior.] [shall be constructed of Class A reinforced concrete and shall be fitted with a bolted steel manhole frame and cover.  Install blowoff 
+pipe, vent pipe, and drain pipe in pipe sleeves built into concrete.  Fill the space between the pipe and sleeves and caulk with lead wool or equivalent 
+to make a watertight seal.  Tank shall be divided into two sections by means of a baffle to form a sediment chamber.]  Size and locate blowoff 
+tank shall be size and located as shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sample Cooler</TTL><BRK/>
+<BRK/>
+<TXT>Provide a water-cooled, shell-and-tube, or shell-and-coil type heat exchanger designed for cooling sample of boiler water prior to chemical testing.  
+Furnish the sample cooler as a component of the packaged continuous blowdown system when such a system is being furnished.  The cooler shall consist 
+of a cast iron or steel shell with copper coil or copper alloy tubes and shall be equipped with a brass or bronze sampling cock.  [The cooler shall 
+be connected to a header and so valved that a sample can be withdrawn from any boiler as desired.]  [Furnish a concentrometer kit containing necessary 
+glassware, reagents, and instructions for determining boiler water concentrations.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Continuous Blowdown System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify continuous blowdown only where makeup water ratio is in excess of 20 percent of the boiler output 
+or where the total dissolved solids of this makeup water are in excess of 500 parts per million.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include last sentence if a console type unit is indicated.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a complete packaged unit of the [automatic-proportioning] [manual-apportioning] type wherein the amount of blowdown from the [boiler] [plant] 
+is automatically proportioned to the amount of make-up feedwater [and the total amount of blowdown from the plant is manually apportioned between 
+boilers according to their steaming rate].  The system shall include either an automatic-proportioning valve and a heat exchanger or a concentric 
+tube automatic proportioning control which shall be provided with a separate heat exchanger when necessary to meet the performance requirements 
+indicated or specified herein.  The system shall be designed for not less than boiler design pressure and shall be capable of heating the feedwater 
+from [_____]<MET> degrees C</MET><ENG> degrees F</ENG> to [_____]<MET> degrees C</MET><ENG> degrees F</ENG> at the flow rates indicated.  Heat exchanger shall consist of a steel shell and 
+heads with Type 304 stainless steel tubes arranged in a removable U-bend bundle.  Construct and test shell in accordance with <RID>ASME BPVC SEC VIII</RID>
+ for the specified boiler operating pressure.  Automatic proportioning valve shall be provided with a sensing orifice on both the makeup and blowdown 
+lines and shall be of the adjustable ratio type in which the ratio of makeup to blowdown may be set anywhere within a range of [30:1] [_____] to 
+[4:1] [_____].  Automatic proportioning control shall consist of two concentric tubes, the inner tube being of a thermostatic design which acts 
+directly against an adjustable seat in response to the temperature differential between the blowdown in the inner tube and the makeup water between 
+the inner and outer tubes.  [Manual apportioning valves shall have bronze bodies with stainless steel seats and disks and shall be of the indicating 
+type specifically designed for blowoff service.] Blowdown system shall be complete with strainers, stop valves, [blowdown meters,] thermometers, 
+and other accessories necessary to form complete packaged units.  [Blowdown control console shall include illuminated sight flow indicators, automatic 
+flushing and cooling valves, and complete panelboard instrumentation as well as a cabinet type laboratory sink with drain board, back splash, hot 
+and cold service water faucets, [air cock,] and electrical outlets.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FEEDWATER EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Boiler Feed Pumps</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>CID A-A-50562</RID> for motor driven, horizontal split case or support head boiler feed pumps except as otherwise specified herein.  Pumps 
+may be of either the centrifugal or peripheral-turbine type with [cast iron] [or] [alloy steel] casing and shall be [bronze] [or] [alloy steel] 
+fitted.  For turbine type pumps, provide pressure relief valves and for centrifugal type pumps, provide by-pass orifice.  Packed stuffing boxes 
+or mechanical seals suitable for the design conditions indicated shall be provided.  Pumps shall be designed for the net positive suction head, 
+discharge head, and water temperature indicated.  [Capacity under the above condition shall be not less than indicated.]  [Capacity of each pump 
+under the above conditions shall be not less than the following percentage of maximum total boiler capacity:  Centrifugal pumps 125 percent; Turbine 
+pumps 150 percent.]  Pump motors shall be [totally enclosed] [dripproof] [dripproof with encapsulated windings].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Boiler Feed Tank</TTL><BRK/>
+<BRK/>
+<TXT>Feed tank and stand construction shall conform to <RID>FS F-P-2908</RID> for horizontal, cylindrical, stand-mounted receivers and shall be [hot dip galvanized 
+or cement lined] [epoxy coated] [coated].  Provide tanks with vents, gage glass, drain and overflow connections, pressure gage, thermometer, [float 
+operated makeup water feeder] [float switch and makeup water solenoid valve] [and preheater assembly consisting of corrosion resistant steam diffuser 
+tube, steam corrosion resistant steam diffuser tube, steam pressure reducing valve, strainer, and thermostatic steam valve].  Boiler feed tank 
+assembly shall include boiler feed pumps as herein specified, interconnecting piping including strainer and pump control box.  Tank capacity and 
+connection sizes shall be as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Deaerator</TTL><BRK/>
+<BRK/>
+<TXT>Provide pressurized packaged type conforming to <RID>FS W-H-2904</RID>, be constructed and stamped in accordance with <RID>ASME BPVC SEC VIII D1</RID>, and requirements 
+specified herein.  Deaerating assembly and deaerated water storage may be in the same or separate shells.  When external vent condensers are provided, 
+they may be located as recommended by the manufacturer.  Provide a pressure relief valve sized [as indicated] [in accordance with Table II of <RID>FS W-H-2904</RID>
+].  Inlet piping and accessories shall be as indicated.  Provide feedwater pumps, as specified herein, interconnecting piping, and control box 
+as part of the deaerator package.  Deaerator capacity shall be not less than [indicated] [1.25 times that required to supply the boiler(s) at maximum 
+firing rate].  The temperature of the water delivered at maximum capacity shall be equivalent to saturated steam temperature at the operating pressure 
+of the deaerator, which shall be as indicated and the oxygen content shall not exceed [0.005] [0.003] cubic centimeters per liter as determined 
+by the Referee Method A (Colorimetric Indigo Carmine) of <RID>ASTM D888</RID>.  Water storage capacity shall be sufficient to operate the boilers at maximum 
+capacity for [10] [_____] minutes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surge Tank and Transfer System</TTL><BRK/>
+<BRK/>
+<TXT>The condensate storage and surge tank shall be a cylindrical welded steel tank mounted and supported as indicated.  The tank shall be designed 
+and constructed in accordance with the <RID>ASME BPVC SEC VIII D1</RID> for the indicated working pressure.  Storage capacity shall be [as indicated] [sufficient 
+to provide adequate water to the deaerator for [10] [_____] minutes of [boiler] [plant] operation at maximum capacity].  Inlet connections for 
+condensate and make-up water shall be as indicated.  The tank shall be equipped with liquid level controllers and valves and alarms as indicated.  
+Tank shall be equipped with pressure and temperature gages, water level gage, vent, drain, and overflow.  Tank shall be [hot dip galvanized or 
+cement lined] [epoxy coated] [_____].  Surge tank assembly shall include condensate transfer pumps and interconnecting piping including strainer 
+and control box as indicated.  Transfer pumps, except for head and temperature requirements which shall be as indicated, shall conform to requirements 
+for boiler feed pumps specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Feedwater Treatment Equipment</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Feedwater Characteristics</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert source of water supply.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Equipment for the chemical treatment of the boiler makeup feedwater shall be designed to reduce the boiler water concentrations to the limits specified 
+herein when handling raw water having the following impurities reported as milligrams per liter (mg/liters) (formerly parts per million):</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Total hardness as CaCO3_______________________</OLI><BRK/>
+<BRK/>
+<OLI>Calcium hardness as CaCO3_____________________</OLI><BRK/>
+<BRK/>
+<OLI>Magnesium hardness as CaCO3______________________</OLI><BRK/>
+<BRK/>
+<OLI>Alkalinity as CaCO3______________________</OLI><BRK/>
+<BRK/>
+<OLI>Sodium as Na______________________</OLI><BRK/>
+<BRK/>
+<OLI>Chlorides as Cl______________________</OLI><BRK/>
+<BRK/>
+<OLI>Sulfates as SO4______________________</OLI><BRK/>
+<BRK/>
+<OLI>Sulfites as SO4______________________</OLI><BRK/>
+<BRK/>
+<OLI>Phosphate as PO4_____________________</OLI><BRK/>
+<BRK/>
+<OLI>Silica as SiO4_______________________</OLI><BRK/>
+<BRK/>
+<OLI>Nitrates as NO3______________________</OLI><BRK/>
+<BRK/>
+<OLI>Iron as Fe______________________</OLI><BRK/>
+<BRK/>
+<OLI>Free carbon dioxide as CO2______________________</OLI><BRK/>
+<BRK/>
+<OLI>Total dissolved solids_______________________</OLI><BRK/>
+<BRK/>
+<OLI>Suspended solids______________________</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Raw water shall be delivered to the plant [from the water distribution system of the [_____]] [from [_____]] at a normal pressure of [_____]<MET> kPa 
+(gage)</MET><ENG> psig</ENG> measured at the meter to the plant.  See <RID>NAVFAC MO 225</RID> for additional guidance on boiler water concentration limits.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Softener</TTL><BRK/>
+<BRK/>
+<TXT>Equipment shall be of the type, size, and arrangement indicated.  When operating [under the indicated design conditions] [with an inlet water flow 
+of [_____]<MET> liters per second</MET><ENG> gpm</ENG>] effluent analysis shall be as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Total hardness as CaCO3 less than [_____] Mg/liter</OLI><BRK/>
+<BRK/>
+[<OLI>pH [_____] to [_____]</OLI><BRK/>
+<BRK/>
+<OLI>Total dissolved solids less than [_____] Mg/liter</OLI><BRK/>
+<BRK/>
+<OLI>[_____]</OLI><BRK/>
+<BRK/>
+]<OLI LEVEL="2">Zeolite Water Softener:  Conform to <RID>WQA S-100</RID> and shall have [automatic] [manual] controls.  The softener(s) shall be equipped 
+for [a sodium cycle] [a hydrogen cycle] [the type of cycle necessary to provide the treated water analysis specified above].  
+[Each softener tank shall be provided an operating valve to permit the regeneration of one tank while the other is in service.]</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Lime Soda Softener:  Conform to <RID>CID A-A-50573</RID> for the type indicated.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Ion Exchange Softener:  Refer to <RID>NAVFAC MO 225</RID> for additional information.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pressure Filter</TTL><BRK/>
+<BRK/>
+<TXT>Provide [a] pressure filters of the type and arrangement indicated and with [manual] [automatic] controls.  The filter shall conform to <RID>CID A-A-59249</RID>
+.  Performance shall be as specified in <RID>CID A-A-59249</RID> with raw water analysis as specified herein, and operating conditions as indicated.  Filter 
+shall be equipped to operate properly for not less than 2 days without operator attention to renew or regenerate filter coatings, chemicals, or 
+other filter media.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chemical Feeder</TTL><BRK/>
+<BRK/>
+<TXT>Size and connect as indicated.  Chemical feeder shall be suitable for the flow, pressure, and temperature conditions at the point of connections.  
+Provide chemical feed storage as indicated.  [The feeder shall be of the [automatic proportioning type] [shot-type] conforming to <RID>FS F-F-2901</RID>.] 
+[The feeder shall be of metering pump type conforming to the requirements of <RID>CID A-A-50573</RID> for chemical feeders.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Feedwater Test Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide for the determination of boiler water condition which includes an assembly of indicator solutions, standardized solutions, and test glassware 
+with cabinet.  The solution types shall permit tests for water hardness, total alkalinity, hydroxide, carbonite alkalinity, and chloride content 
+in milligrams per liter.  Feedwater test equipment shall employ a standardized soap solution for hardness test and a dilute sulfuric acid solution 
+with a methyl orange indicator for total alkalinity.  The hydroxide and carbonate alkalinity shall be determined with a phenolphthalein indicator 
+and the chloride content, with a silver nitrate solution.  Furnish standardized phenolphthalein color slides for accuracy in alkalinity tests.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ELECTRIC MOTORS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select standard efficiency for motors used less than 750 hours per year and high efficiency for motors 
+used over 750 hours per year.  Packaged boilers should utilize the manufacturer's standard efficiency motor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Motors which are not an integral part of a packaged boiler shall be rated for [standard] [high] efficiency service per Section <SRF>26 20 00</SRF> INTERIOR 
+DISTRIBUTION SYSTEM.  Motors which are an integral part of the packaged boiler system shall be the highest efficiency available by the manufacturer 
+of the packaged boiler.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Arrange work in a neat and orderly manner so that minimum storage of equipment and material is required at the project site.  Install equipment 
+and material in accordance with the best commercial practices.  A competent installation engineer or technician as stated in paragraph QUALIFICATIONS 
+OF ENGINEER shall assemble an unassembled boiler-burner package in strict accordance with the manufacturer's instructions.  Systems shall be neat 
+in appearance, compact, adequate in construction and assembly, and installed for long and continuous service.  Parts shall be readily accessible 
+for inspection, repair, and renewal.  Inspect equipment and material upon delivery and test after installation.  Protect material and equipment 
+from the weather.  Repair damage caused by the Contractor in execution of the work and leave in a condition equal to that existing before work 
+was started.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Equipment Foundations</TTL><BRK/>
+<BRK/>
+<TXT>Locate as shown and construct of sufficient size and weight and of proper design to preclude shifting of equipment under operating conditions or 
+under abnormal conditions that could be imposed upon the equipment.  Foundations shall meet requirements of equipment manufacturer.  Grout equipment 
+mounted on concrete foundations before installing piping.  <TST>Concrete shall conform to Army Corps of Engineers Guide Specification Section [
+<SRF>03 30 00</SRF>] CAST-IN-PLACE CONCRETE, and grout shall be non-shrinkable type approved by the Contracting Officer.</TST>  Install piping in such a manner 
+so as not to place a strain on equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use of the ASME code or the Federal Construction Guide Specification section on welding depends upon the 
+agency's requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert appropriate Section number in blank below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Work shall be in accordance with [the applicable sections of the <RID>ASME BPVC SEC I</RID>] [[_____] WELDING] and <RID>AWS Z49.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Painting</TTL><BRK/>
+<BRK/>
+<TXT>Equipment shall be factory finished to withstand the intended end use environment in accordance with the specifications for the particular end 
+item.  Field paint equipment not factory finished as specified herein.  Retouch damaged areas of factory-finished equipment on which the finish 
+has been damaged and then give a complete finish coat to restore the finish to its original condition.  The finish coat shall be suitable for exposure 
+in the intended end use environment.  Spray painting shall comply with OSHA <RID>29 CFR 1910</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cleaning and Application</TTL><BRK/>
+<BRK/>
+<TXT>Remove dirt, rust, oil, and grease by wire brushing and solvent degreasing prior to application of paint.  Apply paint to clean and dry surfaces 
+only.  Where more than one coat of paint is specified, apply the second coat after the first coat is thoroughly dry.  Retouch damaged painting 
+before applying the succeeding coat.  Finished surfaces shall be smooth.  The painting of zinc coated and other corrosion-resistant metal surfaces 
+is not required unless otherwise specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Smoke Flues, Boiler Casing, and Draft Ducts</TTL><BRK/>
+<BRK/>
+<TXT>In unfinished areas, paint smoke flues, boiler casing, and black steel draft ducts with heat-resisting aluminum paint, two coats on the inside 
+of flues and ducts and one coat on the outside, each coat to a minimum dry film thickness of<MET> 0.025 mm</MET><ENG> one mil</ENG> applied directly to clean bare metal 
+surfaces.  Paint exposed surfaces of protective metal covering over insulation, including zinc-coated surfaces, with two coats of heat-resisting 
+black paint to a minimum dry film thickness of<MET> 0.05 mm</MET><ENG> two mils</ENG> applied directly to the clean bare metal surfaces.  Do not paint zinc-coated ducts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gratings, Pipe Railings, and Pit Covers</TTL><BRK/>
+<BRK/>
+<TXT>Apply a pre-treatment coating to gratings, pipe railings, pit covers, and similar plant appurtenances to a dry film thickness of<MET> 0.008 to 0.013 
+mm</MET><ENG> 0.3 to 0.5 mil</ENG>.  After installation, touch up damaged surfaces with then paint with two coats of finish paint matching type and color of adjacent 
+areas.  Do not paint zinc-coated surfaces.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Boiler Cleaning</TTL><BRK/>
+<BRK/>
+<TXT>After installation, [the] [each] boiler shall be boiled out, under supervision of the manufacturer, with soda ash or equivalent solution to clean 
+internal surfaces of oil, grease, mill scale, and dirt.  Following treatment, the boiler(s) shall be flushed, drained and then opened and washed 
+down and inspected to ensure that no traces of oil or foreign matter are present.  The boiler and associated piping shall then be drained and refilled 
+with treated softened water.  At all times after initial cleaning, the Contractor shall protect the boiler, tanks, and piping against internal 
+corrosion until testing is completed and the boiler(s) [is] [are] accepted.  Provide chemicals, labor for introducing chemicals, and professional 
+services for control and supervision of the treatment process.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping</TTL><BRK/>
+<BRK/>
+<TXT>Material and installation requirements including welding shall be as specified in Section <SRF>23 11 20</SRF> FACILITY GAS PIPING, Section <SRF>33 51 15</SRF> NATURAL-GAS 
+/ LIQUID PETROLEUM DISTRIBUTION PIPELINES, Section <SRF>33 52 10</SRF> FUEL SYSTEMS PIPING (SERVICE STATION), and Section <SRF>23 22 26.00 20</SRF> STEAM SYSTEM AND 
+TERMINAL UNITS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT><TST>Perform inspections and tests as specified herein to demonstrate that the boiler(s) and auxiliary equipment, as installed, are in compliance with 
+contract requirements.  During <SUB>boiler system start-up tests</SUB>, factory-trained engineers or technicians employed by individual suppliers of such 
+components as the burner, flame safeguard and combustion controls, feedwater treatment equipment, and other auxiliary equipment shall be present, 
+as required, to ensure the proper functioning, adjustment, and testing of individual components and systems.  No bypassing, use of jumpers, or 
+other disablement of control systems will be allowed unless specified elsewhere.  Labor, equipment, fuel, and test apparatus required for testing 
+shall be furnished by the Contractor.  Rectify defects disclosed by the tests by the Contractor within time period specified by the Contracting 
+Officer.</TST></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Inspections and Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These field tests shall not be mandatory for all size boilers but shall be employed where advisable due 
+to largeness, type, or complexity of boiler plant.  The designer shall determine, on a case by case basis, which 
+tests are appropriate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Make inspections and tests at the site under the direction of and subject to the approval of the Contracting Officer.  The Contractor shall operate 
+[the] [each] boiler and appurtenances prior to final testing and shall ensure that necessary adjustments have been made.  A [24-] [48-] [_____] 
+hour written notice shall be submitted to the Contracting Officer indicating the equipment is ready for inspection or testing.</TST>  Provide testing 
+equipment, including gages, thermometers, calorimeter, Orsat apparatus, thermocouple pyrometers, fuel flow meters, water meters, and other test 
+apparatus and set up and calibrate prior to the test.  Draft, fuel pressure, and steam flow may be measured by permanent gages and meters installed 
+under the contract.  [Gas flow may be measured by utility company meters.]  Provide an analysis of the fuel being used for tests.  <TST>Control of noise 
+levels developed by exhaust steam including muffler, globe, and gate valves shall be conducted in such a manner as not to create a nuisance or 
+hazard and shall be subject to the approval of the Contracting Officer.  Tests shall include the following, and shall be performed when feasible, 
+in the sequence listed:</TST></TXT><BRK/>
+<OLG><BRK/>
+<TST><OLI>Strength and tightness tests</OLI><BRK/>
+<BRK/>
+<OLI>Standards compliance tests</OLI><BRK/>
+<BRK/>
+<OLI>Combustion tests</OLI><BRK/>
+<BRK/>
+<OLI>Operational tests</OLI><BRK/>
+<BRK/>
+<OLI>Capacity and efficiency tests</OLI><BRK/>
+<BRK/>
+<OLI>Tests of auxiliary equipment</OLI><BRK/>
+<BRK/>
+<OLI>Feedwater equipment test</OLI></TST><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Strength and Tightness Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These field tests shall not be mandatory for all size boilers but shall be employed where advisable due 
+to largeness, type, or complexity of boiler plant.  The designer shall determine, on a case by case basis, which 
+tests are appropriate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Subject boiler to the following strength and tightness tests:</TST></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Hydrostatic Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>After installation and connection, subject [the] [each] boiler to an inspection and hydrostatic test to determine that the boiler and appurtenances 
+have not been damaged in transit or handling.  The hydrostatic test shall be in accordance with the ASME Code with the test pressure applied for 
+a period required by the Contracting Officer.  This test shall be in addition to the hydrostatic tests performed at the factory.  [The hydrostatic 
+test at the site shall be certified by an inspector holding an authorized commission from the National Board of Boiler and Pressure Vessel Inspectors.]</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pneumatic Tests</TTL><BRK/>
+<BRK/>
+<TXT><TST>Pneumatically test air casing and ducts exterior to the furnace at the maximum working pressure.</TST> Use the soap bubble method to verify tightness. 
+Test gas sides of boilers normally operated under pressure for tightness at<MET> 2.5 kPa (gage)</MET><ENG> 10 inches water gage</ENG>.  For this test, tightly seal the 
+boiler with a suitable means to blank off openings.  Admit air to the boiler until test pressure is reached and then hold.  If in a 10-minute period 
+the pressure drop does not exceed<MET> 250 kPa</MET><ENG> one inch water gage</ENG>, the casing shall be regarded as tight and accepted.  Use air pressure and soap bubble 
+tests or comparative carbon dioxide readings for induced draft boilers.</TXT><BRK/>
+<BRK/></SPT>
+<TST><SPT><TTL>Internal Component Pressure Tests</TTL><BRK/>
+<BRK/>
+<TXT>[Hydrostatically test at 1-1/2 times the maximum operating pressure] the part of the pre-assembled fuel oil system that is furnished integrally 
+with the boiler.  [The part of the pre-assembled gas system that is furnished integrally with the boiler shall be pneumatically tested at operating 
+pressure.  Use the soap bubble test method to verify tightness of the gas system.]</TXT><BRK/>
+<BRK/></SPT>
+</TST></SPT><SPT><TTL>Combustion Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These field tests shall not be mandatory for all size boilers but shall be employed where advisable due 
+to largeness, type, or complexity of boiler plant.  The designer shall determine, on a case by case basis, which 
+tests are appropriate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Test the fuel burning and combustion control equipment with [the] [each of the] specified fuel at the minimum limit of the turndown range and at 
+increments of 50, 75, and 100 percent of full rated load [plus [_____] percent overload].  Tests shall be conducted by factory-trained combustion 
+equipment engineers as previously specified.</TST>  [The combustion control system shall demonstrate that equipment installed will meet the requirements 
+of the specification, and that an overall efficiency as specified, with not over 15 percent excess air, can be obtained with boiler operating at 
+100 percent capacity.]  Analyze test data and graphically present to show for [the] [each] boiler at tested loads:  rates of steam flow; flue gas 
+temperature; percent excess air; steam quality; and percentages of carbon dioxide, carbon monoxide, and oxygen in the flue gas.  Monitor concentrations 
+of sulfur oxides, particulate, and nitrogen oxides in the flue gas to ensure compliance with environmental requirements.  Run tests on each fuel 
+until stack temperatures are constant and conformance with the combustion requirements of this specification has been verified and recorded.  Verify 
+proper operation of instrumentation and gauges in the control panel during the test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operational Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These field tests shall not be mandatory for all size boilers but shall be employed where advisable due 
+to largeness, type, or complexity of boiler plant.  The designer shall determine, on a case by case basis, which 
+tests are appropriate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Continuously test the boiler(s) under varying load conditions to demonstrate proper operability of the combustion control, flame safeguard control, 
+programming control, and safety interlocks.  Conduct this test after the adjustment of the combustion controls has been completed under the combustion 
+test.  The operational test shall continue for a period of at least [8] [_____] hours and shall include the following:</TST></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Sequencing</TTL><BRK/>
+<BRK/>
+<TXT><TST>The boiler shall start, operate, and stop in strict accordance with the specified operating sequence.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flame Safeguard</TTL><BRK/>
+<BRK/>
+<TXT><TST>Verify the operation of the flame safeguard controls by simulated flame and ignition failures.</TST>  Test burners having intermittent pilots by simulating 
+main flame failure while the pilot is burning.  Verify by stop watch the trial-for-pilot ignition, trial-for-main flame ignition, combustion control 
+reaction, and valve closing times.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Immunity to Hot Refractory</TTL><BRK/>
+<BRK/>
+<TXT><TST>Operate the burner at high fire until the combustion chamber refractory reaches maximum temperature.</TST>  Then manually close the main fuel valve.  
+The combustion safeguard shall drop out immediately causing the safety shutoff valves to close within the specified control reaction and valve 
+closing times.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pilot Intensity Required</TTL><BRK/>
+<BRK/>
+<TXT><TST>Gradually reduce the fuel supply to the pilot flame to the point at which the combustion safeguard begins to drop out (sense "no flame") but holds 
+in until the main fuel valve opens.  At this point of reduced pilot fuel supply, the pilot flame shall be capable of safely igniting the main burner.  
+If the main fuel valve can be opened on a pilot flame of insufficient intensity to safely light the main flame, readjustment of fire eye is required.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Immunity to Ignition Spark</TTL><BRK/>
+<BRK/>
+<TXT>Where ultra violet flame detectors are employed, the pilot and main burner manual safety shut off valves shall be closed.  The burner shall then 
+be operated through the trial for pilot ignition period.  The flame safeguard relay shall not respond to the presence of electric spark.  If the 
+flame safeguard relay responds to the presence of electric spark, reject the boiler.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Boiler Limit and Fuel Safety Interlocks</TTL><BRK/>
+<BRK/>
+<TXT><TST>Safety shutdowns shall be caused by simulating interlock actuating conditions for each boiler limit and fuel safety interlock.</TST>  Safety shutdowns 
+shall occur in the specified manner.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Combustion Controls</TTL><BRK/>
+<BRK/>
+<TXT><TST>Demonstrate the accuracy, range, and smoothness of operation of the combustion controls by varying the steam demand through the entire firing range 
+required by the turndown ratio specified for the burner [and in case of automatic recycling burners, by further varying the firing rate to require 
+"on-off" cycling].  Control accuracy shall be as specified</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safety Valves</TTL><BRK/>
+<BRK/>
+<TXT><TST>The high-pressure limit switch shall be locked out or otherwise made inoperative, and the boiler safety valves shall be lifted by steam.  Determine 
+the relieving capacity, popping pressure, blowdown, and reseating pressure by observation and measurement to be in accordance with the ASME Boiler 
+and Pressure Vessel Code.  The ASME standard symbol will be accepted only as indicating compliance with the design and material requirements of 
+the code.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Capacity and Efficiency Tests</TTL><BRK/>
+<BRK/>
+<TXT><TST>Perform the capacity and efficiency tests after satisfactory completion of all tests previously specified herein and after the boilers have been 
+operating [continuously] for [one] [5] [_____] days with no nuisance shutdowns and without the necessity for frequent or difficult adjustments.  
+Perform these tests on each boiler.  Conduct tests using [the] [each of the] specified fuels.  Test procedures shall be in accordance with the 
+heat loss method of the <RID>ASME PTC 4</RID> and shall be reported on the ASME Test Form for Abbreviated Efficiency Test.  The duration of the tests shall 
+be sufficient to record necessary data but in no case shall test duration be less than [4] [_____] hours [on each fuel].</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Auxiliary Equipment and Accessory Tests</TTL><BRK/>
+<BRK/>
+<TXT><TST>Observe and check blowdown valves, stop valves, try cocks, draft fans, fuel oil heaters, pumps, electric motors, and other accessories and appurtenant 
+equipment during the operational and capacity tests for leakage, malfunctions, defects, noncompliance with referenced standards, or overloading, 
+as applicable.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Feedwater Equipment Tests</TTL><BRK/>
+<BRK/>
+<TXT><TST>Perform the test of the feedwater treatment equipment in two steps.  Conduct one test by the Contractor concurrently with either the combustion 
+test or the capacity and efficiency test.  A second test will be performed by the Government during the first period of heavy loading after the 
+plant has been accepted and put in service.  Deficiencies revealed during the Government tests will be corrected under the guarantee provisions 
+of the contract.  Both the first and second series of tests shall determine compliance with the limits for oxygen content and hardness concentrations 
+of this specification.  Equipment for taking samples and the test kit for analyzing the samples shall be supplied by the Contractor and shall revert 
+to the Government when the tests are completed.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preliminary Operational Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>Operate each boiler and appurtenances prior to final testing and insure that necessary adjustments have been made.  Provide testing equipment required 
+to perform tests.  During this testing period, provide operating instructions and training to persons tasked with operation of the boiler.</TST>  Tests 
+shall be accomplished with both fuels on dual fuel units.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert the appropriate Engineering Field Division.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conduct a preliminary operational test prior to requesting an acceptance operational test and inspection by a [_____] Division, Naval Facilities 
+Engineering Systems Command Boiler Inspector.  <TST>The Contracting Officer, upon receipt of the notice from the Contractor, shall request the boiler 
+be inspected by [_____] Division, Naval Facilities Engineering Systems Command.  Ten days advance notice is required for scheduling the inspector 
+to conduct acceptance operational test and inspection.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SCHEDULE</TTL><BRK/>
+<BRK/>
+<TXT>Some metric measurements in this section are based on mathematical conversion of inch-pound measurements, and not on metric measurements <NED/>commonly 
+agreed on by the manufacturers or other parties.  The inch-pound and metric measurements shown are as follows:</TXT><BRK/>
+<BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="195.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="195.00"/>
+      <COL AUTOWIDTH="0" WIDTH="195.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Products</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Inch-Pound</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>Metric</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEDOWN="2" STYLEID="s50">
+<DTA TYPE="STRING">a.  Boilers Capacity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">= 500,000 Btu/hr</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">= 150 kW</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">= 10,000,000 Btu/hr</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">= 2930 kW</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">= 18,000,000 Btu/hr</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">= 5275 kW</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<BRK/></PRT>
+    <END/><BRK/></SEC>

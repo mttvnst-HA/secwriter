@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-25 08 11.00 20 (November 2020)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 25 08 11.00 20</SCN><BRK/>
+<BRK/>
+<STL>RISK MANAGEMENT FRAMEWORK FOR FACILITY-RELATED CONTROL SYSTEMS</STL><BRK/>
+<DTE>11/20</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the Navy requirements <SCP>to support the Risk Management Framework (RMF) Authority 
+to Operate (ATO) Process for Facility-Related Control Systems</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<BRK/>
+<NPR>To download UFGS Forms, Graphics, and Tables, go to: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  Facility-Related Control Systems (FRCS) are a subset of control systems that are used to monitor and control 
+equipment and systems related to DoD real property facilities (e.g., building control systems, utility control 
+systems, electronic security systems).  This section includes Risk Management Framework (RMF) requirements to 
+be included on DOD projects which has a facility-related control system requiring an Authority To Operate (ATO).  
+This Section does not provide general requirements for a control system, nor are the requirements in this section 
+sufficient to procure a control system.  This section also does not repeat requirements from UFGS <SRF>25 05 11</SRF> CYBERSECURITY 
+FOR FACILITY-RELATED CONTROL SYSTEMS or other technical sections.</NPR><BRK/>
+<BRK/>
+<NPR>The use of UFGS <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS does not necessarily make this specification 
+applicable.</NPR><BRK/>
+<BRK/>
+<NPR>Only use this specification on control systems which are obtaining a new ATO.</NPR><BRK/>
+<BRK/>
+<NPR>If an installation obtained a J&amp;A to procure specific equipment based on an existing authorization, this specification 
+is not needed.  Instead include the make/model of equipment referenced in the J&amp;A on the plans and include 
+configuration settings into the technical specifications to match the existing authorization.  Where equipment 
+is procured and configured to match an existing authorization, a memo for the record (MFR) to the existing authorization 
+is needed ILO performing a new authorization.</NPR><BRK/>
+<BRK/>
+<NPR>Refer to UFC 4-010-06, "Cybersecurity for Facility-Related Control Systems" for requirements on incorporating 
+cybersecurity into control system design and for general information on the RMF process as it applies to control 
+systems.  Assistance for control system cybersecurity is available from the following Service organizations:<BRK/>
+<BRK/>
+   Navy: Naval Facilities Engineering Systems Command,<BRK/>
+         Command Information Office (CIO)<BRK/>
+<BRK/>
+   Marine Corps: Contact Navy POC for Marine Corps<BRK/>
+                 POC information </NPR><BRK/>
+<BRK/>
+<NPR>Many designer selections in this Section will require coordination with the project site, System Owner, Information 
+System Security Manager (ISSM), Authorizing Official (AO) or a subject matter expert in the specific control systems 
+being installed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<TXT>This specification includes the contract requirements to to support the Government in obtaining an Authority To Operate (ATO) following the Department 
+of Defense Risk Management Framework process.</TXT><BRK/>
+<BRK/>
+<TXT>This Section does not provide technical requirements for a control system, nor are the requirements in this section sufficient to procure a control 
+system.  This section must be used in conjunction with other technical control system specifications and UFGS <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY 
+RELATED CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>CONTROL SYSTEM APPLICABILITY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  List each control system requiring an authorization and the corresponding impact rating categorization 
+(Confidentiality-Integrity- Availability) of Low, Moderate, or High.  Typical systems to consider are utility 
+monitoring control systems, building control systems, lighting control systems, UPS control systems, generator 
+control systems, and SCADA systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>This section applies to the following control systems:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>[Building DDC System] [_____] with a categorization of [Low-Low-Low] [Moderate-Moderate-Moderate] [_____].</OLI><BRK/>
+<BRK/>
+[<OLI>[_____] Control System with a categorization of [Low-Low-Low] [Moderate-Moderate-Moderate] [_____].</OLI><BRK/>
+<BRK/>
+][<OLI>[_____] Control System with a categorization of [Low-Low-Low] [Moderate-Moderate-Moderate] [_____].</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>All Sections containing facility-related control systems (FRCS) or control system components as identified in paragraph CONTROL SYSTEM APPLICABILITY 
+are related to the requirements of this Section.  Review all specification sections to determine related requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>NATIONAL INSTITUTE OF STANDARDS AND TECHNOLOGY (NIST)</ORG><BRK/><BRK/><RID>NIST FIPS 201-2</RID><RTL>(2013) Personal Identity Verification (PIV) of Federal Employees and Contractors</RTL><BRK/><BRK/><RID>NIST SP 800-82</RID><RTL>(2015; Rev 2) Guide to Industrial Control Systems (ICS) Security</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>DOD 8510.01</RID><RTL>(2022) Risk Management Framework (RMF) for DoD Systems</RTL><BRK/><BRK/><RID>DODI 8551.01</RID><RTL>(2014) Ports, Protocols,  and Services Management (PPSM)</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Assured Compliance Assessment Solution (ACAS) Scans</TTL><BRK/>
+<BRK/>
+<TXT>Automated vulnerability scanning and risk assessment tool mandated for use in DOD to identify security compliance and secure configuration of connected 
+devices.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Authority To Operate (ATO)</TTL><BRK/>
+<BRK/>
+<TXT>The Authority granted by an organization's Authorizing Official (AO or FAO), which indicates the system has undergone the first five steps of the 
+RMF process and has been assessed and deemed to be at an acceptable level of risk to allow connection to other Authorized systems, (any limitations 
+to this connectivity will be documented within the RMF package).  Retention of a system's Authorization status is contingent upon successful completion 
+of all conditions as documented in the ATO package, as well as lifecycle compliance with Step 6 of the RMF; "Continuous Monitoring".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Correlation Identifier (CCI) or Security Control</TTL><BRK/>
+<BRK/>
+<TXT>Each Security Control is broken down into individual Assessment Procedures (AP's), to enable more granular assessment of the compliance status 
+of a given control, (e.g. AC-1 is broken out into AC-1.1, AC-1.2, AC-1.3); each of these is assigned a CCI number and is individually assessed 
+and tracked for compliance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Enterprise Mission Assurance Support Service (eMASS)</TTL><BRK/>
+<BRK/>
+<TXT>A web-based application for the cybersecurity management of system information, which provides automated capabilities for documentation and tracking 
+in support of Authorization within the Risk Management Framework Process.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Functional Authorizing Official (FAO) or Authorizing Official (AO)</TTL><BRK/>
+<BRK/>
+<TXT>Signature authority for granting an Authority to Operate (ATO) and the responsible individual for accepting risk imposed by the implementation 
+and operation of systems in their AOR.  The AO is exclusively accountable for organizational cybersecurity risk exposure corresponding to all IT 
+under their cognizant authority.  The AO makes an authorization decision based on all the artifacts related to the activities within the RMF process 
+and in accordance with the AO's cybersecurity risk tolerance.  This risk tolerance accounts for the probability of a breach to confidentiality, 
+integrity, and availability of information and the potential impact that breach would conceivably have.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Information System Owner (ISO) or System Owner (SO)</TTL><BRK/>
+<BRK/>
+<TXT>Has overall ownership of the system and is involved in the design, development, and cybersecurity implementation of the system, ensuring that the 
+system is maintained and tracked throughout its lifecycle.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Information System Security Manager (ISSM)</TTL><BRK/>
+<BRK/>
+<TXT>Government-appointed Command Information Office Representative with overall responsibility for the cybersecurity of a program, organization, system, 
+or enclave; and is accountable to the system Program Manager/Information System Owner.  Often the ISSM/Information System Security Officer (ISSO) 
+will delegate execution of tasks to other RMF team members, however accountability remains with the ISSM/ISSO.  During sustainment, the ISSM/ISSO 
+will be solely responsible and report to the PM/ISO.  As their responsibilities are mandated by Department of Defense instruction, ISSM's are generally 
+designated in writing by Senior Command Leadership (SYSCOM CIO, Base Commander)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Information System Security Engineer (ISSE)</TTL><BRK/>
+<BRK/>
+<TXT>The ISSE (contractor) is responsible for developing and maintaining the cybersecurity architecture of a program, organization, system, or enclave.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Risk Management Framework (RMF)</TTL><BRK/>
+<BRK/>
+<TXT>The process mandated by <RID>DOD 8510.01</RID> for the management of cybersecurity risk across the DOD enterprise; the RMF leverages a risk-based approach 
+for the formal Authorization of IT systems and services.  The RMF implements and enforces a tailored set of security controls, focused on security 
+as an integral part of a system’s overall lifecycle.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Assessment Plan (SAP)</TTL><BRK/>
+<BRK/>
+<TXT>A plan developed by the SCA / Validator which provides the specific test objectives for the security controls assessment, identifies the personnel, 
+procedures and tools to be used, identifies any 'exceptions' to the plan, and documents 'false positives' [and][or] misleading reports discovered 
+during testing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Assessment Report (SAR)</TTL><BRK/>
+<BRK/>
+<TXT>A report produced by the SCA/Validator which documents the residual risk of the non-compliant security controls after the risk assessment work 
+is completed.  The SAR provides a summary of the vulnerabilities, interconnected systems, rationale for aggregated risk, and a recommendation to 
+the FAO/AO regarding an Authorization decision.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Content Automation Protocol (SCAP)</TTL><BRK/>
+<BRK/>
+<TXT>An assessment methodology which leverages specific standards to enable automated vulnerability management, measurement, and policy compliance evaluation 
+of IT and computing systems.  SCAP may be used to enumerate security-related software and configuration issues.  SCAP scan data may also be uploaded 
+into a STIG viewer utility to assist in automating STIG checklist processing for those technologies that offer this functionality.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Control Accessor - Validator (SCA-V)</TTL><BRK/>
+<BRK/>
+<TXT>A Government-assigned independent third party which assesses and validates that the system has correctly implemented the approved security control 
+baseline.  To determine the overall effectiveness of the security controls, the SCA performs an independent, comprehensive assessment of the management, 
+operational, and technical controls employed within or inherited by a system.  To perform the SCA function in the most efficient manner, the Navy 
+will utilize SCA Liaisons and Validators to assist with SCA responsibilities.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Plan (SP)</TTL><BRK/>
+<BRK/>
+<TXT>Includes essential operational, architectural, and functional information about the system.  This plan is generated by eMASS from the information 
+provided during eMASS registration process and is updated whenever pertinent information about the system is entered or changed.  The SP is a living 
+document which can be exported and downloaded in real time from eMASS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Technical Implementation Guidance (STIG)</TTL><BRK/>
+<BRK/>
+<TXT>Standard security protocols and procedures that provide a methodology for secure configuration of computing, networking, software and control system 
+assets. STIG checklists may be utilized as tools for determining compliance with a given set of security controls.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ADMINISTRATIVE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Coordination</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart deals with coordination requirements for the contractor, and does not indicate coordination 
+that must be done by the designer/specifier.  In addition to the normal project coordination, authorization for 
+wireless use, alternate account lock permissions and devices with multiple IP connections may be impacted by site 
+(or Service) policies and need to be coordinated with the appropriate Government representatives before authorization 
+is provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate the execution of this Section with the execution of all other Sections related to control systems as indicated in the paragraph RELATED 
+REQUIREMENTS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  All submittals in this Guide Specification require Government approval and must have a "G" designation.</NPR><BRK/>
+<BRK/>
+<NPR>Government review of submittals in this Section impact Cybersecurity, and must be coordinated with the appropriate 
+Cybersecurity experts to ensure appropriate review and the identification of issues or concerns that may affect 
+the cybersecurity posture of the system or the ability of the system to receive an RMF authorization.  Cybersecurity 
+Experts are in the following organizations:<BRK/>
+<BRK/>
+   Army: Control System Cybersecurity Center of<BRK/>
+         Expertise, Huntsville Engineering and<BRK/>
+         Support Center<BRK/>
+<BRK/>
+   Navy: Naval Facilities Engineering Systems Command,  <BRK/>
+         Command Information Office (CIO)<BRK/>
+<BRK/>
+   Air Force: Civil Engineer Maintenance,<BRK/>
+              Inspection, and Repair Team (CEMIRT)<BRK/>
+              ICS Branch, Tyndall AFB<BRK/>
+<BRK/>
+   Marine Corps: Contact Navy POC for Marine Corps<BRK/>
+                 POC information</NPR> <BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Authorization Strategy Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Control System Security Controls</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Security Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+ <ITM><SUB>Ports, Protocols, And Services Management Registration Form</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>ACAS Vulnerability Reports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Security Technical Implementation Guide Checklists</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>SCAP Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>ISSE Checklist (Step 3)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>ISSE Checklist (Step 4)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Information Assurance Technical Level II/Security Plus</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Certifications</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If there are contractor qualification or certification requirements related to the control system, specify 
+those in the control system specification.  If there are contractor qualifications or certifications specifically 
+related to risk management framework they can be specified here.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit the <SUB>Information Assurance Technical Level II/Security Plus</SUB> certification for the Information System Engineer (ISSE) for the project.  The 
+ISSE is required to have a background check and be able to obtain a Common Access Card (CAC).  The background check and ability to obtain a CAC 
+are necessary to perform the eMASS requirements in this section.  The ISSE is also responsible for developing and maintaining the cybersecurity 
+architecture for all control systems.  In addition to requirements in this section the ISSE will perform the following duties:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Overseeing the development of all facility-related control system's cybersecurity solutions.</OLI><BRK/>
+<BRK/>
+<OLI>Identifying the security control baseline set and any applicable overlays and tailoring.</OLI><BRK/>
+<BRK/>
+<OLI>Construction Quality Control for Risk Management Framework submittals in this section and section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED 
+CONTROL SYSTEMS.</OLI><BRK/>
+<BRK/>
+<OLI>Obtain and maintain an eMASS account.  The Government will initially set up eMASS records and authorization packages.  Manage the authorization 
+packages and eMASS records for all facility-related control systems as identified in paragraph CONTROL SYSTEM APPLICABILITY.</OLI><BRK/>
+<BRK/>
+<OLI>Lead the security control selection, security control implementation, self assessment, and testing efforts.</OLI><BRK/>
+<BRK/>
+<OLI>Work with the Government to complete the Security Assessment Plan.</OLI><BRK/>
+<BRK/>
+<OLI>Attend the Cybersecurity Commissioning Construction Coordination Meeting.</OLI><BRK/>
+<BRK/>
+<OLI>Attend the RMF Step 2 Checkpoint Meeting.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>CYBERSECURITY DOCUMENTATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Authorization Strategy Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide the Authorization Strategy Plan to include a narrative on the overall authorization approach for each control system identified in paragraph 
+CONTROL SYSTEM APPLICABILITY.  The narrative will outline the different anticipated leveraged authorizations, connections to the control system 
+platform enclave, describe the process as outlined in paragraph RISK MANAGEMENT FRAMEWORK, and include how the RMF steps integrate with the overall 
+construction schedule.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify representative spare parts to be provided to the Control Systems Test Bed, EXWC in Port Hueneme, 
+CA if devices need additional testing performed by the government.  This is normally not needed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>SPARE PARTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide one representative extra spare part for each ethernet capable Level 1 and Level 2 device in the control system.</TXT><BRK/>
+<BRK/></SPT>
+]<TXT>[Not used.]</TXT><BRK/>
+<BRK/></PRT>
+<PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>RISK MANAGEMENT FRAMEWORK</TTL><BRK/>
+<BRK/>
+<TXT>The Risk Management Framework (RMF) is a 6 step process adopted by the DoD to manage risk operating Facility-Related Control Systems.  The following 
+paragraphs identify construction requirements to support the Government in obtaining an Authority To Operate (ATO) for the control systems identified 
+in paragraph CONTROL SYSTEM APPLICABILITY.  Requirements for Steps 1 through 4 are below.  RMF Steps 5 and 6 are performed by others and not part 
+of this contract.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>RMF Step 1:  Control System Categorization</TTL><BRK/>
+<BRK/>
+<TXT>RMF Step 1, Control System Categorization is completed during the design phase of the control system.  Control system categorization is listed 
+by control system in paragraph CONTROL SYSTEM APPLICABILITY.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RMF Step 2:  Security Control Selection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  RMF Step 2:  Security Control Selection:  Append the initial list of tailored security controls developed 
+during design as outlined by UFC 4-010-06 to the end of this specification such that the contractor can complete 
+RMF Step 2.</NPR> <BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The security controls selected for a FRCS are initially developed during design, but the final list of security controls necessary to obtain an 
+ATO cannot be determined without considering the specific equipment make/model/firmware selected for this contact.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Tailor <SUB>Control System Security Controls</SUB></TTL><BRK/>
+<BRK/>
+<TXT>In eMASS, initiate the Security Control Selection Workflow.  Next, take the initial list of security controls appended to this specification and 
+complete tailoring the list based on specific equipment selected for this contract in accordance with <RID>NIST SP 800-82</RID> and <RID>NIST FIPS 201-2</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Assessment Plan</TTL><BRK/>
+<BRK/>
+<TXT>In eMASS, initiate the Security Assessment Plan (SAP) Workflow.  Track development and approval of the SAP by the Government.  Provide information 
+as necessary to complete the SAP.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Security Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>In eMASS, initiate the Security Plan (SP) Approval Workflow.  Track the review of the SP by the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Ports, Protocols, And Services Management Registration Form</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Obtain a Ports, Protocols, and Services Management Registration Form from <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-25-08-11-00-20">https://www.wbdg.org/dod/ufgs/<BRK/>
+ufgs-25-08-11-00-20</URL> and fill it out with project specific information following <RID>DODI 8551.01</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RMF Step 2 eMASS Uploads</TTL><BRK/>
+<BRK/>
+<TXT>Upload the following artifacts into eMASS:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Cybersecurity Riser Diagrams from UFGS <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</OLI><BRK/>
+<BRK/>
+<OLI>Completed Control System Inventory Report from UFGS <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</OLI><BRK/>
+<BRK/>
+<OLI>Completed Cybersecurity Interconnection Schedule from UFGS <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</OLI><BRK/>
+<BRK/>
+<OLI>Ports, Protocols, and Services Management Registration Form</OLI><BRK/>
+<BRK/>
+<OLI>Control System Cybersecurity Documentation from UFGS <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>RMF Step 2 Checkpoint Meeting</TTL><BRK/>
+<BRK/>
+<TXT>Attend the RMF Step 2 Checkpoint Meeting.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>RMF Step 3:  Implement Controls</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Security Control Implementation</TTL><BRK/>
+<BRK/>
+<TXT>In eMASS, initiate the Security Control Implementation Workflow.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Testing</TTL><BRK/>
+<BRK/>
+<TXT>Execute the Security Assessment Plan (SAP)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ACAS Vulnerability Scans</TTL><BRK/>
+<BRK/>
+<TXT>Conduct ACAS vulnerability scans.  Generate summary and detailed <SUB>ACAS Vulnerability Reports</SUB> in accordance with NAVFAC FRCS AA ACAS Scan Policy 
+Settings.</TXT><BRK/>
+<BRK/>
+<TXT>Remediate/Mitigate all discovered findings, especially high risk prior to RMF Step 4.</TXT><BRK/>
+<BRK/>
+<TXT>Generate and upload the scan summary and detailed vulnerability list into eMASS as an artifact.</TXT><BRK/>
+<BRK/>
+<TXT>Map ACAS vulnerability findings to the most appropriate CCI in the security control baseline.  Upload ACAS Scan results as an artifact to eMASS 
+Asset manager at the AP/CCI Level and add justifying statements for any non-compliance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Content Automation Protocol (SCAP) Report</TTL><BRK/>
+<BRK/>
+<TXT>Complete the SCAP XCCDF XML and <SUB>SCAP Report</SUB> PDF/HTML files</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Security Technical Implementation Guide Checklists</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Apply the Security Technical Implementation Guide Checklists (STIGs) as identified in the Security Assessment Plan.</TXT><BRK/>
+<BRK/>
+<TXT>Utilize Security Content Automation Protocol (SCAP) Scans to supplement the STIG checklist where applicable.</TXT><BRK/>
+<BRK/>
+<TXT>Map STIG findings to all CCIs identified for that particular finding according to the STIG guidance.  Fully document the CKL files.  Utilizing 
+Asset Manager to import the checklists into eMASS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>POA&amp;M</TTL><BRK/>
+<BRK/>
+<TXT>Document open (non-compliant remaining findings in the Plan of Action and Milestones (POA&amp;M) within eMASS either manually or through the use 
+of Asset Manager in eMASS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>ISSE Checklist (Step 3)</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Complete the NAVFAC FRCS RMF Step 3 and 4 ISSE Checklist.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RMF Step 3 eMASS Uploads</TTL><BRK/>
+<BRK/>
+<TXT>Upload the following artifacts into eMASS:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>SCAP benchmark XCCDF XML and SCAP Report (utilizing Asset Manager)</OLI><BRK/>
+<BRK/>
+<OLI>Fully documented STIG Checklists (utilizing Asset Manager)</OLI><BRK/>
+<BRK/>
+<OLI>ACAS Scans/reports (utilizing Asset Manager)</OLI><BRK/>
+<BRK/>
+<OLI>ISSE Checklist (Step 3)</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>RMF Step 4:  Validate Controls</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Security Control Accessor - Validator (SCA-V) Site Assessment</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the control system(s) are ready for an assessment.</TXT><BRK/>
+<BRK/>
+<TXT>Schedule the Validator site assessment coordinating the schedules of the Validator and all control system subject matter experts.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure supplier/installer and other control system subject matter experts are available at the discretion of the validator to support the assessment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Security Assessment Workflow</TTL><BRK/>
+<BRK/>
+<TXT>Re-initiate the Security Assessment Plan Workflow in eMASS.</TXT><BRK/>
+<BRK/>
+<TXT>Submit all security controls in eMASS for Validator review.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>ISSE Checklist (Step 4)</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Update previously submitted NAVFAC FRCS RMF Step 3 and 4 ISSE Checklist and upload it into eMASS.</TXT><NED/><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Validation Findings</TTL><BRK/>
+<BRK/>
+<TXT>Remediate/mitigate Validator findings and update the Security Assessment Report (SAR) and POA&amp;M accordingly.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></PRT>    <END/><BRK/></SEC>

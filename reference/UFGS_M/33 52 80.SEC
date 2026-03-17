@@ -1,0 +1,1823 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="309.75"/>
+      <COL AUTOWIDTH="0" WIDTH="309.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-33 52 80 (August 2022)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="11.25">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="11.25">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="34.50">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-33 52 80 (February 2010)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 33 52 80</SCN><BRK/>
+<BRK/>
+<STL>LIQUID FUELS PIPELINE COATING SYSTEMS</STL><BRK/>
+<DTE>08/22</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>interior and exterior coating of aboveground and buried 
+carbon steel liquid fuel pipelines and exterior coating of aboveground and buried stainless steel liquid fuel 
+pipelines</SCP>.  The exterior coating system for aboveground pipelines is the same as used on the exterior of fuel 
+tanks, Section <SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING FOR STEEL STRUCTURES.  The exterior coating system for buried 
+pipelines is an extruded polyolefin system, a fusion bonded epoxy (FBE) system, or a liquid epoxy system.  An 
+optional FBE coating or liquid applied epoxy coating system is provided for the interior of carbon steel pipe 
+to protect aviation fuel from iron contamination.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification is intended for coating of new pipe and localized field repairs only.  For maintenance 
+coating of existing buried or aboveground pipe, a coating inspection, or coating condition survey (CCS), as described 
+in Section <SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING FOR STEEL STRUCTURES, should be accomplished prior to designing 
+the coating project. Without a competent inspection, there is no reliable way to determine the type or condition 
+of the existing coating system.  If existing conditions are not known, proper (effective and financially supportable) 
+surface preparation or coating system selection cannot be made.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This specification is the result of much experience and expertise of Association for Materials Protection 
+and Performance (AMPP) (previously SSPC) certified Protective Coatings Specialists.</NPR><BRK/>
+<BRK/>
+<NPR>A specifier, in adapting this specification to a project, should not alter the products and processes specified 
+herein without thorough knowledge of the need for the changes and the implications of those changes.</NPR><BRK/>
+<BRK/>
+<NPR>Prior to changing or altering the products or processes specified herein, it is recommended that the specifier 
+consult with the NAVFAC Paints and Coatings Subject Matter Expert at Naval Facilities Engineering Service Center.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  SSPC and NACE have merged to become AMPP.  The merger was still in progress at the time this section was 
+released.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The metric standard for measuring coating thickness is microns (25.4 microns=1 mil; use nominal 25 microns=1 
+mil).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designers are encouraged to contact Robert Jamond (robert.jamond@navy.mil) prior to beginning a new Navy 
+design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designers are encouraged to contact the Air Force Civil Engineer Reachback Center (afcec.rbc@us.af.mil) 
+prior to beginning a new Air Force design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN WATER WORKS ASSOCIATION (AWWA)</ORG><BRK/><BRK/><RID>AWWA C203</RID><RTL>(2025) Coal-Tar Protective Coatings and Linings for Steel Water Pipe and Fittings</RTL><BRK/><BRK/><RID>AWWA C209</RID><RTL>(2025) Hand-Applied Tape Coatings for Steel Water Pipe and Fittings</RTL><BRK/><BRK/><RID>AWWA C210</RID><RTL>(2024) Standard for Liquid Epoxy Coating Systems for the Interior and Exterior of Steel Water Pipelines</RTL><BRK/><BRK/><RID>AWWA C213</RID><RTL>(2022) Fusion-Bonded Epoxy Coatings and Linings for Steel Water Pipe and Fittings</RTL><BRK/><BRK/><RID>AWWA C215</RID><RTL>(2022) Extruded Polyolefin Coatings for Steel Water Pipe</RTL><BRK/><BRK/><RID>AWWA C216</RID><RTL>(2022) Heat-Shrinkable Cross-Linked Polyolefin Coatings for the Exterior of Special Sections, Connections, and Fittings for Steel Water Pipelines</RTL><BRK/><BRK/><RID>AWWA C217</RID><RTL>(2023) Microcrystalline Wax and Petrolatum Tape Coating Systems for Steel Water Pipe and Fittings</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM D3276</RID><RTL>(2015; E 2016) Standard Guide for Painting Inspectors (Metal Substrates)</RTL><BRK/><BRK/><RID>ASTM D3335</RID><RTL>(1985a; R 2020) Low Concentrations of Lead, Cadmium, and Cobalt in Paint by Atomic Absorption Spectroscopy</RTL><BRK/><BRK/><RID>ASTM D3718</RID><RTL>(1985a; R 2015) Low Concentrations of Chromium in Paint by Atomic Absorption Spectroscopy</RTL><BRK/><BRK/><RID>ASTM D3925</RID><RTL>(2002; R 2015) Sampling Liquid Paints and Related Pigmented Coatings</RTL><BRK/><BRK/><RID>ASTM D4285</RID><RTL>(1983; R 2018) Indicating Oil or Water in Compressed Air</RTL><BRK/><BRK/><RID>ASTM D4417</RID><RTL>(2021) Standard Test Methods for Field Measurement of Surface Profile of Blast Cleaned Steel</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO 8502-3</RID><RTL>(2017) Preparation of Steel Substrates Before Application of Paints and Related Products - Tests for the Assessment of Surface Cleanliness - Part 3: Assessment of Dust on Steel Surfaces Prepared for Painting (Pressure-Sensitive Tape Method)</RTL><BRK/><BRK/><RID>ISO 9001</RID><RTL>(2015) Quality Management Systems- Requirements</RTL><BRK/><BRK/></REF><REF><ORG>MASTER PAINTERS INSTITUTE (MPI)</ORG><BRK/><BRK/><RID>MPI 500</RID><RTL>(2020) Epoxy, Interior Steel Fuel Tank Coating, Primer</RTL><BRK/><BRK/><RID>MPI 501</RID><RTL>(2020) Epoxy, Interior Steel Fuel Tank Coating, Contrast Topcoat</RTL><BRK/><BRK/></REF><REF><ORG>NACE INTERNATIONAL (NACE)</ORG><BRK/><BRK/><RID>NACE RP0402</RID><RTL>(2002) Field-Applied Fusion-Bonded Epoxy (FBE) Pipe Coating Systems for Girth Weld Joints: Application, Performance, and Quality Control</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY FOR PROTECTIVE COATINGS (SSPC)</ORG><BRK/><BRK/><RID>SSPC AB 1</RID><RTL>(2015; E 2017) Mineral and Slag Abrasives</RTL><BRK/><BRK/><RID>SSPC AB 2</RID><RTL>(2015; E 2016) Cleanliness of Recycled Ferrous Metallic Abrasive</RTL><BRK/><BRK/><RID>SSPC AB 3</RID><RTL>(2023; R 2023) Ferrous Metallic Abrasive</RTL><BRK/><BRK/><RID>SSPC Guide 6</RID><RTL>(2021) Guide for Containing Surface Preparation Debris Generated During Paint Removal Operations</RTL><BRK/><BRK/><RID>SSPC Guide 12</RID><RTL>(2023) Guide for Illumination of Industrial Painting Projects</RTL><BRK/><BRK/><RID>SSPC PA 1</RID><RTL>(2024) Shop, Field, and Maintenance Coating of Metals</RTL><BRK/><BRK/><RID>SSPC PA 2</RID><RTL>(2015; E 2018) Procedure for Determining Conformance to Dry Coating Thickness Requirements</RTL><BRK/><BRK/><RID>SSPC QP 1</RID><RTL>(2019)  Standard Procedure for Evaluating the Qualifications of Industrial/Marine Painting Contractors (Field Application to Complex Industrial Steel Structures and Other Metal Components)</RTL><BRK/><BRK/><RID>SSPC QP 3</RID><RTL>(2010) Standard Procedure for Evaluating Qualifications of Shop Painting Applicators</RTL><BRK/><BRK/><RID>SSPC QP 5</RID><RTL>(2022) Standard Procedure for Evaluating the Qualifications of Coating and Lining Inspection Companies</RTL><BRK/><BRK/><RID>SSPC QS 1</RID><RTL>(2015) Standard Procedure for Evaluating a Contractor's Advanced Quality Management System</RTL><BRK/><BRK/><RID>SSPC SP 1</RID><RTL>(2015) Solvent Cleaning</RTL><BRK/><BRK/><RID>SSPC SP 10/NACE No. 2</RID><RTL>(2015) Near-White Blast Cleaning</RTL><BRK/><BRK/><RID>SSPC SP 17</RID><RTL>(2019) Thorough Abrasive Blast Cleaning of Non-Ferrous Metals</RTL><BRK/><BRK/><RID>SSPC VIS 1</RID><RTL>(2002; E 2004) Guide and Reference Photographs for Steel Surfaces Prepared by Dry Abrasive Blast Cleaning</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>29 CFR 1910-SUBPART Z</RID><RTL>Toxic and Hazardous Substances</RTL><BRK/><BRK/><RID>29 CFR 1910.134</RID><RTL>Respiratory Protection</RTL><BRK/><BRK/><RID>29 CFR 1910.1000</RID><RTL>Air Contaminants</RTL><BRK/><BRK/><RID>29 CFR 1926.59</RID><RTL>Hazard Communication</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>This section specifies the requirements for[ interior and] exterior coating of aboveground and buried carbon steel liquid fuel pipelines and exterior 
+coating of aboveground and buried stainless steel liquid fuel pipelines.  The exterior coating system for aboveground, carbon steel pipelines is 
+specified with the same requirements as the exterior coating system for the exterior of fuel tanks, Section <SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING 
+FOR STEEL STRUCTURES.  The exterior coating system for buried pipelines is an extruded polyolefin system, a fusion bonded epoxy (FBE) system, or 
+a liquid epoxy system.[  The interior coating system for carbon steel pipelines is an FBE coating system or liquid applied epoxy system coating.  
+An interior coating system is specified for the interior of carbon steel pipe containing aviation fuel to protect the fuel from iron contamination.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Definitions are generally provided throughout this Section in the paragraphs where used and denoted by capital letters.  The following definition 
+is used throughout this Section:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>INDEPENDENT THIRD-PARTY - Impartial third-party not a part or affiliated with Contractor or subcontractor principal or subsidiary businesses, 
+and not a materials supplier.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Contract Errors, Omissions, and Other Discrepancies</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Corrective Action Procedures</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Corrective Action Request (CAR) Form</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coatings Work Plan</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Inspection Report Forms</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05, Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Containment System</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Daily Inspection Reports</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coatings Qualification Test Reports</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ferrous Metallic Abrasive Qualification Test Reports</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Non-Metallic Abrasive Qualification Test Reports</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coating Field Test Reports</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Abrasive Field Test Reports</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Recycled Ferrous Metallic Abrasive Field Test Reports (Daily and Weekly)</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Certified Industrial Hygienist (CIH)</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Pipe Coating Shop</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Certified Protective Coatings Specialist (PCS)</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Coatings Inspection Company</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Quality Assurance Coatings Inspector</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Coatings Contractors for Field Coating</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Individuals Performing Abrasive Blasting for Field Coating</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Individuals Performing Coating Application for Field Coating</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Testing Laboratory for Coatings</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Testing Laboratory for Abrasive</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coating Materials Certificate of Conformance</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ferrous Metallic Abrasive Certificate of Conformance</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Non-Metallic Abrasive Certificate of Conformance</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Coating System Instructions</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Disposal of Used Abrasive Shop Applied Coating</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Disposal of Used Abrasive Field Applied Coating</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Inspection Logbook</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Corrective Action Log</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Contract Errors, Omissions, and Other Discrepancies</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit all errors, omissions, and other discrepancies in contract documents to the Contracting Officer within 30 days of contract award for all 
+work covered in this Section, other than the work that will not be uncovered until a later date.  All such discrepancies must be addressed and 
+resolved, and the Coatings Work Plan modified, prior to beginning the Initial and Follow-Up phases of work.  Discrepancies that become apparent 
+only after work is uncovered must be identified at the earliest discoverable time and submitted for resolution.  Schedule time (float) must be 
+built into the project schedule at those points where old work is to be uncovered or where access is not available during the first 30 days after 
+award, to allow for resolution of contract discrepancies.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Corrective Action (CA)</TTL><BRK/>
+<BRK/>
+<TXT>CA must be included in the Contractor Quality Control Plan as outlined in Section <SRF>01 45 00</SRF> QUALITY CONTROL.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Corrective Action Procedures</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Develop procedures for determining the root cause of each non-compliance, developing a plan to eliminate the root cause so that the non-compliance 
+does not recur, and following up to ensure that the root cause was eliminated. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Corrective Action Request (CAR) Form</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Develop Corrective Action Request (CAR) forms for initiating CA and for tracking and documenting each step.  The CAR should be included with the 
+Corrective Action Procedures.  A CAR must be initiated by either the Contractor or the Contracting Officer.  The Protective Coatings Specialist 
+(PCS) must approve each CAR at the root cause identification stage, the plan for elimination stage, and the close out stage after verification 
+that the root cause has been eliminated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Corrective Action Log</TTL><BRK/>
+<BRK/>
+<TXT>When a CAR is initiated, Contractor must take action to identify and eliminate the root cause of each non-compliance so as to prevent recurrence.  
+These actions must apply to non-compliance in the work, and to non-compliance in the Quality Control (QC) System. Corrective actions must be appropriate 
+to the effects of the non-compliance encountered.  The corrective action must be documented in a report that is serialized and tracked in the <SUB>Corrective 
+Action Log</SUB> until project completion and its acceptance by the Contracting Officer.  All corrective action reports must be retained in project records.  
+The Corrective Action Log, showing status of each CAR, must be submitted to the Contracting Officer monthly.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Coatings Work Plan</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ensure coordination between all parties, including the welder, weld inspector, coatings Contractor, Quality 
+Assurance Coatings Inspector, and Coatings Contractor QC Coatings Inspector, on weld preparation and surface profile 
+requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>This work plan must be considered as part of the Contractor Quality Control Plan as outlined in Section <SRF>01 45 00</SRF> QUALITY CONTROL.</TXT><BRK/>
+<BRK/>
+<TXT>The <SUB>Coatings Work Plan</SUB> must be submitted and approved by the PCS prior to mobilization.  The Coatings Work Plan must explain in detail all procedures 
+including, but not limited to, all sequential processes, quality control for each process, quality assurance for each process, and safety considerations. 
+Subsections must include at least the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Purpose;</OLI><BRK/>
+<BRK/>
+<OLI>Introduction[ (including the<TAI OPT="ARMY"> scope of work (SOW)</TAI><TAI OPT="NAVY"> project program</TAI>)];</OLI><BRK/>
+<BRK/>
+<OLI>Safety, fire, and health information;</OLI><BRK/>
+<BRK/>
+<OLI>Contractor and worker qualifications with certifications;</OLI><BRK/>
+<BRK/>
+<OLI>Project management organization and documents;</OLI><BRK/>
+<BRK/>
+<OLI>Timeline in a Gantt chart;</OLI><BRK/>
+<BRK/>
+<OLI>Project document references;</OLI><BRK/>
+<BRK/>
+<OLI>Reference to all applicable standards (e.g., AMPP, NACE, SSPC, ISO, and ASTM);</OLI><BRK/>
+<BRK/>
+<OLI>Coatings manufacturer's supporting documentation;</OLI><BRK/>
+<BRK/>
+<OLI>Descriptions and explanations of  any exceptions from the coating manufacturer[ (including those specific to stainless steel piping];</OLI><BRK/>
+<BRK/>
+<OLI>Coating and blasting equipment, model names, and, if applicable, calibration dates;</OLI><BRK/>
+<BRK/>
+<OLI>Containment design and/or details;</OLI><BRK/>
+<BRK/>
+<OLI>Environmental testing;</OLI><BRK/>
+<BRK/>
+<OLI>Material delivery, storage, and handling details;</OLI><BRK/>
+<BRK/>
+<OLI>Surface preparation;</OLI><BRK/>
+<BRK/>
+<OLI>Pre-application test panel validation for field-applied external coating as outlined in SURFACE STANDARD;</OLI><BRK/>
+<BRK/>
+<OLI>Coating materials, mixing, application, recoat windows, and coating curing times, if applicable;</OLI><BRK/>
+<BRK/>
+<OLI>Coating repairs and rework;</OLI><BRK/>
+<BRK/>
+<OLI>Non-conformance;</OLI><BRK/>
+<BRK/>
+<OLI>Spent material handling and effluent discharge containment and disposal;</OLI><BRK/>
+<BRK/>
+<OLI>Inspection test plan (as outlined in FIELD INSPECTION, and including inspection hold points, both Quality Assurance and Coating Contractor 
+QC Coatings Inspector's responsibilities, and daily documentation and delivery);</OLI><BRK/>
+<BRK/>
+<OLI>Instruments and test kits;</OLI><BRK/>
+<BRK/>
+<OLI>Warranty (in writing, signed by the Contractor and the coating manufacturer's representative);</OLI><BRK/>
+<BRK/>
+<OLI>Demobilization;</OLI><BRK/>
+<BRK/>
+<OLI>PCS and PM approval;</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Design Data</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Containment System</SUB> for Field Coating</TTL><BRK/>
+<BRK/>
+<TXT>Submit complete design drawings and calculations for the scaffolding and containment system, including an analysis of the loads which will be added 
+to the structure by the containment system and waste materials.  A registered engineer must approve calculations and scaffold system design.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Test Reports</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Coatings Qualification Test Reports</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the bracketed coating systems that will not be used for this project.  All coating systems, including 
+shop applied external coatings, shop applied internal coatings, and field repair coatings, must be listed for 
+qualification testing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit test results from an INDEPENDENT THIRD-PARTY laboratory of representative samples of each coating material.  U.S. Department of Defense 
+laboratories are considered to be INDEPENDENT THIRD-PARTY laboratories.  Samples must have been tested within the last three years.  The purpose 
+of qualification testing is to pre-qualify the coatings used on buried pipe.  Provide qualification testing results for exterior coatings used 
+for repairs or girth welds on buried pipe in conformance with [<RID>AWWA C203</RID>][<RID>AWWA C209</RID>][<RID>AWWA C210</RID>][<RID>AWWA C216</RID>][<RID>AWWA C217</RID>][<RID>NACE RP0402</RID>].  Provide qualification 
+testing results for shop applied exterior coatings for buried pipe in conformance with [<RID>AWWA C210</RID>][<RID>AWWA C213</RID>][<RID>AWWA C215</RID>].[  Provide qualification 
+testing results for shop applied internal coatings for buried pipe in conformance with [<RID>AWWA C213</RID>][<RID>MPI 500</RID><RID> and MPI 501</RID>].]</TXT><BRK/>
+<BRK/>
+<TXT>Qualification testing must be based on all required production verification testing required by [<RID>AWWA C203</RID>][<RID>AWWA C209</RID>][<RID>AWWA C210</RID>][<RID>AWWA C216</RID>][<RID>AWWA C217</RID>
+][<RID>NACE RP0402</RID>][<RID>AWWA C213</RID>][<RID>AWWA C215</RID>][<RID>MPI 500</RID> and <RID>MPI 501</RID>].[  For <RID>AWWA C213</RID>, provide test reports for production verification testing described 
+in paragraph OPTIONAL EPOXY PERFORMANCE TESTING OF COATED PIPE of <RID>AWWA C213</RID>, including cross-section porosity, interface porosity, thermal analysis 
+(DSC), permanent strain (bendability), and interfacial contamination.  Perform production verification testing on a minimum of one pipe joint in 
+the first half hour of production each day, and on a minimum of one pipe joint in the last half hour of production each day.  Perform additional 
+testing as required to segregate any non-compliant material.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Ferrous Metallic Abrasive Qualification Test Reports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit qualification testing results for abrasive as required in paragraph 4 REQUIREMENTS of <RID>SSPC AB 3</RID>.  Submit test results from an INDEPENDENT 
+THIRD-PARTY laboratory of representative samples of each abrasive to be used on the jobsite.  Samples must have been tested within the last three 
+years.  Note that this testing is for the purpose of pre-qualifying the abrasive.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Non-Metallic Abrasive Qualification Test Reports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit results for abrasive as required in paragraph 4 REQUIREMENTS of <RID>SSPC AB 1</RID>.  Submit test results from an INDEPENDENT THIRD-PARTY laboratory 
+of representative samples of each abrasive to be used on the jobsite.  Samples must have been tested within the last three years.  Note that this 
+testing is for the purpose of pre-qualifying the abrasive.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Recycled Ferrous Metallic Abrasive Field Test Reports (Daily and Weekly)</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit test results from an INDEPENDENT THIRD-PARTY laboratory of daily and weekly Quality Control testing required by <RID>SSPC AB 2</RID>, as modified in 
+paragraph ABRASIVE.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>The qualifications specified in this Section must be met throughout the duration of this contract.  Personnel and corporate entities must provide 
+proof of active certification to all qualifications specified in this Section.  Work must not be provided by personnel and corporate entities unless 
+all specified qualifications are met.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Qualifications of Certified Industrial Hygienist (CIH)</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit name, address, telephone number, fax number, and e-mail address of the INDEPENDENT THIRD-PARTY CIH.  Submit documentation that the hygienist 
+is certified by the American Board of Industrial Hygiene in comprehensive practice, including certification number and date of certification/recertification.  
+The CIH must remain certified during the entire project, and the Contracting Officer must be notified of any change in certification status within 
+10 days of the change.  If a CIH's certification expires, the hygienist will not be allowed to perform any hygienist functions, and all hygienist 
+work must stop, until the certification is reissued or another CIH is approved.  Requests for extension of time for any delay to the completion 
+of the project due to an inactive certification will not be considered and liquidated damages will apply.  Provide evidence of experience with 
+hazards involved in industrial coating application work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Pipe Coating Shop</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Solicitations requiring certification for pre-qualification must point out the existence and location of 
+the certification requirement on the PROJECT INFORMATION FORM.  This requirement must be pointed out in the solicitation 
+documents for the "prior to contract award" requirement to be enforceable.  Certification is a special responsibility 
+requirement pursuant to FAR 9.104-2 Special Standards.  This is analogous to requiring bidders to have a specified 
+level of experience or expertise and GAO has sustained these types of special requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each shop that applies coatings to pipe must be certified to <RID>SSPC QP 3</RID> prior to contract award and must remain certified while accomplishing any 
+surface preparation or coating application.  If a shop's certification expires, the firm will not be allowed to perform any work until the certification 
+is reissued.  Requests for extension of time for any delay to the completion of the project due to an inactive certification will not be considered 
+and liquidated damages will apply.  Notify the Contracting Officer of any change in the shop's certification status within 10 days of the change.  
+If a shop's qualification expires, the shop will not be allowed to perform any coatings related functions until the qualification is reissued.  
+Requests for extension of time for any delay to the completion of the project due to an inactive qualification will not be considered and liquidated 
+damages will apply.  Notify the Contracting Officer of all scheduled and unannounced on-site audits from AMPP and furnish a copy of all audit reports.</TXT><BRK/>
+<BRK/>
+[<TXT>For shops located outside the United States, Guam, and Puerto Rico, the certifications for the shop (<RID>SSPC QP 3</RID>) can be substituted if the coatings 
+Contractor meets all of the below requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI><RID>ISO 9001</RID> certified;</OLI><BRK/>
+<BRK/>
+<OLI>Eight years of experience with industrial coatings;</OLI><BRK/>
+<BRK/>
+<OLI>Evidence of recent work that has Contractor Performance Assessment Report System (CPARS) ratings, and/or other quality/performance ratings, 
+that are equivalent to, or exceed, "Above Average";</OLI><BRK/>
+<BRK/>
+<OLI>Evidence of an INDEPENDENT THIRD-PARTY audit from AMPP demonstrating equivalency to <RID>SSPC QP 3</RID> within the last two years.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>The shop must be certified to <RID>ISO 9001</RID> prior to contract award and must remain so certified for the duration of the project.  Notify the Contracting 
+Officer of any change in the shop's certification status within 10 days of the change.  If a Contractor's qualification expires, the shop will 
+not be allowed to perform any coatings related functions until the qualification is reissued.  Requests for extension of time for any delay to 
+the completion of the project due to an inactive qualification will not be considered and liquidated damages will apply.  Notify the Contracting 
+Officer of all scheduled and unannounced on-site inspections from the ISO certifying organization and furnish a copy of all inspection reports.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL><SUB>Qualifications of Certified Protective Coatings Specialist (PCS)</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit name, address, telephone number, fax number, and e-mail address of the INDEPENDENT THIRD-PARTY PCS.  Submit documentation that the PCS is 
+certified by the Association for Materials Protection and Performance (AMPP) (formerly SSPC: The Society for Protective Coatings (SSPC)), including 
+certification number and date of certification/recertification.  If the PCS is employed by the same coatings inspection company to which the Quality 
+Assurance Coatings Inspector is employed, this does not violate the INDEPENDENT THIRD-PARTY requirements.  The PCS must be an INDEPENDENT THIRD-PARTY 
+to the pipe coating shop.  The PCS must remain certified during the entire project, and the Contracting Officer must be notified of any change 
+in certification status within 10 days of the change.  If a PCS's certification expires, the PCS will not be allowed to perform any PCS functions, 
+and all coatings work must stop, until the certification is reissued or another PCS is approved.  Requests for extension of time for any delay 
+to the completion of the project due to an inactive certification will not be considered and liquidated damages will apply.  The PCS must not be 
+the designated Quality Assurance Coatings Inspector.  The PCS's responsibilities are outlined in PROTECTIVE COATINGS SPECIALIST (PCS).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Coatings Inspection Company</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit documentation that the selected quality assurance coatings inspection company is accredited by AMPP to the requirements of <RID>SSPC QP 5</RID> prior 
+to contract award.  The coatings inspection company that is submitted and approved, must remain and cannot be changed through completion of the 
+contract.  The coatings inspection company must remain <RID>SSPC QP 5</RID> certified for the duration of the coatings work.  If a coatings inspection company's 
+certification expires, the firm will not be allowed to perform any inspection functions, and all surface preparation and coating application work 
+must stop, until the certification is reissued.  Requests for extension of time for any delay to the completion of the project due to an inactive 
+certification will not be considered and liquidated damages will apply.  Notify the Contracting Officer of any change in the coatings inspection 
+company certification status within 10 days of the change.  Notify the Contracting Officer of all scheduled and unannounced on-site audits from 
+AMPP and furnish a copy of all audit reports.  The coatings inspection company must not engage in any activities that may conflict with their independence 
+of judgment and integrity in relation to their inspection activities.  In particular, they must not be engaged in the manufacture, supply, application, 
+surface preparation, purchase, or maintenance of the applied coating in this project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Quality Assurance Coatings Inspector</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Although the Quality Assurance Coatings Inspector may be a certified NACE CIP Level III inspector, the 
+Quality Assurance Coatings Inspector must be employed by a certified QP 5 coatings inspection company.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit documentation that each Quality Assurance Coatings Inspector is employed by the <RID>SSPC QP 5</RID> company and is qualified to a minimum certification 
+of NACE CIP Level II.  Each inspector must remain employed by the coatings inspection company while performing any coatings inspection functions.  
+The Quality Assurance Coatings Inspector's responsibilities are outlined in QUALITY ASSURANCE COATINGS INSPECTOR'S FIELD RESPONSIBILITIES.  The 
+roles of the Quality Assurance Coatings Inspector are in addition to, and distinct from, the role of the QC Coatings Inspector employed by the 
+coatings Contractor and the Coatings Inspector for Shop Coating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Coatings Contractors for Field Coating</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If project involves removal of paint containing hazardous materials, add requirement for SSPC QP 2 certification 
+in section of specification where the hazardous paint removal is specified, generally Section <SRF>02 83 00</SRF> LEAD REMEDIATION.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All Contractors and Subcontractors that perform surface preparation or coatings application must be certified to <RID>SSPC QP 1</RID> and <RID>SSPC QS 1</RID> prior 
+to contract award and must remain certified while accomplishing any surface preparation or coating application.  If a Contractor's or Subcontractor's 
+certification expires, the firm will not be allowed to perform any work until the certification is reissued.  Requests for extension of time for 
+any delay to the completion of the project due to an inactive certification will not be considered and liquidated damages will apply.  Notify the 
+Contracting Officer of any change in Contractor certification status within 10 days of the change.  If a Contractor's qualification expires, the 
+Contractor will not be allowed to perform any coatings related functions until the qualification is reissued.  Requests for extension of time for 
+any delay to the completion of the project due to an inactive qualification will not be considered and liquidated damages will apply.  Notify the 
+Contracting Officer of all scheduled and unannounced on-site audits from AMPP and furnish a copy of all audit reports.</TXT><BRK/>
+<BRK/>
+[<TXT>For projects located outside the United States, Guam, and Puerto Rico, the certifications for the coatings Contractor (<RID>SSPC QP 1</RID> and <RID>SSPC QS 1</RID>) 
+can be substituted if the coatings Contractor meets all of the below requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI><RID>ISO 9001</RID> certified;</OLI><BRK/>
+<BRK/>
+<OLI>Eight years of experience with industrial coatings;</OLI><BRK/>
+<BRK/>
+<OLI>Evidence of recent work that has Contractor Performance Assessment Report System (CPARS) ratings, and/or other quality/performance ratings, 
+that are equivalent to, or exceed, "Above Average";</OLI><BRK/>
+<BRK/>
+<OLI>Evidence of an INDEPENDENT THIRD-PARTY audit from AMPP demonstrating equivalency to <RID>SSPC QP 1</RID> and <RID>SSPC QS 1</RID> within the last two years.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>The coatings Contractors and coatings Subcontractors must be certified to <RID>ISO 9001</RID> prior to contract award and must remain so certified for the 
+duration of the project.  Notify the Contracting Officer of any change in Contractor certification status within 10 days of the change.  If a Contractor's 
+qualification expires, the Contractor will not be allowed to perform any coatings related functions until the qualification is reissued.  Requests 
+for extension of time for any delay to the completion of the project due to an inactive qualification will not be considered and liquidated damages 
+will apply.  Notify the Contracting Officer of all scheduled and unannounced on-site inspections from the ISO certifying organization and furnish 
+a copy of all inspection reports.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL><SUB>Qualifications of Individuals Performing Abrasive Blasting for Field Coating</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit name, address, and telephone number of each person that will be performing abrasive blasting.  All individuals performing abrasive blasting 
+must be certified by AMPP to the SSPC C7 Dry Abrasive Blaster Qualification Program or CAS Coating Application Specialist Level 2 Certification 
+Program (Interim Status), and must remain certified during the entire period of abrasive blasting.  The Contracting Officer must be notified of 
+any change in qualification status within 10 days of the change.  If a blaster's qualification expires, the blaster will not be allowed to perform 
+any blasting functions until the qualification is reissued.  Requests for extension of time for any delay to the completion of the project due 
+to an inactive qualification will not be considered and liquidated damages will apply.</TXT><BRK/>
+<BRK/>
+<TXT>This requirement applies to all manual abrasive blasting performed in shop and field locations.  This requirement does not apply to automated abrasive 
+blasting performed in the shop.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Individuals Performing Coating Application for Field Coating</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit name, address, telephone number, and evidence of certification of each person that will be performing coatings application by any method.  
+All individuals performing coatings application must be certified by AMPP to the SSPC CAS Coating Application Specialist Level 2 Certification 
+Program (Interim Status) or SSPC C12 Spray Application Program.  Each applicator must remain certified during the entire period of coatings application, 
+and the Contracting Officer must be notified of any change in qualification status within 10 days of the change.  If an applicator's qualification 
+expires, the applicator will not be allowed to perform any coatings application functions until the qualification is reissued.  Requests for extension 
+of time for any delay to the completion of the project due to an inactive qualification will not be considered and liquidated damages will apply.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Testing Laboratory for Coatings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit name, address, telephone number, fax number, and e-mail address of the INDEPENDENT THIRD-PARTY laboratory or laboratories selected to perform 
+testing of coating samples for qualification testing and for field sample testing for compliance with this Section.  Submit documentation that 
+the laboratory is regularly engaged in testing of paint samples for conformance with specifications and that the employees performing testing are 
+qualified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications of Testing Laboratory for Abrasive</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit name, address, telephone number, fax number, and e-mail address of the INDEPENDENT THIRD-PARTY laboratory or laboratories selected to perform 
+testing of abrasive for compliance with this section.  Submit documentation that the laboratory has experience in testing samples of abrasive for 
+conformance with specifications and that the employees performing testing are qualified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Coating Materials Certificate of Conformance</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's certification of conformance to [<RID>AWWA C203</RID>][<RID>AWWA C209</RID>][<RID>AWWA C210</RID>][<RID>AWWA C216</RID>][<RID>AWWA C217</RID>][<RID>NACE RP0402</RID>] for exterior coatings 
+used for repairs or girth welds on buried pipe.  Provide manufacturer's certification of conformance to [<RID>AWWA C210</RID>][<RID>AWWA C213</RID>][<RID>AWWA C215</RID>] for shop 
+applied exterior coatings for buried pipe.[  Provide manufacturer's certification of conformance to [<RID>AWWA C213</RID>][<RID>MPI 500</RID> and <RID>MPI 501</RID>] for shop applied 
+internal coatings for buried pipe.]</TXT><BRK/>
+<BRK/>
+[<TXT>For carbon steel internal liners ([<RID>AWWA C213</RID>][<RID>MPI 500</RID><RID> and MPI 501</RID>]), a certification must be provided from the coating manufacturer stating that 
+the coating system is suitable for immersion service in aviation fuel.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL><SUB>Ferrous Metallic Abrasive Certificate of Conformance</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's certification of conformance that the materials are currently in conformance with <RID>SSPC AB 3</RID> and as modified in this Section, 
+and have been tested within the last three years.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Non-Metallic Abrasive Certificate of Conformance</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's certification that the materials are currently in conformance with <RID>SSPC AB 1</RID> and as modified in this Section, and have been 
+tested within the last three years.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>QA and QC Personnel</TTL><BRK/>
+<BRK/>
+<SPT><TTL>QC Manager</TTL><BRK/>
+<BRK/>
+<TXT>The QC Manager is as defined in Section <SRF>01 45 00</SRF> QUALITY CONTROL.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protective Coatings Specialist (PCS)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specifier of this section shall ensure coordination with the related "QC Specialist" specification in Section 
+<SRF>01 45 00</SRF> QUALITY CONTROL, as applicable.  Provide the required data to complete the "QC Specialist" specifications 
+of that Section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The PCS must be considered a QC Specialist and must report to the QC Manager, as specified in Section <SRF>01 45 00</SRF> QUALITY CONTROL.  The PCS must approve 
+all submittals prior to submission to the QC Manager for approval or submission to the government for approval.</TXT><BRK/>
+<BRK/>
+<TXT>The PCS's responsibilities include, but are not limited to, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Obtain, review, and understand all project documentation including, but not limited to, this Section,<TAI OPT="ARMY"> scope of work (SOW)</TAI><TAI OPT="NAVY"> project program</TAI>
+, Coatings Work Plan, inspection and testing plan (ITP), and all submittals before the project starts, during the project, and all coatings 
+related re-work;</OLI><BRK/>
+<BRK/>
+<OLI>Attend all pre-job coatings meetings (in-person, phone, or virtually);</OLI><BRK/>
+<BRK/>
+<OLI>Attend pre-final coatings walk-through (mandatory) and attend final coatings walk-through (as required).</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Quality Assurance Coatings Inspector</TTL><BRK/>
+<BRK/>
+<TXT>The Quality Assurance Coatings Inspector must be considered a QC Specialist and must report to the QC Manager, as specified in Section 
+<SRF>01 45 00</SRF> QUALITY CONTROL.  The Quality Assurance Coatings Inspector must be present during all pre-preparation testing, surface preparation, coating 
+application, initial cure of the coating system, during all coating repair work, and during completion activities.  The Quality Assurance Coatings 
+Inspector must provide complete documentation of conditions and occurrences on the job site, and be aware of conditions and occurrences that are 
+potentially detrimental to the coating system.  The responsibilities of the Quality Assurance Coatings Inspector are defined in QUALITY ASSURANCE 
+COATING INSPECTOR'S RESPONSIBILITIES.  These responsibilities are separate and distinct from the responsibilities of the Coatings Contractor QC 
+Coatings Inspector and Coatings Inspector for Shop Coating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coatings Inspector for Shop Coating</TTL><BRK/>
+<BRK/>
+<TXT>The coatings inspector must be the shop Quality Manager or appropriate designee.  The coatings inspector must be considered a QC Specialist and 
+must report to the prime Contractor's QC Manager, as specified in Section <SRF>01 45 00</SRF> QUALITY CONTROL.  The coatings inspector must be present during 
+all pre-preparation testing, surface preparation, coating application, initial cure of the coating system, and during all coating repair work required 
+of the shop.  The coatings inspector must provide complete documentation of conditions and occurrences on the job site, and be aware of conditions 
+and occurrences that are potentially detrimental to the coating system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coatings Contractor QC Coatings Inspector</TTL><BRK/>
+<BRK/>
+<TXT>The Coatings Contractor QC Coatings Inspector must stop non-compliant work.  The responsibilities of the Coatings Contractor QC Coatings Inspector 
+are defined in COATINGS CONTRACTOR QC COATINGS INSPECTOR'S RESPONSIBILITIES.  These responsibilities are separate and distinct from the responsibilities 
+of the Quality Assurance Coatings Inspector.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pre-Application Meeting for Field Coating</TTL><BRK/>
+<BRK/>
+<TXT>After approval of submittals, but prior to the initiation of coatings work, Contractor representatives, including at a minimum, project superintendent, 
+QC manager, paint foreman, Quality Assurance Coatings Inspector, and PCS must have a pre-application coating preparatory meeting.  This meeting 
+must be in addition to the pre-construction conference.  Specific items addressed must include: corrective action requirements and procedures, 
+coatings work plan, safety plan, coordination with other Sections, inspection standards, inspection requirements and tools, test procedures, environmental 
+control system, safety plan, and test logs.  Notify Contracting Officer at least ten days prior to meeting.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PRODUCT DATA</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Coating System Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit manufacturer's printed instructions, including detailed mixing and application procedures, number and types of coats required, minimum and 
+maximum application temperatures, and curing procedures of all coating materials.  Include Safety Data Sheets (SDS) for materials to be used at 
+the job site in accordance with <RID>29 CFR 1926.59</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY AND STORAGE</TTL><BRK/>
+<BRK/>
+<TXT>Ship, store, and handle materials in accordance with <RID>SSPC PA 1</RID>, applicable standards, and as modified in this Section.  Maintain temperature in 
+storage spaces between<MET> 5 and 24 degrees C</MET><ENG> 40 and 75 degrees F</ENG>, and air temperature more than<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> above the dew-point at all 
+times.  Inspect materials for damage and return non-compliant materials to manufacturer.  Remove materials with expired shelf life from government 
+property immediately and notify the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<TXT>If materials are approaching shelf life expiration and an extension is desired, samples must be sent to the manufacturer, along with complete records 
+of storage conditions, with a request for shelf life extension.  If the manufacturer finds the samples and storage data suitable for shelf life 
+extension, the manufacturer must issue an extension, referencing the product evaluation and the review of storage records.  Products must not be 
+extended longer than allowed in the product specification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COATING HAZARDS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification Section must be used with Section <SRF>01 35 26</SRF> GOVERNMENTAL SAFETY REQUIREMENTS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure that employees are trained in all aspects of the safety plan.  Specified coatings may have potential health hazards if ingested or improperly 
+handled.  The coating manufacturer's written safety precautions must be followed throughout mixing, application, and curing of the coatings.  During 
+cleaning, cleanup, surface preparation, and paint application phases, ensure that employees are protected from toxic and hazardous chemical agents 
+which exceed concentrations in <RID>29 CFR 1910.1000</RID>.  Comply with respiratory protection requirements in <RID>29 CFR 1910.134</RID>.  The CIH must approve work 
+procedures and personal protective equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>JOB SITE REFERENCES - SHOP</TTL><BRK/>
+<BRK/>
+<TXT>Make available to the Contracting Officer a copy of each standard to which the shop will be applying coatings under this Section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>JOB SITE REFERENCES - FIELD</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include any other references that might be added during design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Make available to the Contracting Officer a copy of each standard to which field coatings will be applied to under this Section, and an SSPC Certified 
+Contractor Evaluation Form at the job site.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SHOP-APPLIED COATING FOR BURIED PIPING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>External Pipe Coating</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For carbon steel, use the first bracketed option (AWWA C215 Extruded Polyolefin Coatings for Steel Water 
+Pipe ) for normal situations, or the second option (AWWA C213 Fusion-Bonded Epoxy Coatings and Linings for Steel 
+Water Pipe and Fittings) where fuel contaminated soil is anticipated.</NPR><BRK/>
+<BRK/>
+<NPR>For stainless steel, use the bracketed first bracketed option (AWWA C210 Liquid-Epoxy Coatings and Linings for 
+Steel Water Pipe and Fittings or AWWA C215 Extruded Polyolefin Coatings for Steel Water Pipe) for normal situations, 
+or the second bracketed option (AWWA C213 Fusion-Bonded Epoxy Coatings and Linings for Steel Water Pipe and Fittings) 
+where fuel contaminated soil is anticipated.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When using AWWA standards for stainless steel, most coating manufacturers will require exceptions. Some 
+of these exceptions will include a lower rating for cathodic disbondment.  Ensure that this lower rating will 
+not alter the warranty and will be sufficient to protect the pipe in the environment it is exposed to.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[For carbon steel, extruded polyolefin coating over soft adhesive: <RID>AWWA C215</RID>.][For carbon steel, FBE coating: <RID>AWWA C213</RID>.]</TXT><BRK/>
+<BRK/>
+<TXT>[For stainless steel, liquid applied epoxy coating: <RID>AWWA C210</RID>.][For stainless steel, FBE coating: <RID>AWWA C213</RID>.][For stainless steel, extruded polyolefin: <RID>
+AWWA C215</RID>.]</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Internal Pipe Coating (Lining)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete requirement for lining where not required to protect aviation fuel.  Internal linings and coatings 
+must not be used for stainless steel piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[For carbon steel, FBE coating: <RID>AWWA C213</RID>.][For carbon steel, liquid applied epoxy coating system: <RID>MPI 500</RID> and <RID>MPI 501</RID>.]  A certification must 
+be provided from the coating manufacturer stating that the coating system is suitable for immersion service in aviation fuel.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>FIELD-APPLIED EXTERNAL PIPE COATING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the first bracketed portion where the shop-applied exterior coating is the AWWA C215 coating.  Use 
+the second bracketed portion when the exterior coating is the AWWA C213 coating.  Use the third bracketed portion 
+where the shop-applied exterior coating is the AWWA C210 coating.</NPR><BRK/>
+<BRK/>
+<NPR>While other methods of repairing/girth weld coating of FBE coatings are usable according to the standard, the 
+options allowed here are limited to those that will provide satisfactory service in fuel contaminated soil.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All coating materials used to coat external girth welds or repair existing coating must be from the same manufacture as the shop applied coating.  
+Use one or more of the following repair methods, as modified herein, to repair shop applied coatings and coat external girth welds:</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Coal Tar Enamel: <RID>AWWA C203</RID>, Type II enamel, Type III outerwrap</OLI><BRK/>
+<BRK/>
+<OLI>Coal Tar Tape: <RID>AWWA C203</RID></OLI><BRK/>
+<BRK/>
+<OLI>Cold Applied Tape: <RID>AWWA C209</RID></OLI><BRK/>
+<BRK/>
+<OLI>Petrolatum or Petroleum Wax Tape Coating: <RID>AWWA C217</RID></OLI><BRK/>
+<BRK/>
+<OLI>Heat Shrink Sleeve: <RID>AWWA C216</RID></OLI><BRK/></OLG>
+<OLG><BRK/>
+][<OLI>Fusion-Bonded Epoxy (FBE) Coating: <RID>NACE RP0402</RID>, coating material to be same as applied to pipe in shop</OLI><BRK/>
+<BRK/>
+<OLI>Liquid-Epoxy Coating System: <RID>AWWA C210</RID></OLI><BRK/></OLG>
+<OLG><BRK/>
+][<OLI>Liquid-Epoxy Coating System: <RID>AWWA C210</RID></OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>COATING FIELD SAMPLE COLLECTION AND SHIPPING KIT</TTL><BRK/>
+<BRK/>
+<TXT>Provide a kit for each sample to be collected.  For FBE coatings, each kit must contain: a one<MET> liter</MET><ENG> quart</ENG> can for the dry/powder; dipping cups 
+for sampling; a shipping box sized for the samples to be shipped; and packing material.  For liquid coatings, each kit must contain: a one<MET> liter</MET><ENG>
+ quart</ENG> can for the base of each liquid coatings material; one appropriately sized can for the activator of each liquid coatings material; dipping 
+cups for each component to be sampled; a shipping box sized for the samples to be shipped; and packing material.  Mark cans for the appropriate 
+components (powder, base, or activator), including manufacturer's name, address, batch numbers, batch size shipped to the project site, and date 
+of manufacture.  Provide shipping documents, including either pre-paid shipping or a shipping number that can be used by the QC Manager to arrange 
+pickup, addressed to the INDEPENDENT THIRD-PARTY coating testing laboratory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ABRASIVE FIELD SAMPLE COLLECTION AND SHIPPING KIT</TTL><BRK/>
+<BRK/>
+<TXT>Provide a kit for each sample to be collected.  Each kit must contain: one suitable plastic bag or container for each sample to be collected.  
+Mark containers with manufacturer's name, address, batch number, batch size, and date of manufacture.  Provide shipping documents, including either 
+pre-paid shipping label or a shipping number that can be used by the QC Manager to arrange pickup, addressed to the approved coating testing laboratory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSPECTION TEST KITS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Test Kit for Measuring Chloride, Sulfate, and Nitrate Ions on Steel and Coated Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>Provide test kits that meet the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Contains all materials, supplies, tools, and instructions for field testing and on-site quantitative evaluation of chloride, sulfate, and 
+nitrate ions;</OLI><BRK/>
+<BRK/>
+<OLI>Extract solution is acidic, factory pre-measured, pre-packaged, and of uniform concentration;</OLI><BRK/>
+<BRK/>
+<OLI>Components and solutions are mercury free and environmentally friendly;</OLI><BRK/>
+<BRK/>
+<OLI>Contains new materials and solutions for each test extraction;</OLI><BRK/>
+<BRK/>
+<OLI>Contains an extraction test container (vessel, sleeve, cell) creates a sealed, encapsulated environment during salt ion extraction;</OLI><BRK/>
+<BRK/>
+<OLI>Contains a test extract container is suitable for testing the following steel surfaces: horizontal (up/down configuration), vertical, flat, 
+curved, smooth, pitted, and rough;</OLI><BRK/>
+<BRK/>
+<OLI>All salt ion concentrations are directly measured in micrograms per square centimeter.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Test Kit for Measuring Chlorides in Abrasives</TTL><BRK/>
+<BRK/>
+<TXT>Provide test kits that meet all of the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Be a completely self-contained test kit with all materials, supplies, tools, and instructions to take tests and identify results;</OLI><BRK/>
+<BRK/>
+<OLI>Use identifiable, consistent, factory pre-measured test extract solution;</OLI><BRK/>
+<BRK/>
+<OLI>Provide for testing equal volumes of abrasive and test solution;</OLI><BRK/>
+<BRK/>
+<OLI>Provide for taking direct measurements of the chloride ion in parts per million (PPM), without using conversion charts or tables;</OLI><BRK/>
+<BRK/>
+<OLI>Provide all new components for extraction and titration for each test;</OLI><BRK/>
+<BRK/>
+<OLI>Provide a factory sealed titration device for each test;</OLI><BRK/>
+<BRK/>
+<OLI>Use the extract sampling container as the titration container.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Test Kit for Identifying Amine Blush on Epoxy Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>Provide test kits that meet all of the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Be a completely self-contained field test kit with all materials, supplies, tools, and instructions to perform tests and indicate the presence 
+of unreacted amines;</OLI><BRK/>
+<BRK/>
+<OLI>Use an identifiable, consistent, uniform, pre-packaged, factory pre-measured indicating solution;</OLI><BRK/>
+<BRK/>
+<OLI>Contains no mercury or lead and is environmentally friendly;</OLI><BRK/>
+<BRK/>
+<OLI>Contains a solution of an unreacted amine for the purpose of "self checking" the indicator solution.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>ABRASIVE</TTL><BRK/>
+<BRK/>
+<TXT>Use abrasive that is specifically selected to provide a sharp, angular profile to the specified depth.  Abrasive must meet all requirements of 
+this Section each time that it is placed in the blast pot.  The referenced abrasive specifications have maximum limits for soluble salts contamination; 
+however, this maximum level of contamination does not guarantee that contamination will not be transferred to the steel surface during abrasive 
+blasting.  Other factors, such as on-site handling and recycling, can allow contamination of abrasive that can be transferred to the steel surface.  
+Contractors are cautioned to verify that the chosen abrasive, along with work and storage processes, allow the final surface cleanliness requirements 
+to be achieved.  Successful testing of contamination in abrasive does not negate the final acceptance testing of steel surfaces.</TXT><BRK/>
+<BRK/>
+<TXT>Non-ferrous abrasives must be used for abrasive blasting stainless steel piping.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph is mandatory for all PACNAVFACENGCOM projects.  All other agencies may use it after 
+checking applicability.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Abrasive material must contain a maximum of one percent by weight of any toxic substance listed in either Table Z-1, Z-2, or Z-3 of <RID>29 CFR 1910-SUBPART Z</RID>
+, with the exception of inert or nuisance dust materials, arsenic, beryllium, cadmium, cobalt, lead, mercury, rhodium, silver, tellurium, thallium, 
+and uranium.</TXT><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Reduce allowable gross gamma radioactivity to 5 picocuries per gram for all PACDIV projects.  Reduce in 
+other areas if states or localities require.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Gross gamma radioactivity must not exceed 5 picocuries per gram.</TXT><BRK/>
+<BRK/>
+]<SPT><TTL>Ferrous Abrasive</TTL><BRK/>
+<BRK/>
+<SPT><TTL>New and Remanufactured Steel Grit</TTL><BRK/>
+<BRK/>
+<TXT>New and remanufactured steel grit abrasive must conform to the chemical and physical properties of <RID>SSPC AB 3</RID> Class 1 (Steel) only; Class 2 (Iron) 
+abrasive must not be used.  Modify the requirements of <RID>SSPC AB 3</RID> to substitute the requirement in paragraph 4.2.2 CONDUCTIVITY for one chloride 
+test as measured using the test kit described in this Section (paragraph TEST KIT FOR MEASURING CHLORIDES IN ABRASIVES).  The maximum allowable 
+chloride content is 25 parts per million (PPM).</TXT><BRK/>
+<BRK/>
+<TXT>To develop a suitable work mix from new steel abrasive, a minimum of 200 to 400 recycles is required; therefore, it may be advantageous for a Contractor 
+to use remanufactured steel grit or grit reclaimed from a previous project.  Such grit must be traced to new grit conforming to <RID>SSPC AB 3</RID> Class 
+1 and it meets all cleanliness requirements of <RID>SSPC AB 3</RID> Class 1 when brought to the current jobsite. Submit one representative sample of this 
+work mix to the INDEPENDENT THIRD-PARTY laboratory for testing, along with samples of new material.  Acceptance and use of this work mix must not 
+be used to justify any deviation from surface preparation requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Recycled Steel Grit</TTL><BRK/>
+<BRK/>
+<TXT>Recycled steel grit abrasive media must conform to the chemical and physical properties of <RID>SSPC AB 2</RID> except that: </TXT><BRK/>
+<OLG><BRK/>
+<OLI>The maximum allowable chromium and cadmium content of the work mix must be 0.1 percent by weight when tested in accordance with <RID>ASTM D3718</RID>
+ for chromium and <RID>ASTM D3335</RID> for cadmium.  Modify the requirements of <RID>SSPC AB 2</RID> to add requirement for one chromate test and one cadmium 
+test for each "LEAD" test required.</OLI><BRK/>
+<BRK/>
+<OLI>The maximum allowable chloride content is 25 parts per million (PPM) as measured with the test kit described in paragraph TEST KIT FOR 
+MEASURING CHLORIDES IN ABRASIVES.  Modify the requirements of <RID>SSPC AB 2</RID> to substitute requirement for one chloride test for each "WATER 
+SOLUBLE CONTAMINANTS" test.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Non-Metallic Abrasive</TTL><BRK/>
+<BRK/>
+<TXT>Non-metallic abrasive must be graded to the appropriate surface profile range and must conform to the chemical and physical properties of <RID>SSPC AB 1</RID>
+, Class A except that: </TXT><BRK/>
+<OLG><BRK/>
+<OLI>The maximum allowable chromium and cadmium content of the work mix must be less than 0.1 percent by weight when tested in accordance with <RID>
+ASTM D3718</RID> for chromium and <RID>ASTM D3335</RID> for cadmium.</OLI><BRK/>
+<BRK/>
+<OLI>Must contain less than 7 PPM chlorides when tested with the kit provided in paragraph TEST KIT FOR MEASURING CHLORIDES IN ABRASIVES.  Modify 
+the requirements of <RID>SSPC AB 1</RID> to substitute requirement for one chloride test for each "CONDUCTIVITY TEST" required in <RID>SSPC AB 1</RID> (one random 
+sample per 50 bags of abrasive or three random samples from each shipment, if abrasive is delivered in bulk).</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<TXT>Perform all work, rework, and repair in accordance with approved procedures in the Coatings Work Plan.  The Coatings Work Plan must be submitted 
+and approved by the PCS prior to mobilization in accordance with the paragraph entitled COATINGS WORK PLAN.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>FIELD SAMPLE COLLECTION AND TESTING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For shop applied coatings, only the QC Manager and either the PCS or the Quality Assurance Coatings Inspector 
+must witness sampling.  For field applied coatings, the QC Manager and either the PCS or the Quality Assurance 
+Coatings Inspector must witness sampling.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Sample and test materials delivered to the jobsite as required in the subsequent subparagraphs.  Notify Contracting Officer three days in advance 
+of sampling.  The QC Manager, and either the PCS or the Quality Assurance Coatings Inspector, must witness all sampling.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Coating Field Sample Collection</TTL><BRK/>
+<BRK/>
+<TXT>All coatings/resins applied in the shop and in the field require one sample to be collected from each coating type used.  This sample must be collected 
+and set aside for the duration of the project, and must be tested if unforeseen coatings issues arise or if testing is requested by the Contracting 
+Officer.</TXT><BRK/>
+<BRK/>
+<TXT>Field applied coatings require a random field sample from each lot of coating material used on-site in accordance with <RID>ASTM D3925</RID>.  Each random 
+sample must be tested.  Utilize sample collection kits as outlined in the paragraph entitled COATING FIELD SAMPLE COLLECTION AND SHIPPING KIT.  
+For powder based coatings, collect a one<MET> liter</MET><ENG> quart</ENG> sample from each lot by random selection.  For two component liquid coatings, obtain a one<MET>
+ liter</MET><ENG> quart</ENG> sample of each base material, and proportional samples of each activator based on mix ratio, by random selection from sealed containers 
+from each lot.  Prior to sampling, mix contents of each sealed container to ensure uniformity.  As an alternative to collecting small samples from 
+kits, entire kits may be randomly selected and shipped to the THIRD-PARTY INDEPENDENT laboratory, observing all requirements for witnessing and 
+traceability.  For purposes of quality conformance inspection, a lot is defined as that quantity of materials from a single, uniform batch produced 
+and offered for delivery at one time.  A batch is defined as that quantity of material processed by the manufacturer at one time and identified 
+by number on the label.  Identify samples by designated name, specification number, batch number, project contract number, sample date, intended 
+use, and quantity involved.  The QC manager will take possession of the packaged samples, contact the shipping company to arrange for pickup, and 
+ship one complete sample of each material in question (including powder or base and activator) with all batch information to the INDEPENDENT THIRD-PARTY 
+laboratory for testing as required in paragraph COATING FIELD TESTING REPORTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Abrasive Field Sample Collection</TTL><BRK/>
+<BRK/>
+<TXT>Utilize the sample collection kits as required in paragraph ABRASIVE FIELD SAMPLE COLLECTION AND SHIPPING KIT to obtain samples from each lot of 
+abrasive delivered to site using the sampling techniques and schedule of one sample per every 50 bags for ferrous metallic abrasive, paragraph 
+4 REQUIREMENTS FOR RECYCLED WORK MIX ABRASIVES of <RID>SSPC AB 2</RID> for recycled ferrous metallic abrasives, or paragraph 5.3 SAMPLING FOR QUALITY CONTROL 
+TESTS of <RID>SSPC AB 1</RID> for non-metallic abrasives.</TXT><BRK/>
+<BRK/>
+<TXT>For purposes of quality conformance inspection, a lot must consist of all abrasive materials of the same type from a single, uniform batch produced 
+and offered for delivery at one time.  The addition of any substance to a batch must constitute a new lot.  Identify samples by designated name, 
+specification number, lot number, project contract number, sample date, intended use, and quantity involved.  The QC manager will take possession 
+of the packaged samples, contact the shipping company to arrange for pickup, and relinquish the samples only to the shipping representative for 
+shipment to the approved INDEPENDENT THIRD-PARTY laboratory for testing required in paragraph ABRASIVE SAMPLE TEST REPORTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Coating Field Test Reports</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the bracketed coating systems that will not be used for this project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit test results for each sample that requires testing in the paragraph COATINGS FIELD SAMPLE COLLECTION.  Test samples of coating material 
+for compliance with requirements of [<RID>AWWA C203</RID>][<RID>AWWA C209</RID>][<RID>AWWA C210</RID>][<RID>AWWA C216</RID>][<RID>AWWA C217</RID>][<RID>NACE RP0402</RID>].  Reject entire batch represented by samples 
+that fail one or more tests, select new lots, and test samples.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Abrasive Field Test Reports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit test results for each lot of abrasive delivered to the jobsite.  Test samples of ferrous metallic abrasive to the requirements of paragraph 
+5.2 TEST PARAMETERS of <RID>SSPC AB 3</RID>, excluding paragraph 5.2.4 DURABILITY.  Test samples of recycled ferrous metallic abrasives to the requirements 
+of paragraph 4 REQUIREMENTS FOR RECYCLED WORK MIX ABRASIVES of <RID>SSPC AB 2</RID>.  Test samples of non-metallic abrasive to the requirements of paragraph 
+5.3 SAMPLING FOR QUALITY CONTROL TESTS of <RID>SSPC AB 1</RID>.  Reject entire lot represented by samples that fail one or more tests, select new lots, and 
+test samples.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>LIGHTING</TTL><BRK/>
+<BRK/>
+<TXT>Provide lighting for all work areas as prescribed in <RID>SSPC Guide 12</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ENVIRONMENTAL CONDITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Automated Monitoring Requirements for Shop Applied Coating</TTL><BRK/>
+<BRK/>
+<TXT>Provide continuous monitoring of temperature, relative humidity, and dew point data at pertinent points in the shop, during surface preparation, 
+coating application, and initial cure.  This data does not suffice for documentation of conformity to surface conditions during application and 
+cure of coating.  Locate sensors to provide pertinent data for the surface preparation and coating application being performed, as well as the 
+temperature extremes on the structure.  Describe the location plan in the Coatings Work Plan.  Monitor any heating, cooling, or dehumidification 
+equipment used. Provide monitoring equipment to perform as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Data is collected in 15-minute increments, and available for download (on-site) in a standard database format. Contractor must collect 
+these data and make available to the Contracting Officer and QC Manager;</OLI><BRK/>
+<BRK/>
+<OLI>Monitoring equipment must have backup power such that data collection will be uninterrupted during the entire period of the dehumidification 
+requirement;</OLI><BRK/>
+<BRK/>
+<OLI>Monitoring equipment must have capability to measure interior and exterior dry bulb temperature (DB), relative humidity (RH), and dewpoint 
+temperature (DP).</OLI><BRK/></OLG>
+<BRK/>
+<TXT>There is no requirement for connectivity of the monitoring system to control the dehumidification equipment; therefore, any combination of equipment 
+having the required functionality will be accepted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Containment for Field Coating</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Experience has shown that containment provides cost-effective control of environmental conditions, and 
+the better conditions result in a better coating product.</NPR><BRK/>
+<BRK/>
+<NPR>SSPC Guide 6, has four classes of containment, from Class 1 being the highest level of control.  Generally, Classes 
+1 and 2 are only required for removal of hazardous materials, while Class 3 is probably satisfactory for most 
+coating operations.  Class 4 requires minimal "knockdown" of airborne debris, and is not generally usable as an 
+airborne particulate control measure.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Design and provide a containment system for the capture, containment, collection, storage, and disposal of the waste materials generated by the 
+work under this Section, to meet the requirements of <RID>SSPC Guide 6</RID>, Class [1][2][3].  Vapor concentrations must be kept at or below 10 percent of 
+Lower Explosive Limit (LEL) at all times.  Containment may be designed as fixed containment for complete structure or portable containment for 
+sections of structure; however, containment must remain in any one place from beginning of abrasive blasting through initial cure of coating.  
+Waste materials covered by this paragraph must not include any material or residue from removal of coatings containing lead, chromium, cadmium, 
+PCB, or any other hazardous material.</TXT><BRK/>
+<BRK/>
+<TXT>It is the Contractors responsibility to insure the feasibility and workability of the containment system.  The Contractor must perform their operations 
+and work schedule in a manner as to minimize leakage of the containment system.  The containment system must be properly maintained and must not 
+deviate from the approved drawings.  If the containment system fails to function satisfactorily, the Contractor must suspend all operations, except 
+those required to minimize adverse impact on the environment or government property. Operations must not resume until modifications have been made 
+to correct the cause of the failure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Automated Monitoring Requirements for Field Coating</TTL><BRK/>
+<BRK/>
+<TXT>Provide continuous monitoring of temperature, relative humidity, and dew point data at pertinent points on the structure, during surface preparation, 
+coating application, and initial cure.  This data does not suffice for documentation of conformity to surface conditions during application and 
+cure of coating. Locate sensors to provide pertinent data for the surface preparation and coating application being performed, as well as the temperature 
+extremes on the structure.  Describe the location plan, including required moves, in the Coatings Work Plan.  Monitor any heating, cooling, or 
+dehumidification equipment used. Provide monitoring equipment to perform as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Data is collected in the field unit in 15-minute increments, and available for download (on-site) in a standard database format.  Contractor 
+must collect these data and make available to the Contracting Officer, Quality Assurance Coatings Inspector, and QC Manager;</OLI><BRK/>
+<BRK/>
+<OLI>Monitoring equipment must have backup power such that data collection will be uninterrupted during the entire period of the dehumidification 
+requirement;</OLI><BRK/>
+<BRK/>
+<OLI>Monitoring equipment must have capability to measure surface temperatures at a minimum of four locations anywhere on a structure, regardless 
+of the size of the structure;</OLI><BRK/>
+<BRK/>
+<OLI>Monitoring equipment must have capability to measure interior and exterior dry bulb temperature (DB), relative humidity (RH), and dewpoint 
+temperature (DP).</OLI><BRK/></OLG>
+<BRK/>
+<TXT>There is no requirement for connectivity of the monitoring system to control the dehumidification equipment; therefore, any combination of equipment 
+having the required functionality will be accepted.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SHOP APPLIED COATING OF BURIED PIPING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Surface Preparation for Shop Applied Coating</TTL><BRK/>
+<BRK/>
+<TXT>Prepare exterior steel surfaces in accordance with [<RID>AWWA C210</RID>][<RID>AWWA C213</RID>][<RID>AWWA C215</RID>].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Abrasive Blasting Equipment for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Confirm that air supply for abrasive blasting is free of oil and moisture when tested in accordance with <RID>ASTM D4285</RID>.  Test air quality at each 
+startup, but in no case, less often than every five operating hours.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contamination Evaluation of Abrasive for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Test abrasive for salt contamination and oil contamination as required <RID>SSPC AB 1</RID> for non-metallic abrasives, <RID>SSPC AB 2</RID> for recycled ferrous abrasives, 
+and <RID>SSPC AB 3</RID> for ferrous metallic abrasives.  Modify the schedule of testing to be daily, at startup, and every five operating hours thereafter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Preparation Testing for Surface Contamination for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pre-Preparation Testing for Oil and Grease Contamination for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Inspect all surfaces for oil or grease contamination using two or more of the following inspection techniques:</TXT><BRK/>
+<OLG><BRK/>
+<OLI LEVEL="2">VISUAL INSPECTION - Observe surface for evidence of dirt or oil.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">WATER BREAK TEST - Spray atomized mist of distilled water onto surface and observe for water beading.  If water wets surface 
+rather than beading up, surface can be considered free of oil or grease contamination. Beading of water (water forms droplets) 
+is evidence of oil or grease contamination.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">CLOTH RUB TEST - Rub a clean, white, lint-free, cotton cloth onto surface and observe for discoloration.  To confirm oil or grease 
+contamination in lightly stained areas, a non-staining solvent may be used to aid in oil or grease extraction.  Any visible discoloration 
+is evidence of oil or grease contamination.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Reject oil or grease contaminated surfaces, clean [using a water based pH neutral degreaser ]in accordance with <RID>SSPC SP 1</RID>, and recheck for contamination 
+until surfaces are free of oil and grease.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Preparation Testing for Soluble Salts Contamination for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The testing for chlorides, sulfates, and nitrates (CSN) is especially important if there was evidence of 
+corrosion production or if the bare surface has been contaminated prior to surface preparation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Test each lot of pipe for soluble salt contamination on the [internal and external ]surfaces using the test kit described in paragraph TEST KIT 
+FOR MEASURING CHLORIDE, SULFATE, AND NITRATE IONS ON STEEL AND COATED SURFACES.  For pipes with an outer diameter (OD) of less than<MET> 2.54 centimeters</MET><ENG>
+ 6 inches</ENG>, one test per<MET> 6.09 meters</MET><ENG> 20 lineal feet</ENG> is required.  For pipes with an OD of more than<MET> 2.54 centimeters</MET><ENG> 6 inches</ENG>, three tests per<MET> 9.29 
+square meters</MET><ENG> 100 square feet</ENG> must be taken, with a minimum of one test per section of pipe.  Label all test tubes and retain for test verification.  
+Reject and wash surfaces of the entire lot if one or more readings greater than 3 micrograms per square centimeter of chlorides or 10 micrograms 
+per square centimeter of sulfates or 5 micrograms per square centimeter of nitrates is measured.</TXT><BRK/>
+<BRK/>
+<TXT>Effective washing and removal of soluble salts will require removal of any barrier to the steel surface, including rust or mill scale.  This procedure 
+may necessitate combinations of wet abrasive blasting, high pressure water rinsing, and cleaning using a solution of water and soluble salt remover.  
+The soluble salt remover must be acidic, biodegradable, non-toxic, non-corrosive, and after application, will not interfere with primer adhesion.  
+Use potable water, or potable water modified with soluble salt remover, for all washing or wet abrasive blasting.[  Additional testing is required 
+when there are delays between testing and preparation or testing and coating application.]  Test methods and equipment used in this phase must 
+be included in the Coatings Work Plan.</TXT><BRK/>
+<BRK/>
+<TXT>This phase is required because pre-preparation testing and washing are generally more advantageous than attempting to remove soluble salt contamination 
+after abrasive blasting. Soluble salt testing is also required in paragraph PRE-APPLICATION TESTING FOR SOLUBLE SALTS CONTAMINATION as a final 
+acceptance test of prepared surfaces after abrasive blasting.  Successful completion of pre-preparation testing and washing does not negate the 
+requirement for pre-application testing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Abrasive Blasting External Surfaces for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select bracketed coating system consistent with the external coating system selected in SHOP-APPLIED COATING 
+FOR BURIED PIPING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[For carbon steel, prepare surfaces in accordance with <RID>SSPC SP 10/NACE No. 2</RID>.  ][For stainless steel, prepare surfaces in accordance with <RID>SSPC SP 17</RID>
+.  The surface profile must be in accordance with the coating manufacturer's recommended range.  Non-ferrous abrasives must be used.  ]The surface 
+profile must be in accordance with [<RID>AWWA C210</RID>][<RID>AWWA C213</RID>][<RID>AWWA C215</RID>] and measured in accordance with <RID>ASTM D4417</RID>, Method A and Method C.  The appearance 
+of the surface after blasting must have the appearance of a Sand or Grit comparator.  A rounded profile shape or peened surface is not acceptable.  
+Measure profile at a rate of three measurements per lot at the beginning of the day.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Abrasive Blasting Internal Surfaces for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>For carbon steel, prepare surfaces in accordance with <RID>SSPC SP 10/NACE No. 2</RID>.  The surface profile must be in accordance with the coating manufacturer's 
+recommended range.  Measure surface profile in accordance with <RID>ASTM D4417</RID>, Method A and Method C.  The appearance of the surface after blasting 
+must have the appearance of a Sand or Grit comparator.  A rounded profile shape or peened surface is not acceptable.  For pipes with an outer diameter 
+(OD) of less than<MET> 2.54 centimeters</MET><ENG> 6 inches</ENG>, one test per<MET> 6.09 meters</MET><ENG> 20 lineal feet</ENG> is required.  For pipes with an OD of more than<MET> 2.54 centimeters</MET><ENG>
+ 6 inches</ENG>, three tests per<MET> 9.29 square meters</MET><ENG> 100 square feet</ENG> must be taken, with a minimum of one test per section of pipe.  Internal lining must 
+not be used for stainless steel piping.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Disposal of Used Abrasive for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>Disposal of Used Abrasive Shop Applied Coating</SUB>, in accordance with Federal, State, and Local mandated regulations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Application Testing for Surface Contamination for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pre-Application Testing for Oil and Grease Contamination for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Ensure surfaces are free of contamination as described in paragraph PRE-PREPARATION TESTING FOR OIL AND GREASE CONTAMINATION FOR SHOP APPLIED COATING 
+OF BURIED PIPING, except that only questionable areas need be checked for beading of water misted onto surface.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Application Testing for Surface Cleanliness for Shop Applied Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Apply coatings to dust free surfaces. To test surfaces, use <RID>ISO 8502-3</RID>.  Use a kit that is compliant with <RID>ISO 8502-3</RID>.  A rating of 2 or better 
+must be achieved for acceptance.  If a test does not result in a rating of 2 or better, reject contaminated surfaces, clean by vacuum cleaning, 
+and retest.  Test surfaces at rate of one test per joint or repair area where application will be performed.  Provide two additional tests for 
+each failed test or questionable test.  Document test results in the Daily Inspection Report and attach tape to the Inspection Logbook.</TXT><BRK/>
+<BRK/>
+<TXT>Ferrous abrasives may become magnetized and difficult to remove from the steel substrate.  If ferrous abrasives are used, additional visual inspection 
+must be performed to ensure no surface contamination by the abrasive is present.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Mixing and Application of Shop Applied Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Mixing Liquid Epoxy Coatings</TTL><BRK/>
+<BRK/>
+<TXT>Mix materials as stated in coating system instructions.  Mix materials in same temperature and humidity conditions specified in paragraph DELIVERY 
+AND STORAGE.  Allow mixed material to stand for the required induction time.</TXT><BRK/>
+<BRK/>
+<TXT>Apply mixed products within stated pot life for each product.  Stop applying when material becomes difficult to apply in a smooth, uniform wet 
+film. Do not add solvent to extend pot life.  Add all required solvent, if allowable by the coating manufacturer, at time of mixing.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>External Pipe Shop Applied Coating Application</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select bracketed coating system consistent with the external coating system selected in SHOP-APPLIED COATING 
+FOR BURIED PIPING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Apply coatings in accordance with <RID>SSPC PA 1</RID> and as specified in [<RID>AWWA C210</RID>][<RID>AWWA C213</RID>][<RID>AWWA C215</RID>].  Apply coatings to surfaces that meet all stated 
+surface preparation requirements.</TXT><BRK/>
+<BRK/>
+[<TXT>For the application of <RID>AWWA C210</RID>, the dry film thickness (DFT) must be a minimum of<MET> 400 microns</MET><ENG> 16 mils</ENG>.  The coating thickness must not exceed 
+the manufacturers recommendations.</TXT><BRK/>
+<BRK/>
+][<TXT>For the application of <RID>AWWA C213</RID>, the DFT must be a minimum of<MET> 300 microns</MET><ENG> 12 mils</ENG>.  The coating thickness must not exceed the manufacturers recommendations.</TXT><BRK/>
+<BRK/>
+][<TXT>For the application of <RID>AWWA C215</RID>, the total coating thickness must be a minimum of as shown in the below table:</TXT><BRK/>
+<MET><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="146.25"/>
+      <COL AUTOWIDTH="0" WIDTH="146.25"/>
+      <COL AUTOWIDTH="0" WIDTH="146.25"/>
+      <COL AUTOWIDTH="0" WIDTH="146.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pipe Diameter (mm)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Adhesive (mm)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Polyolefin (mm)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Thickness (mm)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0 to 50</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.20</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.56</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.76</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">75 to 150</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.20</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.76</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.96</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200 to 400</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.20</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.92</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.12</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">450 to 900</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.20</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.02</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.22</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Greater than 950</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.20</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.52</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.72</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></MET><ENG><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="6">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="146.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="146.25"/>
+      <COL AUTOWIDTH="0" WIDTH="146.25"/>
+      <COL AUTOWIDTH="0" WIDTH="146.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Pipe Diameter (in)</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Adhesive (mils)</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Polyolefin (mils)</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Total Thickness (mils)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">0 to 2</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">22</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">30</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3 to 6</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">30</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">38</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">8 to 16</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">36</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">44</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">18 to 36</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">40</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">48</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Greater than 38</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">60</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">68</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></ENG><BRK/>
+<TXT>The coating thickness must not exceed the manufacturers recommendations.</TXT><BRK/>
+<BRK/>
+]</SPT>[<SPT><TTL>Internal Pipe Coating Application</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select bracketed coating system consistent with the internal coating system selected in SHOP-APPLIED COATING 
+FOR BURIED PIPING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Internal coatings must not be used with stainless steel piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[For <RID>AWWA C213</RID>, apply coatings in accordance with <RID>SSPC PA 1</RID> and as specified in <RID>AWWA C213</RID>.  ][For <RID>MPI 500</RID> and <RID>MPI 501</RID>, apply coating in accordance 
+with <RID>SSPC PA 1</RID> and as directed by the coating manufacturer.  ]Apply coatings to surfaces that meet all stated surface preparation requirements.</TXT><BRK/>
+<BRK/>
+[<TXT>For the application of <RID>AWWA C213</RID>, the DFT must be a minimum of<MET> 300 microns</MET><ENG> 12 mils</ENG>.  The coating thickness must not exceed the manufacturers recommendations.</TXT><BRK/>
+<BRK/>
+][<TXT>For the application of <RID>MPI 500</RID> and <RID>MPI 501</RID>, the coatings must be applied at the DFT specified in the coating system instructions.</TXT><BRK/>
+<BRK/>
+]</SPT>]<SPT><TTL>Holiday Testing and Shop Repair</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select bracketed coating system consistent with the coating system selected in SHOP-APPLIED COATING FOR 
+BURIED PIPING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform holiday testing on all shop-applied, externally coated areas and repair as outlined in [<RID>AWWA C210</RID>][<RID>AWWA C213</RID>][<RID>AWWA C215</RID>].</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>FIELD EXTERIOR COATING OF ABOVEGROUND PIPING</TTL><BRK/>
+<BRK/>
+<TXT>Coat aboveground, carbon steel piping in accordance with Section <SRF>09 97 13.27</SRF> HIGH PERFORMANCE COATING FOR STEEL STRUCTURES.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD REPAIRS TO EXTERNAL COATING OF BURIED PIPING</TTL><BRK/>
+<BRK/>
+<TXT>Field repairs must only be performed when repairing shop applied coatings in the field and coating external girth welds.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Surface Preparation for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Block or suspended pipeline at a height that will allow the blast nozzle to be perpendicular to the surface being blasted, and at the proper standoff 
+distance, at all times.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Abrasive Blasting Equipment for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Use abrasive blasting equipment of conventional air, force-feed, or pressure type.  Maintain a minimum pressure of<MET> 650 kPa</MET><ENG> 95 psig</ENG> at nozzle.  
+Confirm that air supply for abrasive blasting is free of oil and moisture when tested in accordance with <RID>ASTM D4285</RID>.  Test air quality at each 
+startup, but in no case, less often than every five operating hours.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contamination Evaluation of Abrasive for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Test abrasive for salt contamination and oil contamination as required <RID>SSPC AB 1</RID> for non-ferrous abrasives, <RID>SSPC AB 2</RID> for recycled ferrous abrasives, 
+and <RID>SSPC AB 3</RID> for ferrous abrasives.  Modify the schedule of testing to be daily, at startup, and every five operating hours thereafter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surface Standard</TTL><BRK/>
+<BRK/>
+<TXT>Inspect surfaces to be coated, and select plate with similar properties and surface characteristics for use as a surface standard.  Blast clean 
+one or more<MET> 300 mm</MET><ENG> one foot</ENG> square steel panels in the manner specified in paragraph ABRASIVE BLASTING FOR FIELD COATING OF BURIED PIPING.  Record 
+blast nozzle type and size, air pressure at nozzle and compressor, distance of nozzle from panel, and angle of blast to establish procedures for 
+blast cleaning.  Measure surface profile in accordance with <RID>ASTM D4417</RID>, Method C.  When the surface standard complies with all specified requirements, 
+seal with a clearcoat protectant.  Use the surface standard for comparison to abrasive blasted surfaces throughout the course of work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Preparation Testing for Surface Contamination for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pre-Preparation Testing for Oil and Grease Contamination for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Inspect all surfaces for oil or grease contamination using two or more of the following inspection techniques:</TXT><BRK/>
+<OLG><BRK/>
+<OLI LEVEL="2">VISUAL INSPECTION - Observe surface for evidence of dirt or oil.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">WATER BREAK TEST - Spray atomized mist of distilled water onto surface and observe for water beading.  If water wets surface 
+rather than beading up, surface can be considered free of oil or grease contamination. Beading of water (water forms droplets) 
+is evidence of oil or grease contamination.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">CLOTH RUB TEST - Rub a clean, white, lint-free, cotton cloth onto surface and observe for discoloration.  To confirm oil or grease 
+contamination in lightly stained areas, a non-staining solvent may be used to aid in oil or grease extraction.  Any visible discoloration 
+is evidence of oil or grease contamination.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Reject oil or grease contaminated surfaces, clean using a water based pH neutral degreaser in accordance with <RID>SSPC SP 1</RID>, and recheck for contamination 
+until surfaces are free of oil and grease.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Preparation Testing for Soluble Salts Contamination for Field Coating of Buried Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The testing for chlorides, sulfates, and nitrates (CSN) is especially important if there was evidence of 
+corrosion production or if the bare surface has been contaminated prior to surface preparation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to abrasive blasting, test all exposed girth welds and areas to be recoated for soluble salt contamination using the test kit described in 
+paragraph TEST KIT FOR MEASURING CHLORIDE, SULFATE, AND NITRATE IONS ON STEEL AND COATED SURFACES.  Label all test tubes and retain for test verification.  
+Reject and wash surfaces if one or more readings greater than 3 micrograms per square centimeter of chlorides or 10 micrograms per square centimeter 
+of sulfates or 5 micrograms per square centimeter of nitrates is measured.</TXT><BRK/>
+<BRK/>
+<TXT>Effective washing and removal of soluble salts will require removal of any barrier to the steel surface, including rust.  This procedure may necessitate 
+combinations of wet abrasive blasting, high pressure water rinsing, and cleaning using a solution of water and soluble salts remover.  The soluble 
+salts remover must be acidic, biodegradable, non-toxic, non-corrosive, and after application, will not interfere with coating adhesion.  Delays 
+between testing and preparation, or testing and coating application, may allow for the formation of new contamination.  Use potable water, or potable 
+water modified with soluble salt remover, for all washing or wet abrasive blasting.  Test methods and equipment used in this phase must be included 
+in the Coatings Work Plan.</TXT><BRK/>
+<BRK/>
+<TXT>This phase is required because pre-preparation testing and washing are generally more advantageous than attempting to remove soluble salt contamination 
+after abrasive blasting.  Soluble salt testing is also required in paragraph PRE-APPLICATION TESTING FOR SOLUBLE SALTS CONTAMINATION FOR FIELD 
+COATING OF BURIED PIPING as a final acceptance test of prepared surfaces after abrasive blasting.  Successful completion of pre-preparation testing 
+and washing does not negate the requirement for pre-application testing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Abrasive Blasting for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>[For carbon steel, prepare girth welds and repairs to bare steel to <RID>SSPC SP 10/NACE No. 2</RID> immediately prior to coating application.  Verify that 
+prepared surfaces comply with <RID>SSPC VIS 1</RID> and match the prepared test-panels from the paragraph SURFACE STANDARD at the time of coating application.  
+The surface profile must be in accordance with the coating manufacturer's recommended range.  Measure the surface profile in accordance with <RID>ASTM D4417</RID>
+, Method A and Method C.  The appearance of the surface after blasting must have the appearance of a Sand or Grit comparator.  A rounded profile 
+shape or peened surface is not acceptable.  For pipes with an outer diameter (OD) of less than<MET> 2.54 centimeters</MET><ENG> 6 inches</ENG>, one test per<MET> 6.09 meters</MET><ENG>
+ 20 lineal feet</ENG> is required.  For pipes with an OD of more than<MET> 2.54 centimeters</MET><ENG> 6 inches</ENG>, three tests per<MET> 9.29 square meters</MET><ENG> 100 square feet</ENG> must 
+be taken, with a minimum of one test per section of pipe.  Internal lining must not be used for stainless steel piping.  When surfaces are re-blasted 
+for any reason, retest profile as specified.  Following abrasive blasting, remove dust and debris by vacuum cleaning.  Dust and debris tend to 
+collect at welds, plate overlaps, and surface irregularities.  Do not attempt to wipe surface clean.][For stainless steel, prepare girth welds 
+and repairs to bare steel to <RID>SSPC SP 17</RID> immediately prior to coating application.  Verify that prepared surfaces comply with <RID>SSPC VIS 1</RID> at time 
+of coating application.  All other surfaces must be prepared in accordance with the appropriate coating standard referenced herein.  The surface 
+profile must be in accordance with the coating manufacturer's recommended range.  Measure the surface profile in accordance with <RID>ASTM D4417</RID>, Method 
+A and Method C.  The appearance of the surface after blasting must have the appearance of a Sand or Grit comparator.  A rounded profile shape or 
+peened surface is not acceptable.  For pipes with an outer diameter (OD) of less than<MET> 2.54 centimeters</MET><ENG>6 inches</ENG>, one test per<MET> 6.09 meters</MET><ENG> 20 lineal 
+feet</ENG> is required.  For pipes with an OD of more than<MET> 2.54 centimeters</MET><ENG> 6 inches</ENG>, three tests per<MET> 9.29 square meters</MET><ENG> 100 square feet</ENG> must be taken, 
+with a minimum of one test per section of pipe.  Internal lining must not be used for stainless steel piping.  Non-ferrous abrasive must be used.  
+When surfaces are re-blasted for any reason, retest profile as specified.  Following abrasive blasting, remove dust and debris by vacuum cleaning.  
+Dust and debris tend to collect at welds, plate overlaps, and surface irregularities. Do not attempt to wipe surface clean.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disposal of Used Abrasive for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>Disposal of Used Abrasive Field Applied Coating</SUB> off Government property in accordance with Federal, State, and Local mandated regulations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Application Testing for Surface Contamination for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pre-Application Testing for Oil and Grease Contamination for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Ensure surfaces are free of contamination as described in paragraph PRE-PREPARATION TESTING FOR OIL AND GREASE CONTAMINATION FOR FIELD COATING 
+OF BURIED PIPING, except that only questionable areas need to be checked for beading of water misted onto surface.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Application Testing for Soluble Salts Contamination for Field Coating of Buried Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The testing for chlorides, sulfates, and nitrates (CSN) is especially important if there was evidence of 
+corrosion production or if the bare surface has been contaminated prior to coating application.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Test surfaces for soluble salts using the test kit described in paragraph TEST KIT FOR MEASURING CHLORIDE, SULFATE, AND NITRATE IONS ON STEEL AND 
+COATED SURFACES, test girth welds and areas to be recoated for soluble salts.  Label all test tubes and retain for test verification.  One or more 
+readings greater than 3 micrograms per square centimeter of chlorides or 10 micrograms per square centimeter of sulfates or 5 micrograms per square 
+centimeter of nitrates is evidence of soluble salt contamination.  Reject contaminated surfaces, wash as required in paragraph PRE-PREPARATION 
+TESTING FOR SOLUBLE SALTS CONTAMINATION FOR FIELD COATING OF BURIED PIPING, allow to dry, and re-test, and re-wash until all required tests show 
+allowable results.  Re-blast tested areas using vacuum equipped blast equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Application Testing for Surface Cleanliness for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>Apply coatings to dust free surfaces.  To test surfaces, use <RID>ISO 8502-3</RID>.  Use a kit that is compliant with <RID>ISO 8502-3</RID>.  A rating of 2 or better 
+must be achieved for acceptance.  If a test does not result in a rating of 2 or better, reject contaminated surfaces, clean by vacuum cleaning, 
+and retest.  Test surfaces at rate of one test per joint or repair area where application will be performed.  Provide two additional tests for 
+each failed test or questionable test.  Document test results in the Daily Inspection Reports and attach tape to the Inspection Logbook.</TXT><BRK/>
+<BRK/>
+<TXT>Ferrous abrasives may become magnetized and difficult to remove from the steel substrate.  If ferrous abrasives are used, additional visual inspection 
+must be performed to ensure no surface contamination by the abrasive is present.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Coating Mixing and Application for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Mixing Coating Materials for Field Coating of Buried Piping</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Mix and apply coating materials in accordance with the approved coating system instructions, which may differ for each product.  Do not 
+mix partial kits unless standardized measuring cups are utilized.  Do not alter mix ratios.  Mix materials in same temperature and humidity 
+conditions specified in paragraph DELIVERY AND STORAGE.  Allow mixed material to stand for the required induction time.  All mixing processes 
+must be witnessed by the Quality Assurance Coatings Inspector.</OLI><BRK/>
+<BRK/>
+<OLI>Apply mixed products within stated pot life for each product.  Stop applying when material becomes difficult to apply in a smooth, uniform 
+wet film.  Do not add solvent to extend pot life.  Add all required solvent at time of mixing, as allowable per the coating system instructions.</OLI><BRK/>
+<BRK/>
+<OLI>If coating materials are not liquid materials (i.e., powder or extrusion materials), this paragraph may not apply.  Follow the recommended 
+instructions per the approved coating system instructions.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Application Conditions and Recoat Windows for Field Coating of Buried Piping</TTL><BRK/>
+<BRK/>
+<TXT>The application condition requirements for coatings are time and temperature sensitive.  Plan coating application to ensure that specified temperature, 
+humidity, and condensation conditions are met.  If conditions do not allow for proper application of the coating materials, use appropriate means 
+of controlling air and surface temperatures, as required.  Partial or total enclosures, insulation, heating, cooling, or other appropriate measures 
+may be required to control conditions to allow for orderly application of all required coats.</TXT><BRK/>
+<BRK/>
+<TXT>Maintain air and steel surface temperature within the range allowable by the approved coating system instructions during application and initial 
+cure.  Maintain steel surface temperature more than<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> above the dew-point of the ambient air for the same period.  These 
+conditions may require environmental controls through containment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coating Application for Field Coating of Buried Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select bracketed coating system consistent with the coating system selected in FIELD-APPLIED EXTERNAL PIPE 
+COATING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Apply coatings in accordance with <RID>SSPC PA 1</RID> and as specified in [<RID>AWWA C203</RID>][<RID>AWWA C209</RID>][<RID>AWWA C210</RID>][<RID>AWWA C216</RID>][<RID>AWWA C217</RID>][<RID>NACE RP0402</RID>]. Apply coatings 
+to surfaces that meet all stated surface preparation requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Holiday Testing and Field Repair</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select bracketed coating system consistent with the coating system selected in FIELD-APPLIED EXTERNAL PIPE 
+COATING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform holiday testing on all field coated areas and repair as outlined in [<RID>AWWA C203</RID>][<RID>AWWA C209</RID>][<RID>AWWA C210</RID>][<RID>AWWA C216</RID>][<RID>AWWA C217</RID>][<RID>NACE RP0402</RID>
+].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Final Inspection of Pipeline Prior to Burial</TTL><BRK/>
+<BRK/>
+<TXT>Verify that all surfaces of the pipeline are holiday-free at time of placement of backfill over pipe.  Use holiday inspection requirements and 
+acceptance criteria of the standards applicable to the coatings being tested.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Final Cleanup</TTL><BRK/>
+<BRK/>
+<TXT>Following completion of the work, remove debris, equipment, and materials from the site.  Remove all foreign matter such as blast media, dust, 
+dirt, debris, grease, and oils.  Wipe all dry to handle coated surfaces with damp lint-free cloth.  Remove temporary connections to Government- 
+or Contractor-furnished water and electrical services.  Restore existing facilities in and around the work areas to their original condition.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD AND SHOP QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>For marking of surfaces, use chalk for marking bare steel and water based markers for marking coated surfaces.  Remove marks prior to coating.  
+Do not use any wax or grease based markers, or any other markers that leave a residue or stain.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Inspection</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Inspection Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Perform inspections in accordance with <RID>ASTM D3276</RID> and the approved Coatings Work Plan.</OLI><BRK/>
+<BRK/>
+<OLI>Provide all tools and instruments required to perform the required testing, as well as any tools or instruments that the inspector considers 
+necessary to perform the required inspections and tests.  Document each inspection and test, including required hold points and other required 
+inspections and tests, as well as those inspections and tests deemed prudent from on-site evaluation to document a particular process or 
+condition, as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Location or area;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Purpose (required or special);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Method;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Criteria for evaluation;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Results;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Determination of compliance;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">List of required rework;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Observations.</OLI><BRK/>
+<BRK/>
+<OLI>Collect and record environmental conditions as described in <RID>ASTM D3276</RID> on a 24 hour basis, as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">During surface preparation, every hour, or when changes occur;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">During coating application and the first four days of initial cure, every hour, or when changes occur;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Note location, time, and temperature of the highest and lowest surface temperatures each day;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Use a non-contact thermometer to locate temperature extremes, then verify with contact thermometers.</OLI><BRK/>
+<BRK/>
+<OLI>Data collected on environmental conditions in AUTOMATED MONITORING REQUIREMENTS may be used for overnight data; however, the data must 
+be constantly verified as to location of sensors and validity of data with respect to the coating work being accomplished.</OLI><BRK/>
+<BRK/>
+<OLI>Document all equipment used in inspections and testing, including manufacturer, model number, serial number, last calibration date and 
+future calibration date, and results of on-site calibration performed.  Work documented using data from equipment found to be out of calibration 
+must be considered as non-compliant since last calibration or calibration check, as required.</OLI><BRK/>
+<BRK/>
+<OLI>Document Contractors compliance with the Coatings Work Plan.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Inspection Report Forms</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Develop project-specific report forms as required to report measurements, test results, and observations being complete and conforming to contract 
+requirements.  This includes all direct requirements of the contract documents and indirect requirements of referenced documents.  Show acceptance 
+criteria with each requirement and indication of conformity of each inspected item.  The data may be in any format, but must be legible and presented 
+so that entered data can be quickly compared to the appropriate requirement.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Daily Inspection Reports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit one copy of daily inspection report completed each day when performing work under this Section, to the Contracting Officer. Note all non-compliance 
+issues, and all issues that were reported for rework in accordance with QC procedures of Section <SRF>01 45 00</SRF> QUALITY CONTROL. Each report must be 
+signed by the Quality Assurance Coatings Inspector and the QC Manager. Submit report within 24 hours of date recorded on the report.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Inspection Logbook</SUB></TTL><BRK/>
+<BRK/>
+<TXT>A continuous record of all activity related to this Section must be maintained in an Inspection Logbook on a daily basis.  The logbook must be 
+hard or spiral-bound book or digital program with consecutively numbered pages, and must be used to record all information provided in the Daily 
+Inspection Reports, as well as other pertinent observations and information.  Submit the original Inspection Logbook to the Contracting Officer 
+upon completion of the project and prior to final payment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inspection Equipment</TTL><BRK/>
+<BRK/>
+<TXT>All equipment must be in good condition, operational within its design range, and calibrated as required by the specified standard for use of each 
+device.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Coatings Contractor QC Coatings Inspector's Responsibilities</TTL><BRK/>
+<BRK/>
+<TXT>The Coatings Contractor QC Coatings Inspector responsibilities include complete documentation of all daily inspection and production activities 
+for the entire coatings project as outlined in the Coatings Work Plan,<TAI OPT="ARMY"> scope of work (SOW)</TAI><TAI OPT="NAVY"> project program</TAI>, and this Section. This includes, but 
+is not limited to, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Attending and documenting the pre-job meeting and acquiring the<TAI OPT="ARMY"> scope of work (SOW)</TAI><TAI OPT="NAVY"> project program</TAI>, inspection and testing plan (ITP), 
+schedule, and a list of who will receive the QC daily inspection reports;</OLI><BRK/>
+<BRK/>
+<OLI>Performing a project site walk-through with the Quality Assurance Evaluator (QAE) or asset owner, Coatings Contractor QC, QC Manager, and 
+Quality Assurance Coatings Inspector, inspecting at least the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Asset(s) to be coated;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Equipment and placement of equipment;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Materials delivery and storage;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Facility operational requirements during the project.</OLI><BRK/>
+<BRK/>
+<OLI>Perform all daily and hold point inspections including, but not limited to, the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Check equipment, including blotter test to verify compressed air cleanliness;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform non-visible contaminants testing (in accordance with PRE-PREPARATION TESTING FOR SOLUBLE SALT CONTAMINATION FOR SHOP 
+APPLIED COATING OF BURIED PIPING, PRE-APPLICATION TESTING FOR SOLUBLE SALT CONTAMINATION FOR SHOP APPLIED COATING OF BURIED PIPING, 
+PRE-PREPARATION TESTING FOR SOLUBLE SALT CONTAMINATION FOR FIELD COATING OF BURIED PIPING, and PRE-APPLICATION TESTING FOR SOLUBLE 
+SALT CONTAMINATION FOR FIELD COATING OF BURIED PIPING);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform visible contaminants testing (in accordance with PRE-PREPARATION TESTING FOR OIL AND GREASE CONTAMINATION FOR SHOP APPLIED 
+COATING OF BURIED PIPING, PRE-APPLICATION TESTING FOR OIL AND GREASE CONTAMINATION FOR SHOP APPLIED COATING OF BURIED PIPING, 
+PRE-PREPARATION TESTING FOR OIL AND GREASE CONTAMINATION FOR FIELD COATING OF BURIED PIPING, and PRE-APPLICATION TESTING FOR 
+OIL AND GREASE CONTAMINATION FOR FIELD COATING OF BURIED PIPING);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Obtain environmental readings;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform abrasive testing per <RID>SSPC AB 1</RID>, <RID>SSPC AB 2</RID>, or <RID>SSPC AB 3</RID>;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform surface preparation monitoring and testing;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform surface cleanliness testing;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform dust quantity testing;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Record materials storage documentation (record all coatings and abrasive materials information, batch numbers, segregation, and 
+storage temperature);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Witness all coatings materials mixing and record mix materials temperatures, with verification of time of coatings pot life;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify, witness, and record application method;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform random wet film thickness (WFT) readings;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform inspection of coatings application;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Obtain dry film thickness (DFT) readings per <RID>SSPC PA 2</RID>;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform holiday testing in accordance with HOLIDAY TESTING AND SHOP REPAIR and HOLIDAY TESTING AND FIELD REPAIR;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Label asset identification (label stickers);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Write Correction Action Reports (CAR), if needed;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Write Non-Conformance Reports (NCR), if needed. </OLI><BRK/>
+<BRK/>
+<OLI>Writing a daily detailed summary of the work shift inspections, testing, and the day's events, including any meetings and prevalent conversations. 
+The final daily report must include a project summary that must be part of the daily coatings inspection report.</OLI><BRK/>
+<BRK/>
+<OLI>The Coatings Contractor QC Coatings Inspector must stop all non-compliant work.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Quality Assurance Coatings Inspector's Responsibilities</TTL><BRK/>
+<BRK/>
+<TXT>The Quality Assurance Coatings Inspector's responsibilities include complete documentation of all on-site work associated with the coatings project. 
+These responsibilities include, but are not limited to, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Attending and documenting the pre-job meeting and acquiring the<TAI OPT="ARMY"> scope of work (SOW)</TAI><TAI OPT="NAVY"> project program</TAI>, inspection and testing plan (ITP), 
+schedule, and a list of who will receive the QC daily inspection reports;</OLI><BRK/>
+<BRK/>
+<OLI>Performing a project site walk-through with the Quality Assurance Evaluator (QAE) or asset owner, prime Contractor, and coatings Contractor 
+(QC Coatings Inspector and QC Manager), inspecting at least the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Asset(s) to be coated;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Equipment and placement of equipment;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Materials delivery and storage;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Facility operational requirements during the project.</OLI><BRK/>
+<BRK/>
+<OLI>Verifying all daily and hold point inspections performed by the Coatings Contractor QC Coatings Inspector or QC Manager by performing mirror 
+inspections including, but not limited to, the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify equipment check, including blotter test to verify compressed air cleanliness;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify visible contaminants testing;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Take environmental readings;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform surface preparation monitoring and testing;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform surface cleanliness testing;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform dust quantity test;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Record materials storage documentation (record all coating and abrasive information, batch numbers, segregation, and storage 
+temperature);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Witness all coatings materials mixing and record mix materials  temperatures, with verification of time of coatings pot life;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify, witness, and record application method;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect coatings application;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform dry film thickness (DFT) readings per <RID>SSPC PA 2</RID>;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect asset identification (label stickers);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Write Correction Action Reports (CAR), if needed;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Write Non-Conformance Reports (NCR), if needed.</OLI><BRK/>
+<BRK/>
+<OLI>The following testing is witnessed by the Quality Assurance Coatings Inspector and performed by the Coatings Contractor QC Coatings Inspector 
+or QC Manager:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Wet film thickness (WFT) readings by coatings applicator(s);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Non-visible contaminants testing for chlorides, sulfates, and nitrates (CSN);</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Abrasive testing per <RID>SSPC AB 1</RID>, <RID>SSPC AB 2</RID>, or <RID>SSPC AB 3</RID>;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Holiday testing.</OLI><BRK/>
+<BRK/>
+<OLI>Writing a daily detailed summary of the work shift inspections, testing, and the day's events, including any meetings and prevalent conversations.  
+The final daily report must include a project summary that will be part of the last daily coatings inspection report.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>PROJECT IDENTIFICATION</TTL><BRK/>
+<BRK/>
+<TXT>At the completion of the work, affix pertinent coating data on structure at a location that is readily accessible and visible from the ground.  
+Use either stencils or nameplates.  The following list generally describes the pertinent coating data, but should be modified as required to describe 
+the coating systems.</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Date coated/accepted: __________/___________</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Project Number: ____________________________</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Contractor: ________________________________</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Address: ___________________________________</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Coating System</LST><BRK/>
+<BRK/>
+<LST INDENT="0.20">Manufacturer: ____________________________</LST><BRK/>
+<BRK/>
+<LST INDENT="0.20">Surface Prep: SSPC SP ____ Profile: ______</LST><BRK/>
+<BRK/>
+<LST INDENT="0.20">Primer: __________________ Thickness: ____</LST><BRK/>
+<BRK/>
+<LST INDENT="0.20">Intermediate: ____________ Thickness: ____</LST><BRK/>
+<BRK/>
+<LST INDENT="0.20">Topcoat: _________________ Thickness: ____</LST><BRK/>
+<BRK/>
+<LST INDENT="0.20">Total Thickness: _________</LST><BRK/>
+<BRK/>
+<SPT><TTL>Stencils</TTL><BRK/>
+<BRK/>
+<TXT>Use stencils on piping<MET> 203 mm</MET><ENG> 8 in</ENG> or larger.  Use stencils with 3/4- to one-inch Helvetica style letters and acrylic stencil paint of contrasting 
+color.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In a salt water environment, substitute acceptable non-corroding metal such as, but not limited to, nickel-copper, 
+304 stainless steel, or monel.  Aluminum is unacceptable.  Nomenclature (or system identification) should be established 
+by the designer. Require melamine plastic nameplates for all NAVFAC projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use nameplates for piping smaller than 8 inches.  Construct plates of [anodized aluminum][stainless steel][melamine plastic,<MET> 3 mm</MET><ENG> 0.125 in</ENG> thick, 
+UV resistance, black with white center core, matte finish surface and square corners][_____].  Install nameplates in prominent locations with nonferrous 
+screws, nonferrous bolts, or permanent adhesive.  Minimum size of nameplates must be<MET> 25 by 65 mm</MET><ENG> one by 2.5 in</ENG>.  Lettering must be the <NED/>normal block 
+style with a minimum<MET> 6 mm</MET><ENG> 0.25 in</ENG> height.  Accurately align all lettering on nameplates.[  For plastic nameplates, engrave lettering into the white 
+core.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

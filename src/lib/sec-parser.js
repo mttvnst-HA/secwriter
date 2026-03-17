@@ -1,0 +1,399 @@
+/**
+ * SEC File Parser
+ *
+ * Parses SpecsIntact .SEC files (XML-based SGML) into a flat array of
+ * content blocks suitable for the editor.
+ *
+ * Usage (browser):
+ *   import { parseSEC } from './sec-parser.js'
+ *   const blocks = parseSEC(xmlString)
+ *
+ * Usage (Node CLI):
+ *   node tools/parse-sec.js input.sec output.json
+ */
+
+// Inline tags that carry semantic meaning (data-driven)
+const INLINE_MARK_TAGS = new Set(['RID', 'SRF', 'SUB', 'ENG', 'MET', 'TAI', 'TST', 'URL', 'HLS']);
+
+// Inline tags that are pure formatting
+const INLINE_FORMAT_TAGS = new Set([
+  'BLD', 'ITA', 'UND', 'HL1', 'HL2', 'HL3', 'HL4',
+  'SBS', 'SPS', 'CTR'
+]);
+
+// Tags to skip entirely
+const SKIP_TAGS = new Set([
+  'BRK', 'BRL', 'AST', 'NED', 'PGE', 'MTA', 'END', 'EOD'
+]);
+
+/**
+ * Convert an XML element to HTML string with semantic mark spans.
+ */
+function elemToHtml(elem) {
+  const parts = [];
+
+  // Traverse childNodes to build HTML
+  for (const node of elem.childNodes) {
+    if (node.nodeType === 3) { // Text node
+      parts.push(node.textContent.replace(/\n/g, ' '));
+    } else if (node.nodeType === 1) { // Element node
+      const tag = node.tagName;
+
+      if (INLINE_MARK_TAGS.has(tag)) {
+        const cls = `mark-${tag.toLowerCase()}`;
+        const inner = elemToHtml(node);
+        const opt = (tag === 'TAI') ? node.getAttribute('OPT') : null;
+        const optAttr = opt ? ` data-opt="${opt}"` : '';
+        parts.push(`<span class="${cls}"${optAttr}>${inner}</span>`);
+      } else if (tag === 'ADD') {
+        parts.push(`<ins class="mark-add">${elemToHtml(node)}</ins>`);
+      } else if (tag === 'DEL') {
+        parts.push(`<del class="mark-del">${elemToHtml(node)}</del>`);
+      } else if (tag === 'CHG') {
+        parts.push(`<span class="mark-chg">${elemToHtml(node)}</span>`);
+      } else if (INLINE_FORMAT_TAGS.has(tag)) {
+        if (tag === 'BLD' || tag === 'HL3') {
+          parts.push(`<b>${elemToHtml(node)}</b>`);
+        } else if (tag === 'ITA' || tag === 'HL2') {
+          parts.push(`<em>${elemToHtml(node)}</em>`);
+        } else if (tag === 'UND' || tag === 'HL1') {
+          parts.push(`<u>${elemToHtml(node)}</u>`);
+        } else {
+          parts.push(elemToHtml(node));
+        }
+      } else if (SKIP_TAGS.has(tag)) {
+        // Skip
+      } else if (tag === 'SCP' || tag === 'PRA') {
+        parts.push(elemToHtml(node));
+      } else {
+        parts.push(elemToHtml(node));
+      }
+    }
+  }
+  return parts.join(' ').replace(/\s+/g, ' ').trim();
+}
+
+/**
+ * Same as elemToHtml but skips TAB children (for TXT blocks that contain embedded tables).
+ */
+function elemToHtmlNoTab(elem) {
+  const parts = [];
+  for (const node of elem.childNodes) {
+    if (node.nodeType === 3) {
+      parts.push(node.textContent.replace(/\n/g, ' '));
+    } else if (node.nodeType === 1) {
+      const tag = node.tagName;
+      if (tag === 'TAB' || tag === 'WBK' || tag === 'TDA' || tag === 'ROW' ||
+          tag === 'CEL' || tag === 'DTA' || tag === 'COL' || tag === 'STS' ||
+          tag === 'STY' || tag === 'ALN') {
+        // Skip table internals
+      } else if (INLINE_MARK_TAGS.has(tag)) {
+        const cls = `mark-${tag.toLowerCase()}`;
+        const opt = (tag === 'TAI') ? node.getAttribute('OPT') : null;
+        const optAttr = opt ? ` data-opt="${opt}"` : '';
+        parts.push(`<span class="${cls}"${optAttr}>${elemToHtml(node)}</span>`);
+      } else if (tag === 'ADD') {
+        parts.push(`<ins class="mark-add">${elemToHtml(node)}</ins>`);
+      } else if (tag === 'DEL') {
+        parts.push(`<del class="mark-del">${elemToHtml(node)}</del>`);
+      } else if (tag === 'CHG') {
+        parts.push(`<span class="mark-chg">${elemToHtml(node)}</span>`);
+      } else if (INLINE_FORMAT_TAGS.has(tag)) {
+        if (tag === 'BLD' || tag === 'HL3') {
+          parts.push(`<b>${elemToHtml(node)}</b>`);
+        } else if (tag === 'ITA' || tag === 'HL2') {
+          parts.push(`<em>${elemToHtml(node)}</em>`);
+        } else if (tag === 'UND' || tag === 'HL1') {
+          parts.push(`<u>${elemToHtml(node)}</u>`);
+        } else {
+          parts.push(elemToHtml(node));
+        }
+      } else if (SKIP_TAGS.has(tag)) {
+        // Skip
+      } else {
+        parts.push(elemToHtml(node));
+      }
+    }
+  }
+  return parts.join(' ').replace(/\s+/g, ' ').trim();
+}
+
+/**
+ * Extract a TAB element into a table data structure.
+ */
+function extractTable(tabElem) {
+  const tda = tabElem.querySelector('TDA');
+  if (!tda) return null;
+
+  const cols = parseInt(tda.getAttribute('COLUMNCOUNT') || '0');
+  const rows = [];
+
+  for (const rowElem of tda.querySelectorAll('ROW')) {
+    const cells = [];
+    for (const cel of rowElem.querySelectorAll(':scope > CEL')) {
+      const mergeAcross = cel.getAttribute('MERGEACROSS');
+      const dta = cel.querySelector('DTA');
+      cells.push({
+        text: dta ? elemToHtml(dta) : '',
+        colspan: mergeAcross ? parseInt(mergeAcross) + 1 : 1,
+      });
+    }
+    rows.push(cells);
+  }
+
+  return { columns: cols, rows };
+}
+
+/**
+ * Parse a .SEC XML string into an array of editor blocks.
+ *
+ * @param {string} xmlString - The raw .SEC file content
+ * @returns {Array} Array of block objects
+ */
+export function parseSEC(xmlString) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlString, 'text/xml');
+  const root = doc.documentElement;
+
+  const blocks = [];
+  let nodeId = 0;
+
+  function nextId() {
+    return `n${++nodeId}`;
+  }
+
+  const state = {
+    partNum: 0,
+    sptDepth: 0,
+    currentSection: null,
+  };
+
+  function processElement(elem) {
+    const tag = elem.tagName;
+
+    if (tag === 'PRT') {
+      state.partNum++;
+      state.sptDepth = 0;
+      for (const child of elem.children) processElement(child);
+      return;
+    }
+
+    if (tag === 'SPT') {
+      state.sptDepth++;
+      for (const child of elem.children) processElement(child);
+      state.sptDepth--;
+      return;
+    }
+
+    if (tag === 'TTL') {
+      const html = elemToHtml(elem);
+      if (html) {
+        const nid = nextId();
+        blocks.push({
+          id: nid,
+          type: 'title',
+          part: state.partNum,
+          depth: state.sptDepth,
+          html,
+        });
+        state.currentSection = nid;
+      }
+      return;
+    }
+
+    if (tag === 'TXT') {
+      const tabChild = elem.querySelector('TAB');
+      const html = elemToHtmlNoTab(elem);
+      if (html) {
+        blocks.push({
+          id: nextId(),
+          type: 'txt',
+          part: state.partNum,
+          depth: state.sptDepth,
+          section: state.currentSection,
+          html,
+        });
+      }
+      if (tabChild) {
+        const tdata = extractTable(tabChild);
+        if (tdata && tdata.rows.length > 0) {
+          blocks.push({
+            id: nextId(),
+            type: 'table',
+            part: state.partNum,
+            depth: state.sptDepth,
+            section: state.currentSection,
+            table: tdata,
+          });
+        }
+      }
+      return;
+    }
+
+    if (tag === 'NPR') {
+      const html = elemToHtml(elem);
+      if (html) {
+        blocks.push({
+          id: nextId(),
+          type: 'note',
+          part: state.partNum,
+          depth: state.sptDepth,
+          section: state.currentSection,
+          html,
+        });
+      }
+      return;
+    }
+
+    if (tag === 'NTE' || tag === 'OLG' || tag === 'SBM') {
+      for (const child of elem.children) processElement(child);
+      return;
+    }
+
+    if (tag === 'OLI') {
+      const html = elemToHtml(elem);
+      const level = parseInt(elem.getAttribute('LEVEL') || '1');
+      if (html) {
+        blocks.push({
+          id: nextId(),
+          type: 'oli',
+          part: state.partNum,
+          depth: state.sptDepth,
+          level,
+          section: state.currentSection,
+          html,
+        });
+      }
+      return;
+    }
+
+    if (tag === 'LST') {
+      const html = elemToHtml(elem);
+      if (html) {
+        blocks.push({
+          id: nextId(),
+          type: 'lst',
+          part: state.partNum,
+          depth: state.sptDepth,
+          section: state.currentSection,
+          html,
+        });
+      }
+      return;
+    }
+
+    if (tag === 'ITM') {
+      const html = elemToHtml(elem);
+      if (html) {
+        blocks.push({
+          id: nextId(),
+          type: 'item',
+          part: state.partNum,
+          depth: state.sptDepth,
+          section: state.currentSection,
+          html,
+        });
+      }
+      return;
+    }
+
+    if (tag === 'TAB') {
+      // Standalone table (not inside TXT)
+      const tdata = extractTable(elem);
+      if (tdata && tdata.rows.length > 0) {
+        blocks.push({
+          id: nextId(),
+          type: 'table',
+          part: state.partNum,
+          depth: state.sptDepth,
+          section: state.currentSection,
+          table: tdata,
+        });
+      }
+      return;
+    }
+
+    if (tag === 'REF') {
+      // Parse structured reference block: ORG + RID/RTL pairs
+      const orgElem = elem.querySelector('ORG');
+      const orgText = orgElem ? elemToHtml(orgElem) : '';
+
+      if (orgText) {
+        // Organization header block
+        blocks.push({
+          id: nextId(),
+          type: 'txt',
+          part: state.partNum,
+          depth: state.sptDepth,
+          section: state.currentSection,
+          html: `<b>${orgText}</b>`,
+        });
+      }
+
+      // Extract RID/RTL pairs from direct children
+      const children = Array.from(elem.children);
+      for (let ci = 0; ci < children.length; ci++) {
+        const child = children[ci];
+        if (child.tagName === 'RID') {
+          const rid = elemToHtml(child);
+          // Look for the following RTL sibling
+          let rtl = '';
+          for (let ri = ci + 1; ri < children.length; ri++) {
+            if (children[ri].tagName === 'RTL') {
+              rtl = elemToHtml(children[ri]);
+              ci = ri; // skip past the RTL
+              break;
+            }
+            if (children[ri].tagName === 'RID') break; // next RID without RTL
+          }
+          if (rid) {
+            const html = rtl
+              ? `<span class="mark-rid">${rid}</span> ${rtl}`
+              : `<span class="mark-rid">${rid}</span>`;
+            blocks.push({
+              id: nextId(),
+              type: 'txt',
+              part: state.partNum,
+              depth: state.sptDepth,
+              section: state.currentSection,
+              html,
+            });
+          }
+        }
+        // Skip NTE children inside REF — process them normally
+        if (child.tagName === 'NTE') {
+          for (const sub of child.children) processElement(sub);
+        }
+      }
+      return;
+    }
+
+    // Block-level revision wrappers: tag all child blocks with revision type
+    if (tag === 'ADD' || tag === 'DEL' || tag === 'CHG') {
+      const prevCount = blocks.length;
+      for (const child of elem.children) processElement(child);
+      const rev = tag.toLowerCase();
+      for (let i = prevCount; i < blocks.length; i++) {
+        blocks[i].revision = rev;
+      }
+      return;
+    }
+
+    // Recurse into any other container
+    for (const child of elem.children) processElement(child);
+  }
+
+  // Process root-level children (skip HDR, SCN, STL, DTE, MTA, etc.)
+  const ROOT_CONTENT_TAGS = new Set(['NTE', 'PRT', 'TAB', 'TXT']);
+  for (const child of root.children) {
+    if (child.tagName === 'NTE' && state.partNum === 0) {
+      for (const sub of child.children) processElement(sub);
+    } else if (child.tagName === 'PRT') {
+      processElement(child);
+    } else if (ROOT_CONTENT_TAGS.has(child.tagName) && state.partNum === 0) {
+      processElement(child);
+    }
+  }
+
+  return blocks;
+}

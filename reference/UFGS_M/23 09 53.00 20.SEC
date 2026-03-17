@@ -1,0 +1,1970 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="309.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="309.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 09 53.00 20 (February 2010)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="11.25">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Change 3 - 08/24</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="11.25">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="34.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 09 53.00 20 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 09 53.00 20</SCN><BRK/>
+<BRK/>
+<STL>SPACE TEMPERATURE CONTROL SYSTEMS</STL><BRK/>
+<DTE>02/10, CHG 3: 08/24</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>space temperature control systems of the electric, 
+analog electronic, and pneumatic type for heating, ventilating, and cooling systems</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If there are questions concerning system design, The Engineering Field Division, Naval Facilities Engineering 
+Systems Command, Mechanical Engineering and Design Branch, and Electrical Engineering and Design Branch should 
+be consulted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification makes use of SpecsIntact tailoring option PNEUMATIC for pneumatic control devices.  
+The pneumatic control devices should be tailored out, and electric, electronic, and analog control devices should 
+be used, unless the installation desires continued pneumatic control for a specific piece of equipment or system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the following information on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Complete HVAC mechanical flow diagram depicting individual HVAC components being controlled.  Relative position 
+of sensors and actuators, including dampers, valves, thermostats, and wall mounted switches.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Complete ATC schematics including flow diagrams, connection diagrams, wiring interlock diagrams, setpoints, 
+and sequences of operation.  Indicate control and operating ranges to clarify control sequences.  Indicate manual-off-auto 
+local controls on the locally mounted motor starters and in control panel(s) for remote motor starters; wire all 
+safety controls to protect during both local manual and auto operation.  Indicate electric elementary diagrams 
+of motor starters, control device actuators, and control sensors.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Location and types of automatic dampers, including smoke dampers, e.g., opposed or parallel blade.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Control valve nominal sizes, flow capacities, inlet pressures, controlled fluid, maximum and minimum pressure 
+drops at the designed flow, and calculated Cv.  Select valves for smallest Cv within available pressure constraints, 
+pipe velocities, economy of design, and noise criteria.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Required controller parameters:</NPR><BRK/>
+<BRK/>
+<NPR>  a.  Throttling range, setpoint, and controller action, direct or reverse.</NPR><BRK/>
+<BRK/>
+<NPR>  b.  Differential for two-position controllers.</NPR><BRK/>
+<BRK/>
+<NPR>  c.  Specify the dead-band range for heating and cooling applications and the cascade control range or remote 
+setpoint adjustment.</NPR><BRK/>
+<BRK/>
+<NPR>6.  Special controller parameters:</NPR><BRK/>
+<BRK/>
+<NPR>  a.  Fixed setpoint and fixed differential controllers.</NPR><BRK/>
+<BRK/>
+<NPR>  b.  Adjustable damping and damping rate.</NPR><BRK/>
+<BRK/>
+<NPR>  c.  Proportional-integral-derivative mode constant settings.</NPR><BRK/>
+<BRK/>
+<NPR>7.  Scale the range of temperature and pressure indicators.  Location of temperature wells and pressure taps.</NPR><BRK/>
+<BRK/>
+<NPR>8.  Initial time switch settings for each zone.</NPR><BRK/>
+<BRK/>
+<NPR>9.  Smoke detection systems and location of key-operated override switches, when required, along with the zoning 
+arrangements for these systems.</NPR><BRK/>
+<BRK/>
+<NPR>10.  Define which indicators and gages are mounted on the panel face and which are located inside the panel.  
+Provide a complete layout of the panel faces where a unique arrangement is necessary for efficient operation.</NPR><BRK/>
+<BRK/>
+<NPR>11.  Location of room sensors and outdoor sensors.</NPR><BRK/>
+<BRK/>
+<NPR>12.  Location of pneumatic compressors and refrigerated air dryers when required.</NPR><BRK/>
+<BRK/>
+<NPR>13.  Write sequence of operation to include conventional control operations (e.g., temperature and pressure control 
+loops), time clock operations, energy management functions (e.g., night setback and reset schedules), pushbutton 
+overrides, safety devices, and emergency conditions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification. The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AIR MOVEMENT AND CONTROL ASSOCIATION INTERNATIONAL, INC. (AMCA)</ORG><BRK/><BRK/><RID>AMCA 500-D</RID><RTL>(2018) Laboratory Methods of Testing Dampers for Rating</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE FUN IP</RID><RTL>(2025) Fundamentals Handbook, I-P Edition</RTL><BRK/><BRK/><RID>ASHRAE FUN SI</RID><RTL>(2025) Fundamentals Handbook, SI Edition</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B16.1</RID><RTL>(2020) Gray Iron Pipe Flanges and Flanged Fittings Classes 25, 125, and 250</RTL><BRK/><BRK/><RID>ASME B16.5</RID><RTL>(2020) Pipe Flanges and Flanged Fittings NPS 1/2 Through NPS 24 Metric/Inch Standard</RTL><BRK/><BRK/><RID>ASME B16.15</RID><RTL>(2024) Cast Copper Alloy Threaded Fittings Classes 125 and 250</RTL><BRK/><BRK/><RID>ASME B16.18</RID><RTL>(2021) Cast Copper Alloy Solder Joint Pressure Fittings</RTL><BRK/><BRK/><RID>ASME B16.22</RID><RTL>(2021) Wrought Copper and Copper Alloy Solder Joint Pressure Fittings</RTL><BRK/><BRK/><RID>ASME B16.26</RID><RTL>(2024) Cast Copper Alloy Fittings for Flared Copper Tubes</RTL><BRK/><BRK/><RID>ASME B16.34</RID><RTL>(2021) Valves - Flanged, Threaded and Welding End</RTL><BRK/><BRK/><RID>ASME B31.1</RID><RTL>(2024) Power Piping</RTL><BRK/><BRK/><RID>ASME B31.5</RID><RTL>(2022) Refrigeration Piping and Heat Transfer Components</RTL><BRK/><BRK/><RID>ASME B40.100</RID><RTL>(2022) Pressure Gauges and Gauge Attachments</RTL><BRK/><BRK/><RID>ASME BPVC</RID><RTL>(2010) Boiler and Pressure Vessels Code</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A126</RID><RTL>(2004; R 2023) Standard Specification for Gray Iron Castings for Valves, Flanges, and Pipe Fittings</RTL><BRK/><BRK/><RID>ASTM B32</RID><RTL>(2020) Standard Specification for Solder Metal</RTL><BRK/><BRK/><RID>ASTM B75/B75M</RID><RTL>(2020) Standard Specification for Seamless Copper Tube</RTL><BRK/><BRK/><RID>ASTM B88</RID><RTL>(2022) Standard Specification for Seamless Copper Water Tube</RTL><BRK/><BRK/><RID>ASTM B88M</RID><RTL>(2020) Standard Specification for Seamless Copper Water Tube (Metric)</RTL><BRK/><BRK/><RID>ASTM D635</RID><RTL>(2018) Standard Test Method for Rate of Burning and/or Extent and Time of Burning of Plastics in a Horizontal Position</RTL><BRK/><BRK/><RID>ASTM D638</RID><RTL>(2014) Standard Test Method for Tensile Properties of Plastics</RTL><BRK/><BRK/><RID>ASTM D792</RID><RTL>(2013) Density and Specific Gravity (Relative Density) of Plastics by Displacement</RTL><BRK/><BRK/><RID>ASTM D1238</RID><RTL>(2013) Melt Flow Rates of Thermoplastics by Extrusion Plastometer</RTL><BRK/><BRK/><RID>ASTM D1693</RID><RTL>(2015) Standard Test Method for Environmental Stress-Cracking of Ethylene Plastics</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA ST 1</RID><RTL>(1988; R 1994; R 1997) Specialty Transformers (Except General Purpose Type)</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 90A</RID><RTL>(2024) Standard for the Installation of Air Conditioning and Ventilating Systems</RTL><BRK/><BRK/></REF><REF><ORG>SHEET METAL AND AIR CONDITIONING CONTRACTORS' NATIONAL ASSOCIATION (SMACNA)</ORG><BRK/><BRK/><RID>SMACNA 1780</RID><RTL>(2023) HVAC Systems - Testing, Adjusting and Balancing, 4th Edition</RTL><BRK/><BRK/><RID>SMACNA 1966</RID><RTL>(2020) HVAC Duct Construction Standards Metal and Flexible, 4th Edition</RTL><BRK/><BRK/></REF><REF><ORG>U.S. FEDERAL COMMUNICATIONS COMMISSION (FCC)</ORG><BRK/><BRK/><RID>FCC Part 15</RID><RTL>Radio Frequency Devices (47 CFR 15)</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 508</RID><RTL>(2018; Reprint Jul 2021) UL Standard for Safety Industrial Control Equipment</RTL><BRK/><BRK/><RID>UL 555S</RID><RTL>(2025) UL Standard for Safety Smoke Dampers</RTL><BRK/><BRK/><RID>UL 916</RID><RTL>(2015; Reprint Oct 2021) UL Standard for Safety Energy Management Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBCONTRACTOR SPECIAL REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Perform all work in this section in accordance with the paragraph SUBCONTRACTOR SPECIAL REQUIREMENTS in Section <SRF>01 30 00</SRF> ADMINISTRATIVE REQUIREMENTS.  
+The paragraph specifies that all contract requirements of this section shall be accomplished directly by a first tier subcontractor.  No work required 
+shall be accomplished by a second tier subcontractor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>Provide[ new and modify existing] space temperature control systems complete and ready for operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate which control systems or control devices must be of a particular type for reasons of safety, control 
+accuracy, or other technical reasons.</NPR><BRK/>
+<BRK/>
+<NPR>This paragraph contains a PNEUMATIC tailoring option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide control systems composed of any combination of electric, electronic,<TAI OPT="PNEUMATIC">pneumatic, </TAI>or analog devices.  Indicated control system devices of 
+a particular type do not intend a requirement for the device unless the requirement is specifically indicated.  Requirements apply to field installed 
+control systems.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Regarding the text below, indicate the manufacturer's name when there is an existing control system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Existing control system was manufactured by [_____].  Provide new equipment compatible with the existing control system to the extent that the 
+direct interface uses the same control signal type and level over the same calibrated range as the existing equipment.</TXT><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Regarding the text below, indicate portions of existing systems that are to be reused.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Inspect and test reused portions of existing control systems, and furnish a report to the Government identifying all inoperative components or 
+system deficiencies.  The report shall include a cost estimate to correct deficiencies, scheduled need dates for equipment shutdown for repairs 
+and connection to existing controls and systems.  Proceed with repairs only after receipt of Government approval.  Diagnose and report any malfunctions 
+of existing control system device that occurs after the work commences.  The Government is responsible for maintenance and repair of Government 
+equipment.  The Contractor shall be held responsible for repair costs due to Contractor negligence or abuse of Government equipment.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>CENTRALIZED DIRECT DIGITAL CONTROL (DDC) SYSTEMS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If Direct Digital Control (DDC) is being used, use Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC 
+in lieu of this section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>DDC systems are not permitted.  Microprocessor-based single-loop controllers, unitary control system, variable-air-volume (VAV) boxes, and room 
+thermostats may be used provided that the devices are manually configurable by the use of device firmware and require no software written by the 
+Contractor for their application and use.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PERFORMANCE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide control systems to maintain the required heating, ventilating, and cooling (HVAC) conditions by performing the functions and sequences 
+of operations indicated.  Control systems shall be complete, including all equipment and appurtenances, and ready for operation.  Control systems 
+shall be furnished, installed, tested, calibrated, and started up by, or under the supervision of trained technicians certified by the Contractor 
+as qualified and regularly employed in such work.  Control system equipment, valves, panels and dampers shall bear the manufacturer's nameplate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DESIGN REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Control System Diagrams</SUB></TTL><BRK/>
+<BRK/>
+<TXT>For each system, indicate HVAC process flow and location of devices relative to flow and to the HVAC control panel, the connections of control 
+devices in control loops, references of control device contacts and device operating coils to line numbers of a ladder diagram and sequencing diagrams 
+showing the operation of valves, dampers, and contacts relative to controller output, and HVAC process variables.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Ladder Diagram</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Indicate connections and interlocks to control system devices and other devices such as starters, drives, HVAC control system panels, and HVAC 
+equipment panels.  Coordinate diagram by line number and device number with each control system diagram.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Operating Parameters</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Indicate operating parameters for devices shown on the control system diagram such as setpoints, ranges, limits, differentials, outside air temperature 
+schedules, contact operating points, and HVAC equipment operating time schedules.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Automatic Control Valve Schedules</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Indicate valve size, Cv, flow rate, pressure drop, top size, spring range, positioner range, operating signal characteristics, and power source.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Damper Schedules</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Indicate damper sizes, quantities and sizes of actuators, spring ranges, positioner ranges, operating signal characteristics, and power source.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Wiring Diagram</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Indicate terminal blocks, wire marker identification, connections to control system devices, external and internal power sources, and connections 
+to external devices, starters, drives, control panels, jumpers, and ground connections.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="PNEUMATIC"><SPT><TTL><SUB>Compressed Air Station Schematic</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Indicate compressors, motors and horsepower rating, voltage, starter, isolators, manual bypasses, tubing sizes, drain piping and drain traps, reducing 
+valves, dryer, manufacturers' names and model numbers, mounting, access, and clearance requirements.  Also include <SUB>control panel schematics</SUB> for 
+pneumatic control.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL><SUB>Sequence of Operation</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Sequence of operation for each HVAC control system coordinated with device identifiers on control system diagram and ladder diagram.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Arrangement Drawing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Arrangement diagram of each HVAC control system panel coordinated with device identifiers on the control system diagram and the ladder diagram.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Control System Diagrams</SUB> for each HVAC system; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ladder Diagram</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Operating Parameters</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Automatic Control Valve Schedules</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Damper Schedules</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sequence of Operation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Arrangement Drawing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wiring Diagram</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="PNEUMATIC"><ITM><SUB>Compressed Air Station Schematic</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control Panel Schematics</SUB> for pneumatic control; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Actuators</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Dampers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fire Protection Devices</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sensors</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Thermostats</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sunshields</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pressure Switches</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Indicating Devices</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Controllers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pressure Gages</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control Panels</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="PNEUMATIC"><ITM><SUB>Air Compressor</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Refrigerated Air Dryer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Air Filtration System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Compressed Air Station Specialties</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>VAV Terminal Unit Controls</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Commissioning Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Calibration Adjustment And Commissioning Reports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Site Testing Procedures</SUB> Identifying Each Item Tested and Describing Each Test; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Performance Verification Test</SUB> plans and procedures; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Certification of Completion</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Training Course Documentation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Space Temperature Control System</SUB>, Data Package 3; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Qualified Service Organization List</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Cybersecurity</TTL><BRK/>
+<BRK/>
+<TXT>Coordinate submittals with Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Material and equipment shall be standard products of manufacturers regularly engaged in the manufacturing of such products, using similar 
+materials, design and workmanship.  The standard products shall have been in satisfactory commercial or industrial use for 2 years prior 
+to bid opening.  The 2-year use shall include applications of similarly sized equipment and materials used under similar circumstances.</OLI><BRK/>
+<BRK/>
+<OLI>The 2 years experience must be satisfactorily completed by a product which has been sold or is offered for sale on the commercial market 
+through advertisements, manufacturers' catalogs, or brochures.  Products having less than a 2-year field service record will be acceptable 
+if a certified record of satisfactory field operation, for not less than 6000 hours exclusive of the manufacturer's factory tests, can 
+be shown.</OLI><BRK/>
+<BRK/>
+<OLI>The equipment items shall be supported by a service organization.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Nameplates and Tags</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide nameplates bearing legends as shown and tags bearing device unique identifiers as shown shall have engraved or stamped characters. 
+Nameplates shall be mechanically attached to HVAC control panel doors.</OLI><BRK/>
+<BRK/>
+<OLI>A plastic or metal tag shall be mechanically attached directly to each field-mounted device or attached by a metal chain or wire.</OLI><BRK/>
+<BRK/>
+<OLI>Each airflow measurement station shall have a tag showing flow rate range for signal output range, duct size, and device identifier where 
+shown.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Verification of Dimensions</TTL><BRK/>
+<BRK/>
+<TXT>Contractor shall become familiar with details of work, shall verify dimensions in the field, and shall advise Contracting Officer of any discrepancy 
+before performing work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Modification of References</TTL><BRK/>
+<BRK/>
+<TXT>Accomplish work in accordance with <RID>ASME B31.1</RID>, <RID>ASME B31.5</RID>, <RID>NFPA 70</RID>, and <RID>NFPA 90A</RID>, except as modified herein or indicated otherwise for equipment, 
+materials, installation, examination, inspection, and testing.  Consider the advisory or recommended provisions to be mandatory, as though the 
+word "shall" had be substituted for the words "should" or "could" or "may," wherever they appear.  Interpret reference to "authority having jurisdiction" 
+and "owner" to mean the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Site Testing Procedures</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Indicate test equipment to be used including manufacturers' names and model numbers, date of last calibration, and accuracy of calibration.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Commissioning Procedures</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Define procedures specific to each control system including instructions on how to set control parameters and setpoints, proportional, integral 
+and derivative mode constants, contact output settings, positioner range adjustments, and calibration checks of transmitters[  Coordinate commissioning 
+requirements with Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Calibration Adjustment and Commissioning Reports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit specific to each HVAC control system, including settings adjustments and results of calibration checks</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Space Temperature Control System</SUB></TTL><BRK/>
+<BRK/>
+<TXT>In addition to the requirements specified in the paragraph SUBMITTALS, meet the following requirements.  Submit Operation and Maintenance Manuals 
+for items of equipment listed under paragraph PRODUCT DATA.  Manual shall contain full hardware support documentation, which shall include but 
+not be limited to the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>General description and specifications</OLI><BRK/>
+<BRK/>
+<OLI>Installation and initial checkout procedures</OLI><BRK/>
+<BRK/>
+<OLI>Detailed electrical and logical description</OLI><BRK/>
+<BRK/>
+<OLI>Troubleshooting procedures, diagrams, and guidelines</OLI><BRK/>
+<BRK/>
+<OLI>Alignment and calibration procedures for components</OLI><BRK/>
+<BRK/>
+<OLI>Preventive maintenance requirements and a maintenance checklist</OLI><BRK/>
+<BRK/>
+<OLI>Detailed schematics and assembly drawings</OLI><BRK/>
+<BRK/>
+<OLI>Spare parts list data, including required tool kits and suggested method of repairs such as field repair, factory repair, or item replacement</OLI><BRK/>
+<BRK/>
+<OLI>Signal identification and timing diagrams</OLI><BRK/>
+<BRK/>
+<OLI>Complete as-built control drawings, schedules, and sequence of operation</OLI><BRK/>
+<BRK/>
+<OLI>Controller configuration and parameter setting procedures</OLI><BRK/>
+<BRK/>
+<OLI>Step-by-step procedures required for each HVAC control systems startup, operation, shutdown, recovery, and fault diagnosis</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer supplied operator manuals for equipment</OLI><BRK/>
+<BRK/>
+<OLI>Qualified service organization list</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In order to comply with UFC 1-200-02, designs must achieve energy consumption levels that are at least 
+30 percent below the baseline established in the 2019 publication of ASHRAE 90.1.  The Designer of Record must 
+design control systems that assist in achieving this requirement.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>COMPONENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate control devices that must be in enclosures with more stringent requirements than that covered 
+by NEMA 250 Type 1 and state the requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide components factory ordered for this project.  Rebuilt equipment, warehoused equipment, or earlier generation equipment shall not be acceptable.  
+Electrical, electronic, and electropneumatic devices not located within control panels shall have a <RID>NEMA 250</RID> Type 1 enclosure in accordance with <RID>
+NEMA 250</RID> unless otherwise specified.  Actuators and positive positioners, and transmitters shall operate within temperature limit ratings of plus<MET>
+ 2 to 66 degrees C</MET><ENG> 35 to 150 degrees F</ENG>.  Panel mounted instruments shall operate within limit ratings of<MET> 2 to 49 degrees C</MET><ENG> 35 to 120 degrees F</ENG> 
+and 10 percent to 95 percent relative humidity, noncondensing.  Devices installed outdoors shall operate within limit ratings of minus<MET> 2 to 66 
+degrees C</MET><ENG> 35 to 150 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>ACTUATORS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains a PNEUMATIC tailoring option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide <TAI OPT="PNEUMATIC">pneumatic, </TAI>electric, or electronic actuators.  Actuators shall function as required within 85 to 110 percent of their power supply rating. 
+Actuators shall fail to their spring return positions on signal or power failure unless indicated as timed, power return actuators.  Actuators 
+shall have visible position indicators.  Where actuators do not have positive spring returns for fail-safe operation, provide[ capacity tanks,] 
+restrictors,[ check valves,] and relays, or reserve power as required to achieve proper timed positioning for up to 4 minutes after primary power 
+failure.  Actuators shall open or close the devices to which they are applied within 60 seconds after a full scale signal input change.  Pneumatic 
+actuators shall be rated for<MET> 172 kPa (gage)</MET><ENG> 25 psig</ENG> operating pressure except for high pressure cylinder type actuators.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Damper Actuators</TTL><BRK/>
+<BRK/>
+<TXT>Damper actuators shall be rated for at least 125 percent of the motive power necessary to operate the connected damper.  The actuator stroke shall 
+be limited by an adjustable stop in the direction of the return stroke.  Actuators shall be provided with mounting and connecting hardware.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valve Actuators</TTL><BRK/>
+<BRK/>
+<TXT>Valve actuators shall be rated for at least 125 percent of the motive power necessary to operate the valves over their full range of operation 
+against the total and differential pressures.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Positive Positioners</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Positive positioners shall be pneumatic relays with mechanical feedback mechanisms, adjustable operating ranges, and starting points.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>AUTOMATIC CONTROL <SUB>VALVES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide automatic control valves.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Avoid selection of oversized control valves.  Select valve Cv so that maximum pressure drops are used within 
+constraints of available pressures, pipe velocities, economy of design, and noise criteria.  Select steam valves 
+using critical pressure drop (.45 of absolute pressure) where available, and select connected equipment using 
+resultant pressure on downstream side of valve.  List calculated Cv and flow rate in schedules (not manufacturer's 
+listed Cv) to allow bidders to personally select valves.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Valve Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Valves shall have stainless steel stems and stuffing boxes with extended necks to clear the piping insulation.  Valve bodies shall be designed 
+for not less than<MET> 862 kPa (gage)</MET><ENG> 125 psig</ENG> working pressure or 150 percent of the system operating pressure, whichever is greater.  Maximum rated 
+shutoff pressure of the valve shall exceed the rated deadhead pressure of the pump that supplies it.  Valve leakage rating shall be 0.01 percent 
+of rated Cv for soft-seated valves and 0.05 percent for metal-to-metal seated valves.  Class 125 copper alloy valve bodies and Class 150 steel 
+or stainless steel valves shall conform to <RID>ASME B16.5</RID> as a minimum.  Components of cast iron valves shall conform to <RID>ASTM A126</RID> Class B or C as 
+a minimum.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Butterfly Valve Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Butterfly valves shall be threaded lug type suitable for dead-end service, and for modulation to the fully closed position, with carbon steel bodies 
+or cast iron Class 125 and noncorrosive discs, stainless steel shafts supported by bearings, and EPDM seats suitable for temperatures from minus<MET>
+ 29 degrees to plus 121 degrees C.</MET><ENG>20 degrees to plus 250 degrees F.</ENG>  Valves shall have a manual means of operation independent of the actuator.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Two-Way Valves</TTL><BRK/>
+<BRK/>
+<TXT>Two-way modulating valves shall have equal percentage characteristics.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Three-Way Valves</TTL><BRK/>
+<BRK/>
+<TXT>Three-way valves shall provide constant total flow throughout full plug travel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Duct-Coil and Terminal-Unit-Coil Valves</TTL><BRK/>
+<BRK/>
+<TXT>Control valves with either flare-type or solder-type ends shall be provided for duct or terminal-unit coils.  Flare nuts shall be provided for 
+each flare-type end valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves for Chilled Water, Condenser Water, and Glycol Service</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.1</RID>.  Bodies for valves<MET> 50 mm</MET><ENG> 2 inches</ENG> and smaller shall be brass or bronze, with threaded-end or union-end connections.  Bodies for valves 
+from<MET> 65 mm</MET><ENG> 2.5 inches</ENG> and larger shall be cast iron.  Bodies for valves<MET> 65 mm</MET><ENG> 2.5 inches</ENG> and larger shall have flanged-end connections.  Internal 
+valve trim shall be brass or bronze except that valve stems may be Type 316 stainless steel.  Water valves shall be sized for a<MET> [21 kPa]</MET><ENG> [3 psi]</ENG>
+ [_____] differential through the valve at rated flow, except as indicated otherwise.  Select valve flow coefficient (Cv) for an actual pressure 
+drop not less than 50 percent or greater than 125 percent of the design pressure drop at design flow.  Valves<MET> 100 mm</MET><ENG> 4 inches</ENG> and larger shall 
+be butterfly valves.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves for Hot Water Service</TTL><BRK/>
+<BRK/>
+<TXT>Valves for hot water service below<MET> 121 degrees C</MET><ENG> 250 Degrees F</ENG> shall conform to <RID>ASME B16.1</RID>.  Bodies for valves<MET> 50 mm</MET><ENG> 2 inches</ENG> and smaller shall 
+be brass or bronze, with threaded-end or union-end connections.  Bodies for valves<MET> 65 mm</MET><ENG> 2.5 inches</ENG> and larger shall be cast iron.  Bodies for<MET> 
+65 mm</MET><ENG> 2.5 inches</ENG> and larger shall have flanged-end connections.  Water valves shall be sized for a<MET> [21 kPa]</MET><ENG> [3 psi]</ENG> [_____] differential through 
+the valve at rated flow, except as indicated otherwise.  Select valve flow coefficient (Cv) for an actual pressure drop not less than 50 percent 
+or greater than 125 percent of the design pressure drop at design flow.  Internal trim, including seats, seat rings, modulating plugs, and springs, 
+of valves controlling water hotter than<MET> 99 degrees C</MET><ENG> 210 degrees F</ENG> shall be Type 316 stainless steel.  Internal trim for valves controlling water<MET>
+ 99 degrees C</MET><ENG> 210 degrees F</ENG> or less shall be brass or bronze.  Non-metallic parts of hot water control valves shall be suitable for a minimum continuous 
+operating temperature of<MET> 121 degrees C or 10 degrees C</MET><ENG> 250 degrees F or 50 degrees F</ENG> above the system design temperature, whichever is higher.  
+Valves<MET> 100 mm</MET><ENG> 4 inches</ENG> and larger shall be butterfly valves.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves for Steam Service</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME B16.1</RID>.  Bodies for valves<MET> 40 mm</MET><ENG> 1.5 inches</ENG> and smaller shall be brass or bronze, with threaded or union ends.  Bodies for valves<MET> 50 to 80 
+mm</MET><ENG> 2 to 3 inches</ENG> inclusive shall be brass, bronze, or cast iron.  Bodies for valves<MET> 100 mm</MET><ENG> 4 inches</ENG> and larger shall be cast iron.  Bodies for<MET> 
+50 mm</MET><ENG> 2 inch</ENG> valves shall have threaded ends.  Bodies for valves<MET> 65 mm</MET><ENG> 2.5 inches</ENG> and larger shall be provided with flanged-end connections.  Internal 
+valve trim shall be Type 316 stainless steel.  Steam valves shall be sized for<MET> [103 kPa (gage)]</MET><ENG> [15 psig]</ENG> [_____] inlet steam pressure with a maximum<MET>
+ [90 kPa]</MET><ENG> [13 psi]</ENG> [_____] differential through the valve at rated flow, except as indicated otherwise.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves for High Temperature Hot Water Service</TTL><BRK/>
+<BRK/>
+<TXT>Valves for high temperature hot water service above<MET> 121 degrees C</MET><ENG> 250 degrees F</ENG>.  Valve bodies shall conform to <RID>ASME B16.34</RID> Class 300.  Valve and 
+actuator combination shall be normally closed.  Bodies shall be carbon steel, globe type with welded ends on valves<MET> 25 mm</MET><ENG> one inch</ENG> and larger.  
+Valves smaller than<MET> 25 mm</MET><ENG> one inch</ENG> shall have socket-weld ends.  Packing shall be virgin polytetrafluoroethylene (PTFE).  Internal valve trim shall 
+be Type 316 stainless steel.  Water valves shall be sized for a<MET> [21 kPa]</MET><ENG> [3 psi]</ENG> [_____] differential pressure through the valve at rated flow, 
+except as indicated otherwise.  Select valve flow coefficient (Cv) for an actual pressure drop not less than 50 percent or greater than 125 percent 
+of the design pressure drop at design flow.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Valves for Compressed Air Service</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Valves used for switching compressed air supplied to pneumatic systems shall be brass body, three-way valves which shall conform to <RID>ASME B16.15</RID>
+ Class 250.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL><SUB>DAMPERS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide dampers in air ducts.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use parallel blade dampers for mixing boxes and where two-position control is required.  Use opposed blade 
+dampers for modulating applications for face and bypass control.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Damper Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Damper shall conform to <RID>SMACNA 1966</RID>.  A single damper section shall have blades no longer than<MET> 1219 mm</MET><ENG> 48 inches</ENG> and shall be no higher than<MET> 1829 
+mm</MET><ENG> 72 inches</ENG>.  Maximum damper blade width shall be<MET> 200 mm</MET><ENG> 8 inches</ENG>.  Larger sizes shall consist of a combination of sections.  Dampers shall be 
+steel or other materials where indicated.  Flat blades shall be made rigid by folding the edges.  Provide blades with compressible seals at points 
+of contact.  Provide channel frames of dampers with jamb seals to minimize air leakage.  Dampers shall not leak in excess of<MET> 51 L/s per square 
+meter</MET><ENG> 10 cfm per square foot</ENG> at<MET> 996 Pa</MET><ENG> 4 inches water gage</ENG> static pressure when closed.  Seals shall be suitable for an operating temperature range 
+of minus<MET> 40 degrees C to 93 degrees C</MET><ENG> 40 degrees F to 200 degrees F</ENG>.  Dampers shall be rated at not less than<MET> 10 m/s</MET><ENG> 2000 fpm</ENG> air velocity.  Moving 
+parts of the operating linkage in contact with each other shall consist of dissimilar materials.  Damper axles shall be<MET> 13 mm</MET><ENG> 0.5 inch</ENG> minimum 
+plated steel rods supported in the damper frame by stainless steel or bronze bearings.  Blades mounted vertically shall be supported by a non-ferrous 
+dissimilar thrust bearings.  Pressure drop through dampers shall not exceed<MET> 12 Pa</MET><ENG> 0.05 inch water</ENG> gage at<MET> 5 m/s</MET><ENG> 1,000 fpm</ENG> in the wide-open position.  
+Frames shall not be less than<MET> 51 mm</MET><ENG> 2 inches</ENG> wide.  Dampers shall be tested in accordance with <RID>AMCA 500-D</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operating Links</TTL><BRK/>
+<BRK/>
+<TXT>Operating links external to dampers, such as crankarms, connecting rods, and line shafting for transmitting motion from damper actuators to dampers, 
+shall withstand a load equal to at least twice the maximum required damper-operating force.  Rod lengths shall be adjustable.  Links shall be brass, 
+bronze, zinc-coated steel, or stainless steel.  Mating parts shall consist of dissimilar materials.  Working parts of joints and clevises shall 
+be brass, bronze, or stainless steel.  Adjustments of crankarms shall control the open and closed position of dampers.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>FIRE PROTECTION DEVICES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide smoke detectors in return and supply air ducts on the downstream side of the filters in accordance with <RID>NFPA 90A</RID>, except as otherwise indicated.  
+Provide UL listed or FM approved detectors for duct installation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Smoke Detectors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose one of the following options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Regarding the text below, use this paragraph if project has[ Section <SRF>28 31 60</SRF> INTERIOR FIRE ALARM SYSTEM, 
+NON-ADDRESSABLE][ Section <SRF>28 31 66</SRF> INTERIOR FIRE ALARM AND MASS NOTIFICATION SYSTEM, NON-ADDRESSABLE][ Section 
+<SRF>28 31 70</SRF> INTERIOR FIRE ALARM SYSTEM, ADDRESSABLE][ Section <SRF>28 31 76</SRF> INTERIOR FIRE ALARM AND MASS NOTIFICATION 
+SYSTEM, ADDRESSABLE].</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide in each air-handling system with supply air capacity greater than<MET> 944 L/s</MET><ENG> 2000 cfm</ENG> in accordance with <RID>NFPA 90A</RID>.  Locate downstream of the 
+supply air filters and prior to any branch connection in accordance with NFPA 72.  Provide in each air-handling system, serving more than one story, 
+and having a return air capacity greater than<MET> 7079 L/s</MET><ENG> 15000 cfm</ENG> in accordance with <RID>NFPA 90A</RID>.  Locate at each story prior to connection to common 
+return and at return connection to air handler prior to any fresh air inlet connection and prior to any recirculation connection in accordance 
+with NFPA 72.  Smoke control and exhaust systems shall have provision for automatic and manual operation by means of a key-operated switch to override 
+any other shutdown features and shall be located[ adjacent to the fire alarm system control panel][ as indicated].</TXT><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Regarding the text below:  Use this paragraph if building has an existing fire evacuation alarm system.  
+For connection to existing system, designer must determine if the existing fire alarm control panel is compatible 
+with smoke detectors and has spare zone capacity.  Edit accordingly.  When in doubt leave choice of connection 
+to fire alarm panel or a separate control unit in paragraph.  For some antiquated alarm systems, it may be necessary 
+to replace the control panel in which case[ Section <SRF>28 31 60</SRF> INTERIOR FIRE ALARM SYSTEM, NON-ADDRESSABLE][ Section 
+<SRF>28 31 66</SRF> INTERIOR FIRE ALARM AND MASS NOTIFICATION SYSTEM, NON-ADDRESSABLE][ Section <SRF>28 31 70</SRF> INTERIOR FIRE ALARM 
+SYSTEM, ADDRESSABLE][ Section <SRF>28 31 76</SRF> INTERIOR FIRE ALARM AND MASS NOTIFICATION SYSTEM, ADDRESSABLE] must be 
+included in project and the first option should be used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide in each air-handling system with supply air capacity greater than<MET> 944 L/s</MET><ENG> 2000 cfm</ENG> in accordance with <RID>NFPA 90A</RID>.  Locate downstream of the 
+supply air filters and prior to any branch connection in accordance with NFPA 72.</TXT><BRK/>
+<BRK/>
+<TXT>Provide in each air-handling system, serving more than one story, and having a return air capacity greater than<MET> 7079 L/s</MET><ENG> 15000 cfm</ENG> in accordance 
+with <RID>NFPA 90A</RID>.  Locate at each story prior to connection to common return and at return connection to air handler prior to any fresh air inlet 
+connection and prior to any recirculation connection in accordance with NFPA 72.  Design for detection of abnormal smoke densities by the[ ionization][ 
+or] photoelectric principle, responsive to both invisible and visible particles of combustion, and not susceptible to undesired operation by changes 
+to relative humidity.</TXT> <BRK/>
+<BRK/>
+<TXT>Provide UL listed or FM approved detectors for duct installation.  Provide duct detectors with an approved duct housing, mounted exterior to the 
+duct, and with perforated sampling tubes extending across the width of the duct.  Provide permanent descriptive zone labels indicating in which 
+air-handling units the detectors in alarm are located.</TXT><BRK/>
+<BRK/>
+<TXT>Provide detectors with a test port[, test switch] [and][or][, remote keyed test device].  Provide control and power modules required for operation 
+of detectors[ in their own control unit][ or][ integral with the main building fire alarm control panel].  A ground fault or single break or open 
+condition in electrical circuitry to any detector or its control or power units shall cause activation of building fire alarm control panel trouble 
+signals.</TXT><BRK/>
+<BRK/>
+<TXT>Electrical supervision of wiring used exclusively for air-handling unit shutdown is not required provided a break in wiring would cause shutdown 
+of the associated unit.  Equipment and devices shall be compatible and operable in all respects with, and shall in no way impair reliability or 
+operational functions of, the existing building fire alarm system.  The existing fire alarm control panel was manufactured by [_____].</TXT><BRK/>
+<BRK/>
+<TXT>Smoke control and exhaust systems shall have provisions for[ automatic and] manual operation by means of a key-operated switch to override any 
+other shutdown features and shall be located[ adjacent to the fire alarm system control panel][ as indicated].</TXT><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Regarding the text below:  Use this paragraph only with specific approval of the Engineering Field Division 
+Fire Protection Engineer.  Approval will normally be granted only if the building has no fire alarm system and 
+none is required.  When in doubt, contact the Fire Protection Engineer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide in each air-handling system with supply air capacity greater than<MET> 944 L/s</MET><ENG> 2000 cfm</ENG> in accordance with <RID>NFPA 90A</RID>.  Locate downstream of the 
+supply air filters and prior to any branch connection in accordance with NFPA 72.  Provide in each air-handling system, serving more than one story, 
+and having a return air capacity greater than<MET> 7079 L/s</MET><ENG> 15000 cfm</ENG> in accordance with <RID>NFPA 90A</RID>.  Locate at each story prior to connection to common 
+return and at return connection to air handler prior to any fresh air inlet connection and prior to any recirculation connection in accordance 
+with NFPA 72.</TXT><BRK/>
+<BRK/>
+<TXT>Design for detection of abnormal smoke densities by the[ ionization][ or][ photoelectric] principle, responsive to both invisible and visible particles 
+of combustion, and not susceptible to undesired operation by changes in relative humidity.  Provide UL listed or FM approved detectors for duct 
+installation.  Provide duct detectors with an approved duct housing, mounted exterior to the duct, and with perforated sampling tubes extending 
+across the width of the duct.</TXT> <BRK/>
+<BRK/>
+<TXT>Provide 115 Vac power supply unit integral with duct housing.  Obtain power from[ the source to the air-handling unit or air-handling unit controls][ 
+the location indicated].  Detectors shall have test port or test switch.[  Provide remote alarm indicator[ and keyed test] device at [_____][ the 
+location indicated].]  Provide each detector with a visible indicator lamp that lights when the detector is activated.</TXT> <BRK/>
+<BRK/>
+<TXT>Activation of duct detector shall cause shutdown of the associated air-handling unit[ and closing of dampers][ and shall sound an alarm bell, with 
+minimum<MET> 152 mm</MET><ENG> 6 inch</ENG> diameter, in a normally occupied area] located[ as directed][ as indicated].[  Provide a separate bell with an engraved plastic 
+or metal label indicating which unit each bell annunciates for each air-handling unit.]</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Smoke Dampers[ and Combination Smoke/Fire Dampers]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use combination smoke/fire dampers only where required by NFPA and design manuals.</NPR><BRK/>
+<BRK/>
+<NPR>This paragraph contains a PNEUMATIC tailoring option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Smoke dampers and actuator assemblies as required in accordance with <RID>NFPA 90A</RID> shall meet the Class II leakage requirements of <RID>UL 555S</RID>.  Dampers 
+shall be factory fabricated, galvanized steel or stainless steel with lubricated bearings, linkages, and seals to withstand temperatures from minus<MET>
+ 29 to 121 degrees C</MET><ENG> 20 to 250 degrees F</ENG>.  Provide replaceable seals.[  Combination smoke/fire dampers shall have a UL 1.5 hour rating and shall 
+be equipped with electric/thermal links which close the damper at<MET> 74 degrees C</MET><ENG> 165 degrees F</ENG> and then automatically reset after normal temperature 
+is restored by cycling damper actuator.]  Equip dampers with<TAI OPT="PNEUMATIC"> pneumatic or</TAI> electric actuators which close smoke dampers tightly when activated.  
+After the smoke has cleared, the dampers shall automatically reset.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>SENSORS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use smallest span sufficient to cover the operating range.  Use<MET> 0.06 degrees C</MET><ENG> 0.10 degree F</ENG> allowable 
+tolerance sensors where small temperature changes will have large impact on energy consumption; e.g., chilled 
+water, where the span is nominally<MET> 4.44 to 6.67 degrees C</MET><ENG> 8 to 12 degrees F</ENG>.  The normal<MET> 0.28 degree C</MET><ENG> 0.5 degree 
+F</ENG> sensor would have an error of 3 to 6 percent: <MET> 0.28 degree C </MET><ENG> 0.5 degree F </ENG> divided by<MET> 4.44 degree C</MET><ENG> 8 degrees 
+F</ENG> equals .06 or 6 percent.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate outside air sensors mounted on a north wall if possible; a fan-type air aspirator if necessary 
+to avoid effects of wind, rain, solar radiation, and building outside air film; and also indicate a power source 
+for the aspirator.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Spans and Ranges</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains a PNEUMATIC tailoring option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Transmitters shall be calibrated to provide an electric or electronic output signal of 4 to 20 mA electric or electronic<TAI OPT="PNEUMATIC"> and<MET> 21 to 103 kPa</MET><ENG> 3 to 
+15 psi</ENG> output for pneumatics</TAI> over the indicated span or range.</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Conditioned space temperature, from<MET> 10 to 38 degrees C</MET><ENG> 50 to 100 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+][<OLI>Duct temperature, from<MET> 4 to 60 degrees C</MET><ENG> 40 to 140 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+][<OLI>High temperature hot-water temperature, from<MET> 93 to 260 degrees C</MET><ENG> 200 to 500 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+][<OLI>Chilled water temperature, from<MET> minus one to 27 degrees C</MET><ENG> 30 to 80 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+][<OLI>Dual temperature water, from<MET> minus one to 116 degrees C</MET><ENG> 30 to 240 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+][<OLI>Heating hot water temperature, from<MET> 38 to 121 degrees C</MET><ENG> 100 to 250 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+][<OLI>Condenser water temperature, from<MET> minus one to 54 degrees C</MET><ENG> 30 to 130 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+][<OLI>Outside air temperature, from minus<MET> 34 to 54 degrees C</MET><ENG> 30 to 130 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+][<OLI>Relative humidity, from 0 to 100 percent for high/low limit applications; from 20 to 80 percent for space applications.</OLI><BRK/>
+<BRK/>
+][<OLI>Differential pressure for VAV supply duct static pressure from<MET> 0 to 498 Pa</MET><ENG> 0 to 2.0 inches water</ENG> gage.</OLI><BRK/>
+<BRK/>
+][<OLI>Pitot tube airflow measurement station and transmitter, from<MET> 0 to 25 Pa</MET><ENG> 0 to 0.1 inch water</ENG> gage for flow velocities of<MET> 2.50 to 6 m/s, 
+0 to 62 Pa</MET><ENG> 500 to 1200 fpm, 0 to 0.25 inch water</ENG> gage for velocities of<MET> 2.50 to 9 m/s, or 0 to 124 Pa</MET><ENG> 500 to 1800 fpm, or 0 to 0.5 inch 
+water</ENG> gage for velocities of<MET> 2.50 to 13 m/s, or 0 to 374 Pa</MET><ENG> 500 to 2500 fpm, or 0 to 1.5 inches water</ENG> gage for velocities of<MET> 7.5 to 23 
+m/s, or 0 to 498 Pa</MET><ENG> 1500 to 4500 fpm, or 0 to 2 inches water</ENG> gage for velocities of<MET> 15 to 30 m/s</MET><ENG> 3000 to 6000 fpm</ENG> as required by the duct 
+system.</OLI><BRK/>
+<BRK/>
+][<OLI>Electronic airflow measurement station and transmitter, from<MET> 0.64 to 13 m/s, 7.5 to 23 m/s, or 15 to 30 m/s</MET><ENG> 125 to 2500 fpm, 1500 to 4500 
+fpm, or 3000 to 6000 fpm</ENG> as required by the duct system.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Temperature Sensors</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Resistance Temperature Detectors (RTD's)</TTL><BRK/>
+<BRK/>
+<TXT>RTD shall be platinum with a tolerance of plus or minus 0.25 percent at<MET> 0 degrees C</MET><ENG> 32 degrees F</ENG>, and shall be encapsulated in epoxy, Series 300 
+stainless steel, anodized aluminum, or copper.  RTD shall be furnished with RTD transmitter as specified, integrally-mounted unless otherwise indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Continuous Averaging RTD's</TTL><BRK/>
+<BRK/>
+<TXT>Continuous averaging RTD's shall have a tolerance of plus or minus<MET> 0.55 degrees C</MET><ENG> 1.0 degrees F</ENG> at the reference temperature, and shall be of sufficient 
+length to ensure that the resistance represents an average over the cross section in which it is installed.  Sensing element shall have a bendable 
+copper sheath.  Averaging RTD shall be furnished with RTD transmitter as specified, to match the resistance range of the averaging RTD.  Element 
+length shall be a minimum of<MET> 3280 mm per square meter</MET><ENG> one linear foot per square foot</ENG> of coil face area.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RTD Transmitter</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate where transmitters are required and not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>RTD transmitter shall be selected to match the resistance range of the RTD.  Transmitter shall be a two-wire, loop-powered device.  Transmitter 
+shall produce a linear 4 to 20 mA dc output corresponding to required temperature measurement.  Output error shall not exceed 0.1 percent of the 
+calibrated measurement.  Transmitter shall include offset and span adjustments.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Pneumatic Temperature Transmitter</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<BRK/>
+<NPR>Use smallest span sufficient to cover operating range.  This provides smallest allowable deviation, improving 
+control accuracy.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Transmitting sensing elements shall be bi-metal, averaging element and capillary, rod and tube, or bulb and capillary.  Transmitters shall operate 
+within the range of<MET> 4 to 116 degrees C</MET><ENG> 40 to 240 degrees F</ENG>.  Provide the following spans and allowable deviations for applications listed.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Room sensors,<MET> minus 4 degrees C</MET><ENG> 25 degrees F</ENG>, plus or minus<MET> 0.28 degrees C</MET><ENG> 0.5 degrees F</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Room, chilled water, dew point, return air sensors,<MET> 10 degrees C</MET><ENG> 50 degrees F</ENG>, plus or minus<MET> 0.42 degree C</MET><ENG> 0.75 degree F</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Outside air, hot water, coil discharge sensors,<MET> 38 degrees C</MET><ENG> 100 degrees F</ENG>, plus or minus<MET> 0.56 degree C</MET><ENG> 1.0 degree F</ENG></OLI><BRK/>
+<BRK/>
+<OLI>High temperature hot water, chilled hot water system sensors,<MET> 93 degrees C</MET><ENG> 200 degrees F</ENG>, plus or minus<MET> 1.11 degrees C</MET><ENG> 2.0 degrees F</ENG>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>Relative Humidity Instruments</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Relative Humidity Sensor</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Measuring dew point temperature and relative humidity with accuracy and repeatability using "commercial" controls 
+is difficult.  It is recommended that the designer plan the control system to eliminate the need to control dew 
+point temperature or relative humidity including eliminating enthalpy control.  Dry bulb temperatures should be 
+used to control outside, return, and exhaust air dampers in economizer applications.  Only use humidity control 
+when the space has specific humidity requirements.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Indicate a fan powered type aspirating cabinet, an electronic relative humidity sensing element, a transmitter 
+for outside air relative humidity sensing applications, and a power source for the cabinet.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide relative humidity sensor.  Use nonsaturating sensing elements capable of withstanding a saturated condition without permanently affecting 
+calibration or sustaining damage.  Sensing elements shall be bulk polymer or thin film polymer.  Sensing elements shall have an accuracy of plus 
+or minus 2 percent of full scale within the range of 20 to 80 percent relative humidity.  Provide a two-wire, loop-powered transmitter located 
+at the sensing elements to convert the sensing elements output to a linear 4 to 20 mA dc output corresponding to required humidity measurement.  
+Output error shall not exceed 0.1 percent of calibrated measurement.  Transmitter shall include offset and span adjustments.  Transmitter shall 
+have ability to be calibrated electronically by using a one-point, in-situ method which allows for error correction with a single potentiometer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Dew Point Instruments</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide<MET> 2 degrees C</MET><ENG> 3 degree F</ENG> dew point allowable deviation for normal control, as in commissary refrigerated 
+display case, anti-sweat heater controls; provide a<MET> 0.55 degree C</MET><ENG> one degree F</ENG> deviation for critical occupied 
+space, as in computer rooms.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide analog salt-phase transition or dual chilled, mirror type sensor.  Sensor shall have an allowable deviation of plus or minus<MET> [0.55] [2] 
+degrees C</MET><ENG> [one] [3] degrees F</ENG> dew point over the range of<MET> minus 12 to plus 27 degrees C</MET><ENG> 10 to 80 degrees F</ENG> dew point.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Airflow Sensors</TTL><BRK/>
+<BRK/>
+<TXT>Provide airflow sensors.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use only where necessary.  Airflow sensors are high maintenance items.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Electronic Airflow Measurement Stations and Transmitters</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Stations shall contain an array of velocity sensing elements and straightening vanes inside a flanged sheet metal casing.  Velocity sensing 
+elements shall be RTD or thermistor type, with linearizing means.  Sensing elements shall be distributed across the duct cross section 
+in the quantity and pattern set forth for measurements and instruments in accordance with<MET> <RID>ASHRAE FUN SI</RID></MET><ENG> <RID>ASHRAE FUN IP</RID></ENG> and <RID>SMACNA 1780</RID>, 
+for traversing of ducted airflows.  Resistance to airflow through the airflow measurement station shall not exceed<MET> 20 Pa</MET><ENG> 0.08 inch water</ENG>
+ gage at airflow of<MET> 10 m/s</MET><ENG> 2000 fpm</ENG>.  Station construction shall be suitable for operation at airflows of up to<MET> 25.40 m/s</MET><ENG> 5000 fpm</ENG> over 
+a temperature range of<MET> 4 to 49 degrees C</MET><ENG> 40 to 120 degrees F</ENG>, and accuracy shall be plus or minus 3 percent over a range of<MET> 0.64 to 12.70 
+m/s</MET><ENG> 125 to 2500 fpm</ENG> scaled to air volume.  Use stations if required velocity measurement is below<MET> 2.50 meters per second</MET><ENG> 500 feet per minute</ENG>
+.</OLI><BRK/>
+<BRK/>
+<OLI>Transmitters shall produce a linear, temperature compensated 4 to 20 mA dc output corresponding to required velocity pressure measurement.  
+Transmitters shall be a two-wire, loop-powered device.  Output error of transmitters shall not exceed 0.5 percent of calibrated measurement.  
+Transmitters shall have offset and span adjustments.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Pitot Tube Airflow Measurement Stations and Transmitters</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Stations shall contain an array of velocity sensing elements and straightening vanes inside a flanged sheet metal casing. Velocity sensing 
+elements shall be multiple pitot tube type with averaging manifolds.  Sensing elements shall be distributed across the duct cross section 
+in the quantity and pattern set forth for measurements and instruments in accordance with<MET> <RID>ASHRAE FUN SI</RID></MET><ENG> <RID>ASHRAE FUN IP</RID></ENG> or <RID>SMACNA 1780</RID>, for 
+traversing of ducted airflows.  Resistance to airflow through the airflow measurement station shall not exceed<MET> 20 Pa</MET><ENG> 0.08 inch water</ENG> gage 
+at airflow of<MET> 10 m/s</MET><ENG> 2000 fpm</ENG>.  Station construction shall be suitable for operation at airflows of up to<MET> 25.40 m/s</MET><ENG> 5000 fpm</ENG> over a temperature 
+range of<MET> 4 to 49 degrees C</MET><ENG> 40 to 120 degrees F</ENG>, and accuracy shall be plus or minus 3 percent over a range of<MET> 2.5 to 12.7 m/s</MET><ENG> 500 to 2500 
+fpm</ENG> scaled to air volume.  Do not use stations if required velocity measurement is below<MET> 2.50 meters per second</MET><ENG> 500 feet per minute</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Transmitters shall produce a linear 4 to 20 mA dc output corresponding to the required velocity pressure measurement.  Each transmitter 
+shall have a low-range differential pressure sensing element and a square root extractor.  The transmitter shall be a two-wire, loop powered 
+device.  Sensing element accuracy shall be plus or minus 1 percent of full scale, and overall transmitter accuracy shall be plus or minus 
+0.25 percent of the calibrated measurement.  Each transmitter shall have offset and span adjustments.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pressure Sensors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate spare pressure taps where in-piping calibration is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide electronic pressure sensor and transmitter.  Sensor shall be a pressure transmitter with an integral sensing element.  Sensor over pressure 
+rating shall be<MET> 172 kPa (gage)</MET><ENG> 25 psig</ENG> above its normal operating range.  Sensing element accuracy shall be plus or minus one percent of full scale.  
+Transmitter accuracy shall be plus or minus 0.1 percent of the calibrated measurement.  Transmitter shall be a two-wire, loop-powered device.  
+Transmitter shall produce a linear 4 to 20 mA dc output corresponding to required pressure measurement.  Transmitter shall have offset and span 
+adjustments.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>THERMOWELLS</TTL><BRK/>
+<BRK/>
+<TXT>Provide brass or Series 300 stainless steel thermowells with threaded brass plug and chain,<MET> 50 mm</MET><ENG> 2 inch</ENG> lagging neck and extension type well, 
+and inside diameter and insertion length as required for the application.  Provide thermowells for immersion sensors with conducting material inside 
+the well.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>THERMOSTATS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide thermostats.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Use a recessed aspirating type mounting in public areas where it is necessary to make the thermostat less 
+obvious to minimize vandalism.  Do not use aspirating or concealed mountings in family housing.  Use adjustable 
+thermostats in family housing.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Locate room thermostats on interior walls where they will respond to average conditions in the rooms.  Thermostats 
+shall not be mounted on exterior walls if other locations are available.  If mounted on exterior walls, thermostats 
+shall be indicated with an insulating subbase.  Thermostats for comfort cooling that are occupant controlled (indicate 
+the limits) shall have fixed factory temperature limits.  Indicate centerline of room thermostat at<MET> 1.50 meters</MET><ENG>
+ 5 feet</ENG> above finished floor.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Indicate switch differential for each contact and between each contact on multistage switches; also, indicate 
+whether the differential is adjustable or fixed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Ranges</TTL><BRK/>
+<BRK/>
+<TXT>Thermostat ranges shall be selected so that the setpoint is adjustable[ without tools] between<MET> plus or minus 5 degrees C</MET><ENG> plus or minus 10 degrees 
+F</ENG> of the setpoint indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nonmodulating Electric Room Thermostats</TTL><BRK/>
+<BRK/>
+<TXT>Contacts shall be single-pole double-throw (SPDT), hermetically sealed, and wired to identified terminals.  Maximum differential shall be<MET> one degree 
+C</MET><ENG> 2 degrees F</ENG>.  Thermostat covers shall consist of locking metal or heavy-duty plastic, and shall be capable of being locked by an Allen wrench 
+or special tool. Thermostats shall have manual switches as required by the application and a minimum range of<MET> 13 to 32 degrees C</MET><ENG> 55 to 90 degrees 
+F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Microprocessor-Based Room Thermostats</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use thermostats only for small split systems and packaged single-zone units.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Microprocessor-based room thermostats shall have built-in keypads for scheduling of day and night temperature settings.[  Access to the scheduling 
+mode shall be by password control code.]  When out of the scheduling mode, thermostats shall have continuous 12-hour time display, with AM and 
+PM indication, continuous display of day of the week, and either continuous display of room temperature with display of temperature setpoint on 
+demand, or continuous display of temperature setpoint with display of room temperature on demand.  In the programmable mode, use the display for 
+setting and interrogating time program ON-OFF setpoints for each day of the week.  The time program shall allow two separate temperature setback 
+intervals per day.  Thermostats shall have a means for temporary and manual override of program schedule, with automatic program restoration on 
+the following day.  Thermostats shall have a replaceable battery to maintain timing and to maintain the schedule in memory for one year in the 
+event of a power outage.  Maximum differential shall be<MET> one degree C</MET><ENG> 2 degrees F</ENG>.  Where used for heat pump applications, thermostat shall have 
+an emergency heat switch.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nonmodulating Capillary Thermostats and Aquastats</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Thermostat shall have a capillary length of at least<MET> 1 1/2 meters</MET><ENG> 5 feet</ENG>, adjustable direct reading scales for both setpoint and differential, 
+and a differential adjustable from<MET> 3 to 9 degrees C</MET><ENG> 6 to 16 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Aquastats shall be strap-on type, with<MET> 5.50 degrees C</MET><ENG> 10 degrees F</ENG> fixed differential.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Low-Temperature Protection Thermostats (Freezestats)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate capillary serpentined in a plane perpendicular to airflow to uniformly sense entire airflow.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Low-temperature protection thermostats shall be manually reset low-temperature safety thermostats, with NO and NC contacts or a two-position pneumatic 
+output signal and a<MET> 6 meters</MET><ENG> 20 foot</ENG> element which shall respond to the coldest<MET> 456 mm</MET><ENG> 18 inch</ENG> segment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Modulating Capillary Thermostats</TTL><BRK/>
+<BRK/>
+<TXT>Thermostats shall have either one output signal, two output signals operating in unison, or two output signals operating in sequence, as required 
+for the application.  Thermostats shall have adjustable throttling ranges of<MET> 2 to 4 degrees C</MET><ENG> 4 to 8 degrees F</ENG> for each output.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Modulating Pneumatic Room Thermostats</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Two-temperature combination thermostats shall be adjustable proportioning type with dual setpoints containing two temperature sensing elements:  
+one for heating control and one for cooling control; two for heating control or two for cooling control.  Changeover for two-temperature combination 
+thermostats shall be accomplished by a change in control air supply pressure which selects proper setpoint and proper controller action.  Single-temperature 
+thermostats shall be adjustable proportioning type with one temperature sensing element: one setpoint and proper controller action.  "Dead-band" 
+thermostats shall have one adjustable proportioning type controller with two setpoints, adjustable dead-band, and one controller output or two 
+adjustable proportioning type controllers mounted on a common backplate with two setpoints, adjustable dead-band, and two controller outputs.  
+Temperature sensing elements shall be selected for proper controller action.  Individual temperature-sensing elements shall have a separate adjustable 
+throttling range of<MET> one to 5.50 degrees C</MET><ENG> 2 to 10 degrees F</ENG>; thermostat shall have a minimum range of<MET> 13 to 32 degrees C</MET><ENG> 55 to 90 degrees F</ENG> and 
+minimum safe air input pressure of<MET> 172 kPa (gage)</MET><ENG> 25 psig</ENG>.  Dead-band setting shall have a minimum adjustable range of<MET> 2 to 8 degrees C</MET><ENG> 4 to 15 
+degrees F</ENG>.  Room thermostat shall have concealed setpoint dial[, covers with Allen screws][, aspirator type wall box with flush plate and locking 
+screws][, built-in concealed thermometers][, exposed adjustment covers with visible thermometers for family housing], and plug-in gage ports.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="PNEUMATIC"><SPT><TTL>Modulating, Insertion, Immersion, and Averaging Pneumatic Thermostats</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<BRK/>
+<NPR>Indicate remote bulb return air thermostats in lieu of room thermostats where acceptable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Thermostats shall be two-pipe, pilot-operated type with pneumatic feedback, proportional action and shall have an adjustable throttling range of<MET>
+ one to 55 degrees C</MET><ENG> 2 to 100 degrees F</ENG> with a minimum range of<MET> minus 12 to plus 121 degrees C</MET><ENG> 10 to 250 degrees F</ENG>.  Averaging elements shall be<MET>
+ 825 mm</MET><ENG> 1 foot</ENG> in length for each<MET> square meter</MET><ENG> 4 square feet</ENG> of ductwork cross-sectional area with a minimum length of<MET> 2.44 meters</MET><ENG> 8 feet</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="PNEUMATIC"><SPT><TTL>Nonmodulating Pneumatic Thermostats</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Thermostats shall have integral positive acting relays, zero or maximum output pressure.  Remote element thermostats shall have standard or averaging 
+bulbs.  Averaging bulbs shall be<MET> 825 mm</MET><ENG> one foot</ENG> in length for each<MET> square meter</MET><ENG> 4 square feet</ENG> of ductwork cross-sectional area and a minimum length 
+of<MET> 2.44 meters</MET><ENG> 8 feet</ENG>.  Differential ranges shall be field adjustable.  Remote element thermostat differential range shall be<MET> one to 14 degrees 
+C</MET><ENG> 2 to 25 degrees F</ENG> with minimum control ranges of<MET> minus 23 to plus 121 degrees C</MET><ENG> minus 10 to plus 250 degrees F</ENG>.  Room thermostat differential 
+range shall be<MET> one to 5.50 degrees C</MET><ENG> 2 to 10 degrees F</ENG> with minimum control ranges of<MET> 13 to 32 degrees C</MET><ENG> 55 to 90 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL><SUB>SUNSHIELDS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide sunshields for outside air temperature sensing elements to prevent the sun from directly striking temperature sensing elements.  Provide 
+sunshields with adequate ventilation so that the sensing element responds to the ambient temperature of surroundings.  The top of each sunshield 
+shall have galvanized metal or aluminum rainshield projecting over the face of the sunshield.  Sunshields shall be painted white or shall be unpainted 
+aluminum.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PRESSURE SWITCHES AND SOLENOID VALVES</TTL><BRK/>
+<BRK/>
+<TXT>Provide pressure switches and solenoid valves.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Pressure Switches</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Switches shall have an adjustable setpoint with visible setpoint scale.  Range shall be as indicated.  Differential adjustment shall span 20 to 
+40 percent of the range of the device.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Differential Pressure Switches</TTL><BRK/>
+<BRK/>
+<TXT>Switches shall be an adjustable diaphragm-operated device with[ two SPDT][ one SPDT] contacts, with taps for sensing lines to be connected to duct 
+pressure fittings designed to sense air pressure.  Fittings shall be angled-tip type with tips pointing into the airstream.[  Range shall be<MET> 125 
+to 1494 Pa</MET><ENG> 0.5 to 6 inches water</ENG> gage.  Differential shall be a maximum of<MET> 37 Pa</MET><ENG> 0.15 inch water</ENG> gage at the low end of the range and<MET> 87 Pa</MET><ENG> 0.35 
+inch water</ENG> gage at the high end of the range.]</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Pneumatic Electric (PE) Switches</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Switches shall have an adjustable setpoint range of<MET> 21 to 138 kPa (gage)</MET><ENG> 3 to 20 psig</ENG>, and differential adjustable from<MET> [14 to 41][7to 14][2 to 
+7] kPa</MET><ENG> [2 to 6][1 to 2][0.25 to 1] psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="PNEUMATIC"><SPT><TTL>Solenoid Operated Pneumatic (EP) Valves</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Valves shall have three-port operation:  common, normally open, and normally closed.  Valves shall have an outer cast aluminum body.  The air connection 
+shall be a<MET> 6 mm</MET><ENG> 1/4 inch</ENG> NPT threaded connection.  Valves shall be rated for<MET> 345 kPa (gage)</MET><ENG> 50 psig</ENG> where used in a control system which operates 
+at<MET> 172 kPa (gage)</MET><ENG> 25 psig</ENG> or less, or<MET> 1034 kpa (gage)</MET><ENG> 150 psig</ENG> where used in a control system which operates in the range of<MET> 172 to 689 kPa (gage)</MET><ENG>
+ 25 to 100 psig</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL><SUB>INDICATING DEVICES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide indicating devices.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Thermometers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Thermometers for insertion in ductwork and piping systems shall have brass, malleable iron, or aluminum alloy case and frame, clear protective 
+face, and permanently stabilized glass tube with an indicating fluid column, white face, black numbers, and a<MET> 229 mm</MET><ENG> 9 inch</ENG> scale.</OLI><BRK/>
+<BRK/>
+<OLI>Thermometers for piping systems shall have rigid stems with straight, angular, or inclined pattern.</OLI><BRK/>
+<BRK/>
+<OLI>Thermometer stems shall have expansion heads as required to prevent breakage at extreme temperatures.  On rigid stem thermometers, the 
+space between bulb and stem shall be filled with a heat transfer medium.</OLI><BRK/>
+<BRK/>
+<OLI>Air duct thermometers shall have perforated stem guards and 45 degree adjustable duct flanges with locking mechanisms.</OLI><BRK/>
+<BRK/>
+<OLI>Averaging thermometers shall have<MET> 90 mm</MET><ENG> 3.5 inch</ENG> (nominal) dial, with black legend on white background, and pointer traveling through a 
+270 degree arc.</OLI><BRK/>
+<BRK/>
+<OLI>Thermometers shall have an accuracy of plus or minus one percent of scale range.  Thermometers shall have the following ranges:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Mixed air temperature: <MET> minus 18 to plus 38 degrees C in 1/2 degree C</MET><ENG> 0 to 100 degrees F in 1 degree F</ENG> graduations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Return air temperature: <MET> minus 18 to plus 38 degrees C in 1/2 degrees C</MET><ENG> 0 to 100 degrees F in 1 degree F</ENG> graduations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Cooling coil discharge temperature: <MET> minus 18 to plus 38 degrees C in 1/2 degree C</MET><ENG> 0 to 100 degrees F in 1 degree F</ENG> graduations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Heating coil discharge temperature: <MET> minus one to plus 82 degrees C in one degree C </MET><ENG> 30 to 180 degrees F in 2 degree F </ENG>graduations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Hydronic heating systems below<MET> 104 degrees C</MET><ENG> 220 degrees F</ENG>: <MET> 4 to 116 degrees C in one degree</MET><ENG> 40 to 240 degrees F in 2 degree</ENG>
+ graduations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Chilled water temperature: <MET> minus 18 to plus 38 degrees C in 1/2 degree C</MET><ENG> 0 to 100 degrees F in one degree F</ENG> graduations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Condenser water temperature: <MET> 4 to 60 degrees C in 1/2 degree C</MET><ENG> 40 to 140 degrees in one degree F</ENG> graduations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Glycol temperature: <MET> minus 18 to plus 38 degrees C</MET><ENG> 0 to 100 degrees F</ENG>for cooling service in<MET> 1/2 degree C</MET><ENG> one degree F</ENG> graduations, 
+and<MET> 4 to 116 degrees C</MET><ENG> 40 to 240 degrees F</ENG> for heating service in<MET> one degree C</MET><ENG> 2 degree F</ENG> graduations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">High temperature hot water: <MET> 38 to 288 degrees C in 3 degree C</MET><ENG> 100 to 550 degrees F in 5 degree F</ENG> graduations.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Pressure Gages</TTL><BRK/>
+<TAI OPT="PNEUMATIC"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  List item e. is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Provide pressure gages with gage cock, snubber, and syphon.</TXT><BRK/>
+<OLG><BRK/>
+<OLI><RID>ASME B40.100</RID>.  Gages shall be<MET> 65 mm</MET><ENG> 2 1/2 inch</ENG> (nominal) size, back-connected, suitable for field or panel mounting as required, shall 
+have black legend on white background, and shall have a pointer traveling through a 270 degree arc.  Accuracy shall be plus or minus 3 
+percent of scale range.</OLI><BRK/>
+<BRK/>
+<OLI>Gages for indicating signal output to pneumatic actuators and main air gages shall have scale of<MET> 0 to 210 kPa (gage) in 10 kPa</MET><ENG> 0 to 30 
+psig in 1 psig</ENG> graduations.</OLI><BRK/>
+<BRK/>
+<OLI>Gages for air storage tanks and for use before and after dirt and oil filters or dryers, shall have a scale of<MET> [0 to 1100][_____] kPa (gage)</MET><ENG>
+ [0 to 160][_____] psig</ENG> with<MET> 15 Kpa (gage)</MET><ENG> 2 psig</ENG> graduations.</OLI><BRK/>
+<BRK/>
+<OLI>Gages for[ hydronic][ and][ steam] system applications shall have ranges and graduations as indicated.</OLI><BRK/>
+<BRK/>
+<TAI OPT="PNEUMATIC"><OLI>Pneumatic transmission receiver gages shall have a range to match the respective transmitters.</OLI><BRK/>
+<BRK/></TAI>
+</OLG></SPT></SPT><SPT><TTL>LOW-DIFFERENTIAL <SUB>PRESSURE GAGES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Gages for low-differential pressure measurements shall be<MET> 115 mm</MET><ENG> 4 1/2 inch</ENG> (nominal) size with two seats of pressure taps, and shall have a diaphragm-actuated 
+pointer, white dial with black figures, and pointer zero adjustment.  Gages shall have ranges and graduations as indicated.  Accuracy shall be 
+plus or minus 2 percent of scale range.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>CONTROLLERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate which type of controller is required for each application.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Single-Loop Controllers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate single-loop controllers for applications where proportional-integral (PI) modes or proportional-integral-derivative 
+(PID) modes are required or where the need for either mode is anticipated.  Indicate single-loop controllers where 
+one or two contact outputs are required to be operated in response to changes in process variable input signals 
+for control application.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Controller Features</TTL><BRK/>
+<BRK/>
+<TXT>Controller shall be a microprocessor-based, single-loop device that does not require Contractor-generated software.  Controller shall conform to <RID>
+FCC Part 15</RID>.  Controller panel cutout shall be<MET> 92 by 92 mm</MET><ENG> 3.62 by 3.62 inches</ENG>.  Controller shall have field selectable range for process variables, 
+a remote setpoint analog input and analog output with adjustable high and low end limits, and proportional control manual reset adjustment.  Analog 
+output shall result from PID control.  Analog output shall be configurable as direct acting and reverse acting.  Controller shall have keyboard, 
+display, auto/manual selection for control of analog output, and remote setpoint adjustment/local setpoint adjustment selection.  Controller shall 
+have adjustable high-end and low-end limits, ratio, and bias adjustments on remote setpoint input; operator initiated self-tune/manual-tune selection, 
+anti-reset wind-up feature, and two configurable independent SPDT with adjustable system contact closure outputs.  Controller shall be configurable 
+to power-up in manual with local setpoint control, in automatic with local setpoint control, and in automatic with remote setpoint control.  Contact 
+closures shall be activated by a process variable and by a process variable deviation from setpoint as configured.  The range of hysteresis adjustment 
+shall not be smaller than 1 percent to 5 percent of process variable input span.  Controller shall power the analog output loop to 20 mA where 
+connected to a load of 600 ohms.  Controller shall have 5-year battery backup or shall have nonvolatile memory to store operating parameters.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controller Parameter Input and Display</TTL><BRK/>
+<BRK/>
+<TXT>Control parameters shall be entered and displayed directly, in the correct engineering units, through a series of keystrokes on a front panel display 
+with a 3-1/2-digit, seven-segment display, with decimal point and polarity indication.  Use of the display shall allow manual interrogation of 
+setpoint, mode constants, and values of process variables and outputs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controller Electrical Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Controller shall be powered by 120 Vac.  Controller shall provide electrical noise isolation, not less than 100 dB at 60 Hz common mode rejection 
+ratio, and not less than 60 dB at 60 Hz normal mode rejection ratio between ac power line and process variable input, remote setpoint input, and 
+output signals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controller Accuracy</TTL><BRK/>
+<BRK/>
+<TXT>Controller shall have an accuracy of plus or minus 0.30 percent of input span, plus or minus one digit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controller Self Tuning</TTL><BRK/>
+<BRK/>
+<TXT>Controller self-tuning operation shall apply proportional, integral, and derivative modes of control; mode constants shall be modified as required.  
+Self tuning shall only operate when selected from the front panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controller Manual Tuning</TTL><BRK/>
+<BRK/>
+<TXT>Controller manual tuning operation shall provide proportional, integral, and derivative control modes, or any combination thereof, by means of 
+individual mode constant adjustments.  Adjustments shall be set for the appropriate value if a particular control mode action is desired, or to 
+zero for the particular mode not desired.  The proportional mode constant shall be adjustable from 0 to 200 percent of input signal range; the 
+integral mode constant shall be adjustable from 0 to 20 repetitions per minute; and the derivative mode constant shall be adjustable from 0 to 
+5 minutes.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><TAI OPT="PNEUMATIC"><SPT><TTL>Pneumatic Controllers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate on drawings in sequence of operation, the following controller characteristics:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Type of setpoint adjustment:  local or remote.  Specify "field selectable" where future provisions for remote 
+setpoint may be foreseen, or where similar units, a portion of which requires remote adjustment, are to be used 
+at remote job sites.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Type of input ports:  single or dual.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Type of inputs:  primary with single input ports, or primary and secondary with dual input ports.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Controllers shall be two-pipe devices which use main air supplied to controller and pneumatic relay to produce the controller output signal. Controllers 
+shall have field selectable local and remote adjustable setpoints, and an adjustable proportional band for analog (proportional) control or an 
+adjustable differential for binary (two-position or floating) control.  Controllers shall have single- or dual-input ports as required for the 
+application and field selectable direct or reverse action for inputs.  Dual input controllers shall have adjustable secondary input authority.  
+Controllers shall have integral gage or test connections for testing or indication of input and output signals.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Analog Electronic Controllers</TTL><BRK/>
+<BRK/>
+<TXT>Controllers shall be solid-state electronic devices which sense the difference between input sensor analog values (resistance or voltage) and setpoint 
+adjustment analog values (resistance or voltage), and shall amplify the difference signal to provide the output signal.  Controllers shall include 
+the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Proportional band:  2.5 to 33 percent of input device span.</OLI><BRK/>
+<BRK/>
+<OLI>Authority:  minimum of 33 to 200 percent.</OLI><BRK/>
+<BRK/>
+<OLI>Inputs:  thermistor, resistance, transmitter, or output of other electronic controllers.</OLI><BRK/>
+<BRK/>
+<OLI>Outputs:  within the range of minus 5 to 20 Vdc or a 4 to 20 mA dc current loop.</OLI><BRK/>
+<BRK/>
+<OLI>Remote setpoint adjustment (SPA):  plus or minus 10 percent of input device span.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Unitary Control Systems</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Energy-efficient temperature control systems should be used for small systems as well as large systems.  
+Systems that otherwise are not cost effective may use programmable controllers that are commercially available 
+for HVAC applications.  These are chiefly staging type controllers but some do incorporate modulating outdoor 
+air damper control.  Controllers are available to control cooling in two steps with either two or four heating 
+steps, and in three cooling steps with three heating steps.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Unitary control systems shall be energy-efficient, micro-processor-based temperature controllers and associated devices that do not require Contractor-generated 
+software.  Provide control systems with[ integral][ or][ remote] sensor as indicated.  Controllers shall operate heating, cooling, and ventilating 
+modes with independent occupied and unoccupied settings for each of 7 consecutive days.  Cooling shall be controlled in[ two][ three] steps and 
+heating shall be controlled in[ two][ three][ four] steps with modulating control provided for the ventilation mode.  Provide temperature changeover 
+control to limit the ventilation mode when outdoor air temperature is not sufficiently low for "free-cooling."  Provision shall be made for[ automatic][ 
+manual] changeover between heating and cooling modes, providing a one minute minimum time delay between the start and stop operation of heating 
+and cooling stages upon startup and after power failure to prevent short cycling and power surges.  Provide an optimum startup program to minimize 
+warm-up or cool-down periods prior to the occupied mode.  Outside air dampers shall be closed during the optimum startup program unless outside 
+air is beneficial for cool-down in lieu of mechanical cooling.  Fan shall operate continuously during the occupied mode and shall cycle during 
+the unoccupied mode for heating or cooling.  Provide battery backup to retain programs and maintain clock operation for 48 hours minimum during 
+power outages.  Controller shall have a self-diagnostic program to indicate errors and locking covers to prevent unauthorized program entries.  
+Provide a convenient means to restore the occupied mode of operation for a minimum 2-hour period without removing covers.  An indexing switch shall 
+allow operation in a continuous unoccupied mode during abnormal periods without changing normal programs.[  Servicing tool required to place the 
+unitary control system in use shall be a hand-held device used to adjust and monitor setpoints, controlled device positions, input sensor values, 
+and other control system parameters.]</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Pneumatic Low-Range Pressure Controllers for Ductwork Applications</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Controllers shall provide two-pipe, pilot-operated control with pneumatic feedback and proportional action.  Sensing elements shall be differential 
+type with pressure ranges appropriate for intended service.  One element shall measure the variable while the other element measures the standard 
+reference.  Static pressure controllers shall have slack diaphragms with standard ranges between<MET> 0 to 1494 Pa</MET><ENG> 0 to 6 inches water</ENG> gage and an adjustable 
+throttling range of<MET> 5 to 125 Pa</MET><ENG> 0.02 to 0.5 inch water</ENG> gage.  Sensing element shall be mountable in ductwork and shall measure static pressure 
+without pulsations.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="PNEUMATIC"><SPT><TTL>Pneumatic Differential Pressure Controllers for Liquid Applications</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Differential pressure controllers shall have a minimum range of<MET> 0 to 345 kPa (gage) or 0 to 1724 kPa (gage)</MET><ENG> 0 to 50 psig or 0 to 250 psig</ENG> as specified 
+or required for the application and shall have an adjustable throttling range of<MET> 7 to 172 kPa (gage)</MET><ENG> 1 to 25 psig</ENG>.  Sensing element shall be filled 
+diaphragm type with three-valve manifold for isolation and nulling.  Provide syphons and pressure snubbers.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>CONTROL DEVICES AND ACCESSORIES</TTL><BRK/>
+<BRK/>
+<TXT>Provide control devices and accessories.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Function Modules</TTL><BRK/>
+<BRK/>
+<TXT>Function modules shall accept mA dc analog input signals to produce analog output signals or contact output signals.  Modules shall have zero and 
+span adjustments for analog outputs, and setpoint adjustments for contact outputs.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Minimum Position Switches and Temperature Setpoint Devices</TTL><BRK/>
+<BRK/>
+<TXT>Minimum position switches and temperature setpoint devices shall accept manual input and shall produce steady analog output.  Switches and devices 
+shall be suitable for recessed wall mounting or panel mounting and shall have a graduated dial.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Signal Inverter Modules</TTL><BRK/>
+<BRK/>
+<TXT>Signal inverter modules shall accept analog input signal and produce analog output signal that linearly reverses the direction of signal change 
+of input versus output.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High-Low Signal Selector Modules</TTL><BRK/>
+<BRK/>
+<TXT>High-low signal selector modules shall accept analog input signals and select either the highest or the lowest input signal as the output signal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sequencer Modules</TTL><BRK/>
+<BRK/>
+<TXT>Sequencer modules shall provide fixed time delayed sequencing of one or more contact transfers from an analog input signal.  Sequencers shall return 
+contacts to their zero input signal condition when power is interrupted.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Relays</TTL><BRK/>
+<BRK/>
+<TXT>Relays shall be two-pole, double-throw (DPDT) with a 10-ampere resistive rating at[ 120][ 24] Vac, and shall have an enclosed coil.  Provide with 
+a light indicator which is lit when the coil is energized and is not lit when the coil is not energized.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Time-Delay Relays</TTL><BRK/>
+<BRK/>
+<TXT>Time-delay relays shall be DPDT with octal connectors and dust covers.  The adjustable timing range shall be[ 0 to 3 minutes] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Time Clocks</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate time clock to automatically index to day or night thermostats; control system shall function on 
+Saturday and Sunday as specified for night cooling and heating.  The second clock circuit of the same clock that 
+controls HVAC air delivery system timing shall be used to maintain outside air dampers closed from beginning of 
+night period through the morning warm-up period.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Time clocks shall be a 24-hour, 365-day programmable timing device with two independently timed circuits.  Clocks shall have a manual scheduling 
+keypad and alphanumeric display of timing parameters.  Timing parameters shall include Gregorian calendar date for month, day and day-of-month 
+indication; and 24-hour time-of-day display, with one-minute resolution for programming the ON and OFF times for each circuit.  Circuits shall 
+have programmable timed override from 1 to 99 minutes.  Clocks shall have capacity for programming four ON events and four OFF events for each 
+circuit.  Programmed events shall be assignable to a 365-day schedule.  Clocks shall have automatic standard time and daylight saving time adjustments, 
+keyed to input of appropriate dates.  Provide clocks with 4-day battery backup.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Override Timer</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Mechanical override timer, when activated, shall bypass the time clock and activate the day heating or 
+cooling and ventilation controls for assigned units.  Upon expiration of timer operation, the control system shall 
+return to normal mode.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Override timers shall be manually set, mechanically driven timers, or electronic timers, without a "hold" feature.  Time intervals shall be selectable 
+for up to 12 hours of operation and shall expire unless reset.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Current-to-Pneumatic (IP) Transducers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Transducers shall be two-wire transmitters which convert an input signal to<MET> 21 to 103 kPa (gage) or 103 to 21 kPa (gage)</MET><ENG> 3 to 15 psig or 15 to 
+3 psig</ENG> pneumatic output, with a conversion accuracy of plus or minus 2 percent of full scale, including linearity and hysteresis.  Air consumption 
+shall not be greater than<MET> 0.12 L/s</MET><ENG> 0.25 scfm</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Regulated Power Supplies</TTL><BRK/>
+<BRK/>
+<TXT>Power supplies shall provide a 24-Vdc linear supply at not less than 2 amperes, with regulation to 0.05 percent of output voltage.  Power supplies 
+shall have a fused input, and shall be protected from voltage surges and power-line transients.  Power supply output shall be protected against 
+overvoltage and short circuits.  Power supply loading shall not be greater than 1.2 amperes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Transformers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate a backup transformer connected to an alternate voltage supply for systems connected to critical 
+areas where continuous operation is necessary.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>UL 508</RID> and <RID>NEMA ST 1</RID> as applicable.  Transformers, other than transformers in bridge circuits, shall have primaries wound for available voltage 
+and secondaries wound for correct control circuit voltage.  Transformers shall be sized so that connected loads equal 80 percent of rated capacity.  
+Transformers shall be enclosed in rustproof, galvanized steel cabinets with conduit connections.  Disconnect switch shall be provided on the primary 
+side, and a fuse cutout on the secondary side.[  For systems serving ] [_____] [or] [as indicated], provide backup power supply including transformers 
+connected to [the emergency power source] [_____].[  Provide for automatic switchover and alarm upon failure of primary control circuit.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pilot Lights and Manual Switches</TTL><BRK/>
+<BRK/>
+<TXT>Device illumination shall be by light-emitting diode (LED) or neon lamp.  Switches shall have operating levers and index plates showing switch 
+positions and names of apparatus controlled or other appropriate designations.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>HVAC SYSTEM <SUB>CONTROL PANELS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide HVAC system control panels.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Panel Assembly</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains PNEUMATIC tailoring options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Panel shall be fabricated for bottom entry connection for control system electric power,<TAI OPT="PNEUMATIC"> control system main air source,</TAI> control system wiring,<TAI OPT="PNEUMATIC">
+ pneumatic tubing,</TAI> interconnection of control systems, interconnection of starters, and external shutdown devices.  Panel shall have an operating 
+temperature rise of not greater than<MET> 11 degrees C</MET><ENG> 20 degrees F</ENG> above an ambient temperature of<MET> 38 degrees C</MET><ENG> 100 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Panel Electrical Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Control panel shall be powered by nominal 120 Vac terminating at panel on terminal blocks.  Instrument cases shall be grounded.  Interior and exterior 
+panel enclosures shall be grounded.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Enclosures</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate NEMA class for each panel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Enclosures for each panel shall be a single door, wall-mounted box conforming to <RID>NEMA 250</RID> with a continuous hinged and gasketed exterior door with 
+a print pocket, key lock, and interior back panel.  Inside finish shall be white enamel, and outside finish shall be gray primer over phosphatized 
+surfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mounting and Labeling</TTL><BRK/>
+<BRK/>
+<TXT>Provide pilot lights, switches, panel-mounted control devices, and pressure gages shall be mounted on the door.  Power conditioners, fuses, and 
+duplex outlets shall be mounted on the interior of the cabinet.  Other components housed in the panel shall be mounted on the interior back panel 
+surface of the enclosure and shall be identified by plastic or metal nameplates which are mechanically attached to the panel.  Lettering shall 
+be cut or stamped into the nameplate to a depth of not less than<MET> 0.4 mm</MET><ENG> 1/64 inch</ENG>, and shall have contrasting color, produced by filling with enamel 
+or lacquer or by use of laminated material.  Painting of lettering directly on the surface of the door or interior back panel is not permitted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wiring<TAI OPT="PNEUMATIC"> and Tubing</TAI></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart title and list item a. contain PNEUMATIC tailoring options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI><TAI OPT="PNEUMATIC">Pneumatic device inputs and outputs shall be piped to bulkhead fittings in the bottom of the panel with a<MET> 50 mm</MET><ENG> 2 inch</ENG> loop to facilitate 
+replacement.  </TAI>Electric, electronic, and electropneumatic device signals entering and leaving the panel shall be wired to identified terminal 
+blocks.</OLI><BRK/>
+<BRK/>
+<OLI>Wiring shall be installed in wiring ducts so that devices can be added or replaced without disturbing existing wiring that is not affected 
+by the change.  Wiring to single-loop controllers shall have a<MET> 100 mm</MET><ENG> 4 inch</ENG> wiring loop in the horizontal wiring duct at each wiring connection.  
+There shall be no wiring splices within the control panel.  Interconnections required for power or signals shall be made on device terminals, 
+if available, or panel terminal blocks, with not more than two wires connected to each terminal.</OLI><BRK/>
+<BRK/>
+<OLI>Instrument signal grounds at the same reference level shall end at a grounding terminal connected to a common ground point for that level.  
+Wiring shield grounds at the same reference level shall end at a grounding terminal connected to a common ground point for that level.  
+Grounding terminal blocks shall be identified by reference level.</OLI><BRK/>
+<BRK/>
+<OLI>Wiring connected to controllers shall be identified by function and polarity, e.g., process variable input and remote setpoint input and 
+output.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><TAI OPT="PNEUMATIC"><SPT><TTL>COMPRESSED AIR STATIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide compressed air stations.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Air Compressor</SUB> Assembly</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In that are additions to existing control systems, do not add additional loads or reuse existing control 
+compressor unless it is verified by the designer that it has ample capacity and is dependable.  If existing compressor 
+is to be reused, so specify and indicate its location on drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>Compressor shall be equipped with an electric motor with a totally enclosed belt guard, operating pressure switch, safety relief valves, 
+gages, intake filter, and intake silencer.  Compressor shall have combination type magnetic starter with undervoltage protection and thermal 
+overload protection for each phase.  Compressor shall be supported by a steel base mounted on an air storage tank.  Air compressor shall 
+be sized to supply compressed air required by the control system while operating not more than one-third of the time.</OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Regarding the text below, provide duplex air compressors for systems having greater than 50 control air 
+users or greater than<MET> 0.71 L/s</MET><ENG> 1.5 cubic feet per minute</ENG> of free air.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Compressor shall be a duplex machine.  Compressor shall be equipped with an electric motor with a totally enclosed belt guard, operating 
+pressure switch, safety relief valve, cylinder unloader or solenoid unloader, intake filter, and intake silencer.  Provide an alternator 
+and two magnetic starters with undervoltage protection and thermal overload protection for each phase.  Compressors shall be supported 
+on a steel base mounted on an air storage tank.  Compressor shall be sized to the control system compressed air requirement while operating 
+not more than one-half of the time.</OLI><BRK/>
+<BRK/>
+]<OLI>Compressed air storage tank shall be fabricated for working pressure of not less than<MET> 1379 kPa (gage)</MET><ENG> 200 psig</ENG>, and constructed and certified 
+in accordance with <RID>ASME BPVC</RID>.  Tank shall be of sufficient volume so that no more than six compressor starts per hour are required with 
+the starting pressure switch differential set at<MET> 138 kPa</MET><ENG> 20 psi</ENG> differential.  Tank shall be provided with an automatic condensate drain 
+trap with a manual override feature.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Compressed Air Station Specialties</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Pressure regulator and <SUB>refrigerated air dryer</SUB> shall be provided in the air outlet line of the air storage tank.  Dryer shall be sized for 
+full air delivery capacity of compressor.  Air shall be dried at a pressure of not less than<MET> 483 kPa (gage)</MET><ENG> 70 psig</ENG> to a temperature not 
+greater than<MET> 2 degrees C</MET><ENG> 35 degrees F</ENG>.  Dryer shall be provided with an automatic condensate drain trap with a manual override feature.</OLI><BRK/>
+<BRK/>
+<OLI>Two parallel combination dirt and coalescing type oil filters with shutoff valves and pressure regulators shall be provided in the dryer 
+discharge.  <SUB>Air filtration system</SUB> shall be rated for full delivery capacity of compressor.  Filter shall be 100 percent efficient for particle 
+diameters down to 0.3 microns.  Filter bowl shall be rated for<MET> 1034 kPa (gage)</MET><ENG> 150 psig</ENG> maximum working pressure.  One of the filters shall 
+serve as a standby.  Pressure regulator and safety valve shall be provided downstream of the filter.</OLI><BRK/>
+<BRK/>
+<OLI>Flexible pipe connectors shall be designed for<MET> 1034 kPa (gage) and 121 degrees C</MET><ENG> 150 psi and 250 degrees F</ENG> service, and shall be constructed 
+of rubber, tetrafluoroethylene resin, or braided corrosion-resistant steel, bronze, monel, or galvanized steel.  Connectors shall be suitable 
+for service intended and may have threaded or soldered ends.  Length of connectors shall be as recommended by the manufacturer for service 
+intended.</OLI><BRK/>
+<BRK/>
+<OLI>Vibration isolation units shall be standard products with published loading ratings, and shall be single rubber-in-shear, double rubber-in-shear, 
+or spring type.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></TAI><SPT><TTL>ELECTRONIC VARIABLE AIR VOLUME <SUB>VAV TERMINAL UNIT CONTROLS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide electronic VAV terminal unit controls.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>VAV Terminal Units</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For NAVFAC LANT projects that use the regional specifications, refer to NAVFAC LANT regional specification 
+NFGS 23 73 33.00 22 HEATING, VENTILATING AND COOLING SYSTEMS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>VAV terminal units shall be as specified in Section <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Terminal Unit Controls</TTL><BRK/>
+<OLG><BRK/>
+<OLI><RID>UL 916</RID> and <RID>FCC Part 15</RID>.  Controls for pressure independent boxes shall consist of a velocity sensing device in the primary air entering 
+box, a room temperature sensing element, a damper actuator, and an adjustable microprocessor-based VAV box controller.  Controls shall 
+operate a damper for cooling[ and a duct coil for heating].  Actuator shall open or close the device to which it is applied within 6 minutes.</OLI><BRK/>
+<BRK/>
+<OLI>Controls for pressure independent boxes with recirculating fans shall consist of a velocity sensing device in the primary air entering 
+the box, a room temperature sensing element, an adjustable microprocessor-based VAV box controller, a damper with actuator, and a duct 
+pressure switch to operate the recirculation fan.  Controller shall operate the damper for cooling and the recirculating fan[ and duct 
+coil] for heating.</OLI><BRK/>
+<BRK/>
+<OLI>One hand-held communication and programming device with an instruction manual, plus one additional hand-held communication device and instruction 
+manual per 100 terminal units, shall be provided.  Communication and programming device shall connect directly to the controller or to 
+a jack at the room temperature sensing element location.  Communication and programming device shall be used to read and set minimum velocity, 
+maximum velocity, heating setpoint, and cooling setpoint, and to read air velocity and space temperature.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>CONTROL<TAI OPT="PNEUMATIC"> TUBING AND</TAI> WIRING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This article's title and subparts contain PNEUMATIC tailoring options.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide HVAC control tubing and wiring.</TXT><BRK/>
+<BRK/>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Tube and Fittings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<BRK/>
+<NPR>Systems that are critical and required for smoke removal operation shall have tubing of noncombustible material 
+only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Copper Tubing</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM B75/B75M</RID> or<MET> <RID>ASTM B88M</RID></MET><ENG> <RID>ASTM B88</RID></ENG>.  Tubing<MET> 10 mm</MET><ENG> 0.375 inch</ENG> outside diameter and larger shall have a minimum wall thickness equal to<MET> <RID>ASTM B88M</RID></MET><ENG>
+ <RID>ASTM B88</RID></ENG>, Type M.  Tubing less than<MET> 10 mm</MET><ENG> 0.375 inch</ENG> outside diameter shall have a minimum wall thickness of<MET> 0.64 mm</MET><ENG> 0.025 inch</ENG>.  Concealed tubing 
+shall be hard or soft copper; multiple tubing shall be racked or bundled.  Exposed tubing shall be hard copper; rack multiple tubing.  Tubing for 
+working pressures greater than<MET> 206 kPa (gage)</MET><ENG> 30 psig</ENG> shall be hard copper.  Bundled tubing shall have each tube numbered each<MET> 2.0 meters</MET><ENG> 6 feet</ENG>
+ minimum.  Racked and individual tubes shall be permanently identified at each end.  Fittings shall be solder type <RID>ASME B16.18</RID> or <RID>ASME B16.22</RID>, 
+using <RID>ASTM B32</RID>, Plumbing Code approved lead-free solder, or compression type <RID>ASME B16.26</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Polyethylene Tubing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<BRK/>
+<NPR>If the building has crawl spaces or ceilings with openings to the outside, such as vent louvers, prohibit use 
+of bare polyethylene tubing in these areas.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Polyethylene tubing shall be provided only for systems with working pressure of<MET> 206 kPa (gage)</MET><ENG> 30 psig</ENG> or less.  Provide flame-resistant, multiple 
+polyethylene tubing in flame-resistant protective sheath with Mylar barrier, or unsheathed flame-resistant polyethylene tubing in rigid metal, 
+intermediate metal, or electrical metallic tubing conduit for areas where tubing is exposed.  Single, unsheathed, flame-resistant polyethylene 
+tubing may be used where concealed in walls or above ceilings and within control panels, except prohibited in crawl spaces, attics, and above-ceiling 
+spaces that are vented to the outdoors.  Do not provide polyethylene tubing for[ systems indicated as critical and] smoke removal systems.  Number 
+each tube in sheathing each 2 feet minimum.  Permanently identify unsheathed tubing at each end.  Provide compression or barbed push-on type fittings.  
+Extruded seamless polyethylene tubing shall conform to the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Minimum burst pressure requirements: <MET> 690 kPa (gage) at 24 degrees C to 172 kPa (gage) at 66 degrees C</MET><ENG> 100 psig at 75 degrees F to 25 psig 
+at 150 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Stress crack resistance:  <RID>ASTM D1693</RID>, 200 hours minimum.</OLI><BRK/>
+<BRK/>
+<OLI>Tensile strength (minimum): <MET> <RID>ASTM D638</RID>, 7583 kPa</MET><ENG> <RID>ASTM D638</RID>, 1100 psi</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Flow rate (average):  <RID>ASTM D1238</RID>, 0.30 decigram per minute.</OLI><BRK/>
+<BRK/>
+<OLI>Density (average):  <RID>ASTM D792</RID>,<MET> 920 kg/m3</MET><ENG> 57.5 pounds per cubic feet</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Burn rate:  <RID>ASTM D635</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></TAI><SPT><TTL>Wiring</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Terminal blocks shall be insulated, modular, feed-through, clamp style with recessed captive screw-type clamping mechanisms.  Terminal 
+blocks shall be rail mounted, and shall have end plates, partition plates or enclosed sides for separation.</OLI><BRK/>
+<BRK/>
+<OLI>Control wiring for 24-V circuits shall be 18 AWG minimum and shall be rated for 300-V service.</OLI><BRK/>
+<BRK/>
+<OLI>Wiring for circuits operating at more than 100 V shall be 14 AWG minimum and shall be rated for 600-V service.</OLI><BRK/>
+<BRK/>
+<OLI>Analog signal wiring circuits within control panels shall not be less than 20 AWG and shall be rated for 300-V service.</OLI><BRK/>
+<BRK/>
+<OLI>Instrumentation cable shall be 18 AWG, stranded copper, single or multiple twisted, minimum 2-inch lay of twist, 100 percent shielded pairs, 
+and shall have 300-V insulation.  Each pair shall have a 20-AWG tinned copper drain wire, individual pair, and overall insulation.  Cables 
+shall have an overall aluminum polyester or tinned overall copper cable shield tape, 20-AWG tinned-copper cable drain wire, and overall 
+cable insulation.</OLI><BRK/>
+<BRK/>
+<OLI>Nonconducting wiring ducts in control panels shall have slotted side snap-on covers, fittings for connecting ducts, mounting clips for 
+securing ducts, and wire retaining clips.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate access doors where required for servicing mounted devices.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform installation under the supervision of competent technicians regularly employed in the installation of control systems.  Provide components 
+for a complete and operational control system.  Provide control system complete and ready for operation, as specified and indicated.  Provide dielectric 
+isolation where dissimilar metals are used for connection and support.  Penetrations through and mounting holes in the building exterior shall 
+be watertight.  Control system installation shall provide adequate clearance for control system maintenance by maintaining access spaces between 
+coils, to mixed-air plenums, and as required to calibrate, remove, repair, or replace control system devices.  Control system installation shall 
+not interfere with the clearance requirements for mechanical and electrical system maintenance.  Install devices mounted in or on piping or ductwork, 
+on building surfaces, in mechanical and electrical spaces, or in occupied space ceilings in accordance with manufacturer's recommendations and 
+as indicated on contract documents.  Provide control devices to be installed in piping and ductwork with required gaskets, flanges, thermal compounds, 
+insulation, piping, fittings, and manual valves for shutoff, equalization, purging, and calibration.  Certify that installation of control system 
+is complete and technical requirements of this section have been met.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Sensors</TTL><BRK/>
+<BRK/>
+<TXT>Provide sensors in locations to sense the appropriate condition.  Install sensor and transmitter where easily accessible and serviceable without 
+special tools.  Sensors shall be calibrated to the accuracy specified in the contract, and operate correctly when installed.  Do not install sensors 
+designed for one application in the place of another application (e.g., replacing a duct sensor with a room sensor).</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Room Sensors</TTL><BRK/>
+<BRK/>
+<TXT>Provide on interior walls to sense average room conditions.  Avoid locations which may be covered by office furniture.  Do not mount room sensors 
+on exterior walls if other locations are available.  Mount centerline of sensor<MET> 1-1/2 meters</MET><ENG> 5 feet</ENG> above finished floor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Duct Temperature Sensors</TTL><BRK/>
+<BRK/>
+<TXT>Provide sensors in ductwork in general locations as indicated.  Select specific sensor location within duct to accurately sense appropriate air 
+temperatures.  Locate sensor connection boxes in position not obstructed by ducts or equipment.  Install gaskets between sensor housing and duct 
+wall.  Seal duct and insulation penetrations.  Install duct averaging sensors between two rigid supports in serpentine position to sense average 
+conditions.  Sensor shall have a total minimum length of<MET> 825 mm per square meter</MET><ENG> one linear foot per 4 square feet</ENG> of duct area.  Sensor shall 
+be mounted a minimum of<MET> 80 mm</MET><ENG> 3 inches</ENG> from outside wall surface.  Thermally isolate temperature sensing elements from supports.  Provide duct 
+access doors to averaging sensors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Immersion Temperature Sensors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate pipe size increases for thermowells in small diameter piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide thermowells for sensors measuring temperatures in liquid applications or pressure vessels.  Locate wells to sense continuous flow conditions.  
+Do not install wells using extension couplings.  Where piping diameters are smaller than the length of the wells, provide wells in piping at elbows 
+to effect proper flow across entire area of the well.  Wells shall not restrict flow area to less than 70 percent of pipe area.  Increase piping 
+size as required to avoid restriction.  Temperature sensors shall be installed in thermowells with thermal transmission material to speed the response 
+of temperature measurement.  Provide thermowells with sealing nuts to contain thermal transmission material.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Strap-on Temperature Sensors</TTL><BRK/>
+<BRK/>
+<TXT>Strap-on temperature sensors, using helical screw stainless steel clamps, shall be permitted on new hot water piping for on-off operation, and 
+for existing hot water piping sizes not greater than<MET> 80 mm</MET><ENG> 3 inches</ENG>.  Clean the pipe to bright metal.  Insulate strap-on bulb and pipe after installation.  
+Provide other liquid temperature sensors with thermowells.  Provide <RID>NEMA 250</RID> Type 4 enclosures for outdoor installations.  Provide brushed aluminum 
+or brushed stainless steel enclosures for sensors located in finished spaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Outside Air Temperature Sensors</TTL><BRK/>
+<BRK/>
+<TXT>Provide outside air temperature sensor on north side of building, away from exhaust hoods, air intakes, and other areas which may affect temperature 
+readings.  Install sunshields to protect outside air temperature sensor from direct sunlight.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Low-Temperature Protection Thermostats (Freezestats)</TTL><BRK/>
+<BRK/>
+<TXT>Provide thermostat for each<MET> [7.5 square meter]</MET><ENG> [80 square feet]</ENG> [_____] of coil-face area to sense the temperature at location indicated.  Install 
+thermostat sensing element in serpentine pattern.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Thermometers</TTL><BRK/>
+<BRK/>
+<TXT>Provide thermometers which are installed in liquid systems in thermowells with thermal transmitting materials within the well to speed the response 
+of temperature measurement.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Sensors</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Duct Static Pressure</TTL><BRK/>
+<BRK/>
+<TXT>Duct static pressure sensor shall be located where indicated on drawings.  If no location is indicated, it should be located approximately two-thirds 
+of distance from supply fan to the end of duct with greatest pressure drop.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steam Pressure</TTL><BRK/>
+<BRK/>
+<TXT>Provide snubbers and isolation valves on steam pressure sensing applications.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pressure Gages</TTL><BRK/>
+<BRK/>
+<TXT>Provide snubbers for gages in piping systems subject to pulsation.  Gages for steam service shall have pigtail fittings with cocks.  Install pressure 
+gages at locations indicated.  Pneumatic output lines shall have pressure gages mounted near the control panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide valve with stems upright where possible but with stems not lower than horizontal.  Provide positioners where indicated and where necessary 
+to prevent overlap of heating and cooling where one controller operates more than one pneumatic device and to maintain the proper dead band between 
+heating and cooling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Damper Actuators</TTL><BRK/>
+<BRK/>
+<TXT>Provide damper actuators so that the damper sealing action is smooth and sufficient to maintain leakage at or below specified leakage rate.  Multiple 
+actuators operating a common damper shall be connected to a common drive shaft.  Provide positioners where indicated and where necessary to prevent 
+overlap of heating and cooling where one controller operates more than one pneumatic device and to maintain the proper dead band between heating 
+and cooling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Access Doors</TTL><BRK/>
+<BRK/>
+<TXT>Provide access doors in ductwork to service airflow monitoring devices, devices with averaging elements, and low-temperature protection thermostats 
+(freezestats).</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Tubing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide control system so that pneumatic lines are not exposed to air temperatures below<MET> minus 4 degrees C</MET><ENG> 25 degrees F</ENG>.  Install tubes 
+and tube bundles exposed to view neatly in lines parallel to lines of the building.  Route tubing between panels and actuators in mechanical 
+and electrical spaces so that lines are easily traceable.  Tubes shall be permanently tagged on both ends with an identifier indicated 
+on shop drawings.  Install concealed tubing in finished areas, and install exposed tubing in unfinished areas such as mechanical equipment 
+rooms.</OLI><BRK/>
+<BRK/>
+<OLI>Pneumatic lines in mechanical and electrical spaces shall be plastic tubing or copper tubing.  Install horizontal and vertical runs of 
+plastic tubes or soft copper tubing in raceways dedicated to tubing.  Dedicated raceways shall be supported every<MET> 2 meters</MET><ENG> 6 feet</ENG> of horizontal 
+run and every<MET> 2.44 meter</MET><ENG> 8 feet</ENG> for vertical runs.  Tubing not installed in raceways shall be hard-drawn copper tubing with sweat fittings 
+and valves, supported every<MET> 2 meter</MET><ENG> 6 feet</ENG> of horizontal run and every<MET> 2.44 meters</MET><ENG> 8 feet</ENG> for vertical runs.</OLI><BRK/>
+<BRK/>
+<OLI>Tubing for connecting sensing elements and transmitters to liquid and steam lines shall be[ copper][ Series 300 stainless steel] with[ 
+brass compression][ stainless steel compression] fittings.</OLI><BRK/>
+<BRK/>
+<OLI>Tubing for final connection of sensing elements and transmitters to ductwork shall be plastic with a maximum length of<MET> 305 mm</MET><ENG> 12 inches</ENG>
+.</OLI><BRK/>
+<BRK/>
+<OLI>Tubing external to mechanical and electrical spaces, where run in plenum ceilings, shall be soft copper with sweat fittings, supported 
+every<MET> 2.44 meters</MET><ENG> 8 feet</ENG>.  Tubing not in plenum spaces shall be soft copper with sweat fittings supported every<MET> 2.44 meters</MET><ENG> 8 feet</ENG> or shall 
+be plastic tubing in raceways dedicated to tubing.</OLI><BRK/>
+<BRK/>
+<OLI>Provide tubing in concrete in rigid conduit.  Install tubing in walls containing insulation, fill, or other packing materials in raceways 
+dedicated to tubing.</OLI><BRK/>
+<BRK/>
+<OLI>Final connections to actuators shall be plastic tubing, a maximum of<MET> 305 mm</MET><ENG> 12 inches</ENG> long and unsupported at the actuator.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a manual valve at each HVAC control panel to allow shutoff of main air.  Pneumatic connections to HVAC control panels shall be 
+made using bulkhead fittings except where bundled tubing is being used.</OLI><BRK/>
+<BRK/>
+<OLI>Final connections to HVAC control panel bulkhead fittings shall be exposed tubing approximately<MET> 305 mm</MET><ENG> 12 inches</ENG> long.</OLI><BRK/>
+<BRK/>
+<OLI>Tubing and two insulated copper phone wires for installation checkout may be run in the same conduit.  Tubing and electrical power conductors 
+shall not be run in the same conduit.  Control circuit conductors, 24 V or less, may be run in the same conduit as polyethylene tubing.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</TAI><SPT><TTL>Wiring</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide wiring external to control panels, including low-voltage wiring, in metallic raceways.  Install wiring without splices between 
+sensors, transmitters, control devices, and HVAC control panels.  Install instrumentation grounding as necessary to prevent ground loops, 
+noise, and surges adversely affecting operation of the system.  Tag cables, conductors, and wires at both ends, with identifiers indicated 
+on shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Other electrical work shall be specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Provide step-down transformers where control 
+equipment operates at lower than line circuit voltages.  Transformers serving individual heating, ventilating, and air-conditioning units 
+shall be fed from fan motor leads, or fed from the nearest distribution panelboard or motor control center, using circuits provided for 
+that purpose.</OLI><BRK/>
+<BRK/>
+<OLI>Ground control panels and cabinets as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Grounding of the green ac ground wire 
+at the breaker panel alone is not adequate.  Install ground wire from each control panel to adequate building ground.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Foundations and Housekeeping Pads</TTL><BRK/>
+<BRK/>
+<TXT>Provide<MET> 80 mm</MET><ENG> 3 inch</ENG> high concrete foundations and housekeeping pads for the HVAC control system air compressors.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Compressed Air Stations</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mount air compressor assembly on vibration eliminators, in accordance with <RID>ASME BPVC</RID> for tank clearance.  Connect air line to the tank with a flexible 
+pipe connector.  Install compressed air station specialties with required tubing, including condensate tubing to a floor drain.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Control Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Post laminated copies of as-built control system drawings in each mechanical room.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ADJUSTMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Calibrate instrumentation and controls, and verify specified accuracy using test equipment traceable to National Institute for Science and Technology 
+(NIST) standards.  Adjust controls and equipment to maintain conditions indicated, to perform the functions indicated, and to operate in the sequence 
+specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING FOR HVAC.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<TST><OLI>Demonstrate compliance of HVAC control systems.  Furnish personnel, equipment, instrumentation, and supplies necessary to perform calibration 
+and site testing.  Calibrate test equipment in accordance with NIST standards.  Ensure that tests are performed or supervised by competent 
+employees of the control system installer or the control system manufacturer regularly employed in testing and calibration of control systems.</OLI><BRK/>
+<BRK/>
+<OLI>Testing shall include field tests and the performance verification test.  Field tests shall demonstrate proper calibration of instrumentation, 
+input and output devices, and operation of specific equipment.  The performance verification test shall ensure proper execution of sequence 
+of operation and proper tuning of control loops.</OLI><BRK/>
+<BRK/>
+<OLI>The plan for each phase of field acceptance testing shall be approved in writing before beginning that phase of testing.  Furnish written 
+notification of planned testing to Contracting Officer at least 21 days prior to testing.  Include proposed test procedures with notification.  
+The Contractor will not be allowed to start testing without written Government approval of test procedures.  Test procedures shall consist 
+of detailed instructions for complete testing to prove the performance of heating, ventilating, and air-conditioning system and control 
+system.  Include the following tests in test procedures.</OLI><BRK/>
+<BRK/>
+<OLI>Submit original copies of data produced, including results of each test procedure, to the Government at the conclusion of each phase of 
+testing.  Tests are subject to supervision and approval by Contracting Officer.  Do not perform testing during scheduled seasonal off-periods 
+of heating and cooling systems.</OLI><BRK/></TST>
+</OLG><BRK/>
+<SPT><TTL>Test Reporting</TTL><BRK/>
+<BRK/>
+<TXT>After completion or termination of field tests and again after the performance verification test, identify, determine causes, replace, repair, 
+or calibrate equipment which fails to meet the specification; and deliver a written report to the Government.  The report shall document test results, 
+explain in detail the nature of each failure, and corrective action taken.  After delivering the performance verification test report, the Contractor 
+shall convene a test review meeting at the job site to present results and recommendations to the Government.  As a part of the test review meeting, 
+the Contractor shall demonstrate by performing appropriate portions of field tests or the performance verification test that failures have been 
+corrected.  Based on Contractor's report and test review meeting, the Government will determine either the restart point or successful completion 
+of testing.  Do not commence required retesting until after receipt of written notification by the Government.  At the conclusion of retesting, 
+repeat the assessment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contractor's Field Testing</TTL><BRK/>
+<BRK/>
+<TXT>Calibrate field equipment and verify equipment and system operation before system is placed on-line.  Include the following tests in field testing.</TXT><BRK/>
+<BRK/>
+<TAI OPT="PNEUMATIC"><SPT><TTL>Tubing and Wiring Integrity Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is tailored for PNEUMATIC and will only be included when the PNEUMATIC tailoring option is 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Test tubing system pneumatically at 1.5 times the design working pressure for 24 hours.  Allowable leakage rate is that which produces a pressure 
+drop<MET> 7 kPa (gage)</MET><ENG> 1 psig</ENG> in 24 hours with compressed air supply turned off.  Test wiring for continuity, ground faults, and open and short circuits.</TST></TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>System Inspection</TTL><BRK/>
+<BRK/>
+<TXT><TST>Observe HVAC control system in shutdown condition.  Check dampers and valves for proper normal positions.  Document positions for the performance 
+verification test report.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Calibration Accuracy and Operation of Input Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>Verify correct calibration and operation of input instrument.  For each sensor and transmitter, including for temperature, pressure, relative humidity, 
+and dew point inputs, record the reading at the sensor or transmitter location using calibrated test equipment.  Record the output reading provided 
+by that sensor or transmitter.  Document each of these location and output readings for the performance verification test report.  The test equipment 
+shall have been calibrated within one year of the date of use in the field.  Test equipment calibration shall be traceable to the measurement standard 
+of the National Institute of Standards and Technology.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operation of Output Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>Check the operation of output to verify correct operation.  Operate analog device to minimum range (e.g., 4 mA) and maximum range (e.g., 20 mA), 
+and measure and record actual output values.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Actuator Range Adjustment</TTL><BRK/>
+<BRK/>
+<TXT><TST>With the controller, apply a control signal to each actuator and verify that the actuator operates properly from its normal position through to 
+the full range of stroke position.  Record actual spring ranges and normal positions for modulating control valves and dampers.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Coordination with HVAC System Balancing</TTL><BRK/>
+<BRK/>
+<TXT>Tune the control system after air and hydronic systems have been balanced, minimum damper positions have been set, and a report has been issued.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Test Documentation</TTL><BRK/>
+<BRK/>
+<TXT><TST>Before scheduling the performance verification test, provide field test documentation and written <SUB>certification of completion</SUB> to Contracting Officer 
+and the Naval Energy and Environmental Support Activity (NEESA), that the installed system has been calibrated, tested, and is ready to begin the 
+performance verification test.  Do not start the performance verification test prior to receiving written permission from the Government.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Performance Verification Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Conduct the performance verification tests to demonstrate that the control system maintains setpoints and that the control loops are tuned for 
+the correct sequence of operation.  Conduct the performance verification test during one week of continuous HVAC and control systems operation 
+and before final acceptance of work.</TST>  Specifically, the performance verification test shall demonstrate that the HVAC system operates properly 
+through the complete sequence of operation (e.g., seasonal, occupied and unoccupied, warm up), for specified control sequences.  Demonstrate proper 
+control system response for abnormal conditions for which there is a specified system or controls response by simulating these conditions.  Demonstrate 
+that hardware interlocks and safety devices work as designed.  Demonstrate that the control system performs the correct sequence of control.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Opposite Season Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>Repeat the performance verification test during an opposite season to the first performance verification test.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TRAINING</TTL><BRK/>
+<BRK/>
+<TXT>Provide a qualified instructor to conduct training courses for designated personnel in maintenance and operation of HVAC and control systems.  
+Orientate training to the specific system being installed under the contract.  Furnish audiovisual equipment and other training materials and supplies.  
+A training day is defined as 8 hours of classroom or lab instruction, including two 15-minute breaks and excluding lunch time, Monday through Friday, 
+during the daytime shift in effect at the training facility.  For guidance, assume that the attendees have a high school education and are familiar 
+with HVAC systems.  Submit planned training schedule, agenda, and class materials to the Government at least 45 days prior to training.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Training Course Documentation</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Training shall be based on the operation and maintenance manuals and control system training manual.  Deliver manuals for each trainee with two 
+additional sets for archiving at the project site.  Include an agenda, defined objectives, and a detailed description of subject matter for each 
+lesson.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operator Training I</TTL><BRK/>
+<BRK/>
+<TXT>The first class shall be taught for a period of 5 consecutive training days at least one month prior to the scheduled performance verification 
+test.  The first course shall be taught in a Government-provided facility on base. Training shall be classroom instruction, but have hands-on operation 
+of similar digital controllers.  Maximum of [5][_____] personnel shall attend the course.  Upon completion of course, each student, using appropriate 
+documentation, shall be able to perform elementary operations, with guidance, and describe general hardware and functionality of the system.  Course 
+shall include but not be limited to description of hardware and operation of the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operator Training II</TTL><BRK/>
+<BRK/>
+<TXT>The second course shall be taught in the field, using the operating equipment at project sites for a total of 16 hours of instruction per student, 
+in blocks of 4 hours.  Maximum of [5][_____] personnel shall attend the course.  Include hands-on training under constant monitoring of instructor.  
+Course content shall duplicate the Operator Training I course as applied to the installed system.  Instructor shall determine the level of the 
+password to be issued to each student before each session.  Upon completion of the course, students shall be proficient in system operation. Prepare 
+a written report describing the skill level of each student at the end of the course.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operator Training III</TTL><BRK/>
+<BRK/>
+<TXT>The third course shall be taught in the field, at the project site, for a period of 3 training days no later than 6 months after completion of 
+endurance test.  Maximum of [5][_____] personnel shall attend the course.  Course shall be structured to address specific topics that the students 
+need to discuss and to answer questions concerning operation of the system.  Upon completion of the course, students shall be proficient in system 
+operation and shall have no unanswered questions regarding operation of the installed system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Maintenance Training</TTL><BRK/>
+<BRK/>
+<TXT>Course shall be taught at the project site within one month after completion of endurance test for a period of 2 training days.  Maximum of [_____] 
+personnel shall attend the course.  Course shall include but not be limited to the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Physical layout for each piece of hardware</OLI><BRK/>
+<BRK/>
+<OLI>Troubleshooting and diagnostics procedures</OLI><BRK/>
+<BRK/>
+<OLI>Repair instructions</OLI><BRK/>
+<BRK/>
+<OLI>Preventive maintenance procedures and schedule</OLI><BRK/>
+<BRK/>
+<OLI>Calibration procedures</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>QUALIFIED SERVICE ORGANIZATION LIST</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The qualified service organization list shall include names and telephone numbers of organizations qualified to service HVAC control systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COMMISSIONING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If commissioning procedures are required beyond the scope of those described in Section <SRF>23 05 93</SRF> TESTING, 
+ADJUSTING, AND BALANCING FOR HVAC, include procedures in this paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Commissioning of control systems is specified in the pre-field TAB engineering report described in Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING 
+FOR HVAC.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

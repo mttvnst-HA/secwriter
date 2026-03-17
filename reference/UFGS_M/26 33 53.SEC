@@ -1,0 +1,2884 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="254.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="252.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-26 33 53 (August 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="8.25">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="8.25">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="52.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding
+<BRK/>UFGS-26 33 53 (May 2019)<BRK/><BRK/></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 33 53</SCN><BRK/>
+<BRK/>
+<STL>STATIC UNINTERRUPTIBLE POWER SUPPLY (UPS)</STL><BRK/>
+<DTE>08/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>static UPS to provide 
+continuous ac power to critical loads and/or to improve the quality of ac power 
+to critical loads.  The specification is intended to cover three-phase systems 
+starting with the smallest unit at 20 kVA.  The upper end for a single module 
+is around 750 kVA; however, parallel systems can have a larger total output.   
+This guide specification is intended to be used with individual UPS units which 
+contain a single module, parallel systems of the same size module, and scalable 
+modular UPS systems.  Single phase systems are not addressed.  This specification 
+covers UPS with electro-chemical batteries. Electro-mechanical (stored energy) 
+UPS are not addressed.</SCP>  White paper Tri-Service Electrical Working Group (TSEWG) 
+TP-19 is on Static Uninterruptible Power Supplies and should be reviewed while 
+editing this specification.  See <URL>https://www.wbdg.org/dod/supp-tech-documents/tsewg-tp-19</URL>
+.  This specification supercedes previous versions of UFGS-26 32 33.00 10 Static 
+Uninterruptible Power Supply (UPS) and UFGS-26 33 53.00 20 Uninterruptible Power 
+Supply (UPS).<BRK/>
+<BRK/>
+Adhere <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> to Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  For Air Force projects only: UPS specifications, criteria, and purchases 
+are to be approved by the Power Conditioning and Continuation Interfacing Equipment 
+(PCCIE) Group Manager at Ogden Air Logistics Center (OO-ALC/LGHC).  Contact 
+the PCCIE Product Group Manager, 500 CBSS/GBLD, Building 1207-N, 6029 Wardleigh 
+Road, Hill AFB, UT 84056-5838.  If you have access to the Air Force portal, 
+then search PCCIE. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For tailoring option MULTI-POWER MODULE/SCALABLE tailoring The second 
+paragraph of sections Inverter Unit, "Output Overload", and sub-part m of AC 
+output called Bypass overload capability are for redundant systems to include 
+scalable unit internal redundant and scalable unit redundant.<BRK/>
+<BRK/>
+Choose taoloring option "SINGLE POWER MODULE/NON-SCALABLE" to include the first 
+option of these sections which is for all systems except for scalable unit UPS 
+systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Show the following information on the project drawings:<BRK/>
+<BRK/>
+1.  Location of equipment<BRK/>
+<BRK/>
+2.  Single-line diagrams, elevations, limiting dimensions, and equipment ratings 
+which are not covered in the specifications<BRK/>
+<BRK/>
+3.  Remote indicating requirements.<BRK/>
+<BRK/>
+4. Maintenance bypass switching cabinet and configuration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification. The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a RID outside 
+of the Section's Reference Article to automatically place the reference in the 
+Reference Article.  Also use the Reference Wizard's Check Reference feature 
+to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ACOUSTICAL SOCIETY OF AMERICA (ASA)</ORG><BRK/><BRK/><RID>ASA S1.4</RID><RTL>(1983; Amendment 1985; R 2006) Specification for Sound Level Meters (ASA 47)</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM B173</RID><RTL>(2017; R 2024) Standard Specification for Rope-Lay-Stranded Copper Conductors Having Concentric-Stranded Members, for Electrical Conductors</RTL><BRK/><BRK/><RID>ASTM D709</RID><RTL>(2017) Standard Specification for Laminated Thermosetting Materials</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 100</RID><RTL>(2000; Archived) The Authoritative Dictionary of IEEE Standards Terms</RTL><BRK/><BRK/><RID>IEEE 450</RID><RTL>(2020) Recommended Practice for Maintenance, Testing, and Replacement of Vented Lead-Acid Batteries for Stationary Applications</RTL><BRK/><BRK/><RID>IEEE 485</RID><RTL>(2020) Recommended Practice for Sizing Lead-Acid Batteries for Stationary Applications</RTL><BRK/><BRK/><RID>IEEE 1115</RID><RTL>(2015) Recommended Practice for Sizing Nickel-Cadmium Batteries for Stationary Applications</RTL><BRK/><BRK/><RID>IEEE C57.110</RID><RTL>(2008) Recommended Practice for Establishing Liquid-Filled and Dry-Type Power and Distribution Transformer Capability When Supplying Nonsinusoidal Load Currents</RTL><BRK/><BRK/><RID>IEEE C62.41</RID><RTL>(1991; R 1995) Recommended Practice on Surge Voltages in Low-Voltage AC Power Circuits</RTL><BRK/><BRK/><RID>IEEE C62.41.1</RID><RTL>(2002; R 2008) Guide on the Surges Environment in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/><RID>IEEE C62.41.2</RID><RTL>(2002) Recommended Practice on Characterization of Surges in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTRICAL TESTING ASSOCIATION (NETA)</ORG><BRK/><BRK/><RID>NETA ATS</RID><RTL>(2025) Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO 9001</RID><RTL>(2015) Quality Management Systems- Requirements</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA PE 1</RID><RTL>(2012; R 2017) Uninterruptible Power Systems (UPS) - Specification and Performance Verification</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 70E</RID><RTL>(2024) Standard for Electrical Safety in the Workplace</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 3-301-01</RID><RTL>(2023; with Change 6, 2026) Structural Engineering</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF ENERGY (DOE)</ORG><BRK/><BRK/><RID>Energy Star</RID><RTL>Energy Star Energy Efficiency Labeling System (FEMP)</RTL><BRK/><BRK/></REF><REF><ORG>U.S. FEDERAL COMMUNICATIONS COMMISSION (FCC)</ORG><BRK/><BRK/><RID>FCC Part 15</RID><RTL>Radio Frequency Devices (47 CFR 15)</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 1778</RID><RTL>(2014; Reprint Apr 2023) UL Standard for Safety Uninterruptible Power Systems</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified or indicated, electrical and electronics terms used in these specifications, and on 
+the drawings, are as defined in <RID>IEEE 100</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a  G  to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy,   and Air Force.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>UPS Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>UPS Installation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>UPS Module</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Technical Requirements UPS System</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB><RID>Energy Star</RID> Label for Battery Charging Systems and AC-DC/AC-AC Power Supply Products</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Work Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-09 Manufacturer's Field Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Initial Inspection and Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Performance Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Performance Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Performance Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>UPS Operation and Maintenance</SUB>, Data Package 5; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Data And Operation Manuals</SUB>; <SUB>G, [_____]</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OPERATION AND MAINTENANCE MANUALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Submit operation and maintenance data in accordance with Section 
+<SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA and as specified herein.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Additions to <SUB>UPS Operation and Maintenance</SUB> Manuals</TTL><BRK/>
+<BRK/>
+<TXT>In addition to requirements of SD-10 Data Package 5, include the following on the actual UPS system provided:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>An outline drawing, front, top, and side views.</OLI><BRK/>
+<BRK/>
+<OLI>Prices for spare parts and supply list.</OLI><BRK/>
+<BRK/>
+<OLI>Routine and field acceptance test reports.</OLI><BRK/>
+<BRK/>
+<OLI>Date of Purchase.</OLI><BRK/>
+<BRK/>
+<OLI>Corrective maintenance procedures.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<TAI OPT="ARMY"><SPT><TTL><SUB>Spare Parts</SUB></TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Army Only.  Do not provide spare parts for Navy projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Furnish the following spare parts, of the same material and workmanship, meeting the same requirements, and interchangeable 
+with the corresponding original parts.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Fuses: Two of each type and rating.</OLI><BRK/>
+<BRK/>
+<OLI>Circuit boards: One circuit board for each critical circuit.</OLI><BRK/>
+<BRK/>
+<OLI>Air Filters: One set of filters, when used on the UPS unit.</OLI><BRK/>
+<BRK/>
+<OLI>Special tools, calibration devices, and instruments required for operation, calibration, and maintenance 
+of the equipment:  One complete set.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<TXT>The manufacturer must have a documented quality assurance program including:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Inspections of incoming parts, modular assemblies and final product.</OLI><BRK/>
+<BRK/>
+<OLI>Final test procedure for the product including proof of performance specifications.</OLI><BRK/>
+<BRK/>
+<OLI>The on-site test procedure includes an inspection of controls and indicators after installation of the 
+equipment.</OLI><BRK/>
+<BRK/>
+<OLI><RID>ISO 9001</RID> quality certification.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL><SUB>UPS Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Drawings are to include the following: Detail drawings consisting of a complete list of equipment and materials, 
+manufacturer's descriptive and technical literature, battery sizing calculations per <RID>IEEE 485</RID>, installation instructions, 
+single-line diagrams, elevations, layout drawings, and details required to demonstrate that the system has been 
+coordinated and will function properly as a unit.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>One-line diagram.</OLI><BRK/>
+<BRK/>
+<OLI>Outline drawings including front elevation, section views, footprints, and overall dimensions.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's descriptive and technical literature.</OLI><BRK/>
+<BRK/>
+<OLI>Markings and NEMA nameplate data.</OLI><BRK/>
+<BRK/>
+<OLI>Wiring and control diagrams with terminals identified, and indicating prewired interconnections between 
+items of equipment and interconnection between the items.</OLI><BRK/>
+<BRK/>
+<OLI>Complete list of materials and equipment covering major components.  Ensure the bill of material and 
+the schematic have a direct correlation between items in order to easily identify the various components.</OLI><BRK/>
+<BRK/>
+<OLI>Details required to demonstrate that the system has been coordinated and will function properly as a 
+unit.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>UPS Sizing Calculations</TTL><BRK/>
+<BRK/>
+<TXT>Battery sizing calculations per [<RID>IEEE 485</RID> for Lead Acid batteries][<RID>IEEE 1115</RID> for Nickel-Cadmium batteries].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>UPS Installation</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Include wiring diagrams and installation details of equipment indicating proposed location, layout and arrangement, 
+control panels, accessories, piping, ductwork, and other items that must be shown to ensure a coordinated installation.  
+Wiring diagrams are to identify circuit terminals and indicate the internal wiring for each item of equipment 
+and the interconnection between each item of equipment.  Drawings are to indicate adequate clearance for operation, 
+maintenance, and replacement of operating equipment devices.  Submittals include the nameplate data, size, and 
+capacity.  Submittals also include applicable federal, military, industry, and technical society publication 
+references.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Work Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit schedules of dates for factory tests, installation, field tests, and operator training for the UPS system.  
+Furnish a list of instrumentation equipment for factory and field test reports.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Factory Test Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit factory test plans and procedures at least [21][_____] calendar days prior to the tests being conducted.  
+Provide detailed description of test procedures, including test equipment and setups, to be used to ensure the 
+UPS meets the performance specification and explain the test methods to be used.  Provide test procedures that 
+include the test required under the paragraph FACTORY TESTING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Factory Test Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a factory test report within [21][_____] calendar days after completion of tests.  Receive approval of 
+test prior to shipping unit.  Factory test reports are to be signed by an official authorized to certify on behalf 
+of the UPS manufacturer that the system complies with the  requirements  outlined in the paragraph FACTORY TESTING.  
+Provide test reports in booklet form tabulating factory tests and measurements performed, upon completion and 
+testing of the installed system.  Reports are to state the Contractor's name and address, the name of the project 
+and location, and list the specific requirements which are being certified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Performance Test Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit test plans and procedures at least [15][_____] calendar days prior to the start of field tests.  Provide 
+detailed description of the tests, including the scheduled dates and times.  Also provide a detailed description 
+of test procedures, including a list of test equipment (make and model) and a functional description of the test 
+instruments and accessories.  Describe the test setups to be conducted to ensure the UPS meets the performance 
+specification.  Explain the test methods to be used.  Provide test procedures that include the tests required 
+under the paragraph PERFORMANCE TESTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Performance Test Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a report of test results, as specified by paragraph PERFORMANCE TESTS, within [15][_____] calendar days 
+after completion of tests.  Field test reports must be signed by an official authorized to certify on behalf 
+of the UPS manufacturer that the system meets specified requirements as outlined in the paragraph PERFORMANCE 
+TESTS.  Provide test reports in booklet form tabulating factory tests and measurements performed, upon completion 
+and testing of the installed system.  Reports are to state the Contractor's name and address, the name of the 
+project and location, and list the specific requirements which are being certified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the 
+word, "must" had been substituted for "should" wherever it appears.  Interpret references in these publications 
+to the "authority having jurisdiction," or words of similar meaning, to mean the Contracting Officer.  Provide 
+equipment, materials, installation, and workmanship in accordance with the mandatory and advisory provisions 
+of <RID>NFPA 70</RID> unless more stringent requirements are specified or indicated.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Reference Standard Compliance</TTL><BRK/>
+<BRK/>
+<TXT>Where equipment or materials are specified to meet industry and technical society reference standards from organizations 
+such as American National Standards Institute (ANSI), American Society for Testing and Materials (ASTM), National 
+Electrical Manufacturers Association (NEMA), Underwriters Laboratories (UL), and Association of Edison Illuminating 
+Companies (AEIC), submit proof of compliance.  The label or listing by the specified organization will serve 
+as acceptable evidence of compliance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Independent Testing Organization Certificate</TTL><BRK/>
+<BRK/>
+<TXT>In lieu of the label or listing, submit a certificate from an independent testing organization that is competent 
+to perform testing and approved by the Contracting Officer.  The certificate is to state that the item has been 
+tested in accordance with the specified organization's test methods and that the item complies with the specified 
+organization's reference standard.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such 
+products which are of equal material, design and workmanship and:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Have been in satisfactory commercial or industrial use for 2 years prior to bid opening including applications 
+of equipment and materials under similar circumstances and of similar size.</OLI><BRK/>
+<BRK/>
+<OLI>Have been on sale on the commercial market through advertisements, manufacturers' catalogs, or brochures 
+during the 2-year period.</OLI><BRK/>
+<BRK/>
+<OLI>Where two or more items of the same class of equipment are required, provide products of a single manufacturer; 
+however, the component parts of the item need not be the products of the same manufacturer unless stated 
+in this section.</OLI><BRK/>
+<BRK/>
+<OLI>The service organization is to be, in the opinion of the Contracting Officer, reasonably convenient to 
+the site.</OLI><BRK/>
+<BRK/>
+<OLI>Provide new parts and materials comprising the UPS system from the current manufacture, of a high grade 
+and free of defects and imperfections, and has not been in prior service except as required during aging 
+and factory testing.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a 2-year field service record will be acceptable if a certified record of satisfactory 
+field operation for not less than 6000 hours, exclusive of the manufacturers' factory or laboratory tests, is 
+furnished.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material and Equipment Manufacturing Date</TTL><BRK/>
+<BRK/>
+<TXT>Products manufactured more than 6 months prior to date of delivery to site are not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>INSPECTION</TTL><BRK/>
+<BRK/>
+<TXT>Inspection before shipment is required. The manufacturer must notify the Government at least 2 weeks before shipping 
+date so that an inspection can be made.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY AND STORAGE</TTL><BRK/>
+<BRK/>
+<TXT>Protect equipment placed in storage from humidity and temperature variations, moisture, water intrusion, dirt, 
+airborne corrosives, or other contaminants.  In harsh environments where temperatures exceed non-operational 
+parameters established within this specification, provide an environmentally controlled equipment storage facility 
+to ensure temperature parameters are within equipment specification. Provide documentation of same to the Government 
+when storage is implemented.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="ARMY"><SPT><TTL>PROJECT/SITE CONDITIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Army Only.  This paragraph and its associated subparagraphs is used by 
+the Army.  Delete for other projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Environmental Conditions</TTL><BRK/>
+<BRK/>
+<TXT>The UPS and battery system must be capable of withstanding any combination of the following external environmental 
+conditions without mechanical or electrical damage or degradation of operating characteristics.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Designer must show approximate elevation <BRK/>
+above sea level for project location if it exceeds<BRK/>
+<MET> 1,000 meters</MET><ENG> 3,300 feet</ENG>. UPS system including batteries must be derated if<MET> 
+50 degrees C</MET><ENG> 122 degrees F</ENG> operating temperature is required. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Operating altitude: Sea level to<MET> 1,000 meters</MET><ENG> 3,300 ft</ENG>.(  Systems applied at higher altitudes are to 
+be derated in accordance with the manufacturer's instructions).</OLI><BRK/>
+<BRK/>
+<OLI>Non-operating altitude: Sea level to<MET> 11,000 meters</MET><ENG> 36,000 ft</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Operating ambient temperature range:<MET> 0 to 40 degrees C</MET><ENG> 32 to 104 degrees F</ENG>.  Range for batteries is<MET> 20 
+to 25 degrees C</MET><ENG> 68 to 77 degrees F</ENG>.  Provide batteries that are capable of operating in a larger ambient 
+temperature range of<MET> 10 to 30 degrees C</MET><ENG> 50 to 86 degrees F</ENG>, but some degradation of life span is understood 
+when operating outside the range of<MET> 20 to 25 degrees C</MET><ENG> 68 to 77 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Non-operating and storage ambient temperature range:<MET> Minus 20 to plus 50 degrees C</MET><ENG> Minus 4 to plus 122 
+degrees F</ENG>.  Range for batteries or UPS modules with internal batteries:<MET> 10 to 30 degrees C</MET><ENG> 50 to 86 degrees 
+F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Operating relative humidity: 0 to 95 percent, without condensation.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Sound Pressure Levels</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  UPS modules rated up to 125 kVA should have a dB rating of 65 dBA or 
+lower at<MET> 1 meter</MET><ENG> 39 inches</ENG>. UPS modules rated above 125 kVA should have a dBA 
+rating of 75 dB or lower at<MET> 1.5 meters</MET><ENG> 5 feet</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Sound pressure levels produced by the UPS, when operating under full rated load, at a distance of[<MET> 1.5 meters</MET><ENG>
+ 5 feet</ENG>][<MET> 1 meter</MET><ENG> 39 inches</ENG>][_____] in any direction from the perimeter of the unit, must not exceed [75][65][_____] 
+dB as measured on the A scale of a Type 1 sound level meter at slow response conforming to <RID>ASA S1.4</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Verification of Dimensions</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor is to become familiar with details of the work, verify dimensions in the field, and is to advise 
+the Contracting Officer of any discrepancy before performing the work.  Do not proceed until the discrepancy 
+or unsatisfactory condition(s) have been corrected.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Connect alternate power source to bypass/maintenance bypass for systems 
+requiring dual input. Edit for the configuration used in this project. There 
+are other configurations that the UPS system can be configured, but these are 
+the more common ones.<BRK/>
+<BRK/>
+Note:  Delete system cabinet when specifying a single module UPS system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide continuous duty, three-phase, solid state, on-line double conversion reverse transfer static UPS(s).  
+The UPSmust provide continuous, regulated AC power to its output terminals using solid state conversion techniques, 
+and be capable of operating from an input power source, cabinet or rack-mounted direct current (DC) storage battery 
+or other approved means.  The performance of the UPS must not be degraded when operating without a system battery, 
+provided the input AC source is within tolerance.  Provide a UPS system that conforms to <RID>UL 1778</RID> and consists 
+of UPS module, battery system, battery protective device, [system cabinet, ]static bypass transfer switch, controls 
+and monitoring, system protective devices, means of isolating the UPS system from the critical load, and remote 
+monitoring interfaces. Connect input ac power the normal source ac input of the UPS module. [Connect alternate 
+power source bypass/maintenance bypass. ]Connect battery to the dc input of the UPS module through the battery 
+protective device.  The following configuration is used:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Three main choices:  Non-Redundant, Redundant System, and Scalable Units.  
+The Redundant system herein is strictly various parallel configurations, where 
+a N+1 as a minimum is to be achieved.    <BRK/>
+<BRK/>
+Scalable units are becoming the standard, since they allow modularity and reduce 
+the number of UPS models for a manufacturer.  Scalable units in a Redundant 
+configuration would also need to indicate the Redundant System configuration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>Non-Redundant.</OLI><BRK/>
+<BRK/>
+<TAI OPT="SINGLE POWER MODULE/NON-SCALABLE"><OLI LEVEL="2">Single Module.  On-line, single module UPS configuration capable of supplying power to the 
+total load, with bypass availability.</OLI><BRK/>
+<BRK/></TAI>
+<TAI OPT="MULTI-POWER MODULE/SCALABLE"><OLI LEVEL="2">Parallel Multi-Module.  Two or more UPS modules, of the same size, on-line, operating in parallel, 
+with enough capacity to supply the total load.</OLI></TAI><BRK/>
+<BRK/>
+]<TAI OPT="PARALLEL OR REDUNDANT">[<OLI>Redundant System.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Isolated Redundant System (Segmented Redundant or Hot Standby).  One unit on-line supporting 
+the load, while the other unit is operating to provide the bypass source.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Parallel Redundant System.  Two or more UPS modules, of the same size, on-line, operating in 
+parallel, with more capability than is required to support the total load.  If any unit fails, 
+the remaining unit(s) will be able to support the critical load.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Split Bus System.  Two parallel redundant systems that may be operated separately or through 
+a tie breaker for increased redundancy.  Each UPS system on either side of the split bus is 
+able to support the total critical load.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Distributed Redundant System.  Distributed redundant configurations is also called tri-redundant. 
+The basis of this design uses three or more UPS modules with independent input and output feeders.  
+The independent output buses are connected to the critical load via multiple PDUs.</OLI><BRK/>
+]]</TAI><TAI OPT="MULTI-POWER MODULE/SCALABLE">[<OLI>Scalable Units.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Scalable units are rack or cabinet mounted UPS power modules of the same 
+size, which have scalable architecture to allow expansion/contraction to a different 
+kVA size within the same vertical rack or cabinet lineup.  The kVA is achieved 
+by adding or subtracting power modules to achieve the desired kVA rating.  Each 
+power module, depending on the manufacturer, has a rectifier, inverter and battery 
+converter.  There is an UPS system module that works with these power modules 
+to form the UPS.  Scalable Units can be specified to have be non-redundant or 
+be redundant.  An explanation for each configuration is below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+][<OLI LEVEL="2">Scalable Unit Non-Redundant.  Non-redundant:scalable unit consists of a UPS system module with 
+one or more power modules.  The power modules provided are all required to handle the critical 
+load.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Scalable Unit Internal Redundant.  Internal Redundant: scalable unit consists of a UPS system 
+module with more than one power module.  There is at least one additional power module that 
+is not required to handle the load within the system.  The additional power module or power 
+modules can be sized to handle only part of the critical load or all the critical load.  This 
+is not a true parallel redundant system system since it still uses one UPS system module.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Scalable Unit Redundant. Redundant:scalable unit consists of a UPS system module with one or 
+more power modules.  The number of power modules can be to just support the load or also have 
+at least one extra power module to internal redundancy.  This UPS system module is parallel 
+with a matching scalable unit previously discussed under "Redundant System".</OLI></TAI><BRK/>
+]</OLG><BRK/></SPT>
+]<SPT><TTL>MODES OF OPERATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Normal</TTL><BRK/>
+<BRK/>
+<TXT>The UPS module [rectifier][charger] must convert the incoming ac input power to dc power for the inverter and 
+for float charging the battery. The inverter continuously coverts the dc power to ac power to supply the critical 
+load. The inverter output must synchronize with the bypass ac power source, provided that the bypass ac power 
+source is within the specified voltage and frequency range.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Battery - Emergency Operation (Loss or deviation of AC Input Power)</TTL><BRK/>
+<BRK/>
+<TXT>Whenever the ac input power source deviates from the specified tolerances including complete failure, the inverter 
+must draw power from the battery system and supply AC power to the critical load without any interruption or 
+switching transient. The battery system must supply power to the inverter for the specified protection time or 
+until return of ac input source. Provide an audible alarm to indicate the UPS is on battery and provide provisions 
+for a remote alarm signal to be sent via the communication network and a relay output, allowing startup of a 
+secondary power source or orderly shutdown of the critical load.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Failure of AC Input Power to Return</TTL><BRK/>
+<BRK/>
+<TXT>If the ac input power fails to return before the battery voltage reaches the discharge limit, then the UPS system 
+must disconnect from the critical load to safeguard the battery.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Recharge</TTL><BRK/>
+<BRK/>
+<TXT>Upon restoration of normal power to the UPS unit, the input converter and output inverter must simultaneously 
+recharge the batteries and provide regulated power to the critical load.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Transfer to Static Bypass AC Power Source</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Choose the first paragraph for non-redundant<BRK/>
+systems, i.e. single module, parallel multi-module, or scalable unit non-redundant 
+UPS. Choose the second paragraph for redundant systems to include scalable unit 
+internal redundant and scalable unit redundant.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[When the UPS controller senses an overload, two or more inverter shutdown signals or degradation of the inverter 
+output, the static bypass switch automatically transfers the critical load from the inverter output to the bypass 
+ac power source without an interruption of power.  If the static bypass ac power source is outside of specified 
+tolerance limits, the UPS and the critical load shut down.  Transfer to static bypass can also be done manually 
+(requested bypass).  Transfer to bypass does not take place under these conditions:  100 percent stepload; and, 
+loss or return of input power, momentary sags, surges or spikes on the input to the UPS.</TXT><BRK/>
+]<TAI OPT="PARALLEL OR REDUNDANT"><TXT>When the UPS controller senses an overload, two or more inverter shutdown signals or degradation of the inverter 
+output, the static bypass switch automatically transfers the critical load from the inverter output to the bypass 
+ac power source without an interruption of power only if the connected load exceeds the capacity of the remaining 
+on-line modules.  If the static bypass ac power source is outside of specified tolerance limits, the UPS and 
+the critical load shut down.  Transfer to static bypass can also be done manually (requested bypass).  Transfer 
+to bypass does not take place under these conditions:  100 percent stepload; and, loss or return of input power, 
+momentary sags, surges or spikes on the input to the UPS.</TXT></TAI><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Transfer to Inverter</TTL><BRK/>
+<BRK/>
+<TXT>Provide a static bypass switch that is capable of automatically transferring the load back to the inverter output 
+after the inverter overload condition has returned to normal conditions.  Transfer only occurs once the two sources 
+are synchronized.  UPS system logic is to monitor the number of retransfer's within any one-hour period and is 
+to allow 1 to 3 transfers in order to prevent cyclical transfers caused by overloads.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Maintenance Bypass</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  The majority of systems should provide an external maintenance bypass 
+in order to isolate the UPS for maintenance.  Internal switches still provide 
+a benefit, but do not provide complete isolation when doing maintenance (arc 
+flash hazard still exist).  The configuration on the maintenance bypass is covered 
+more fully later in paragraph MAINTENANCE BYPASS CIRCUIT.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the system with an external make-before-break maintenance bypass cabinet/panel to electrically isolate 
+the UPS during routine maintenance and service.  Manual transfer to the maintenance bypass circuit transfers 
+the critical load from the inverter output to the bypass ac power source without disturbing the critical load 
+bus.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Off-Battery (Battery Maintenance)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a battery protective device which disconnects the battery from the rectifier/charger and inverter for 
+maintenance. The device may be located external to the UPS cabinet.  The UPS module continues to function and 
+meet the performance criteria specified except for the battery back-up time function.</TXT><BRK/>
+<BRK/></SPT>
+]<TAI OPT="PARALLEL OR REDUNDANT"><SPT><TTL>Failure of a Module</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete for non-redundant<BRK/>
+systems, i.e. single module, parallel multi-module, or scalable unit non-redundant 
+UPS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>In a redundant configuration, failure of one module causes that module to be disconnected from the system critical 
+load bus by its internal protective devices and its individual output protective device.  Remaining module(s) 
+are to continue to carry the load.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>UPS Module Servicing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete for non-redundant systems, i.e. single module, parallel multi-module, 
+or scalable unit non-redundant UPS..</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a means to manually disconnect the UPS modules from the critical load bus for maintenance without disturbing 
+the critical load bus.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Component Performance</TTL><BRK/>
+<BRK/>
+<TXT>Do not exceed 75 percent of the working voltage and current ratings as established by the manufacturer on solid-state 
+power components and electronic devices.  Do not exceed 75 percent of the operating temperature of solid-state 
+component sub-assemblies.  Use computer grade electrolytic capacitors and operate at no more than 95 percent 
+of the voltage rating at the rectifier charging voltage. </TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>GENERAL UPS SYSTEM COMPONENTS AND FABRICATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Semiconductor Fusing</TTL><BRK/>
+<BRK/>
+<TXT>Protect power semiconductors with fast-acting fuses to prevent cascaded or sequential semiconductor failures.  
+Bolt fuses at both ends to bus bars to ensure mechanical and electrical integrity.  Indicator lamp or display 
+panel denoting blown fuse conditions must be readily observable by the operator without removing panels or opening 
+cabinet doors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EMI/RFI Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide a UPS that complies with and is labeled compliant, with <RID>FCC Part 15</RID>, Subclass B, Class A.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Internal Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Wiring practices, materials, and coding must be in accordance with the requirements of <RID>NFPA 70</RID>, OSHA, <RID>UL 1778</RID>
+, and other applicable standards. Protect wire runs in a manner which separates power and control wiring. Provide 
+control cabling that is at least No. 16 AWG extra-flexible stranded copper. Logic-circuit wiring may be smaller. 
+Provide ribbon cables that are at least minimum No. 22 AWG. Provide control wiring with permanently attached 
+wire numbers.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Internal Assembly</TTL><BRK/>
+<BRK/>
+<TXT>The printed circuit board (PCB) subassemblies are to be mounted in pull-out  swing-out trays where feasible. 
+Provide cable connections to the trays that are sufficiently long to allow easy access to all components. Where 
+not feasible to mount PCB subassemblies in pull-out or swing-out trays, then mount them firmly inside the enclosure. 
+Monitor every PCB subassembly.  Include self-test and diagnostic circuitry in the logic circuits such that a 
+fault can be isolated down to the PCB subassembly level. When used, control logic cards are to have test points 
+or logic indicators on the front edge of the control logic card and be labeled.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cable Lugs and Terminations</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Cable Lugs</TTL><BRK/>
+<BRK/>
+<TXT>Provide appropriate compression type lugs or pre-drilled bus bars on all ac and dc power connections to the UPS 
+system and battery as required. Aluminum or bare copper cable lugs are not suitable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Terminations</TTL><BRK/>
+<BRK/>
+<TXT>Supply terminals for making power and control connections. Provide terminal blocks for field wiring terminals. 
+Provide terminal blocks that are the heavy-duty, strap-screw type or screw terminals that are integrated into 
+removable plugs. Locate terminal blocks for field wiring in one place in each module. Extend control wiring to 
+the terminal block location. Any terminal point is limited to land a maximum of two wires. Where control wiring 
+is attached to the same point as power wiring, provide a separate terminal.  If a bus duct is used, provide bus 
+stubs where the bus duct enters cabinets.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cabinets</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  UPS units are normally made to be handled by a fork lift.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install the UPS system in cabinets of heavy-duty structure meeting the <RID>NEMA PE 1</RID> standards for floor mounting.  
+Provide a structurally adequate UPS module that can be forklift handled and lifted.[  Provide removable lifting 
+eyes on top of each cabinet.]  Provide the UPS module cabinet with hinged and key lockable doors on the front 
+only and with assemblies and components accessible from the front.  Provide dead-front construction behind the 
+door for those UPS module cabinets that are not lockable.  Operating controls are to be located outside the locked 
+doors.  Install input, output, and battery cables through the top or bottom of the cabinet.</TXT><BRK/>
+<BRK/>
+<TAI OPT="ARMY"><SPT><TTL>Cabinet Finish</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer needs to coordinate with the requirements found in UFC 3-560-01 
+for arc-flash signage requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an equipment cabinet that is cleaned, primed and painted in the manufacturer's standard colors, in accordance 
+with accepted industry standards.  Cabinets are to be labeled in accordance with <RID>NFPA 70</RID> and <RID>NFPA 70E</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Factory Applied Finish</TTL><BRK/>
+<BRK/>
+<TXT>Provide electrical equipment with a factory-applied painting systems which, as a minimum, meets the requirements 
+of <RID>NEMA 250</RID> corrosion-resistance test.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Drawout Assemblies</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Drawout applies to large units for removing inverter modules, static 
+switches assemblies, etc.  This is not a standard option even on larger units.  
+Delete for units smaller than 500 kVA.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a means of lifting, either an overhead device or a hoisting device for drawout assemblies weighing<MET> 23 
+kg</MET><ENG> 50 lbs</ENG> or more.  Device can either be part of the UPS or a separate portable device that can be used to perform 
+the lifting.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Manufacturer's Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Provide a nameplate for each item of equipment bearing the manufacturer's name, address, model number, and serial 
+number securely affixed in a conspicuous place; the nameplate of the distributing agent will not be acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Fabricated Nameplates</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D709</RID>.  Provide laminated plastic nameplates for each equipment enclosure, relay, switch, and device; as 
+specified or as indicated on the drawings.  Provide an inscription on each nameplate that identifies the name 
+of the item, calculated short circuit rating with date, and source of power e.g. 'Panel A in Electrical Room 
+103'.  Provide nameplates that are made of melamine plastic,<MET> 3 mm</MET><ENG> 0.125 inch</ENG> thick, white with [black][_____] 
+center core.  Provide the nameplate with a surface that is matte finished and that has square corners.  Accurately 
+align lettering and engrave into the core.  Provide nameplates that are at least<MET> 25 by 65 mm</MET><ENG> 1.0 by 2.5 inches</ENG>
+ with a minimum lettering size of<MET> 6.35 mm</MET><ENG> 0.25 inch</ENG> high normal block style.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safety</TTL><BRK/>
+<BRK/>
+<TXT>Provide UPS with instruction plates including warnings and cautions, suitably located, and describing any special 
+or important procedures to be followed in operating and servicing the equipment.  Provide control panel displays, 
+which also provide warning messages prior to performing a critical function.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Maintenance Isolation</TTL><BRK/>
+<BRK/>
+<TXT>All energized terminals, both AC and DC, and control voltage exposed points are to be insulated or enclosed to 
+ensure the safety of maintenance personnel.  Provide the system with the ability to isolate the static switch 
+to enable repair when the UPS is bypassed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Remote Emergency Power Off (REPO) Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide a remote emergency power off switch that is separate from the UPS.  Provide a red, pushbutton with a 
+cover with a label indicating "UPS Emergency Power Off".  The switch disconnects all breakers or contactors  
+including battery, input, output, and bypass breakers when activated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>TECHNICAL REQUIREMENTS UPS SYSTEM</SUB> RATINGS</TTL><BRK/>
+<BRK/>
+<TXT>Unless stated otherwise, the parameters listed are under full output load over the range of 0.9 lagging power 
+factor to 0.9 leading power factor, with batteries fully charged and floating on the dc bus and with nominal 
+input voltage.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>UPS SYSTEM LOAD PROFILE</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  <BRK/>
+The UPS may exhibit load interface problems with certain types of ac load.  
+The items which present the greatest problems are motors, transformers, electric 
+discharge lighting, and SCR and mag-amp power supplies.  Problems with these 
+loads are caused by either load nonlinearity or inrush currents required for 
+their operation.  The Contractor will be better able to accommodate specific 
+applications if well-defined load data is available.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a UPS system that is compatible with the load characteristics defined in the LOAD PROFILE below and load 
+configuration. The UPS system is to provide compensation for UPS/load interaction problems resulting from nonlinear 
+loads or transformer and motor inrush.</TXT><BRK/>
+<BRK/>
+<TXT><HL4>LOAD PROFILE</HL4></TXT><BRK/>
+<LST INDENT="-0.33">Type of load: </LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Data processing equipment.  Size of load: [_____][kVA][kW], [_____]voltage, [[_____]power factor].</LST><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  If known, provide the actual nameplate full load amps and the locked 
+rotor code letter.  If not known, delete the option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST INDENT="-0.33">Motors - type [_____].  Size of load: [_____]horsepower, [_____]voltage[, [_____] full load amps, [_____] 
+locked rotor code letter].</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Electric Discharge Lighting.  Size of load: [_____][kVA][kW], [_____]voltage, [[_____]power factor].</LST><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Variable Frequency Drives that are powered from an UPS, need to be specified 
+with input inductors.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST INDENT="-0.33">Variable Frequency Drive(s).  Size of load:  [_____]horsepower, [_____]voltage</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Load switching pattern: [unswitched][cycled daily][cycled hourly][operated by thermostat][building management 
+system control][_____].</LST><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Coordinate this with the UPS System Load Profile paragraph.  Power factors 
+have been improving and it is becoming common to have 0.9 lagging or higher 
+power factor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST INDENT="-0.33">Steady-state characteristics: [0.9 lagging][_____] power factor.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">Special factors: [harmonic characteristics - Total Harmonic Distortion [_____] percent][high elevation][nonstandard 
+input and output voltages][_____].</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Requirements</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Typical capacities in kVA are 10, 15, 20, 30, 40, 50, 80, 100, 125, 150, 
+225, 250, 275, 300, 500 and 750.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  System capacity for a single module UPS is the same as module capacity.  
+Paralleling can be for capacity or for redundancy. Parallel redundant UPS typically 
+provide on additional module that can be down while still carrying the entire 
+load.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Scalable Unit sizes listed can vary from manufacturer to manufacturer 
+as well as the number that can be paralleled. If paralleling more than 4 modules, 
+check with the main manufacturers for availability.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TXT>The UPS is to support and maintain full battery charging under the following conditions:  indicated environmental 
+conditions, a.c input voltage range, air filters blocked up to 50 percent and a single failed fan.  The UPS size 
+and configuration is indicated below.</TXT><BRK/>
+<BRK/>
+<TAI OPT="SINGLE POWER MODULE/NON-SCALABLE"><LST INDENT="-0.33">Single Module (non-redundant).  Provide one UPS sized for [_____] kVA and [_____] kW.</LST><BRK/></TAI>
+<BRK/>
+<TAI OPT="PARALLEL OR REDUNDANT"><LST INDENT="-0.33">Parallel System is comprised of [_____] UPS system-level redundancy.  The parallel system is sized for 
+[_____] kVA and [_____] kW.</LST></TAI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Scalable units are flexible so there are several choices.  The power 
+module are the units that provide the load and can provide internal redundancy 
+if desired.  The total load is the estimated demand for the critical load.  
+The UPS system module is the overall controlling module.  Example: One can have 
+a system module at 60 kVA and have two 20 kVA power modules to allow for future 
+expansion.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="MULTI-POWER MODULE/SCALABLE"><LST INDENT="-0.33">Scalable Units.    Each UPS power module is rated [10][20][25][_____] kVA.  Provide at least [_____] 
+UPS power modules to handle the system load. [Provide one additional UPS power modules for internal redundancy]  
+The total load is [_____] kVA and [_____] kW.  The UPS system module is sized for [_____] kVA and [_____] 
+kW.</LST><BRK/></TAI>
+<BRK/></SPT>
+<SPT><TTL>Battery Capacity</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typical battery discharge times are 5, 10, 12, 15, and 30 minutes. If 
+no emergency source is available, longer battery discharge time may be required.<BRK/>
+<BRK/>
+IEEE 450 defines end of life to be at 80 percent of the initial capacity.  The 
+industry standard is to size an end of life battery for 125 percent of initial 
+capacity.  Choose 125 percent unless another value is required.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Discharge time to end voltage: [10][15][30][_____] minutes, at<MET> 25 degrees C</MET><ENG> 77 degrees F</ENG>.  Provide a battery 
+that is capable of delivering [125][_____] percent of full rated UPS kW load at 0.9 power factor at initial start-up.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Static Switch</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The static switch or static disconnect is a solid-state disconnect device 
+used to apply or disconnect ac power.  The interrupting capacity requirements 
+must be determined for each project distribution system.  Typical interrupting 
+capacities are 30,000 AIC and 50,000 AIC.  Interrupting capacities are normally 
+found on the single line diagram or in the short circuit calculations provided 
+with the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[_____] amperes (continuous duty)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Short Circuit Withstand Rating</TTL><BRK/>
+<BRK/>
+<TXT>Braced for at least [_____] amperes symmetrical interrupting capacity.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AC Input</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Be certain that units having foreign voltages are clearly specified since 
+they are not standard for U.S. manufactured products. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Voltage [208][240][480][_____] volts line-to-line.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Scalable unit systems do not come with an output transformer, so the 
+input and output voltage needs to be the same when editing.  Transformerless 
+help with the efficiency of the UPS unit and keeps the foot-print smaller.  
+Single unit UPS are still available with step-down output transformers</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Number of phases: Three-phase[ + neutral] + ground configuration..</OLI><BRK/>
+<BRK/>
+<OLI>Voltage Range: Plus 10 percent, minus 15 percent nominal (no battery discharge), without affecting battery 
+float voltage or output voltage.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:   Use 50 Hz for units shipped or purchased in Europe.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Frequency: [60][50] Hz, plus or minus 5 percent.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For scalable units choose the second bracketed option.  For other type 
+units, choose the first bracketed option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Power walk-in: <TAI OPT="SINGLE POWER MODULE/NON-SCALABLE">20 percent to 100 percent input current over 10 to 15 seconds.  </TAI><TAI OPT="SINGLE POWER MODULE/NON-SCALABLE">0 percent to 100 percent 
+input current over 10 to 15 seconds with an adjustable setting that can be set from 5 seconds to 30 seconds.</TAI></OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Total harmonic current distortion (THD) is usually 5 percent.  If UPS 
+will be supplied from a generator, the generator capacity must be at least twice 
+the UPS capacity if THD exceeds 5 percent.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Total harmonic current distortion (THD) reflected into the primary line: [5][10] percent maximum at full 
+load.</OLI><BRK/>
+<BRK/>
+<OLI>Sub-cycle magnetizing inrush: [2 to 3][_____] times full load current for modules without an isolation 
+transformer. </OLI><BRK/>
+<BRK/>
+<OLI>Input surge protection: per <RID>IEEE C62.41.1</RID> and <RID>IEEE C62.41.2</RID>, meeting <RID>IEEE C62.41</RID> requirement of Category 
+B3 6kV, 100k Hz ring wave and 6kV, combined wave.</OLI><BRK/>
+<BRK/>
+<OLI>Input power factor: Lagging from 1-100 percent load.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete transformer inrush paragraph if input isolation transformer is 
+not required.  For transformer sub-cycle inrush, selecting a lower value like 
+6 or 4 in lieu of the range (4 to 8) is better for coordination of UPS feeder 
+protection but might add some cost and extra components.  If the range is selected 
+than upstream breaker should have instantaneous current adjustment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Transformer sub-cycle magnetizing inrush: [5 to 8][_____] times full load current with optional isolation 
+transformer and optional input filter.</OLI><BRK/>
+]</OLG><BRK/></SPT>
+<SPT><TTL>AC Output</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the output voltage is 208Y/120 V and the <BRK/>
+same voltage is not available for the static bypass <BRK/>
+and maintenance bypass, a transformer will be <BRK/>
+required in the bypass distribution system. </NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Scalable units do not come with an output transformer, so the input and 
+output voltage needs to be the same when editing.  These scalable, expandable 
+module systems are typically 208V, 480V, and 600V.   Transformerless designs 
+help with the efficiency of the UPS unit and keeps the foot-print smaller.  
+Single unit UPS are still available with step-down output transformers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><OLI>Voltage [208][220][240][480][_____] volts line-to-line[, [120][127][277][_____] volts line-to-neutral].</OLI><BRK/>
+<BRK/>
+<OLI>Number of phases: Three-phase[ + neutral] + ground configuration.</OLI><BRK/>
+<BRK/>
+<OLI>Voltage regulation:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Balanced load: Plus or minus 1.0 percent.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">50 percent load imbalance, phase-to-phase: Plus or minus 2 percent.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">100 percent load imbalance, phase-to-phase Plus or minus 3 percent.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Voltage drift: Plus or minus 1 percent over any 30 day interval (or length of test) at stated 
+ambient conditions found in paragraph ENVIRONMENTAL CONDITIONS.</OLI><BRK/>
+<BRK/>
+<OLI>Voltage adjustment: Plus or minus 5 percent.</OLI><BRK/>
+<BRK/>
+<OLI>Frequency: [60][50] Hz.</OLI><BRK/>
+<BRK/>
+<OLI>Frequency regulation: Plus or minus 0.1 percent, when on internal oscillator.  Internal oscillator is 
+to be temperature compensated.</OLI><BRK/>
+<BRK/>
+<OLI>Frequency drift: Plus or minus 0.1 percent over any 24 hour interval (or length of test) at stated ambient 
+conditions when on internal oscillator.</OLI><BRK/>
+<BRK/>
+<OLI>Harmonic content (RMS voltage): Provide a system that meets the following voltage THD levels:  maximum 
+of 4 percent RMS total,2 percent total with 100 percent on any single harmonic (linear load) and 5 percent 
+RMS total for up to 100 percent nonlinear load.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The load factor range can vary with the presence of a transformer.  choose 
+the first set of brackets in "i" when the UPS does not have a transformer and 
+choose the second set of brackets when there is a transformer or provide own 
+values.  The load factor range is the range the UPS can operate at without derating.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Load power factor operating range (without derating): [0.9 leading to 0.9 lagging][0.95 leading to 0.9 
+lagging][______].</OLI><BRK/>
+<BRK/>
+<OLI>Phase angle displacement/imbalance:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Balanced load: 120 degrees plus or minus [0.5][1] degree of bypass input.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">50 percent load imbalance phase-to-phase: 120 degrees plus or minus 3 degrees of input.</OLI><BRK/>
+<BRK/>
+<OLI>Inverter overload capability (at full voltage with plus or minus 2 percent regulation) (excluding battery):</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer needs to determine the overload requirements against protection 
+for the load. Any number can be used that falls within the range for each percent 
+overload.  Default values are 10 minutes for 125 percent and 60 seconds for 
+150 percent.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI LEVEL="2">125 percent load for [10 minutes][30 seconds][60 seconds][______].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">150 percent load for [60 seconds][40 ms].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Fault clearing.  Provide a UPS that is able to maintain output current during a fault condition 
+for 20 cycles if bypass is unavailable or 1 cycle with bypass available.  If the fault is not 
+cleared and a bypass is available, the UPS is to transfer to bypass without interruption to 
+clear the fault. </OLI><BRK/>
+<BRK/>
+<OLI>Load sharing of parallel modules:  Plus or minus 5 percent at full rated system load.</OLI><BRK/>
+<BRK/>
+<OLI>Bypass Overload Capability.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:The second paragraph (MULTI-POWER MODULE/SCALABLE tailoring option) is 
+for redundant systems to include scalable unit internal redundant and scalable 
+unit redundant.  Choose the first option for all others.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="SINGLE POWER MODULE/NON-SCALABLE"><OLI LEVEL="2">0 percent load for 15 seconds.</OLI><BRK/>
+<BRK/></TAI>
+<TAI OPT="MULTI-POWER MODULE/SCALABLE"><OLI LEVEL="2">Expandable units.  125 percent continuous at rated output voltage (phase-to-phase).  1000 percent 
+for 1000 milliseconds.</OLI><BRK/></TAI>
+</OLG><BRK/></SPT>
+<SPT><TTL>Transient Response</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Voltage Transients</TTL><BRK/>
+<OLG><BRK/>
+<OLI>100 percent load step: Plus or minus 5 percent.</OLI><BRK/>
+<BRK/>
+<OLI>Loss or return of ac input: Plus or minus [1][5] percent.</OLI><BRK/>
+<BRK/>
+<OLI>Automatic transfer of load from UPS to bypass: Plus or minus 1 <BRK/>
+percent.</OLI><BRK/>
+<BRK/>
+<OLI>Manual retransfer of load from bypass to UPS: Plus or minus 5 <BRK/>
+percent.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The default value is 20 milliseconds unless a faster recovery time is 
+required.  For scalable units, use 50 milliseconds.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Response time: Recovery to 1 percent of nominal within [20][50][16] milliseconds where there was a maximum 
+deviation from nominal system output of volts plus or minus 5 percent.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Frequency</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Transients: Plus or minus 0.6 Hz maximum.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If there is a generator in the project, which will power the UPS during 
+a utility power outage, then choose the second option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Slew Rate: under all conditions of operation, [provide 0.4 to 1.0 Hz per second][0.25 to 0.8 Hz per second].</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Efficiency</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Efficiencies do vary some with the size of the UPS; however, the variance 
+between lower rated UPS and higher rated UPS have narrowed.  Almost all sizes 
+in double-conversion mode will meet 94 percent.  The higher double-conversion 
+efficiency is 97 percent.   UPS systems loaded to 50 percent will typically 
+see a reduction of 1-2 percentage in efficiency. Units with a transformer could 
+have a lower efficiency.</NPR><BRK/>
+<BRK/>
+<NPR>Delete system efficiency requirements for single module UPS systems.</NPR><BRK/>
+<BRK/>
+<NPR> Energy Star only covers the battery charging systems and the AC-DC/AC-AC power 
+supplies.  Energy Star does not cover all components of the complete UPS System.  
+Energy Star UPSs cannot be one of the following types:<BRK/>
+(a) Products that are internal to a computer or other end load.<BRK/>
+(b) Industrial UPSs designed to protect critical control, manufacturing or production processes.<BRK/>
+(c) Utility UPSs that are part of electrical transmission and distribution<BRK/>
+(d) Cable TV UPSs designed to power cable distribution systems.<BRK/>
+(e) UPSs designed to comply with specific UL safety standards for safety-related 
+applications e.g. emergency lighting, medical diagnostic equipment<BRK/>
+(f) UPSs designed for mobile, ship board, marine or airborne applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>Minimum Single-Module Efficiency:  [94][_____] percent at full load kW and [92][_____] percent at 50 
+percent load.</OLI><BRK/>
+<BRK/>
+][<OLI>Minimum System Efficiency:  93 percent at full system load kW.</OLI><BRK/>
+]<BRK/>
+[<OLI>Provide <RID>Energy Star</RID> labeled battery charging systems and AC-DC/AC-AC power supplies.  Provide proof of <SUB><RID>
+Energy Star</RID> label for battery charging systems and AC-DC/AC-AC power supply products</SUB>.</OLI><BRK/>
+]</OLG><BRK/></SPT>
+[<SPT><TTL>Energy Saving Mode</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  The UPS industry has developed various energy saving methods.  If this 
+is desired then edit appropriately; otherwise, delete.  Smaller units may not 
+have this option available.  There are some issues that need to be considered 
+since energy saving methods typically do not regulate the voltage or the frequency, 
+Areas with unstable power may not consider this appropriate.  UPS installations 
+that require the double-conversion to filter (clean-up) the incoming power should 
+not enable an energy saving mode that allows facility power to the critical 
+load.  If the UPS unit is powering IT equipments (such as a data center), choose 
+2 milliseconds; otherwise 13 milliseconds is acceptable. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the UPS with an energy saving mode that operates by having the inverter charged and batteries on at all 
+times, while the main power to the output is through the static bypass switch.  When a power problem is sensed, 
+the system is to operate in double-conversion mode and revert to energy saving mode after a pre-set period of 
+time.  Maximum transition time is [2][13] milliseconds.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL><SUB>UPS MODULE</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TAI OPT="MULTI-POWER MODULE/SCALABLE"><TTL>General Description</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  This part is for Scalable units only.  If a scalable unit is not desired, 
+then delete this part.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>UPS module consists of an input converter, output converter, with associated transformers, synchronizing equipment, 
+protective devices, surge suppression, and accessories as required for operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Interchangeability</TTL><BRK/>
+<BRK/>
+<TXT>The subassemblies in one UPS module are to be interchangeable with the corresponding modules within the same 
+UPS, and from one UPS system to another of identical systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rectifier/Charger Unit</TTL><BRK/>
+<BRK/>
+<TXT>Scalable, expandable modular input converters for the system are to be housed within removable power modules.  
+Input converters control the power from the mains input of the system, provide the necessary UPS power for precise 
+regulation of the DC bus voltage, battery charging, and main inverter regulated output power.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Input Protective Device</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Calculate/verify AIC on the single line diagram at input of the UPS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the rectifier/charger unit with an input protective device. Size the protective device to accept simultaneously 
+the full-rated load and the battery recharge current. Provide a protective device that is capable of shunt tripping 
+and has an amperes symmetrical interrupting rating of [_____]. Provide the protective device with an under-voltage 
+release to open automatically when the control voltage is lost.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Input Isolation Transformer</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  An input isolation transformer is not normally required.  Delete unless 
+specifically required to be part of the UPS.  Also, delete when requiring scalable, 
+expandable modular UPS systems.  Isolation transformers provide isolation of 
+line induced EMI, common mode noise and dc offsets.  Some of the UPS manufacturers 
+require a separate cabinet for the transformer. <BRK/>
+<BRK/>
+UPS industry is transitioning away from transformers being part of the UPS.  
+Having the transformer separate can save space, reduce cooling, improve energy 
+efficiency, reduce weight and cost. In general, those units smaller than 200 
+kW will benefit more by not having a transformer as part of the UPS.  The threshold 
+level of 200 kW is increasing as more manufacturers go to "transformerless" designs.<BRK/>
+<BRK/>
+Transformers used with UPS must be K-factor rated due to the inverters being 
+a non-linear load. Non-linear loads can cause excess heating in standard transformers.<BRK/>
+<BRK/>
+Transformers rated 500 kVA and higher typically have the transformer connections 
+on the backside.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The rectifier unit is to use a dry-type, isolated-winding power transformer with that is K-factor rated as required 
+by the load(s). The transformer's hottest spot winding temperature must not exceed the temperature limit of the 
+transformer insulation material when operating at full load. Provide a transformer with Class 220, 150 degrees 
+C rise insulation. [Transformer connections are to be accessible from the front.]  If there is a separate transformer 
+cabinet, it is to match the UPS cabinet and attach to it.[  Provide a Department of Energy CSL-3  transformer.]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Power Walk-In</TTL><BRK/>
+<BRK/>
+<TXT>Input converters must have an adjustable soft-start (either by manufacturer or owner), capable of limiting the 
+input current form 0 percent to 100 percent of the input over a default 10 second period when returning to ac 
+input bus from battery operation.  The change in current over time is to be done in a linear manner.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sizing</TTL><BRK/>
+<BRK/>
+<TXT>Size the rectifier/charger unit for the following two simultaneous operating conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Supplying the full rated load current to the inverter.</OLI><BRK/>
+<BRK/>
+<OLI>Recharging a fully-discharged battery to 90 percent of rated ampere-hour capacity within ten times the 
+discharge time after normal ac power is restored.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>AC Input Current Limiting</TTL><BRK/>
+<BRK/>
+<TXT>Provide a circuit to the input converter that controls and limits the current draw from the utility to 130 percent 
+of the rated UPS output.  During conditions where input current limit is active, the UPS system is to be able 
+to support 100 percent of the load, charge the batteries at 10 percent of the UPS output rating, and provide 
+voltage regulation with mains deviation of +15/-5 percent.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete second step current limiting option if the UPS system will not 
+be supplied with ac power from an auxiliary generator system or if the generator 
+has been sized to accommodate the higher input current.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Second step current limiting: Provide the rectifier/charger unit with a second-step input current limit. Provide 
+a separately adjustable second-step current limit that is adjustable from 85 percent to 125 percent of the maximum 
+discharge current with initial setting at 100 percent.  Activate the second-step current-limit circuit by a dry 
+contact signal from the generator.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Battery Charging Current</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Primary current limiting: Battery-charging current is to be voltage regulated and current limited. Provide 
+a separately adjustable battery-charging current limit that is adjustable from 1 percent to 20 percent 
+of the maximum discharge current. Set the limit at the factory to 10 percent.  After the battery is recharged, 
+the rectifier/charger unit maintains the battery at full float charge until the next operation under 
+input power failure. The battery charger must be capable of providing equalizing charge to the battery.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete second step current limiting if the UPS system (paragraph below) 
+will not be supplied with ac power from an auxiliary generator system or if 
+the generator has been sized to accommodate the recharge current of the battery.  
+Second step current limit is usually found in larger units of 150kVA and above.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Second step current limiting: The rectifier/charger unit is also to have a second-step battery current 
+limit. Provide a separately adjustable second-step current limit that is adjustable from 0 percent to 
+20 percent of the maximum discharge current with initial setting at [1][10][__] percent.  The second-step 
+current-limit circuit is activated by a dry contact signal from the generator set controls and it will 
+prevent normal rate battery recharging until utility power is restored.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>DC Ripple (Output Filter)</TTL><BRK/>
+<BRK/>
+<TXT>Rectifier/charger unit is to minimize ripple current and voltage supplied to the battery; the ripple voltage 
+into the battery is not to exceed 1 percent RMS of the float voltage. Ensure the AC ripple voltage of the rectifier 
+DC output does not exceed 0.5 percent of the float voltage.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>DC Voltage Adjustment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this requirement on units smaller than 50 kVA.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a manual means at the rectifier/charger unit that allows for adjusting the dc voltage for battery equalization 
+in order to provide voltage within plus 10 percent of nominal float voltage.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Battery Isolation Protective Device</TTL><BRK/>
+<BRK/>
+<TXT>Provide the module or external battery system with a dc protective device to isolate the module from the battery 
+system. The protective device size and interrupting rating are as required by system capacity and is to incorporate 
+the trip required by circuit design. Provide the protective device with a provision for locking in the "off" 
+position.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Battery Equalize Charge</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Delete this requirement on units smaller than 50 kVA.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Equalize charge timer must provide an equalizing charge automatically to the battery after a 30 second or longer 
+utility outage.  The equalize charging time must be adjustable form 0-72 hours.  Provide a manual override for 
+the automatic equalize circuit.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></TAI></SPT><TAI OPT="SINGLE POWER MODULE/NON-SCALABLE"><SPT><TTL>General Description</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This option applies to single-module and, in some remote cases, multi-module 
+UPS systems that are not specifically required to be scalable. Most applications 
+do not require an isolation transformer as part of the UPS, so delete unless 
+required.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>UPS module consists of a rectifier/charger unit and a 3-phase inverter unit with their associated transformers, 
+synchronizing equipment, protective devices, surge suppression, [input isolation transformer,] and accessories 
+as required for operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Interchangeability</TTL><BRK/>
+<BRK/>
+<TXT>The subassemblies in one UPS module are to be interchangeable with the corresponding modules within the same 
+UPS, and from one UPS system to another of identical systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rectifier/Charger Unit</TTL><BRK/>
+<TXT>Provide a solid state rectifier/charger unit that converts alternating current to direct current, and provides 
+regulated direct current to the dc bus, supplying power to the inverter and charging the battery plant.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Input Protective Device</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Calculate/verify AIC on the single line diagram at input of the UPS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the rectifier/charger unit with an input protective device. Size the protective device to accept simultaneously 
+the full-rated load and the battery recharge current. Provide a protective device that is capable of shunt tripping 
+and has an amperes symmetrical interrupting rating of [_____]. Provide the protective device with an under-voltage 
+release to open automatically when the control voltage is lost.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Input Isolation Transformer</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  An input isolation transformer is not normally required.  Delete unless 
+specifically required to be part of the UPS.  Also, delete when requiring scalable, 
+expandable modular UPS systems.  Isolation transformers provide isolation of 
+line induced EMI, common mode noise and dc offsets.  Some of the UPS manufacturers 
+require a separate cabinet for the transformer.<BRK/>
+<BRK/>
+UPS industry is transitioning away from transformers being part of the UPS.  
+Having the transformer separate can save space, reduce cooling, improve energy 
+efficiency, reduce weight and cost. In general, those units that are smaller 
+than 200 kW will benefit more by not having a transformer as part of the UPS.  
+The threshold level of 200 kW is increasing as more manufacturers go to "transformerless" designs.<BRK/>
+<BRK/>
+Transformers used with UPS must be K-rated due to the inverters being a non-linear 
+load. Non-linear loads can cause excess heating in standard transformers.<BRK/>
+<BRK/>
+Transformers rated 500 kVA and higher typically have the transformer connections 
+on the backside.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The rectifier unit must use a dry-type, isolated-winding power transformer that is K-rated as required by the 
+load(s). The transformer's hottest spot winding temperature must not exceed the temperature limit of the transformer 
+insulation material when operating at full load. Provide a transformer with Class 220, 150 degrees C rise insulation. 
+[Transformer connections are to be accessible from the front.]  If there is a separate transformer cabinet, it 
+is is to match the UPS cabinet and attach to it.[  Provide a Department of Energy CSL-3  transformer.]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Power Walk-In</TTL><BRK/>
+<BRK/>
+<TXT>Protect the rectifier/charger unit with a power walk-in feature such that when ac power is returned to the ac 
+input bus, the total initial power requirement will not exceed 20 percent of the rated full load current. This 
+demand is to gradually increase to 100 percent of the rated full load current plus the battery charging current 
+over the specified time interval.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sizing</TTL><BRK/>
+<BRK/>
+<TXT>Size the rectifier/charger unit for the following two simultaneous operating conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Supplying the full rated load current to the inverter.</OLI><BRK/>
+<BRK/>
+<OLI>Recharging a fully-discharged battery to 90 percent of rated ampere-hour capacity within ten times the 
+discharge time after normal ac power is restored.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>AC Input Current Limiting</TTL><BRK/>
+<BRK/>
+<TXT>Provide a circuit on the rectifier/charger to limit AC input current to an adjustable level of 100 percent to 
+125 percent with a factory setting at [100][115] percent.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete second step current limiting option if the UPS system will not 
+be supplied with ac power from an auxiliary generator system or if the generator 
+has been sized to accommodate the higher input current.</NPR><BRK/>
+<AST/><BRK/></NTE>
+[<TXT>Second step current limiting: Provide the rectifier/charger unit with a second-step input current limit. Provide 
+a separately adjustable second-step current limit that is adjustable from 85 percent to 125 percent of the maximum 
+discharge current with initial setting at 100 percent.  Activate the second-step current-limit circuit by a dry 
+contact signal from the generator.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Battery Charging Current</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Primary current limiting: Battery-charging current is to be voltage regulated and current limited. Provide 
+a separately adjustable battery-charging current limit that is adjustable from 1 percent to 20 percent 
+of the maximum discharge current. Set the limit at the factory to 10 percent.  After the battery is recharged, 
+the rectifier/charger unit maintains the battery at full float charge until the next operation under 
+input power failure. Battery charger is capable of providing equalizing charge to the battery.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete second step current limiting if the UPS system (paragraph below) 
+will not be supplied with ac power from an auxiliary generator system or if 
+the generator has been sized to accommodate the recharge current of the battery.  
+Second step current limit is usually found in larger units of 150kVA and above.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Second step current limiting: The rectifier/charger unit is also to have a second-step battery current 
+limit. Provide a separately adjustable second-step current limit that is adjustable from 0 percent to 
+20 percent of the maximum discharge current with initial setting at [1][10][_____] percent.  The second-step 
+current-limit circuit is activated by a dry contact signal from the generator set controls and it will 
+prevent normal rate battery recharging until utility power is restored.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>DC Ripple (Output Filter)</TTL><BRK/>
+<BRK/>
+<TXT>Rectifier/charger unit must minimize ripple current and voltage supplied to the battery; the ripple voltage into 
+the battery is not to exceed 1 percent RMS of the float voltage. Ensure the AC ripple voltage of the rectifier 
+DC output does not exceed 0.5 percent of the float voltage.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>DC Voltage Adjustment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this requirement on units smaller than 50 kVA.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a manual means at the rectifier/charger unit that allows for adjusting the dc voltage for battery equalization 
+in order to provide voltage within plus 10 percent of nominal float voltage.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Battery Isolation Protective Device</TTL><BRK/>
+<BRK/>
+<TXT>Provide the module or external battery system with a dc protective device to isolate the module from the battery 
+system. The protective device size and interrupting rating are as required by system capacity and is to incorporate 
+the trip required by circuit design. Provide the protective device with a provision for locking in the "off" 
+position.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Battery Equalize Charge</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this requirement on units smaller than 50 kVA.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Equalize charge timer is to provide an equalizing charge automatically to the battery after a 30 second or longer 
+utility outage.  The equalize charging time is to be adjustable form 0-72 hours.  Provide a manual override for 
+the automatic equalize circuit.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></SPT></TAI><SPT><TTL>Inverter Unit</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the first option for all systems except for scalable unit UPS 
+systems. The second paragraph (MULTI-POWER MODULE/SCALABLE tailoring option) 
+is for redundant systems to include scalable unit internal redundant and scalable 
+unit redundant.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="SINGLE POWER MODULE/NON-SCALABLE"><TXT>Provide a solid-state inverter with sinusoidal output deriving its power from the dc bus (rectifier or battery 
+source) and providing ac power within specified limits to the critical load.  Inverter is to utilize microprocessor 
+controlled solid state Pulse Width Modulation (PWM) controlled insulated gate bipolar transistor (IGBT) power 
+transistor technology to shape the ac output.</TXT></TAI><BRK/>
+<TAI OPT="MULTI-POWER MODULE/SCALABLE"><TXT>Provide an output converter that constantly develops the UPS output  voltage waveform by converting the dc voltage 
+to ac voltage through a set of semiconductor power converters.  In both normal operation and battery operation, 
+the output inverters are creating an output voltage independent of the mains input voltage.  Input anomalies 
+such as brown-outs, spikes, surges, sags and outages do not affect the amplitude or sinusoidal nature of the 
+output voltage sine wave of the inverters.<BRK/></TXT>
+</TAI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Keep this option/paragraph when there is a generator available to supply 
+power to the UPS. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Include a bypass phase synchronization window adjustment to optimize compatibility with local engine-generator-set 
+power source.</TXT><BRK/>
+<BRK/>
+]<SPT><TTL>Output Overload</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the first option for all systems except for scalable unit UPS 
+systems. The second paragraph (MULTI-POWER MODULE/SCALABLE tailoring option) 
+is for redundant systems to include scalable unit internal redundant and scalable 
+unit redundant.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="SINGLE POWER MODULE/NON-SCALABLE"><TXT>Provide an inverter that is able to sustain an overload as specified across its output terminals. The inverter 
+is to remain on and continue to operate within rated parameters, with inverse-time overload shutdown protection.  
+If the overload condition persists beyond the rated parameters of the inverter, the load is to be transferred 
+to the bypass source where the  inverter disconnects automatically from the critical load bus.  If the bypass 
+source is not available and the overload/fault condition continues, the inverter must current limit for a designated 
+amount of time that is determined by the manufacturer and then shut down to protect the internal components.</TXT></TAI><BRK/>
+<TAI OPT="MULTI-POWER MODULE/SCALABLE"><TXT>Provide the output inverter with overload capabilities that allows steady state overload conditions of up to 
+150 percent of system capacity to be sustained by for 30 seconds in normal and battery operation.  If the overload 
+condition persists beyond the rated parameters of the inverter, the load is to be transferred to the bypass source 
+where the inverter disconnects automatically from the critical load bus.</TXT></TAI><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Output Protective Device</TTL><BRK/>
+<BRK/>
+<TXT>Provide an output protective device that is capable of opening on an applied control signal and has the proper 
+frame size and trip rating to supply overload current as specified.  Provide the external output protective device 
+with provision for locking in the "off" position.  The inverter output protective device works in conjunction 
+with the bypass protective device for both manual and automatic load transfers to and from bypass power.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Output Transformer</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the output transformer unless required or when the design output 
+voltage is different then the normal UPS output voltage.  Some of the UPS manufacturers 
+require a separate cabinet for the transformer.  The preferred option is a harmonic 
+mitigating transformer instead of a K rated transformer.<BRK/>
+<BRK/>
+UPS industry is transitioning to transformerless UPS modules.  Having the transformer 
+separate can save space, reduce cooling, improve energy efficiency, reduce weight 
+and cost. In general, those units smaller than 200 kW will benefit more by not 
+having a transformer as part of the UPS.  The threshold level of 200 kW is increasing 
+as more manufacturers go to "transformerless" designs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The inverter output transformer is[ harmonic mitigating transformer type][ or][ capable of handling up to [K-13][_____] 
+nonlinear loads in accordance with <RID>IEEE C57.110</RID>].[  Provide a transformer that meets the requirements for Department 
+of Energy CSL-3.]</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>External Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide the UPS module with built-in self-protection against undervoltage, overvoltage, overcurrent and surges 
+introduced on the ac input source and/or the bypass source. Provide the UPS with built-in self-protection against 
+overvoltage and voltage surges introduced at the output terminals by paralleled sources, load switching, or circuit 
+breaker operation in the critical load distribution system. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Internal Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide the UPS module with the ability to be self-protected against overcurrent, sudden changes in output load 
+and short circuits at the output terminals. Provide the UPS module with output reverse power detection which 
+causes the module to be disconnected from the critical load bus when output reverse power is present. Provide 
+the UPS module with built-in protection against permanent damage to itself and the connected load for predictable 
+types of failure within itself and the connected load. At the end of battery discharge limit, the module shuts 
+down without damage to internal components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Battery Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide the inverter with monitoring and controls circuits to protect the battery system from damage due to excessive 
+discharge.  Inverter shutdown is be initiated when the battery has reached the end of discharge voltage.  Manufacturer 
+is to calculate the end-of-discharge voltage and automatically adjusted for partial load conditions to allow 
+extended operation without damaging the battery.  Automatic shutdown based on discharge time is not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="MULTI-POWER MODULE/SCALABLE"><SPT><TTL>Modular Inverter Isolation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete for single module UPS system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide each inverter in the UPS system with fault sensing and static isolation as well as an output protective 
+device, to remove a faulted module from the system without affecting the critical load bus beyond the stated 
+limits.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="MULTI-POWER MODULE/SCALABLE"><SPT><TTL>Parallel Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete for single module UPS system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For parallel operation, ensure the protection system has control logic capable of isolating only the faulted 
+module, and does not shut down the entire UPS system upon a fault in one module.  Open protective devices are 
+to be indicated by an alarm and indicator light.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>STATIC BYPASS TRANSFER CIRCUIT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Circuit breaker can be fixed or drawout type.  In units 500 kVA and larger, 
+the breaker will typically be drawout. <BRK/>
+150 kVA or larger units may need to use fuses for the protection of the static 
+switch</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the control logic with an automatic transfer circuit that senses the status of the inverter logic signals 
+and alarm conditions and provides an uninterrupted transfer of the load to the static bypass ac power source, 
+without exceeding the transient limits specified herein, during times when maintenance is required, when a malfunction 
+occurs in the UPS or when an external overload condition occurs.[  The power section of the static bypass transfer 
+circuit consists of a  plug-in type assembly to facilitate maintenance.] The static bypass transfer circuit is 
+to be used to connect the input bypass ac power source to the critical load when required.  Provide the static 
+bypass transfer circuit with the following features:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Construction</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Last sentence on "modular" is only for the scalable unit UPS systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a static bypass switch with a continuous duty rating of at least 100 percent of the UPS output rating.  
+Provide a static bypass transfer circuit as an integral part of the UPS that consists of a static switch, made 
+up of two reverse-paralleled SCRs (silicon-controlled rectifiers) per phase conductor, and a bypass protective 
+device, made up of a [circuit breaker][circuit breaker and fuses].  The bypass protective device is to be in 
+series with the static switch.  The inverter output protective device disconnects and isolates the inverter from 
+the bypass transfer circuit.<TAI OPT="MULTI-POWER MODULE/SCALABLE">  Provide a static switch that is of a modular design.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Automatic Uninterrupted Transfer</TTL><BRK/>
+<BRK/>
+<TXT>The static bypass transfer switch automatically causes the bypass ac power source to assume the critical load 
+without interruption when the bypass control logic senses one of the following conditions and the UPS inverter 
+output is synchronized to the bypass ac power source:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Inverter load exceeds unit's rating.</OLI><BRK/>
+<BRK/>
+<OLI>Battery protection period is expired and bypass is available.</OLI><BRK/>
+<BRK/>
+<OLI>System failure.</OLI><BRK/>
+<BRK/>
+<OLI>Inverter output undervoltage or overvoltage.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Interrupted Transfer</TTL><BRK/>
+<BRK/>
+<TXT>If an overload occurs and the UPS inverter output is not synchronized to the bypass ac power source, the UPS 
+inverter output current-limits for 200 milliseconds minimum. The inverter then turns off and an interrupted transfer 
+to the bypass ac power source is made. </TXT><BRK/>
+<BRK/>
+<TXT>If the bypass ac power source is beyond the conditions stated below, an interrupted transfer is made upon detection 
+of a fault condition:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Bypass voltage greater than plus or minus 10 percent from the UPS rated output voltage.</OLI><BRK/>
+<BRK/>
+<OLI>Bypass frequency greater than plus or minus 0.5 Hz from the UPS rated output frequency.</OLI><BRK/>
+<BRK/>
+<OLI>Phase differential of ac bypass voltage to UPS output voltage greater than plus or minus 3 degrees.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Manual Load Transfer</TTL><BRK/>
+<BRK/>
+<TXT>It must be possible to make a manually-initiated static transfer from the system status and control panel by 
+turning the UPS inverter off or by initiating it through the UPS display interface.  The transfer is to make-before-break 
+utilizing the UPS output and system bypass circuit breakers.  Do not use the static switch for manual transfer 
+unless there isn't a parallel by-pass circuit breaker or contactor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Automatic Uninterrupted Forward Transfer</TTL><BRK/>
+<BRK/>
+<TXT>Automatic transfer of the load back to the inverter is to take place when the transfer was caused by an overload 
+and only after the load has returned to a level within the acceptable rating of the inverter source. Provide 
+the ability to allow 1 to 3 transfers within any one-hour period to prevent cyclical transfers caused by overloads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Forced Transfer</TTL><BRK/>
+<BRK/>
+<TXT>Provide control logic circuitry with the means of making a forced or reverse transfer of the static bypass transfer 
+circuit on an interrupted basis. Minimum interruption is 200 milliseconds when the UPS inverter is not synchronized 
+to the bypass ac power source.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Overload Ratings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select choice "c" for scalable unit UPS systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The static bypass transfer switch is to withstand the following overload conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>1000 percent of UPS output rating for one cycle.</OLI><BRK/>
+<BRK/>
+<OLI>125 percent of UPS output rating for 1 minute.</OLI><BRK/>
+<TAI OPT="MULTI-POWER MODULE/SCALABLE"><BRK/>
+<OLI>110 percent of UPS output continuously.</OLI></TAI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Protection</TTL><BRK/>
+<BRK/>
+<TXT>Incorporate into the static bypass circuit back-feed protection per <RID>UL 1778</RID>.  To achieve back-feed protection, 
+provide a back-feed protection breaker/mechanical contactor upstream and in series with the bypass switch that 
+is controlled by the UPS/static switch, to open immediately upon sensing a condition where back-feeding of the 
+static switch by any source connected to the critical output bus of the system is occurring.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Static Bypass Switch Disconnect</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if the static switch is of the <BRK/>
+draw-out type or if the UPS module is 30 kVA or smaller.<BRK/>
+<BRK/>
+Delete last option if a maintenance by-pass system is not provided/used.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Incorporate a static switch disconnect that can be used to isolate the static bypass transfer switch assembly 
+so it can be removed for servicing. [Equip the device with auxiliary contacts and provisions for padlocking in 
+either the "on" or "off" position.]</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>MAINTENANCE BYPASS CIRCUIT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See the TP-19, Static Uninterruptible Power Supply for full discussion 
+on maintenance bypass circuit configurations.  UPS units typically come standard 
+with certain internal circuit breakers or switches and these include:  one ahead 
+of the rectifier, one on the output of the rectifier, and one ahead of the static 
+switch.  In addition, the maintenance bypass switch can be internal to the UPS 
+or external and typically consists of a circuit breaker(s).  UPS units up to 
+500 kVA can have an internal maintenance bypass switch.<BRK/>
+<BRK/>
+Multi-module UPS systems that have UPS modules rated 500 kVA (typically) and 
+higher can have a different configuration.  Each module can consist of a rectifier/battery/inverter 
+without an internal maintenance bypass switch or a static switch.  In this case, 
+there is a centralized static switch that is sized for the entire load and has 
+its own dedicated feeder.  The maintenance by-pass cabinet will typically have 
+two breakers and a single feed.  The output of the UPS modules, centralized 
+static switch are in a system control cabinet that connects to the maintenance 
+bypass cabinet.  Edit appropriately for multi-module systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a maintenance bypass switch or arrangement of switch devices [in a matching <RID>NEMA 250</RID>, type 1 cabinet 
+adjacent to the UPS cabinet][in a wall-mounted <RID>NEMA 250</RID>, type 1 enclosure][in a free-standing floor-mounted <RID>NEMA 250</RID>
+, type 1 enclosure].[  Provide a maintenance bypass enclosure configured as indicated.][  Provide a [two][three][four]switch 
+maintenance bypass enclosure.][  Provide a two switch maintenance bypass with an input switch for each module.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Interlock</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the last sentence option for scalable unit UPS systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Electrically and mechanically interlock the switch(es) to prevent interrupting power to the load when switching 
+to bypass mode.  Key interlock requires unlocking bypass/isolating switch before switching from normal position 
+with key that is released only when the UPS is bypassed by the static bypass transfer switch.  Lock is designed 
+specifically for mechanical and electrical component interlocking.<TAI OPT="MULTI-POWER MODULE/SCALABLE">  Provide auxiliary contacts for the purpose 
+of relaying status information of each circuit breaker/switch actuator to the UPS and static bypass.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Load Transfer</TTL><BRK/>
+<BRK/>
+<TXT>The maintenance bypass switch provides the capability of transferring the critical load from the UPS static bypass 
+transfer switch to maintenance bypass and then back to the UPS static bypass transfer switch with no interruption 
+to the critical load.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Load Bank Protection Device</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if the ability to load bank test the <BRK/>
+UPS system if not required.  It is not recommended under normal circumstances 
+for units smaller than 225 kVA.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a load bank protective device that allows the UPS system to be tested using a portable load bank. The 
+load bank protective device is connected on the line side of the maintenance bypass switch isolation protective 
+device.  Provide a [full system load bank][partial system load bank] sized at[_____].</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>[Voltage Matching][Isolation Transformer]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if the input and output voltages are the same and an isolation 
+transformer is not required.<BRK/>
+<BRK/>
+UPS industry is transitioning away from transformers being part of the UPS.  
+Having the transformer separate can save space, reduce cooling, improve energy 
+efficiency, reduce weight and cost. In general, those unit smaller than 200 
+kW will benefit more by not having a transformer as part of the UPS.  The threshold 
+level of 200 kW is increasing as more manufacturers go to "transformer less" 
+designs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The maintenance bypass cabinet contains [a voltage matching transformer][an isolation transformer] as required 
+to match the output voltage requirements.Ensure the transformer and UPS are phase matched.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>DISPLAY,CONTROLS AND ALARMS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The first paragraph is for non-redundant systems, i.e. single module, 
+parallel multi-module, or scalable unit non-redundant UPS. The second paragraph 
+is for redundant systems to include scalable unit internal redundant and scalable 
+unit redundant.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide the UPS module with a microprocessor-controlled display unit located on the hinged door on the front 
+of the system.  Provide a LCD color alphanumeric display that uses a touchscreen to access the various system 
+information.  Controls, meters, alarms and indicators for operation of the UPS module are to be on this panel.  
+Provide a menu driven graphical user interface for browsing the screens.   All three-phases of three-phase parameters 
+are to be displayed simultaneously.</TXT><BRK/>
+]<TAI OPT="PARALLEL OR REDUNDANT"><TXT>Provide the modules with separate, optically isolated, communication paths to the power and static switch modules.  
+Provide redundant power supplies, each having a separate AC and DC input and output for the logic power for the 
+control modules.  Provide a microprocessor-controlled display unit with alphanumeric display with back or side 
+lighting.  Controls, meters, alarms and indicators for operation of the UPS module are to be on this panel.  
+Provide a menu driven graphical user interface for browsing the screens.   All three-phases of three-phase parameters 
+are to be displayed simultaneously.</TXT></TAI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the output kilowatt hour meter information unless required.  This 
+option is rarely available with an UPS and if needed it would be better to consider 
+a separate meter on the load.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Module Meters</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Monitored Functions</TTL><BRK/>
+<BRK/>
+<TXT>Display the actual value along with the ability to show the peak, average and low values over various periods 
+of time.  Monitor and display the following functions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Input voltage, phase-to-phase (all three phases).</OLI><BRK/>
+<BRK/>
+<OLI>Input current, all three phases.</OLI><BRK/>
+<BRK/>
+<OLI>Input frequency.</OLI><BRK/>
+<BRK/>
+<OLI>Bypass voltage, phase-to-phase and phase-to-neutral (all three phases).</OLI><BRK/>
+<BRK/>
+<OLI>Bypass frequency.</OLI><BRK/>
+<BRK/>
+<OLI>Battery voltage.</OLI><BRK/>
+<BRK/>
+<OLI>Battery current (charge/discharge).</OLI><BRK/>
+<BRK/>
+<OLI>Output voltage, phase-to-phase and phase-to-neutral (all three phases).</OLI><BRK/>
+<BRK/>
+<OLI>Output current, all three phases.</OLI><BRK/>
+<BRK/>
+<OLI>Output frequency.</OLI><BRK/>
+<BRK/>
+<OLI>Input power factor.</OLI><BRK/>
+<BRK/>
+<OLI>Maintenance bypass voltage, phase-to-phase and phase-to-ground (all three phases)</OLI><BRK/>
+[<BRK/>
+<OLI>Output kilowatts or kilovoltamps.</OLI><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This option is available on all systems. .</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Bypass voltage, phase-to-phase and phase-to-ground (all three phases).</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Meter Construction</TTL><BRK/>
+<BRK/>
+<TXT>Display alphanumeric parameters based on true RMS metering with 2 percent accuracy at full scale(minimum 4 significant 
+digits) at the display panel.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Module Controls</TTL><BRK/>
+<BRK/>
+<TXT>Provide a module or equivalent features via touchscreen with the following controls:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Silence audible alarm..</OLI><BRK/>
+<BRK/>
+<OLI>Display or set the date and time.</OLI><BRK/>
+<BRK/>
+<OLI>Adjust setpoints on various alarms.</OLI><BRK/>
+<BRK/>
+<OLI>Alarm test/reset pushbutton.</OLI><BRK/>
+<BRK/>
+<OLI>Battery protective device trip pushbutton[, with guard].</OLI><BRK/>
+<BRK/>
+<OLI>Emergency off pushbutton, with guard.  Provide a hard-wired pushbutton even if touchscreen system is 
+provided.</OLI><BRK/>
+<BRK/>
+<OLI>DC voltage adjustment potentiometer, with locking guard or AC output voltage adjustment potentiometer.  
+Provide potentiometer that is accessible only by authorized personnel.</OLI><BRK/>
+<BRK/>
+<OLI>Control power off switch.</OLI><BRK/>
+<BRK/>
+<OLI>Transfer load to and from static bypass circuit.</OLI><BRK/>
+<BRK/>
+<OLI>Display control pushbuttons: up, down, select.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete UPS/bypass transfer switch reference except for parallel redundant 
+or parallel multi-module systems.  The parallel redundant multi-module configuration 
+must also be specified to have a system control cabinet instead of having individual 
+(distributed) bypass parallel system, so only keep if specified and used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="PARALLEL OR REDUNDANT"><OLI>UPS/bypass transfer selector switch.</OLI></TAI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Module input and output protective device trip pushbuttons are only available 
+when an Emergency Power Off feature is provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Module input protective device trip pushbutton.</OLI><BRK/>
+<BRK/>
+<OLI>Module output protective device trip pushbutton.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Module or System Alarm Indicators</TTL><BRK/>
+<BRK/>
+<TXT>Provide the module with indicators for the following alarm items.  Any one of these conditions is to turn on 
+an audible alarm and the appropriate summary indicator. The system is to register each new alarm without affecting 
+any previous alarm.  Provide a processor that time-date stamps each event.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Input ac power source failure.</OLI><BRK/>
+<BRK/>
+<OLI>Input protective device open.</OLI><BRK/>
+<BRK/>
+<OLI>Input power out of tolerance.</OLI><BRK/>
+<BRK/>
+<OLI>Overload.</OLI><BRK/>
+<BRK/>
+<OLI>Overload shutdown.</OLI><BRK/>
+<BRK/>
+<OLI>DC overvoltage/shutdown.</OLI><BRK/>
+<BRK/>
+<OLI>DC ground fault.</OLI><BRK/>
+<BRK/>
+<OLI>Low battery.</OLI><BRK/>
+<BRK/>
+<OLI>Battery discharged.</OLI><BRK/>
+<BRK/>
+<OLI>Battery protective device open.</OLI><BRK/>
+<BRK/>
+<OLI>Blower fan failure or overtemperature.</OLI><BRK/>
+<BRK/>
+<OLI>Overtemperature shutdown.</OLI><BRK/>
+<BRK/>
+<OLI>Hardware shutdown.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment overtemperature.</OLI><BRK/>
+<BRK/>
+<OLI>Fuse blown with annunciation..</OLI><BRK/>
+<BRK/>
+<OLI>Control power failure.</OLI><BRK/>
+<BRK/>
+<OLI>Charger off/problem.</OLI><BRK/>
+<BRK/>
+<OLI>Inverter fault/off.</OLI><BRK/>
+<BRK/>
+<OLI>Emergency power off.</OLI><BRK/>
+<BRK/>
+<OLI>External shutdown (Remote Emergency Power Off) activated.</OLI><BRK/>
+<BRK/>
+<OLI>Output protective device open.</OLI><BRK/>
+<BRK/>
+<OLI>Operating on internal oscillator</OLI><BRK/>
+<BRK/>
+<OLI>UPS on battery</OLI><BRK/>
+<BRK/>
+<OLI>Critical load on static bypass.</OLI><BRK/>
+<BRK/>
+<OLI>Static bypass transfer switch disabled/failure.</OLI><BRK/>
+<BRK/>
+<OLI>Inverter output overvoltage.</OLI><BRK/>
+<BRK/>
+<OLI>Inverter output undervoltage.</OLI><BRK/>
+<BRK/>
+<OLI>Inverter output overfrequency.</OLI><BRK/>
+<BRK/>
+<OLI>Inverter output underfrequency.</OLI><BRK/>
+<BRK/>
+<OLI>Bypass source overvoltage.</OLI><BRK/>
+<BRK/>
+<OLI>Bypass source undervoltage.</OLI><BRK/>
+<BRK/>
+<OLI>Bypass source overfrequency.</OLI><BRK/>
+<BRK/>
+<OLI>Bypass source underfrequency.</OLI><BRK/>
+<BRK/>
+<OLI>Bypass source to inverter out of synchronization.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following additional alarms are only required when the system is 
+scalable unit UPS system; otherwise, delete.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="MULTI-POWER MODULE/SCALABLE"><OLI>Load no longer above alarm threshold.</OLI><BRK/>
+<BRK/>
+<OLI>Intelligent module inserted or removed.</OLI><BRK/>
+<BRK/>
+<OLI>Redundancy restored.</OLI><BRK/>
+<BRK/>
+<OLI>Need battery replacement.</OLI><BRK/>
+<BRK/>
+<OLI>Bad battery module.</OLI><BRK/>
+<BRK/>
+<OLI>Bad power module.</OLI><BRK/>
+<BRK/>
+<OLI>Redundant intelligent module installed and failed.</OLI><BRK/>
+<BRK/>
+<OLI>Load above alarm threshold.</OLI><BRK/></TAI>
+</OLG><BRK/></SPT>
+<SPT><TTL>Module Emergency OFF Button</TTL><BRK/>
+<BRK/>
+<TXT>Provide an emergency off pushbutton with a protective cover.  Pressing the emergency off button causes the module 
+input, output, and battery circuit breakers or contactors to open, completely isolating the UPS system from sources 
+of power and transfer of the load to bypass.  </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Mimic Panel</TTL><BRK/>
+<BRK/>
+<TXT>Provide a mimic panel in the format of a single-line diagram that graphically depicts whether the load is supplied 
+from the inverter, bypass, or battery.  Provide on status on the following:</TXT><BRK/>
+<BRK/>
+<LST>a.  Module one-line, one per UPS module.</LST><BRK/>
+<BRK/>
+<LST>b.  UPS output protective device status, one for closed (red), one for open (green), and one for withdrawn 
+(amber).</LST><BRK/>
+<BRK/>
+<LST>c.  Static bypass protective device status, one for closed (red), one for open (green), and one for withdrawn 
+(amber).</LST><BRK/>
+<BRK/>
+<LST>d.  Static switch status, one for connected (red), and one for disconnected (green).</LST><BRK/>
+<BRK/>
+<LST>e.  Status on the AC input circuit breaker, battery circuit breaker, and inverter circuit breaker.  Connected 
+(red) and disconnected (green).</LST><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>SYSTEM CONTROL CABINET</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section is for multi-module UPS systems that has a system control 
+cabinet that contains a single bypass static switch that handles the entire 
+load provided by the multi-modules.  Delete for single module UPS Systems and 
+for scalable unit UPS systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General Description</TTL><BRK/>
+<BRK/>
+<TXT>Provide the multi-module UPS system with a separate control cabinet for system output that contains; bus bar 
+connections to collect the output from each module, the static switch and its bypass breaker, the UPS system 
+output protective device, and the UPS output switchgear.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>UPS Output Switchgear</TTL><BRK/>
+<BRK/>
+<TXT>The UPS output switchgear consists of a main protective device feeding the UPS output switchgear critical load 
+bus, a load bank protective device (connected on the line side of the main protective device), a maintenance 
+bypass protective device and associated feeder protective devices for the critical loads.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Interlocking</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete references to load bank protective device if not used. Select 
+either low voltage switchgear or metal clad switchgear (covers medium voltage 
+switchgear).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[The main protective device and the load bank protective device are interlocked to prevent both being closed 
+at the same time.  ]The maintenance bypass protective device is interlocked with the UPS system output protective 
+device and the static bypass switch.  The maintenance bypass protective device is not capable of closing until 
+the static bypass switch is closed and the UPS system output protective device is open.  Once the maintenance 
+bypass protective device is closed, the UPS output switchgear main protective device is capable of opening to 
+isolate the critical loads from the UPS output.[  The load bank protective device as well as the UPS system output 
+protective device are then capable of closing to permit load bank testing.]</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="ARMY"><SPT><TTL>Switchgear</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Army only.  This is only used on Army projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the UPS output switchgear in accordance with Section[<SRF>26 23 00</SRF> LOW-VOLTAGE SWITCHGEAR][<SRF>26 13 13</SRF> METAL-CLAD 
+SWITCHGEAR]</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT></SPT>][<SPT><TTL>SELF-DIAGNOSTIC CIRCUITS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if self-diagnostic circuits are not <BRK/>
+required.  These circuits are normally required in high reliability applications 
+where it becomes critical to identify the faulty circuit card in the shortest 
+time possible.  This option is not normally available in off the shelf UPS units.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide control logic with status indicators for trouble-shooting the control circuits. These indicators are 
+mounted on the circuit card edge or face such that they will be visible without repositioning the card, and are 
+labeled with the function name.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>REMOTE MONITORING PANEL</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Delete if a remote monitoring panel is not <BRK/>
+required.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a remote monitoring panel to monitor system status. Wall mount the panel near the critical load or as 
+indicated. </TXT><BRK/>
+<BRK/>
+<SPT><TTL>Indicators</TTL><BRK/>
+<BRK/>
+<TXT>Provide indicators for the following (minimum):</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Load on UPS.</OLI><BRK/>
+<BRK/>
+<OLI>Battery discharging.</OLI><BRK/>
+<BRK/>
+<OLI>Load on bypass.</OLI><BRK/>
+<BRK/>
+<OLI>Low battery.</OLI><BRK/>
+<BRK/>
+<OLI>Overload.</OLI><BRK/>
+<BRK/>
+<OLI>summary alarm.</OLI><BRK/>
+<BRK/>
+<OLI>New alarm (to alert the operator that a second summary alarm <BRK/>
+condition has occurred).</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Audible Alarm</TTL><BRK/>
+<BRK/>
+<TXT>Any single indicator turns on the audible alarm. An audible alarm test/reset button and lamp test/reset button 
+is to be included. The alarm on the module is not affected nor reset by the reset button.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>COMMUNICATIONS AND DATA ACQUISITION</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Delete the communication and data options that are not required.  RS-485 
+port is not supported by some of the UPS manufacturers.  If the UPS is going 
+to be networked for remote monitoring/control it must follow Section 
+<SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS, mentioned in sub-part 
+C.  Edit the CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS specification 
+as required for your project.  Remote monitoring via a Web Browser is possible 
+but also requires additional cybersecurity features, such as a data diode and 
+the use of seecure communicaion protocls like HTTPS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an [RS 232][Internet Protocol (IP)][RS 485] communications and data acquisition port.  This port allows 
+the system parameters, status, alarm indication and control panel functions specified to be remotely monitored 
+and controlled.</TXT><BRK/>
+<BRK/>
+<TXT>Additionally, provide additional terminal blocks or ports for use with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide the following Form C contacts for remote indication:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">UPS on battery.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">UPS one-line.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">UPS load on bypass.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">UPS in alarm condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">UPS off (maintenance bypass closed).</OLI><BRK/>
+<BRK/>
+<OLI>Provide four spare Form C contacts rated at 120V, 0.5A.</OLI><BRK/>
+<BRK/>
+[<OLI>Provide a SNMP (Simple Network Management Protocol) adapter to communicate UPS monitoring via a network 
+or direct connection to [a personal computer (PC)][MODBUS][BACnet].  See Section <SRF>25 05 11</SRF> CYBERSECURITY 
+FOR FACILITY-RELATED CONTROL SYSTEMS, for additional requirements.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide a standard Web Browser adapter to remotely view and monitor UPS functions over the Internet.  
+See Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS, for additional requirements.</OLI><BRK/>
+]</OLG><BRK/>
+<TXT>Provide communication ports and contacts that are capable of simultaneous communication.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Emergency Control Contacts</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include this paragraph only when the UPS will be installed in conjunction 
+with a generator/alternate source.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide normally open contacts to signal when power is supplied to the UPS from engine generators or alternate 
+source.  The signal connects to an automatic transfer switch.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>TEMPERATURE CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Default is to have the exhaust go out the top.  If rack mounted UPS is 
+specified, then choose the option to have a rear exhaust.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure cabinet and enclosure ventilation is adequate to operate the components within their ratings. Forced-air 
+cooled rectifier, inverter, and control unit will be acceptable. If UPS input power is lost, then the cooling 
+fans are to continue to operate. Provide redundancy that ensures failure of one fan or associated circuit breaker 
+does not cause an overheat condition. Cooling air is to enter the lower front of the cabinets and exhaust at 
+the [top][rear]. Provide visual and audible alarms on the control panel that indicate blower power failure. Provide 
+replaceable filters on air inlets, which may be located on the inside of the cabinet doors and are easily accessible 
+for replacement.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Blower Power Source</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select 'output side' for 10-225kVA; select 'input and output sides' for 
+over 225kVA.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a blower power source that is internally derived from the [output side] [input and output sides] of UPS 
+module, with automatic transfer arrangement.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Temperature Sensors</TTL><BRK/>
+<BRK/>
+<TXT>Provide temperature sensors to monitor the air temperature. Provide a sensor or sensors to monitor the temperature 
+of rectifier and inverter heat sinks.[  Provide separate sensors to monitor the transformer temperature.] Provide 
+critical equipment over-temperature indication that starts a timer that shuts down the UPS system if the temperature 
+does not return below the setpoint level recommended by the UPS manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>BATTERY SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ventilation of storage battery areas is required by NFPA 70.  A safe 
+environment for such areas exists where the concentration of gaseous hydrogen 
+does not exceed 2 percent accumulation per unit volume.  Factors used to determine 
+this condition are the size and type of battery to be charged; room volume; 
+maximum volume of hydrogen gas emitted during charging; and ventilation rate.  
+Approximately 0.016 cubic foot per hour of hydrogen gas is produced from each 
+fully charged wet cell per charging ampere.  Valve-regulated cells typically 
+produce considerably less.  Once sufficient ventilation is produced, no need 
+exists for explosion-proof wiring, vapor-proof fixtures, or other special provisions.  
+Mechanical ventilation (an exhaust fan) should be provided in accordance with 
+the battery manufacturer's recommendations.<BRK/>
+<BRK/>
+Battery Room Temperature.  Battery system performance may be affected by battery 
+room temperatures above or below the nominal range of 23 degrees C (74 deg. 
+F) to 27 degrees C (80 deg. F). Battery capacity is reduced at lower temperatures 
+and battery life expectancy is reduced at sustained temperatures greater than 
+30 degrees C (86 deg. F). Batteries should be derated if battery room temperatures 
+are expected to vary more than plus or minus 2 degrees from the standard 25 
+degrees C.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to UFC 3-520-01, "Interior Electrical System"s for battery types 
+and selection information.  UPS systems either use two basic types:  wet cell 
+(also called flooded cell) or valve-regulated lead-acid (VRLA).  There are two 
+types of VRLA:  gel and absorbed glass mat(AGM).  Provide AGM type for UPS applications 
+when choosing between gel and AGM.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Valve regulated lead acid (VRLA) batteries are predominately lead calcium 
+and should be chosen for most applications. VRLA batteries that are pure lead 
+have longer life when compared to lead calcium.  If considering pure lead, a 
+cost analysis should be performed.  Wet cells can be lead calcium, lead antimony 
+or lead selenium with lead calcium the most common.  Lead antimony  and lead 
+selenium are better for deep cycle applications and should only be considered 
+in areas where there are very frequent power outages e.g. in areas where the 
+battery is normally on a stand-by do not use lead antimony or lead selenium. 
+Lead selenium, or sometimes called low antimony batteries, have a higher cycle 
+capability when compared to lead calcium (5+ times), but not as good a lead 
+antimony batteries (about 70 percent).  Note that lead selenium typically requires 
+less maintenance when compared with lead antimony.  If designer wants lead antimony 
+or lead selenium, the choice needs to be added to the wet cell paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Wet cell batteries require a dedicated room.  Small UPS units will typically 
+use the valve-regulated lead-acid type battery.  Wet cells can last up to 20 
+years with proper maintenance.  There are two "grades" of VRLA: one for 10 years 
+and one for 20 years.   Note that 10 yr batteries typically only get 5-6 years 
+of life in UPS application.  If a 20 year VRLA is desired, then a life cycle 
+cost analysis should be performed since the cost can be significantly more than 
+a 10 year VRLA.   Refer to UFC 3-520-05, "Stationary Battery Areas" for guidance 
+governing the architectural, mechanical, plumbing and electrical requirements 
+for design of stationary secondary battery installations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The last option is for modular, expandable scalable cabinet mounted type 
+UPS unit with their associated battery plant.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Battery system contains the battery cells, [cabinets,][racks,] battery disconnect, [and battery monitor].  Provide 
+a storage battery with sufficient ampere-hour rating to maintain UPS output at full capacity for the specified 
+duration for each UPS module. Provide a battery that is heavy-duty, industrial design suitable for UPS service. 
+Provide the cells with flame arrestor vents, intercell connectors and cables, cell-lifting straps, cell-numbering 
+sets, and terminal grease. Size intercell connectors to maintain terminal voltage within voltage window limits 
+when supplying full load under power failure conditions. Provide cell and connector hardware that is the type 
+of stainless steel capable of resisting corrosion from the electrolyte used.  The battery plant is to consist 
+of the following:</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Provide a [lead calcium][pure lead] battery that is of the float-type, absorbed glass mat (AGM) valve-regulated, 
+lead-acid, sealed, non-gassing, recombinant type (VRLA) that is rated for [10][20] years.[  Battery is 
+factory assembled in an isolated compartment of the UPS cabinet complete with battery disconnect switch.][  
+Battery is factory assembled in a separate matching cabinet, complete with battery disconnect switch.]</OLI><BRK/>
+<BRK/>
+][<OLI>Provide a [lead calcium][_____] battery that is of the wet cell (flooded) type.  Provide heavy-duty industrial 
+units in styrene acrylonitrile containers suitable for rack mounting.  Assembly includes battery disconnect 
+switch, hydrometer syringe, and thermometer with specific gravity-correction scales.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide a lead calcium battery that is of the float-type, absorbed glass mat (AGM) valve-regulated, lead-acid, 
+sealed, non-gassing, recombinant type (VRLA) that is rated for 10 years.  Provide the UPS battery plant 
+of modular construction made up of replaceable, hot-swappable, fused, battery modules.</OLI><BRK/>
+]</OLG><BRK/></SPT>
+[<SPT><TTL>Battery Cabinet</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Delete if a battery cabinet is not required.  Cabinet or rack could be 
+used for VRLA type batteries.  Cabinets are the preferred method when VRLA are 
+used. Racks are used for wet cell type batteries.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Furnish the battery pack assembly in a battery cabinet matching the UPS cabinet. Design the battery cabinet to 
+allow for checking the torque on the connections in the battery system and to provide adequate access for annual 
+housekeeping chores. Provide an external wiring interface through the bottom or top of the assembly. Provide 
+a high temperature alarm that annunciates detection of high temperature within the battery cabinet.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Battery Rack</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Delete if a battery rack is not required.  Three tier racks should be 
+used only where floor space is limited. They increase floor loading and make 
+maintenance more difficult. Use battery rack for wet cell batteries.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a suitable number of [two-tier][three-tier] racks to fit the room layout shown for the number of batteries 
+provided. Provide a steel battery rack that is protected with electrolyte-resistant paint. Ship the battery rack 
+unassembled with all necessary hardware for assembly. Provide each rack with a complete set with bus bars to 
+accommodate cables from UPS module. Provide bus bar connectors for battery-to-battery connections and high-flex 
+multi-stranded copper cable (<RID>ASTM B173</RID> stranding class H) with proper cable supports for connecting top row of 
+batteries to bottom row of batteries at rack ends. Cut end sections to length to prevent wasting floor space.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Cell-Terminal Covers</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Cell-terminal covers are only for wet cells.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide acid-resistant transparent cell-terminal covers not exceeding<MET> 1.83 meters</MET><ENG> 6 feet</ENG> in length and with vent 
+holes drilled on top where needed.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Battery Disconnect</TTL><BRK/>
+<BRK/>
+<TXT>Provide each battery string with a [circuit breaker][ or ][fused disconnect switch] provided in a <RID>NEMA 250</RID>, type 
+1 enclosure, finished with acid-resistant paint and located in line with the assembly. Provide each switch with 
+line side and load side bus bars for connection to battery cells. Rate each switch [500][_____] V dc, [ampere 
+rating per manufacturer][_____ amperes], 3-pole with interrupting rating as required by system capacity, and 
+provide an external operator that is lockable in the "off" position.  [Provide either a wall mounted disconnect 
+or a cabinet mounted disconnecting means for cabinet mounted batteries.  Disconnect is allowed to be in the battery 
+cabinet.]</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="MULTI-POWER MODULE/SCALABLE">[<SPT><TTL>Modular Battery Enclosures</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Paragraph is for scalable unit UPS systems only.  For all other delete. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide battery enclosures that house draw-out battery cartridges.  Battery cartridges are to interlock in place 
+within the battery enclosure to ensure proper contact.</TXT><BRK/>
+<BRK/></SPT>
+]</TAI><TAI OPT="ARMY">[<SPT><TTL>Seismic Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not use this paragraph for Navy projects.  When directed to meet Seismic 
+Requirements, <SRF>13 48 73</SRF> SEISMIC CONTROL FOR MISCELLANEOUS EQUIPMENT and Section 
+<SRF>26 05 48</SRF> SEISMIC PROTECTION FOR ELECTRICAL EQUIPMENT must be edited to suit 
+the project and be included in the contract documents.  Edit the following paragraph 
+and include it in the project specification.  When a Government designer is 
+the Engineer of Record, provide seismic requirements on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a seismic-restraint design for the battery [racks][cabinets], assemblies, subassemblies, and components 
+to include fasteners, supports, mounting and anchorage devises [that conforms to <RID>UFC 3-301-01</RID>, Section 
+<SRF>13 48 73</SRF>, SEISMIC CONTROL FOR MISCELLANEOUS EQUIPMENT and to Section <SRF>26 05 48</SRF>, SEISMIC PROTECTION FOR ELECTRICAL 
+EQUIPMENT][ as indicated].</TXT><BRK/>
+<BRK/></SPT>
+]</TAI><SPT><TTL>Battery Monitor</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Provide a battery internal resistance monitoring system on and temperature-compensated 
+charging only on mission critical systems.<BRK/>
+<BRK/>
+For the scalable units UPS systems choose the battery module in the first sentence 
+and for all other systems choose the "string in the system". Also, for the scalable 
+unit UPS system choose the temperature-compensated charging option.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a battery monitor for each battery [string in the system][battery module]. Monitor the following minimum 
+parameters by the device:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Total system voltage.</OLI><BRK/>
+<BRK/>
+<OLI>Ambient room temperature.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum of 120 days activity history.</OLI><BRK/>
+<BRK/>
+<OLI>Programmable alarm functions.</OLI><BRK/>
+<BRK/>
+[<OLI>Battery internal resistance.</OLI><BRK/>
+<BRK/>
+][<OLI>Temperature-compensated charging.  Provide a battery temperature sensing unit to automatically reduce 
+the float charge in response to increases in battery temperature.  Set the response per the manufacturer's 
+requirements.  Monitor is to only indicate when the temperature compensation circuit is active.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide a remote monitoring panel.</OLI><BRK/>
+]</OLG><BRK/>
+<TXT>The monitor is to record the total accumulated discharge minutes and accumulated battery system discharge kW 
+hours.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>BATTERY MONITOR - DISCHARGE</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  This monitoring option is available on units that are 225 kVA and larger.  
+If UPS system is smaller than 225 kVA then delete this option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The UPS is to have a specialized battery monitor system that collects and stores data related to discharging 
+the UPS battery.  The information is to be displayed on a separate  screen available through a menu selection.  
+The system is to collect and retain (minimum of 50 events) the following information for each discharge cycle:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>System time and date.</OLI><BRK/>
+<BRK/>
+<OLI>Duration of cycle.</OLI><BRK/>
+<BRK/>
+<OLI>DC bus voltage range.</OLI><BRK/>
+<BRK/>
+[<OLI>kW carried by batteries at the start of the event.</OLI><BRK/>
+]</OLG><BRK/></SPT>
+]<SPT><TTL>HYDROGEN GAS MONITORING SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This system is recommended even when valve-regulated lead-acid batteries 
+are used.  These batteries can release high amounts of hydrogen outside the 
+battery if there is a malfunction to the battery charging system and functions 
+as a backup in case the charger does not take itself off line during a malfunction.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a hydrogen gas monitoring system to monitor the hydrogen levels in the room.  The system is to consist 
+of a [remote monitoring panel, ]hydrogen sensor and monitor/control panel.  Provide a single gas detector/sensor 
+located to be located [near the UPS batteries][as shown].  When a sensor detects hydrogen gas at a level of 1 
+percent, the system is to initiate an exhaust fan operation and provide a warning on the control panel[ and remote 
+monitoring panel].  When a sensor detects hydrogen gas at a level of 2 percent, the system is to initiate an 
+audible alarm and provide an alarm on the control panel[ and remote monitoring panel]. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FACTORY TESTING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edited as required for a single module system.  The designer should carefully 
+evaluate the UPS application and the user's mission to determine <BRK/>
+critical tests for the UPS that will ensure UPS/load compatibility. These tests 
+should be conducted at <BRK/>
+the factory and the results validated prior to <BRK/>
+shipment to the site. The required UPS/load <BRK/>
+interaction can be achieved by requesting the <BRK/>
+following tests plus any other tests the designer <BRK/>
+deems necessary:<BRK/>
+<BRK/>
+a. Tests to ensure that the UPS rated power factor <BRK/>
+is verified;<BRK/>
+<BRK/>
+b. Tests to ensure that the UPS system will operate <BRK/>
+ and support the rated load;<BRK/>
+<BRK/>
+c. Tests to ensure that the UPS system can deal <BRK/>
+with load anomalies (odd harmonics, etc.) associated with the user's equipment 
+load.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Factory test the UPS system to meet the requirements specified using a test battery (not the battery to be supplied 
+with the system) or D.C. simulator. Factory load test the UPS module as an independent assembly with 3-phase 
+ac input power and with battery power for a minimum of 8 hours, with meter readings taken every 30 minutes.  
+Balance the load at rated kVA and rated power factor. </TXT><BRK/>
+<BRK/>
+<LST>a.  Submit a detailed description of proposed factory test and field test procedures, including proposed 
+dates and steps outlining each test, how it is to be performed, what it accomplishes, and its duration, 
+not later than [1][_____] months prior to the date of each test.</LST><BRK/>
+<BRK/>
+<LST>b.  Run the factory test for each UPS module under full load that is witnessed by the Government.  Should 
+a malfunction occur, correct the problem and repeat the test. As a minimum, the factory tests are to 
+include the parameters described in paragraphs AC INPUT, AC OUTPUT, TRANSIENT RESPONSE AND EFFICIENCY.  
+Tests are to encompass all aspects of operation, such as module failure, static bypass operation, battery 
+failure, input power failure and overload ratings.</LST><BRK/>
+<BRK/>
+<LST>c.  Notify the Government in writing at least 2 weeks before testing.  Do not use factory-test time for 
+system debugging and/or checkout.  Perform such work prior to notifying the Government that the system 
+is ready for testing.  Perform factory tests during normal business hours.  Interconnect and test the 
+system for an additional 8 hours to ensure proper wiring and performance.</LST><BRK/>
+<BRK/>
+<LST>d.  Submit factory and field test reports in booklet form tabulating factory and field tests and measurements 
+performed, upon completion and testing of the installed system.  An official authorized to certify on 
+behalf of the manufacturer of the UPS system that the system meets specified requirements will sign the 
+factory and field test reports.  Date each report after the award of this contract, which states the 
+Contractor's name and address, name the project and location, and list the specific requirements, which 
+are being certified.</LST><BRK/>
+<BRK/>
+<SPT><TTL>Transient Tests</TTL><BRK/>
+<BRK/>
+<TXT>Conduct transient tests using high-speed oscillograph type recorders to demonstrate the operation of the components 
+to the satisfaction of the Government. These tests consist of 50 percent to 100 percent load changes, manual 
+transfer, manual retransfer, low dc bus initiated transfer and low ac output bus transfer. Use a recording instrument 
+equipped with an event marker.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Efficiency Tests</TTL><BRK/>
+<BRK/>
+<TXT>Perform testing for efficiency at zero output up to 100 percent of stated kW output in 25 percent steps with 
+battery fully charged and floating on the dc bus, with nominal input voltage, and with module connected to represent 
+actual operating conditions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>INSTALLATION</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Conform electrical installations to <RID>NFPA 70</RID>, and to requirements specified herein.  Provide new equipment and 
+materials unless indicated or specified otherwise.  Set the UPS system in place that is wired and connected in 
+accordance with the approved shop drawings and manufacturer's instructions.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Control Cable</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  UPS sizes 200 KVA and above are shipped in <BRK/>
+sections. Control wiring between module sections <BRK/>
+will be connected by the UPS manufacturer's technical representative.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install UPS control wiring in individual separate rigid steel conduits, unless connections are made between side 
+by side matching cabinets of the UPS. Tag control wires with numeric identification tags corresponding to the 
+terminal strip location to where the wires are connected. In addition to manufacturer's requirements, provide 
+four additional spare conductors between UPS module and remote alarm panel in same conduit. When routing control 
+cables inside UPS module, maintain a minimum<MET> 155 mm</MET><ENG> 6 inches</ENG> separation from power cables.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Grounding Conductor</TTL><BRK/>
+<BRK/>
+<TXT>Provide a grounding conductor that is separate from the electrical system neutral conductor in feeder and branch 
+circuits. Ground battery racks and battery breaker cabinets with a separate equipment grounding conductor to 
+the UPS cabinet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Separately Derived</TTL><BRK/>
+<BRK/>
+<TXT>If not part of a listed power supply for a data-processing room, comply with <RID>NFPA 70</RID> requirements for connecting 
+to grounding electrodes and for bonding to metallic pipe.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>UPS Output Conductors</TTL><BRK/>
+<BRK/>
+<TXT>Isolate the UPS output conductors from the UPS cabinet to the critical load panels and from other conductors 
+by installing in separate conduit.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>DC Power Conductors</TTL><BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Include this paragraph only when batteries are remote from the UPS cabinet.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>When installed in conduits, place dc power conductors from the UPS cabinet to the battery circuit breaker such 
+that each conduit contains an equal number of positive and negative conductors, for example, two positive and 
+two negative conductors in each conduit.  Size conductor for a maximum of 2 percent voltage drop at full discharge.</TXT><BRK/>
+<BRK/></SPT>
+]<TAI OPT="ARMY"><SPT><TTL>Seismic Protection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not use this paragraph for Navy projects.  When directed to meet Seismic 
+Requirements, 13 48 73 SEISMIC CONTROL FOR MISCELLANEOUS EQUIPMENT and Section 
+26 05 48 SEISMIC PROTECTION FOR ELECTRICAL EQUIPMENT must be edited to suit 
+the project and be included in the contract documents.  Edit the following paragraph 
+and include it in the project specification.  When a Government designer is 
+the Engineer of Record, provide seismic requirements on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide seismic details[ in accordance with[ Section <SRF>13 48 73</SRF>, SEISMIC CONTROL FOR MISCELLANEOUS EQUIPMENT][ 
+and to][ Section <SRF>26 05 48</SRF>, SEISMIC PROTECTION FOR ELECTRICAL EQUIPMENT]][ as indicated].</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Conduit Entries</TTL><BRK/>
+<BRK/>
+<TXT>Ensure conduit entries use the available conduit areas shown on manufacturer's installation drawings.  Do not 
+make conduit entries through the front, side or rear panels of the UPS[ or Maintenance Bypass Cabinet][ or battery 
+cabinet][ or battery disconnect enclosure].</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Battery Rack Assembly</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Choose this paragraph if racks are required for the batteries. This is 
+typically required when the batteries are wet cell type. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Battery racks are typically shipped dismantled in separate rail, frame, and brace packages.  Ensure that manufacturer 
+furnished assembly hardware is used to assemble battery racks.  Conform battery rack installation to the manufacturer's 
+instructions.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Battery Cabinet Assembly</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose this paragraph when VRLA batteries are required.  Battery cabinets 
+are typically factory assembled on units up to 500 kVA.  Battery cabinets for 
+larger units may require assembly at the site.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conform battery cabinet installation to the manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Battery Installation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete paragraph and subparagraphs for smaller UPS units that have batteries 
+installed in the unit cabinet by the manufacturer at the factory. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conform battery installation to the manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The UPS manufacturer's technical representative is required to inspect 
+the completed UPS and battery installation.  The representative's visit to the 
+site must be scheduled by the Contractor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Notify the Contracting Officer in writing at least 30 calendar days prior to completion of the UPS system installation.  
+At this time, the Contractor will schedule the UPS manufacturer's technical representative to inspect the completed 
+installation.  Provide instruction for activity personnel by the UPS technical representative as specified in 
+paragraph DEMONSTRATION. </TXT><BRK/>
+<BRK/>
+<SPT><TTL>Installation Preparation</TTL><BRK/>
+<BRK/>
+<TXT>Completely install the following items by the Contractor and be operational prior to the arrival of the UPS representative 
+for inspection, unit start-up and testing:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Ventilation equipment in the UPS and battery rooms.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In subparagraph b.choose the appropriate item based on what was previously 
+specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Battery [cabinets][racks][modules] and cells.</OLI><BRK/>
+<BRK/>
+<OLI>Battery connections including cell-to-cell, tier-to-tier, and rack-to-rack connections, with correct 
+polarity;</OLI><BRK/>
+<BRK/>
+<OLI>DC power and control connections between UPS and battery circuit breaker, with correct polarity;</OLI><BRK/>
+<BRK/>
+<OLI>DC power connection between battery circuit breaker and battery, with correct polarity;</OLI><BRK/>
+<BRK/>
+<OLI>Clockwise phase rotation of ac power connections;</OLI><BRK/>
+<BRK/>
+<OLI>AC power to rectifier input bus;</OLI><BRK/>
+<BRK/>
+<OLI>AC power to UPS bypass input bus;</OLI><BRK/>
+<BRK/>
+<OLI>AC power to UPS maintenance bypass circuit breaker;</OLI><BRK/>
+<BRK/>
+<OLI>AC power from UPS output to UPS maintenance bypass output circuit breaker;</OLI><BRK/>
+<BRK/>
+<OLI>Remote monitors and control wiring;</OLI><BRK/>
+<BRK/>
+<OLI>UPS system and battery system properly grounded;</OLI><BRK/>
+<BRK/>
+[<OLI>Emergency shower and eye wash;</OLI><BRK/>
+<BRK/>
+][<OLI>Control connections between UPS and emergency engine generator signal contacts;</OLI><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In subparagraph o. delete the bracketed statement when the project does 
+not require a UPS maintenance bypass cabinet.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLI>Control connections between UPS module [and UPS maintenance bypass cabinet];</OLI><BRK/>
+<BRK/>
+<OLI>Clean and vacuum UPS and battery room floors, battery cells, and UPS equipment, both inside and outside.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure that shipping members have been removed.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide this option for IEEE 450 certification when wet cell ventilated 
+batteries are used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Provide <RID>IEEE 450</RID> battery installation certification.</OLI><BRK/>
+]</OLG><BRK/></SPT>
+<SPT><TTL><SUB>Initial Inspection and Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The UPS technical representative and the Contracting Officer, in the presence of the Contractor, will inspect 
+the completed installation. The Contractor is responsible to correct construction or installation deficiencies 
+as directed.  Perform acceptance checks in accordance with the manufacturer's recommendations and include the 
+following visual and mechanical inspections, performed in accordance with <RID>NETA ATS</RID>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>UPS Unit visual and mechanical inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with drawings, specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.  Inspect doors, panels, and sections for paint, 
+dents, scratches, fit, and missing hardware.  Inspect the displays for scratches, dark pixels 
+or uneven brightness.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect anchorage, alignment, grounding, and required clearances.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that fuse sizes and types correspond to drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify the unit is clean inside and out.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Test all electrical and mechanical interlock systems for correct operation and sequencing.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect bolted electrical connections for high resistance using one of the following methods:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Use a low-resistance ohmmeter.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Verify tightness of accessible bolted electrical connections by calibrated torque-wrench 
+method.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Perform thermographic survey.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify operation of forced ventilation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that vents are clear and new clean filters are installed.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect batteries and chargers according to requirements in <RID>NETA ATS</RID></OLI><BRK/>
+<BRK/>
+<OLI>UPS Batteries visual and mechanical inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with drawings, specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.  Inspect doors, panels, and sections for paint, 
+dents, scratches, fit, and missing hardware.  Inspect the displays for scratches, dark pixels 
+or uneven brightness.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect anchorage, alignment, grounding, and required clearances.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that fuse sizes and types correspond to drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify the unit is clean inside and out.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify the application of an oxide inhibitor on battery terminal connections.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect bolted electrical connections for high resistance using one of the following methods:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Use a low-resistance ohmmeter.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Verify tightness of accessible bolted electrical connections by calibrated torque-wrench 
+method.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Perform thermographic survey.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Performance Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment, test instruments, power, load bank, materials and labor required for tests. Contracting Officer 
+will witness all tests and the tests are subject to their approval.  Perform tests in accordance with the manufacturer's 
+recommendations and include the following electrical tests.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>UPS Unit Performance Tests</TTL><BRK/>
+<BRK/>
+<TST><TXT>Upon completion of battery activation procedures, Contractor is to connect load bank to UPS output.  Size load 
+bank to the full kW rating of the system.</TXT><BRK/>
+<BRK/>
+<TXT>Performance test is to be run under the supervision of the UPS technical <BRK/>
+representative. Operate UPS unit under full kW load for a minimum of one hour.  Operation of the feeder and bypass 
+power feeder breakers during testing of the UPS is the responsibility of the Contractor.</TXT></TST><BRK/>
+<OLG><BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><TST>Test static transfer from inverter to bypass and back. Use normal load, if possible.</TST></OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><TST>Test dc undervoltage trip level on inverter input breaker/relay. Set according to manufacturer's 
+published data.</TST></OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><TST>Test alarm circuits.</TST></OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><TST>Verify synchronizing indicators for static switch and bypass switches.</TST></OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><TST>Perform electrical tests for UPS system breakers.</TST></OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Test valuves</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Measure negative post temperature.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Measure charger float and equalizing voltages.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Verify all charge functions and alarms.</OLI><BRK/>
+<BRK/>
+<OLI>Test Values</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify bolt-torque levels.</OLI><BRK/>
+<BRK/>
+<OLI>Maintenance Bypass Panel/Cabinet</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify interlocks (Kirk-Key or other means) operate properly.  Verify that the breaker arrangement 
+operates in the manner required for the number of possible combinations.</OLI></OLG><BRK/>
+<OLG> <BRK/>
+[<OLI>Load Test</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit as required, depending upon whether a <BRK/>
+temporary or permanent load bank is to be provided or if a load bank is required.  
+Small UPS systems are normally not required to have a load bank test.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TST><TXT>[Provide a load bank that stays with the system.  ]Load test the installed system for a continuous 24 hour period 
+by means of resistive load banks. Continuously test the system at 1/2 load for 8 hours, 3/4 load for 8 hours 
+and full load for 8 hours. Provide variable  load banks  sized to the full kW load of system to facilitate startup 
+under load conditions, and to conduct load tests described above. Record instrument readings every half hour 
+for the following:</TXT><BRK/>
+<BRK/>
+<OLI LEVEL="2">Input voltage (all three phases).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Input current (all three phases).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Input frequency.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Battery voltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output voltage (all three phases).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output current (all three phases).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output kilowatts.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output frequency.</OLI><BRK/></TST>
+<BRK/>
+][<OLI>Full Load Burn In Test</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete emergency/alternative source testing requirements if no emergency/alternative 
+source is available.  This paragraph may be deleted for small UPS system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TST><TXT>Provide an additional full load burn-in period of 24 continuous hours for the installed system. If a failure 
+occurs during the burn-in period, repeat the tests. Record instrument readings every half hour as above. Perform 
+the following tests during the burn-in period:</TXT><BRK/>
+<BRK/>
+<OLI LEVEL="2">With the UPS carrying maximum continuous design load and supplied from the normal source, switch 
+[100 percent load][50 percent load] on and off a minimum of three times within the manufacturer's 
+defined burn-in period. Switching must take place [in even intervals throughout the burn in 
+period][in __ hour intervals].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">[(2) With the UPS carrying maximum continuous design load and supplied from the emergency source, 
+repeat the switching operations described in step (1). Also, verify that the UPS module rectifier 
+charger unit(s) go into the second-step current limit mode.]</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">With the UPS carrying maximum continuous design load and operating on battery power, repeat 
+the switching operations described in step (1) above.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Continue operation on battery power for 1 minute, then restore <BRK/>
+normal power.</OLI></TST><BRK/>
+<BRK/>
+<TXT>Furnish a high-speed dual trace oscillograph to monitor ten or more cycles of the above tests at the ON and OFF 
+transitions and two typical steady-state periods, one shortly after the load is energized (at 30 to 60 seconds) 
+and one after operation has stabilized (at 8 to 10 minutes). Deliver four copies of the traces to the <BRK/>
+Contracting Officer.</TXT><BRK/>
+<BRK/>
+][<OLI>Battery Discharge Test</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph may be deleted for small UPS system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TST><TXT>Allow UPS 24 hrs to recharge batteries and an additional 24 hrs cool down prior to commencing this test, if other 
+tests such as the full load test were performed.  With the UPS carrying maximum continuous design load and the 
+battery fully charged, the system is to undergo a complete battery discharge test to full depletion and a recharge 
+to nominal conditions. Record instrument readings every minute during discharge for the following:</TXT><BRK/>
+<BRK/>
+<OLI LEVEL="2">Battery voltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Battery current.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output voltage (all three phases).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output current (all three phases).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output kilowatts.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Output frequency.</OLI></TST><BRK/></OLG>
+<BRK/>
+]</SPT>[<SPT><TTL>Generator Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include this paragraph only when the UPS will be installed in conjunction 
+with a generator.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TST><TXT>Test UPS to observe operation with generator service. UPS technical representative is to verify UPS battery current 
+limiting feature functions properly.</TXT></TST><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Battery Performance Test (Constant kW)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is applicable for large wet-cell type battery systems. 
+Delete for sealed (valve regulated) battery system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TST><TXT>Furnish all labor, material and test equipment necessary to conduct performance test under the direction of UPS 
+technical representative. Accomplish the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Install a calibrated voltmeter across the battery terminals to measure voltage, and provide current transformers 
+to measure the current from each string. </OLI><BRK/>
+<BRK/>
+<OLI>Record temperature of pilot cells in battery immediately prior to start of discharge performance test.</OLI><BRK/>
+<BRK/>
+<OLI>Read and record total battery voltage and battery current at start of discharge and every minute during 
+discharge test.</OLI><BRK/>
+<BRK/>
+<OLI>Record minutes and seconds when battery voltage drops below minimum discharge voltage. On initial discharge 
+test, a battery may be expected to deliver 95 percent of its rated capacity. This will increase to 100 
+percent after several complete discharge cycles or after 12 months of float charge service.</OLI><BRK/>
+<BRK/>
+<OLI>Should battery fail to meet the requirements of the first discharge performance test, place battery on 
+equalizing charge as defined by the specific battery manufacturer's recommendations. Measure and record 
+time and battery voltage. Run a second discharge performance test.</OLI></OLG></TST><BRK/>
+<BRK/></SPT>
+]</SPT></SPT><SPT><TTL>DEMONSTRATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete recording references if not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Training</TTL><BRK/>
+<BRK/>
+<TXT>Furnish the services of competent instructors to give full instruction to designated Government personnel in 
+the adjustment, operation, and maintenance of the specified systems and equipment, including pertinent safety 
+requirements as required.  Instructors are to be thoroughly familiar with all parts of the installation and be 
+trained in operating theory as well as practical operation and maintenance work.  Provide instruction during 
+the first regular work week after the equipment or system has been accepted and turned over to the Government 
+for regular operation.  Provide [8][_____] hours of instruction for [_____] personnel.[  When more than 4 man-days 
+of instruction are specified, use approximately half of the time for classroom instruction.  Use other time for 
+instruction with equipment or system.  When significant changes or modifications in the equipment or system are 
+made under the terms of the contract, provide additional instructions to acquaint the operating personnel with 
+the changes or modifications.][record the field training with the recording left with the Contracting Officer.][  
+Provide a factory training video or [on-line training] as part of the training materials.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FINAL ADJUSTMENTS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Remove load bank and reconnect system for normal operation.</OLI><BRK/>
+<BRK/>
+<OLI>Equalize battery per manufacturer instructions.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph if battery is sealed (valve regulated) type.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Bring electrolyte level of all cells up to the bottom of the high level line by adding original filling 
+gravity electrolyte.</OLI><BRK/>
+<BRK/>
+]<OLI>Resume charging battery at normal float voltage as defined by battery manufacturer recommendations.</OLI><BRK/>
+<BRK/>
+<OLI>Prior to charging, check battery connections are properly torque to manufacturer's specifications. Take 
+and record, for cell-to-cell and terminal connections, detailed micro-ohm resistance readings. Remake 
+connections having a resistance of more than 10 percent above the average.</OLI><BRK/>
+<BRK/>
+<OLI>Deliver all manufacturer's <SUB>data and operation manuals</SUB>, which are an integral part of, and shipped with 
+UPS, to Contracting Officer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>NAMEPLATE MOUNTING</TTL><BRK/>
+<BRK/>
+<TXT>Provide number, location, and letter designation of nameplates as indicated.  Fasten nameplates to the device 
+with a minimum of two sheet-metal screws or two rivets.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD APPLIED PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>Paint electrical equipment as required to match finish of adjacent surfaces or to meet the indicated or specified 
+safety criteria.  Painting is to comply with Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

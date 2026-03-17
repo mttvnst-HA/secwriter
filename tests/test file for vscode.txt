@@ -1,0 +1,521 @@
+# SpecsIntact Modern - Revised Software Development Plan
+
+**Version:** 3.0 (Post-Human-Testing Edition)
+**Date:** March 2026
+**Context:** This plan incorporates every lesson learned from the 47-phase build of SpecsIntact Modern v2.0.0 AND the 23-bug human testing session that followed. It describes how the same application - with identical features and the same final architecture - would be built from scratch in 29 phases instead of 47, eliminating all rework, retrofit, and remediation phases while baking in the contentEditable safety patterns discovered during testing.
+
+---
+
+## 1. Executive Summary
+
+SpecsIntact Modern is a browser-based and desktop WYSIWYG editor for Unified Facilities Guide Specifications (UFGS) `.sec` files. It replaces the legacy Windows-only SpecsIntact application used by NAVFAC, USACE, and AFCEC.
+
+This plan delivers a distributable application - both as a hosted web app and an installable Windows desktop app - that a specification engineer can install without developer tools and use daily. The plan is organized into 29 phases across 5 tiers, estimated at 15-20 working sessions.
+
+### What this plan changes vs. the original
+
+| Original Plan | This Plan | Why |
+|---------------|-----------|-----|
+| Build system introduced at Phase 31 (after 30 phases of features) | Build system is Phase 1 | Eliminates the ESM migration (Phase 32) and prevents all require/module.exports debt |
+| app.jsx grew to 2,245 lines, then decomposed in Phase 34 | Module structure defined in Phase 1, features added to correct modules | Eliminates the decomposition rework phase entirely |
+| Bundled reference data added at Phase 38 | Bundled at Phase 12 (right after Reference Wizard) | Removes manual UMRL/UMSL loading from 25+ development sessions |
+| Playwright E2E tests added at Phase 39 | E2E suite introduced at Phase 21, grows with every subsequent phase | Catches rendering bugs that source-scanning tests miss |
+| Electron shell created in Phase 41, wired in Phase 43 | Electron scaffolded in Phase 1, wired incrementally | No separate "Electron integration" phase needed |
+| UX review at Phase 42 only | UX reviews at Phase 15 and Phase 25 | Catches usability gaps while they are cheap to fix |
+| 47 phases total (including 5 rework + 5 remediation) | 29 phases (zero rework, zero remediation) | Same features, 40% fewer phases |
+| INI parser ships as runtime module | INI parser is build-time only, produces static JSON | Simpler bundle, no runtime INI code |
+| Three separate file-I/O implementations | One unified file-I/O abstraction from the start | encoding.js handles all environments cleanly |
+| Three development plan documents | One living document | Easier to search and maintain |
+| No contentEditable safety rules | execCommand guard pattern, non-editable island pattern, and effectiveText() mandated from Phase 5 | Prevents the entire class of 8 corruption bugs found in testing |
+| Keyboard shortcuts used raw e.key | All shortcuts normalize with toLowerCase() | CapsLock-safe from day one |
+
+---
+
+## 2. Scope and Objectives
+
+### Primary objective
+
+Deliver a standalone, distributable application that a specification engineer can install on Windows without using a terminal and use daily to edit UFGS `.sec` files, replacing legacy SpecsIntact for the core editing workflow.
+
+### In scope
+
+- Parse, render, edit, validate, and save `.sec` files with byte-identical round-trip fidelity
+- WYSIWYG editing via contentEditable with no SGML tag exposure to the user
+- Structural editing (PART/Article/Subpart promote, demote, reorder)
+- Tailoring system (option visibility, filtering, removal)
+- Reference management (UMRL search, manual entry, reconciliation)
+- Submittal management (UMSL search, register, reconciliation)
+- Revision tracking (ADD/DEL/CHG with accept/reject)
+- Table editing (grid model, cell/row/col operations, merge)
+- Validation engine (7 checks with click-to-navigate)
+- Print/publish pipeline (HTML output with reconciliation)
+- Job and Master management
+- QA reports (brackets, test requirements, references, submittals, SRFs, tailoring)
+- Bundled UMRL (4,973 references) and UMSL (13,203 submittals)
+- IndexedDB persistence for preferences and cached data
+- File System Access API save-in-place (Chrome/Edge)
+- Electron desktop wrapper with native dialogs and installer
+- Browser spell check with preference toggle
+- First-run onboarding overlay
+- Playwright E2E test suite
+
+### Out of scope (deferred)
+
+| Item | Rationale |
+|------|-----------|
+| Multi-user collaboration | Requires server architecture not needed for primary use case |
+| Plugin/extension system | Premature; core features not yet in production use |
+| Word/PDF import | Different problem domain; low priority |
+| Online UMRL/UMSL updates | Requires network integration; manual loading works as override |
+| SpecsIntact project database (.sip) | Format not fully documented |
+| Code signing for Windows installer | Requires certificate purchase; deferred to post-release |
+| Auto-update mechanism | Requires update server; manual re-install is acceptable initially |
+
+---
+
+## 3. Architecture
+
+### Target file structure (established in Phase 1)
+
+```
+specsintact-modern/
+  package.json                   type:module, Vite + React + Electron deps
+  vite.config.js                 React plugin, relative base, chunk splitting
+  index.html                     Vite SPA entry
+  playwright.config.js           E2E test config
+  DEPLOY.md                      Deployment guide
+  README.md                      Project documentation
+
+  src/
+    main.jsx                     React entry (renders App into #root)
+    app.jsx                      App shell: tabs, state, file I/O routing
+    theme.js                     Colors, constants, TAG_LABELS, dialog styles
+    sec-dom.js                   Unified SecNode class (parser + editor)
+    encoding.js                  Windows-1252 codec, file I/O abstraction (browser + Electron)
+    parser-browser.js            Browser-side tokenizer, tree builder, serializer
+    sec-helpers.js               Reference, submittal, validation business logic
+    persistence.js               IndexedDB storage (prefs, cached data, recent files)
+    sec-parser.js                Node.js XML parser (round-trip fidelity)
+    structural-ops.js            SPT promote/demote/reorder, OLG/OLI operations
+    tailoring.js                 TAI option management
+    references.js                UMRL database, reconciliation
+    submittals.js                UMSL database, register generation
+    revisions.js                 ADD/DEL/CHG tracking
+    tables.js                    Table grid model, cell operations
+    validation.js                7-check validation engine
+    publish.js                   Print/publish pipeline
+    job-master.js                Job and Master management
+    qa-reports.js                QA report generation
+    section-config.json          Pre-built validation rules (from INI, build-time only)
+
+  electron/
+    main.cjs                     Electron main process (window, menus, IPC)
+    preload.cjs                  Context bridge (electronAPI)
+    icon.png                     Application icon (256x256)
+
+  public/
+    data/
+      umrl.ref                   Bundled reference database
+      umsl.lst                   Bundled submittal database
+      section-config.json        Bundled validation config
+
+  test/                          Node.js test suites
+  e2e/                           Playwright browser tests
+    fixtures/                    Test .SEC files
+  docs/                          Development plan, reviews
+  tools/
+    build-config.js              INI parser (build-time only, not bundled)
+```
+
+### Key architectural decisions (locked from Phase 1)
+
+1. Custom XML lexer for byte-identical round-trip fidelity (not DOMParser)
+2. Unified SecNode class in sec-dom.js (shared by parser and editor)
+3. Vite + ES modules throughout (no CommonJS, no migration needed)
+4. Module-per-concern structure (no monolith accumulation)
+5. Unified file I/O abstraction in encoding.js (Electron > FSAPI > download)
+6. Browser File API as the primary open mechanism, with Electron native dialogs as enhancement
+7. Undo via XML snapshot serialization (80-level stack)
+8. INI-driven configuration via build-time generation of section-config.json
+9. Windows-1252 re-encoding on save
+10. contentEditable with reconstructFromDOM bridge
+11. IndexedDB for all client-side persistence
+12. Electron shell scaffolded from Phase 1 (wired incrementally, built last)
+13. contentEditable safety rules: all inline semantic tags (RID, SUB, SRF, ADD, DEL, HLS, TAI) render as `contentEditable={false}` islands in edit mode; every `document.execCommand()` call is guarded against non-editable regions; `effectiveText()` used for all text extraction from nodes that may contain revision markup; all toolbar/popup buttons use `onMouseDown={preventDefault}` to preserve selection; all keyboard handlers normalize `e.key` with `toLowerCase()` for CapsLock safety; scroll position is preserved across React re-renders via `scrollPosRef`
+
+---
+
+## 4. Phase Definitions
+
+### Tier 1: Foundation (Phases 1-4)
+
+Establishes the build system, module structure, and core parser. After Tier 1, the app opens in a browser, parses .SEC files, and renders them.
+
+| Phase | Name | Est. Effort | Deliverables |
+|-------|------|-------------|--------------|
+| 1 | Project Scaffold | 1 session | Vite + React + ESM project. Module structure per Section 3. Electron skeleton (main.cjs loads dist/index.html). Playwright config. Empty test runner. App renders "SpecsIntact Modern" in browser via `npm run dev`. |
+| 2 | SEC Parser & DOM | 1 session | sec-parser.js: custom XML lexer handling windows-1252, CRLF, all 53 tags. sec-dom.js: unified SecNode class with both APIs. Round-trip fidelity on all 43+ corpus files. Parser test suite (target: 146 tests). |
+| 3 | Browser Renderer | 1 session | parser-browser.js: browser-side tokenizer. Renderer components in app.jsx: R(), wt(), TRow(), EditableTable. Auto-numbering (PART, Article, OLG/OLI). Unit toggling (MET/ENG). Note visibility. theme.js with all constants. Renderer test suite (target: 63 tests). |
+| 4 | Navigator, Tabs & File I/O | 1 session | Navigation panel with collapsible PART/Article tree. IntersectionObserver active-section tracking. Breadcrumb status bar. Multi-file tabs with dirty tracking. encoding.js: unified file I/O abstraction with `isElectron()`, `hasFileSystemAccess()`, and download fallback paths. Open via drag-drop and file input. Save via Ctrl+S. Navigator test suite (target: 61 tests). |
+
+**Tier 1 gate:** App opens in browser, loads a .SEC file, renders WYSIWYG, navigates via tree, saves with byte-identical fidelity. ~270 tests, 0 failures.
+
+### Tier 2: Editing Features (Phases 5-14)
+
+Core editing capability. After Tier 2, the app is a functional UFGS editor.
+
+| Phase | Name | Est. Effort | Deliverables |
+|-------|------|-------------|--------------|
+| 5 | WYSIWYG Text Editing | 2 sessions | contentEditable on TXT/LST/ITM/NPR/TTL. reconstructFromDOM bridge. InlineIsland for MET/ENG/RID/SUB/TAI with click-to-edit, rendered as `contentEditable={false}` with `data-sec-uid` to prevent corruption. Non-editable island rendering for ADD/DEL revision tags. `effectiveText()` helper that skips DEL children for all text extraction. `execCommand` guard function (walk up from selection checking contentEditable boundaries). `onMouseDown={preventDefault}` on every toolbar/popup button that operates on a selection. Scroll position preservation via `scrollPosRef` + `requestAnimationFrame` after React re-renders. Undo/redo (80-level snapshot stack, post-edit snap). Edit mode on by default. Spell check attribute on all contentEditable. Editing test suite (target: 31 tests). Reconstruct test suite (target: 32 tests). |
+| 6 | Structural Editing | 1 session | structural-ops.js: SPT promote/demote/reorder, OLG/OLI indent/outdent. Context menu with right-click actions (insert, delete, promote, demote, move, convert type). Inline "+" buttons for adding TXT/ITM/LST/SPT/Table below. Structural test suite (target: 46 tests). |
+| 7 | Tailoring System | 1 session | tailoring.js: TAI option extraction, visibility filtering, deselection, removal, redline wrapping. Tailoring dialog with option checkboxes. TAI markers with colored highlighting. Tailoring test suite (target: 36 tests). |
+| 8 | Reference System | 1 session | references.js: UMRL parser, search, insertion, reconciliation. Reference Wizard dialog with search AND manual entry (Organization, RID, Title fields). Check Refs reconciliation dialog flagging unused/missing references. Reference test suite (target: 42 tests). |
+| 9 | Submittal System | 1 session | submittals.js: UMSL parser, search, register generation, reconciliation. Submittal Wizard with search-by-keyword and search-by-section. Submittal Register dialog with delete/reorder. Check Subs reconciliation. Submittal test suite (target: 35 tests). |
+| 10 | Revision Tracking | 1 session | revisions.js: ADD/DEL/CHG wrapping, accept/reject individual and batch. Revision mode toggle in formatting bar. Visual markup (green additions, red strikethrough deletions). Revision test suite (target: 31 tests). |
+| 11 | Table Editing | 1 session | tables.js: grid model, cell text editing, add/delete row/col, merge, style parsing. EditableTable and EditableCell components. Context menu items for table operations. Table test suite (target: 40 tests). |
+| 12 | Bundled Data & Persistence | 1 session | Copy umrl.ref, umsl.lst, section-config.json to public/data/. Auto-load from bundle on startup. persistence.js: IndexedDB for preferences (units, notes, tailoring, revisions, font scale, spell check, edit mode), cached UMRL/UMSL/config, recent files. Manual file load as override. Bundled data test suite (target: 28 tests). Persistence test suite (target: 40 tests). |
+| 13 | Validation Engine | 1 session | validation.js: 7-check engine (required elements, nesting, brackets, fill-ins, references, submittals, format). Validation dialog with errors/warnings/info and click-to-navigate. F5 shortcut. Pre-save validation. Validation test suite (target: 28 tests). |
+| 14 | Publish Pipeline | 1 session | publish.js: clone-before-publish, reference/submittal reconciliation, TOC generation, HTML output. Publish dialog with format options (HTML body, full HTML, processed SEC). Ctrl+P shortcut. Publish test suite (target: 25 tests). |
+
+**Tier 2 gate:** Full editing capability. ~500 tests, 0 failures. Run UX Review #1.
+
+### UX Review Checkpoint #1 (after Phase 14)
+
+Run the UX review rubric (Section 7). Target: 70+. Fix any issues scoring below 3/5 in any category before proceeding. This typically produces 2-5 quick fixes that take under a day total. Common findings at this stage: discoverability gaps, missing tooltips, confusing dialog flow.
+
+### Tier 3: Project Management & UI Polish (Phases 15-20)
+
+Higher-level workflows and professional UI.
+
+| Phase | Name | Est. Effort | Deliverables |
+|-------|------|-------------|--------------|
+| 15 | Job & Master Management | 1 session | job-master.js: Master browser, Job creation, section add/remove, tailoring selections. Master Browser dialog, Job Manager dialog, .sijob save/load. QA reports: qa-reports.js with brackets, test reqs, refs, submittals, SRFs, tailoring. QA Reports dialog with tabbed viewer. Job/Master test suite (target: 22 tests). QA report test suite (target: 21 tests). |
+| 16 | Save Encoding & Validation Upgrade | 0.5 session | Windows-1252 re-encoding verification on save. section-config.json integration for nesting rules. Full 7-check validation wired to save flow. Save test suite (target: 20 tests). |
+| 17 | Clipboard & Keyboard Shortcuts | 0.5 session | Tag-aware copy/paste (internal SEC clipboard, with cut guard against non-editable islands). All keyboard shortcuts: Ctrl+S, Ctrl+Shift+S, Ctrl+O, Ctrl+N, Ctrl+F, Ctrl+G, Ctrl+P, Ctrl+B/I/U, Ctrl+Z/Y, F5, Escape. All handlers normalize `e.key` with `const k = e.key.length===1 ? e.key.toLowerCase() : e.key` for CapsLock safety. Tooltips on all toolbar buttons with shortcut labels. Clipboard test suite (target: 19 tests). |
+| 18 | Context Menu & Inline Tools | 0.5 session | Right-click context menu with 20+ items by node type. Inline tag insertion toolbar (RID, SUB, SRF, TST on text selection). Context menu test suite (target: 21 tests). |
+| 19 | Print/PDF & Export | 0.5 session | Print-ready HTML with professional styling, page breaks, headers. PDF via browser print dialog. Print test suite (target: 28 tests). |
+| 20 | Typography, Plain English & Polish | 1 session | IBM Plex Sans/Mono fonts. WCAG AA contrast. TAG_LABELS dictionary for all user-facing strings (no SGML jargon). Focus-visible outlines. Toast notifications for save. Loading overlays. Tab close confirmation. Preferences dialog with all settings. Tag view safety guard (yellow banner on activation, 5s auto-dismiss). Typography test suite (target: 30 tests). Plain English test suite (target: 29 tests). Polish test suite (target: 35 tests). |
+
+**Tier 3 gate:** Professional UI. ~700 tests, 0 failures.
+
+### Tier 4: E2E Testing & Distribution (Phases 21-27)
+
+Browser testing, production build, and desktop packaging.
+
+| Phase | Name | Est. Effort | Deliverables |
+|-------|------|-------------|--------------|
+| 21 | Playwright E2E Suite | 1 session | 3 spec files: open-render.spec.js (welcome screen, file open, render verification, unit toggle, multi-tab), edit-save.spec.js (edit mode, typing, save, validation dialog), dialogs.spec.js (Reference Wizard, Register, Validate, Publish, QA Reports, Preferences, Find, keyboard shortcuts). Test fixtures (2 .SEC files). Helpers (openFile, save, validate, clickToolbarButton). Target: 36 E2E tests. |
+| 22 | InlineIsland UX Refinement | 0.5 session | InlineIsland single-click editing, visual focus states. Submittal delete from body text. Workflow polish test suite (target: 29 tests). Inline edit test suite (target: 26 tests). |
+| 23 | Gap Fixes & A-Grade Validation | 1 session | Final polish pass addressing all remaining usability gaps. A-grade test suite (target: 39 tests). Gap fixes test suite (target: 34 tests). |
+| 24 | File System Access API | 0.5 session | Wire showOpenFilePicker and showSaveFilePicker into encoding.js (already has the abstraction shell from Phase 4). Save-in-place on Chrome/Edge. Download fallback on Firefox/Safari. Save button shows checkmark when handle exists. FSAPI test suite (target: 32 tests). |
+| 25 | First-Run Onboarding | 0.5 session | OnboardingOverlay component: 3-step walkthrough (Open, Edit, Save). Shown once on first launch, dismissed with "Got it", persisted via IndexedDB. Onboarding test suite (target: 21 tests). |
+
+**Run UX Review #2 after Phase 25. Target: 85+.**
+
+| Phase | Name | Est. Effort | Deliverables |
+|-------|------|-------------|--------------|
+| 26 | Production Build | 0.5 session | Vite config: relative base (./) for portable deployment, React vendor chunk splitting. DEPLOY.md with all hosting options. Build test suite (target: 32 tests). |
+| 27 | Electron Integration & Installer | 1-2 sessions | Wire electronAPI into encoding.js (Electron file I/O path). Native menu commands via IPC. Window title sync. Application icon (256x256 PNG). electron-builder config (NSIS for Windows, DMG for Mac). Build the .exe installer. Smoke test on Windows: install, open file, edit, save, verify window title. Electron test suite (target: 51 + 38 tests). |
+
+**Tier 4 gate:** Distributable application. ~1,400+ tests, 0 failures.
+
+### Tier 5: Release (Phases 28-29)
+
+| Phase | Name | Est. Effort | Deliverables |
+|-------|------|-------------|--------------|
+| 28 | Release Validation | 1.5 sessions | Full Node.js regression (all suites, 0 failures). Round-trip fidelity on all 46 corpus files through the built application. E2E test pass. Manual test checklist (23 items, see Section 8) executed on Windows 11 with Chrome, Edge, and the Electron installer. Proactive bug audit against the 15-pattern catalog (see Appendix B). Documentation review (README, DEPLOY.md, user manual all accurate). Release validation test suite (target: 104 tests). |
+| 29 | User Manual & Distribution | 0.5 session | User manual (.docx, 15 pages). Copy .exe to distribution point. Announce availability. |
+
+**Final gate:** 1,700+ Node.js tests + 36 E2E tests, 0 failures. Proactive bug audit clean. .exe installer verified on Windows. User manual delivered.
+
+---
+
+## 5. Phase Dependency Chain
+
+```
+Phase 1:  Project Scaffold ................. (standalone)
+Phase 2:  SEC Parser & DOM ................. (depends on 1)
+Phase 3:  Browser Renderer ................. (depends on 2)
+Phase 4:  Navigator, Tabs & File I/O ....... (depends on 3)
+Phase 5:  WYSIWYG Text Editing ............. (depends on 4)
+Phase 6:  Structural Editing ............... (depends on 5)
+Phase 7:  Tailoring System ................. (depends on 5)
+Phase 8:  Reference System ................. (depends on 5)
+Phase 9:  Submittal System ................. (depends on 5)
+Phase 10: Revision Tracking ................ (depends on 5)
+Phase 11: Table Editing .................... (depends on 5)
+Phase 12: Bundled Data & Persistence ....... (depends on 8, 9)
+Phase 13: Validation Engine ................ (depends on 5)
+Phase 14: Publish Pipeline ................. (depends on 13)
+--- UX Review #1 ---
+Phase 15: Job/Master & QA Reports ......... (depends on 8, 9, 13)
+Phase 16: Save Encoding & Validation ....... (depends on 13)
+Phase 17: Clipboard & Shortcuts ............ (depends on 5)
+Phase 18: Context Menu & Inline Tools ...... (depends on 6)
+Phase 19: Print/PDF & Export ............... (depends on 14)
+Phase 20: Typography & Polish .............. (depends on all above)
+Phase 21: Playwright E2E Suite ............. (depends on 1)
+Phase 22: InlineIsland UX .................. (depends on 5)
+Phase 23: Gap Fixes & A-Grade .............. (depends on 20)
+Phase 24: File System Access API ........... (depends on 4)
+Phase 25: First-Run Onboarding ............. (depends on 12)
+--- UX Review #2 ---
+Phase 26: Production Build ................. (depends on 1)
+Phase 27: Electron Integration & Installer . (depends on 26, 4)
+Phase 28: Release Validation ............... (depends on all)
+Phase 29: User Manual & Distribution ....... (depends on 28)
+```
+
+Phases 6-11 can proceed in any order (all depend only on Phase 5). Phases 15-19 can proceed in any order. Phases 21-25 can be interleaved with Tier 3 phases. The critical path is: 1 > 2 > 3 > 4 > 5 > [6-14] > 20 > 23 > 26 > 27 > 28 > 29.
+
+---
+
+## 6. Estimated Effort
+
+| Tier | Phases | Sessions | Description |
+|------|--------|----------|-------------|
+| 1: Foundation | 1-4 | 4 | Build system, parser, renderer, navigator |
+| 2: Editing | 5-14 | 11 | All editing features + bundled data + validation + publish (Phase 5 is 2 sessions) |
+| UX Review #1 | - | 0.5 | Review + quick fixes |
+| 3: Polish | 15-20 | 4 | Job/Master, QA, shortcuts, typography, polish |
+| 4: Distribution | 21-27 | 5-7 | E2E tests, FSAPI, onboarding, build, Electron |
+| UX Review #2 | - | 0.5 | Review + quick fixes |
+| 5: Release | 28-29 | 2 | Validation (with proactive audit), manual, distribution |
+| **Total** | **29** | **~27** | |
+
+At 1-2 phases per focused session, this is approximately 22-27 sessions. The original took 30+ sessions for 47 phases, so this represents a ~15% efficiency gain from eliminating rework, partially offset by the additional testing rigor learned from the human testing session.
+
+---
+
+## 7. UX Review Rubric (100 points)
+
+This rubric is applied at two checkpoints: after Phase 14 (target 70+) and after Phase 25 (target 85+). It evaluates the application from the perspective of a non-developer specification engineer.
+
+| Category | Points | What Is Evaluated |
+|----------|--------|-------------------|
+| Installation & First-Run | 20 | Can a non-developer install without a terminal? Packaged installer or one-click web launch? Usable state in under 60 seconds? Sample file or onboarding prompt? |
+| WYSIWYG Editing | 20 | Formatted output as-you-type? Heading levels visually distinct? Inline formatting visible? No raw SGML exposure? |
+| Ergonomics & Workflow | 20 | Toolbar layout familiar? Common actions in 2 clicks? Keyboard shortcuts discoverable? No dead ends? Find-and-replace works? |
+| .SEC File Fidelity | 15 | All SGML elements parsed? Tags/attributes preserved on export? Opens in native SpecsIntact? |
+| Navigation & Structure | 10 | Document outline panel? Jump-to-section? Hierarchy visually clear? |
+| Reference & Submittal Mgmt | 10 | Add/edit/delete refs without SGML? Manage submittals visually? Flags dangling refs? |
+| Error Handling & Feedback | 5 | Plain English errors? Pre-export warnings? Loading/saving states communicated? |
+
+Scoring: 93-100 = A, 85-92 = B, 75-84 = C, 65-74 = D, <65 = F.
+
+Any category scoring below 3 out of 5 equivalent (below 60% of its points) must be fixed before proceeding to the next tier.
+
+---
+
+## 8. Testing Strategy
+
+### Principles
+
+1. Every phase produces a test suite that runs via `node test/[name]-tests.js`.
+2. Full regression (all suites, 0 failures) is required before advancing to the next phase.
+3. Playwright E2E tests are introduced at Phase 21 and grow with each subsequent phase.
+4. Source-scanning tests (grepping code for patterns) are used sparingly - only for structural invariants like round-trip fidelity. Behavioral assertions belong in E2E tests.
+5. Round-trip fidelity (byte-identical parse-serialize) is tested on every corpus file in the parser test suite. This is a hard gate that never relaxes.
+
+### Test budget by tier
+
+| Tier | Node.js Tests | E2E Tests | Cumulative |
+|------|--------------|-----------|------------|
+| 1: Foundation | ~270 | 0 | 270 |
+| 2: Editing | ~500 | 0 | 770 |
+| 3: Polish | ~350 | 0 | 1,120 |
+| 4: Distribution | ~250 | 36 | 1,406 |
+| 5: Release | ~310 | 0 | 1,716 |
+
+### Manual test checklist (Phase 28)
+
+These must be executed by a human on a Windows 11 machine:
+
+1. Browser: `npm run dev` > open localhost:3000 > welcome screen loads
+2. Browser: Open a .sec file via drag-drop > renders with PART headings
+3. Browser: Click paragraph > type text > blur commits changes
+4. Browser: Ctrl+S saves file (download or save-in-place on Chrome/Edge)
+5. Browser: F5 opens validation dialog with results
+6. Browser: Reference Wizard searches and inserts (from bundled data)
+7. Browser: Reference Wizard manual entry works for non-UMRL references
+8. Browser: Submittal Register generates correctly
+9. Browser: Print/Publish produces clean HTML output
+10. Browser: Preferences persist after page reload (IndexedDB)
+11. Browser: Find (Ctrl+F) searches and highlights text; Next finds subsequent matches
+12. Browser: Edit a heading that contains revision markup (ADD/DEL) - no garbled text
+13. Browser: Select tagged text (SUB/RID), click tag button in popup - no corruption; Untag works
+14. Browser: Ctrl+B/I/U with CapsLock on - formatting still applies
+15. Browser: Scroll to middle of document, right-click insert paragraph - scroll position preserved
+16. Browser: Find Next works repeatedly through multiple matches with wrap-around
+17. Browser: Replace All visually updates the document immediately
+18. Electron: Install .exe on clean machine (no Node.js)
+19. Electron: File > Open shows native dialog, opens .sec file
+20. Electron: File > Save writes to original file (no download)
+21. Electron: Window title shows section number
+22. Electron: Menu bar has all items (File, Edit, View, Help)
+23. Interop: Save from Modern, open in legacy SpecsIntact (no errors)
+
+---
+
+## 9. Session Strategy
+
+### Session structure
+
+Each session follows this sequence:
+
+1. State the phase number and goal.
+2. Provide the actual source files being modified (not verbal descriptions).
+3. Implement the phase deliverables.
+4. Run the new test suite (must pass).
+5. Run full regression (all existing suites, 0 failures).
+6. Run Vite build (must succeed, bundle size within budget).
+7. Deploy modified files to the output directory.
+8. Update run-tests.sh and README with new suite and counts.
+
+### Context management
+
+At the start of each session, provide:
+- The phase number and goal from this plan.
+- The current file manifest (which files exist, line counts).
+- Any files being modified (full content, not descriptions).
+- The previous session's test count and any known issues.
+
+For complex phases (5, 8, 9, 14), provide only the files being modified plus their direct imports. Do not load files that will not change.
+
+### Rollback protocol
+
+If a phase introduces regressions that cannot be fixed within the session:
+1. Revert to the pre-phase working directory.
+2. Identify the root cause in the session notes.
+3. Re-attempt in the next session with a revised approach.
+
+This has never been needed in 47 phases, but the protocol exists.
+
+---
+
+## 10. Key Decisions Explained
+
+### Why Vite (not Webpack, not Parcel)
+
+Vite supports React JSX out of the box, has zero-config defaults, provides sub-second hot reload, and produces optimized production bundles with chunk splitting. The project uses simple patterns (no decorators, no complex imports) that work with Vite's defaults.
+
+### Why Electron (not Tauri, not PWA)
+
+The target users are on government Windows machines where PWA installation is often blocked by policy. Tauri requires Rust toolchain installation. Electron produces a standard Windows installer that IT teams understand. The trade-off (larger binary size) is acceptable for an intranet-distributed application.
+
+### Why custom XML parser (not DOMParser)
+
+Browser DOMParser normalizes whitespace, reorders attributes, and converts encodings - all of which break round-trip fidelity. The custom lexer preserves exact byte sequences for the 46 corpus files tested. This is a non-negotiable requirement for SpecsIntact interoperability.
+
+### Why contentEditable (not ProseMirror, not Slate)
+
+The document model is the SEC DOM, not a ProseMirror schema. contentEditable with a reconstructFromDOM bridge lets us project from the SEC DOM to HTML and reconstruct back on blur. This avoids the complexity of translating SEC's 53 tags into a ProseMirror schema while maintaining the exact same behavior the user sees in legacy SpecsIntact. The trade-off (contentEditable quirks) is manageable because the edit regions are tightly scoped (individual paragraphs, not the whole document).
+
+**Critical safety rules for contentEditable (learned from testing):**
+
+- All inline semantic tags (RID, SUB, SRF, ADD, DEL, HLS, TAI) must render as `contentEditable={false}` spans with `data-sec-uid` in edit mode. This prevents `document.execCommand` from corrupting structured content.
+- Every `document.execCommand()` call must be guarded: walk up from `sel.anchorNode` checking `contentEditable`; if `false` is hit before `true`, skip the command or route the operation through the SEC DOM via `mutate()`.
+- Every toolbar/popup button that depends on an active selection must use `onMouseDown={e=>e.preventDefault()}` to prevent focus loss from the contentEditable region.
+- Text extraction from SEC nodes that may contain revision markup (ADD/DEL) must use `effectiveText()` (which skips DEL children), never `nText()` or `.text()`.
+- The document container's React `key` includes a version counter that changes on every edit. Scroll position must be saved before and restored after re-renders using a ref and `requestAnimationFrame`.
+- The undo stack must push the post-edit state (call `fn()` then `snap()`), not the pre-edit state.
+
+### Why INI parser at build-time only
+
+section.ini is a SpecsIntact configuration file that defines margins, colors, entities, and nesting rules. It changes rarely (only when SpecsIntact is updated). Parsing it at runtime adds complexity (runtime INI parser in the bundle) for no user benefit. Instead, a build-time script reads section.ini and produces section-config.json, which is bundled as a static asset.
+
+### Why one file-I/O abstraction
+
+File I/O has three environments: Electron (Node.js fs via IPC), Chrome/Edge (File System Access API), and fallback (Blob download). Each environment has different APIs for open, save, and save-as. Rather than branching in app.jsx, a single module (encoding.js) exports `openFiles()`, `performSave()`, and `saveAs()` that internally detect the environment and dispatch. app.jsx never needs to know which environment it is running in.
+
+---
+
+## 11. Risk Register
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|-----------|--------|------------|
+| contentEditable browser quirks (paste formatting, spell check DOM changes) | Medium | Medium | Scope contentEditable to individual paragraphs. Strip HTML on paste. Spell check attribute controlled by preference. reconstructFromDOM handles unknown spans by unwrapping. |
+| `document.execCommand` corruption inside non-editable regions | High | High | Guard every execCommand call site. Walk up from selection anchor checking contentEditable boundaries. If `false` is hit before `true`, skip the command or route through SEC DOM. This was the single largest bug class found in testing (8 of 23 bugs). |
+| Revision markup (ADD/DEL) in headings breaks text extraction | High | Medium | Use `effectiveText()` (skips DEL children) for all text reads from SEC nodes. Never use `nText()` or `.text()` on TTL, SUB, or other nodes that could contain revision markup. |
+| React key-based re-render resets scroll/focus | Medium | High | Never include a mutation counter in a React `key` without scroll restoration. Use `scrollPosRef` + `requestAnimationFrame` to restore position after structural re-renders. |
+| Round-trip fidelity regression | Low | Critical | Parser test suite runs on every corpus file. Any byte-level difference is a hard failure. Never bypass this gate. |
+| Electron packaging complexity | Medium | Low | Minimal wrapper: file dialogs and window chrome only. No native modules. Unsigned initial build (SmartScreen workaround documented). Custom `app://` protocol required for Vite ES module loading. |
+| Vite build breaks with new dependencies | Low | Low | Project uses only React, iconv-lite, and jsdom. No complex import chains. |
+| Government network blocks npm install for end users | High | None | End users never run npm. They receive a pre-built .exe installer or access a hosted web URL. npm is developer-only. |
+| UMRL/UMSL data becomes outdated | Medium | Low | Bundled data can be overridden by manual file loading. Updated data files can be swapped in public/data/ and rebuilt. |
+| Browser spell check modifies DOM in unexpected ways | Low | Medium | Tested empirically in Phase 5. If problematic, disable on specific elements. Browser spell checkers typically use CSS pseudo-elements that do not persist in the DOM on blur. |
+| Context loss during long Claude sessions | Medium | Medium | Provide file manifests. Work on one file at a time. Full regression after every phase catches regressions even when context is incomplete. |
+| Keyboard shortcuts fail with CapsLock | Medium | Low | All handlers normalize `e.key` with `toLowerCase()`. Never compare raw `e.key` against lowercase letters. |
+
+---
+
+## 12. Post-Release Roadmap (Future Phases)
+
+These are not in scope for the initial release but represent the natural next steps:
+
+| Future Phase | Description | Prerequisite |
+|-------------|-------------|-------------|
+| Code signing | Sign the Windows installer to eliminate SmartScreen warnings | Certificate purchase |
+| Auto-update | Electron auto-update via update server | Hosting infrastructure |
+| Online UMRL/UMSL updates | Check for newer reference data on launch | Network endpoint |
+| Multi-section batch operations | Open all sections in a Master, batch validate, batch publish | Performance testing on large section sets |
+| Diff/compare | Side-by-side comparison of two .SEC file versions | Additional UI panel |
+| Collaborative editing | Real-time multi-user editing via CRDT or OT | Server architecture |
+| Plugin system | User-extensible validation rules and report formats | API stabilization |
+
+---
+
+## Appendix A: Lessons Learned (from the original 47-phase build)
+
+These lessons directly informed every decision in this plan.
+
+| Lesson | How It Changed This Plan |
+|--------|-------------------------|
+| Retrofitting a build system across 14 modules and 33 test files was a full session of pure rework | Build system is Phase 1 |
+| A 2,245-line monolith hit context limits and required a decomposition phase | Module structure defined in Phase 1 |
+| Manually loading UMRL/UMSL every development session was friction that accumulated over 25+ phases | Bundled data at Phase 12, immediately after the features that need it |
+| Source-scanning tests broke every time code was restructured, requiring repeated test fixes | Minimal source-scanning; behavioral tests via Playwright |
+| The UX review at Phase 42 found five issues that would have been trivial to fix at Phase 15 | Two UX review checkpoints, not one |
+| The Electron shell was created in Phase 41 but not wired to the renderer until Phase 43 | Electron scaffolded in Phase 1, wired incrementally |
+| The INI parser was built as a runtime module but is only used at build time | Build-time only, excluded from bundle |
+| Three separate file-I/O implementations (browser download, FSAPI, Electron) evolved across four phases | One abstraction from Phase 4 |
+| Round-trip fidelity is the single most important technical requirement and must never be compromised | Parser test suite is a hard gate on every phase |
+| Phased development with test-first validation works extremely well for AI-assisted development | Retained. One phase per session. Full regression before advancing. |
+| Providing actual source files (not verbal descriptions) produces better results from Claude | Explicit in session strategy |
+| document.execCommand corrupts content inside contentEditable={false} regions - 8 of 23 bugs were this class | Mandatory execCommand guard pattern from Phase 5 (see Appendix B, Pattern 10) |
+| nText() and .text() on nodes with ADD/DEL revision markup concatenate both versions, breaking article finding | effectiveText() required from Phase 5 (see Appendix B, Pattern 5) |
+| Keyboard shortcuts fail with CapsLock because e.key reports uppercase letters | All handlers normalize with toLowerCase() (see Appendix B, Pattern 3) |
+| React key={...ver} causes full DOM destruction and scroll reset on every edit | scrollPosRef save/restore pattern required from Phase 5 (see Appendix B, Pattern 9) |
+| Toolbar buttons steal focus from contentEditable, making formatting commands fail silently | onMouseDown={preventDefault} on all formatting buttons from Phase 5 (see Appendix B, Pattern 4) |
+| Undo stack pushing pre-edit state makes redo appear to do nothing | snap() must be called after fn(), not before (see Appendix B, Pattern 12) |
+| A proactive bug audit after testing caught 16 additional latent sites across 2 vulnerability patterns | Proactive audit added to Phase 28 release validation |
+
+---
+
+## Appendix B: Bug Pattern Catalog
+
+These 15 patterns were extracted from the 23 bugs found during human testing of v2.0.0. Every pattern has been verified clean in the current codebase. This catalog should be used as a checklist during Phase 28 (Release Validation) and whenever new code is added.
+
+| # | Pattern | Example Bug(s) | What To Check |
+|---|---------|----------------|---------------|
+| 1 | Temporal dead zone / declaration order | BUG-001, 002 | Every `useEffect`, callback, and event handler must only reference `const`/`let` variables declared above them in the file. |
+| 2 | Private symbol leakage | BUG-003 | No module consumer should access internal `_variables` directly. Use exported getters/setters. |
+| 3 | Keyboard event case sensitivity | BUG-006, 007 | All `e.key` comparisons for letter keys must normalize with `e.key.length===1 ? e.key.toLowerCase() : e.key`. |
+| 4 | Focus loss from toolbar buttons | BUG-008 | Every button whose `onClick` depends on an active selection inside a contentEditable region must have `onMouseDown={e=>e.preventDefault()}`. |
+| 5 | Revision markup text extraction | BUG-009, 011 | Every call to `nText()`, `.text()`, or `textContent` on a node that could contain ADD/DEL children must use `effectiveText()` instead. |
+| 6 | Stale/divergent state objects | BUG-010 | Settings maintained in both standalone `useState` and a composite object must sync in both directions. |
+| 7 | DOM hierarchy assumptions | BUG-017 | Functions scanning for elements must not assume they are direct children. Use recursive walkers when the spec allows nesting inside wrappers like TXT. |
+| 8 | Missing/implicit imports | BUG-018 | No `React.*` references without imports. Check for any unimported symbols across all files. |
+| 9 | React key-driven DOM destruction | BUG-021 | Any `key={...}` prop that includes a mutation counter must have scroll/focus restoration logic. |
+| 10 | execCommand inside contentEditable=false | BUG-022, 023 | Every `document.execCommand()` call must guard against non-editable regions by walking up from the selection anchor. |
+| 11 | Selection tracking via getSelection() | BUG-012 | Features tracking position across operations must use a persistent ref, not `window.getSelection()` which resets on DOM changes. |
+| 12 | SEC DOM mutation without visual refresh | BUG-013 | Every code path that modifies SEC DOM nodes must trigger a React re-render afterward. Undo snap must capture post-edit state. |
+| 13 | execCommand non-toggle behavior | BUG-014 | Formatting commands assumed to toggle (especially `hiliteColor`) need explicit "is already applied?" checks. |
+| 14 | Scroll/UI timing vs React batching | BUG-016 | `scrollIntoView()`, `focus()`, and similar imperative DOM calls after state updates need `setTimeout` or `requestAnimationFrame`. |
+| 15 | Append instead of sorted insert | BUG-015, 019 | Any function inserting into an ordered list must scan for the correct position, not append. |
+
+Reference: Full bug details in `docs/bug-tracker.md`.
+
+---
+
+*End of plan.*

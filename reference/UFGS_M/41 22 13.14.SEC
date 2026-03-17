@@ -1,0 +1,2334 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-41 22 13.14 (November 2019)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 1 - 02/21</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-41 22 13.14 (April 2008)<BRK/>UFGS-41 22 13.13 (April 2008)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 41 22 13.14</SCN><BRK/>
+<BRK/>
+<STL>BRIDGE CRANES, OVERHEAD ELECTRIC, TOP RUNNING</STL><BRK/>
+<DTE>11/19, CHG 1: 02/21</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>top running overhead electric traveling (OET) cranes 
+with top running bridges and trolleys, Crane Manufacturers Association of America (CMAA) 70 service class A, B, 
+C, D, E, and F and with capacities less than<TAI OPT="TONS"><MET> 27 metric ton</MET><ENG> 30 ton</ENG></TAI><TAI OPT="KILOGRAM-POUNDS"><MET> 27,000 kg</MET><ENG> 60,000 pounds</ENG></TAI>, suitable for indoor 
+or outdoor use in general purpose service, ordnance handling service, or hazardous area environments</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>This guide specification incorporates the design criteria and requirements identified in NAVCRANECEN INSTRUCTION 
+11450.2A (December 2018).</NPR><BRK/>
+<BRK/>
+<NPR>This guide specification includes tailoring options for NAVFAC, pounds (per NAVFAC P-307), and tons.  The NAVFAC 
+tailoring option also includes requirements specific to the Navy and Marine Corps.  Crane procurements for the 
+Navy and Marine Corps must select the NAVFAC tailoring option.</NPR><BRK/>
+<BRK/>
+<NPR>Crane tailoring options are included for the Air Force, outdoor, ordnance/explosives handling, or hazardous (explosive) 
+environments.  Only one unique specialized application tailoring option should be selected at a time, however 
+multiple can be used with additional specific project editing in the resulting sections.  "General Purpose Service" 
+is the default crane condition and that tailoring option should be selected if the crane is not to be used in 
+any specialized applications.  When "Maximum Anti-Spark" protection is required, the "Minimum Anti-Spark" tailoring 
+option MUST ALSO be selected as the maximum requirements are in addition to the minimum requirements.</NPR><BRK/>
+<BRK/>
+<NPR>Selection or deselection of a tailoring option (select view-tailoring options) will include or exclude that option 
+in the section.  Specific project editing is still required for the resulting section.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Use this guide specification to specify cranes that are procured as part of a building construction contract for 
+such applications as machine shops, warehouses, and other areas, including those that do require specialized weight 
+handling equipment.</NPR><BRK/>
+<BRK/>
+<NPR>Explanations of CMAA service classifications A through E are covered in the notes portion of the "Classification" 
+sub-section of "OET Design Criteria".  The minimum allowable classification for Ordnance/Explosive Handling is 
+CMAA service class D.<TAI OPT="NAVFAC">  Navy Crane Center minimum requirement is CMAA service class C.</TAI></NPR><BRK/>
+<TAI OPT="NAVFAC"><BRK/>
+<NPR>Forward all procurement of OET systems at Naval Shore based activities with rated capacities of<MET> 9000 kg</MET><ENG> 20,000 
+pounds</ENG> or greater or for use in specialized applications (e.g. ordnance handling, molten metal handling, special 
+purpose service as defined in NAVSEA Publication 0989-030-7000, hazardous/explosive area environments, or precision 
+handling operations requiring complex or synchronized lifting capacity) to: Naval Facilities Engineering Systems 
+Command, Navy Crane Center, Building 491, Norfolk Naval Shipyard, Portsmouth, Va., 23709-5000.  (See NAVCRANECEN 
+INSTRUCTION 11450.1C of 11 JULY 2019).</NPR><BRK/></TAI>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification covers cranes with top-running bridge and trolley, multiple-girder, with CMAA 70 service 
+class of A through E.</NPR><BRK/>
+<BRK/>
+<NPR>Control types and systems may be specified as follows:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Remote, Cab, or Pendant Crane Controls or a combination of the three can be provided.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Alternating current (AC) control systems must be specified. The vast majority of new cranes are AC powered 
+and AC controlled.</NPR><BRK/>
+<BRK/>
+<NPR>Terminology: - refer to DEFINITIONS in this specification.</NPR><BRK/>
+<BRK/>
+<NPR>a.  Top-running bridge is a bridge which travels on the top surface of rails of a fixed runway structure.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Top-running Trolley is a trolley which travels on the top surfaces of rails of the bridge girder(s).</NPR><BRK/>
+<BRK/>
+<NPR>c.  Ordnance/Explosives Handling – Cranes handling palletized or unpackaged ammunition, missiles, torpedoes, and 
+other types of ordnance. Minimum requirement of CMAA service class D.</NPR><BRK/>
+<BRK/>
+<NPR>d.  Hazardous (Explosive) Environments – Cranes operating in hazardous environments as defined by the cognizant 
+activity safety office shall be equipped with electrical safety features that meet NEC Article 500.  The activity 
+safety office must identify the specific Class, Division, and Group, as well as the envelope that the hazard exists, 
+to allow proper design.  Materials for mechanical components must be chosen to minimize the potential for sparking, 
+typically bronze, stainless steel, or aluminum.  Hazardous environments are split into two groups: minimum anti-spark 
+protection and maximum anti-spark protection.</NPR><BRK/>
+<BRK/>
+<NPR>d.1.  Minimum Anti-Spark Protection applies when only the load block enters the hazardous area.</NPR><BRK/>
+<BRK/>
+<NPR>d.2.  Maximum Anti-Spark Protection applies when the hazardous area envelops the entire crane.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The RFP must provide the relevant dimensions and load data for the crane.  See "Crane Inquiry Data Sheet" 
+in CMAA 70 section 6.1 or see "Crane Information Form for Over Head Electric Traveling Cranes(s)" pages 6 and 
+7 at the following Navy Crane Center link:<BRK/>
+<BRK/>
+<URL HREF="https://www.navfac.navy.mil/navfac_worldwide/specialty_centers/ncc/about_us/resources/downloads.html">https://www.navfac.navy.mil/navfac_worldwide/specialty_<BRK/>
+centers/ncc/about_us/resources/downloads.html</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the following information on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Complete details of plan, elevations and sections of crane, including building clearances. </NPR><BRK/>
+<BRK/>
+<NPR>2.  Maximum span of runway girder.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Runway rail size.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Runway girder size.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Channel cap size.</NPR><BRK/>
+<BRK/>
+<NPR>6.  Size and location of crane stops.</NPR><BRK/>
+<BRK/>
+<NPR>7.  Electrical junction box location (including mounting height).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN GEAR MANUFACTURERS ASSOCIATION (AGMA)</ORG><BRK/><BRK/><RID>AGMA 908</RID><RTL>(1989B; R 1999) Information Sheet: Geometry Factors for Determining the Pitting Resistance and Bending Strength of Spur, Helical and Herringbone Gear Teeth</RTL><BRK/><BRK/><RID>ANSI/AGMA 2001</RID><RTL>(2004D; R 2010) Fundamental Rating Factors and Calculation Methods for Involute Spur and Helical Gear Teeth</RTL><BRK/><BRK/><RID>ANSI/AGMA 2015-1</RID><RTL>(2001A; R 2014) Accuracy Classification System - Tangential Measurements for Cylindrical Gears</RTL><BRK/><BRK/><RID>ANSI/AGMA 6013</RID><RTL>(2006A; R 2016) Standard for Industrial Enclosed Gear Drives</RTL><BRK/><BRK/><RID>ANSI/AGMA 6113</RID><RTL>(2016B) Standard for Industrial Enclosed Gear Drives (Metric Edition)</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN INSTITUTE OF STEEL CONSTRUCTION (AISC)</ORG><BRK/><BRK/><RID>AISC 360</RID><RTL>(2016) Specification for Structural Steel Buildings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF CIVIL ENGINEERS (ASCE)</ORG><BRK/><BRK/><RID>ASCE 7-16</RID><RTL>(2017; Errata 2018; Supp 1 2018) Minimum Design Loads and Associated Criteria for Buildings and Other Structures</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B30.2</RID><RTL>(2022) Overhead and Gantry Cranes (Top Running Bridge, Single or Multiple Girder, Top Running Trolley Hoist)</RTL><BRK/><BRK/><RID>ASME B30.10</RID><RTL>(2024) Hooks</RTL><BRK/><BRK/><RID>ASME HST-4</RID><RTL>(2021) Performance Standard for Overhead Electric Wire Rope Hoists</RTL><BRK/><BRK/><RID>ASME NOG-1</RID><RTL>(2020) Rules for Construction of Overhead and Gantry Cranes (Top Running Bridge, Multiple Girder)</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF SAFETY PROFESSIONALS (ASSP)</ORG><BRK/><BRK/><RID>ASSP Z359</RID><RTL>(2013) Fall Protection Code</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/><RID>AWS D14.1/D14.1M</RID><RTL>(2019) Specification for Welding of Industrial and Mill Cranes and Other Material Handling Equipment</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A275/A275M</RID><RTL>(2023) Standard Practice for Magnetic Particle Examination of Steel Forgings</RTL><BRK/><BRK/><RID>ASTM A668/A668M</RID><RTL>(2023) Standard Specification for Steel Forgings, Carbon and Alloy, for General Industrial Use</RTL><BRK/><BRK/><RID>ASTM A931</RID><RTL>(2008; R 2013) Standard Test Method for Tension Testing of Wire Ropes and Strand</RTL><BRK/><BRK/><RID>ASTM A1023/A1023M</RID><RTL>(2021) Standard Specification for Stranded Carbon Steel Wire Ropes for General Purposes</RTL><BRK/><BRK/><RID>ASTM E125</RID><RTL>(1963; R 2023) Photographs for Magnetic Particle Indications on Ferrous Castings</RTL><BRK/><BRK/><RID>ASTM E543</RID><RTL>(2021) Standard Specification for Agencies Performing Non-Destructive Testing</RTL><BRK/><BRK/><RID>ASTM E1417/E1417M</RID><RTL>(2016) Standard Practice for Liquid Penetrant Testing</RTL><BRK/><BRK/><RID>ASTM F3125/F3125M</RID><RTL>(2019) Standard Specification for High Strength Structural Bolts and Assemblies, Steel and Alloy Steel, Heat Treated, Inch Dimensions 120 ksi and 150 ksi Minimum Tensile Strength, and Metric Dimensions 830 MPa and 1040 MPa Minimum Tensile Strength</RTL><BRK/><BRK/></REF><REF><ORG>CRANE MANUFACTURERS ASSOCIATION OF AMERICA (CMAA)</ORG><BRK/><BRK/><RID>CMAA 70</RID><RTL>(2020) Specification for Top Running Bridge and Gantry Type Multiple Girder Electric Overhead Traveling Cranes</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA ICS 2</RID><RTL>(2000; R 2020) Industrial Control and Systems Controllers, Contactors, and Overload Relays Rated 600 V</RTL><BRK/><BRK/><RID>NEMA ICS 5</RID><RTL>(2017) Industrial Control and Systems:  Control Circuit and Pilot Devices</RTL><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/><RID>NEMA ICS 8</RID><RTL>(2011) Crane and Hoist Controllers</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>RESEARCH COUNCIL ON STRUCTURAL CONNECTIONS (RCSC)</ORG><BRK/><BRK/><RID>RCSC A348</RID><RTL>(2020) RCSC Specification for Structural Joints Using High-strength Bolts</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY FOR PROTECTIVE COATINGS (SSPC)</ORG><BRK/><BRK/><RID>SSPC SP 6/NACE No.3</RID><RTL>(2007) Commercial Blast Cleaning</RTL><BRK/><BRK/></REF><REF><ORG>U.S. AIR FORCE (USAF)</ORG><BRK/><BRK/><RID>AFMAN 91-118</RID><RTL>(2010) Safety Design and Evaluation Criteria for Nuclear Weapon Systems</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>29 CFR 1910</RID><RTL>Occupational Safety and Health Standards</RTL><BRK/><BRK/><RID>29 CFR 1910.147</RID><RTL>The Control of Hazardous Energy (Lock Out/Tag Out)</RTL><BRK/><BRK/><RID>29 CFR 1910.179</RID><RTL>Overhead and Gantry Cranes</RTL><BRK/><BRK/><RID>29 CFR 1910.306</RID><RTL>Specific Purpose Equipment and Installations</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 50</RID><RTL>(2024) UL Standard for Safety Enclosures for Electrical Equipment, Non-Environmental Considerations</RTL><BRK/><BRK/><RID>UL 489</RID><RTL>(2025) UL Standard for Safety Molded-Case Circuit Breakers, Molded-Case Switches and Circuit-Breaker Enclosures</RTL><BRK/><BRK/><RID>UL 943</RID><RTL>(2016; Reprint Aug 2025) UL Standard for Safety Ground-Fault Circuit-Interrupters</RTL><BRK/><BRK/><RID>UL 1004-1</RID><RTL>(2012; Reprint Jan 2026) UL Standard for Safety Rotating Electrical Machines - General Requirements</RTL><BRK/><BRK/><RID>UL 1449</RID><RTL>(2021; Reprint Oct 2025) UL Standard for Safety Surge Protective Devices</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Bridge Crane:  That part of an overhead crane system consisting of girder(s), end trucks, end ties, walkway, and drive mechanism which 
+carries the trolley(s) and travels along the runway rails parallel to the runway.</OLI><BRK/>
+<BRK/>
+<OLI>Crane Runway:  The track system along which the crane operates horizontally, including track hangar rods, track connection devices, and 
+runway structural supports.</OLI><BRK/>
+<BRK/>
+<OLI>Dead Loads:  The loads on a structure which remain in a fixed position relative to the structure.</OLI><BRK/>
+<BRK/>
+<OLI>Girder:  The principal horizontal beam of the crane bridge.  It is supported by the crane end trucks.</OLI><BRK/>
+<BRK/>
+<OLI>Lifted Load:  The load consisting of the rated load and the weight of lifting devices attached to the crane such as the load block, bucket, 
+or other supplemental devices.</OLI><BRK/>
+<BRK/>
+<OLI>Pendant:  A control for a hoist and a crane.  The pendant hangs from the hoist or the crane by a cable at a height that is easy for the 
+operator to reach.</OLI><BRK/>
+<BRK/>
+<OLI>Rated Load:  The maximum working load suspended under the load hook.</OLI><BRK/>
+<BRK/>
+<OLI>Standard Commercial Cataloged Product:  A product which is currently being sold, or previously has been sold, in substantial quantities 
+to the general public, industry or Government in the course of normal business operations.  Models, samples, prototypes or experimental 
+units do not meet this definition.  The term "cataloged" as specified in this section is defined as "appearing" on the manufacturer's published 
+product data sheets.  These data sheets must have been published or copyrighted prior to the issue date of this solicitation and have a 
+document identification number or bulletin number.</OLI><BRK/>
+<BRK/>
+<OLI>Top Running Crane:  An electric overhead traveling crane that runs on rails on top of support girders.</OLI><BRK/>
+<BRK/>
+<OLI>Trolley Load:  Weight of the trolley and its associated equipment carried by the trolley wheels.</OLI><BRK/>
+<BRK/>
+<OLI>Operating Environments:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">General Purpose Service:  This applies to most cranes and are, in large measure, the manufacturers' standard designs.  Cranes 
+should be classified as General Purpose Service if they are operating in routine environments.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Ordnance/Explosives Handling:  Cranes handling palletized or unpackaged ammunition, missiles, torpedoes, and other types of ordnance. 
+Minimum requirement of CMAA service class D.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Hazardous (Explosive) Environments:  Cranes operating in hazardous environments as defined by the cognizant activity safety office 
+must be equipped with electrical safety features that meet NEC Article 500.  The activity safety office will identify the specific 
+Class, Division, and Group, as well as the envelope that the hazard exists, to allow proper design and must list these in this 
+section.  Choose materials for mechanical components to minimize the potential for sparking, typically bronze, stainless steel, 
+or aluminum.  Hazardous environments are split into two groups: minimum anti-spark protection and maximum anti-spark protection.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Minimum Anti-Spark Protection is used when only the load block enters the explosive area.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Maximum Anti-Spark Protection is used when the hazardous area envelops the entire crane.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remove the following sentence if the runway rail is not to be installed as a part of the crane procurement.  
+If rail is to be installed, ensure Section <SRF>05 12 00</SRF> STRUCTURAL STEEL is included in the Request for Proposal (RFP).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>The requirements for the crane runway system and rail supporting structures are specified in Section <SRF>05 12 00</SRF> STRUCTURAL STEEL, and must conform 
+to <RID>AISC 360</RID>.</TXT><BRK/>
+<BRK/>
+]<SPT><TTL>Crane Design Criteria</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Clearly show the area of hook coverage, runway dimensions, rail size, hook vertical travel, clear hook 
+height, and lifting capacity on drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Cranes will operate in the given spaces and match the runway dimensions and rails indicated.  Hook coverage, hook vertical travel, clear hook height, 
+lifting capacity, and load test weight must not be less than that indicated.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Add number of cranes, building name, and crane rated load capacity in<MET> kilograms</MET><ENG> pounds</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include the following:  Number of cranes [_____], located in building identified as [_____], with the capacity expressed in [_____]<TAI OPT="TONS"><MET> metric tons</MET><ENG>
+ tons</ENG></TAI><TAI OPT="KILOGRAM-POUNDS"><MET> kilograms</MET><ENG> pounds</ENG></TAI>, for each overhead electric traveling (OET) crane.  Also clearly locate and identify each multiple girder hoist and system 
+components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Classification</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:<TAI OPT="NAVFAC">  For NAVFAC, specify CMAA service class C or higher.</TAI>  For Ordnance/Explosives Handling specify CMAA service 
+class D or higher.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to NFPA 70 for environmental requirements.  Make a selection from the following CMAA 70 service classifications:</NPR><BRK/>
+<BRK/>
+<NPR>Class A (Standby or Infrequent Service):  This service covers cranes which may be used in installations such as 
+powerhouses, public utilities, turbine rooms, motor rooms and transformer stations where precise handling of equipment 
+at slow speeds with long, idle periods between lifts are required.  Capacity loads may be handled for initial 
+installation of equipment and for infrequent maintenance.</NPR><BRK/>
+<BRK/>
+<NPR>Class B (Light Service):  This service covers cranes which may be used in repair shops, light assembly operations, 
+service buildings, and light warehousing where service requirements are light and the speed is slow.  Loads may 
+vary from no load to occasional full rated loads with 2 to 5 lifts per hour, averaging<MET> 3 m</MET><ENG> 10 feet</ENG> per lift.</NPR><BRK/>
+<BRK/>
+<NPR>Class C (Moderate Service):  This service covers cranes which may be used in machine shops of paper mill machine 
+rooms, where service requirements are moderate.  In this type of service, the crane will handle loads which average 
+50 percent of the rated capacity with 5 to 10 lifts per hour, averaging<MET> 4.5 m</MET><ENG> 15 feet</ENG>, not over 50 percent of 
+the lift at rated capacity.</NPR> <BRK/>
+<BRK/>
+<NPR>Class D (Heavy-Duty):  This service covers cranes which may be used in heavy machine shop, foundries, fabricating 
+plants, steel warehouses, container yards, lumber mills, and standard duty bucket and magnet operations where 
+heavy-duty production is required.  In this type of service, loads approaching 50 percent of the rated capacity 
+will be handled constantly during the working period.  High speeds are desirable for this type of service with 
+10 to 20 lifts per hour averaging<MET> 4.5 m</MET><ENG> 15 feet</ENG>, not over 65 percent of the lifts at rated capacity.  This service 
+is the minimum requirement for Ordnance/Explosive Handling.</NPR><BRK/>
+<BRK/>
+<NPR>Class E (Severe Service):  This type of service requires a crane capable of handling loads approaching rated capacity 
+throughout its life.  Applications may include magnet, bucket, magnet/bucket combination cranes for scrap yards, 
+cement mills, lumber mills, fertilizer plants, and container handling with 20 or more lifts per hour at or near 
+the rated capacity.</NPR><BRK/>
+<BRK/>
+<NPR>Class F (Continuous Severe Service):  This type of service requires a crane capable of handling loads approaching 
+rated capacity continuously under severe service conditions throughout its life.  Applications may include custom 
+designed specialty cranes essential to performing the critical work tasks affecting the total production facility.  
+These cranes must provide the highest reliability with special attention to ease of maintenance features.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Operating Environments</NPR><BRK/>
+<BRK/>
+<NPR>General Purpose Service:  This applies to most cranes and are, in large measure, the manufacturers' standard designs.  
+Cranes should be classified as General Purpose Service if they are operating in routine environments.  Cranes 
+operating in non-routine environments or unique, dedicated service should meet the requirements of one of the 
+below Specialized Applications:</NPR><BRK/>
+<BRK/>
+<NPR>Ordnance/Explosives Handling:  Cranes handling palletized or unpackaged ammunition, missiles, torpedoes, and other 
+types of ordnance.  Minimum requirement of CMAA service class D.</NPR><BRK/>
+<BRK/>
+<NPR>Hazardous (Explosive) Environments:  Cranes operating in hazardous environments as defined by the cognizant activity 
+safety office must be equipped with electrical safety features that meet NEC Article 500.  The activity safety 
+office must identify the specific Class, Division, and Group, as well as the envelope that the hazard exists, 
+to allow proper design and must list these in this section.  Materials for mechanical components must be chosen 
+to minimize the potential for sparking, typically bronze, stainless steel, or aluminum.  Hazardous environments 
+are split into two groups: minimum anti-spark protection and maximum anti-spark protection.</NPR><BRK/>
+<BRK/>
+<NPR>a.  Minimum Anti-Spark Protection is used when only the load block enters the explosive area.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Maximum Anti-Spark Protection is used when the hazardous area envelops the entire crane.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide top running overhead electric traveling (OET) multiple girder crane[s] conforming to <RID>CMAA 70</RID> service class [A] [B] [C] [D] [E] [F] for 
+operation in an [indoor] [outdoor] environment, [general purpose] [ordnance handling] [hazardous area] service, meeting the requirements of <RID>ASME B30.2</RID>
+, with an ambient temperature range of [_____] to [_____] degrees<MET> Celsius</MET><ENG> Fahrenheit</ENG>.  <TAI OPT="MINHAZ">This crane must operate in an NEC Class [_____], Division 
+[_____], Group [_____] hazardous area.  Hazardous protection is required for the [full height of the crane][18 inches above ground level][_____].  </TAI>
+The crane span must be [_____]<MET> meters</MET><ENG> feet</ENG> with a vertical lift of [_____]<MET> meters</MET><ENG> feet</ENG> and as specified herein.</TXT><BRK/>
+<BRK/>
+<TXT>The crane must be [pendant controlled] [radio controlled] [cab controlled] and operate in the spaces and within the loading conditions indicated.[  
+The pendant controller must be mounted on a separate festooned cable system from the trolley power supply.]  The crane must operate on [_____]-volts 
+AC, [60] [50] [_____] Hz, [single] [three] phase power source.  Maximum crane wheel loads (without impact) due to dead, trolley, and lifted loads, 
+with the trolley in any position, must not cause a more severe loading condition in the runway support structure than that produced by the design 
+wheel loads and spacing indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rated Capacity and Speeds</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify the rated speed under full load for the main hoist, auxiliary hoist (if specified), bridge, and 
+trolley.</NPR><BRK/>
+<BRK/>
+<NPR>1.  Hoist:  Select hoist speed which conforms to the recommendations of CMAA 70 or ASME tables, based on capacity.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Trolley:  Trolley travel speed must conform to the recommendations of CMAA 70, based on capacity.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Bridge:  Bridge travel speed must conform to the suggested speeds per minute for floor controlled cranes as 
+stipulated in CMAA 70.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide crane with rated capacity of [_____]<TAI OPT="TONS"><MET> metric tons</MET><ENG> tons</ENG></TAI><TAI OPT="KILOGRAM-POUNDS"><MET> kilograms</MET><ENG> pounds</ENG></TAI>.[  Provide auxiliary hoist with [_____]<TAI OPT="TONS"><MET> metric tons</MET><ENG> tons</ENG></TAI><TAI OPT="KILOGRAM-POUNDS"><MET> kilograms</MET><ENG>
+ pounds</ENG></TAI> capacity.]  Lower load block or assembly of hook, swivel bearing sheaves, pins, and frame suspended by the hoisting ropes are not considered 
+part of the rated capacity.</TXT><BRK/>
+<BRK/>
+<TXT>Rated (maximum) speeds plus or minus 10 percent<MET> (in meters/second)</MET><ENG> (feet/min)</ENG> for the main hoist, [auxiliary hoist,] bridge, and trolley at the 
+rated load are specified in the table below.  The minimum speed must not exceed the values listed.[  Values in the table are for a fully loaded 
+crane.  Using overspeed, the hoist function must be capable of [_____] when not loaded.]</TXT><BRK/>
+<PGE/><TAB WIDTH="65">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="164.25"/>
+      <COL AUTOWIDTH="0" WIDTH="129.75"/>
+      <COL AUTOWIDTH="0" WIDTH="124.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING"><HL4>Rated Speeds<BRK/><MET> meters/second</MET><ENG> feet/min</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Description</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Main Hoist</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">[Auxiliary Hoist]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Trolley</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL>
+<DTA TYPE="STRING">Bridge</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT></SPT><SPT><TTL>VERIFICATION OF DIMENSIONS</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor is responsible for the coordination and proper relation of their work to the building structure and to the work of all trades.  
+Verify all dimensions of the building that relate to fabrication of the crane and notify the Contracting Officer of any discrepancy before finalizing 
+the crane order.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Overhead Electric Traveling Crane</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Complete Schematic Wiring Diagram</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<TAI OPT="NAVFAC"><BRK/>
+<ITM><SUB>Control System and Network Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/></TAI>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Each catalog cut must be marked-up to fully identify the model or size/rating of the item and supplemental 
+pages with data or information to demonstrate specification compliance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Gear Reducers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hoist Brakes</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Travel Brakes</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="NAVFAC"><ITM><SUB>Couplings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Load Blocks and Hooks</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wheels</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hoists</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sheaves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Commercial Hoist and Trolley Units</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>End Trucks</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bridge Rails</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>End Stops</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bumpers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Operator's Cab</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Variable Frequency Drives</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Motors</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Runway Conductor System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bridge Conductor System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Limit Switches</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Radio Control System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Pendant Pushbutton Station</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Pendant Conductor System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Cab Control Station</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Controls</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Control Parameter Settings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Runway Conductor System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bridge Conductor System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Capacity Overload Protective Device</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Load Indicating Device</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Painting System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<TAI OPT="NAVFAC"><BRK/>
+<ITM><SUB>Control System and Network</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/></TAI>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Load and Sizing Calculations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Hook Proof Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Hook Non-destructive Test (NDT)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Post-erection Inspection</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Operational Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hook Tram Measurement</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Load Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Wire Ropes</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Crane Runway System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hazardous Material</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Loss of Power Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coupling Alignment Verification Record</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Overload Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Brake Adjustment Record</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Compliance with Listed Standards</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<TAI OPT="MINHAZ"><BRK/>
+<ITM><SUB>Contractor Hazardous Environment</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM></TAI><BRK/>
+<TAI OPT="NAVFAC"><BRK/>
+<ITM><SUB>Public Domain Software</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Software and Services</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/></TAI>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="NAVFAC"><LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Disabled Ports, Connectors, and Interfaces</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Network-Capable Control Devices</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control System Access Control</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control System Account Management</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Patch Management and Updates</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Malware Detection and Protection</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wireless Technology Provisions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control System Inventory</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Evaluation Status of Hardware and Software</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Manufacturer Qualification</TTL><BRK/>
+<BRK/>
+<TXT>Overhead Electric Traveling Crane must be designed and manufactured by a company with a minimum of 10 years of specialized experience in designing 
+and manufacturing the type of overhead crane required to meet requirements of the Contract Documents.  Crane design must be accomplished by, or 
+directly supervised by, a registered professional engineer (PE).  PE licensing must be by a board or agency authorized to license and register 
+professional engineers.  The PE may be a Contractor's regular employee or a consultant.  The PE's review and attestation of specification compliance 
+and professional responsibility must be signified by his or her PE original seal and dated signature on the final drawings.  The professional engineers 
+must only undertake and perform work under this contract in the branch(s) of engineering in which they are licensed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Delivery Inspections</TTL><BRK/>
+<BRK/>
+<TXT>Contractor is responsible for performance of quality control inspections, testing, and documentation.  Submit all crane test data recorded on appropriate 
+test record forms suitable for retention for the life of the crane.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Inspection of Steel Castings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Navy Crane Center does not require magnetic-particle testing of steel castings.  Magnetic testing for USACE 
+projects should be coordinated with the Contracting Officer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Visually inspect [and test ]load-carrying steel castings[ using the magnetic-particle inspection method][ using ultrasonic testing].[  Reference 
+allowable degree of discontinuities to <RID>ASTM E125</RID>, and relationship to service loads and stresses, critical configuration, location and type.]  
+All load bearing components, couplings, shafts, and gears, in the hoist drive train must be rolled or forged steel, except brake drums which may 
+be ductile iron.  Methods of repairing the discontinuities is subject to review by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inspection of Hook Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Inspect hook[ by a magnetic-particle type inspection] [and X-rayed] [and tested ultrasonically] prior to delivery.  Furnish documentation of hook 
+inspection to Contracting Officer prior to field operational testing.  As part of the acceptance standard, linear indications[ greater than 1/16 
+inch] are not allowed.  Welding repairs of hook are not permitted.  A hook showing linear indications, damage or deformation is not acceptable 
+and must be replaced immediately.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL><SUB>Hook Non-Destructive Test (NDT)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph if selected agency does not require magnetic particle testing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NAVFAC"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For NAVFAC, substitute tailored paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Magnetic-particle inspect the hook over the entire area in accordance with <RID>ASTM A275/A275M</RID>.  Acceptance standard is no defects.  A defect is defined 
+as a linear indication that is greater than [<MET>3 mm</MET><ENG> 1/8 inch</ENG>][<MET>1.5 mm</MET><ENG> 1/16 inch</ENG>] long.<TAI OPT="MINHAZ">  For hooks of non-magnetic material, NDT will be liquid penetrant 
+(PT) method in accordance with <RID>ASTM E1417/E1417M</RID>.  For PT testing of hooks containing stainless steels, titanium, or nickel based alloys, total 
+halogens and Sulphur used in the NDT process must be controlled as specified in T9074-AS-GIB-010/271.</TAI></TXT><BRK/>
+<TAI OPT="NAVFAC"><BRK/>
+<TXT>Inspect each hook and shank over the entire surface area by magnetic particle inspection.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Procedure:  Conduct magnetic particle inspection in accordance with <RID>ASTM A275/A275M</RID> with the following restrictions:  Do not use DC yokes 
+(including switchable AC/DC yokes used in the DC mode) or permanent magnet yokes.  Do not use automatic powder blowers or any other form 
+of forced air other than from a hand-held bulb for the application or removal of dry magnetic particles.  Remove arc strikes.  Equipment 
+ammeters must have an accuracy of plus or minus 5 percent of full scale (equipment ammeter accuracy other than that stated is acceptable 
+provided the MT procedure states that a magnetic field indicator is used to establish and verify adequate field strength for all aspects 
+of the inspection.)</OLI><BRK/>
+<BRK/>
+<OLI>Acceptance Criteria:  Defects found on the hook will result in rejection of defective items for use on furnished hoist.   For this inspection, 
+a defect is defined as a linear indication for which the largest dimension is greater than<MET> 1.5 mm</MET><ENG> 1/16 inch</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Test Report:  Submit a test report of the magnetic particle inspection of each hook provided the Contracting Officer for approval prior 
+to final acceptance of hoist installation.  Certify test reports by the testing organization.  The performing organization must provide 
+a written statement of certification to <RID>ASTM E543</RID>, current within one year of the date the NDT was performed.  The NDT procedures including 
+technique sheets specific to the types, shapes, and size of the parts being examined must adequately describe the orientation of the hooks 
+within the magnetizing equipment.  The performing organization must have the NDT procedures and its technique sheet used for testing of 
+the hook reviewed and approved by an independent Level III examiner.  Submit the (Level III examiner) approved procedures, technique sheet, 
+and certification to the Contracting Officer with the test report.</OLI><BRK/></OLG>
+</TAI><BRK/></SPT>
+]</SPT>[<SPT><TTL><SUB>Hook Proof Test</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Hook proof tests are required for custom designed or non-ferrous (bronze or stainless steel) hooks.  Bronze/stainless 
+steel hooks are generally associated with minimum hazardous area requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Proof test the load hook per <RID>ASME B30.10</RID>.  Perform the proof test prior to Hook NDT.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Certificates</TTL><BRK/>
+<BRK/>
+<TXT>All certifications must be dated and bear the original signature (above the printed name) of the authorized representative of the Contractor or 
+the manufacturer of the items or equipment being certified.  Each certification will clearly identify the crane, the drives, components, and location 
+(as applicable) to which it applies:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Submit a <SUB>Wire Ropes</SUB> Certification with the wire rope manufacturer's certification that the rope meets the published breaking strength or 
+the actual breaking strength of a sample taken from the reel and tested.  Certification is to be traceable to the hoist, crane, and reel.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a <SUB>Crane Runway System</SUB> Certificate stating that the new crane will operate properly on the runway; if the crane(s) cannot operate 
+without restriction, the Contractor must indicate crane limitations.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a <SUB>Hazardous Material</SUB> Certificate that the crane does not contain hazardous material including asbestos, lead, cadmium, chromium, 
+PCBs, or elemental mercury.  Products required for the designing and manufacturing of cranes must not contain the prohibited materials.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a <SUB>Loss of Power Test</SUB> Certificate stating that a test may be performed in which power is removed from the crane while the hoist, 
+bridge, and trolley are in operation.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a Certificate of the <SUB>Coupling Alignment Verification Record</SUB>.</OLI><BRK/>
+<BRK/>
+<TAI OPT="NAVFAC"><OLI>Submit an <SUB>Overload Test</SUB> Certificate stating that the crane can be periodically load tested to 125 percent (plus 0 minus 5 percent) of rated 
+load.</OLI><BRK/>
+<BRK/></TAI>
+<OLI>Submit an <SUB>Overload Test</SUB> Certificate stating that the crane can be periodically load tested to 125 percent (plus [0] [_____] minus [5] [_____] 
+percent) of rated load.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a Certificate of the <SUB>Brake Adjustment Record</SUB>. Provide a brake adjustment record and installation/maintenance manuals for each brake 
+on the crane.  Each brake measurement must have a tolerance traceable to the associated brake manual or documentation provided by the brake 
+manufacturer, location of measurements, and the actual brake setting.  Changes made to settings of the brake, at any time, will void the 
+record.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a Certificate of <SUB>Compliance with Listed Standards</SUB></OLI><BRK/>
+<TAI OPT="MINHAZ"><BRK/>
+<OLI>Provide a <SUB>Contractor Hazardous Environment</SUB> Certificate stating that the new crane and all associated components excluding the hoist are 
+designed for operation in the hazardous environment specified in the Classification section.</OLI><BRK/></TAI>
+<TAI OPT="NAVFAC"><BRK/>
+<OLI>The Contractor must provide a <SUB>Public Domain Software</SUB> Certificate declaring that public domain software (e.g., freeware, shareware) is not 
+used in the system.</OLI><BRK/>
+<BRK/>
+<OLI>The Contractor must provide a certificate stating that all <SUB>Software and Services</SUB> that are not required for operation and/or maintenance 
+of the product have been removed.  The software/services to be removed are identified in paragraph SOFTWARE AND SERVICES.</OLI><BRK/></TAI>
+</OLG><BRK/></SPT>
+<SPT><TTL>Drawings: <SUB>Overhead Electric Traveling Crane</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Submit drawings showing the general arrangement of all components in plan, elevation, and end views.  Show all major features of the crane 
+including: hook approaches on all four sides, clearances and principal dimensions, assemblies of hoist, trolley and bridge drives, motor 
+nameplate data, overcurrent protective device ratings, and electrical schematic drawings.  Include weights and centers of gravity of major 
+components.  Provide maximum wheel loads (without impact) and spacing imparted to the crane runway system track beams.  Indicate the crane 
+speeds along the runway, the trolley speeds along the bridge girder, and the hoist lifting speeds; all speeds indicated are speeds with 
+hoist loaded with rated crane capacity load.</OLI><BRK/>
+<BRK/>
+<OLI>Submit shop drawings of all fabricated components.  Shop drawing quality must be equivalent to the contract drawings accompanying this 
+solicitation.  Drawings must be reviewed, signed, and sealed by a registered professional engineer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide integral schedule of crane components on each drawing.  The schedule must provide a cross reference between manufacturer data and 
+shop drawings.  Components listed on the schedule of crane components must include total quantity, description, original manufacturer, 
+and part number.  Distributing agents will not be acceptable in lieu of the original manufacturer.</OLI><BRK/>
+<TAI OPT="NAVFAC"><BRK/>
+<OLI>Provide <SUB>control system and network drawings</SUB>.  Network diagram must show equipment locations, names, models, and IP addresses on network 
+communications schematic for all Programmable Logic Controllers (PLCs), Remote Terminal Unit (RTU), Supervisory Controller, and Other Network-Capable 
+Devices.  In addition, the drawings must consist of all software block, flow, and ladder diagrams.</OLI><BRK/></TAI>
+</OLG><BRK/></SPT>
+<SPT><TTL>Design Data: <SUB>Load and Sizing Calculations</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Design data for Load and Sizing Calculations, and welding procedures, may not be available for commercially 
+procured hoists and trolleys.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit complete list of equipment and materials, including manufacturer's descriptive data and technical literature, performance charts and curves, 
+catalog cuts, and installation instructions.  Submit calculations reviewed, signed, and sealed by a registered professional engineer verifying 
+the load cases, sizing of the bridge girders, end trucks, travel drives, brake selections, and overcurrent protection for motors, controllers, 
+and branch circuits.  Provide a list of all codes and standards, design assumptions, equations, specified efficiencies, limits, factors of safety, 
+component ratings, and sources of values used. Include free body diagrams or sketches of each load case.[  Include seismic analysis of crane.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding Qualifications and Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Welding must be in accordance with qualified procedures using <RID>AWS D14.1/D14.1M</RID> as modified.  Written welding procedures must specify the Contractor's 
+standard dimensional tolerances for deviation from camber and sweep and not exceed those specified in <RID>AWS D14.1/D14.1M</RID> and <RID>CMAA 70</RID>.  Welders and 
+welding operators must be qualified in accordance with <RID>AWS D1.1/D1.1M</RID> or <RID>AWS D14.1/D14.1M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CRANE SAFETY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Add ASME HST-4 if commercial hoist/trolley unit will be used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Comply with the mandatory and advisory safety requirements of <RID>ASME B30.10</RID>, <RID>ASME B30.2</RID>[, <RID>ASME HST-4</RID>], <RID>CMAA 70</RID>, <RID>29 CFR 1910.147</RID>, <RID>29 CFR 1910.179</RID>, <RID>
+29 CFR 1910.306</RID>, and all applicable provisions of <RID>29 CFR 1910</RID> and <RID>NFPA 70</RID>.  Where personal fall arrest anchorages are provided, design anchorages 
+in accordance with <RID>ASSP Z359</RID>.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Nuclear Safety Analysis</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Certification is required for cranes handling nuclear materials.  Results from the Safety Analysis will 
+be utilized by the Using Agency as a basis for bridge crane certification.  Delete this paragraph if the crane 
+is not required to handle nuclear materials.</NPR><BRK/>
+<BRK/>
+<NPR>This section is not applicable to NAVFAC projects.  The Navy Crane Center must be involved with the procurement 
+and overhaul of all NAVY cranes that handle Nuclear material as identified in the forward notes section of this 
+specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Nuclear certification, testing, and rules of construction must be in accordance with <RID>29 CFR 1910.147</RID> and <RID>ASME NOG-1</RID>.<TAI OPT="AIR FORCE">  Air Force Nuclear certified 
+hoists must meet requirements of <RID>AFMAN 91-118</RID>.</TAI>  Submit analysis and test reports to Contracting Officer for approval.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment which are standard products of manufacturers regularly engaged in the fabrication of complete and totally functional 
+cranes including necessary ancillary equipment.  Material will be free from defects and imperfections that might affect the serviceability and 
+appearance of the finished product.  All material must be new and unused.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Secure nameplates to each major component of equipment with the manufacturer's name, address, type or style, model or catalog number, and serial 
+number.  Provide two bridge identification plates, one for each side of the bridge.  Provide noncorrosive metal identification plates with letters 
+which are easily read from the floor, showing a separate number such as BC-1, BC-2, for each bridge crane.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Capacity Marking</TTL><BRK/>
+<BRK/>
+<TXT>Mark the rated capacity in<TAI OPT="TONS"><MET> metric ton</MET><ENG> ton</ENG></TAI><TAI OPT="KILOGRAM-POUNDS"><MET> kilograms</MET><ENG> pounds</ENG></TAI> units on each side of the crane on the bridge girders.  Capacity marks must be large 
+enough to be clearly visible from the floor.  The markings must be positioned to be visible at the operator's position after the crane has been 
+installed.[  Provide additional markings in operator's cab.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safety Warnings</TTL><BRK/>
+<BRK/>
+<TXT>Affix labels in a readable position to each lift block or control station in accordance with <RID>ASME B30.2</RID>.  Submit safety warnings, diagrams and 
+other instructions suitably framed and protected for display as indicated by the Contracting Officer as follows:</TXT><BRK/>
+<BRK/>
+<TXT>Design and locate the word "WARNING" or other legend to bring the label to the attention of the operator.  Provide durable type warning labels 
+and display the following information concerning safe-operating procedures:  Cautionary language against lifting more than the rated load; operating 
+the hoist when the hook is not centered under the hoist; operating hoist with twisted, kinked or damaged rope; operating damaged or malfunctioning 
+hoist; operating a rope hoist with a rope that is not properly seated in its hoist drum groove; lifting people; lifting loads over people; and 
+removing or obscuring the warning label.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>STRUCTURAL REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Structural requirements must be in accordance with <RID>CMAA 70</RID>, Section 3.  Structural steel materials must conform to the standards permitted in <RID>CMAA 70</RID>
+ and <RID>AISC 360</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Structural Connections</TTL><BRK/>
+<BRK/>
+<TXT>High-strength bolted structural connections must be designed and installed in accordance with <RID>RCSC A348</RID>.  Bolts must be of <RID>ASTM F3125/F3125M</RID> Grade 
+A325/A325M or Grade A490/A490M material.  Galvanized bolts are not acceptable.</TXT><BRK/>
+<BRK/>
+<TXT>Welded connections must be performed in accordance with <RID>AWS D14.1/D14.1M</RID>.  Allowable stress values must comply with <RID>CMAA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bridge Girder or Girders</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Suggest specifying welded structural steel box girders for CMAA 70 Class C, D, or E with a capacity greater 
+than<TAI OPT="TONS"><MET> 18 metric tons</MET><ENG> 20 tons</ENG></TAI><TAI OPT="KILOGRAM-POUNDS"><MET> 16330 kg</MET><ENG> 36,000 pounds</ENG></TAI> or a span greater than<ENG> 12 m</ENG><ENG> 40 feet</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [welded structural steel box section] [wide flange beam, standard I-Beam, or section fabricated from rolled plates and shapes] bridge girders.  
+If the ends of bridge girders are notched to fit over the end trucks, the notches must be reinforced with vertical diaphragms and horizontal stiffeners.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Bridge Rails</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide bridge rails, crane girders and other sections that are straight and true.  Make all rail joints flush and true without misalignment of 
+running tread and design to minimize vibration.  The gap between adjacent rail ends and the vertical misalignment of running treads must not exceed<MET>
+ 0.794 mm</MET><ENG> 1/32 inch</ENG>.  Solid stock (e.g. square bar, roundstock) is not permitted as bridge rail.  Center bridge rail on top flange or position 
+bridge rail over girder web for torsion box girders.  Fasten rail to girder with welded clips.  Position rail clips in pairs and at not more than<MET>
+ 914 mm</MET><ENG> 36 inches</ENG> on center.  Bolt bridge rail joints using standard joint bars.  Stagger and position rail joints directly over girder diaphragms.  
+Provide a positive stop at bridge rail ends to prevent creep.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>End Ties and Bridge Girder End Connections</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify end ties for cranes with more than 4 wheels.  Specify welded structural steel box sections for 
+CMAA 70 Class C, D, or E with a capacity greater than<TAI OPT="TONS"><MET> 18 metric tons</MET><ENG> 20 tons</ENG></TAI><TAI OPT="KILOGRAM-POUNDS"><MET> 18000 kg</MET><ENG> 40,000 pounds</ENG></TAI> or a span 
+greater than<MET> 12 m</MET><ENG> 40 feet</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>If equalizing end trucks are used, provide rigid end ties between girders to form a frame that is rigid about the vertical and horizontal axes.  
+If compensating end trucks are used, provide end ties which are rigid about the vertical axis but relatively flexible about the horizontal axis 
+to permit partial rocking motion for wheel load compensation.  Provide full depth diaphragms at girder connections and jacking points.  Provide 
+horizontal gusset plates at the elevation of top and bottom end tie flanges for connection to girder ends.  Make end connections with high-strength 
+bolts in accordance with the Structural Connections section of this specification.  Use tapered alignment pins to maintain original shop alignment 
+between bridge girders and end ties/trucks.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>End Trucks</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide [rotating] [fixed axle] type end trucks fabricated from structural steel plate to provide a rigid box section structure.  Center wheels 
+between the webs of the box section.  Configure bridge and trolley trucks with a feature that limits load movement to<MET> 25.4 mm</MET><ENG> 1 inch</ENG> in the event 
+of wheel or shaft failure.  Provide jacking pads for removal of wheel assemblies.  Wheel axle bearing seats must be designed such that wheel and 
+axle bearing assembly can be removed with not more than<MET> 76 mm</MET><ENG> 3 inches</ENG> of jacking.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Trolley Frame</TTL><BRK/>
+<BRK/>
+<TXT>Provide trolley frame as a one-piece structural steel weldment.  Provide pads for the use of jacks or wedges when changing truck wheels.  Make 
+all trolley yokes and load bars of drop forged, cast or rolled steel.[  Equip trolley with permanent lifting attachments.]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>End Stops</SUB> and <SUB>Bumpers</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Fit bridge girders with structural steel end stops.  Locate stops to permit maximum trolley travel.  Fit bridge end trucks and trolley frames with 
+shock-absorbing bumpers capable of decelerating and stopping the bridge and trolley within the limits stated by <RID>29 CFR 1910</RID> and <RID>CMAA 70</RID>.  Bumpers 
+must fully engage end stops.  Mount bumpers so that there is no direct shear on mounting bolts (if any) upon impact.  Bumpers must provide adequate 
+clearance between the crane and surrounding structure when compressed to preclude damaging equipment.  Ensure bridge and trolley bumper retention 
+in accordance with <RID>ASME B30.2</RID>.  When more than one crane is located and operated on the same runway, bumpers must be provided on their adjacent 
+ends or on one end of one crane.  Fit the other end of the end-truck with a structural steel stop to engage the bumpers of the adjacent crane.  
+Ensure bridge bumpers are properly aligned with runway end stops.<TAI OPT="MAXHAZ">  Metal to metal contact at the bumper to end stop connection is not permitted.</TAI></TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Footwalks</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A footwalk is recommended unless: the crane can be safely serviced by another means or where lack of clearance 
+would prohibit one.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Set the location and construction of footwalks conforming to <RID>ASME B30.2</RID> and <RID>29 CFR 1910</RID>.  A structural platform is required on the drive girder 
+side of the crane.  The length of the drive side footwalk must be [adequate to provide access to the trolley and provide sufficient room for mounting 
+control cabinets] [along the entire length of the bridge].  Provide checkered steel flooring for platform.[  To give access to the opposite side 
+of the trolley, bridge conductors, or other equipment, mount a footwalk [twice the length of the trolley] [the full length of the girder] on the 
+opposite side of the crane.  Provide a cross-over footwalk over an end tie between the two girder footwalks.]  Mate the drive side footwalk with 
+the crane access platform.  Footwalks must be free of exposed hazardous moving parts and electrical components that may injure personnel and not 
+require the use of safety harnesses or other extraordinary means.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Operator's Cab</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Applicable if a cab is specified, otherwise delete paragraph.  Specify enclosed cab for outdoor use.  Open 
+cab may be used indoors.  Enclosed cabs can be provided with a heating and air conditioning unit according to 
+environmental conditions.  Specify the location of cab and the direction the operator should face.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Design</TTL><BRK/>
+<BRK/>
+<TXT>Design and construct operator's cab in accordance with <RID>CMAA 70</RID> and <RID>ASME B30.2</RID>.  Locate cab access to facilitate entry and exit by crane operator.  
+Provide space for a carbon-dioxide, dry chemical, or equivalent hand fire extinguisher.<TAI OPT="ORDHAND">  In addition to the operator's seat, the cab must have 
+a seat for a back-up operator.</TAI></TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Cab Construction</TTL><BRK/>
+<BRK/>
+<TXT>Provide [fixed cab mounted on bridge] [trolley mounted cab] of the [open] [enclosed] type for [indoor] [outdoor] use, and designed to provide a 
+clear view of the operating floor and hook for the operator.[  Provide cab with a suitable [heating] [heating and air conditioning] unit].  Locate 
+cab on the [_____] of the [bridge] [trolley] with the operator facing [_____].[  Provide [sliding] [fixed] windows of laminated safety type glass.]</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>]<TAI OPT="OUTDOOR"><SPT><TTL>Additional Provisions for Outside Service</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is applicable for outdoor cranes only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Seal weld structural members on outdoor cranes.  Provide crane bridges with parking brakes which will sufficiently hold the crane against a wind 
+pressure of<MET> 2404 Pa</MET><ENG> 5 psf</ENG> for in-service conditions.  Provide crane bridges with manually-operated pin locks at each rail, designed to securely 
+anchor the crane against a wind pressure of<MET> 1.44 kPa</MET><ENG> 30 psf</ENG> for out-of-service conditions.  Design members to prevent the collection of water on 
+crane.</TXT><BRK/>
+<BRK/></SPT>
+</TAI>[<SPT><TTL>Seismic Forces</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Seismic forces must be considered in the design of the cranes with a component importance factor of greater 
+than 1.0 and in facilities with a Seismic Design Category of D, E, or F per ASCE 7-16 or ASME NOG-1.  Seismic 
+input (e.g. design spectrum) must be specified for ASME NOG-1 analysis to be performed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform a seismic analysis as a part of the design of the crane in accordance with <RID>ASCE 7-16</RID> or <RID>ASME NOG-1</RID>.  The seismic analysis must be included 
+in the <RID>CMAA 70</RID> extraordinary load case (Case 3).  For project locations beyond the scope of <RID>ASCE 7-16</RID>, a widely accepted design standard may be 
+used for seismic analysis.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>MECHANICAL REQUIREMENTS</TTL><BRK/>
+<TAI OPT="ORDHAND"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For ordnance handling further material restrictions exist.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLG><BRK/>
+<OLI>Provide steel shafts, gears, keys, and couplings.  Cast iron and aluminum used to support components of the hoist power transmission train 
+must be ductile.<TAI OPT="ORDHAND">  Gray cast iron load bearing parts are prohibited.</TAI></OLI><BRK/>
+<BRK/>
+<OLI>All bearings, except those subject only to small rocker motion, must be anti-friction type.  All connections subject only to small rocking 
+motion are to be fitted with bushings or thrust washers in the pivot pin bore, as applicable.  Bronze bushings must have provisions for 
+grease lubrication.</OLI><BRK/>
+<BRK/>
+<OLI>All mechanical components must be accurately aligned and positively secured to maintain the alignment.  Parts must not be forced into position 
+to obtain apparent alignment.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL><SUB>Hoists</SUB></TTL><BRK/>
+<TAI OPT="ORDHAND"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For ordnance handling CMAA class D is required and, if used, packaged hoists must be HST-4 Duty Class H4 
+or better.</NPR><BRK/>
+<BRK/>
+<NPR>For ordnance handling custom hoist shafts must have a fatigue design factor of 1.5.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Provide hoist conforming to <RID>ASME B30.2</RID> and <RID>CMAA 70</RID> service class [A] [B] [C] [D] [E] [F] or better, double reeved, except as modified and supplemented 
+in this section.[  Standard <SUB>commercial hoist and trolley units</SUB> (packaged hoists), if used, must meet <RID>ASME HST-4</RID> Duty Class [H1] [H2] [H3] [H4] 
+or better.]<TAI OPT="ORDHAND">  For custom hoist shafts, the fatigue design factor must be a minimum of 1.5.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drives</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Bridge Drives</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the span is less than<MET> 12 m</MET><ENG> 40 feet</ENG> and the application is CMAA Class "A" or "B", then A-1 drive may 
+be included as an option.  Outdoor drive wheel requirement is optional since paragraph ADDITIONAL PROVISIONS FOR 
+OUTSIDE SERVICE also requires additional parking brakes for outdoor cranes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [either A-1 or] [A-4] bridge drive arrangement as specified in <RID>CMAA 70</RID> consisting of a single electric motor mechanically connected through 
+gear reduction and drive shafts to the drive wheels or separate drive motors at each end of bridge.<TAI OPT="OUTDOOR">  Outdoor cranes must have half of the total 
+wheels driven.</TAI></TXT><BRK/>
+<BRK/>
+<TXT>Acceleration and deceleration must meet the requirements specified in this section.  Gears must conform to applicable AGMA standards.  Provide 
+oil tight fully enclosed gear reducers with pressure or splash type lubrication.  Bridge travel limit switches are optional.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Trolley Drives</TTL><BRK/>
+<BRK/>
+<TXT>Provide complete trolley drive arrangement with a minimum of two wheels driven by an integral electric motor.  Drive mechanism must run in totally 
+enclosed oil bath.  Limit switches are optional for drive mechanism.  Acceleration and deceleration controls must meet requirements specified in 
+this section.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Load Blocks and Hooks</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraphs contain tailoring for NAVFAC.<TAI OPT="ORDHAND">  For text tailored to Minimum Anti-Spark requirements, 
+remove conflicting requirements (i.e. load block cannot simultaneously be steel and anti-sparking or steel hook 
+meeting ASTM A668 cannot also be non-sparking).</TAI></NPR><BRK/>
+<TAI OPT="ORDHAND"><BRK/>
+<NPR>For Ordnance Handling:  The insulated link(s) are required unless the following conditions are met:<BRK/>
+1. There is no threat of a lightning strike during operations;<BRK/>
+2. There is no chance for contact with overhead power lines;<BRK/>
+3. RF emissions control is in effect regardless of the HERO classification of the ordnance being held.</NPR><BRK/></TAI>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The load block must be constructed of steel <TAI OPT="MINHAZ">non-sparking materials</TAI> and designed to prevent steel-to-steel contact of moving parts.  The block must 
+be fully enclosed, concealing the sheaves and wire ropes, except for wire rope slots and drain holes.  The block must be clearly marked with the 
+capacity in<MET> kilograms</MET><ENG> pounds</ENG> on both sides.<TAI OPT="MINHAZ">  The load block sheaves must be constructed of non-sparking materials.</TAI><TAI OPT="ORDHAND">[  An insulated link must be 
+provided on each hook block per the requirements of NAVSEA OP-5.]</TAI><TAI OPT="NAVFAC">  Standard commercial blocks may be used at their published ratings when their 
+published design factors are 5.0 or greater.</TAI></TXT><BRK/>
+<BRK/>
+<TXT>Provide an unpainted single barbed forged steel hook complying with <RID>ASTM A668/A668M</RID>.<TAI OPT="MINHAZ">  Provide an unpainted single barbed hook of non-sparking material 
+with a minimum material longitudinal elongation of 16 percent in 2 inches.  Bronze clad hooks are prohibited.</TAI>  Hook dimensions must be as shown 
+on the drawings.  Fit hook with a safety latch designed to preclude inadvertent displacement of slings from the hook saddle.  The hook and hook 
+nut must be removable without unreeving of the hoist.  Provide hook nut with a removable type set screw or other similar fastener, installed in 
+a plane parallel to the longitudinal axis of the hook shank.  Do not weld hook nut.<TAI OPT="NAVFAC">  Uniquely mark the hook in a permanent fashion that is traceable 
+to the NDT certification.</TAI><TAI OPT="MINHAZ">  The hook nut must be of non-sparking materials.</TAI>  Hook must be free to rotate through 360 degrees when supporting the 
+test load up to 125 percent of the rated capacity.  Provide only hooks which are designed and commercially rated in accordance with CMAA and conforming 
+to <RID>ASME B30.10</RID> and <RID>CMAA 70</RID>.<TAI OPT="MAXHAZ">  Upper hooks of hook suspended hoists must be of non-sparking materials.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wire Ropes</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For NAVFAC, add tailored paragraph section.</NPR><BRK/>
+<BRK/>
+<NPR>For minimum anti-spark protection, add tailored paragraph section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Wire ropes must conform to <RID>ASTM A1023/A1023M</RID> and be tested as required by <RID>ASTM A931</RID>.  The wire rope must be in a double reeved configuration 
+and equalized with a sheave.  Provide wire rope with a minimum design factor of [5 to 1] [_____ to 1] based on the load experienced at 
+rated capacity and minimum breaking strength of the wire rope.</OLI><BRK/>
+<BRK/>
+<OLI>Provide hoisting ropes with improved plow steel, extra improved plow steel, or extra-extra improved plow steel, regular lay, bright, and 
+uncoated with an independent wire rope, wire strand, or otherwise, steel core. Hot-dipped galvanized wire rope is not permitted.</OLI><BRK/>
+<BRK/>
+<TAI OPT="MINHAZ"><OLI>Provide stainless steel construction hoist ropes.</OLI><BRK/>
+<BRK/></TAI>
+<OLI>Maximum hoisting rope fleet angles must be 4 degrees for drums and 4.75 degrees for sheaves.  Hoisting rope end connections, other than 
+drum connections, must be speltered sockets with forged steel terminals or swaged fittings installed in a fashion that provides 100 percent 
+of the breaking strength of the wire rope.  Provide proof of Wire Rope breaking strength.  Wedge sockets or aluminum swages are not permitted 
+on wire rope end connections.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Sheaves</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select 16 rope diameters for CMAA service class A or B, 18 rope diameters for class C, 20 rope diameters 
+for class D, 24 rope diameters for class E, or 30 rope diameters for class F.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NAVFAC"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For NAVFAC, add additional requirements in the tailored paragraph section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Provide steel sheaves.  Minimum pitch diameters must be [16] [18] [20] [24] times the rope diameter for running sheaves, and no less than 12 times 
+the rope diameter for equalizer sheaves.  Sheave surfaces which contact wire rope are not to be painted.</TXT><BRK/>
+<BRK/>
+<TAI OPT="NAVFAC"><TXT>The sheaves must be heat treated to a minimum hardness of 320 Brinell Hardness Number (BHN) in the wire rope contact area, have a groove depth 
+not less than 1.5 times the hoisting rope diameter, with a throat angle of 30 to 40 degrees.</TXT><BRK/>
+<BRK/></TAI>
+</SPT><SPT><TTL>Hoist Drum</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select 16 rope diameters for CMAA service class A or B, 18 rope diameters for class C, 20 rope diameters 
+for class D, 24 rope diameters for class E, or 30 rope diameters for class F.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide drum made of steel.  Design the drum <TAI OPT="NAVFAC">such that all hoisting rope is wound in a single layer and </TAI>so that not less than two dead wraps of 
+hoisting rope remain on each anchorage when the hook is in its extreme low position.  Drum grooving must be machined right and left hand beginning 
+at the ends and grooving toward the center of the drum.  Minimum drum groove depth must be 0.375 times the rope diameter.  Minimum drum groove 
+pitch must be either 1.14 times the rope diameter or the rope diameter plus<MET> 3 mm</MET><ENG> 1/8 inch</ENG>, whichever is smaller.  Minimum drum pitch diameter must 
+be [16] [18] [20] [24] times the rope diameter.  Do not paint, coat, or galvanize the surface of the drum which comes in contact with wire rope.</TXT><BRK/>
+<BRK/>
+<TXT>For wire rope drums installed directly onto the output shaft of the hoist speed reducer without an intermediate flexible coupling, the drum to 
+shaft connection must be a barrel coupling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gearing</TTL><BRK/>
+<BRK/>
+<TXT>Provide gearing of the enclosed gear reducers type.  Provide steel spur, helical, or herringbone type gears and pinions only.  Gearing must conform 
+to <RID>ANSI/AGMA 2001</RID> and <RID>AGMA 908</RID>.  Internal and external gear dimensional tolerances must conform to the applicable AGMA standard for tooth geometry 
+and tolerances.  Open-type gearing is not acceptable, except for final drives.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Gear Reducers</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<TAI OPT="ORDHAND"><NPR>NOTE:  For CMAA service class D, enclosed gearing must be selected for "Mill Duty" service.</NPR><BRK/></TAI>
+<TAI OPT="NAVFAC"><NPR>For NAVFAC, CMAA service class C enclosed gearing must be selected for "Industrial Duty".</NPR><BRK/></TAI>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Gear reducers must be [integral components of standard hoists or hoist/trolley units of manufacturers regularly engaged in the design and manufacture 
+of hoists or hoist/trolley units for Class A, B, or C cranes][ or ][standard items of manufacturers regularly engaged in the design and manufacture 
+of gear reducers for Class D and E cranes].  Gear reducers must be designed, manufactured, and rated in accordance with <RID>ANSI/AGMA 6113</RID> (<RID>ANSI/AGMA 6013</RID>
+) (for trolley drives only), as applicable.  Except for final reduction, the gear reduction units must be fully enclosed in oil-tight housing.[  
+Enclosed gearing must be selected for ["Industrial Duty"] ["Mill Duty"].]  Gearing must be designed to AGMA standards and operate in an oil bath.  
+Operation must be smooth and quiet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Open Gearing</TTL><BRK/>
+<BRK/>
+<TXT>Provide all gears and pinions with adequate strength and durability for the crane service class and manufactured to <RID>ANSI/AGMA 2015-1</RID> Accuracy Grade 
+A8 or better.  Open gears must be enclosed with safety guards provided with openings with covers for inspection and access for grease lubrication.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Wheels</SUB></TTL><BRK/>
+<TAI OPT="MAXHAZ"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For maximum anti-spark protection, add the tailored words.  Remove any conflicting items (i.e. wheels cannot 
+be non-sparking and steel).  Remove the 320 BHN sentence since the wheels will not be steel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Provide double flanged, straight tread trolley and bridge travel wheels of rolled-to-shape or roll-forged steel.<TAI OPT="MAXHAZ">  Provide double flanged, straight 
+tread trolley and bridge travel wheels of non-sparking materials with sufficient diameter and hardness to meet allowable wheel loads.</TAI>  The rim, 
+flanges, and wheel tread must be hardened to not less than 320 Brinell Hardness Number (BHN).  Wheel sizing and flange-to-rail head clearances 
+must be in accordance with <RID>CMAA 70</RID> recommendations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bridge and Trolley <SUB>Travel Brakes</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide bridge and trolley drives with electro-mechanical brakes or non-freecoasting mechanical drive capable of stopping the motion of the bridge 
+or trolley within a distance in feet equal to 10 percent of the full load speed in feet per minute when traveling at full speed with a full load.<TAI OPT="NAVFAC">
+  The brakes must have a minimum torque rating per <RID>CMAA 70</RID> according to the applicable environment, but not sized larger than 150 percent of the 
+motor torque.</TAI>  Brakes must have an externally accessible means to manually release the brake.<TAI OPT="NAVFAC">  The brakes must be equipped with a manual self-return 
+to ON brake release and designed to permit inspection and adjustment without disassembly of the brake.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Hoist Brakes</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Each hoist must have, at a minimum, two brakes.  Two electro-mechanical brakes are recommended.</NPR><BRK/>
+<BRK/>
+<NPR>Consider the Controls section under ELECTRICAL REQUIREMENTS.  If a variable frequency drive (VFD) is selected 
+for use, the brake configuration must reflect the type of VFD selected (open loop vs closed loop).</NPR><BRK/>
+<BRK/>
+<NPR>If closed loop controls are selected, brake configuration must be two electro-mechanical/thruster type brakes.</NPR><BRK/>
+<BRK/>
+<NPR>If open loop controls are selected, brake configuration must be one electro-mechanical/thruster type brake and 
+one mechanical load brake.</NPR><BRK/>
+<BRK/>
+<NPR>If not using a VFD, and electromatic controls are selected, the brake configuration can be the manufacturer's 
+option as long as there are a minimum of two holding brakes provided.</NPR><BRK/>
+<BRK/>
+<NPR>Cranes with two electro-mechanical/thruster holding brakes must have a time delay between the setting of the primary 
+and secondary brakes.</NPR><BRK/>
+<BRK/>
+<NPR>Service brakes which slow down and stop the load must be adjustable down to 50 percent of their torque rating. 
+Holding brakes which hold the load after the variable frequency drive (VFD) slows down and stops the brake are 
+not required to be adjustable.</NPR><BRK/>
+<BRK/>
+<NPR>Additional tailoring options are provided for NAVFAC cranes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Equip hoist with a minimum of two holding brakes, each with a minimum torque rating of 125 percent of the rated load hoisting torque.[  
+Provide a brake configuration with [one electro-mechanical or thruster brake and one mechanical load brake that stops and holds 125 percent 
+of the hoist's rated load and does not require the load to be raised before being lowered.] [two electro-mechanical or thruster brakes.]][  
+A mechanical load brake may be utilized in lieu of one of the hoist holding brakes provided it stops and holds 125 percent of the hoist's 
+rated load and does not require the load to be raised before being lowered].</OLI><BRK/>
+<BRK/>
+[<OLI>For cranes with two electro-mechanical or thruster brakes, designate each brake as primary or secondary with the primary brake being the 
+brake mounted closer to the motor.  Provide the primary brake with a non-time delayed setting and secondary brake with an adjustable setting 
+time delay, set between one to three seconds after the primary brake in any stopping condition.  Do not use an uninterruptible power supply 
+(UPS) to create the secondary brake time delay.</OLI><BRK/>
+<BRK/>
+]<OLI>Electro-mechanical or thruster brake [must be adjustable to 50 percent of its rated capacity, and ]must have an externally accessible means 
+of manual release.<TAI OPT="NAVFAC">  On drives where the brakes are utilized as holding brakes only, torque adjustment is not required.  The brakes must 
+be equipped with a manual self-return to ON brake release and designed to permit inspection and adjustment without disassembly of the brake.</TAI></OLI><BRK/></OLG>
+<BRK/></SPT>
+<TAI OPT="NAVFAC"><SPT><TTL><SUB>Couplings</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section is tailored to NAVFAC.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Chain and continuous sleeve type couplings must not be used.  Spline couplings are acceptable as installed on c, d, or p-face assemblies.  Conventional 
+couplings must not be loaded in the radial direction.  Brake wheel or brake disc couplings (if used) must be compatible with the required coupling 
+type.  Flexible couplings must not be relied upon to compensate for inaccurate alignment. Ends of coupled shafts must be aligned within the recommended 
+installation criteria of the coupling manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+</TAI>[<SPT><TTL>Drip Pans</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Drip pans may be added for general purpose service or any other type of crane specialized service, if there 
+is an additional requirement to prevent lubrication from falling to the floor or lifted load.  Modify the section 
+as needed to specific the desired drip pans.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>The crane must be designed to preclude leakage of lubricants onto the lifted loads or the floor.  Equipment or components, which cannot 
+be made leak-proof, must be fitted with unpainted corrosion resistant steel drip pans or must have the foundations seal welded to create 
+a dam.  Drip pans that utilize liquid sealant to prevent leakage of lubricants are not permitted.</OLI><BRK/>
+<BRK/>
+<OLI>The drip pans must be sized to hold the entire gear case fluid capacity, installed under all drive machinery, designed to permit easy removal 
+of collected lubricant.  A trolley floor designed to contain any lubricant drips may be used as fluid containment for any equipment that 
+is mounted on it.</OLI><BRK/>
+<BRK/>
+<OLI>Provide drip pans fitted around the shank of the hook and extending outward to encompass all possible points of lubrication drips from 
+the load block or wire rope. The drip pans must be easily removable without disassembly of the hook or load block and cannot interfere 
+with the crane structure during testing of the upper limits.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</SPT><SPT><TTL>ELECTRICAL REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Motors</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Inverter duty motors are required for open loop variable frequency drives (VFD).  Vector duty motors are 
+required for closed loop variable frequency drives (VFD).</NPR><BRK/>
+<BRK/>
+<NPR>Select two speed motors for bridge and trolley drives if magnetic controls are specified in paragraph CONTROLS; 
+select single speed motors if electronic controls are specified in paragraph CONTROLS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Motors must meet all applicable requirements of <RID>NEMA MG 00001</RID> and <RID>UL 1004-1</RID>.  All motors must have a minimum of a 60 minute duty rating and be 
+Totally Enclosed Non Ventilated (TENV), Totally Enclosed Fan Cooled (TEFC), or Totally Enclosed Blower Cooled (TEBC).[  Provide inverter duty motors 
+for Open Loop <SUB>Variable Frequency Drives</SUB> (VFD).][  Provide vector duty motors for Closed Loop VFDs.][  Provide [two] [single] speed AC squirrel 
+cage induction type motors for the bridge and trolley drives.][  Provide two speed, AC squirrel cage induction type motor for the hoist.]  Provide 
+motors with a minimum of Class F insulation.  Provide motor overload protection utilizing a thermal sensitive device embedded in its windings.<TAI OPT="OUTDOOR">  
+Provide motors painted to manufacturer's standard for "wash-down" service.  Motors located outdoors must be furnished with anti-condensation heaters 
+that remain energized when the mainline contactor is deenergized.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Controls</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the first three paragraphs to select electronic variable frequency drive controls for either the hoist, 
+bridge or trolley.  With VFD controls the hoist can be configured as open loop or closed loop (flux vector).  
+Open loop is more cost effective and requires a mechanical load brake while closed loop control offers better 
+load control and requires hoist motors with encoders for position feedback.  Ensure the Hoist Brakes section of 
+this specification reflect the type of controls chosen.  Use the fourth, fifth, and sixth paragraphs to select 
+one or two speed control for the hoist, bridge, or trolley.  Selections can be made using a combination of electronic 
+controls and one or two speed motor controls for the various functions.</NPR><BRK/>
+<BRK/>
+<NPR>When the two-speed bridge and trolley motor is specified, the slow speed will be 1/3 to 1/4 of rated travel speed.  
+Reduced voltage starting, acceleration, and deceleration, serve to reduce the acceleration rate that is normal 
+for squirrel-cage motors.  Squirrel-cage motors with two-speed magnetic controls provide satisfactory results 
+with slow bridge and trolley speeds, and should be specified when short travel distances are involved and where 
+fine positioning is not required.</NPR><BRK/>
+<BRK/>
+<NPR>For faster bridge and trolley speeds or finer positioning requirements, specify electronic controls.</NPR><BRK/>
+<BRK/>
+<NPR>Various VFD manufacturers offer an option to overspeed the hoist to a value over 60Hz (usually 120Hz).  This allows 
+the operator to position the hoist at faster speeds when it is not loaded.  When selecting this feature list the 
+maximum no load speed in section "Rated Capacity and Speeds".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>Provide static reversing, variable frequency drives (VFD) for the [bridge,] [trolley] [and] [hoist] electric controls.[  Provide static 
+reversing, VFD, speed regulated, closed loop, flux vector electric controls for the hoist[s].  For feedback, provide hoist motors with 
+encoders.  The hoist controller must enable the drive motor to develop full torque continuously at zero speed.  The hoist secondary brake 
+must be controlled separate from the primary and connected to different output (within the drive) from the primary brake.]  VFD controllers 
+must meet <RID>NEMA ICS 8</RID>, Part 8 and at a minimum, provide under-voltage protection, electronic instantaneous over current protection, DC bus 
+over voltage protection, and be able to withstand output line to line shorts without component failure.  Select bridge and trolley drives 
+such that the continuous rating of the controller is not less than the calculated motor full load current based on <RID>CMAA 70</RID> 5.2.9.1.1.1 
+and NEC Table 430.250.  Select hoist drives such that the continuous rating of the controller is not less than 130 percent of the calculated 
+motor full load current based on <RID>CMAA 70</RID> 5.2.9.1.1.1 and NEC Table 430.250.  All hoist drives must have a motor over-torque limit to lock 
+out the hoist and prevent gross overload of the associated hoist.  Provide dynamic braking for each electric drive that is sized per VFD 
+manufacturer's requirements. Submit VFD Control Parameter Settings.</OLI><BRK/>
+<BRK/>
+<OLI>Provide speed control which is infinitely variable for each function, controlled via [radio control system][ and ][pendant pushbutton station][ 
+and ][cab control station].[  Provide controls designed such that the maximum speed of each function will be limited to 25 percent of rated 
+speed when a slow speed switch is actuated on the controller[s].  Energize a yellow/amber light/indicator while in slow speed mode.]</OLI><BRK/>
+<BRK/>
+[<OLI>The hoist control system may utilize overspeed up to 120hz, unloaded only, if the drivetrain equipment has all been balanced and is rated 
+for the resulting speed.</OLI><BRK/>
+<BRK/>
+]<OLI>The [hoist][,] [trolley][,] and [bridge] brakes must set after the associated controller decelerates the drive motor to a controlled stop.  
+The hoist, trolley, and bridge controllers must be sized to provide sufficient starting torque to initiate motion of that crane drive mechanism 
+from standstill with 0 to 125 percent of rated load on the hook.  The hoist controller must prove torque before release of the brakes and 
+enable the drive motor to develop full torque continuously at zero speed.  Motors must operate smoothly at all speeds without torque pulsations, 
+and must only be energized within the frequency range of 50-60 Hz at rated speed.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide [one][two]-speed magnetic controls for the [bridge drive][,] [trolley drive][,][ and ][hoist] drive.  Controllers must meet the 
+requirements of <RID>NEMA ICS 8</RID>.  Ensure that an energized drive motor initially rotates only in the direction selected by the operator by activating 
+the corresponding direction; i.e., is not overhauled.  For AC squirrel cage motor controllers, the requirements of <RID>NEMA ICS 2</RID>, Part 2, 
+for general-purpose controllers, must be met.</OLI><BRK/>
+<BRK/>
+[<OLI>Provide the bridge and trolley motor control systems with a drift point between OFF and the first speed control point in each direction.</OLI><BRK/>
+<BRK/>
+]]<OLI>The use of definite purpose contactors is prohibited.  If IEC contactors are used, the application cannot exceed the contactor manufacturer's 
+AC3 ratings for the contactor at a minimum.</OLI><BRK/>
+<BRK/>
+<OLI>On hoist function roll-up must be less than 1/8 inch measured at the hook block and roll-back must not occur over the entire load range.</OLI><BRK/>
+<BRK/>
+<OLI>Use of Uninterruptable Power Supplies (UPS) is prohibited.  Feed control circuits from a single phase, air cooled, double wound transformer 
+with a grounded metal screen between the primary and secondary windings of the transformer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a main line contactor.  Energization of the main line contactor must be controlled by the POWER-OFF/POWER-ON switch/pushbutton 
+on all controllers.  Upon actuation of the POWER-OFF pushbutton; power to all drive motors, brakes, and controls must be removed.  The 
+mainline contactor must not be able to be energize while the POWER-OFF pushbutton is actuated. The POWER-OFF pushbutton circuitry must 
+be independent of all controls or any other electronic devices.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Protection</TTL><BRK/>
+<BRK/>
+<TXT>Protection must not be less than that required by <RID>NEMA ICS 8</RID>, <RID>CMAA 70</RID>, <RID>NFPA 70</RID>,<RID>UL 1004-1</RID>, <RID>UL 1449</RID>, <RID>UL 489</RID>, <RID>UL 50</RID>, <RID>UL 943</RID>, <RID>29 CFR 1910.147</RID>, <RID>29 CFR 1910.179</RID>
+, <RID>29 CFR 1910.306</RID> and all applicable provisions of <RID>29 CFR 1910</RID>.  Provide enclosed type circuit breaker readily accessible to the crane operator 
+for crane disconnect.  Provide an On/Off button that removes power from the motors, brakes and control circuit on all operator control stations[ 
+and ][ or ] [radio controllers].  Provide for lockout/tagout of all hazardous energy sources.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Resistors</TTL><BRK/>
+<BRK/>
+<TXT>Provide resistors with natural convection cooling sized as recommended by the VFD OEM and fabricated of corrosion resistant metal; the use of "wire 
+wound" type resistors is prohibited for segments of 8 ohms or less.  Mount resistors in substantial, ventilated enclosures constructed entirely 
+of non-combustible materials.<TAI OPT="OUTDOOR">  When mounted outdoors provide stainless steel resistor enclosures.</TAI>  Provide resistors with terminals fitted in the 
+coolest position in the enclosure.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Transients and Harmonics Protection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following items are required only for VFD Controls.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide contactors and relays with appropriate Metal Oxide Varistors (MOV) or resistor-capacitor (R-C) surge absorbers installed across 
+the respective coil.</OLI><BRK/>
+<BRK/>
+<OLI>Provide transient protection for electronic drive controllers that is either internal to the drive or via an MOV connected line-to-ground 
+close to the line terminals of the drive.</OLI><BRK/>
+<BRK/>
+<OLI>Provide line reactors rated for continuous duty operation based upon the motor nameplate amperes.  With motors of 50 horsepower or greater, 
+harmonics protection must be provided by an isolations transformer or as recommended by the VFD OEM.  For a drive motor branch circuit 
+that exceeds 150 feet in length, a reactor must also be connected in series with the controller load (output) terminals to provide standing 
+wave protection or as otherwise recommended by the VFD or motor OEM.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Limit Switches</SUB></TTL><BRK/>
+<OLG><BRK/>
+<TAI OPT="MAXHAZ"><OLI>Limit switches must be rated for the NEC Hazardous Classifications specified in the Classification section of this specification.</OLI><BRK/>
+<BRK/></TAI>
+<OLI>Provide primary upper and lower geared limit switches.  Geared limits must allow reversing direction to back out of the limit without resetting.  
+The lower limit switch must be set such that there are a minimum of two wraps of rope on the hoist drum.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a backup mechanical hook block activated upper limit switch wired independent of the directional controllers and the primary upper 
+limit switch that removes power from the hoist motor, hoist brake and hoist controls conforming to<RID> NEMA ICS 5</RID>.  The backup limit must require 
+hoist resetting prior to operation of the hoist in any direction.</OLI><BRK/>
+<BRK/>
+[<OLI>Travel limit switches must be provided for the [bridge][ and ][trolley] motion to slow the crane to [25 percent] [_____] of its rated speed 
+[[10] [_____] feet before the bridge end stops][ and ][[5] [_____] feet from the trolley end stops].  Limit switches must be mounted rigidly 
+in a manner so as to protect the switch from misalignment or damage.  The target/trip arm must be large enough to provide interception 
+given a misalignment were to occur.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Operator Controls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Available operator controls are operator's cab, pendant, and radio control.  Cranes can also be set-up 
+to be controlled by two separate systems.  For cranes with one set of controls use paragraph 1.  For cranes with 
+two sets of controls use paragraph 2.  In such a case some type of interlock must exist to prevent control from 
+both systems simultaneously.</NPR><BRK/>
+<BRK/>
+<NPR>The pendant can be suspended from the trolley or an independent festooned messenger track system.  The festooned 
+system allows the operator to have maximum separation from the load.  When this is a requirement include PENDANT 
+CONDUCTOR SYSTEM section of this specification.</NPR><BRK/>
+<BRK/>
+<NPR>When specifying a radio control system, the following requirements must be considered and if needed added to the 
+specification.  None are hard requirements of NAVCRANECENINST 11450.2:<BRK/>
+1.  What type of batteries? Rechargeable?<BRK/>
+2.  Are spare batteries needed? How many?<BRK/>
+3.  Are spare remote control units required?  How many?<BRK/>
+4.  Is a battery charger required?<BRK/>
+5.  Type of transmitter unit.<BRK/>
+6.  Is a belt/harness required for the remote control?</NPR><BRK/>
+<BRK/>
+<NPR>When specifying a cab operated crane, the following requirements must be considered and if needed added to the 
+specification.  None are hard requirements of NAVCRANECENINST 11450.2:<BRK/>
+1.  Where would the user like the operator controls/indicators to be located (master switches, push buttons, key 
+switches, lights)?  See paragraphs LEFT-HAND OPERATOR CONTROL PANEL and RIGHT-HAND OPERATOR CONTROL PANEL under 
+CAB CONTROL STATION.<BRK/>
+2.  Specific details on controllers can be listed.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLG>[<OLI>Provide crane equipped with a [pendant pushbutton station] [cab control station] [radio control system].</OLI><BRK/>
+<BRK/>
+][<OLI>Provide crane equipped with both a [pendant pushbutton station] [cab control station] [radio control system] (see paragraph PENDANT PUSHBUTTON 
+STATION) and a [pendant pushbutton station] [cab control station] [radio control system] (see paragraph RADIO CONTROL SYSTEM).  Provide 
+a selector switch to allow the use of only one of the two available control stations [in the operator's cab] [on the pendant controller].</OLI><BRK/>
+<BRK/>
+]<OLI>If VFD controls are not provided, provide directional contactors with both mechanical and electrical interlocks.</OLI><BRK/>
+<BRK/>
+<TAI OPT="MAXHAZ"><OLI>Operator controls must be rated for the NEC Hazardous Classifications specified in the Classification section of this specification.</OLI><BRK/>
+<BRK/></TAI>
+</OLG>[<SPT><TTL><SUB>Pendant Pushbutton Station</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pendants can be suspended from either the trolley or an independent conductor system that is independent 
+of the trolley (recommended).  If cost is a concern and maximum separation of the operator from the load is not 
+a requirement, suspending the pendant from the trolley is the best option.  Otherwise specify a pendant conductor 
+system by including paragraph PENDANT CONDUCTOR SYSTEM and suspending the pendant from "an independent festooned 
+messenger track system."</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The cranes must be controlled from a pendant pushbutton station suspended from [the trolley] [an independent festooned messenger track system, 
+operating the length of the bridge].  Provide multiconductor flexible cords for pendant pushbutton stations with No. 16 AWG minimum conductors.  
+Provide a method of strain relief to protect the electrical conductors from damage.  Locate the pendant pushbutton station [<MET>1200 mm</MET> <ENG>4 feet</ENG>] [_____] 
+above the finished floor.  Pushbutton pendant station must have its elements legibly marked and arranged vertically, in order, in accordance with <RID>
+CMAA 70</RID>.[  Provide [one speed] [two speed] [3-step infinitely variable] [2-step infinitely variable] pendant pushbuttons for control of the [hoist] 
+[bridge][ and ][trolley].]  Provide pendant pushbuttons for control that spring return to the OFF position.  Voltage in the pendant pushbutton 
+station must not exceed 150 Volts AC or 300 Volts DC.[  Provide a maintained two-position selector switch for slow speed selection.]<TAI OPT="MINHAZ">  The pendant 
+must be rated for the NEC Hazardous Classifications specified in the Crane Design Criteria "Classification" Section.</TAI></TXT><BRK/>
+<BRK/>
+[<SPT><TTL><SUB>Pendant Conductor System</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a festoon type pendant conductor system.  The festoon cables must be flat cables suspended from carriers riding on an I-beam or C-track.  
+The pendant controller must be capable of traveling the entire length of the bridge and move independently of the trolley.  Festoon loops must 
+not extend below the high hook position.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>][<SPT><TTL><SUB>Radio Control System</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide each system with a [belly box] [handheld] [_____] type portable transmitter unit [and an identical back-up transmitter unit].[  Provide 
+each transmitter with an adjustable belt or harness to support it when worn by the operator].  Only one transmitter at a time can control the crane 
+and there must be no interference from one crane's controller affecting operation of the other cranes in the building.  Each transmitter must include: 
+individual [infinitely variable spring return joystick motion control levers] [push button controls] for each hoist, trolley, and bridge; a maintained 
+contact, keyed switch, marked ON-OFF, for portable transmitter unit power; indication of Battery Power, and indication of Transmitting Status; 
+a red emergency STOP mushroom pushbutton; [and ]a floodlight on/off pushbutton[ and a maintained slow speed selector switch].   The transmitters 
+and all controls must each be clearly and permanently labeled with functionality and direction.  Directions for controllers must be in accordance 
+with <RID>CMAA 70</RID> recommendations.  The remote radio control system must be designed to meet the requirements of <RID>NEMA ICS 8</RID>, Part 9 and ECMA 15.  Each 
+radio remote control lever must be in the OFF position before the associated crane function can begin. The system frequency must be within the 
+unlicensed FCC Part 15 range.  Each control unit must maintain a continuous status signal to the associated receiver during operation.  There must 
+be no significant loss in systems efficiency and function at the end of eight hours of continuous battery use.<TAI OPT="ORDHAND">  Provide a contact monitoring board 
+with the crane radio system receiver.</TAI></TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Cab Control Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>All crane motions/functions must be able to be controlled from an integral operator's control chair.[  Provide three master switches integrated 
+into the chair, two on the left side and one on the right side.][  All master switches must be of the single axis type operating in the forward/reverse 
+direction.][  Provide all master switches with infinitely variable speed control to the particular function.]  Directional contacts must be utilized 
+to ensure proper motions are executed.  Provide all master switches with a detent neutral position.  All master switch operating handles must be 
+in the OFF position before any initial crane function can begin.<TAI OPT="ORDHAND">  Provide all master switches with dead man controls.</TAI>  All controllers must be 
+clearly and permanently labeled for proper function and direction.  Provide pushbuttons that are guarded to prevent accidental activation, except 
+for the STOP/POWER OFF pushbutton.[  Directions for controller movement must be in the general direction of movement of load and in accordance 
+with <RID>CMAA 70</RID> recommendations.  The two left side master switches must control the bridge function (outermost stick) and the trolley function (innermost 
+stick). The right master switch must control the Main hoist.]</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Left-Hand Operator Control Panel</TTL><BRK/>
+<BRK/>
+<TXT>Identified as follows:</TXT><BRK/>
+<BRK/>
+<TXT>NAMEPLATE: Description – Function.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>POWER ON:  Blue momentary pushbutton – Energizes the mainline contactor as long as all joysticks are in the OFF position.</OLI><BRK/>
+<BRK/>
+<OLI>POWER OFF:  Push-pull type, red mushroom head pushbutton – Emergency Stop / De-energizes the mainline contactor.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Right-Hand Operator Control Panel</TTL><BRK/>
+<BRK/>
+<TXT>Identified as follows:</TXT><BRK/>
+<BRK/>
+<TXT>NAMEPLATE (SECOND LINE OF NAMEPLATE): Description – Function.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>SPEED RANGE (MICRO - NORMAL):  Two-position selector switch – Toggles between the micro and normal drive operations.</OLI><BRK/>
+<BRK/>
+<OLI>HORN:  Black momentary pushbutton – Sounds the warning horn mounted outside of the operator's cab.</OLI><BRK/>
+<BRK/>
+<OLI>FLOODLIGHTS:  Two-position selector switch – Toggles the floodlights On/Off.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</SPT>]</SPT><SPT><TTL>Electrification Systems</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Various methods may be used to transfer power from the runway to the crane (Runway Conductor System) and 
+then again to the trolley (Bridge Conductor system).  Typically, the Runway Conductor System is a set of conductor 
+bars on the runway and collector shoes on the crane.  Bridge Conductor system is typically a set of festoon cables.</NPR><BRK/>
+<BRK/>
+<NPR>Site conditions and environment might require the design to deviate from the norm.  Hazardous locations will need 
+to be designed with either a cable reel or festoon system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Runway Conductor System</SUB></TTL><BRK/>
+<OLG><BRK/>
+[<OLI>Provide a rigid runway Conductor Bar System for the runway conductor system, including all necessary cables and hardware to the crane from 
+a wall or column mounted disconnect switch.  Provide electrification system with three power conductors and an equipment grounding conductor.<TAI OPT="OUTDOOR">
+  UV resistant.  Steel (non-stainless) conductor bars are prohibited.</TAI>  The crane must be grounded through the runway electrification system.  <TAI OPT="OUTDOOR">
+The grounded conductors must be a minimum of 70 square millimeters.  </TAI>Provide runway conductors sized for simultaneous motions of the hoist, 
+bridge, trolley mechanisms and any ancillary loads.  If there is any way the hook block or wire rope can swing into the runway electrification, 
+provide a guard installed to prevent contact.</OLI><BRK/>
+<BRK/>
+<OLI>Provide two Collector Shoes (tandem design) for each conductor; each collector shoe must be rated for not less than the overcurrent protective 
+device for the runway conductor system, so as to provide redundancy.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide a Festoon System for the runway conductor system utilizing cables suspended from carriers riding on an I-beam or C-track for the 
+crane, including all necessary cables and hardware to the crane from a wall or column mounted disconnect switch.  Provide electrification 
+system with three power conductors and an equipment grounding conductor.  Conductors must be fabricated from copper.  The crane is required 
+to be grounded through this conductor system.  <TAI OPT="OUTDOOR">The grounded conductors must be a minimum of 2/0 AWG.  </TAI>Provide conductors sized for simultaneous 
+motions of the hoist, bridge, trolley mechanisms and any ancillary loads.  Festooned cable loops must not extend low enough to come into 
+contact with any obstructions.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide a Cable Reel System for the runway conductor system, including all necessary cables and hardware to connect the cable reel to the 
+floor level fused disconnect switch.  The cable reel must have three power conductors and an equipment grounding conductor.  The crane 
+is required to be grounded through this conductor system.  Conductors must be fabricated from copper, and sized for simultaneous motions 
+of the hoist, bridge, trolley mechanisms and any ancillary loads.<TAI OPT="OUTDOOR">  The grounded conductors must be a minimum of 2/0 AWG.</TAI></OLI><BRK/>
+<BRK/>
+][<OLI>Provide a totally enclosed flexible cable tray electrification system (cable chain) for the runway conductor system, including all necessary 
+cables and hardware to the crane from a wall or column mounted disconnect switch.  The cable chain must have three power conductors and 
+an equipment grounding conductor.  The conductors must be selected so as to be of the longest length without splices.  Conductors must 
+be fabricated from copper, and sized for simultaneous motions of the hoist, bridge, trolley mechanisms and any ancillary loads.  The crane 
+is required to be grounded through this conductor system.<TAI OPT="OUTDOOR">  The grounded conductors must be a minimum of 2/0 AWG.</TAI></OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL><SUB>Bridge Conductor System</SUB></TTL><BRK/>
+<OLG><BRK/>
+[<OLI>Provide Festoon System for the bridge conductor system utilizing cables suspended from carriers riding on an I-beam or C-track.  Conductors 
+must be fabricated from copper.  A minimum of 20 percent of the festoon control circuit conductors for each electrification system must 
+be spares at the time of crane acceptance.  The trolley is required to be grounded through this conductor system.  <TAI OPT="OUTDOOR">The grounded conductors 
+must be a minimum of 2/0 AWG.  </TAI>Festooned cable loops must not extend low enough to come into contact with any obstructions.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide a Cable Reel System for the bridge conductor system.  The cable reel must have three power conductors, an equipment grounding conductor, 
+and all necessary control cables.  A minimum of 20 percent of the festoon control circuit conductors for each electrification system must 
+be spares at the time of crane acceptance.  The trolley must be grounded through the cable reel connection and all conductors must be of 
+copper construction.<TAI OPT="OUTDOOR">  The grounded conductors must be a minimum of 2/0 AWG.</TAI></OLI><BRK/>
+<BRK/>
+][<OLI>Provide a totally enclosed flexible cable tray electrification system (cable chain) for the bridge conductor system.  The cable chain must 
+have three power conductors, an equipment grounding conductor, and all necessary control cables.  The conductors must be selected so as 
+to be of the longest length without splices and must be copper.  A minimum of 20 percent of the control circuit conductors in the flexible 
+cable tray system must be spares at the time of crane acceptance.  The trolley is required to be grounded through this conductor system.<TAI OPT="OUTDOOR">
+  The grounded conductors must be a minimum of 2/0 AWG.</TAI></OLI><BRK/></OLG>
+<BRK/>
+]</SPT></SPT><SPT><TTL><SUB>Capacity Overload Protective Device</SUB> [and <SUB>Load Indicating Device</SUB>]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Overload protection on a crane is required and is provided by two types of systems:  Capacity Overload 
+Protection and Over-Torque Limit.</NPR><BRK/>
+<BRK/>
+<NPR>The Over-Torque Limit only applies to cranes with VFD controls.  It is a parameter setting in the drive and is 
+typically set at 150 percent.  Cranes with magnetic controls do not have this feature.  Delete third paragraph 
+if VFD controls are not specified.</NPR><BRK/>
+<BRK/>
+<NPR>Capacity Overload Protection is usually adjustable.  If adjustable, it needs to be set at less than the crane's 
+minimum test load.  This protection can take the form of one of the following devices:<BRK/>
+1.  Clutch – Not adjustable and is common on package hoists.<BRK/>
+2.  Load Limit Switch – Installed on the wire rope and measures deflection.  Does not require a break in the wire 
+rope and is simply clamped onto the wire.  Typically used on smaller hoists that have magnetic controls.<BRK/>
+3.  VFD Drive Overload Protection – Similar to the Over-Torque Limit, but is set at a lower setting.  Adjusted 
+via parameters within the drive.<BRK/>
+4.  Separate Load Indicating Device – This involves the installation of a load cell and a digital readout that 
+displays weight.  The load cell is usually bolted onto the end of the wire rope or is installed as a pin in one 
+of the sheaves.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide a capacity overload protective device for all hoist systems [using VFD drive capacity overload protection (separate from torque 
+limiting feature of the VFD)] [using the load indicating device (LID) described in the next paragraph].  Set hoist capacity overload protection 
+at [_____].  Hoist capacity overload protection must be adjustable between 80 and 150 percent of hoist capacity.  Provide a keyed override 
+or other means to disable the hoist capacity overload protection when performing a load test.[  If a non-adjustable slip clutch is utilized, 
+the OEM factory setting is acceptable and must be identified.]</OLI><BRK/>
+<BRK/>
+[<OLI>Provide an LID for the [main][ and ][auxiliary] hoist[s].[  Provide [a display] [displays] installed on the underside of the bridge of 
+each crane to provide load information from the load indicating system, to be displayed in<MET> kilograms</MET><ENG> pounds</ENG>, for [both] the [main][ and 
+][auxiliary] hoist[s].][  Provide [a display] [displays] installed in the cab of each crane to provide alarm circuits and continual load 
+readout information from the load indicating system, to be displayed in<MET> kilograms</MET><ENG> pounds</ENG>, for [both] the [main][ and ][auxiliary] hoist[s].]  
+The display[s] must be large enough so that the operator can read the load value[s] [from the ground level] [while seated in the operator's 
+cab].  The load indicating system capacity is to be compatible with the maximum test load for each hoist.  The accuracy of the load indicating 
+system is to be such that the indicated load is not less than 100 percent of the actual load, and not more than 110 percent of the actual 
+load.  The load indicating system must be configured with a set point for an overload limit.  Provide Tare (zero) functionality at each 
+operator's station for [the] [each] load indicating system.  Any load bearing components used in the LID system must be steel, have a minimum 
+design factor of 5 to 1 based on ultimate tensile strength and a hardness not to exceed HRC 40.  Precipitation hardened stainless steel 
+load bearing elements must be aged hardened at a minimum temperature of 1025 degrees F.<BRK/></OLI>
+<BRK/>
+][<OLI>Initially, set the torque limiting capability of the VFD (that is separate from the capacity overload protective device) to 150 percent 
+of the motor torque (amperage) necessary to hoist 100 percent load.  It may be adjusted up only to avoid nuisance trips and adjusted down 
+if possible while still avoiding nuisance trips.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Enclosures</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select classification of control panels, controls, and brakes based on the environmental conditions in 
+which the crane will be installed:<BRK/>
+1.  Choose one of the following for an indoor installation: 1, 2, or 12.<BRK/>
+2.  Choose one of the following for an outdoor installation: 3, 4X, or 8.<BRK/>
+3.  Choose on of the following for a Class I Hazardous installation: 7 (indoor) or 8 (indoor/outdoor).<BRK/>
+4.  Choose one of the following for a Class II Hazardous installation: 9 (indoor).</NPR><BRK/>
+<BRK/>
+<NPR>Other enclosure types exist that might be a better alternative for a particular installation.  If necessary, refer 
+to NEMA 250.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide enclosures for control panels, controls, and brakes in accordance with <RID>NEMA 250</RID> and <RID>NEMA ICS 6</RID>, Classification Type [1 indoor, 
+general purpose] [12 indoor without knockouts, general purpose] [2 indoor, drip-proof] [3 outdoor, dust-tight, rain-tight, sleet-resistant] 
+[4X outdoor] [7 indoor Class I hazardous] [9 indoor Class II hazardous] [8 indoor/outdoor Class I hazardous][_____].  Provide enclosures 
+with listed drains to prevent accumulation of water within the enclosure.  There must not be any condensation inside the control panels.  
+If anti-condensation heaters are provided, these heaters must remain energized when the main line contactor is deenergized.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a non-resettable hour meter, connected across the main line contactor, readable from the exterior of the main control panel, to 
+indicate the elapsed number of hours the crane is energized.</OLI><BRK/>
+<BRK/>
+<OLI>Gaskets of enclosures and fixtures, and joints and contact surfaces of hazardous/explosive enclosures must be kept free of any paint to 
+prevent damage during removal and reinstallation of gaskets of enclosures.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Warning Devices</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A warning horn or light is required for all radio controlled cranes and recommended for all others.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide a warning horn that is operable from a push button at the [pendant pushbutton] [radio control] station.][  Provide a warning [strobe] 
+[rotating beacon] that is illuminated at all times during movement of the hoist, trolley, or bridge function.]</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Floodlights[ and Walkway Illumination]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Outdoor cranes require exterior footwalks, ladders, and stairs to be illuminated to 5 foot-candles.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide evenly spaced floodlights along the bridge.  Select floodlights to provide an illumination level of 40 foot-candles at three feet above 
+the finished floor.  All lights must be vibration resistant and designed to prevent any material from falling from the fixture.  Switch the floodlights 
+from the [pendant pushbutton] [radio controlled] station.</TXT><BRK/>
+<BRK/>
+[<TXT>[Exterior] footwalks, ladders and stairs must be illuminated to 5 foot-candles.</TXT><BRK/>
+<BRK/>
+]</SPT>][<SPT><TTL>Indicator Lights</TTL><BRK/>
+<BRK/>
+<TXT>Provide Indicator Lights mounted in an enclosure on the bottom of the bridge with lights sized and positioned to be visible from the ground.  The 
+lights must be the dual-lamp type.  Provide a white light to indicate that power is available on the load side of the crane disconnect and a blue 
+light to indicate that the main contactor is energized.  Light voltage must be 115 VAC.  Provide nameplates that are legible from ground level.  
+The nameplates must read, in their respective order, "POWER AVAILABLE" and "CRANE ENERGIZED".  The POWER AVAILABLE light must be supplied by a 
+separate, fused transformer for its energization.</TXT><BRK/>
+<BRK/></SPT>
+]<TAI OPT="OUTDOOR"><SPT><TTL>Wind Speed Indicating System</TTL><BRK/>
+<BRK/>
+<TXT>Provide a wind speed indicating device.  The transmitter must be mounted on the highest unobstructed location.</TXT><BRK/>
+<BRK/></SPT>
+</TAI>[<SPT><TTL>Electrical Outlets</TTL><BRK/>
+<BRK/>
+<TXT>Provide a minimum of [one] [_____] 120 VAC duplex outlet[s] on the crane, mounted [on] [in] the [outside of the control panel(s)] [trolley] [cab] 
+[_____].  The circuit(s) supplying receptacles must incorporate ground-fault circuit-interrupter protection for personnel and be protected by a 
+circuit breaker with a minimum rating of [15] [20] amps.</TXT><BRK/>
+<BRK/></SPT>
+]<TAI OPT="NAVFAC"><SPT><TTL>Cyber Security of Control Systems</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Cyber Security of Control Systems requirements are tailored to NAVFAC.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  SECNAVINST 5400.15 designates NAVFAC as the functional technical authority for WHE.  NAVFAC is designated 
+as Functional Security Control Assessor (FSCA) and the Functional Authorizing Official (FAO) for Ashore Control 
+Systems in their domain; therefore, this includes WHE control systems.  WHE control system owners are responsible 
+for the Information System Security Engineer (ISSE) functions and producing artifacts (documentation) for review 
+by the FSCA and FAO.</NPR><BRK/>
+<BRK/>
+<NPR>All new and electrically overhauled cranes must implement the following cybersecurity requirements as applicable 
+to the control system architecture (i.e., networked drives, non-networked drives, and any wireless applications) 
+so that supporting artifacts and considerations are available for the implementation of the RMF process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide the following for PLC, RTU, Supervisory Controller, or other network-capable (whether networked or not upon delivery) control devices 
+as applicable:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Hardware list (Hardware list must include the following for each device):</OLI><BRK/>
+<OLI LEVEL="3">Manufacturer</OLI><BRK/>
+<OLI LEVEL="3">Model</OLI><BRK/>
+<OLI LEVEL="3">Location</OLI><BRK/>
+<OLI LEVEL="3">Key technical ratings (e.g. memory)</OLI><BRK/>
+<OLI LEVEL="3">Serial number</OLI><BRK/>
+<OLI LEVEL="3">MAC addresses</OLI><BRK/>
+<OLI LEVEL="3">IP addresses</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Software List (Software list must include the following for each device):</OLI><BRK/>
+<OLI LEVEL="3">Manufacturer</OLI><BRK/>
+<OLI LEVEL="3">Version/subversion</OLI><BRK/>
+<OLI LEVEL="3">Location/device</OLI><BRK/>
+<OLI LEVEL="3">Used network ports/protocols/services</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">List and discussion of all security features of Contractor hardware and software.</OLI><BRK/>
+<BRK/>
+<OLI>For every PLC, RTU, Supervisory Controller, or other <SUB>network-capable control devices</SUB> (whether networked or not upon delivery), deliver 
+the following on CD/DVD:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Original firmware</OLI><BRK/>
+<OLI LEVEL="2">Original firmware hash</OLI><BRK/>
+<OLI LEVEL="2">SOP for application of firmware updates/patches</OLI><BRK/>
+<OLI LEVEL="2">POC or website for firmware updates/patches</OLI><BRK/>
+<OLI LEVEL="2">Count of interfaces and types</OLI><BRK/>
+<OLI LEVEL="2">Protocols in use, per interface</OLI><BRK/>
+<OLI LEVEL="2">Configuration file</OLI><BRK/>
+<OLI LEVEL="2">SOP for configuration</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL><SUB>Control System and Network</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select options a. &amp; b. if a standalone laptop is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>Provide a rugged laptop type workstation (computer) complete with all compatible software (including software licenses), redundant physical 
+back-up copies on CD/DVD of the installed software, and all necessary cables and special connectors to allow crane software to be troubleshot, 
+checked and upgraded, and for the data recorder to be accessed and information retrieved.  Equip the workstation with a CD/DVD drive and 
+the associated CD/DVD burning software.  The workstation must also be equipped with USB ports (2.0 and 3.0), an Ethernet port, and a serial 
+port.  Delivering the software on a USB (flash drive) device is prohibited.</OLI><BRK/>
+<BRK/>
+<OLI>The laptops must be designed for an industrial environment and must be shock resistant and weatherproof as a minimum.  Provide the laptop 
+with a built-in CD/DVD reader with the capability to burn CDs and DVDs including associated software to burn CDs and DVDs.</OLI><BRK/>
+<BRK/>
+]<OLI>The Contractor must provide all equipment, including software and hardware, necessary for testing, installation, and communicating/troubleshooting 
+all systems provided with the crane (e.g. engine/generator, control system, LID, etc.).  The Contractor must provide all crane specific 
+operational software files (e.g. ladder logic, functional block programming, etc.) for their associated systems (e.g. control systems, 
+LID, engine generator, etc.).</OLI><BRK/>
+<BRK/>
+<OLI>A single common networked design must not be used for the control systems.  A network for an individual function may be used as long as 
+a failure of the network does not affect any other function/network except as defined for specific safety interlocks (e.g. LMI system).  
+A common crane network may be used in a monitoring mode for recording faults and trending and is encouraged.  Failure of the monitoring 
+system must not affect crane functions.</OLI><BRK/>
+<BRK/>
+<OLI>All provided hardware and software must be currently marketed products, not currently scheduled for end of life or obsolescence, to ensure 
+system sustainability.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure there is no remote access capability enabled as remote access capabilities are prohibited.  Physically disable or remove all modem/network 
+devices not required for operational purposes.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Software and Services</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Remove all Software and Services not required for operation and/or maintenance of the product.  If removal is not technically feasible, 
+then disable software not required for the operation and/or maintenance of the product.  Configure the product to allow the ability to 
+re-enable ports and/or services if they are disabled by software.  The removal of software or services may not impede the primary function 
+of the product.  If software that is not required cannot be removed or disabled, document a specific explanation and provide risk mitigating 
+recommendations and/or specific technical justification.  The software/service to be removed and/or disabled includes, but is not limited 
+to:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Cameras</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Games</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Device drivers for product components not procured/delivered</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Messaging services (e.g., email, instant messenger, peer-to-peer file sharing)</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Source code</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Software compilers in user workstations and servers</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Software compilers for programming languages that are not used in the control system</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Unused networking and communications protocols</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Unused administrative utilities, diagnostics, network management, and system management functions</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Backups of files, databases, and programs used only during system development</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">All unused data and configuration files</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Remove and/or disable, through software, physical disconnection, or engineered barriers, all services and/or ports in the procured 
+product not required for normal operation, emergency operations, or troubleshooting.  This includes communication ports and physical 
+input/output ports (e.g., USB docking ports, video ports, and serial ports).</OLI><BRK/>
+<BRK/>
+<OLI>Provide documentation showing all <SUB>disabled ports, connectors, and interfaces</SUB> for all network-capable devices.  In addition, the documentation 
+must provide summary documentation of the procured product's security features and security-focused instructions on product maintenance, 
+support, and reconfiguration of default settings.</OLI><BRK/>
+<BRK/>
+<OLI>For the <SUB>evaluation status of hardware and software</SUB>, the Contractor must provide information on Common Criteria or National Information 
+Assurance Partnership (NIAP) or Federal Information Processing Standards (FIPS) evaluation status of hardware and software.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Access Control</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The Contractor must configure each component of the procured product to operate using the principle of least privilege.  This includes 
+operating system permissions, file access, user accounts, application-to-application communications, and energy delivery system services.</OLI><BRK/>
+<BRK/>
+<OLI>Provide user accounts with configurable access and permissions associated with one or more organizationally defined user role(s), where 
+roles are used.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a system administration mechanism for changing user(s') role (e.g., group) associations.</OLI><BRK/>
+<BRK/>
+<OLI>The Contractor must document <SUB>control system access control</SUB> options by defining access and security permissions, user accounts, and applications 
+with associated roles.</OLI><BRK/>
+<BRK/>
+<OLI>Provide recommended methods for the Acquirer to prevent unauthorized changes to the Basic Input/Output System (BIOS) and other firmware.  
+If it is not technically feasible to protect the BIOS to reduce the risk of unauthorized changes, the Contractor must document this case 
+and provide mitigation recommendations.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Control System Account Management</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must document all accounts (including, but not limited to, generic and/or default) that need to be active for proper operation of 
+the procured product.</TXT><BRK/>
+<BRK/>
+<TXT>Remove or disable any accounts that are not needed for normal or maintenance operations, emergency, or troubleshooting of the energy delivery system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Session Management</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor may not allow multiple concurrent logins using the same authentication credentials, allow applications to retain login information 
+between sessions, provide any auto-fill functionality during login, or allow anonymous logins.</TXT><BRK/>
+<BRK/>
+<TXT>Provide account-based and group-based configurable session-based logout and timeout settings (e.g., alarms and human-machine interfaces).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Authentication/Password Policy and Management</TTL><BRK/>
+<BRK/>
+<TXT>Provide a configurable account password management system that allows for, but is not limited to, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Changes to passwords (including default passwords)</OLI><BRK/>
+<BRK/>
+<OLI>Selection of password length</OLI><BRK/>
+<BRK/>
+<OLI>Frequency of change</OLI><BRK/>
+<BRK/>
+<OLI>Setting of required password complexity</OLI><BRK/>
+<BRK/>
+<OLI>Number of login attempts prior to lockout</OLI><BRK/>
+<BRK/>
+<OLI>Inactive session logout</OLI><BRK/>
+<BRK/>
+<OLI>Screen lock by application</OLI><BRK/>
+<BRK/>
+<OLI>Comparison to a library of forbidden strings</OLI><BRK/>
+<BRK/>
+<OLI>Derivative use of the user name</OLI><BRK/>
+<BRK/>
+<OLI>Denial of repeated or recycled use of the same password</OLI><BRK/></OLG>
+<BRK/>
+<TXT>The Contractor must time stamp log files.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Logging and Auditing</TTL><BRK/>
+<BRK/>
+<TXT>Provide logging capabilities that cover the following events, at a minimum (as appropriate to their function):</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Information requests and server responses</OLI><BRK/>
+<BRK/>
+<OLI>Successful and unsuccessful authentication and access attempts</OLI><BRK/>
+<BRK/>
+<OLI>Account changes</OLI><BRK/>
+<BRK/>
+<OLI>Privileged use</OLI><BRK/>
+<BRK/>
+<OLI>Application start-up and shutdown</OLI><BRK/>
+<BRK/>
+<OLI>Application failures</OLI><BRK/>
+<BRK/>
+<OLI>Major application configuration changes</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Heartbeat Signals</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must identify heartbeat signals or protocols and recommend which should be included in network monitoring.  At a minimum, a last 
+gasp report from a dying component or equivalent must be included in network monitoring.</TXT><BRK/>
+<BRK/>
+<TXT>The Supplier must provide packet definitions of the heartbeat signals and examples of the heartbeat traffic if the signals are included in network 
+monitoring.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Patch Management and Updates</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must verify that procured products (including third-party hardware, software, firmware, and services) have appropriate updates and 
+patches installed prior to delivery.</TXT><BRK/>
+<BRK/>
+<TXT>Provide documentation of the patch management program and update process (including third-party hardware, software, and firmware).  This documentation 
+must include resources and technical capabilities to sustain this program and process.  Provide the Contractor's method or a recommendation for 
+how the integrity of the patch is validated by the Acquirer as well as the Supplier's approach and capability to remediate newly reported zero-day 
+vulnerabilities.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Malware Detection and Protection</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>The Contractor is required to implement at least one of the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide a host-based malware detection capability that quarantines (instead of automatically deleting) suspected infected files.  
+Provide an updating scheme for malware signatures.  The Contractor must test and confirm compatibility of malware detection application 
+patches and upgrades.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">If the Contractor is not providing the host-based malware detection capability, the Contractor must suggest malware detection 
+products to be used and provide guidance on malware detection and configuration settings that will work with Contractor products.</OLI><BRK/>
+<BRK/>
+<OLI>The Contractor must validate that cybersecurity services running on the procured product (e.g., virus checking and malware detection) do 
+not conflict with other such services running on the procured product.</OLI><BRK/>
+<BRK/>
+<OLI>For malware detection and protection, the Contractor must provide, or specify how to implement, the capability to automatically scan any 
+removable media that is introduced to the product being acquired.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Physical Security</TTL><BRK/>
+<BRK/>
+<TXT>Provide lockable or locking enclosures or rooms for energy delivery systems and system components (e.g., servers, clients, and networking hardware) 
+and for the systems used to manage and control physical access (e.g., servers, lock controllers, and alarm control panels).  Provide a method for 
+tamper detection on lockable or locking enclosures.  If a physical security and monitoring system is used, tamper detection must be compatible.  
+The Contractor must ensure that physical security features do not hamper the crane system operations.  Provide the tools and instructions for making 
+changes to locks, locking codes, keycards, and any other keyed entrances.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wireless Technology</TTL><BRK/>
+<BRK/>
+<TXT>For <SUB>wireless technology provisions</SUB>, the Contractor must document:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Specific protocols and other detailed information required for wireless devices to communicate with the control network, including other 
+wireless equipment that can communicate with the Contractor-supplied devices.</OLI><BRK/>
+<BRK/>
+<OLI>Use, capabilities, and limits for the wireless devices.</OLI><BRK/>
+<BRK/>
+<OLI>Power and frequency requirements of the wireless devices (e.g., microwave devices meet the frequency requirements of Generic Requirements 
+[GR]-63 Network Equipment Building System [NEBS] and GR-1089).</OLI><BRK/>
+<BRK/>
+<OLI>Range of the wireless devices and verify that the range of communications is minimized to both meet the needs of the Acquirer's proposed 
+deployment and reduce the possibility of signal interception from outside the designated security perimeter.</OLI><BRK/>
+<BRK/>
+<OLI>Wireless technology and associated devices compliance with standard operational and security requirements specified in applicable wireless 
+standard(s) or specification(s) (e.g., applicable IEEE standards, such as 802.11).</OLI><BRK/>
+<BRK/>
+<OLI>Configuration control options that enable varying of the security level of the devices.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Control System Inventory</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide the complete control system inventory.  The Control System Inventory must include the following attributes, in tabular format, as applicable:</TXT><BRK/>
+<BRK/>
+<TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="5" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="93.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="93.75"/>
+      <COL AUTOWIDTH="0" WIDTH="93.75"/>
+      <COL AUTOWIDTH="0" WIDTH="93.75"/>
+      <COL AUTOWIDTH="0" WIDTH="93.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="84.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">General Information</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Location Information</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Hardware Details</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Operating System and Platform</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Network Information (Actual Function, not potential function)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Unique ID</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Facility Name</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Device Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Embedded OS (Yes/No)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">MAC Address(es)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Barcode or Identifier</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">NFAID</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Device Sub-Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">OS Contractor</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">IP Address(es)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Region</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Commodity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Device Function</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Operating System (O/S)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Upstream Device</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Installation</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Floor</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Manufacturer</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">O/S Version</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Protocols In Use</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Special Area (Option DNA1)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Room</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Product Line</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Platform Contractor</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Host Name</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Location</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Model No.</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Platform Product Line</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">System Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Serial No.</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Platform</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Functional System or Equipment Control</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Remote Connectivity: (Wired / Wireless / None)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Platform Version</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="59.25">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL>
+<DTA TYPE="STRING">Network Type Used: (Serial / Ethernet / Both / None)</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT></TAI></SPT><SPT><TTL><SUB>PAINTING SYSTEM</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Three-coat zinc primer/epoxy/polyurethane system is provided for mild to severe atmospheric, indoor and 
+outdoor cranes.  For cranes in abnormal environments including exposure to chemicals or in immersion service, 
+a system designed for that environment should be used.  Other systems may suffice for milder environments.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Remove all grease, oil, and surface debris by solvent wiping or detergent/water scrubbing, prior to blast cleaning.  Prepare surfaces to 
+be coated by abrasive blasting to <RID>SSPC SP 6/NACE No.3</RID>, Commercial Blast Cleaning, or in accordance with the coating manufacturer's requirements, 
+whichever is more stringent.</OLI><BRK/>
+<BRK/>
+<OLI>Use a painting system appropriate for the conditions provided in the Crane Design Criteria section.  Paint exposed portions of the crane 
+using a [three] [_____]-coat system as follows: [zinc-rich primer consisting of a minimum of 85 percent zinc by weight in the dry film, 
+an anticorrosive epoxy intermediate coat, and an aliphatic polyurethane top coat] [_____].  All paint products must be supplied by a single 
+manufacturer and free of chromates, lead, and mercury.  Apply each coat in accordance with manufacturer's instructions and requirements.  
+Ensure each coat is smooth, even, and free of runs, sags, orange peel, and other defects.  Desired color of finish coat is [brilliant yellow] 
+[_____].  Submit product data for painting system.</OLI><BRK/>
+<BRK/>
+<OLI>Coat faying surfaces of bolted connections per <RID>RCSC A348</RID>, but do not apply finish paint.</OLI><BRK/>
+<BRK/>
+<OLI>Paint the load block [brilliant yellow] [_____] with black diagonal striping.  Paint, coatings, or galvanizing on the following items or 
+areas is not acceptable:  hoist wire ropes, hooks, hook nuts, running bearing surfaces (including sheaves and wheel treads), grease fittings, 
+or other items not normally painted.</OLI><BRK/>
+<BRK/>
+<OLI>Factory paint electrical and mechanical equipment in accordance with the manufacturer's best standard practice (for the specified environment), 
+except that electrical equipment doors, which expose current-carrying electrical conductors when opened, must be orange.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>IDENTIFICATION PLATES</TTL><BRK/>
+<BRK/>
+<TXT>Furnish and install identification plates.  Provide non-corrosive metal identification plates with clearly legible permanent lettering giving the 
+manufacturer's name, model number, serial number, capacity in both kilogram and pound units printed in different colors, and other essential information 
+or identification.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Markings on Crane, Trolley, and Hook</TTL><BRK/>
+<BRK/>
+<TXT>To avoid operation of the crane in the wrong direction, affix the appropriate directions (NORTH, SOUTH, EAST, and WEST) with arrows on the bottom 
+of the girder where they can be easily seen by the operator and from the loading point.  Provide labels on the controls with corresponding directional 
+(NORTH, SOUTH, EAST, and WEST) markings.  Markings must agree with the markings on controller.  Do not indicate directional arrows on controller.</TXT><BRK/>
+<BRK/>
+<TXT>Mark the hook rated capacity in<MET> kilograms</MET><ENG> pounds</ENG> on both sides of the hoist load block.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with all details of the work, and before performing any work, verify all dimensions in the field.  The Contractor is responsible 
+for the coordination and proper relation of the contracted work to the building structure and to the work of all trades.  Verify all dimensions 
+of the building that relate to fabrication of the crane and notify the Contracting Officer of any discrepancy before finalizing the crane order.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>SHOP ASSEMBLY AND TESTS</TTL><BRK/>
+<BRK/>
+<TXT>Shop assemble major components as completely as possible, except for reeving of drums and sheaves. Functionally test the crane system at the construction 
+facility prior to shipment. The Government reserves the right to inspect the crane for compliance with this specification and to witness the functionality 
+tests. Notify the Contracting Officer [14] [_____] days prior to starting testing operations.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>ERECTION AND INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Perform the entire crane erection in accordance with manufacturer's instructions under the full-time supervision of the manufacturer's representative.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Mechanical Alignment</TTL><BRK/>
+<BRK/>
+<TXT>Align motors, couplings, brakes, gear boxes and drive components in accordance with manufacturer's instructions.  Complete the Coupling Alignment 
+Verification Record.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electrical Adjustments</TTL><BRK/>
+<BRK/>
+<TXT>Adjust control system in accordance with manufacturer's instructions.  Store a copy of all <SUB>Control Parameter Settings</SUB> (PLC, VFD).  Provide the 
+final alignment data on the <SUB>Complete Schematic Wiring Diagram</SUB>, including but not limited to, timer settings, resistor tap settings, potentiometer 
+settings, test-point voltages, supply voltages, motor voltages, motor currents.  Provide the test conditions such as ambient temperature, motor 
+load, date performed and person performing the alignment as part of the Operational Tests report.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Welding</TTL><BRK/>
+<BRK/>
+<TXT>Perform welding indoors, where possible.  Surface of parts to be welded must be free from rust, scale, paint, grease or other foreign matter.  
+Minimum preheat and interpass temperatures must conform to the requirements of <RID>AWS D14.1/D14.1M</RID>.  Perform welding of girders and beams conforming 
+to <RID>AWS D14.1/D14.1M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Painting</TTL><BRK/>
+<BRK/>
+<TXT>Perform painting indoors, where possible.  Field painting (including touch-up) must conform to the requirements of the coating manufacturer and 
+as specified in PAINTING SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Post-Erection Inspection</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[<TST>After erection, the Contractor[, the Activity Crane Inspector/Test Director,] and the Contracting Officer must jointly inspect the crane bridge 
+and hoist systems and components to determine compliance with specifications and approved submittals.  Notify the Contracting Officer [_____] days 
+before the inspection</TST>.  ]Provide a report of the inspection indicating the crane is considered ready for operational tests.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Operational Tests</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Determine if Government furnished certified test weights are available at the site.  If not they must be 
+provided by the Contractor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Check the clearance envelope of the entire crane prior to picking or traversing any load to ensure there are no obstructions.  Test the systems 
+in service to determine that each component of the system operates as specified, is properly installed and adjusted, and is free from defects in 
+material, manufacture, installation, and workmanship.  Rectify all deficiencies disclosed by testing and retest the system or component to prove 
+the crane is operational.[  The Contractor must furnish test weights, operating personnel, instruments, and other apparatus necessary to conduct 
+field tests on each crane.  Solid weights must be measured using calibrated equipment traceable to National Institute of Standards and Technology 
+(NIST) with a minimum accuracy of plus or minus two percent.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>No-Load Test</TTL><BRK/>
+<BRK/>
+<TXT>Raise and lower each hook through the full range of normal travel at rated speed for three complete cycles.  Raise and lower each hook, testing 
+other speeds of the crane.  Verify proper operation of hoist limit switches. Operate the bridge and trolley in each direction the full distance 
+between end stops.  Operate through the entire speed range and verify proper brake operation.  Verify correct operation of all indication and ancillary 
+devices.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Test Data</TTL><BRK/>
+<BRK/>
+<TXT>Record test data on appropriate test record forms suitable for retention for the life of the crane.  Record operating and startup current measurements 
+for hoist, trolley, and bridge motors using appropriate instrumentation (i.e., clamp-on ammeters).  Compare recorded values with design specifications 
+or manufacturer's recommended values; abnormal differences (i.e., greater than 10 percent from manufacturer's or design values) must be justified 
+or appropriate adjustments performed.  In addition, note, investigate, and correct any high temperatures or abnormal operation of any equipment 
+or machinery.  Record hoist, trolley, and bridge speeds during each test cycle.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Hook Tram Measurement</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Establish a throat dimension base measurement by installing two tram points and measuring the distance between these tram points (plus or minus<MET>
+ 0.4 mm</MET><ENG> 1/64 inch</ENG>).  Record this base dimension.  Measure the distance between tram points before and after load test.  An increase in the throat 
+opening from the base measurement is cause for rejection.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Load Tests</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph contains NAVY Tailoring.  The NAVY requires a load test of 125 percent (plus 0 
+minus 5) of the rated load.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform the following tests for each hoist, as specified below.</TXT><BRK/>
+<BRK/>
+<TXT>Test loads used in this section are defined as the following:</TXT><BRK/>
+<BRK/>
+<LST>Wire rope run-in load:  25 – 50 percent of rated load.</LST><BRK/>
+<BRK/>
+<LST>Rated load test: [100 percent (plus 0 minus 10)] [100 percent (plus [_____] minus [_____])] of rated load.</LST><BRK/>
+<BRK/>
+<LST>Overload test: <TAI OPT="NAVFAC">[125 percent (plus 0 minus 5)] </TAI>[125 percent (plus [0] [_____] minus [5] [_____])] of rated load.</LST><BRK/>
+<BRK/>
+<SPT><TTL>Wire Rope Run-In</TTL><BRK/>
+<BRK/>
+<TXT>The primary purpose of this procedure is to exercise the newly installed wire rope.</TXT><BRK/>
+<BRK/>
+<TXT>Place the load on the hook.  Start at ground level and hoist up to one foot below upper limit at slow speed.  Hoist down to lower limit at slow 
+speed.  Repeat hoisting and lowering of the load for approximately 10 hoisting cycles, increasing the speed for each cycle.  During this test, 
+the capacity overload lockout should not activate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rated Load Test</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Hoist</TTL><BRK/>
+<OLG><BRK/>
+<OLI><TST>Static Load Test:  With the trolley in the center of the bridge span, raise the test load approximately<MET> 300 mm</MET><ENG> one foot</ENG>.  Hold the load 
+for 10 minutes.  Rotate the load and hook 360 degrees to check bearing operation with no binding.  Observe lowering that may occur which 
+indicates a weakness in the structure or malfunction of hoisting components or brakes.  Verify that maximum beam and girder deflections 
+do not exceed <RID>CMAA 70</RID> design limits.</TST></OLI><BRK/>
+<BRK/>
+<OLI><TST>For hoists with primary and secondary holding brakes, raise the test load and release the secondary holding brake while testing the primary 
+holding brake.  Hold for 10 minutes.  Observe for lowering of the load, which may indicate malfunction of hoisting components or brakes.  
+Re-engage secondary holding brake and release the primary holding brake.  Hold for 10 minutes.  Observe for lowering of the load, which 
+may indicate malfunction of hoisting components or brakes.  Re-engage the primary holding brake.  Recheck proper operation of time delay 
+and ensure smooth positive stopping.</TST></OLI> <BRK/>
+<BRK/>
+<OLI><TST>Hoist Mechanical Load Brake (if present):  Raise test load approximately<MET> 1500 mm</MET><ENG> 5 feet</ENG>.  With the hoist controller in the neutral position, 
+release (by hand) the holding brake.  Document the method used to release the holding brake.  The load brake must hold the test load.  
+Again with the holding brake in the released position start the test load down at slow speed and return the controller to the "off" position 
+as the test load lowers.  The load brake must stop and hold the test load.</TST></OLI><BRK/>
+<BRK/>
+<OLI><TST>Raise and lower test load through the full lift range and visually observe smooth control and acceleration between points.  Completely 
+stop the machinery at least once in each direction to ensure proper brake operation.</TST></OLI><BRK/>
+<BRK/>
+<OLI><TST>Hoist Loss of Power Test:  Raise the test load to approximately<MET> 2400 mm</MET><ENG> 8 feet</ENG>.  While slowly lowering the test load, disconnect the crane's 
+power source.  Verify that the test load does not lower and that the brake is set.</TST></OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Trolley</TTL><BRK/>
+<BRK/>
+<TXT><TST>Operate the trolley (if space is available) the full distance of the bridge rails in each direction with a test load on the hook.  Check proper 
+functioning through the range of speeds.  Verify proper brake action.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bridge</TTL><BRK/>
+<BRK/>
+<TXT><TST>With a test load on the hook, operate the bridge for the full length of the runway (if space is available) in one direction with the trolley at 
+the far end of the bridge, and in the opposite direction with the trolley at the opposite end of the bridge.  Use extreme caution.  Check proper 
+functioning through the range of speeds.  Check for any binding of the bridge end trucks and verify proper brake action.  Record deficiencies.  
+Secure from testing if deficiencies are found.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Trolley Loss of Power Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>With a test load of 100 percent of rated load, raise the test load approximately midway between the trolley and any permanent obstruction on the 
+operating floor.  Starting at a safe distance from walls or other obstructions, attain a slow speed of trolley travel.  While maintaining a safe 
+distance from obstructions, disconnect the main power source at the wall mounted safety switch (disconnect) to simulate a power failure.  Verify 
+that the trolley stops and that the brake sets properly.  Measure the distance required for the trolley to stop.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bridge Loss of Power Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>With a test load of 100 percent of rated load, raise the test load approximately midway between the trolley and any permanent obstruction on the 
+operating floor.  Starting at a safe distance from walls or other obstructions, attain a slow speed of bridge travel.  While maintaining a safe 
+distance from obstructions, disconnect the main power source at the wall mounted safety switch (disconnect) to simulate a power failure.  Verify 
+that the bridge stops and that the brake sets properly.  Measure the distance required for the bridge to stop.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Overload Test</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Hoist</TTL><BRK/>
+<BRK/>
+<TXT>Disconnect or adjust the overload limit device to allow the hoist to lift the test load.  Verify proper operation of the overload limit device 
+after it is reconnected.</TXT><BRK/>
+<OLG><BRK/>
+<OLI><TST>Static Load Test:  With the trolley in the center of the bridge span, raise the test load approximately<MET> 300 mm</MET><ENG> one foot</ENG>.  Hold the load 
+for 10 minutes.  Rotate the load and hook 360 degrees to check bearing operation with no binding.  Observe lowering that may occur which 
+indicates a weakness in the structure or malfunction of hoisting components or brakes.</TST></OLI><BRK/>
+<BRK/>
+<LST INDENT="-0.33">    <TST>For hoists with primary and secondary holding brakes, raise the test load and release the secondary holding brake while testing the 
+primary holding brake.  Hold for 10 minutes.  Observe for lowering of the load, which may indicate malfunction of hoisting components or 
+brakes. Re-engage secondary holding brake and release the primary holding brake.  Hold for 10 minutes.  Observe for lowering of the load, 
+which may indicate malfunction of hoisting components or brakes.  Re-engage the primary holding brake.  Recheck proper operation of time 
+delay and ensure smooth positive stopping.</TST></LST> <BRK/>
+<BRK/>
+<OLI><TST>Raise and lower test load and visually observe smooth control.  Stop the load during raising and lowering to verify that the brakes holds 
+the load.</TST></OLI><BRK/>
+<BRK/>
+<OLI><TST>Hoist Load Brake (if present):  Raise test load approximately<MET> 1500 mm</MET><ENG> 5 feet</ENG>.  With the hoist controller in the neutral position, release 
+(by hand) the holding brake.  Document the method used to release the holding brake.  The load brake must hold the test load.  Again with 
+the holding brake in the released position start the test load down at slow speed and return the controller to the "off" position as the 
+test load lowers.  The load brake must stop and hold the test load.</TST></OLI><BRK/>
+<BRK/>
+<OLI><TST>Hoist Loss of Power Test:  Raise the test load to approximately<MET> 2400 mm</MET><ENG> 8 feet</ENG>.  While slowly lowering the test load, disconnect the crane's 
+power source.  Verify that the test load does not lower and that the brake is set.</TST></OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Trolley</TTL><BRK/>
+<BRK/>
+<TXT><TST>Operate the trolley the full distance of the bridge rails in each direction with a test load on the hook (one cycle) through the range of speeds. 
+Verify proper brake action.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bridge</TTL><BRK/>
+<BRK/>
+<TXT><TST>With a test load on the hook, operate the bridge for the full length of the runway in one direction with the trolley at the extreme end of the 
+bridge, and in the opposite direction with the trolley at the opposite extreme end of the bridge (one cycle).  Check proper functioning through 
+the range of speeds.  Check for any binding of the bridge end trucks and verify proper brake action.  Record deficiencies.  Secure from testing 
+if deficiencies are found.</TST></TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></SPT><SPT><TTL>MANUFACTURER'S FIELD SERVICE REPRESENTATIVE</TTL><BRK/>
+<BRK/>
+<TXT>Furnish a qualified experienced manufacturer's field service representative to supervise the crane installation, assist in the performance of the 
+on-site testing, and instruct personnel in the operational and maintenance features of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>OPERATION AND MAINTENANCE MANUALS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide [two] [_____] hard copies of operation and [two] [_____] hard copies of maintenance manuals for the equipment furnished along with an electronic 
+copy (PDF) of each on a Compact Disc.  Provide one complete set prior to performance testing and final copies upon acceptance.  Provide operation 
+manuals that detail the step-by-step procedures required for system startup, operation and shutdown.  Include the manufacturer's name, model number, 
+parts list, and brief description of all equipment and basic operating features.  List in the maintenance manuals routine maintenance procedures, 
+including weekly, monthly, semi-annual, and annual required maintenance items, possible breakdowns and repairs, and troubleshooting guides.  Also 
+include as-built drawings, piping and equipment layout, design calculations, Control Parameter Settings and printouts of any software, and simplified 
+wiring and control diagrams of the system as installed.  Secure approval of operation and maintenance manuals prior to the field training course.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>FIELD TRAINING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Training is recommended, but not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conduct a training course for [_____] operating and maintenance staff[ and provide a copy of the training material to each participant].  Provide 
+a training period consisting of a total of [_____] hours of normal working time and starting after the system is functionally completed but prior 
+to final acceptance.  Cover all pertinent points involved in operating, starting, stopping, and servicing the equipment, including all major elements 
+of the Operation and Maintenance Manuals.  Demonstrate in course instructions all routine maintenance operations such as lubrication, general inspection, 
+and [_____].</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>FINAL ACCEPTANCE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph as written for projects where the crane is the principal construction element, or represents 
+a very significant portion of the Contract cost.  However, if the crane is part of a new facility or renovation, 
+delete the acceptance paragraph from this section.  Warranty period and operating and maintenance processes must 
+coincide with the actual beneficial occupancy of the entire facility.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Final acceptance of crane system will not be given until Contractor has successfully completed all testing operations, corrected all material and <NED/>
+equipment defects, made all proper operation adjustments, and removed paint or overspray on wire rope, hook, and electrical collector bars.</TXT><BRK/>
+<BRK/></SPT>
+]</PRT>    <END/><BRK/></SEC>

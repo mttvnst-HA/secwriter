@@ -1,0 +1,1056 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-27 52 24 (November 2020)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-27 52 24 (August 2017)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 27 52 24</SCN><BRK/>
+<BRK/>
+<STL>NURSE CALL SYSTEM</STL><BRK/>
+<DTE>11/20</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification covers the requirements for requirements for <SCP>nurse 
+call systems in medical treatment facilities</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL>.  Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL>  <BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a RID outside 
+of the Section's Reference Article to automatically place the reference in the 
+Reference Article.  Also use the Reference Wizard's Check Reference feature 
+to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 99</RID><RTL>(2024, TIA 24-2) Health Care Facilities Code</RTL><BRK/><BRK/></REF><REF><ORG>TELECOMMUNICATIONS INDUSTRY ASSOCIATION (TIA)</ORG><BRK/><BRK/><RID>ANSI/TIA-569</RID><RTL>(2019e; Add 1 2022) Telecommunications Pathways and Spaces</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 4-010-06</RID><RTL>(2023) Cybersecurity of Facility-Related Control Systems</RTL><BRK/><BRK/><RID>UFC 4-510-01</RID><RTL>(2023; with Change 4, 2025) Design:  Military Medical Facilities</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 1069</RID><RTL>(2024) UL Standard for Safety Hospital Signaling and Nurse Call Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Use <RID>UL 1069</RID>, <RID>NFPA 99</RID>, <RID>UFC 4-510-01</RID>, and <RID>ANSI/TIA-569</RID> for definitions, abbreviations and acronyms unless noted 
+otherwise.  In the case of discrepancies <RID>UL 1069</RID> takes preference.  <RID>UFC 4-510-01</RID> takes preference over <RID>ANSI/TIA-569</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G".  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.   
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Wiring Diagrams</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Riser Diagrams</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<TAI OPT="TONE-VISUAL SYSTEM"><ITM><SUB>Master Station - Tone-Visual</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/></TAI>
+<TAI OPT="AUDIO-VISUAL SYSTEM"><ITM><SUB>Master Station - Audio-Visual</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Nurse Call Control Cabinet</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Battery Backup or Uninterruptible Power Supply</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="AUDIO-VISUAL SYSTEM"><ITM><SUB>Nurse Call Controller</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Pull Cord</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<TAI OPT="AUDIO-VISUAL SYSTEM"><ITM><SUB>Pull Cord - with Audio</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Patient Station</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<TAI OPT="AUDIO-VISUAL SYSTEM"><ITM><SUB>Patient Station - Audio</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/></TAI>
+<TAI OPT="BEHAVIORAL HEALTH"><ITM><SUB>Patient Station - Behavioral Health</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Staff Emergency Station</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Staff Station</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<TAI OPT="AUDIO-VISUAL SYSTEM"><ITM><SUB>Staff Station - Audio</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/></TAI>
+<TAI OPT="BEHAVIORAL HEALTH"><ITM><SUB>Staff Station - Behavioral Health</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Central Code Annunciation Station</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cord Sets</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bed Interface Outlet Station</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cancel Station</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Code Blue Station</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Infant Distress Code Station</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Dome Light</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Zone Light</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Corridor Light</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Duty Station</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Equipment Alarm Station</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<TAI OPT="AUDIO-VISUAL SYSTEM"><ITM><SUB>Nurse Call - Lighting Interface</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Nurse Call - TV Interface</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Call Logging Workstation</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Maintenance Workstation</SUB>; <SUB>G</SUB><TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/></TAI>
+     <LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Operational Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Corrective Action Results</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Warranty Period Inspection And Testing Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Warranty Period Inspection And Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>System Contractor Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Lead Installer Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Software Service Agreement</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>As-Built System Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Equipment Spare Parts List</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE MATERIAL SUBMITTALS</TTL><BRK/>
+<BRK/>
+<TAI OPT="AIRFORCE,ARMY"><SPT><TTL>Extra Materials</TTL><BRK/>
+<TAI OPT="NAVY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not ordinarily include extra materials in Navy Projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Furnish the spare parts to the facility as itemized below, after the successful completion of system acceptance 
+testing.</TXT><BRK/>
+<LST INDENT="-0.33"><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="12">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="78.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="354.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Quantity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Items</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Each type of Station</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Patient Station</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Dome Light]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Push Button Cord Sets]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Zone Light]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Corridor Light]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Pneumatic Cord Sets]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Pillow Speaker Cord Sets]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Sets of Main Terminal/Equipment Panel plug-in modules]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="37.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>UL 1069</RID>, <RID>UFC 4-510-01</RID>, and <RID>NFPA 99</RID>.  Nurse call system components listed by UL or a nationally recognized 
+testing laboratory (NRTL).</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cybersecurity</TTL><BRK/>
+<BRK/>
+<TXT>Comply with the cybersecurity requirements identified in <RID>UFC 4-010-06</RID>, Section <SRF>25 05 11</SRF>, and <RID>NFPA 99</RID> while maintaining 
+compliance with <RID>UL 1069</RID>.  Document compliance of cybersecurity requirements for the fundamental nurse call system(s) 
+and all proposed integrations of supplemental systems.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Product Standardization</TTL><BRK/>
+<BRK/>
+<TXT>Provide standard product[s] for the nurse call system from a single manufacturer/vendor, designed to integrate 
+together and operate as a complete system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Organization</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Generally a 4-hour response time is appropriate.  Consult with facility 
+for special circumstances including remote locations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Support from a factory-authorized service organization within a [4][_____]-hour window, from notification to 
+arrival at site.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Qualifications</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>System Contractor Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Authorized vendor/contractor and service organization for the manufacturer of the nurse call system, with a minimum 
+of five years regularly engaged in performing services for projects with similar level of complexity, features 
+and functions including system application, design, integration, installation, testing, training, and maintenance.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure system contractor personnel are factory trained or certified for the make and model of the system(s) provided.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Lead Installer Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Factory trained or certified on the type of system(s) provided. Minimum of five years regularly engaged in the 
+installation of systems for projects with similar level of complexity, features, and functions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Manufacturer Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Minimum of five years regularly engaged in the manufacture of <RID>UL 1069</RID>-listed nurse call systems and equipment, 
+of the same level of complexity, features and functions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>STORAGE AND PROTECTION</TTL><BRK/>
+<BRK/>
+<TXT>Deliver equipment, components, and materials in original packaging, labeled with the manufacturer/vendor name, 
+part name and part number as appropriate.  Inspect equipment, components, and materials upon receipt.  Replace 
+damaged items.</TXT><BRK/>
+<BRK/>
+<TXT>Comply with manufacturer's instructions and recommendations for storage and handling of all equipment, components, 
+and materials.  Protect materials and components from deleterious environments including weather, direct sunlight, 
+moisture, contamination, corrosion, and construction traffic.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>SOFTWARE SERVICE AGREEMENT</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a proposal for maintenance, licensing, and any other running costs associated with the nurse call system 
+for the next [5][_____] years, divided into annual costs.  Coordinate proposal with the Using Services and DHA.</TXT><BRK/>
+<BRK/></SPT>
+]</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION AND REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide a complete and fully functional nurse call system in compliance with <RID>UL 1069</RID>, <RID>UFC 4-510-01</RID>, and <RID>NFPA 99</RID>
+.  Compliance to include all aspects of the nurse call system and subsystems including components and cabling, 
+and the selection, arrangement, and connection of materials and circuits.</TXT><BRK/>
+<BRK/>
+<TXT>Supply and install all necessary equipment required, whether or not enumerated, to provide a complete and operating 
+nurse call system.  Include the following capabilities:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Simultaneously process and signal all calls regardless of the priority level within the nurse call system.  
+When several different priority level calls are present on the system at one time, precedence is given 
+to the highest priority level for call tones and visual indicators.</OLI><BRK/>
+<BRK/>
+<OLI>Electronically supervise all call initiation and notification devices, and associated wiring in accordance 
+with UL 1069.  Report station failure to designated console[, PC], e-mail, and wireless device.[  Provide 
+integral diagnostics able to quickly locate the source of the problem.][  Provide network monitoring 
+tool to ensure network reliability.]</OLI><BRK/>
+<BRK/>
+<OLI>Support the routing of patient calls to any annunciator[, wireless/telephone network/hands-free/personally 
+assignable communications devices][, pager,] or other annunciating device anywhere in the facility, or 
+to any combination of the above regardless of the location of the calling station.  Process calls based 
+on location, room assignment, priority or combination thereof.</OLI><BRK/>
+<BRK/>
+<OLI>Perform resetting or canceling of a call with a priority of level #3 or higher only at the initiating 
+station or device within the originating room.</OLI><BRK/>
+<BRK/>
+<OLI>Accomplish all programming and firmware changes on a working system without interruption to the normal 
+operation of the system.  In the event of an error or failure in the update process, revert to the previous 
+firmware.  Test and approve for installation all security patches prior to implementation to prevent 
+interruption in service.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum [99][_____] different event types may be defined in the nurse call network to facilitate work 
+flow within and outside of normal nurse call activity (i.e. environmental services, facilities, transportation, 
+lab, pharmacy, etc.).</OLI><BRK/>
+<BRK/>
+<OLI>Provide separate, dedicated nurse call network to accomplish all fundamental nurse call operations.[  
+Provide gateways to enable nurse call system integration(s) via the facility network(s).]</OLI><BRK/>
+<BRK/>
+<OLI>Provide <SUB>battery backup or uninterruptible power supply</SUB> capable of operating the nurse call system(s) 
+at full power for 15 minutes upon AC power failure.</OLI><BRK/>
+<BRK/>
+<OLI>Provide the nurse call network to support at least [990][_____] call processes to facilitate work flow 
+and call escalations to various staff or groups.</OLI><BRK/></OLG>
+<BRK/>
+[<SPT><TTL>Integration/Coordination</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Each system integrated will add cost and difficulty in achieving the 
+goals of the cybersecurity approval process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Integrate the nurse call system with the following[ existing] systems, by use of agnostic and non-proprietary 
+software. Provide middleware that allows for system integration and provides for interoperability of other systems.<TAI OPT="AUDIO-VISUAL SYSTEM">
+  Where facility has both tone-visual and audio-visual systems, integrate all subsystems into a combined, fully-functioning 
+nurse call system.</TAI> Obtain cybersecurity approval for integrations and middleware, while maintaining <RID>UL 1069</RID> listing.</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Wireless/networked-telephone, hands-free, personally-assignable communication device</OLI><BRK/>
+<BRK/>
+][<OLI>Closed circuit television (CCTV)</OLI><BRK/>
+<BRK/>
+][<OLI>Hospital-grade televisions</OLI><BRK/>
+<BRK/>
+][<OLI>Admit, discharge and transfer system</OLI><BRK/>
+<BRK/>
+][<OLI>Patient entertainment system</OLI><BRK/>
+<BRK/>
+][<OLI>Infant protection system</OLI><BRK/>
+<BRK/>
+][<OLI>Electronic medical records / Electronic health records systems</OLI><BRK/>
+<BRK/>
+][<OLI>Patient education system</OLI><BRK/>
+<BRK/>
+][<OLI>Access control system</OLI><BRK/>
+<BRK/>
+][<OLI>Patient room lighting control</OLI><BRK/>
+<BRK/>
+][<OLI>Shade control</OLI><BRK/>
+<BRK/>
+][<OLI>Bed exit system</OLI><BRK/>
+<BRK/>
+][<OLI>Equipment monitoring[, including [____]]</OLI><BRK/>
+<BRK/>
+][<OLI>Real time location services</OLI><BRK/>
+<BRK/>
+][<OLI>Staff assignment</OLI><BRK/>
+<BRK/>
+][<OLI>Radio paging</OLI><BRK/>
+<BRK/>
+][<OLI>Network time synchronization</OLI><BRK/>
+<BRK/>
+][<OLI>Call logging workstation</OLI><BRK/>
+<BRK/>
+][<OLI>[____]</OLI><BRK/>
+<BRK/>
+][<OLI>[____]</OLI><BRK/></OLG>
+<BRK/>
+][<TXT>Coordinate patient's control units (headwall[, ][ and ][pillow speaker][, and ][bed side-rails]) to provide remote 
+control of devices such as lighting and television, which are not part of the nurse call system.</TXT><BRK/>
+<BRK/>
+]</SPT>][<SPT><TTL>Expansion Capability</TTL><BRK/>
+<BRK/>
+<TXT>Provide nurse call system with capability for future expansion.  Equipment ratings, housing volume, spare keys, 
+switches, relays, annunciator modules, terminals, and main trunk cable conductor quantities adequate to increase 
+the number of stations in the future by [25][_____] percent above those indicated without adding internal or 
+external components or main trunk cable conductors.</TXT><BRK/>
+<BRK/>
+<TXT>Provide ability to change any individual room without reprogramming by the manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Existing System Compatibility</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Integration to an existing system will be outside of the new systems 
+UL 1069 listing, and may require middleware to communicate between the two systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Maintain <RID>UL 1069</RID>[ and cybersecurity approval] through additions or modifications to the existing nurse call system.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Call Annunciation Priorities</TTL><BRK/>
+<BRK/>
+<TXT>Sequence the annunciation of all call types in a four level priority matrix, with the highest priority of Level 
+1 and the lowest priority of Level 4.  Coordinate the call type names, meanings and priority levels with facility.</TXT><BRK/>
+<TXT><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="5">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="102.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="201.75"/>
+      <COL AUTOWIDTH="0" WIDTH="152.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Priority Level</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Call Type</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Lamp Color</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="50.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">#1 Code</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Code Blue<BRK/>Code Call</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Blue][Purple][Color coordinated with facility]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="65.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">#2 Emergency</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Emergency<BRK/>Bed Exit Alarm<BRK/>Staff Assist<BRK/>Failure Alarm<BRK/>[Medical Device Emergency Alarm]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Red][Color coordinated with facility]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="38.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">#3 Priority</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Patient Priority<BRK/>Call Cord Disconnected<BRK/>Bed Cable Disconnected</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Yellow][White][Color coordinated with facility]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">#4 Routine</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Patient Routine<BRK/>[Medical Device Routine Alarm]<BRK/>[Voice Intercom - Staff and Duty Stations (Audio Only)]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Green][Color coordinated with facility]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>System Shop Drawings</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>System Riser Diagrams</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit system riser diagram for the overall system, including any integration, and for each subsystem.  Identify 
+systems integrated with the nurse call system, and provide description and details for the integration of each 
+system.  Identify the level of responsibility of the nurse call system provider for each integration, including 
+provision of interface or gateway modules.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Wiring Diagrams</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit wiring diagrams for the overall system and each subsystem. Indicate wiring type and size, as well as conduit 
+or raceway size for each section of the nurse call system.  Ensure system wiring reflects the required expansion 
+capability.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><TAI OPT="TONE-VISUAL SYSTEM"><SPT><TTL>Nurse Call Tone-Visual (NCTV) System</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Operational Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide NCTV system with capability to meet <RID>UL 1069</RID> fundamental nurse call functions utilizing alert tones, visual 
+indicators, selectable voice annunciation, and alphanumeric text displays.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Master Station - Tone-Visual</SUB></TTL><BRK/>
+<BRK/>
+<TXT>LED or monitor display meeting <RID>UL 1069</RID>. Provide tone-visual annunciation of calls, service requests, staff registration, 
+with ability to display events from any device in the nurse call system network.  Call-in priorities are differentiated 
+through unique tone signals and call-in LED flash patterns.  Tone may be muted at annunciator, but automatically 
+re-engage if another call is received.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Nurse Call Control Cabinet</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Wall or rack mounted cabinet for nurse call system head-end equipment including power supplies, battery backup 
+or uninterruptible power supply, [Ethernet switch, ]and other ancillary equipment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="AUDIO-VISUAL SYSTEM"><SPT><TTL>Nurse Call Audio-Visual (NCAV) System</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Operational Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide NCAV system with capability to meet <RID>UL 1069</RID> fundamental nurse call functions utilizing alert tones, visual 
+indicators, selectable voice annunciation, alphanumeric text displays, and full duplex voice intercom.  Full 
+duplex audio communications capability on all handsets and all loud-speaking devices including patient, staff, 
+duty, and master stations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Master Station - Audio Visual</SUB></TTL><BRK/>
+<BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Association with a VoIP network requires an integration beyond fundamental 
+UL 1069 requirements. Use caution in requiring integrations, unless directed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><OLI>Provide a master station console display that meets the system manufacturer's minimum specifications, 
+utilizing [touch screen][ or ][keypad][ or ][standard mouse] control.[  Provide an automated service 
+reminder when selecting a call or log item.][  While in audio contact with the patient, display all user 
+defined information, such as caregiver assigned[, and pertinent patient information] in an enriched display.][ 
+When a PC is "associated" with a VoIP console, provide user with easy to follow on-screen functions, 
+such as display of call priority, room and patient information.]</OLI><BRK/>
+<BRK/>
+<OLI>Display calls on the master station in order of their priority level, and then in the order of call placement.</OLI><BRK/>
+<BRK/>
+<OLI>Provide the following additional functions at each one of these users' screens:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Full display of all calls, including corridor light color sequence.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Text message to multiple devices such as pagers, wireless phone displays, handsfree devices, 
+and personally assignable communication devices.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Display calls in a centralized display format (i.e. Centralized Code Blue display).</OLI><BRK/>
+<BRK/>
+]<OLI LEVEL="2">Display and route calls in a de-centralized workflow environment.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Display all staff information, staff status, wireless extension and their location.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL><SUB>Nurse Call Controller</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide a nurse call network controller in each nursing unit or service with an audio-visual system, 
+capable of non-blocking, duplex communications between consoles and rooms, duty stations, staff stations, 
+sub stations, and master stations.</OLI><BRK/>
+<BRK/>
+<OLI>Provide controller as life safety grade meaning that it does not require regular rebooting for continued 
+basic functions of system.  Maintain fundamental nurse call operations upon loss of facility's communication 
+network.  A PC may not be used as a nurse call controller.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></TAI></SPT><SPT><TTL>MATERIAL AND EQUIPMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to UFC-4-510-01 for operation of devices and required locations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Pull Cord</SUB></TTL><BRK/>
+<BRK/>
+<TXT>An emergency call device activated by pulling cord.  Provide pendant attached to the end of the cord, within 
+patient reach.  Provide with call assurance LED[, second, unique call-in priority button,] and cancel button.  
+Provide water-resistant device where installed in wet area.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="AUDIO-VISUAL SYSTEM"><SPT><TTL><SUB>Pull Cord - with Audio</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pull cord with audio stations are available from limited manufacturers.  
+Only provide if requested by and coordinated with the using department.  Remove 
+pull cord with audio for projects seeking competitive bids.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>An emergency call device activated by pulling cord.  Provide pendant attached to the end of the cord, within 
+patient reach.  Provide with call assurance LED,[ second unique call-in priority button, ] cancel button, and 
+speaker/microphone.  Provide water-resistant device where installed in wet area.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL><SUB>Patient Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Call placed lamp, reset pushbutton, and polarized receptacle matching cord set plug, mounted in a single faceplate.  
+Provide each patient bed with a cord set plug, call placed lamp and unique system address where patient station 
+serves two adjacent patient beds.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="AUDIO-VISUAL SYSTEM"><SPT><TTL><SUB>Patient Station - Audio</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Keep second paragraph of Patient Stations for systems where the patient 
+station rather than the dome light functions as the hub for the devices in the 
+patient room.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Call placed lamp, reset pushbutton, speaker/microphone, and polarized receptacle matching cord set plug, 
+mounted in a single faceplate.  Provide each patient bed with a cord set plug, call placed lamp and unique 
+system address where patient station serves two adjacent patient beds.</OLI><BRK/>
+<BRK/>
+[<OLI>Where the patient station functions as a system hub, provide support of up to [13][_____] call in stations, 
+[3][_____] of which can have audio capability.  Provides annunciation at associated console and visible 
+annunciation at device, for calls originating from connected call stations.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT></TAI><TAI OPT="BEHAVIORAL HEALTH"><SPT><TTL><SUB>Patient Station - Behavioral Health</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide tamper-proof pushbutton call device.  Pull cords are prohibited.  Provide water-resistant device where 
+installed in wet area.  Provide each patient bed with a pushbutton and unique system address where patient station 
+serves two adjacent patient beds.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL><SUB>Staff Emergency Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Call station with the ability to place a staff emergency call.  Provide station with a call assurance LED and 
+a cancel button, mounted in a single faceplate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Staff Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide with call button, call assurance LED, and cancel button mounted in a single faceplate.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="AUDIO-VISUAL SYSTEM"><SPT><TTL><SUB>Staff Station - Audio</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provides two-way intercom capability.  Provide with call button, call assurance LED, cancel button, and speaker/microphone 
+mounted in a single faceplate.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="BEHAVIORAL HEALTH"><SPT><TTL><SUB>Staff Station - Behavioral Health</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide two-way intercom capability via ceiling-mounted speakers and microphone.  Include call-assurance LED.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL><SUB>Central Code Annunciation Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provides central annunciation of code calls from any code station.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Cord Sets</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Listed by UL or a NRTL and compatible with the nurse call system listing.  Provide a cord set wall bracket with 
+each cord set to hold device when not in use.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cord Set - Push-Button</TTL><BRK/>
+<BRK/>
+<TXT>Sufficient length of cord for patient reach; compatible with medical gas environment; equipped with momentary-action, 
+call button switch; sterilizable; washable cord.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cord Set - Geriatric Call-Button</TTL><BRK/>
+<BRK/>
+<TXT>Sufficient length of cord for patient reach; compatible with medical gas environment; equipped with momentary-action, 
+light-pressure switch in soft outer jacket; sterilizable; washable cord.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cord Set - Squeeze-Bulb Switch</TTL><BRK/>
+<BRK/>
+<TXT>Sufficient length of cord for patient reach; compatible with medical gas environment; equipped with neoprene 
+squeeze bulb activator and plug-mounted momentary contact switch; sterilizable; washable cord.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cord Set - Breath Call Cord</TTL><BRK/>
+<BRK/>
+<TXT>Flexible PVC jacketed cable; momentary contact air-pressure sensitive switch; sufficient length of cord for patient 
+reach; adjustable arm included for clamping; suitable for use in oxygen-enriched atmosphere; include 12 replacement 
+straws; sterilizable; washable cord.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cord Set - Pillow Speaker</TTL><BRK/>
+<BRK/>
+<TXT>Eight-conductor, DIN, flexible PVC jacketed cable.  Contains nurse-call button, volume control, separate lighting 
+control for room and reading lights, speaker, and channel control in molded flame-retardant ABS housing.  Sufficient 
+length of cord for patient reach with sheet clip; washable cord.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Bed Interface Outlet Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>37-pin receptacle, with dummy plug or dust cap and stainless steel wall plate, supervise and annunciate calls 
+originating from the bed rails on the nurse call system and enable auxiliary functions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Cancel Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Cancel button, with flexible programming for cancellation of some or all call priorities, located in the same 
+room as the originating call devices, mounted in a single faceplate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Code Blue Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Call station with the singular function to place a code call.  Provide station with call assurance LED and cancel 
+button.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Infant Distress Code Station</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Not all facilities have a separate response team for infant code calls.  
+Coordinate with facility.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Call station with the singular function to place a infant distress code call.  Provide station with a call assurance 
+LED and a cancel button.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Dome Light</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For some manufacturer's, dome lights, corridor lights, and zone lights 
+are the same device. Retain all device descriptions to identify performance 
+requirements of system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>[Four][_____] segment light with integral tone device, with each segment capable of indicating a call 
+in [white, blue, purple, red, yellow, green, orange, and pink][white, blue, red, yellow, and green][_____].  
+Fully programmable LED lights for the following criteria:  colors, patterns, and flash rates.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Zone Light</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide visual indication with integral tone device of calls by mimicking associated dome light tone, patterns, 
+and flash rates.  Provide device capable of producing the same colors as the dome light.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Corridor Light</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide visual indication with integral tone device of calls by mimicking associated dome light tone, patterns, 
+and flash rates.  Provide device capable of producing the same colors as the dome light.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Duty Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provides visual and audible notification of calls.  Contains [4][_____] LEDs to provide visual indication by 
+mimicking dome light display.  Provide device capable of producing the same colors as the dome light.<TAI OPT="AUDIO-VISUAL SYSTEM">  Contains 
+call-in button and speaker/microphone.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Equipment Alarm Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Two][_____] isolated inputs for auxiliary alarms with call assurance LEDs and cancel button, compatible with<MET>
+ 6 mm</MET><ENG> 1/4 inch</ENG> jack medical instruments.  Supervise inputs to initiate a call if a cord is removed.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="AUDIO-VISUAL SYSTEM"><SPT><TTL><SUB>Nurse Call - Lighting Interface</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The 1 level selection is for on/off control of a single light.  The 2 
+level selection is typically used for a reading/ambient/exam light.  Coordinate 
+with lighting controls to ensure intended functionality is present.  Most nurse 
+call systems will provide momentary contact inputs into the lighting control 
+system rather than controlling the lights directly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [on-off control][full range dimming] for [1][2][______] zone(s) of lighting from the pillow speaker or 
+bed rail.  Lighting interface listed by UL or a NRTL.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Nurse Call - TV Interface</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provides control of hospital grade TV, including power, channel selection, channel up/down, volume up/down, closed 
+caption, and mute from the pillow speaker or bed rail.  TV interface listed by UL or a NRTL.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Call Logging Workstation</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide workstation to monitor, collect, process, store and archive call logs, and prepare analytical reports 
+on the nurse call system and applicable integrations.  Coordinate reports required with the Using Services.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Maintenance Workstation</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide workstation for remote monitoring, diagnostics, testing, and troubleshooting of nurse call system failures.</TXT><BRK/>
+<BRK/></SPT>
+]</TAI></SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification is suited primarily for new building construction..  
+Modify as appropriate if used for a remodeling or retrofit type project.  In 
+retrofit projects, the designer should become familiar with as-built conditions, 
+and maximize the use of existing conduits and raceway components.  Use extreme 
+care in retrofit specifications to avoid proprietary statements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a complete and operational nurse call system, with subsystems, in compliance with <RID>NFPA 70</RID>, <RID>NFPA 99</RID>, <RID>UL 1069</RID>
+, <RID>UFC 4-510-01</RID>, and <RID>ANSI/TIA-569</RID>.  Install equipment and accessory items to suit manufacturer's instructions 
+and recommendations, plans and specifications.  Provide insulated conductors in electrical metallic tubing and 
+cable tray as the wiring method.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Installation</TTL><BRK/>
+<BRK/>
+<LST INDENT="-0.33">a.  Use water-resistant devices in wet areas, such as toilet rooms and showers.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">b.  <TAI OPT="TONE-VISUAL SYSTEM">[Surface mount main terminal/equipment panels]</TAI><TAI OPT="AUDIO-VISUAL SYSTEM">[Rack][Cabinet]-mount the system LAN, server, and battery 
+back-up equipment</TAI> in the [server room][room approved by DHA to house servers].  Mounting of the panels 
+and equipment in any other room, area or above-finished ceilings is not acceptable.  Mark panels with 
+the nurse call subsystem number and function served.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">c.  Master Station equipment that does not require attendant access for programming or call activities 
+(such as the battery back-up) may be wall mounted in a protected area under the counter top at the master 
+station location.  If the under counter mounted equipment can be kicked and damaged by staff sitting 
+at the counter, provide a protective shield for the equipment.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">d.  Firmly secure mounted equipment in place, plumb, square, and level.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">e.  Locate equipment to provide adequate ventilation and equipment access for service and repair.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">f.  Mount dome lights, corridor lights, zone lights so they are visible for the entire length of the 
+corridor or room in which they are installed.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">g.  Develop zone light operational matrix, to ensure zone lights operate to notify and direct staff to 
+the associated dome light and annunciated call device.  Incorporate operational matrix into the system 
+shop drawings.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">h.  Incorporate facility's final room naming convention and room numbering into the programming of the 
+nurse call system.  Provide permanent label for each new panel and equipment.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">i.  Install cabling in raceway and cable trays.  Segregate cabling in separate raceways or cable tray 
+as required per wiring diagrams.  Install cable tray and raceway parallel and perpendicular to structural 
+members, concealed from view except where specifically noted per drawings.  </LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">j.  Install cables without damaging conductors or jacketing, pulling cables within manufacturer's recommended 
+pulling tension.</LST><BRK/>
+<BRK/>
+<TAI OPT="BEHAVIORAL HEALTH"><LST INDENT="-0.33">k.  For nurse call devices in behavioral health areas, provide tamper-proof screws, pushbutton devices, 
+ceiling mount speakers, ability to limit calls from patient devices, and ability to mute calls from the 
+master station.</LST><BRK/>
+<BRK/></TAI>
+</SPT></SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Periodic Inspection and Testing</TTL><BRK/>
+<BRK/>
+<TXT>All work and workmanship is subject to inspection and testing as requested by the Contracting Officer at any 
+and all times during preparation and installation.  The Contracting Officer, in his or her sole discretion, may 
+reject defective work and workmanship and require its correction.  The Government's right to inspect, test, and 
+reject, or its failure to exercise such right, as provided herein, in no way diminishes the system Contractor's 
+duty to inspect and reject work as necessary to comply fully with the requirements of the contract documents.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Final Inspection and Acceptance Testing</TTL><BRK/>
+<BRK/>
+<TXT>Engage a factory-authorized service representative to inspect, test, and adjust components, assemblies, and equipment 
+installations, including connections.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Inspection</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Inspection:  Verify that units and controls are properly labeled and interconnecting wires and terminals 
+are identified.  Verify that the system and individual devices are installed in accordance with manufacturer's 
+instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Notify the Contracting Officer when the installation of [each phase of ]the system is completed and operating 
+in accordance with specifications and ready for final inspection.</OLI><BRK/>
+<BRK/>
+<OLI>After installation [of each phase ]has been completed, and the system components installed [during the 
+phase ]have been final inspected, checked out, and approved by the Contracting Officer, conduct acceptance 
+tests in accordance with the approved Acceptance Test Plan.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Acceptance and Operational Testing</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Develop an <SUB>Acceptance Test Plan</SUB>, to include step-by-step actions and the expected results to demonstrate 
+system compliance.  Include tests defined in the Manufacturer's installation instructions; list of all 
+test equipment, including data indicating that calibration of the test equipment is current; test data 
+sheets; and names and qualifications of the person(s) who will perform the tests.[  For project's with 
+phased construction schedules, identify acceptance test criteria for each phase in the test plan.]</OLI><BRK/>
+<BRK/>
+<OLI>Conduct acceptance tests in accordance with the approved Acceptance Test Plan upon approval of final 
+inspection [of each phase ]by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Operational Test:  After completion of the acceptance testing, perform an operational system test to 
+demonstrate proper operations as defined in <RID>UL 1069</RID>.  Test each station capable of originating calls 
+by activating a call from the station and observing the proper sequence of operation.  Demonstrate each 
+call type and priority for stations capable of placing multiple types or priorities of calls.  Perform 
+tests that include originating station-to-station messages and pages at each nurse-call station.  Verify 
+proper routing, volume levels, and freedom from noise and distortion.  Simulate power outage to demonstrate 
+operation on battery back-up source and transition to the essential electrical system.  Submit an <SUB>Operational 
+Test Report</SUB> to document results.</OLI><BRK/>
+<BRK/>
+<OLI>Upon successful completion of [all phased ]final acceptance tests, and 30 calendar days of consecutive 
+operationwithout the occurrence of any major malfunctions, submit the final <SUB>acceptance test report</SUB>, including 
+certificates of compliance stating that all requirements and conditions have been satisfied.  Submit 
+test reports in both electronic media form and hard copy booklet form. Indicate in the field reports 
+all field tests performed to adjust each component and to prove compliance with the performance criteria.</OLI><BRK/>
+<BRK/>
+<OLI>Indicate in each test report the final position of controls and operating mode of the system, and the 
+manufacturer, model number, and serial number of the test equipment used in each test.  The effective 
+date of final system acceptance is the date when the system has satisfied 30 days of operation without 
+a major malfunction.</OLI><BRK/>
+<BRK/>
+<OLI>Submit <SUB>as-built system drawings</SUB> in accordance with Section <SRF>01 78 00</SRF>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Corrective Action for Rejected Work</TTL><BRK/>
+<BRK/>
+<TXT>Rectify deficiencies indicated by tests and completely retest work affected by such deficiencies at Contractor's 
+expense.  Verify, by the system test, that the total system meets the system requirements and complies with applicable 
+standards.  Report <SUB>corrective action results</SUB> in writing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Warranty Period Inspection and Testing</TTL><BRK/>
+<BRK/>
+<TXT>At the end of 3rd and 7th months of operation, observe the system in operation and conduct tests to assure system 
+performance.  Include interviews of users to determine if the system is satisfying requirements and that training 
+is adequate.  Coordinate this service with the Contracting Officer.  During the [11][____]th month of operation 
+conduct an inspection and test of the system to identify and correct any deficiencies before the end of warranty 
+period.  Conduct this inspection and testing in the presence of a medical facility representative to witness 
+this procedure and certify that all necessary corrective actions have been taken.  Submit the <SUB>warranty period 
+inspection and test report</SUB> to the Contracting Officer.  Submit <SUB>warranty period inspection and testing plan</SUB>, including 
+contact information and dates of proposed warranty period inspection prior to final system acceptance.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>TRAINING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer to coordinate timing of refresher course with the facility. 
+Eleven months is intended to ensure the refresher training occurs as close to 
+the end of the warranty period as possible, to allow the facility to develop 
+experience with the systems to thereby improve the effectiveness of the training.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Engage a factory-authorized service representative to train][Train] Owner's maintenance personnel and caregiver 
+staff to adjust, operate, and maintain nurse-call equipment.  Provide training for each role assignable in the 
+nurse call system.  Coordinate number of roles with using services.  Provide minimum two training sessions for 
+system users and minimum two training sessions for maintenance personnel scheduled to accommodate shift work.  
+[Eleven][____] months after [the system is installed][beneficial occupancy], provide a refresher course for each 
+group of trainees.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<TXT>Submit Data Package 5 <SUB>operation and maintenance data</SUB> for the installed nurse call system in accordance with Section 
+<SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Utilize systems and devices in accordance with the <RID>UL 1069</RID> listing of the nurse call system and the Cybersecurity 
+approvals noted in this Section.  Coordinate with Government to establish a plan of action for approval 
+and dissemination of required Information Assurance Vulnerability Alert (IAVA) patches as well as software 
+and security updates.  Provide perpetual licenses for the nurse call system.</OLI><BRK/>
+<BRK/>
+<OLI>Provide <SUB>equipment spare parts list</SUB> for all spare parts furnished.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Requiring software upgrade after project completion will add substantial 
+cost to nurse call system.  Use caution when selecting this option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Upgrade Service:  Update software to latest version at project completion.  [Install and program software 
+upgrades that become available within [two][_____] years from date of Substantial Completion.  ]Upgrade 
+operating system if required to support software upgrade.  Provide new or revised licenses to enable 
+use of upgraded software.  Ensure cybersecurity approval is maintained through the upgrade(s).</OLI><BRK/>
+<BRK/>
+][<OLI>[c][d].  Technical Support:  Beginning with Substantial Completion, provide software support for [two][___] 
+years.  Follow the DHA Business to Business (B2B) process, or other process as coordinated with the Using 
+Services to provide connectivity to support remote repair, maintenance, and sustainment of the system.</OLI><BRK/>
+<BRK/>
+][<OLI>[c][d][e].  Provide [30][___] days notice to Using Service to allow scheduling and access to system and 
+to allow Using Service to upgrade computer equipment if necessary.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT></PRT>   <END/><BRK/></SEC>

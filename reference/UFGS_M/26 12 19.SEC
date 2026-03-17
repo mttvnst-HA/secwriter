@@ -1,0 +1,2441 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="309.75"/>
+      <COL AUTOWIDTH="0" WIDTH="309.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-26 12 19 (May 2024)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="11.25">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 2 - 11/23</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="11.25">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="34.50">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding without Revision<BRK/>UFGS-26 12 19.10 (May 2019)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 12 19</SCN><BRK/>
+<BRK/>
+<STL>PAD-MOUNTED, LIQUID-FILLED, MEDIUM-VOLTAGE TRANSFORMERS</STL><BRK/>
+<DTE>05/24</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>three-phase pad-mounted, liquid-filled transformers 
+of the dead-front and live-front types for exterior applications</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use pad-mounted transformers (properly protected with bayonet type, oil-immersed, expulsion fuses in series 
+with oil-immersed, partial-range, current-limiting fuses) for kVA ratings up to and including 1500 kVA on 5 kV 
+systems and for kVA ratings up to and including 2500 kVA on 15, 25, and 35 kV systems.</NPR><BRK/>
+<BRK/>
+<NPR>For voltages above 35 kV and in ratings above those previously indicated, this specification requires significant 
+modifications and additional specification sections may need to be added on the project.</NPR><BRK/>
+<BRK/>
+<NPR>This specification is for standard step-down applications in utility distribution systems.  For step-up applications 
+(i.e., solar/wind generation, etc.), this specification requires significant modifications to address proper voltage 
+designations, overcurrent and fault protection, etc.</NPR><BRK/>
+<BRK/>
+<NPR>The use of pad-mounted transformers with secondary currents exceeding 3000 amperes is discouraged due to the size 
+and quantity of secondary conductors.  Therefore, transformers above 1000 kVA serving 208Y/120 volt loads and 
+transformers above 2500 kVA serving 480Y/277 volt loads should be in a secondary unit substation configuration.</NPR><BRK/>
+<BRK/>
+<NPR>Available fault current level and arc-flash energy become extremely hazardous at the larger kVA size transformers.  
+Designer should consider these parameters and evaluate multiple service points.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy and Air Force projects, this specification incorporates a "reduced shop drawing submittal process" 
+for listed manufacturers who previously satisfied reduced shop drawing submittal process requirements.  This specification 
+also includes unique routine and other test requirements, transformer loss certificate, transformer test schedule, 
+and field quality control acceptance tests and reports.  The preparing activity, NAVFAC LANT, has significant 
+experience and technical expertise in these areas.  If Reach-back support is desired, for a specific NAVFAC or 
+Air Force project, the technical representative (electrical engineer) editing this document for that project must 
+contact the NAVFAC LANT Capital Improvements Electrical Engineering (Code CI44) Office for consultation during 
+the design stage of the project, prior to including the requirement in the specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the following related guide specifications for power distribution equipment:<BRK/>
+--Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING<BRK/>
+--Section <SRF>26 11 13.00 20</SRF> PRIMARY UNIT SUBSTATIONS<BRK/>
+--Section <SRF>26 11 16</SRF> SECONDARY UNIT SUBSTATION<BRK/>
+--Section <SRF>26 12 21 </SRF>SINGLE-PHASE PAD-MOUNTED TRANSFORMERS<BRK/>
+--Section <SRF>26 13 00</SRF> SF6/HIGH-FIREPOINT FLUID INSULATED PAD-MOUNTED SWITCHGEAR<BRK/>
+--Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM<BRK/>
+--Section <SRF>26 23 00</SRF> LOW VOLTAGE SWITCHGEAR<BRK/>
+--Section <SRF>26 24 13</SRF> SWITCHBOARDS<BRK/>
+--Section <SRF>26 27 13.10 30</SRF> ELECTRIC METERS<BRK/>
+--Section <SRF>26 27 14.00 20</SRF> ELECTRICITY METERING<BRK/>
+--Section <SRF>33 71 01</SRF> OVERHEAD TRANSMISSION AND DISTRIBUTION</NPR><BRK/>
+<BRK/>
+<NPR>Do not use the following related guide specifications except for Army Civil Works projects.  They have not been unified.<BRK/>
+--Section <SRF>26 11 14.00 10</SRF> MAIN ELECTRIC SUPPLY STATION AND SUBSTATION<BRK/>
+--Section <SRF>26 28 00.00 10</SRF> MOTOR CONTROL CENTERS, SWITCHBOARDS AND PANELBOARDS<BRK/>
+--Section <SRF>26 22 00.00 10</SRF> 480-VOLT STATION SERVICE SWITCHGEAR AND TRANSFORMERS</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Coordination is required between this section and metering equipment specification sections.  See Section 
+<SRF>26 27 14.00 20</SRF> ELECTRICITY METERING or <SRF>26 27 13.10 30</SRF> ELECTRIC METERS for metering details, which are available 
+in metric (SI) and U.S. Customary (IP) system dimension.  Use these files to develop project specific drawings, 
+including:</NPR><BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="8">
+      <COL AUTOWIDTH="0" WIDTH="169.50"/>
+      <COL AUTOWIDTH="0" WIDTH="505.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL1>File Name</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>Description</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">PADMDE1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Three Phase, Ungrounded or Single Grounded Primary System - with Surge Arresters</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">PADMDE2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Three Phase, Ungrounded or Single Grounded Primary System - without Surge Arresters</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">PADMDE3</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Three Phase, Multi-Grounded Primary System (Delta-Wye) - with Surge Arresters</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">PADMDE4</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Three Phase, Multi-Grounded Primary System (Delta-Wye) - without Surge Arresters</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">PADMDE5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Three Phase, Multi-Grounded Primary System (Wye-Wye) - with Surge Arresters</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">PADMDE6</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Three Phase, Multi-Grounded Primary System (Wye-Wye) - without Surge Arresters</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">ARCFLASH</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Arc Flash Warning Label</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<NPR>To download these details, go to: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL><BRK/>
+Pad-mounted transformer graphics are located with Pad-Mounted Transformer Specification UFGS 26 12 19.</NPR><BRK/>
+<BRK/>
+<NPR>Select the appropriate Electrical .ZIP file(s) and extract the desired details.</NPR><BRK/>
+<BRK/>
+<NPR>Do not include list of details, or details themselves, in project specifications.  Insert the appropriate details 
+on drawings and modify optional and blank items.  If special features are required, modify transformer details 
+as required to indicate the actual requirements for each particular installation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the following information on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Single-line diagram showing pad-mounted transformer connectors, inserts, surge arresters, switches, fuses, 
+current transformers with ratings, and meters as applicable.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Grounding plan.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Type and number of cables, and size of conductors for each power circuit.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Transformer primary and secondary voltages.  (Use IEEE C57.12.00, Table 8, "Designation of voltage ratings 
+of three-phase windings (schematic representation)".)  State the primary voltage (nominal) actually in service 
+and not the voltage class.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Special conditions, such as altitude, temperature and humidity; exposure to fumes, vapors, dust, and gases; 
+and seismic requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN CONCRETE INSTITUTE (ACI)</ORG><BRK/><BRK/><RID>ACI 318</RID><RTL>(2019; R 2022) Building Code Requirements for Structural Concrete (ACI 318-19) and Commentary (ACI 318R-19)</RTL><BRK/><BRK/><RID>ACI 318M</RID><RTL>(2019; Errata 2022) Building Code Requirements for Structural Concrete &amp; Commentary</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN NATIONAL STANDARDS INSTITUTE (ANSI)</ORG><BRK/><BRK/><RID>ANSI C12.1</RID><RTL>(2014; Errata 2016) Electric Meters - Code for Electricity Metering</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A240/A240M</RID><RTL>(2025a) Standard Specification for Chromium and Chromium-Nickel Stainless Steel Plate, Sheet, and Strip for Pressure Vessels and for General Applications</RTL><BRK/><BRK/><RID>ASTM C260/C260M</RID><RTL>(2024) Standard Specification for Air-Entraining Admixtures for Concrete</RTL><BRK/><BRK/><RID>ASTM D92</RID><RTL>(2012a) Standard Test Method for Flash and Fire Points by Cleveland Open Cup Tester</RTL><BRK/><BRK/><RID>ASTM D97</RID><RTL>(2017b) Standard Test Method for Pour Point of Petroleum Products</RTL><BRK/><BRK/><RID>ASTM D117</RID><RTL>(2018) Standard Guide for Sampling, Test Methods, and Specifications for Electrical Insulating Liquids</RTL><BRK/><BRK/><RID>ASTM D877/D877M</RID><RTL>(2019) Standard Test Method for Dielectric Breakdown Voltage of Insulating Liquids Using Disk Electrodes</RTL><BRK/><BRK/><RID>ASTM D1535</RID><RTL>(2014; R 2018) Standard Practice for Specifying Color by the Munsell System</RTL><BRK/><BRK/><RID>ASTM D3487</RID><RTL>(2016; E 2017) Standard Specification for Mineral Insulating Oil Used in Electrical Apparatus</RTL><BRK/><BRK/></REF><REF><ORG>FM GLOBAL (FM)</ORG><BRK/><BRK/><RID>FM APP GUIDE</RID><RTL>(updated on-line) Approval Guide https://www.approvalguide.com/</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 386</RID><RTL>(2016) Separable Insulated Connector Systems for Power Distribution Systems Rated 2.5 kV through 35 kV</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/><RID>IEEE C37.47</RID><RTL>(2011) Standard for High Voltage Distribution Class Current-Limiting Type Fuses and Fuse Disconnecting Switches</RTL><BRK/><BRK/><RID>IEEE C57.12.00</RID><RTL>(2021) General Requirements for Liquid-Immersed Distribution, Power, and Regulating Transformers</RTL><BRK/><BRK/><RID>IEEE C57.12.28</RID><RTL>(2023) Standard for Pad-Mounted Equipment - Enclosure Integrity</RTL><BRK/><BRK/><RID>IEEE C57.12.29</RID><RTL>(2023) Standard for Pad-Mounted Equipment - Enclosure Integrity for Coastal Environments</RTL><BRK/><BRK/><RID>IEEE C57.12.34</RID><RTL>(2022) Standard Requirements for Pad-Mounted, Compartmental-Type, Self-Cooled, Three-Phase Distribution Transformers, 10 MVA and Smaller; High Voltage, 34.5 kV Nominal System Voltage and Below; Low Voltage, 15 kV Nominal System Voltage and Below</RTL><BRK/><BRK/><RID>IEEE C57.12.80</RID><RTL>(2024) Standard Terminology for Power and Distribution Transformers</RTL><BRK/><BRK/><RID>IEEE C57.12.90</RID><RTL>(2021) Test Code for Liquid-Immersed Distribution, Power, and Regulating Transformers</RTL><BRK/><BRK/><RID>IEEE C57.13</RID><RTL>(2016) Standard Requirements for Instrument Transformers</RTL><BRK/><BRK/><RID>IEEE C57.98</RID><RTL>(2011) Guide for Transformer Impulse Tests</RTL><BRK/><BRK/><RID>IEEE C62.11</RID><RTL>(2020) Standard for Metal-Oxide Surge Arresters for Alternating Current Power Circuits (&gt;1kV)</RTL><BRK/><BRK/><RID>IEEE Stds Dictionary</RID><RTL>(2009) IEEE Standards Dictionary: Glossary of Terms &amp; Definitions</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTRICAL TESTING ASSOCIATION (NETA)</ORG><BRK/><BRK/><RID>NETA ATS</RID><RTL>(2025) Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>ANSI C12.7</RID><RTL>(2022) Requirements for Watthour Meter Sockets</RTL><BRK/><BRK/><RID>NEMA 260</RID><RTL>(1996; R 2004) Safety Labels for Pad-Mounted Switchgear and Transformers Sited in Public Areas</RTL><BRK/><BRK/><RID>NEMA LI 1</RID><RTL>(1998; R 2011) Industrial Laminating Thermosetting Products</RTL><BRK/><BRK/><RID>NEMA Z535.4</RID><RTL>(2023) Product Safety Signs and Labels</RTL><BRK/><BRK/><RID>NEMA/ANSI C12.10</RID><RTL>(2011; R 2021) Physical Aspects of Watthour Meters - Safety Standard</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>ORGANISATION FOR ECONOMIC CO-OPERATION AND DEVELOPMENT (OECD)</ORG><BRK/><BRK/><RID>OECD Test 203</RID><RTL>(1992) Fish Acute Toxicity Test</RTL><BRK/><BRK/></REF><REF><ORG>U.S. ENVIRONMENTAL PROTECTION AGENCY (EPA)</ORG><BRK/><BRK/><RID>EPA 712-C-98-075</RID><RTL>(1998) Fate, Transport and Transformation Test Guidelines - OPPTS 835.3100- "Aerobic Aquatic Biodegradation"</RTL><BRK/><BRK/><RID>EPA 821-R-02-012</RID><RTL>(2002) Methods for Measuring the Acute Toxicity of Effluents and Receiving Waters to Freshwater and Marine Organisms</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>10 CFR 431</RID><RTL>Energy Efficiency Program for Certain Commercial and Industrial Equipment</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 467</RID><RTL>(2022) UL Standard for Safety Grounding and Bonding Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING on all projects involving medium voltage and 
+specialized power distribution equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING applies to this section, with the additions and modifications specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified or indicated, electrical and electronics terms used in these specifications, and on the drawings, are as defined in <RID>
+IEEE Stds Dictionary</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pad-mounted Transformer Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pad-mounted Transformers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Checks and Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Transformer Efficiencies</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-09 Manufacturer's Field Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Transformer Test Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Pad-mounted Transformer <SUB>Design Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Pad-mounted Transformer <SUB>Routine and Other Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Transformer(s)</SUB>, Data Package 5; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the bracketed option below on Navy and Air Force projects where "reach-back support" has already 
+been coordinated with NAVFAC LANT per the 3rd introductory Technical Note.  Add appropriate information in Section 
+<SRF>01 33 00</SRF> SUBMITTAL PROCEDURES to coordinate with the special requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Government Submittal Review</TTL><BRK/>
+<BRK/>
+<TXT>[Code CI44, NAVFAC LANT, Naval Facilities Engineering Systems Command][_____] will review and approve all submittals in this section requiring 
+Government approval.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Reduced Submittal Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Transformers designed and manufactured by ABB/Hitachi Energy in Jefferson City, MO; by Eaton's Cooper Power Series Transformers in Waukesha, WI; 
+by ERMCO in Dyersburg, TN; or by Howard Industries in Laurel, MS need not submit the entire submittal package requirements of this contract.  Instead, 
+submit the following items:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A certification, signed by the manufacturer, stating that the manufacturer will meet the technical requirements of this specification.</OLI><BRK/>
+<BRK/>
+<OLI>An outline drawing of the transformer with devices identified (paragraph PAD-MOUNTED TRANSFORMER DRAWINGS, item a).</OLI><BRK/>
+<BRK/>
+<OLI>ANSI nameplate data of the transformer (paragraph PAD-MOUNTED TRANSFORMER DRAWINGS, item b).</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer is responsible for providing proper settings for secondary over-current device(s) to ensure 
+proper protection of equipment and coordination with transformer high side fuses.  Include the following option 
+for transformers serving secondary over-current devices containing adjustable trips.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Manufacturer's published time-current curves in PDF format and in electronic format suitable for import or updating into the [EasyPower] 
+[SKM PowerTools for Windows] [_____] computer program of the transformer high side fuses (paragraph PAD-MOUNTED TRANSFORMER DRAWINGS, item 
+e).</OLI><BRK/>
+<BRK/>
+]<OLI>Provide transformer test schedule and routine and other tests required by submittal item "SD-09 Manufacturer's Field Reports".</OLI><BRK/>
+<BRK/>
+<OLI>Provide acceptance test reports required by submittal item "SD-06 Test Reports".</OLI><BRK/>
+<BRK/>
+<OLI>Provide operation and maintenance manuals required by submittal item "SD-10 Operation and Maintenance Data".</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Pad-Mounted Transformer Drawings</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  Delete bracketed metering information for Navy and Air Force projects when separate metering specification 
+is used.  May still need for Army projects until metering specification is unified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include the following as a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>An outline drawing, including front, top, and side views.</OLI><BRK/>
+<BRK/>
+<OLI>IEEE nameplate data.</OLI><BRK/>
+<BRK/>
+<OLI>Elementary diagrams and wiring diagrams[ with terminals identified of watthour meter and current transformers].</OLI><BRK/>
+<BRK/>
+<OLI>One-line diagram, including switch(es)[, current transformers, meters, and fuses].</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following option for transformers serving secondary over-current devices containing adjustable 
+trips.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Manufacturer's published time-current curves in PDF format and in electronic format suitable for import or updating into the [EasyPower] 
+[SKM PowerTools for Windows] [_____] computer program of the transformer high side fuses.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, except of <RID>NFPA 70</RID> when more stringent requirements 
+are specified or indicated, as though the word "must" had been substituted for "should" wherever it appears.  Interpret references in these publications 
+to the "authority having jurisdiction," or words of similar meaning, to mean the Contracting Officer.  Provide equipment, materials, installation, 
+and workmanship in accordance with <RID>NFPA 70</RID> unless more stringent requirements are specified or indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such products which are of equal material, 
+design and workmanship, and:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Have been in satisfactory commercial or industrial use for 2 years prior to bid opening including applications of equipment and materials 
+under similar circumstances and of similar size.</OLI><BRK/>
+<BRK/>
+<OLI>Have been on sale on the commercial market through advertisements, manufacturers' catalogs, or brochures during the 2-year period.</OLI><BRK/>
+<BRK/>
+<OLI>Where two or more items of the same class of equipment are required, provide products of a single manufacturer; however, the component 
+parts of the item need not be the products of the same manufacturer unless stated in this section.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a 2-year field service record will be acceptable if a certified record of satisfactory field operation for not less than 
+6000 hours, exclusive of the manufacturers' factory or laboratory tests, is furnished.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material and Equipment Manufacturing Date</TTL><BRK/>
+<BRK/>
+<TXT>Products manufactured more than 3 years prior to date of delivery to site are not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Additions to Operation and Maintenance Data</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete bracketed information for Navy and Air Force projects when separate metering specification is used.  
+May still need for Army projects until metering specification is unified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit operation and maintenance data in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA and as specified herein.  In addition 
+to requirements of Data Package 5, include the following on the actual <SUB>transformer(s)</SUB> provided:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>An instruction manual with pertinent items and information highlighted</OLI><BRK/>
+<BRK/>
+<OLI>An outline drawing, front, top, and side views</OLI><BRK/>
+<BRK/>
+<OLI>Prices for spare parts and supply list</OLI><BRK/>
+<BRK/>
+<OLI>Routine and field acceptance test reports</OLI><BRK/>
+<BRK/>
+<OLI>Fuse curves for primary fuses</OLI><BRK/>
+<BRK/>
+[<OLI>Information on watthour demand meter, CT's, and fuse block</OLI><BRK/>
+<BRK/>
+]<OLI>Actual nameplate diagram</OLI><BRK/>
+<BRK/>
+<OLI>Date of purchase</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PRODUCT COORDINATION</TTL><BRK/>
+<BRK/>
+<TXT>Products and materials not considered to be pad-mounted transformers and related accessories are specified in[ Section <SRF>33 71 01</SRF> OVERHEAD TRANSMISSION 
+AND DISTRIBUTION,][ Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM,][ and] Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>THREE-PHASE <SUB>PAD-MOUNTED TRANSFORMERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  According to IEEE 386, 200 ampere separable insulated connectors normally used on dead-front pad-mounted 
+transformers have both a fault closure and a short-time current rating of 10,000 amperes.  Therefore, from a safety 
+standpoint, dead-front configurations which utilize these connectors should only be used at system locations which 
+have available fault currents of less than 10,000 rms symmetrical amperes.</NPR><BRK/>
+<BRK/>
+<NPR>This specification does not address the materials used for the winding (copper versus aluminum) and it is assumed 
+that the manufacturer will provide their standard product with respect to the winding construction, based on the 
+cost of materials at the time of order acceptance.  No failure data has been obtained indicating that copper windings 
+have a longer life than aluminum windings.  If copper windings are specified, the cost increase for three-phase 
+distribution transformers has recently been about 15 percent.  Do NOT specify winding materials.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>IEEE C57.12.34</RID>, <RID>IEEE C57.12.28</RID> and as specified herein.  Submit manufacturer's information for each component, device, insulating fluid, and accessory 
+provided with the transformer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Compartments</TTL><BRK/>
+<BRK/>
+<TXT>Provide high- and low-voltage compartments separated by steel isolating barriers extending the full height and depth of the compartments. Compartment 
+doors:  hinged lift-off type with stop in open position and three-point latching.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>High Voltage, Dead-Front</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Current policy is to use oil-immersed fuses in series with current limiting fuses to achieve better protection 
+and obtain life cycle cost benefits.</NPR><BRK/>
+<BRK/>
+<NPR>For 15 kV and 25 kV, 200 A bushings, select bushing wells and bushing well inserts.  For 15 kV and 25 kV, 600 
+A bushings and for 35 kV bushings, select one-piece bushings.</NPR><BRK/>
+<BRK/>
+<NPR>Do not provide standoff bushings unless this transformer is the only dead-front transformer on the base.  The 
+Public Works Department normally carries standoff bushings in their vehicles.  Provide protective caps when providing 
+standoff bushings and to cover unused bushing well inserts when not providing surge arresters.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate lead-in paragraph with bracketed options below.</NPR><BRK/>
+<BRK/>
+<NPR>Choose minimum high-voltage compartment dimensions for transformers used in loop feed applications to accommodate 
+installation of loop feed, feed-through inserts, and surge arresters.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  For systems with a fault capability greater than 10,000 amps, for applications utilizing loop feed load-break 
+switches, or when the primary cable size is greater than No. 4/0 AWG, use 600A separable insulated dead-break 
+connectors.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>High-voltage compartment contains:  the incoming line, insulated high-voltage [load-break ][dead-break ]connectors, [bushing well inserts,][ feed-thru 
+inserts,] six high-voltage [bushing wells][one-piece bushings] configured for loop feed application, load-break switch handle(s), [access to oil-immersed 
+bayonet fuses,][ dead-front surge arresters,] tap changer handle, connector parking stands[ with insulated standoff bushings],[ protective caps,] 
+and ground pad.</TXT><BRK/>
+<BRK/>
+[<TXT>Minimum high-voltage compartment dimensions:  <RID>IEEE C57.12.34</RID>, Figures 16 and 17.</TXT><BRK/>
+<OLG><BRK/>
+][<OLI>Insulated high-voltage load-break connectors:  <RID>IEEE 386</RID>, rated [15 kV, 95 kV BIL][25 kV, 125 kV BIL][35 kV, 150 kV BIL].  Current rating:  
+200 amperes rms continuous.  Short time rating:  10,000 amperes rms symmetrical for a time duration of 0.17 seconds.  Connector must have 
+a steel reinforced hook-stick eye, grounding eye, test point, and arc-quenching contact material.</OLI><BRK/>
+<BRK/>
+][<OLI>Insulated high-voltage dead-break connectors:  <RID>IEEE 386</RID>, rated [15 kV, 95 kV BIL][25 kV, 125 kV BIL][35 kV, 150 kV BIL].  Current rating:  
+600 amperes rms continuous.  Short time rating:  25,000 amperes rms symmetrical for a time duration of 0.17 seconds.  Connector must have 
+a [200 ampere bushing interface for surge arresters,] steel reinforced hook-stick eye, grounding eye, test point, and arc-quenching contact 
+material.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide bushing well inserts and feed-through inserts only on load-break applications, not on dead-break.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+][<OLI>Bushing well inserts[ and feed-thru inserts]:  <RID>IEEE 386</RID>, 200 amperes, [15][25] kV Class.  Provide a bushing well insert for each bushing 
+well unless indicated otherwise.[  Provide feed-thru inserts as indicated.]</OLI><BRK/>
+<BRK/>
+][<OLI>One-piece bushings:  <RID>IEEE 386</RID>, [200][600] amperes, [15][25][35][_____] kV Class.</OLI><BRK/>
+<BRK/>
+]<OLI>Load-break switch</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose between load-break radial-feed switch and load-break loop feed switches.</NPR><BRK/>
+<BRK/>
+<NPR>There are three types of load-break switches: two-, three-, and four-position.  UFC 3-550-01 recognizes only two-position 
+load-break switch.  Two-position switch is hot stick operable and requires minimum input torque to operate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<LST>Radial-feed two-position oil-immersed type rated at [15 kV, 95 kV BIL][25 kV, 125 kV BIL][35 kV, 150 kV BIL], with a continuous current 
+rating and load-break rating of [200][300][_____] amperes, and a make-and-latch rating of 12,000 rms amperes symmetrical.  Locate the switch 
+handle in the high-voltage compartment.</LST><BRK/>
+<BRK/>
+][<LST>Loop feed sectionalizer switches:  Provide three, two-position, oil-immersed type switches to permit closed transition loop feed and sectionalizing.  
+Each switch must be rated at [15 kV, 95 kV BIL][25 kV, 125 kV BIL][35 kV, 150 kV BIL], with a continuous current rating and load-break 
+rating of [200][300][_____] amperes, and a make-and-latch rating of 12,000 rms amperes symmetrical.  Locate the switch handles in the high-voltage 
+compartment.  Operation of switches must be as follows:</LST><BRK/>
+<TAB HEADERROWS="3">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="8" ROWCOUNT="8">
+      <COL AUTOWIDTH="0" WIDTH="77.25"/>
+      <COL AUTOWIDTH="0" WIDTH="128.25"/>
+      <COL AUTOWIDTH="0" WIDTH="32.25"/>
+      <COL AUTOWIDTH="0" WIDTH="34.50"/>
+      <COL AUTOWIDTH="0" WIDTH="41.25"/>
+      <COL AUTOWIDTH="0" WIDTH="42.00"/>
+      <COL AUTOWIDTH="0" WIDTH="38.25"/>
+      <COL AUTOWIDTH="0" WIDTH="74.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL MERGEDOWN="2">
+<DTA TYPE="STRING">ARRANGEMENT NO.</DTA>
+         </CEL>
+         <CEL MERGEDOWN="2">
+<DTA TYPE="STRING">DESCRIPTION OF SWITCH ARRANGEMENT</DTA>
+         </CEL>
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING">SWITCH POSITION</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL INDEX="3" MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">LINE A SW.</DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">LINE B SW</DTA>
+         </CEL>
+         <CEL INDEX="7" MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">XFMR. SW</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL INDEX="3" STYLEID="s50">
+<DTA TYPE="STRING">OPEN</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">CLOSE</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">OPEN</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">CLOSE</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">OPEN</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">CLOSE</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="50.25">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Line A connected to Line B and both lines connected to transformer</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.75">
+         <CEL>
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Transformer connected to Line A only</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="43.50">
+         <CEL>
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Transformer connected to Line Bonly</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.00">
+         <CEL>
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Transformer open and loop closed</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.75">
+         <CEL>
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Transformer open and loop open</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide bayonet type fuses for all transformer applications 38 kV and below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+][<OLI>Provide bayonet oil-immersed, expulsion fuses in series with oil-immersed, partial-range, current-limiting fuses.  The bayonet fuse links 
+sense both high currents and high oil temperature in order to provide thermal protection to the transformer.  Coordinate transformer protection 
+with expulsion fuse clearing low-current faults and current-limiting fuse clearing high-current faults beyond the interrupting rating of 
+the expulsion fuse.  Include an oil retention valve inside the bayonet assembly housing, which closes when the fuse holder is removed, 
+and an external drip shield to minimize oil spills.  Display a warning label adjacent to the bayonet fuse(s) cautioning against removing 
+or inserting fuses unless the transformer has been de-energized and the tank pressure has been released.</OLI><BRK/>
+<BRK/>
+<LST>Bayonet fuse assembly:  150 kV BIL.</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For transformers with loop-feed sectionalizer switching, delete the bracketed option regarding placement 
+of current-limiting fuses.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST>Oil-immersed current-limiting fuses:  <RID>IEEE C37.47</RID>; 50,000 rms amperes symmetrical interrupting rating at the system voltage specified.[  
+Connect current-limiting fuses ahead of the radial-feed load-break switch.]</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide bushing-mounted elbow type arresters at the ends of all radials and in normally open locations 
+in loops.  Provide arresters for all voltage levels above 5 kV.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+][<OLI>Surge arresters:  <RID>IEEE C62.11</RID>, rated [3][6][9][10][12][15][18][21][24][27][30][36][_____] kV, fully shielded, dead-front, metal-oxide-varistor, 
+elbow type with resistance-graded gap.[  Provide three arresters for radial feed circuits.][  Provide [three][six] arresters for loop feed 
+circuits.]</OLI><BRK/>
+<BRK/>
+]<OLI>Parking stands:  Provide a parking stand near each bushing.[  Provide insulated standoff bushings for parking of energized  high-voltage 
+connectors on parking stands.]</OLI><BRK/>
+<BRK/>
+[<OLI>Protective caps:  <RID>IEEE 386</RID>, [200][600] amperes, [15][25][35][_____] kV Class.  Provide insulated protective caps (not shipping caps) for 
+insulating and sealing out moisture from unused bushings.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>[<SPT><TTL>High Voltage, Live-Front</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Obtain approval from the Authority Having Jurisdiction (AHJ) when live-front is selected and delete the 
+above paragraphs on dead-front.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>High-voltage compartment contains:  the incoming line, transformer high-voltage bushings, load-break switch handle(s),[ access to oil-immersed 
+bayonet fuses,][ surge arresters,] tap changer handle, insulated phase barriers, and ground pad.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Cable terminators:  Provide as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.</OLI><BRK/>
+<BRK/>
+<OLI>Load-break switch</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose between load-break radial-feed switch and load-break loop feed switches.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<LST>Radial-feed two-position oil-immersed type rated at [15 kV, 95 kV BIL][25 kV, 125 kV BIL][35 kV, 150 kV BIL], with a continuous current 
+rating and load-break rating of [200][300][_____] amperes, and a make-and-latch rating of 12,000 rms amperes symmetrical.  Locate the switch 
+handle in the high-voltage compartment.</LST><BRK/>
+<BRK/>
+][<LST>Loop feed sectionalizer switches:  Provide three, two-position, oil-immersed type switches to permit closed transition loop feed and sectionalizing.  
+Each switch must be rated at [15 kV, 95 kV BIL][25 kV, 125 kV BIL][35 kV, 150 kV BIL], with a continuous current rating and load-break 
+rating of [200][300][_____] amperes, and a make-and-latch rating of 12,000 rms amperes symmetrical.  Locate the switch handles in the high-voltage 
+compartment.  Operation of switches must be as follows:</LST><BRK/>
+<TAB HEADERROWS="3">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="8" ROWCOUNT="8">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="129.00"/>
+      <COL AUTOWIDTH="0" WIDTH="32.25"/>
+      <COL AUTOWIDTH="0" WIDTH="34.50"/>
+      <COL AUTOWIDTH="0" WIDTH="41.25"/>
+      <COL AUTOWIDTH="0" WIDTH="42.00"/>
+      <COL AUTOWIDTH="0" WIDTH="39.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="16.50">
+         <CEL MERGEDOWN="2" STYLEID="s50">
+<DTA TYPE="STRING">ARRANGEMENT NO.</DTA>
+         </CEL>
+         <CEL MERGEDOWN="2" STYLEID="s50">
+<DTA TYPE="STRING">DESCRIPTION OF SWITCH ARRANGEMENT</DTA>
+         </CEL>
+         <CEL MERGEACROSS="5" STYLEID="s51">
+<DTA TYPE="STRING">SWITCH POSITION</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL INDEX="3" MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING">LINE A SW.</DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING">LINE B SW</DTA>
+         </CEL>
+         <CEL INDEX="7" MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING">XFMR. SW</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL INDEX="3" STYLEID="s51">
+<DTA TYPE="STRING">OPEN</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">CLOSE</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">OPEN</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">CLOSE</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">OPEN</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">CLOSE</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="50.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Line A connected to Line B and both lines connected to transformer</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Transformer connected to Line A only</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="43.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Transformer connected to Line B only</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Transformer open and loop closed</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Transformer open and loop open</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">X</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide bayonet type fuses for all transformer applications 38 kV and below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+][<OLI>Provide bayonet oil-immersed, expulsion fuses in series with oil-immersed, partial-range, current-limiting fuses.  The bayonet fuse links 
+sense both high currents and high oil temperature in order to provide thermal protection to the transformer.  Coordinate transformer protection 
+with expulsion fuse clearing low-current faults and current-limiting fuse clearing high-current faults beyond the interrupting rating of 
+the expulsion fuse.  Include an oil retention valve inside the bayonet assembly housing, which closes when the fuse holder is removed, 
+and an external drip shield to minimize oil spills.  Display a warning label adjacent to the bayonet fuse(s) cautioning against removing 
+or inserting fuses unless the transformer has been de-energized and the tank pressure has been released.</OLI><BRK/>
+<BRK/>
+<LST>Bayonet fuse assembly:  150 kV BIL.</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For transformers with loop-feed sectionalizer switching, delete the bracketed option regarding placement 
+of current-limiting fuses.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST>Oil-immersed current-limiting fuses:  <RID>IEEE C37.47</RID>; 50,000 rms amperes symmetrical interrupting rating at the system voltage specified.[  
+Connect current-limiting fuses ahead of the radial-feed load-break switch.]</LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide arresters at the ends of all radials and in normally open locations in loops.  Provide arresters 
+for all voltage levels above 5 kV.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+][<OLI>Surge arresters:  <RID>IEEE C62.11</RID>, rated [3][6][9][10][12][15][18][21][24][27][30][36][_____] kV.[  Provide three arresters for radial feed 
+circuits.][  Provide [three][six] arresters for loop feed circuits.]</OLI><BRK/>
+<BRK/>
+]<OLI>Insulated phase barriers:  <RID>NEMA LI 1</RID>, Type GPO-3,<MET> 6.35 mm</MET><ENG> 0.25 inch</ENG> minimum thickness.  Provide vertical barriers between the high-voltage 
+bushings and a single horizontal barrier above the high-voltage bushings.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL>Low Voltage</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Installation of circuit breakers in the secondary compartment is not recognized by IEEE standards, and 
+limits accessibility by covering lugs, gages, and accessories.  Do not use.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Low-voltage compartment contains:  low-voltage bushings with NEMA spade terminals, accessories, metering, stainless steel or laser-etched anodized 
+aluminum diagrammatic transformer nameplate, and ground pad.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Include the following accessories:  drain valve with sampler device, fill plug, pressure relief device, liquid level gage, pressure-vacuum 
+gage, and dial type thermometer with maximum temperature indicator.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Many Activities have, or are in the process of, converting to basewide metering systems.  A unified metering 
+specification is under development to replace the metering requirements in this section.</NPR><BRK/>
+<BRK/>
+<NPR>Use the first bracketed metering paragraph below for Navy projects and possibly for Air Force projects.  Navy 
+projects require use of section <SRF>26 27 14.00 20</SRF> ELECTRICITY METERING.  Air Force projects may require use of section 
+<SRF>26 27 13.10 30</SRF> ELECTRIC METERS.</NPR><BRK/>
+<BRK/>
+<NPR>Delete all other paragraphs for the Air Force and Navy projects.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate with the Activity and provide specific requirements "to match existing systems" when necessary.  If 
+specifying proprietary products, insure that appropriate "Justification and Authorization (J &amp; A)" documentation 
+has been obtained by project manager and "proprietary language requirements" have been added to Division 1 as 
+well as to this section of the specifications.</NPR><BRK/>
+<BRK/>
+<NPR>If there are any components (such as meters, housing, or current transformers) that will be Government Furnished 
+Contractor Installed (GFCI), or Government Furnished Government Installed (GFGI), edit Division 1 and this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Metering:  Provide as specified in Section [<SRF>26 27 14.00 20</SRF> ELECTRICITY METERING][<SRF>26 27 13.10 30</SRF> ELECTRIC METERS].</OLI><BRK/>
+<BRK/>
+][<OLI>Metering:  <RID>NEMA/ANSI C12.10</RID>.  Provide a socket-mounted electronic programmable outdoor watthour meter, surface mounted flush against the 
+side of the low-voltage compartment as indicated.  Program the meter at the factory or in the field.  When field programming is performed, 
+turn field programming device over to the Contracting Officer at completion of project.  Coordinate the meter to system requirements.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC is used, coordinate meter requirements.  Form 
+9S, in text below, is for three-phase, four-wire wye systems, for other system configurations, designer must determine 
+the appropriate form designation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI LEVEL="2">Design:  Provide meter designed for use on a 3-phase, 4-wire, [208Y/120][480Y/277] volt system with 3 current transformers.  
+Include necessary KYZ pulse initiation hardware for Energy Monitoring and Control System (EMCS)[ as specified in Section 
+<SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Coordination:  Provide meter coordinated with ratios of current transformers and transformer secondary voltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Class:  20;  Form:  [9S][_____]; Accuracy: plus or minus 1.0 percent; Finish: Class II</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Cover:  Polycarbonate and lockable to prevent tampering and unauthorized removal.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Kilowatt-hour Register:  five digit electronic programmable type</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Demand Register:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Provide solid state</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Meter reading multiplier:  Indicate multiplier on the meter face.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Demand interval length:  programmed for [15][30][60] minutes with rolling demand up to six subintervals per interval.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Meter fusing:  Provide a fuse block mounted in the secondary compartment containing one fuse per phase to protect the voltage 
+input to the watthour meter.  Size fuses as recommended by the meter manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Socket:  <RID>ANSI C12.7</RID>.  Provide NEMA Type 3R, box-mounted socket having automatic circuit-closing bypass and having jaws compatible 
+with requirements of the meter.  Cover unused hub openings with blank hub plates.  Paint box [Munsell 7GY3.29/1.5 green][Munsell 
+5BG7.0/0.4 sky gray (ANSI 70)] [_____] to match the pad-mounted transformer to which the box-mounted socket is attached.  The 
+Munsell color notation is specified in <RID>ASTM D1535</RID>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Current transformers:  <RID>IEEE C57.13</RID>.  Provide butyl-molded window type current transformers with 600-volt insulation, 10 kV BIL 
+and mount on the low-voltage bushings.  Route current transformer leads in a location as remote as possible from the power transformer 
+secondary cables to permit current measurements to be taken with hook-on-ammeters.  Provide three current transformers per power 
+transformer with characteristics listed in the following table.</OLI><BRK/></OLG>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following guidelines for specifying current transformers are based on the standard current transformer 
+primary rating which is just below the full load current of the power transformer.</NPR><BRK/>
+<BRK/>
+<NPR>1.  Select the appropriate current transformer (CT) ratio, continuous-thermal-current rating factor (RF) at 30 
+degrees C and ANSI Metering Accuracy Class values based on transformer kVA size and secondary voltage.  Example:  
+for a 500 kVA transformer at 208 volts - select 1200/5, 1.5, 0.3 - B-0.5.</NPR><BRK/>
+<TAB HEADERROWS="3" WIDTH="92">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="7" ROWCOUNT="10">
+      <COL AUTOWIDTH="0" WIDTH="38.25"/>
+      <COL AUTOWIDTH="0" WIDTH="52.50"/>
+      <COL AUTOWIDTH="0" WIDTH="33.00"/>
+      <COL AUTOWIDTH="0" WIDTH="91.50"/>
+      <COL AUTOWIDTH="0" WIDTH="57.00"/>
+      <COL AUTOWIDTH="0" WIDTH="36.75"/>
+      <COL AUTOWIDTH="0" WIDTH="105.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL/>
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING">VOLTS</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL/>
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">208</DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">240</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">kVA</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">CT Ratio</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">RF</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Meter Class</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">CT Ratio</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">RF</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Meter Class</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">75</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">112.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">300/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">150</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">400/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">300/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">225</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">600/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">400/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">300</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">800/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">600/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">500</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">750</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2000/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-1.8</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1500/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.9</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TAB HEADERROWS="3" WIDTH="92">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="7" ROWCOUNT="14">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="36.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="51.75"/>
+      <COL AUTOWIDTH="0" WIDTH="34.50"/>
+      <COL AUTOWIDTH="0" WIDTH="91.50"/>
+      <COL AUTOWIDTH="0" WIDTH="56.25"/>
+      <COL AUTOWIDTH="0" WIDTH="36.00"/>
+      <COL AUTOWIDTH="0" WIDTH="108.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50"/>
+         <CEL MERGEACROSS="5" STYLEID="s51">
+<DTA TYPE="STRING">VOLTS</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50"/>
+         <CEL MERGEACROSS="2" STYLEID="s51">
+<DTA TYPE="STRING">480</DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="2" STYLEID="s52">
+<DTA TYPE="STRING">600</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">kVA</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">CT Ratio</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">RF</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Meter Class</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">CT Ratio</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">RF</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Meter Class</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">75</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200/5,</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">112.5</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200/5,</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">150</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200/5,</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">225</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200/5,</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">300</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">300/5,</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">500</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">600/5,</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">400/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">750</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">800/5,</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">600/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1000</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">800/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1500</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1500/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.9</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2000</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2000/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-1.8</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1500/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.9</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2500</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3000/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.33</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-1.8</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2000/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-1.8</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<NPR>2.  Incorporate the appropriate values in table below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAB WIDTH="73">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="5" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="60.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="99.75"/>
+      <COL AUTOWIDTH="0" WIDTH="82.50"/>
+      <COL AUTOWIDTH="0" WIDTH="60.75"/>
+      <COL AUTOWIDTH="0" WIDTH="165.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">kVA</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sec. Volt</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">CT Ratio</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">RF</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Meter Acc. Class</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[500]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[208Y/120]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[1200/5]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[1.5]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[0.3 thru B-0.5]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[750]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[480Y/277]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[ 800/5]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[2.0]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[0.3 thru B-0.5]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+]</SPT></SPT><SPT><TTL>Transformer</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the following guidelines for specifying transformers and insulating liquids.</NPR><BRK/>
+<BRK/>
+<NPR>1.  On Navy projects use of biodegradable less-flammable liquid is required.</NPR><BRK/>
+<BRK/>
+<NPR>For other projects, biodegradable less-flammable liquid and mineral oil are permitted.  Previously the use of 
+mineral oil-filled transformers was recommended wherever possible.  Currently, biodegradable less-flammable transformer 
+liquids that improve transformer operating characteristics are available with little, if any premium cost.  This 
+requirement is supported by UFC 3-600-01, "Fire Protection Engineering for Facilities", identifies building and 
+equipment separation distances based on insulating liquid type.  Mineral oil is more restrictive than less-flammable 
+liquid.  For example, a 1500 kVA transformer containing 600 gallons of less-flammable liquid requires a building 
+separation distance of<MET> 1.5 meters</MET><ENG> 5 feet</ENG> when the construction is fire-resistant or non-combustible.  An equally 
+sized mineral oil-filled transformer requires<MET> 4.6 meters</MET><ENG> 15 feet</ENG> and<MET> 7.6 meters</MET><ENG> 25 feet</ENG> of separation for fire-resistant 
+and non-combustible construction, respectively.  Do not specify silicone-filled transformers.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Use IEEE C57.12.00, Table 8 - Designation of voltage ratings of three-phase windings, such as "4160 V - 480Y 
+/ 277 V".  Connections must be Delta-GrdY configuration for three phase systems.  Other system connections require 
+waiver from UFC 3-550-01 criteria.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Include bracketed option to display transformer rating on enclosure when directed by Activity.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Delete (2) of item g regarding removable ground strap if transformer secondary winding is delta type.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Less-flammable [bio-based] liquid-insulated[ or oil-insulated], two winding, 60 hertz, 65 degrees C rise above a 30 degrees C average ambient, 
+self-cooled type.</OLI><BRK/>
+<BRK/>
+<OLI>Transformer rated [_____] kVA.</OLI><BRK/>
+<BRK/>
+<OLI>Transformer voltage ratings:  [_____] V [Delta][_____] - [_____] V [GrdY][_____].[  For GrdY - GrdY transformers, provide transformer with 
+five-legged core design for third harmonic suppression.]</OLI><BRK/>
+<BRK/>
+<OLI>Tap changer:   externally operated, manual type for changing tap setting when the transformer is de-energized.  Provide four 2.5 percent 
+full capacity taps, two above and two below rated primary voltage.  Indicate which tap setting is in use, clearly visible when the compartment 
+is opened.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum tested percent impedance at 85 degrees C:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.50 for units rated 75kVA and below</OLI><BRK/>
+<OLI LEVEL="2">.87 for units rated 112.5kVA to 300kVA</OLI><BRK/>
+<OLI LEVEL="2">.03 for 500kVA rated units</OLI><BRK/>
+<OLI LEVEL="2">.32 for units rated 750kVA and above</OLI><BRK/>
+<BRK/>
+<OLI>Comply with the following audible sound level limits:</OLI><BRK/>
+<BRK/>
+<TAB HEADERROWS="0" WIDTH="20">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="12">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="47.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="81.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>kVA</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">DECIBELS<BRK/>(MAX</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">75</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">51</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">112.5</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">55</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">150</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">55</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">225</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">55</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">300</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">55</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">500</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">56</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">750</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">57</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1000</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">58</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1500</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">60</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2000</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">61</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2500</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">62</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/></TAB><BRK/>
+<OLI>Include:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Lifting lugs and provisions for jacking under base, with base construction suitable for using rollers or skidding in any direction.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">An insulated low-voltage neutral bushing with NEMA spade terminal, and with removable ground strap.</OLI><BRK/>
+<BRK/>
+]<OLI LEVEL="2">Provide transformer top with an access handhole.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">kVA rating conspicuously displayed on its enclosure.</OLI><BRK/></OLG>
+<BRK/>
+]<SPT><TTL>Specified <SUB>Transformer Efficiencies</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Transformer losses and efficiency requirements have been modified into the table included within the specification 
+and the previous Navy loss tables have been deleted.</NPR><BRK/>
+<BRK/>
+<NPR>10 CFR 431, Subpart K is a result of the Energy Policy and Conservation Act (EPACT) of 2005 and is the  "minimum" 
+industry standard for distribution transformers manufactured on or after January 1, 2016.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide transformer efficiency calculations utilizing the actual no-load and load loss values obtained during the routine tests performed on the 
+actual transformer(s) prepared for this project.  Reference no-load losses (NLL) at 20 degrees C.  Reference load losses (LL) at 55 degrees C and 
+at 50 percent of the nameplate load.  The transformer is not acceptable if the calculated transformer efficiency is less than the efficiency indicated 
+in the "KVA / Efficiency" table below.  The table is based on requirements contained within <RID>10 CFR 431</RID>, Subpart K.  Submit certification, including 
+supporting calculations, from the manufacturer indicating conformance.</TXT><BRK/>
+<TAB HEADERROWS="0" WIDTH="32">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="16">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="70.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="78.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>kVA</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>EFFICIENCY (percent)</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">15</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">98.65</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">30</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">98.83</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">45</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">98.92</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">75</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.03</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">112.5</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.11</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">150</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.16</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">225</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.23</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">300</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.27</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">500</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.35</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">750</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.40</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1000</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.43</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1500</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.48</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2000</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.51</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2500</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.53</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">above 2500</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">99.54</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT><SPT><TTL>Insulating Liquid</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Less-flammable transformer liquids:  <RID>NFPA 70</RID> and <RID>FM APP GUIDE</RID> for less-flammable liquids having a fire point not less than 300 degrees 
+C tested per <RID>ASTM D92</RID> and a dielectric strength not less than 33 kV tested per <RID>ASTM D877/D877M</RID>.  Provide identification of transformer 
+as "non-PCB" and "manufacturer's name and type of fluid" on the nameplate.</OLI><BRK/>
+<BRK/>
+<LST>Provide a fluid that is a biodegradable, electrical insulating, and cooling liquid classified by UL and approved by FM as "less flammable" 
+with the following properties:</LST><BRK/>
+<BRK/>
+<OLI LEVEL="2">Pour point:  <RID>ASTM D97</RID>, less than -15 degree C</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Aquatic biodegradation:  <RID>EPA 712-C-98-075</RID>, ultimately biodegradable as designated by EPA.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Trout toxicity:  <RID>OECD Test 203</RID>, zero mortality of <RID>EPA 821-R-02-012</RID>, pass</OLI><BRK/>
+<BRK/>
+[<OLI>Mineral oil:  <RID>ASTM D3487</RID>, Type II, tested in accordance with <RID>ASTM D117</RID>.  Provide identification of transformer as "non-PCB" and "Type II 
+mineral oil" on the nameplate.</OLI><BRK/></OLG>
+<BRK/>
+]<SPT><TTL>Liquid-Filled Transformer Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Provide nameplate information in accordance with <RID>IEEE C57.12.00</RID> and as modified or supplemented by this section.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Corrosion Protection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use stainless steel bases and cabinets for most applications.  In highly corrosive environments, the additional 
+cost of totally stainless steel tanks and metering enclosures may be justified.  Manufacturer's standard construction 
+material is acceptable only in noncoastal and noncorrosive environments.  Choose the second bracketed option for 
+project locations with Environmental Severity Classifications (ESC) of C4 and C5.  See UFC 1-200-01 for determination 
+of ESC for project locations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide corrosion resistant bases and cabinets of transformers, fabricated of stainless steel conforming to <RID>ASTM A240/A240M</RID>, Type 304 or 304L.  
+Base includes any part of pad-mounted transformer that is within<MET> 75 mm</MET><ENG> 3 inches</ENG> of concrete pad.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide entire transformer assembly, including tank and radiator, base, enclosure, and metering enclosure fabricated of stainless steel conforming 
+to <RID>ASTM A240/A240M</RID>, Type 304 or 304L.  Form enclosure of stainless steel sheets. The optional use of aluminum is permitted for the metering enclosure.</TXT><BRK/>
+<BRK/>
+]<TXT>Paint entire transformer assembly [Munsell 7GY3.29/1.5 green][Munsell 5BG7.0/0.4 sky gray (ANSI 70)][_____], with paint coating system complying 
+with <RID>IEEE C57.12.28</RID> [and <RID>IEEE C57.12.29</RID> ]regardless of base, cabinet, and tank material.  The Munsell color notation is specified in <RID>ASTM D1535</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WARNING SIGNS AND LABELS</TTL><BRK/>
+<BRK/>
+<TXT>Provide warning signs for the enclosures of pad-mounted transformers having a nominal rating exceeding 600 volts in accordance with <RID>NEMA Z535.4</RID>
+ and <RID>NEMA 260</RID>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>When the enclosure integrity of such equipment is specified to be in accordance with <RID>IEEE C57.12.28</RID>, such as for pad-mounted transformers, 
+provide self-adhesive warning labels  on the outside of the high voltage compartment door(s)with nominal dimensions of<MET> 178 by 255 mm</MET><ENG> 7 
+by 10 inches</ENG> with the legend "WARNING HIGH VOLTAGE" printed in two lines of nominal<MET> 50 mm</MET><ENG> 2 inch</ENG> high letters.  Include the work "WARNING" 
+in white letters on an orange background and the words "HIGH VOLTAGE" in black letters on a white background.</OLI><BRK/>
+<BRK/>
+[<OLI>When such equipment is guarded by a fence, mount signs on the fence.  Provide metal signs having nominal dimensions of<MET> 355 by 255 mm</MET><ENG> 14 
+by 10 inches</ENG> with the legend "WARNING HIGH VOLTAGE KEEP OUT" printed in three lines of nominal<MET> 75 mm</MET><ENG> 3 inch</ENG> high white letters on an orange 
+and black field.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>ARC FLASH WARNING LABEL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the Arc Flash Warning Label detail on the drawings.  See the technical notes at the beginning of 
+section to obtain the AutoCAD drawing file of the label.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide arc flash warning label for the enclosure of pad-mounted transformers.  Locate this self-adhesive warning label on the outside of the high 
+voltage compartment door warning of potential electrical arc flash hazards and appropriate PPE required.  Provide label format as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING AND BONDING</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 467</RID>.  Provide grounding and bonding as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>PADLOCKS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must assure that Section <SRF>08 71 00</SRF> DOOR HARDWARE is included and is edited to include padlocks.</NPR><BRK/>
+<BRK/>
+<NPR>Do not use this paragraph for Navy and Air Force projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide padlocks for pad-mounted equipment[ and for each fence gate], keyed [alike][as directed by the Contracting Officer].  Comply with Section 
+<SRF>08 71 00</SRF> DOOR HARDWARE.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>CAST-IN-PLACE CONCRETE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the first bracketed paragraph when project includes a concrete section in Division 03; otherwise, the 
+second bracketed paragraph may be used.  Coordinate requirements with Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide concrete associated with electrical work for other than encasement of underground ducts rated for<MET> 30 MPa</MET><ENG> 4000 psi</ENG> minimum 28-day compressive 
+strength unless specified otherwise.  Conform to the requirements of Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If concrete requirements are detailed and no cast-in-place section is to be included in the project specification, 
+refer to Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE and select such portions as needed to provide complete requirements 
+in addition to the requirements below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide concrete associated with electrical work as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Composed of fine aggregate, coarse aggregate, portland cement, and water so proportioned and mixed as to produce a plastic, workable mixture.</OLI><BRK/>
+<BRK/>
+<OLI>Fine aggregate:  hard, dense, durable, clean, and uncoated sand.</OLI><BRK/>
+<BRK/>
+<OLI>Coarse aggregate:  reasonably well graded from<MET> 4.75 mm to 25 mm</MET><ENG> 3/16 inch to 1 inch</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Fine and coarse aggregates:  free from injurious amounts of dirt, vegetable matter, soft fragments or other deleterious substances.</OLI><BRK/>
+<BRK/>
+<OLI>Water:  fresh, clean, and free from salts, alkali, organic matter, and other impurities.</OLI><BRK/>
+<BRK/>
+<OLI>Concrete associated with electrical work for other than encasement of underground ducts: <MET> 30 MPa</MET><ENG> 4000 psi</ENG> minimum 28-day compressive strength 
+unless specified otherwise.</OLI><BRK/>
+<BRK/>
+<OLI>Slump:  Less than<MET> 100 mm</MET><ENG> 4 inches</ENG>.  Retempering of concrete will not be permitted.</OLI><BRK/>
+<BRK/>
+<OLI>Exposed, unformed concrete surfaces:  smooth, wood float finish.</OLI><BRK/>
+<BRK/>
+<OLI>Concrete must be cured for a period of not less than 7 days, and concrete made with high early strength portland cement must be repaired 
+by patching honeycombed or otherwise defective areas with cement mortar as directed by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Air entrain concrete exposed to weather using an air-entraining admixture conforming to <RID>ASTM C260/C260M</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Air content:  between 4 and 6 percent.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>SOURCE QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Transformer Test Schedule</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The Government reserves the right to witness tests.  Provide transformer test schedule for tests to be performed at the manufacturer's test facility.  
+Submit required test schedule and location, and notify the Contracting Officer 30 calendar days before scheduled test date.  Notify Contracting 
+Officer 15 calendar days in advance of changes to scheduled date.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Test Instrument Calibration</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide a calibration program which assures that all applicable test instruments are maintained within rated accuracy.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Accuracy:  Traceable to the National Institute of Standards and Technology.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Instrument calibration frequency schedule:  less than or equal to 12 months for both test floor instruments and leased specialty 
+equipment.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Dated calibration labels:   visible on all test equipment.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Calibrating standard:  higher accuracy than that of the instrument tested.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Keep up-to-date records that indicate dates and test results of instruments calibrated or tested.  For instruments calibrated 
+by the manufacturer on a routine basis, in lieu of third party calibration, include the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Maintain up-to-date instrument calibration instructions and procedures for each test instrument.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Identify the third party/laboratory calibrated instrument to verify that calibrating standard is met.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Design Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>IEEE C57.12.00</RID>, and <RID>IEEE C57.12.90</RID>.  Section 5.1.2 in <RID>IEEE C57.12.80</RID> states that "design tests are made only on representative apparatus of basically 
+the same design."  Submit design test reports (complete with test data, explanations, formulas, and results), in the same submittal package as 
+the catalog data and drawings for[ each of] the specified transformer(s), with design tests performed prior to the award of this contract.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Tests:  certified and signed by a registered professional engineer.</OLI><BRK/>
+<BRK/>
+<OLI>Temperature rise:  "Basically the same design" for the temperature rise test means a pad-mounted transformer with the same coil construction 
+(such as wire wound primary and sheet wound secondary), the same kVA, the same cooling type (KNAN), the same temperature rise rating, and 
+the same insulating liquid as the transformer specified.</OLI><BRK/>
+<BRK/>
+<OLI>Lightning impulse:  "Basically the same design" for the lightning impulse dielectric test means a pad-mounted transformer with the same 
+BIL, the same coil construction (such as wire wound primary and sheet wound secondary), and a tap changer, if specified.  Design lightning 
+impulse tests includes the primary windings only of that transformer.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><RID>IEEE C57.12.90</RID>, paragraph 10.3 entitled "Lightning Impulse Test Procedures," and <RID>IEEE C57.98</RID>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">State test voltage levels.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide photographs of oscilloscope display waveforms or plots of digitized waveforms with test report.</OLI><BRK/>
+<BRK/>
+<OLI>Lifting and moving devices:  "Basically the same design" requirement for the lifting and moving devices test means a test report confirming 
+that the lifting device being used is capable of handling the weight of the specified transformer in accordance with <RID>IEEE C57.12.34</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Pressure:  "Basically the same design" for the pressure test means a pad-mounted transformer with a tank volume within 30 percent of the 
+tank volume of the transformer specified.</OLI><BRK/>
+<BRK/>
+<OLI>Short circuit:  "Basically the same design" for the short circuit test means a pad-mounted transformer with the same kVA as the transformer 
+specified.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Routine and Other Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>IEEE C57.12.00</RID>.  Routine and other tests:  performed in accordance with <RID>IEEE C57.12.90</RID> by the manufacturer on[ each of] the actual transformer(s) 
+prepared for this project to ensure that the design performance is maintained in production.  Submit test reports, by serial number and receive 
+approval before delivery of equipment to the project site.  Required tests and testing sequence as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Phase relation</OLI><BRK/>
+<BRK/>
+<OLI>Ratio</OLI><BRK/>
+<BRK/>
+<OLI>No-load losses (NLL) and excitation current</OLI><BRK/>
+<BRK/>
+<OLI>Load losses (LL) and impedance voltage</OLI><BRK/>
+<BRK/>
+<OLI>Dielectric</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Impulse</OLI><BRK/>
+ <BRK/>
+<OLI LEVEL="2">Applied voltage</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Induced voltage</OLI><BRK/>
+<BRK/>
+<OLI>Leak</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>IEEE C2</RID>, <RID>NFPA 70</RID>, and to the requirements specified herein.  Provide new equipment and materials unless indicated or specified otherwise.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING</TTL><BRK/>
+<BRK/>
+<TXT><RID>NFPA 70</RID> and <RID>IEEE C2</RID>, except provide grounding systems with a resistance to solid earth ground not exceeding [25][_____] ohms.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Grounding Electrodes</TTL><BRK/>
+<BRK/>
+<TXT>Provide driven ground rods as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.  Connect ground conductors to the upper end of 
+ground rods by exothermic weld or compression connector.  Provide compression connectors at equipment end of ground conductors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pad-Mounted Transformer Grounding</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ensure plans show the secondary neutral grounding conductor sized in accordance with NFPA 70 and the primary 
+neutral grounding conductor when required.  Ensure the CADD detail used matches how this paragraph is edited.  
+Transformer is to have a ground ring and the normal number of ground rods is either four or two.  The one ground 
+rod option should only be chosen if required by local installation requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a ground ring around the transformer with [1/0][4/0] AWG bare copper.[  Provide four ground rods in the ground ring, one per corner.][  
+Provide two ground rods in the ground ring at opposite corners.][  Provide one ground rod in the ground ring with the ground rod located in the 
+transformer cabinet.]  Install the ground rods at least<MET> 3000 mm</MET><ENG> 10 feet</ENG> apart from each other.  Provide separate copper grounding conductors and 
+connect them to the ground loop as indicated.  When work in addition to that indicated or specified is required to obtain the specified ground 
+resistance, the provision of the contract covering "Changes" applies.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections</TTL><BRK/>
+<BRK/>
+<TXT>Make joints in grounding conductors and loops by exothermic weld or compression connector.  Install exothermic welds and compression connectors 
+as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding and Bonding Equipment</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 467</RID>, except as indicated or specified otherwise.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>INSTALLATION OF EQUIPMENT AND ASSEMBLIES</TTL><BRK/>
+<BRK/>
+<TXT>Install and connect pad-mounted transformers furnished under this section as indicated on project drawings, the approved shop drawings, and as 
+specified herein.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Meters and Current Transformers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  Delete this paragraph for Navy and Air Force projects, this information is covered in their associated 
+metering specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ANSI C12.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>FIELD APPLIED PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>Where field painting of enclosures is required to correct damage to the manufacturer's factory applied coatings, provide manufacturer's recommended 
+coatings and apply in accordance with manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>WARNING SIGN MOUNTING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following option when pad-mounted transformer is guarded by a fence.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the number of signs required to be readable from each accessible side, but space the signs a maximum of<MET> 9 meters</MET><ENG> 30 feet</ENG> apart.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>FOUNDATION FOR EQUIPMENT AND ASSEMBLIES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Mounting slab connections may have to be given in detail depending on the requirements for the seismic 
+zone in which the requirement is located.  Include construction requirements for concrete slab only if slab is 
+not detailed on drawings.  Do not provide curbs or raised edges around liquid filled transformers unless specifically 
+approved by Technical Proponent (link provided in the technical note at the beginning of this section).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mount transformer on concrete slab as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Unless otherwise indicated, provide the slab with dimensions at least<MET> 200 mm</MET><ENG> 8 inches</ENG> thick, reinforced with a<MET> 152 by 152 mm MW19 by MW19</MET><ENG>
+ 6 by 6 inches - W2.9 by W2.9</ENG> mesh placed uniformly<MET> 100 mm</MET><ENG> 4 inches</ENG> from the top of the slab.</OLI><BRK/>
+<BRK/>
+<OLI>Place slab on a<MET> 150 mm</MET><ENG> 6 inch</ENG> thick, well-compacted gravel base.</OLI><BRK/>
+<BRK/>
+<OLI>Install slab such that top of concrete slab is approximately<MET> 100 mm</MET><ENG> 4 inches</ENG> above the finished grade with gradual slope for drainage.</OLI><BRK/>
+<BRK/>
+<OLI>Provide edges above grade with<MET> 15 mm</MET><ENG> 1/2 inch</ENG> chamfer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide slab of adequate size to project at least<MET> 200 mm</MET><ENG> 8 inches</ENG> beyond the equipment.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Stub up conduits, with bushings,<MET> 50 mm</MET><ENG> 2 inches</ENG> into cable wells in the concrete pad.  Coordinate dimensions of cable wells with transformer cable 
+training areas.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cast-In-Place Concrete</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the first bracketed option when project includes a concrete section in Division 03; otherwise, the 
+second bracketed option may be used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide cast-in-place concrete work in accordance with the requirements of[ Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE][ <RID>ACI 318</RID>][ <RID>ACI 318M</RID>].</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Sealing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Require sealing of cable wells (windows) in the concrete pad if rodent intrusion is a problem.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>When the installation is complete, seal all entries into the equipment enclosure with an approved sealing method.  Provide seals of sufficient 
+strength and durability to protect all energized live parts of the equipment from rodents, insects, or other foreign matter.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Performance of <SUB>Acceptance Checks and Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Perform in accordance with the manufacturer's recommendations</TST> and include the following visual and mechanical inspections and electrical tests, 
+performed in accordance with <RID>NETA ATS</RID>.  Submit reports, including acceptance criteria and limits for each test in accordance with <RID>NETA ATS</RID> "Test 
+Values".</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pad-Mounted Transformers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and mechanical inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.  Check for damaged or cracked insulators and leaks.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect anchorage, alignment, and grounding.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify the presence of PCB content labeling.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify the bushings and transformer interiors are clean.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all bolted electrical connections for high resistance using low-resistance ohmmeter, verifying tightness of accessible 
+bolted electrical connections by calibrated torque-wrench method, or performing thermographic survey.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify correct liquid level in tanks and bushings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that positive pressure is maintained on gas-blanketed transformers.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform specific inspections and mechanical tests as recommended by manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify de-energized tap changer position is left as specified.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Verify the presence of transformer surge arresters.</OLI><BRK/>
+<BRK/>
+]<OLI>Electrical tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform resistance measurements through all bolted connections with low-resistance ohmmeter.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify proper secondary voltage phase-to-phase and phase-to-neutral after energization and prior to loading.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Perform insulation-resistance tests, winding-to-winding and each winding-to-ground.  Calculate polarization index.  Verify that 
+the tap changer is set at the specified ratio.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform turns-ratio tests at all tap positions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation power-factor or dissipation-factor tests on all windings in accordance with test equipment manufacturer’s 
+published data.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform power-factor or dissipation-factor tests on each bushing equipped with a power-factor/capacitance tap.  In the absence 
+of a power-factor/capacitance tap, perform hot-collar tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Measure the resistance of each high-voltage winding in each de-energized tap-changer position.  Measure the resistance of each 
+low-voltage winding in each de-energized tap-changer position, if applicable.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Remove and test a sample of insulating liquid for the following: Dielectric breakdown voltage, Acid neutralization number, Specific 
+gravity, Interfacial tension, Color, Visual Condition, Water in insulating liquids (Required on 25 kV or higher voltages and 
+on all silicone-filled units.), and Power factor or dissipation factor.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform dissolved-gas analysis (DGA) on a sample of insulating liquid.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>[<SPT><TTL>Current Transformers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note: Delete bracketed optional paragraphs for Navy and Air Force projects.  This information is covered in their 
+associated metering specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Visual and mechanical inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify correct connection.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that adequate clearances exist between primary and secondary circuit wiring.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify the unit is clean.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all bolted electrical connections for high resistance using low-resistance ohmmeter, verifying tightness of accessible 
+bolted electrical connections by calibrated torque-wrench method, or performing thermographic survey.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that all required grounding and shorting connections provide good contact.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify correct operation of transformer withdrawal mechanism and grounding operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify appropriate lubrication on moving current-carrying parts and on moving and sliding surfaces.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform resistance measurements through all bolted connections with low-resistance ohmmeter, if applicable.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation-resistance test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform a polarity test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform a ratio-verification test.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Watthour Meter</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR><BRK/>
+Note: Delete bracketed optional paragraphs for Navy and Air Force projects.  This information is covered in their 
+associated metering specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Visual and mechanical inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify tightness of electrical connections.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Calibrate watthour meters according to manufacturer's published data.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that correct multiplier has been placed on face of meter, where applicable</OLI>.<BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that current transformer secondary circuits are intact.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL>Grounding System</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and mechanical inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect ground system for compliance with contract plans and specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform ground-impedance measurements utilizing the fall-of-potential method.  On systems consisting of interconnected ground 
+rods, perform tests after interconnections are complete.  On systems consisting of a single ground rod perform tests before any 
+wire is connected.  Take measurements in normally dry weather, not less than 48 hours after rainfall.  Use a portable ground 
+resistance tester in accordance with manufacturer's instructions to test each ground or group of grounds.  Use an instrument 
+equipped with a meter reading directly in ohms or fractions thereof to indicate the ground value of the ground rod or grounding 
+systems under test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Submit the measured ground resistance of each ground rod and grounding system, indicating the location of the rod and grounding 
+system.  Include the test method and test setup (i.e., pin location) used to determine ground resistance and soil conditions 
+at the time the measurements were made.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Surge Arresters, Medium- and High-Voltage</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and mechanical inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect anchorage, alignment, grounding, and clearances.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify the arresters are clean.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all bolted electrical connections for high resistance using low-resistance ohmmeter, verifying tightness of accessible 
+bolted electrical connections by calibrated torque-wrench method, or performing thermographic survey.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that the ground lead on each device is individually attached to a ground bus or ground electrode.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform resistance measurements through all bolted connections with low-resistance ohmmeter, if applicable.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform an insulation-resistance test on each arrester, phase terminal-to-ground.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Test grounding connection.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Follow-Up Verification</TTL><BRK/>
+<BRK/>
+<TXT><TST>Upon completion of acceptance checks and tests, show by demonstration in service that circuits and devices are in good operating <NED/>condition and 
+properly performing the intended function.</TST>  As an exception to requirements stated elsewhere in the contract, notify the Contracting Officer 5 
+working days in advance of the dates and times of checking and testing.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

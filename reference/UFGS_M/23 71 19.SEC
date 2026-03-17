@@ -1,0 +1,2595 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-23 71 19 (May 2018)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 71 19 (January 2008)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 71 19</SCN><BRK/>
+<BRK/>
+<STL>THERMAL ENERGY STORAGE SYSTEM:  ICE-ON-COIL</STL><BRK/>
+<DTE>05/18</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirement for <SCP>ice-on-coil type 
+thermal energy storage systems, including the system refrigeration, controls, 
+piping and electrical work</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The use of this specification will be coordinated with other sections 
+as appropriate in order to specify a complete thermal energy storage system.  
+These other sections include UFGS <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING 
+FOR HVAC; UFGS <SRF>23 64 10</SRF> WATER CHILLERS, VAPRO COMPRESSION TYPE; UFGS 
+<SRF>01 91 00.15</SRF> , BUILDING COMMISSIONING.  The designer should be familiar with 
+ASHRAE's Design Guide for Cool Thermal Storage and AHRI Guideline T before preparing 
+the design.  Note that this is tailored for ice-on-coil systems.  This specification 
+will be a document that develops further based on the needs of our customers 
+and changing technology.</NPR><BRK/>
+<BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>MODIFICATION OF REFERENCES</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, interpret references to the "authority having jurisdiction", 
+or words of similar meaning, to mean the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 150</RID><RTL>(2025) Method of Testing the Performance of Cool Storage Systems</RTL><BRK/><BRK/><RID>ASHRAE HVAC APP IP HDBK</RID><RTL>(2023) HVAC Applications Handbook, I-P Edition</RTL><BRK/><BRK/><RID>ASHRAE HVAC APP SI HDBK</RID><RTL>(2023) HVAC Applications Handbook, SI Edition</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM D638</RID><RTL>(2014) Standard Test Method for Tensile Properties of Plastics</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/><RID>NEMA MG 11</RID><RTL>(1977; R 2012) Energy Management Guide for Selection and Use of Single Phase Motors</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<BRK/>
+<NPR>Quantity and submission requirements for Operation and Maintenance Data are 
+identified in Section <SRF>01 33 00</SRF> for Navy projects.  Select bracketed quantity 
+and submission requirements for Operation and Maintenance Data for Army projects 
+only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Graphic layouts for dashboards</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Controls sequence of operation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Point-to-point wiring diagrams</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Installation Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Table C1</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Table C2</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Table 1</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Equipment and Installation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Test Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Acceptance Test Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Diagrams</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Representative</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Testing, Adjusting, and Balancing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Training</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sensors</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Motors</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Integral disconnects</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Paint</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Glycol</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Glycol management system</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ice Inventory System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Controls</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ice Storage Units</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Liquid Chillers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<BRK/>
+<ITM><SUB>System Performance Tests Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Thermal Energy Storage System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Schedule and Content</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Manufacturer's Representative</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Perform the Performance testing work specified in this section under the supervision of and certified by the 
+Manufacturer's Representative.  Provide certification for <SUB>installation drawings</SUB>, <SUB>test procedures</SUB>, and test results.  
+The Manufacturer's Representative must have no less than 3 continuous years of experience directly involved in 
+the design and installation of thermal energy storage systems, and must have served in similar capacity on no 
+fewer than five projects of similar size and scope during that period.  Submit the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A letter from the system manufacturer, at least 2 weeks prior to the start of work, listing the experience 
+and training of the Manufacturer's Representative.</OLI><BRK/>
+<BRK/>
+<OLI><SUB>Installation Drawings</SUB> consisting of equipment layout including assembly and installation details and 
+electrical connection diagrams; layout and installation details of thermal storage units including support 
+structure, thermal storage system circulation pumps, distribution manifolds and all piping, including 
+support structure for system piping and points of connection to storage units and to piping specified 
+in related sections, <SUB>controls sequence of operation</SUB>, <SUB>point-to-point wiring diagrams</SUB>, <SUB>graphic layouts 
+for dashboards</SUB> and schematic controls diagram.  Include on the drawings any information required to demonstrate 
+that the system has been coordinated and will function properly within the HVAC system, and show equipment 
+relationship to other parts of the work, including clearances required for operation and maintenance.  
+Concurrent with installation drawings, submit manufacturer's certification of installation drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Proposed <SUB>field acceptance test procedures</SUB> for performance tests of systems, at least 2 weeks prior to 
+the start of related testing.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Asbestos Prohibition</TTL><BRK/>
+<BRK/>
+<TXT>Do not use asbestos and asbestos-containing products.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EXTRA MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Provide one set of special tools, calibration devices, and instruments required for operation, calibration, and 
+maintenance of the equipment.  In addition, furnish a two year supply of all spare parts required for system 
+operation.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>Provide a closed circuit, single source <SUB>Thermal Energy Storage System</SUB> designed and assembled by a manufacturer 
+located in the United States and regularly engaged in the manufacturing of systems that are of a similar design, 
+workmanship, capacity, and operation.  The system must be installed by the system manufacturer or a service organization 
+certified by the system manufacturer.  The manufacturer is responsible for the selection and full integration 
+of the major components of the thermal energy storage system.  The major components of the thermal energy storage 
+system include <SUB>ice storage units</SUB>, <SUB>liquid chillers</SUB>, and system controls.  Systems of similar design and capacity 
+must have been in satisfactory commercial [or industrial] use for 3 years before bid opening.  The 3 years must 
+be satisfactorily completed by a system which has been sold or is offered for sale on the commercial market through 
+advertisements, manufacturers' catalogs, or brochures.  Systems having less than a 3-year field service record 
+will be acceptable if a certified record of satisfactory field operation, for not less than 6000 hours exclusive 
+of the manufacturer's factory tests, can be shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Provide a nameplate on all equipment that identifies the manufacturer's name, address, type or style, model or 
+serial number, and catalog number.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Guards and Access</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Catwalks, ladders, and guardrails may be required.  If so, select the 
+applicable item and indicate on drawings.  If not applicable, delete the entire 
+last sentence.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fully enclose or guard belts, pulleys, chains, gears, couplings, projecting setscrews, keys, and other rotating 
+parts exposed to personnel contact according to OSHA requirements.  Provide guards or cover high temperature 
+equipment and piping exposed to contact by personnel or where it creates a potential fire hazard with insulation 
+of a type specified.  The requirements for catwalks, operating platforms, ladders, and guardrails are specified 
+in Section [<SRF>08 31 00</SRF> ACCESS DOORS AND PANELS][<SRF>05 51 33</SRF> METAL LADDERS]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SYSTEM OPERATION CHARACTERISTICS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designers will include all energy efficient applications that optimize 
+the complete thermal storage system, and are technically feasible and life cycle 
+cost effective.  The installation's capability to operate and maintain proposed 
+systems will be a primary consideration in the life cycle cost analyses.  Possible 
+energy saving measures include cool storage with provisions for heat reclamation 
+for preheating domestic hot water, or, in instances where both heating and cooling 
+are required during the heating season, rejected heat from the cool storage 
+system can be used to offset heating loads.</NPR><BRK/>
+<BRK/>
+<NPR>Ice on coil internal melt systems are typically used on HVAC applications such 
+as administrative buildings, schools, day care facilities, and stores where 
+cooling requirements are relatively constant over a minimum 6 hour period and 
+operating control systems need to be simple.  Ice-on-coil external melt systems 
+are typically used on applications such as process cooling where cooling requirements 
+change rapidly and for short on-peak demand periods of 2 to 6 hours.  External 
+melt systems require more complex controls and air agitation pumps.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a system of the [internal][ or ][external] melt ice-on-coil storage system type as described in the <RID>ASHRAE HVAC APP SI HDBK</RID>
+ <RID>ASHRAE HVAC APP IP HDBK</RID> chapter on Thermal Storage.  Base the system performance on operation with a glycol 
+solution (type and concentration) that is recommended by both the refrigeration system manufacturer and the storage 
+system manufacturer to meet the system capacity profile at the specified design conditions.  Design all system 
+components that are in contact with glycol solution for use with the solution.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Refrigeration System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Section <SRF>23 64 10</SRF> WATER CHILLERS, VAPOR COMPRESSION TYPE must be specifically 
+tailored to fit the needs of the type of storage system specified.  Designer 
+should obtain detailed efficiency data for water chillers at design operating 
+conditions to specify minimum energy performance standards for the chiller.  
+Typically air-cooled chillers are used for this application.  A table, such 
+as the one below, should be filled in and located with the chiller specification 
+to specify minimum efficiency.<BRK/>
+<BRK/>
+<TAB HEADERROWS="2">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="6" ROWCOUNT="11">
+      <COL AUTOWIDTH="0" WIDTH="20.25"/>
+      <COL AUTOWIDTH="0" WIDTH="20.25"/>
+      <COL AUTOWIDTH="0" WIDTH="20.25"/>
+      <COL AUTOWIDTH="0" WIDTH="242.25"/>
+      <COL AUTOWIDTH="0" WIDTH="91.50"/>
+      <COL AUTOWIDTH="0" WIDTH="88.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3" MERGEDOWN="1">
+<DTA TYPE="STRING">CHILLER DESIGNATION</DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="1">
+<DTA TYPE="STRING"><HL4>MODE</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL INDEX="5">
+<DTA TYPE="STRING"><HL4>ICE BUILD MODE</HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>ICE MELT MODE</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Evaporator Fluid Type</DTA>
+         </CEL>
+         <CEL INDEX="5"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Evaporator Fluid Concentration percentage</DTA>
+         </CEL>
+         <CEL INDEX="5"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Efficiently (EER)</DTA>
+         </CEL>
+         <CEL INDEX="5"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Integrated Part Load Value (IPLV) EER</DTA>
+         </CEL>
+         <CEL INDEX="5"/>
+         <CEL>
+<DTA TYPE="STRING"><HL4>N/A</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Non-Standard Part Load Value (NPLV) EER</DTA>
+         </CEL>
+         <CEL INDEX="5">
+<DTA TYPE="STRING"><HL4>N/A</HL4></DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Evaporator Leaving Temperature <MET>(Degrees C)</MET> <ENG>(Degrees F)</ENG></DTA>
+         </CEL>
+         <CEL INDEX="5"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Evaporator Entering Temperature <MET>(Degrees C)</MET> <ENG>(Degrees F)</ENG></DTA>
+         </CEL>
+         <CEL INDEX="5"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Evaporator Flow Rate <MET>(L/sec)</MET> <ENG>(GPM)</ENG></DTA>
+         </CEL>
+         <CEL INDEX="5"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Ambient Temperature <MET>(Degrees C)</MET> <ENG>(Degrees F)</ENG></DTA>
+         </CEL>
+         <CEL INDEX="5"/>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>In addition to meeting the capacity requirements specified herein and on the drawings, the refrigeration system 
+must be as specified in Section <SRF>23 64 10</SRF> WATER CHILLERS, VAPOR COMPRESSION TYPE.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Designer Specified Application Rate</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer of Record to complete Table C1 and C2.  These tables come from 
+AHRI Guideline T</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAB WIDTH="96">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="12">
+      <COL AUTOWIDTH="0" WIDTH="40.50"/>
+      <COL AUTOWIDTH="0" WIDTH="482.25"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING"><HL4><SUB>Table C1</SUB>.  Specification Information</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Discharge Fluid used to define the following design data<BRK/></DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Supply Temperature to Load at peak conditions, T1, Degrees <MET>C</MET> <ENG>F</ENG></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Return Temperature from Load at peak conditions, T2, Degrees <MET>C</MET> <ENG>F</ENG></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Flow rate to Load at peak conditions, <MET>L/sec</MET> <ENG>gpm</ENG></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Maximum allowable pressure drop through storage device, <MET>kPa</MET> <ENG>psi</ENG></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">System Schematic (shown on drawings)</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Charge Fluid</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Maximum time and minimum temperature available to charge Thermal Storage Device from fully discharged condition (Initial Charge Cycle), h and Degrees <MET>C</MET> <ENG>F</ENG></DTA>
+         </CEL>
+         <CEL INDEX="3"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">*Design Heat Sink Rejection Temperature Degrees <MET>C</MET> <ENG>F</ENG></DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1"/>
+         <CEL INDEX="3" MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">* denotes optional data for this table</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<BRK/>
+<TAB HEADERROWS="3">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="7" ROWCOUNT="28">
+      <COL AUTOWIDTH="0" WIDTH="63.00"/>
+      <COL AUTOWIDTH="0" WIDTH="84.75"/>
+      <COL AUTOWIDTH="0" WIDTH="84.75"/>
+      <COL AUTOWIDTH="0" WIDTH="84.75"/>
+      <COL AUTOWIDTH="0" WIDTH="84.75"/>
+      <COL AUTOWIDTH="0" WIDTH="94.50"/>
+      <COL AUTOWIDTH="0" WIDTH="205.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="6">
+<DTA TYPE="STRING"><HL4><SUB>Table C2</SUB>.  User-specified Data</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="120.00">
+         <CEL>
+<DTA TYPE="STRING">Hour</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Thermal Storage System Load <MET>kW</MET> <ENG>Tons</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">*Supply Temp to Load, T1, Degrees <MET>C</MET> <ENG>F</ENG><BRK/><BRK/></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">*Return Temp from Load, T2, Degrees <MET>C</MET> <ENG>F</ENG><BRK/><BRK/></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">*Flow Rate to Load, <MET>L/s</MET> <ENG>gpm</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">*Heat Sink Rejection Temp (Wet-Bulb or Dry-Bulb), Degrees <MET>C</MET> <ENG>F</ENG><BRK/><BRK/></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Thermal Storage Refrigeration Equipment Use during this hour (Charge / Partial Cooling / Off</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">0-1</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1-2</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">2-3</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">3-4</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">4-5</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">5-6</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">6-7</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">7-8</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">8-9</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">9-10</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">10-11</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">11-12</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">12-13</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">13-14</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">14-15</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">15-16</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">16-17</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">17-18</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">18-19</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">19-20</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">20-21</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">21-22</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">22-23</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">23-0</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>Totals</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="6">
+<DTA TYPE="STRING">* denotes optional data for this table</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<SPT><TTL>System Capacity Profile</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  It is critical that the hourly design day requirements listed below be 
+adequate to meet anticipated loads, otherwise unwanted consequences such as 
+uncomfortable conditions, insufficient cooling for critical functions, or the 
+use of refrigeration equipment during periods that increase demand charges could 
+occur.  The system capacity should typically be optimized with respect to the 
+installation electrical demand rather than that of the building for which the 
+system is being installed.</NPR><BRK/>
+<BRK/>
+<NPR>The designer should coordinate with the customer as to which demand profile 
+(installation or building) should be used to determine system operation.  Note 
+that the design conditions for the refrigeration system should be determined 
+in accordance with the ASHRAE HVAC APP SI HDBK ASHRAE HVAC APP IP HDBK chapter 
+on Thermal Storage.  The design conditions in most cases should not be less 
+than 1 percent dry bulb temperature and the 1 percent wet bulb temperature for 
+cooling towers, otherwise the 1 percent mean coincident wet bulb temperature.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The system manufacturer must provide the data in Table 1 below at the design day conditions listed for the refrigeration 
+system.  The system must meet both system performance and minimum scheduled equipment capacities to meet the 
+design requirements.[  Factory system capacity test results from proto-type testing must be provided that demonstrate 
+that system performance meets or exceeds these requirements.  The manufacturer must provide calculations with 
+the factory system capacity test that demonstrate compliance with the system profile when installed as proposed 
+at the specified design conditions.]  Include the following ambient load losses where applicable: maximum solar 
+heat gain, heat gains from soil, and equipment room temperatures of<MET> 5.5 degrees C</MET><ENG> 10 degrees F</ENG> above the refrigeration 
+system design dry bulb temperature.</TXT><BRK/>
+<BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="5">
+      <COL AUTOWIDTH="0" WIDTH="351.00"/>
+      <COL AUTOWIDTH="0" WIDTH="351.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING"><HL4>Design Day ([_____]DB Degrees <MET>C</MET> <ENG>F</ENG> / [_____]WB Degrees <MET>C</MET> <ENG>F</ENG>)</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING"><HL4>Net Usable Storage Capacity:  [_____]  <MET>kWh</MET> <ENG>Ton-Hours</ENG> (Total Column D)</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Heat Transfer Fluid:  [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">Specific Gravity:  [_____] <BRK/>@ [_____] Degrees <MET>C</MET> <ENG>F</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Hours to Recharge from Fully<BRK/>Discharged Condition:  [_____] hours</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL>
+<DTA TYPE="STRING">Specific Heat <MET>Calorie/gm/Degrees C</MET> <ENG>Btu/lb/Degrees F</ENG> [_____]:  <BRK/>@ [_____] Degrees <MET>C</MET> <ENG>F</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Hours to Recharge on Design Day:<BRK/>[_____] hours</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="7" ROWCOUNT="30">
+      <COL AUTOWIDTH="0" WIDTH="65.25"/>
+      <COL AUTOWIDTH="0" WIDTH="108.00"/>
+      <COL AUTOWIDTH="0" WIDTH="126.00"/>
+      <COL AUTOWIDTH="0" WIDTH="99.00"/>
+      <COL AUTOWIDTH="0" WIDTH="99.00"/>
+      <COL AUTOWIDTH="0" WIDTH="99.00"/>
+      <COL AUTOWIDTH="0" WIDTH="105.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="6">
+<DTA TYPE="STRING"><HL4><SUB>Table 1</SUB>.  Thermal Energy Storage System Data</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="120.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>Hour</HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>A<BRK/>Thermal Storage System Load <MET>kW</MET> <ENG>tons</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>B<BRK/>Refrigeration Equipment<BRK/>Load<BRK/><MET>kW</MET> <ENG>tons</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>C<BRK/>Storage Device Charge Rate<BRK/><MET>kW</MET> <ENG>tons</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>D<BRK/>Storage Device Discharge Rate1<BRK/><MET>kW</MET> <ENG>tons</ENG> </HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>E<BRK/>Parasitic<BRK/>and<BRK/>Accessory<BRK/>Heat Load<BRK/>into Storage Device<BRK/><MET>kW</MET> <ENG>tons</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>F<BRK/>Ambient Heat Load into Storage Device<BRK/><MET>kW</MET> <ENG>tons</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>0-1</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>1-2</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>2-3</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>3-4</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>4-5</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>5-6</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>6-7</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>7-8</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>8-9</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>9-10</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>10-11</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>11-12</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>12-13</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>13-14</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>14-15</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>15-16</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>16-17</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>17-18</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>18-19</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>19-20</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>20-21</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>21-22</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>22-23</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING"><HL4>23-0</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>Totals</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="6">
+<DTA TYPE="STRING">Notes:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1.</DTA>
+         </CEL>
+         <CEL MERGEACROSS="5">
+<DTA TYPE="STRING">Greater Discharge Rates may not be possible at defined discharge temperature (T4).</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">2.</DTA>
+         </CEL>
+         <CEL MERGEACROSS="5">
+<DTA TYPE="STRING">Totals for Column B must be greater than or equal to the sum of totals for Columns A, E and F.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="7" ROWCOUNT="30">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="60.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="100.50"/>
+      <COL AUTOWIDTH="0" WIDTH="111.75"/>
+      <COL AUTOWIDTH="0" WIDTH="116.25"/>
+      <COL AUTOWIDTH="0" WIDTH="83.25"/>
+      <COL AUTOWIDTH="0" WIDTH="114.75"/>
+      <COL AUTOWIDTH="0" WIDTH="114.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="6" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>Table 1.  Thermal Energy Storage System Data (continued)</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="120.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>Hour</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>G<BRK/>Net Storage Inventory2<BRK/><MET>kW-hour</MET> <ENG>ton-hours</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>H<BRK/>Supply Temperature to Load, T1<BRK/>Degrees <MET>C</MET> <ENG>F</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>I<BRK/>Return Temperature from Load, T2<BRK/>Degrees <MET>C</MET> <ENG>F</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>J<BRK/>Flow Rate to Load<BRK/><MET>L/s</MET> <ENG>gpm</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>K<BRK/>Fluid Temperature Entering Storage Device<BRK/>T3<BRK/>Degrees <MET>C</MET> <ENG>F</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>L<BRK/>Fluid Temperature Leaving Storage Device<BRK/>T4<BRK/>Degrees <MET>C</MET> <ENG>F</ENG></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>0-1</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>1-2</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>2-3</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>3-4</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>4-5</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>5-6</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>6-7</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>7-8</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>8-9</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>9-10</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>10-11</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>11-12</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>12-13</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>13-14</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>14-15</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>15-16</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>16-17</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>17-18</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>18-19</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>19-20</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>20-21</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>21-22</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>22-23</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>23-0</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>Totals</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="6" STYLEID="s50">
+<DTA TYPE="STRING">Notes:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3.</DTA>
+         </CEL>
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING">Net Storage Inventory values are not available for instantaneous discharge.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4.</DTA>
+         </CEL>
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING">The values in Column I must always be less than maximum temperature defined on the "User-Specified Data" Sheet.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="6" ROWCOUNT="29">
+      <COL AUTOWIDTH="0" WIDTH="69.75"/>
+      <COL AUTOWIDTH="0" WIDTH="90.00"/>
+      <COL AUTOWIDTH="0" WIDTH="98.25"/>
+      <COL AUTOWIDTH="0" WIDTH="157.50"/>
+      <COL AUTOWIDTH="0" WIDTH="130.50"/>
+      <COL AUTOWIDTH="0" WIDTH="156.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="5">
+<DTA TYPE="STRING"><HL4>Table 1.  Thermal Energy Storage System Data (continued)</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="132.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>Hour</HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>M<BRK/>Flow Rate through Storage Device<BRK/><MET>L/s</MET> <ENG>gpm</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>N<BRK/>Pressure Drop for Service Device<BRK/><MET>kPa</MET> <ENG>psi</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>O<BRK/>Storage Device Refrigeration Energy Input, kWh (electric chiller) or <MET>kWh</MET> <ENG>kBtu</ENG> (gas-fired chiller)</HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>P<BRK/>Saturated Suction Temperature5<BRK/>Degrees <MET>C</MET> <ENG>F</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>Q<BRK/>Storage Device Parasitics<BRK/>Electrical<BRK/>Input</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>0-1</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>1-2</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>2-3</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>3-4</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>4-5</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>5-6</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>6-7</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>7-8</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>8-9</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>9-10</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>10-11</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>11-12</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>12-13</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>13-14</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>14-15</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>15-16</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>16-17</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>17-18</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>18-19</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>19-20</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>20-21</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>21-22</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>22-23</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING"><HL4>23-0</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>Totals</HL4></DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="5">
+<DTA TYPE="STRING">Notes:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">5.</DTA>
+         </CEL>
+         <CEL MERGEACROSS="4">
+<DTA TYPE="STRING">Applicable where refrigerant is the charge fluid.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT><SPT><TTL><SUB>CONTROLS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The sequence of control for the thermal energy storage system should 
+be shown on the drawings in text as a performance sequence so that the system 
+manufacturer's standard controls can be used.  The designer should investigate 
+the requirement for connection of the thermal storage system to the installation's 
+Utility Monitoring Control System (UMCS).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate and integrate controls for the thermal energy storage system with the refrigeration system controls 
+package specified in Section <SRF>23 64 10</SRF> WATER CHILLERS, VAPOR COMPRESSION TYPE.  Design thermal energy storage 
+system in accordance with the manufacturer's recommendations and to comply with the sequence of controls indicated.  
+Design controls, control strategies, storage system configuration, piping, <SUB>sensors</SUB> and all ancillary equipment 
+to ensure that the system performs as specified during partial, peak, and intermittent loading.  <BRK/>
+<BRK/>
+The controls for the thermal energy storage system must continuously measure the ice inventory of storage unit 
+and relay this to the refrigeration controls package.    </TXT><BRK/>
+<OLG><BRK/>
+<OLI>The controls must relay an alarm when; (a) any chiller fails to switch to the operating mode specified 
+in the system capacity profile at any hourly interval; or (b) the total ice inventory falls [20][_____] 
+percent below the latent cooling storage specified in the system capacity profile at any hourly interval.</OLI><BRK/>
+<BRK/>
+<OLI>The controls must relay alarm and initiate system shutdown when the total ice inventory falls below [40][_____] 
+percent below the latent cooling storage specified in the system capacity profile at any hourly interval.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Communicating System Controller</TTL><BRK/>
+<BRK/>
+<TXT>A fully programmed [LonWorks] [BACnet] compatible communicating system controller must be furnished by the thermal 
+energy storage manufacturer to provide completely integrated control of the thermal storage system for 24 hour 
+system performance.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide digital application controllers capable of advanced preprogrammed functions with all memory and 
+clock backed up for minimum 72 hours without data loss.  Interface with chiller microprocessor to provide 
+lead-lag operation and partial loading as required to meet hourly load profile for the building.</OLI><BRK/>
+<BRK/>
+<OLI>Provide graphical software that shows all equipment, temperatures and system modes/status.  Provide software 
+for automatic, schedule based, and manual operator control system.  System must include preprogrammed 
+control sequences, operator graphics reports, and drawings.  Preprogrammed sequences must include one 
+chiller, no heat exchanger; two chillers, no heat exchanger; one chiller with heat exchanger and two 
+distribution pumps; and two chillers with heat exchanger and two distribution pumps.</OLI><BRK/>
+<BRK/>
+<OLI>System must include the following control functions:  system scheduling; at least six modes of operation 
+including off; chiller only - single and multiple chillers; ice only; chiller and ice; make ice; and 
+make ice and cool.</OLI><BRK/>
+<BRK/>
+<OLI>Control system must have system mode determination; chiller plan demand limiting; <SUB>ice inventory system</SUB>
+ management; chilled fluid system control; chiller/ice sequencing and control; color graphic based chiller 
+and plant status screens; system and chiller diagnostic messages; system and chiller reporting; [and] 
+failure modes and recovery; [heat exchanger sequencing and control;] [and pump control for water loops].</OLI><BRK/>
+<BRK/>
+<OLI>System must automatically switch between full ice storage mode on cool days, partial storage ice priority 
+on warm days, and partial storage chiller priority on hot humid days as required to maintain indoor design 
+temperature and relative humidity.</OLI><BRK/>
+<BRK/>
+<OLI>Graphical dashboards must indicate real time <MET>kW</MET> <ENG>tons</ENG> capacity, KW usage by chillers and pumps, ice inventory 
+and melt rate.</OLI><BRK/>
+<BRK/>
+<OLI>System must have logging and trending capability to monitor various control points, status points, setpoints, 
+and monitoring points.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Custom Color Graphics</TTL><BRK/>
+<BRK/>
+<TXT>Provide all information to show custom color graphics of all system components and schematic piping with temperature, 
+pressure and diagnostics and status.  Graphics include, but are not limited to:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Schematic</TTL><BRK/>
+<BRK/>
+<TXT>Include temperature, setpoints, valve positions, tank status and ice<BRK/>
+inventory, key system operating parameters and hot links to other graphics<BRK/>
+pages.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Trends and Gauges</TTL><BRK/>
+<BRK/>
+<TXT>Dashboard style graphical representation of chiller, tank and system<BRK/>
+temperatures with override hot links, gauges showing instantaneous real<BRK/>
+time load on chiller, tanks, and building, with links to 7-day history</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Savings Summary</TTL><BRK/>
+<BRK/>
+<TXT>Graphs showing kW demand, and kW usage savings, including present day,<BRK/>
+month to date and year to date.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mode Chart</TTL><BRK/>
+<BRK/>
+<TXT>Printable matrix indication of modes as described above and<BRK/>
+position/status of pumps, chillers, and valves, with present values<BRK/>
+indicated and with present operating mode highlighted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Strategic Data</TTL><BRK/>
+<BRK/>
+<TXT>Recap of thermal storage performance, including tons and kW, KWh and<BRK/>
+dollar savings, with hot links to the following trend logs and graphs.<BRK/>
+Take data at 15 minute intervals:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Building load</OLI><BRK/>
+<BRK/>
+<OLI>Chiller load</OLI><BRK/>
+<BRK/>
+<OLI>Ice inventory</OLI><BRK/>
+<BRK/>
+<OLI>Ice melt rate</OLI><BRK/>
+<BRK/>
+<OLI>Ice freeze cycle</OLI><BRK/>
+<BRK/>
+<OLI>Ice tank status</OLI><BRK/>
+<BRK/>
+<OLI>Chiller kW</OLI><BRK/>
+<BRK/>
+<OLI>End of day ice charge</OLI><BRK/>
+<BRK/>
+<OLI>kW shifted</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>ICE STORAGE UNITS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The number and size of storage units should be based on the size of the 
+load, the sequence of operations, the space available for storage units, and 
+any reliability requirements that are applicable.  The designer should identify 
+the space available for installation and maintenance of storage units and necessary 
+auxiliaries on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Tanks specified below are constructed of plastic and<BRK/>
+have a capacity range of <MET>[_____] kWh</MET> <ENG>50 to 500 ton<BRK/>
+hours</ENG> each. These can be manifolded together to<BRK/>
+increase capacity. These are internal melt type<BRK/>
+storage units.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each ice storage unit must have a net usable capacity of [____] <MET>kWh</MET> <ENG>ton-hours</ENG>.  Design the ice storage tanks 
+for a minimum 25 year service life and construct solely of corrosion-resistant materials, consisting basically 
+of a cylindrical container, spiral tubular heat exchanger and supply and return headers.  Each tank must have 
+factory rated and published charge and discharge performance curves.  The tanks must be suitable as standard 
+for [installation above ground] [partially buried as shown in partially buried specifications] [fully buried 
+as shown in fully buried specifications] and must produce a floor loading of no more than [____] <MET>kg/m2</MET> <ENG>pounds 
+per square foot</ENG>.<BRK/>
+<BRK/>
+Each tank must be capable of being individually isolated from the thermal storage system so that each may be 
+serviced without interrupting the operation of the total system.  Provide factory rated and published charge 
+and discharge performance curves for each tank that clearly indicate usable ton-hours of storage at the system 
+design temperatures shown in the plans and specifications.  Show usable <MET>kWh</MET> <ENG>ton-hours</ENG> on these curves and submit 
+with the submittal package.  Average charging ethylene glycol temperature (average over ice making hours) and 
+final charging temperature <BRK/>
+must meet minimum scheduled performance as listed.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Polyethylene Ice Storage Unit</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Tank Container</TTL><BRK/>
+<BRK/>
+<TXT>Provide a cylindrical container constructed of polyethylene with an average thickness of <MET>9.5 mm</MET> <ENG>3/8 inch</ENG> and 
+a minimum ultimate strength of <MET>18,000 kPa</MET> <ENG>2600 psi</ENG> in accordance with <RID>ASTM D638</RID>.  The tank must be able to withstand 
+total freezing of the water within it through repeated cycles without damage.  Insulate the bottom and sides 
+of the tank with a minimum R-factor of [9] [_____] and insulate the top with a minimum R-factor of [16] [_____].  
+Standby losses must not exceed 1 percent of the total stored capacity over an <MET>29 Degrees C</MET> <ENG>85 Degrees F</ENG> day.  
+Cover the sides of the tank with <MET>0.8 mm</MET> <ENG>0.032 inch</ENG> textured aluminum sheet; weighing no more than <MET>113 kg</MET> <ENG>250 
+pounds</ENG>, with smoothed edges or handles for easy and safe gripping.  Design tanks to withstand, without damage 
+or distortion, repeated cycles of total freezing of all water within it due to control malfunctions or ambient 
+temperatures for warranty period.  Warrant the tank container for a period of 10 years. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tank Heat Exchanger</TTL><BRK/>
+<BRK/>
+<TXT>Provide tank of welded polyethylene construction.  The tank must contain a spiral-wound, mat-type heat exchanger 
+consisting of polyethylene tubing arranged in multiple parallel circuits with opposite direction of flow in adjoining 
+tubes.  The heat exchanger must be capable of operating up to a <MET>620 kPa</MET> <ENG>90 psi</ENG> maximum pressure and have a minimum 
+burst pressure rated for 4 times the maximum operating pressure.  Factory hydrostatically pressure test each 
+ice tank heat exchanger and its associated piping to a minimum of <MET>1724 kPa</MET> <ENG>250 psi</ENG> after tank insertion, not 
+prior.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>][<SPT><TTL>Steel Ice Storage Unit</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Steel tanks are used for larger capacity thermal storage systems.  They 
+are available in either internal melt (primarily for HVAC applications) or external 
+melt systems (primarily for process applications)</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The ice storage units must be modular in design.  Unit design must allow units of different sizes to be installed 
+in order to optimize unit selection and minimize space requirements.  Assure internal piping arrangements that 
+create a balanced flow due to uniform pressure drop through the coil circuits allow mixed tank sizes.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Tank Container</TTL><BRK/>
+<BRK/>
+<TXT>Construct the tank of heavy-gauge galvanized steel panels and include double brake flanges for structural strength.  
+Provide the tank walls with a minimum of <MET>114 mm</MET> <ENG>4-1/2 inches</ENG> of insulation that provides a total insulating value 
+of R-18.  Utilize multiple liners:  the primary liner, which forms the interior of the unit, must be of single 
+piece construction and be suitable for low temperature applications; the secondary liner/vapor barrier must be 
+separated from the primary liner by <MET>38 mm</MET> <ENG>1-1/2 inches</ENG> of extruded polystyrene insulation.  Insulate the tank 
+bottom must  be insulated with 50 mm 2 inches of expanded polystyrene insulation and 25 mm 1 inch of extruded 
+polystyrene insulation.<BRK/>
+<BRK/>
+Provide the ice storage unit with watertight, sectional covers constructed of hot-dip galvanized steel.  Insulate 
+the covers with a minimum of <MET>50 mm</MET> <ENG>2 inches</ENG> of expanded polystyrene insulation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tank Heat Exchanger</TTL><BRK/>
+<BRK/>
+<TXT>Contained within the tank must be a steel heat exchanger that is constructed of <MET>27 mm</MET> <ENG>1.05 inch</ENG> O.D., all prime 
+surface serpentine steel tubing encased in a steel framework.  Pneumatically test the coil, which is hot-dip 
+galvanized after fabrication, at <MET>1310 kPa</MET> <ENG>190 psig</ENG> and rated for <MET>1034 kPa</MET> <ENG>150 psig</ENG> operating pressure.  Configure 
+the coil circuits to provide maximum storage capacity.  Provide the galvanized steel coil connections on the 
+unit that are grooved for mechanical coupling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sight Tube</TTL><BRK/>
+<BRK/>
+<TXT>Provide each ice storage unit with a sight tube.  Fabricate the sight tube from clear plastic pipe to display 
+the tank water level and corresponding ice inventory.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]</SPT><SPT><TTL>PIPING COMPONENTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide piping components as specified in Sections <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, AND CONDENSER WATER PIPING 
+SYSTEMS and <SRF>23 23 00</SRF> REFRIGERANT PIPING.  Provide all heat tracing tape required for inventory meters, site glasses, 
+and connections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ELECTRICAL WORK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the electrical characteristics, motor starter type(s), enclosure 
+type, and maximum rpm on  the drawings in the equipment schedules.</NPR><BRK/>
+<BRK/>
+<NPR>Where reduced-voltage motor starters are recommended by the manufacturer or 
+required otherwise, specify and coordinate the type(s) required in Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Reduced-voltage starting is required 
+when full voltage starting will interfere with other electrical equipment and 
+circuits and when recommended by the manufacturer.  Where adjustable speed drives 
+(SD) are specified, reference Section <SRF>26 29 23</SRF> ADJUSTABLE SPEED DRIVE SYSTEMS 
+UNDER 600 VOLTS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide <SUB>motors</SUB>, controllers, <SUB>integral disconnects</SUB>, contactors, and controls with their respective pieces of equipment, 
+except controllers indicated as part of motor control centers.  Provide electrical equipment, including motors 
+and wiring, as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM and in accordance with <RID>NFPA 70</RID>.  Provide 
+manual or automatic control and protective or signal devices required for the operation specified and control 
+wiring required for controls and devices specified, but not shown.  For packaged equipment, the manufacturer 
+must provide controllers including the required monitors and timed restart.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>For single-phase motors, provide high-efficiency type, fractional-horsepower alternating-current motors, 
+including motors that are part of a system, in accordance with <RID>NEMA MG 11</RID></OLI><BRK/>
+<BRK/>
+<OLI>For polyphase motors, provide squirrel-cage medium induction motors, including motors that are part of 
+a system, that meet the efficiency ratings for premium efficiency motors in accordance with <RID>NEMA MG 00001</RID>
+.</OLI><BRK/>
+<BRK/>
+<OLI>Provide motors in accordance with <RID>NEMA MG 00001</RID> and of sufficient size to drive the load at the specified 
+capacity without exceeding the nameplate rating of the motor.  Motors must be rated for continuous duty 
+with the enclosure specified.   Motor duty requirements must allow for maximum frequency start-stop operation 
+and minimum encountered interval between start and stop.  Motor torque must be capable of accelerating 
+the connected load within 20 seconds with 80 percent of the rated voltage maintained at motor terminals 
+during one starting period. Provide motor starters complete with thermal overload protection and other 
+necessary appurtenances.  Fit motor bearings with grease supply fittings and grease relief to outside 
+of the enclosure.</OLI><BRK/>
+<BRK/>
+<OLI>[Where two-speed or variable-speed motors are indicated, solid-state variable-speed controllers may be 
+provided to accomplish the same function.  Use solid-state variable-speed controllers for motors rated 
+7.45 kW (10 hp) or less and adjustable frequency drives for larger motors.  ][Provide variable frequency 
+drives for motors as specified in Section <SRF>26 29 23</SRF> ADJUSTABLE SPEED DRIVE SYSTEMS UNDER 600 VOLTS.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>FACTORY FINISH SYSTEM</TTL><BRK/>
+<BRK/>
+<TXT>Coat new equipment with a manufacturer's factory-applied finish that meets the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The [factory <SUB>paint</SUB> system] [galvanized metal] finish system designed for the equipment must have been 
+tested in accordance with Federal Test Method Standard No. 141 (Method 6061) and passed the 125-hour 
+salt-spray fog test of that standard, except that equipment located outdoors must have passed the 500-hour 
+salt-spray fog test of that standard.  [Equipment located in a sea coast environment must withstand 3,000 
+hours in a salt-spray fog test.]</OLI><BRK/>
+<BRK/>
+<OLI>The film thickness of the factory painting system applied on the equipment must not be less than the 
+film thickness used on the successful test specimens.</OLI><BRK/>
+<BRK/>
+<OLI>If manufacturer's standard factory painting system is being proposed for use on surfaces subject to temperatures 
+above<MET> 50 degrees C</MET><ENG> 120 degrees F</ENG>, the factory painting system must be designed for the temperature service.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>GLYCOL</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a fully formulated, inhibited ethylene, or propylene glycol-based, industrial heat transfer fluid specifically 
+designed for use in HVAC and ice storage systems.  The fluid must contain a complete package of corrosion inhibitors, 
+buffers (reserve alkalinity), antifoam agent to lessen pitting and erosion, and a fluorescent dye to help detect 
+leaks.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>GLYCOL TO WATER PLATE AND FRAME HEAT EXCHANGER</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose either this option or the next subpart option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide heat exchanger consisting of embossed (pressed) plates with V-shaped herringbone pattern.  Build the 
+exchanger for design operating pressure, temperatures, capacities and fluids.  Heat exchanger must be produced 
+and supplied by thermal energy storage system manufacturer.  The heat exchanger construction must consist of 
+a frame, plate pack, fixed head, moveable follower, carrying bar, guiding bar, support column and tightening 
+bolts.  Construct plates of cold formed 316 stainless steel.  Gaskets must be single piece molded design of Nitrile 
+Rubber (NBR), EPDM or Viton.  Glue gaskets to keep gasket in place during opening and closing.  Arrange the plates 
+and gaskets to ensure that the fluids do not intermix and any leaks are to the outside of the heat exchanger.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>GLYCOL MANAGEMENT SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose either this option or the previous<BRK/>
+subpart option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><SUB>Glycol management system</SUB> must pressurize system to maintain proper volume of liquid in the building circulating 
+loop, monitor the system pressure, and add fluid from a reservoir to the system when the pressure drops below 
+the set point.  The liquid pressurization system must be factory engineered and tested as a complete unit.  Provide 
+a unit approved for outdoor use using a TEFC pump motor and hot-dipped galvanized frame.  Include a minimum <MET>225 
+L</MET> <ENG>60 gallon</ENG> covered, vented, reservoir with <MET>30 L</MET> <ENG>10 gallon</ENG> graduations.  Provide system with an adjustable pressure 
+relief valve which protects against accidental over-pressurization by the management system; and a check valve 
+between building and filling system along with a service valve between reservoir and pump.  Provide alarms with 
+both visual indicating lights and remote contact points indicating the following conditions:  low system pressure, 
+low liquid level in reservoir, high liquid level, loss of power and low solution level.  The minimum pumping 
+capacity must be <MET>0.2 L per second</MET> <ENG>3 gallons per minute</ENG> at <MET>550 kPa</MET> <ENG>80 psig</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>ICE INVENTORY METER</TTL><BRK/>
+<BRK/>
+<TXT>Provide an ice inventory meter to measure the quantity of ice in the thermal storage tank and provide both a 
+visual indication and an electronic signal (4-20mA) suitable for remote monitoring.  The inventory meter must 
+consist of a weather resistant control box, air pump, tank probe and twin tubing.  Supply [115V] [230V] power 
+to the control box and draw less than one amp.  Provide meter with an analog magnehelic type visual indicator 
+factory calibrated at 0 to 100 percent and the 4-20mA signal must also be factory adjusted to the same range.  
+Avoid requiring field adjustment of the analog meter or electronic transducer.  Mount and position the measurement 
+probe (air supply tube) in a thermal storage tank cover in accordance with manufacturer's instructions.[  Provide 
+special adaptors as required for buried thermal storage tank.]  Include factory supplied twin tubing to connect 
+it to tank probe.  Instrument must be accurate to within plus or minus 5 percent and provide data required to 
+determine remaining ice inventory.  Do not use the instrument to indicate full charge for the purpose of terminating 
+the ice building process.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SOURCE QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Submit test reports for the factory tests in booklet form, upon completion of testing.  Document all phases of 
+tests performed including initial test summary, all corrections and adjustments made, and final test results.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Installed as indicated and according to the manufacturer's <SUB>system diagrams</SUB> and recommendations, including space 
+required for maintenance.  Submit proposed diagrams, at least 2 weeks prior to start of related testing and as 
+specified.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Piping</TTL><BRK/>
+<BRK/>
+<TXT>Install piping as specified in Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, AND CONDENSER WATER PIPING SYSTEMS.  Arrange 
+piping for easy dismantling to permit tube cleaning.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Equipment and Installation</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide seismic requirements, if a Government designer (either Corps 
+office or A/E) is the Engineer of Record, and show on the drawings.  Delete 
+the bracketed phrase if seismic details are not provided.  Pertinent portions 
+of Sections <SRF>13 48 73</SRF> and  <SRF>23 05 48.19</SRF>, properly edited, must be included in 
+the contract documents.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install all equipment within the space allotted on the drawings.  Include adequate space in the layout to accommodate 
+the maintenance requirements as recommended by the manufacturer.  Set floor-mounted equipment, unless otherwise 
+indicated, on not less than<MET> 150 mm</MET><ENG> 6 inch</ENG> thick concrete pads or curbs doweled in place.  Concrete foundations 
+for equipment must be heavy enough to minimize the intensity of the vibrations transmitted to attached piping, 
+equipment, or the surrounding structure, as recommended by the equipment manufacturer.  In lieu of a concrete 
+pad foundation, a concrete pedestal block with isolators placed between the pedestal block and the floor may 
+be provided.  The concrete foundation or concrete pedestal block must be of a mass not less than three times 
+the weight of the components to be supported.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide piping connections to equipment mounted on pedestal blocks and piping connections to storage 
+units with flexible connectors.  Furnish foundation drawings, bolt setting information, and foundation 
+bolts prior to concrete foundation construction for all equipment indicated or required to have concrete 
+foundations.</OLI><BRK/>
+<BRK/>
+<OLI>Provide concrete for all foundations as specified in Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.  [In addition, 
+install tanks, compressors, pumps, valves, heat exchangers, and other similar items as specified under 
+[Section <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS,] [<SRF>23 05 48.19</SRF> SEISMIC BRACING FOR HVZC,] 
+[and as shown on the drawings].]</OLI><BRK/>
+<BRK/>
+<OLI>Provide structural steel required for reinforcement to properly support piping, headers, and equipment 
+but not shown under this section.  Material used for support must be as specified under Section 
+<SRF>05 21 00</SRF> STEEL JOIST FRAMING.  The method of anchoring and fastening must be in accordance with manufacturer's 
+instructions unless otherwise indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Submit proposed test procedures for performance tests of systems, at least 2 weeks prior to the start 
+of related testing.</OLI><BRK/>
+<BRK/>
+<OLI>Submit manufacturer's catalog data included with the detail drawings for the following items.  Highlight 
+the data to show model, size, options, etc., that are intended for consideration.  Provide adequate data 
+to demonstrate compliance with contract requirements for the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Controls.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Storage Units (including heat exchanger).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Maximum charge and discharge rates and latent cooling capacity of each unit.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Type of glycol recommended for use by both the refrigeration system and the storage system 
+manufacturers.  Provide information that lists the latent storage capacity.  Highlight the 
+recommended concentration of glycol for optimal performance based on the system capacity profile 
+at the specified design conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Protect units on site from physical damage.  Comply with manufacturer's installation instructions for 
+rigging, unloading, and transporting units.</OLI><BRK/>
+<BRK/>
+<OLI>Level and support tank bottoms over the entire area and insulate from their supporting surface with insulation 
+supplied by the tank manufacturer.  Set non-plastic tanks on pressure treated Douglas Fir sleepers.  
+Metal tank manufacturers must provide a factory applied mastic coating for corrosion protection.</OLI>[<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include following paragraph for burying of corrosion resistant ice storage 
+units with covers exposed above ground level.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Only tanks that are certified by manufacturer as being designed for partial below ground installation 
+are allowed.  Install tanks in accordance with manufacturer's instructions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Place tanks in the bottom of a pit on a level placed concrete pad base which has a minimum 
+load bearing capacity required by the manufacturer.  Construct the pit so that no water will 
+accumulate above the bottom of the base.  Backfill with sand.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">After the concrete pad has set, the tanks can be lowered into the<BRK/>
+pit using a crane, rigging planks and straps. Fill the tanks with<BRK/>
+water to a height just covering the top of the heat exchanger tube<BRK/>
+in accordance with manufacturer's installation manual, then<BRK/>
+backfill with sand. The sand must be put into the pit in a<BRK/>
+uniform fashion, never creating more than a 300 mm 1 foot<BRK/>
+difference in the sand level in any portion of the pit. Install headers and then pipe them 
+to the rest of the system.</OLI>][<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include following paragraph for burying of corrosion resistant ice storage 
+units totally buried below ground level.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Only tanks that are certified by manufacturer as being designed for full below ground installation are 
+allowed.  Install tanks in accordance with manufacturer's instructions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Place tanks in the bottom of a pit on a level placed concrete pad base which has a minimum 
+load bearing capacity required by the manufacturer.  Construct the pit so that no water will 
+accumulate above the bottom of the base.  Backfill with sand.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Place no more than [_____] <MET>mm</MET><ENG> inches</ENG> of fill on top of the tank covers.  Backfill with sand 
+up to the tops of the tanks.  Install an inspection port pipe extension on each tank for checking 
+the water level in the tank.  [Provide a special inspection port extension for an ice inventory 
+meter internally housing the meter's insertion probe.  ]This extension can also be used to 
+check the depth of backfill above the tank.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">After the concrete pad is set, the tanks can be lowered into the pit using a crane, rigging 
+planks and straps.  Fill the tanks with water to a height just covering the top of the heat 
+exchanger tube in accordance with the manufacturer's installation manual; then backfill the 
+pit with sand.  Place the sand into the pit in a uniform fashion, never creating more than 
+a <MET>300 mm</MET> <ENG>1 foot</ENG> difference in the sand level in any portion of the pit.  Install headers and 
+then pipe them to the rest of the system.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Charge the system with glycol/water mixture.  Before burying the headers, run the system for 
+a week at normal operating pressure with no loss of heat transfer fluid.  After no loss is 
+detected, insulate and cover the headers with sand flush to the tops of the pipes.  Install 
+inspection port extension pipes and then apply sand on top of the tank covers enough to just 
+cover them.  Fill final [_____] <MET>mm</MET> <ENG>inches</ENG> with [wood chips] [top soil].  Make the area above 
+the tanks inaccessible to heavy equipment or wheeled vehicles that could damage tanks.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Access Panels</TTL><BRK/>
+<BRK/>
+<TXT>Provide access panels for all concealed valves, vents, controls, and items requiring inspection or maintenance.  
+Make access panels of sufficient size and locate so that the concealed items may be serviced and maintained or 
+completely removed and replaced.  Provide access panels as specified in Section <SRF>08 31 00</SRF> ACCESS DOORS AND PANELS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified, provide thickness and application of insulation materials for piping and equipment 
+according to Section <SRF>23 07 00</SRF>THERMAL INSULATION FOR MECHANICAL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Special Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Install the manufacturer's special requirements and recommendations, including field-applied insulation and vapor 
+barriers, storage tank installation, distribution and air agitation system, clearances, materials, appurtenances, 
+and all other necessary features to provide a complete and operational thermal storage system.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>Finish paint items only primed at the factory or surfaces not specifically noted otherwise as specified in Section 
+<SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CLEANING AND ADJUSTING</TTL><BRK/>
+<BRK/>
+<TXT>Wipe equipment clean, with all traces of oil, dust, dirt, or paint spots removed.  Maintain the system in this 
+clean condition until final acceptance.  Lubricate bearings with oil or grease as recommended by the manufacturer.  
+Tighten belts proper tension.  Adjust <SUB>control valves</SUB> and other miscellaneous equipment requiring adjustment to 
+setting indicated or directed.  Adjust fans to the speed indicated by the manufacturer to meet specified conditions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GLYCOL SYSTEM FILL</TTL><BRK/>
+<BRK/>
+<TXT>Install, clean, test and drain the piping system in accordance with good industry practice.  Isolate the thermal 
+storage tanks from the system during all cleaning and flushing prior to the final fill.  Have sufficient new, 
+empty drums at the job site to accommodate any overage of the fluid.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Fill for Flush</TTL><BRK/>
+<BRK/>
+<TXT>Measure the volume of the initial fill for flush with a water meter.  The next to last drain must be an all low 
+points drain.  Meter the last fill for flush.  Use high quality water, such as deionized, distilled or municipal 
+water with less than 100 ppm calcium carbonate hardness and less than 50 ppm chloride plus sulfate ions.<BRK/>
+<BRK/>
+Compare the water volume of the initial fill for flush with the water volume of the final fill for flush.  Forward 
+these two volume figures to the manufacturer's representative for the heat transfer fluid.  Also, inform the 
+manufacturer's representative if the storage tanks have been filled with water.  Concentrated heat transfer fluid 
+is required to adjust for the volume of water in the storage tanks.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flush</TTL><BRK/>
+<BRK/>
+<TXT>Remove residue from cleaning solutions and corrosives.  The final drain must be an all low points drain.  If 
+a hydrostatic pressure test is specified for the storage tanks prior to filling the system with heat transfer 
+fluid, it should be performed only with high quality water after flushing the system since the water will remain 
+in the storage tanks.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heat Transfer Fluid</TTL><BRK/>
+<BRK/>
+<TXT>Order the heat transfer fluid by an option of three methods:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Premixed with deionized water and furnished in <MET>208 L</MET> <ENG>55-gallon</ENG> drums</OLI><BRK/>
+<BRK/>
+<OLI>Premixed with deionized water and delivered in volumes above <MET>7570 L</MET> <ENG>2000 gallons</ENG> via tanker truck</OLI><BRK/>
+<BRK/>
+<OLI>Furnished in <MET>208 L</MET> <ENG>55-gallon</ENG> drums of concentrate to be site-mixed with high quality water as specified 
+above before adding to the system.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Fill out and return to the heat transfer fluid manufacturer a questionnaire detailing site conditions before 
+bulk delivery.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heat Transfer Fluid Filling</TTL><BRK/>
+<BRK/>
+<TXT>With the thermal storage tanks opened to the system, pump the heat transfer fluid into the fill connection.  
+Before starting the fill pump, high points of the system must have vents open.  Unlike filling with water, these 
+vent locations must be manned at all times during the filling process in case the heat transfer fluid is inadvertently 
+spilled.  When the fluid reaches the vent, manually close the vent and stop the fill pump.  Installers must take 
+care to not pressurize the system above <MET>620 kPa</MET> <ENG>90 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Removing Air</TTL><BRK/>
+<BRK/>
+<TXT>Turn on the system pump for a few minutes at low speed or valve back to half flow.  This action will move most 
+air to the system high points.  With the system pump off, open the vents and start the fill pump again.  Repeat 
+this procedure a few times.  When most of the air is eliminated, run the system pump at full flow.<BRK/>
+<BRK/>
+Use the system air eliminator to remove final amounts of air.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>TESTING, ADJUSTING, AND BALANCING</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The requirements for testing, adjusting, and balancing are specified in Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, 
+AND BALANCING OF HVAC SYSTEMS.  Begin testing, adjusting, and balancing when the entire HVAC system, including 
+controls, has been completed with the exception of performance tests.  Submit proposed test schedules for Performance 
+Test and Operational Test, at least 2 weeks prior to the start of related testing.  Charge the thermal energy 
+storage system with premixed glycol solution (type and concentration as specified by the manufacturers of both 
+the refrigeration and storage systems) prior to testing, adjusting, and balancing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FIELD TRAINING</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The number of hours of instruction should be determined based of the 
+number and complexity of the systems specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Manufacturer's Representative for the thermal energy storage system must conduct a training course for operating 
+and maintenance personnel as designated by the Contracting Officer.  Submit proposed schedule and training material 
+for field training at least 2 weeks prior to the start of related training.  Provide training for a period of 
+[_____] hours of normal working time and start after the system is functionally complete but prior to the performance 
+tests.  The field instruction must cover all of the items contained in the approved Operating and Maintenance 
+Instructions.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Video Recording</TTL><BRK/>
+<BRK/>
+<TXT>Provide to the Contracting Officer two copies of the training course in DVD video recording.  The recording must 
+record in video and audio all instructors' training presentations including question and answer periods with 
+the trainees.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unresolved Questions From Trainees</TTL><BRK/>
+<BRK/>
+<TXT>If, at the end of the training course, there are questions from trainees that remain unresolved, the instructor 
+must send the answer, in writing, to the Contracting Officer for transmittal to the trainees.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><TST>PERFORMANCE TESTS</TST></TTL><BRK/>
+<BRK/>
+<TXT>After testing, adjusting, and balancing has been completed as specified, test the system as a whole to see that 
+all items perform as integral parts of the system and that operation is as specified.  Submit detailed test plan 
+for the cool energy storage system as part of<BRK/>
+the overall Commissioning Plan.  Submit <SUB>system performance tests report</SUB> for performance tests in booklet form, 
+upon completion of testing.  Test report must have a Statement of Design Intent that includes:<BRK/>
+<BRK/>
+a.  Narrative description of the system<BRK/>
+<BRK/>
+b.  Performance goals for energy consumption and electric demand<BRK/>
+<BRK/>
+c.  Hourly operating profile for design day and minimum-load day<BRK/>
+<BRK/>
+d.  Schematic diagram of piping system, including cool storage system<BRK/>
+<BRK/>
+e.  Description of control strategies for all possible modes and conditions<BRK/>
+<BRK/>
+f.  Maximum usable ice storage discharge temperature<BRK/>
+<BRK/>
+g.  Maximum usable cooling supply temperature<BRK/>
+<BRK/>
+h.  Criteria for determining fully charged and fully discharged conditions<BRK/>
+<BRK/>
+i.  Maximum amount of time available for charging storage<BRK/>
+<BRK/>
+Document all phases of tests performed in the report, including initial test summary, all corrections and adjustments 
+made, and final test results.  Make corrections and adjustments as necessary to produce the conditions indicated 
+or specified, and test(s) repeated in entirety until results are satisfactory.  Tests must be conducted by the 
+thermal energy storage system and chiller manufacturer's representative.  Furnish all instruments required for 
+tests.  The accuracy of test instruments must be as specified in Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING.  <BRK/>
+Perform tests as described in the paragraphs below:</TXT><BRK/>
+<BRK/>
+<SPT><TTL><TST>Operational Test</TST></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Operational Test should be performed when<BRK/>
+temperatures are approaching or exceeding design day<BRK/>
+conditions and all lights are on in building so that<BRK/>
+there is a significant building cooling load to<BRK/>
+utilize the cool storage energy and demonstrate the<BRK/>
+various modes of operation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Demonstrate that the entire system is functioning according to the specifications in all modes of operation such 
+as charging (ice making only), partial storage - ice priority (warm day with both ice storage and supplemental 
+chiller), partial storage - chiller priority (hot, humid design day with both chiller and supplemental ice storage), 
+discharge (cooling from ice storage only), and chiller off (cold day) modes of operation.  Where the system is 
+designed for high cost on-peak window utility rate structure, demonstrate appropriate modes of operation at specified 
+times of day.  All other systems such as hot day/mild day/cold day control scheme must also demonstrate appropriate 
+modes of operation at specified times of day.  Test systems designed for proportional control to divide the load 
+between chiller and ice storage to demonstrate components are proportionally loaded per specification.  The operational 
+test must cover a period of not less than [72][_____] continuous hours of operation using only system controls 
+in normal mode and specified sequence of operation.  Make ice inventory recordings in each storage unit at hourly 
+intervals for the duration of the time period.  In addition, record weather controls, including the ambient temperature 
+and humidity in a shaded and weather protected area at hourly intervals along with ice inventory.  Also record 
+the building temperature and relative humidity for all zones served at hourly intervals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST>Discharge Test</TST></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Discharge testing under field conditions will usually not provide accurate 
+results.  Where tank manufacturer already has factory rated and published discharge 
+performance curves, consider whether discharge testing adds value.  Discharge 
+testing must also be scheduled during the cooling season so that there is a 
+building cooling load for discharging the cool storage energy and chiller cooling 
+capacity.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conduct discharge test in accordance with <RID>ASHRAE 150</RID> with the exception of staying within acceptable deviations 
+from the Specified Load Profile.  The actual field tested profile may be done on a best effort basis allowing 
+for reduced building cooling load conditions.  This test is intended to measure the amount of cooling energy 
+that can be delivered from the thermal storage device to meet the building cooling load.  Begin the test with 
+the thermal storage device in the fully charged condition.  Continue the test until the thermal storage device 
+can no longer provide the maximum leaving storage water temperature.  Record data and determine total discharge 
+cooling capacity in accordance with <RID>ASHRAE 150</RID>.  In addition, record weather conditions, including ambient temperature 
+and humidity in a shaded and weather protected area and all other pertinent temperatures and weather conditions 
+at hourly intervals along with ice inventory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Charge Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Charge testing under field conditions will usually not provide accurate 
+results.  Where tank manufacturer has factory rated and published charge performance 
+curves, consider whether charge testing adds value.  Charge testing should only 
+be used on "full storage" systems where the chiller operates only during the 
+12-hour unoccupied period to charge the ice storage and there is no building 
+cooling load.  More often,"partial storage" systems in which a fully loaded 
+chiller operates continuously throughout a design cooling day both charging 
+the ice storage and cooling the building are used, which would be difficult 
+to replicate in a field test unless it occurs on a design day.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conduct charge testing in accordance with <RID>ASHRAE 150</RID>.  The test is intended to measure the amount of cooling 
+that can be stored in the thermal storage device within the time period available for charging.  Begin the Charge 
+Test with the thermal storage device in the fully discharged condition.  Supply chilled fluid to the thermal 
+storage device at the rate and at the temperatures specified for the design day.  Continue the charge test until 
+the thermal storage device reaches the fully charged condition or until the maximum allowable charging period 
+has elapsed.  Record data and determine total discharge cooling capacity in accordance with <RID>ASHRAE 150</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>OPERATIONS AND MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Operation Manual</TTL><BRK/>
+<BRK/>
+<TXT>Submit [six] [_____] operation manuals listing step-by-step procedures required for system startup, and shutdown, 
+at least 2 weeks prior to field training.  Include in the manuals the manufacturer's name, model number, parts 
+list, list of parts and tools that should be kept in stock by the owner for routine maintenance including the 
+name of a local supplier, simplified wiring and controls diagrams, troubleshooting guide, and recommended service 
+organization (including address and telephone number) for each item of equipment.  [Each service organization 
+submitted must be capable of providing [4] [_____] hour on-site response to a service call on an emergency basis.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Maintenance Manual</TTL><BRK/>
+<BRK/>
+<TXT>Submit [six] [_____] maintenance manuals at least 2 weeks prior to field training, Data Package 3, and data complying 
+with the requirements specified in Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operation and Maintenance Training</TTL><BRK/>
+<BRK/>
+<TXT>Provide training in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.  Training must also include 
+preventative maintenance procedures to minimize Legionella contamination in accordance with manufacturer.  Submit <SUB>
+training schedule and content</SUB> for review and approval prior to training.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

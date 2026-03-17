@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.75"/>
+      <COL AUTOWIDTH="0" WIDTH="224.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-33 32 16 (November 2019)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 1 - November 2023</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>AFCEC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS 33 32 16 (August 2016)<BRK/>UFGS 33 32 13.13 (May 2014)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 33 32 16</SCN><BRK/>
+<BRK/>
+<STL>PACKAGED UTILITY WASTEWATER PUMPING STATIONS</STL><BRK/>
+<DTE>11/19, CHG 1: 11/23</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>Packaged Submersible 
+Sewage <TAI OPT="GRINDER PUMP">Grinder</TAI><TAI OPT="SUBMERSIBLE NONCLOG PUMP">Nonclog</TAI> Pump Stations including alarm requirements, station piping, 
+and O&amp;M data packages</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="http://www.wbdg.org/ffc/dod/unified-facilities-criteria-ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="http://www.wbdg.org/ffc/dod/unified-facilities-guide-specifications-ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification. The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B1.20.1</RID><RTL>(2013; R 2018) Pipe Threads, General Purpose (Inch)</RTL><BRK/><BRK/><RID>ASME B16.1</RID><RTL>(2020) Gray Iron Pipe Flanges and Flanged Fittings Classes 25, 125, and 250</RTL><BRK/><BRK/><RID>ASME B16.3</RID><RTL>(2021) Malleable Iron Threaded Fittings, Classes 150 and 300</RTL><BRK/><BRK/><RID>ASME B16.11</RID><RTL>(2021) Forged Fittings, Socket-Welding and Threaded</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WATER WORKS ASSOCIATION (AWWA)</ORG><BRK/><BRK/><RID>AWWA C104/A21.4</RID><RTL>(2022) Cement-Mortar Lining for Ductile-Iron Pipe and Fittings for Water</RTL><BRK/><BRK/><RID>AWWA C110/A21.10</RID><RTL>(2021) Ductile-Iron and Gray-Iron Fittings</RTL><BRK/><BRK/><RID>AWWA C111/A21.11</RID><RTL>(2023) Rubber-Gasket Joints for Ductile-Iron Pressure Pipe and Fittings</RTL><BRK/><BRK/><RID>AWWA C115/A21.15</RID><RTL>(2020) Flanged Ductile-Iron Pipe With Ductile-Iron or Gray-Iron Threaded Flanges</RTL><BRK/><BRK/><RID>AWWA C151/A21.51</RID><RTL>(2023) Ductile-Iron Pipe, Centrifugally Cast</RTL><BRK/><BRK/><RID>AWWA C500</RID><RTL>(2019) Metal-Seated Gate Valves for Water Supply Service</RTL><BRK/><BRK/><RID>AWWA C509</RID><RTL>(2023) Resilient-Seated Gate Valves for Water Supply Service</RTL><BRK/><BRK/><RID>AWWA C515</RID><RTL>(2020) Reduced-Wall, Resilient-Seated Gate Valves for Water Supply Service</RTL><BRK/><BRK/><RID>AWWA C517</RID><RTL>(2009) Resilent-Seated Cast-Iron Eccentric Plug Valves</RTL><BRK/><BRK/><RID>AWWA C600</RID><RTL>(2023) Installation of Ductile-Iron Mains and Their Appurtenances</RTL><BRK/><BRK/><RID>AWWA C605</RID><RTL>(2021) Underground Installation of Polyvinyl Chloride (PVC) and Molecularly Oriented Polyvinyl Chloride (PVCO) Pressure Pipe and Fittings</RTL><BRK/><BRK/><RID>AWWA M23</RID><RTL>(2020) Manual:  PVC Pipe - Design and Installation - Third Edition</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A48/A48M</RID><RTL>(2022) Standard Specification for Gray Iron Castings</RTL><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A126</RID><RTL>(2004; R 2023) Standard Specification for Gray Iron Castings for Valves, Flanges, and Pipe Fittings</RTL><BRK/><BRK/><RID>ASTM A536</RID><RTL>(2024) Standard Specification for Ductile Iron Castings</RTL><BRK/><BRK/><RID>ASTM A615/A615M</RID><RTL>(2025) Standard Specification for Deformed and Plain Carbon-Steel Bars for Concrete Reinforcement</RTL><BRK/><BRK/><RID>ASTM C443</RID><RTL>(2021) Standard Specification for Joints for Concrete Pipe and Manholes, Using Rubber Gaskets</RTL><BRK/><BRK/><RID>ASTM C443M</RID><RTL>(2021) Standard Specification for Joints for Concrete Pipe and Manholes, Using Rubber Gaskets (Metric)</RTL><BRK/><BRK/><RID>ASTM C478</RID><RTL>(2018) Standard Specification for Circular Precast Reinforced Concrete Manhole Sections</RTL><BRK/><BRK/><RID>ASTM C478M</RID><RTL>(2018) Standard Specification for Precast Reinforced Concrete Manhole Sections (Metric)</RTL><BRK/><BRK/><RID>ASTM C618</RID><RTL>(2025a) Standard Specification for Coal Fly Ash and Raw or Calcined Natural Pozzolan for Use in Concrete</RTL><BRK/><BRK/><RID>ASTM C989/C989M</RID><RTL>(2025) Standard Specification for Slag Cement for Use in Concrete and Mortars</RTL><BRK/><BRK/><RID>ASTM D883</RID><RTL>(2020a) Standard Terminology Relating to Plastics</RTL><BRK/><BRK/><RID>ASTM D1784</RID><RTL>(2025) Standard Classification System and Basis for Specification for Rigid Poly(Vinyl Chloride) (PVC) Compounds and Chlorinated Poly(Vinyl Chloride) (CPVC) Compounds</RTL><BRK/><BRK/><RID>ASTM D1785</RID><RTL>(2021) Standard Specification for Poly(Vinyl Chloride) (PVC), Plastic Pipe, Schedules 40, 80, and 120</RTL><BRK/><BRK/><RID>ASTM D2241</RID><RTL>(2020) Standard Specification for Poly(Vinyl Chloride) (PVC) Pressure-Rated Pipe (SDR Series)</RTL><BRK/><BRK/><RID>ASTM D2464</RID><RTL>(2015) Standard Specification for Threaded Poly(Vinyl Chloride) (PVC) Plastic Pipe Fittings, Schedule 80</RTL><BRK/><BRK/><RID>ASTM D2466</RID><RTL>(2023) Standard Specification for Poly(Vinyl Chloride) (PVC) Plastic Pipe Fittings, Schedule 40</RTL><BRK/><BRK/><RID>ASTM D2467</RID><RTL>(2020) Standard Specification for Poly(Vinyl Chloride) (PVC) Plastic Pipe Fittings, Schedule 80</RTL><BRK/><BRK/><RID>ASTM D3139</RID><RTL>(2019) Joints for Plastic Pressure Pipes Using Flexible Elastomeric Seals</RTL><BRK/><BRK/><RID>ASTM D3753</RID><RTL>(2019) Glass-Fiber-Reinforced Polyester Manholes and Wetwells</RTL><BRK/><BRK/><RID>ASTM F477</RID><RTL>(2014; R 2021) Standard Specification for Elastomeric Seals (Gaskets) for Joining Plastic Pipe</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO 1940-1</RID><RTL>(2003; R 2008) Mechanical Vibration - Balance Quality Requirements for Rotors in a Constant (Rigid) State - Part 1:  Specification and Verification of Balance Tolerances</RTL><BRK/><BRK/></REF><REF><ORG>MANUFACTURERS STANDARDIZATION SOCIETY OF THE VALVE AND FITTINGS INDUSTRY (MSS)</ORG><BRK/><BRK/><RID>MSS SP-80</RID><RTL>(2019) Bronze Gate, Globe, Angle, and Check Valves</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA MG 1</RID><RTL>(2021) Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 820</RID><RTL>(2016) Standard for Fire Protection in Wastewater Treatment and Collection Facilities</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 67</RID><RTL>(2018; Reprint Aug 2025) UL Standard for Safety Panelboards</RTL><BRK/><BRK/><RID>UL 489</RID><RTL>(2025) UL Standard for Safety Molded-Case Circuit Breakers, Molded-Case Switches and Circuit-Breaker Enclosures</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a "G" to an item, if the submittal is sufficiently important or complex 
+in context of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy, and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>Use the "S" classification only in SD-11 Closeout Submittals.  The "S" classification 
+indicates submittals required as proof of compliance for sustainability Guiding 
+Principles Validation or Third Party Certification and as described in Section 
+<SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Fabrication Drawings</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Erection/Installation Drawings</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Submersible Sewage <TAI OPT="GRINDER PUMP">Grinder</TAI><TAI OPT="SUBMERSIBLE NONCLOG PUMP">nonclog</TAI> Pumps</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Performance Curve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Motor</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Control System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wet Well and Valve Vault</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Flanged Coupling</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Station Piping</SUB> and fittings; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Valves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Access Hatch Covers</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Buoyancy Calculations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST>SD-06 Test Reports</LST><BRK/>
+<BRK/>
+<ITM><SUB>Pump Test</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Pressure Sensor Test</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Float Test</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Submersible Sewage <TAI OPT="GRINDER PUMP">Grinder</TAI><TAI OPT="SUBMERSIBLE NONCLOG PUMP">nonclog</TAI> Pumps</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Recycled Material Content</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manhole Chamber</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Access Hatch Covers</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gate Valves</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Check Valves</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Blowers</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Dehumidifier</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Motor</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manhole Chamber</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Access Hatch Covers</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Control System</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gate Valves</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Check Valves</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Blowers</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Dehumidifier</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Motor</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Special Tools</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Posted Instructions</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operation And Maintenance Manuals</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Warranty</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Installer Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's authorized pump representative who is trained and approved for installation of pumps and 
+packaged pump station required for this project.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING OF MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Delivery and Storage</TTL><BRK/>
+<BRK/>
+<TXT>Inspect materials delivered to site for damage.  Unload and store with minimum handling.  Store materials in 
+enclosures or under protective covering.  Store rubber gaskets which are not to be installed immediately under 
+cover, out of direct sunlight.  Do not store materials directly on the ground.  Keep interior of pipes, valves 
+and fittings free of dirt and debris.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Handling</TTL><BRK/>
+<BRK/>
+<TXT>Handle pipe, fittings, valves, and other accessories in such manner as to ensure delivery to the trench in sound, 
+undamaged condition.  Avoid injury to coatings and linings on pipe and fittings; make repairs if coatings or 
+linings are damaged.  Carry pipe to the trench; do not drag it.  Do not use any device or fitting inserted into 
+(such as loader forks) or attached to (such as chain hooks) the bell or spigot ends of the pipe to transport 
+pipe.  Handle ductile iron pipe, fittings, and accessories in accordance with <RID>AWWA C600</RID>.  Handle PVC pipe, fittings, 
+and accessories in accordance with <RID>AWWA C605</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>WARRANTY</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typical warranty of pumps, controls, wet well basin and accessories is 
+for one year.  Consider extended warranty for pump stations utilized in critical 
+mission facilities and for pump stations with flow rates greater than 300 gpm.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide manufacturer's standard warranty for a minimum of one year for package pump station including pumps, 
+valves, controls, wet well basin and accessories.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>Provide a complete packaged sewage pump station with submersible <TAI OPT="GRINDER PUMP">grinder</TAI><TAI OPT="SUBMERSIBLE NONCLOG PUMP">nonclog</TAI> pumps including equipment and 
+materials, installed and ready for operation.  The pump supplier furnishes the controls, pumps and rail system 
+to ensure unit integrity.</TXT><BRK/>
+<BRK/>
+<TXT>Submit <SUB>fabrication drawings</SUB> before installation.  Submit drawings covering necessary or recommended changes to 
+accommodate the equipment offered.  Show on the drawings the design of the chamber, with dimensions, types, and 
+thicknesses of materials, and elevation levels with reference to those elevations indicated.</TXT><BRK/>
+<BRK/>
+<TXT>Submit <SUB>erection/installation drawings</SUB> for the <SUB>manhole chamber</SUB> with the required equipment and accessories.  Provide 
+precast reinforced concrete manhole sections conforming to <MET><RID>ASTM C478M</RID></MET><ENG><RID>ASTM C478</RID></ENG>.  Show the design of the chamber, 
+with dimensions, types, and thicknesses of materials, and elevation levels with reference to those elevations 
+indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>SUBMERSIBLE SEWAGE <TAI OPT="GRINDER PUMP">GRINDER</TAI> <TAI OPT="SUBMERSIBLE NONCLOG PUMP">NONCLOG</TAI> PUMPS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide submersible sewage <TAI OPT="SUBMERSIBLE NONCLOG PUMP">nonclog </TAI>pumps <TAI OPT="GRINDER PUMP">with grinder units </TAI>as indicated.  Provide UL listed pumps for explosion 
+proof Class 1, Division 1, Groups C and D hazardous locations.  Provide submersible, centrifugal sewage pumps <TAI OPT="GRINDER PUMP">
+and grinder units capable of grinding the materials found in normal domestic sewage, including plastics, rubber, 
+sanitary napkins, disposable diapers, animal hair and wooden articles into a finely ground slurry with particle 
+dimensions no greater than<MET> [6][_____] mm</MET><ENG> [1/4][_____] inch</ENG></TAI><TAI OPT="SUBMERSIBLE NONCLOG PUMP"> of the nonclogging type with passageways designed 
+to pass<MET> 75 mm</MET><ENG> 3 inch</ENG> diameter spheres without clogging</TAI>.  Provide pump capacity, number of pumps and motor characteristics 
+as indicated on the drawings.  Select pumps to continuously operate in a submerged or partially submerged condition.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Construction</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Casing</TTL><BRK/>
+<BRK/>
+<TXT>Provide hard, close-grained cast iron casing or steel that is free from blow holes, porosity, hard spots, shrinkage 
+defects, cracks, and other injurious defects.  Provide casings permitting replacement of wearing parts.  Ensure 
+all joints are gasketed to prevent leakage.  Ensure passageways permit smooth flow of sewage and are free of 
+sharp turns and projections.<TAI OPT="GRINDER PUMP">  Use free standing pump support legs of cast-iron providing enough clearance for 
+the solids to get into the grinder.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impeller</TTL><BRK/>
+<BRK/>
+<TXT><TAI OPT="GRINDER PUMP">Provide a [stainless steel] [bronze] [_____] impeller for the grinder pump with stainless steel cutter, grinder, 
+or slicer assembly.</TAI><TAI OPT="SUBMERSIBLE NONCLOG PUMP">  Provide nonclogging type cast-iron impeller, conforming to <RID>ASTM A48/A48M</RID>, Class 30, for 
+a submersible nonclog pump.  Ensure the impeller has a smooth surface and allows free flowing with the clearance 
+to permit objects in the sewage to pass.</TAI>  Fit and key, spline, or thread impeller on shaft, and lock in such 
+manner that lateral movement is prevented and reverse rotation will not cause loosening.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify sealed bearings on motors.  Properly installed sealed bearings  
+with warranty for minimal maintenance requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide heavy duty ball thrust bearing or roller type bearing sized to withstand imposed loads.  Oil lubricate 
+bearings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lubrication</TTL><BRK/>
+<BRK/>
+<TXT>Provide [grease type lubrication with fittings for a grease gun and, if not easily accessible, with grease tubing 
+extending to convenient locations.][ the pump manufacturer's standard type grease fittings.] [self lubricating, 
+permanently sealed bearings.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Balance</TTL><BRK/>
+<BRK/>
+<TXT>Balance rotating parts of the equipment mechanically and hydraulically to operate throughout the required range 
+without excessive end thrust, vibration, and noise.  Conform allowable vibration limits with <RID>ISO 1940-1</RID>, Table 
+1.  Existence of defects that cannot be eliminated by adjustment will be sufficient cause for rejection of the 
+equipment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>PUMP MOTOR</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide hermetically sealed electric motors with moisture and temperature-sensing probes in the wet well <RID>NEMA MG 1</RID>
+, [_____] RPM, [_____] volt, [_____] phase, and [_____] Hz cycle for submersible pumps.  Motor horsepower must 
+not be less than pump horsepower at any point on the <SUB>pump performance curve</SUB>.  Fit motors with lifting "eyes" 
+capable of supporting entire weight of pump and motor.  Seal the power cable inside the motor end bell.  Provide 
+a waterproof power cable for its full length.  Provide motors UL listed for explosion proof Class 1, Division 
+1, Groups C and D.  Air filled motors are not acceptable.  Ensure oil used may be disposed as non-hazardous waste.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>PUMP CONTROL SYSTEM</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Provide an automatic type pump operating control including all necessary components to function reliably.  Mount 
+controls in a NEMA [3R][_____] rated [stainless steel][_____] control panel.  Ensure equipment subject to contact 
+with sewage or sewage gases is corrosion-resistant metal.  Provide an electronic controller that automatically 
+activates and alternates the pump operation.  If the liquid level continues to rise to the plans-specified level, 
+the controller engages both pumps to operate simultaneously until both shut off at the specified low level.  
+Provide hand-off-auto switches to choose the mode of operation for each pump.  Provide controls with a 12 VDC 
+powered float switch connected to the alarm contact of the battery charger to activate high-level alarms.</TXT><BRK/>
+<BRK/>
+<TXT>Protect pumping stations from lightning and transient voltage surges and equip with phase protection.</TXT><BRK/>
+<BRK/>
+<TXT>Provide the station with a three-wire, 4-pole (grounding) receptacle for a portable generator in case there is 
+an external power outage.</TXT><BRK/>
+<BRK/>
+<TXT>Design the control system to operate pumps at the power characteristics as shown on the plans.  Ensure all controls 
+and wiring meet or exceed the requirements of <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>For pumps specified as explosion proof, have pump power and control installation meets NEC requirements for Class 
+1, Division 1, Group D Hazardous Location, including intrinsically safe controls.  Provide components that are 
+UL listed or FM approved.</TXT><BRK/>
+<BRK/>
+<TXT>Require the control function to provide for the operation of the pumps under normal conditions and alternates 
+the pumps on each pump down cycle.</TXT><BRK/>
+<BRK/>
+<TXT>In the event the incoming flow exceeds the pumping capacity of the lead pump, the offline pumps automatically 
+start to handle the increased flow.  As the flow decreases, the pumps cut off at the elevations set on the controller.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Enclosure</TTL><BRK/>
+<BRK/>
+<TXT>Provide a NEMA 3R rated enclosure manufactured from stainless steel.  [The enclosure is a wall mount type suitable 
+for mounting on strut or channel with a minimum depth sized to adequately house all the components.  ]Provide 
+a rubber composition door gasket and assures a positive weatherproof seal.  Provide a door that opens a minimum 
+of 180 degrees and is equipped with a 3-point latch and padlockable handle.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a dead front mounted in the panel to provide protection of personnel from live internal wiring.  Install 
+cutouts for breaker handles to allow operation of breakers without entering the compartment.</TXT><BRK/>
+<BRK/>
+<TXT>Mount all control switches, indicator pilot lights, elapsed time meters, duplex receptacle and other operational 
+devices on the external surface of the dead front.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure the dead front opens a minimum of 150 degrees to allow access to equipment for maintenance.</TXT><BRK/>
+<BRK/>
+<TXT>[Manufacture the back plate from<MET> 2.78 mm</MET><ENG> 12-gauge</ENG> (minimum) steel and finished with a primer coat and two (2) 
+coats of baked on white enamel.  ]Mount all hardware to the subpanel with machine thread tapped holes. Sheet 
+metal screws are not acceptable.  Permanently identify all devices to match the schematic diagram.</TXT><BRK/>
+<BRK/>
+<TXT>Provide an enclosure ventilator located near the top of the enclosure on the opposite side of the generator receptacle.  
+Provide a rain and vermin proof ventilator and made of fire retardant thermoplastic material.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Level Control System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select either the mercury-free float switch or the submersible pressure 
+level sensor level control system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  Closed Float Switches:<BRK/>
+Float switches that are configured to stay closed until liquid flips open the 
+circuit, are referred to as a, "normally closed float switch."  Once liquid 
+reaches a certain level it then forces the circuit open and activates the next 
+step, which could be a power shut off, or alarm sound off.  As water levels 
+rise in the tank, the float is lifted too and the circuits open.  Common uses 
+for a closed float switch would be to measure water, stop overfills and when 
+avoiding high water levels is desired.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Open Float Switches:<BRK/>
+When a float switch circuit is open, it is referred to as a, "normally open 
+float switch" and is set to close when liquids reach a certain level.  In the 
+standard position when dry, this switch is above the liquid line and not floating.  
+A common use for an open float switch would be in sump pumps, lift station pumps, 
+and general pumping applications to signal a high level of liquid present and 
+help operators to control the pumps.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+[<TXT>Provide a sealed, mercury-free float switch control system to sense variations of sewage level in the wet well.</TXT><BRK/>
+<BRK/>
+<TXT>Use a direct acting float switch consisting of a normally-open mercury switch enclosed in a float.  Use float 
+molded of rigid high-density polyurethane foam, color-coded and coated with a durable, water and corrosion-resistant 
+jacket of clear urethane.</TXT><BRK/>
+<BRK/>
+<TXT>Provide stainless steel float brackets in accordance with manufacturer's recommendations.</TXT><BRK/>
+<BRK/>
+<TXT>Mount floats at fixed elevations as shown on the drawings.</TXT><BRK/>
+<BRK/>
+<TXT>Use floats designed to tilt and operate their switches causing sequential turn-on turn-off of the pump, when 
+the liquid level being sensed rises or falls past the float.</TXT><BRK/>
+<BRK/>
+<TXT>Float switches must be intrinsically safe relays.  Provide an intrinsically safe barrier relay between the wet 
+well and the control panel.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide the pump station with a submersible pressure type level sensor and an electronic pump controller.  Sense 
+levels by a 24 DVC, 1 percent submersible pressure transmitter provided by controller manufacturer.  Construct 
+the system as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The pressure type level sensor is a submersible type, suspended on its cable.</OLI><BRK/>
+<BRK/>
+<OLI>Install the sensor per manufacturer's instructions for wet well installations, including any recommended 
+mounting accessories.</OLI><BRK/>
+<BRK/>
+<OLI>The level sensor is as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Select the sensor range based on the wet well depth.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The sensor output is 4-20mA proportional to water level, 2-wire type.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Construct all exposed parts of [316 Stainless Steel][_____].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Fill the sensor with Silicon Oil.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Power the Sensor by 24 VDC output from electronic pump controller.</OLI><BRK/>
+<BRK/>
+<OLI>Mount the electronic pump controller in the starter panel enclosure, and be visible from the front of 
+the swing-out panel, with the enclosure door opened.  The electronic pump controller is as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Accept a 4-20 mA, 2 wire level signal, and indicate the wet well level digitally in direct 
+engineering units<MET> (meters)</MET><ENG> (feet)</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide pump control outputs, with independent adjustment for each pump starting and stopping 
+setpoint.  Indicate each level setpoint digitally in direct engineering units.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Power to the unit is 120 VAC.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Equip controller with hand/off/auto (H.O.A.) switches and pump on indicating lights (one each 
+per pump).</OLI><BRK/></OLG>
+<BRK/>
+]<TXT>Provide an intrinsically safe barrier relay between the wet well and the control panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alternator</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the lag pump, incorporate time delay function and devices in the 
+alternator controls such that both sewage pumps cannot be started simultaneously 
+for an adjustable period of 10 to 120 seconds after shutdown.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an alternator control switch to operate in connection with each float.  Use an alternator control switch 
+to alternate the operation of the pumps and operate both pumps if the water level rises above the second high 
+water level.  Incorporate time delay function and devices in the alternator controls such that both sewage pumps 
+cannot be started simultaneously for an adjustable period of 10 to 120 seconds after shutdown.  Use the delay 
+function designed to operate in any condition of start-up in either normal or emergency operational mode.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sewage Pump Alarm and Control Panel</TTL><BRK/>
+<BRK/>
+<TXT>Enclose alarm panel in NEMA [4X] [3R] enclosure and with a flashing red light that is visible from<MET> 15 m</MET><ENG> 50 feet</ENG>
+ away, with long life bulb in guarded enclosure and<MET> 150 mm</MET><ENG> 6 inch</ENG> diameter horn.  Use horns capable of emitting 
+120 DB at<MET> 3 meters</MET><ENG> 10 feet</ENG>.  Power alarm horn and light from 12V DC power supply with battery backup. Provide 
+a rechargeable battery rated to power both the horn and light for a minimum of two hours upon loss of main power. 
+Provide circuitry to automatically recharge the battery after main power is restored.  Use batteries capable 
+of being fully recharged in no more than 20 hours.  Use panel with power on light, push to test button for horn 
+and light and push to silence button for horn and light with automatic reset for next alarm.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Alarms</TTL><BRK/>
+<BRK/>
+<TXT>Provide a test function ability for the alarm system.  Provide alarms to activate under the following conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>High liquid level as sensed by the level control system.</OLI><BRK/>
+<BRK/>
+<OLI>Loss of main power.</OLI><BRK/>
+<BRK/>
+<OLI>No flow light as sensed by limit switch on the check valve or as sensed by current sensors.</OLI><BRK/>
+<BRK/>
+<OLI>Pump failure via temperature overload or motor heat sensor trip; provide motor high temperature light.</OLI><BRK/>
+<BRK/>
+<OLI>Seal failure with indication light.</OLI><BRK/></OLG>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remote Alarm Monitoring Systems vary widely.  Insert telemetry information 
+consistent with facility requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Circuit Breakers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide an individual circuit breaker for each pump.</OLI><BRK/>
+<BRK/>
+<OLI>Include a control circuit breaker and an alarm circuit breaker in the control panel.</OLI><BRK/>
+<BRK/>
+<OLI>Allow for two additional spare 115V single phase 20A circuit breakers for local pole lighting and future 
+spare.</OLI><BRK/>
+<BRK/>
+<OLI>Provide circuit breakers in accordance with <RID>UL 489</RID></OLI><BRK/>
+<BRK/>
+<OLI>Conform to <RID>UL 67</RID> for circuit breaker mounting.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Motor Starter and Overload Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide an International Electrotechnical Commission (IEC) rated motor starter and thermal overload protection 
+located in the control panel for each pump.  Include undervoltage release, manual reset buttons and hand-automatic 
+selector switches.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Lugs</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Size the incoming power lugs for the proper voltage, amperage, and horsepower for each pump station.</OLI><BRK/>
+<BRK/>
+<OLI>Include grounding lugs for the incoming power.  Provide a dedicated grounding lug in the control panel 
+for each pump.</OLI><BRK/>
+<BRK/>
+<OLI>Size ground lug and rod according to local and base electrical codes  and install by a licensed electrician.</OLI><BRK/>
+<BRK/>
+<OLI>Use UL listed power lugs.</OLI><BRK/>
+<BRK/>
+<OLI>Conform to <RID>UL 67</RID> for required power lug mounting.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Anti-Condensation Heater</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide an anti-condensation heater in the control panel that is sized based upon the size of the particular 
+pump station's control panel size.</OLI><BRK/>
+<BRK/>
+<OLI>Power the heater from the control voltage transformer for three phase pump motor units and from the incoming 
+power for single phase pump motor units.</OLI><BRK/>
+<BRK/>
+<OLI>Control the heater by a thermostat, coming on at<MET> 16 degree C</MET><ENG> 50 degree F</ENG> and going off at<MET> 18 degree C</MET><ENG>
+ 65 degree F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Clearly label panel directory for breakers.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Trouble Light</TTL><BRK/>
+<BRK/>
+<TXT>Provide a fluorescent trouble shooting light in the panel that is hard-wired into an appropriately sized circuit 
+breaker.  It is acceptable for the light and one of the convenience outlets to share the same circuit breaker.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Convenience Outlets</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Place two duplex convenience outlets in the control panel; utilize one for the battery charger.  The 
+battery receives power from the control voltage transformer via the alarm fuse.</OLI><BRK/>
+<BRK/>
+<OLI>Upsize the alarm fuse to 1 to 1.5 amps for the battery charger.</OLI><BRK/>
+<BRK/>
+<OLI>Provide each outlet with its own 20 amp 115/1/60 circuit breaker.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Connection for Portable Generator</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph if a permanent, onsite generator is provided for 
+the pump station.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide receptacle for connection for portable generator.  Provide manual transfer switch for receptacle matching 
+generator electrical power requirements.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Additional Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide elapsed time meter for each pump that measures run time in hours to 9999.9.</OLI><BRK/>
+<BRK/>
+<OLI>Do not place junction boxes between pumps, control systems and control panels; provide conduit seals 
+at all wet well penetrations.  If this is unavoidable, use NEMA 7 construction.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Electrical Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Install labels to identify switches and controls.  Provide internal wiring for components of packaged equipment 
+as an integral part of the equipment.  Provide power wiring and conduit for field installed equipment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WET WELL AND VALVE VAULT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Wet Well and Valve Vault </TTL><BRK/>
+<BRK/>
+<TXT>Provide a<TAI OPT="FIBERGLASS WET WELL"> fiberglass reinforced polyester resin basin with integral valve vault</TAI><TAI OPT="CONCRETE WET WELL"> precast concrete wet well</TAI>; include 
+a separate precast concrete valve vault.  Provide a <SUB>wet well and valve vault</SUB> with inside diameters [as indicated][of<MET>
+ [_____] mm</MET><ENG> [_____] inch</ENG>] and to the depths indicated on the drawings.</TXT>[<BRK/>
+<BRK/>
+<TXT>Precast structures may be provided in lieu of cast-in-place structures.</TXT>]<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Buoyancy calculations are required during design.  Since design drawings 
+typically only show one type of wet well, buoyancy calculations are required 
+as a submittal to ensure submitted wet well basin incorporates manufacturer's 
+recommended measures to prevent flotation. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="FIBERGLASS WET WELL"><SPT><TTL>Fiberglass Basins</TTL><BRK/>
+<OLG><BRK/>
+<OLI><SUB>Buoyancy Calculations</SUB>:  Submit buoyancy calculations sealed by a licensed professional engineer assuming 
+seasonal high groundwater elevation at proposed finished grade.  Prevent flotation in accordance with 
+manufacturer's written instructions.  Include manufacturer's written instructions with submitted calculations.</OLI><BRK/>
+<BRK/>
+<OLI>Select Fiberglass Reinforced Polyester (FRP) wet well in accordance with <RID>ASTM D883</RID> relating to plastics 
+and <RID>ASTM D3753</RID>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Use commercial grade polyester resins evaluated as a laminate by test or determined by previous 
+service to be acceptable for use in the wastewater environment.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Use a commercial grade continuous strand fiberglass reinforcement material.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Design FRP based on the following assumed conditions.  Provide independent third party testing.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Hydrostatic pressure of<MET> 305 kilogram-force/square meter</MET><ENG> 62.4 pounds/square foot</ENG> 
+with water at ground surface.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Saturated soil weight of<MET> 1,922 kilogram/cubic meter</MET><ENG> 120 pounds/cubic foot</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Soil modulus of<MET> 3,418 kilogram-force/square meter</MET><ENG> 700 pounds/square foot</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Pipe stiffness values as specified in <RID>ASTM D3753</RID>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Provide FRP laminate with a surface hardness of 90 percent Barcol.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</TAI><SPT><TTL>Precast Concrete Structures</TTL><BRK/>
+<BRK/>
+<TXT>Submit manufacturer's data indicating percentage of <SUB>recycled material content</SUB> in packaged sewage lift stations 
+to verify affirmative procurement compliance.</TXT><BRK/>
+<BRK/>
+<TXT><TST>Fly ash is required as an admixture and is to conform to <RID>ASTM C618</RID>, Class [F][C].  Fly ash replacement of cement 
+is not to exceed 20 percent (maximum one part fly ash to four parts cement) by weight.</TST></TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ground granulated blast furnace slag and fly ash are materials listed 
+in the EPA's Comprehensive Procurement Guidelines (CPG) <BRK/>
+(<URL HREF="www.epa.gov/cpg/products/paint.htm">http://www.epa.gov/cpg/</URL>).  If the Architect/Engineer determines that use of 
+certain materials meeting the CPG content standards and guidelines would result 
+in inadequate competition, do not meet quality/performance specifications, are 
+available at an unreasonable price or are not available within a reasonable 
+time frame, the Architect/Engineer may submit written justification and supporting 
+documentation for not procuring designated items containing recovered material. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ground granulated blast furnace slag [is required] [used] as an admixture [and] is to conform to <RID>ASTM C989/C989M</RID>
+, Grade [120] with between 25 to 50 percent maximum cement replacement by weight.  Submit certificate to verify 
+EPA-CPG compliance.</TXT><BRK/>
+<BRK/>
+<OLG><BRK/>
+<OLI><SUB>Buoyancy Calculations</SUB>:  Submit buoyancy calculations sealed by a licensed professional engineer assuming 
+seasonal high groundwater elevation at proposed finished grade.</OLI><BRK/>
+<BRK/>
+<OLI>Construct precast concrete structures in accordance with<MET> <RID>ASTM C478M</RID></MET><ENG> <RID>ASTM C478</RID></ENG>, except as specified herein.  
+Provide precast concrete structures with a compressive strength of<MET> 30 MPa</MET><ENG> 4000 psi</ENG> at 28 days and an 
+air entrainment of 6 percent, plus or minus 2 percent, and a minimum wall thickness of<MET> 125 mm</MET><ENG> 5 inches</ENG>
+.  <RID>ASTM A615/A615M</RID> reinforcing bars.  <MET><RID>ASTM C443M</RID></MET><ENG><RID>ASTM C443</RID></ENG>, Type B gaskets for joint connections.  Use 
+monolithic base and first riser.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Access Hatch Covers</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide [aluminum][_____] access hatch covers as indicated.  Include lifting mechanism, automatic hold open arm, 
+slam lock with handle, and flush lift handle with vinyl grip.  Use automatic hold open arm that locks in the 
+90 degree position.  Use cover that is<MET> 6 mm</MET><ENG> 1/4 inch</ENG> diamond plate with<MET> 6 mm</MET><ENG> 1/4 inch</ENG> channel frame and continuous 
+anchor flange.  Use access hatch cover capable of withstanding a live load of<MET> 1500 kg/sq. meter</MET><ENG> 300 lb/sq. ft</ENG>
+.  Provide stainless steel cylinder lock with two keys per lock.  Key all the locks the same.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wet Well Base Material</TTL><BRK/>
+<BRK/>
+<TXT>Provide crushed stone as indicated and specified in Section <SRF>31 00 00</SRF> EARTHWORK.[  Provide a polyethylene vapor 
+barrier as indicated and specified in Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Ventilating Blower</TTL><BRK/>
+<BRK/>
+<TXT>Ensure <SUB>blowers</SUB> maintain air changes in accordance with[ <RID>NFPA 820</RID>][ every [5] [_____] minutes].  Mount a manual 
+and automatic switch on the side of the entrance tube for operation of the blower.  Provide vent to atmosphere 
+with covers and screens to prevent the entrance of rain, insects, and rodents.  Automatically actuate blower 
+upon opening the entrance tube cover, unless overridden by the manual control.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Dehumidifier</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Furnish and install a packaged dehumidifier in accordance with lift station manufacturer's recommendations.  
+Include in controls a humidistat and low-temperature cutout/discharge condensate to the wet well.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>STATION PIPING</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide pressure piping, emergency pump connection, air release valves, and related accessories for force main 
+piping outside the sewage wet well and valve vault in accordance with Section <SRF>33 30 00</SRF> SANITARY SEWERAGE.</TXT><BRK/>
+<BRK/>
+<TAI OPT="SUBMERSIBLE NONCLOG PUMP"><SPT><TTL>Ductile-Iron Pressure Pipe and Associated Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>AWWA C151/A21.51</RID>, Pressure Class 350.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Flanged Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>AWWA C115/A21.15</RID>, ductile iron.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C110/A21.10</RID>, flanged.  Provide flanged joint fittings within wet well and valve vault as indicated.  Provide 
+mechanical joint fittings outside valve vault enclosure as indicated.  Use fittings with pressure rating at least 
+equivalent to that of the pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joints</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA C115/A21.15</RID> for flanged joints.  Use bolts, nuts, and gaskets for flanged connections recommended in the 
+Appendix to <RID>AWWA C115/A21.15</RID>.  Provide ductile iron flange for setscrewed flanges in accordance with <RID>ASTM A536</RID>
+, Grade 70-50-05 or 60-42-10, and meeting the applicable requirements of <RID>ASME B16.1</RID>, Class 125.  Use<MET> 1310 MPa</MET><ENG>
+ 190,000 psi</ENG> tensile strength, heat treated, and zinc-coated steel setscrews for setscrewed flanges.  Conform 
+to the applicable requirements for mechanical-joint gaskets specified in <RID>AWWA C111/A21.11</RID> for setscrewed flange 
+gaskets.  Use setscrewed gasket designed to provide for confinement and compression of gasket when joint to adjoining 
+flange is made.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="GRINDER PUMP"><SPT><TTL>PVC Plastic Pressure Pipe and Associated Fittings</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pipe and Fittings Less Than<MET> 100 mm</MET><ENG> 4 inch</ENG> Diameter</TTL><BRK/>
+<BRK/>
+<TXT>Use pipe, couplings and fittings manufactured of materials conforming to <RID>ASTM D1784</RID>, Class 12454-B.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Screw-Joint:  Follow dimensional requirements of <RID>ASTM D1785</RID> Schedule 80 pipe, with joints meeting requirements 
+of<MET> 1.03 MPa</MET><ENG> 150 psi</ENG> working pressure,<MET> 1.38 MPa</MET><ENG> 200 psi</ENG> hydrostatic test pressure, unless otherwise shown 
+or specified.  Follow <RID>ASTM D2464</RID> and <RID>ASME B1.20.1</RID> for use with Schedule 80 threaded pipe and fittings.  
+Test pipe couplings when used, as required by <RID>ASTM D2464</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Push-On Joint:  <RID>ASTM D3139</RID>, with <RID>ASTM F477</RID> gaskets.  Fittings for push-on joints: <RID>AWWA C110/A21.10</RID> or <RID>
+AWWA C111/A21.11</RID>.  Iron fittings and specials: cement-mortar lined (standard thickness) in accordance 
+with <RID>AWWA C104/A21.4</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Solvent Cement Joint:  Use pipe that matches the dimensional requirements of  <RID>ASTM D1785</RID> or <RID>ASTM D2241</RID>
+ with joints meeting the requirements of<MET> 1.03 MPa</MET><ENG> 150 psi</ENG> working pressure and<MET> 1.38 MPa</MET><ENG> 200 psi</ENG> hydrostatic 
+test pressure.  Use fittings for solvent cement jointing that match the requirements of <RID>ASTM D2466</RID> or <RID>
+ASTM D2467</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></TAI><SPT><TTL>Insulating Joints</TTL><BRK/>
+<BRK/>
+<TXT>Provide between pipes of dissimilar metals a rubber gasket or other approved type of insulating joint or dielectric 
+coupling to effectively prevent metal-to-metal contact between adjacent sections of piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Accessories</TTL><BRK/>
+<BRK/>
+<TXT>Provide flanges, connecting pieces, transition glands, transition sleeves, and other adapters as required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Flexible Flanged Coupling</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide flexible flanged couplings applicable for sewage as indicated.  Use flexible flanged coupling designed 
+for a working pressure of<MET> 2.41 MPa</MET><ENG> 350 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>VALVES</SUB> AND OTHER PIPING ACCESSORIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Isolation Gate Valves in Valve Vault</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>AWWA C500</RID> for <SUB>gate valves</SUB> with outside-screw-and-yoke rising-stem type with double disc gates and 
+flanged ends.  Conform to <RID>AWWA C509</RID> for valves with outside-screw-and-yoke rising-stem type with flanged ends.  
+Provide valves that open by counterclockwise rotation of the valve stem.  [Bolt and construct stuffing boxes 
+to permit easy removal of parts for repair of gate valves.]  Use valves from one manufacturer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Valves Larger Than<MET> 50mm</MET><ENG> 2 Inches</ENG></TTL><BRK/>
+<BRK/>
+[<TXT>Resilient seat gate valves conforming to <RID>AWWA C509</RID> with non-rising stems and flanged ends.</TXT><BRK/>
+<BRK/>
+][<TXT>Resilient seat eccentric plug valves conforming to <RID>AWWA C517</RID> with operating handle and flanged ends.</TXT><BRK/>
+<BRK/>
+]</SPT><TAI OPT="GRINDER PUMP"><SPT><TTL>Valves<MET> 50mm</MET><ENG> 2 Inches</ENG> and Smaller</TTL><BRK/>
+<BRK/>
+[<TXT>Gate valves conforming to <RID>MSS SP-80</RID> with non-rising stems and threaded ends.</TXT><BRK/>
+<BRK/>
+][<TXT>Ball valves with PTFE seats and seals, brass body and end cups, chrome plated brass ball and screwed ends.</TXT><BRK/>
+<BRK/>
+]</SPT></TAI></SPT><TAI OPT="GRINDER PUMP"><SPT><TTL>Check Valves Less Than<MET> 100 mm</MET><ENG> 4 inch</ENG> Diameter</TTL><BRK/>
+<BRK/>
+<TXT>Neoprene ball check valve with integral hydraulic sealing flange, designed for a hydraulic working pressure of<MET>
+ 1.21 MPa</MET><ENG> 175 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="SUBMERSIBLE NONCLOG PUMP"><SPT><TTL><SUB>Check Valves</SUB><MET> 100 mm</MET><ENG> 4 inch</ENG> and Larger Diameter</TTL><BRK/>
+<BRK/>
+<TXT>Provide nonclogging swing check valve rated for not less than<MET> 1210 kPa</MET><ENG> 175 psig</ENG> working pressure capable of passing<MET>
+ 76-mm</MET><ENG> 3-inch</ENG> diameter solids.  Match cast iron to <RID>ASTM A126</RID> and flanged ends to <RID>AWWA C110/A21.10</RID> Buna-N disc 
+and integral seat.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a positive horizontal, swing check type check valves.  Provide valves that permit a free flow of sewage 
+forward and a positive check against backflow.  Provide iron body valves with a removable cover for inspection 
+and removal of the gate assembly.  Provide [bronze][_____] gate, gate seats, shaft, studs, and nuts.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Identification Tags and Plates</TTL><BRK/>
+<BRK/>
+<TXT>Provide the manufacturer's name or trademark on a corrosion-resistant identification plate or cast integrally, 
+stamped, or otherwise permanently marked in a conspicuous place on each item of equipment.  Include on the pump 
+identification plate the pump capacity in<MET> liter per minute</MET><ENG> gpm</ENG>, pump head in<MET> meter</MET><ENG> feet</ENG> and speed of rotation.  
+Cast on the body of the pump the direction of rotation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Support</TTL><BRK/>
+<BRK/>
+<TXT>Use pipe support schedule 40 galvanized steel piping matching <RID>ASTM A53/A53M</RID>.  Provide either <RID>ASME B16.3</RID> or <RID>ASME B16.11</RID>
+ galvanized threaded fittings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Miscellaneous Metals</TTL><BRK/>
+<BRK/>
+<TXT>Use stainless steel bolts, nuts, washers, anchors, and supports for installation of equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Quick Disconnect System with Hydraulic Sealing Flange and Rail System</TTL><BRK/>
+<BRK/>
+<TXT>Use quick disconnect system consisting of a steel base plate for supporting the pumps, a hydraulic sealing flange, 
+pump guide rails and the discharge pipe supports.  Provide stainless steel guide rails, brackets and lifting 
+chain for raising and lowering the pump in the basin.  Build guides onto pump housing to fit the guide post to 
+assure perfect alignment between pump and guide rails.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wet Well Vent </TTL><BRK/>
+<BRK/>
+<TXT>Provide a [flanged ductile iron pipe and bend, conforming to <RID>AWWA C115/A21.15</RID>] [galvanized steel pipe and bend, 
+conforming to <RID>ASTM A53/A53M</RID>] with insect screening.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EXCAVATION, TRENCHING, AND BACKFILLING</TTL><BRK/>
+<BRK/>
+<TXT>Provide in accordance with Section <SRF>31 00 00</SRF> EARTHWORK except as specified herein.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Provide pump station in accordance with drawings and requirements of the respective equipment manufacturers.  
+Dampen and isolate equipment vibration.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Equipment Installation</TTL><BRK/>
+<BRK/>
+<TXT>Install equipment in accordance with these specifications and the manufacturer's installation instructions.  
+Grout equipment mounted on concrete foundations before installing piping.  Install piping to avoid imposing stress 
+on equipment.  Match flanges before securing bolts.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="SUBMERSIBLE NONCLOG PUMP"><SPT><TTL>Installation of Ductile-Iron Pressure Pipe and Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified, install pipe and fittings in accordance with the paragraph GENERAL REQUIREMENTS FOR 
+INSTALLATION OF PIPELINES of Section <SRF>33 30 00</SRF> SANITARY SEWERAGE, and with the requirements of <RID>AWWA C600</RID> for pipe 
+installation, joint assembly, and valve-and-fitting installation.</TXT><BRK/>
+<BRK/>
+<TXT>Make flanged joint with gaskets, bolts, and nuts specified for this type joint.  Make flanged joints tight, avoid 
+strain on flanges, fittings, and other accessories.  Align bolt holes for each flanged joint.  Use bolts sized 
+for the bolt holes; use of undersized bolts is not permitted.  Do not allow adjoining flange faces to be out 
+of parallel to such degree that the flanged joint cannot be made watertight without overstraining the flange.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="GRINDER PUMP"><SPT><TTL>Installation of PVC Plastic Pressure Pipe and Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified, install pipe and fittings in accordance with the paragraph GENERAL REQUIREMENTS FOR 
+INSTALLATION OF PIPELINES of Section <SRF>33 30 00</SRF> SANITARY SEWERAGE, with the recommendations for pipe joint assembly 
+and appurtenance installation in <RID>AWWA M23</RID>, "Installation."</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pipe Less than<MET> 100 mm</MET><ENG> 4 Inch</ENG> Diameter:</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Make threaded joints by wrapping the male threads with joint tape or by applying an approved thread lubricant, 
+then threading the joining members together.  Tighten joints with strap wrenches that will not damage 
+the pipe and fittings.  Do not tighten joint more than 2 threads past hand-tight.</OLI><BRK/>
+<BRK/>
+<OLI>Push-On Joints:  Bevel ends of pipe for push-on joints to facilitate assembly.  Mark pipe to indicate 
+when the pipe is fully seated.  Lubricate gasket to prevent displacement.  Ensure that the gasket remains 
+in position in the bell or coupling while making the joint.</OLI><BRK/>
+<BRK/>
+<OLI>Solvent-weld joints: Comply with the manufacturer's instructions.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></TAI><SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<TXT>Make and assemble joints to gate valves and check valves as specified for making and assembling the same type 
+joints between pipe and fittings.</TXT><BRK/>
+<BRK/>
+<TXT>Install valves in accordance with manufacturer's installation instructions.  Install gate valves as described 
+in <RID>AWWA C500</RID>, <RID>AWWA C509</RID>, and <RID>AWWA C515</RID> and with <RID>AWWA C600</RID> for valve-and-fitting installation and with the recommendations 
+of the Appendix ("Installation, Operation, and Maintenance of Gate Valves") to <RID>AWWA C500</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Provide appliances, materials, water, and equipment for testing, [except that water and electric power needed 
+for field tests will be provided as set forth in Division 01] [and bear full expenses in connection with the 
+testing].  Conduct testing after equipment, electrical services, and piping are installed, and the pump station 
+is ready for operation.  Correct defects discovered to the satisfaction of the Contracting Officer, and tests 
+repeated, at no expense to the Government, until the equipment functions as intended and designed.</TXT><BRK/>
+<BRK/>
+<BRK/>
+<BRK/>
+<SPT><TTL>Testing Procedure</TTL><BRK/>
+<BRK/>
+<TXT>Perform a <TST><SUB>pump test</SUB></TST>, <TST>[<SUB>pressure sensor test</SUB>]</TST><TST>[<SUB>float test</SUB>]</TST>.  Submit the test results to the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<TXT><TST>Test all panels to the power requirements as shown on the plans</TST> to assure proper component operation.  Activate 
+each control function to check for proper operation and indication.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Representative</TTL><BRK/>
+<BRK/>
+<TXT>A representative of the pump manufacturer is to direct the startup of the station and instruct representatives 
+of the Government in startup and operation procedures.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Operation and Maintenance</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>operation and maintenance manuals</SUB> in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA for 
+package lift stations, including Equipment Description, Assembly and Installation Procedures, Adjustment and 
+Alignment, Checkout Procedures, Procedures of Operation and Troubleshooting.  Include preventative maintenance 
+and inspection procedures for package lift stations.  Include in procedures the frequency of preventative maintenance, 
+inspection, adjustment, lubrication, and cleaning necessary to minimize corrective maintenance and repair.</TXT><BRK/>
+<BRK/>
+<TXT>Supply <SUB>special tools</SUB> that are required for maintenance and testing of the package lift stations.</TXT><BRK/>
+<BRK/>
+<TXT>Submit <SUB>spare parts data</SUB>, including a complete list of parts and supplies with current unit prices and source 
+of supply.  List parts and supplies that are either normally furnished at no extra cost with the purchase of 
+equipment, or specified to be furnished as a part of the contract, and list additional items recommended by the 
+manufacturer to ensure an efficient operation for a period of one year.</TXT><BRK/>
+<BRK/>
+<TXT>Install on or near the package lift stations, a complete package of <SUB>posted instructions</SUB>, consisting of labels, 
+signs, and templates of operating instructions.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a list or reference all specific operation and maintenance <NED/>procedures that are required to keep the warranty 
+valid.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

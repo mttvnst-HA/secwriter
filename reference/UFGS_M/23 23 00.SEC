@@ -1,0 +1,1080 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-23 23 00 (August 2021)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 23 00 (October 2007)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 23 00</SCN><BRK/>
+<BRK/>
+<STL>REFRIGERANT PIPING</STL><BRK/>
+<DTE>08/21</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>refrigerant piping 
+systems inside of buildings, or leading from equipment adjacent to buildings</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AIR-CONDITIONING, HEATING AND REFRIGERATION INSTITUTE (AHRI)</ORG><BRK/><BRK/><RID>AHRI 710 I-P</RID><RTL>(2009) Performance Rating of Liquid-Line Driers</RTL><BRK/><BRK/><RID>AHRI 711</RID><RTL>(2009) Performance Rating of Liquid-Line Driers</RTL><BRK/><BRK/><RID>AHRI 720</RID><RTL>(2002) Refrigerant Access Valves and Hose Connectors</RTL><BRK/><BRK/><RID>AHRI 750 I-P</RID><RTL>(2016) Performance Rating of Thermostatic Refrigerant Expansion Valves</RTL><BRK/><BRK/><RID>AHRI 751 SI</RID><RTL>(2016) Performance Rating of Thermostatic Refrigerant Expansion Valves</RTL><BRK/><BRK/><RID>AHRI 760 I-P</RID><RTL>(2014) Performance Rating of Solenoid Valves for Use with Volatile Refrigerants</RTL><BRK/><BRK/><RID>AHRI 1370 I-P</RID><RTL>(2017) Performance Rating of Electronic Expansion Valves</RTL><BRK/><BRK/><RID>AHRI 1371 SI</RID><RTL>(2017) Performance Rating of Electronic Expansion Valves</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 15 &amp; 34</RID><RTL>(2022) ASHRAE Standard 34-2016 Safety Standard for Refrigeration Systems/ASHRAE Standard 34-2016 Designation and Safety Classification of Refrigerants-ASHRAE Standard 34-2016</RTL><BRK/><BRK/><RID>ASHRAE 17</RID><RTL>(2022) Method of Testing Capacity of Thermostatic Refrigerant Expansion Valves</RTL><BRK/><BRK/><RID>ASHRAE 90.1 - IP</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/><RID>ASHRAE 90.1 - SI</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B1.20.1</RID><RTL>(2013; R 2018) Pipe Threads, General Purpose (Inch)</RTL><BRK/><BRK/><RID>ASME B1.20.2M</RID><RTL>(2006; R 2011) Pipe Threads, 60 Deg. General Purpose (Metric)</RTL><BRK/><BRK/><RID>ASME B16.3</RID><RTL>(2021) Malleable Iron Threaded Fittings, Classes 150 and 300</RTL><BRK/><BRK/><RID>ASME B16.5</RID><RTL>(2020) Pipe Flanges and Flanged Fittings NPS 1/2 Through NPS 24 Metric/Inch Standard</RTL><BRK/><BRK/><RID>ASME B16.9</RID><RTL>(2024) Factory-Made Wrought Buttwelding Fittings</RTL><BRK/><BRK/><RID>ASME B16.11</RID><RTL>(2021) Forged Fittings, Socket-Welding and Threaded</RTL><BRK/><BRK/><RID>ASME B16.21</RID><RTL>(2021) Nonmetallic Flat Gaskets for Pipe Flanges</RTL><BRK/><BRK/><RID>ASME B16.22</RID><RTL>(2021) Wrought Copper and Copper Alloy Solder Joint Pressure Fittings</RTL><BRK/><BRK/><RID>ASME B16.26</RID><RTL>(2024) Cast Copper Alloy Fittings for Flared Copper Tubes</RTL><BRK/><BRK/><RID>ASME B31.1</RID><RTL>(2024) Power Piping</RTL><BRK/><BRK/><RID>ASME B31.5</RID><RTL>(2022) Refrigeration Piping and Heat Transfer Components</RTL><BRK/><BRK/><RID>ASME B31.9</RID><RTL>(2025) Building Services Piping</RTL><BRK/><BRK/><RID>ASME B40.100</RID><RTL>(2022) Pressure Gauges and Gauge Attachments</RTL><BRK/><BRK/><RID>ASME BPVC SEC IX</RID><RTL>(2017; Errata 2018) BPVC Section IX-Welding, Brazing and Fusing Qualifications</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS A5.8/A5.8M</RID><RTL>(2019) Specification for Filler Metals for Brazing and Braze Welding</RTL><BRK/><BRK/><RID>AWS A5.31/A5.31M</RID><RTL>(2012) Specification for Fluxes for Brazing and Braze Welding</RTL><BRK/><BRK/><RID>AWS BRH</RID><RTL>(2007; 5th Ed) Brazing Handbook</RTL><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/><RID>AWS Z49.1</RID><RTL>(2021) Safety in Welding, Cutting and Allied Processes</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A193/A193M</RID><RTL>(2025) Standard Specification for Alloy-Steel and Stainless Steel Bolting Materials for High-Temperature Service and Other Special Purpose Applications</RTL><BRK/><BRK/><RID>ASTM A334/A334M</RID><RTL>(2004a; R 2021) Standard Specification for Seamless and Welded Carbon and Alloy-Steel Tubes for Low-Temperature Service</RTL><BRK/><BRK/><RID>ASTM A653/A653M</RID><RTL>(2025a) Standard Specification for Steel Sheet, Zinc-Coated (Galvanized) or Zinc-Iron Alloy-Coated (Galvannealed) by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM B32</RID><RTL>(2020) Standard Specification for Solder Metal</RTL><BRK/><BRK/><RID>ASTM B62</RID><RTL>(2017; R 2025) Standard Specification for Composition Bronze or Ounce Metal Castings</RTL><BRK/><BRK/><RID>ASTM B75/B75M</RID><RTL>(2020) Standard Specification for Seamless Copper Tube</RTL><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM B280</RID><RTL>(2023) Standard Specification for Seamless Copper Tube for Air Conditioning and Refrigeration Field Service</RTL><BRK/><BRK/><RID>ASTM B813</RID><RTL>(2024) Standard Specification for Liquid and Paste Fluxes for Soldering of Copper and Copper Alloy Tube</RTL><BRK/><BRK/><RID>ASTM D520</RID><RTL>(2025) Standard Specification for Zinc Dust Pigment</RTL><BRK/><BRK/><RID>ASTM D3308</RID><RTL>(2012; R 2022) Standard Specification for PTFE Resin Skived Tape</RTL><BRK/><BRK/><RID>ASTM E84</RID><RTL>(2025) Standard Test Method for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/></REF><REF><ORG>MANUFACTURERS STANDARDIZATION SOCIETY OF THE VALVE AND FITTINGS INDUSTRY (MSS)</ORG><BRK/><BRK/><RID>MSS SP-58</RID><RTL>(2025) Pipe Hangers and Supports - Materials, Design and Manufacture, Selection, Application, and Installation</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 3-301-01</RID><RTL>(2023; with Change 6, 2026) Structural Engineering</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Refrigerant Piping System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Refrigerant Piping System</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Refrigerant Piping Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Verification of Dimensions</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Refrigerant Piping Tests</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Service Organization</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Maintenance</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Demonstrations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Qualifications</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the need exists for more stringent requirements for weldments, delete 
+the first bracketed statement, otherwise delete the second.  Regarding welding 
+Section reference, use first bracketed statement for Army projects and delete 
+the second option of the Navy Section; and vice versa.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit [_____] copies of qualified procedures, and list of names and identification symbols of qualified welders 
+and welding operators, prior to non-factory welding operations.[  Weld piping in accordance with the qualified 
+procedures using performance qualified welders and welding operators.  Procedures and welders must be qualified 
+in accordance with <RID>ASME BPVC SEC IX</RID>.  Welding procedures qualified by others, and welders and welding operators 
+qualified by another employer may be accepted as permitted by <RID>ASME B31.1</RID>.  Notify the Contracting Officer 24 
+hours in advance of tests to be performed at the work site, if practical.  The welder or welding operator must 
+apply the personally assigned symbol near each weld made, as a permanent record.  Weld structural members in 
+accordance with Section [<SRF>05 05 23.16</SRF> STRUCTURAL WELDING][<SRF>05 12 00</SRF> STRUCTURAL STEEL].][  Welding and nondestructive 
+testing procedures are specified in Section [<SRF>40 05 13.96</SRF> WELDING PROCESS PIPING][<SRF>40 17 26.00 20</SRF> WELDING PROCESS 
+PIPING].]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contract Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Because of the small scale of the drawings, it is not possible to indicate all offsets, fittings, and accessories 
+that may be required.  Carefully investigate the plumbing, fire protection, electrical, structural and finish 
+conditions that would affect the work to be performed and arrange such work accordingly, furnishing required 
+offsets, fittings, and accessories to meet such conditions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect stored items from the weather, humidity and temperature variations, dirt and dust, or other contaminants.  
+Proper protection and care of all material both before and during installation is the Contractor's responsibility.  
+Replace any materials found to be damaged at the Contractor's expense.  During installation, cap piping and similar 
+openings to keep out dirt and other foreign matter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>MAINTENANCE</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Submit Data Package 2 plus operation and maintenance data complying with the requirements of Section 
+<SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA and as specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Extra Materials</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remove this paragraph in Navy projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit <SUB>spare parts</SUB> data for each different item of equipment specified, after approval of detail drawings and 
+not later than [_____] months prior to the date of beneficial occupancy.  Include a complete list of parts and 
+supplies, with current unit prices and source of supply, a recommended spare parts list for 1 year of operation, 
+and a list of the parts recommended by the manufacturer to be replaced on a routine basis in the data.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>STANDARD COMMERCIAL PRODUCTS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide materials and equipment which are standard products of a manufacturer regularly engaged in the 
+manufacturing of such products, that are of a similar material, design and workmanship and that have 
+been in satisfactory commercial or industrial use for 2 years prior to bid opening.</OLI><BRK/>
+<BRK/>
+<OLI>The 2 year use must include applications of equipment and materials under similar circumstances and of 
+similar size.  The 2 years' experience must be satisfactorily completed by a product which has been sold 
+or is offered for sale on the commercial market through advertisements, manufacturer's catalogs, or brochures.  
+Products having less than a 2-year field service record will be acceptable if a certified record of satisfactory 
+field operation, for not less than 6000 hours exclusive of the manufacturer's factory tests, can be shown.</OLI><BRK/>
+<BRK/>
+<OLI>Products must be supported by a <SUB>service organization</SUB>.  System components must be environmentally suitable 
+for the indicated locations.  Submit a certified list of qualified permanent service organizations for 
+support of the equipment which includes their addresses and qualifications.  The service organizations 
+must be reasonably convenient to the equipment installation and be able to render satisfactory service 
+to the equipment on a regular and emergency basis during the warranty period of the contract.</OLI><BRK/>
+<BRK/>
+<OLI>Exposed equipment moving parts, parts that produce high operating temperature, parts which may be electrically 
+energized, and parts that may be a hazard to operating personnel must be insulated, fully enclosed, guarded, 
+or fitted with other types of safety devices.  Install safety devices so that proper operation of equipment 
+is not impaired.  Welding and cutting safety requirements must be in accordance with <RID>AWS Z49.1</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide the manufacturer's standard catalog data, at least [5 weeks] [_____] prior to the purchase or 
+installation of a particular component.  Highlight the data to show information such as, but not limited 
+to, material, size, options, performance charts, and curves in adequate detail to demonstrate compliance 
+with contract requirements.  Include the manufacturer's recommended installation instructions and procedures 
+in the data provided.  Provide data for the following components as a minimum:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Piping and Fittings</OLI><BRK/>
+<OLI LEVEL="2">Valves</OLI><BRK/>
+<OLI LEVEL="2">Piping Accessories</OLI><BRK/>
+<OLI LEVEL="2">Pipe Hangers, Inserts, and Supports</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>ELECTRICAL WORK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the first bracketed statement for Army projects or the second for 
+Navy jobs; delete the non-applicable statement.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Electrical equipment and wiring must be in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Field 
+wiring must be in accordance with manufacturer's instructions.] [Manual or automatic control and protective or 
+signal devices required for the operation specified and any control wiring required for controls and devices 
+specified, but not shown, must be provided.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>REFRIGERANT PIPING SYSTEM</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification is written primarily for Group A1 refrigerants (i.e., 
+R-134a, R-410A, and R-404A).  For information on refrigerant classifications 
+refer to ASHRAE 15 &amp; 34.  If the piping system is intended for other refrigerants 
+such as R-123 (Group B1) or ammonia (Group B2), then the designer will have 
+to research ASHRAE 15 &amp; 34 and ASME B31.5 and modify the specification appropriately.</NPR><BRK/>
+<BRK/>
+<NPR>It is the responsibility of the engineer to select materials to resist deterioration 
+for conditions of operation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide refrigerant piping, valves, fittings, and accessories in accordance with <RID>ASHRAE 15 &amp; 34</RID> and <RID>ASME B31.5</RID>
+, except as specified herein.  Refrigerant piping, valves, fittings, and accessories must be compatible with 
+the fluids used and capable of withstanding the pressures and temperatures of the service.  Refrigerant piping, 
+valves, and accessories used for refrigerant service must be cleaned, dehydrated, and sealed (capped or plugged) 
+prior to shipment from the manufacturer's plant.  Submit drawings, at least [5] [_____] weeks prior to beginning 
+construction, provided in adequate detail to demonstrate compliance with contract requirements.  Drawings must 
+consist of:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Piping layouts which identify all valves and fittings.</OLI><BRK/>
+<BRK/>
+<OLI>Plans and elevations which identify clearances required for maintenance and operation.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>PIPE, FITTINGS AND END CONNECTIONS (JOINTS)</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Steel Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Due to the possibility of stress fractures resulting from repeated temperature 
+related expansion and contraction, the designer of record is responsibile for 
+determining whether to allow the use of 45-degree elbow fittings on each project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Steel pipe for refrigerant service must conform to <RID>ASTM A53/A53M</RID>, Schedule 40, Type E or S, Grades A or B.  Do 
+not use Type F pipe.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Welded Fittings and Connections</TTL><BRK/>
+<BRK/>
+<TXT>Butt-welded fittings must conform to <RID>ASME B16.9</RID>.  Socket-welded fittings must conform to <RID>ASME B16.11</RID>.  Identify 
+welded fittings with the appropriate grade and marking symbol.  Welded valves and pipe connections (both butt-welds 
+and socket-welds types) must conform to <RID>ASME B31.9</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Threaded Fittings and Connections</TTL><BRK/>
+<BRK/>
+<TXT>Threaded fitting must conform to <RID>ASME B16.3</RID>.  Threaded valves and pipe connections must conform to <MET><RID>ASME B1.20.2M</RID></MET><ENG><RID>
+ASME B1.20.1</RID></ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flanged Fittings and Connections</TTL><BRK/>
+<BRK/>
+<TXT>Flanges must conform to <RID>ASME B16.5</RID>, Class 150.  Gaskets must be non-asbestos compressed material in accordance 
+with <RID>ASME B16.21</RID>, <MET>1.59 mm</MET><ENG> 1/16 inch</ENG> thickness, full face or self-centering flat ring type.  Gaskets must contain 
+aramid fibers bonded with styrene butadiene rubber (SBR) or nitrile butadiene rubber (NBR).  Bolts, nuts, and 
+bolt patterns must conform to <RID>ASME B16.5</RID>.  Bolts must be high or intermediate strength material conforming to <RID>
+ASTM A193/A193M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Steel Tubing</TTL><BRK/>
+<BRK/>
+<TXT>Tubing must be cold-rolled, electric-forged, welded-steel in accordance with <RID>ASTM A334/A334M</RID>, Grade 1.  Joints 
+and fittings must be socket type provided by the steel tubing manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Copper Tubing</TTL><BRK/>
+<BRK/>
+<TXT>Provide copper tubing conforming to <RID>ASTM B280</RID> annealed or hard drawn as required.  Copper tubing must bear the 
+product identification markings in accordance with <RID>ASTM B280</RID>, "ACR" must be present on copper tubing.  Copper 
+tubing must be soft annealed where bending is required and hard drawn where no bending is required.  Soft annealed 
+copper tubing must not be used in sizes larger than<MET> 35 mm</MET><ENG> 1-3/8 inches</ENG>.  Joints must be brazed except that joints 
+on lines<MET> 22 mm</MET><ENG> 7/8 inch</ENG>and smaller may be flared.  Cast copper alloy fittings for flared copper tube must conform 
+to <RID>ASME B16.26</RID> and <RID>ASTM B62</RID>.  Wrought copper and bronze solder-joint pressure fittings must conform to <RID>ASME B16.22</RID>
+ and <RID>ASTM B75/B75M</RID>.  Joints and fittings for brazed joint must be wrought-copper or forged-brass sweat fittings.  
+Cast sweat-type joints and fittings are not allowed for brazed joints.  Brass or bronze adapters for brazed tubing 
+may be used for connecting tubing to flanges and to threaded ends of valves and equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Solder</TTL><BRK/>
+<BRK/>
+<TXT>Solder must conform to <RID>ASTM B32</RID>, grade Sb5, tin-antimony alloy for service pressures up to<MET> 1034 kPa</MET><ENG> 150 psig</ENG>.  
+Solder flux must be liquid or paste form, non-corrosive and conform to <RID>ASTM B813</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Brazing Filler Metal</TTL><BRK/>
+<BRK/>
+<TXT>Filler metal must conform to <RID>AWS A5.8/A5.8M</RID>, Type BAg-5 with AWS Type FB3-A or Type FB3-C flux, except Type BCuP-3, 
+BCuP-4,  or BCuP-5 may be used for brazing copper-to-copper joints.  BAlSi-4 with AWS Type FB1-A flux may be 
+used when joining copper piping to aluminum components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Brazing Flux</TTL><BRK/>
+<BRK/>
+<TXT>Brazing flux must conform to <RID>AWS A5.31/A5.31M</RID>, Type FB3-A or Type FB3-C when using Type BAg-5 filler metal.  
+Type FB1-A is to be used with Type BAlSi-4 filler metal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Press Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Press fittings are not acceptable for use in refrigerant piping systems.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>VALVES</TTL><BRK/>
+<BRK/>
+<TXT>Valves must be designed, manufactured, and tested specifically for refrigerant service.  The valve material and 
+all internal components must be compatible with the specific refrigerant and lubricant used.  Valve bodies must 
+be of brass, bronze, steel, or ductile iron construction.  Valves<MET> 25 mm</MET><ENG> 1 inch</ENG> and smaller must have brazed or 
+socket welded connections.  Valves larger than<MET> 25 mm</MET><ENG> 1 inch</ENG> must have [tongue-and-groove flanged] [butt welded] 
+end connections.  Do not use threaded end connections, except in pilot pressure or gauge lines where maintenance 
+disassembly is required and welded flanges cannot be used.  Internal parts must be removable for inspection or 
+replacement without applying heat or breaking pipe connections.  Valve stems exposed to the atmosphere must be 
+stainless steel or corrosion resistant metal plated carbon steel.  Direction of flow must be legibly and permanently 
+indicated on the valve body.  Control valve inlets must be fitted with integral or adapted strainer or filter 
+where recommended or required by the manufacturer.  Purge, charge and receiver valves must be of manufacturer's 
+standard configuration.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Refrigerant Stop Valves</TTL><BRK/>
+<BRK/>
+<TXT>Valve must be the globe or full-port ball type with a back-seating stem especially packed for refrigerant service.  
+Valve packing must be replaceable under line pressure.  Provide valve with a [handwheel] [or] [wrench] operator 
+and a seal cap.  Valve must be the straight or angle pattern design as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Check Valves</TTL><BRK/>
+<BRK/>
+<TXT>Valve must be the swing or lift type as required to provide positive shutoff at the differential pressure indicated.  
+Valve must be provided with resilient seat.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Liquid Solenoid Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide valves that comply with <RID>AHRI 760 I-P</RID> and are suitable for continuous duty with applied voltages 15 percent 
+under and 5 percent over nominal rated voltage at maximum and minimum encountered pressure and temperature service 
+conditions.  Valves must be direct-acting or pilot-operating type, packless, except that packed stem, seal capped, 
+manual lifting provisions must be furnished.  Provide solenoid coils that are moisture-proof, UL approved, totally 
+encapsulated or encapsulated and metal jacketed as required.  Valves must have safe working pressure of<MET> 4206 
+kPa</MET><ENG> 610 psi</ENG> and a maximum operating pressure differential of at least<MET> 1375 kPa</MET><ENG> 200 psi</ENG> at 85 percent rated voltage.  
+Valves must have an operating pressure differential suitable for the refrigerant used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Expansion Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide valve conforming to<MET> <RID>AHRI 751 SI</RID></MET><ENG> <RID>AHRI 750 I-P</RID></ENG> and <RID>ASHRAE 17</RID>.  Valve must be the diaphragm and spring-loaded 
+type with internal or external equalizers, and bulb and capillary tubing.  Provide valve with an external superheat 
+adjustment along with a seal cap.  Internal equalizers may be utilized where flowing refrigerant pressure drop 
+between outlet of the valve and inlet to the evaporator coil is negligible and pressure drop across the evaporator 
+is less than the pressure difference corresponding to<MET> 1 degree C</MET><ENG> 2 degrees F</ENG> of saturated suction temperature 
+at evaporator conditions.  Bulb charge must be determined by the manufacturer for the application and such that 
+liquid will remain in the bulb at all operating conditions.  Do not use gas limited liquid charged valves and 
+other valve devices for limiting evaporator pressure without a distributor or discharge tube or effective means 
+to prevent loss of control when bulb becomes warmer than valve body.  Pilot-operated valves must have a characterized 
+plug to provide required modulating control.  A de-energized solenoid valve may be used in the pilot line to 
+close the main valve in lieu of a solenoid valve in the main liquid line.  Provide an isolatable pressure gauge 
+in the pilot line, at the main valve.  Automatic pressure reducing or constant pressure regulating expansion 
+valves may be used only where indicted or for constant evaporator loads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electronic Expansion Valves</TTL><BRK/>
+<BRK/>
+<TXT>Valve must conform to <MET><RID>AHRI 1371 SI</RID></MET><ENG><RID>AHRI 1370 I-P</RID></ENG> and <RID>ASHRAE 17</RID>.  The valve must prevent the return of liquid to 
+the compressor in the event of power loss or low superheat.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Safety Relief Valves</TTL><BRK/>
+<BRK/>
+<TXT>Valve must be the two-way type, unless indicated otherwise.  Valve must bear the ASME code symbol.  Valve capacity 
+must be certified by the National Board of Boiler and Pressure Vessel Inspectors.  Valve must be of an automatically 
+reseating design after activation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Evaporator Pressure Regulators, Direct-Acting</TTL><BRK/>
+<BRK/>
+<TXT>Valve must include a diaphragm/spring assembly, external pressure adjustment with seal cap, and pressure gauge 
+port.  Valve must maintain a constant inlet pressure by balancing inlet pressure on diaphragm against an adjustable 
+spring load.  Pressure drop at system design load must not exceed the pressure difference corresponding to a<MET> 
+1 degree C</MET><ENG> 2 degrees F</ENG> change in saturated refrigerant temperature at evaporator operating suction temperature.  
+Spring must be selected for indicated maximum allowable suction pressure range.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Access Valves</TTL><BRK/>
+<BRK/>
+<TXT>Provide refrigerant access valves and hose connections in accordance with <RID>AHRI 720</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PIPING ACCESSORIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Filter Driers</TTL><BRK/>
+<BRK/>
+<TXT>Driers must conform to <MET><RID>AHRI 711</RID></MET><ENG><RID>AHRI 710 I-P</RID></ENG>.  Sizes<MET> 15 mm</MET><ENG> 5/8 inch</ENG> and larger must be the full flow, replaceable 
+core type.  Sizes<MET> 13 mm</MET><ENG> 1/2 inch</ENG> and smaller must be the sealed type.  Cores must be of suitable desiccant that 
+will not plug, cake, dust, channel, or break down, and must remove water, acid, and foreign material from the 
+refrigerant.  Constructfilter driers so that none of the desiccant will pass into the refrigerant lines.  Minimum 
+bursting pressure must be<MET> 10.3 MPa</MET><ENG> 1,500 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sight Glass and Liquid Level Indicator</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Assembly and Components</TTL><BRK/>
+<BRK/>
+<TXT>Assembly must be pressure- and temperature-rated and constructed of materials suitable for the service.  Glass 
+must be borosilicate type.  Ferrous components subject to condensation must be electro-galvanized.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gauge Glass</TTL><BRK/>
+<BRK/>
+<TXT>Gauge glass must include top and bottom isolation valves fitted with automatic checks, and packing followers; 
+red-line or green-line gauge glass; elastomer or polymer packing to suit the service; and gauge glass guard.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bull's-Eye and Inline Sight Glass Reflex Lens</TTL><BRK/>
+<BRK/>
+<TXT>Provide bull's-eye and inline sight glass reflex lens for dead-end liquid service.  For pipe line mounting, provide 
+two plain lenses in one body suitable for backlighted viewing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Moisture Indicator</TTL><BRK/>
+<BRK/>
+<TXT>Indicator must be a self-reversible action, moisture reactive, color changing media.  Indicator must be furnished 
+with full-color-printing tag containing color, moisture, and temperature criteria.  Unless otherwise indicated, 
+the moisture indicator must be an integral part of each corresponding sight glass.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Vibration Dampeners</TTL><BRK/>
+<BRK/>
+<TXT>Dampeners must be of the all-metallic bellows and woven-wire type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flexible Pipe Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Connector must be a composite of interior corrugated phosphor bronze or Type 300 Series stainless steel, as required 
+for fluid service, with exterior reinforcement of bronze, stainless steel or monel wire braid.  Assembly must 
+be constructed with a safety factor of not less than 4 at<MET> 150 degrees C</MET><ENG>300 degrees F</ENG>.  Unless otherwise indicated, 
+the length of a flexible connector must be as recommended by the manufacturer for the service intended.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Strainers</TTL><BRK/>
+<BRK/>
+<TXT>Strainers used in refrigerant service must have brass or cast-iron body, Y-or angle-pattern, cleanable, not less 
+than 60-mesh noncorroding screen of an area to provide net free area not less than ten times the pipe diameter 
+with pressure rating compatible with the refrigerant service.  Screens must be stainless steel or monel and reinforced 
+spring-loaded where necessary for bypass-proof construction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure and Vacuum Gauges</TTL><BRK/>
+<BRK/>
+<TXT>Provide gauges conforming to <RID>ASME B40.100</RID> with throttling type needle valve or a pulsation dampener and shut-off 
+valve.  Gauge must be a minimum of<MET> 85 mm</MET><ENG> 3-1/2 inches</ENG> in diameter with a range from<MET> 0 kPa</MET><ENG> 0 psig</ENG> to approximately 
+1.5 times the maximum system working pressure.  Select each gauge range so that at normal operating pressure, 
+the needle is within the middle-third of the range.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Temperature Gauges</TTL><BRK/>
+<BRK/>
+<TXT>Provide industrial duty type temperature gauges for the required temperature range.  Gauges must have<MET> Celsius 
+scale in 1 degree</MET><ENG> Fahrenheit scale in 2 degrees</ENG> graduations scale (black numbers) on a white face.  The pointer 
+must be adjustable.  Provide rigid stem type temperature gauges in thermowells located within<MET> 1.5 m</MET><ENG> 5 feet</ENG> of 
+the finished floor.  Provide universal adjustable angle type or remote element type temperature gauges in thermowells 
+located<MET> 1.5 to 2.1 m</MET><ENG> 5 to 7 feet</ENG> above the finished floor.  Provide remote element type temperature gauges in 
+thermowells located<MET> 2.1 m</MET><ENG> 7 feet</ENG> above the finished floor.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Stem Cased-Glass</TTL><BRK/>
+<BRK/>
+<TXT>Provide stem cased-glass case composed of polished stainless steel or cast aluminum, <MET>229 mm</MET><ENG> 9 inches</ENG> long, with 
+clear acrylic lens, and non-mercury filled glass tube with indicating-fluid column.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bimetallic Dial</TTL><BRK/>
+<BRK/>
+<TXT>Provide bimetallic dial type case that is greater than<MET> 89 mm</MET><ENG> 3-1/2 inches</ENG>, stainless steel, and hermetically 
+sealed with clear acrylic lens.  Bimetallic element must be silicone dampened and unit fitted with external calibrator 
+adjustment.  Accuracy must be one percent of dial range.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Liquid-, Solid-, and Vapor-Filled Dial</TTL><BRK/>
+<BRK/>
+<TXT>Provide liquid-, solid-, and vapor-filled dial type cases that are greater than<MET> 89 mm</MET><ENG> 3-1/2 inches</ENG>, stainless 
+steel or cast aluminum with clear acrylic lens.  Fill must be nonmercury, suitable for encountered cross-ambients, 
+and connecting capillary tubing must be double-braided bronze.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermowell</TTL><BRK/>
+<BRK/>
+<TXT>Thermowell must be identical size, <MET> 13 or 19 mm</MET><ENG> 1/2 or 3/4 inch</ENG> NPT connection, brass or stainless steel.  Where 
+test wells are indicated, provide captive plug-fitted type<MET> 13 mm</MET><ENG> 1/2 inch</ENG> NPT connection suitable for use with 
+either engraved stem or standard separable socket thermometer or thermostat.  Mercury must not be used in thermometers.  
+Extended neck thermowells must be of sufficient length to clear insulation thickness by<MET> 25 mm</MET><ENG> 1 inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pipe Hangers, Inserts, and Supports</TTL><BRK/>
+<BRK/>
+<TXT>Provide pipe hangers, inserts, guides, and supports conforming to <RID>MSS SP-58</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Escutcheons</TTL><BRK/>
+<BRK/>
+<TXT>Escutcheons must be chromium-plated iron or chromium-plated brass, either one piece or split pattern, held in 
+place by internal spring tension or set screws.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FABRICATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Factory Coating</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For equipment to be installed outdoors, adequate protection will be specified.  
+Manufacturers must submit evidence that unit specimen have passed the specified 
+salt spray fog test.  A 125-hour test will be specified in a noncorrosive environment 
+and a 500 hour test will be specified in a corrosive environment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Unless otherwise specified, equipment and component items, when fabricated from ferrous metal, must be factory 
+finished with the manufacturer's standard finish, except that items located outside of buildings must have weather 
+resistant finishes that will withstand [125] [500] hours exposure to the salt spray test specified in <RID>ASTM B117</RID>
+ using a 5 percent sodium chloride solution.  Immediately after completion of the test, the specimen must show 
+no signs of blistering, wrinkling, cracking, or loss of adhesion and no sign of rust creepage beyond<MET> 3 mm</MET><ENG> 1/8 
+inch</ENG> on either side of the scratch mark.  Cut edges of galvanized surfaces where hot-dip galvanized sheet steel 
+is used must be coated with a zinc-rich coating conforming to <RID>ASTM D520</RID>, Type I.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Factory Applied Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Factory installed insulation must be in accordance with <MET><RID>ASHRAE 90.1 - SI</RID></MET><ENG><RID>ASHRAE 90.1 - IP</RID></ENG>.  [Refrigerant suction 
+lines between the cooler and each compressor [and cold gas inlet connections to gas cooled motors]] [Refrigerant 
+pumps and exposed chilled water lines on absorption chillers] must be insulated with not less than<MET> 13 mm</MET><ENG> 1/2 
+inch</ENG> thick unicellular plastic foam.  Factory insulated items installed outdoors are not required to be fire-rated.  
+As a minimum, factory insulated items installed indoors must have a flame spread index no higher than 25 and 
+a smoke developed index no higher than 50.  Factory insulated items (no jacket) installed indoors and which are 
+located in air plenums, in ceiling spaces, and in attic spaces must have a flame spread index no higher than 
+25 and a smoke developed index no higher than 50.  Flame spread and smoke developed indexes must be determined 
+by <RID>ASTM E84</RID>.  Test insulation in the same density and installed thickness as the material to be used in the actual 
+construction.  Test material supplied by a manufacturer with a jacket as a composite material.  Provide jackets, 
+facings, and adhesives that have a flame spread index less than 25 and a smoke developed index less than 50 when 
+tested in accordance with <RID>ASTM E84</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with all details of the work, perform a <SUB>verification of dimensions</SUB> in the field.  Submit 
+a letter, at least [2] [_____] weeks prior to beginning construction, including the date the site was visited, 
+conformation of existing conditions, and any discrepancies found before performing any work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Belowground refrigerant piping should be avoided if at all possible.  
+Direct buried refrigerant piping will not be installed under any circumstances.  
+In the event that belowground pipe routing is the only alternative, the piping 
+will be routed through an accessible trench system (i.e.  concrete, fiberglass, 
+PVC, etc.)  The designer will specifically detail the trench design as well 
+as fully detail the piping techniques necessary to accommodate oil circulation 
+at both full and part load conditions.  Oil circulation is extremely critical 
+to the successful operation of any refrigerant system.  Designers will avoid 
+creating any oil traps within a refrigerant piping system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Pipe and fitting installation must conform to the requirements of <RID>ASME B31.1</RID>.  Cut pipe accurately to measurements 
+established at the jobsite, and work into place without springing or forcing, completely clearing all windows, 
+doors, and other openings.  Cutting or other weakening of the building structure to facilitate piping installation 
+is not permitted without written approval.  Cut pipe or tubing square, remove by reaming, and permit free expansion 
+and contraction without causing damage to the building structure, pipe, joints, or hangers.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Directional Changes</TTL><BRK/>
+<BRK/>
+<TXT>Make changes in direction with fittings, except that bending of pipe<MET> 100 mm</MET><ENG> 4 inches</ENG> and smaller is permitted, 
+provided a pipe bender is used and wide weep bends are formed.  Mitering or notching pipe or other similar construction 
+to form elbows or tees is not permitted.  The centerline radius of bends must not be less than 6 diameters of 
+the pipe.  Bent pipe showing kinks, wrinkles, flattening, or other malformations will not be accepted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Functional Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Install piping <MET> 4 mm/m</MET><ENG> 1/2 inch/10 feet</ENG> of pipe in the direction of flow to ensure adequate oil drainage.  Properly 
+cap or plug open ends of refrigerant lines or equipment during installation to keep moisture, dirt, or other 
+foreign material out of the system.  Piping must remain capped until installation.  Equipment piping must be 
+in accordance with the equipment manufacturer's recommendations and the contract drawings.  Equipment and piping 
+arrangements must fit into space allotted and allow adequate acceptable clearances for installation, replacement, 
+entry, servicing, and maintenance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings and End Connections</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Threaded Connections</TTL><BRK/>
+<BRK/>
+<TXT>Make threaded connections with tapered threads and make tight with PTFE tape complying with <RID>ASTM D3308</RID> or equivalent 
+thread-joint compound applied to the male threads only.  Do not show more than three threads after the joint 
+is made.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Brazed Connections</TTL><BRK/>
+<BRK/>
+<TXT>Perform brazing in accordance with <RID>AWS BRH</RID>, except as modified herein.  During brazing, fill the pipe and fittings 
+with a pressure regulated inert gas, such as nitrogen, to prevent the formation of scale.  Before brazing copper 
+joints, clean both the outside of the tube and the inside of the fitting with a wire fitting brush until the 
+entire joint surface is bright and clean.  Do not use brazing flux on copper-to-copper connections.  Remove surplus 
+brazing material at all joints.  Make steel tubing joints in accordance with the manufacturer's recommendations.  
+Paint joints in steel tubing with the same material as the baked-on coating within 8 hours after joints are made.  
+Protect tubing against oxidation during brazing by continuous purging of the inside of the piping using nitrogen.  
+Support piping prior to brazing and do not spring or force.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welded Connections</TTL><BRK/>
+<BRK/>
+<TXT>Fusion-weld joints in steel refrigerant piping.  Make branch connections with welding tees or forged welding 
+branch outlets.  Thoroughly clean pipe of all scale and foreign matter before the piping is assembled.  During 
+welding, fill the pipe and fittings with an inert gas, such as nitrogen, to prevent the formation of scale.  
+Beveling, alignment, heat treatment, and inspection of weld must conform to <RID>ASME B31.1</RID>.  Remove and reweld weld 
+defects at no additional cost to the Government.  Store and dry electrodes in accordance with <RID>AWS D1.1/D1.1M</RID> 
+or as recommended by the manufacturer.  Do not use electrodes that have been wetted or that have lost any of 
+their coating</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flared Connections</TTL><BRK/>
+<BRK/>
+<TXT>When flared connections are used, use a suitable lubricant between the back of the flare and the nut in order 
+to avoid tearing the flare while tightening the nut.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flanged Connections</TTL><BRK/>
+<BRK/>
+<TXT>When steel refrigerant piping is used, provide union or flange joints in each line immediately preceding the 
+connection to each piece of equipment requiring maintenance, such as compressors, coils, chillers, control valves, 
+and other similar items.  Flanged joints must be assembled square end tight with matched flanges, gaskets, and 
+bolts.  Provide gaskets that are suitable for use with the refrigerants to be handled.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Install refrigerant stop valves on each side of each piece of equipment such as compressors condensers, evaporators, 
+receivers, and other similar items in multiple-unit installation, to provide partial system isolation as required 
+for maintenance or repair.  Install stop valves with stems horizontal unless otherwise indicated.  Install ball 
+valves must be installed with stems positioned to facilitate operation and maintenance.  Isolating valves for 
+pressure gauges and switches must be external to thermal insulation.  Safety switches must not be fitted with 
+isolation valves.  Filter dryers having access ports may be considered a point of isolation.  Purge valves must 
+be provided at all points of systems where accumulated non-condensable gases would prevent proper system operation.  
+Valves must be furnished to match line size, unless otherwise indicated or approved.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Expansion Valves</TTL><BRK/>
+<BRK/>
+<TXT>Install expansion valves with the thermostatic expansion valve bulb located on top of the suction line when the 
+suction line is less than<MET> 54 mm</MET><ENG> 2-1/8 inches</ENG> in diameter and at the 4 o'clock or 8 o'clock position on lines 
+larger than<MET> 54 mm</MET><ENG> 2-1/8 inches</ENG>.  Fasten the bulb securely with two clamps.  Insulate ehe bulb .  Install the 
+bulb in a horizontal portion of the suction line, if possible, with the pigtail on the bottom.  If the bulb must 
+be installed in a vertical line, the bulb tubing must be facing up.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valve Identification</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete last two sentences when identification tags are not considered 
+necessary in small projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Tag each system valve, including those which are part of a factory assembly.  Tags must be in alphanumeric sequence, 
+progressing in direction of fluid flow.  Tags must be embossed, engraved, or stamped plastic or nonferrous metal 
+of various shapes, sized approximately<MET> 34 mm</MET><ENG> 1-3/8 inch</ENG> diameter, or equivalent dimension, substantially attached 
+to a component or immediately adjacent thereto.  Attach tags with nonferrous, heavy duty, bead or link chain, <MET>
+14 gauge</MET><ENG> 14 gauge</ENG> annealed wire, nylon cable bands or as approved.  Reference tag numbers in Operation and Maintenance 
+Manuals and system diagrams.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Vibration Dampers</TTL><BRK/>
+<BRK/>
+<TXT>Provide vibration damper in the suction and discharge lines on spring mounted compressors.  Install vibration 
+dampers parallel with the shaft of the compressor and anchor firmly at the upstream end on the suction line and 
+the downstream end in the discharge line.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Strainers</TTL><BRK/>
+<BRK/>
+<TXT>Provide strainers immediately ahead of solenoid valves and expansion devices.  Strainers may be an integral part 
+of an expansion valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Filter Dryer</TTL><BRK/>
+<BRK/>
+<TXT>Provide a liquid line filter dryer on each refrigerant circuit located such that all liquid refrigerant passes 
+through a filter dryer.  Size dryers in accordance with the manufacturer's recommendations for the system in 
+which it is installed.  Install dryers such that it can be isolated from the system, the isolated portion of 
+the system evacuated, and the filter dryer replaced.  Install dryers in the horizontal position except replaceable 
+core filter dryers may be installed in the vertical position with the access flange on the bottom.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sight Glass</TTL><BRK/>
+<BRK/>
+<TXT>Install a moisture indicating sight glass in all refrigerant circuits down stream of all filter dryers and where 
+indicated.  Provide full line size sight glasses.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Discharge Line Oil Separator</TTL><BRK/>
+<BRK/>
+<TXT>Provide discharge line oil separator in the discharge line from each compressor.  Connect the oil return line 
+to the compressor as recommended by the compressor manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Accumulator</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Suction line accumulator should be included under certain split system 
+applications, such as having extended refrigerant lines,<MET> 15 m</MET><ENG> 50 feet</ENG> or longer.  
+If accumulator is not used, then delete this paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide accumulators in the suction line to each compressor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flexible Pipe Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Install connectors perpendicular to line of motion being isolated.  Fit piping for equipment with bidirectional 
+motion with two flexible connectors, in perpendicular planes.  Install reinforced elastomer flexible connectors 
+in accordance with manufacturer's instructions.  Provide piping guides and restraints related to flexible connectors 
+as required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Temperature Gauges</TTL><BRK/>
+<BRK/>
+<TXT>Locate temperature gauges specifically on, but not limited to the following:  [the sensing element of each automatic 
+temperature control device where a thermometer is not an integral part thereof] [the liquid line leaving a receiver] 
+[and] [the suction line at each evaporator or liquid cooler].  Thermowells for insertion thermometers and thermostats 
+must extend beyond thermal insulation surface not less than<MET> 25 mm</MET><ENG> 1 inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Hangers, Inserts, and Supports</TTL><BRK/>
+<BRK/>
+<TXT>Pipe hangers, inserts, and supports must conform to <RID>MSS SP-58</RID>, except as modified herein.  Do not use pipe hanger 
+types 5, 12, and 26.  Fabricate hangers used to support piping<MET> 50 mm</MET><ENG> 2 inches</ENG> and larger to permit adequate adjustment 
+after erection while still supporting the load.  Support piping subjected to vertical movement, when operating 
+temperatures exceed ambient temperatures, by variable spring hangers and supports or by constant support hangers.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Hangers</TTL><BRK/>
+<BRK/>
+<TXT>Do not use Type 3 on insulated piping.  Type 24 may be used only on trapeze hanger systems or on fabricated frames.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inserts</TTL><BRK/>
+<BRK/>
+<TXT>Secure Type 18 inserts to concrete forms before concrete is placed.  Continuous inserts which allow more adjustments 
+may be used if they otherwise meet the requirements for Type 18 inserts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>C-Clamps</TTL><BRK/>
+<BRK/>
+<TXT>Torque Type 19 and 23 C-clamps in accordance with <RID>MSS SP-58</RID> and have both locknuts and retaining devices, furnished 
+by the manufacturer.  Field-fabricated C-clamp bodies or retaining devices are not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Angle Attachments</TTL><BRK/>
+<BRK/>
+<TXT>Furnish Type 20 attachments used on angles and channels with an added malleable-iron heel plate or adapter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Saddles and Shields</TTL><BRK/>
+<BRK/>
+<TXT>Where Type 39 saddle or Type 40 shield are permitted for a particular pipe attachment application, the Type 39 
+saddle, connected to the pipe, must be used on all pipe<MET> 100 mm</MET><ENG> 4 inches</ENG> and larger when the temperature of the 
+medium is<MET> 16 degrees C</MET><ENG> 60 degrees F</ENG> or higher.  Use Type 40 shields on all piping less than<MET> 100 mm</MET><ENG> 4 inches</ENG> and 
+all piping<MET> 100 mm</MET><ENG> 4 inches</ENG> and larger carrying medium less than<MET> 16 degrees C</MET><ENG> 60 degrees F</ENG>.  Use a high-density 
+insulation insert of cellular glass under the Type 40 shield for piping<MET> 50 mm</MET><ENG> 2 inches</ENG> and larger.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Horizontal Pipe Supports</TTL><BRK/>
+<BRK/>
+<TXT>Space horizontal pipe supports as specified in <RID>MSS SP-58</RID> and install a support no more than<MET> 300 mm</MET><ENG> 1 foot</ENG> from 
+the pipe fitting joint at each change in direction of the piping.  Space pipe supports no more than<MET> 1.5 m</MET><ENG> 5 feet</ENG>
+ apart at valves.  [Pipe hanger loads suspended from steel joist with hanger loads between panel points in excess 
+of<MET> 23 kg</MET><ENG> 50 pounds</ENG> must have the excess hanger loads suspended from panel points.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Vertical Pipe Supports</TTL><BRK/>
+<BRK/>
+<TXT>Support vertical pipe at each floor, except at slab-on-grade, and at intervals of not more than<MET> 4.5 m</MET><ENG> 15 feet</ENG>
+ not more than<MET> 2.4 m</MET><ENG> 8 feet</ENG> from end of risers, and at vent terminations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Guides</TTL><BRK/>
+<BRK/>
+<TXT>Provide Type 35 guides using, steel, reinforced polytetrafluoroethylene (PTFE) or graphite slides where required 
+to allow longitudinal pipe movement.  Provide lateral restraints as required.  Provide slide materials that are 
+suitable for the system operating temperatures, atmospheric conditions, and bearing loads encountered.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel Slides</TTL><BRK/>
+<BRK/>
+<TXT>Where steel slides do not require provisions for restraint of lateral movement, an alternate guide method may 
+be used.  On piping<MET> 100 mm</MET><ENG> 4 inches</ENG> and larger, usea Type 39 saddle.  On piping under<MET> 100 mm</MET><ENG> 4 inches</ENG>, a Type 
+40 protection shield may be attached to the pipe or insulation and freely rest on a steel slide plate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Temperature Guides with Cradles</TTL><BRK/>
+<BRK/>
+<TXT>Where there are high system temperatures and welding to piping is not desirable, the Type 35 guide must include 
+a pipe cradle, welded to the guide structure and strapped securely to the pipe.  Separate the pipe from the slide 
+material by at least<MET> 100 mm</MET><ENG> 4 inches</ENG>, or by an amount adequate for the insulation, whichever is greater.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Multiple Pipe Runs</TTL><BRK/>
+<BRK/>
+<TXT>In the support of multiple pipe runs on a common base member, use a clip or clamp where each pipe crosses the 
+base support member.  Spacing of the base support members must not exceed the hanger and support spacing required 
+for an individual pipe in the multiple pipe run.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seismic Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide seismic details, if a Government designer (either Corps office 
+of A/E) is the Engineer of Record, and show on the drawings.  Delete the bracketed 
+phrase "as shown on the drawings" if no seismic details are provided.  UFC 3-301-01 
+STRUCTURAL ENGINEERING and Sections <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL 
+COMPONENTS and <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS properly edited, 
+must be included in the contract documents.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Support and brace piping and attached valves to resist seismic loads as specified under <RID>UFC 3-301-01</RID> and Sections 
+<SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS and [<SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS] 
+[as shown on the drawings].  Provide structural steel required for reinforcement to properly support piping, 
+headers, and equipment but not shown under this section.  Specify material used for support under Section 
+<SRF>05 12 00</SRF> STRUCTURAL STEEL.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Structural Attachments</TTL><BRK/>
+<BRK/>
+<TXT>Attachment to building structure concrete and masonry must be by cast-in concrete inserts, built-in anchors, 
+or masonry anchor devices.  Inserts and anchors must be applied with a safety factor not less than 5.  Do not 
+attach supports to metal decking.  Construct masonry anchors for overhead applications of ferrous materials only.  
+Provide structural steel brackets required to support piping, headers, and equipment, but not shown, under this 
+section.  Specify material used for support under Section <SRF>05 12 00</SRF> STRUCTURAL STEEL.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pipe Alignment Guides</TTL><BRK/>
+<BRK/>
+<TXT>Provide pipe alignment guides where indicated for expansion loops, offsets, and bends and as recommended by the 
+manufacturer for expansion joints, not to exceed<MET> 1.5 m</MET><ENG> 5 feet</ENG> on each side of each expansion joint, and in lines<MET>
+ 100 mm</MET><ENG> 4 inches</ENG> or smaller not more than<MET> 600 mm</MET><ENG> 2 feet</ENG> on each side of the joint.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Anchors</TTL><BRK/>
+<BRK/>
+<TXT>Provide anchors wherever necessary or indicated to localize expansion or to prevent undue strain on piping.  
+Provide anchors consisting of heavy steel collars with lugs and bolts for clamping and attaching anchor braces, 
+unless otherwise indicated.  Install anchor braces in the most effective manner to secure the desired results 
+using turnbuckles where required.  Do not attach supports, anchors, or stays where they will injure the structure 
+or adjacent construction during installation or by the weight of expansion of the pipeline.  Where pipe and conduit 
+penetrations of vapor barrier sealed surfaces occur, immediately anchor these items adjacent to each penetrated 
+surface, to provide essentially zero movement within penetration seal.  Submit detailed drawings of pipe anchors 
+for approval before installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Building Surface Penetrations</TTL><BRK/>
+<BRK/>
+<TXT>Do not install sleeves in structural members except where indicated or approved.  Provide galvanized sheet metal 
+sleeves in non-load bearing surfaces conforming to <RID>ASTM A653/A653M</RID>, Coating Class G-90, <MET> 1.0 mm (20 gauge)</MET><ENG> 20 
+gauge</ENG>.  Provide uncoated carbon steel pipe sleeves in load bearing surfaces conforming to <RID>ASTM A53/A53M</RID>, [Schedule 
+30] [Schedule 20] [Standard weight].  Apply sealants to moisture and oil-free surfaces and elastomers to not 
+less than<MET> 13 mm</MET><ENG> 1/2 inch</ENG> depth.  Do not install sleeves in structural members.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Refrigerated Space</TTL><BRK/>
+<BRK/>
+<TXT>Fit refrigerated space building surface penetrations with sleeves fabricated from hand-lay-up or helically wound, 
+fibrous glass reinforced polyester or epoxy resin with a minimum thickness equal to equivalent size Schedule 
+40 steel pipe.  Construct sleeves with integral collar or fit cold side with a bonded slip-on flange or extended 
+collar.  In the case of masonry penetrations where sleeve is not cast-in, fill voids with latex mixed mortar 
+cast to shape of sleeve and assemble flange/external collar type sleeve with butyl elastomer vapor barrier sealant 
+through penetration to cold side surface vapor barrier overlap and fastened to surface with masonry anchors.  
+Flash integral cast-in collar type sleeve [as indicated.] [with not less than<MET> 100 mm</MET><ENG> 4 inches</ENG> of cold side vapor 
+barrier overlap of sleeve surface.]  Normally seal noninsulated penetrating round surfaces to sleeve bore with 
+mechanically expandable seals in vapor tight manner and insulate remaining warm and cold side sleeve depth with 
+not less than<MET> [100] [_____] mm</MET><ENG> [4] [_____] inches</ENG> of foamed-in-place rigid polyurethane or foamed-in-place silicone 
+elastomer.  Apply vapor barrier sealant to finish warm side insulation surface.  Insulate warm side of penetrating 
+surface beyond vapor barrier sealed sleeve insulation for a distance which prevents condensation.  Seal wires 
+in refrigerated space surface penetrating conduit with vapor barrier plugs or compound to prevent moisture migration 
+through conduit and condensation therein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>General Service Areas</TTL><BRK/>
+<BRK/>
+<TXT>Extend each sleeve through its respective wall, floor, or roof, and cut flush with each surface.  Provide pipes 
+passing through concrete or masonry wall or concrete floors or roofs with pipe sleeves fitted into place at the 
+time of construction.  Provide sleeves that allow a minimum of<MET> 6 mm</MET><ENG> 1/4 inch</ENG> all-around clearance between bare 
+pipe and sleeves or between jacketed-insulation and sleeves.  Except in pipe chases or interior walls, seal the 
+annular space between pipe and sleeve or between jacket over-insulation and sleeve in accordance with Section 
+<SRF>07 92 00</SRF> JOINT SEALANTS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Waterproof Penetrations</TTL><BRK/>
+<BRK/>
+<TXT>Install pipes passing through roof or floor waterproofing membrane through a<MET> 5.17 kg/sq. m</MET><ENG> 17 ounce</ENG> copper sleeve, 
+or a<MET> 0.81 mm</MET><ENG> 0.032 inch</ENG> thick aluminum sleeve, each within an integral skirt or flange.  Form flashing sleeve, 
+and extend skirt or flange greater than<MET> 200 mm</MET><ENG> 8 inches</ENG> from the pipe and set over the roof or floor membrane 
+in a troweled coating of bituminous cement.  Extend the flashing sleeve up the pipe a minimum of<MET> 50 mm</MET><ENG> 2 inches</ENG>
+ above the roof or floor penetration.  Seal the annular space between the flashing sleeve and the bare pipe or 
+between the flashing sleeve and the metal-jacket-covered insulation as indicated.  Seal penetrations by either 
+one of the following methods.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Waterproofing Clamping Flange</TTL><BRK/>
+<BRK/>
+<TXT>Pipes up to and including<MET> 250 mm</MET><ENG> 10 inches</ENG> in diameter passing through roof or floor waterproofing membrane may 
+be installed through a cast iron sleeve with caulking recess, anchor lugs, flashing clamp device, and pressure 
+ring with brass bolts.  Clamp waterproofing membrane into place and place sealant in the caulking recess.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Modular Mechanical Type Sealing Assembly</TTL><BRK/>
+<BRK/>
+<TXT>In lieu of a waterproofing clamping flange and caulking and sealing of annular space between pipe and sleeve 
+or conduit and sleeve, a modular mechanical type sealing assembly may be installed.  Provide seals consisting 
+of interlocking synthetic rubber links shaped to continuously fill the annular space between the pipe/conduit 
+and sleeve with corrosion protected carbon steel bolts, nuts, and pressure plates.  Loosely assemble links with 
+bolts to form a continuous rubber belt around the pipe with a pressure plate under each bolt head and each nut.  
+After the seal assembly is properly positioned in the sleeve, tighten the bolt to cause the rubber sealing elements 
+to expand and provide a watertight seal between the pipe/conduit and the sleeve.  Size each seal assembly as 
+recommended by the manufacturer to fit the pipe/conduit and sleeve involved.  The Contractor electing to use 
+the modular mechanical type seals must provide sleeves of the proper diameters.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Fire-Rated Penetrations</TTL><BRK/>
+<BRK/>
+<TXT>Seal penetration of fire-rated walls, partitions, and floors as specified in Section <SRF>07 84 00</SRF> FIRESTOPPING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Escutcheons</TTL><BRK/>
+<BRK/>
+<TXT>Provide escutcheons for finished surfaces where exposed piping, bare or insulated, pass through floors, walls, 
+or ceilings, except in boiler, utility, or equipment rooms.  Where sleeves project slightly from floors, use 
+special deep-type escutcheons.  Secure escutcheon to pipe or pipe covering.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Access Panels</TTL><BRK/>
+<BRK/>
+<TXT>Provide access panels for all concealed valves, vents, controls, and items requiring inspection or maintenance.  
+Provide access panels of sufficient size and locate so that the concealed items may be serviced and maintained 
+or completely removed and replaced.  Provide access panels as specified in Section <SRF>08 31 00</SRF> ACCESS DOORS AND 
+PANELS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Applied Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Field installed insulation is specified in Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL SYSTEMS, except 
+as defined differently herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Painting</TTL><BRK/>
+<BRK/>
+<TXT>Painting required for surfaces not otherwise specified, and finish painting of items only primed at the factory 
+are specified in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Color Coding</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Color coding for piping identification required by the using agency will 
+be developed and inserted in the "Color Code Schedule" in Section <SRF>09 90 00</SRF> PAINTS 
+AND COATINGS.  For Air Force Installations, piping will be color-coded in accordance 
+with Attachment 4 of AFM 88-15.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Color coding for piping identification is specified in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Color Coding Scheme</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Color Coding Scheme may be deleted if not required in the project.  Use 
+Sections with a 10 after the Section number and delete those with 20 for Army 
+projects, and vice versa.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a color coding scheme for locating hidden piping in accordance with [Section <SRF>22 00 00</SRF> PLUMBING, GENERAL 
+PURPOSE][Section <SRF>22 00 70</SRF> PLUMBING, HEALTHCARE FACILITIES].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Identification Tags</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph when identification tags are not considered necessary 
+on small projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide identification tags made of brass, engraved laminated plastic or engraved anodized aluminum  indicating 
+service and item number on all valves and dampers.  Tags must be<MET> 35 mm</MET><ENG> 1-3/8 inch</ENG> minimum diameter and marking 
+must be stamped or engraved.  Indentations must be black for reading clarity.  Attach tags to valves with No. 
+12 AWG copper wire, chrome-plated beaded chain or plastic straps designed for that purpose.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLEANING AND ADJUSTING</TTL><BRK/>
+<BRK/>
+<TXT>Clean uncontaminated system(s) by evacuation and purging procedures currently recommended by refrigerant and 
+refrigerant equipment manufacturers, and as specified herein, to remove small amounts of air and moisture.  Systems 
+containing moderate amounts of air, moisture, contaminated refrigerant, or any foreign matter are considered 
+contaminated systems.  Restore contaminated systems to clean condition including disassembly, component replacement, 
+evacuation, flushing, purging, and re-charging, using currently approved refrigerant and refrigeration manufacturer's 
+procedures.  Restore contaminated systems at no additional cost to the Government as determined by the Contracting 
+Officer.  Do not use water in any procedure or test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TRAINING COURSE</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Submit a schedule, at least [2] [_____] weeks prior to the date of the proposed training course, which 
+identifies the date, time, and location for the training.  Conduct a training course for [_____] members 
+of the operating staff as designated by the Contracting Officer.  The training period must consist of 
+a total [_____] hours of normal working time and start after the system is functionally completed but 
+prior to final acceptance tests.</OLI><BRK/>
+<BRK/>
+<OLI>Cover all of the items contained in the approved <SUB>operation and maintenance manuals</SUB> as well as <SUB>demonstrations</SUB>
+ of routine maintenance operations in the field posted instructions..</OLI><BRK/>
+<BRK/>
+<OLI>Submit [6] [_____] complete copies of an operation manual in bound<MET> 216 by 279</MET><ENG> 8 1/2 by 11 inch</ENG> booklets 
+listing step-by-step procedures required for system startup, operation, abnormal shutdown, emergency 
+shutdown, and normal shutdown at least [4] [_____] weeks prior to the first training course.  Include 
+the manufacturer's name, model number, and parts list in the booklets.  Include the manufacturer's name, 
+model number, service manual, and a brief description of all equipment and their basic operating features 
+in the manuals.</OLI><BRK/>
+<BRK/>
+<OLI>Submit [6] [_____] complete copies of maintenance manual in bound<MET> 216 by 279</MET><ENG> 8 1/2 x 11 inch</ENG> booklets 
+listing routine maintenance procedures, possible breakdowns and repairs, and a trouble shooting guide.  
+Include piping layouts and simplified wiring and control diagrams of the system as installed in the manuals.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>REFRIGERANT PIPING TESTS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following refrigerant system tests are for field fabricated refrigerant 
+piping systems.  The tests do not apply to packaged, unitary equipment which 
+is charged at the factory.</NPR><BRK/>
+<BRK/>
+<NPR>Equipment and piping will be capable of withstanding leak pressure tests at 
+not less than the design pressure corresponding to the highest ambient temperature 
+(refer to ASHRAE 15 &amp; 34).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>After all components of the refrigerant system have been installed and connected, subject the entire refrigeration 
+system to pneumatic, evacuation, and startup tests as described herein.  Submit a schedule, at least [2] [_____] 
+weeks prior to the start of related testing, for each test.  Identify the proposed date, time, and location for 
+each test.  Conduct tests in the presence of the Contracting Officer.  Water and electricity required for the 
+tests will be furnished by the Government.  Provide all material, equipment, instruments, and personnel required 
+for the test.  Provide the services of a qualified technician, as required, to perform all tests and procedures 
+indicated herein.  Coordinate field tests with Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING OF HVAC SYSTEMS.  
+Submit [6] [_____] copies of the tests report in bound<MET> 216 by 279 mm</MET><ENG> 8 1/2 by 11 inch</ENG> booklets documenting all 
+phases of the tests performed.  Include initial test summaries, all repairs/adjustments made, and the final test 
+results in the report.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Preliminary Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Prior to pneumatic testing, isolate equipment which has been factory tested and refrigerant charged as well as 
+equipment which could be damaged or cause personnel injury by imposed test pressure, positive or negative, from 
+the test pressure, or remove from the system.  Remove safety relief valves and rupture discs that are not part 
+of factory sealed systems, and cap or plug openings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pneumatic Test</TTL><BRK/>
+<BRK/>
+<TXT>Provide pressure control and excess pressure protection at the source of test pressure.  Valves must be wide 
+open, except those leading to the atmosphere.  Test gas must be dry nitrogen, with<MET> minus 55 degrees C</MET><ENG> minus 70 
+degree F</ENG> dewpoint and less than 5 ppm oil.  Apply test pressure in two stages before any refrigerant pipe is 
+insulated or covered.  In accordance with <RID>ASME B31.5</RID>, a preliminary test not to exceed<MET> 170 kPa</MET><ENG> 25 psi</ENG> must be 
+applied as a means of locating major leaks.  Every joint being tested must be coated with a thick soap or color 
+indicating solution.  The second stage test pressure must be at least 110 percent of the design pressure, but 
+cannot exceed 130 percent of the design pressure of any component in the system.  For large systems that are 
+not completely visible, the pressure in the system must be gradually increased to one-half of the test pressure 
+after which the pressure must be increased in steps of one-tenth of the test pressure, until the required test 
+pressure has been reached.  The test pressure must be continuously maintained for at leas 24 hours, after which 
+it can be reduced to the leak test pressure.  A correction factor of<MET> 2 kPa</MET><ENG> 0.3 psi</ENG> will be allowed for each degree<MET>
+ C</MET><ENG> F</ENG> change between test space initial and final ambient temperature, plus for increase and minus for a decrease.  
+The leak test pressure must be the design pressure, or a pressure specified in the engineering design.  To repair 
+leaks, the joint must be taken apart, thoroughly cleaned, and reconstructed as a new joint.  Joints repaired 
+by caulking, re-melting, or back-welding/brazing are not acceptable.  Following repair, the entire system must 
+be retested using the pneumatic tests described above.  Reassemble the entire system once the pneumatic tests 
+are satisfactorily completed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Evacuation Test</TTL><BRK/>
+<BRK/>
+<TXT>Following satisfactory completion of the pneumatic tests, relieve the pressure and evacuate the entire system 
+to an absolute pressure of 300 micrometers.  During evacuation of the system, the ambient temperature must be 
+higher than<MET> 2 degrees C</MET><ENG> 35 degrees F</ENG>.  Do not evacuate no more than one system at one time by one vacuum pump.  
+Once the desired vacuum has been reached, close the vacuum line and allow the system to stand for 1 hour.  If 
+the pressure rises over 500 micrometers after the 1 hour period, evacuate the system again down to 300 micrometers 
+and let set for another 1 hour period.  Do not charge the system until a vacuum of at least 500 micrometers is 
+maintained for a period of 1 hour without the assistance of a vacuum line.  If during the testing the pressure 
+rises above 500 micrometers, continue to repeat the evacuation procedures until all residual moisture has been 
+removed.  During evacuation, record pressures by a thermocouple-type, electronic-type, or a calibrated-micrometer 
+type gauge.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Charging and Startup Test</TTL><BRK/>
+<BRK/>
+<TXT>Following satisfactory completion of the evacuation tests, charge the system with the required amount of refrigerant 
+by raising pressure to normal operating pressure and in accordance with manufacturer's procedures.  Following 
+charging, the system must operate with high-side and low-side pressures and corresponding refrigerant temperatures, 
+at design or improved values.  Test the entire system tested for leaks.  Test fluorocarbon systems with halide 
+torch or electronic leak detectors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Leakage</TTL><BRK/>
+<BRK/>
+<TXT>If a refrigerant leak is discovered after the system has been charged, the leaking portion of the system must 
+be immediatelyisolated from the remainder of the system and the refrigerant pumped into the system receiver or 
+other suitable container.  The refrigerant must not be discharged into the atmosphere.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contractor's Responsibility</TTL><BRK/>
+<BRK/>
+<TXT>At all times during the installation and testing of the refrigeration system, take steps to prevent the release 
+of refrigerants into the atmosphere.  The steps must include, but not be limited to, procedures which will minimize 
+the release of refrigerants to the atmosphere and the use of refrigerant recovery devices to remove refrigerant 
+from the system and store the refrigerant for reuse or reclaim.  At no time will the allowable leak rate exceed 
+the leak rates allowed in Section 608 of the Clean Air Act:  30 percent of the full charge per year for industrial 
+refrigeration, 20 percent of the full charge per year for commercial refrigeration, and 10 percent of the full 
+charge per year for comfort cooling.  Any system leaks within the first year must be repaired in accordance with 
+the requirements herein at no cost to the Government including material, labor, and refrigerant if the leak is 
+the result of defective equipment, material, or installation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

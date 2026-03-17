@@ -1,0 +1,1704 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 09 23.02 (August 2024)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="11.25">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="11.25">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 09 23.02 (February 2019)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 09 23.02</SCN><BRK/>
+<BRK/>
+<STL>BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS</STL><BRK/>
+<DTE>08/24</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>protocol-specific 
+requirements for a Direct Digital Control (DDC) building control system based 
+on the ASHRAE 135 protocol, including  a tailoring option to require the Niagara 
+Framework</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>. CCRs for this specification 
+can be submitted through the Whole Building Design Guide page for this section: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-23-09-23-02">
+https://www.wbdg.org/dod/ufgs/ufgs-23-09-23-02</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The use of this UFGS, and the design of BACnet Control Systems, must 
+be in accordance with UFC 3-410-02, DIRECT DIGITAL CONTROL FOR HVAC AND OTHER 
+BUILDING CONTROL SYSTEMS.  This specification MUST be used in conjunction with 
+UFGS <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC and UFGS <SRF>25 05 11</SRF> CYBERSECUROTY 
+FOR FACILITEY-RELATED CONTROL SYSTEMS in order to specify a complete and functional system.<BRK/>
+<BRK/>
+Edit this guide specification for project specific requirements ONLY by selecting 
+appropriate tailoring options, choosing applicable items(s), or inserting appropriate 
+information in bracketed items.  Do not make edits outside of bracketed items 
+without prior approval as specified in UFC 3-410-02.<BRK/>
+<BRK/>
+When used with UFGS <SRF>23 09 00</SRF>, this specification covers installation of local 
+(building-level) controls using BACnet-based DDC.  It is primarily intended 
+for building level control systems which are to be integrated into a Utility 
+Monitoring and Control System (UMCS) as specified in Section <SRF>25 10 10</SRF> UTILITY 
+MONITORING AND CONTROL SYSTEM (UMCS) FRONT END AND INTEGRATION (where Section 
+<SRF>25 10 10</SRF> has also used the matching BACnet or Niagara Framework tailoring option).  <BRK/>
+<BRK/>
+For projects that require the building system to provide UMCS functionality 
+(without connection to a UMCS), the designer must include the necessary requirements 
+from Section <SRF>25 10 10</SRF> in the project specification.<BRK/>
+<BRK/>
+Template drawings in electronic format for use with this section are available 
+online at the Whole Building Design Guide page for Section 23 09 00: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-23-09-00">https://www.wbdg.org/dod/ufgs/ufgs-23-09-0</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification makes use of SpecsIntact Tailoring Options.  This 
+note describes these options and how to use them.<BRK/>
+<BRK/>
+<HL1>"TAILORING OPTION NOTES" Tailoring Option</HL1><BRK/>
+Each time tailoring options are used there is an accompanying designer note 
+describing the text that is tailored.  As this Section makes heavy use of tailoring 
+options there are many of these notes and they can distract from designer notes 
+describing other decisions.  The designer notes describing tailoring options 
+are all in a "TAILORING OPTION NOTES" tailoring option which can be hidden (in 
+SpecsIntact select View-Tailoring Options and then deselect "TAILORING OPTION 
+NOTES") once this section is tailored and the tailoring option notes are no 
+longer needed.<BRK/>
+<BRK/>
+<BRK/>
+<HL1>"NIAGARA FRAMEWORK" and "NOT NIAGARA FRAMEWORK" Tailoring Options</HL1><BRK/>
+This specification includes tailoring options for whether or not the Niagara 
+Framework is required - "NIAGARA FRAMEWORK" and "NOT NIAGARA FRAMEWORK".  Exactly 
+ONE of these tailoring options must be chosen.  You have currently selected 
+the following options:<BRK/>
+----------<BRK/>
+   <TAI OPT="NIAGARA FRAMEWORK">NIAGARA FRAMEWORK</TAI><BRK/>
+   <TAI OPT="NOT NIAGARA FRAMEWORK">NOT NIAGARA FRAMEWORK</TAI><BRK/>
+-----------<BRK/>
+If you don't see either the words "NIAGARA FRAMEWORK" or "NOT NIAGARA FRAMEWORK" 
+between the dashes above, you have not selected a tailoring option and this 
+specification is not valid. Select ONE of the tailoring options.<BRK/>
+<BRK/>
+If you see both "NIAGARA FRAMEWORK" and "NOT NIAGARA FRAMEWORK" you have selected 
+both tailoring options.  Remove one of the tailoring options.<BRK/>
+<BRK/>
+<HL1>Service Tailoring Option</HL1><BRK/>
+This specification also includes tailoring options for the Service (Air Force, 
+Army, Navy) the specification is used for.  There is a "Service Generic" tailoring 
+option that can also be used.  Only ONE of the four tailoring options related 
+to the service should be use. You have currently selected the following options:<BRK/>
+----------<BRK/>
+   <TAI OPT="AIR FORCE">AIR FORCE</TAI><BRK/>
+   <TAI OPT="ARMY">ARMY</TAI><BRK/>
+   <TAI OPT="NAVY">NAVY</TAI><BRK/>
+   <TAI OPT="SERVICE GENERIC">SERVICE GENERIC</TAI><BRK/>
+-----------<BRK/>
+If more than one item appears between the dashes above you have selected more 
+than one services tailoring option and need to remove all but one of them.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="NOT NIAGARA FRAMEWORK"><HLS><NTE><BRK/>
+<AST/><BRK/>
+<NPR>WARNING - Both the NIAGARA FRAMEWORK and NOT NIAGARA FRAMEWORK Tailoring Options 
+have been selected.  This will result in a specification that contains conflicts 
+and cannot be met.  DESELECT one of these tailoring options.  See UFC 3-410-02.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</HLS></TAI></TAI><BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  IMPORTANT:  You selected the NIAGARA FRAMEWORK Tailoring Option.  Ensure 
+that the front end (UMCS) uses the Niagara Framework, otherwise integration 
+will fail. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<SPT><TTL>SUMMARY</TTL><BRK/>
+<BRK/>
+<TXT>Provide a complete Direct Digital Control (DDC) system, except for the front end which is specified in Section 
+<SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL (UMCS) FRONT END AND INTEGRATION, suitable for the control of the heating, 
+ventilating and air conditioning (HVAC) and other building-level systems as specified and shown and in accordance 
+with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide a system meeting the requirements of both Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC and this 
+Section and with the following characteristics:</TXT><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph uses tailoring options:<BRK/>
+1) The paragraph referencing Niagara Framework is included only when the NIAGARA 
+FRAMEWORK tailoring option is selected.  <BRK/>
+2) The paragraph NOT referencing Niagara Framework is included only when the 
+NOT NIAGARA FRAMEWORK tailoring option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLG><BRK/>
+<OLI><TAI OPT="NIAGARA FRAMEWORK">Except for Gateways, the control system must be an open implementation of BACnet technology using <RID>ASHRAE 135</RID>
+ and Fox as the communications protocols.  The system must use standard <RID>ASHRAE 135</RID> Objects and Properties 
+and the Niagara Framework.  The system must use standard <RID>ASHRAE 135</RID> Services and the Niagara Framework 
+exclusively for communication over the network.  Gateways to packaged units must communicate with other 
+DDC hardware using  <RID>ASHRAE 135</RID> or the Fox protocol  exclusively and may communicate with packaged equipment 
+using other protocols. The control system must be installed such that any two <RID>ASHRAE 135</RID> devices on the 
+Internetwork can communicate using standard <RID>ASHRAE 135</RID> Services.<BRK/></TAI>
+<BRK/>
+<TAI OPT="NOT NIAGARA FRAMEWORK">Except for Gateways, the control system must be an open implementation of BACnet technology using <RID>ASHRAE 135</RID>
+ as the communications protocol.  The system must use standard <RID>ASHRAE 135</RID> Objects and Properties.  The 
+system must use standard <RID>ASHRAE 135</RID> Services exclusively for communication over the network.  Gateways 
+to packaged units must communicate with other DDC hardware using  <RID>ASHRAE 135</RID> exclusively and may communicate 
+with packaged equipment using other protocols. The control system must be installed such that any two 
+devices on the Internetwork can communicate using standard <RID>ASHRAE 135</RID> Services.</TAI></OLI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph uses tailoring options:  the text "or Niagara 
+Framework Objects" is included only when the NIAGARA FRAMEWORK tailoring option 
+is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<OLI>Install and configure control hardware to provide <RID>ASHRAE 135</RID> Objects and Properties <TAI OPT="NIAGARA FRAMEWORK">or Niagara Framework 
+Objects </TAI>as indicated and as needed to meet the requirements of this specification.</OLI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following TWO list paragraphs are only required for Niagara Framework 
+systems and are included only when the NIAGARA FRAMEWORK tailoring option is 
+selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select Web Pages if a local (in the building) web interface is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Use <RID>Niagara Framework</RID> hardware and software exclusively for scheduling, trending, and communication with 
+a front end (UMCS).  Use <RID>Niagara Framework</RID> or standard BACnet Objects and services for alarming.  Use 
+the Fox protocol for all communication between Niagara Framework Supervisory Gateways; use the <RID>ASHRAE 135</RID>
+ protocol for all other building communication. [Niagara Framework Supervisory Gateway must serve web 
+pages as specified.]</OLI></TAI><TAI OPT="NIAGARA FRAMEWORK"><BRK/>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select or indicate the required version of Niagara.  If the project does 
+not require a different version use the default "4.0 or later".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Use Niagara Framework Version [4.0 or later][_____]..</OLI></TAI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Verification of Specification Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Review all specifications related to the control system installation and advise the Contracting Officer of any 
+discrepancies before performing any work.  If Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC or any other 
+Section referenced in this specification is not included in the project specifications advise the Contracting 
+Officer and either obtain the missing Section or obtain Contracting Officer approval before performing any work.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+ <BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+ <BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 135</RID><RTL>(2024; INT 1-3 2025; Errata 1 2025; INT 4-6 2025; Addenda CU 2025) BACnet—A Data Communication Protocol for Building Automation and Control Networks</RTL><BRK/><BRK/></REF><REF><ORG>BACNET TESTING LABORATORIES (BTL)</ORG><BRK/><BRK/><RID>BTL Guide</RID><RTL>(v.50; 2022) BACnet Testing Laboratory Implementation Guidelines</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 802.3</RID><RTL>(2022; CORR 2024) Ethernet</RTL><BRK/><BRK/></REF><REF><ORG>TELECOMMUNICATIONS INDUSTRY ASSOCIATION (TIA)</ORG><BRK/><BRK/><RID>TIA-485</RID><RTL>(1998a; R 2012) Electrical Characteristics of Generators and Receivers for Use in Balanced Digital Multipoint Systems</RTL><BRK/><BRK/></REF><REF><ORG>TRIDIUM, INC (TRIDIUM)</ORG><BRK/><BRK/><RID>Niagara Framework</RID><RTL>(2021) NiagaraAX User's Guide</RTL><BRK/><BRK/><RID>Niagara NICS</RID><RTL>(2022) Niagara Information and Conformance Statement</RTL><BRK/><BRK/></REF><REF><ORG>U.S. FEDERAL COMMUNICATIONS COMMISSION (FCC)</ORG><BRK/><BRK/><RID>FCC Part 15</RID><RTL>Radio Frequency Devices (47 CFR 15)</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 916</RID><RTL>(2015; Reprint Oct 2021) UL Standard for Safety Energy Management Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>For definitions related to this section, see Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Submittals related to this section are specified in UFGS <SRF>23 09 00</SRF> INSTRUMENTATION 
+AND CONTROL FOR HVAC.  UFGS <SRF>23 09 00</SRF> MUST be used with this specification to 
+have a complete specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submittal requirements related to this Section are specified in Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL 
+FOR HVAC.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Section 25 05 11, use the bracketed text in the Section number to 
+add forth level numbering if used on the project as described in UFC 4-010-06.  
+In the Section name, keep the bracketed text if the section was unnamed or use 
+the empty brackets provided to change the Section name to match the project 
+specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All products used to meet this specification must meet the indicated requirements, but not all products specified 
+here will be required by every project.  All products must meet the requirements of Section <SRF>23 09 00</SRF> INSTRUMENTATION 
+AND CONTROL FOR HVAC, Section <SRF>25 05 11[._____]</SRF> CYBERSECURITY FOR [FACILITY-RELATED CONTROL][_____] SYSTEMS and 
+this Section.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>NETWORK HARDWARE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>BACnet Router</TTL><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  the text "except for Niagara Framework 
+Supervisory Gateways, devices used as BACnet routers" is included only when 
+the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT>All BACnet Routers must be BACnet/IP Routers and must perform layer 3 routing of <RID>ASHRAE 135</RID> packets over an IP 
+network in accordance with <RID>ASHRAE 135</RID> Annex J and Clause 6.  The router must provide the appropriate connection 
+to the IP network and connections to one or more <RID>ASHRAE 135</RID> MS/TP networks.   Devices used as BACnet Routers 
+must meet the requirements for DDC Hardware, and <TAI OPT="NIAGARA FRAMEWORK">except for Niagara Framework Supervisory Gateways, devices used 
+as BACnet routers </TAI>must support the NM-RC-B BIBB.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Gateways</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Gateways should be used only for the integration of a single piece of equipment.  
+Gateways should not be used to permit the installation of new, non-ASHRAE 135 
+networks.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  the text "be a Niagara Framework 
+Supervisory Gateway or must", "except for Niagara Framework Supervisory Gateways", 
+and "(Niagara Framework Supervisory Gateways are both Gateways and DDC Hardware.)" 
+are included only when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT>In addition to the requirements for DDC Hardware, the BACnet Gateway must <TAI OPT="NIAGARA FRAMEWORK">be a Niagara Framework Supervisory 
+Gateway or must </TAI>meet the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>It must perform bi-directional protocol translation from one non-<RID>ASHRAE 135</RID> protocol to <RID>ASHRAE 135</RID>.   
+BACnet Gateways must incorporate a network connection to an <RID>ASHRAE 135</RID> network (either BACnet over IP 
+in accordance with Annex J or MS/TP) and a separate connection appropriate for the non-<RID>ASHRAE 135</RID> protocol 
+and media.</OLI><BRK/>
+<BRK/>
+<OLI>It must retain its configuration after a power loss of an indefinite time, and must automatically return 
+to their pre-power loss state once power is restored.</OLI><BRK/>
+<BRK/>
+<OLI>It must allow bi-directional mapping of data between the non-<RID>ASHRAE 135</RID> protocol and Standard Objects 
+as defined in <RID>ASHRAE 135</RID>.  It must support the DS-RP-B BIBB for Objects requiring read access and the 
+DS-WP-B BIBB for Objects requiring write access.</OLI><BRK/>
+<BRK/>
+<OLI>It must support the DS-COV-B BIBB.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Although Gateways must meet DDC Hardware requirements<TAI OPT="NIAGARA FRAMEWORK"> , except for Niagara Framework Supervisory Gateways,</TAI> they 
+are not DDC Hardware and must not be used when DDC Hardware is required.  <TAI OPT="NIAGARA FRAMEWORK">(Niagara Framework Supervisory Gateways 
+are both Gateways and DDC Hardware.)</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ethernet Switch</TTL><BRK/>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Section 25 05 11, use the bracketed text in the Section number to 
+add forth level numbering if used on the project as described in UFC 4-010-06.  
+In the Section name, keep the bracketed text if the section was unnamed or use 
+the empty brackets provided to change the Section name to match the project 
+specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ethernet Switches must be as specified in Section <SRF>25 05 11[._____]</SRF> CYBERSECURITY FOR [FACILITY-RELATED CONTROL][_____] 
+SYSTEMS</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CONTROL NETWORK WIRING</TTL><BRK/>
+<OLG><BRK/>
+<OLI>BACnet MS/TP communications wiring must be in accordance with <RID>ASHRAE 135</RID>.  The wiring must use shielded, 
+three wire (twisted-pair with reference) cable with characteristic impedance between 100 and 120 ohms. 
+Distributed capacitance between conductors must be less than<MET> 100 pF per meter</MET><ENG> 30 pF per foot</ENG>.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Although the controls contractor installs the building control system 
+backbone, which is an IP network, this system will later be integrated into 
+the basewide network via the FPOC.  To ensure no issues arise during this later 
+integration, obtain additional Ethernet media requirements (if any) from the 
+project site <TAI OPT="ARMY">NEC</TAI>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Building Control Network Backbone IP Network must use Ethernet media.  Ethernet cables must be CAT-5e 
+at a minimum and meet all requirements of <RID>IEEE 802.3</RID> [and [_____]].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DIRECT DIGITAL CONTROL (DDC) HARDWARE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<BRK/>
+<TXT>All DDC Hardware must meet the following requirements: </TXT><BRK/>
+<OLG><BRK/>
+<OLI>It must be locally powered and must incorporate a light to indicate the device is receiving power.</OLI><BRK/>
+<BRK/>
+<OLI>It must conform to the <RID>BTL Guide</RID></OLI><BRK/>
+<BRK/>
+<OLI>It must be BACnet Testing Laboratory (BTL) Listed.</OLI><BRK/>
+<BRK/>
+<OLI>The Manufacturer's Product Data submittal for each piece of DDC Hardware must include the Protocol Implementation 
+Conformance Statement (PICS) for that hardware as specified in Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL 
+FOR HVAC.</OLI><BRK/>
+<BRK/>
+<OLI>It must communicate and be interoperable in accordance with <RID>ASHRAE 135</RID> and have connections for BACnet 
+IP or MS/TP control network wiring.</OLI><BRK/>
+<BRK/>
+<OLI>Other than devices controlling terminal units or functioning solely as a BACnet Router, it must support 
+DS-COV-B, DS-RPM-A and DS-RPM-B BIBBs.</OLI><BRK/>
+<BRK/>
+<OLI>Devices supporting the DS-RP-A BIBB must also support the DS-COV-A BIBB.</OLI><BRK/>
+<BRK/>
+<OLI>Application programs, configuration settings and communication information must be stored in a manner 
+such that they persist through loss of power:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Application programs must persist regardless of the length of time power is lost.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Configured settings must persist for any loss of power less than 2,500 hours.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Communication information, including but not limited to COV subscriptions, event reporting 
+destinations, Notification Class Object settings, and internal communication settings, must 
+persist for any loss of power less than 2,500 hours.</OLI><BRK/>
+<BRK/>
+<OLI>Internal Clocks:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Clocks in DDC Hardware incorporating a Clock must continue to function for 120 hours upon loss 
+of power to the DDC Hardware.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">DDC Hardware incorporating a Clock must support the DM-TS-B or DM-UTC-B BIBB.</OLI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph uses tailoring options:  the text "or Niagara 
+Framework Points" is included only when the NIAGARA FRAMEWORK tailoring option 
+is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<OLI>It must have all functionality indicated and required to support the application (Sequence of Operation 
+or portion thereof) in which it is used, including but not limited to providing Objects <TAI OPT="NIAGARA FRAMEWORK">or Niagara Framework 
+Points </TAI>as specified and as indicated on the Points Schedule.</OLI><BRK/>
+<BRK/>
+<OLI>In addition to these general requirements and the DDC Hardware Input-Output (I/O) Function requirements, 
+all DDC Hardware must also meet any additional requirements for the application in which it is used (e.g. 
+scheduling, alarming, trending, etc.).</OLI><BRK/>
+<BRK/>
+<OLI>It must meet <RID>FCC Part 15 </RID>requirements and have <RID>UL 916</RID> or equivalent safety listing.</OLI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph uses tailoring options:  the text "Except 
+for Niagara Framework Supervisory Gateways," is included only when the NIAGARA 
+FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<OLI><TAI OPT="NIAGARA FRAMEWORK">Except for Niagara Framework Supervisory Gateways, </TAI>Device must support Commandable Objects to support 
+Override requirements as detailed in PART 3 EXECUTION</OLI><BRK/>
+<BRK/>
+<OLI>User interfaces which allow for modification of Properties or settings must be password-protected.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select whether to allow devices using 2-wire (twisted pair with shield) media.<BRK/>
+<BRK/>
+The use of devices using 3-wire (twisted pair with reference and shield) MS/TP 
+media is generally preferable, particularly where long MS/TP runs are required, 
+or in electrically noisy environments.  However, many vendors do not offer devices 
+supporting 3-wire media, and requiring use of 3 wire media will overly limit competition.<BRK/>
+<BRK/>
+Unless the use of 3-wire devices is specifically required for the project,  
+keep the bracketed text to allow the use of 2-wire devices.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Devices communicating BACnet MS/TP must meet the following requirements:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Must have a configurable Max_Master Property.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">DDC Hardware other than hardware controlling a single terminal unit must have a configurable 
+Max_Info_Frames Property.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Must respond to any valid request within 50 msec with either the appropriate response or with 
+a response of "Reply Postponed".</OLI> <BRK/>
+<BRK/>
+<OLI LEVEL="2">Must use twisted pair with reference and shield (3-wire media) wiring[, or twisted pair with 
+shield (2-wire media) wiring and use half-wave rectification].</OLI><BRK/>
+<BRK/>
+<OLI>Devices communicating BACnet/IP must use UDP Port 0xBAC0.  Devices with configurable UDP Ports must default 
+to 0xBAC0.</OLI><BRK/>
+<BRK/>
+<OLI>All Device IDs, Network Numbers, and BACnet MAC addresses of devices must be fully configurable without 
+limitation, except MS/TP MAC addresses may be limited by <RID>ASHRAE 135</RID> requirements.</OLI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph uses tailoring options:  the text "Except 
+for Niagara Framework Supervisory Gateways," is included only when the NIAGARA 
+FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<OLI><TAI OPT="NIAGARA FRAMEWORK">Except for Niagara Framework Supervisory Gateways, </TAI>DDC Hardware controlling a single terminal unit must 
+have:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Objects (including the Device Object) with an Object Name Property of at least 8 characters 
+in length.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A configurable Device Object Name.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A configurable Device Object Description Property at least 16 characters in length.</OLI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph uses tailoring options:  the text "either 
+Niagara Framework Supervisory Gateways or " is included only when the NIAGARA 
+FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<OLI>Except for Objects in <TAI OPT="NIAGARA FRAMEWORK">either Niagara Framework Supervisory Gateways or </TAI>DDC Hardware controlling a single 
+terminal unit, all Objects (including Device Objects) must:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Have a configurable Object Name Property of at least 12 characters in length.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Have a configurable Object Description Property of at least 24 characters in length.</OLI><BRK/>
+<BRK/>
+<OLI>For programmable DDC Hardware, provide and license to the project site all programming software required 
+to program the Hardware in accordance with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC. </OLI><BRK/>
+<BRK/>
+<OLI>For programmable DDC Hardware, provide copies of the installed application programs (all software that 
+is not common to every controller of the same manufacturer and model) as source code compatible with 
+the supplied programming software in accordance with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR 
+HVAC.  The submitted application program must be the complete application necessary for controller to 
+function as installed and be sufficient to allow replacement of the installed controller with another 
+controller of the same type.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Hardware Input-Output (I/O) Functions</TTL><BRK/>
+<BRK/>
+<TXT>DDC Hardware incorporating hardware input-output (I/O) functions must meet the following requirements:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Analog Inputs</TTL><BRK/>
+<BRK/>
+<TXT>DC Hardware analog inputs (AIs) must be implemented using <RID>ASHRAE 135</RID> Analog Input Objects and perform analog 
+to digital (A-to-D) conversion with a minimum resolution of 8 bits plus sign or better as needed to meet the 
+accuracy requirements specified in Section <SRF>23 09 00</SRF>.  Signal conditioning including transient rejection must 
+be provided for each analog input.  Analog inputs must be capable of being individually calibrated for zero and 
+span.  Calibration via software scaling performed as part of point configuration is acceptable.  The AI must 
+incorporate common mode noise rejection of at least 50 dB from 0 to 100 Hz for differential inputs, and normal 
+mode noise rejection of at least 20 dB at 60 Hz from a source impedance of 10,000 ohms.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Analog Outputs</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  PART 3 of this section and the Points Schedules may require that points 
+have an H-O-A switch.  For analog outputs these switches may be "full on, full 
+off" overrides or may have a knob allowing for override to any value (0-100 
+percent).  Unless the project site specifically requires that analog outputs 
+be fully adjustable through the range 0-100 percent, keep the bracketed text 
+allowing either option (i.e. keep "to 0 percent and to 100 percent").  Requiring 
+fully adjustable overrides (i.e. "through the range of 0 percent to 100 percent") 
+will likely raise the cost of the system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>DDC Hardware analog outputs (AOs) must be implemented using <RID>ASHRAE 135</RID> Analog Output Objects and perform digital 
+to analog (D-to-A) conversion with a minimum resolution of 8 bits plus sign, and output a signal with a range 
+of 4-20 mAdc or 0-10 Vdc.  Analog outputs must be capable of being individually calibrated for zero and span.  
+Calibration via software scaling performed as part of point configuration is acceptable. DDC Hardware with Hand-Off-Auto 
+(H-O-A) switches for analog outputs must provide for overriding the output [to 0 percent and to 100 percent][through 
+the range of 0 percent to 100 percent]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Binary Inputs</TTL><BRK/>
+<BRK/>
+<TXT>DDC Hardware binary inputs (BIs) must be implemented using <RID>ASHRAE 135</RID> Binary Input Objects and accept contact 
+closures and must ignore transients of less than 5 milli-second duration.  Protection against a transient 50VAC 
+must be provided.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Binary Outputs</TTL><BRK/>
+<BRK/>
+<TXT>DDC Hardware binary outputs (BOs) must be implemented using <RID>ASHRAE 135</RID> Binary Output Objects and provide relay 
+contact closures or triac outputs for momentary and maintained operation of output devices. DDC Hardware with 
+H-O-A switches for binary outputs must provide for overriding the output open or closed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Relay Contact Closures</TTL><BRK/>
+<BRK/>
+<TXT>Closures must have a minimum duration of 0.1 second.  Relays must provide at least 180V of isolation.  Electromagnetic 
+interference suppression must be provided on all output lines to limit transients to 50 Vac.  Minimum contact 
+rating must be 0.5 amperes at 24 Vac.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Triac Outputs</TTL><BRK/>
+<BRK/>
+<TXT>Triac outputs must provide at least 180 V of isolation.  Minimum contact rating must be 0.5 amperes at 24 Vac.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pulse Accumulator</TTL><BRK/>
+<BRK/>
+<TXT>DDC Hardware pulse accumulators must be implemented using either an <RID>ASHRAE 135</RID> Accumulator Object or an  <RID>ASHRAE 135</RID>
+ Analog Value Object where the Present_Value is the totalized pulse count.  Pulse accumulators must accept contact 
+closures, ignore transients less than 5 msec duration, protect against<BRK/>
+transients of 50 VAC, and accept rates of at least 20 pulses per second.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ASHRAE 135 Objects for Hardware Inputs and Outputs</TTL><BRK/>
+<BRK/>
+<TXT>The requirements for use of <RID>ASHRAE 135</RID> objects for hardware input and outputs includes devices where the hardware 
+sensor or actuator is integral to the controller (e.g. a VAV box with integral damper actuator, a smart sensor, 
+a VFD, etc.)</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Integrated H-O-A Switches</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Even if H-O-A switches are implemented, Requiring feedback of H-O-A status 
+may seriously limit competition and raise project costs. Unless there is a specific 
+project requirement for H-O-A feedback, remove the bracketed text.</NPR><BRK/>
+<AST/></NTE><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  the text "the Niagara Framework 
+or via " is included only when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT> Where integrated H-O-A switches are provided on hardware outputs, controller must provide means of monitoring 
+position or status of H-O-A switch.  This feedback may be provided via <TAI OPT="NIAGARA FRAMEWORK">the Niagara Framework or via </TAI>any valid 
+BACnet method, including the use of proprietary Objects, Properties, or Services.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Local Display Panel (LDP)</TTL><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  the text "Niagara Framework points 
+or" is included only when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT>The Local Display Panels (LDPs) must be DDC Hardware with a display and navigation buttons or a touch screen 
+display, and must provide display and adjustment of <TAI OPT="NIAGARA FRAMEWORK">Niagara Framework points or </TAI><RID>ASHRAE 135</RID>  Properties as indicated 
+on the Points Schedule and as specified.  LDPs must be either BTL Listed as a B-OD, B-OWS, B-AWS, or be an integral 
+part of another piece of DDC Hardware listed as a B-BC.  For LDPs listed as B-OWS or B-AWS, the hardware must 
+be BTL listed and the product must come factory installed with all applications necessary for the device to function 
+as an LDP.</TXT>  <BRK/>
+<BRK/>
+<TXT>The adjustment of values using display and navigation buttons must be password protected.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Expansion Modules and Tethered Hardware</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  <BRK/>
+a. Covers the case where a base controller has add-on modules to provide I/O 
+capability, where the modules "snap on" to the controller.  This generally relies 
+on a proprietary protocol between the base unit and the expansion modules, but 
+as the module is essentially part of the base unit upon installation this is permitted.<BRK/>
+<BRK/>
+b. covers a remotely tethered device and is primarily needed for remote "thermostats" 
+connected to a controller, where the thermostat is essentially an extension 
+of the controller.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>A single piece of DDC Hardware may consist of a base unit and also:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>An unlimited number of hardware expansion modules, where the individual hardware expansion modules are 
+designed to directly connect, both mechanically and electrically, to the base unit hardware.  The expansion 
+modules must be commercially available as an optional add-on to the base unit.</OLI><BRK/>
+<BRK/>
+<OLI>A single piece of hardware connected (tethered) to a base unit by a single cable where the cable carries 
+a proprietary protocol between the base unit and tethered hardware.    The tethered hardware must not 
+contain control logic and be commercially available as an optional add-on to the base unit as a single package. <BRK/>
+<BRK/>
+Note that this restriction on tethered hardware does not apply to sensors or actuators using standard 
+binary or analog signals (not a communications protocol);  sensors or actuators using standard binary 
+or analog signals are not considered part of the DDC Hardware.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Hardware capable of being installed stand-alone, or without a separate base unit, is DDC Hardware and must not 
+be used as expansion modules or tethered hardware.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Supervisory Control Requirements</TTL><BRK/>
+<BRK/>
+<TAI OPT="NOT NIAGARA FRAMEWORK"><SPT><TTL>Scheduling Hardware</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for non-Niagara Framework based systems 
+and is only included when the NOT NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>DDC Hardware used for scheduling must meet the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>It must be BTL Listed as a B-BC and support the SCHED-E-B BIBB.</OLI><BRK/>
+<BRK/>
+<OLI>It is preferred, but not required, that devices support the DM-OCD-B BIBB on all Calendar and Schedule 
+Objects, such that a front end BTL listed as a B-AWS may create or delete Calendar and Schedule Objects.  
+It is also preferred but not required that devices supporting the DM-OCD-B BIBB accept any valid value 
+for properties of Calendar and Schedule Objects.  Note that there are additional requirements in the 
+EXECUTION Part of this Section for Devices which do not support the DM-OCD-B BIBB as specified.</OLI><BRK/>
+<BRK/>
+<OLI>The Date_List property of all Calendar Objects must be writable.</OLI><BRK/>
+<BRK/>
+<OLI>The Present_Value Property of Schedule must support the following values: 1, 2, 3, 4.</OLI></OLG></SPT></TAI><BRK/>
+<BRK/>
+<SPT><TTL>Alarm Generation Hardware</TTL><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  the text "Non-Niagara Framework 
+" is included only when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT><TAI OPT="NIAGARA FRAMEWORK">Non-Niagara Framework </TAI>DDC Hardware used for alarm generation must meet the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Device must support the AE-N-I-B BIBB</OLI><BRK/>
+<BRK/>
+<OLI>The Recipient_List Property must be Writable for all Notification Class Objects used for alarm generation.</OLI><BRK/>
+<BRK/>
+<OLI>For all Objects implementing Intrinsic Alarming, the following Properties must be Writable:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Time_Delay</OLI><BRK/>
+<OLI LEVEL="2">High_Limit</OLI><BRK/>
+<OLI LEVEL="2">Low_Limit</OLI><BRK/>
+<OLI LEVEL="2">Deadband</OLI><BRK/>
+<OLI LEVEL="2">Event_Enable</OLI><BRK/>
+<OLI LEVEL="2">If the issue date of this project specification is after 1 January 2016, Time_Delay_Normal 
+must be writable.</OLI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph is only required for Niagara Framework systems 
+and is included only when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLI>It is preferred, but not required, that devices support the DM-OCD-B BIBB on all Notification Class Objects. 
+It is also preferred, but not required that devices supporting the DM-OCD-B BIBB  accept any valid value 
+as an initial value for properties of Notification Class Objects.</OLI></TAI><BRK/>
+<TAI OPT="NOT NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following THREE list paragraphs are only required for Non-Niagara 
+Framework systems and are included only when the NOT NIAGARA FRAMEWORK tailoring 
+option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLI>For Event Enrollment Objects used for alarm generation, the following Properties must be Writable:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Event_Parameters</OLI><BRK/>
+<OLI LEVEL="2">Event_Enable</OLI><BRK/>
+<OLI LEVEL="2">If the issue date of this project specification is after 1 January 2016, Time_Delay_Normal 
+must be writable.</OLI><BRK/>
+<BRK/>
+<OLI>It is preferred, but not required, that devices support the DM-OCD-B BIBB on all Notification Class Objects 
+and Event Enrollment Objects, such that a front end BTL listed as a B-AWS may create or delete Notification 
+Class Objects and Event Enrollment Objects. It is also preferred, but not required that devices supporting 
+the DM-OCD-B BIBB  accept any valid value as an initial value for properties of Notification Class Objects 
+and Event Enrollment Objects.  Note that there are additional requirements in the EXECUTION Part of this 
+Section for devices which do not support the DM-OCD-B BIBB as specified.</OLI><BRK/>
+<BRK/>
+<OLI>Devices provided to meet the the requirements indicated under "Support for Future Alarm Generation" in 
+the EXECUTION part of this specification must support the AE-N-E-B BIBB. </OLI></TAI><BRK/></OLG>
+<BRK/></SPT>
+<TAI OPT="NOT NIAGARA FRAMEWORK"><SPT><TTL>Trending Hardware</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for non-Niagara Framework based systems 
+and is only included when the NOT NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>DDC Hardware used for collecting trend data must meet the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Device must support Trend Log or Trend Log Multiple Objects.</OLI><BRK/>
+<BRK/>
+<OLI>Device must support the T-VMT-I-B BIBB.</OLI><BRK/>
+<BRK/>
+<OLI>Devices provided to meet the EXECUTION requirement for support of Future Trending must support the T-VMT-E-B 
+BIBB. </OLI><BRK/>
+<BRK/>
+<OLI>The following properties of all Trend Log or Trend Log Multiple Objects must be present and Writable:</OLI><BRK/>
+<ITM>Start_Time</ITM><BRK/>
+<ITM>Stop_Time</ITM><BRK/>
+<ITM>Log_DeviceObjectProperty</ITM><BRK/>
+<ITM>Log Interval  Log interval must support an interval of at least 60 minutes duration.</ITM><BRK/>
+<BRK/>
+<OLI>Trend Log Objects must support using Intrinsic Reporting to send a BUFFER_FULL event.</OLI><BRK/>
+<BRK/>
+<OLI>The device must have a Notification Class Object for the BUFFER_FULL event.  The Recipient_List Property 
+must be Writable.</OLI><BRK/>
+<BRK/>
+<OLI>Devices must support values of at least 1,000 for Buffer_Size Properties. </OLI><BRK/>
+<BRK/>
+<OLI>It is preferred, but not required, that devices support the DM-OCD-B BIBB on all Trend Log Objects, such 
+that a front end BTL listed as a A-AWS may create or delete Trend Log Objects. It is also preferred, 
+but not required that devices supporting the DM-OCD-B BIBB accept any valid value as an initial value 
+for properties of Trend Log Objects.  Note that there are additional EXECUTION requirements for devices 
+which do not support the DM-OCD-B BIBB as specified.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</TAI></SPT><TAI OPT="NIAGARA FRAMEWORK"><SPT><TTL> Niagara Framework Supervisory Gateway </TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for Niagara Framework based systems and 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  FYI - The Niagara Framework Supervisory Gateway is known by many names 
+within industry, and this specification uses the name "Niagara Framework Supervisory 
+Gateway" in order to remain vendor neutral. Probably the most common term used 
+for this device in industry is a "Java Application Control Engine", or JACE. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Any device implementing the Niagara Framework is a Niagara Framework Supervisory Gateway and must meet these 
+requirements.  In addition to the general requirements for all DDC Hardware, Niagara Framework Supervisory Gateway 
+Hardware must:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Be direct digital control hardware.</OLI><BRK/>
+<BRK/>
+<OLI>Have an unrestricted interoperability license and its Niagara Information and Conformance Statement (NICS) 
+must allow open access as defined by <RID>Niagara NICS</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Manage communications between a field control network and the Niagara Framework Monitoring and Control 
+Software, and between itself and other Niagara Framework Supervisory Gateways. Niagara Framework Supervisory 
+Gateway Hardware must use Fox protocol for communication with other Niagara Framework Components, regardless 
+of the manufacturer of the other components.</OLI><BRK/>
+<BRK/>
+<OLI>Be fully programmable using the Niagara Framework Engineering Tool and must support the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Time synchronization, Calendar, and Scheduling using Niagara Scheduling Objects</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Alarm generation and routing using the Niagara Alarm Service</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Trending using the Niagara History Service and Niagara Trend Log Objects</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Integration of field control networks using the Niagara Framework Engineering Tool</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Configuration of integrated field control system using the Niagara Framework Engineering Tool 
+when supported by the field control system</OLI><BRK/>
+<BRK/>
+<OLI>Meet the following minimum hardware requirements:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC"><TAI OPT="NAVY">[</TAI>One<TAI OPT="NAVY">]</TAI></TAI><TAI OPT="NAVY"><TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC">[</TAI>Two<TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC">]</TAI></TAI> 10/100<TAI OPT="NAVY">/1000</TAI> Mbps Ethernet Port<TAI OPT="NAVY">(s)</TAI></OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">One or more MS/TP ports.</OLI><TAI OPT="NAVY"><TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC">[</TAI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Central Processing Unit of 600 Mhz or higher.</OLI><TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC">]</TAI><TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC">[</TAI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Embedded operating system.</OLI><TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC">]</TAI></TAI><BRK/>
+<BRK/>
+<OLI>Provide access to field control network data and supervisory functions via web interface and support 
+a minimum of 16 simultaneous users.  Note: implementation of this capability may not be required on all 
+projects. </OLI><BRK/>
+<BRK/>
+<OLI>Submit a backup of each Niagara Framework Supervisory Gateway as specified in Section <SRF>23 09 00</SRF> INSTRUMENTATION 
+AND CONTROL FOR HVAC.  The backup must be sufficient to restore a Niagara Framework Supervisory Gateway 
+to the final as-built condition such that a new Niagara Framework Supervisory Gateway loaded with the 
+backup is indistinguishable in functionality from the original.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</TAI></SPT><TAI OPT="NIAGARA FRAMEWORK"><SPT><TTL>NIAGARA FRAMEWORK ENGINEERING TOOL</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for Niagara Framework based systems and 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>The Niagara Framework Engineering Tool must be Niagara Workbench or an equivalent <RID>Niagara Framework</RID> engineering 
+tool software must:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Have an unrestricted interoperability license and its Niagara Information and Conformance Statement (NICS) 
+must allow open access as defined by <RID>Niagara NICS</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Be capable of performing network configuration for Niagara Framework Supervisory Gateways and Niagara 
+Framework Monitoring and Control Software.</OLI><BRK/>
+<BRK/>
+<OLI>Be capable of programming and configuring of Niagara Framework Supervisory Gateways and Niagara Framework 
+Monitoring and Control Software.</OLI><BRK/>
+<BRK/>
+<OLI>Be capable of discovery of Niagara Framework Supervisory Gateways and all points mapped into each Niagara 
+Framework Supervisory Gateway and making these points accessible to Niagara Framework Monitoring and 
+Control Software.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Monitoring and Control Software is specified in Section <SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL SYSTEM (UMCS) 
+FRONT END AND INTEGRATION.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the bracketed text for retrofit projects only.  For new construction, 
+the existing conditions survey may not be required and may be removed (be sure 
+to remove the report from the submittals as well).  Keeping it as a requirement, 
+however, will ensure that the Contractor checks the mechanical equipment prior 
+to beginning controls installation.  This should allow problems to be caught 
+and addressed earlier.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL> CONTROL SYSTEM INSTALLATION</TTL><TAI OPT="NIAGARA FRAMEWORK"><SPT><TTL>Niagara Framework Engineering Tool</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for Niagara Framework based systems and 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the installation has a Niagara Framework Engineering Tool keep the 
+first bracketed text and provide the software name and version number in the 
+space provided.  If the installation does not have a Niagara Framework Engineering 
+Tool keep the seconded bracketed text. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[The project site currently has the [_____] Niagara Framework Engineering Tool.  If this software is not adequate 
+for programming the Niagara Framework Supervisory Gateways provided under this project, provide a Niagara Framework 
+Engineering Tool.][Provide a Niagara Framework Engineering Tool.]</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Building Control Network (BCN)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Note that the term BCN is used across multiple specification including 
+those using different protocols, and "network" is used in the generic sense 
+to refer to the entire system.  In BACnet this is called the Internetwork but 
+the term BCN is still used for consistency across specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  the phrase "for the IP network and" 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT>Install the Building Control Network (BCN) as a single BACnet Internetwork consisting of a single IP network 
+as the BCN Backbone and zero or more BACnet MS/TP networks.  Note that in some cases there may only be a single 
+device on the BCN Backbone.</TXT><BRK/>
+<BRK/>
+<TXT>Except <TAI OPT="NIAGARA FRAMEWORK">for the IP Network and </TAI>as permitted for the non-BACnet side of Gateways, use exclusively <RID>ASHRAE 135</RID> networks.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Building Control Network IP Backbone</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the appropriate bracketed options to indicate whether the FPOC 
+location is shown on a drawing or to specify the FPOC location here.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  the text "(Note that in a Niagara 
+Framework system there may not be BACnet traffic on the IP Network)" is only 
+included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT>Install IP Network Cabling in conduit.  Install Ethernet Switches in lockable enclosures.  Install the Building 
+Control Network (BCN) IP Backbone such that it is available at the Facility Point of Connection (FPOC) location 
+[as indicated][_____].  When the FPOC location is a room number, provide sufficient additional media to ensure 
+that the Building Control Network (BCN) IP Backbone can be extended to any location in the room.</TXT><BRK/>
+<BRK/>
+<TXT>Use UDP port 0xBAC0 for all BACnet traffic on the IP network. <TAI OPT="NIAGARA FRAMEWORK">(Note that in a Niagara Framework system there 
+may not be BACnet traffic on the IP Network)</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet MS/TP Networks</TTL><BRK/>
+<BRK/>
+<TXT>When using MS/TP, provide MS/TP networks in accordance with <RID>ASHRAE 135</RID> and in accordance with the <RID>ASHRAE 135</RID> 
+figure "Mixed Devices on 3-Conductor Cable with Shield" (Figure 9-1.4 in the 2020 version of ASHRAE 135).  Ground 
+the shield at the BACnet Router and at no other point.  Ground the reference wire at the BACnet Router through 
+a 100 ohm resistor and do not ground it at any other point.  In addition:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide each segment in a doubly terminated bus topology in accordance with <RID>TIA-485</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide each segment with 2 sets of network bias resistors in accordance with <RID>ASHRAE 135</RID>, with one set 
+of resistors at each end of the MS/TP network.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  3-wire media (twisted pair with reference), which is required by this 
+section, allows for both 2-wire and 3-wire MS/TP devices to co-exist on the 
+same bus.  Please refer to ASHRAE 135 (2020), subpart 9.2.2.1.1.4.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Use 3 wire (twisted pair and reference) with shield media for all MS/TP media installed inside.  Use 
+fiber optic isolation in accordance with <RID>ASHRAE 135</RID> for all MS/TP media installed outside buildings, 
+or between multiple buildings.</OLI><BRK/>
+<BRK/>
+<OLI>For 18 AWG cable, use segments with a maximum length of <MET>1200 m</MET><ENG>4000 ft</ENG>. When using greater distances or 
+different wire gauges comply with the electrical specifications of <RID>TIA-485</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>For each controller that does not use the reference wire provide transient suppression at the network 
+connection of the controller if the controller itself does not incorporate transient suppression.</OLI><BRK/>
+<BRK/>
+<OLI>Install no more than 32 devices on each MS/TP segment. Do not use MS/TP to MS/TP routers.</OLI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph uses tailoring options:  the text "a Niagara 
+Framework Supervisory Gateway configured as" is only included when the NIAGARA 
+FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<OLI>Connect each MS/TP network to the BCN backbone via <TAI OPT="NIAGARA FRAMEWORK">a Niagara Framework Supervisory Gateway configured 
+as </TAI>a BACnet Router.</OLI><BRK/>
+<BRK/>
+<OLI>For BACnet Routers, configure the MS/TP MAC address to 0.  Assign MAC Addresses to other devices consecutively 
+beginning at 1, with no gaps.  </OLI><BRK/>
+<BRK/>
+<OLI>Configure the Max_Master Property of all devices to be 31. </OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Building Control Network (BCN) Installation</TTL><BRK/>
+<BRK/>
+<TXT>Provide a building control network meeting the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Install all DDC Hardware connected to the Building Control Network.</OLI><BRK/>
+<BRK/>
+<OLI>Where multiple pieces of DDC Hardware are used to execute one sequence, install all DDC Hardware executing 
+that sequence on a single MS/TP network dedicated to that sequence.</OLI><BRK/>
+<BRK/>
+<OLI>Traffic between BACnet networks must be exclusively via BACnet routers.</OLI><TAI OPT="NIAGARA FRAMEWORK"><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph is required only for Niagara Framework systems 
+and is included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<OLI>Use the Fox protocol for all traffic both originating and terminating at Niagara Framework components. 
+Use the Fox protocol for all traffic originating or terminating at a Niagara Framework UMCS (including 
+traffic to or from a future UMCS). All other traffic, including traffic between <RID>ASHRAE 135</RID> devices and 
+traffic between Niagara Framework Supervisory Gateways and <RID>ASHRAE 135</RID> devices must be in accordance with <RID>
+ASHRAE 135</RID>.</OLI></TAI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>DDC Hardware</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate whether enclosures must be lockable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+Install all DDC Hardware that connects to an IP network in lockable enclosure.  Install other DDC Hardware that is 
+not in suspended ceilings in [lockable ]enclosures.  For all DDC hardware with a user interface, coordinate with 
+site to determine proper passwords and configure passwords into device.<BRK/>
+<OLG><BRK/>
+<OLI>Except for zone sensors (thermostats), install all Tethered Hardware within<MET> 2 m</MET><ENG> 6 feet</ENG> of its base unit.</OLI><BRK/>
+<BRK/>
+<OLI>Install and configure all BTL-Listed devices in a manner consistent with their BTL Listing such that 
+the device as provided still meets all requirements necessary for its BTL Listing.</OLI>  <BRK/>
+<BRK/>
+<OLI>Install and configure all BTL-Listed devices in a manner consistent with the BTL Device Implementation 
+Guidelines such that the device as provided meets all those Guidelines.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL> Device Identifiers, Network Addresses, and IP addresses</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Each device requires a unique DeviceID and each network requires a unique 
+Network Number; a BACnet system will not operate if there are duplicates.  While 
+it is a simple matter to ensure unique IDs for a single project, there is no 
+mechanism in BACnet to avoid duplicates when a project is later integrated into 
+an existing basewide UMCS.  <BRK/>
+The installation must manually track and manage DeviceIDs and Network Numbers 
+among all their BACnet systems, networks, and devices.  The UFC has information 
+on suggested strategies.  Coordinate with the installation and either instruct 
+the contractor to coordinate with the installation, or provide ranges for DeviceIDs 
+and Network Numbers.  BACnet allows DeviceIDs in the range 0 - 4,194,302 and 
+Network Numbers in the range 1 - 65,534.  <BRK/>
+Coordinate IP addresses with the installation <TAI OPT="ARMY">NEC</TAI> or instruct the contractor 
+to do so.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Do not use any Device Identifier or Network Number already used by another BACnet system at the project 
+site.  [Coordinate Device IDs and Network Numbers with the installation.  The installation POC is [_____]] 
+[Use Device IDs within the range of [_____] to [_____] and Network Numbers in the range of [_____] to 
+[_____]].</OLI><BRK/>
+<BRK/>
+<OLI>[Use IP addresses within the range of [_____] to [_____]] [Coordinate device IP addresses with installation.  
+The installation POC is [_____]].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><TAI OPT="NIAGARA FRAMEWORK">ASHRAE 135 </TAI>Object Name Property and Object Description Property</TTL><BRK/>
+<BRK/>
+<TXT>Configure the Object_Names and Object_Descriptions properties of all <TAI OPT="NIAGARA FRAMEWORK"><RID>ASHRAE 135</RID> </TAI>Objects (including Device Objects) 
+as indicated on the Points Schedule (Point Name and Point Description) and as specified. At a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Except for DDC Hardware controlling a single terminal unit, configure the Object_Name and Object_Description 
+properties of all Objects (including Device Objects) as indicated on the Points Schedule and as specified.</OLI><BRK/>
+<BRK/>
+<OLI>In DDC Hardware controlling a single terminal unit, configure the Device Object_Name and Device Object_Description 
+as indicated on the Points Schedule and as specified.</OLI><BRK/></OLG>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate who is authorized to approve alternative object (point) names 
+and descriptions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>When Points Schedule entries exceed the length limitations in the device, notify [_____] and provide recommended 
+alternatives for approval.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NIAGARA FRAMEWORK"><SPT><TTL>Niagara Framework Point Names and Descriptions</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for Niagara Framework based systems and 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Configure the names and descriptions of all Points in Niagara Framework Supervisory Gateways as indicated on 
+the Points Schedule and as specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Niagara Station IDs</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for Niagara Framework based systems and 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Ensure that Niagara Station IDs of new Niagara Framework Supervisory Gateways are maintained as unique within 
+UMCS front-end, including ensuring they do not conflict with any existing Niagara Station ID.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Hand-Off-Auto (H-O-A) Switches</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See also DDC Hardware in PART 2.<BRK/>
+<BRK/>
+The bracketed text is a general requirement for H-O-A switches and should only 
+be included if such a requirement is absolutely necessary.  It is best practice 
+to use overrides in lieu of H-O-A switches.  If H-O-A switches are specifically 
+required by the project site it is best to remove the bracketed text and indicate 
+which points require H-O-A switches on the Points Schedules.<BRK/>
+<BRK/>
+Note that many sequences already have H-O-A switch requirements for motors independent 
+of any other H-O-A requirements.<BRK/>
+<BRK/>
+Select the desired capability for external switches for analog outputs</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Hand-Off-Auto (H-O-A) switches [for all DDC Hardware analog outputs and binary outputs used for control 
+of systems other than terminal units, ]as specified and as indicated on the Points Schedule. Provide H-O-A switches 
+that are integral to the controller hardware, an external device co-located with (in the same enclosure as) the 
+controller, integral to the controlled equipment, or an external device co-located with (in the same enclosure 
+as) the controlled equipment.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>For H-O-A switches integral to DDC Hardware, meet the requirements specified in paragraph DIRECT DIGITAL 
+CONTROL (DDC) HARDWARE.</OLI><BRK/>
+<BRK/>
+<OLI>For external H-O-A switches used for binary outputs, provide for overriding the output open or closed.</OLI><BRK/>
+<BRK/>
+<OLI>For eternal H-O-A switches used for analog outputs, provide for overriding [to 0 percent or 100 percent][through 
+the range of 0 percent to 100 percent].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Local Display Panels</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must indicate on each Points Schedule which points, if any, 
+are to be displayed or adjustable from an LDP.<BRK/>
+<BRK/>
+Designer should coordinate with the project site to determine number and location 
+of LDPs needed and show on them on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  the text "points in a Niagara Framework 
+Supervisory Gateway or " is only included when the NIAGARA FRAMEWORK tailoring 
+option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT>Provide LDPs to display and override values of <TAI OPT="NIAGARA FRAMEWORK"><BRK/>
+points in a Niagara Framework Supervisory Gateway or </TAI><RID>ASHRAE 135</RID> Object Properties as indicated on the Points 
+Schedule.  Install LDPs displaying points for anything other than a terminal unit in the same room as the equipment.  
+Install LDPs displaying points for only terminal units [in a mechanical room central to the group of terminal 
+units it serves][_____].  For LDPs using WriteProperty to commandable objects to implement an override, write 
+values with priority 9.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MS/TP Slave Devices</TTL><BRK/>
+<BRK/>
+<TXT>Configure all MS/TP devices as Master devices.  Do not configure any devices to act as slave devices.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Change of Value (COV) and Read Property</TTL><BRK/>
+<OLG><BRK/>
+<OLI>To the greatest extent possible, configure all devices to support the SubscribeCOV service (the DS-COV-B 
+BIBB).  At a minimum, all devices supporting the DS-RP-B BIBB, other than devices controlling only a 
+single terminal unit, must be configured to support the DS-COV-B BIBB.</OLI><BRK/>
+<BRK/>
+<OLI>Whenever supported by the server side, configure client devices to use the DS-COV-A BIBB.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Engineering Units</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with site and select either English or SI units for the building 
+control system devices based on the standard used at the project site.  Units 
+must NOT be changed between BACnet projects at a site as units MUST be standardized 
+across the entire UMCS.  Also note that this choice affects how values are stored 
+and/communicated in the system, not necessarily how they are displayed at the 
+front end.<BRK/>
+<BRK/>
+Keep the first section of bracketed text for SI (Metric) units, and the second 
+for IP (English)  units.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Configure devices to use SI (Metric) units as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Temperature in degrees C</OLI><BRK/>
+<BRK/>
+<OLI>Air or natural gas flows in Liters per Second (LPS) </OLI><BRK/>
+<BRK/>
+<OLI>Water flow in Liters per Second (LPS)</OLI><BRK/>
+<BRK/>
+<OLI>Steam flow in kilograms per second (kg/s)</OLI><BRK/>
+<BRK/>
+<OLI>Differential Air pressures in Pascals (Pa)</OLI><BRK/>
+<BRK/>
+<OLI>Water, steam and natural gas pressures in kiloPascals (kPa)</OLI><BRK/>
+<BRK/>
+<OLI>Enthalpy in kiloJoules per kilogram (kJ/kg)</OLI><BRK/>
+<BRK/>
+<OLI>Heating and Cooling Energy in kilowatt-hours (kWh)</OLI><BRK/>
+<BRK/>
+<OLI>Heating and Cooling load in kilowatts (kW)</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Power:  kilowatts (kW)</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Energy:  kilowatt-hours (kWh)</OLI>][</OLG><TXT>Configure devices to use English (Inch-Pound) engineering units 
+as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Temperature in degrees F</OLI><BRK/>
+<BRK/>
+<OLI>Air or natural gas flows in cubic feet per minute (CFM)</OLI><BRK/>
+<BRK/>
+<OLI>Water in gallons per minute (GPM)</OLI><BRK/>
+<BRK/>
+<OLI>Steam flow in pounds per hour (pph)</OLI><BRK/>
+<BRK/>
+<OLI>Differential Air pressures in inches of water column (IWC)</OLI><BRK/>
+<BRK/>
+<OLI>Water, steam, and natural gas pressures in PSI</OLI><BRK/>
+<BRK/>
+<OLI>Enthalpy in BTU/lb</OLI><BRK/>
+<BRK/>
+<OLI>Heating and cooling energy in MBTU (1MBTU = 1,000,000 BTU))</OLI><BRK/>
+<BRK/>
+<OLI>Cooling load in tons (1 ton = 12,000 BTU/hour)</OLI><BRK/>
+<BRK/>
+<OLI>Heating load in MBTU/hour (1MBTU = 1,000,000 BTU)</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Power:  kilowatts (kW)</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Energy:  kilowatt-hours (kWh)</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Occupancy Modes</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Intent is to standardize mode enumerations for operational modes.  Sequences 
+will be defined in Specification Section <SRF>23 09 93</SRF> SEQUENCES OF OPERATION FOR 
+HVAC CONTROL</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use the following correspondence between value and occupancy mode whenever an occupancy state or value is required:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>OCCUPIED mode: a value of one </OLI><BRK/>
+<OLI>UNOCCUPIED mode:  a value of two</OLI><BRK/>
+<OLI>WARM-UP/COOL-DOWN (PRE-OCCUPANCY) mode: a value of three</OLI><BRK/>
+  </OLG><BRK/>
+ <TXT>Note that elsewhere in this Section the Schedule Object is required to also support a value of four, which is 
+reserved for future use.  Also note that the behavior of a system in each of these occupancy modes is indicated 
+in the sequence of operation for the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Use of BACnet Objects</TTL><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  the text "Except as specifically 
+indicated for Niagara Framework Objects, " is only included when the NIAGARA 
+FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT><TAI OPT="NIAGARA FRAMEWORK">Except as specifically indicated for Niagara Framework Objects, </TAI> Use only standard non-proprietary <RID>ASHRAE 135</RID>
+ Objects and services to accomplish the project scope of work as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Use Analog Input or Analog Output Objects for all analog hardware I/O.  Do not use Analog Value Object 
+for analog hardware I/O) .</OLI><BRK/>
+<BRK/>
+<OLI>Use Binary Input or Binary Output Objects for all binary hardware I/O.  Do not use Binary Value Objects 
+for binary hardware I/O.</OLI><BRK/>
+<BRK/>
+<OLI>Use Analog Value Objects for analog setpoints. </OLI><BRK/>
+<BRK/>
+<OLI>Use Accumulator Objects or Analog Value Objects for pulse inputs.</OLI><BRK/>
+<BRK/>
+<OLI>For occupancy modes, use Multistate Value Objects and the correspondence between value and occupancy 
+mode specified in paragraph OCCUPANCY MODES.</OLI><BRK/>
+<TAI OPT="NOT NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph is required only for NON-Niagara Framework 
+systems, and is included only when the NOT NIAGARA FRAMEWORK tailoring option 
+is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<OLI>Use Schedule Objects and Calendar Objects for all scheduling.  Use Trend Log Objects or Trend Log Multiple 
+Objects for all trending and Notification Class Objects for trend log upload.  Use a combination of Event 
+Enrollment Objects,Intrinsic Alarming, and Notification Class Objects for alarm generation.  </OLI></TAI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph is required only for Niagara Framework systems, 
+and is included only when the NIAGARA FRAMEWORK tailoring option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLI>Use a combination of Niagara Framework Alarm Extensions and Alarm Services, Intrinsic Alarming, and Notification 
+Class Objects for alarm generation.  </OLI></TAI><BRK/>
+<BRK/>
+<OLI>For all other points shown on the Points Schedule as requiring an <RID>ASHRAE 135</RID> Object, use the Object type 
+shown on the Points Schedule or, if no Object Type is shown, use a standard Object appropriate to the 
+point.</OLI><BRK/></OLG>
+<BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><SPT><TTL>Niagara Framework Objects</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for Niagara Framework based systems and 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Points in the Niagara Framework Supervisory Gateway, even if used in a sequence or are shown on the Points Schedule, 
+are not required to be exposed as BACnet Objects unless they are required to be available on the network by another 
+device or sequence of operation (i.e. there is some other reason they are needed).</TXT><BRK/>
+<BRK/>
+<TXT>Use a Niagara Framework Supervisory Gateway as specified for all scheduling and trending.  Use a Niagara Framework 
+Supervisory Gateway as specified for all alarming except for intrinsic alarming.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>Use of Standard BACnet Services</TTL><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  the text "(including Niagara Frameworks 
+Supervisory Gateways when communicating with non-Niagara Framework DDC Hardware)" 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT>Except as noted in this paragraph, for all DDC Hardware <TAI OPT="NIAGARA FRAMEWORK">(including Niagara Frameworks Supervisory Gateways when 
+communicating with non-Niagara Framework DDC Hardware) </TAI>use Standard BACnet Services as defined in this specification 
+(which excludes some <RID>ASHRAE 135</RID> services) exclusively for application control functionality and communication.</TXT><BRK/>
+<BRK/>
+<TXT>DDC Hardware that cannot meet this requirement may use non-standard services provided they can provide identical 
+functionality using Standard BACnet Services when communicating with BACnet devices from a different vendor.  
+When implementing non-standard services, document all non-standard services in the DDC Hardware Schedule as specified 
+and as specified in Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Device Application Configuration</TTL><BRK/>
+<OLG><BRK/>
+<OLI>For every property, setting or value shown on the Points Schedule or otherwise indicated as Configurable, 
+provide a value that is retained through loss of power and can be changed via one or more of:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">BACnet services (including proprietary services)</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Hardware settings on the device</OLI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following item paragraph is required only for Niagara Framework systems 
+and is only included when the NIAGARA FRAMEWORK tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<OLI LEVEL="2">The Niagara Framework</OLI></TAI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph uses tailoring options:  the text "in non-Niagara 
+Framework Hardware" is only included when the NIAGARA FRAMEWORK tailoring option 
+is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<OLI>For every property, setting or value <TAI OPT="NIAGARA FRAMEWORK">in non-Niagara Framework Hardware</TAI> shown on the Points Schedule or 
+otherwise indicated as Operator Configurable, provide a value that is retained through loss of power 
+and can be changed via one or more of:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A Writable Property of a standard BACnet Object</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A Property of a standard BACnet Object that is Writable when Out_Of_Service is TRUE and Out_Of_Service 
+is Writable.</OLI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following item paragraph is required only for Niagara Framework systems 
+and is only included when the NIAGARA FRAMEWORK tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLI LEVEL="2">Using some other method supported by a Niagara Framework Supervisory Gateway</OLI><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following TWO list paragraphs are required only for Niagara Framework 
+systems and are only included when the NIAGARA FRAMEWORK tailoring option is 
+selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<OLI>Configure Niagara Framework Supervisory Gateways such that the property, setting or value is configurable 
+from a Niagara Framework Front End.</OLI><BRK/>
+<BRK/>
+<OLI>For every property, setting or value in a Niagara Framework Supervisory Gateway which is shown on the 
+Points Schedule or otherwise indicated as Operator Configurable, configure the value to be  configurable 
+from within the Niagara Framework such that it can be configured from a system graphic page at a Niagara 
+Framework Front End.</OLI></TAI><BRK/></OLG>
+<BRK/></SPT>
+<TAI OPT="NIAGARA FRAMEWORK"><SPT><TTL>Niagara Framework Engineering Tool</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for Niagara Framework based systems and 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Use the Niagara Framework Engineering Tool to fully discover the field control system and make all field control 
+system information available to the Niagara Framework Supervisory Gateway.  Ensure that all points on the points 
+schedule are available to the front end via the Fox protocol.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Graphics and Web Pages</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for Niagara Framework based systems and 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Only include this requirement if requiring web pages served from the 
+Niagara Framework Supervisory Gateway.  Select options based on project requirements.<BRK/>
+<BRK/>
+Note that serving web pages from the Niagara Framework Supervisory Gateway is 
+normally not necessary as web pages will typically be served from a Niagara 
+Framework front end.<BRK/>
+<BRK/>
+The contractor will require a certificate for the Web Server (in order to use 
+HTTPS as required here). Coordinate with the project site IT organization <TAI OPT="ARMY">(NEC)</TAI>
+ to obtain this certificate.  <BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Configure Niagara Framework Supervisory Gateways to use web pages to provide a graphical user interface including 
+System Displays[ using the project site sample displays], including overrides, as indicated on the Points Schedule 
+and as specified. Label all points on displays with [full English language descriptions][the point name as indicated 
+on the Points Schedule][the point description as indicated on the Points Schedule][_____]. Configure user permissions 
+for access to and executions of action using graphic pages. Coordinate user permissions with [the [Controls] 
+[HVAC] [Electrical] shop supervisor][_____].  Configure the web server to use HTTPS based on the Transport Layer 
+Security (TLS) protocol in accordance with RFC 5246 using a Government furnished certificate.</TXT><BRK/>
+<BRK/></SPT>
+]</TAI></SPT><SPT><TTL>Scheduling, Alarming, Trending, and Overrides</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Scheduling</TTL><BRK/>
+<TAI OPT="NOT NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following designer note and paragraph text are only required for NON-Niagara 
+Framework based systems and are only included when the NOT NIAGARA FRAMEWORK 
+tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the number of blank schedule objects required for later use.  
+In determining this number keep in mind that this is for future support (adding 
+more schedules after the system is completed) and that one schedule can be used 
+for multiple HVAC systems.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Configure schedules in BACnet Scheduling Objects to schedule systems as indicated on the Points Schedule and 
+as specified using the indicated correspondence between value and occupancy mode.  If no devices supports both 
+the SCHED-E-B and DM-OCD-B BIBBS for Schedule Objects, provide [5][_____] blank Schedule Objects in DDC Hardware 
+BTL listed as B-BCs and supporting the SCHED-E-B BIBB for later use by the site.</TXT><BRK/></TAI>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This following paragraph is only required for Niagara Framework based 
+systems and is only included when the NIAGARA FRAMEWORK tailoring option is 
+selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><TXT>Configure schedules in Niagara Framework Supervisory Gateway using Niagara Schedule Objects as indicated on the 
+Points Schedule and as specified.  When the schedule is controlling occupancy modes in DDC Hardware other than 
+a Niagara Framework Supervisory Gateway use the indicated correspondence between value and occupancy mode.</TXT></TAI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate if a common schedule may be used for multiple Terminal Units 
+(TUs). If allowing a common schedule for multiple TUs: keep the 'group of' bracketed 
+text, and decide if TU groupings will be included on the drawings (keep the 
+'as indicated' bracketed text) or if the Contractor should decide on groupings 
+(remove the 'as indicated' bracketed text). </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a separate schedule for each AHU including it's associated Terminal Units and for each stand-alone Terminal 
+Unit (those not dependent upon AHU service)[ or group of stand-alone Terminal Units acting according to a common 
+schedule[ as indicated]].</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NIAGARA FRAMEWORK"><SPT><TTL>Alarm Configuration</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for Niagara Framework based systems and 
+is only included when the NIAGARA FRAMEWORK tailoring option is selected.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Configure alarm generation and management as indicated on the Points Schedule and as specified.  Configure alarm 
+generation in Niagara Framework Supervisory Gateways using Niagara Framework Alarm Extensions and Alarm Services 
+or in other DDC Hardware (not Niagara Framework Supervisory Gateways) using ASHRAE 135 Intrinsic Alarming. Configure 
+alarm management and routing for all alarms, including those generated via intrinsic alarming in other devices, 
+in the Niagara Framework Supervisory Gateway such that the alarms are able to be accessed from the Niagara Framework 
+Front End.</TXT><BRK/>
+<BRK/>
+<TXT>Where Intrinsic Alarming is used, configure intrinsic alarming as specified in paragraph "Configuration of ASHRAE 
+135 Intrinsic Alarm Generation".  Configure a Niagara Framework Supervisory Gateway to provide a means to configure 
+the intrinsic alarm parameters such that the Intrinsic Alarm is configurable from the front end via the Niagara 
+Framework.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Configuration of <TAI OPT="NIAGARA FRAMEWORK">ASHRAE 135 Intrinsic </TAI>Alarm Generation</TTL><BRK/>
+<BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:  The text "ASHRAE 135 Intrinsic" 
+in the subpart title is only  included when the NIAGARA FRAMEWORK tailoring 
+option is selected.  <BRK/>
+<BRK/>
+The following sentence is included only when the NIAGARA FRAMEWORK tailoring 
+option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Intrinsic alarm generation must meet the following requirements:</TXT></TAI><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following paragraph (up to but not including the list items) is included 
+only when the NOT NIAGARA FRAMEWORK tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><TAI OPT="NIAGARA FRAMEWORK"><BRK/>
+<TXT>Configure alarm generation as indicated on the Points Schedule and as specified using Intrinsic Alarming in accordance 
+with <RID>ASHRAE 135</RID> or Algorithmic Alarming in accordance with <RID>ASHRAE 135</RID>. Alarm generation must meet the following 
+requirements:</TXT></TAI><BRK/>
+<OLG><BRK/>
+<OLI>Send alarm events as Alarms (not Events).</OLI><BRK/>
+<BRK/>
+<OLI>Use the ConfirmedEventNotification Service for alarm events.</OLI><BRK/>
+<BRK/>
+<OLI>For alarm generation, support two priority levels for alarms: critical and non-critical.  Configure the 
+Priority of Notification Class Objects to use Priority 112 for critical and 224 for non-critical alarms.</OLI><BRK/>
+<BRK/>
+<OLI>Number of Notification Class Objects for Alarm Generation:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">If the device implements non-critical alarms, or if any Object in the device supports Intrinsic 
+Alarms, then provide a single Notification Class Object specifically for (shared by) all non-critical 
+alarms.</OLI>  <BRK/>
+<BRK/>
+<OLI LEVEL="2">If the device implements critical alarms, provide a single Notification Class Object specifically 
+for (shared by) all critical alarms.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">If the device implements both critical and non-critical alarms, provide both Notification Class 
+Objects (one for critical, one for non-critical).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">If the device controls equipment other than a single terminal unit, provide both Notification 
+Class Objects (one for critical, one for non-critical) even if no alarm generation is required 
+at time of installation.</OLI><BRK/>
+<BRK/>
+<OLI>For all intrinsic alarms configure the Limit_Enable Property to set both HighLimitEnable and LowLimitEnable 
+to TRUE.  If the specified alarm conditions are for a single-sided alarm (only High_Limit used or only 
+Low_Limit used) assign a value to the unused limit such that the unused alarm condition will not occur.</OLI><BRK/>
+<BRK/>
+<OLI>For all objects supporting intrinsic alarming, even if no alarm generation is required during installation, 
+configure the following Properties as follows:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Notification_Class to point to the non-Critical Notification Class Object in that device.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Limit_Enable to enable both the HighLimitEnable and LowLimitEnable</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Notify_Type to Alarm</OLI><BRK/>
+<BRK/>
+<TAI OPT="NOT NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph (and the two item paragraphs below it) is 
+required only for NON-Niagara Framework systems and are  included only when 
+the NOT NIAGARA FRAMEWORK tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLI>Use of alarm generation types:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Only use algorithmic alarm generation when intrinsic alarm generation is not supported by the 
+device or object, or when the specific alarm conditions cannot be implemented using intrinsic 
+alarm generation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Only use remote alarm generation when the alarm cannot be generated using intrinsic or local 
+algorithmic alarm generation on the device containing the referenced property.  If remote alarm 
+generation is used, use the same DDC Hardware for all remote alarm generation within a single 
+sequence.</OLI></TAI><BRK/>
+<BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The following list paragraph is required only for Niagara Framework systems 
+and are  included only when the NIAGARA FRAMEWORK tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLI>Configure the Recipient_List Property of the Notification Class Object to point to the Niagara Framework 
+Supervisory Gateway managing the alarm.</OLI></TAI><BRK/></OLG>
+<BRK/></SPT>
+<TAI OPT="NOT NIAGARA FRAMEWORK"><SPT><TTL>Support for Future Alarm Generation</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for NON-Niagara Framework systems and is 
+included only when the NOT NIAGARA FRAMEWORK tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>For every piece of DDC Hardware, support future alarm generation capabilities by supporting either intrinsic 
+or additional algorithmic alarming.  Provide one of the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Support intrinsic alarming for every Object used by the application in that device.</OLI><BRK/>
+<BRK/>
+<OLI>Support additional Event_Enrollment Objects.  For DDC hardware controlling a single terminal unit, support 
+at least one additional object.  Otherwise, support at least [4][_____] additional Objects.  Support 
+additional Event_Enrollment Objects via one of the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide unused Event_Enrollment Objects on that device.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Support the DM-OCD-B BIBB and the creation of sufficient Event_Enrollment Objects on that device.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide one or more devices in the IP network that support the AE-N-E-B BIBB and have unused 
+Event_Enrollment Objects.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide one or more devices on the IP network that support the AE-N-E-B BIBB, the DM-OCD-B 
+BIBB, and the creation of sufficient Event_Enrollment Objects</OLI>.<BRK/></OLG>
+<BRK/>
+<TXT>The total number of Event_Enrollment Objects required by the project is the sum of the individual device requirements, 
+and the distribution of Event_Enrollment Objects among devices is not further restricted.  (Note this allows 
+a single device to contain many Event_Enrollment Objects satisfying the requirements for multiple devices.)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Trend Log Configuration</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for NON-Niagara Framework systems and is 
+included only when the NOT NIAGARA FRAMEWORK tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><OLG><BRK/>
+<OLI>Configure trends in Trend Log or Trend Log Multiple Objects as indicated on the Points Schedule and as 
+specified.</OLI><BRK/>
+<BRK/>
+<OLI>Configure all trend logs (including any provided to support future trends) to save data on regular intervals 
+using the BUFFER_FULL event to request trend upload from the front end.</OLI><BRK/>
+<BRK/>
+<OLI>Configure Trend Log Objects with a minimum Buffer_Size property value of 1,000 and Trend Log Multiple 
+Objects with a minimum Buffer_Size property value of 1,000 per point trended (for example, a Trend Log 
+Multiple Object used to trend 3 points must have a Buffer_Size Property value of at least 3,000). </OLI><BRK/>
+<BRK/>
+<OLI>Configure a Notification Class Object in devices doing trending (including devices supporting future 
+trends) to handle the BUFFER_FULL event.</OLI><BRK/>
+<BRK/>
+<OLI>When possible, trend each point using an Object in the device containing the point.  When it is necessary 
+to trend using a an Object in another device, all trends not on the same Device as the Object being trended 
+must be on a singe device (i.e. all Trend Log and Trend Log Multiple Objects used for remote trending 
+within a sequence must be on the same device).</OLI><BRK/>
+<BRK/>
+<OLI>For each trend log, including any trend logs provided to support future trending, configure the following 
+properties as specified:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Logging_Type:  Set to Polling</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Stop_When_Full:  Set to Wrap Around</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Buffer_Size:  Set to 400 or greater.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Notification_Threshold:  Set to 90 percent of full</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Notification_Class:  Set to the Notification Class Object in that device</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Event_Enable:  Set to TRUE</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Log_Interval:  Set to 15 minutes.</OLI><BRK/>
+<BRK/>
+<OLI>Future Trending support.  Provide support for future trending:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide one or more devices on the Building Control Network Backbone IP network which support 
+both the T-VMT-E-B and DM-OCD-B BIBBs for Trend Log Objects.  Provide sufficient devices to 
+support the creation of at least [[_____] additional Trend Log Objects][one additional Trend 
+Log Object for every terminal unit plus 4 additional Trend Log Objects for every non-terminal 
+unit].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide [[_____] additional Trend Log Objects][one additional Trend Log Object for every terminal 
+unit plus 4 additional Trend Log Objects for every non-terminal unit] in one or more devices 
+on the Building Control Network Backbone IP network that support the T-VMT-E-B BIBB for later 
+use by the site.</OLI><BRK/>
+<BRK/>
+    <OLI LEVEL="2">A combination of these two methods is permitted provided the total required number of Trend 
+Log Objects is met.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</TAI><TAI OPT="NIAGARA FRAMEWORK"><SPT><TTL>Trending</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart is only required for Niagara Framework systems and is included 
+only when the NIAGARA FRAMEWORK tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Perform all trending using a Niagara Framework Supervisory Gateway using Niagara Framework History Extensions 
+and Niagara Framework History Service exclusively.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Overrides</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The strongly preferred method of Overrides is through Commandable Objects.  
+Consider carefully before approving the other method specified here, and do 
+not approve any other method of Overriding.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This subpart uses tailoring options:<BRK/>
+1) In the first paragraph, the requirements to use Niagara Framework for overrides 
+is required only for Niagara Framework systems and is included only when the 
+NIAGARA FRAMEWORK tailoring option is selected.<BRK/>
+<BRK/>
+2) In the second paragraph, the text "in non-Niagara Framework Supervisory Gateway 
+DDC Hardware" is required only for Niagara Framework systems and is included 
+only when the NIAGARA FRAMEWORK tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT>Provide an override for each point shown on the Points Schedule as requiring an override.  <TAI OPT="NIAGARA FRAMEWORK">Use the Niagara Framework 
+for all overrides to points in Niagara Framework Supervisory Gateways.  For overrides to other points, provide 
+an override to a point in a Niagara Framework Supervisory Gateway via the Niagara Framework where the Niagara 
+Framework Supervisory Gateway overrides the other point as specified.</TAI></TXT><BRK/>
+<BRK/>
+<TXT>Unless otherwise approved, provide Commandable Objects to support all Overrides <TAI OPT="NIAGARA FRAMEWORK">in non-Niagara Framework Supervisory 
+Gateway DDC Hardware</TAI>.  With specific approval from the Contracting Officer, Overrides for points which are not 
+hardware outputs and which are in DDC hardware controlling a single terminal unit may support overrides via an 
+additional Object provided for the override. No other means of implementing Overrides may be used.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Where Commandable Objects are used, ensure that WriteProperty service requests with a Priority of 10 
+or less take precedence over the SEQUENCE VALUE and that WriteProperty service request with a priority 
+of 11 or more have a lower precedence than the SEQUENCE VALUE.</OLI><BRK/>
+<BRK/>
+<OLI>For devices implementing overrides via additional Objects, provide Objects which are NOT Written to as 
+part of the normal Sequence of Operations and are Writable when Out_Of_Service is TRUE and Out_Of_Service 
+is Writable. Use this point as an Override of the normal value when Out_Of_Service is TRUE and the normal 
+value otherwise.  Note these Objects may be modified as part of the sequence via local processes, but 
+must not be modified by local processes when Out_Of_Service is TRUE.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>BACnet Gateways</TTL><BRK/>
+<TAI OPT="NIAGARA FRAMEWORK"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart uses tailoring options for requirements specific to Niagara 
+Framework systems. The phrases "or to Niagara Framework Points" and "(Note: 
+A Niagara Framework Supervisory Gateway is BACnet control hardware.)" are included 
+only when the NIAGARA FRAMEWORK tailoring option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The intent of this is to allow the use of gateways to packaged equipment 
+controllers not procured under the scope of the project this specification is 
+used for and not to allow the installation of a non-BACnet network connected 
+to a BACnet network via a gateway except as noted for Boiler and Chiller Plants.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The requirements in this paragraph do not themselves permit the installation of hardware not meeting the other 
+requirements of this section.  Except for proprietary systems specifically indicated in Section <SRF>23 09 00</SRF>, all 
+control hardware installed under this project must meet the requirements of this specification, including the 
+control hardware providing the network interface for a package unit or split system  specified under another 
+section.   Only use gateways to connect to pre-existing control devices, and to proprietary systems specifically 
+permitted by Section <SRF>23 09 00</SRF>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>General Gateway Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide BACnet Gateways to connect non-BACnet control hardware in accordance with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Configure gateways to map writable data points in the controlled equipment to Writable Properties of 
+Standard Objects<TAI OPT="NIAGARA FRAMEWORK">, or to Niagara Framework points,</TAI> as indicated in the Points Schedule and as specified.</OLI><BRK/>
+<BRK/>
+<OLI>Configure gateway to map readable data points in the controlled equipment to Readable Properties of Standard 
+Objects<TAI OPT="NIAGARA FRAMEWORK">, or to Niagara Framework points,</TAI> as indicated in the Points Schedule and as specified.</OLI><BRK/>
+<BRK/>
+<OLI>Configure gateway to support the DS-COV-B BIBB for all points mapped to BACnet Objects.</OLI><BRK/>
+<BRK/>
+<OLI>Do not use non-BACnet control hardware for controlling built-up units or any other equipment that was 
+not furnished with factory-installed controls. <TAI OPT="NIAGARA FRAMEWORK">(Note: A Niagara Framework Supervisory Gateway is BACnet 
+control hardware.)</TAI></OLI><BRK/>
+<BRK/>
+<OLI>Do not use non-BACnet control hardware for system scheduling functions.</OLI><BRK/>
+<BRK/>
+<OLI>Each gateway must communicate with and perform protocol translation for non-BACnet control hardware controlling 
+one and only one package unit or a single non-BACnet system specifically permitted by Section 
+<SRF>23 09 00</SRF>.</OLI><BRK/>
+<BRK/>
+<OLI>Connect one network port on the gateway to the Building Control Backbone IP Network or to a BACnet MS/TP 
+network and the other port to the single piece of controlled equipment or the non-BACnet system specifically 
+permitted by Section <SRF>23 09 00</SRF>..</OLI><BRK/>
+<BRK/>
+<OLI>For gateways to existing package units or simple split systems, non-BACnet network wiring connecting 
+the gateway to the package unit must not exceed<MET> 3 meters</MET><ENG> 10 feet</ENG> in length and must connect to exactly 
+two devices: the controlled equipment (packaged unit) or split system interface and the gateway.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></SPT></PRT> <END/><BRK/></SEC>

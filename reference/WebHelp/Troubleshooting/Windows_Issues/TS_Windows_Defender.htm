@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+  <meta name="gRootRelPath" content="../.."/>
+	<meta name="gCommonRootRelPath" content="../.."/>
+  <meta name="gTopicId" content="8.4.0_1"/>
+  <script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../template/Azure_SI5/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+<meta name="topic-comment" content=""/><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/><link rel="stylesheet" type="text/css" href="../../assets/css/SIHelpdefault.css"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2022"/>
+  <title>Windows Defender</title>
+  <meta name="template" content="../../assets/masterpages/SpecsIntact_KB_MasterPage.htt"/>
+  <meta name="rh-authors" content="C. Fitz-Simon"/>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/SIHelpdefault.css"/>
+  
+  <meta http-equiv="Content-Language" content="en-US"/>
+  <meta name="topic-status" content="Sent for Review"/>
+<meta name="description" content=""/></head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="SpecsIntact Help">
+        <span>SpecsIntact Help</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <div>
+    <h1>FAQs, Troubleshooting, and Technical Notes</h1>
+  </div>
+  <div>
+  <h2>Windows/Microsoft Defender Reports SpecsInact Components Suspicious Or Unsafe</h2>
+  <p>Windows/Microsoft Defender appears to cause issues during the installation of <strong>SpecsIntact</strong>, particularly with the executable <strong>SI.exe</strong>. This may also occur when launching the <strong>SpecsIntact Explorer</strong> (SpecsIntact.exe) or <strong>SI Editor</strong> (SIEditor.exe). Windows/Microsoft Defender might display warnings due to detecting behavior it deems suspicious or identifying an application as unsafe. These false positive alerts occur when these <strong>SpecsIntact</strong> components are executed for the first time on an end-user&#39;s system that Windows/Microsoft Defender hasn&#39;t encountered before. This behavior is intermittent and does not affect all users.</p>
+  <h2>Solution</h2>
+  <p>To bypass these false positive alerts so you can install or run the <strong>SpecsIntact</strong> application, use the options provided below:</p>
+  <h3>Option 1: Use the Windows/Microsoft Defender SmartScreen Warning to Unblock</h3>
+  <p><img src="../../assets/images/General/WindowsDefender-1.png"/> <img src="../../assets/images/General/WindowsDefender-2.png"/></p>
+  <ol class="Decimal">
+    <li>When the first <strong>Windows protected your PC</strong> window pops up, <em>click</em> <strong>More Info</strong></li>
+    <li>On the second window, <i>click</i> <strong>Run anyway</strong> </li>
+  </ol>
+  <h3>Option 2: Executable File Properties</h3>
+  <p><img src="../../assets/images/General/ExecutableFileProperties.png" style="cursor: nesw-resize;"/></p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In Windows File Explorer, <em>navigate</em> to your C:\Users\YourUserID\ProgramFiles (x86)\SpecsIntact 5 folder, then perform one of the following:
+      <ol>
+        <li><i>Right-click</i> on the<strong> SI.exe</strong> file and <em>select</em> <strong>Properties</strong></li>
+        <li><i>Right-click</i> on the<strong> SpecsIntact.exe</strong> file and <em>select</em> <strong>Properties</strong></li>
+        <li><strong></strong><i>Right-click</i> on the<strong> SIEditor.exe</strong> file and <em>select</em> <strong>Properties</strong></li>
+      </ol>
+    </li>
+    <li>On the <strong>General</strong> tab next to <strong>Security</strong>, <em>check</em> <strong>Unblock</strong></li>
+    <li><em>Click</em> <strong>OK</strong></li>
+  </ol>
+  <h3>Option 3: Avoid False Positive Warnings From Windows/Microsoft Defender</h3>
+  <p>To avoid false positive warnings from Windows/Microsoft Defender while installing or running <strong>SpecsIntact</strong> components in the future, you can add an exclusion for the specific executable files (e.g., SI.exe, SpecsIntact.exe, or SIEditor.exe). Listing the exclusions in Windows/Microsoft Defender will prevent the antivirus from scanning or flagging these files in the future. This may require IT Administrator assistance.</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>On the Windows 11 <strong>Taskbar</strong>, <em>place</em> your cursor in the Windows Search field and <em>enter</em> <strong>Windows Security</strong><strong></strong></li>
+    <li>Below <strong>Best Match</strong>, <em>click</em> <strong>Windows Security</strong></li>
+    <li>In the <strong>Windows Security</strong> window, <em>select</em> <strong>Virus &amp; threat protection</strong></li>
+    <li>Below <strong>V</strong><strong>irus &amp; threat protection</strong>, <em>click</em> <strong>Manage Settings</strong></li>
+    <li><em>Scroll</em> to <em>locate</em> <strong>Exclusions</strong>, then <i>click</i> <strong>Add or remove exclusions</strong></li>
+    <li>When the <strong>User Account Control</strong> window opens, <em>click</em> <strong>Yes</strong></li>
+    <li>Below <strong>Exclusions</strong>, <em>click</em> <strong>Add an exclusion</strong> and <i>select</i> <strong>File</strong><strong></strong></li>
+    <li>In Windows File Explorer, <em>navigate</em> to C:\Users\YourUserID\ProgramFiles (x86)\SpecsIntact 5 folder, then <em>select</em> one of the executable files (e.g., SI.exe, SpecsIntact.exe, or SIEditor.exe), then <em>click</em> the <strong>Open</strong> button<strong></strong></li>
+    <li><em>Close </em>the <strong>Windows Security</strong> window</li>
+  </ol>
+  <p>Remember that while false positives can be frustrating, they&#39;re also part of the security measures that protect your system. Make sure your&#39;re confident in the legitimacy of the files before excluding or disabling your antivirus temporarily. Always exercise caution when dealing with potentially harmful files.</p>
+
+</div>
+  <p> </p>
+  <div style="border-width: 2px;border-style: ridge;border-color: #2d5986">
+    <h2 class="footer" style="padding-left: 5px"><span style="padding-left:5px">Technical Support Information</span></h2>
+    <p style="padding-left: 10px;padding-right: 10px;text-align: left"><span style="padding-right:10px;"><span style="border-color:#000000;border-style:none;border-width:1px">Users are encouraged to visit the SpecsIntact Website&#39;s <a href="https://www.wbdg.org/dod/specsintact/help-center" title="Hyperlink to the SpecsIntact Website&#39;s Support &amp; Help Center Page"><span style="color:#336699;">Support &amp; Help Center</span></a> for access <span style="border-color:#000000;border-style:none;border-width:1px">to all of our User Tools, including Web-Based Help (containing Troubleshooting, Frequently Asked Questions (FAQs), Technical Notes, and Known Problems), <a href="https://SpecsIntact.wbdg.org/elearning" style="color: #336699;font-weight: normal" title="Hyperlink to the SpecsIntact Website&#39;s eLearning Page">eLearning</a> Modules (video tutorials), and printable Guides.</span></span></span></p>
+    <table border="1" cellpadding="1" cellspacing="1" style="border-collapse:collapse;width:100%;border-left-width:1px;border-left-style:none;border-left-color:#2d5986;border-top-width:1px;border-top-style:none;border-top-color:#2d5986;border-right-width:1px;border-right-style:none;border-right-color:#2d5986;border-bottom-width:1px;border-bottom-style:none;border-bottom-color:#2d5986">
+      <colgroup>
+        <col style="width: 16px;"/>
+        <col style="width: 19px;"/>
+        <col style="width: 740px;"/>
+      </colgroup>
+      <tbody>
+        <tr style="padding-left: 5px;color: #2d5986">
+          <td colspan="3" style="border-width: 0px;border-color: transparent"><span style="font-weight:bold;color:#2d5986;padding-left:10px">CONTACT US:</span></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><i class="fa-solid fa-phone fa-sm" style="color: #336699"></i></td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><span style="font-family:Calibri;"><span style="color:#336699">256.895.5505</span></span></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><i class="fa-solid fa-envelope fa-sm" style="color: #336699"></i></td>
+          <td style="border-width: 0px;border-color: transparent"><a href="mailto:SpecsIntact@usace.army.mil?subject=SpecsIntact%20Technical%20Support%20Request" style="padding-left: 10px" title="Send Email to SpecsIntact&#39;s Technical Support">SpecsIntact@usace.army.mil</a></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><i class="fa-solid fa-globe fa-sm" style="color: #336699"></i></td>
+          <td style="border-width: 0px;border-color: transparent"><a href="https://SpecsIntact.wbdg.org" style="padding-left: 10px" title="Hyperlink to the SpecsIntact Website">SpecsIntact.wbdg.org</a></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent"> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p> </p>
+  <p> </p>
+
+</body></html>

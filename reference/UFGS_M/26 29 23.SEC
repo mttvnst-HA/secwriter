@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-26 29 23 (February 2026)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-26 29 23 (February 2020)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN> SECTION 26 29 23</SCN><BRK/>
+<BRK/>
+<STL>ADJUSTABLE SPEED DRIVE (ASD) SYSTEMS UNDER 600 VOLTS</STL><BRK/>
+<DTE>02/26</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>ASD (also referred to as variable frequency drive 
+(VFD)) for motors rated up to 575 volts, for use on electric power systems of 600 volts or less, 50/60 hertz</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate this guide specification with a mechanical designer for HVAC ASD application.</NPR><BRK/>
+<BRK/>
+<NPR>Military standard requirements for parent equipment with motors controlled via ASDs also apply to the ASDs.  Examples 
+include petroleum, oil and lubricant (POL) systems and Mobile/Tactical generators with ASDs hardening as a part 
+of the generator equipment assembly.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pulse width modulated (PWM) is the predominant type of adjustable speed drive (ASD).  Other ASD types include 
+current source inverter (CSI), voltage source inverter (VSI), and flux vector drive (FVD).  For guidance of the 
+proper application of ASD's and installation, refer to Appendix B of UFC 3-520-01.  Since the carrier-frequency 
+pulse output voltage of a PWM cause rapid rise times in these pulses, the transmission line effects must be considered.   
+The resulting voltage can produce overvoltages equal to twice the DC bus voltage or up to 3.1 times the rated 
+line voltage, putting high stress on the cable and motor windings, and eventual insulation failure.  Use ASD manufacturer 
+recommended cable type and maximum safe cable distances before using the external protection devices.  Use motors 
+designed for use with ASD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The use of power capacitors for power factor correction and/or the use of surge protection capacitors on 
+the load side of an electronic control connected to an induction motor is not recommended; damage to the control 
+may occur.  Contact the control vender for suitability.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>EUROPEAN COMMITTEE FOR STANDARDIZATION (CEN/CENELEC)</ORG><BRK/><BRK/><RID>EN 61800-3</RID><RTL>(2017) Requirements for the Control of Electromagnetic Interference Characteristics of Subsystems and Equipment</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 519</RID><RTL>(2022) Standard for Harmonic Control in Electrical Power Systems</RTL><BRK/><BRK/><RID>IEEE C62.41.1</RID><RTL>(2002; R 2008) Guide on the Surges Environment in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/><RID>IEEE C62.41.2</RID><RTL>(2002) Recommended Practice on Characterization of Surges in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTROTECHNICAL COMMISSION (IEC)</ORG><BRK/><BRK/><RID>IEC 61000-3-12</RID><RTL>(2012) Electromagnetic Compatibility (EMC) - Part 3-12: Limits - Limits for harmonic currents produced by equipment connected to public low-voltage systems with input current &gt;16 A and &lt;/=75 A per phase</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA ICS 1</RID><RTL>(2022) Standard for Industrial Control and Systems: General Requirements</RTL><BRK/><BRK/><RID>NEMA ICS 3.1</RID><RTL>(2019) Guide for the Application, Handling, Storage, Installation and Maintenance of Medium-Voltage AC Contactors, Controllers and Control Centers</RTL><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/><RID>NEMA ICS 7</RID><RTL>(2020) Adjustable-Speed Drives</RTL><BRK/><BRK/><RID>NEMA ICS 7.2</RID><RTL>(2021) Application Guide for AC Adjustable Speed Drive Systems</RTL><BRK/><BRK/><RID>NEMA ICS 61800-2</RID><RTL>(2005) Adjustable Speed Electrical Power Drive Systems Part 2:  General Requirements - Rating Specifications for Low Voltage Adjustable Frequency A.C. Power Drive Systems</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>47 CFR 15</RID><RTL>Radio Frequency Devices</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 489</RID><RTL>(2025) UL Standard for Safety Molded-Case Circuit Breakers, Molded-Case Switches and Circuit-Breaker Enclosures</RTL><BRK/><BRK/><RID>UL 61800-5-1</RID><RTL>(2022) Adjustable Speed Electrical Power Drive Systems - Part 5-1: Safety Requirements - Electrical, Thermal and Energy</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM applies to this section with additions and modifications specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Performance Requirements</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Electromagnetic Interference Suppression</TTL><BRK/>
+<BRK/>
+<TXT>Computing devices, as defined by <RID>47 CFR 15</RID> and <RID>EN 61800-3</RID>  rules and regulations, must be certified to comply with the requirements for class A 
+computing devices and labeled.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electromechanical and Electrical Components</TTL><BRK/>
+<BRK/>
+<TXT>Ensure electrical and electromechanical components of the Adjustable Speed Drive (ASD) do not cause electromagnetic interference to adjacent electrical 
+or electromechanical equipment while in operation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Electrical Requirements</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Power Line Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT><RID>IEEE C62.41.1</RID> and <RID>IEEE C62.41.2</RID>, <RID>IEEE 519</RID>, <RID>IEC 61000-3-12</RID> Control panel must have surge protection, included within the panel to protect the unit 
+from damaging transient voltage surges.  Surge protective device must be mounted near the incoming power source and properly wired to all three 
+phases and ground.  Fuses must not be used for surge protection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sensor and Control Wiring Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT>I/O functions as specified must be protected against surges induced on control and sensor wiring installed outdoors and as shown.  Test the inputs 
+and outputs in both normal mode and common mode using the following two waveforms:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A 10 microsecond by 1000 microsecond waveform with a peak voltage of 1500 volts and a peak current of 60 amperes.</OLI><BRK/>
+<BRK/>
+<OLI>An 8 microsecond by 20 microsecond waveform with a peak voltage of 1000 volts and a peak current of 500 amperes.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Schematic Diagrams</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Interconnecting Diagrams</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Installation Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>As-Built Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Adjustable Speed Drives</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wires and Cables</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Equipment Schedule</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>ASD Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Performance Verification Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Endurance Test</SUB></ITM><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose a bracketed SD-07 if paragraph ASD TEST will use an option with engaging qualified testing agency's 
+field supervisor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Testing Agency's Field Supervisor</SUB> NETA Certificate; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation instructions</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-09 Manufacturer's Field Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>ASD Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Standard Products</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Adjustable Speed Drives</SUB>, Data Package 4</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Schematic Diagrams</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit diagrams showing circuits and device elements for each replaceable module.  Schematic diagrams of printed circuit boards are permitted to 
+group functional assemblies as devices, provided that sufficient information is provided for government maintenance personnel to verify proper 
+operation of the functional assemblies.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Interconnecting Diagrams</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Show interconnections between equipment assemblies, and external interfaces, including power and signal conductors.  Include for enclosures and 
+external devices.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Installation Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Show floor plan of each site, with ASD's and motors indicated.  Indicate ventilation requirements, adequate clearances, and cable routes.  Submit 
+drawings for government approval prior to equipment construction or integration.  Immediately record modifications to original drawings made during 
+installation for inclusion into the <SUB>as-built drawings</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Equipment Schedule</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide schedule of equipment supplied. Schedule must provide a cross reference between manufacturer data and identifiers indicated in shop drawings.  
+Schedule must include the total quantity of each item of equipment supplied and data indicating compatibility with motors being driven.  For complete 
+assemblies, such as ASD's, provide the serial numbers of each assembly, and a sub-schedule of components within the assembly.  Provide recommended 
+spare parts listing for each assembly or component.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Installation Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide installation instructions issued by the manufacturer of the equipment, including notes and recommendations, prior to shipment to the site.  
+Provide operation instructions prior to acceptance testing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Standard Products</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such products which are of equal material, 
+design and workmanship and:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Have been in satisfactory commercial or industrial use for 2 years prior to bid opening including applications of equipment and materials 
+under similar circumstances and of similar size.</OLI><BRK/>
+<BRK/>
+<OLI>Have been on sale on the commercial market through advertisements, manufacturers' catalogs, or brochures during the 2-year period.</OLI><BRK/>
+<BRK/>
+<OLI>Where two or more items of the same class of equipment are required, provide products of a single manufacturer; however, the component 
+parts of the item need not be the products of the same manufacturer unless stated in this section.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY AND STORAGE</TTL><BRK/>
+<BRK/>
+<TXT>Store delivered equipment to protect from the weather, humidity and temperature variations, dirt and dust, or other contaminants.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>The complete system must be warranted by the manufacturer for a period of [one year] [[_____] years].  Repair or replace any component failing 
+to perform its function as specified and documented at no additional cost to the Government.  Items repaired or replaced must be warranted for 
+an additional period of at least one year from the date that it becomes functional again, as specified in FAR 52.246-21 Warranty of Construction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Spare Parts</TTL><BRK/>
+<BRK/>
+<TXT>Manufacturers provide spare parts in accordance with recommended spare parts list.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with Contracting Officer on whether this paragraph can be included.  Edit as required if additional 
+spare parts are required for a specific project.  Do not use this paragraph for Navy projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide one [_____] spare ASD of each model provided for HVAC equipment, fully programmed and ready for back-up operation when connected.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Operation and Maintenance Data</TTL><BRK/>
+<BRK/>
+<TXT>Provide in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.  Provide service and maintenance information including preventive maintenance, 
+assembly, and disassembly procedures.  Include electrical drawings from electrical general sections.  Provide additional information necessary 
+to provide complete operation, repair, and maintenance information, detailed to the smallest replaceable unit.  Include copies of as-built submittals.  
+Provide routine preventative maintenance instructions, and equipment required.  Provide instructions on how to modify program settings, and modify 
+the control program.  Provide instructions on drive adjustment, trouble-shooting, and configuration.  Provide instructions on process tuning and 
+system calibration.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Maintenance Support</TTL><BRK/>
+<BRK/>
+<TXT>During the warranty period, provide on-site, on-call maintenance services by drive manufacturer's personnel on the following basis:  The service 
+must be on a per-call basis with 36 hour response.  Contractor is responsible for the maintenance of all hardware and software of the system during 
+the warranty period.  Various personnel of different expertise must be sent on-site depending on the nature of the maintenance service required.  
+Costs must include travel, local transportation, living expenses, and labor rates of the service personnel while responding to the service request.  
+The provisions of this Section are not in lieu of, nor relieve the Contractor of, warranty responsibilities covered in this specification.  Should 
+the result of the service request be the uncovering of a system defect covered under the warranty provisions, all costs for the call, including 
+the labor necessary to identify the defect, must be borne by the Contractor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Technical Support</TTL><BRK/>
+<BRK/>
+<TXT>Provide the ASDs with manufacturer's technical telephone support in English, readily available during normal working hours.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>ADJUSTABLE SPEED DRIVES</SUB> (ASD)</TTL><BRK/>
+<BRK/>
+<TXT>Provide adjustable speed drive to control the speed of induction motor(s).  The ASD must include the following minimum functions, features and 
+ratings.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Input circuit breaker in accordance with <RID>UL 489</RID> with a minimum of 10,000 amps symmetrical interrupting capacity and door interlocked external 
+operator.</OLI><BRK/>
+<BRK/>
+<OLI>A converter stage in accordance with <RID>UL 61800-5-1</RID> must change fixed voltage, fixed frequency, ac line power to a fixed dc voltage. The 
+converter must utilize a full wave bridge design incorporating diode rectifiers. Silicon Controlled Rectifiers (SCR) are not acceptable.  
+The converter must be insensitive to three phase rotation of the ac line and must not cause displacement power factor of less than .95 
+lagging under any speed and load condition.</OLI><BRK/>
+<BRK/>
+<OLI>An inverter stage must change fixed dc voltage to variable frequency, variable ac voltage for application to a standard <RID>NEMA MG 00001</RID> Part 
+30 motor designed for use with adjustable frequency power supplies.  Switch the inverter to produce a sine coded pulse width modulated 
+(PWM) output waveform.</OLI><BRK/>
+<BRK/>
+<OLI>The ASD must be capable of supplying 110 percent of rated full load current for one minute at maximum ambient temperature.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If constant torque required, modify to 150 percent of rated full load.  Examples of these constant torque 
+loads include general machinery, hoists, conveyors, printing presses, positive displacement pumps, some mixers 
+and extruders, reciprocating compressors, as well as rotary compresses.  Use inverter-duty motors (Standard MG 
+1 Part 31) for the constant torque loads.</NPR><BRK/>
+<BRK/>
+<NPR>Example of the variable torque loads include fans, centrifugal blowers, centrifugal pumps, propeller pumps, turbine 
+pumps, agitators, and axial compressors.  Use inverter-rated motors (Standard MG 1 Part 310) for the variable 
+torque loads.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>The ASD must be designed to operate from a [_____] volt, plus or minus 10 percent, three phase, 60 Hz supply, and control motors with a 
+corresponding voltage rating.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose one of the bracketed sentences when more than an ASD inherent dynamic braking torque is required 
+because an ASD system will produce only 10 to 15 percent of motor full-load torque as dynamic braking retarding 
+torque.</NPR><BRK/>
+<BRK/>
+<NPR>External dynamic braking (also may be called "Shunt Regulator" and "Snubber") may be used when a shorter decelerating 
+time is occasionally required.  Dynamic braking method is releasing the motor generated energy in the form of 
+heat through a voltage regulated switching transistor and resistor.</NPR><BRK/>
+<BRK/>
+<NPR>Regenerative braking may be used where a short deceleration time is needed, a high inertia is present, or large 
+amounts of energy losses are undesirable.  The regenerative braking method is changing the ASD DC bus energy into 
+fixed frequency utility power.</NPR><BRK/>
+<BRK/>
+<NPR>Common DC bus tie braking may be used together with a dynamic braking as an alternative to dissipating the energy 
+by a dynamic brake resistor when several controls are used in a process and tied in parallel.  During braking, 
+energy is returned to the common DC bus tie and may be used by rest of controls and a resistor if not all energy 
+is used by the controls.</NPR><BRK/>
+<BRK/>
+<NPR>Dynamic, regenerative, and common DC bus tie braking cannot provide holding torque.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Acceleration and deceleration time must be independently adjustable from one second to 60 seconds.</OLI><BRK/>
+<BRK/>
+<TXT>[Adjust decelerating time by[ providing an external dynamic braking resistor designed to meet <RID>NEMA ICS 61800-2</RID> to be capable of decelerating six 
+times the motor inertia with no more than 150 percent of rated current with the motor at its base speed.][ providing an ASD with a regenerative 
+braking designed to return some of braking energy from the motor to the AC power distribution system.][ providing each of several ASD used in a 
+process with a common DC bus tie designed to share the regenerative energy between tied in parallel controls.]  ]Required deceleration time may 
+be achieved using not only dynamic braking resistor but with other methods described in <RID>NEMA ICS 7.2</RID>-2015 paragraph 5.2.5.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify this paragraph if constant torque required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Adjustable full-time current limiting must limit the current to a preset value which must not exceed 110 percent of the controller rated 
+current.  The current limiting action must maintain the V/Hz ratio constant so that variable torque can be maintained.  Short time starting 
+override must allow starting current to reach 175 percent of controller rated current to maximum starting torque.</OLI><BRK/>
+<BRK/>
+<OLI>The controllers must be capable of producing an output frequency over the range of 3 Hz to 60 Hz (20 to one speed range), without low speed 
+cogging.  Over frequency protection must be included such that a failure in the controller electronic circuitry must not cause frequency 
+to exceed 110 percent of the maximum controller output frequency selected.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum and maximum output frequency must be adjustable over the following ranges:  1) Minimum frequency 3 Hz to 50 percent of maximum 
+selected frequency; 2) Maximum frequency 40 Hz to 60 Hz.</OLI><BRK/>
+<BRK/>
+<OLI>The controller efficiency at any speed must not be less than 96 percent.</OLI><BRK/>
+<BRK/>
+<OLI>The controllers must be capable of being restarted into a motor coasting in the forward direction without tripping.</OLI><BRK/>
+<BRK/>
+<OLI>Protection of power semiconductor components must be accomplished without the use of fast acting semiconductor output fuses.  Subjecting 
+the controllers to any of the following conditions must not result in component failure or the need for fuse replacement:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Short circuit at controller output</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Ground fault at controller output</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Open circuit at controller output</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Input undervoltage</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Input overvoltage</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Loss of input phase</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">AC line switching transients</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Instantaneous overload</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Sustained overload exceeding 115 percent of controller rated current</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Over temperature</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase reversal </OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Class 10 means that the protection will trip in 10 seconds when current will be at 600 percent, Class 20 
+means that the protection will trip in 20 seconds when current will be at 600 percent.  Class II ground-fault 
+protection is an equipment protection in accordance with NEC.  Retain isolated overload alarm contacts on overload 
+relays if they are required for local or remote alarm indication of a tripping overload relay.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Solid state motor overload protection must[ be included such that current exceeding an adjustable threshold must activate a 60 second timing 
+circuit.  Should current remain above the threshold continuously for the timing period, the controller will automatically shut down.][ 
+have[ sensor in each phase,][ [Class 10] [Class 20] [Class 10/20 selectable] tripping characteristic selected to protect motor against 
+voltage and current unbalance and single phasing,][ Class II ground-fault protection, with start and run delays to prevent nuisance trip 
+on staring,][ analog communication module,][ [NC][NO] isolated overload alarm contact,][ external overload, reset push button].]</OLI><BRK/>
+<BRK/>
+<OLI>Include slip compensation circuit that will sense changing motor load conditions and adjust output frequency to provide speed regulation 
+of <RID>NEMA MG 00001</RID> Part 30 designed for use with adjustable frequency power supplies  motors to within plus or minus 0.5 percent of maximum 
+speed without the necessity of a tachometer generator.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain the last bracketed sentences if the selected time delay may not prevent an ASD from an automatic 
+restart after a power interruption until motor has stopped.  Also retain the sentence if there will be an ASD 
+field-selected automatic and manual bypass mode in subparagraph below starting with "Provide properly sized...".
+.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>The ASD must be factory set for manual restart after the first protective circuit trip for malfunction (overcurrent, undervoltage, overvoltage 
+or overtemperature) or an interruption of power.  The ASD must be capable of being set for automatic restart after a selected time delay.  
+If the drive faults again within a specified time period (adjustable 0-60 seconds), a manual restart will be required.[  Provide Bidirectional 
+Autospeed Search capable of starting the ASD into rotating loads spinning in either direction and returning motor to set speed in proper 
+direction, without causing damage to drive, motor, or load.]</OLI><BRK/>
+<BRK/>
+<OLI>The ASD must include external fault reset capability.  All the necessary logic to accept an external fault reset contact must be included.</OLI><BRK/>
+<BRK/>
+<OLI>Provide critical speed lockout circuitry to prevent operating at frequencies with critical harmonics that cause resonant vibrations.  The 
+ASD must have a minimum of three user selectable bandwidths.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Three-contactor-style bypass allows motor operation via the power converter or the bypass controller; with 
+input isolating switch and barrier arranged to isolate the power converter input and output and permit safety 
+testing and troubleshooting of the power converter, both energized and de-energized, while motor is operating 
+in bypass mode.</NPR><BRK/>
+<BRK/>
+<NPR>If a bracketed sentence is chosen with a field-selectable automatic and manual bypass mode, retain requirements 
+for a Bidirectional Autospeed Search in subparagraph above. with a requirement for ASD to be capable of being 
+set for automatic restart after a selected time delay.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Provide properly sized [NEMA][IEC] rated by-pass and isolation contactors to enable operation of motor in the event of ASD failure[ 
+and for safety transfers motor between power converter output and bypass circuit using a field-selectable automatic and manual bypass mode].  
+Install mechanical and electrical interlocks between the by-pass and isolation contactors.  Provide a selector switch and transfer delay 
+timer.  Motor overload and short circuit protective features must remain in use during the bypass mode.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Per NEMA ICS 7.2, the ASD must limit harmonic distortion reflected onto the utility system.  5 percent 
+impedance line reactors have the same benefits as the 3 percent impedance line reactors except that the 5 percent 
+impedance line reactors provide maximum harmonic mitigation without adding capacitance.  Investigate ASD voltage 
+performance before using line reactors.</NPR><BRK/>
+<BRK/>
+<NPR>Retain Harmonic Analysis Report bracketed sentence if an analysis from ASD manufacturer is required. IEC 61000-3-12, 
+Table 4 limits the THDI (total harmonic current distortion) produced by equipment connected to public low-voltage 
+systems with input more than 16 A and less or equal to 75 A per phase to be less than 48 percent.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In the last bracketed sentence, insert specific requirements in addition to or in lieu of the manufacturer 
+provided RFI/EMI mitigating method if the method does not comply with the specified limitations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Each individual ASD must meet the following Total Harmonic Distortion (THD) requirements at the input terminals to the factory assembly 
+of the ASD or at the load disconnecting means serving the ASD and filter assembly.  These measurements should be taken with the drive set 
+at 90 percent frequency (rpms) and the motor under a minimum of 50 percent demand.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The Voltage THD should not exceed 2.0 percent THD.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The Current THD should not exceed 15.0 percent THD.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">If the standard factory ASD does not meet or exceed these requirements the factory must install appropriate equipment (Harmonic 
+Traps, Filters, different Drive technology, etc.) to mitigate the distortion to assure performance of the VFD is within the limits.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">These tests should be performed at the Manufacturers Laboratory facilities and submitted as part of the Product Data Submittals, 
+in order to prevent the necessity of adding mitigation equipment in the field. If the requirements listed above are met, <RID>IEEE 519</RID>
+ will also be met.</OLI><BRK/>
+<BRK/>
+[<OLI>Minimum Operating Conditions.  Designed and constructed ASD's to operate within the following service conditions:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Ambient Temperature Rating:  0 to 120 degrees F.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Non-condensing relative humidity rating:  less than 95 percent.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Ambient rating:  Not exceed<MET> 1,006 meters</MET><ENG> 3,300 feet</ENG>.</OLI><BRK/></OLG>
+<BRK/>
+][<SPT><TTL>ASD for Industrial Application</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following operator control and monitoring devices mounted on the front panel of the ASD:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Manual speed potentiometer.</OLI><BRK/>
+<BRK/>
+<OLI>Hand-Off-Auto (HOA) switch.</OLI><BRK/>
+<BRK/>
+<OLI>Power on light.</OLI><BRK/>
+<BRK/>
+<OLI>Drive run power light.</OLI><BRK/>
+<BRK/>
+<OLI>Local display[ capable of including ASD status, frequency, motor RPM, phase current, fault diagnostic in descriptive text, and all programmed 
+parameters].</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>ASD for HVAC Application</TTL><BRK/>
+<BRK/>
+<TXT>ASDs must have the following features:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A local operator control providing the following functions:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Remote/Local operator selection with password access.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Run/Stop and manual speed commands.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">All programming functions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Scrolling through all display functions.</OLI><BRK/>
+<BRK/>
+<OLI>A local operator control panel with the following data displayed:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">ASD status.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Frequency.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Motor RPM.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase current.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Scrolling through all display functions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Fault diagnostics in descriptive text.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">All programmed parameters.</OLI><BRK/>
+<BRK/>
+<OLI>Standard PI loop controller with input terminal for controlled variable and parameter settings.</OLI><BRK/>
+<BRK/>
+<OLI>User interface terminals for remote control of ASD speed, speed feedback, and an isolated form C SPDT relay, which energizes on a drive 
+fault condition.</OLI><BRK/>
+<BRK/>
+<OLI>An isolated form C SPDT auxiliary relay which energizes on a run command.</OLI><BRK/>
+<BRK/>
+<OLI>An adjustable carrier frequency with 16 KHz minimum upper limit.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Line reactor is based upon the percent of line impedance.  Investigate ASD voltage performance before using 
+line reactors.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>A built-in or external line reactor with 3 percent minimum impedance to protect the DC bus capacitors and rectifier section diodes[, reduce 
+power line transient voltage, line notching, DC bus over-voltage tripping and improve the inverter over-current and over-voltage conditions].</OLI><BRK/>
+<BRK/>
+<OLI>Historical logging information and displays:</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain first subparagraph below if time and date stamping is not accomplished through the DDC system for 
+HVAC.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI LEVEL="2">Real-time clock with current time and date.</OLI><BRK/>
+<BRK/>
+]<OLI LEVEL="2">Running log of total power versus time.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Total run time.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Fault log, maintaining last [four][_____] faults with time and data stamp for each.</OLI><BRK/>
+<BRK/>
+]<OLI LEVEL="2">[_____].</OLI><BRK/>
+<BRK/>
+[<OLI>The ASD must be capable of automatic control by a remote [4-20 mA][0 to 10 VDC][_____] signal, by [BACnet][LONworks][_____] network command, 
+or manually by the ASD control panel.</OLI><BRK/>
+<BRK/>
+][<OLI>ASDs must include the following operator programmable parameters:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Upper and lower limit frequency.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Acceleration and deceleration rate.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Variable torque volts per Hertz curve.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Starting voltage level.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Starting frequency level.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Display speed scaling.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Enable/disable soft stall feature.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Motor overload level.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Motor stall level.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Jump frequency and hysteresis band.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">PWM carrier frequency.</OLI><BRK/>
+<BRK/>
+][<OLI>ASD must have the following protective features:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">An electronic adjustable inverse time current limit with consideration for additional heating of the motor at frequencies below 
+45Hz, for the protection of the motor.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">An electronic adjustable soft stall feature, allowing the ASD to lower the frequency to a point where the motor will not exceed 
+the full-load amperage when an overload ASD will automatically return to the requested frequency when load conditions permit.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A separate electronic stall at 110 percent ASD rated current, and a separate hardware trip at 190 percent current.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The ability to shut down if inadvertently started into a rotating load without damaging the ASD or the motor.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The ability to keep a log of a minimum of four previous fault conditions, indicating the fault type and time of occurrence in 
+descriptive text.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The ability to sustain 110 percent rated current for 60 seconds.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The ability to shutdown safely or protect against and record the following fault conditions:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Over current (and an indication if the over current was during acceleration, deceleration, or running).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Over current internal to the drive.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Motor overload at start-up.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Over voltage from utility power.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Motor running overload.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Over voltage during deceleration.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">ASD over heat.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Load and ground fault.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Abnormal parameters or data in ASD EEPROM.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>]</SPT><SPT><TTL>ENCLOSURES</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment enclosures conforming to <RID>NEMA 250</RID>, <RID>NEMA ICS 7</RID>, and <RID>NEMA ICS 6</RID>, with a heater if located outdoors.  An HMCP device must provide 
+the disconnecting means.  The operating handle must protrude through the door, but the disconnect must not be mounted on the door.  The 
+handle must indicate ON, OFF, and tripped conditions.  The handle must have provisions to accommodate a minimum of three padlocks in 
+the OFF position.  Interlocks must prevent unauthorized opening or closing of the ASD door with the disconnect handle in the ON position.  
+The door handle interlock should have provisions to be defeated by qualified maintenance personnel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>WIRES AND CABLES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>All wires and cables must conform to <RID>NEMA 250</RID>, <RID>NEMA ICS 7</RID>, <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>NAMEPLATES</TTL><BRK/>
+<BRK/>
+<TXT>Nameplates external to NEMA enclosures must conform with the requirements of Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Provide manufacturer's 
+standard, permanent nameplates for internal areas of enclosures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SOURCE QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>ASD Test Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>To ensure quality, each ASD must be subject to a series of in-plant quality control inspections before approval for shipment from the manufacturer's 
+facilities.  Provide test plans.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ASD Test Report</TTL><BRK/>
+<BRK/>
+<TXT>To ensure quality, each ASD must be subject to a series of in-plant quality control inspections before approval for shipment from the manufacturer's 
+facilities.  Provide test reports.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Per <RID>NEMA ICS 3.1</RID>, install equipment in accordance with the approved manufacturer's printed installation drawings, instructions, wiring diagrams, 
+and as indicated on project drawings and the approved shop drawings.  A field representative of the drive manufacturer must supervise the installation 
+of all equipment, and wiring.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose one of the bracketed sentences.  AC power system grounding is a critical consideration.  The control 
+must be solidly grounded to the main distribution system ground.  A ground common with electrical welding equipment 
+or large current equipment (5x rating of the control) should not be used.  If either of these two conditions exist, 
+use an isolation transformer sized for the ASD control with a wye secondary neutral solidly grounded.  Where more 
+than one control is used, ground each directly to the system ground terminal, do not loop ground or install in 
+series.  Poor/improper grounding is providing nearly all electric noise issues.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Per <RID>NEMA ICS 7.2</RID>, ASD must be solidly grounded to the main distribution.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Specified products must be tested as a system for conformance to specification requirements prior to scheduling the acceptance tests.  Conduct 
+performance verification tests in the presence of Government representative, observing and documenting complete compliance of the system to the 
+specifications.  Submit a signed copy of the test results, certifying proper system operation before scheduling tests.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>ASD Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>A proposed test plan must be submitted to the contracting officer at least 28 calendar days prior to proposed testing for approval.  The tests 
+must conform to <RID>NEMA ICS 1</RID>, <RID>NEMA ICS 7</RID>, and all manufacturer's safety regulations.  The Government reserves the right to witness all tests and 
+review any documentation.  Inform the Government at least 14 working days prior to the dates of testing.  Perform the ASD test[ with the assistance 
+of a factory-authorized service representative][ engaging a qualified <SUB>testing agency's field supervisor</SUB> currently certified by NETA to supervise 
+on-site testing].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Performance Verification Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>"Performance Verification Test" plan must provide the step by step procedure required to establish formal verification of the performance of the 
+ASD.  Compliance with the specification requirements must be verified by inspections, review of critical data, demonstrations, and tests.  The 
+Government reserves the right to witness all tests, review data, and request other such additional inspections and repeat tests as necessary to 
+ensure that the system and provided services conform to the stated requirements.  Inform the Government 14 calendar days prior to the date the 
+test is to be conducted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Endurance Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Immediately upon completion of the performance verification test, the endurance test must commence.  The system must be operated at varying rates 
+for not less than 192 consecutive hours, at an average effectiveness level of 0.9998, to demonstrate proper functioning of the complete PCS.  Continue 
+the test on a day-to-day basis until performance standard is met.  The contractor is not allowed in the building during the endurance test.  The 
+system must respond as designed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DEMONSTRATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Training</TTL><BRK/>
+<BRK/>
+<TXT>Coordinate training requirements with the Contracting Officer.    Provide video tapes, if available, of all training provided to the Government 
+for subsequent use in training new personnel.  Provide all training aids, texts, and expendable support material for a self-sufficient presentation must be provided, the amount of which to be determined by the contracting officer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Instructions to Government Personnel</TTL><BRK/>
+<BRK/>
+<TXT>Provide the services of competent instructors with minimum two-year field experience with the operation and maintenance of similar ASDs who will 
+give full instruction to designated personnel in operation, maintenance, calibration, configuration, and programming of the complete control system.  
+Orient the training specifically to the system installed.  Instructors must be thoroughly familiar with the subject matter they are to teach.  
+The number of training days of instruction furnished must be as specified.  A training day is defined as eight hours of instruction, including 
+two 15-minute breaks and excluding lunch time; Monday through Friday.  Provide a training manual for each student at each training phase which 
+describes in detail the material included in each training program.  Provide one additional copy for archiving.  Provide equipment and materials 
+required for classroom training.  Provide a list of additional related courses, and offers, noting any courses recommended.  List each training 
+course individually by name, including duration, approximate cost per person, and location of course.  Unused copies of training manuals must be 
+turned over to the Government at the end of last training session.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operating Personnel Training Program</TTL><BRK/>
+<BRK/>
+<TXT>Provide one 2-hour training session at the site at a time and place mutually agreeable between the Contractor and the Government.  Provide session 
+to train 4 operation personnel in the functional operations of the system and the procedures that personnel will follow in system operation.  This 
+training must include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>System overview</OLI><BRK/>
+<BRK/>
+<OLI>General theory of operation</OLI><BRK/>
+<BRK/>
+<OLI>System operation</OLI><BRK/>
+<BRK/>
+<OLI>Alarm formats</OLI><BRK/>
+<BRK/>
+<OLI>Failure recovery procedures</OLI><BRK/>
+<BRK/>
+<OLI>Troubleshooting</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Engineering/Maintenance Personnel Training</TTL><BRK/>
+<BRK/>
+<TXT>Accomplish the training program as specified.  Training must be conducted on site at a location designated by the Government.  Provide a one-day 
+training session to train four [_____] engineering personnel in the functional operations of the system.  This training must include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>System overview</OLI><BRK/>
+<BRK/>
+<OLI>General theory of operation</OLI><BRK/>
+<BRK/>
+<OLI>System operation</OLI><BRK/>
+<BRK/>
+<OLI>System configuration</OLI><BRK/>
+<BRK/>
+<OLI>Alarm formats</OLI><BRK/>
+<BRK/>
+<OLI>Failure recovery procedures</OLI><NED/><BRK/>
+<BRK/>
+<OLI>Troubleshooting and repair</OLI><BRK/>
+<BRK/>
+<OLI>Maintenance and calibration</OLI><BRK/>
+<BRK/>
+<OLI>System programming and configuration</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></SPT></PRT>    <END/><BRK/></SEC>

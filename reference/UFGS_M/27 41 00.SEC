@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-27 41 00 (February 2026)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-27 41 00 (November 2021)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 27 41 00</SCN><BRK/>
+<BRK/>
+<STL>AUDIO-VISUAL SYSTEMS</STL><BRK/>
+<DTE>02/26</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  This guide specification covers the general requirements for <SCP>most audio-visual system projects.  This specification 
+does not cover detailed, project specific, design requirements.</SCP>  The system designer will need to address these 
+specific requirements in the SYSTEM DESCRIPTION and EQUIPMENT LIST AND SPECIFICATIONS paragraphs and on any related 
+drawings or supplemental documents.  An independent system designer may be required for this purpose.  In this 
+case, the design process should follow the requirements of ANSI/INFOCOMM 2M-2010 and ANSI/BICSI 001 2017, with 
+the lead system designer having a CTS-D certification.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AUDIOVISUAL AND INTEGRATED EXPERIENCE ASSOCIATION (AVIXA)</ORG><BRK/><BRK/><RID>ANSI/INFOCOMM 2M</RID><RTL>(2010) Standard Guide for Audiovisual Design and Coordination Processes</RTL><BRK/><BRK/><RID>ANSI/INFOCOMM 10</RID><RTL>(2013) Audiovisual Systems Performance Verification</RTL><BRK/><BRK/><RID>ANSI/INFOCOMM A102.01</RID><RTL>(2017) Audio Coverage Uniformity in Listener Areas</RTL><BRK/><BRK/><RID>AVIXA F502.01</RID><RTL>(2018) Rack Building for Audiovisual Systems</RTL><BRK/><BRK/><RID>AVIXA F502.02</RID><RTL>(2020) Rack Design for Audiovisual Systems</RTL><BRK/><BRK/><RID>INFOCOMM F501.01</RID><RTL>(2015) Cable Labeling for Audiovisual Systems</RTL><BRK/><BRK/></REF><REF><ORG>BICSI International Standards Program (BICSI)</ORG><BRK/><BRK/><RID>ANSI/BICSI 001</RID><RTL>(2017) Information and Communication Technology Systems Design and Implementation Best Practices for Educational Institutions and Facilities</RTL><BRK/><BRK/><RID>ANSI/BICSI N1</RID><RTL>(2019) Installation Practices for Telecommunications and ICT Cabling and Related Cabling Infrastructure</RTL><BRK/><BRK/><RID>ANSI/BICSI N3</RID><RTL>(2020) Planning and Installation Methods for the Bonding and Grounding of Telecommunication and ICT Systems and Infrastructure</RTL><BRK/><BRK/></REF><REF><ORG>ELECTRONIC COMPONENTS INDUSTRY ASSOCIATION (ECIA)</ORG><BRK/><BRK/><RID>ECIA EIA/ECA 310-E</RID><RTL>(2005) Cabinets, Racks, Panels, and Associated Equipment</RTL><BRK/><BRK/></REF><REF><ORG>EXTRON ELECTRONICS (EE)</ORG><BRK/><BRK/><RID>EE GUI Design Guide</RID><RTL>(2020; 4th Edition) Graphical User Interface Design Guide</RTL><BRK/><BRK/></REF><REF><ORG>MIDDLE ATLANTIC PRODUCTS (MA)</ORG><BRK/><BRK/><RID>MA Whitepaper</RID><RTL>(2018) Controlling the Temperature Inside Equipment Enclosures</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>TELECOMMUNICATIONS INDUSTRY ASSOCIATION (TIA)</ORG><BRK/><BRK/><RID>ANSI/TIA-568.1</RID><RTL>(2020e) Commercial Building Telecommunications Infrastructure Standard</RTL><BRK/><BRK/><RID>ANSI/TIA-568.2</RID><RTL>(2024e) Balanced Twisted-Pair Telecommunications Cabling and Components Standards</RTL><BRK/><BRK/><RID>ANSI/TIA-568.3</RID><RTL>(2022e) Optical Fiber Cabling Components Standard</RTL><BRK/><BRK/><RID>ANSI/TIA-568.4</RID><RTL>(2022e) Broadband Coaxial Cabling and Components Standard</RTL><BRK/><BRK/><RID>ANSI/TIA-569</RID><RTL>(2019e; Add 1 2022) Telecommunications Pathways and Spaces</RTL><BRK/><BRK/><RID>ANSI/TIA-606</RID><RTL>(2021d) Administration Standard for Telecommunications Infrastructure</RTL><BRK/><BRK/><RID>ANSI/TIA-607</RID><RTL>(2019d) Generic Telecommunications Bonding and Grounding (Earthing) for Customer Premises</RTL><BRK/><BRK/><RID>TIA-568.0</RID><RTL>(2020e) Generic Telecommunications Cabling for Customer Premises</RTL><BRK/><BRK/></REF><REF><ORG>U.S. Code (USC)</ORG><BRK/><BRK/><RID>19 USC 13</RID><RTL>Trade Agreements Act of 1979</RTL><BRK/><BRK/><RID>41 USC 83</RID><RTL>Buy American Act</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>DODI 8100.04</RID><RTL>(2010) DOD Unified Capabilities (UC)</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>36 CFR 1191</RID><RTL>Americans with Disabilities Act (ADA) Accessibility Guidelines for Buildings and Facilities; Architectural Barriers Act (ABA) Accessibility Guidelines</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 2043</RID><RTL>(2023) Fire Test for Heat and Visible Smoke Release for Discrete Products and Their Accessories Installed in Air-Handling Spaces</RTL><BRK/><BRK/><RID>UL 62368-1</RID><RTL>(2025) UL Standard for Audio/Video, Information, and Communication Technology Equipment - Part 1:  Safety Requirements</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED DOCUMENTS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Drawings and general provisions of the Contract including General and Supplementary Conditions and UFGS Division 01 Specification Sections.</OLI><BRK/>
+<BRK/>
+<OLI>UFGS Division 26 Specification for Communications cabling, cabling pathways, termination and physical mounting of cable hangers and cable 
+trays.</OLI><BRK/>
+<BRK/>
+<OLI>UFGS Division 26 Specification Sections for room lighting fixtures, dimmers, power receptacle outlets, and interconnecting wiring for these 
+circuits.</OLI><BRK/>
+<BRK/>
+<OLI>UFGS Division 27 Specification Sections for all telecommunications requirements - including LAN connections, analog and digital telephone 
+lines, digital data circuits, high speed internet access and building horizontal cabling.</OLI><BRK/>
+<BRK/>
+<OLI>Section <SRF>27 05 13.43</SRF> TELEVISION DISTRIBUTION SYSTEM for CATV Systems.</OLI><BRK/>
+<BRK/>
+<OLI>Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</OLI><BRK/>
+<BRK/>
+<OLI>UFGS Division 23 Specification Sections for Heating, Ventilation and Air Conditioning.</OLI><BRK/>
+<BRK/>
+<OLI>Audiovisual drawings and equipment lists.</OLI><BRK/>
+<BRK/>
+<OLI>If system design services are required, provide designs in accordance with <RID>ANSI/INFOCOMM 2M</RID> and <RID>ANSI/BICSI 001</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SCOPE OF WORK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete items i., j., and k. below if not included in the Scope of Work.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>This Specification Section outlines the minimum requirements and installation methods for the integrated audiovisual System, hardware, software, 
+cables, accessories, and acceptance testing.  System refers to the complete and functional assemblage of equipment required to achieve the specified 
+functionality, performance, and design intent.  This includes but is not limited to:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Audio equipment:  Speakers, mixers, amplifiers, microphones, signal processing equipment, and source equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Video equipment:  Displays, signal routing and processing equipment, and source equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Video projection screens</OLI><BRK/>
+<BRK/>
+<OLI>Remote control equipment including touch panels, control processors, software, and programming.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment racks and associated hardware such as rack screws, power distribution products, cooling products, and blank panels.</OLI><BRK/>
+<BRK/>
+<OLI>Cables, snakes, connectors, plates, and wiring.</OLI><BRK/>
+<BRK/>
+<OLI>Other similar parts that may be required for normal operation such as projector bulbs and lenses.</OLI><BRK/>
+<BRK/>
+<OLI>Mounts, rigging, and required hardware such as all-thread, unistrut, chains, and cables.</OLI><BRK/>
+<BRK/>
+[<OLI>Floor boxes</OLI><BRK/>
+<BRK/>
+][<OLI>Display wall boxes</OLI><BRK/>
+<BRK/>
+][<OLI>AV lecterns and credenzas</OLI><BRK/>
+<BRK/>
+]<OLI>System commissioning</OLI><BRK/>
+<BRK/>
+<OLI>Training</OLI><BRK/>
+<BRK/>
+<OLI>Documentation</OLI><BRK/>
+<BRK/>
+<OLI>Communication and coordination with all team members and trades to fulfill the requirements of this Specification.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>EXCLUDED SCOPE OF WORK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete items c., d., and e. below if included in the paragraph SCOPE OF WORK.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Cutting and patching</OLI><BRK/>
+<BRK/>
+<OLI>Painting, refinishing and finishes</OLI><BRK/>
+<BRK/>
+[<OLI>Floor boxes</OLI><BRK/>
+<BRK/>
+][<OLI>Display wall boxes</OLI><BRK/>
+<BRK/>
+][<OLI>AV lecterns and credenzas</OLI><BRK/>
+<BRK/>
+]<OLI>Work specified in other UFGS Specification Sections.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bid Pricing</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Shop Drawings</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-09 Manufacturer's Field Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Status Reports and Meeting Minutes</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Record Drawings</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance (O&amp;M) Manuals</SUB>, <SUB>G</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CYBERSECURITY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate any audio-video networking requirements with facility needs and cybersecurity requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate any network security requirements related to this Specification in accordance with Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED 
+CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>QUALIFICATIONS</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Comply with all UFGS Division 1 (General Requirements) standards to include Section <SRF>01 14 00</SRF> WORK RESTRICTIONS.</OLI><BRK/>
+<BRK/>
+<OLI>The Government reserves the right to accept or reject the System Contractor or Manufacturer based upon qualifications and ability to conform 
+to specified technical or licensing requirements of this Section.  System Contractors, Installers and Manufacturers that do not have the 
+specified qualifications will not be acceptable and will not be allowed to perform the work of this Section.</OLI><BRK/>
+<BRK/>
+<OLI>The Government will determine the acceptability of any proposed System Contractor, Installer and Manufacturer based on submitted and verified 
+documentation that substantiates that the proposed System Contractor, Installer and Manufacturer have the qualifications specified in this 
+Section.</OLI><BRK/>
+<BRK/>
+<OLI>Submit documented verification of the specified qualifications as part of the Data Qualifications submittal.  The Government maintains 
+the right to request, inspect and verify references and resumes of all technical and managerial personnel assigned to the project.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>System Contractor Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>The System Contractor must:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Be licensed in the project jurisdiction as required to perform the work included in this Specification.</OLI><BRK/>
+<BRK/>
+<OLI>Be regularly engaged in the system application design, documentation, installation, testing, training, and maintenance of the type of system 
+specified in this Section.</OLI><BRK/>
+<BRK/>
+<OLI>Have a minimum of five [_____] years of experience providing these services for systems having the same level of features and functions 
+as the system being provided.</OLI><BRK/>
+<BRK/>
+<OLI>Submit [five] [_____] references with contact names and valid telephone numbers regarding similar projects successfully completed within 
+the last [3] [_____] years.</OLI><BRK/>
+<BRK/>
+<OLI>Be capable of providing manufacturer-specified installation, programming, training, maintenance, and repair for all equipment provided.</OLI><BRK/>
+<BRK/>
+<OLI>Have an office within a [120] [_____] mile radius of the project site that can provide all specified service and support.</OLI><BRK/>
+<BRK/>
+<OLI>Be responsible for any required low voltage permits.</OLI><BRK/>
+<BRK/>
+<OLI>Use a Project Manager with a [CTS] [CTS-I] [CTS-D] [RCDD] [RTPM] [PMP] [_____] certification.</OLI><BRK/>
+<BRK/>
+<OLI>Use a Lead Installer with a [CTS] [CTS-I] [CTS-D] [RCDD] [_____] certification.</OLI><BRK/>
+<BRK/>
+<OLI>Use a Control System and Digital Signal Processor (DSP) Programmer certified by the manufacturer(s) of the product(s) used in the project.</OLI><BRK/>
+<BRK/>
+<OLI>Submit names and resumes of key personnel that will be assigned to the project.  As a minimum, these personnel must include the Project 
+Salesman, Project Manager, Lead Installer, Control System Programmer, and Digital Signal Processor Programmer.  The same person may be 
+utilized for multiple project responsibilities.  Once approved, these personnel are expected to work on the project through the duration.  
+Any replacement personnel must be approved by the Contracting Officer.  The approved Lead Installer, Control System Programmer, and Digital 
+Signal Processor Programmer must be present during system commissioning.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Each product manufacturer must:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Have a minimum of [5] [_____] years' experience in producing the products and type of system included in this Specification Section.</OLI><BRK/>
+<BRK/>
+<OLI>Guarantee the availability of the replacement parts for the designed system for a minimum of [3] [_____] years from the date of final acceptance 
+of the system by the Contracting Officer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>BID PRICING</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remove this paragraph if the project does not require bid pricing to be submitted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit the following in conjunction with the System Contractor Qualifications information:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Complete and accurate listing of all equipment to be used in assembling the system(s).</OLI><BRK/>
+<BRK/>
+<OLI>Itemized pricing for all equipment.  Include sales tax where applicable.</OLI><BRK/>
+<BRK/>
+<OLI>Itemized costs for all pertinent labor/installation categories.</OLI><BRK/>
+<BRK/>
+<OLI>Itemized costs for any optional items such as Add/Deduct Alternates and Extended Warranties.</OLI><BRK/>
+<BRK/>
+[<OLI>Any proposed Handing and Administration Rates (HAR) are not to exceed 5 percent.  This fee will account for all administrative costs, overhead, 
+bonding fees, administration of subcontracts, profit, and any other costs associated with and related to the coordination and processing 
+of the procurement and installation of the equipment.  The proposed HAR percentage will be incorporated into the contract award and will 
+not be adjusted regardless of fluctuations from the estimate amount for the FF&amp;E.  The proposed HAR is a fixed rate.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL><SUB>SHOP DRAWINGS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit the following prior to the purchase, assembly, or installation of any equipment:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Drawing Index and Title Page.</OLI><BRK/>
+<BRK/>
+<OLI>Symbols Legend showing all devices, cable types, labelling scheme and any other information required to decipher symbols in the submittal 
+package.</OLI><BRK/>
+<BRK/>
+<OLI>Floor Plans, Reflected Ceiling Plans, and Sectional View drawings as required to completely document all devices, dimensional locations, 
+and infrastructure requirements.</OLI><BRK/>
+<BRK/>
+<OLI>System wiring diagrams showing make and model of equipment, logical wire traces, cable types, and any other identifying labels for wiring 
+or ancillary devices.</OLI><BRK/>
+<BRK/>
+<OLI>Rack Elevations showing rack identifiers, equipment location within each rack, per-outlet power distribution details, and any rack accessories.</OLI><BRK/>
+<BRK/>
+<OLI>Plate and Panel drawings showing connections, size, finish, color, engraving, and any other information required to document fit and finish 
+of wall plates or floor boxes.</OLI><BRK/>
+<BRK/>
+<OLI>Riser drawings showing cable routing between wall plates, floor boxes, ceiling devices, racks, and any other devices as required.</OLI><BRK/>
+<BRK/>
+<OLI>Additional drawings as required -including but not limited to custom furniture and millwork, custom display details and equipment mounting.</OLI><BRK/>
+<BRK/>
+<OLI>Patch Panel and/or Network Switch Layouts that show port numbering schemes and IP information as required.</OLI><BRK/>
+<BRK/>
+<OLI>Product data sheets for equipment and cabling, organized logically by system type and indexed for reference. Any parts used but not approved 
+may be rejected at any time.</OLI><BRK/>
+<BRK/>
+<OLI>Material samples as required.</OLI><BRK/>
+<BRK/>
+<OLI>Project schedule including key milestones including but not limited to submittal packages, material procurement, rack fabrication and shop 
+testing, installation milestones as applicable, acceptance testing, and completion.</OLI><BRK/>
+<BRK/>
+<OLI>Images of proposed touch panel layouts, with functional descriptions of buttons and pages.  The Contractor will make up to two iterative 
+edits based on comments from the Contracting Officer at no additional cost.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>STATUS REPORTS AND MEETING MINUTES</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide [weekly] [daily] status reports outlining progress on the project to the Contracting Officer.  These reports must include information 
+on the work completed during the [week] [day], the work to be completed during the upcoming [week] [day] and any potential scheduling issues.</OLI><BRK/>
+<BRK/>
+<OLI>Provide minutes for any meetings directly related to this project.  Minutes are to be completed within one [week] [day] of the meeting.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<OLG><BRK/>
+<OLI>All costs for shipping to the site, and of any unusual storage requirements, are to be a part of this Specification.</OLI><BRK/>
+<BRK/>
+<OLI>Make appropriate arrangements, and coordinate with authorized personnel at the site, for the proper acceptance, handling, protection, and 
+storage of equipment so delivered.</OLI><BRK/>
+<BRK/>
+<OLI>Until site conditions are ready for installation of the AV equipment, some AV equipment must be received and stored offsite in suitable 
+environmental conditions for sensitive electronic equipment.  This equipment must be made available to the Government for inspection as 
+required.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>GENERAL</TTL><BRK/>
+<OLG><BRK/>
+<OLI>All materials must be new, free from defects and not less than the quality specified.  Materials must be designed to ensure satisfactory 
+operation and operational life in the environmental conditions which will prevail where they are being installed.</OLI><BRK/>
+<BRK/>
+<OLI>At the time of submittal, supply the latest model for each piece of equipment.</OLI><BRK/>
+<BRK/>
+<OLI>All products used must be manufactured no more than one year prior to installation.</OLI><BRK/>
+<BRK/>
+<OLI>All products must be provided with the latest version of all software/firmware.</OLI><BRK/>
+<BRK/>
+<OLI>All equipment must be <RID>UL 62368-1</RID> or equivalent listed or industry standard and comply with the NEC <RID>NFPA 70</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment installed in air handling spaces must be <RID>UL 2043</RID> listed</OLI><BRK/>
+<BRK/>
+<OLI>Where indicated as relevant to this project, all equipment must be <RID>19 USC 13</RID> compliant, <RID>41 USC 83</RID> compliant, and approved prior to purchase.</OLI><BRK/>
+<BRK/>
+<OLI>Where indicated as relevant to this project, all equipment must be DISA compliant and on the <RID>DODI 8100.04</RID> DoDIN Approved Products List.</OLI><BRK/>
+<BRK/>
+<OLI>No Substitutions or Variances are allowed without the written consent of the Contracting Officer or their approved representative.</OLI><BRK/>
+<BRK/>
+<OLI>Substitute equipment must meet or exceed the performance specifications of the basis of design equipment and be at no additional cost.</OLI><BRK/>
+<BRK/>
+<OLI>Substitute equipment must not impact the existing architectural, mechanical or electrical designs.</OLI><BRK/>
+<BRK/>
+<OLI>Submit equipment pricing based on the specified equipment herein.  Any substitute equipment or new proposed equipment necessary to fulfill 
+the design intent, must be clearly categorized and priced individually on a separate page as an alternate to the specified equipment.  
+Pricing for the original specified equipment must still be provided.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>SPARE PARTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remove this paragraph if not applicable to the project.  If applicable, the system designer must update 
+this paragraph based on the actual project requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide spare parts/attic stock as identified below:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>XLRM to XLRF microphone cable,<MET> 7.6 meter</MET><ENG> 25-foot</ENG>, black.  QTY. 2</OLI><BRK/>
+<BRK/>
+<OLI>Cat6 patch cable,<MET> 0.9 meter</MET><ENG> 3-foot</ENG>, white.  QTY.6</OLI><BRK/>
+<BRK/>
+<OLI>Rechargeable battery for wireless microphone.  QTY. 2</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The system designer must update this paragraph based on the actual project requirements.  This sample paragraph 
+is based on the design used in the Technical Paper.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Large Conference Room</TTL><BRK/>
+<OLG><BRK/>
+<OLI>A wall-mounted flat panel display is required for local presentations and video conferencing.  The display will be sized to allow appropriate 
+viewing from the furthest point at the conference table based on mixed media (video and graphics) content and basic decision-making calculations.  
+The display will include a tilting wall mount.  An in-wall storage box will be located behind the display to recess a surge protection 
+AC power outlet and any accessory devices.</OLI><BRK/>
+<BRK/>
+<OLI>Sources to the display will include an in-house CATV feed (provided and installed by others), a Government provided room computer located 
+in the credenza, a wired laptop input at the credenza (with both HDMI and VGA connections), and a wireless presentation device.</OLI><BRK/>
+<BRK/>
+<OLI>The Government provided computer will include a wireless keyboard and mouse and will be configured with software as required to allow web 
+conferencing.</OLI><BRK/>
+<BRK/>
+<OLI>The wireless presentation device will allow connectivity from Windows, Android, OSX and iOS devices.  It will also be used for basic digital 
+signage and emergency notifications.</OLI><BRK/>
+<BRK/>
+<OLI>A high definition (1080P) USB web camera with pan/tilt/zoom capability will be provided to allow capture of room participants seated at 
+the conference table.  The camera will allow all seated participants to be viewed at once or allow along with the ability to zoom in on 
+individual participants or smaller groups of participants.  The output of the camera will be extended to the room computer.</OLI><BRK/>
+<BRK/>
+<OLI>Pendant ceiling microphones will be located above the conference table to capture participant voices from a seated position at the conference 
+table.  The microphones will include tracking technology to allow them to focus on participants speaking.  These microphones will feed 
+the room PC (via a USB interface) for web conferencing.  Local voice reinforcement is not required.</OLI><BRK/>
+<BRK/>
+<OLI>Ceiling speakers will be provided for program audio playback.</OLI><BRK/>
+<BRK/>
+<OLI>The room will also include integrated VoIP audio conferencing using the built-in room microphones and speakers.  VoIP service will be provided 
+by others.</OLI><BRK/>
+<BRK/>
+<OLI>A wireless touch screen, with a docking station at the credenza, will be provided for room control.  Refer to paragraph REMOTE CONTROL 
+SYSTEM PROGRAMMING for control system functionality.  The system will interface with the room lights and shades if programmable lighting 
+and shading systems are provided.</OLI><BRK/>
+<BRK/>
+<OLI>A room scheduling panel will be located outside of the room.  This panel will be PoE powered and connect to the Government LAN.  It will 
+interface with Office 365 to allow scheduling of the room through a standard Outlook Calendar invitation.  Coordinate the configuration 
+of this touch panel with the Contracting Officer.  The panel will include indicator lights that turn from green to red when the room becomes 
+unavailable.</OLI><BRK/>
+<BRK/>
+<OLI>Rack mounted equipment will be installed in a small cabinet in the room credenza.  The rack and credenza will be designed to allow adequate 
+ventilation.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>EQUIPMENT LIST AND SPECIFICATIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The system designer must update this paragraph based on the actual project requirements.  This list should 
+include all required types, and quantities of equipment by room, along with their pertinent specifications.  For 
+ease of formatting and overall management of the large number of products that may be specified, it is recommended 
+that this equipment list be prepared as a separate spreadsheet and inserted into this Specification as an Attachment 
+or included on the design drawings.  See example based on the Conference Room document in the Technical Paper.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with the details of the work and working conditions, verify dimensions and equipment locations in the field, and advise 
+the Contracting Officer of any discrepancies before performing the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GENERAL INSTALLATION STANDARDS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Coordinate the installation of all equipment, wiring, and associated hardware to be compatible with the work of other trades and with the 
+overall construction completion schedule.  Coordinate all access and work with the Government in advance.</OLI><BRK/>
+<BRK/>
+<OLI>Protect all finishes, furniture, and equipment, and maintain a clean work environment while working and when finished each day.</OLI><BRK/>
+<BRK/>
+<OLI>Perform installation in strict accordance with AVIXA standards and best practices, general industry standards and best practices, the National 
+Electrical Code, and any other governing codes.</OLI><BRK/>
+<BRK/>
+<OLI>Keep a complete and accurate set of installation drawings at the job site.  Note any changes made during installation on the drawings.  
+Include a final set of as-built drawings with the Operation and Maintenance manuals.</OLI><BRK/>
+<BRK/>
+<OLI>Install all equipment following the manufacturers' recommendations and broadcast standards.  Adjust and test to assure that all components 
+are functioning properly by themselves and in conjunction with their associated components.</OLI><BRK/>
+<BRK/>
+<OLI>Install all equipment in appropriate cabinets or consoles at the locations designated in this document or on the associated contract drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Apply no advertising to racks, equipment, and accessories.  Where possible, [and requested by the Contracting Officer,] remove all visible 
+manufacturer name badges from equipment mounted in public areas.</OLI><BRK/>
+<BRK/>
+<OLI>Cleanup and dispose of all waste materials daily.  Wherever possible, materials must be properly recycled.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>MOUNTING, RIGGING AND SEISMIC RESTRAINT</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Design and build equipment racks in accordance with <RID>AVIXA F502.01</RID>, <RID>AVIXA F502.02</RID>, and <RID>ECIA EIA/ECA 310-E</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Mount equipment in accordance with <RID>36 CFR 1191</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Securely fasten all equipment in place unless requirements of portability dictate otherwise.  Fastenings and supports must be adequate 
+to support their loads with a safety factor of at least five.</OLI><BRK/>
+<BRK/>
+<OLI>Provide seismic protection, including supports and hangers, as required by applicable code.</OLI> <BRK/>
+<BRK/>
+<OLI>Install all boxes and equipment plumb and square in accordance with the manufacturer's recommended mounting practice.</OLI><BRK/>
+<BRK/>
+<OLI>Securely fasten and support all equipment without hindering equipment operation.</OLI> <BRK/>
+<BRK/>
+<OLI>Provide shaft locks or security covers on all non-user-operated equipment having front panel controls.</OLI><BRK/>
+<BRK/>
+<OLI>Provide structural/rigging calculations for mounting equipment more than<MET> [227 Kilograms]</MET><ENG> [500 pounds]</ENG> [_____].  Mounting details may require 
+review and approval by the project's Structural Engineer.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment racks will be designed to ensure proper thermal management.  Maximum constant operating temperature of equipment should not exceed 
+85 degrees Fahrenheit.  Where cooling fans are provided in racks located in sensitive areas, select fans to minimize the noise impact in 
+the area.  Refer to <RID>MA Whitepaper</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING AND SHIELDING</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install grounding in accordance with <RID>NFPA 70</RID>, <RID>ANSI/TIA-607</RID>, <RID>ANSI/BICSI N3</RID> and all Division 26 Specification Sections.</OLI><BRK/>
+<BRK/>
+<OLI>As a minimum, provide individual equipment racks with a rack grounding stud or bus bar and a #12 stranded (minimum) bonding jumper connected 
+to the grounding and bonding stud on the primary power distribution unit that is plugged into the power receptacle serving the rack.  Isolate 
+the rack from the floor with plastic or rubber wheels/leveling feet.</OLI><BRK/>
+<BRK/>
+<OLI>Verify the integrity of grounding systems prior to connection of equipment.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>GENERAL WIRING STANDARDS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide, install, terminate, and test all cabling in accordance with <RID>TIA-568.0</RID>, <RID>ANSI/TIA-568.1</RID>, <RID>ANSI/TIA-568.2</RID>, <RID>ANSI/TIA-568.3</RID>, <RID>ANSI/TIA-568.4</RID>
+, <RID>ANSI/TIA-569</RID>, <RID>ANSI/BICSI N1</RID>, <RID>AVIXA F502.01</RID>, <RID>AVIXA F502.02</RID> and other industry best practices.</OLI><BRK/>
+<BRK/>
+<OLI>All wiring runs must be unspliced where possible.  Splices are not permitted in conduit, outside of listed splice boxes.</OLI><BRK/>
+<BRK/>
+<OLI>Cable routed in conduits or equipment racks to have non-plenum (PVC) rated jacket.  All other cables to have a plenum rated jacket.</OLI><BRK/>
+<BRK/>
+<OLI>Cables routed above ceilings must be suspended above the ceiling tiles in J-hooks or cable tray.</OLI><BRK/>
+<BRK/>
+<OLI>Provide outdoor-rated, direct burial, or other similar specialty rated cable types where required based on installation conditions and 
+applicable codes.</OLI><BRK/>
+<BRK/>
+<OLI>The following denotes the most common cabling types and the minimum performance requirements.  The Contractor is required to verify all 
+cabling specifications based on the actual equipment provided.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Microphone and Line Audio Cable:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">22 AWG (7x30) stranded twisted shielded pair with overall shield</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Conductor): less than or equal to 35 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Conductor and Shield):  less than or equal to 67 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Low Impedance Loudspeaker Cable:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">14 AWG (19x27) stranded twisted pair</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Conductor): less than or equal to 36 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Low Impedance Loudspeaker Cable:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">12 AWG (19x25) stranded twisted pair</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Conductor): less than or equal to 36 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Low or High Impedance Loudspeaker Cable</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">16 AWG (19x29) stranded pair</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Conductor): less than or equal to 36.5 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">High Impedance Loudspeaker Cable (70V / 100V)</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">18 AWG (7x26) stranded pair</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Conductor): less than or equal to 34 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Antenna Cables - RG58 - Wireless Microphone and Assisted Listening</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">50 ohm RG-58 19 AWG solid center conductor</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Shield): less than or equal to 27 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Attenuation at 900MHz: less than or equal to 12.5 dB/100 ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Antenna Cables - RG213 - Wireless Microphone and Assisted Listening</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">50 ohm RG-213 13 AWG solid center conductor</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Shield): less than or equal to 31 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Attenuation at 900MHz: less than or equal to 6.5 dB/100 ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Antenna Cables - RG8/U - Wireless Microphone and Assisted Listening</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">50 ohm RG-8/U 10 AWG solid center conductor</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Shield): less than or equal to 25 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Attenuation at 900MHz: less than or equal to 4 dB/100 ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Video Tie Line Cable:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">RG59/U coaxial cable 20 AWG solid bare copper</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Shield): less than or equal to 16.5 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Attenuation at 3000MHz: less than or equal to 22 dB/100 ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Video Tie Line Cable:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">RG6/U coaxial cable 18 AWG solid bare copper</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Shield): less than or equal to 16.5 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Attenuation at 3000MHz: less than or equal to 18 dB/100 ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Video Tie Line Cable:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">RG11/U coaxial cable 14 AWG solid bare copper</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Shield): less than or equal to 16.5 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Attenuation at 3000MHz: less than or equal to 10.5 dB/100 ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Video Tie Line Cable Five (5) Conductor - Mini High-Res:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">5 x 26 AWG coaxial cable with overall jacket</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Shield): less than or equal to 17 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Attenuation at 1000MHz: less than or equal to 21.5 dB/100 ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Video Tie Line Cable Five (5) Conductor - RG59:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">5 x 24 AWG coaxial cable with overall jacket</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Shield): less than or equal to 17.5 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Attenuation at 1000MHz: less than or equal to 13.5 dB/100 ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Digital Video SUTP Tie Line Cable</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">4 x 26 AWG solid bare copper, shielded twisted pair</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Shield): less than or equal to 25 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Attenuation at 500MHz: less than or equal to 20.5 dB/100 ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Data Tie Line Cable:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Refer to telecommunications specifications for project-standard data cabling information.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">RS-232 Control Cable</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">22 AWG (7X30) Two pair twisted, individually shielded with drain wire</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Conductor): less than or equal to 17 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Specialty Control Cable - AXLINK, CRESNET:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">22 AWG (7X30) shielded twisted pair with drain wire and 18 AWG unshielded pair in single jacket</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Nominal Capacitance (Conductor to Conductor): less than or equal to 14 pF/ft</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Multimode Optical Fiber:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">50/125 micron as required in accordance with transmission equipment manufacturer recommendation.  If transmission 
+equipment does not support 50/125 micron, 62.5/125 micron must be permitted.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Strand count in accordance with functional drawings; minimum of two strands for each run outside the main equipment 
+cabinet.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Must support 10Gbps transmission speed for length of run</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Each optical fiber strand must be sufficiently free of surface imperfections and inclusions to meet the optical, 
+mechanical, and environmental requirements of this specification and all <RID>ANSI/TIA-568.3</RID> performance parameters.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Single-Mode Optical Fiber:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">8.3/125 micron</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Each optical fiber strand must be sufficiently free of surface imperfections and inclusions to meet the optical, 
+mechanical, and environmental requirements of this specification and all <RID>ANSI/TIA-568.3</RID> performance parameters.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Unshielded Ethernet:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">4Px24 AWG UTP</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Cat6 with a minimum <RID>ANSI/TIA-568.2</RID> standard rating</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Shielded Ethernet:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">4Px24 AWG STP</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Cat6 with a minimum <RID>ANSI/TIA-568.2</RID> standard rating</OLI><BRK/>
+<BRK/>
+<OLI>Use digital video cable as specified by the product manufacturer to obtain a signal at the maximum capable system resolution (minimum 1080P, 
+60Hz) that is free from all artifacts at each display from each source location.  Use shielded cabling and connectors as required.  Where 
+multiple cabling options are provided by a manufacturer, use the option resulting in the greatest performance.</OLI><BRK/>
+<BRK/>
+<OLI>All Category cabling and connectors are to be rated at CAT6 or greater with a minimum <RID>ANSI/TIA-568.2</RID> standard rating.</OLI><BRK/>
+<BRK/>
+<OLI>All Category cabling and connectors to be terminated to the T568A standard unless otherwise required.</OLI><BRK/>
+<BRK/>
+<OLI>Use color-coded ruggedized and lockable (Neutrik EtherCON or similar) shielded panel connectors and shielded inline connectors for all 
+Contractor provided signal distribution equipment that requires RJ-45 style connectors at wall panel or floor box panel connections, except 
+for those connecting a piece of AV equipment to the LAN.  Maintain all cable shielding as required.</OLI><BRK/>
+<BRK/>
+<OLI>Each digital AV over RJ-45 receptacle, permanently installed cable, equipment cord, and patch panel will be of a color or have markings 
+that are non-standard with the voice/data system, and be plainly and permanently labeled "AV Only".</OLI><BRK/>
+<BRK/>
+<OLI>Arrange, route, and isolate wiring according to signal level to minimize crosstalk, hum, or spurious signals.  Wiring categories must consist 
+of:  microphone level (minus 80 dBm to minus 20 dBm), line level (minus 20 dBm to plus 30 dBm), loudspeaker level (plus 30 dBm and above), 
+AC power, and DC control or emergency power.</OLI><BRK/>
+<BRK/>
+<OLI>Select cable color according to signal type.  Submit color scheme to Contracting Officer for approval as a part of the Shop Drawing submission 
+package.</OLI> <BRK/>
+<BRK/>
+<OLI>Install all cabling in an orderly and professional manner.  Provide service loops to allow access to the rear of equipment.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>LABELING</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Label all cables and equipment in accordance with <RID>ANSI/TIA-606</RID> and <RID>INFOCOMM F501.01</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Use white labeling with black text unless requested otherwise by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide the wire run list as an Excel spreadsheet and include as a part of the Operation and Maintenance Manuals.</OLI><BRK/>
+<BRK/>
+<OLI>Clearly and logically label external devices such as audio mixers, wireless microphones, belt packs, and assistive listening receivers.</OLI> <BRK/>
+<BRK/>
+<OLI>Label relevant inputs and outputs on switchers, matrices, and mixers.  This includes digital/virtual labelling of audio channels and video 
+inputs and outputs.</OLI><BRK/>
+<BRK/>
+<OLI>Label telephone numbers, ISDN numbers and IP addresses of pertinent devices.</OLI><BRK/>
+<BRK/>
+<OLI>Label cabling wherever it is exposed in junction or pull boxes.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>REMOTE CONTROL SYSTEM PROGRAMMING</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Design graphical user interfaces in accordance with industry standards such as noted in <RID>EE GUI Design Guide</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>As a minimum, the remote-control systems (where provided) will be programmed for the following general functionality as appropriate for 
+each room:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Power sequencer:  Rack power on/off.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Projection screen:  Up/down.  Screen must automatically lower when the projector is turned on and automatically raise when the 
+projector is turned off.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Projector lift:  Up/down.  Provide the following lift preset positions:  projector off (fully up), show position (projector in 
+normal operating position), and service position (fully down).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Displays:  Power on/off, input source select, video mute, lamp life monitoring.  Automatic power on when a source is selected 
+for display.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Video matrices:  Source routing.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Video cameras:  Pan/tilt/zoom, preset store and select.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">CATV/Satellite TV tuner:  Manual channel select, preset channel store and recall.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Media player:  Standard transport and menu controls.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Recorder:  Standard transport and menu controls, record source select.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Audio matrix:  Dialing, privacy, local and remote volume up/down/mute, pick up/hang up.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Video codec:  Dialing, privacy, volume up/down/mute, pick up/hang up, camera controls, menu navigation, source send select.</OLI> <BRK/>
+<BRK/>
+<OLI>Where all room video sources are portable, use video sync sensing to automatically power on the room display system upon connection of 
+a video source and automatically power off the display upon disconnection of a video source.</OLI><BRK/>
+<BRK/>
+<OLI>Provide separate Program and Microphone audio level controls with mute function.  Include a technician's page with access to individual 
+microphone level controls.  Include a preset button to recall default levels.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the Audiovisual system is not monitored, item e. can be deleted.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>UPS:  System monitoring.  Provide a technician page for the monitoring of the UPS.  Feedback will be provided to monitor the following 
+conditions as available by the UPS: Utility Voltage, Output Voltage, Current Load, Load Percentage, Wattage Load, Battery Capacity, Battery 
+Voltage, Remaining Battery Time, Remaining Charging Time, and Cabinet Temperature.  Provide alerts for the detection of any system faults, 
+warnings, or abnormal conditions as available.</OLI><BRK/>
+<BRK/>
+]<OLI>Lighting system:  Preset 1-4 recall, all lights on, all lights off, individual lighting zone raise/lower, all lights raise/lower.</OLI><BRK/>
+<BRK/>
+<OLI>Shades:  Open, close, stop.  Provide individual controls for each shade zone and type (such as sun control and blackout).</OLI><BRK/>
+<BRK/>
+[<OLI>Room combining:  In room combined mode, all video sources must be made available to all video destinations and all microphone sources must 
+be made available to all audio destinations.  The audio from the last routed video source is to become the local program audio source.  
+One control system touch panel is to become the master (or multiple touch panels can track together).  In rooms with operable partition 
+sensors, use the sensors to automatically recall the room combination presets.</OLI><BRK/>
+<BRK/>
+][<OLI>In the absence of pre-defined touch panel templates, propose draft touch panel pages for review and approval by the Government prior to 
+programming.  A minimum of one meeting must be provided to present these pages.  Provide modifications as necessary based on comments resulting 
+from the meeting.</OLI><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Powering off an Audiovisual system may not be recommended in certain applications.  If not desired, item 
+j. can be removed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Program the control system to automatically power down the AV systems each day at a time specified by the Contracting Officer.  Fully power 
+off (or place in stand-by mode) all non-critical equipment.</OLI><BRK/>
+<BRK/>
+]<OLI>Where applicable, provide web browser-based control of each room in addition to the room touch panels.</OLI><BRK/>
+<BRK/>
+<OLI>Coordinate all required control system LAN settings with the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Include [eight] [_____] hours of additional programming time as a part of this Specification for any requested control system modifications 
+after initial system acceptance but prior to the expiration of the warranty period.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM TESTING AND ADJUSTMENT</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Perform in accordance with <RID>ANSI/INFOCOMM 10</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Demonstrate that all audio system coverage is in accordance with <RID>ANSI/INFOCOMM A102.01</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Demonstrate that the entire scope of work defined is complete and fully functional in accordance with the scope of this specification and 
+drawings, as well as any additional approved modifications and revisions.</OLI><BRK/>
+<BRK/>
+<OLI>Prior to conducting Commissioning with the Government, complete an internal quality review including a minimum of the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that all equipment has been delivered and installed in accordance with specifications.  Provide a detailed equipment list 
+sorted by room number and rack complete with make, model and serial number.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that all other trades have completed the work associated with the functioning of the audiovisual systems and that any 
+installed third-party devices such as screens, shades, and lights work properly with the AV systems.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Power on all equipment and verify the intended functions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify signal paths and cable continuity/integrity for all field terminated wiring.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Adjust and align all displays for color, contrast, and geometry.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify all communications services such as POTS, ISDN, and Ethernet.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Configure and test the functionality of all audio and video conferencing systems.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Load and test all DSP and control system software and provide button by button testing of all control system touch panels.</OLI><BRK/>
+<BRK/>
+<OLI>Provide documentation to the Contracting Officer that the systems are substantially complete at least [one week] [_____] in advance of 
+Commissioning with the Government.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>TEST EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Provide all test equipment and test materials relative to the scope of the project to include legal copies of all source media in all appropriate 
+formats and blank recordable media in all appropriate formats.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COMMISSIONING</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Perform in accordance with <RID>ANSI/INFOCOMM 10</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>After preliminary system installation and adjustment, conduct a Commissioning Test with representatives from the Government present.</OLI><BRK/>
+<BRK/>
+<OLI>Schedule testing to ensure the availability of all required personnel and rooms.</OLI><BRK/>
+<BRK/>
+<OLI>During the commissioning, demonstrate the operation of each individual piece of equipment in the system, and the system as a whole.  Also 
+demonstrate that equipment functions according to manufacturer's specifications, industry standards, and as stated in this Specification.</OLI><BRK/>
+<BRK/>
+<OLI>This demonstration must include a minimum of the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A physical inventory of all equipment</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">An evaluation of general workmanship and construction quality</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A mechanical check of all system components</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The physical operation of all system equipment (audio, video, control, and network) including button-by-button control system 
+testing</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The placement of audio and video test calls</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM TRAINING AND OPERATION ASSISTANCE</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Conduct a training program for a nominal [_____] staff members as designated by the Contracting Officer to instruct on overall system and 
+individual equipment operation, basic preventative maintenance, and basic system troubleshooting.  Provide a nominal [____] hours of training 
+which may be scheduled at the Government's request at any time up to one year following system acceptance.</OLI><BRK/>
+<BRK/>
+<OLI>The training program will include a minimum of two [video recorded] sessions.  The first session must occur immediately after the acceptance 
+of the systems and cover the basic operation of each system.  Provide the second training session within [_____] weeks from the first session.  
+The operation and maintenance manuals for the equipment must be completed and presented at this time.  This training session will be used 
+to train additional people and/or to answer questions/resolve issues developed within the first weeks of system use.</OLI><BRK/>
+<BRK/>
+<OLI>Notify the Contracting Officer at least [14] [_____] days prior to the start of each course.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>RECORD DRAWINGS</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Submit as-built documentation upon completion, including but not limited to, the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">All information contained in the Shop Drawings submittal package as detailed above and edited to reflect final conditions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Documentation of equipment serial numbers and network/phone/ISDN addressing scheme.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Software files for touch panel interfaces, source code, DSP, and equipment settings, both compiled and un-compiled code for future 
+system modification.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Manufacturer product guides and instruction manuals</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Warranty information and product registration as applicable.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>OPERATION AND MAINTENANCE (O&amp;M) MANUALS</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>As-built documentation must also contain a custom-generated system operation guide that details the proper setup and usage of each system 
+in all its normal functions and common usage scenarios as defined by the Contracting Officer.  This "Step-by-Step" operation guide must 
+contain information such as a general description of the overall system(s), instructions for general system operation such as turning the 
+system on and off, selecting various video sources for display, routing various audio sources to the speaker systems, setting up audio 
+bridge calls, room combining, making VTC calls, using camera presets, etc.  The intent is for this manual to provide simple "how-to" instructions 
+on operating the system.  This manual must also be a supplement to the system training specified above.</OLI><BRK/>
+<BRK/>
+<OLI>The operations guide must include screen captures of each touch panel page (where applicable) with descriptions of the functionality of 
+each button.</OLI><BRK/>
+<BRK/>
+<OLI>Submit revisions of manuals that include changes based on feedback from prior training sessions, other government comments, errors in documentation, 
+or any altered control interface programming prior to the second training session.</OLI><BRK/>
+<BRK/>
+<OLI>Complete the operation guide prior to the second training session system and use it for the training.</OLI><BRK/>
+<BRK/>
+<OLI>Post one copy of system specific equipment interconnection drawings (laminated or in a plastic bag to prevent damage) inside the front 
+or rear door of the main equipment for each individual audiovisual system.</OLI><BRK/>
+<BRK/>
+<OLI>All control system software will become the property of the Government and the Government will have the right to make any desired modifications 
+after the expiration of the system warranty.</OLI><BRK/>
+<BRK/>
+<OLI>At the end of the warranty period, provide an updated copy of the above to account for any modifications that may have occurred during 
+the warranty period.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>WARRANTY AND MAINTENANCE</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Guarantee the system for a period of [one] [_____] year[s] from the date of final system acceptance against defective materials, design, 
+workmanship, and improper adjustment.  Repair or replace any defective material at no expense to the Government.  During the warranty period, 
+respond to any service calls within [24] [_____] hours [excluding Saturdays, Sundays, and holidays].  Where possible, provide substitute 
+equipment to maintain system operation during repair.</OLI><BRK/>
+<BRK/>
+<OLI>Provide [two] [_____] service calls after the acceptance of the system at months [six] [_____] and [12] [_____] to perform routine system 
+maintenance and adjustment.</OLI><BRK/>
+<BRK/>
+<OLI>The above warranty must not void warranties issued by individual equipment manufacturers.  Individual warranties valid for greater than 
+one year must remain in full effect.</OLI><BRK/>
+<BRK/>
+<OLI>The above warranty must not void any rights guaranteed by law to the Government.</OLI><BRK/>
+<BRK/>
+<OLI>The above warranty does not pertain to Government provided equipment.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>LIVE SUPPORT</TTL><NED/><BRK/>
+<BRK/>
+<TXT>Provide [one] [_____] service technician for [eight] [_____] man-hours starting on the first scheduled use date.  For a period of [one] [_____] 
+week(s) after this period, provide necessary support to ensure a [two] [_____]-hour response time for issues that arise.</TXT><BRK/>
+<BRK/></SPT>
+]</PRT>    <END/><BRK/></SEC>

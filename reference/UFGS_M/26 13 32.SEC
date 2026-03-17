@@ -1,0 +1,1525 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="224.25"/>
+      <COL AUTOWIDTH="0" WIDTH="225.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-26 13 32 (November 2023)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">New</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 13 32</SCN><BRK/>
+<BRK/>
+<STL>MEDIUM-VOLTAGE SWITCHGEAR, GAS-INSULATED</STL><BRK/>
+<DTE>11/23</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>gas-insulated switchgear 
+up to 38 kV with vacuum circuit breakers</SCP>.  Reference IEEE C37.20.9.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether 
+or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Verify that the following information is indicated on the project drawings.</NPR><BRK/>
+<BRK/>
+<NPR>1.  Location, space available, arrangement, and elevations of switchgear.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Grounding plan.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Special conditions, such as altitude, temperature and humidity, exposure 
+to fumes, vapors, dust, and gasses; and seismic requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In corrosive and humid environments, use materials, systems, components, 
+and coatings that are durable and minimize the need for preventative and corrective 
+maintenance over the expected service life of the component or system.  Corrosive 
+project locations are those with Environmental Severity Classification (ESC) 
+of C3, C4, and C5.  Humid locations are those in ASHRAE climate zonez 0A, 1A, 
+2A, 3A, 4C, and 5C (as identified in ASHRAE 90.1).  See UFC 1-200-01 for determination 
+of ESC for project location.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN NATIONAL STANDARDS INSTITUTE (ANSI)</ORG><BRK/><BRK/><RID>ANSI C12.1</RID><RTL>(2014; Errata 2016) Electric Meters - Code for Electricity Metering</RTL><BRK/><BRK/><RID>ANSI C39.1</RID><RTL>(1981; R 1992) Requirements for Electrical Analog Indicating Instruments</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 90.1 - IP</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/><RID>ASHRAE 90.1 - SI</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/><RID>ASTM A153/A153M</RID><RTL>(2023) Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware</RTL><BRK/><BRK/><RID>ASTM A240/A240M</RID><RTL>(2025a) Standard Specification for Chromium and Chromium-Nickel Stainless Steel Plate, Sheet, and Strip for Pressure Vessels and for General Applications</RTL><BRK/><BRK/><RID>ASTM A653/A653M</RID><RTL>(2025a) Standard Specification for Steel Sheet, Zinc-Coated (Galvanized) or Zinc-Iron Alloy-Coated (Galvannealed) by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM D149</RID><RTL>(2025) Standard Test Method for Dielectric Breakdown Voltage and Dielectric Strength of Solid Electrical Insulating Materials at Commercial Power Frequencies</RTL><BRK/><BRK/><RID>ASTM D709</RID><RTL>(2017) Standard Specification for Laminated Thermosetting Materials</RTL><BRK/><BRK/><RID>ASTM D1535</RID><RTL>(2014; R 2018) Standard Practice for Specifying Color by the Munsell System</RTL><BRK/><BRK/><RID>ASTM D2472</RID><RTL>(2000; R 2014) Standard Specification for Sulphur Hexafluoride</RTL><BRK/><BRK/></REF><REF><ORG>EUROPEAN COMMITTEE FOR STANDARDIZATION (CEN/CENELEC)</ORG><BRK/><BRK/><RID>EN 50181</RID><RTL>(2010) Plug-in Type Bushings Above 1 kV Up to 52 kV and From 250 A to 2,50 kA for Equipment Other Than Liquid Filled Transformers</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 32</RID><RTL>(1972; R 1997) Standard Requirements, Terminology, and Test Procedures for Neutral Grounding Devices</RTL><BRK/><BRK/><RID>IEEE 48</RID><RTL>(2020) Test Procedures and Requirements for Alternating-Current Cable Terminations Used on Shielded Cables Having Laminated Insulation Rated 2.5 kV through 765 kV or Extruded Insulation Rated 2.5 kV through 500 kV</RTL><BRK/><BRK/><RID>IEEE 100</RID><RTL>(2000; Archived) The Authoritative Dictionary of IEEE Standards Terms</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/><RID>IEEE C37.04</RID><RTL>(2018; Erta 2019; Corr 2021) Ratings and Requirements for AC High-Voltage Circuit Breakers with Rated Maximum Voltage Above 1000 V Corrigendum 1</RTL><BRK/><BRK/><RID>IEEE C37.06</RID><RTL>(2009) Standard for AC High-Voltage Circuit Breakers Rated on a Symmetrical Current Basis - Preferred Ratings and Related Required Capabilities for Voltage Above 1000 V</RTL><BRK/><BRK/><RID>IEEE C37.09</RID><RTL>(2018; Errata 2019; Amd 2025) Standard Test Procedure for AC High-Voltage Circuit Breakers Rated on a Symmetrical Current Basis</RTL><BRK/><BRK/><RID>IEEE C37.2</RID><RTL>(2022) Standard for Electrical Power System Device Function Numbers, Acronyms and Contact Designations</RTL><BRK/><BRK/><RID>IEEE C37.20.2A</RID><RTL>(2020) Metal-Clad Switchgear Amendment 1: Control and Secondary Circuits and Devices, and All Wiring</RTL><BRK/><BRK/><RID>IEEE C37.20.3</RID><RTL>(2013) Standard for Metal-Enclosed Interrupter Switchgear</RTL><BRK/><BRK/><RID>IEEE C37.20.7</RID><RTL>(2017; Corr 2021) Guide for Testing Switchgear Rated Up to 52 kV for Internal Arcing Faults</RTL><BRK/><BRK/><RID>IEEE C37.20.9</RID><RTL>(2019) Standard for Metal-Enclosed Switchgear Rated 1 kV to 52 kV Incorporating Gas Insulating Systems</RTL><BRK/><BRK/><RID>IEEE C37.60</RID><RTL>(2019) High-Voltage Switchgear and Controlgear - Part 111:   Automatic Circuit Reclosers for Alternating Current Systems Up to 38 kV</RTL><BRK/><BRK/><RID>IEEE C37.74</RID><RTL>(2014) Standard Requirements for Subsurface, Vault, and Pad-Mounted Load-Interrupter Switchgear and Fused Load-Interrupter Switchgear for Alternating Current Systems Up to 38 kV</RTL><BRK/><BRK/><RID>IEEE C37.90</RID><RTL>(2005; R 2011) Standard for Relays and Relay Systems Associated With Electric Power Apparatus</RTL><BRK/><BRK/><RID>IEEE C37.90.1</RID><RTL>(2023; ERTA) Standard for Surge Withstand Capability (SWC) Tests for Relays and Relay Systems Associated with Electric Power Apparatus</RTL><BRK/><BRK/><RID>IEEE C57.12.28</RID><RTL>(2023) Standard for Pad-Mounted Equipment - Enclosure Integrity</RTL><BRK/><BRK/><RID>IEEE C57.12.29</RID><RTL>(2023) Standard for Pad-Mounted Equipment - Enclosure Integrity for Coastal Environments</RTL><BRK/><BRK/><RID>IEEE C57.13</RID><RTL>(2016) Standard Requirements for Instrument Transformers</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTRICAL TESTING ASSOCIATION (NETA)</ORG><BRK/><BRK/><RID>NETA ATS</RID><RTL>(2025) Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTROTECHNICAL COMMISSION (IEC)</ORG><BRK/><BRK/><RID>IEC 60068-3-3</RID><RTL>(2019) Environmental Testing - Part 3-3: Supporting Documentation and Guidance - Seismic Test Methods for Equipment</RTL><BRK/><BRK/><RID>IEC 62271-100</RID><RTL>(2021) High-Voltage Switchgear and Controlgear - Part 100: Alternating-Current Circuit-Breakers</RTL><BRK/><BRK/><RID>IEC 62271-103</RID><RTL>(2021; Corr 1 2025) High-voltage switchgear and controlgear - Part 103: Alternating current switches for rated</RTL><BRK/><BRK/><RID>IEC 62271-111</RID><RTL>(2019) High Voltage Switchgear And Controlgear - Part 111: Automatic Circuit Reclosers for Alternating Current Systems up to and including 38 kV</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA ST 20</RID><RTL>(2014) Dry-Type Transformers for General Applications</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 70B</RID><RTL>(2026) Standard for Electrical Equipment Maintenance</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 467</RID><RTL>(2022) UL Standard for Safety Grounding and Bonding Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the features and fill in blanks with selections appropriate for 
+the design condition and in accordance with guidance contained in UFC 3-550-01, 
+"Exterior Electrical Power Distribution".</NPR><BRK/>
+<BRK/>
+<NPR>See UFC 3-550-01 for guidance regarding service conditions.  Retain or add the 
+required conditions.</NPR><BRK/>
+<BRK/>
+<NPR>Provide seismic requirements, if a Government designer is the Engineer of Record, 
+and show on the drawings.  Pertinent portions of Section <SRF>26 05 48</SRF> SEISMIC PROTECTION 
+FOR ELECTRICAL EQUIPMENT properly edited, must be included in the Contract documents.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Items provided under this section must be specifically suitable for the following service conditions.  Equipment 
+must conform to Section <SRF>26 05 48</SRF> SEISMIC PROTECTION FOR ELECTRICAL EQUIPMENT.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Fungus Control [_____]</OLI><BRK/>
+<BRK/>
+<OLI>Altitude<MET> [_____] m</MET><ENG> [_____] feet</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Minimum Ambient Temperature<MET> [_____] degrees C</MET><ENG> [_____] degrees F</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Maximum Ambient Temperature<MET> [_____] degrees C</MET><ENG> [_____] degrees F</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Frequency [_____]</OLI><BRK/>
+<BRK/>
+<OLI>Ventilation [_____]</OLI><BRK/>
+<BRK/>
+<OLI>Humidity Control [_____]</OLI><BRK/>
+<BRK/>
+<OLI>Corrosive Areas [_____]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING, applies to this section, with the additions and modifications 
+specified herein.  Cybersecurity requirements are specified in Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED 
+CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DEFINTIONS</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified or indicated, electrical and electronics terms used in these specifications, and on 
+the drawings, are as defined in <RID>IEEE 100</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ADMINISTRATIVE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pre-Installation Meetings</TTL><BRK/>
+<BRK/>
+<TXT>Pre-installation meeting with Purchasing Agent, Engineer, and Contractor held one month prior to equipment arriving 
+on site.  Proper storage shelters installed with electricity and space heaters for electrical equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sequencing</TTL><BRK/>
+<BRK/>
+<TXT>Scheduling equipment involves continuous contact with suppliers for manufacturing, testing, factory acceptance 
+and shipping.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions<BRK/>
+in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following list, and corresponding 
+submittal items in the text, to reflect only the submittals required for the 
+project. The Guide Specification technical editors have classified those items 
+that require Government approval, due to their complexity or criticality, with 
+a "G." Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System. Only add a "G" to an item if the submittal is sufficiently 
+important or complex in context of the project.<BRK/></NPR>
+<BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are: "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Switchgear Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Electronic Overcurrent Control Curves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>SF6 Insulated Mv Switchgear</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Surge Arresters</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Switchgear Conformity to Design Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Paint Coating System</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-09 Manufacturer's Field Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Switchgear Design And Production Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Assembled Operation And Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Equipment Test Schedules</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Required Settings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Service Entrance Available Fault Current Label</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE MATERIAL SUBMITTALS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide accessories for test, inspection, maintenance, and operation.</OLI><BRK/>
+<BRK/>
+<OLI>Tool for manually charging breaker closing spring.</OLI><BRK/>
+<BRK/>
+<OLI>Include data on switches and associated accessories with each submittal.  Include manufacturer's information 
+for each component, device, and accessory provided with the equipment with each submittal.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Spare Parts</TTL><BRK/>
+<BRK/>
+<TXT>Manufacturer to provide List of recommended "start-up" and "running" spare parts with prices.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Product Data</TTL><BRK/>
+<BRK/>
+<TXT>Include manufacturer's information on each submittal for each component, device, and accessory provided with 
+the switchgear including:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Circuit breaker type, interrupting rating, and trip devices, including available settings.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's instruction manuals and published time-current curves (in electronic format) of the main 
+secondary breaker and largest secondary feeder device.</OLI><BRK/>
+<BRK/>
+<OLI>Complete instruction manuals and software for protective relays, metering equipment, and instrumentation.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the 
+word, "must" had been substituted for "should" wherever it appears.  Interpret references in these publications 
+to the "authority having jurisdiction," or words of similar meaning, to mean the Contracting Officer.  Provide 
+equipment, materials, installation, and workmanship in accordance with the mandatory and advisory provisions 
+of <RID>NFPA 70</RID> unless more stringent requirements are specified or indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Switchgear Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Furnish drawings that include, but are not limited to, the following:</TXT><BRK/>
+<BRK/>
+<TXT>Include wiring diagrams or wiring lists and installation details of equipment indicating proposed location, layout 
+and arrangement, control panels, accessories, conduit, ductwork, and other items that must be shown to ensure 
+a coordinated installation.  Identify circuit terminals on wiring diagrams or wiring lists and indicate the internal 
+wiring for each item of equipment and the interconnection between each item of equipment.  The drawings must 
+show adequate clearance for operation, maintenance, and replacement of operating equipment devices.  Include 
+the nameplate data, size, and capacity on submittal.  Also include applicable federal, military, industry, and 
+technical society publication references on submittals.  Also include manufacturer's information on each submittal 
+for each component, device, and accessory provided with the switchgear including:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Circuit breaker type, interrupting rating, and protection devices.</OLI><BRK/>
+<BRK/>
+<OLI>Provide weights, arrangements, plan view, section views, footprint, rigging plan, and front view.</OLI><BRK/>
+<BRK/>
+<OLI>Bus configuration including ampere ratings of bus bars.</OLI><BRK/>
+<BRK/>
+<OLI>Single-line diagram including breakers[, fuses][, current transformers, and meters].  Showing buses and 
+interrupting devices with interrupting capacities; current transformers with ratings; instruments and 
+meters required; and description of instruments and meters.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's instruction manuals to provide breaker information that ensures protection and coordination 
+can be achieved.</OLI><BRK/>
+<BRK/>
+<OLI>Markings and NEMA nameplate data[ including fuse information (manufacturer's name, catalog number, and 
+ratings)].</OLI><BRK/>
+<BRK/>
+<OLI>Provisions for future expansion by adding switchgear sections.</OLI><BRK/>
+<BRK/>
+<OLI>Grounding plan.</OLI><BRK/>
+<BRK/>
+<OLI>Conductors point of entry (top or bottom).</OLI><BRK/>
+<BRK/>
+[<OLI>Provide warning label for switchgear.  Locate this self-adhesive warning label on the outside of the 
+enclosure warning of potential electrical.</OLI>]<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  NFPA 70 requires that service equipment in other than dwelling units 
+be legibly marked in the field with the maximum available fault current, including 
+the date.  Coordinate with the person developing the Division 1 Sections and 
+ensure that Division 1 Sections identify the person responsible for providing 
+the short circuit calculation for the project.  This may vary for design/build 
+versus design/bid/build projects. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Locate this self-adhesive warning label on the outside of the switchboard. Provide label format as indicated.</OLI>]<BRK/>
+<BRK/>
+<OLI>Arc resistant ducting and duct supports if required for arc resistant rating.</OLI><BRK/>
+<BRK/>
+<OLI>Locations with arc energy reduction methods specified.</OLI><BRK/>
+<BRK/>
+<OLI>Wiring diagrams or wiring lists and elementary diagrams with terminals identified and indicating prewired 
+interconnections between items of equipment and the interconnection between the items.</OLI><BRK/>
+<BRK/>
+<OLI>Spare parts list.</OLI><BRK/>
+<BRK/>
+<OLI>Master Drawing Index including switchgear front view, side view, top view, bottom view, floor plan dimensions, 
+and one-line digram.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Paint Coating System</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Ferrous steel components of the equipment must be protected with zinc phosphate.  Test paint finish in accordance 
+with <RID>IEEE C37.20.3</RID> or [<RID>IEEE C57.12.28</RID>][<RID>IEEE C57.12.29</RID>] paint coating system performance requirement tests.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Electronic Overcurrent Control Curves</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide time-current characteristic curves available in PDF format.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such 
+products which are of equal material, design, and workmanship, and:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Have been in satisfactory commercial or industrial use for not less than two years prior to bid opening 
+including applications of equipment and materials under similar circumstances and of similar size.</OLI><BRK/>
+<BRK/>
+<OLI>Have been on sale on the commercial market through advertisements, manufacturers' catalogs, or brochures 
+during the two-year period.</OLI><BRK/>
+<BRK/>
+<OLI>Where two or more items of the same class of equipment are required, provide products of a single manufacturer; 
+however, the component parts of the item need not be the products of the same manufacturer unless stated 
+in this section.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a two-year field service record will be acceptable if a certified record of satisfactory 
+field operation for not less than 6000 hours, exclusive of the manufacturers' factory or laboratory tests, is 
+furnished.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material and Equipment Manufacturing Date</TTL><BRK/>
+<BRK/>
+<TXT>Products manufactured more than one-year prior to date of delivery to site are not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SF6 Insulated Switchgear Operation and Maintenance Data</TTL><BRK/>
+<BRK/>
+<TXT>Submit Operation and Maintenance Manuals in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Assembled Operation and Maintenance Manuals</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Assemble and securely bind manuals in durable, hard covered, water resistant binders.  Assemble and index the 
+manuals in the following order with a table of contents:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Manufacturer's operation and maintenance (O&amp;M) information required by the paragraph SD-10, OPERATION 
+AND MAINTENANCE DATA.</OLI><BRK/>
+<BRK/>
+<OLI>Catalog data required by the paragraph SD-03, PRODUCT DATA.</OLI><BRK/>
+<BRK/>
+<OLI>Drawings required by the paragraph SD-02, SHOP DRAWINGS.</OLI><BRK/>
+<BRK/>
+<OLI>Prices for spare parts and supply list.</OLI><BRK/>
+<BRK/>
+<OLI>Information on metering.</OLI><BRK/>
+<BRK/>
+<OLI>Routine test reports.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Store switchgear in a weather protected area until installation.</OLI><BRK/>
+<BRK/>
+<OLI>Handle and store equipment in accordance with manufacturer's instructions.  Provide one copy of these 
+instructions outside the switchgear packing with the equipment at time of shipment</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>PROJECT/SITE CONDITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Environmental Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Where venting is intended to penetrate an external wall or roof, cover vent such that it meets all specified 
+environmental requirements (e.g., rain-tight, dust-tight, vermin-proof).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Existing Conditions</TTL><BRK/>
+<BRK/>
+<TXT>Install switchgear capable of being structurally supported on structure.  Switchgear may require future expansion 
+without modification to existing switchgear structural members or bus work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cybersecurity</TTL><BRK/>
+<BRK/>
+<TXT>Control systems (including systems separate from an energy management control system) must be planned, designed, 
+acquired, executed and maintained in accordance with Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL 
+SYSTEMS, required by individual Service Implementation Policy.</TXT><BRK/>
+<BRK/>
+<TXT>Submit certification that equipment complies with the above DoD instructions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SPARE PARTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide spare parts as specified below.  Provide spare parts that are of the same material and workmanship, meet 
+the same requirements, and are interchangeable with the corresponding original parts furnished.</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Quantity two - Fuses of each type and size.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment items that are supported by service organizations reasonably convenient to the equipment installation 
+in order to render satisfactory service to the equipment on a regular and emergency basis during the warranty 
+period of the Contract.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PRODUCT COORDINATION</TTL><BRK/>
+<BRK/>
+<TXT>Products and materials not considered to be switchgear and related accessories are specified in Section 
+<SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION and Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>SF6 INSULATED MV SWITCHGEAR</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Ratings and Test Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The voltage rating of the switchgear must be [4.76 kV][7.2 kV][15.5 kV][27 kV][38 kV] AC, three-phase, 
+[grounded][high resistance grounded][ungrounded][as indicated].[  For high resistance grounded systems, 
+the conductors from the neutral point to the connection point at the impedance must utilize [copper][aluminum] 
+conductors, employing the same insulation level and construction as the phase conductors.] Provide the 
+corresponding ratings associated with the required switchgear voltage rating as follows:</OLI><BRK/>
+<BRK/>
+<OLI>Short Circuit Rating:  [[16][20][25][31.5][40][_____] rms kA symmetrical amperes] [as indicated].</OLI><BRK/>
+<BRK/>
+<OLI>UL or NRTL listed and labeled[ for its intended use][ as service entrance equipment].</OLI><BRK/>
+<BRK/>
+<OLI>Impulse Withstand (Basic Impulse Level):  [60][95][125][150][170][200] KV.</OLI><BRK/>
+<BRK/>
+<OLI>Power Frequency Withstand:  [19][28][36][60][70][80] KV, one minute test.</OLI><BRK/>
+<BRK/>
+<OLI>Momentary Current Ratings must be equal to the circuit breaker close and latch rating.</OLI><BRK/>
+<BRK/>
+<OLI>System voltage: [_____] KV nominal, three-phase [grounded][ungrounded], [60 hertz][50 hertz].</OLI><BRK/>
+<BRK/>
+<OLI>Continuous current rating of the main bus:  [[630][1200][2000][2500][2800][3000 or 2750 at 27KV] amperes][as 
+indicated].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>MV Gas Insulated Switchgear Construction</TTL><BRK/>
+<BRK/>
+<TXT>Provide switchgear with dead-front, switchgear assembly of vertical sections, cable entrance terminations contained 
+in a non-SF6 compartment.  This vertical section contains the circuit breaker, three position (open/close/grounded) 
+switch and the voltage transformer (VT) when required.  Ship switchgear from factory, filled with appropriate 
+levels of SF6 gas conforming to <RID>ASTM D2472</RID> or less-flammable, high-firepoint gas whenever possible.  Provide 
+switchgear with accessible terminations suitable for cables entering from below with manual operating provisions.  
+Provide front vertical section covers with full length hinges.  Provide additional vertical sections to house 
+accessories related to the switchgear functions per <RID>IEEE C37.74</RID>.  Gas compartments are to be equipped with a 
+gas pressure monitoring system.  Pressure relief devices are to be included.  A visual indicator located on the 
+front of the section must display the status of each compartment.  Auxiliary contacts are to be provided for 
+remote indication of the warning levels. The device must be self-monitoring.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Enclosure</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Stationary Structure:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The switchgear must consist of sections including circuit breaker compartments and auxiliary 
+compartments assembled to form a rigid self-supporting completely enclosed structure.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The sections are divided into compartments:  circuit breaker, instrumentation, main bus, auxiliary 
+device, and cable may be contained in one compartment.  Each feeder section will have one circuit 
+breaker compartment.</OLI><BRK/>
+ <BRK/>
+<OLI LEVEL="2">Provide the structure with a front accessible low voltage compartments.  The low voltage compartments 
+contain the gas pressure gauge, circuit breaker operating mechanism, three position switch\operating 
+mechanism and a front or rear [view port][camera] used for visual confirmation of the three 
+position switch (closed/opened/earthed) status. The low voltage compartment also contains any 
+meters, relays or other low voltage control devices required for the equipment.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Additional control equipment that exceeds the available space on the low voltage compartment 
+door is installed in an additional vertical section designated for low voltage devices.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Each single gas vessel is provided with an SF6 gas density gauge.  Contacts are provided to 
+monitor the pressure of the gas adjusted for changes in temperature.  Density gauge comes with 
+warning and alarm output contacts.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The switchgear is classified as internal arc resistant classification with the rear of the 
+switchgear enclosure placed near a wall.  The arc duct, if required, can be directed out either 
+side of the switchgear lineup or to the rear of the switchgear, <RID>IEEE C37.20.7</RID> Type 2B.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Arc containment device housing, if required, are to be designed to contain the arcing within 
+the device and vent gases through ducted plenums located on the back of the switchgear.</OLI><BRK/>
+<BRK/>
+<OLI>Indoor Enclosure.</OLI><BRK/>
+<BRK/>
+<OLI>Outdoor Enclosure:  [As indicated] [3RX fabricated entirely of 12 gauge <RID>ASTM A240/A240M</RID> type 304 or 304L 
+stainless steel] [GIS should be provided in standard construction installed in an e-house with the corrosion 
+resistance requirement that the DOD requires].</OLI><BRK/>
+<BRK/>
+<OLI>Switchgear Outdoor Enclosure:  Welded or bolted together with removable bolt-on side and[ hinged] rear 
+covers[, and sloping roof downward toward rear].</OLI><BRK/>
+<BRK/>
+<OLI>Outdoor Front Doors:  Provided with[ stainless steel] pad-lockable vault handles with a three point catch.</OLI><BRK/>
+<BRK/>
+<OLI>Bases, Frames, and Channels of Outdoor Enclosure:  Corrosion resistant and fabricated of[ <RID>ASTM A240/A240M</RID>
+ type 304 or 304L stainless steel][ or][ galvanized steel].</OLI><BRK/>
+<BRK/>
+<OLI>Base:  Includes any part of enclosure that is within<MET> 75 mm</MET><ENG> 3 inches</ENG> of top of concrete pad.</OLI><BRK/>
+<BRK/>
+<OLI>Galvanized Steel:  <RID>ASTM A123/A123M</RID>, <RID>ASTM A653/A653M</RID> G90 coating, and <RID>ASTM A153/A153M</RID>, as applicable.  
+Galvanize after fabrication where practicable.</OLI><BRK/>
+<BRK/>
+<OLI>Paint Color:  Factory applied finish, <RID>ASTM D1535</RID> light gray No. 61 or No. 49 on treated metal.</OLI><BRK/>
+<BRK/>
+<OLI>Paint Coating System:  Comply with[ <RID>IEEE C57.12.28</RID> for galvanized steel][ and][ <RID>IEEE C57.12.29</RID> for stainless 
+steel].</OLI><BRK/>
+<BRK/>
+[<OLI>Infrared Viewing Windows:  Install to allow the use of an infrared camera or thermal imager direct line 
+of site to inspect electrical connections without requiring the opening of panels and doors.  These windows 
+are intended to allow thermographers the ability to inspect the electrical equipment without directly 
+exposing themselves to live electrical components and energized devices.</OLI>]<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Continuous thermal monitoring system is not required for connections 
+using inside cone cable termination plugs.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Cable connections are to be provided with a continuous thermal monitoring (CTM) system for 24/7 monitoring 
+of cable connections.  The cable monitoring system must consist of self-powered wireless sensors mounted 
+at the cable connection and be capable of wireless communication for local or remote monitoring.</OLI>]<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Voltage detection system is not required for connections using inside 
+cone cable termination plugs.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>The check of voltage presence is to be done with an electronic and integrated voltage detecting system.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The indication must be tapped from a capacitive voltage divider in the cable connection compartment.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The maintenance free voltage detection system must work without any external energy and must 
+monitor its connected test circuits continuously.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">For phase comparison, suitable connections must be provided, which must be covered during general 
+use.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Bus Bars</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Bus bars:  Copper with silver-plated contact surfaces.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">GIS phase bus bar systems:  [Isolated phase design which is copper in an aluminum tank] [Shielded 
+Solid Insulated Switchgear] [Uninsulated][Insulated with an epoxy finish coating powder or 
+insulating sleeve providing a minimum breakdown voltage per <RID>ASTM D149</RID>.][  Insulated with SF6 
+with bus compartment SF6 gas pressure monitoring system][Insulated with shielded Solid Insulation].</OLI><BRK/>
+<BRK/>
+<OLI>Make bus connections and joints with hardened steel bolts and nuts.  Provide conical disk spring washers 
+under each nut and bolt.</OLI><BRK/>
+<BRK/>
+<OLI>Main-bus (through bus):  Rated at the full ampacity of the main bus throughout the switchgear.  Typical 
+bus ratings range from 1000 to 3000 amperes.  Conductors and busbar connectors must be copper, must carry 
+rated continuous current at<MET> 40 degrees C</MET><ENG> 104 degrees F</ENG> ambient temperature and must withstand the rated 
+short-circuit current for 2 seconds unless limited to a shorter duration by the protective device.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum<MET> 30 x 6 mm</MET><ENG> 1.2 x 0.25 inches</ENG> (25kA and below)<MET> 40 x 10 mm</MET><ENG> 1.6 x 0.40 inches</ENG> (31.5kA and above) 
+copper ground bus secured to each vertical section along the entire length of the switchgear.  The bus 
+rating is based on the switchgear bus ampacity.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Circuit Breaker Compartments</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Each circuit breaker must be a fixed mounted vacuum circuit breaker.</OLI><BRK/>
+<BRK/>
+<OLI>The maintenance requirement would be for the lubrication of the breaker mechanism.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Auxiliary Vertical Sections and Compartments</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide auxiliary sections consisting of[ instruments,][ metering equipment,][ control equipment,][ transformers,][ 
+and][ current transformer compartments].</OLI><BRK/>
+<BRK/>
+[<OLI>Utility metering compartment that complies with[ utility company][ base utility] requirements.</OLI>]<BRK/>
+<BRK/>
+<OLI>Metering:  A vertical section with a front hinged door for isolated access to meters and associated terminal 
+and fuse blocks for maintenance, calibration, or testing while the gear is energized.</OLI><BRK/>
+<BRK/>
+<OLI>Metering: Hinged panel in switch or breaker section, for isolated access to meters and associated terminal 
+and fuse blocks for maintenance, calibration, or testing while the gear is energized.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Medium Voltage Cable Terminations</TTL><BRK/>
+<OLG><BRK/>
+<OLI><RID>IEEE 48</RID> Class 1; of the molded elastomer, pre-stretched elastomer, or heat-shrinkable elastomer.  Acceptable 
+elastomers are track-resistant silicone rubber or track-resistant ethylene propylene compounds, ethylene 
+propylene rubber, or ethylene propylene diene monomer.  Terminations must be provided with mounting brackets 
+suitable for the intended installation and with grounding provisions for the cable shielding, metallic 
+sheath, or armor.  Terminations must be provided in a kit, including:  skirts, stress control terminator, 
+ground clamp, connectors, lugs, and complete instructions for assembly and installation.  Terminations 
+must be the product of one manufacturer, suitable for the type, diameter, insulation class and level, 
+and materials of the cable terminated.  Do not use separate parts of copper or copper alloy in contact 
+with aluminum alloy parts in the construction or installation of the terminator.  The design of the complete 
+cable termination must be suitable for the switchgear short-circuit current and BIL as specified. Cable 
+termination system are to be plug-in type as per DIN 47637 and <RID>EN 50181</RID> standards.</OLI><BRK/>
+<BRK/>
+<LST>Option 1 - Plug on type T-Body connector - outer cone type connection and the following paragraph to 
+allow for terminations that are compatible with GIS switchgear.  Recommend that these cable terminations 
+be provided by the installing Contractor because they must be matched to the specific cable and insulation 
+dimensions for the cable being provided by the contractor.</LST><BRK/>
+<BRK/>
+<LST>Option 2 - Inner cone style cable connectors can also be used.  Type of connector is based on type of 
+equipment construction. </LST><BRK/>
+<BRK/>
+<LST>Cable connections are to be made using fully insulated plug-on cable terminations according to <RID>EN 50181</RID>
+, Type C by Euromold, Nexans, Tyco, etc. or acceptable equal.</LST><BRK/>
+<BRK/>
+<OLI>Cold-Shrink Type:  Terminator must be a one-piece design, utilizing the manufacturer's latest technology, 
+where high-dielectric constant (capacitive) stress control is integrated within a skirted insulator made 
+of silicone rubber.  Termination must not require heat or flame for installation.  Termination kit must 
+contain all materials (except for the lugs).  Termination must be designed for installation in low or 
+highly contaminated indoor and outdoor locations and must resist ultraviolet rays and oxidative decomposition.</OLI><BRK/>
+<BRK/>
+<OLI>Heat Shrinkable Type:  Terminator must consist of a uniform cross section heat shrinkable polymeric construction 
+stress relief tubing and environmentally sealed outer covering that is non-tracking, resists heavy atmospheric 
+contaminants, ultra-violet rays and oxidative decomposition.  Provide heat shrinkable sheds or skirts 
+of the same material.  Termination must be designed for installation in low or highly contaminated indoor 
+or outdoor locations.</OLI><BRK/>
+<BRK/>
+<OLI>Cable terminations must meet the requirements of gas insulated switchgear in accordance with manufacturer 
+recommendations or approved equal, suitable for the switchgear short circuit and BIL ratings.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Circuit Breakers</TTL><BRK/>
+<BRK/>
+<TXT>The vacuum circuit breakers must be electrically-operated, three-pole, circuit interrupting devices rated for 
+[_____] amperes continuous at [_____] kV and [_____] kV BIL. Breakers must be designed for service on a [_____] 
+kV system with a short-circuit capacity of not less than [_____] [amperes symmetrical] [MVA].  Rating must be 
+based on <RID>IEEE C37.04</RID> and <RID>IEEE C37.06</RID>.  Circuit breakers must be fixed mounted and have a open/closed position 
+indicator, operation counter, primary and secondary disconnect devices, and auxiliary switches.  Circuit breakers 
+must have one circuit interrupter per phase.</TXT><BRK/>
+<BRK/>
+<TXT>Circuit breaker must be operated by an electrically charged, mechanically and electrically trip-free, stored-energy 
+operating mechanism normally charged by a universal motor.  Provide for manual charging of the mechanism through 
+a manual handle on the vacuum circuit breaker.  Circuit breaker control voltage must be[ [_____] VDC][ [_____] 
+VAC][ from an external power source][ from a fused control transformer integral to the switchgear].  Provide 
+one capacitor trip unit for each breaker when AC control power is required.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Contacts:  Fixed-mounted, silver-plated.</OLI><BRK/>
+<BRK/>
+<OLI>Each breaker must be provided with open/closed position indication.  The connected and disconnect positions 
+must be clearly identified by an indicator on the circuit breaker front panel.  A three position switch 
+must have mechanical lockout mechanism that inserts a block into the switch mechanism.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>The circuit breakers must be rated in accordance with <RID>IEEE C37.06</RID> and <RID>IEC 62271-100</RID>.  Overcurrent protection 
+for the transformer must consider the base rating of the transformer, the through fault protection, transformer 
+in-rush, and transformer impedance.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The Duty Cycle must be 0-15 sec-CO or 0-0.3 sec-CO-3 min-CO per IEEE C37.04 and related IEC standards.  
+The circuit breaker short-time rating must be 3 seconds per <RID>IEEE C37.04</RID>, <RID>IEEE C37.06</RID>, and related IEC 
+standards.  The circuit breakers must be designed to withstand the Transient Recovery Voltage peaks which 
+occur during the breaking of small inductive currents normally encountered in a high voltage system.  
+The vacuum circuit breakers must not produce excessive overvoltage as a result of current chopping.  
+The design must incorporate means to reduce the current chopping value to less than SA.</OLI><BRK/>
+<BRK/>
+<OLI>The circuit breaker operating mechanism must be designed for high speed operation and must be located 
+in a separate cabinet at the front of the circuit breaker sections.  Access must be from the front of 
+the switchgear and permitted while the primary equipment is in service.  The maximum difference in opening 
+time between the three poles must not be more than 2 milliseconds.</OLI><BRK/>
+<BRK/>
+<OLI>The switchgear is designed according to the earthquake qualification category 1 of IABG TA13-TM-002/98.  
+Earthquake qualification testing is carried out in accordance with <RID>IEC 60068-3-3</RID>.  The associated test 
+certificate is enclosed from the manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Closing must be by motor-charged-, spring-operated-, stored-energy-type mechanism with electrical release.  
+The circuit breaker must not close unless the closing spring is fully charged.  Provide a visual mechanical 
+indicating device to indicate closing spring status.  Provide provisions for manually charging the closing 
+spring.  The closing spring must automatically recharge after the completion of a closing operation.</OLI><BRK/>
+<BRK/>
+<OLI>Tripping must be by means of a spring that is automatically charged when the circuit breaker is closed.  
+The mechanism must be provided with a shunt release and the necessary auxiliary switches.  An operations 
+counter must be fitted to the mechanism and designed to indicate the total number of opening operations.  
+Provide local manual close and trip shrouded pushbuttons, control power cutoff switch, local electrical 
+close and trip at the circuit breaker, and local/remote selector switch at the circuit breaker for connection 
+to SCADA system.</OLI><BRK/>
+<BRK/>
+<OLI>Maximum symmetrical interrupting current of 25, 31.5, or 40 kA Amp RMS.</OLI><BRK/>
+<BRK/>
+<OLI>Short-time (3 seconds) current carrying capability 25, 31.5, or 40 kA Amp RMS.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum closing and latching peak current capability of 65, 82, or 104 kA Amp RMS.</OLI><BRK/>
+<BRK/>
+<OLI>5-cycle maximum interrupting time.</OLI><BRK/>
+<BRK/>
+<OLI>75, 95, 125, 150, 170, or 200kV minimum basic impulse insulation level (BIL).</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Control Power Supply</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Dedicated [48 V DC][120 V DC][240 V DC] external battery system.</OLI><BRK/>
+<BRK/>
+<OLI>System Requirements:  External battery must have number of cells and ampere-hour capacity based on an 
+initial specific gravity of 1.210 at<MET> 25 degrees C</MET><ENG> 77 degrees F</ENG> with electrolyte at normal level and minimum 
+ambient temperature of<MET> 13 degrees C</MET><ENG> 55 degrees F</ENG>.  Cycle battery before shipment to guarantee rated capacity 
+on installation.  Arrange to operate ungrounded.  Battery system capacity is recommended by switchgear 
+manufacturer to operate the circuit breakers for a one-minute discharge ampere rate down to 1.75V.  Cell 
+for Lead-Acid batteries.</OLI><BRK/>
+<BRK/>
+<OLI>Battery:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">[Standard VRLA][Premium VRLA] batteries, with system disconnect and overcurrent protective 
+device.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Rack:  [Two][_____]-step rack with electrical connections between battery cells and between 
+rows of cells; include two flexible connectors with bolted-type terminals for output leads.[  
+Rate battery rack, cell supports, and anchorage for seismic requirements.]</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Accessories:  Set of cell numerals.  Monitoring system.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Battery Ground-Fault Detector:  Initiates alarm when resistance to ground of positive or negative 
+bus of battery is less than 5000 ohms.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Control Wiring:  Factory installed, complete with bundling, lacing, and protection.  Conductors 
+across Hinges and for Interconnections between Shipping units must utilize flexible conductors.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Charger:  Static-type silicon rectifier equipped with automatic regulation and provision for 
+manual and automatic adjustment of charging rate.  Unit must automatically maintain output 
+voltage within 0.5 percent from no load to rated charger output current, with ac input-voltage 
+variation of plus or minus 10 percent and input-frequency variation of plus or minus 3 Hz.  
+Sense abnormally low battery voltage and close contacts providing low battery voltage indication 
+on control and monitoring panel.  Sense high battery voltage and loss of AC input or DC output 
+of battery charger.  Either condition closes contacts that provide a battery-charger malfunction 
+indication at system control and monitoring panel.</OLI><BRK/>
+<BRK/>
+<OLI>DC ammeter: Maximum error of five percent at full-load current, with toggle switch to select between 
+battery and charger current.</OLI><BRK/>
+<BRK/>
+<OLI>DC Voltmeter:  Maximum error of five percent at full-charge voltage, with toggle switch to select between 
+battery and charger voltages.</OLI><BRK/>
+<BRK/>
+<OLI>Ground Indication:  Two appropriately labeled lights to indicate circuit ground, connected in series 
+between negative and positive terminals, with midpoint junction connected to ground by normally open 
+(NO) push-button contact.</OLI><BRK/>
+<BRK/>
+<OLI>Capacity:  Sufficient to supply steady load, float-charge battery between 2.20 and 2.25 V per cell and 
+equalizing charge at 2.33 V per cell.</OLI><BRK/>
+<BRK/>
+<OLI>Charging-Rate Switch:  Manually operated switch to transfer to higher charging rate.  Charger operation 
+must be automatic until manually reset.</OLI><BRK/>
+<BRK/>
+<OLI>AC Power Supply:  120 V, 60 Hz, subject to plus or minus 10 percent variation in voltage and plus or 
+minus 3 Hz variation in frequency. Automatic charger operation must resume after loss of ac power supply 
+for any interval.</OLI><BRK/>
+<BRK/>
+<OLI>Charging Regulator:  Protect charger from damage due to overload, including short circuit on output terminals.  
+The device must regulate charging current but must not disconnect charger from either battery or ac supply.</OLI><BRK/>
+<BRK/>
+<OLI>Charger's Audible Noise:  Less than 26 dB.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SCADA Operation</TTL><BRK/>
+<BRK/>
+<TXT>The circuit breaker control system must execute remote commands received from a SCADA master station and transmit 
+switchgear operation information to a SCADA master station.  Include transfer of circuit breaker to "Close" and 
+"Open" positions[ and enabling of the Source-Transfer operation] for execution of remote commands.  Include circuit 
+breaker position status, voltage and current readings, and DC supply system status with communication of switchgear 
+information.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Source-Transfer Operation</TTL><BRK/>
+<BRK/>
+<TXT>Provide an automatic switch control system that opens an incoming circuit breaker when voltage is lost and closes 
+the alternate incoming circuit breaker if voltage is present.  Include with the Source-Transfer controls an overcurrent-lockout 
+feature that prevents automatic closing of a circuit breaker into a system fault.  Include provisions for returning 
+the system to the normal configuration via manual, SCADA, or automatic operations when voltage is restored.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fault Detection Isolation and Restoration Operation</TTL><BRK/>
+<BRK/>
+<TXT>The automatic control system must execute circuit fault detection isolation operation for closed and open loop 
+distribution systems.  Provide communication via a peer-to-peer fiber optic network for the control systems.  
+Provide an optical fiber cable approved by the control system manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Key Interlock</TTL><BRK/>
+<BRK/>
+<TXT>Provide key interlock system as indicated on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Protective Relays</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The definition and application of device function numbers used in electrical 
+switchgear are found in ANSI C37.2, "IEEE Standard Electrical Power System Device 
+Function Numbers." This guide specification does not cover all possible relays.  
+Choose only the relay types applicable to the specific project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Relays must conform to <RID>IEEE C37.90</RID>.  Protective relays must be solid-state<BRK/>
+microprocessor based, multi-function type enclosed in rectangular, semi<BRK/>
+flush, switchboard-type draw-out cases with indicating targets and<BRK/>
+provisions for testing in place by use of manufacturer's standard test<BRK/>
+blocks or test switches.  One complete set of test blocks or test switches<BRK/>
+to fit each type of relay in the equipment must be provided.  Auxiliary<BRK/>
+and lockout relays are not required to have draw-out cases or test<BRK/>
+provisions.  Controls, relays, and protective functions must be provided<BRK/>
+completely assembled and wired.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Overcurrent and Ground-Fault Protective Relays:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><RID>IEEE C37.2</RID> device functions [51/50 and 51/50N][_____].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Field-Selectable Relay Settings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Primary Current-Transformer Ratings:  Programmable from 5 to 5000 Amps.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase and Ground Protection (ANSI): Field-selectable curves from definite time, moderately 
+inverse, normally inverse, very inverse, or extremely inverse.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase and Ground Protection (IEC): Field-selectable curves from Curve A (BS142), Curve B (BS142), 
+Curve C (BS142), or short inverse.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase and Ground Protection (IAC):  Field-selectable curves from extremely inverse, very inverse, 
+inverse or short inverse.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase Instantaneous Overcurrent Trip Pickup Point:  Field selectable as "none" or from 1.0 
+to 25 times current-transformer primary rating.  Include discriminator circuit with "on" and 
+"off" switch so that when phase instantaneous overcurrent has been programmed to "none," the 
+discriminator circuit protects against currents exceeding 11 times current-transformer primary 
+rating when the breaker is being closed and must be deactivated after approximately eight cycles.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Contacts: Two Form-C contacts, field selectable into contact pairs.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Alphameric display to show the following parameters with metering accuracy not to exceed two 
+percent of full scale.</OLI><BRK/>
+<BRK/>
+<OLI>Individual phase currents.</OLI><BRK/>
+<BRK/>
+<OLI>Ground current.</OLI><BRK/>
+<BRK/>
+<OLI>Cause of trip.</OLI><BRK/>
+<BRK/>
+<OLI>Magnitude and phase of current-causing trip.</OLI><BRK/>
+<BRK/>
+<OLI>Phase or ground indication.</OLI><BRK/>
+<BRK/>
+<OLI>Peak current demand for each phase and ground since last reset.</OLI><BRK/>
+<BRK/>
+<OLI>Current-transformer primary rating.</OLI><BRK/>
+<BRK/>
+<OLI>Programmed phase and ground set points.</OLI><BRK/>
+<BRK/>
+<OLI>Relay alarm and trip contacts must not change state if power is lost<BRK/>
+or an undervoltage occurs.  These contacts must only cause a trip on<BRK/>
+detection of an overcurrent or fault condition based on programmed<BRK/>
+settings.  A "protection off" alarm must be normally energized when<BRK/>
+the relay is powered and the self-diagnostics indicates the unit is<BRK/>
+functional.  On loss of power or relay failure, this alarm relay must<BRK/>
+be de-energized, providing a fail-safe protection off alarm.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert other relay types in paragraph below when adding other relays 
+to operate circuit breakers in the switchgear. The 51/50 overcurrent relay described 
+in "Overcurrent and Ground-Fault Protective Relays" (paragraph above) is typical 
+of microprocessor-based.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Insert other relay types.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Instruments</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select essential instruments and meters.  Add to the specification any 
+special metering not listed which is required for a specific project.  Use of 
+an Electronic Monitoring System may eliminate the need for many individual electro-mechanical 
+meters.  This may also be accomplished on simpler systems by using the electronic 
+watthour meter and identifying the desired special programming features.  For 
+NAVFAC SE projects, provide three thermal demand ammeters.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ANSI C39.1</RID> for electrical indicating switchgear instruments, with one<BRK/>
+percent accuracy class, antiparallax pointer, and glare-free face with<BRK/>
+scales indicated and coordinated to the ratios of the current and<BRK/>
+potential transformers provided.  AC ammeters and voltmeters must be a<BRK/>
+minimum of<MET> [50][115] mm</MET><ENG> [2][4 1/2] inches square</ENG>, with 4.36 radians 250<BRK/>
+degree scale.  Provide single-phase indicating instruments with<BRK/>
+flush-mounted transfer switches for reading three phases.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>AC ammeters: Transformer rated, five-ampere input, 60 Hz.</OLI><BRK/>
+<BRK/>
+<OLI>AC voltmeters: Transformer rated, 150-volt input, 60 Hz.[  Provide external dropping resistors.]</OLI><BRK/>
+<BRK/>
+<OLI>AC wattmeters: Transformer rated for 120-volt input, 60 Hz, three-phase, four-wire, with scale range 
+coordinated to the ratios of the associated current transformers and potential transformers.[  Provide 
+external dropping resistors.]</OLI><BRK/>
+<BRK/>
+<OLI>Frequency meters: Rated for 120-volt input, 60 Hz nominal frequency, [_____] to [_____] Hz scale range.</OLI><BRK/>
+<BRK/>
+<OLI>Power-factor meters:  Transformer rated five-ampere, [120][208]-volt input, [_____] scale range for use 
+on [three][four]-wire, three-phase circuits. The accuracy must be plus or minus 0.01.</OLI><BRK/>
+<BRK/>
+<OLI>DC ammeters: [Self-contained][Shunt-rated],[ 0 to [_____] ampere][ [_____] to 0 to [_____] ampere] scale 
+range.</OLI><BRK/>
+<BRK/>
+<OLI>DC voltmeters: Self-contained,[ 0 to [_____] volt][ [_____] to 0 volt] scale range. Furnish resistors, 
+if required, with the voltmeter.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Electronic Watthour Meter</TTL><BRK/>
+<BRK/>
+<TXT>Provide as specified in Section [<SRF>26 27 14.00 20</SRF> ELECTRICITY METERING][<SRF>26 27 13.10 30</SRF> ELECTRIC METERS].</TXT><BRK/>
+<BRK/>
+<TXT><RID>ANSI C12.1</RID>.  Provide a switchgear style electronic programmable watthour meter, semi-flush mounted.  Meter can 
+be either programmed at the factory or programmed in the field.  Turn field programming device over to the Contracting 
+Officer at completion of project.  Coordinate meter to system requirements.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Design:  Provide meter designed for use on a 3-phase,[ 4-wire][ 3-wire][_____] volt system with three 
+current transformers.  Include KYZ pulse initiation hardware for Energy Monitoring and Control System 
+(EMCS).</OLI><BRK/>
+<BRK/>
+<OLI>Coordination:  Provide meter coordinated with ratios of current transformers and transformer secondary 
+voltage.</OLI><BRK/>
+<BRK/>
+<OLI>Class: 20.  Accuracy:  plus or minus 1.0 percent.  Finish:  Class II.</OLI><BRK/>
+<BRK/>
+<OLI>Kilowatt-hour Register:  five digit electronic programmable type.</OLI><BRK/>
+<BRK/>
+<OLI>Demand Register:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide solid state.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Display actual values and readings of the metered circuit.  No multipliers must be required.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Demand interval length:  programmed for [15][30][60] minutes with rolling demand up to six 
+subintervals per interval.</OLI><BRK/>
+<BRK/>
+<OLI>Meter fusing:  Provide a fuse block mounted in the metering compartment containing one fuse per phase 
+to protect the voltage input to the watthour meter.  Size fuses as recommended by the meter manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter with a communications port, RS485, with Modbus RTU serial or Ethernet, Modbus-TCP communications.</OLI><BRK/></OLG>
+<BRK/>
+<TXT><RID>IEEE C57.13</RID>.  Provide single ratio transformers, 60 hertz, [_____] to five-ampere ratio, [_____] rating factor, 
+with a metering accuracy class of 0.3 through [_____].</TXT><BRK/>
+<BRK/>
+[<TXT>Provide a fuse block mounted in the metering compartment containing one fuse per phase to protect the voltage 
+input to voltage sensing meters.  Size fuses as recommended by the meter manufacturer.</TXT>]<BRK/>
+<BRK/></SPT>
+<SPT><TTL>Instrument Transformers</TTL><BRK/>
+<BRK/>
+<TXT><RID>IEEE C57.13</RID>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Current transformers: Each breaker compartment must have provision for front-accessible mounting of current 
+transformers (ANSI standard relay accuracy), on bus side and cable side of circuit breaker.  Standard 
+mounting location of current transformers are to be on the cable side of the circuit breaker.  The current 
+transformers wiring must be Type SIS No. 10 AWG copper.</OLI><BRK/>
+<BRK/>
+<OLI>Potential transformers:  Transformers must be fixed mounted with fuses and disconnect switch, 60 Hz, 
+with voltage ratings and ratios coordinated to the ratings of the associated switchgear, relays, meters, 
+and instruments.  Potential transformers must be with [one fuse] [two fuses] in the primary.  Fuses must 
+be current limiting and sized as recommended by the potential transformer manufacturer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Heaters</TTL><BRK/>
+<BRK/>
+<TXT>Provide 120-volt heaters in each switchgear control section.  Heaters must be of sufficient capacity to control 
+moisture condensation in the compartments and must be sized 250 watts minimum. Heaters must be controlled by 
+a thermostat[ and humidistat] located inside each section.  Thermostats must be industrial type, high limit, 
+to maintain compartments within the range of<MET> 15 to 32 degrees C</MET><ENG> 60 to 90 degrees F</ENG>.[  Humidistats must have a 
+range of 30 percent to 60 percent relative humidity.]  Provide transformer rated to carry 125 percent of heater 
+full load rating.  Transformers must have<MET> 220 degrees C</MET><ENG> 430 degrees F</ENG> insulation system with a temperature rise 
+not exceeding<MET> 115 degrees C</MET><ENG> 240 degrees F</ENG> and must conform to <RID>NEMA ST 20</RID>.  Provide panelboard and circuit breakers 
+in each switchgear assembly[ or outdoor enclosure in case of outdoor switchgear] to serve the heaters in that 
+switchgear assembly.  Energize electric heaters in switchgear assemblies while the equipment is in storage or 
+in place prior to being placed in service.  Provide method for easy connection of heater to external power source.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pilot and Indicating Lights</TTL><BRK/>
+<BRK/>
+<TXT>Provide LED type pilot and indicating lights, color indicated on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Metering</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Digital Metering</TTL><BRK/>
+<BRK/>
+<TXT><RID>IEEE C37.90.1</RID> for surge withstand.  Provide true rms, plus/minus one percent accuracy, programmable, microprocessor-based 
+meter enclosed in a sealed case with the following features.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Display capability:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Multi-Function Meter:  Display a selected phase to neutral voltage, phase to phase voltage, 
+percent phase to neutral voltage THD, percent phase to phase voltage THD; a selected phase 
+current, neutral current, percent phase current THD, percent neutral current; selected total 
+PF, kW, KVA, kVAR, FREQ, kVAh, kWh.  Detected alarm conditions include over/under current, 
+over/under voltage, over/under KVA, over/under frequency, over/under selected PF/kVAR, voltage 
+phase reversal, voltage imbalance, reverse power, over percent THD.  Include a Form C KYZ pulse 
+output relay on the meter.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Power Meter:  Display Watts, VARs, and selected KVA/PF.  Detected alarm conditions include 
+over/under KVA, over/under PF, over/under VARs, over/under reverse power.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Volt Meter:  Provide capability to be selectable between display of the three phases of phase 
+to neutral voltages and simultaneous display of the three phases of the phase to phase voltages.  
+Detected alarm conditions include over/under voltage, over/under voltage imbalance, over percent 
+THD.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Ammeter:  Display phase A, B, and C currents.  Detected alarm conditions include over/under 
+current, over percent THD.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Digital Watthour Meter:  Provide a single selectable display for watts, total kilowatt hours 
+(kWh) and watt demand (Wd).  Include a Form C KYZ pulse output relay on the meter.</OLI><BRK/>
+<BRK/>
+<OLI>Design meters to accept [input from standard 5A secondary instrument transformers][ and ][direct voltage 
+monitoring range to [300][600] volts, phase to phase].</OLI><BRK/>
+<BRK/>
+<OLI>Provide programming via a front panel display and a communication interface accessible by a computer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide password secured programming stored in non-volatile EEPROM memory.</OLI><BRK/>
+<BRK/>
+<OLI>Provide digital communications in a Modbus [RTU] protocol via a [RS232C][RS485] serial port[ and an independently 
+addressable [RS232C][RS485] serial port].</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter that calculates and stores average max/min demand values with time and date for all readings 
+based on a user selectable sliding window averaging period.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter with programmable hi/low set limits with two Form C dry contact relays when exceeding alarm 
+conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter with a display of Total Harmonic Distortion (THD) measurement to a minimum of the thirty-first 
+order.</OLI><BRK/>
+<BRK/>
+<OLI>Include historical trend logging capability with the ability to store up to 100,000 data points with 
+intervals of one second to 180 minutes.  Provide a unit that can store and time stamp up to 1000 programmable 
+triggered conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Provide event waveform recording triggered by the rms of two cycles of voltage or current exceeding programmable 
+set points.  Store waveforms for all six channels of voltage and current for a minimum of 10 cycles prior 
+to the event and 50 cycles past the event.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Submetering</TTL><BRK/>
+<BRK/>
+<TXT><MET><RID>ASHRAE 90.1 - SI</RID></MET><ENG><RID>ASHRAE 90.1 - IP</RID></ENG>.  Provide submetering for [_____].</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Terminal Boards</TTL><BRK/>
+<BRK/>
+<TXT>Provide with engraved plastic terminal strips and screw type terminals for external wiring between components 
+and for internal wiring between removable assemblies.  Provide short-circuiting type terminal boards associated 
+with current transformer.  Terminate conductors for current transformers with ring-tongue lugs.  Identify each 
+terminal to indicate the load served.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wire Marking</TTL><BRK/>
+<BRK/>
+<TXT>Mark control and metering conductors at each end.  Provide factory installed, white, plastic tubing, heat stamped 
+with black block type letters on factory-installed wiring.  On field-installed wiring, provide white, preprinted, 
+polyvinyl chloride (PVC) sleeves, heat stamped with black block type letters.  Provide a single letter or number 
+on each sleeve, elliptically shaped to securely grip the wire, and keyed to ensure alignment with adjacent sleeves.  
+Provide specific wire markings using the appropriate combination of individual sleeves.  Indicate on each wire 
+marker the device or equipment, including specific terminal number to which the remote end of the wire is attached.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Surge Arresters</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide plug-in type surge arrestors, rated [[3][6][9][10][12][15][_____] kV] as indicated on the drawings, fully 
+shielded, dead-front, metal-oxide-varistor type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Wiring</TTL><BRK/>
+<BRK/>
+<TXT>The switchgear control wiring must be type SIS No.<MET> 2.1 mm squared</MET><ENG> 14 AWG</ENG> copper minimum, except where larger 
+size wire is required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding Resistor</TTL><BRK/>
+<BRK/>
+<TXT>The neutral grounding resistor assembly must comply with <RID>IEEE 32</RID>.  The assembly meets the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The resistor element must be [stainless steel][cast-iron] and rated [_____] amperes for a [10-second][one-minute][10-minutes][extended 
+time] duty.</OLI><BRK/>
+<BRK/>
+<OLI>The resistor must be installed in an aluminized screened or expanded galvanized steel enclosure of the 
+personnel safety type and is provided with supports and mounting hardware.  The enclosure, including 
+screening and support framing, must have two finish coats applied over a prepared substrate.  The color 
+of the finish coats are the same as the color of the associated transformer.</OLI><BRK/>
+<BRK/>
+<OLI>A stress-relief terminator must be provided and arranged to permit the proper termination of the No.<MET> 
+[_____] mm squared</MET><ENG> [_____] AWG</ENG>, [_____][5][15] kV shielded transformer neutral cable entering the enclosure 
+[from the [bottom][top]] [as recommended by the manufacturer].  If the terminal bushing is external to 
+the enclosure, the bushing and terminal provisions are enclosed by a solid metal cable box equipped with 
+conduit fittings correctly sized for the conduit required.  An approved type and size of terminal lug 
+must also be provided and arranged for the field termination of the No.<MET> 107 mm squared</MET><ENG> 4/0 AWG</ENG> bare copper 
+grounding cable entering the enclosure from the bottom.</OLI><BRK/>
+<BRK/>
+<OLI>One current transformer conforming must be provided and housed in the resistor enclosure. The current 
+transformer ratio is shown.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Design Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Design equipment enclosure in accordance with seismic requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Design switchgear to accommodate entrance of cables where indicated.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Performance Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Factory testing in accordance with the latest ANSI standards.</OLI><BRK/>
+<BRK/>
+<OLI>Factory test results documentation.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>[ASSEMBLY][FABRICATION]</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Manufacturer's Nameplate</TTL><BRK/>
+<BRK/>
+<TXT>Provide a nameplate on each item of equipment bearing the manufacturer's name, address, model number, and serial 
+number securely affixed in a conspicuous place; the nameplate of the distributing agent is not acceptable.  This 
+nameplate and method of attachment may be the manufacturer's standard if it contains the required information.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Fabricated Nameplates</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D709</RID>.  Provide laminated plastic nameplates for each switchgear, equipment enclosure, relay, switch, and 
+device; as specified in this section or as indicated on the drawings.  Identify on each nameplate inscription 
+the function and, when applicable, the position.  Provide nameplates of melamine plastic,<MET> 3 mm</MET><ENG> 0.125 inch</ENG> thick, 
+white with [black][_____] center core.[  Provide red laminated plastic label with white center core where indicated.]  
+Provide matte finish surface.  Provide square corners.  Accurately align lettering and engrave into the core.  
+Provide nameplates with minimum size off<MET> 25 mm by 65 mm</MET><ENG> 1 by 2.5 inches</ENG>.  Provide lettering that is a minimum 
+of<MET> 6.35 mm</MET><ENG> 0.25 inch</ENG> high normal block style.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Factory Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Instruction manual and drawings for field assembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shop Fabrication</TTL><BRK/>
+<BRK/>
+<TXT>Install switchgear fully tested at factory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Finishes</TTL><BRK/>
+<BRK/>
+<TXT>Fully assembled switchgear is paint coated, and protected from environment for shipping to site.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EQUIPMENT</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide a list of proposed equipment including model numbers, description of breakers, current transformers, 
+voltage transformers, fuses, relays, control switches, and other devices.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a list of special equipment required for operation and maintenance of switchgear.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>COMPONENTS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide complete wiring diagrams or wiring lists showing connections of component devices and equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Attach Data Sheets that specify major components and accessories to be provided with clear identification 
+marking. </OLI> <BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>ACCESSORIES</TTL><BRK/>
+<BRK/>
+<TXT>Provide a list of instruments and accessories supplied, listing manufacturer, model number, operating ranges, 
+and equipment tag numbers.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TESTS, INSPECTIONS, AND VERIFICATIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Switchgear Design and Production Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Furnish reports which include results of routine and production tests performed according to <RID>IEEE C37.74</RID>[, <RID>IEC 62271-103</RID>
+][ and <RID>IEEE C37.60</RID>[, <RID>IEC 62271-111</RID>]].  Perform manufacturer certified production test reports on each switchgear 
+assembly to ensure that design performance is maintained in production.</TXT><BRK/>
+<BRK/>
+<TXT>The Government reserves the right to witness tests.  Provide <SUB>equipment test schedules</SUB> for tests to be performed 
+at the manufacturer's test facility.  Submit required test schedule and location and notify the Contracting Officer 
+30 calendar days before scheduled test date.  Notify Contracting Officer 15 calendar days in advance of changes 
+to scheduled date.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Perform production tests on each circuit breaker housing for this Project, complying with <RID>IEEE C37.09</RID>
+.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform mechanical operation tests to ensure proper functioning of operating mechanism, mechanical 
+interlocks.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that control wiring is correct by verifying continuity. Perform electrical operation 
+of relays and devices to ensure they function properly and in the intended sequence.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform the control wiring dielectric test at 1500 V for one minute.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform the dielectric test on primary and secondary circuits.</OLI><BRK/>
+<BRK/>
+<OLI>Perform production tests, on each circuit breaker supplied for this Project, complying with <RID>IEEE C37.09</RID>
+.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform mechanical operation tests to ensure proper functioning of the circuit breaker.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that control wiring is correct by verifying continuity.  Perform electrical operation 
+of relays and devices to ensure they function properly and in the intended sequence.  Operate 
+the circuit breakers over the range of minimum to maximum of the control voltage.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform the control wiring dielectric test at 1500 V for one minute.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Switchgear Conformity to Design Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>IEEE C37.20.2A</RID>, <RID>IEEE C37.20.3</RID>, or <RID>IEEE C37.20.9</RID> as applicable.  Furnish documentation showing the results of 
+routine tests on a product of the same series and rating as that provided by this specification.  Required tests 
+are as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Design Tests:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Dielectric test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Resistance test of the main bus.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Pressure check of gas-filled compartments.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Auxiliary devices test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Wiring verification.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Rated continuous current test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Short-circuit current withstand tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Mechanical endurance tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Rain test for outdoor MV switchgear.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>COORDINATED POWER SYSTEM PROTECTION</TTL><BRK/>
+<BRK/>
+<TXT>Provide a power system study as specified in Section <SRF>26 05 73</SRF> POWER SYSTEM STUDIES .</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>SERVICE ENTRANCE AVAILABLE FAULT CURRENT LABEL</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide label on exterior of switchgear used as service equipment listing the maximum available fault current 
+at that location.  Include on the label the date that the fault calculation was performed and the contact information 
+for the organization that completed the calculation.  Locate this self-adhesive warning label on the outside 
+of the switchgear.  Provide label format as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MIMIC BUS LABELING</TTL><BRK/>
+<BRK/>
+<TXT>Provide a mimic bus on the front of the equipment to diagrammatically show the internal bus structure of the 
+lineup.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Verify Site conditions are acceptable for switchgear installation.</OLI><BRK/>
+<BRK/>
+<OLI>Inspect all surfaces of switchgear for dents or defects in manufacturing or shipping.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer to provide detailed storage, installation and handling instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Provide manufacturer's field service representative to perform wiring interconnections between shipping 
+splits.</OLI><BRK/>
+<BRK/>
+<OLI>Provide manufacturer's field service representative for technical direction and field commissioning services.  
+Relays are programmed in the factory using settings furnished by Engineer or Owner.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>PREPARATION</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Ship switchgear for installation as completely assembled as practicable.  </OLI><BRK/>
+<BRK/>
+<OLI>Where switchgear is installed in separate building ship enclosure as complete as practicable with switchgear 
+and components installed inside for ease of installation in field.  </OLI><BRK/>
+<BRK/>
+<OLI>If shipping splits are required, clearly identify connections between splits for enclosure circuits and 
+switchgear splits. </OLI><BRK/>
+<BRK/>
+<OLI>Provide junction and terminal boxes at each connection point.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Protection</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Cover equipment and accessories and protect from damage during shipment.</OLI><BRK/>
+<BRK/>
+<OLI>Acceptable shipping materials used for protecting equipment when manufacturer's recommended storage procedures 
+are maintained.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Surface Preparation</TTL><BRK/>
+<BRK/>
+<TXT>Clean shot blasted factory coated switchgear enclosure as specified.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>IEEE C2</RID>, <RID>NFPA 70</RID>, storage, anchor provisions, O&amp;M manuals, and to the requirements specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>APPLICATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Grounding</TTL><BRK/>
+<BRK/>
+<TXT><RID>NFPA 70</RID> and <RID>IEEE C2</RID>, except provide grounds and grounding systems with a resistance to solid earth ground not 
+exceeding [25][_____] ohms.  When work, in addition to that indicated or specified, is directed to obtain the 
+specified ground resistance, the provision of the Contract covering "Changes" applies.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Grounding Electrodes</TTL><BRK/>
+<BRK/>
+<TXT>Provide driven ground rods as specified[ in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION][ at each corner 
+of switchgear pad][ as indicated].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Switchgear Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Connect<MET> 107 mm squared</MET><ENG> 4/0 AWG</ENG> bare copper conductor ground ring, not less than<MET> 600 mm</MET><ENG> 24 inches</ENG> below grade, 
+to the upper end of the ground rods by exothermic welds or compression connectors.  Provide<MET> 107 mm squared</MET><ENG> 4/0 
+AWG</ENG> bare copper conductors connecting the switchgear grounding provisions to two different ground rods.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections</TTL><BRK/>
+<BRK/>
+<TXT>Make joints in grounding conductors and ground ring by exothermic weld or compression connector.  Install exothermic 
+welds and compression connectors as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding and Bonding Equipment</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 467</RID>, except as indicated or specified otherwise.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Special Technique</TTL><BRK/>
+<BRK/>
+<TXT>When applicable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Interface with Other Products</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Foundation for Equipment and Assemblies</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide details for mounting equipment on foundation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide foundation for supporting equipment and assemblies.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Exterior Location</TTL><BRK/>
+<BRK/>
+<TXT>Mount switchgear on concrete foundation slab.  Provide slab of adequate size to project at least<MET> 200 mm</MET><ENG> 8 inches</ENG>
+ beyond equipment.[  Slab must be of adequate size to project at least<MET> 200 mm</MET><ENG> 8 inches</ENG> beyond equipment, except 
+that front of slab must be large enough to serve as a platform.]  Provide conduit turnups and cable entrance 
+space required by the equipment to be mounted[ and as indicated].  Seal voids around conduit openings in slab 
+with water- and oil -resistant caulking or sealant.  Cut off and install bushings on conduits<MET> 75 mm</MET><ENG> 3 inches</ENG> 
+above slab surface.  Concrete work must be as specified in Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Interior Location</TTL><BRK/>
+<BRK/>
+<TXT>Mount switchgear on concrete slab.  Unless Otherwise indicated, the slab<BRK/>
+must be at least<MET> 100 mm</MET><ENG> 4 inches</ENG> thick.  Top of concrete slab must be<BRK/>
+approximately<MET> 100 mm</MET><ENG> 4 inches</ENG> above finished floor.  Edges above floor<BRK/>
+must have<MET> 15 mm</MET><ENG> 1/2 inch</ENG> chamfer.  Slab must be of adequate size to<BRK/>
+project at least<MET> 200 mm</MET><ENG> 8 inches</ENG> beyond the equipment.  Concrete work must be as specified in Section 
+<SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Tolerances</TTL><BRK/>
+<BRK/>
+<TXT>Perform in accordance with the manufacturer's recommendations, <RID>NFPA 70B</RID>, <RID>NETA ATS</RID>, and referenced ANSI standards.</TXT><BRK/>
+<BRK/>
+<TXT>Include the following visual and mechanical inspections and electrical tests, performed in accordance with <RID>NETA ATS</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Tests</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>Required Settings</SUB> of breakers to the Contracting Officer after approval of switchgear and at least 30 
+days in advance of their requirement.</TXT><BRK/>
+<BRK/>
+<TXT>Perform in accordance with the manufacturer's recommendations, <RID>NFPA 70B</RID>, <RID>NETA ATS</RID> and referenced ANSI standards.  
+The [_____] Division, Naval Facilities Engineering Sytems Command will witness formal tests after receipt of 
+written certification that preliminary tests have been completed and that system is ready for final test and 
+inspection.</TXT><BRK/>
+<BRK/>
+<TXT>Include the following visual and mechanical inspections and electrical tests, performed in accordance with <RID>NETA ATS</RID>
+.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Perform contact-resistance tests.</OLI><BRK/>
+<BRK/>
+<OLI>Trip fault interrupters by operation of overcurrent control and remote trip.</OLI><BRK/>
+<BRK/>
+<OLI>Perform insulation-resistance tests.</OLI><BRK/>
+<BRK/>
+<OLI>Perform an over-potential test on each switched way pole with the switched way in the open position in 
+accordance with the manufacturer's instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Set fault interrupter overcurrent control in accordance with Government provided settings.  Request settings 
+from Government, in writing, a minimum of 30 days prior to scheduling electrical tests.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Inspection - Medium-Voltage Vacuum Circuit Breakers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate information with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Check for proper anchorage, alignment, required area clearances, and grounding.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform mechanical operational tests in accordance with manufacturer's instructions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Confirm correct application of manufacturer's recommended lubricants.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that insulating SF6 gas pressure or dielectric fluid level is correct.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all doors, panels, and sections for paint, dents, scratches, fit, and missing hardware.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that[ fuse and] circuit breaker sizes and types correspond to approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that current and potential transformer ratios correspond to approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify tightness of accessible bolted connections by calibrated torque-wrench method.  Thermographic 
+survey is required.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all indicating devices for proper operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Confirm correct operation and sequencing of electrical and mechanical interlock systems for 
+proper operation and sequencing.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Clean switchgear.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect insulators for evidence of physical damage or contaminated surfaces.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify correct barrier[ and shutter] installation[ and operation].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Exercise all active components.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all mechanical indicating devices operational tests in accordance with manufacturer's 
+instructions for correct operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that vents are clear.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Test operation, alignment, and penetration of instrument transformer withdrawal disconnects.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect control power transformers.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Record as-found and as-left operation readings.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation-resistance tests for one minute on each pole, phase-to-phase and phase-to 
+ground with switch closed, and across each open pole.  Apply voltage according to manufacturer's 
+published data, in the absence of manufacturer's published data, comply with <RID>NETA ATS</RID>, Table 
+100.1.  Insulation-resistance values must be according to manufacturer's published data.  In 
+the absence of manufacturer's published data, comply with <RID>NETA ATS</RID>, Table 100.1.  Investigate 
+and correct values of insulation resistance less than this table or manufacturer's recommendations.  
+Dielectric-withstand-voltage tests must not proceed until insulation-resistance levels are 
+raised above minimum values.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform overpotential tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform control wiring performance test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify correct operation of any auxiliary features, such as electrical close and trip operation, 
+trip-free operation, and anti-pump function.  Auxiliary features must operate according to 
+manufacturer's published data.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Trip circuit breaker by operation of each protective device.  Reset trip logs and indicators.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform a dielectric-withstand-voltage test according to manufacturer's published data.  If 
+no evidence of distress or insulation failure is observed by the end of the total time of voltage 
+application during the dielectric-withstand-voltage test, the test specimen is considered to 
+have passed the test.</OLI><BRK/></OLG>
+<BRK/>
+      (7) Verify operation of heaters.<BRK/>
+<BRK/>
+<SPT><TTL>Instrument Transformers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify correct connection.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that adequate clearances exist between primary and secondary circuit.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify tightness of accessible bolted electrical connections by calibrated torque-wrench method. 
+Thermographic survey is required.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that all required grounding and shorting connections provide good contact.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify correct operation of transformer with drawout mechanism and grounding operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify correct primary and secondary fuse sizes for potential transformers.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests - Current Transformers</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation-resistance tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform polarity tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform ratio-verification tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">When applicable, perform insulation resistance and dielectric withstand tests on the primary 
+winding with secondary grounded.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">CAUTION:  Changes of connection, insertion, and removal of instruments, relays, and meters 
+must be performed systematically that the secondary circuits of energized current transformers 
+are not opened momentarily.</OLI><BRK/>
+<BRK/>
+ <OLI>Electrical Tests - Voltage (Potential) Transformers</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation-resistance tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform a polarity test on each transformer to verify the polarity marks or H1 - X1 relationships 
+as applicable.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform a turns ratio test on all tap positions, if applicale.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Grounding System</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect ground system for compliance with Contract plans and specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform ground-impedance measurements utilizing the fall-of-potential method.  On systems consisting 
+of interconnected ground rods, perform tests after interconnections are complete.  On systems 
+consisting of a single ground rod perform tests before any wire is connected.  Take measurements 
+in normally dry weather, not less than 48 hours after rainfall.  Use a portable ground resistance 
+tester in accordance with manufacturer's instructions to test each ground or group of grounds.  
+Use an instrument equipped with a meter reading directly in ohms or fractions thereof to indicate 
+the ground value of the ground rod or grounding systems under test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Submit the measured ground resistance of each ground rod and grounding system, indicating the 
+location of the rod and grounding system.  Include the test method and test setup (i.e., pin 
+location) used to determine ground resistance and soil conditions at the time the measurements 
+were made.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Protective Relays</TTL><BRK/>
+<BRK/>
+<TXT>Protective relays must be visually and mechanically inspected, adjusted, tested, and calibrated in accordance 
+with the manufacturer's published instructions.  Tests must include pick-up, timing, contact action, restraint, 
+to ensure proper calibration and operation.  Relay settings must be implemented in accordance with the settings[ 
+provided by the Government][ in accordance with the approved overcurrent protective device coordination study].  
+Relay contacts must be electrically operated to verify that the proper breakers and alarms initiate.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Manufacturer Field Service</TTL><BRK/>
+<BRK/>
+<TXT>Schedule training with Owner with at least three weeks advance notice.</TXT><BRK/>
+<BRK/>
+<TXT>Upon completion of acceptance checks, settings, and tests, the Manufacturer must show by demonstration in service 
+that circuits and devices are in good operating condition and properly performing the intended function.  Circuit 
+breakers must be tripped by operation of each protective device.  Test must require each item to perform its 
+function not less than three times.  As an exception to requirements stated elsewhere in the Contract, notify 
+the Contracting Officer [5][10] working days in advance of the dates and times for checks, settings, and tests[, 
+to allow the Contracting Officer to notify NAVFAC SE Code 0742; Electrical Engineering Division and Code 162; 
+Director, Utilities Engineering Division].</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

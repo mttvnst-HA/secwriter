@@ -1,0 +1,3854 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="253.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="252.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 09 00 (August 2024)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Change 1 - 08/25</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="9.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 09 00 (February 2019)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 09 00</SCN><BRK/>
+<BRK/>
+<STL>INSTRUMENTATION AND CONTROL FOR HVAC</STL><BRK/>
+<DTE>08/24, CHG 1: 08/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>HVAC control systems, 
+including  tailoring options for BACnet and Niagara Framework-Based BACnet systems</SCP>
+.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.  CCRs for this specification 
+can be submitted through the Whole Building Design Guide page for this section:<URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-23-09-00">
+https://www.wbdg.org/dod/ufgs/ufgs-23-09-00</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The use of this UFGS, and the design of control systems, must be in accordance 
+with UFC 3-410-02, DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL 
+SYSTEMS.  This specification MUST be used in conjunction with UFGS 
+<SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL 
+SYSTEMS as well as UFGS <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC 
+and UFGS <SRF>23 09 93</SRF> SEQUENCES OF OPERATION FOR HVAC CONTROL in order to specify 
+a complete and functional system.<BRK/>
+<BRK/>
+Verify the design is coordinated with the appropriate version of Section 
+<SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.&lt;<BRK/>
+<BRK/>
+Except as otherwise indicated, edit this guide specification for project specific 
+requirements ONLY by selecting appropriate tailoring options, choosing applicable 
+items(s), or inserting appropriate information in bracketed items.  Do not make 
+edits outside of bracketed items except as noted without prior approval as indicated 
+in UFC 3-410-02 DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING SYSTEMS.<BRK/>
+<BRK/>
+<BRK/>
+<BRK/>
+When used with UFGS <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER 
+BUILDING CONTROL SYSTEMS, this specification covers installation of local (building-level) 
+controls using BACnet-based DDC, and may include the Niagara Framework. <BRK/>
+<BRK/>
+This specification is primarily intended for building level control systems 
+which are to be integrated into a Utility Monitoring and Control System (UMCS) 
+as specified in Section <SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL SYSTEM (UMCS) 
+FRONT END AND INTEGRATION (where Section <SRF>25 10 10</SRF> has also used the matching 
+protocol tailoring option).<BRK/>
+<BRK/>
+For projects that require the building system to provide UMCS functionality 
+(without connection to a UMCS), include the necessary requirements from Section 
+<SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL SYSTEM (UMCS) FRONT END AND INTEGRATION 
+in the project specifications.<BRK/>
+<BRK/>
+Template drawings in electronic format for use with this section are available 
+online at the Whole Building Design Guide page for this section: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-23-09-00">https://www.wbdg.org/dod/ufgs/ufgs-23-09-00</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification makes use of SpecsIntact Tailoring Options.  This 
+note describes these options and how to use them. <BRK/>
+<BRK/>
+<HL1>"TAILORING OPTION NOTES" Tailoring Option</HL1><BRK/>
+Each time tailoring options are used there is an accompanying designer note 
+describing the text that is tailored.  As this Section makes heavy use of tailoring 
+options there are many of these notes and they can distract from designer notes 
+describing other decisions.  The designer notes describing tailoring options 
+are all in a "TAILORING OPTION NOTES" tailoring option which can be hidden (in 
+SpecsIntact select View-Tailoring Options and then deselect "TAILORING OPTION 
+NOTES") once this section is tailored and the tailoring option notes are no 
+longer needed.<BRK/>
+<BRK/>
+<HL1>Protocol Tailoring Options</HL1><BRK/>
+This specification includes tailoring options for selection of protocol, and 
+whether the Niagara Framework is required.  There are two tailoring options, 
+of which EXACTLY ONE must be used (the other must be DESELECTED when managing 
+tailoring options):<BRK/>
+   1) BACNET:  A (non-Niagara Framework) BACnet<BRK/>
+      system:   Use UFGS <SRF>23 09 23.02</SRF> with<BRK/>
+      the "NOT Niagara Framework" tailoring option<BRK/>
+      selected (DESELECT the "Niagara<BRK/>
+      Framework" tailoring option in <BRK/>
+      UFGS <SRF>23 09 23.02</SRF>).<BRK/>
+<BRK/>
+   2) NIAGARA BACNET:  A Niagara Framework   <BRK/>
+      system using BACnet controllers. <BRK/>
+      Use UFGS <SRF>23 09 23.02</SRF> with the "Niagara<BRK/>
+      Framework" tailoring option selected (DESELECT<BRK/>
+      the "NOT Niagara Framework" tailoring option<BRK/>
+      in UFGS <SRF>23 09 23.02</SRF>).<BRK/>
+<BRK/>
+You have currently included the following options:<BRK/>
+----------<BRK/>
+<TAI OPT="NIAGARA BACNET">NIAGARA BACNET</TAI><BRK/>
+<TAI OPT="BACNET">BACNET</TAI><BRK/>
+----------<BRK/>
+If you don't see any text between dashes above, you have DESELECTED all protocol 
+tailoring options and this specification is not valid. SELECT ONE of the tailoring options.<BRK/>
+<BRK/>
+If you see more than one line of text between the dashes above you have left 
+multiple tailoring options related to protocol selected.  DESELECT one or more 
+tailoring options until a SINGLE protocol tailoring option is selected.<BRK/>
+<BRK/>
+<HL1>Service Tailoring Option</HL1><BRK/>
+This specification also includes tailoring options for the Service (Air Force, 
+Army, Navy) the specification is used for.  There is a "Service Generic" tailoring 
+option that can also be used when none of the other services tailoring options 
+apply.  Only ONE of the five tailoring options related to the services should 
+be used. You have currently included the following options:<BRK/>
+----------<BRK/>
+<TAI OPT="AIR FORCE">AIR FORCE</TAI><BRK/>
+<TAI OPT="ARMY">ARMY</TAI><BRK/>
+<TAI OPT="NAVY">NAVY</TAI><BRK/>
+<TAI OPT="SERVICE GENERIC">SERVICE GENERIC</TAI><BRK/>
+-----------<BRK/>
+If more than one item appears between the dashes above you have included more 
+than one services tailoring option and need to DESELECT all but one of them.  
+If there is no text between the dashes above you have not included any services 
+tailoring options.  Select ONE of the services tailoring options for inclusion.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SUMMARY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If sequences of operation are provided in Section <SRF>23 09 93</SRF> SEQUENCES 
+OF OPERATION FOR HVAC CONTROL, keep the bracketed text referring to that section.  
+If Section <SRF>23 09 93</SRF> is not provided remove the bracketed text.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Section 25 05 11, use the bracketed text in the Section number to 
+add forth level numbering if used on the project as described in UFC 4-010-06.  
+In the Section name, keep the bracketed text if the section was unnamed or use 
+the empty brackets provided to change the Section name to match the project 
+specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a complete Direct Digital Control (DDC) system, except for the Front End which is specified in Section 
+<SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL (UMCS) FRONT END AND INTEGRATION, suitable for the control of the heating, 
+ventilating and air conditioning (HVAC) and other building-level systems as indicated and shown and in accordance 
+with Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC,[ Section <SRF>23 09 93</SRF> SEQUENCES OF OPERATION 
+FOR HVAC CONTROL,] Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS, 
+Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS, and other referenced Sections.</TXT><BRK/>
+<BRK/>
+<TAI OPT="NAVY">[<SPT><TTL>Control System Vendor Requirement</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is within tailoring options and is included ONLY when the 
+NAVY tailoring option is selected </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Keep this bracketed subpart ONLY for Navy projects where the installation 
+has obtained a J&amp;A to downselect to a particular vendor. <BRK/>
+<BRK/>
+When keeping this subpart text:<BRK/>
+<BRK/>
+1) fill in the control system manufacturer and product line information. For 
+example:  "ControlCo, BestSystem version 5". <BRK/>
+<BRK/>
+2) Include the configuration setting requirements so the equipment can be installed, 
+configured and programmed in accordance with the existing Risk Management Framework 
+Authority to Operate.  Obtain the equipment configuration settings from Public 
+Works, the system owner, or local CIO office. Include these requirements as 
+an attachment to this specification, as part of the contract drawings, or in 
+some other manner and select the appropriate bracketed text indicating where 
+the settings are provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The control system provided under this Section must be  [_____].  Configure the equipment as indicated in [attached 
+configuration setting requirements][the configuration settings drawings][_____].</TXT><BRK/>
+<BRK/></SPT>
+]</TAI><SPT><TTL>Proprietary Systems</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Proprietary Systems Exempted From Open Protocol Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: UFC 3-410-02 defines specific circumstances in which a specific HVAC system 
+can be excepted from the open protocol requirements and a proprietary network 
+may be used instead.<BRK/>
+<BRK/>
+When including/allowing proprietary networks in a design per UFC 3-410-02, the 
+systems specifically permitted to use proprietary networks must be indicated 
+in Table 1 below.<BRK/>
+<BRK/>
+Review UFC 3-410-02 for the requirements related to this exception before permitting 
+proprietary networks to ensure the exception is permitted, approved, and properly 
+documented.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The following systems are specifically exempted from the open protocol requirements of Section <SRF>23 09 23.02</SRF> BACNET 
+DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS: </TXT><BRK/>
+  <OLG><BRK/>
+<OLI>A simple split (DX) system consisting of a single indoor unit and a single outdoor unit from the same 
+manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Systems in Table I (previously approved by the designer in accordance with <RID>UFC 3-410-02</RID>).<BRK/>
+<TAB HEADERROWS="2">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="64.50"/>
+      <COL AUTOWIDTH="0" WIDTH="199.50"/>
+      <COL AUTOWIDTH="0" WIDTH="222.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING"><HL4>TABLE I: Systems Approved to Use Proprietary Communications</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL>
+<DTA TYPE="STRING">System</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Type (Multi-Split/VRF or Chiller/Boiler Plant)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Proprietary Multi-Split Engineering Tool Software Required (for Multi-Split/VRF only)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></OLI><BRK/>
+<OLI>A system (not already shown Table I) of multiple boilers or multiple chillers communicating with a proprietary 
+network for which an approved request has been obtained and for which: all units are from the same manufacturer, 
+they are all co-located in the same room, the network connecting them is fully contained in that room, 
+and the units are operating using a common "plant" sequence of operation which stages the units in a 
+manner that requires operational parameters be shared between them and which cannot be accomplished with 
+a single lead-lag command from a third-party controller.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Implementation of Proprietary Systems</TTL><BRK/>
+<BRK/>
+<TXT>For proprietary systems exempted from open protocol requirements, a proprietary network and DDC hardware communicating 
+via a proprietary protocol are permitted.  For these systems a building control network meeting the requirements 
+of Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS must also be 
+provided, along with a gateway or interface to connect the proprietary system to the open building control network.<BRK/>
+<BRK/>
+The proprietary system gateway or interface must provide the required functionality as shown on the points schedule.  
+Scheduling, alarming, trending, overrides, network inputs, network outputs and other protocol related requirements 
+must be met on the open protocol control system as specified in Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL 
+FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Proprietary Multi-Split Engineering Tool Software</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate in Table I for each permitted system whether the engineering 
+tool software is required.  Coordinate with the project site to determine if 
+this software is needed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For each permitted proprietary systems in Table 1 shown as requiring Proprietary Multi-Split Engineering Tool 
+Software, provide the software needed to replace a unit and configure the replacement.  Submit hard copies of 
+the software user manuals with the software submittal.<BRK/>
+<BRK/>
+Submit Proprietary Multi-Split Engineering Tool Software on CD-ROM as a Technical Data Package.  Submit  [_____] 
+hard copies of the software user manual for each piece of software.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>System Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide systems meeting the requirements this Section and other Sections referenced by this Section, and which 
+have the following characteristics:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select where sequences of operation are specified.  UFGS <SRF>23 09 93</SRF> SEQUENCES 
+OF OPERATION FOR HVAC CONTROL contains template sequences of operation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLG><OLI>The system implements the control sequences of operation [shown in the Contract Drawings][___] using 
+DDC hardware to control mechanical and electrical equipment</OLI><BRK/>
+<BRK/>
+<OLI>The system meet the requirements of this specification as a stand-alone system and does not require connection 
+to any other system.</OLI><BRK/>
+<TAI OPT="AIR FORCE"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The requirement "<TAI OPT="AIR FORCE">, unless otherwise pre-approved by the Contracting Officer" 
+in the following paragraph is required only for Air Force projects and is in 
+AIR FORCE tailoring tags. <BRK/></TAI>
+(Deselect the AIR FORCE tailoring option if not specifying an Air Force owned 
+system.</NPR>)<BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<OLI>Control sequences reside in DDC hardware in the building.  The building control network is not dependent 
+upon connection to a Utility Monitoring and Control System (UMCS) Front End or to any other system for 
+performance of control sequences.  To the greatest extent practical, the hardware performs control sequences 
+without reliance on the building network<TAI OPT="AIR FORCE">, unless otherwise pre-approved by the Contracting Officer</TAI>.</OLI><BRK/>
+<BRK/>
+<OLI>The hardware is installed such that individual control equipment can be replaced by similar control equipment 
+from other equipment manufacturers with no loss of system functionality.</OLI><BRK/>
+<BRK/>
+<OLI>All necessary documentation, configuration information, programming tools, programs, drivers, and other 
+software are licensed to and otherwise remain with the Government such that the Government or their agents 
+are able to perform repair, replacement, upgrades, and expansions of the system without subsequent or 
+future dependence on the Contractor, Vendor or Manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Sufficient documentation and data, including rights to documentation and data, are provided such that 
+the Government or their agents can execute work to perform repair, replacement, upgrades, and expansions 
+of the system without subsequent or future dependence on the Contractor, Vendor or Manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Hardware is installed and configured such that the Government or their agents are able to perform repair, 
+replacement, and upgrades of individual hardware without further interaction with the Contractor, Vendor 
+or Manufacturer.</OLI><TAI OPT="NIAGARA BACNET"><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following list paragraph is included only when the  NIAGARA BACNET 
+tailoring option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<OLI>All <RID>Niagara Framework</RID> components have an unrestricted interoperability license with a Niagara Information 
+and Conformance Statement (NICS)which allows open access as defined by <RID>Niagara NICS</RID> with a value of "ALL" 
+for "Station Compatibility In", "Station Compatibility Out", "Tool Compatibility In" and "Tool Compatibility 
+Out". Note that this will result in the following entries in the license file:<BRK/>
+     accept.station.in="*"<BRK/>
+     accept.station.out="*"<BRK/>
+     accept.wb.in="*"<BRK/>
+     accept.wb.out="*"</OLI></TAI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>End to End Accuracy</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is referenced (by subpart title) elsewhere in the specification.  
+If this paragraph is edited, removed, renamed, etc. make sure to verify that 
+all references to it are updated as needed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Select products, install and configure the system such that the maximum error of a measured value as read from 
+the DDC Hardware over the network is less than the maximum allowable error specified for the sensor or instrumentation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Verification of Dimensions</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with all details of the work, verify all dimensions in the field, and advise the Contracting 
+Officer of any discrepancy before performing any work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drawings</TTL><BRK/>
+<BRK/>
+<TXT>The Government will not indicate all offsets, fittings, and accessories that may be required on the drawings.  
+Carefully investigate the mechanical, electrical, and finish conditions that could affect the work to be performed, 
+arrange such work accordingly, and provide all work necessary to meet such conditions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>RELATED SECTIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select whether Section <SRF>01 91 00.15</SRF> or , BUILDING COMMISSIONING, is used 
+for commissioning or provide appropriate reference to the Commissioning specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:For Section 25 05 11, use the bracketed text in the Section number to add 
+forth level numbering if used on the project as described in UFC 4-010-06.  
+In the Section name, keep the bracketed text if the section was unnamed or use 
+the empty brackets provided to change the Section name to match the project specifications.<BRK/>
+<BRK/>
+Inlcude Section 23 81 00 and Section 23 81 29 only when these Sections are required 
+for the project.<BRK/>
+<BRK/>
+Keep the bracketed text referring to Section 01 91 00.15 OR use the empty brackets 
+to indicate the appropriate commissioning specification.<BRK/>
+  </NPR><BRK/>
+<BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Related work specified elsewhere:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.</OLI><BRK/>
+<BRK/>
+<OLI>Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC</OLI><BRK/>
+<BRK/>
+<OLI>Section <SRF>23 09 93</SRF> SEQUENCES OF OPERATIONS FOR HVAC CONTROLS</OLI><BRK/>
+<BRK/>
+<OLI>Section <SRF>25 08 10</SRF> UTILITY MONITORING AND CONTROL SYSTEMS TESTING</OLI><BRK/>
+<BRK/>
+<OLI>Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS</OLI><BRK/>
+[<BRK/>
+<OLI>Section <SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL SYSTEMS (UMCS) FRONT END AND INTEGRATION</OLI><BRK/>
+<BRK/>
+][<OLI>Section <SRF>23 81 00</SRF> DECENTRALIZED UNITARY HVAC EQUIPMENT</OLI><BRK/>
+<BRK/>
+][<OLI>Section <SRF>23 81 29</SRF> VARIABLE REFRIGERANT FLOW HVAC SYSTEMS</OLI><BRK/>
+<BRK/>
+]<OLI>[Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING][_____]</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 135</RID><RTL>(2024; INT 1-3 2025; Errata 1 2025; INT 4-6 2025; Addenda CU 2025) BACnet—A Data Communication Protocol for Building Automation and Control Networks</RTL><BRK/><BRK/><RID>ASHRAE FUN IP</RID><RTL>(2025) Fundamentals Handbook, I-P Edition</RTL><BRK/><BRK/><RID>ASHRAE FUN SI</RID><RTL>(2025) Fundamentals Handbook, SI Edition</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE C62.41</RID><RTL>(1991; R 1995) Recommended Practice on Surge Voltages in Low-Voltage AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 90A</RID><RTL>(2024) Standard for the Installation of Air Conditioning and Ventilating Systems</RTL><BRK/><BRK/></REF><REF><ORG>TRIDIUM, INC (TRIDIUM)</ORG><BRK/><BRK/><RID>Niagara Framework</RID><RTL>(2021) NiagaraAX User's Guide</RTL><BRK/><BRK/><RID>Niagara NICS</RID><RTL>(2022) Niagara Information and Conformance Statement</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 3-410-02</RID><RTL>(2018; with Change 2, 2021) Direct Digital Control for HVAC and Other Building Control Systems</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 5085-3</RID><RTL>(2006; Reprint Jan 2022) UL Standard for Safety Low Voltage Transformers - Part 3: Class 2 and Class 3 Transformers</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Other sections (UFGS <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC 
+AND OTHER BUILDING CONTROL SYSTEMS, UFGS <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL 
+DEVICES FOR HVAC, UFGS <SRF>23 09 93</SRF> SEQUENCES OF OPERATION FOR HVAC CONTROL) reference 
+this section for relevant definitions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The following list of definitions includes terms used in Sections referenced by this Section and are included 
+here for completeness.  The definitions contained in this Section may disagree with how terms are defined or 
+used in other documents, including documents referenced by this Section.  The definitions included here are the 
+authoritative definitions for this Section and all Sections referenced by this Section.</TXT><BRK/>
+<BRK/>
+<TXT>Definitions including "(BACnet)" after the term are definitions derived  from <RID>ASHRAE 135</RID>.</TXT><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following subparts use tailoring options to include or exclude terms 
+based on which tailoring option is selected.  Each individual term does not 
+have a designer note associated with it as this makes the list of definitions 
+very difficult to read. Subparts including "(Niagara Framework)" in the title 
+are included only when the NIAGARA BACNET tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<SPT><TTL>Alarm Generation</TTL><BRK/>
+<BRK/>
+<TXT>Alarm Generation is the monitoring of a value, comparison of the value to alarm conditions and the creation of 
+an alarm when the conditions set for the alarm are met.  Note that this does NOT include delivery of the alarm 
+to the final destination (such as a user interface) - see paragraph ALARM ROUTING in Section <SRF>25 10 10</SRF> UTILITY 
+MONITORING AND CONTROL SYSTEM (UMCS) FRONT END AND INTEGRATION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Building Automation and Control Network (BACnet) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>The term BACnet is used in two ways. First meaning the BACnet Protocol Standard - the communication requirements 
+as defined by <RID>ASHRAE 135</RID> including all annexes and addenda. The second to refer to the overall technology related 
+to the <RID>ASHRAE 135</RID> protocol.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>BACnet Advanced Application Controller (B-AAC) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A hardware device BTL Listed as a B-AAC, which is required to support BACnet Interoperability Building Blocks 
+(BIBBs) for scheduling and alarming, but is not required to support as many BIBBs as a B-BC.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Application Specific Controller (B-ASC)  (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A hardware device BTL Listed as a B-ASC, with fewer BIBB requirements than a B-AAC.  It is intended for use in 
+a specific application.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Building Controller (B-BC) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A hardware device BTL Listed as a B-BC.  A general-purpose, field-programmable device capable of carrying out 
+a variety of building automation and control tasks including control and monitoring via direct  digital control 
+(DDC) of specific systems and data storage for trend  information, time schedules, and alarm data. Like the other 
+BTL Listed  controller types (B-AAC, B-ASC etc.) a B-BC device is required to support the server ("B") side of 
+the ReadProperty and WriteProperty services, but unlike the other controller types it is also required to support 
+the client ("A") side of these services. Communication between controllers requires that one of them support 
+the client side and the other support the server side, so a B-BC is often used when communication between controllers 
+is needed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Broadcast Management Device (BBMD) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A communications device, typically combined with a BACnet router.   A BBMD forwards BACnet broadcast messages 
+to BACnet/IP devices and other BBMDs connected to the same BACnet/IP network. Each IP subnet that is part of 
+a BACnet/IP network must have at least one BBMD.  Note there are additional restrictions when multiple BBMDs 
+share an IP subnet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet/IP (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>An extension of BACnet, Annex J, defines the use of a reserved UDP socket to transmit BACnet messages over IP 
+networks. A BACnet/IP network is a collection of one or more IP subnets that share the same BACnet network number. 
+See also paragraph BACNET BROADCAST MANAGEMENT DEVICE.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Internetwork (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>Two or more BACnet networks, connected with BACnet routers.   In a BACnet Internetwork, there exists only one 
+message path between devices.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Interoperability Building Blocks (BIBBs) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A BIBB is a collection of one or more <RID>ASHRAE 135</RID> Services intended to define a higher level of interoperability. 
+BIBBs are combined to build the BACnet functional requirements for a device in a specification. Some BIBBs define 
+additional requirements (beyond requiring support for specific services) in order to achieve a level of interoperability. 
+For example, the BIBB DS-V-A (Data Sharing-View-A), which would typically be used by a front-end, not only requires 
+the client to support the ReadProperty Service, but also provides a list of data types (Object / Properties) 
+which the client must be able to interpret and display for the user.<BRK/>
+<BRK/>
+In the BIBB shorthand notation, -A is the client side and -B is the server side.<BRK/></TXT>
+<TXT><TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="18">
+      <COL AUTOWIDTH="0" WIDTH="117.00"/>
+      <COL AUTOWIDTH="0" WIDTH="396.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">The following is a list of some BIBBs used by this or referenced Sections:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DS-COV-A</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Data Sharing-Change of Value (A side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DS-COV-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Data Sharing-Change of Value (B side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">NM-RC-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Network Management-Router Configuration (B side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DS-RP-A</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Data Sharing-Read Property (A side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DS-RP-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Data Sharing-Read Property (B side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DS-RPM-A</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Data Sharing-Read Property Multiple (A Side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DS-RPM-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Data Sharing-Read Property Multiple (B Side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DS-WP-A</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Data Sharing-Write Property (A Side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DM-TS-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Device Management-Time Synchronization (B Side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DM-UTC-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Device Management-UTC Time Synchronization (B Side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DS-WP-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Data Sharing-Write Property (B side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">SCHED-E-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Scheduling-External (B side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">DM-OCD-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Device Management-Object Creation and Deletion (B side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">AE-N-I-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Alarm and Event-Notification Internal (B Side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">AE-N-E-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Alarm and Event-Notification External (B Side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">T-VMT-I-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Trending-Viewing and Modifying Trends Internal (B Side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">T-VMT-E-B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Trending-Viewing and Modifying Trends External (B Side)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>BACnet Network (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>In BACnet, a portion of the control Internetwork consisting of one or more segments connected by repeaters. Networks 
+are separated by routers.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Operator Display (B-OD) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A basic operator interface with limited capabilities relative to a B-OWS.  It is not intended to perform direct 
+digital control.  A B-OD profile could be used for LCD devices, displays affixed to BACnet devices, handheld 
+terminals or other very simple user interfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Segment (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>One or more physical segments interconnected by repeaters (<RID>ASHRAE 135</RID>).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Smart Actuator (B-SA) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A simple actuator device with limited resources intended for specific applications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Smart Sensor (B-SS) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A simple sensing device with limited resources.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Testing Laboratories (BTL) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>Established by BACnet International to support compliance testing and interoperability testing activities and 
+consists of BTL Manager and the BTL Working Group (BTL-WG).  BTL also publishes Implementation Guidelines.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Testing Laboratories (BTL) Listed (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A device that has been listed by BACnet Testing Laboratory.  Devices may be certified to a specific device profile, 
+in which case the listing indicates that the device supports the required capabilities for that profile, or may 
+be listed as "other".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Binary</TTL><BRK/>
+ <BRK/>
+<TXT>A two-state system where an "ON" condition is represented by a high signal level and an "OFF" condition is represented 
+by a low signal level.  'Digital' is sometimes used interchangeably with 'binary'.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Broadcast </TTL><BRK/>
+<BRK/>
+<TXT>Unlike most messages, which are intended for a specific recipient device, a broadcast message is intended for 
+all devices on the network.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Building Control Network (BCN)</TTL><BRK/>
+ <BRK/>
+<TXT>The network connecting all DDC Hardware within a building (or specific group of buildings).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Building Point of Connection (BPOC)</TTL><BRK/>
+ <BRK/>
+<TXT>A FPOC for a Building Control System.  (This term is being phased out of use in preference for FPOC but is still 
+used in some specifications and criteria.  When it was used, it typically referred to a piece of control hardware.  
+The current FPOC definition typically refers instead to IT hardware.)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Commandable</TTL><BRK/>
+ <BRK/>
+<TXT>See Overridable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Commandable Objects (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>Commandable Objects have a Commandable Property, Priority_Array, and Relinquish_Default Property as defined in <RID>
+ASHRAE 135</RID>, Clause 19.2, Command Prioritization.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Configurable</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart uses tailoring options:<BRK/>
+<BRK/>
+1) Text referring to "Non-Niagara Framework BACnet system" is included only 
+when the NIAGARA BACNET tailoring options is selected.<BRK/>
+<BRK/>
+2) Text referring to "Niagara Framework BACnet system" is included only when 
+the BACNET tailoring options is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>A property, setting, or value is configurable if it can be changed via hardware settings on the device, via the 
+use of engineering software or over the control network from the front end, and is retained through (after) loss 
+of power.</TXT><OLG><BRK/>
+<BRK/>
+<TAI OPT="BACNET"><OLI>In a <TAI OPT="NIAGARA BACNET">non-Niagara Framework </TAI>BACnet system, a property, setting, or value is configurable if it can be 
+changed via one or more of: </OLI><BRK/>
+<OLI LEVEL="2">via BACnet services (including proprietary BACnet services) </OLI><BRK/>
+<OLI LEVEL="2">via hardware settings on the device</OLI><BRK/></TAI>
+<TAI OPT="NIAGARA BACNET"><BRK/>
+<OLI>In a Niagara Framework BACnet system, a property, setting, or value is configurable if it can be changed 
+via one or more of: </OLI><BRK/>
+<OLI LEVEL="2">via BACnet services (including proprietary BACnet services) </OLI><BRK/>
+<OLI LEVEL="2">via hardware settings on the device</OLI><BRK/>
+<OLI LEVEL="2">via the Niagara Framework</OLI><BRK/></TAI>
+</OLG><BRK/>
+<TXT>Note this is more stringent than the <RID>ASHRAE 135</RID> definition.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Logic Diagram</TTL><BRK/>
+<BRK/>
+ <TXT>A graphical representation of control logic for multiple processes that make up a system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Device (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A Digital Controller that contains a BACnet Device Object and uses BACnet to communicate with other devices.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Device Object (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>Every BACnet device requires one Device Object, whose properties represent the network visible properties of 
+that device. Every Device Object requires a unique Object Identifier number on the BACnet Internetwork. This 
+number is often referred to as the device instance or device ID.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Device Profile (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A collection of BIBBs determining minimum BACnet capabilities of a device, defined in <RID>ASHRAE 135</RID>. Standard device 
+profiles include BACnet Advanced Workstations (B-AWS), BACnet Building Controllers (B-BC), BACnet Advanced Application 
+Controllers (B-AAC), BACnet Application Specific Controllers (B-ASC), BACnet Smart Actuator (B-SA), and BACnet 
+Smart Sensor (B-SS).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Digital Controller</TTL><BRK/>
+<BRK/>
+<TXT>An electronic controller, usually with internal programming logic and digital and analog input/output capability, 
+which performs control functions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Direct Digital Control (DDC)</TTL><BRK/>
+<BRK/>
+<TXT>Digital controllers performing control logic. Usually the controller directly senses physical values, makes control 
+decisions with internal programs, and outputs control signals to directly operate switches, valves, dampers, 
+and motor controllers.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Point of Connection (FPOC)</TTL><BRK/>
+<BRK/>
+<TXT>The FPOC is the point of connection between the UMCS IP Network and the field control network (either an IP network, 
+a non-IP network, or a combination of both).  The hardware at this location which provides the connection is 
+generally an IT device such as a switch, IP router, or firewall.</TXT><BRK/>
+<BRK/>
+<TXT>In general, the term "FPOC Location" means the place where this connection occurs, and "FPOC Hardware" means 
+the device that provides the connection.  Sometimes the term "FPOC" is used to mean either and its actual meaning 
+(i.e. location or hardware) is determined by the context in which it is used.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NIAGARA BACNET"><SPT><TTL>Fox Protocol (Niagara Framework)</TTL><BRK/>
+<BRK/>
+<TXT>The protocol used for communication between components in the <RID>Niagara Framework</RID>. By default, Fox uses TCP port 
+1911.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Gateway</TTL><BRK/>
+<TAI OPT="NIAGARA BACNET"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart uses tailoring options: Text referring to Niagara Framework 
+is included only when the NIAGARA BACNET tailoring options is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT>A device that translates from one protocol application data format to another.  Devices that change only the 
+transport mechanism of the protocol - "translating" from TP/FT-10 to Ethernet/IP  or from BACnet MS/TP to BACnet 
+over IP for example - are not gateways as the underlying data format does not change. Gateways are also called 
+Communications Bridges or Protocol Translators. Some devices contain bith gateway and control functions; these 
+devices are considered both gateways and digital controllers and must meet the requirements for both.</TXT><BRK/>
+<BRK/>
+<TAI OPT="NIAGARA BACNET"><TXT>A Niagara Framework Supervisory Gateway is one type of Gateway.</TXT></TAI><BRK/>
+<BRK/></SPT>
+<SPT><TTL>IEEE 802.3 Ethernet</TTL><BRK/>
+<BRK/>
+<TXT>A family of local-area-network technologies providing high-speed networking features over various media, typically 
+Cat 5, 5e or Cat 6 twisted pair copper or fiber optic cable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Internet Protocol (IP, TCP/IP, UDP/IP)</TTL><BRK/>
+<BRK/>
+<TXT>A communication method, the most common use is the World Wide Web. At the lowest level, it is based on Internet 
+Protocol (IP), a method for conveying and routing packets of information over various LAN media. Two common protocols 
+using IP are User Datagram Protocol (UDP) and Transmission Control Protocol (TCP). UDP conveys information to 
+well-known "sockets" without confirmation of receipt. TCP establishes connections, also known as "sessions", 
+which have end-to-end confirmation and guaranteed sequence of delivery.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Input/Output (I/O)</TTL><BRK/>
+<BRK/>
+<TXT>Physical inputs and outputs to and from a device, although the term sometimes describes network or "virtual" 
+inputs or outputs. See also "Points".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>I/O Expansion Unit</TTL><BRK/>
+<BRK/>
+<TXT>An I/O expansion unit provides additional point capacity to a digital controller</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>IP subnet</TTL><BRK/>
+<BRK/>
+<TXT>A group of devices which share a defined range IP addresses. Devices on a common IP subnet can share data (including 
+broadcasts) directly without the need for the traffic to traverse an IP router.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NIAGARA BACNET"><SPT><TTL>JACE (Niagara Framework)</TTL><BRK/>
+<BRK/>
+<TXT>Java Application Control Engine.  See paragraph NIAGARA FRAMEWORK SUPERVISORY GATEWAY</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Local-Area Network (LAN)</TTL><BRK/>
+<BRK/>
+<TXT>A communication network that spans a limited geographic area and uses the same basic communication technology 
+throughout.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Local Display Panels (LDPs)</TTL><BRK/>
+<BRK/>
+<TXT>A DDC Hardware with a display and navigation buttons, and must provide display and adjustment of points as shown 
+on the Points Schedule and as  indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAC Address</TTL><BRK/>
+<BRK/>
+<TXT>Media Access Control address.  The physical device address that identifies a device on a Local Area Network.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Multidrop Serial Bus/Token-Passing (MS/TP) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>Data link protocol as defined by the BACnet standard.  Multiple speeds (data rates) are permitted by the BACnet 
+MS/TP standard.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Monitoring and Control (M&amp;C) Software</TTL><BRK/>
+ <BRK/>
+<TXT>The UMCS 'front end' software which performs supervisory functions such as alarm handling, scheduling and data 
+logging and provides a user interface for monitoring the system and configuring  these functions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Network Number (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A site-specific number assigned to each network. This network number must be unique throughout the BACnet Internetwork.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NIAGARA BACNET"><SPT><TTL>Niagara Framework (Niagara Framework)</TTL><BRK/>
+<BRK/>
+<TXT>A set of hardware and software specifications for building and utility control owned by Tridium Inc. and licensed 
+to multiple vendors.  The Framework consists of front end (M&amp;C) software, web based clients, field level 
+control hardware, and engineering tools.  While the Niagara Framework is not adopted by a recognized standards 
+body and does not use an open licensing model, it is sufficiently well-supported by multiple HVAC vendors to 
+be considered a de-facto Open Standard.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><TAI OPT="NIAGARA BACNET"><SPT><TTL>Niagara Framework Supervisory Gateway (Niagara Framework)</TTL><BRK/>
+<BRK/>
+<TXT>DDC Hardware component of the Niagara Framework.  A typical Niagara architecture has Niagara specific supervisory 
+gateways at the IP level and other (non-Niagara specific) controllers on field networks (TP/FT-10, MS/TP, etc.) 
+beneath the Niagara supervisory gateways.  The Niagara specific controllers function as a gateway between the 
+Niagara framework protocol (Fox) and the field network beneath.  These supervisory gateways may also be used 
+as general purpose controllers and also have the capability to provide a web-based user interface.</TXT><BRK/>
+<BRK/>
+<TXT>Note that different vendors refer to this component by different names.  The most common name is "JACE"; other 
+names include (but are not limited to)"EC-BOS", "FX-40", "TMN", "SLX" and "UNC".</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Object (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>An <RID>ASHRAE 135</RID> Object.  The concept of organizing BACnet information into standard components with various associated 
+Properties.  Examples include  Analog Input objects and Binary Output objects.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Object Identifier (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A grouping of two Object properties: Object Type (e.g. Analog Value,  Schedule, etc.) and Object Instance (in 
+this case, a number).  Object Identifiers must be unique within a device.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Object Instance (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>See paragraph OBJECT IDENTIFIER</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Object Properties (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>Attributes of an object.  Examples include present value and high limit properties of an analog input object. 
+Properties are defined in <RID>ASHRAE 135</RID>; some are optional and some are required.  Objects are controlled by reading 
+from and writing to object properties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operator Configurable</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart uses tailoring options:<BRK/>
+<BRK/>
+1) Text referring to Niagara Framework is included only when the NIAGARA BACNET 
+tailoring option is selected.<BRK/>
+<BRK/>
+<BRK/>
+<BRK/>
+2) Text referring to non Niagara-based BACnet is only included when the BACNET 
+tailoring option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TTL>Operator configurable values are values that can be changed from a single common front end user interface across 
+multiple vendor systems.</TTL><BRK/>
+<BRK/>
+<TAI OPT="NIAGARA BACNET"><TXT>For Niagara Framework Systems, a property, setting, or value is Operator Configurable when it is configurable 
+from a Niagara Framework Front End.</TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="BACNET"><TXT>For non Niagara-based BACnet systems, a property, setting, or value in a device is Operator Configurable when 
+it is Configurable and is either:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>a Writable Property of a Standard BACnet Object; or</OLI> <BRK/>
+ <BRK/>
+  <OLI>a Property of a Standard BACnet Object that is Writable when<BRK/>
+     Out_Of_Service is TRUE and Out_Of_Service is Writable.</OLI><BRK/></OLG>
+<BRK/></TAI>
+</SPT><SPT><TTL>Overridable (Point)</TTL><BRK/>
+<BRK/>
+<TXT>A point is Overridable if it can be Overriden (See Override). </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Override</TTL><BRK/>
+<BRK/>
+<TXT>Changing the value of a point outside of the normal sequence of operation where the change has priority over 
+the sequence and where there is a mechanism for releasing the change such that the point returns to the normal 
+value.  Overrides persist until released or overridden at the same or higher priority but are not required to 
+persist through a loss of power.<BRK/>
+Overrides are often used by operators to change values, and generally originate at a user interface (workstation 
+or local display panel).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Packaged Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Packaged equipment is a single piece of equipment provided by a manufacturer in a substantially complete and 
+operable condition, where the controls (DDC Hardware) are factory installed, and the equipment is sold and shipped 
+from the manufacturer as a single entity.  Disassembly and reassembly of a large piece of equipment for shipping 
+does not prevent it from being packaged equipment.  Package units may require field installation of remote sensors.  
+Packaged equipment is also called a "packaged unit".  </TXT><BRK/>
+<BRK/>
+<TXT>Note industry may use the term "Packaged System" to mean a collection of equipment that is designed to work together 
+where each piece of equipment is packaged equipment and there is a network that connects the equipment together.  
+A "packaged system" of this type is NOT packaged equipment; it is a collection of packaged equipment, and each 
+piece of equipment must individually meet specification requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Packaged Unit</TTL><BRK/>
+<BRK/>
+<TXT>See packaged equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Verification Test (PVT)</TTL><BRK/>
+<BRK/>
+<TXT>The procedure for determining if the installed BAS meets design criteria prior to final acceptance.  The PVT 
+is performed after installation, testing, and balancing of mechanical systems. Typically the PVT is performed 
+by the Contractor in the presence of the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Physical Segment (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A single contiguous medium to which BACnet devices are attached (<RID>ASHRAE 135</RID>).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Polling</TTL><BRK/>
+<BRK/>
+ <TXT>A device periodically requesting data from another device.</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>Points</TTL><BRK/>
+<BRK/>
+<TXT>Physical inputs and outputs, and virtual values read from or written to a controller over the the network. See 
+also paragraph INPUT/OUTPUT (I/O).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Proportional, Integral, and Derivative (PID) Control Loop</TTL><BRK/>
+<BRK/>
+<TXT>A closed-loop control algorithm calculating control output based using the error between a process variable and 
+setpoint.  The proportional control component adjusts control output based on the current error,  the integral 
+component adjusts based on a sum of errors over time, and the derivative component adjusts based on the rate 
+of change of the errors.  Not all components are employed in all implementation of a PID loop, and when a component 
+is not used the corresponding letter is generally dropped from the abbreviation used for that control. For example 
+derivative control is often not required for HVAC systems, leaving "PI" control.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Proprietary (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>Within the context of BACnet, any extension of or addition to object types, properties, PrivateTransfer services, 
+or enumerations specified in <RID>ASHRAE 135</RID>.   Objects with Object_Type values of 128 and above are Proprietary Objects.  
+Properties with Property_Identifier of 512 and above are proprietary Properties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protocol Implementation Conformance Statement (PICS) (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A document, created by the manufacturer of a device, which describes which portions of the BACnet standard may 
+be implemented by a given device.  <RID>ASHRAE 135</RID> requires that all <RID>ASHRAE 135</RID> devices have a PICS, and also defines 
+a minimum set of information that must be in it.  A device as installed for a specific project may not implement 
+everything in its PICS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Repeater</TTL><BRK/>
+<BRK/>
+ <TXT>A device that connects two control network segments and retransmits all information received on one side onto 
+the other.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Router</TTL><BRK/>
+<BRK/>
+ <TXT>Generically, a Router is a device that connects two or more networks and controls traffic between them by retransmitting 
+signals received from one network onto another based on the signal destination.<BRK/>
+<BRK/>
+As used in this Section, a Router connects two or more <RID>ASHRAE 135</RID> networks and controls traffic between them 
+by retransmitting signals received from one network onto another based on the signal destination.  Routers are 
+used to subdivide a BACnet internetwork and to limit network traffic.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Segment</TTL><BRK/>
+<BRK/>
+ <TXT>A 'single' section of a control network that contains no repeaters or routers.  There is generally a limit on 
+the number of devices on a segment, and this limit is dependent on the topology/media and device type.  </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard BACnet Objects (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>Objects with Object_Type values below 128 and specifically enumerated in Clause 21 of <RID>ASHRAE 135</RID>.  Objects which 
+are not proprietary.  See paragraph PROPRIETARY.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard BACnet Properties (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>Properties with Property_Identifier values below 512 and specifically enumerated in Clause 21 of <RID>ASHRAE 135</RID>.  
+Properties which are not proprietary.  See Proprietary.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard BACnet Services (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASHRAE 135</RID> services other than ConfirmedPrivateTransfer or UnconfirmedPrivateTransfer.  See paragraph PROPRIETARY.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>UMCS</TTL><BRK/>
+<BRK/>
+<TXT>UMCS stands for Utility Monitoring and Control System.  The term refers to all components by which a project 
+site monitors, manages, and controls real-time operation of HVAC and other building systems. These components 
+include the UMCS "front-end" and all field building control systems connected to the front-end.  The front-end 
+consists of Monitoring and Control Software (user interface software), browser-based user interfaces and network 
+infrastructure.</TXT> <BRK/>
+<BRK/>
+<TXT>The network infrastructure (the "UMCS Network"), is an IP network connecting multiple building or facility control 
+networks to the Monitoring and Control Software.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>UMCS Network</TTL><BRK/>
+<BRK/>
+<TXT>The UMCS Network connects multiple building or facility control networks to the Monitoring and Control Software.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Writable Property (BACnet)</TTL><BRK/>
+<BRK/>
+<TXT>A Property is Writable when it can be changed through the use of one or more of the WriteProperty services defined 
+in <RID>ASHRAE 135</RID>, Clause 15 regardless of the value of any other Property.  Note that in the <RID>ASHRAE 135</RID> standard, 
+some Properties may be writable when the Out of Service Property is TRUE; for purposes of this Section, Properties 
+that are only writable when the Out of Service Property is TRUE are not considered to be Writable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PROJECT SEQUENCING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Table II provides bracketed text in which the number of days between 
+items may be specified.  In many cases this information will be specified elsewhere.  
+When project schedule is specified elsewhere remove bracketed text and Table 
+II will provide sequencing but not specific intervals.  If time intervals are 
+to be specified here keep the bracketed text and enter the number of days in 
+the space provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>TABLE II: PROJECT SEQUENCING lists the sequencing of submittals as specified in paragraph SUBMITTALS (denoted 
+by an 'S' in the 'TYPE' column) and activities as specified in PART 3 EXECUTION (denoted by an 'E' in the 'TYPE' 
+column).  TABLE II does not specify overall project milestone and completion dates[; these dates are specified 
+in the contract documents][_____].</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Sequencing for Submittals: The sequencing specified for submittals is the deadline by which the submittal 
+must be initially submitted to the Government.  Following submission there will be a Government review 
+period as specified in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.  If the submittal is not accepted by the 
+Government, revise the submittal and resubmit it to the Government within [14][_____] days of notification 
+that the submittal has been rejected.  Upon resubmittal there will be an additional Government review 
+period.  If the submittal is not accepted the process repeats until the submittal is accepted by the 
+Government.</OLI><BRK/>
+<BRK/>
+<OLI>Sequencing for Activities:  The sequencing specified for activities indicates the earliest the activity 
+may begin.</OLI><BRK/>
+<BRK/>
+<OLI>Abbreviations:  In TABLE II the abbreviation AAO is used for 'after approval of' and 'ACO' is used for 
+'after completion of'.</OLI><BRK/></OLG>
+<TAI OPT="NIAGARA BACNET"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following table uses tailoring options:<BRK/>
+<BRK/>
+<BRK/>
+<BRK/>
+<BRK/>
+1) Items referring to Niagara Framework are included only when the NIAGARA BACNET 
+tailoring option is selected.</NPR><BRK/>
+<AST/></NTE></TAI></TAI><BRK/>
+<TAB HEADERROWS="2" WIDTH="99">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="21">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="30.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="34.50"/>
+      <COL AUTOWIDTH="0" WIDTH="283.50"/>
+      <COL AUTOWIDTH="0" WIDTH="172.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s51">
+<DTA TYPE="STRING">TABLE II. PROJECT SEQUENCING</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">ITEM #</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">TYPE</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">DESCRIPTION</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">SEQUENCING (START OF ACTIVITY OR DEADLINE FOR SUBMITTAL)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Existing Conditions Report</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">DDC Contractor Design Drawings</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Manufacturer's Product Data</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Pre-construction QC Checklist</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">E</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Install Building Control System</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">AAO #1 thru #4</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">6</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">E</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Start-Up and Start-Up Testing</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">ACO #5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">7</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Post-Construction QC Checklist</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[[_____] days ]ACO #6</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="119.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>8</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Programming Software<BRK/>Configuration Software<TAI OPT="NIAGARA BACNET"><BRK/><BRK/>Niagara Framework Engineering Tool<BRK/>Niagara Framework Wizards</TAI></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[[_____] days ]ACO #6</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="38.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">9</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Draft As-Built Drawings<BRK/><BRK/></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[[_____] days ]ACO #6</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Start-Up Testing Report</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[[_____] days ]ACO #6</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="52.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">11</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">PVT Procedures<BRK/></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[[_____] days ]before schedule start of #12 and AAO #10</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="95.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">12</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><TAI OPT="NAVY">S,</TAI>E</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC">Execute PVT
+ </TAI><TAI OPT="NAVY">PVT Testing Activities</TAI></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC">AAO #9 and #11</TAI>
+<TAI OPT="NAVY">As indicated in PART 3 of this Section</TAI></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="38.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">13</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">PVT Report</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC">[[_____] days ]ACO #12</TAI><BRK/><TAI OPT="NAVY">As indicated in PART 3 of this Section</TAI></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="84.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>14</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Controller Application Programs<BRK/>Controller Configuration Settings<TAI OPT="NIAGARA BACNET"><BRK/><BRK/>Niagara Framework Supervisory Gateway Backups</TAI></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[[_____] days ]AAO #13</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">15</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Final As-Built Drawings</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[[_____] days ]AAO #13</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">16</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">O&amp;M Instructions</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">AAO #15</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">17</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Training Documentation</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">AAO #10 and [[_____] days ]before scheduled start of #18</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">18</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">E</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Training</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">AAO #16 and #17</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="104.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">19</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">S</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Closeout QC Checklist</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">ACO #18</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a  G  to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>DDC Contractor Design Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<BRK/>
+<ITM><SUB>Draft As-Built Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<BRK/>
+<ITM><SUB>Final As-Built Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Programming Software</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Controller Application Programs</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Configuration Software</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<BRK/>
+<ITM><SUB>Controller Configuration Settings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Proprietary Multi-Split Engineering Tool Software</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Product Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="NIAGARA BACNET"><TAI OPT="TAILORING OPTION NOTES"><NTE><AST/><BRK/>
+<NPR>NOTE:  Niagara Framework Supervisory Gateway Backups, Niagara Framework Engineering 
+Tool and Niagara Framework Wizards are only required for Niagara Framework systems 
+and are included (when the NIAGARA BACNET tailoring option is selected)</NPR><BRK/>
+<AST/></NTE></TAI><BRK/>
+<ITM><SUB>Niagara Framework Supervisory Gateway Backups</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Niagara Framework Engineering Tool is specified in Section 
+<SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL 
+SYSTEMS, but is a designer option in these Sections.  If the Niagara Framework 
+Engineering Tool is not required for the project, remove the submittal requirements 
+in this Section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<ITM><SUB>Niagara Framework Engineering Tool</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]<BRK/></TAI>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Boiler Or Chiller Plant Gateway Request</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Existing Conditions Report</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pre-Construction Quality Control (QC) Checklist</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Post-Construction Quality Control (QC) Checklist</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Start-Up Testing Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following two submittals do not apply to Navy projects and are included 
+only when the ARMY, AIR FORCE or SERVICE GENERIC tailoring option is selected..</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>PVT Procedures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>PVT Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/></TAI>
+<TAI OPT="NAVY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following four submittals apply only to Navy projects and are included 
+only when the NAVY  tailoring option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Control Contractor s Performance Verification Testing Plan</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Equipment Supplier s Performance Verification Testing Plan</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Endurance Testing Results</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Performance Verification Test Report</SUB>; <SUB>G</SUB></ITM></TAI><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance (O&amp;M) Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Documentation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Enclosure Keys are needed by the project site DPW.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Enclosure Keys</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Password Summary Report is needed by the project site DPW.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Password Summary Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Closeout Quality Control (QC) Checklist</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DATA PACKAGE AND SUBMITTAL REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The acquisition of all technical data, data bases and computer software 
+items that are identified herein will be accomplished strictly in accordance 
+with the Federal Acquisition Regulation (FAR) and the Defense Acquisition Regulation 
+Supplement (DFARS).  Those regulations as well as the Services implementation 
+thereof should also be consulted to ensure that a delivery of critical items 
+of technical data is not inadvertently lost.  Specifically, DFARS 252.227-7013 
+Rights in Technical Data - Noncommercial Items, as well as any requisite software 
+licensing agreements will be made a part of the CONTRACT CLAUSES or SPECIAL 
+CONTRACT REQUIREMENTS.<BRK/>
+<BRK/>
+In addition, the appropriate DD Form 1423 Contract Data Requirements List, will 
+be filled out for each distinct deliverable data item and made a part of the 
+contract.  Where necessary, a DD Form 1664, Data Item Description, will be used 
+to explain and more fully identify the data items listed on the DD Form 1423.  
+It is to be noted that all of these clauses and forms are required to ensure 
+the delivery of the data in question and that such data is obtained with the 
+requisite rights to use by the Government.<BRK/>
+<BRK/>
+Include with the request for proposals a completed DD Form 1423, Contract Data 
+Requirements List.  This form is essential to obtain delivery of all documentation.  
+Each deliverable will be clearly specified with both description and quantity 
+being required.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate the review of all submittals with the project site.  The site may 
+have a System Integrator or other individual/office that should review all submittals 
+before acceptance of the system.</NPR><BRK/>
+<BRK/>
+<NPR>Most of the submittals included in this Section are critical and require Government 
+review.  Any added submittals, normally, should be for information only and 
+reviewed through the Contractor Quality Control system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Technical data packages consisting of technical data and computer software (meaning technical data which relates 
+to computer software) which are specifically identified in this project and which may be defined/required in 
+other specifications must be delivered strictly in accordance with the CONTRACT CLAUSES and in accordance with 
+the Contract Data Requirements List, DD Form 1423.  Data delivered must be identified by reference to the particular 
+specification paragraph against which it is furnished.  All submittals not specified as technical data packages 
+are considered 'shop drawings' under the Federal Acquisition Regulation Supplement (FARS) and must contain no 
+proprietary information and be delivered with unrestricted rights.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SOFTWARE FOR DDC HARDWARE AND GATEWAYS</TTL><BRK/>
+<BRK/>
+<TXT>Provide all software related to the programming and configuration of DDC Hardware and Gateways as indicated.  
+License all Software to the project site.  The term "controller" as used in these requirements means both DDC 
+Hardware and Gateways.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Configuration Software</SUB></TTL><BRK/>
+<BRK/>
+<TXT>For each type of controller, provide the configuration tool software in accordance with Section <SRF>23 09 23.02</SRF> BACNET 
+DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.   Submit hard copies of the software user 
+manuals for each software with the software submittal.</TXT><BRK/>
+<BRK/>
+<TXT>Submit Configuration Software on CD-ROM as a Technical Data Package.  Submit  [_____] hard copies of the software 
+user manual for each piece of software.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Controller Configuration Settings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>For each controller, provide copies of the installed configuration settings as source code compatible with the 
+configuration tool software for that controller in accordance with Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL 
+CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/>
+<TXT>Submit Controller Configuration Settings on CD-ROM as a Technical Data Package.  Include on the CD-ROM a list 
+or table of contents clearly indicating which files are associated with each device.  Submit [2][_____] copies 
+of the Controller Configuration Settings CD-ROM.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Programming Software</SUB></TTL><BRK/>
+<BRK/>
+<TXT>For each type of programmable controller, provide the programming software in accordance with Section 
+<SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.  Submit hard copies of 
+software user manuals for each software with the software submittal.</TXT><BRK/>
+<BRK/>
+<TXT>Submit Programming Software on CD-ROM as a Technical Data Package.  Submit  [_____] hard copies of the software 
+user manual for each piece of software.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Controller Application Programs</SUB></TTL><BRK/>
+<BRK/>
+<TXT>For each programmable controller, provide copies of the application program as source code compatible with the 
+programming software for that controller in accordance with Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL 
+FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/>
+<TXT>Submit Controller Application Programs on CD-ROM as a Technical Data Package.  Include on the CD-ROM a list or 
+table of contents clearly indicating which application program is associated with each device.  Submit [2][_____] 
+copies of the Controller Application Programs CD-ROM.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NIAGARA BACNET"><SPT><TTL><SUB>Niagara Framework Supervisory Gateway Backups</SUB></TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart only applies to Niagara Framework systems and is only included 
+with the NIAGARA BACNET tailoring option.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>For each Niagara Framework Supervisory Gateway, provide a backup of all software within the Niagara Framework 
+Supervisory Gateway, including configuration settings.  This backup must be sufficient to allow the restoration 
+of the Niagara Framework Supervisory Gateway or the replacement of the Niagara Framework Supervisory Gateway.</TXT><BRK/>
+<BRK/>
+<TXT>Submit backups for each Niagara Framework Supervisory Gateway on CD-ROM as a Technical Data Package.  Mark each 
+backup indicating clearly the source Niagara Framework Supervisory Gateway.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Niagara Framework Engineering Tool</SUB>(for all Niagara Framework system)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Niagara Framework Engineering Tool is specified in Section 
+<SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL 
+SYSTEMS, but is a designer option in these Sections.  If the Niagara Framework 
+Engineering Tool is not required for the project, remove the submittal requirements 
+in this Section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a Niagara Framework Engineering Tool in accordance with Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL 
+FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.  Submit software user manuals with the Niagara Framework Engineering 
+Tool submittal.</TXT><BRK/>
+<BRK/>
+<TXT>Submit the Niagara Framework Engineering Tool on CD-ROM as a Technical Data Package.  Submit  [_____] hard copies 
+of the software user manual for the Niagara Framework Engineering Tool.</TXT><BRK/>
+<BRK/></SPT>
+]</TAI></SPT><SPT><TTL><SUB>BOILER OR CHILLER PLANT GATEWAY REQUEST</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Before approving the use of a gateway to multiple chillers or boilers 
+ensure that the sequence of operation for the units requires information be 
+shared between them and cannot be readily performed by a third-party controller.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>If requesting the use of a gateway to a boiler or chiller plant as indicated in paragraph Proprietary Systems 
+Exempted From Open Protocol Requirements, submit a Boiler or Chiller Plant Gateway Request describing the configuration 
+of the boilers or chillers including model numbers for equipment and controllers, the sequence of operation for 
+the units, and a justification for the need to operate the units on a shared non-BACnet network. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY CONTROL CHECKLISTS</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart uses tailoring options.  Each checklist is included only 
+when appropriate tailoring option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT><TAI OPT="BACNET">The <ATT>QC Checklist for BACnet Systems</ATT> in APPENDIX A of this Section must be completed by the Contractor's Chief 
+Quality Control (QC) Representative and submitted as indicated.<BRK/>
+<BRK/></TAI>
+<TAI OPT="NIAGARA BACNET">The <ATT>QC Checklist for Niagara Framework Based BACnet Systems</ATT> in APPENDIX A of this Section must be completed by 
+the Contractor's Chief Quality Control (QC) Representative and submitted as indicated.<BRK/>
+<BRK/></TAI>
+The QC Representative must verify each item indicated and initial in the space provided to indicate that the 
+requirement has been met.  The QC Representative must sign and date the Checklist prior to submission to the 
+Government.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Pre-Construction Quality Control (QC) Checklist</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the required number of Pre-Construction QC Checklists.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Complete items indicated as Pre-Construction QC Checklist items in the QC Checklist.  Submit [four][_____] copies 
+of the Pre-Construction QC Checklist.</TXT> <BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Post-Construction Quality Control (QC) Checklist</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the required number of Post-Construction QC Checklists.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Complete items indicated as Post-Construction QC Checklist items in the QC Checklist.  Submit [four][_____] copies 
+of the Post-Construction QC Checklist.</TXT> <BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Closeout Quality Control (QC) Checklist</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the required number of Closeout QC Checklists.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Complete items indicated as Closeout QC Checklist items in the QC Checklist.  Submit [four][_____] copies of 
+the Closeout QC Checklist.</TXT> <BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide products meeting the requirements of Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC, Section 
+<SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS for BACnet or Niagara BACnet 
+systems, other referenced Sections, and this Section.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>GENERAL PRODUCT REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Units of the same type of equipment must be products of a single manufacturer.  Each major component of equipment 
+must have the manufacturer's name and address, and the model and serial number in a conspicuous place.  Materials 
+and equipment must be standard products of a manufacturer regularly engaged in the manufacturing of these and 
+similar products.  The standard products must have been in a satisfactory commercial or industrial use for two 
+years prior to use on this project.  The two year use must include applications of equipment and materials under 
+similar circumstances and of similar size.  DDC Hardware not meeting the two-year field service requirement is 
+acceptable provided it has been successfully used by the Contractor in a minimum of two previous projects.  The 
+equipment items must be supported by a service organization.  Items of the same type and purpose must be identical, 
+including equipment, assemblies, parts and components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PRODUCT DATA</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>manufacturer's product data</SUB> sheets documenting compliance with product specifications for each product 
+provided under Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC, Section <SRF>23 09 23.02</SRF> BACNET DIRECT 
+DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS, or this Section.  Provide product data for all products 
+in a single indexed compendium, organized by product type.  <BRK/>
+<BRK/>
+For each manufacturer, model and version (revision) of DDC Hardware provide the Protocol Implementation Conformance 
+Statement (PICS) in accordance with Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING 
+CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/>
+<TXT>Submit Manufacturer's Product Data on CD-ROM.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OPERATION ENVIRONMENT</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified, provide products rated for continuous operation under the following conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Pressure: Pressure conditions normally encountered in the installed location.</OLI><BRK/>
+<BRK/>
+<OLI>Vibration: Vibration conditions normally encountered in the installed location.</OLI><BRK/>
+<BRK/>
+<OLI>Temperature:</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must decide if suggested outside air temperature range is sufficient, 
+and provide a range if it's not.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI LEVEL="2">Products installed indoors: Ambient temperatures in the range of<MET> 0 to 50 degrees C</MET><ENG> 32 to 112 
+degrees F</ENG> and temperature conditions outside this range normally encountered at the installed 
+location.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Products installed outdoors or in unconditioned indoor spaces: Ambient temperatures in the 
+range of [<MET>-37 to +66 degrees C</MET><ENG> -35 to +151 degrees F</ENG>] [_____] and temperature conditions outside 
+this range normally encountered at the installed location.</OLI><BRK/>
+<BRK/>
+<OLI>Humidity: 10 to 95 percent relative humidity, noncondensing and humidity conditions outside this range 
+normally encountered at the installed location.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>WIRELESS CAPABILITY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Section 25 05 11, use the bracketed text in the Section number to 
+add forth level numbering if used on the project as described in UFC 4-010-06.  
+In the Section name, keep the bracketed text if the section was unnamed or use 
+the empty brackets provided to change the Section name to match the project 
+specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Wireless capabilities must comply with Section <SRF>25 05 11[._____]</SRF> CYBERSECURITY FOR [FACILITY-RELATED CONTROL][_____] 
+SYSTEMS</TXT></SPT><BRK/>
+<BRK/>
+<SPT><TTL>ENCLOSURES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: In outdoor applications specify Type 3 unless hosedown of the enclosure 
+is anticipated, in which case specify Type 4.<BRK/>
+<BRK/>
+For retrofit projects in older mechanical rooms or where hosedown of the enclosure 
+is anticipated specify Type 4 enclosures.  Type 4 provides a greater degree 
+of protection in dirty and wet environments than does Type 2.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Enclosures supplied as an integral (pre-packaged) part of another product are acceptable.  Provide two <SUB>Enclosure 
+Keys</SUB> for each lockable enclosure on a single ring per enclosure with a tag identifying the enclosure the keys 
+operate.  Provide enclosures meeting the following minimum requirements:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Outdoors</TTL><BRK/>
+<BRK/>
+<TXT>For enclosures located outdoors, provide enclosures meeting <RID>NEMA 250</RID> [Type 3][Type 4] requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mechanical and Electrical Rooms</TTL><BRK/>
+<BRK/>
+<TXT>For enclosures located in mechanical or electrical rooms, provide enclosures meeting <RID>NEMA 250</RID> [Type 2][Type 4] 
+requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Other Locations</TTL><BRK/>
+<BRK/>
+<TXT>For enclosures in other locations including but not limited to occupied spaces, above ceilings, and in plenum 
+returns, provide enclosures meeting <RID>NEMA 250</RID> Type 1 requirements.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WIRE AND CABLE</TTL><BRK/>
+<BRK/>
+<TXT>Provide wire and cable meeting the requirements of <RID>NFPA 70</RID> and <RID>NFPA 90A</RID> in addition to the requirements of this 
+specification and referenced specifications.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Terminal Blocks</TTL><BRK/>
+<BRK/>
+<TXT>For terminal blocks which are not integral to other equipment, provide terminal blocks which are insulated, modular, 
+feed-through, clamp style with recessed captive screw-type clamping mechanism, suitable for DIN rail mounting, 
+and which have enclosed sides or end plates and partition plates for separation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Wiring for Binary Signals</TTL><BRK/>
+<BRK/>
+<TXT>For Control Wiring for Binary Signals, provide <MET>18 AWG (1.02 mm diameter)</MET><ENG> 18 AWG</ENG> copper or thicker wire rated 
+for 300-volt service.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Wiring for Analog Signals</TTL><BRK/>
+<BRK/>
+<TXT>For Control Wiring for Analog Signals, provide <MET>18 AWG (1.02 mm diameter)</MET><ENG> 18 AWG</ENG> or thicker, copper, single- or 
+multiple-twisted wire meeting the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>minimum<MET> 50 mm (2 inch)</MET><ENG> 2 inch</ENG> lay of twist</OLI><BRK/>
+<BRK/>
+<OLI>100 percent shielded pairs</OLI><BRK/>
+<BRK/>
+<OLI>at least 300-volt insulation</OLI><BRK/>
+<BRK/>
+<OLI>each pair has a 20 AWG tinned-copper drain wire and individual overall pair insulation</OLI><BRK/>
+<BRK/>
+<OLI>cables have an overall aluminum-polyester or tinned-copper cable-shield tape, overall 20 AWG tinned-copper 
+cable drain wire, and overall cable insulation.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Power Wiring for Control Devices</TTL><BRK/>
+<BRK/>
+<TXT>For 24-volt circuits, provide insulated copper 18 AWG or thicker wire rated for 300 VAC service.  For 120-volt 
+circuits, provide 14 AWG or thicker stranded copper wire rated for 600-volt service.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Transformers</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>UL 5085-3</RID> approved transformers.  Select transformers sized so that the connected load is no greater 
+than 80 percent of the transformer rated capacity.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>EXISTING CONDITIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For renovation or retrofits keep this paragraph dealing with existing 
+conditions. For new constructions existing conditions generally does not apply 
+and this paragraph can be removed. <BRK/>
+<BRK/>
+Indicate the required number of copies of the Existing Conditions Report.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Existing Conditions Survey </TTL><BRK/>
+<BRK/>
+<TXT><TST>Perform a field survey, including testing and inspection of the equipment to be controlled</TST> and submit an <SUB>Existing 
+Conditions Report</SUB> documenting the current status and its impact on the Contractor's ability to meet this specification.  
+For those items considered nonfunctional, document the deficiency in the report including explanation of the 
+deficiencies and estimated costs to correct the deficiencies.  As part of the report, define the scheduled need 
+date for connection to existing equipment.  Make written requests and obtain Government approval prior to disconnecting 
+any controls and obtaining equipment downtime.</TXT><BRK/>
+<BRK/>
+<TXT>Submit [four][_____] copies of the Existing Conditions Report.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Existing Equipment Downtime</TTL><BRK/>
+<BRK/>
+<TXT>Make written requests and obtain Government approval prior to disconnecting any controls and obtaining equipment 
+downtime.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Existing Control System Devices</TTL><BRK/>
+<BRK/>
+<TXT>Inspect, calibrate, and adjust as necessary to place in proper working order all existing devices which are to 
+be reused.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Fully install and test the control system in accordance Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES 
+FOR HVAC, Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS, and 
+this Section.</TXT> <BRK/>
+<BRK/>
+<SPT><TTL>Dielectric Isolation</TTL><BRK/>
+<BRK/>
+<TXT>Provide dielectric isolation where dissimilar metals are used for connection and support.  Install control system 
+in a matter that provides clearance for control system maintenance by maintaining access space required to calibrate, 
+remove, repair, or replace control system devices.  Install control system such that it does not interfere with 
+the clearance requirements for mechanical and electrical system maintenance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Penetrations in Building Exterior</TTL><BRK/>
+<BRK/>
+<TXT>Make all penetrations through and mounting holes in the building exterior watertight.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Device Mounting Criteria</TTL><BRK/>
+<BRK/>
+<TXT>Install devices in accordance with the manufacturer's recommendations and as indicated and shown.  Provide a 
+weathershield for all devices installed outdoors.  Provide clearance for control system maintenance by maintaining 
+access space required to calibrate, remove, repair, or replace control system devices.  Provide clearance for 
+mechanical and electrical system maintenance;  do not not interfere with the clearance requirements for mechanical 
+and electrical system maintenance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Labels and Tags</TTL><BRK/>
+<BRK/>
+<TXT>Key all labels and tags to the unique identifiers shown on the As-Built drawings. For labels exterior to protective 
+enclosures provide engraved plastic labels mechanically attached to the enclosure or DDC Hardware.  Labels inside 
+protective enclosures may be attached using adhesive, but must not be hand written. For tags, provide plastic 
+or metal tags mechanically attached directly to each device or attached by a metal chain or wire. </TXT><BRK/>
+<OLG><BRK/>
+<OLI>Label all Enclosures and DDC Hardware.</OLI><BRK/>
+<BRK/>
+<OLI>Tag Airflow measurement arrays (AFMA) with flow rate range for signal output range, duct size, and pitot 
+tube AFMA flow coefficient.</OLI><BRK/>
+<BRK/>
+<OLI>Tag duct static pressure taps at the location of the pressure tap</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Surge Protection</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Power-Line Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT>Protect equipment connected to AC circuits to withstand power-line surges in accordance with <RID>IEEE C62.41</RID>.  Do 
+not use fuses for surge protection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surge Protection for Transmitter and Control Wiring</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Determine if any additional inputs or outputs require surge protection 
+and show the requirement for them on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Protect DDC hardware against or provided DDC hardware capable of withstanding surges induced on control and transmitter 
+wiring installed outdoors and as shown.  Protect equipment against the following two waveforms:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A waveform with a 10-microsecond rise time, a 1000-microsecond decay time and a peak current of 60 amps.</OLI><BRK/>
+<BRK/>
+<OLI>A waveform with an 8-microsecond rise time, a 20-microsecond decay time and a peak current of 500 amperes.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Basic Cybersecurity Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For each reference to Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED 
+CONTROL SYSTEMS, use the bracketed text in the Section number to add forth level 
+numbering if used on the project as described in UFC 4-010-06.  In the Section 
+name, keep the bracketed text if the section was unnamed or use the empty brackets 
+provided to change the Section name to match the project specifications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Passwords</TTL><BRK/>
+<BRK/>
+<TXT>Password development and the <SUB>Password Summary Report</SUB> submittal must comply with Section <SRF>25 05 11</SRF> CYBERSECURITY 
+FOR FACILITY-RELATED CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wireless Capability</TTL><BRK/>
+<BRK/>
+<TXT>Wireless capabilities must comply with Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>IP Network Physical Security</TTL><BRK/>
+<BRK/>
+<TXT>IP network physical security must comply with Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>DRAWINGS AND CALCULATIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Most contractor drawings are updated Contract Drawings.  Therefore, it 
+is important that the contract drawing package is complete. <BRK/>
+<BRK/>
+Drawing package content is discussed in UFC 3-410-02 and UFC 3-470-01.  Template 
+drawings are available online at Whole Building Design Guide page for this section: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-23-09-00">
+https://www.wbdg.org/dod/ufgs/ufgs-23-09-00</URL><BRK/>
+<BRK/>
+Many requirements in this specification refer to the Points Schedules so it 
+is critical that complete Points Schedules are part of the Contract Drawings.<BRK/>
+<BRK/>
+A Riser Diagram is not a required part of the Contract Drawings but you may 
+wish to include a Riser Diagram in the contract drawings to show project specific 
+requirements such as DDC Hardware locations etc.<BRK/>
+<BRK/>
+Select a drawing size, (approx<MET> 279x432 mm</MET><ENG> 11x17 inch</ENG> or<MET> 557x860 mm</MET><ENG> 22x34 inch</ENG>
+) or to leave to leave it up to the Contractor.<BRK/>
+<BRK/>
+Select an electronic submittal format in coordination with the project site.  
+Be sure to require drawings in a format that is usable by the site maintenance 
+staff.  This may require including multiple format requirements here.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide drawings in the form and arrangement indicated and shown.  Use the same abbreviations, symbols, nomenclature 
+and identifiers shown.  Assign a unique identifier as shown to each control system element on a drawing.  When 
+packaging drawings, group schedules by system. When space allows, it is permissible to include multiple schedules 
+for the same system on a single sheet. Except for drawings covering all systems, do not put information for different 
+systems on the same sheet.</TXT>  <BRK/>
+<BRK/>
+<TXT>Submit hardcopy drawings on [ISO A1<MET> 841 by 594 mm</MET><ENG> 34 by 22 inches</ENG>][or][A3<MET> 420 by 297 mm</MET><ENG> 17 by 11 inches</ENG>] sheets, 
+and electronic drawings in PDF and in [AutoCAD][Microstation][Bentley BIM V8][Autodesk Revit 2013] format.  In 
+addition, submit electronic drawings in editable Excel format for all drawings that are tabular, including but 
+not limited to the Point Schedule and Equipment Schedule.</TXT><BRK/>
+<BRK/>
+<OLG><OLI>Submit <SUB>DDC Contractor Design Drawings</SUB> consisting of each drawing indicated with pre-construction information 
+depicting the intended control system design and plans.  Submit DDC Contractor Design Drawings as a single 
+complete package:  [_____] hard copies and [_____] copies on CD-ROM.</OLI> <BRK/>
+<BRK/>
+<OLI>Submit <SUB>Draft As-Built Drawings</SUB> consisting of each drawing indicated  updated with as-built data for the 
+system prior to PVT.  Submit Draft As-Built Drawings as a single complete package:  [_____] hard copies 
+and [_____] copies on CD-ROM.</OLI>   <BRK/>
+<BRK/>
+<OLI>Submit <SUB>Final As-Built Drawings</SUB> consisting of each drawing indicated updated with all final as-built data. 
+Final As-Built Drawings as a single complete package:  [_____] hard copies and [_____] copies on CD-ROM.</OLI></OLG><BRK/>
+<BRK/>
+<SPT><TTL>Sample Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Sample drawings in electronic format are available at the Whole Building Design Guide page for this section: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-23-09-00">
+https://www.wbdg.org/dod/ufgs/ufgs-23-09-00</URL><BRK/>
+These drawings may prove useful in demonstrating expected drawing formatting and example content  and are provided 
+for illustrative purposes only.  Note that these drawings do not meet the content requirements of this Section 
+and must be completed to meet project requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drawing Index and Legend</TTL><BRK/>
+<BRK/>
+<TXT>Provide an HVAC Control System Drawing Index showing the name and number of the building, military site, State 
+or other similar designation, and Country.  In the Drawing Index, list all Contractor Design Drawings, including 
+the drawing number, sheet number, drawing title, and computer filename when used.  In the Design Drawing Legend, 
+show and describe all symbols, abbreviations and acronyms used on the Design Drawings.  Provide a single Index 
+and Legend for the entire drawing package. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermostat and Occupancy Sensor Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Provide a thermostat and occupancy sensor schedule containing each thermostat's unique identifier, room identifier 
+and control features and functions as shown.  Provide a single thermostat and occupancy sensor schedule for the 
+entire project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valve Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Provide a valve schedule containing each valve's unique identifier, size, flow coefficient Kv (Cv), pressure 
+drop at specified flow rate, spring range, positive positioner range, actuator size, close-off pressure to torque 
+data, dimensions, and access and clearance requirements data.  In the valve schedule include actuator selection 
+data supported by calculations of the force required to move and seal the valve, access and clearance requirements.  
+Provide a single valve schedule for the entire project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Damper Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Provide a damper schedule containing each damper's unique identifier, type (opposed or parallel blade), nominal 
+and actual sizes, orientation of axis and frame, direction of blade rotation, actuator size and spring ranges, 
+operation rate, positive positioner range, location of actuators and damper end switches, arrangement of sections 
+in multi-section dampers, and methods of connecting dampers, actuators, and linkages.  Include the AMCA 511 maximum 
+leakage rate at the operating static-pressure differential for each damper in the Damper Schedule.  Provide a 
+single damper schedule for the entire project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Project Summary Equipment Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Provide a project summary equipment schedule containing the manufacturer, model number, part number and descriptive 
+name for each control device, hardware and component provided under this specification.  Provide a single project 
+equipment schedule for the entire project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Provide system equipment schedules containing the unique identifier, manufacturer, model number, part number 
+and descriptive name for each control device, hardware and component provided under this specification.  Provide 
+a separate equipment schedule for each HVAC system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Occupancy Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Provide an occupancy schedule drawing containing the same fields as the occupancy schedule Contract Drawing with 
+Contractor updated information. Provide a single occupancy schedule for the entire project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Provide a single DDC Hardware Schedule for the entire project and including following information for each device.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>DDC Hardware Identifier</TTL><BRK/>
+<BRK/>
+<TXT>The Unique DDC Hardware Identifier for the device.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>HVAC System</TTL><BRK/>
+<BRK/>
+<TXT>The system "name" used to identify a specific system (the name used on the system schematic drawing for that 
+system).  </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BACnet Device Information</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Device Object Identifier</TTL><BRK/>
+<BRK/>
+<TXT>The Device Object Identifier:  The Object_Identifier of the Device Object</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Network Number</TTL><BRK/>
+<BRK/>
+<TXT>The Network Number for the device.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAC Address</TTL><BRK/>
+<BRK/>
+<TXT>The MAC Address for the device</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BTL Listing</TTL><BRK/>
+<BRK/>
+<TXT>The BTL Listing of the device.  If the device is listed under multiple BTL Profiles, indicate the profile that 
+matches the use and configuration of the device as installed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Proprietary Services Information</TTL><BRK/>
+<BRK/>
+<TXT>If the device uses non-standard <RID>ASHRAE 135</RID> services as defined and permitted in Section <SRF>23 09 23.02</SRF> BACNET DIRECT 
+DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS, indicate that the device uses non-standard services 
+and include a description of all non-standard services used.  Describe usage and content such that a device from 
+another vendor can interoperate with the device using the non-standard service.  Provide descriptions with sufficient 
+detail to allow a device from a different manufacturer to be programmed to both read and write the non-standard 
+service request: </TXT><BRK/>
+<OLG><BRK/>
+<OLI>read: interpret the data contained in the non-standard service <BRK/>
+and;</OLI><BRK/>
+<BRK/>
+<OLI>write: given similar data, generate the appropriate non-standard service request.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Alarming Information</TTL><BRK/>
+<BRK/>
+<TXT>Indicate whether the device is used for alarm generation, and which types of alarm generation the device implements:  
+intrinsic, local algorithmic,  remote algorithmic.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Scheduling Information</TTL><BRK/>
+<BRK/>
+<TXT>Indicate whether the device is used for scheduling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Trending Information</TTL><BRK/>
+<BRK/>
+<TXT>Indicate whether the device is used for trending, and indicate if the device is used to trend local values, remote 
+values, or both.</TXT></SPT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NIAGARA BACNET"><SPT><TTL>Niagara Station ID</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is required only for Niagara Framework systems and is included 
+only when the NIAGARA BACNET tailoring option are selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>The Niagara Station ID for each Niagara Framework Supervisory Gateway</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>Points Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Provide a Points Schedule in tabular form for each HVAC system, with the indicated columns and with each row 
+representing a hardware point, network point or configuration point in the system.</TXT>  <BRK/>
+<OLG><BRK/>
+<OLI>When a Points Schedule was included in the Contract Drawing package, use the same fields as the Contract 
+Drawing with updated information in addition to the indicated fields.</OLI> <BRK/>
+<BRK/>
+<OLI>When Point Schedules are included in the contract package, items requiring contractor verification or 
+input have been shown in angle brackets ("&lt;" and "&gt;"), such as &lt;___&gt; for a required entry 
+or &lt;value&gt; for a value requiring confirmation.  Complete all items in brackets as well as any blank 
+cells.  Do not modify values which are not in brackets without approval.</OLI>  <BRK/></OLG>
+<BRK/>
+<TXT>Points Schedule Columns must include:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Point Name</TTL><BRK/>
+<BRK/>
+<TXT>The abbreviated name for the point using the indicated naming convention.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Description</TTL><BRK/>
+<BRK/>
+<TXT>A brief functional description of the point such as "Supply Air Temperature".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DDC Hardware Identifier</TTL><BRK/>
+<BRK/>
+<TXT>The Unique DDC Hardware Identifier shown on the DDC Hardware Schedule and used across all drawings for the DDC 
+Hardware containing the point.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Settings</TTL><BRK/>
+<BRK/>
+<TXT>The value and units of any setpoints, configured setpoints, configuration parameters, and settings related to 
+each point.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Range</TTL><BRK/>
+<BRK/>
+<TXT>The range of values, including units, associated with the point, including but not limited to a zone temperature 
+setpoint adjustment range, a sensor measurement range, occupancy values for an occupancy input, or the status 
+of a safety.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Input or Output (I/O) Type</TTL><BRK/>
+<BRK/>
+<TXT>The type of input or output signal associated with the point.  Use the following abbreviations for entries in 
+this column:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>AI:  The value comes from a hardware (physical) Analog Input </OLI><BRK/>
+<BRK/>
+<OLI>AO: The value is output as a hardware (physical) Analog Output</OLI><BRK/>
+<BRK/>
+<OLI>BI:  The value comes from a hardware (physical) Binary Input</OLI><BRK/>
+<BRK/>
+<OLI>BO: The value is output as a hardware (physical) Binary Output</OLI><BRK/>
+<BRK/>
+<OLI>PULSE: The value comes from a hardware (physical) Pulse Accumulator Input</OLI><BRK/>
+<BRK/>
+<OLI>NET-IN:  The value is provided from the network (generally from another device).  Use this entry only 
+when the value is received from another device as part of scheduling or as part of a sequence of operation, 
+not when the value is received on the network for supervisory functions such as trending, alarming, override 
+or display at a user interface.</OLI><BRK/>
+<BRK/>
+<OLI>NET-OUT: The value is provided to another controller over the network.  Use this entry only when the 
+value is transmitted to another device as part of scheduling or as part of a sequence of operation, not 
+when the value is transmitted on the network for supervisory functions such as trending, alarming, override 
+or display at a user interface.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Object and Property Information</TTL><BRK/>
+<BRK/>
+<TXT>The Object Type and Instance Number for the Object associated with the point.  If the value of the point is not 
+in the Present_Value Property, then also provide the Property ID for the Property containing the value of the 
+point.  Any point that is displayed at the front end or on an LDP, is trended, is used by another device on the 
+network, or has an alarm condition must be documented here.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NIAGARA BACNET"><SPT><TTL>Niagara Station ID</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is required only for Niagara Framework systems and is included 
+only when the NIAGARA BACNET tailoring option are selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>The Niagara Station ID of the Niagara Framework Supervisory Gateway the point is mapped into.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Network Data Exchange Information (Gets Data From, Sends Data To)</TTL><BRK/>
+<BRK/>
+<TXT>Provide the DDC Hardware Identifier of other DDC Hardware the point is shared with.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Override Information (Object Type and Instance Number)</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart uses tailoring options: The text referring to Niagara Framework 
+is only included when the NIAGARA BACNET tailoring option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>For each point requiring an Override<TAI OPT="NIAGARA BACNET"> and not residing in a Niagara Framework Supervisory Gateway</TAI>, indicate if 
+the Object for the point is Commandable or, if the use of a separate Object was specifically approved by the 
+Contracting Officer, provide the Object Type and Instance Number of the Object to be used in overriding the point.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="BACNET"><SPT><TTL>Trend Object Information</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart is required only for non Niagara Framework based BACnet 
+systems and is included only when the NIAGARA BACNET tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>For each point requiring a trend, indicate if the trend is Local or Remote, the trend Object type and the trend 
+Object instance number.  For remote trends provide the DDC Hardware Identifier for the device containing the 
+trend Object in the Points Schedule notes.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Alarm Information</TTL><BRK/>
+<BRK/>
+<TAI OPT="BACNET"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph is included only when the BACNET tailoring option 
+is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TAI OPT="BACNET"><TXT>Indicate the Alarm Generation Type, Event Enrollment Object Instance Number, and Notification Class Object Instance 
+Number for each point requiring an alarm.  (Note that not all alarms will have Event Enrollment Objects.)</TXT></TAI><BRK/>
+<TAI OPT="NIAGARA BACNET"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph is included only when the NIAGARA BACNET tailoring 
+option is selects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>For Niagara BACnet systems: Indicate the Alarm Generation Type and Notification Class Object Instance Number 
+for each point requiring an alarm.  (Note that not all alarms will have a Notification Class Object.)</TXT></TAI><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Configuration Information</TTL><BRK/>
+<TAI OPT="NIAGARA BACNET"><TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The next paragraph uses tailoring options.  Text after the first sentence 
+is included only when the NIAGARA BACNET tailoring option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI></TAI><BRK/>
+<TXT>Indicate the means of configuration associated with each point.  <TAI OPT="NIAGARA BACNET">For points in a Niagara Framework Supervisory 
+Gateway, indicate the point within the Niagara Framework Supervisory Gateway used to configure the value.  For 
+other points:</TAI></TXT><BRK/>
+<BRK/>
+<OLG><OLI>For Operator Configurable Points indicate BACnet Object and Property information (Name, Type, Identifiers) 
+containing the configurable value.  Indicate whether the property is writable always, or only when Out_Of_Service 
+is TRUE. </OLI><BRK/>
+<BRK/>
+<OLI>For Configurable Points indicate the BACnet Object and Property information as for Operator Configurable 
+points, or identification of the configurable settings from within the engineering software for the device 
+or identification of the hardware settings on the device.</OLI></OLG><BRK/>
+<BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Riser Diagram</TTL><BRK/>
+<BRK/>
+<TXT>The Riser Diagram of the Building Control Network may be in tabular form, and must show all DDC Hardware and 
+all Network Hardware, including network terminators.  For each item, provide the unique identifier, common descriptive 
+name, physical sequential order (previous and next device on the network), room identifier and location within 
+room. A single riser diagram must be submitted for the entire system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control System Schematics</TTL><BRK/>
+<BRK/>
+<TXT>Provide control system schematics in the same form as the control system schematic Contract Drawing with Contractor 
+updated information.  Provide a control system schematic for each HVAC system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sequences of Operation[ Including Control Logic Diagrams]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Require Control Logic Diagrams if they have<BRK/>
+been included in the contract drawing or if the intent is to require the contractor 
+to develop them.  If requiring contractor to develop control logic diagrams 
+provide at least one sample to establish format.  If not requiring control logic 
+diagrams remove bracketed text.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide HVAC control system sequence of operation and [control logic diagrams] in the same format as the Contract 
+Drawings.  Within these drawings, refer to devices by their unique identifiers. Submit sequences of operation[ 
+and control logic diagrams] for each HVAC system</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controller, Motor Starter and Relay Wiring Diagram</TTL><BRK/>
+<BRK/>
+<TXT>Provide controller wiring diagrams as functional wiring diagrams which show the interconnection of conductors 
+and cables to each controller and to the identified terminals of input and output devices, starters and package 
+equipment.  Show necessary jumpers and ground connections and the labels of all conductors.  Identify sources 
+of power required for control systems and for packaged equipment control systems back to the panel board circuit 
+breaker number, controller enclosures, magnetic starter, or packaged equipment control circuit.  Show each power 
+supply and transformer not integral to a controller, starter, or packaged equipment.  Show the connected volt-ampere 
+load and the power supply volt-ampere rating.  Provide wiring diagrams for each HVAC system.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CONTROLLER TUNING</TTL><BRK/>
+<BRK/>
+<TXT>Tune each controller in a manner consistent with that described in the<MET> <RID>ASHRAE FUN SI</RID></MET><ENG> <RID>ASHRAE FUN IP</RID></ENG> and in the 
+manufacturer's instruction manual.  Tuning must consist of adjustment of the proportional, integral, and where 
+applicable, the derivative (PID) settings to provide stable closed-loop control.  Each loop must be tuned while 
+the system or plant is operating at a high gain (worst case) condition, where high gain can generally be defined 
+as a low-flow or low-load condition.  Upon final adjustment of the PID settings, in response to a change in controller 
+setpoint, the controlled variable must settle out at the new setpoint with no more than two (2) oscillations 
+above and below setpoint.  Upon settling out at the new setpoint the controller output must be steady.  With 
+the exception of naturally slow processes such as zone temperature control, the controller must settle out at 
+the new setpoint within five (5) minutes.  Set the controller to its correct setpoint and record and submit the 
+final PID configuration settings with the O&amp;M Instructions and on the associated Points Schedule.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>START-UP</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Start-Up Test</TTL><BRK/>
+<BRK/>
+<TXT>Perform the following startup tests for each control system to ensure that the described control system components 
+are installed and functioning per this specification.</TXT><BRK/>
+<BRK/>
+<TXT>Adjust, calibrate, measure, program, configure, set the time schedules, and otherwise perform all necessary actions 
+to ensure that the systems function as indicated and shown in the sequence of operation and other contract documents.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Systems Check</TTL><BRK/>
+<BRK/>
+<TXT>An item-by-item check must be performed for each HVAC system</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Step 1 - System Inspection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the specification has been edited to include M&amp;C Software (from 
+Section <SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL SYSTEM (UMCS) FRONT END AND 
+INTEGRATION), include the requirement to inspect M&amp;C Clients to make sure 
+they display shutdown conditions.  Otherwise, remove the bracketed text referring 
+to M&amp;C Client</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>With the system in unoccupied mode and with fan hand-off-auto switches in the OFF position, verify that power 
+and main air are available where required and that all output devices are in their failsafe and normal positions.  
+Inspect each local display panel [and each M&amp;C Client] to verify that all displays indicate shutdown conditions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Step 2 - Calibration Accuracy Check</TTL><BRK/>
+<BRK/>
+<TXT>Perform a two-point accuracy check of the calibration of each HVAC control system sensing element and transmitter 
+by comparing the value from the test instrument to the network value provided by the DDC Hardware.  Use digital 
+indicating test instruments, such as digital thermometers, motor-driven psychrometers, and tachometers.  Use 
+test instruments with accuracy at least twice as accurate as the specified sensor accuracy and with calibration 
+traceable to National Institute of Standards and Technology standards.  Check one the first check point in the 
+bottom one-third of the sensor range, and the second in the top one-third of the sensor range.  Verify that the 
+sensing element-to-DDC readout accuracies at two points are within the specified product accuracy tolerances, 
+and if not recalibrate or replace the device and repeat the calibration check.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Step 3 - Actuator Range Check</TTL><BRK/>
+<BRK/>
+<TXT>With the system running, apply a signal to each actuator through the DDC Hardware controller.  Verify proper 
+operation of the actuators and positioners for all actuated devices and record the signal levels for the extreme 
+positions of each device.  Vary the signal over its full range, and verify that the actuators travel from zero 
+stroke to full stroke within the signal range.  Where applicable, verify that all sequenced actuators move from 
+zero stroke to full stroke in the proper direction, and move the connected device in the proper direction from 
+one extreme position to the other.  For valve actuators and damper actuators, perform the actuator range check 
+under normal system pressures.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Weather Dependent Test</TTL><BRK/>
+<BRK/>
+<TXT>Perform weather dependent test procedures in the appropriate climatic season.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Start-Up Testing Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit [4] [_____] copies of the Start-Up Testing Report.  The report may be submitted as a Technical Data Package 
+documenting the results of the tests performed and certifying that the system is installed and functioning per 
+this specification, and is ready for the Performance Verification Test (PVT).</TXT><BRK/>
+<BRK/></SPT>
+</SPT><TAI OPT="AIR FORCE,ARMY,SERVICE GENERIC"><SPT><TTL>PERFORMANCE VERIFICATION TEST (PVT)</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart does not apply to Navy projects, and is included only when 
+the ARMY, AIR FORCE or SERVICE GENERIC tailoring option is selected. </NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<SPT><TTL><SUB>PVT Procedures</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must decide whether to require a one-point accuracy check 
+and/or inlet and outlet air temperature measurements.  Project specific requirements 
+should be added, particularly for problematic controls based on designer and 
+user experience.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prepare PVT Procedures based on Section <SRF>25 08 10</SRF> UTILITY MONITORING AND CONTROL SYSTEM TESTING explaining step-by-step, 
+the actions and expected results that will demonstrate that the control system performs in accordance with the 
+sequences of operation, and other contract documents.  Submit [4] [_____] copies of the PVT Procedures.  The 
+PVT Procedures may be submitted as a Technical Data Package.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Sensor Accuracy Checks</TTL><BRK/>
+<BRK/>
+<TXT><TST>Include a one-point accuracy check of each sensor in the PVT procedures.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Endurance Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the duration of the endurance test.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart uses tailoring options:<BRK/>
+1) The paragraph requiring the use of BACnet Trend Log Objects is included only 
+when the BACNET tailoring option is selected.<BRK/>
+<BRK/>
+2) The paragraph requiring the use of a Niagara Trend Log Object is included 
+only when the NIAGARA BACNET tailoring option is selected.  <BRK/>
+<BRK/>
+<BRK/>
+<BRK/>
+<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT><TST>Include a [one-week] [_____] endurance test as part of the PVT during which the system is operated continuously.  <BRK/>
+<BRK/>
+<TAI OPT="BACNET">Use the building control system BACnet Trend Log or Trend Log Multiple Objects to trend all points shown as requiring 
+a trend on the Point Schedule for the entire endurance test.  If insufficient buffer capacity exists to trend 
+the entire endurance test, upload trend logs during the course of the endurance test to ensure that no trend 
+data is lost.<BRK/>
+<BRK/></TAI>
+<TAI OPT="NIAGARA BACNET">Use the building control system Niagara Trend Log Objects to trend all points shown as requiring a trend on the 
+Point Schedule for the entire endurance test.  If insufficient buffer capacity exists to trend the entire endurance 
+test, upload trend logs during the course of the endurance test to ensure that no trend data is lost. <BRK/>
+<BRK/></TAI>
+Use the existing trending capabilities as indicated to trend all points shown as requiring a trend on the Point 
+Schedule for the entire endurance test. </TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PVT Equipment List</TTL><BRK/>
+<BRK/>
+<TXT>Include in the PVT procedures a control system performance verification test equipment list that lists the equipment 
+to be used during performance verification testing.  For each piece of equipment, include manufacturer name, 
+model number, equipment function, the date of the latest calibration, and the results of the latest calibration</TXT></SPT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PVT Execution</TTL><BRK/>
+<BRK/>
+<TXT>Demonstrate compliance of the control system with the contract documents.  Using test plans and procedures approved 
+by the Government, software capable of reading and writing COV Notification Subscriptions, Notification Class 
+Recipient List Properties, event enrollments, demonstrate all physical and functional requirements of the project.  
+Show, step-by-step, the actions and results demonstrating that the control systems perform in accordance with 
+the sequences of operation. Do not start the performance verification test until after receipt of written permission 
+by the Government, based on Government approval of the PVT Plan and Draft As-Builts and completion of balancing.  
+UNLESS GOVERNMENT WITNESSING OF A TEST IS SPECIFICALLY WAIVED BY THE GOVERNMENT, PERFORM ALL TESTS WITH A GOVERNMENT 
+WITNESS.  Do not conduct tests during scheduled seasonal off periods of base heating and cooling systems.  If 
+the system experiences any failures during the endurance test portion of the PVT, repair the system repeat the 
+endurance test portion of the PVT until the system operates continuously and without failure for the specified 
+endurance test period.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>PVT Report</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the required number of copies for the PVT Report.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prepare and submit a PVT report documenting all tests performed during the PVT and their results.  Include all 
+tests in the PVT procedures and any additional tests performed during PVT.  Document test failures and repairs 
+conducted with the test results.</TXT><BRK/>
+<BRK/>
+<TXT>Submit [four][_____] copies of the PVT Report.  The PVT Report may be submitted as a Technical Data Package.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="NAVY"><SPT><TTL>PERFORMANCE VERIFICATION TESTING</TTL><BRK/>
+<TAI OPT="TAILORING OPTION NOTES"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This subpart and its subparts are the PVT requirements for Navy projects  
+and are included only when the NAVY tailoring option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the number of days before installation for the pre-PVT meeting, 
+and the meeting attendees.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>PVT testing must demonstrate compliance of controls work with contract document requirements and must be performed 
+by the Controls Contractor and Equipment Suppliers.  No less than [14][__] calendar days prior to start of controls 
+system installation, meet with the Contracting Office's technical representative (COTR) [and the designing engineer 
+of the HVAC systems], the Contractor's QA representative, the Contractor's Controls Contractor representative,[ 
+and the control system Owner] to develop a mutual understanding relate to the details of the PVT work requirements, 
+including required submittals, work schedule, and field quality control.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Verification Testing and Commissioning</TTL><BRK/>
+<BRK/>
+<TXT>PVT testing is a Government quality assurance function that includes systems trending and field tests.  Commissioning 
+is a quality control function that is the Commissioning Team s responsibility to the extent required by this 
+contract. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Verification Testing of Equipment with Packaged Controls</TTL><BRK/>
+<BRK/>
+<TXT>Controls Contractor and Equipment Supplier(s) must share and coordinate PVT testing responsibilities for equipment 
+provided with on-board factory packaged controls such as boiler controllers, dedicated outside air systems (DOAS 
+s), and packaged pumping systems.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Controls Contractor Responsibilities</TTL><BRK/>
+<BRK/>
+<TXT>The Controls Contractor must provide a PVT Plan separate from <SUB>Equipment Supplier s performance verification testing 
+plan</SUB>, perform endurance testing, and perform PVT testing concurrent with Equipment Suppliers  testing for equipment 
+provided with on-board factory packaged controls to demonstrate the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Equipment enabling and disabling.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment standard and optional control points necessary to accomplish functionality regardless if specified 
+in contract documents or not.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment standard and optional alarms critical to safe operation regardless if specified in contract 
+documents or not.</OLI><BRK/>
+<BRK/>
+<OLI>All control points added by Controls Contractor in addition to onboard factory packaged controls regardless 
+if specified in contract documents or not.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Refer to paragraphs titled  Performance Verification Test Plan  and  Endurance Testing  for additional information.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Supplier Responsibilities</TTL><BRK/>
+<BRK/>
+<TXT>Each Equipment Supplier must provide PVT Plans separate from Controls Contractor s plans and perform PVT testing 
+concurrent with Controls Contractor s testing for their equipment provided with on-board factory packaged controls 
+to demonstrate the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Equipment standard and optional control features necessary to accomplish functionality regardless if 
+specified in contract documents or not.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment standard and optional operation modes necessary to accomplish functionality regardless if specified 
+in contract documents or not.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment standard and optional alarm conditions for safe operation regardless if specified in contract 
+documents or not.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Refer to all paragraphs under paragraph titled  Performance Verification Testing  except for section titled  
+Endurance Testing  for additional information.</TXT></SPT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sequencing of Performance Verification Testing Activities</TTL><BRK/>
+<BRK/>
+<TXT>PVT activities must be sequenced with major activities listed below for Test and Balance (TAB) Contractor, Equipment 
+Suppliers, Commissioning Specialists, and others to demonstrate fully functioning systems. Refer to Section 
+<SRF>01 32 17.00 20</SRF> COST-LOADED NETWORK ANALYSIS SCHEDULES (NAS).   Complete the items in  TABLE III:  SEQUENCING 
+OF PVT TESTING ACTIVITIES as schedule activities or milestones.</TXT><BRK/>
+<TAB HEADERROWS="2">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="19">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="60.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="466.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>TABLE III: SEQUENCING OF PVT TESTING ACTIVITIES</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>SEQUENCE</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>ITEM</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>1</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Submission, review, and approval of Control Contractors PVT Plans.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>2</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Submission, review, and approval of Equipment Suppliers PVT Plans.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>3</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Submission, review, and approval of certified final Test and Balance<BRK/>Report.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>4</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Conduct commissioning functional performance tests.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>5</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Submission, review, and approval of all of the Commissioning<BRK/>Specialists completed functional performance tests.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>6</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Request Contracting Officer to allow beginning of Government-witnessed<BRK/>PVT testing.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>7</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Contracting Officers approval to begin PVT testing.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>8</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Conduct PVT field work.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>9</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Governments verbal approval of PVT field work for all systems.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>10</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Conduct Test and Balance verification field work.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>11</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Governments written approval of Test and Balance verification field<BRK/>work.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>12</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Submission, review, and approval of endurance testing.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>13</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Governments written approval of PVT field work for all systems.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>14</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Facility acceptance recommendation.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>15</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Submission, review, and approval of Control Contractors PVT Report.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>16</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Submission, review, and approval of Equipment Suppliers PVT Report.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="41.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL4>17
+</HL4></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Conduct applicable re-testing and seasonal  testing within 10 months of beneficial occupancy.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<SPT><TTL>PVT Testing for Multi-Phase Construction</TTL><BRK/>
+<BRK/>
+<TXT>For air moving systems except outside air systems serving multiple phases, all major activities listed in TABLE 
+III through Government s verbal approval of Test and Balance verification field work can be completed by phase 
+if all ductwork construction is completed for that phase.</TXT><BRK/>
+<BRK/>
+<TXT>For primary systems such as chilled water systems, HVAC heating hot water systems, and outside air systems serving 
+multiple phases, all major activities listed listed in TABLE III through Government s verbal approval of Test 
+and Balance verification field work for all air moving systems served by that primary system for that phase must 
+be completed prior to conducting PVT field work for that primary system.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Control Contractor's Performance Verification Testing Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a detailed PVT Plan of the proposed control systems testing in this contract for approval prior to its 
+use.  Develop and use a single PVT Plan for each system with a unique control sequence.  Systems sharing an identical 
+control sequence can be tested using copies of the PVT Plan intended for these systems.</TXT><BRK/>
+<BRK/>
+<TXT>PVT Plans must include system-based, step-by-step test methods demonstrating system performs in accordance with 
+contract document requirements.  The Government may provide sample PVT Plans upon request. PVT Plans must include 
+the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Control sequences from contract documents segmented such that each control algorithm, operation mode, 
+and alarm condition is immediately followed by numbered test methods required to initiate a response, 
+expected response, space for comments, and  pass" or "fail  indication for each expected response.</OLI><BRK/>
+<BRK/>
+<OLI>PVT Plans with control sequences from contract documents that are not segmented into parts will not be 
+accepted.</OLI><BRK/>
+<BRK/>
+<OLI>Indication where assisting personnel are required such as Mechanical Contractor.</OLI><BRK/>
+<BRK/>
+<OLI>Signature and date lines for the Contractor's PVT administrator, Contractor's quality assurance representative, 
+and Contracting Officer's representative acknowledging completion of testing.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Performance Verification Testing Sample Size</TTL><BRK/>
+<BRK/>
+<TXT>PVT testing sample sizes will be as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>100-Percent of the following systems:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">primary systems including, but not limited to, chilled water and HVAC heating hot water systems</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">air handling unit systems including all associated fans except for remote exhaust air fans</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">DOAS s including all associated fans except for remote exhaust air fans</OLI><BRK/>
+<BRK/>
+<OLI>20-Percent of each set of systems with a shared identical control sequence for systems such as:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">air terminal units</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">exhaust air fans</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">terminal equipment such as fan coil units and unit heaters</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Selection of Systems to Test</TTL><BRK/>
+<BRK/>
+<TXT>For sample sets less than 100-percent, the Government will choose which systems will be tested.  The Government 
+may require additional testing if previous testing results are inconsistent or demonstrate improper system control 
+as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>An additional 25-percent after five-percent failure rate of first sample set.</OLI><BRK/>
+<BRK/>
+<OLI>100-percent after any failures occurring in additional sample set.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Conducting Performance Verification Testing</TTL><BRK/>
+<BRK/>
+<TXT>At least 15 days prior to preferred test date, request the Contracting Officer to allow the beginning of Government-witnessed 
+PVT testing.  Provide an estimated time table required to perform testing of each system. Furnish personnel, 
+equipment, instrumentation, and supplies necessary to perform all aspects of testing.  Testing personnel must 
+be regularly employed in the testing and calibration of control systems.  After receipt of Contracting Officer 
+s approval to begin testing, perform PVT testing using project's as-built (shop) control system drawings, project's 
+design drawings, and approved PVT Plans.</TXT><BRK/>
+<BRK/>
+<TXT>During testing, identify deficiencies that do not meet contract document requirements.  Deficiencies must be 
+investigated, corrected with corrections documented, and re-tested at a later date following procedures for the 
+initial PVT testing.  The Government may require re-testing of any control system components affected by the 
+original failed test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Endurance Testing</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Conduct endurance testing in conjunction with the PVT to demonstrate control loop stability and accuracy. For 
+all control loops tested, record trend data of the control variables over time, demonstrating that the control 
+loop responds to a sudden change of the control variable set point without excessive overshoot or undershoot. 
+Conduct endurance testing for each system subject to PVT testing.  Systems must be operating as normally anticipated 
+during occupancy throughout endurance testing.</TXT><BRK/>
+<BRK/>
+<TXT>Endurance testing results must clearly demonstrate control loop stability and accuracy. Controlled loop outputs 
+must be stable and accurately maintain each setpoint.  </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hardware</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select  Use hardware provided in this contract for testing.  only when 
+a workstation is provided in this scope of work.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Use hardware provided in this contract for testing.] [Use Government furnished hardware for testing if available 
+when endurance testing begins.  If unavailable, the Contractor must provide suitable hardware for required testing.]</TXT><BRK/>
+<BRK/>
+<TXT>If insufficient buffer capacity exists to trend the entire endurance test, upload trend data during the course 
+of endurance testing to ensure all trend data is retained. Lost trend data will require retesting of all control 
+points for affected system(s).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Endurance Testing Results Format</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>endurance testing results</SUB> for each tested system in a graphical format complete with clear indication 
+of value(s) for y-axis, value for x-axis, and legend identifying each trended control point.  The number of control 
+points contained on a single graph must be such that all control points can be clearly visible.  Control points 
+must be logically grouped such that related points appear on a single graph. In addition, submit a separate comma 
+separated value (CSV) file of raw trend data for each trended system.  Each trended control point in CSV file 
+must be clearly identified.</TXT><BRK/>
+<BRK/>
+<TXT>For control points recorded based on change of value, change of value for recording data must be clearly identified 
+for each control point.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Endurance Testing Start, Duration, and Frequency</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select duration and frequency of data collection. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Trending of all control points for a given system must start at an identical date and time regardless of the 
+basis of data collection.  Duration of all endurance tests must be at least [one-week][_____].</TXT><BRK/>
+<BRK/>
+<TXT>Unless specified otherwise for control points recorded based on time, frequency of data collection must be [15-minutes] 
+[_____].  Frequency of data collection for specific types of control points is as follows:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Points Trended at One Minute Intervals</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Temperature for supply air, return air, mixed air, supply water, and return water</OLI><BRK/>
+<BRK/>
+<OLI>Temperature for outside air, supply air, return air and exhaust air entering and leaving energy recovery 
+device</OLI><BRK/>
+<BRK/>
+<OLI>Flow for supply air, return air, outside air, chilled water, and HVAC heating hot water</OLI><BRK/>
+<BRK/>
+<OLI>Flow for exhaust air associated with energy recovery</OLI><BRK/>
+<BRK/>
+<OLI>Relative humidity for outside air and return air</OLI><BRK/>
+<BRK/>
+<OLI>Relative humidity for outside air, supply air, return air and exhaust air entering and leaving energy 
+recovery device</OLI><BRK/>
+<BRK/>
+<OLI>Command and status for control dampers and control valves</OLI><BRK/>
+<BRK/>
+<OLI>Speed for fans and pumps</OLI><BRK/>
+<BRK/>
+<OLI>Pressure for fans and pumps</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Points Trended at 15 Minute Intervals</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Temperature and relative humidity for zones</OLI><BRK/>
+<BRK/>
+<OLI>Temperature and relative humidity for outside air not associated with energy recovery</OLI><BRK/>
+<BRK/>
+<OLI>Command and status for equipment</OLI><BRK/>
+<BRK/>
+<OLI>Pressure relative to the outside for facility</OLI></OLG></SPT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Trended Control Points</TTL><BRK/>
+<BRK/>
+<TXT>Trended control points for each system must demonstrate each system performs in accordance with contract document 
+requirements.  Trended control points must include, but not be limited to, control points listed in contract 
+document points list.</TXT><BRK/>
+<BRK/>
+<TXT>Minimum control points that are required to be trended for selected systems are listed below. These control points 
+must be trended as applicable to this contract in addition to control points necessary to demonstrate systems 
+perform in accordance with contract document requirements and those listed in contract document s points list.</TXT><BRK/>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete systems below if certain they are not in this project. If uncertain, 
+then keep.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Air-Cooled Chiller Chilled Water System.</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Chiller(s) command and status</OLI><BRK/>
+<BRK/>
+<OLI>Chiller isolation valve(s) command and status</OLI><BRK/>
+<BRK/>
+<OLI>Chilled water pump(s) actual speed</OLI><BRK/>
+<BRK/>
+<OLI>Chilled water pump(s) setpoint and actual differential pressure</OLI><BRK/>
+<BRK/>
+<OLI>Minimum flow bypass control valve command</OLI><BRK/>
+<BRK/>
+<OLI>Minimum system flow setpoint and actual flow</OLI><BRK/>
+<BRK/>
+<OLI>Chilled water supply setpoint and actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>Chilled water return actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>Chilled water actual flow</OLI><BRK/>
+<BRK/>
+<OLI>Outside air actual dry-bulb temperature</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>HVAC Heating Hot Water System with Boiler.</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Boiler(s) command and status</OLI><BRK/>
+<BRK/>
+<OLI>Boiler(s) isolation valve command and status</OLI><BRK/>
+<BRK/>
+<OLI>HVAC heating hot water pump(s) actual speed</OLI><BRK/>
+<BRK/>
+<OLI>HVAC heating hot water pump(s) setpoint and actual differential pressure</OLI><BRK/>
+<BRK/>
+<OLI>Minimum flow bypass control valve command</OLI><BRK/>
+<BRK/>
+<OLI>Minimum system setpoint and actual flow</OLI><BRK/>
+<BRK/>
+<OLI>HVAC heating hot water supply setpoint and actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>HVAC heating hot water return actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>HVAC heating hot water actual flow</OLI><BRK/>
+<BRK/>
+<OLI>Outside air actual dry-bulb temperature</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>HVAC Heating Hot Water System with Steam-to-Hot Water Heat Exchanger.</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Steam control valve(s) command</OLI><BRK/>
+<BRK/>
+<OLI>Heat exchanger isolation valve(s) command and status</OLI><BRK/>
+<BRK/>
+<OLI>HVAC heating hot water pump(s) actual speed</OLI><BRK/>
+<BRK/>
+<OLI>HVAC heating hot water pump(s) setpoint and actual differential pressure</OLI><BRK/>
+<BRK/>
+<OLI>Minimum flow bypass control valve command</OLI><BRK/>
+<BRK/>
+<OLI>Minimum system setpoint and actual flow</OLI><BRK/>
+<BRK/>
+<OLI>HVAC heating hot water supply setpoint and actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>HVAC heating hot water return actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>HVAC heating hot water actual flow</OLI><BRK/>
+<BRK/>
+<OLI>Outside air actual dry-bulb temperature</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Air Handling Unit with Relief Air Fan</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Outside air actual dry-bulb temperature</OLI><BRK/>
+<BRK/>
+<OLI>Outside air actual relative humidity</OLI><BRK/>
+<BRK/>
+<OLI>Outside air setpoint and actual airflow</OLI><BRK/>
+<BRK/>
+<OLI>Minimum outside air control damper command</OLI><BRK/>
+<BRK/>
+<OLI>Economizer outside air control damper command</OLI><BRK/>
+<BRK/>
+<OLI>Facility setpoint and actual relative pressure</OLI><BRK/>
+<BRK/>
+<OLI>Return air actual dry-bulb temperature</OLI><BRK/>
+<BRK/>
+<OLI>Return air actual relative humidity</OLI><BRK/>
+<BRK/>
+<OLI>Return air control damper command</OLI><BRK/>
+<BRK/>
+<OLI>Relief air control damper command</OLI><BRK/>
+<BRK/>
+<OLI>Relief air fan actual speed</OLI><BRK/>
+<BRK/>
+<OLI>Mixed air setpoint and setpoint and actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>Preheat coil leaving air setpoint and actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>Preheat coil control actuator command</OLI><BRK/>
+<BRK/>
+<OLI>Cooling coil leaving air setpoint and actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>Cooling coil control valve command</OLI><BRK/>
+<BRK/>
+<OLI>Supply air fan actual speed</OLI><BRK/>
+<BRK/>
+<OLI>Discharge air actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>Supply air fan setpoint and actual static pressure</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Dedicated Outside Air System (DOAS)</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Outside air actual dry-bulb temperature</OLI><BRK/>
+<BRK/>
+<OLI>Outside air actual relative humidity</OLI><BRK/>
+<BRK/>
+<OLI>Outside air isolation damper command and status</OLI><BRK/>
+<BRK/>
+<OLI>Outside air setpoint and actual airflow</OLI><BRK/>
+<BRK/>
+<OLI>Energy recovery wheel command, status, and actual speed</OLI><BRK/>
+<BRK/>
+<OLI>Energy recovery wheel s OA bypass control damper command and status</OLI><BRK/>
+<BRK/>
+<OLI>Energy recovery wheel s defrost cycle command and status</OLI><BRK/>
+<BRK/>
+<OLI>Energy recovery wheel s OA discharge air actual dry-bulb temperature</OLI><BRK/>
+<BRK/>
+<OLI>Energy recovery wheel s OA discharge air actual relative humidity</OLI><BRK/>
+<BRK/>
+<OLI>Preheat coil leaving air setpoint and actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>Preheat coil control actuator command</OLI><BRK/>
+<BRK/>
+<OLI>Cooling coil leaving air setpoint and actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>Cooling coil control valve command</OLI><BRK/>
+<BRK/>
+<OLI>Supply air fan actual speed</OLI><BRK/>
+<BRK/>
+<OLI>Reheat coil control valve command</OLI><BRK/>
+<BRK/>
+<OLI>Discharge air setpoint and actual temperature</OLI><BRK/>
+<BRK/>
+<OLI>Supply air fan setpoint and actual static pressure</OLI><BRK/>
+<BRK/>
+<OLI>Facility setpoint and actual relative pressure</OLI><BRK/>
+<BRK/>
+<OLI>Return air actual dry-bulb temperature</OLI><BRK/>
+<BRK/>
+<OLI>Return air actual relative humidity</OLI><BRK/>
+<BRK/>
+<OLI>Energy recovery wheel s EA bypass control damper command and status</OLI><BRK/>
+<BRK/>
+<OLI>Energy recovery wheel s EA discharge air actual dry-bulb temperature</OLI><BRK/>
+<BRK/>
+<OLI>Energy recovery wheel s EA discharge air actual relative humidity</OLI><BRK/>
+<BRK/>
+<OLI>Exhaust air fan actual speed</OLI><BRK/>
+<BRK/>
+<OLI>Exhaust air isolation damper command and status</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Series Fan-Powered Supply Air Terminal Units</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Zone setpoint and actual dry-bulb temperature</OLI><BRK/>
+<BRK/>
+<OLI>Zone actual relative humidity</OLI><BRK/>
+<BRK/>
+<OLI>Control damper command</OLI><BRK/>
+<BRK/>
+<OLI>Fan command and status</OLI><BRK/>
+<BRK/>
+<OLI>Heating coil valve command</OLI><BRK/>
+<BRK/>
+<OLI>Airflow actual value</OLI><BRK/>
+<BRK/>
+<OLI>Leaving air actual temperature</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Endurance Testing Sample Size</TTL><BRK/>
+<BRK/>
+<TXT>Endurance Testing sample sizes ware as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>100-Percent of the following systems:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">primary systems including, but not limited to, chilled water and HVAC heating hot water systems</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">air handling unit systems including all associated fans except for remote exhaust air fans</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">DOAS s including all associated fans except for remote exhaust air fans</OLI><BRK/>
+<BRK/>
+<OLI>20-Percent of each set of systems with a shared identical control sequence for systems such as:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">air terminal units</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">exhaust air fans</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">terminal equipment such as fan coil units and unit heaters</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Selection of Systems to Test</TTL><BRK/>
+<BRK/>
+<TXT>For sample sets less than 100-percent, the Government will choose which systems will be tested. The Government 
+may require additional testing if previous testing results are inconsistent or demonstrate improper system control 
+as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>An additional 25-percent after five-percent failure rate of first sample set.</OLI><BRK/>
+<BRK/>
+<OLI>100-percent after any failures occurring in additional sample set.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>Performance Verification Test Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a PVT Report after receiving Government s written approval of PVT field work that is intended to document 
+test results and final control system sequences and settings prior to turnover. The PVT Report must contain the 
+following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Executive summary that briefly discusses results of each system s endurance testing and PVT testing and 
+conclusions for each system. </OLI><BRK/>
+<BRK/>
+<OLI>Endurance testing for each system.</OLI><BRK/>
+<BRK/>
+<OLI>Completed PVT Plan for each system used during testing that includes hand written field notes and participant 
+signatures.</OLI><BRK/>
+<BRK/>
+<OLI>Blank PVT Plan for each system approved prior to testing that is edited to reflect changes occurring 
+during testing. Edits must be typed and must reflect changes to control sequences from contract documents, 
+must reflect changes to numbered test methods required to initiate a response, and must reflect changes 
+to expected response.  Only one blank PVT Plan is required for each set of systems sharing an identical 
+control sequence, such as air terminal units, exhaust air fans, fan coil units and unit heaters.</OLI><BRK/>
+<BRK/>
+<OLI>Written certification that the installation and testing of all systems are complete and meet all contract 
+document requirements.</OLI><BRK/></OLG>
+</SPT></SPT></TAI><BRK/>
+<SPT><TTL><SUB>OPERATION AND MAINTENANCE (O&amp;M) INSTRUCTIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide HVAC control System Operation and Maintenance Instructions which include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>"Data Package 3" as indicated in Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA for each piece of control 
+equipment.</OLI><BRK/>
+<BRK/>
+<OLI>"Data Package 4" as described in Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA for all air compressors.</OLI><BRK/>
+<BRK/>
+<OLI>HVAC control system sequences of operation formatted as indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Procedures for the HVAC system start-up, operation and shut-down including the manufacturer's supplied 
+procedures for each piece of equipment, and procedures for the overall HVAC system.</OLI><BRK/>
+<BRK/>
+<OLI>As-built HVAC control system detail drawings formatted as indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Routine maintenance checklist.  Provide the routine maintenance checklist arranged in a columnar format, 
+where the first column lists all installed devices, the second column states the maintenance activity 
+or that no maintenance required, the third column states the frequency of the maintenance activity, and 
+the fourth column is used for additional comments or reference.</OLI><BRK/>
+<BRK/>
+<OLI>Qualified service organization list, including at a minimum company name, contact name and phone number.</OLI><BRK/>
+<BRK/>
+<OLI>Start-Up Testing Report.</OLI><BRK/>
+<BRK/>
+<OLI>Performance Verification Test (PVT) Procedures and Report.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Submit [2] [_____] copies of the Operation and Maintenance Instructions, indexed and in booklet form.  The Operation 
+and Maintenance Instructions may be submitted as a Technical Data Package. </TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>MAINTENANCE AND SERVICE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The maintenance and service to be provided by the Contractor for the 
+duration of the maintenance contract is specified in this paragraph.  The Maintenance 
+and Service may need to be a separate bid item funded by O&amp;M funds.<BRK/>
+<BRK/>
+Requirements should be coordinated with "WARRANTY MANAGEMENT" in Section 
+<SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS<BRK/>
+<BRK/>
+If not requiring 1 year maintenance and service, delete this subpart.  <TAI OPT="NAVY">Most 
+Navy projects will not use this requirement.</TAI></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+Provide services, materials and equipment as necessary to maintain the entire system in an operational state as indicated 
+for a period of one year from the date of final acceptance of the project.  Minimize impacts on facility operations.<BRK/>
+<OLG><BRK/>
+<OLI>The integration of the system specified in this section into a Utility Monitoring and Control System 
+must not, of itself, void the warranty or otherwise alter the requirement for the one year maintenance 
+and service period.  Integration into a UMCS includes but is not limited to establishing communication 
+between devices in the control system and the front end or devices in another system.</OLI><BRK/>
+<BRK/>
+<OLI>The changing of configuration properties must not, of itself, void the warranty or otherwise alter the 
+requirement for the one year maintenance and service period.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Description of Work</TTL><BRK/>
+<BRK/>
+<TXT>Provide adjustment and repair of the system including the manufacturer's required sensor and actuator (including 
+transducer) calibration, span and range adjustment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Personnel</TTL><BRK/>
+<BRK/>
+<TXT>Use only service personnel qualified to accomplish work promptly and satisfactorily.  Advise the Government in 
+writing of the name of the designated service representative, and of any changes in personnel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Scheduled Inspections</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate when inspections are to be scheduled.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform two inspections at six-month intervals and provide work required.  Perform inspections in [June and December][_____].  
+During each inspection perform the indicated tasks:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Perform visual checks and operational tests of equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Clean control system equipment including interior and exterior surfaces.</OLI><BRK/>
+<BRK/>
+<OLI>Check and calibrate each field device.  Check and calibrate 50 percent of the total analog inputs and 
+outputs during the first inspection. Check and calibrate the remaining 50 percent of the analog inputs 
+and outputs during the second major inspection.  Certify analog test instrumentation accuracy to be twice 
+the specified accuracy of the device being calibrated.  Randomly check at least 25 percent of all binary 
+inputs and outputs for proper operation during the first inspection.  Randomly check at least 25 percent 
+of the remaining binary inputs and outputs during the second inspection. If more than 20 percent of checked 
+inputs or outputs failed the calibration check during any inspection, check and recalibrate all inputs 
+and outputs during that inspection.</OLI><BRK/>
+<BRK/>
+<OLI>Run system software diagnostics and correct diagnosed problems.</OLI><BRK/>
+<BRK/>
+<OLI>Resolve any previous outstanding problems.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Scheduled Work</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include bracketed text to accept default work times or indicate permissible 
+work times in the space provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>This work must be performed [during regular working hours, Monday through Friday, excluding Federal holidays][_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Emergency Service</TTL><BRK/>
+<BRK/>
+<TXT>The Government will initiate service calls when the system is not functioning properly.  Qualified personnel 
+must be available to provide service to the system.  A telephone number where the service supervisor can be reached 
+at all times must be provided.  Service personnel must be at the site within 24 hours after receiving a request 
+for service.  The control system must be restored to proper operating condition as required per Section 
+<SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operation</TTL><BRK/>
+<BRK/>
+<TXT>After performing scheduled adjustments and repairs, verify control system operation as demonstrated by the applicable 
+tests of the performance verification test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Records and Logs</TTL><BRK/>
+<BRK/>
+<TXT>Keep dated records and logs of each task, with cumulative records for each major component, and for the complete 
+system chronologically.  Maintain a continuous log for all devices, including initial analog span and zero calibration 
+values and digital points.  Keep complete logs and provide logs for inspection onsite, demonstrating that planned 
+and systematic adjustments and repairs have been accomplished for the control system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Work Requests</TTL><BRK/>
+<BRK/>
+<TXT>Record each service call request as received and include its location, date and time the call was received, nature 
+of trouble, names of the service personnel assigned to the task, instructions describing what has to be done, 
+the amount and nature of the materials to be used, the time and date work started, and the time and date of completion.  
+Submit a record of the work performed within 5 days after work is accomplished.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Modifications</TTL><BRK/>
+<BRK/>
+<TXT>Submit recommendations for system modification in writing.  Do not make system modifications, including operating 
+parameters and control settings, without prior approval of the Government.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>TRAINING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Training requirements should be coordinated with the relevant shop organization 
+at the project site.  Extent of training should be based on the needs of the 
+installation personnel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conduct a training course for [_____] operating staff members designated by the Government in the maintenance 
+and operation of the system, including specified hardware and software.  Conduct [32] [_____] hours of training 
+at the project site within 30 days after successful completion of the performance verification test.  The Government 
+reserves the right to make audio and visual recordings (using Government supplied equipment)of the training sessions 
+for later use.  Provide audiovisual equipment and other training materials and supplies required to conduct training.  
+A training day is defined as 8 hours of classroom instruction, including two 15 minute breaks and excluding lunchtime, 
+Monday through Friday, during the daytime shift in effect at the training facility.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Training Documentation</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must choose appropriate shop supervisor(s) to coordinate training 
+attendance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prepare training documentation consisting of:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Course Attendee List: Develop the list of course attendees in coordination with and signed by the [Controls][HVAC][Electrical] 
+shop supervisor.</OLI><BRK/>
+<BRK/>
+<OLI>Training Manuals: Provide training manuals which include an agenda, defined objectives for each lesson, 
+and a detailed description of the subject matter for each lesson.  When presenting portions of the course 
+material by audiovisuals, deliver copies of those audiovisuals as a part of the printed training manuals.  </OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Training Course Content</TTL><BRK/>
+<BRK/>
+<TXT>For guidance in planning the required instruction, assume that attendees will have a high school education, and 
+are familiar with HVAC systems.  During the training course, cover all of the material contained in the Operating 
+and Maintenance Instructions, the layout and location of each controller enclosure, the layout of one of each 
+type of equipment and the locations of each, the location of each control device external to the panels, the 
+location of the compressed air station, preventive maintenance, troubleshooting, diagnostics, calibration, adjustment, 
+commissioning, tuning, and repair procedures.  Typical systems and similar systems may be treated as a group, 
+with instruction on the physical layout of one such system.  Present the results of the performance verification 
+test and the Start-Up Testing Report as benchmarks of HVAC control system performance by which to measure operation 
+and maintenance effectiveness.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Training Documentation Submittal Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate number of additional copies of training material required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit hardcopy training manuals and all training materials on CD-ROM.  Provide one hardcopy manual for each 
+trainee on the Course Attendee List and [2][_____] additional copies for archive at the project site.  Provide 
+[2][_____] copies of the Course Attendee List with the archival copies.  Training Documentation may be submitted 
+as a Technical Data Package.</TXT><BRK/>
+<BRK/></SPT>
+<BRK/>
+<BRK/>
+<PGE/><HL3>APPENDIX A</HL3><BRK/>
+<BRK/>
+<TAI OPT="BACNET"><TAB HEADERROWS="1">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="TOP"/>
+      </STY>
+      <STY SID="s52">
+         <ALN VERTICAL="TOP"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="23">
+      <COL AUTOWIDTH="0" WIDTH="21.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="454.50"/>
+      <COL AUTOWIDTH="0" WIDTH="6.00"/>
+      <COL AUTOWIDTH="0" WIDTH="45.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s51">
+<DTA TYPE="STRING"><HL1><HL3>QC CHECKLIST FOR BACNET SYSTEMS</HL3></HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="71.25">
+         <CEL MERGEACROSS="3" STYLEID="s52">
+<DTA TYPE="STRING">This checklist is not all-inclusive of the requirements of this specification and should not be interpreted as such.<BRK/><BRK/>Instructions: Initial each item in the space provided (|____|) verifying that the requirement has been met.<BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="107.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">This checklist is for (circle one:)<BRK/>                <BRK/>      Pre-Construction QC Checklist Submittal<BRK/><BRK/>      Post-Construction QC Checklist Submittal          <BRK/><BRK/>      Close-out QC Checklist Submittal</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Items verified for Pre-Construction, Post-Construction and Closeout QC Checklist Submittals:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All DDC Hardware is numbered on Control System Schematic Drawings.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Signal lines on Control System Schematic are labeled with the signal type.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Local Display Panel (LDP) Locations are shown on Control System Schematic drawings.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING"><BRK/>Items verified for Post-Construction and Closeout QC Checklist Submittals:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All sequences are performed as specified using DDC Hardware.</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Training schedule and course attendee list has been developed and coordinated with shops and submitted.</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING"><BRK/>Items verified for Closeout QC Checklist Submittal:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">6</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Final As-built Drawings, including all Points Schedule drawings, <BRK/>accurately represent the final installed system.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">7</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Programming software has been submitted for all programmable controllers.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All software has been licensed to the Government.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">9</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">O&amp;M Instructions have been completed and submitted.</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Training course has been completed.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">11</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All DDC Hardware is installed on a BACnet <RID>ASHRAE 135</RID> network using either MS/TP in accordance with Clause 9 or IP in accordance with Annex J.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">12</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All DDC Hardware is BTL listed.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL>
+<DTA TYPE="STRING">13</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Communication between DDC Hardware is only via BACnet using standard services, except as specifically permitted by the specification.  Non-standard services have been fully documented in the DDC Hardware Schedule.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">14</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Scheduling, Alarming, and Trending have been implemented using the standard BACnet Objects for these functions.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">15</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All Properties indicated as required to be Writable are Writable and Overrides have been provided as indicated</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL MERGEACROSS="3" STYLEID="s52">
+<DTA TYPE="STRING"><BRK/><BRK/>___________________________________________      __________________</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL STYLEID="s52"/>
+         <CEL MERGEACROSS="2" STYLEID="s52">
+<DTA TYPE="STRING">(QC Representative Signature)                      (Date)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TAI><BRK/>
+<BRK/>
+<TAI OPT="NIAGARA BACNET"><TAB HEADERROWS="1">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="TOP"/>
+      </STY>
+      <STY SID="s52">
+         <ALN VERTICAL="TOP"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="23">
+      <COL AUTOWIDTH="0" WIDTH="21.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="453.00"/>
+      <COL AUTOWIDTH="0" WIDTH="6.00"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s51">
+<DTA TYPE="STRING"><HL1><HL3>QC CHECKLIST FOR NIAGARA FRAMEWORK BASED BACNET SYSTEMS</HL3></HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="71.25">
+         <CEL MERGEACROSS="3" STYLEID="s52">
+<DTA TYPE="STRING">This checklist is not all-inclusive of the requirements of this specification and should not be interpreted as such.<BRK/><BRK/>Instructions: Initial each item in the space provided (|____|) verifying that the requirement has been met.<BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="107.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">This checklist is for (circle one:)<BRK/>                <BRK/>      Pre-Construction QC Checklist Submittal<BRK/><BRK/>      Post-Construction QC Checklist Submittal          <BRK/><BRK/>      Close-out QC Checklist Submittal</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Items verified for Pre-Construction, Post-Construction and Closeout QC Checklist Submittals:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All DDC Hardware is numbered on Control System Schematic Drawings.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Signal lines on Control System Schematic are labeled with the signal type.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Local Display Panel (LDP) Locations are shown on Control System Schematic drawings.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING"><BRK/>Items verified for Post-Construction and Closeout QC Checklist Submittals:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All sequences are performed as specified using DDC Hardware.</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Training schedule and course attendee list has been developed and coordinated with shops and submitted.</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING"><BRK/>Items verified for Closeout QC Checklist Submittal:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">6</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Final As-built Drawings, including all Points Schedule drawings, <BRK/>accurately represent the final installed system.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">7</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Programming software has been submitted for all programmable controllers.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All software has been licensed to the Government.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">9</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">O&amp;M Instructions have been completed and submitted.</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Training course has been completed.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">11</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All DDC Hardware is installed on a BACnet <RID>ASHRAE 135</RID> network using either MS/TP in accordance with Clause 9 or IP in accordance with Annex J.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">12</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All DDC Hardware is BTL listed.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">13</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Communication between DDC Hardware is only via BACnet using standard services, except as specifically permitted by the specification.  Non-standard services have been fully documented in the DDC Hardware Schedule.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">14</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Scheduling, Alarming, and Trending have been implemented using Niagara Framework objects and services, and BACnet Instrinsic Alarming as indicated.</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">15</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All Properties indicated as required to be Writable are Writable and Overrides have been provided as indicated</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">|____|</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL MERGEACROSS="3" STYLEID="s52">
+<DTA TYPE="STRING"><BRK/><BRK/>___________________________________________      __________________</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="40.50">
+         <CEL STYLEID="s52"/>
+         <CEL MERGEACROSS="2" STYLEID="s52">
+<DTA TYPE="STRING">(QC Representative Signature)                      (Date)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TAI><BRK/>
+<BRK/></SPT>
+<BRK/>
+<BRK/></PRT>
+    <END/> <BRK/></SEC>

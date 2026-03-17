@@ -1,0 +1,4649 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 08 01.00 20 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Replacing without change<BRK/>UFGS-15951N (September 1999)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 08 01.00 20</SCN><BRK/>
+<BRK/>
+<STL>TESTING INDUSTRIAL VENTILATION SYSTEMS</STL><BRK/>
+<DTE>04/06</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>air flow testing of industrial ventilation systems</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  An industrial ventilation system is the mechanical equipment that provides the simultaneous exhaust and 
+replacement of air to control contaminants generated from industrial operations.  Test the following industrial 
+ventilation system applications according to this specification:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Systems installed to control employee exposure to:</NPR><BRK/>
+<BRK/>
+<NPR>a.  Hazardous airborne materials with a Permissible Exposure Limit (PEL) or Threshold Limit Value (TLV) of 0.1 
+milligram per cubic meter or the equivalent value in parts per million.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Isocyanate paints.</NPR><BRK/>
+<BRK/>
+<NPR>c.  Lead.</NPR><BRK/>
+<BRK/>
+<NPR>d.  Beryllium.</NPR><BRK/>
+<BRK/>
+<NPR>e.  Otto Fuel II.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Permanently installed asbestos delagging facilities.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Metal cleaning or electroplating shops.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Foundries.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Fiberglass layup and sprayup operations.</NPR><BRK/>
+<BRK/>
+<NPR>6.  Abrasive blasting operations.</NPR><BRK/>
+<BRK/>
+<NPR>7.  Carpentry shops.</NPR><BRK/>
+<BRK/>
+<NPR>8.  Advanced composite operations (e.g., graphite).</NPR><BRK/>
+<BRK/>
+<NPR>9. Indoor Firing Ranges.</NPR><BRK/>
+<BRK/>
+<NPR>Include this specification with the construction project and require the Contractor to hire an independent subcontractor.  
+This specification encourages the use of the Commissioning Process.   Modify this specification for an acceptance 
+or performance test contract for any industrial ventilation system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification. The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+ <BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+ <BRK/>
+References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AIR MOVEMENT AND CONTROL ASSOCIATION INTERNATIONAL, INC. (AMCA)</ORG><BRK/><BRK/><RID>AMCA 201</RID><RTL>(2002; R 2011) Fans and Systems</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN CONFERENCE OF GOVERNMENTAL INDUSTRIAL HYGIENISTS (ACGIH)</ORG><BRK/><BRK/><RID>ACGIH-2092S</RID><RTL>(2004) Industrial Ventilation:  A Manual of Recommended Practice</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Capture velocity:  Air velocity at any point in front of the hood or at the hood opening necessary to overcome opposing air currents and 
+to capture contaminated air at that point to cause it to flow into the hood.</OLI><BRK/>
+<BRK/>
+<OLI>Capture zone:  Controlled space around an industrial process that provides a safe and healthy workspace.</OLI><BRK/>
+<BRK/>
+<OLI>Equilibrium performance point:  The operating condition after sufficient start-up time that an air pollution control device reaches optimum 
+efficiency.  The manufacturer recommends the minimum start-up time for each device.</OLI><BRK/>
+<BRK/>
+<OLI>Facility:  A building or portion of a building in which contaminated air is controlled by the industrial ventilation system.  This includes 
+the shop space, equipment room, offices, restrooms and locker rooms affected by the industrial process.</OLI><BRK/>
+<BRK/>
+<OLI>Full load condition:  Condition in the facility where exhaust and replacement air systems operate simultaneously, as installed by the Contractor 
+according to the design plans and specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Heating and cooling equipment:  Equipment used to temper air in the facility.  Equipment includes, but is not limited to: condensers, chillers, 
+pumps, heat exchangers, heating and cooling coils, heat pumps, cooling towers, and duct heaters.</OLI><BRK/>
+<BRK/>
+<OLI>Hood static pressure:  Static pressure, in<MET> Pascals (Pa)</MET><ENG> inches of water gage (wg)</ENG>, taken at 3 duct diameters from a flanged or plain hood 
+or 1 duct diameter from a tapered hood.</OLI><BRK/>
+<BRK/>
+<OLI>Manometer:  An instrument for measuring pressure.  Electronic or U-tube manometers with water or light oil are acceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Replacement air system:  The mechanical system supplying air to a facility to replace exhausted air.</OLI><BRK/>
+<BRK/>
+<OLI>Standard Temperature and Pressure:  Air at standard conditions of<MET> 21.1 degrees Celsius and 101.3 kilopascals</MET><ENG> 70 degrees Fahrenheit and 
+1 atmosphere</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Static Pressure:  The potential pressure exerted in all directions by a fluid at rest.  For a fluid in motion, it is measured in a direction 
+normal to the direction of flow.  Usually expressed in<MET> Pa</MET><ENG> inches of wg</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>System Effect:  The estimated loss in fan performance from non-uniform air flow at the fan's inlet or outlet.</OLI><BRK/>
+<BRK/>
+<OLI>Test agency:  A first tier subcontractor who is independent from the Contractor and the mechanical Sub-contractor except by the affiliation 
+established by this contract.</OLI><BRK/>
+<BRK/>
+<OLI>Transport velocity:  Minimum air velocity, in<MET> meter per second (m/s)</MET><ENG> feet per minute (fpm)</ENG>, required to prevent contaminants from settling, 
+condensing, or pocketing in the ductwork.</OLI><BRK/>
+<BRK/>
+<OLI>Velocity pressure:  The kinetic pressure in the direction of flow necessary to cause a fluid at rest to flow at a given velocity.  Usually 
+expressed in<MET> Pa</MET><ENG> inches of wg</ENG>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Preliminary review report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Smoke tests report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fan operating points report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Static pressure report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Volume and velocity flow rates report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pitot traverse report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit [6] [_____] copies of an organized report bound in a durable, 3-ring water-resistant binder.  The report must contain 
+a table of contents, an executive summary, an introduction, a results section and a discussion of the results.  Include the reports 
+specified in paragraphs entitled "Preliminary Review Report," "Smoke Test Reports,""Fan Operating Points Reports," "Static Pressure 
+Report," "Volume and Velocity Flow Rates Report," and"Pitot Traverse Report" as appendices.</ITM><BRK/>
+<BRK/>
+<ITM>  Submit field data and report forms in appendices separated by the fan system tested.  Use the sample forms, "Replacement Air 
+System Test Data" and "Exhaust Air System Test Data," to summarize the tests for the appropriate fan.  Forms other than those 
+listed may be used; however, include all information required by these forms.</ITM><BRK/>
+<BRK/>
+<ITM>  Document deficiencies and unmet design requirements identified during testing.  Notify the [Prime Contractor] [Contracting Officer] 
+in writing, no later than [5] [_____] calendar days after encountering deficiency, describe the nature of the deficiency and a 
+recommended course of action for resolution.  Report daily temperature, humidity and barometric pressure readings.  Note extreme 
+weather and barometric pressure changes during the day.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Test agency Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Record of Document Submittal to Testing Agency</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Work plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>List of test instruments</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Modification of References</TTL><BRK/>
+<BRK/>
+<TXT>Test the industrial ventilation system according to the referenced publications listed in paragraph entitled "References" and as modified by this 
+section.  Consider the advisory or recommended provisions, of the referred references, as mandatory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Certification</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Test Agency Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit, no later than [15] [_____] calendar days after contract award, information certifying that the test agency is not affiliated with any other 
+company participating in work on this contract.  The work of the test agency must be limited to testing and making minor adjustments to the industrial 
+ventilation system.</TXT><BRK/>
+<BRK/>
+<TXT>Use the sample form, "Test Agency Qualifications Sheet," to submit the following information:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Verification of [5] [10] years of experience as an agency in testing industrial ventilation systems or current member of either AABC or 
+NEBB.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  There are two major certifying organizations for agencies testing, adjusting and balancing heating, cooling 
+and ventilating equipment.  The main difference between the two organizations, NEBB and AABC, is their affiliation. 
+AABC certified agencies must be independent of any Contractor or equipment manufacturer.  Many NEBB certified 
+agencies are affiliated with a mechanical or sheet metal contractor, but many are independent.  Other differences 
+are listed below:</NPR><BRK/>
+<TAB WIDTH="99">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="11">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="427.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="146.25"/>
+      <COL AUTOWIDTH="0" WIDTH="149.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>AABC</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>NEBB</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.  Minimum number of years:</DTA>
+         </CEL>
+         <CEL STYLEID="s51"/>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">a.  Agency in business</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">b.  Individual: experience</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">8-10</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">c.  Individual: test experience</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2.  Licensed P.E. as Manager</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">no</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">no</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3.  Agency possesses own instruments</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">yes</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">yes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4.  Job references required</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5.  Written exam required</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">yes</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">yes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">6.  Continuing education requirements</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2/cycle</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">annual</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">7.  Recertification cycle in years</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>References from five [Contracting Officers] [facility managers] of facilities with industrial ventilation systems that the agency has tested.  
+A minimum of one facility must have processes and contaminants similar to those generated by the facility in this project.</OLI><BRK/>
+<BRK/>
+<OLI>Registration for Professional Engineer (PE) license or Certification for an Industrial Hygienist (CIH) or Test and Balance (TAB) Engineer 
+for the lead test engineer.  Submit PE license, CIH registration number, or TAB certification number.  Include the discipline, date of 
+issue, and expiration date.  Engineers must include the state of issue.</OLI><BRK/>
+<BRK/>
+<OLI>Confirmation of 5 years of industrial ventilation test experience for the lead test engineer.  References from five [Contracting Officers] 
+[facility managers] for facilities where the lead engineer has supervised industrial ventilation systems tests in the last 5 years.</OLI><BRK/>
+<BRK/>
+<OLI>Verification of length of time lead engineer has been employed by a test and balance agency.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Record of Document Submittal to Testing Agency</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit not later than [30] [_____] calendar days prior to the work plan submittal due date, a record of transmittal of the following documents 
+to the approved independent testing agency.  Information is required to develop a testing work plan and prepare for field testing.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Copy of working as-built project drawings and specifications, including marked design changes.  Changes current as of the date of transmission.</OLI><BRK/>
+<BRK/>
+<OLI>Copies of all project submittals relating to the industrial ventilation system.  Transmit copies of final record submittals including approval 
+sheets.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Work Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit not later than [120] [_____] calendar days after contract award, but before start of work, steps to be taken by the lead engineer to accomplish 
+the required testing. Submit the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Memorandum of test procedure.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Proposed dates for the preliminary review and test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Plan view showing proposed test locations (i.e. static pressure locations).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Proposed pitot traverse reading locations.</OLI><BRK/>
+<BRK/>
+<OLI>Test equipment to be used.</OLI><BRK/>
+<BRK/>
+<OLI>Scaffolding and other Contractor's support equipment required to perform test.</OLI><BRK/>
+<BRK/>
+<OLI>Factory representatives and other Contractor's support personnel who will be on site for testing.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>List of Test Instruments</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a signed and dated list of test instruments, their application, manufacturer, model, serial number, range of operation, accuracy and date 
+of calibration.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Test Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification is not intended to give guidance on testing air pollution control devices.  Refer 
+to guide specifications specific to the air pollution device.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification does not address testing the heating and cooling equipment in the industrial ventilation 
+system.  Refer to Section <SRF>23 05 93</SRF> TESTING, ADJUSTING AND BALANCING FOR HVAC, to test heating and cooling equipment.  
+Coordinate the testing requirements with the following guide specifications, when used:</NPR><BRK/>
+<BRK/>
+<NPR>Section <SRF>23 03 00</SRF> BASIC MECHANICAL MATERIALS AND METHODS</NPR><BRK/>
+<BRK/>
+<NPR>Section <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION</NPR><BRK/>
+<BRK/>
+<NPR>Section <SRF>23 35 19.00 20</SRF> INDUSTRIAL VENTILATION AND EXHAUST</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  This guide specification does not address noise and vibration testing.  See Section <SRF>23 05 48.19</SRF> SEISMIC 
+BRACING FOR MECHANICAL SYSTEMS, NEBB publication, "Procedural Standards for the Calibration and Measurement of 
+Sound and Vibration," and American Society of Heating Refrigerating and Air-Conditioning Engineers publication, 
+"Handbook HVAC Systems and Applications," for noise and vibration testing details.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Contractor must adjust and balance the industrial ventilation system according to Section <SRF>23 05 93</SRF> TESTING, ADJUSTING AND BALANCING FOR HVAC.  
+An independent test agency must test the industrial ventilation system according to <RID>ACGIH-2092S</RID> and this section under full load conditions.  For 
+tempered supply air repeat the industrial ventilation systems test for the following conditions:  [plus or minus 20 percent minimum outdoor temperature 
+design condition,] [plus or minus 10 percent maximum outdoor temperature design condition,] [[_____] percent loads on a variable air volume system,] 
+[and] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Engineer</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Field Work</TTL><BRK/>
+<BRK/>
+<TXT>The lead test engineer must be present at the project site while testing is performed and must be responsible for conducting, supervising, and 
+managing of test work.  Management includes health and safety of test agency employees.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reporting Work</TTL><BRK/>
+<BRK/>
+<TXT>The lead test engineer must prepare, sign, and date the test agenda, equipment list, and certified report.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Test Report</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Preliminary Review Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a preliminary review report, see paragraph entitled "Preliminary Review" [15] [_____] calendar days prior to beginning the test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Smoke Tests Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Describe turbulent air flow and dead air spaces in and around the hood capture zone.  Describe air flow exiting from the replacement air distribution 
+device and the effect of room air currents on smoke capture.  Report leaks in the ductwork, access door, and duct connectors to fan.  Report smoke 
+behavior as it exits from the exhaust stack and describe entrainment around the tested facility, nearby structures and any geographical features.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Fan Operating Points Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Determine the difference between measured and design volume flow rate.  Compare measured fan static pressure to manufacturer's performance data.  
+Show the design and measured operating point for each fan on the corresponding fan curve.  Report fans that cannot operate at speeds 25 percent 
+faster than the measured speed while remaining within the boundaries of the fan curve and fan class.  Identify fan motors that are operating at 
+or near full load amperage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Static Pressure Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Hood static pressures.  Use tables to summarize test results by system.</OLI><BRK/>
+<BRK/>
+<OLI>Fan static pressure, as defined by <RID>ACGIH-2092S</RID>, for replacement and exhaust air systems.</OLI><BRK/>
+<BRK/>
+<OLI>Room static pressure, as compared to [atmosphere] [adjacent rooms], for each room in the facility.</OLI><BRK/>
+<BRK/>
+<OLI>Static pressures that are inconsistent and the probable reason.   For example:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inconsistent static pressure drop or increase in one or a series of hoods on the same branch;</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Different static pressures for similar systems in the facility; and</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Decreasing static pressures as the hoods get closer to the exhaust fan inlet.</OLI><BRK/>
+<BRK/>
+<OLI>[e.  Differential pressure across air pollution control devices.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Volume and Velocity Flow Rates Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Report volume flow rates and velocities in standard<MET> cubic meters per second (cms) and meter per second (m/s)</MET><ENG> cubic feet per minute (cfm) and feet 
+per minute (fpm)</ENG>, respectively, on the "Exhaust Air System Test Data" sample form or comparable form.</TXT><BRK/>
+<BRK/>
+<TXT>[Convert measured volume flow rates to standard volume flow rates for locations with operating conditions other than standard temperature and pressure.  
+The conversion may be ignored if the volume flow rate changes less than plus or minus one percent.  Show both the actual and standard value for 
+test points.  Show a sample conversion equation.]</TXT><BRK/>
+<BRK/>
+<TXT>Compare [measured] [converted] volume flow rates with the design value for each hood, the total exhaust air system, each replacement air distribution 
+point and the total replacement air system.  List the [measured] [converted] and design values in tabular form.  Report the transport velocity 
+for each branch [submain] and main duct in the exhaust air system.</TXT><BRK/>
+<BRK/>
+<TXT>Indicate if the test value is adequate or inadequate.  Adequate hood volume flow rates and duct velocities are those with [measured] [converted] 
+values within plus or minus 10 percent of design values.  Adequate total system volume flow rates are those with [measured] [converted] values 
+within plus or minus 10 percent of the design values.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Pitot Traverse Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Use the "Pitot Traverse Data" sample form or comparable form to record pitot traverse readings.  Submit the following data, as a minimum, for each 
+test location:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Velocity pressure and their corresponding velocities;</OLI><BRK/>
+<BRK/>
+<OLI>Average velocity;</OLI><BRK/>
+<BRK/>
+<OLI>Duct dimensions and area;</OLI><BRK/>
+<BRK/>
+<OLI>Total measured volume flow rate; and</OLI><BRK/>
+<BRK/>
+<OLI>Static pressure reading.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Deadline</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Estimate the amount of time necessary for the Contractor to make corrections and for the test engineer 
+to retest the system in the event that the system fails to pass the initial test.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a simplified pass/fail report within [3] [_____] days after completion of testing.  Provide a complete test report [15] [30] [_____] days 
+after completion of testing.  [The only exception is for the last seasonal work session which must be completed by [_____].]</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>SAMPLE FORMS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Test Agency Qualification Sheet</TTL><BRK/>
+<BRK/>
+<PGE/><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="35">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="292.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="292.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>TEST AGENCY QUALIFICATION SHEET</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">DATE:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">COMPLETED BY:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">A.  Agency Qualifications</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Agency Name:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Address:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Telephone Number:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Years of experience testing industrial ventilation systems:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Industrial facilities tested (5 required).  Include the following:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Facility Name, Address, Point of contact with telephone number;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Dates of test;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Type of operation tested;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">List of Contaminants;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Number of fans;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Type of exhaust hoods;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Air cleaning devices; and</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Personnel performing the test.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="54.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Attach letters of recommendation for tests performed at these facilities.  Three facilities must be of the type of operation to be tested.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">B.  Lead Test Engineer Qualifications</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Name:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Length of time lead engineer has worked with Agency:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Years of experience testing industrial ventilation systems:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Professional Engineering Information:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">discipline:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">license number:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">issue date:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">recertification date:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">state of registration:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Industrial facilities tested (5 required).  Include the following:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Facility Name, Address, Point of contact with telephone number;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Dates of Test;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Type of Operation;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">List of Contaminants;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Number of Fans;</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Type of Exhaust Hoods; and</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="80.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Air Cleaning Devices.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/></TAB><BRK/>
+<PGE/><BRK/></SPT>
+<SPT><TTL>Pitot Traverse Data - Rectangular Duct</TTL><BRK/>
+<TAB WIDTH="97">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="11">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="125.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="116.25"/>
+      <COL AUTOWIDTH="0" WIDTH="211.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>PITOT TRAVERSE DATA - Rectangular Duct</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">Test Date:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Readings By:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Traverse By:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">Static Pressure:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Room:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Air Temperature:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Traverse Location:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Inside/Outside Duct Width:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING">Distance to Resistance Component:</DTA>
+         </CEL>
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING">Causing Component Distance:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Inside/Outside Duct Height:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Inside Duct Area:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">before:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">before:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Required Velocity:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">after:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">after:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Required Actual Volume Flow Rate:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">Velocity Pressure Reported as [_____] Units</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="12" ROWCOUNT="30">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="61.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="44.25"/>
+      <COL AUTOWIDTH="0" WIDTH="36.75"/>
+      <COL AUTOWIDTH="0" WIDTH="33.75"/>
+      <COL AUTOWIDTH="0" WIDTH="32.25"/>
+      <COL AUTOWIDTH="0" WIDTH="35.25"/>
+      <COL AUTOWIDTH="0" WIDTH="35.25"/>
+      <COL AUTOWIDTH="0" WIDTH="31.50"/>
+      <COL AUTOWIDTH="0" WIDTH="27.00"/>
+      <COL AUTOWIDTH="0" WIDTH="31.50"/>
+      <COL AUTOWIDTH="0" WIDTH="36.75"/>
+      <COL AUTOWIDTH="0" WIDTH="62.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="11" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>Pitot Traverse Matrix</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL MERGEACROSS="11" STYLEID="s50">
+<DTA TYPE="STRING"><MET> Velocity | Pressure Readings (minimum center distance is 150 mm </MET><ENG> Velocity | Pressure Readings (minimum center distance is 6 inches</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Point Position</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>1</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>2</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>3</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>4</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>5</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>6</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>7</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>8</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>9</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>10</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Confirm</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">A</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">B</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">C</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">D</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">E</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">F</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">G</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">H</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">I</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">J</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL STYLEID="s52"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="11" STYLEID="s50">
+<DTA TYPE="STRING">Pressure Readings Converted to Velocity<MET> (m/s)</MET><ENG> (FPM)</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="59.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Velocity Point Position</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>1</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>2</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>3</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>4</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>5</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>6</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>7</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>8</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>9</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>10</HL1></DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">A</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">B</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">C</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">D</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">E</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">F</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">G</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">H</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">I</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">J</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[__]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Subtotal:</DTA>
+         </CEL>
+         <CEL MERGEACROSS="10" STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="11" STYLEID="s50">
+<DTA TYPE="STRING">Total Velocity/# Readings = Avg. Velocity x Duct Area = Actual Volume Flow Rate:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL MERGEACROSS="11" STYLEID="s50">
+<DTA TYPE="STRING"><MET> ______m/s / _______ = _______ m/s x ______ SQ. METER = ________ CMS </MET><ENG> ______FPM / _______ = _______ FPM x ______ SQ. FEET  = ________ ACFM</ENG><BRK/><ENG>* ACFM - actual cubic feet per minute</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="43.50">
+         <CEL MERGEACROSS="11" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>REMARKS</HL4></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<PGE/><BRK/></SPT>
+<SPT><TTL>Pitot Traverse Data - Round Duct</TTL><BRK/>
+<TAB WIDTH="97">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="11">
+      <COL AUTOWIDTH="0" WIDTH="125.25"/>
+      <COL AUTOWIDTH="0" WIDTH="116.25"/>
+      <COL AUTOWIDTH="0" WIDTH="211.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING"><HL4>PITOT TRAVERSE DATA - Round Duct</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING">Test Date:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Readings By:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Traverse By:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING">Static Pressure:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Room Number:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Air Temperature:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">System/Unit:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Barometric Pressure:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Traverse Location:</DTA>
+         </CEL>
+         <CEL INDEX="3">
+<DTA TYPE="STRING">Inside/Outside Duct DIA:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL>
+<DTA TYPE="STRING">Distance to Resistance Component:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Causing Component Distance:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Inside Duct Area:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">before:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">before:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Required Velocity:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">after:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">after:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Required Actual Volume Flow Rate:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING">Velocity Pressure Reported as [_____] Units</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><MET><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="6" ROWCOUNT="32">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="73.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="96.75"/>
+      <COL AUTOWIDTH="0" WIDTH="73.50"/>
+      <COL AUTOWIDTH="0" WIDTH="73.50"/>
+      <COL AUTOWIDTH="0" WIDTH="73.50"/>
+      <COL AUTOWIDTH="0" WIDTH="77.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>Pitot Traverse Matrix</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Duct Diameter</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">0-150 mm</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING">150-1219 mm</DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING">&gt;1219 mm or unstable velocity</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Readings</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">12 (6/traverse)</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING">20 (10/traverse)</DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING">40 (20/traverse)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">TEST POINT</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Velocity Pressure</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Velocity</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">TEST POINT</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Velocity Pressure</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Velocity</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">21</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">22</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">22</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">23</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">24</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">25</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">6</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">26</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">7</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">27</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">28</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">9</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">29</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">30</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">11</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">31</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">12</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">32</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">13</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">33</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">14</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">34</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">15</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">35</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">16</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">36</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">17</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">37</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">18</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">38</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">19</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">39</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">20</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">40</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">Confirm 1:</DTA>
+         </CEL>
+         <CEL INDEX="4" MERGEACROSS="2">
+<DTA TYPE="STRING">Confirm 1:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">Confirm 2:</DTA>
+         </CEL>
+         <CEL INDEX="4" MERGEACROSS="2">
+<DTA TYPE="STRING">Confirm 2:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING">Velocity Sum:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING">(Without Confirm Value)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING">Velocity Sum/# Readings = Average Velocity x  Duct Area = Actual Volume Flow</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING">Rate [_____] m/s / [_____] =  [_____] m/s  x  [_____] SQ. METER = [_____] CMS</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL MERGEACROSS="5" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>REMARKS</HL4></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></MET><BRK/>
+<ENG><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="6" ROWCOUNT="32">
+      <COL AUTOWIDTH="0" WIDTH="73.50"/>
+      <COL AUTOWIDTH="0" WIDTH="96.75"/>
+      <COL AUTOWIDTH="0" WIDTH="73.50"/>
+      <COL AUTOWIDTH="0" WIDTH="73.50"/>
+      <COL AUTOWIDTH="0" WIDTH="73.50"/>
+      <COL AUTOWIDTH="0" WIDTH="77.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="5">
+<DTA TYPE="STRING"><HL4>Pitot Traverse Matrix</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL>
+<DTA TYPE="STRING">Duct Diameter</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0-6 in.</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">6-48 in.</DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">&gt;48 in. or unstable velocity</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">Readings</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">12 (6/traverse)</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">20 (10/traverse)</DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">40 (20/traverse)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL>
+<DTA TYPE="STRING">TEST POINT</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Velocity Pressure</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Velocity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">TEST POINT</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Velocity Pressure</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Velocity</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">21</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">22</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">22</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">23</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">24</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">25</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">6</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">26</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">7</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">27</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">28</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">9</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">29</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">30</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">11</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">31</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">12</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">32</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">13</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">33</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">14</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">34</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">15</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">35</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">16</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">36</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">17</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">37</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">18</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">38</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">19</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">39</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL>
+<DTA TYPE="STRING">20</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">40</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING">Confirm 1:</DTA>
+         </CEL>
+         <CEL INDEX="4" MERGEACROSS="2">
+<DTA TYPE="STRING">Confirm 1:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING">Confirm 2:</DTA>
+         </CEL>
+         <CEL INDEX="4" MERGEACROSS="2">
+<DTA TYPE="STRING">Confirm 2:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="5">
+<DTA TYPE="STRING">Velocity Sum:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="5">
+<DTA TYPE="STRING">(Without Confirm Value)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="5">
+<DTA TYPE="STRING">Velocity Sum/# Readings = Average Velocity x  Duct Area = Actual Volume Flow</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="5">
+<DTA TYPE="STRING">Rate [_____] FPM / [_____]  =  [_____] FPM  x  [_____] SQ. Feet = [_____] ACFM</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.75">
+         <CEL MERGEACROSS="5">
+<DTA TYPE="STRING"><HL4>REMARKS</HL4></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/></TAB></ENG><BRK/>
+<PGE/><BRK/></SPT>
+<SPT><TTL>Exhaust Air System Test Data</TTL><BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="30">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="117.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="115.50"/>
+      <COL AUTOWIDTH="0" WIDTH="115.50"/>
+      <COL AUTOWIDTH="0" WIDTH="120.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>EXHAUST AIR SYSTEM TEST DATA</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING">Test Dates:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING">Readings By:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Unit Number:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Pressures (Pa)</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Unit Location:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Inlet Static:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Make Model:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Outlet Static:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Model:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Inlet Velocity:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Serial Number:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Static:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50"/>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Total:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Damper Positions</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Hoods:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING"><HL1>Differential Pressure across air cleaning device</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Submains:</DTA>
+         </CEL>
+         <CEL INDEX="3" STYLEID="s51">
+<DTA TYPE="STRING">Device</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Delta P (Pa)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Total Volume Test Location</HL1></DTA>
+         </CEL>
+         <CEL INDEX="3" STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Duct dia. before fan</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Duct dia. after fan</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50"/>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Speed (RPM or RPS) [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50"/>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Motor Speed (RPM or RPS) [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Resistance Causing Elements</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Type</HL1></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Relationship to Fan</HL1></DTA>
+         </CEL>
+         <CEL INDEX="4" MERGEDOWN="1">
+<DTA TYPE="STRING"><HL1>Pulley - Center to Center Distance</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL INDEX="2" STYLEID="s52">
+<DTA TYPE="STRING"><HL1>before/after</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1># Duct dia.</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">elbow</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">damper</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">expansion</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Amperage - T1, T2, T3 [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">contraction</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Voltage - T1-2, T2-3,T3-1 [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">plenum</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Temperature (W.B./D.B.)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Outside Air [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Replacement Air [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">* RPM - revolutions per minute</DTA>
+         </CEL>
+         <CEL INDEX="4">
+<DTA TYPE="STRING">W.B. - wet bulb</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">RPS - radians per second</DTA>
+         </CEL>
+         <CEL INDEX="4">
+<DTA TYPE="STRING">D.B. - dry bulb</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<ENG><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="30">
+      <COL AUTOWIDTH="0" WIDTH="117.00"/>
+      <COL AUTOWIDTH="0" WIDTH="115.50"/>
+      <COL AUTOWIDTH="0" WIDTH="115.50"/>
+      <COL AUTOWIDTH="0" WIDTH="120.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING"><HL4>EXHAUST AIR SYSTEM TEST DATA</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Test Dates:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING">Readings By:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Unit Number:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Pressures (inches of wg)</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Unit Location:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Inlet Static:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Make Model:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Outlet Static:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Model:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Inlet Velocity:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Serial Number:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Static:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1"/>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Total:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING"><HL1>Damper Positions</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Hoods:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING"><HL1>Differential Pressure across air cleaning device</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Submains:</DTA>
+         </CEL>
+         <CEL INDEX="3" STYLEID="s50">
+<DTA TYPE="STRING">Device</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Delta P (in. wg)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING"><HL1>Total Volume Test Location</HL1></DTA>
+         </CEL>
+         <CEL INDEX="3" STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Duct dia. before fan</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Duct dia. after fan</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1"/>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Speed (RPM or RPS) [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1"/>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Motor Speed (RPM or RPS) [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3">
+<DTA TYPE="STRING"><HL1>Resistance Causing Elements</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEDOWN="1">
+<DTA TYPE="STRING"><HL1>Type</HL1></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Relationship to Fan</HL1></DTA>
+         </CEL>
+         <CEL INDEX="4" MERGEDOWN="1">
+<DTA TYPE="STRING"><HL1>Pulley - Center to Center Distance</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>before/after</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1># Duct dia.</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">elbow</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">damper</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">expansion</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Amperage - T1, T2, T3 [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">contraction</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Voltage - T1-2, T2-3,T3-1 [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">plenum</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Temperature (W.B./D.B.)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Outside Air [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Replacement Air [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING">* RPM - revolutions per minute</DTA>
+         </CEL>
+         <CEL INDEX="4">
+<DTA TYPE="STRING">W.B. - wet bulb</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING">RPS - radians per second</DTA>
+         </CEL>
+         <CEL INDEX="4">
+<DTA TYPE="STRING">D.B. - dry bulb</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></ENG><BRK/>
+<BRK/>
+<PGE/><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="5" ROWCOUNT="18">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="93.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="93.00"/>
+      <COL AUTOWIDTH="0" WIDTH="93.00"/>
+      <COL AUTOWIDTH="0" WIDTH="93.00"/>
+      <COL AUTOWIDTH="0" WIDTH="96.00"/>
+      <ROW>
+         <CEL MERGEACROSS="4" STYLEID="s50">
+<DTA TYPE="STRING"><HL1><MET>VOLUME FLOW RATES (Standard Cubic Meter per Second) </MET></HL1><HL1><ENG>VOLUME FLOW RATES (Standard Cubic Feet per Minute)</ENG></HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>SYSTEM</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>ACTUAL</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>DESIGN</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>ADEQUATE</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>INADEQUATE</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Volume</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL MERGEACROSS="4" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>SUBMAIN</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Submain name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Submain name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Submain name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL MERGEACROSS="4" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>HOODS</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hood name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hood name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hood name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hood name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hood name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hood name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hood name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hood name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hood name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="28.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hood name</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<PGE/></SPT><SPT><TTL>Replacement Air System Test Data</TTL><BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="33">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="126.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="112.50"/>
+      <COL AUTOWIDTH="0" WIDTH="112.50"/>
+      <COL AUTOWIDTH="0" WIDTH="117.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>REPLACEMENT AIR SYSTEM TEST DATA</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING">Test Dates:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING">Readings By:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Unit Number: <MET>[_____]</MET> <ENG>[_____]</ENG></DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Pressures <MET> (PA)</MET><ENG> (inches of wg)</ENG></HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Unit Location:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Inlet Static:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Make Model:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Outlet Static:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Model:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Inlet Velocity:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Serial Number:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Static:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50"/>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Total:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Damper Positions</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50"/>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING"><HL1>Differential Pressure</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Terminals:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">across Filters [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Submains:</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1">
+<DTA TYPE="STRING">across Reheat Coil[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">across Cooling Coil [_____]</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">across Preheat Coil [_____]</DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>  Total Volume Test Location</HL1></DTA>
+         </CEL>
+         <CEL INDEX="3" STYLEID="s51"/>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Total Volume Test Location</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Duct dia. before fan</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Fan Speed (RPM or RPS) [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Duct dia. after fan</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Motor Speed (RPM or RPS) [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Resistance Causing Elements</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Type</HL1></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Relationship to Fan</HL1></DTA>
+         </CEL>
+         <CEL INDEX="4" MERGEDOWN="1">
+<DTA TYPE="STRING"><HL1>Pulley - Center to Center Distance</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL INDEX="2" STYLEID="s52">
+<DTA TYPE="STRING"><HL1>before/after</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1># Duct dia.</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">elbow</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">damper</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">expansion</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Amperage - T1, T2, T3 [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">contraction</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Voltage - T1-2, T2-3,T3-1 [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">plenum</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Temperature (W.B./D.B.)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Outside Air [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Replacement Air [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Mixed Air [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">* RPM - revolutions per minute</DTA>
+         </CEL>
+         <CEL INDEX="4">
+<DTA TYPE="STRING">W.B. - wet bulb</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">RPS - radians per second</DTA>
+         </CEL>
+         <CEL INDEX="4">
+<DTA TYPE="STRING">D.B. - dry bulb</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><PGE/><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="5" ROWCOUNT="14">
+      <COL AUTOWIDTH="0" WIDTH="93.75"/>
+      <COL AUTOWIDTH="0" WIDTH="93.75"/>
+      <COL AUTOWIDTH="0" WIDTH="93.75"/>
+      <COL AUTOWIDTH="0" WIDTH="93.75"/>
+      <COL AUTOWIDTH="0" WIDTH="93.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL MERGEACROSS="4">
+<DTA TYPE="STRING"><HL1><MET>VOLUME FLOW RATES (Standard Cubic Meter per Second) </MET></HL1><HL1><ENG>VOLUME FLOW RATES (Standard Cubic Feet per Minute)</ENG></HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING"><HL1>SYSTEM</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>ACTUAL</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>DESIGN</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>ADEQUATE</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>INADEQUATE</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Total Volume</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Outside Air Volume</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Return Air</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Ratio:  Outside/Return</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL MERGEACROSS="4">
+<DTA TYPE="STRING"><HL1>BRANCH</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Branch name</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Branch name</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Branch name</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Branch name</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Branch name</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Branch name</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">Branch name</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<PGE/></SPT></SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></PRT>
+<PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>TEST PROCEDURE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Facilities requiring industrial ventilation often contain offices, restrooms, locker rooms with showers 
+and mechanical rooms.  These rooms are affected by the industrial ventilation system for the facility.  Contaminants 
+from the work area must be prevented from migrating into these rooms.  This is accomplished by providing a slightly 
+negative pressure in the work area.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Determine the static pressure of the work area relative to [the outdoors and] the following rooms:  [_____].  Report the results.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Preliminary Review</TTL><BRK/>
+<BRK/>
+<TXT>Conduct a preliminary review of the facility [45] [_____] calendar days prior to beginning the test.  Perform the following tasks and report the 
+results of each task in the Preliminary Review Report.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Locate industrial ventilation system components including hoods, hood transitions, ductwork, branch to main duct entries, elbows, expansions 
+and contractions, fans, air pollution control devices, exhaust stacks, weather protection, replacement air plenums, and distribution devices.  
+Show components on a single line drawing for each fan system.</OLI><BRK/>
+<BRK/>
+<OLI>Review design drawings, specifications, and shop drawings to verify that testing can be performed on the system.  Record, on the single 
+line drawings, locations of planned pitot traverses of mains and branches and design velocities.  Report potential test problems, such 
+as inadequate space, to the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Identify on the single line drawings the location of system fire protection components that may alter air flow, such as fire dampers.</OLI><BRK/>
+<BRK/>
+<OLI>Identify on the single line drawings the location of emergency and spill sensors.</OLI><BRK/>
+<BRK/>
+<OLI>Identify on the single line drawings the location of [pressure differential sensors] [static pressure sensors].</OLI><BRK/>
+<BRK/>
+<OLI>Use <RID>AMCA 201</RID> to identify system effects that occur at the inlet and outlet of each replacement and exhaust air fan.</OLI><BRK/>
+<BRK/>
+<OLI>Verify that ductwork sizes, elbows and fittings, exhaust stacks and weather protection meet the design plans and specifications for both 
+replacement and exhaust air systems.</OLI><BRK/>
+<BRK/>
+<OLI>Verify that fans are rotating in the proper direction.</OLI><BRK/>
+<BRK/>
+<OLI>Identify equipment such as fans, air pollution devices, heating coils, and controls, that do not meet the design plans and specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Obtain fan performance data.</OLI><BRK/>
+<BRK/>
+<OLI>Verify that replacement air terminals including [diffusers] [louvers] [grilles] [perforated plate] [perforated ductwork] are installed 
+according to design plans and specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Obtain the differential pressure data and maximum operating pressures for air filtration devices including [dirty and clean replacement 
+air filters] [high efficiency particulate air filters] [dust collectors] [mist eliminators] [wet scrubbers] [cyclone separators] [electrostatic 
+precipitators] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Obtain the temperature and pressure control diagrams for the supply [and exhaust] industrial ventilation system.</OLI><BRK/>
+<BRK/>
+<OLI>Record the nameplate data from each fan, motor, [air cleaning device] [vacuum system] and [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Record motor starter sizes and the type of thermal overload protection devices.</OLI><BRK/>
+<BRK/>
+<OLI>Verify the following requirements unless otherwise specified in the individual section:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Fan bearings have a minimum rated average life of 200,000 hours.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Fan bases are level.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Fan wheels are balanced and clear the housing.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Fan shafts are of uniform diameter [and there are no step down cuts at the bearings].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Access to fan grease fittings and other routine maintenance equipment.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Bearings are greased and the tube is full upon installation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Safety equipment, such as fan belt guards, are in place.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">[(8)  Drive alignment and belt tension are correct for each fan.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD TESTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Preliminary Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Provide instruments and consumable equipment required to test the industrial ventilation system.</TXT><BRK/>
+<BRK/>
+<TXT>Before beginning the test:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Close all windows and doors in the facility.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure that exhaust and replacement air ductwork and air intake sources are free from debris and dirt, through a visual inspection.</OLI><BRK/>
+<BRK/>
+<OLI>Load the replacement air prefilters to the manufacturer's recommended maximum load condition.</OLI><BRK/>
+<BRK/>
+<OLI>Run the exhaust air systems, containing air pollution control devices, for a sufficient time to obtain the manufacturer's recommended equilibrium 
+performance point.</OLI><BRK/>
+<BRK/>
+<OLI>[e.  Ensure that a duct leakage test is complete and accepted by the Contracting Officer.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Test Method</TTL><BRK/>
+<BRK/>
+<TXT><TST>Test the ventilation under full load conditions according to <RID>ACGIH-2092S</RID>, Chapter 9 and this section.  Record quantitative readings on sample forms, 
+"Pitot Traverse Data, [Rectangular Duct] [Round Duct]," "Exhaust Air System Test Data," and "Replacement Air System Test Data."</TST></TXT><BRK/>
+<BRK/>
+<TXT>The test engineer is authorized to readjust and rebalance the system if minor adjustments will bring the system into compliance with the design.   
+Minor adjustments include [adjusting the fan sheave] [correcting fan rotation] [resetting dampers] [adjusting blast gates] [_____].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Smoke Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>Test each hood with smoke generators to verify contaminant control in the capture zone, prior to performing quantitative tests on the industrial 
+ventilation system.</TST>  Smoke simulates the contaminant.  [Videotape the air movement pattern at the worker's breathing zone for the [hoods] [booths] 
+[indoor firing range] [_____] [and air currents].]  Comply with restrictions on the use of incendiary devices.  Inform the fire department or other 
+responsible parties when large quantities of smoke are expected [or the ventilation system has internal smoke alarms].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air Quantity Readings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Straight duct prior to the test point is essential to obtain a realistic average duct velocity.  The velocity 
+profile becomes distorted after disturbances such as elbows, contractions, expansions, branch entries in the exhaust 
+system and heating coils in the replacement air system.  Look at the drawings and determine if there is enough 
+straight duct to obtain 7.5 duct diameters of straight airflow before the test points.  If not, specify the exact 
+test points more explicitly, e.g.,<MET> 3 meters</MET><ENG> 10 feet</ENG> from the positive pressure side of the fan, or between the 
+fan and the scrubber.  Do not use the terms upstream or downstream.  In exhaust systems the total volume flow 
+rate test point may be located before or after the fan or pollution control device. In replacement air systems 
+the test point is placed after the fan.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Use a pitot tube and manometer to measure the velocity pressures for the exhaust and replacement air systems.</TST>  Determine the number and location 
+of velocity pressure readings required for round and rectangular ducts according to <RID>ACGIH-2092S</RID>.  Drill traverse access holes. [Round ducts require 
+two traverse access holes positioned 90 degrees apart.] [Rectangular ducts may require several traverse access holes.]</TXT><BRK/>
+<BRK/>
+<TXT><TST>Take pitot traverses away from air disturbing devices (i.e. elbows, branch entries, duct expansions, and hood transitions).</TST>  Minimum distances 
+are:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Five (5) duct diameter of straight duct after the fan outlet; and</OLI><BRK/>
+<BRK/>
+<OLI>Seven and one-half (7.5) duct diameters of straight duct after an air disturbing device.</OLI><BRK/>
+<BRK/>
+<TXT>When these distances of straight duct are not available, use a schematic drawing to note the disturbance producing device, and distance between 
+the pitot traverse and the device.</TXT><BRK/>
+<BRK/>
+<TXT><TST>Confirm one velocity pressure reading for each access hole after completing a traverse.</TST>  Accept traverse data when the difference between the original 
+and confirmation measurement is plus or minus 10 percent; otherwise repeat the traverse.  Plug holes with cap plugs immediately after each traverse.</TXT><BRK/>
+<BRK/>
+<TXT>Convert velocity pressure readings to velocity before averaging the duct velocity.  <TST>Calculate average velocity from velocity pressure readings 
+and volume flow rates for the following locations:</TST></TXT><BRK/>
+<BRK/>
+<TST>a.  Replacement air fan outlet;<BRK/>
+<BRK/>
+<OLI>Replacement air duct branch;</OLI><BRK/>
+<BRK/>
+<OLI>Exhaust air duct branch, including hoods [and submains];</OLI><BRK/>
+<BRK/>
+<OLI>Exhaust fan inlet or outlet;</OLI><BRK/>
+<BRK/>
+<OLI>[e.  Air pollution control device inlet; and]</OLI><BRK/>
+<BRK/>
+<OLI>[f.  Outside and return air ducts in recirculating replacement air system.]</OLI></TST><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Air Velocity Meter Readings</TTL><BRK/>
+<BRK/>
+<TST><TXT>A flow hood may be used for measuring office and restroom replacement air quantities.  Do not substitute air velocity meter readings for manometer 
+and pitot tube readings.  Use air velocity meters to estimate the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Velocity exiting from replacement air systems without ductwork;</OLI><BRK/>
+<BRK/>
+<OLI>Crossdrafts in a room;</OLI><BRK/>
+<BRK/>
+<OLI>Hood capture velocity;</OLI><BRK/>
+<BRK/>
+<OLI>Duct velocities less than<MET> 3 m/s</MET><ENG> 600 fpm</ENG>; and</OLI><BRK/>
+<BRK/>
+<OLI>[e.  Slot velocities.]</OLI></OLG></TST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Static Pressure Readings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Static pressures are always required.  If the system has no pollution control device, static pressure measurements 
+are only required at the fan inlet and outlet.  This is also true for the replacement air fans.  To properly evaluate 
+the system, differential pressures are needed across the fan and each air pollution control device.  Look at each 
+system and determine the appropriate test points.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TST><TXT>Take static pressure readings using a pitot tube and manometer.  The following readings are required:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Hood static pressure.  Take readings at a distance of one duct diameter from tapered hoods, and 3 diameters from plain or flanged hoods;</OLI><BRK/>
+<BRK/>
+<OLI>Replacement and exhaust fan inlet and outlet static pressure;</OLI><BRK/>
+<BRK/>
+<OLI>Room static pressure as compared to [outdoors] [outside the area controlled by industrial ventilation];</OLI><BRK/>
+<BRK/>
+<OLI>[d.  Air cleaning device inlet and outlet static pressure; and]</OLI><BRK/>
+<BRK/>
+<OLI>[e.  Branch static pressure in the replacement and exhaust air system submain ductwork.]</OLI></OLG></TST><BRK/>
+<BRK/>
+<TXT><TST>Verify test instrument readings correspond with attached static pressure gages</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control System Check-Out</TTL><BRK/>
+<BRK/>
+<TST><TXT>Test warning system controls for the industrial ventilation system including the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Above and below range alarms for room static pressure.</OLI><BRK/>
+<BRK/>
+<OLI>Fan motor operating lights.</OLI><BRK/>
+<BRK/>
+<OLI>[c.  Dampers operated by the control motor.]</OLI><BRK/>
+<BRK/>
+<OLI>[d.  Hood static pressure.]</OLI><BRK/>
+<BRK/>
+<OLI>[e.  Dislodged or ripped filtration equipment.]</OLI><BRK/>
+<BRK/>
+<OLI>[f.  Overloaded air cleaning device.]</OLI></OLG></TST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Other Readings</TTL><BRK/>
+<BRK/>
+<TST><TXT>Take the following readings on each day testing is performed:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Temperature readings after the system has stabilized and has been running for at least 4 hours:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Wet bulb and dry bulb temperature of ancillary rooms, workspaces, replacement air, outside air, [return air,] [and] [mixed air].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">External temperature for fan and motor bearings on ventilation equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Record barometric pressure and altitude.</OLI></OLG></TST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>System Markings</TTL><BRK/>
+<BRK/>
+<TXT>Mark the settings and test ports to re-evaluate the industrial ventilation system during follow-up tests.  Label test points before submitting 
+the report.  Use spray paint or another acceptable practice, i.e. permanent marker, to mark the airflow adjusting devices [such as valves, splitters, 
+dampers, and blast gates], so the devices can be returned to their original position if an unauthorized adjustment is made.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Verification</TTL><BRK/>
+<BRK/>
+<TXT>Notify Contracting Officer [30] [_____] calendar days prior to conducting the Test Verification.  <TST>In the presence of the Contracting Officer, the 
+test engineer must repeat at least [10] [20] [_____] percent of the test for each replacement and exhaust air system to verify the results.  As 
+a minimum, re-test the following readings:</TST></TXT><BRK/>
+<OLG><BRK/>
+<TST><OLI>Total volume flow for each fan;</OLI><BRK/>
+<BRK/>
+<OLI>Inlet and outlet static pressure for each fan;</OLI><BRK/>
+<BRK/>
+<OLI>Volume flow and hood static pressure for the hood with the longest duct run from the exhaust fan; [and]</OLI><BRK/>
+<BRK/>
+<OLI>Hood volume flow rates and total system volume flow rates which disagree with the design value; [and]</OLI><BRK/>
+<BRK/>
+<OLI>[e.  Differential pressure across each air pollution control device].</OLI></TST><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Test Result Disagreements</TTL><BRK/>
+<BRK/>
+<TST><TXT>Static and velocity pressure test readings must be within plus or minus [10] [_____] percent of the verification readings.  When the difference 
+between test and verification readings are greater than these acceptable values, the test engineer must:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Recalculate the test and verification results.</OLI><BRK/>
+<BRK/>
+<OLI>Recalibrate test equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Retest the entire system.</OLI><BRK/>
+<BRK/>
+<OLI>Verify the results.</OLI></OLG></TST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Test Engineers Out-Brief</TTL><BRK/>
+<BRK/>
+<TXT><TST>Provide a verbal summary for the Contracting Officer describing the condition of the industrial ventilation system.  Report test data that does 
+not meet the design criteria as defined in paragraph entitled "Field Test Reports."</TST></TXT><NED/><BRK/>
+<BRK/></SPT>
+</SPT><MET><SPT><TTL>SCHEDULE</TTL><BRK/>
+<BRK/>
+<TXT>Some metric measurements in this section are based on mathematical conversion of inch-pound measurements, and not on metric measurements commonly 
+agreed on by the manufacturers or other parties.  The inch-pound and metric measurements shown are as follows:</TXT><BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="2">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="136.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="136.50"/>
+      <COL AUTOWIDTH="0" WIDTH="136.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Products</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL1>Inch-Pound</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL1>Metric</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">a.  [_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</MET><BRK/>
+<BRK/></PRT>
+    <END/><BRK/></SEC>

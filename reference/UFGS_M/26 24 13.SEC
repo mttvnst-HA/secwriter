@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="337.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="337.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-26 24 13 (August 2021)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-26 24 13 (May 2015)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 24 13</SCN><BRK/>
+<BRK/>
+<STL>SWITCHBOARDS</STL><BRK/>
+<DTE>08/21</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification, in part, replaces UFGS 26 23 00, SWITCHBOARDS AND SWITCHGEAR.  The original guide 
+specification was separated into two specifications:  26 23 00, LOW-VOLTAGE SWITCHGEAR, and 26 24 13, SWITCHBOARDS.</NPR><BRK/>
+<BRK/>
+<NPR>This guide specification covers the requirements for <SCP>free standing deadfront switchboard assemblies rated 6000 
+amperes or less, 600 volts or less</SCP>.  This guide specification is intended for alternating current applications; 
+additional editing will be necessary to tailor it for direct current applications.</NPR><BRK/>
+<BRK/>
+<NPR>Per UFC 3-520-01, specify switchboards for service entrance equipment when the service is 1200 amperes or larger, 
+and branch and feeder circuits are combined sizes from 20 amperes up to 800 amperes.  Utilize switchboards throughout 
+the distribution system where feeders are 1200 amperes or larger. Specify metal-enclosed switchgear in accordance 
+with Section <SRF>26 23 00</SRF> LOW-VOLTAGE SWITCHGEAR for service entrance equipment only when the service is 1200 amperes 
+or larger, and all branch and feeder circuits are large, such as 600 amperes or 800 amperes each.  Use Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM, for power and distribution panelboards rated less than 1200 amperes.</NPR><BRK/>
+<BRK/>
+<NPR>When the proposed switchboard is connected to a secondary unit substation, coordinate with Section <SRF>26 11 16</SRF> SECONDARY 
+UNIT SUBSTATIONS.</NPR><BRK/>
+<BRK/>
+<NPR>This specification is not intended to be used for generator control switchboards without extensive modification 
+and coordination with applicable  engine-generator set guide specifications.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Verify that the following information is indicated on the project drawings:<BRK/>
+<BRK/>
+1.  Single-line diagram showing buses and interrupting devices with interrupting capacities; current transformers 
+with ratings; instruments and meters required; and description of instruments and meters.<BRK/>
+<BRK/>
+2.  Location, space available, arrangement, and elevations of switchboards.<BRK/>
+<BRK/>
+3.  Grounding plan.<BRK/>
+<BRK/>
+4.  Type and number of cables, size of conductors for each power circuit, and point of entry (top or bottom).<BRK/>
+<BRK/>
+5.  Special conditions, such as altitude, temperature and humidity, exposure to fumes, vapors, dust, and gases; 
+and seismic requirements.<BRK/>
+<BRK/>
+6.  Arc flash label requirements.  Download the label format at:  <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL><BRK/>
+<BRK/>
+7.  Available fault current label for service entrance equipment.  Download the label format at: <URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables">https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL><BRK/>
+<BRK/>
+8.  Locations with 100 percent rated circuit breakers.<BRK/>
+<BRK/>
+9.  Locations with arc energy reduction methods specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN NATIONAL STANDARDS INSTITUTE (ANSI)</ORG><BRK/><BRK/><RID>ANSI C12.1</RID><RTL>(2014; Errata 2016) Electric Meters - Code for Electricity Metering</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 90.1 - IP</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/><RID>ASTM A153/A153M</RID><RTL>(2023) Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware</RTL><BRK/><BRK/><RID>ASTM A240/A240M</RID><RTL>(2025a) Standard Specification for Chromium and Chromium-Nickel Stainless Steel Plate, Sheet, and Strip for Pressure Vessels and for General Applications</RTL><BRK/><BRK/><RID>ASTM A653/A653M</RID><RTL>(2025a) Standard Specification for Steel Sheet, Zinc-Coated (Galvanized) or Zinc-Iron Alloy-Coated (Galvannealed) by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM A780/A780M</RID><RTL>(2020) Standard Practice for Repair of Damaged and Uncoated Areas of Hot-Dip Galvanized Coatings</RTL><BRK/><BRK/><RID>ASTM D149</RID><RTL>(2025) Standard Test Method for Dielectric Breakdown Voltage and Dielectric Strength of Solid Electrical Insulating Materials at Commercial Power Frequencies</RTL><BRK/><BRK/><RID>ASTM D709</RID><RTL>(2017) Standard Specification for Laminated Thermosetting Materials</RTL><BRK/><BRK/><RID>ASTM D1535</RID><RTL>(2014; R 2018) Standard Practice for Specifying Color by the Munsell System</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 81</RID><RTL>(2025) IEEE Guide for Measuring Earth Resistivity, Ground Impedance, and Earth</RTL><BRK/><BRK/><RID>IEEE 100</RID><RTL>(2000; Archived) The Authoritative Dictionary of IEEE Standards Terms</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/><RID>IEEE C37.13</RID><RTL>(2024) Standard for Low-Voltage AC Power Circuit Breakers Used in Enclosures</RTL><BRK/><BRK/><RID>IEEE C37.90.1</RID><RTL>(2023; ERTA) Standard for Surge Withstand Capability (SWC) Tests for Relays and Relay Systems Associated with Electric Power Apparatus</RTL><BRK/><BRK/><RID>IEEE C57.12.28</RID><RTL>(2023) Standard for Pad-Mounted Equipment - Enclosure Integrity</RTL><BRK/><BRK/><RID>IEEE C57.12.29</RID><RTL>(2023) Standard for Pad-Mounted Equipment - Enclosure Integrity for Coastal Environments</RTL><BRK/><BRK/><RID>IEEE C57.13</RID><RTL>(2016) Standard Requirements for Instrument Transformers</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTRICAL TESTING ASSOCIATION (NETA)</ORG><BRK/><BRK/><RID>NETA ATS</RID><RTL>(2025) Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>ANSI/NEMA PB 2.1</RID><RTL>(2023) General Instructions for Proper Handling, Installation, Operation and Maintenance of Deadfront Distribution Switchboards Rated 600 V or Less</RTL><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/><RID>NEMA PB 2</RID><RTL>(2011) Deadfront Distribution Switchboards</RTL><BRK/><BRK/><RID>NEMA ST 20</RID><RTL>(2014) Dry-Type Transformers for General Applications</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 198M</RID><RTL>(2018; Reprint May 2023) UL Standard for Mine-Duty Fuses</RTL><BRK/><BRK/><RID>UL 467</RID><RTL>(2022) UL Standard for Safety Grounding and Bonding Equipment</RTL><BRK/><BRK/><RID>UL 489</RID><RTL>(2025) UL Standard for Safety Molded-Case Circuit Breakers, Molded-Case Switches and Circuit-Breaker Enclosures</RTL><BRK/><BRK/><RID>UL 891</RID><RTL>(2019; Reprint Mar 2025) UL Standard for Safety Switchboards</RTL><BRK/><BRK/><RID>UL 4248-1</RID><RTL>(2022; Reprint Jun 2025) UL Standard for Safety Fuseholders - Part 1: General Requirements</RTL><BRK/><BRK/><RID>UL 4248-12</RID><RTL>(2025) UL Standard for Safety Fuseholders - Part 12: Class R</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING on all projects involving medium voltage and 
+specialized power distribution equipment</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING applies to this section, with the additions and modifications specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified or indicated, electrical and electronics terms used in these specifications, and on the drawings, are as defined in <RID>
+IEEE 100</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Switchboard Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Switchboard</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Switchboard Design Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Switchboard Production Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Checks and Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Cybersecurity Installation Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Submit certification indicating conformance with the paragraph CYBERSECURITY INSTALLATION CERTIFICATION.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Switchboard Operation and Maintenance</SUB>, Data Package 5; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select "Request for Settings" below if protective device settings will be government furnished.  Select 
+"Required Settings" below if protective device settings are furnished by the Designer of Record.  Coordinate with 
+the person developing the Division 1 Sections and ensure that Division 1 Sections identify the person responsible 
+for providing the final protective device settings for design/build versus design/bid/build projects.  Do not 
+rely on the manufacturer's default settings. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Assembled Operation and Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Equipment Test Schedule</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Request for Settings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Required Settings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  NFPA 70 Article 110.24 requires an available fault current label to be applied at the service entrance.  
+Select "Available Fault Current Label" below if the switchboard is part of the service entrance equipment.  Coordinate 
+with the person developing the Division 1 Sections and ensure that Division 1 Sections identify the person responsible 
+for providing the short circuit calculation for the project. This may vary for design/build versus design/bid/build 
+projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<ITM><SUB>Service Entrance Available Fault Current Label</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Product Data</TTL><BRK/>
+<BRK/>
+<TXT>Include manufacturer's information on each submittal for each component, device and accessory provided with the switchboard including:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Circuit breaker type, interrupting rating, and trip devices, including available settings.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's instruction manuals and published time-current curves (in electronic format) of the main secondary breaker and largest secondary 
+feeder device.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Switchboard Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Include wiring diagrams and installation details of equipment indicating proposed location, layout and arrangement, control panels, accessories, 
+piping, ductwork, and other items that must be shown to ensure a coordinated installation.  Identify circuit terminals on wiring diagrams and indicate 
+the internal wiring for each item of equipment and the interconnection between each item of equipment.  Indicate on the drawings adequate clearance 
+for operation, maintenance, and replacement of operating equipment devices.  Include the nameplate data, size, and capacity on submittal.  Also 
+include applicable federal, military, industry, and technical society publication references on submittals.  Include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>One-line diagram including breakers[, fuses][, current transformers, and meters].</OLI><BRK/>
+<BRK/>
+<OLI>Outline drawings including front elevation, section views, footprint, and overall dimensions.</OLI><BRK/>
+<BRK/>
+<OLI>Bus configuration including dimensions and ampere ratings of bus bars.</OLI><BRK/>
+<BRK/>
+<OLI>Markings and NEMA nameplate data[, including fuse information (manufacturer's name, catalog number, and ratings)].</OLI><BRK/>
+<BRK/>
+<OLI>Circuit breaker type, interrupting rating, and trip devices, including available settings.</OLI><BRK/>
+<BRK/>
+<OLI>Wiring diagrams and elementary diagrams with terminals identified, and indicating prewired interconnections between items of equipment 
+and the interconnection between the items.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's instruction manuals and published time-current curves (in electronic format) of the main secondary breaker and largest secondary 
+feeder device.  Use this information (designer of record) to provide breaker settings that ensures protection and coordination are achieved.[  
+For Navy installations, provide electronic format curves using SKM's Power Tools for Windows device library electronic format or EasyPower 
+device library format depending on installation modeling software requirements.]</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If selecting provisions for future expansion, ensure the facility and room size is adequate for the additional 
+equipment.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Provisions for future expansion by adding switchboard sections.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the word, "shall" or "must" had been 
+substituted for "should" wherever it appears.  Interpret references in these publications to the "authority having jurisdiction," or words of similar 
+meaning, to mean the Contracting Officer.  Provide equipment, materials, installation, and workmanship in accordance with the mandatory and advisory 
+provisions of <RID>NFPA 70</RID> unless more stringent requirements are specified or indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such products which are of equal material, 
+design and workmanship, and:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Have been in satisfactory commercial or industrial use for 2 years prior to bid opening including applications of equipment and materials 
+under similar circumstances and of similar size.</OLI><BRK/>
+<BRK/>
+<OLI>Have been on sale on the commercial market through advertisements, manufacturers' catalogs, or brochures during the 2-year period.</OLI><BRK/>
+<BRK/>
+<OLI>Where two or more items of the same class of equipment are required, provide products of a single manufacturer; however, the component 
+parts of the item need not be the products of the same manufacturer unless stated in this section.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a 2-year field service record will be acceptable if a certified record of satisfactory field operation for not less than 
+6000 hours, exclusive of the manufacturers' factory or laboratory tests, is furnished.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material and Equipment Manufacturing Date</TTL><BRK/>
+<BRK/>
+<TXT>Products manufactured more than one year prior to date of delivery to site are not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Switchboard Operation and Maintenance</SUB> Data</TTL><BRK/>
+<BRK/>
+<TXT>Submit Operation and Maintenance Manuals in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Assembled Operation and Maintenance Manuals</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Assemble and securely bind manuals in durable, hard covered, water resistant binders.  Assemble and index the manuals in the following order with 
+a table of contents:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Manufacturer's O&amp;M information required by the paragraph SD-10, OPERATION AND MAINTENANCE DATA.</OLI><BRK/>
+<BRK/>
+<OLI>Catalog data required by the paragraph SD-03, PRODUCT DATA.</OLI><BRK/>
+<BRK/>
+<OLI>Drawings required by the paragraph SD-02, SHOP DRAWINGS.</OLI><BRK/>
+<BRK/>
+<OLI>Prices for spare parts and supply list.</OLI><BRK/>
+<BRK/>
+[<OLI>Information on metering.</OLI><BRK/>
+<BRK/>
+]<OLI>Design test reports.</OLI><BRK/>
+<BRK/>
+<OLI>Production test reports.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Spare Parts</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not use this paragraph for Navy projects.  For other services, coordinate with Contracting Officer on 
+whether this paragraph can be included.</NPR><BRK/>
+<BRK/>
+<NPR>Edit as required if additional spare parts are required for a specific project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide spare parts as specified below.  Provide spare parts that are of the same material and workmanship, meet the same requirements, and are 
+interchangeable with the corresponding original parts furnished.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Quantity 2 - Fuses of each type and size.</OLI><BRK/>
+<BRK/>
+[<OLI>[_____]</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>]</SPT><SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment items that are supported by service organizations reasonably convenient to the equipment installation in order to render satisfactory 
+service to the equipment on a regular and emergency basis during the warranty period of the contract.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PRODUCT COORDINATION</TTL><BRK/>
+<BRK/>
+<TXT>Products and materials not considered to be switchboards and related accessories are specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION, 
+and Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>SWITCHBOARD</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA PB 2</RID> and <RID>UL 891</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Ratings</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment with the following ratings:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select "as indicated" if there are multiple switchboards with details of each shown on drawings.  Most 
+switchboards will be 4-wire, but might be a 3-wire design for delta-connected or ungrounded systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Voltage rating:  [480Y/277][208Y/120][_____] volts AC, [three-phase, [3][4]-wire][as indicated].</OLI><BRK/>
+<BRK/>
+<OLI>Continuous current rating of the main bus:  [_____ amperes][as indicated]. </OLI><BRK/>
+<BRK/>
+<OLI>Short-circuit current rating:  [_____ rms symmetrical amperes][as indicated].</OLI><BRK/>
+<BRK/>
+<OLI>UL listed and labeled[ as service entrance equipment].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Construction</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit the selection options below as needed for the intended project configuration.  Rear aligned switchboards 
+are likely the lowest cost design practice.  Front and rear aligned switchboards provide a more appealing installation.  
+Do not specify rear connections if the switchboard will be installed against a wall.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Switchboard:  consisting of one or more vertical sections[ bolted together to form a rigid assembly] and [rear][front and rear] aligned[ 
+as indicated].</OLI><BRK/>
+<BRK/>
+<OLI>All circuit breakers:  front accessible.</OLI><BRK/>
+<BRK/>
+[<OLI>Rear aligned switchboards:  front accessible load connections.</OLI><BRK/>
+<BRK/>
+][<OLI>Front and rear aligned switchboards[:  rear accessible load connections].</OLI><BRK/>
+<BRK/>
+]<OLI>Where indicated, "space for future" or "space" means to include a vertical bus provided behind a blank front cover.  Where indicated, "provision 
+for future" means full hardware provided to mount a breaker suitable for the location.</OLI><BRK/>
+<BRK/>
+<OLI>Completely factory engineered and assembled, including protective devices and equipment indicated with necessary interconnections, instrumentation, 
+and control wiring.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Enclosure</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the level of corrosion protection required for the specific project location.  Most switchboard 
+products will be constructed of a cold rolled steel and painted, which is adequate for most indoor locations.  
+Use galvanized steel or stainless steel enclosures or bases for outdoor applications where corrosion is a concern.  
+Not all manufacturers offer galvanized steel or stainless steel products as a standard design.</NPR><BRK/>
+<BRK/>
+<NPR>Select IEEE C57.12.28 for galvanized enclosures.  Select IEEE C57.12.29 for stainless steel enclosures.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Enclosure:  <RID>NEMA ICS 6</RID> Type [3R][1][_____][as indicated][ fabricated entirely of 12 gauge <RID>ASTM A240/A240M</RID> type 304 or 304L stainless steel].</OLI><BRK/>
+<BRK/>
+<OLI>Enclosure:  bolted together with removable bolt-on side and[ hinged] rear covers[, and sloping roof downward toward rear].</OLI><BRK/>
+<BRK/>
+[<OLI>Front[ and rear] doors:  provided with[ stainless steel] padlockable vault handles with a three point catch.</OLI><BRK/>
+<BRK/>
+][<OLI>Bases, frames and channels of enclosure:  corrosion resistant and fabricated of[ <RID>ASTM A240/A240M</RID> type 304 or 304L stainless steel][ or][ 
+galvanized steel].  Separate sections using vertical steel barriers.</OLI><BRK/>
+<BRK/>
+]<OLI>Base:  includes any part of enclosure that is within<MET> 75 mm</MET><ENG> 3 inches</ENG> of concrete pad.</OLI><BRK/>
+<BRK/>
+[<OLI>Galvanized steel:  <RID>ASTM A123/A123M</RID>, <RID>ASTM A653/A653M</RID> G90 coating, and <RID>ASTM A153/A153M</RID>, as applicable.  Galvanize after fabrication where 
+practicable.</OLI><BRK/>
+<BRK/>
+]<OLI>Paint color:  <RID>ASTM D1535</RID> light gray No. 61 or No. 49 over rust inhibitor.</OLI><BRK/>
+<BRK/>
+[<OLI>Paint coating system:  comply with[ <RID>IEEE C57.12.28</RID> for galvanized steel][ and][ <RID>IEEE C57.12.29</RID> for stainless steel].</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Bus Bars</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Use copper with silver-plated contact surfaces in exterior or damp locations or for heavy motor loads.</NPR><BRK/>
+<BRK/>
+<NPR>Delete the neutral bus bracketed option if a 3-wire system was selected.</NPR><BRK/>
+<BRK/>
+<NPR>Only choose the bracketed option requiring insulation on the bus bars for outdoor locations with a high concentration 
+of airborne contaminants.  Choose this option primarily for corrosive and high humidity applications as defined 
+in UFC 3-501-01.  Most manufacturers will tape wrap rather than apply an insulating sleeve for low voltage equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Bus bars:  [copper with silver-plated contact surfaces][ or][aluminum with tin-plated contact surfaces].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase bus bars:  [uninsulated][insulated with a tape wrap or insulating sleeve providing a minimum breakdown voltage of 16,000 
+volts per <RID>ASTM D149</RID>].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Neutral bus:  rated [100][_____] percent of the main bus continuous current rating[ as indicated].</OLI><BRK/>
+<BRK/>
+<OLI>Make bus connections and joints with hardened steel bolts.</OLI><BRK/>
+<BRK/>
+<OLI>Main-bus (through bus):  rated at the full ampacity of the main throughout the switchboard.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum<MET> 6.35 mm by 50.8 mm</MET><ENG> one-quarter by 2 inch</ENG> copper ground bus secured to each vertical section along the entire length of the switchboard.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Main Section</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select from the options below the configuration to be specified.  Refer to UFC 3-520-01 for allowed configurations.</NPR><BRK/>
+<BRK/>
+<NPR>Simpler switchboards will often have a single section that contains the main circuit breaker and branch circuit 
+breakers, referred to here as a Combination Section.  Larger switchboards can have multiple sections involving 
+a main section, one or more distribution sections, and one or more auxiliary sections.</NPR><BRK/>
+<BRK/>
+<NPR>Low-voltage power circuit breakers are not normally required for switchboard applications.  Utility transformer 
+compartments are rarely used and will require additional review if this bracketed option is selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the main section consisting of[a combination section with[ molded-case circuit breakers] for the[ main and] branch devices as indicated][ 
+main lugs only][ an individually mounted [fixed][ drawout][ air power circuit breaker[ with current-limiting fuses]][ insulated-case circuit breaker][ 
+molded-case circuit breaker]][ and utility transformer compartment].</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Distribution Sections</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select distribution sections as an option if the main section is not a combination section that includes 
+main and branch circuit breakers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the distribution section[s] consisting of[ [individually mounted,][drawout,]][ air power circuit breakers[ with current-limiting fuses]][ 
+insulated-case circuit breakers][ molded-case circuit breakers][ and utility transformer compartments] as indicated. </TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Auxiliary Sections</TTL><BRK/>
+<BRK/>
+<TXT>Provide auxiliary sections consisting of indicated[ instruments,][ metering equipment,][ control equipment,][ transformer,][ and][ current transformer 
+compartments] as indicated.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Handles</TTL><BRK/>
+<BRK/>
+<TXT>Provide handles for individually mounted devices of the same design and method of external operation.  Label handles prominently to indicate device 
+ampere rating, color coded for device type.  Identify ON-OFF indication by handle position and by prominent marking.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Protective Device</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Switchboard should be placed where the ambient temperature is less than 40 deg. C.  However, should the 
+ambient temperature be expected to exceed 40 deg. C, the designer must require a special calibration for the circuit 
+breakers and confirm the equipment ratings.</NPR><BRK/>
+<BRK/>
+<NPR>Provide ground fault protection of equipment for solidly grounded wye electrical services of more than 150 volts 
+to ground for each service disconnect rated 1000 amperes or more in accordance with NFPA 70.</NPR><BRK/>
+<BRK/>
+<NPR>If 48 Vdc or 125 Vdc electrically operated circuit breakers are required, the appropriate DC control power supply 
+information must be added to the specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide[ main and] branch protective devices as indicated.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Power Circuit Breaker</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Low-voltage power circuit breakers can be installed in larger switchboards, but are not normally required 
+for switchboard applications.  If power circuit breakers are selected, coordinate the ratings and protective device 
+settings with the ratings of the switchboard.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI><RID>IEEE C37.13</RID>. [120 Vac][ electrically][ manually] operated [stationary][drawout], [unfused][fused], low-voltage power circuit breaker with 
+a short-circuit current rating[ of [_____] rms amperes symmetrical][ as indicated] at [_____] volts.</OLI><BRK/>
+<BRK/>
+<OLI>Breaker frame size:  [ as indicated][ [_____] amperes].</OLI><BRK/>
+<BRK/>
+[<OLI>Equip electrically operated breakers with motor-charged, stored-energy closing mechanism to permit rapid and safe closing of the breaker 
+against fault currents within the short time rating of the breaker, independent of the operator's strength or effort in closing the handle.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>][<SPT><TTL>Insulated-Case Breaker</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Electrically operated insulated-case circuit breakers are rarely used and would be accomplished by an accessory.</NPR><BRK/>
+<BRK/>
+<NPR>If 100 percent circuit breakers are utilized in the design, select the 100 percent rated circuit breaker option 
+below and indicate the specific locations on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI><RID>UL 489</RID>.  UL listed and labeled,[ 100 percent rated main breaker][ standard rated branch breakers],[ electrically] [manually] operated, 
+low voltage, insulated-case circuit breaker, with a short-circuit current rating[ of [_____] rms symmetrical amperes][ as indicated] at 
+[_____] volts.</OLI><BRK/>
+<BRK/>
+<OLI>Breaker frame size:  [ [_____] amperes][ as indicated].</OLI><BRK/>
+<BRK/>
+<OLI>Series rated circuit breakers are unacceptable.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Molded-Case Circuit Breaker</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If 100 percent circuit breakers are utilized in the design, select the 100 percent rated circuit breaker 
+option below and indicate the specific locations on the drawings. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI><RID>UL 489</RID>.  UL listed and labeled,[ 100 percent rated main breaker][ standard rated branch breakers],[ electrically][ manually] operated, 
+low voltage  molded-case circuit breaker, with a short-circuit current rating of[ [_____] rms symmetrical amperes][ as indicated] at [_____] 
+volts.</OLI><BRK/>
+<BRK/>
+<OLI>Breaker frame size:  [ [_____] amperes][ as indicated].</OLI><BRK/>
+<BRK/>
+<OLI>Series rated circuit breakers are unacceptable.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Fusible Switches</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not use fusible overcurrent devices except when necessary to comply with NFPA 70 requirements for selective 
+coordination.  Fusible switches are prohibited by UFC 3-520-01 and were not listed as an option above.  Their 
+use will require approval by the authority having jurisdiction to allow their use in switchboards.</NPR><BRK/>
+<BRK/>
+<NPR>If specified, select UL 4248-1 fuseholders for Class J or L fuses.  Select UL 4248-12 for Class R fuses.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Fusible Switches:  quick-make, quick-break, hinged-door type.</OLI><BRK/>
+<BRK/>
+[<OLI>Switches serving as motor disconnects:  horsepower rated.</OLI><BRK/>
+<BRK/>
+]<OLI>Fuses:  current-limiting cartridge type conforming to[ <RID>UL 198M</RID>, Class J for 0 to 600 amperes and Class L for 601 to 6000 amperes][ <RID>UL 198M</RID>
+, Class [RK1][RK5] for 0 to 600 amperes].</OLI><BRK/>
+<BRK/>
+<OLI>Fuseholders:  [<RID>UL 4248-1</RID>][<RID>UL 4248-12</RID>].</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Integral Combination Breaker and Current-Limiting Fuses</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Current-limiting fuses should only be needed if the available fault current exceeds the circuit breaker 
+short circuit rating.  This option will not typically be selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI><RID>UL 489</RID>. </OLI><BRK/>
+<BRK/>
+<OLI>Integral combination molded-case circuit breaker and current-limiting fuses:[ as indicated][ rated [_____] amperes] with a minimum short-circuit-current 
+rating equal to the short-circuit-current rating of the switchboard in which the circuit breaker will be mounted.</OLI><BRK/>
+<BRK/>
+<OLI>Series rated circuit breakers are unacceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Coordination of overcurrent devices of the circuit breaker and current-limiting fuses:  for overloads or fault currents of relatively low 
+value, the overcurrent device of the breaker operates to clear the fault.  The current-limiting fuses operate to clear the fault for high 
+magnitude short circuits above a predetermined value[ crossover point].</OLI><BRK/>
+<BRK/>
+<OLI>Housing for the current-limiting fuses:  an individual molding readily removable from the front and located at the load side of the circuit 
+breaker.  If the fuse housing is removed, a blown fuse is readily evident by means of a visible indicator. </OLI><BRK/>
+<BRK/>
+<OLI>Removal of fuse housing causes the breaker contacts to open, and the breaker contacts can not close with the fuse housing removed.  The 
+fuse housing can not be inserted with a blown fuse or with one fuse missing.  The blowing of any of the fuses causes the circuit breaker 
+contacts to open.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</SPT>[<SPT><TTL>Drawout Breakers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Determine which circuit breakers should be equipped with drawout mechanisms.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide drawout breakers[ as indicated][_____].  Equip drawout breakers with disconnecting contacts, wheels, and interlocks for drawout application.  
+Provide main, auxiliary, and control disconnecting contacts with silver-plated, multifinger, positive pressure, self-aligning type.  Provide each 
+drawout breaker with four-position operation with each position clearly identified by an indicator on the circuit breaker front panel as follows.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Connected Position:  Primary and secondary contacts are fully engaged.  Breaker must be tripped before racking into or out of position.</OLI><BRK/>
+<BRK/>
+<OLI>Test Position:  Primary contacts are disconnected but secondary contacts remain fully engaged.  This position allows complete test and 
+operation of the breaker without energizing the primary circuit.</OLI><BRK/>
+<BRK/>
+<OLI>Disconnected Position:  Primary and secondary contacts are disconnected.</OLI><BRK/>
+<BRK/>
+<OLI>Withdrawn (Removed) Position:  Places breaker completely out of compartment, ready for removal.  Removal of the breaker actuates assembly 
+that isolates the primary stabs.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL>Electronic Trip Units</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Switchboards can have a variety of circuit breaker sizes.  Determine which circuit breakers or other protective 
+devices should have electronic trip units and edit the options below accordingly.  Smaller circuit breakers will 
+typically have thermal-magnetic trip units.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Equip[ main and][ distribution] breakers[ as indicated] with a solid-state tripping system consisting of three current sensors and a microprocessor-based 
+trip unit that provides true rms sensing adjustable time-current circuit protection.  Include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Current sensors ampere rating:  [ as indicated][ [_____] amperes][ the same as the breaker frame rating].</OLI><BRK/>
+<BRK/>
+<OLI>Trip unit ampere rating:  [ as indicated][ [_____] amperes].</OLI><BRK/>
+<BRK/>
+[<OLI>Ground fault protection:  [ as indicated][ zero sequence sensing][ residual type sensing].</OLI><BRK/>
+<BRK/>
+][<OLI>Electronic trip units:  provide additional features[ as indicated]:</OLI><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In the items below, choose the bracketed item "main" when the item only applies to the main breaker.</NPR><BRK/>
+<BRK/>
+<NPR>Provide ground fault protection of equipment for solidly grounded wye electrical services of more than 150 volts 
+to ground for each service disconnect rated 1000 amperes or more in accordance with NFPA 70.</NPR><BRK/>
+<BRK/>
+<NPR>NFPA 70 requires arc energy reduction where the highest continuous current trip setting for which the actual overcurrent 
+device installed in a circuit breaker is rated or can be adjusted to 1200 amperes or higher.  The option identified 
+below is based on an energy-reducing maintenance switch.  Add the additional appropriate information if other 
+methods such as differential relaying or an active arc flash mitigation system are included.  Identify locations 
+of alternate arc energy reduction methods in the design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI LEVEL="2">[Indicated ]Breakers:  include long delay pick-up and time settings, and LED indication of cause of circuit breaker trip.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Main breakers:  include[ short delay pick-up and time settings][ and][, instantaneous settings][ and][ ground fault settings][ 
+as indicated].</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Distribution breakers:  include[ short delay pick-up and time settings][, instantaneous settings][, and ground fault settings][ 
+as indicated].</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">[Main ]Breakers:  include a digital display for phase and ground current.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">[Main ]Breakers:  include a digital display for watts, vars, VA, kWh, kvarh, and kVAh.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">[Main ]Breakers:  include a digital display for phase voltage, and percent THD voltage and current.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">[Main ]Breakers:  include provisions for communication via a network twisted pair cable for remote monitoring and control.  Provide 
+the following communications protocol:[DNP3][Modbus][IEC 61850].</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">For electronic trip units that are rated for or can be adjusted to 1,200 amperes or higher, provide arc energy reduction capability 
+with an energy-reducing maintenance switch with local status indicator.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>[<SPT><TTL>Metering</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC is used, coordinate meter requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Digital Meters</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Digital metering incorporates newer technology and provides additional information, often without additional 
+cost.  A control power transformer (115 V or 130 V) is usually required with this type of metering.</NPR><BRK/>
+<BRK/>
+<NPR>Digital meters are continually improving.  The display capability can be a simple display of numerical values 
+or a more sophisticated display showing waveforms.  Over-specification of the meter physical or software characteristics 
+will likely result in specification of an older obsolete meter.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>IEEE C37.90.1</RID> for surge withstand.  Provide true rms, plus/minus one percent accuracy, programmable, microprocessor-based meter enclosed in a sealed 
+case with the following features.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Display capability:</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Multi-Function Meter: Display a selected phase to neutral voltage, phase to phase voltage, percent phase to neutral voltage THD, 
+percent phase to phase voltage THD; a selected phase current, neutral current, percent phase current THD, percent neutral current; 
+selected total PF, kW, KVA, kVAR, FREQ, kVAh, kWh.  Detected alarm conditions include over/under current, over/under voltage, 
+over/under KVA, over/under frequency, over/under selected PF/kVAR, voltage phase reversal, voltage imbalance, reverse power, 
+over percent THD. Include a Form C KYZ pulse output relay on the meter.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Power Meter: Display Watts, VARs, and selected KVA/PF. Detected alarm conditions include over/under KVA, over/under PF, over/under 
+VARs, over/under reverse power.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Volt Meter: Provide capability to be selectable between display of the three phases of phase to neutral voltages and display 
+of the three phases of the phase to phase voltages.  Detected alarm conditions include over/under voltage, over/under voltage 
+imbalance, over percent THD.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Ammeter:  Display phase A, B, and C currents.  Detected alarm conditions include over/under current, over percent THD.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Digital Watthour Meter:  Provide a single selectable display for watts, total kilowatt hours (kWh) and watt demand (Wd).  Include 
+a Form C KYZ pulse output relay on the meter.</OLI><BRK/>
+<BRK/>
+]<OLI>Design meters to accept[ input from standard 5A secondary instrument transformers][ and][ direct voltage monitoring range to [300][600] 
+volts, phase to phase].</OLI><BRK/>
+<BRK/>
+<OLI>Provide programming via a front panel display and a communication interface accessible by a computer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide password secured programming stored in non-volatile EEPROM memory.</OLI><BRK/>
+<BRK/>
+<OLI>Provide digital communications in a Modbus [RTU] protocol via a [RS232C][RS485] serial port[ and an independently addressable [RS232C][RS485] 
+serial port].</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter that calculates and stores average max/min demand values with time and date for all readings based on a user selectable sliding 
+window averaging period.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter with programmable hi/low set limits with two Form C dry contact relays when exceeding alarm conditions.</OLI><BRK/>
+<BRK/>
+[<OLI>Provide meter with a display of Total Harmonic Distortion (THD) measurement to a minimum of the thirty-first order.</OLI><BRK/>
+<BRK/>
+][<OLI>Include historical trend logging capability with the ability to store up to 100,000 data points with intervals of 1 second to 180 minutes.  
+Provide a unit that can store and time stamp up to 1000 programmable triggered conditions.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide event waveform recording triggered by the rms of 2 cycles of voltage or current exceeding programmable set points.  Store waveforms 
+for all 6 channels of voltage and current for a minimum of 10 cycles prior to the event and 50 cycles past the event.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>][<SPT><TTL>Electronic Watthour Meter</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the Air Force, use Section <SRF>26 27 13.10 30</SRF> ELECTRIC METERS.</NPR><BRK/>
+<BRK/>
+<NPR>For the Navy, use Section <SRF>26 27 14.00 20</SRF> ELECTRICITY METERING.</NPR><BRK/>
+<BRK/>
+<NPR>For the Army, coordinate meter requirements in accordance with Engineering </NPR>and Construction Bulletin ECB 2015-2, Advanced Metering 
+and Connectivity.<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide as specified in Section [<SRF>26 27 14.00 20</SRF> ELECTRICITY METERING][<SRF>26 27 13.10 30</SRF> ELECTRIC METERS].</TXT><BRK/>
+<BRK/>
+][<TXT><RID>ANSI C12.1</RID>.  Provide a switchboard style electronic programmable watthour meter, semi-flush mounted, as indicated.  Meter can be either  programmed 
+at the factory or programmed in the field.  Turn field programming device over to the Contracting Officer at completion of project.  Coordinate 
+meter to system requirements.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Design:  Provide meter designed for use on a 3-phase, 4-wire, [208Y/120][480Y/277] volt system with 3 current transformers.  Include necessary 
+KYZ pulse initiation hardware for Energy Monitoring and Control System (EMCS).</OLI><BRK/>
+<BRK/>
+<OLI>Coordination:  Provide meter coordinated with ratios of current transformers and transformer secondary voltage.</OLI><BRK/>
+<BRK/>
+<OLI>Class: 20.  Accuracy: plus or minus 1.0 percent. Finish: Class II.</OLI><BRK/>
+<BRK/>
+<OLI>Kilowatt-hour Register: five digit electronic programmable type.</OLI><BRK/>
+<BRK/>
+<OLI>Demand Register:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide solid state.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Meter reading multiplier:  Indicate multiplier on the meter face.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Demand interval length: programmed for [15][30][60] minutes with rolling demand up to six subintervals per interval.</OLI><BRK/>
+<BRK/>
+<OLI>Meter fusing: Provide a fuse block mounted in the metering compartment containing one fuse per phase to protect the voltage input to the 
+watthour meter.  Size fuses as recommended by the meter manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter with a communications port, RS485, with Modbus RTU serial or Ethernet, Modbus-TCP communications.</OLI><BRK/></OLG>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the appropriate current transformer (CT) ratio, continuous-thermal-current rating factor (RF) at 
+30 degrees C and ANSI Metering Accuracy Class values based on the CT Ratio which is just below the rating of the 
+main protective device.</NPR><BRK/>
+<BRK/>
+<NPR>Select an ANSI Metering Accuracy Class in accordance with the following table:</NPR><BRK/>
+<BRK/>
+<NPR><TAB WIDTH="65">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="9">
+      <COL AUTOWIDTH="0" WIDTH="62.25"/>
+      <COL AUTOWIDTH="0" WIDTH="38.25"/>
+      <COL AUTOWIDTH="0" WIDTH="108.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">CT Ratio</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">RF</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Accuracy Class</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.1</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">300/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">400/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">600/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">800/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2.0</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1200/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">1500/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-0.9</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">2000/5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.3 thru B-1.8</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>IEEE C57.13</RID>.  Provide single ratio transformers, 60 hertz, [_____] to 5-ampere ratio, [_____] rating factor, with a metering accuracy class of 
+0.3 through [_____].</TXT><BRK/>
+<BRK/>
+[<TXT>Provide a fuse block mounted in the metering compartment containing one fuse per phase to protect the voltage input to voltage sensing meters.  
+Size fuses as recommended by the meter manufacturer.</TXT><BRK/>
+<BRK/>
+]]</SPT>][<SPT><TTL>Submetering</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For bases and activities that have an active submetering policy in place and written authorization has 
+been received, edit this section as necessary to specify the desired level of submetering and locations.</NPR><BRK/>
+<BRK/>
+<NPR>UFC 1-200-02 references ASHRAE 90.1-2010.  But ASHRAE 90.1-2010 does not address submetering criteria.  The intended 
+reference for this section is ASHRAE 90.1-2013, which does address submetering criteria.</NPR><BRK/>
+<BRK/>
+<NPR>If submetering is selected as an option, coordinate references to ASHRAE 90.1 with the lead person editing the 
+Division 1 Sections.  Typically, references to ASHRAE 90.1 in this Section will be to the 2013 edition, whereas 
+references to ASHRAE 90.1 in other Sections will be to the 2010 edition.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASHRAE 90.1 - IP</RID>.  Provide submetering for [_____].</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>][<SPT><TTL>Transformer</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Coordinate with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM, when transformer section is provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide transformer section in switchboard in accordance with <RID>UL 891</RID> and as indicated.  Provide the transformer and section that is suitable for 
+the installation.[  Test transformers greater than 10 kVA in accordance with <RID>UL 891</RID>.]  Provide a transformer conforming to the requirements of 
+Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Heaters</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the heater option if the switchboard will be installed in a non-environmentally controlled area.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide 120-volt heaters in each switchboard section.  Provide heaters of sufficient capacity to control moisture condensation in the section, 
+250 watts minimum, and controlled by a thermostat[ and humidistat] located in the section.  Provide industrial type thermostat, high limit, to 
+maintain sections within the range of<MET> 15 to 32 degrees C</MET><ENG> 60 to 90 degrees F</ENG>.[  Provide humidistat with a range of 30 to 60 percent relative humidity.]  
+Obtain supply voltage for the heaters from a control power transformer within the switchboard.  If heater voltage is different than switchboard 
+voltage, provide transformer rated to carry 125 percent of heater full load rating.  Provide transformer with a 220 degrees C insulation system 
+with a temperature rise not exceeding 115 degrees C and conforming to <RID>NEMA ST 20</RID>.[  Energize electric heaters in switchboard assemblies while the 
+equipment is in storage or in place prior to being placed in service.  Provide method for easy connection of heater to external power source.  
+Provide temporary, reliable external power source if commercial power at rated voltage is not available on site.]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Terminal Boards</TTL><BRK/>
+<BRK/>
+<TXT>Provide with engraved plastic terminal strips and screw type terminals for external wiring between components and for internal wiring between removable 
+assemblies.  Provide short-circuiting type terminal boards associated with current transformer.  Terminate conductors for current transformers 
+with ring-tongue lugs.  Provide terminal board identification that is identical in similar units.  Provide color coded external wiring that is 
+color coded consistently for similar terminal boards.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wire Marking</TTL><BRK/>
+<BRK/>
+<TXT>Mark control and metering conductors at each end.  Provide factory installed, white, plastic tubing, heat stamped with black block type letters 
+on factory-installed wiring.  On field-installed wiring, provide white, preprinted, polyvinyl chloride (PVC) sleeves, heat stamped with black block 
+type letters.  Provide a single letter or number on each sleeve, elliptically shaped to securely grip the wire, and keyed in such a manner to ensure 
+alignment with adjacent sleeves.  Provide specific wire markings using the appropriate combination of individual sleeves.  Indicate on each wire 
+marker the device or equipment, including specific terminal number to which the remote end of the wire is attached.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MANUFACTURER'S NAMEPLATE</TTL><BRK/>
+<BRK/>
+<TXT>Provide a nameplate on each item of equipment bearing the manufacturer's name, address, model number, and serial number securely affixed in a conspicuous 
+place; the nameplate of the distributing agent is not acceptable.  This nameplate and method of attachment may be the manufacturer's standard if 
+it contains the required information.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD FABRICATED NAMEPLATES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the bracketed sentence to specify labels for switchboards where emergency breakers are located within 
+the switchboard.  Provide note on the drawings to indicate where red labels are required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM D709</RID>.  Provide laminated plastic nameplates for each switchboard, equipment enclosure, relay, switch, and device; as specified in this section 
+or as indicated on the drawings.  Identify on each nameplate inscription the function and, when applicable, the position.  Provide nameplates of 
+melamine plastic,<MET> 3 mm</MET><ENG> 0.125 inch</ENG> thick, white with [black][_____] center core.[  Provide red laminated plastic label with white center core where 
+indicated.]  Provide matte finish surface.  Provide square corners.  Accurately align lettering and engrave into the core.  Provide nameplates 
+with minimum size of<MET> 25 by 65 mm</MET><ENG> one by 2.5 inches</ENG>.  Provide lettering that is a minimum of<MET> 6.35 mm</MET><ENG> 0.25 inch</ENG> high normal block style.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SOURCE QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Equipment Test Schedule</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The Government reserves the right to witness tests.  Provide equipment test schedules for tests to be performed at the manufacturer's test facility.  
+Submit required test schedule and location, and notify the Contracting Officer 30 calendar days before scheduled test date.  Notify Contracting 
+Officer 15 calendar days in advance of changes to scheduled date.</TXT><BRK/>
+<BRK/>
+<TXT>Provide the following as part of test equipment calibration:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide a calibration program which assures that all applicable test instruments are maintained within rated accuracy.</OLI><BRK/>
+<BRK/>
+<OLI>Accuracy:  Traceable to the National Institute of Standards and Technology.</OLI><BRK/>
+<BRK/>
+<OLI>Instrument calibration frequency schedule:  less than or equal to 12 months for both test floor instruments and leased specialty equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Dated calibration labels:  visible on all test equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Calibrating standard:  higher accuracy than that of the instrument tested.</OLI><BRK/>
+<BRK/>
+<OLI>Keep up-to-date records that indicate dates and test results of instruments calibrated or tested.  For instruments calibrated by the manufacturer 
+on a routine basis, in lieu of third party calibration, include the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Maintain up-to-date instrument calibration instructions and procedures for each test instrument.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Identify the third party/laboratory calibrated instrument to verify that calibrating standard is met.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Switchboard Design Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA PB 2</RID> and <RID>UL 891</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Design Tests</TTL><BRK/>
+<BRK/>
+<TXT>Furnish documentation showing the results of design tests on a product of the same series and rating as that provided by this specification.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Short-circuit current test.</OLI><BRK/>
+<BRK/>
+<OLI>Enclosure tests.</OLI><BRK/>
+<BRK/>
+<OLI>Dielectric test.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Additional Design Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include additional design tests when the switchboard main bus is rated greater than 4000 amperes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>In addition to normal design tests, perform the following tests on the actual equipment.  Furnish reports which include results of design tests 
+performed on the actual equipment.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Temperature rise tests.</OLI><BRK/>
+<BRK/>
+<OLI>Continuous current.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</SPT><SPT><TTL><SUB>Switchboard Production Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA PB 2</RID> and <RID>UL 891</RID>.  Furnish reports which include results of production tests performed on the actual equipment for this project.  These tests 
+include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>60-hertz dielectric tests.</OLI><BRK/>
+<BRK/>
+<OLI>Mechanical operation tests.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical operation and control wiring tests.</OLI><BRK/>
+<BRK/>
+<OLI>Ground fault sensing equipment test.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>COORDINATED POWER SYSTEM PROTECTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph only for Army projects.</NPR><BRK/>
+<BRK/>
+<NPR>The requirement for studies in this section depends on the complexity and extent of the power system.  Delete 
+this requirement for projects of limited scope, projects having protective devices which are not adjustable or 
+for which coordination is not possible (standard molded case circuit breakers); projects involving simple extension 
+of 600 volt level service to a building or facility from an existing transformer (750 kVA or less); or projects 
+involving simple extension of 600 volt level service to a building or facility from a new transformer (750 kVA 
+or less).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a power system study as specified in Section <SRF>26 05 73</SRF> POWER SYSTEM STUDIES.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>ARC FLASH WARNING LABEL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the Arc Flash Warning Label detail on the drawings.  See the technical note at the beginning of 
+section to obtain the AutoCAD drawing file of the label.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide warning label for switchboards.  Locate this self-adhesive warning label on the outside of the enclosure warning of potential electrical 
+arc flash hazards and appropriate PPE required.  Provide label format as indicated.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>SERVICE ENTRANCE AVAILABLE FAULT CURRENT LABEL</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  NFPA 70 requires that service equipment in other than dwelling units be legibly marked in the field with 
+the maximum available fault current, including the date the fault-current calculation was performed.  In addition, 
+include the contact information for the organization that completed the calculation.  Select this option if the 
+switchboard will be used as service entrance equipment.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate with the person developing the Division 1 Sections and ensure that Division 1 Sections identify the 
+person responsible for providing the short circuit calculation for the project. This may vary for design/build 
+versus design/bid/build projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide label on exterior of switchboards used as service equipment listing the maximum available fault current at that location.  Include on the 
+label the date that the fault calculation was performed and the contact information for the organization that completed the calculation.  Locate 
+this self-adhesive warning label on the outside of the switchboard.  Provide label format as indicated.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>MIMIC BUS LABELING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include a mimic bus if the system complexity warrants providing a one-line of the system configuration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a mimic bus on the front of the equipment to diagrammatically show the internal bus structure of the lineup.</TXT><BRK/>
+<BRK/></SPT>
+]</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>IEEE C2</RID>, <RID>NFPA 70</RID>, and to the requirements specified herein.  Provide new equipment and materials unless indicated or specified otherwise.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the grounding section below for installations involving a switchboard installed in an exterior 
+application.  If the switchboard is installed adjacent to a pad-mounted distribution transformer, then coordinate 
+the grounding requirements between the applicable specifications.</NPR><BRK/>
+<AST/><BRK/>
+ </NTE><BRK/></SPT>
+[<SPT><TTL>GROUNDING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where rock or other soil conditions prevent obtaining a specified ground value, specify other methods of 
+grounding.  Where it is impractical to obtain the indicated ground resistance values, make every effort to obtain 
+ground resistance values as near as possible to the indicated values.</NPR><BRK/>
+<BRK/>
+<NPR>Select 25 ohms resistance unless the installation requires a lower resistance to ground.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>NFPA 70</RID> and <RID>IEEE C2</RID>, except that grounds and grounding systems with a resistance to solid earth ground not exceeding [25][_____] ohms.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Grounding Electrodes</TTL><BRK/>
+<BRK/>
+<TXT>Provide driven ground rods as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.  Connect ground conductors to the upper end of 
+the ground rods by exothermic weld or compression connector.  Provide compression connectors at equipment end of ground conductors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Provide bare copper cable not smaller than No. 4/0 AWG not less than<MET> 610 mm</MET><ENG> 24 inches</ENG> below grade connecting to the indicated ground rods.  When 
+work in addition to that indicated or specified is directed to obtain the specified ground resistance, the provision of the contract covering "Changes" 
+applies.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections</TTL><BRK/>
+<BRK/>
+<TXT>Make joints in grounding conductors and loops by exothermic weld or compression connector.  Install exothermic welds and compression connectors 
+as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding and Bonding Equipment</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 467</RID>, except as indicated or specified otherwise.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>INSTALLATION OF EQUIPMENT AND ASSEMBLIES</TTL><BRK/>
+<BRK/>
+<TXT>Install and connect equipment furnished under this section as indicated on project drawings, the approved shop drawings, and as specified herein.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Switchboard</TTL><BRK/>
+<BRK/>
+<TXT><RID>ANSI/NEMA PB 2.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Meters and Instrument Transformers</TTL><BRK/>
+<BRK/>
+<TXT><RID>ANSI C12.1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Applied Painting</TTL><BRK/>
+<BRK/>
+<TXT>Where field painting of enclosures is required to correct damage to the manufacturer's factory applied coatings, provide manufacturer's recommended 
+coatings and apply in accordance with manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Galvanizing Repair</TTL><BRK/>
+<BRK/>
+<TXT>Repair damage to galvanized coatings using <RID>ASTM A780/A780M</RID>, zinc rich paint, for galvanizing damaged by handling, transporting, cutting, welding, 
+or bolting.  Do not heat surfaces that repair paint has been applied to.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Fabricated Nameplate Mounting</TTL><BRK/>
+<BRK/>
+<TXT>Provide number, location, and letter designation of nameplates as indicated.  Fasten nameplates to the device with a minimum of two sheet-metal 
+screws or two rivets.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FOUNDATION FOR EQUIPMENT AND ASSEMBLIES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Mounting slab connections may have to be given in detail depending on the requirements for the seismic 
+zone in which the equipment is located.  Include construction requirements for concrete slab only if slab is not 
+detailed in drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Exterior Location</TTL><BRK/>
+<BRK/>
+<TXT>Mount switchboard on concrete slab as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Unless otherwise indicated, provide the slab with dimensions at least<MET> 200 mm</MET><ENG> 8 inches</ENG> thick, reinforced with a<MET> 150 by 150 mm</MET><ENG> 6 by 6 inch</ENG>
+ No. 6 mesh placed uniformly<MET> 100 mm</MET><ENG> 4 inches</ENG> from the top of the slab.</OLI><BRK/>
+<BRK/>
+<OLI>Place slab on a<MET> 150 mm</MET><ENG> 6 inch</ENG> thick, well-compacted gravel base. </OLI><BRK/>
+<BRK/>
+<OLI>Install slab such that the top of the concrete slab is approximately<MET> 100 mm</MET><ENG> 4 inches</ENG> above the finished grade.</OLI><BRK/>
+<BRK/>
+<OLI>Provide edges above grade <MET>with 15 mm</MET><ENG> 1/2 inch</ENG> chamfer.  </OLI><BRK/>
+<BRK/>
+<OLI>Provide slab of adequate size to project at least<MET> 200 mm</MET><ENG> 8 inches</ENG> beyond the equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Provide conduit turnups and cable entrance space required by the equipment to be mounted.</OLI><BRK/>
+<BRK/>
+<OLI>Seal voids around conduit openings in slab with water- and oil-resistant caulking or sealant.</OLI><BRK/>
+<BRK/>
+<OLI>Cut off and bush conduits<MET> 75 mm</MET><ENG> 3 inches</ENG> above slab surface.</OLI><BRK/>
+<BRK/>
+<OLI>Provide concrete work as specified in Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Interior Location</TTL><BRK/>
+<BRK/>
+<TXT>Mount switchboard on concrete slab as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Unless otherwise indicated, provide the slab with dimensions at least<MET> 100 mm</MET><ENG> 4 inches</ENG> thick.</OLI><BRK/>
+<BRK/>
+<OLI>Install slab such that the top of the concrete slab is approximately<MET> 100 mm</MET><ENG> 4 inches</ENG> above the finished grade.  </OLI><BRK/>
+<BRK/>
+<OLI>Provide edges above grade<MET> with 15 mm</MET><ENG> 1/2 inch</ENG> chamfer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide slab of adequate size to project at least<MET> 200 mm</MET><ENG> 8 inches</ENG> beyond the equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Provide conduit turnups and cable entrance space required by the equipment to be mounted.</OLI><BRK/>
+<BRK/>
+<OLI>Seal voids around conduit openings in slab with water- and oil-resistant caulking or sealant.</OLI><BRK/>
+<BRK/>
+<OLI>Cut off and bush conduits<MET> 75 mm</MET><ENG> 3 inches</ENG> above slab surface.</OLI><BRK/>
+<BRK/>
+<OLI>Provide concrete work as specified in Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select "Request for Settings" below if protective device settings will be government furnished.  Select 
+"Required Settings" below if protective device settings are furnished by the Designer of Record.  Coordinate with 
+the person developing the Division 1 Sections and ensure that Division 1 Sections identify the person responsible 
+for providing the final protective device settings for design/build versus design/bid/build projects.  Do not 
+rely on the manufacturer's default settings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Submit <SUB>request for settings</SUB> of breakers to the Contracting Officer after approval of switchboard and at least 30 days in advance of their requirement.</TXT><BRK/>
+<BRK/>
+][<TXT>Submit <SUB>Required Settings</SUB> of breakers to the Contracting Officer after approval of switchboard and at least 30 days in advance of their requirement.</TXT><BRK/>
+<BRK/>
+]<SPT><TTL>Performance of <SUB>Acceptance Checks and Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Perform in accordance with the manufacturer's recommendations</TST> and include the following visual and mechanical inspections and electrical tests, 
+performed in accordance with <RID>NETA ATS</RID>.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the options below that apply to the specified equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Switchboard Assemblies</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical, electrical, and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify appropriate anchorage, required area clearances, and correct alignment.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Clean switchboard and verify shipping bracing, loose parts, and documentation shipped inside cubicles have been removed.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all doors, panels, and sections for paint, dents, scratches, fit, and missing hardware.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that[ fuse and] circuit breaker sizes and types correspond to approved shop drawings as well as to the circuit breaker’s 
+address for microprocessor-communication packages.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Verify that current transformer ratios correspond to approved shop drawings.</OLI><BRK/>
+<BRK/>
+]<OLI LEVEL="2">Inspect all bolted electrical connections for high resistance using low-resistance ohmmeter, verifying  tightness of accessible 
+bolted electrical connections by calibrated torque-wrench method, or performing thermographic survey.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Confirm correct operation and sequencing of electrical and mechanical interlock systems.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Confirm correct application of manufacturer's recommended lubricants.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect insulators for evidence of physical damage or contaminated surfaces.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify correct barrier installation[ and operation].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Exercise all active components.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all mechanical indicating devices for correct operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that filters are in place and vents are clear.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Test operation, alignment, and penetration of instrument transformer withdrawal disconnects.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect control power transformers.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation-resistance tests on each bus section.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform dielectric withstand voltage tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation-resistance test on control wiring; Do not perform this test on wiring connected to solid-state components.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform control wiring performance test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform primary current injection tests on the entire current circuit in each section of assembly.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Perform phasing check on double-ended switchboard to ensure correct bus phasing from each source.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Verify operation of switchboard heaters.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>[<SPT><TTL>Circuit Breakers - Low Voltage - Power</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect anchorage, alignment, and grounding.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that all maintenance devices are available for servicing and operating the breaker.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect arc chutes.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect moving and stationary contacts for condition, wear, and alignment.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that primary and secondary contact wipe and other dimensions vital to satisfactory operation of the breaker are correct.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform all mechanical operator and contact alignment tests on both the breaker and its operating mechanism.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all bolted electrical connections for high resistance using low-resistance ohmmeter, verifying  tightness of accessible 
+bolted electrical connections by calibrated torque-wrench method, or performing thermographic survey.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify cell fit and element alignment.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify racking mechanism.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Confirm correct application of manufacturer's recommended lubricants.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform contact-resistance tests on each breaker.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation-resistance tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Adjust Breaker(s) for final settings in accordance with Government provided settings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Determine long-time minimum pickup current by primary current injection.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Determine long-time delay by primary current injection.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate each option with each breaker type.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI LEVEL="2">Determine short-time pickup and delay by primary current injection.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Determine ground-fault pickup and delay by primary current injection.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Determine instantaneous pickup value by primary current injection.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Activate auxiliary protective devices, such as ground-fault or undervoltage relays, to ensure operation of shunt trip devices; 
+Check the operation of electrically-operated breakers in their cubicle.</OLI><BRK/>
+<BRK/>
+]<OLI LEVEL="2">Verify correct operation of any auxiliary features such as trip and pickup indicators, zone interlocking, electrical close and 
+trip operation, trip-free, and antipump function.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify operation of charging mechanism.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL>Circuit Breakers</TTL><BRK/>
+<BRK/>
+<TXT>[Low Voltage - Insulated-Case][ and ][Low Voltage Molded Case with Solid State Trips]</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect circuit breaker for correct mounting.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Operate circuit breaker to ensure smooth operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect case for cracks or other defects.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all bolted electrical connections for high resistance using low resistance ohmmeter, verifying tightness of accessible 
+bolted connections and/or cable connections by calibrated torque-wrench method, or performing thermographic survey.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect mechanism contacts and arc chutes in unsealed units.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform contact-resistance tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation-resistance tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform Breaker adjustments for final settings in accordance with Government provided settings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform long-time delay time-current characteristic tests</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate each option with each breaker type.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI LEVEL="2">Determine short-time pickup and delay by primary current injection.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Determine ground-fault pickup and time delay by primary current injection.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Determine instantaneous pickup current by primary injection.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Verify correct operation of any auxiliary features such as trip and pickup indicators, zone interlocking, electrical close and 
+trip operation, trip-free, and anti-pump function.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Current Transformers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify correct connection.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that adequate clearances exist between primary and secondary circuit.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all bolted electrical connections for high resistance using low-resistance ohmmeter, verifying tightness of accessible 
+bolted electrical connections by calibrated torque-wrench method, or performing thermographic survey.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify that all required grounding and shorting connections provide good contact.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform resistance measurements through all bolted connections with low-resistance ohmmeter, if applicable.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform insulation-resistance tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform polarity tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform ratio-verification tests.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Metering and Instrumentation</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate data with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify tightness of electrical connections.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Determine accuracy of meters at 25, 50, 75, and 100 percent of full scale.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Calibrate watthour meters according to manufacturer's published data.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Verify all instrument multipliers.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Electrically confirm that current transformer and voltage transformer secondary circuits are intact.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Grounding System</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect ground system for compliance with contract plans and specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2"><RID>IEEE 81</RID>.  Perform ground-impedance measurements utilizing the fall-of-potential method.  On systems consisting of interconnected 
+ground rods, perform tests after interconnections are complete.  On systems consisting of a single ground rod perform tests before 
+any wire is connected.  Take measurements in normally dry weather, not less than 48 hours after rainfall.  Use a portable ground 
+resistance tester in accordance with manufacturer's instructions to test each ground or group of grounds.  Use an instrument 
+equipped with a meter reading directly in ohms or fractions thereof to indicate the ground value of the ground rod or grounding 
+systems under test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Submit the measured ground resistance of each ground rod and grounding system, indicating the location of the rod and grounding 
+system.  Include the test method and test setup (i.e., pin location) used to determine ground resistance and soil conditions 
+at the time the measurements were made.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Cybersecurity Installation Certification</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate equipment certification with Government's cybersecurity requirements and interpretations.  Select 
+this option if the switchboard includes remote control or remote access capability.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Furnish a certification that control systems are installed in accordance with DoD Instruction 8500.01, DoD Instruction 8510.01, and as required 
+by individual Service Implementation Policy.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Follow-Up Verification</TTL><BRK/>
+<BRK/>
+<TXT><TST>Upon completion of acceptance checks, settings, and tests, show by demonstration in service that circuits and devices are in good operating condition 
+and properly performing the intended function.</TST> Trip circuit breakers by operation of each protective device.  <TST>Test each item to perform its function 
+not less than three times.</TST>  <NED/>As an exception to requirements stated elsewhere in the contract, provide the Contracting Officer five working days 
+advance notice of the dates and times for checks, settings, and tests.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-27 05 29.00 10 (November 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-27 05 29.00 10 (August 2011)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 27 05 29.00 10</SCN><BRK/>
+ <BRK/>
+<STL>PROTECTED DISTRIBUTION SYSTEM (PDS) FOR SIPRNET COMMUNICATION SYSTEMS</STL><BRK/>
+<DTE>11/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>a protected distribution 
+system used in conjunction with SIPRNET communication systems</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification. The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM D1785</RID><RTL>(2021) Standard Specification for Poly(Vinyl Chloride) (PVC), Plastic Pipe, Schedules 40, 80, and 120</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>ANSI C80.3</RID><RTL>(2020) American National Standard for Electrical Metallic Tubing (EMT)</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL SECURITY TELECOMMUNICATIONS AND INFORMATION SYSTEMS SECURITY (NSTISS)</ORG><BRK/><BRK/><RID>CNSSAM TEMPEST/1-13</RID><RTL>(2013) RED/BLACK Installation Guidance</RTL><BRK/><BRK/><RID>CNSSI-7003</RID><RTL>(2015) Protected Distribution Systems (PDS)</RTL><BRK/><BRK/></REF><REF><ORG>TELECOMMUNICATIONS INDUSTRY ASSOCIATION (TIA)</ORG><BRK/><BRK/><RID>ANSI/TIA-569</RID><RTL>(2019e; Add 1 2022) Telecommunications Pathways and Spaces</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 4</RID><RTL>(2026) UL Standard for Safety Armored Cable</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>ADMINISTRATIVE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Conditions</TTL><BRK/>
+<BRK/>
+<TXT>Notify the Contracting Officer if it is impossible to install SIPRNET PDS that complies with this section and 
+references.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Construction Methods</TTL><BRK/>
+<BRK/>
+<TXT>Methods of construction that are not specifically described or indicated in the Contract will be subject to the 
+control and approval of the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>PDS Design</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Army, select Network Entrerprise Center (NEC), Base Communications 
+Officer (BCO) for Navy, Installation Communications-G6 for Marine Corps, and 
+Base/Installation Communicatons Squadron, Commander's Representative for Air 
+Force.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include separate plans, elevations, sections, details, and attachments to other work.  Indicate PDS carrier route, 
+PDS carrier mounting height above finished floor, user drop box mounting height, and user drop box locations.  
+Submit the PDS design to the cognizant Certified TEMPEST Technical Authority (CTTA), for a technical review of 
+[2][_] weeks prior to the acquisition of material, through the installation Telecommunications Manager: [Network 
+Enterprise Center (NEC)][Base Communications Officer (BCO)][Installation Communications-G6][Base/Installation 
+Communications Squadron, Commander's Representative.].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>PDS Design Technical Review</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Coordinate with the installation Telecommunications Manager and submit PDS design for technical review to the 
+CTTA.  Provide PDS carrier shop drawings, List of Material (LOM), and any other documentation required 90-days 
+prior to PDS carrier installation (see <RID>CNSSI-7003</RID>, Appendix C).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>PDS Design Approval</SUB> Request</TTL><BRK/>
+<BRK/>
+<TXT>PDS design approving authority is the installation Telecommunications Manager Designated Approving Authority.  
+Submit PDS design and CTTA technical review to the installation Telecommunications Manager to obtain PDS design 
+approval from the RMF NIST prior to installation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>PDS Design</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>PDS Design Technical Review</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>PDS Design Approval</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Category 1 PDS</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Category 2 PDS</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-04 Samples</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>PDS Carrier Surface Mounted</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pull Boxes</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fittings</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>User Drop Box</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Other Enclosures</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Manufacturer's Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Use firms regularly engaged in manufacture of secure raceway systems, boxes, and fittings of the types and sizes 
+required, whose products have been in satisfactory use in similar service for not less than 3 years.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installer's Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Installer is required to obtain certification from the manufacturer of secure raceway system and install secure 
+raceway system in accordance with manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Equipment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A Category 1 PDS provides a reduced level of physical security protection 
+due to the higher level of control for the surrounding area. A Category 1 PDS 
+can therefore generally be installed using a simple carrier at a reduced cost.<BRK/>
+<BRK/>
+A Category 2 PDS provides significant physical security protection and can be 
+implemented by using one of the following carriers: hardened, buried, suspended, 
+alarmed, or continuously viewed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a [<SUB>Category 1 PDS</SUB>][<SUB>Category 2 PDS</SUB>] meeting or exceeding guidelines as defined by <RID>CNSSI-7003</RID> and approved 
+for use by Deparment of Homeland Security (DHS), U.S. Army, U.S. Marine Corps, U.S. Navy, and U.S. Air Force.  
+Submit manufacturer's descriptive data.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Deliver secure raceways, conduit, fittings and components in factory labeled packages.  Store and handle in strict 
+compliance with manufacturer's written instructions and recommendations.  Protect from damage due to weather, 
+excessive temperature, and construction operations.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PDS CARRIER CONFIGURATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use Secure Raceway carrier system in office environments, for SIPRNET 
+PDS, unless the installation Telecommunications Manager specifically specifies 
+a Conduit Carrier system.  Conduit carrier may be used in non-office environments, 
+such as hangars, maintenance facilities, warehouse, BCTC, etc.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="CONDUIT CARRIER"><SPT><TTL>Conduit Carrier</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Category 1 PDS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Use <ENG>[1][2][3][4]-inch</ENG> [EMT][, ][PVC of at least schedule-40 grade][, or ][armored cable] that meets [<RID>
+ANSI C80.3</RID>][, ][<RID>ASTM D1785</RID>][, or ][<RID>UL 4</RID>] for horizontal backbone or vertical riser runs; <ENG>[3/4][1]-inch</ENG>
+ [EMT][, ][PVC of at least schedule-40 grade][, or ][armored cable] that meets [<RID>ANSI C80.3</RID>][, ][<RID>ASTM D1785</RID>
+][, or ][<RID>UL 4</RID>] for vertical runs from horizontal runs to secure user drop box. Use components (e.g. couplers, 
+connectors, condulette, fittings, pull boxes, enclosures) constructed of the same material as conduit.</OLI><BRK/>
+<BRK/>
+[<OLI>If armored cable is used, the armor jacket for the cable must be constructed of a flexible metallic material. 
+If the armored cable is not constructed of a solid, continuous material, then the metallic material must 
+have an overall, continuous plastic sheath.</OLI><BRK/>
+<BRK/>
+]<OLI>Do not exceed 30 percent cable fill capacity of secure raceway. </OLI><BRK/>
+<BRK/>
+<OLI>The carrier must not open to expose data cables, except at approved pull boxes and termination boxes.</OLI><BRK/>
+<BRK/></OLG>
+</SPT>][<SPT><TTL>Category 2 PDS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Flexible conduit and armored cables must not be used as a hardened carrier.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Hardened Carrier</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Use <ENG>[1][2][3][4]-inch</ENG> EMT conduit that meets <RID>ANSI C80.3</RID> for horizontal backbone or vertical riser runs; <ENG>
+[3/4][1]-inch</ENG> EMT conduit that meets <RID>ANSI C80.3</RID> for vertical runs from horizontal runs to secure user 
+drop box. Use components (e.g. couplers, connectors, condulette, fittings, pull boxes, enclosures) constructed 
+from ferrous metallic material.  Use of components constructed from non-ferrous metallic material is 
+not acceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Do not exceed 30 percent cable fill capacity of secure raceway.</OLI><BRK/>
+<BRK/>
+<OLI>The carrier must not open to expose data cables, except at approved pull boxes and termination boxes.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Burried Carrier</TTL><BRK/>
+<OLG><BRK/>
+<OLI>[EMT][RMC][IMC][PVC-40][PVC-80]</OLI><BRK/>
+<BRK/>
+<OLI>All connections must be permanently sealed around mating surfaces by means of [welding][two-layer epoxy][fusion][PVC 
+glue]</OLI><BRK/>
+<BRK/>
+<OLI>Utilize elbows, couplings, fittings and connectors constructed from the same type of ferrous material 
+as the carrier.</OLI><BRK/>
+<BRK/>
+<OLI>Do not exceed 30 percent fill capacity of secure conduit. </OLI><BRK/>
+<BRK/>
+<OLI>The carrier must not open to expose data cables, except at approved pull boxes and termination boxes.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Suspended Carrier</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Carrier must terminate in a Controlled Access Area (CAA) on each end or immediately enter a hardened 
+PDS at the building boundary.</OLI><BRK/>
+<BRK/>
+<OLI>Carrier must be hung directly between buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Provide clear unobstructed view of carrier at all time. The entirety of the carrier must be illuminated 
+at night.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Alarmed Carrier</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Use <ENG>[1][2][3][4]-inch</ENG> EMT conduit that meets <RID>ANSI C80.3</RID> for horizontal backbone or vertical riser runs; <ENG>
+[3/4][1]-inch</ENG> EMT conduit that meets <RID>ANSI C80.3</RID> for vertical runs from horizontal runs to secure user 
+drop box. Use components (e.g. couplers, connectors, condulette, fittings, pull boxes, enclosures) constructed 
+from ferrous metallic material.  Use of components constructed from non-ferrous metallic material is 
+not acceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Do not exceed 30 percent cable fill capacity of secure raceway.</OLI><BRK/>
+<BRK/>
+<OLI>The carrier must not open to expose data cables, except at approved pull boxes and termination boxes.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Continuously Viewed Carrier</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Use <ENG>[1][2][3][4]-inch</ENG> EMT conduit that meets <RID>ANSI C80.3</RID> for horizontal backbone or vertical riser runs; <ENG>
+[3/4][1]-inch</ENG> EMT conduit that meets <RID>ANSI C80.3</RID> for vertical runs from horizontal runs to secure user 
+drop box. Use components (e.g. couplers, connectors, condulette, fittings, pull boxes, enclosures) constructed 
+from ferrous metallic material.  Use of components constructed from non-ferrous metallic material is 
+not acceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Do not exceed 30 percent cable fill capacity of secure raceway.</OLI><BRK/>
+<BRK/>
+<OLI>The carrier must not open to expose data cables, except at approved pull boxes and termination boxes.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</SPT>]<SPT><TTL>Mounting Brackets</TTL><BRK/>
+<BRK/>
+<TXT>Surface mount PDS conduit carrier on interior walls using<MET> [12] [25] mm</MET><ENG> [1]-inch</ENG> stand-off mounting brackets.  
+Use of non-metallic pipe hangers is acceptable to mount PDS conduit carrier to wall partitions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pull Boxes</TTL><BRK/>
+<BRK/>
+<TXT>Provide a pull box with a pull string between every pair of adjacent access/pull locations; for every 180 degree 
+bends in EMT conduit carrier; and every 100 feet of continuous conduit run.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Size <SUB>pull boxes</SUB> according to the size of the conduit, not the number of cables or conduits that enter/exit 
+the pull box. <RID>NFPA 70</RID> conduit fill standards do not apply.</OLI><BRK/>
+<BRK/>
+<OLI>Leave pull string in place throughout the conduit carrier, even after cable is pulled, in each horizontal 
+and vertical run.</OLI><BRK/>
+<BRK/>
+<OLI>Seal all joints of pull boxes [by welding][with epoxy].</OLI><BRK/>
+<BRK/></OLG>
+</SPT></SPT><TAI OPT="SECURE RACEWAY CARRIER"><SPT><TTL>Secure Raceway Carrier</TTL><BRK/>
+<BRK/>
+<TXT>Provide secure raceway, fittings and components manufactured from ferrous material.  Submit three<MET> 150 mm</MET><ENG> 6-inch</ENG>
+ lengths of exposed type <SUB>PDS carrier surface mounted</SUB> conduit material, including component and fitting samples 
+from the manufacturer, along with a LOM to the Telecommunications Manager.  Show finishes available (if applicable).  
+PDS carrier that is comprised of Secure Raceway systems must be:</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Category 2 PDS (Hardened Carrier)</TTL><BRK/>
+<OLG><BRK/>
+<OLI>[Square][, or ][rectangular] design with solid construction</OLI><BRK/>
+<BRK/>
+<OLI>[<MET>50 by 50 mm</MET><ENG> 2 by 2 inch</ENG> raceway][<MET>50 by 100 mm</MET><ENG> 2 by 4 inch</ENG> raceway] for horizontal backbone and vertical 
+riser runs</OLI><BRK/>
+<BRK/>
+<OLI>[<MET>25 by 25 mm</MET><ENG> 1 by 1 inch</ENG>][<MET>12 by 25 mm</MET><ENG> 1/2 by 1 inch</ENG>] raceway for vertical user drops from horizontal 
+backbone</OLI><BRK/>
+<BRK/>
+<OLI>Utilize elbows, couplings, fittings and connectors constructed from the same type of ferrous material 
+as the secure raceway</OLI><BRK/>
+<BRK/>
+<OLI>Do not exceed 30 percent fill capacity of secure raceway of solid construction.</OLI><BRK/>
+<BRK/>
+<OLI>The carrier must not open to expose data cables, except at approved pull boxes and termination boxes.</OLI></OLG><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Fittings and Components</TTL><BRK/>
+<BRK/>
+<TXT>Fittings and components include internal and external elbows, tees, couplings for joining raceway sections, nipples, 
+wire clips, blank end fittings, and device mounting brackets and plates as applicable.  Provide full capacity 
+corner elbows and fittings to maintain a controlled<MET> 50 mm</MET><ENG> 2-inch</ENG> cable bend radius that meet the <RID>ANSI/TIA-569</RID>
+ specification for Fiber Optic and UTP cabling and exceeding the requirements for communications pathways.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pull Boxes</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide a pull box for secure raceway of solid construction every 180 degree change in direction.  Provide 
+additional pull boxes in accordance with the manufacturer's instructions. Pull boxes must have all joints 
+[welded][epoxied]</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: For low threat areas, retain 16 gauge.  For medium threat areas, retain 
+14 gauge. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Pull boxes must be constructed of a ferrous metal with a minimum thickness of [16 gauge][14 gauge]. Pull 
+boxes with pre-punched knockouts must not be used.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></TAI></TAI></SPT><SPT><TTL>USER DROP BOX</TTL><BRK/>
+<BRK/>
+<TXT>Provide User Drop Box (UDB) (aka Secure User Workstation Enclosure, Drop Box, or Lockbox) that is at least<MET> 175 
+mm</MET><ENG> 7-inch</ENG> high by<MET> 150 mm</MET><ENG> 6-inch</ENG> wide by<MET> 100 mm</MET><ENG> 4-inch</ENG> deep, tamper-resistant design constructed from [14][16] 
+gauge steel with welded internal hinges, without pre-punched knockouts; and has a single door that has a built-in 
+steel hasp that accepts a GSA approved changeable combination padlock.  UDB must accommodate a complete line 
+of open connectivity outlets; modular inserts for Category 6 UTP or STP cable; fiber optic cabling with matching 
+faceplates.  Provide STP cabling consisting of shielded connectors, jacks, and patch panels.  UDB with exterior 
+hinges, pre-punched knockouts, and built-in locks are not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ENCLOSURES</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment and pull-box enclosures constructed from [14][16] gauge steel; have a single door with a built-in 
+steel hasp or multi-point security hasp that accepts a GSA approved changeable combination padlock; without pre-punched 
+knockouts; and a tamper-resistant design with welded internal hinges.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>Examine the route and mounting locations of the raceways, boxes, distribution systems, supporting structure and 
+accessories, to determine if conditions exist that will inhibit or prevent proper PDS installation and continued 
+inspections after installation.  Notify the Contracting Officer in writing of conditions detrimental to proper 
+completion of the work (i.e. that would render the distribution system non-compliant with governing security 
+regulations).  Do not proceed with work until unsatisfactory conditions are corrected.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PDS CARRIER ROUTING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Route the PDS carrier in a tree type fashion.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Start the PDS horizontal backbone at the TR (SIPRNET TR or at IPS container location) with a single raceway 
+or conduit sized accordingly (30 percent cable fill for EMT conduit and solid construction secure raceway) 
+to contain telecommunciations cabling in accordance with Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS 
+CABLING SYSTEM.</OLI><BRK/>
+<BRK/>
+<OLI>Extend the PDS carrier from the PDS horizontal backbone throughout the facility to areas where SIPRNET 
+access is required.  Branch off the PDS horizontal backbone with a horizontal run to an area where the 
+UDB is located.</OLI><BRK/>
+<BRK/>
+<OLI>Use vertical carrier runs from the horizontal run to the UDB.</OLI><BRK/>
+<BRK/>
+<OLI>Use standard under-floor cable distribution methods in accordance with Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS 
+CABLING SYSTEM to distribute SIPRNET cabling within Secure Room with raised flooring.</OLI><BRK/>
+<BRK/>
+<OLI>Maintain RED/BLACK cable separation in accordance with <RID>CNSSAM TEMPEST/1-13</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Remove all burrs from carrier segments prior to installation.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Distribution Topology</TTL><BRK/>
+<BRK/>
+<TXT>Use a distributed topology when designing the PDS carrier.  Locating a small secondary network switch in an equipment 
+enclosure mounted in a relay or equipment rack within a Controlled Access Area (CAA) space (i.e. SCIF, NOC/BOC, 
+etc.) that has a high concentration of users is acceptable.  Interconnect network switches using single-mode 
+fiber optic cable.  Increase the capacity of the network switch to provide service to adjacent spaces as required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Adjacent Infrastructure Considerations</TTL><BRK/>
+<BRK/>
+<TXT>Keep conduit a minimum of<MET> 150 mm</MET><ENG> 6 inches</ENG> from parallel runs of flues and steam or hot water pipes.  A minimum 
+separation of<MET> 150 mm</MET><ENG> 6-inches</ENG> is required between the PDS carrier and water pipes, electrical wires, electrical 
+pipes, plumbing, air conditioning, etc.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Strictly comply with manufacturer's installation instructions and recommendations and approved shop drawings.  
+Coordinate installation with adjacent work to ensure proper clearances and compliance with project site manager 
+and Telecommunications Manager.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Mounting PDS Carrier</TTL><BRK/>
+<BRK/>
+[<TXT>Surface mount PDS Conduit on the wall using conduit clamps, brackets, or mounts with a minimum of<MET> 12 to 25 mm</MET><ENG>
+ 1-inch</ENG> offset spacer from the wall surface.  Mount PDS carrier to a wall partition every<MET> 1500 mm</MET><ENG> 5 feet</ENG> and/or 
+within<MET> 450 mm</MET><ENG> 18 inches</ENG> of a section or component connection.  Do not mount the PDS Carrier directly to the wall 
+surface.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Bend (saddle or offset) conduit to follow wall contours and avoid wall obstacles (columns, pipes, etc.).</OLI><BRK/>
+<BRK/>
+<OLI>Use offset raceway to route secure raceway systems around columns and other wall partition obstacles.</OLI><BRK/>
+<BRK/>
+<OLI>Route PDS carrier so that it is surface mounted on interior walls wherever possible. Obtain exceptions 
+from Telecommunications Manager prior to installation to mount PDS carrier on exterior wall partitions. </OLI><BRK/>
+<BRK/>
+<OLI>Do not mount PDS carrier to acoustical tile ceiling (ATC) framework.</OLI><BRK/>
+<BRK/>
+<OLI>Fasten PDS carrier and component items to building wall partitions per manufacturer's instructions for 
+wall partition type, or as indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Mount PDS carrier so that is is level and plumb along its route.  The top edge of the carrier is horizontally 
+level.  Whenever possible maintain a minimum of<MET> 50 mm</MET><ENG> 2-inches</ENG> below the suspended ceiling line or the 
+true ceiling line, whichever is lower.</OLI><BRK/>
+<BRK/>
+<OLI>Use all-thread rod to mount the PDS carrier to true ceiling structure when routing across open areas 
+(e.g. large hallways, open office areas, large rooms) that exceed<MET> 2400 mm</MET><ENG> 8 feet</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Struts are not allowed to be used to mount secure raceway or conduit to wall partitions.</OLI><BRK/>
+<BRK/>
+<OLI>Install the PDS carrier to permit visual inspections of its entire run.</OLI><BRK/>
+<BRK/>
+<OLI>Route PDS carrier to maximized cable fills in horizontal runs and reduce the number of horizontal runs 
+within the same space.</OLI><BRK/>
+<BRK/>
+<OLI>Route the PDS carrier so that it does not cross windows or doorway openings; does not cross ceiling or 
+wall mounted lighting fixtures; does not obscure EXIT signs or fire alarms; and maintains a minimum <MET> 
+1000 mm</MET><ENG> 3-foot</ENG> separation from fire sprinkler heads.</OLI><BRK/>
+<BRK/>
+<OLI>Do not paint or cover the PDS carrier with wallpaper or other covering unless the paint is applied by 
+the carrier manufacturer.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain option for tape marking unless directed otherwise.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Mark at intervals not to exceed <ENG>9 feet 10 inches</ENG>. Markings must consist of [tape][factory painted][cable 
+tags]. Do not label the carrier as a PDS. Markings must not be red. PDS markings must be approved by 
+the Telecommunications Manager prior to installation. Document approved markings on record drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Bond PDS carrier to Telecommunications Secondary Bonding Busbar (SBB) or Primary Bonding Busbar (PBB) 
+at point of origin.</OLI><BRK/></OLG>
+<BRK/>
+[<TXT>Alarmed Carriers may be concealed as long as compliance with <RID>CNSSI-7003</RID> is maintained.</TXT>]<BRK/>
+<BRK/>
+][Burry the carrier a minimum of<MET> 1 meter</MET><ENG> 39 inches</ENG> below the surface and on property owned or leased by the United 
+States Government or by the U.S. contractor or vendor that controls the PDS. The buried carrier must enter the building 
+through the building's concrete slab or basement wall. All portions of the PDS above the<MET> 1 meter</MET><ENG> 39 inch</ENG> depth and 
+not within a Controlled Access Area (CAA) must meet the requirements of a Category 2 Hardened Carrier. Manholes or 
+any other access to the buried PDS must be secured with a PDS lock or an alarm.]<BRK/>
+<BRK/>
+[Suspended carrier must be elevated a minimum of<MET> 5 meters</MET><ENG> 16 feet 4 inches</ENG> above all obstructions. A suspended carrier 
+must only be used if the property traversed is owned or leased by the United States Government or by a United States 
+Government contractor or vendor that controls the PDS.]<BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mounting Accessories</TTL><BRK/>
+<BRK/>
+<TXT>Mount secure raceways to the wall partition using<MET> 25 mm</MET><ENG> 1-inch</ENG> stand-off mounting brackets or spacers.  Do not 
+mount the secure raceways flush with the wall partition.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Fittings</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Condulettes do not provide a<MET> 50 mm</MET><ENG> 2 inch</ENG> bend radius except in larger 
+sizes and listed as Mogul Pulling Elbows.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>PDS conduit carrier fittings include; flat internal and external elbows; tees; condulette; pulling elbows; couplings 
+for joining conduit sections; wire clips; blank end fittings; device mounting brackets; trim plates as applicable.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide full capacity corner elbows and fittings to maintain a controlled<MET> 50 mm</MET><ENG> 2-inch</ENG> cable bend radius 
+that meets the <RID>ANSI/TIA-569</RID> specification for Fiber Optic and UTP/STP cabling for communications pathways.</OLI><BRK/>
+<BRK/>
+[<OLI>Use EMT conduit compression fittings and couplers to connect EMT conduit carrier sections, fittings and 
+components together.  Use of set screw connectors or set screw couplers to connect EMT conduit sections 
+together is prohibited.</OLI><BRK/>
+<BRK/>
+]<OLI>All connections must be permanently sealed with a two part epoxy around all surfaces in accordance with <RID>
+CNSSI-7003</RID>. When the connection consists of more than one seam, then all seams must be sealed. The seal 
+must provide a mechanical bond between components and must be visible.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL>Through Wall Penetrating</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Use trim plates threaded rigid pipe and locking rings on both the inside and outside of the raceway to 
+secure the thru-wall penetration.</OLI><BRK/>
+<BRK/>
+<OLI>Provide non-conductive unions when penetrating secure room wall partitions.</OLI><BRK/>
+<BRK/>
+<OLI>Seal space between wall partition and through wall penetration using fire-stop material.</OLI><BRK/>
+<BRK/>
+<OLI>Fire-stop vertical risers and through wall penetrations of fire rated wall partitions after pulling cabling.  
+Annotate firewall penetrations on PDS design.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Enclosures</TTL><BRK/>
+<BRK/>
+<TXT>Use of enclosures with pre-punched knockouts or external hinges is not acceptable.  Fasten UDB, pull boxes, and 
+enclosures to the wall partition using fasteners appropriate for the wall partition type.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>User Drop Box</SUB> (UDB)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Up to 6 cable connections may be terminated within the drop box as long 
+as it is within<MET> 3.6 m</MET><ENG> 12 feet</ENG> of the classified workstations and/or printers 
+located in the same room.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Indicate UDB locations in the PDS Plan and on as-built drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Size the UDB to terminate up to  6 cables. UDB must allow for all cable media bend radius and connector 
+types when fully installed.</OLI><BRK/>
+<BRK/>
+<OLI>Coordinate drop box location with furniture, fixtures and equipment that will be used in the vicinity[ 
+(provided by others)].  Surface mount drop boxes on the wall partition approximately<MET> 1.2 to 1.5 m</MET><ENG> 4 to 
+5 feet</ENG> above final floor line depending on room furniture height and layout.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Other Enclosures</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Indicate enclosure type (user drop box, equipment, or pull-box) on shop and as-built drawings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Mechanical Security</TTL><BRK/>
+<BRK/>
+<TXT>Comply with site specific epoxy standards obtained from the installation Telecommunications Manager.  Apply a 
+continuous bead of epoxy at all component, coupling, and fitting connection joints of PDS carrier system.  Seal 
+pull box covers to the pull boxes around the mating surfaces after installation if they cannot be secured with 
+GSA approved changeable combination padlock.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Carrier Support</TTL><BRK/>
+<BRK/>
+<TXT>[Support carrier with mounting brackets at intervals [not to exceed<MET> 1.5 m</MET><ENG> 5 feet</ENG>] [in accordance with manufacturer's 
+installation sheets] and within<MET> 90 cm</MET><ENG> 3 feet</ENG> of termination][Support armored cable in accordance with <RID>NFPA 70</RID>
+ article 320].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Physical Inspection</TTL><BRK/>
+<BRK/>
+<TXT>Physically inspect all interfaces to ensure that they are tight and cannot turn.  Also, physically inspect lock 
+covers to ensure that the lock cap is properly sealed inside the locking mechanism.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Magnetic Test</TTL><BRK/>
+<BRK/>
+<TXT>[For Category 1 PDS utilizing EMT][For Category 2 PDS] perform magnet test on all components (e.g. carrier conduit, 
+carrier raceway, pull boxes, enclosures, conduit bodies, cover plates, etc) and fittings used to construct the 
+carrier.  Place a magnet on the carrier component or fitting to verify that construction is from ferrous material.  
+Some alloys will fail the magnet test (e.g. 309 stainless steel) but meet the ferrous material requirements.  
+Provide alloy material property list for components that fail magnet test to the Contracting Officer for approval.  
+Use of components and fittings that fail the magnet test and are not made from ferrous material is not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>CLEANING AND PROTECTION</TTL><BRK/>
+<BRK/>
+<TXT>Clean exposed surfaces using non-abrasive materials and methods recommended by manufacturer.  Protect raceways 
+and boxes until acceptance.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

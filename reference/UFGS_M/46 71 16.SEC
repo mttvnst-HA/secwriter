@@ -1,0 +1,3047 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="253.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="252.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-46 71 16 (August 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-46 71 16 (February 2011)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 46 71 16</SCN><BRK/>
+<BRK/>
+<STL>GRAVITY BELT THICKENERS</STL><BRK/>
+<DTE>08/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>sludge collecting 
+equipment.</SCP><BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ALUMINUM ASSOCIATION (AA)</ORG><BRK/><BRK/><RID>AA ANSI H35.2M</RID><RTL>(2024) Dimensional Tolerances for Aluminum Mill Products</RTL><BRK/><BRK/><RID>AA H35.1/H35.1M</RID><RTL>(2024) American National Standard Alloy and Temper Designation Systems for Aluminum</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN BEARING MANUFACTURERS ASSOCIATION (ABMA)</ORG><BRK/><BRK/><RID>ABMA 9</RID><RTL>(2015) Load Ratings and Fatigue Life for Ball Bearings</RTL><BRK/><BRK/><RID>ABMA 11</RID><RTL>(2014; R 2020) Load Ratings and Fatigue Life for Roller Bearings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN GEAR MANUFACTURERS ASSOCIATION (AGMA)</ORG><BRK/><BRK/><RID>AGMA 908</RID><RTL>(1989B; R 1999) Information Sheet: Geometry Factors for Determining the Pitting Resistance and Bending Strength of Spur, Helical and Herringbone Gear Teeth</RTL><BRK/><BRK/><RID>AGMA 6013</RID><RTL>(2006A; R2016) Standard for Industrial Enclosed Gear Drives</RTL><BRK/><BRK/><RID>ANSI/AGMA 2001</RID><RTL>(2004D; R 2010) Fundamental Rating Factors and Calculation Methods for Involute Spur and Helical Gear Teeth</RTL><BRK/><BRK/><RID>ANSI/AGMA 6034</RID><RTL>(1992B; R 2010) Practice for Enclosed Cylindrical Wormgear Speed Reducers and Gearmotors</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B1.1</RID><RTL>(2024) Unified Inch Screw Threads (UN, UNR, and UNJ Thread Form)</RTL><BRK/><BRK/><RID>ASME B31.1</RID><RTL>(2024) Power Piping</RTL><BRK/><BRK/><RID>ASME BPVC SEC IX</RID><RTL>(2017; Errata 2018) BPVC Section IX-Welding, Brazing and Fusing Qualifications</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A36/A36M</RID><RTL>(2019) Standard Specification for Carbon Structural Steel</RTL><BRK/><BRK/><RID>ASTM A47/A47M</RID><RTL>(1999; R 2022; E 2022) Standard Specification for Ferritic Malleable Iron Castings</RTL><BRK/><BRK/><RID>ASTM A48/A48M</RID><RTL>(2022) Standard Specification for Gray Iron Castings</RTL><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/><RID>ASTM A148/A148M</RID><RTL>(2024) Standard Specification for Steel Castings, High Strength, for Structural Purposes</RTL><BRK/><BRK/><RID>ASTM A153/A153M</RID><RTL>(2023) Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware</RTL><BRK/><BRK/><RID>ASTM A276/A276M</RID><RTL>(2025) Standard Specification for Stainless Steel Bars and Shapes</RTL><BRK/><BRK/><RID>ASTM A283/A283M</RID><RTL>(2024) Standard Specification for Low and Intermediate Tensile Strength Carbon Steel Plates</RTL><BRK/><BRK/><RID>ASTM A307</RID><RTL>(2023) Standard Specification for Carbon Steel Bolts, Studs, and Threaded Rod 60 000 PSI Tensile Strength</RTL><BRK/><BRK/><RID>ASTM A354</RID><RTL>(2017; R 2025) Standard Specification for Quenched and Tempered Alloy Steel Bolts, Studs, and Other Externally Threaded Fasteners</RTL><BRK/><BRK/><RID>ASTM A536</RID><RTL>(2024) Standard Specification for Ductile Iron Castings</RTL><BRK/><BRK/><RID>ASTM B429/B429M</RID><RTL>(2010; E 2012) Standard Specification for Aluminum-Alloy Extruded Structural Pipe and Tube</RTL><BRK/><BRK/><RID>ASTM B632/B632M</RID><RTL>(2024) Standard Specification for Aluminum-Alloy Rolled Tread Plate</RTL><BRK/><BRK/><RID>ASTM D256</RID><RTL>(2024) Standard Test Methods for Determining the Izod Pendulum Impact Resistance of Plastics</RTL><BRK/><BRK/><RID>ASTM D570</RID><RTL>(2022) Standard Test Method for Water Absorption of Plastics</RTL><BRK/><BRK/><RID>ASTM D638</RID><RTL>(2014) Standard Test Method for Tensile Properties of Plastics</RTL><BRK/><BRK/><RID>ASTM D785</RID><RTL>(2008) Rockwell Hardness of Plastics and Electrical Insulating Materials</RTL><BRK/><BRK/><RID>ASTM D790</RID><RTL>(2017) Standard Test Methods for Flexural Properties of Unreinforced and Reinforced Plastics and Electrical Insulating Materials</RTL><BRK/><BRK/><RID>ASTM D2047</RID><RTL>(2017) Standard Test Method for Static Coefficient of Friction of Polish-Coated Floor Surfaces as Measured by the James Machine</RTL><BRK/><BRK/><RID>ASTM E18</RID><RTL>(2024) Standard Test Methods for Rockwell Hardness of Metallic Materials</RTL><BRK/><BRK/><RID>ASTM F593</RID><RTL>(2024) Standard Specification for Stainless Steel Bolts, Hex Cap Screws, and Studs</RTL><BRK/><BRK/><RID>ASTM F3125/F3125M</RID><RTL>(2019) Standard Specification for High Strength Structural Bolts and Assemblies, Steel and Alloy Steel, Heat Treated, Inch Dimensions 120 ksi and 150 ksi Minimum Tensile Strength, and Metric Dimensions 830 MPa and 1040 MPa Minimum Tensile Strength</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ASSOCIATION OF ARCHITECTURAL METAL MANUFACTURERS (NAAMM)</ORG><BRK/><BRK/><RID>NAAMM MBG 531</RID><RTL>(2017) Metal Bar Grating Manual</RTL><BRK/><BRK/><RID>NAAMM MBG 532</RID><RTL>(2019) Heavy Duty Metal Bar Grating Manual</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA ICS 1</RID><RTL>(2022) Standard for Industrial Control and Systems: General Requirements</RTL><BRK/><BRK/><RID>NEMA ICS 2</RID><RTL>(2000; R 2020) Industrial Control and Systems Controllers, Contactors, and Overload Relays Rated 600 V</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Sludge Collectors for Rectangular Tanks</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Collectors for Circular and Square Tanks</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Framed Instructions</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tube And Plate Thickener</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Testing</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operating and Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>QUALIFICATIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Qualify procedures and welders in accordance with the code under which the welding is specified to be accomplished.  
+Submit qualified procedures and list of names and identification symbols of qualified welders and welding operators, 
+prior to welding operations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect all equipment, delivered and placed in storage, from the weather, excessive humidity and excessive temperature 
+variation; and dirt, dust, or other contaminants.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>GENERAL REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment which are the standard products of a manufacturer regularly engaged in the manufacture 
+of such products and that essentially duplicate items that have been in satisfactory use for at least 2 years 
+prior to bid opening.  Provide equipment supported by a service organization that is, in the opinion of the Contracting 
+Officer, reasonably convenient to the site.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Provide each major item of equipment with the manufacturer's name, address, type or style, model or serial number, 
+and catalog number if applicable on a plate secured to the item of equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Special Tools</TTL><BRK/>
+<BRK/>
+<TXT>Provide one set of special tools, calibration devices, and instruments required for operation, calibration, and 
+maintenance of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Spare Parts</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit spare parts data for each different item of material and equipment specified, after approval of the related 
+submittals and not later than [2] [_____] months prior to the date of beneficial occupancy.  Include in the data 
+a complete list of parts and supplies, with current unit prices and source of supply.  Additionally, provide 
+a list of critical spare parts that should be stocked upon operating the equipment.  The lists of critical spare 
+parts are recommended by equipment manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Assembly</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Assemble the equipment in the shop to insure proper fitting of parts, marked with erection marks and knocked 
+down for shipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Collectors Assembly for Circular and Square Tanks</TTL><BRK/>
+<BRK/>
+<TXT>Assemble the complete drive in the manufacturers shop; test to assure that the drive is running properly and 
+to calibrate the drive control.  Submit completed test report to the Engineer verifying the drive meets the quality 
+assurance of the manufacturer and Engineer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Collectors Assembly for Rectangular Tanks</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Furnish and install each item of equipment complete with all supports, electric drive units, chains, 
+flights, rails, shafts, sprockets, mechanical equipment, electrical work and all other appurtenances 
+which are specified or required for proper operation.</OLI><BRK/>
+<BRK/>
+<OLI>Ample proportion all mechanism parts for the stresses which may occur during long, continuous and uninterrupted 
+service, fabrication, transportation, erection, and startup.  Maintain like workmanship,design,and materials 
+of individual parts furnished in like units and make interchangeable.  Make provision  for easy access 
+for service or replacement parts.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>MATERIALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Steel components are often specified galvanized where not submerged or 
+intermittently wetted to minimize painting and paint maintenance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Steel Plates, Shapes, and Bars</TTL><BRK/>
+<BRK/>
+<TXT>Provide steel plates, shapes, and bars that are <RID>ASTM A36/A36M</RID>, minimum<MET> 6 mm</MET><ENG> 1/4 inch</ENG> thickness unless otherwise 
+specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Malleable Iron</TTL><BRK/>
+<BRK/>
+<TXT>Provide malleable iron conforming to <RID>ASTM A47/A47M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Iron Castings</TTL><BRK/>
+<BRK/>
+<TXT>Provide iron castings conforming to <RID>ASTM A48/A48M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stainless Steel</TTL><BRK/>
+<BRK/>
+<TXT>Provide stainless steel bars and shapes conforming to <RID>ASTM A276/A276M</RID>.  Provide stainless steel bolts, hex caps 
+screws, and studs conforming to <RID>ASTM F593</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Aluminum for Structural and Rolled Shapes</TTL><BRK/>
+<BRK/>
+<TXT>Provide aluminum for structural and rolled shapes conforming to <RID>AA H35.1/H35.1M</RID>, alloy 6061-T6, and <RID>AA ANSI H35.2M</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Aluminum for Extruded Shapes</TTL><BRK/>
+<BRK/>
+<TXT>Provide aluminum for extruded shapes conforming to <RID>AA H35.1/H35.1M</RID>, alloy 6063-T6.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Strength Bolts</TTL><BRK/>
+<BRK/>
+<TXT>Provide high strength bolts conforming to <RID>ASTM F3125/F3125M</RID> with suitable nuts and washers conforming to <RID>ASTM A354</RID>
+; galvanized, <RID>ASTM A153/A153M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anchor Bolts</TTL><BRK/>
+<BRK/>
+<TXT>Provide anchor bolts conforming to <RID>ASTM A307</RID>; galvanized, <RID>ASTM A153/A153M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fiberglass Reinforced Polyester Plastic (FRP)</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Molded FRP</TTL><BRK/>
+<BRK/>
+<TXT>Mold<MET> 6 mm</MET><ENG> 1/4 inch</ENG> thick fiberglass reinforced polyester plastic by the matched die method to produce uniform, 
+smooth surface.  Through the use of "low profile" resin systems, ensure all surfaces are smooth, resin rich, 
+free of voids and porosity, without dry spots, crazes, or unreinforced areas, and provide for increased corrosion 
+resistance and weathering.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FRP Laminate</TTL><BRK/>
+<BRK/>
+<TXT>Provide laminate with a glass content of 30 plus or minus 2 percent using Type "E" glass with chrome or silane 
+finish.  Provide powdered reinforcements consisting of 47.5 plus or minus 1 percent of resin mixture.  Use resin 
+mixture of the "low profile" type.  Ensure final laminate thickness is within plus or minus 10 percent of the 
+specified thickness.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Physical Properties</TTL><BRK/>
+<BRK/>
+<TXT>Physical properties of fiberglass reinforced polyester plastic are as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Minimum Tensile Strength: <MET> 96.5 MPa</MET><ENG> 14,000 psi</ENG> conforming to <RID>ASTM D638</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum Flexural Strength: <MET> 172.4 MPa</MET><ENG> 25,000 psi</ENG> conforming to <RID>ASTM D790</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum Flexural Modulus:  0.9 by 10 to the sixth power conforming to <RID>ASTM D790</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum Impact, Notches, Izod:  <MET>720 Joules/meter</MET><ENG> 13.5 ft-lb per inch</ENG> conforming to <RID>ASTM D256</RID>, Method 
+A.</OLI><BRK/>
+<BRK/>
+<OLI>Maximum Average Coefficient of Thermal Expansion:  <MET>29 by 10 to the negative sixth power mm per mm, per 
+degree K</MET><ENG> 16 by 10 to the negative sixth power inch per inch, per degree F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Maximum Water Absorption:  0.02 percent in 24 hours conforming to <RID>ASTM D570</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Resin Sealing</TTL><BRK/>
+<BRK/>
+<TXT>Where plates of nonstandard length or mounting hole configuration are required, resin seal machined or cut edges.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>PLATFORMS AND HANDRAILS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Handrails specified are the utilitarian type.  Drawings will show design 
+requirements, locations, and general configuration of railing.  Where railing 
+is fabricated of material other than pipe, rewrite this paragraph for type chosen 
+and show the drawings configuration and design requirement for type with railing 
+selected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide handrails that are<MET> 1065 mm</MET><ENG> 42 inches</ENG> high with two horizontal rails.  Fabricate handrails of Schedule 
+40 [galvanized] steel pipe conforming to <RID>ASTM A53/A53M</RID> or Schedule 40 [mill finished] [anodized] aluminum pipe 
+conforming to <RID>ASTM B429/B429M</RID>.  Provide pipe size of<MET> [40][50] mm</MET><ENG> [1-1/2][2] inch</ENG> NPS.  To maximize extent practicable, 
+shop fabricate railing.  Provide rigid joints consisting of flush-finished welded assembly.  Reinforce joints 
+with tight fitting interior sleeves and assemble by welding rails and posts to flush-type fittings, or by mitering 
+and welding joining rails to posts.  Locate expansion joints at lengths of rails as recommended by the manufacturer.  
+Provide inner-sleeved slip joint type expansion joints with one end of the sleeve secured to the railing.  Locate 
+expansion joints and splices near the intersection of rails and posts.  Make bends in railing smooth and in a 
+manner that will not crush or deform the railing.  Grind all welds smooth and ensure railings are free of burrs 
+and sharp corners and edges.  Provide removable sections where indicated on the drawings.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Floor Grating and Frames</TTL><BRK/>
+<BRK/>
+<TXT>Design [carbon steel] [aluminum] [stainless steel] grating in accordance with [<RID>NAAMM MBG 531</RID> ] [<RID>NAAMM MBG 532</RID>
+] to meet the indicated load requirements.  Band edges with bars<MET> 6 mm</MET><ENG> 1/4 inch</ENG> less in height than bearing bars 
+for grating sizes above<MET> 19 mm</MET><ENG> 3/4 inch</ENG>.  Make banding bars flush with the top of bearing grating.  Provide frames 
+of welded steel construction finished to match the grating.  [Galvanize floor gratings and frames after fabrication.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Floor Plates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specific pattern should not be indicated unless required for matching 
+purposes or to meet design requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide aluminum floor plates in conformance with <RID>ASTM B632/B632M</RID>.  Provide other floor plates consisting of<MET> 
+6 mm</MET><ENG> 1/4 inch</ENG> thick, [raised thread steel] [pattern indicated] [galvanized] slip-resistant, carbon steel conforming 
+with <RID>ASTM A283/A283M</RID> having a minimum static coefficient of friction of 0.50 when tested in accordance with <RID>ASTM D2047</RID>
+.  Ensure wearing surface is aluminum oxide or silicon carbide.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive Platform</TTL><BRK/>
+<BRK/>
+<TXT>Provide a circular or rectangular drive platform around the center assembly and drive which provide a minimum 
+of<MET>[ 914][_____] mm</MET><ENG>[ 36][_____] inch</ENG> around all equipment for maintenance and service of the drive assembly.  
+Support the drive platform with a structural, hot dipped galvanized steel frame with a minimum thickness of<MET> 8 
+mm</MET><ENG> 1/4 inch</ENG>.  Frame to allow direct access from above to all equipment requiring service by removing sections 
+of aluminum checker plate attached to the frame.  Provide drive platform with aluminum checker plate covers, 
+easily removable for access to equipment below.  Provide removable sections where indicated on the drawings.  
+Provide Type 316 stainless steel for all fastening hardware.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>BRIDGE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select paragraph BRIDGE FOR BRIDGE-SUPPORTED DRIVES or BRIDGE FOR CENTER 
+PIER-SUPPORTED DRIVES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Bridge Design and Construction</TTL><BRK/>
+<BRK/>
+<TXT>Provide bridge fabricated from structural steel and all-welded construction.  Use either truss or beam type bridge 
+design.  Maximum allowable deflection of the bridge is 1/360 of the span length under a live load of<MET> 2.9 kPa</MET><ENG> 
+60 psf</ENG>.  Provide bridge walkway composed of [floor plate] [grating].  Provide handrail with a<MET> 100 mm</MET><ENG> 4 inch</ENG> high 
+toe plate on both sides of the walkway.  If truss-type bridge construction is used, the truss members may be 
+used as handrail.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Bridge for Bridge-Supported Drives</TTL><BRK/>
+<BRK/>
+<TXT>Spans the entire tank diameter for bridge.  Support and anchor the bridge to the tank wall.  Support the drive 
+and collector mechanism by bridge and provide access for maintenance.  Ensure access walkway is at least<MET> 900 
+mm</MET><ENG> 3 feet</ENG> wide.  Provide at least<MET> 775 mm</MET><ENG> 30 inches</ENG> clearance between the drive unit and the handrails on all 
+sides where maintenance is required.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Bridge for Center Pier-Supported Drives</TTL><BRK/>
+<BRK/>
+<TXT>Support bridge on one end by the tank wall and on the other end by the drive unit.  Ensure access walkway is 
+at least<MET> 900 mm</MET><ENG> 3 feet</ENG> wide and extends to a point<MET> 775 mm</MET><ENG> 30 inches</ENG> beyond the drive assembly.  Provide at least<MET>
+ 775 mm</MET><ENG> 30 inches</ENG> clearance between the drive unit and the handrails on all sides where maintenance is required.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>MOTORS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Motor Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide totally-enclosed, fan-cooled (TEFC), ball bearing, constant speed motor(s) of ample power for 
+starting and continuously operating the device under most severe expected operating conditions without 
+overloading.</OLI><BRK/>
+<BRK/>
+<OLI>Provide premium efficiency, electric induction motors meeting <RID>NEMA MG 00001</RID> and other applicable NEMA, 
+ANSI, and IEEE standards and suitable for operation on [_____] volts ac [_____] phase, 60 Hz.</OLI><BRK/>
+<BRK/>
+<OLI>Construct motors with Class F insulated windings, Class B 30,000 anti-friction bearings, cast iron frame 
+and end bells. Rate the motor nameplates for continuous duty at<MET> 40 degrees Celsius</MET><ENG> 105 degrees Fahrenheit</ENG>
+ ambient temperature with a [1.15] [_____] service factor.</OLI><BRK/>
+<BRK/>
+<OLI>Design Type B motor with copper rotors and short-circuit.  Provide the motor with temperature switches 
+embedded in the windings to protect the motor from overheating during operation.</OLI><BRK/>
+<BRK/>
+<OLI>Size motor of sufficient size for performance duty without exceeding full load rating under most severe 
+conditions expected.  Verify that the submitted motor is suitable for use with the motor starting methods 
+shown in the Plans.  Replace any motor that fails during the warranty period with a new motor.  Rewinding 
+a failed motor is not acceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Recognize, or label and list motors by a recognized electrical testing laboratory approved by States.</OLI><BRK/>
+<BRK/>
+<OLI>Make necessary adjustments to wiring, disconnect devices, and branch circuit protection to accommodate 
+equipment actually installed.</OLI><BRK/>
+<BRK/>
+<OLI>Furnish each motor with a magnetic full-voltage starter conforming to <RID>NEMA ICS 1</RID>.  House starter in weatherproof 
+cast metal enclosure.  Provide a separate pole with manually reset thermal-overload protection in each 
+ungrounded conductor.  Mount controls in starter cover or in separate weatherproof cast metal enclosure.</OLI><BRK/>
+<BRK/>
+<OLI>Furnish and install all electrical controls, motor starters, disconnects, conduit, wire, etc., associated 
+with the aforementioned equipment and outlined on the Drawings, in accordance with Section <SRF>26 20 00</SRF> INTERIOR 
+DISTRIBUTION SYSTEM.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Motor Protective Device Coordination and Documentation</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Size motor overcurrent protection by the motor manufacturer.  Maintain a spreadsheet or database list 
+of the motor characteristics by Contractor that are necessary to size, select, and/or set the various 
+motor protective devices, such as thermal overloads, breaker trip devices, motor protection relays, etc., 
+for insulation in the O&amp;M manuals.</OLI><BRK/>
+<BRK/>
+<OLI>Record the size and/or settings of each motor protective device and drive configuration by Contractor.</OLI><BRK/>
+<BRK/>
+<OLI>In addition, Take a digital photo of each motor nameplate when the motor arrives at the jobsite.</OLI><BRK/>
+<BRK/>
+<OLI>Include a spreadsheet of motor nameplate information, motor settings, drive configuration (if applicable), 
+and photo of each nameplate in the O&amp;M manuals.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Motors in Classified Environments</TTL><BRK/>
+<BRK/>
+<TXT>Provide motors suitable for use in Class I Division 2 environments unless otherwise noted.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>CONTROLS</TTL><BRK/>
+<BRK/>
+<TXT>Provide the drive controls as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Driven by Motor Starter at the MCC.</OLI><BRK/>
+<BRK/>
+<OLI>Wire to SCADA PLC for Monitoring and controls.</OLI><BRK/>
+<BRK/>
+<OLI>Include integral Temperature winding switch.</OLI><BRK/>
+<BRK/>
+<OLI>Provide an electric overload system, consisting of suitable relays and an indicating meter plainly showing 
+the overload points.  Sound an alarm for the overload system when the load reaches full load torque capacity 
+of the drive motor and de-energize the motor.  Provide a torque sensing and indicating device to indicate 
+percentage of maximum torque being developed.</OLI><BRK/>
+<BRK/>
+[<OLI>As shown on the drawings.</OLI><BRK/></OLG>
+<BRK/>
+]<SPT><TTL>Control Panel</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Furnish a control panel by the collector equipment manufacturer containing all controls necessary for 
+the operation of the collector requipment.  Ensure all factory installed components in a <RID>NEMA 250</RID>, Type 
+4 [4X] [3R] enclosure mounted on bridge or as shown on drawings.  Factory prewire to numbered terminal 
+strips within the enclosure and factory test all electrical components.  Include manual override controls 
+for equipment operation in addition to the automatic operations. Provide a separate pole with manually 
+reset thermal-overload protection in each ungrounded conductor.</OLI><BRK/>
+<BRK/>
+<OLI>Comply with the requirements in <RID>NEMA ICS 2</RID> for all control components.  Compensate for system harmonics 
+or vibrations.  Provide noise isolation for sensor signals.  Compensate for multiple signals during starting 
+and stopping transitions.</OLI><BRK/>
+<BRK/>
+<OLI>Provide control panel enclosures with heating and ventilation to meet the following requirements:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide space heaters to prevent condensation.  Operate space heaters on 120 V, 60 Hz power.  
+Provide adjustable line voltage thermostats for controlling the space heaters.</OLI><BRK/>
+ <BRK/>
+<OLI LEVEL="2">Provide non-forced air and forced air ventilation cooling as required to maintain the required 
+temperature of the housed equipment.  Provide forced air ventilation with supply fans mounted 
+at the bottom of each enclosure section.  Force fresh air into the enclosure by bottom door 
+fan to create a positive internal air pressure; and thereby, forcing out dirt and contaminants, 
+and moving warm air out through ventilation louvers mounted at the top of the doors.  Control 
+the fans by a line voltage thermostat based on the panel internal temperature.  Provide door 
+interlock switches to turn the fans off when the door is opened.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide supply fans with air intake openings equipped with fixed louvers and washable aluminum 
+mesh filters.  Exhaust ventilation air through fixed, louvered openings equipped with washable 
+aluminum mesh filters.  Size air supply and exhaust openings by the control panel manufacturer 
+for the air flow required to maintain the proper inside temperature.  Provide all air filters 
+with interior door mounted frames allowing easy removal for cleaning.</OLI><BRK/>
+<BRK/>
+<ITM>Provide control panels with air conditioning to maintain the required temperature for the housed 
+equipment.  Provide control panel air conditioning units in accordance with the following requirements:</ITM><BRK/>
+<BRK/>
+<OLI LEVEL="3">Provide the air conditioning system with closed-loop cooling system.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Size cooling system based on: </OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">1. Heat generated from all panel equipment and auxiliary components operating at full rated 
+capacity, and equipment operating under maximum ambient temperature conditions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">2. Operate air conditioning unit on 115 V or 230 V, single phase, 60 hertz power supplied by 
+the control panel.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">3. Provide air conditioning unit with: 16-gauge (minimum) welded steel framework, an efficient 
+and quiet rotary compressor, built-in condensate evaporator, HFC environment friendly refrigerant, 
+and additional corrosion protection for all aluminum, copper, and ferrous metal surfaces.  </OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">4. Provide UL listed air conditioning units for indoor control panels with built-in digital 
+temperature controllers. Provide air conditioning units for outdoor control panels with remote 
+temperature controllers mounted inside the control panel enclosure in an accessible and visible 
+location.</OLI><BRK/>
+<BRK/>
+<ITM>Design and mount the air conditioning unit on the side of the control panel enclosure while 
+maintaining NEMA Type 12, 4, or 4X integrity, and provide a gasket kit at the interface between 
+the enclosure and air conditioner.  Construct stainless steel air conditioning units mounted 
+to NEMA Type 4X stainless steel enclosures.</ITM> <BRK/>
+<BRK/>
+<ITM>Construct air conditioning unit to allow easy access for maintenance, including easy pull-out 
+air filters. Provide a minimum of three (3) spare replacement air filters  with each air conditioning 
+unit.</ITM><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide alarms, relays, input/output requirements, lights, and display options per the requirements 
+as shown on the Drawings, and as required for a complete and workable system.</OLI><BRK/></OLG>
+<BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL><SUB>COLLECTORS FOR CIRCULAR AND SQUARE TANKS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Circular residuals thickening equipment is recommended to be used for 
+wastewater sludge thickening.  Both circular and square residuals thickening 
+equipment are used for water treatment sludge thickening.</NPR><BRK/>
+<BRK/>
+<NPR>All metal components submerged water need to be compliance with the requirements 
+in UFC 3-190-06.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Residuals Thickening Equipment Mechanism</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Provide the center feed and peripheral overflow type thickener, with a central driving mechanism which support 
+and rotate a center cage with two thickening rake arms attached thereto.</TXT><BRK/>
+<BRK/>
+<TXT>Arrange rake blades attached to the arms to move the sludge that settles on the tank bottom to an annular sludge 
+trench at the center of the tank.  Design thickener mechanism so that there will be no chains, sprockets, bearings 
+or operating mechanism below the liquid surface or in contact with the liquid.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a minimum thickness of<MET> 8 mm</MET><ENG> 1/4 inch</ENG> for all steel.  Include A<MET> 2 mm</MET><ENG> 1/16 inch</ENG> corrosion allowance for 
+all submerged carbon steel members in the structural calculations.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Residuals Thickening Equipment Design Criteria</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to UFC 3-190-06 for protective coatings and paints for all components 
+submerged water surface.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAB HEADERROWS="0" WIDTH="97">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="26">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="273.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Design Criteria</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Value</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of Sludge</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[WWTP WAS] [WTP Chemical Sludge] [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sludge Flow Rate</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> L/min</MET><ENG> gpd</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Influent Sludge Concentration</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.5 percent</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Thickened Sludge Concentration, minimum</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3.0 percent</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum Solids Recovery</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">90 percent</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum hydraulic loading, ignoring pressurized cycle flow</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>4.07 m<SPS>3</SPS>/d/m<SPS>2</SPS></MET><ENG> 100 gpd/sf</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Solids Loading Rate</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>19.38 kg/d/m<SPS>2</SPS></MET><ENG> 3.96 lbs/d/sf</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of Units</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ea</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Tank Dimension</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Inside Tank Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]
+<MET> meter</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Side Water Depth</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> meter</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Tank Bottom Slope</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2.25:12</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Freeboard</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>0.5 meter</MET><ENG> 1.6 foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Influent Pipe Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inches</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="38.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Effluent Pipe Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inches</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Thickened Sludge Pipe Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inches</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Scum Discharge Pipe Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inches</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Thickener Mechanism Dimensions</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Center Column Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> meter</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Center Cage Dimensions, minimum</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> meter</MET><ENG> foot squa
+re</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Influent Feedwell Minimum Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> meter</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Influent Feedwell Minimum Depth</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> meter</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Structural Design Requirement</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Wind Load</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] mph</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="147.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">    Structural Design Torque specified<BRK/>    in paragraph CENTER DRIVE MECHANISM</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> n-m</MET><ENG> ft-lb</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Center Drive Mechanism</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Select paragraph STRIP LINER TYPE DRIVE or PRECISION BEARING TYPE DRIVE.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Drive with either a cast iron housing or a fabricated steel housing with 
+integral hardness steel is acceptable and depends on manufacturer's recommendation.  
+Specifier needs to specify the required strip liners, ball bearing raceway, 
+and spur gear drives which depend on manufacturer's recommendation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide drive unit consisting of a gear reducer and motor, direct or flexible coupled.  Provide drive unit with 
+a [cast iron housing] [or] [fabricated steel housing with integral hardened steel raceway] and designed in compliance 
+with <RID>ABMA 9</RID> and <RID>ABMA 11</RID>, <RID>AGMA 908</RID>, <RID>AGMA 6013</RID>, <RID>ANSI/AGMA 2001</RID> and <RID>ANSI/AGMA 6034</RID>.  Base the continuous torque 
+rating of the spur gear assembly upon the smaller of the values developed by <RID>ANSI/AGMA 2001</RID> and consider as the 
+rated torque capacity the entire gear will develop continuously over a 20-year period.  Rate drive unit as follows:</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="12">
+      <COL AUTOWIDTH="0" WIDTH="243.00"/>
+      <COL AUTOWIDTH="0" WIDTH="243.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Approximate Rotational Speed</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">10.44 rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING">Minimum Continuous Operating Torque (AGMA)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>7,457 N-m</MET><ENG> 5,500 ft-lb</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING">Alarm Torque (100 percent of Continuous Torque Rating)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>14,913 N-m</MET><ENG>  11,000 ft-lb</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING">Motor Shut-off Torque (125 percent of Continuous Torque Rating)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>9,321 N-m</MET><ENG> 6,875 ft-lb</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING">Momentary Peak Torque</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>14,913 N-m</MET><ENG> 11,000 ft-lb</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING">Minimum Ball Race Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING">Strip Liner Drive Minimum Ball Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING">Precision Bearing Type Drive Minimum Ball Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING">Minimum Motor Size</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] kW hp (cycloidal); [_____] kW hp (chain &amp; sprocket)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING">Internal Spur Gear Minimum Pitch Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL>
+<DTA TYPE="STRING">Strip Liner Type Drive Internal Spur Gear Minimum Face Depth</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="90.75">
+         <CEL>
+<DTA TYPE="STRING">Precision Bearing Type Drive Internal Spur Gear Minimum Face Depth</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> mm</MET><ENG> inch</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/></TAB></LST><BRK/>
+<BRK/>
+[<SPT><TTL>Strip Liner Type Drive</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Design the center drive mechanism for the specified continuous, normal, design torque on the internal gear without 
+excessive wear.  Provide the mechanism capable of developing 200 percent of the specified continuous design torque 
+without failure of any part.  The center drive mechanism consists of turntable base, ball race and turntable 
+top.  The turntable base and top consist of high test<MET> 18,144 kg</MET><ENG> 40,000 pound</ENG> Meehanite castings with annular 
+raceways for a ball race near the outer circumference.</TXT><BRK/>
+<BRK/>
+<TXT>Provide the ball race diameter large enough to provide stability without the necessity of underwater guide shoes 
+or bearings.  A low unit loading is preferred to assure a long operation life.  The race consists of chrome alloy 
+steel balls which bear vertically and horizontally on four renewable special hardened steel liner strips force 
+fitted into the base and top.  Immerse the balls in an oil bath protected by a felt seal and a steel dust shield. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Turntable Base</TTL><BRK/>
+<BRK/>
+<TXT>Design the top of the turntable base to form a platform to provide convenient access to the drive mechanism.  
+Cut an internal gear integral with the turntable top and provide mounting lugs for attaching the center cage.  
+A pinion keyed to the reduction unit that is secured to the turntable base rotates the internal gear.  The pinion 
+integral with the worm gear shafts is mounted on anti-friction bearings in the reduction unit housing.</TXT><BRK/>
+<BRK/>
+[<TXT>Design all thickener drive mechanism components located below the cover and above the water surface to meet NEC 
+Class 1, Division 1, Group D explosion proof rated and of non-sparking design.</TXT><BRK/>
+   <BRK/>
+]</SPT><SPT><TTL>Drive Unit Components</TTL><BRK/>
+<BRK/>
+<TXT>Secure the drive unit to the turntable base and drive unit consists of a worm, a worm gear, and a pinion mounted 
+in a cast Meehanite metal housing with a removable steel cover plate.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Worm and Worm Gear</OLI><BRK/>
+   <BRK/>
+<LST>Provide worm gear speed reduction with grease and oil lubricated anti-friction type bearings in cast 
+iron housing securely bolted on the machined top face of the final reduction unit.  Provide the worm 
+and shaft as a two-piece assembly for ease of maintenance.</LST><BRK/>
+   <BRK/>
+<LST>Align and maintain accurate centers with the final reduction gearing. Swivel base mounting of the intermediate 
+unit will not be acceptable.  Operate the worm and worm gear in an oil bath. Provide a sight gauge for 
+observation of the oil level.</LST><BRK/>
+   <BRK/>
+<OLI>Pinion</OLI><BRK/>
+  <BRK/>
+<LST>Provide the Ductile Iron, Grade 80-60-3 (<RID>ASTM A536</RID>) pinion and pinion shaft cast as an integral unit.  
+Key the pinion shaft to the worm gear spider so the pinion meshes and rotates the internal gear.</LST><BRK/>
+   <BRK/>
+<LST>Support the worm, worm gear, and pinion by Timken tapered roller bearings to operate in an oil bath.  
+Grease lubricate lower pinion shaft bearing.  Plain or sleeve bearings are not acceptable.</LST><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Bearing Life</TTL><BRK/>
+<BRK/>
+<TXT>Design the complete drive for the continuous torque specified based upon 24 hrs/day over 20 years using two criteria 
+established per <RID>ANSI/AGMA 2001</RID>-D04 and <RID>ANSI/AGMA 6034</RID>-B92.  Design main drive bearings for a minimum ABMA L-10 
+life of 1,000,000 hours.  Base L-10 life on all forces applied to the bearings, including thrust and radial loads.  
+Submit complete design calculations and sizing criteria for review by the Engineer.  Submit bearing life calculations 
+using the latest ANSI/ABMA Standard 11 protocol certified by the manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>][<SPT><TTL>Precision Bearing Type Drive</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Design the center drive mechanism for the specified continuous, normal, design torque on the internal gear without 
+excessive wear.  Design the mechanism to develop 200 percent of the specified continuous design torque without 
+failure of any part. </TXT><BRK/>
+<BRK/>
+<TXT>The center drive mechanism consists of turntable base, ball race and turntable top.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ball Race</TTL><BRK/>
+<BRK/>
+<TXT>Design center drive mechanism so that the balls can be removed without having to remove any of the structural 
+components supporting the stainless steel [_____] cover.  Fabricate the center drive housing with <RID>ASTM A36/A36M</RID>
+ steel with forged steel precision gear and bearing set. </TXT><BRK/>
+<BRK/>
+<TXT>Provide the ball race diameter large enough to provide stability without the necessity of underwater guide shoes 
+or bearings.  A low unit loading is preferred to assure a long operation life.  Protect the grease lubricated 
+bearing set balls and main gear by a neoprene seal and a steel dust shield.  Design the top of the turntable 
+base to form a platform to provide convenient access to the drive mechanism.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Turntable Base</TTL><BRK/>
+<BRK/>
+<TXT>Cut an internal gear integral with the turntable top and provide mounting lugs for attaching the center cage.  
+Rotate the internal gear by a pinion keyed to the reduction unit that is secured to the turntable base.  Mount 
+the pinion directly to the cycloidal reduction unit output shaft.</TXT><BRK/>
+<BRK/>
+<TXT>The rotating assembly rests on a turntable base annular bearing raceway with a maximum allowable deflection in 
+accordance with the bearing specifications. The minimum allowable modulus of elasticity is<MET> 200 x 731 kpa</MET><ENG> 29 x 
+106 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive Unit Components</TTL><BRK/>
+<BRK/>
+<TXT>Equip the drive unit with a solid internal main gear, turntable, pinion, secondary cycloidal speed reducer, support 
+base, and drive unit bearing.  Mount the drive on the center column and support the entire rotating load of the 
+mechanism. </TXT><BRK/>
+<BRK/>
+[<TXT>Design all thickener drive mechanism components located below the cover and above the water surface to meet NEC 
+Class 1, Division 1, Group D explosion proof rated and of non-sparking design.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Materials</TTL><BRK/>
+<BRK/>
+<TXT>Design residuals thickening equipment mechanism with no chains, sprockets, bearings or operating mechanism below 
+the liquid surface or in contact with the liquid.  Not regard peripheral or traction drive mechanisms as equal 
+to the center drive mechanisms specified.  Manufacture main internal gear of forged alloy through hardened steel.  
+Manufacture the pinion of heat treated 8620 alloy steel core 300 Bhn, case 55-60 Rc.  Fully enclose all speed 
+reducers and main gearing and run in oil or grease.  Provide drive support base of welded steel to assure rigidity.  
+Provide lubricant and dust shields.  The drive bearing includes a forged steel precision gear/bearing set, with 
+fully contoured raceways hardened to a minimum 58-60 Rc.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lubrication</TTL><BRK/>
+<BRK/>
+<TXT>Design the drive to replace the balls easily without removing the tank fixed cover.  Run the main gear and pinion 
+in an oil bath or grease lubricated.  If an oil bath is used, provide an oil sight glass, fill pipe, and drain 
+line  for the reservoir.  If grease lubrication is used, provide continuous condensate drains and design the 
+drive to use food-grade grease as an option.  Provide the precision gear/bearing set as a one piece design.</TXT><BRK/>
+<BRK/>
+<TXT>Fasten and support the center cage from the gear casing.  Run high carbon chrome alloy steel ball bearings of 
+the highest quality in fully contoured races, as part of a precision gear/ bearing set.  Lubricate the balls 
+with grease and protect by elastomer seals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearing Life</TTL><BRK/>
+<BRK/>
+<TXT>Design the drive unit for the torque values listed in Table at paragraph CENTER DRIVE MECHANISM to turn the mechanism 
+at the design collector output speed.  Design the drive main bearing for the total rotating mechanism loads with 
+a minimum ABMA L-10 life of 1,000,000 hours.  Base L-10 life on all forces applied to the bearings, including 
+thrust and radial loads.  Submit bearing life calculations using the latest ANSI/ABMA Standard 11 protocol and 
+certify by the manufacturer.  Desigh the drive unit to produce and withstanding 200 percent of the continuous 
+torque rating while starting.  Design the drive main gear to a minimum AGMA 6 rating when rated in accordance 
+with <RID>ANSI/AGMA 2001</RID>-D04 and <RID>AGMA 6013</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Design all gearing per <RID>ANSI/AGMA 2001</RID>-D04 for strength and surface durability, based on a life of 175,000 hours.  
+Produce the main gear and pinion a full depth tooth form.  Stub teeth are not acceptable. Submit AGMA gear design 
+calculations.  Certify the calculations by an independent gear consultant qualified in low speed gearing.  Induction 
+hardened gears are not acceptable as induction hardening will make the gears rate higher but also makes the root 
+of the teeth more brittle and subject to failure. Base the design running torque rating of the drive gearing 
+on the smaller of the two values determined from the above AGMA standard.  Direct couple all drive components 
+to ensure safety and ease of maintenance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pinion</TTL><BRK/>
+<BRK/>
+<TXT>Overhung pinions on the drive unit are not allowed.  The installation of the lower pinion bearing below the turntable 
+base is not allowed.  Incorporate a positive means of wiping grease back onto the pinion after tooth engagement.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive Base</TTL><BRK/>
+<BRK/>
+<TXT>Incorporate an annular chamber with a minimum depth of <MET> 90 mm</MET><ENG> 3 1/2 inches</ENG> below the main gear of the steel drive 
+base to collect condensate.  Separate annular cavity from lower pinion bearing housing.  Incorporate welded circular 
+support rings in the drive base to insure stability.  Design using flat plates to rely on plate thickness to 
+resist deflection is not allowed.</TXT><BRK/>
+<BRK/>
+<TXT>Manufacture the drive and mechanism by the same manufacturer for unit responsibility.  No third party drives 
+will be accepted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Speed Reducing Unit</TTL><BRK/>
+<BRK/>
+<TXT>The speed reducing unit consists of cycloidal speed reducer directly connected to a motor without the use of 
+chains or v-belts, and key to the pinion.  Design the cycloidal reducer with a guaranteed shock loading of 500 
+percent.  No planetary, helical, or worm gears are allowed.  Fit the reducer with radial and thrust bearings 
+of proper size for all mechanism loads and be grease lubricated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Main Ring Gear</TTL><BRK/>
+<BRK/>
+<TXT>Fix the cycloidal drive main ring gear made of high carbon chromium bearing steel and be fixed to the drive casing.  
+Roll cycloidal discs of the same material by an eccentric bearing on the high speed shaft around the internal 
+circumference of this main ring gear.  Successively engage the lobes of the cycloid disc with pins in the fixed 
+ring gear.  Transmit the movement of the cycloid discs by pins to the low speed shaft.</TXT><BRK/>
+<BRK/>
+<TXT>Provide the drive base of A36 steel with maximum allowable bearing support base deflection of the<MET> 0.15 mm</MET><ENG> 0.006 
+inches</ENG> under full load. No castings are allowed for main bearing support.  Submit calculations verifying allowable 
+deflection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding Material</TTL><BRK/>
+<BRK/>
+<TXT>Do any and all welding on the drive unit using E70XX weld rod.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]</SPT>[<SPT><TTL>Bridge Supported Drive</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select paragraph BRIDGE SUPPORTED DRIVES or paragraph CENTER COLUMN AND 
+CAGE.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  The bridge supported drive needs to be properly designed based on manufacturer's 
+recommendation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide one of the following reduction units:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Primary Worm Gear Type</TTL><BRK/>
+<BRK/>
+<TXT>A unit consisting of a primary worm gear speed reducer coupled with a final reduction gear.  Mount the final 
+gear on a ball bearing assembly with the balls running in replaceable hardened alloy steel races.  Ensure all 
+bearings for this type of unit are antifriction type and run in an oil bath.  Ensure reduction unit has housings 
+effectively sealed against contaminants.  Provide an oil filling and level check pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chain and Sprocket Drive Type</TTL><BRK/>
+<BRK/>
+<TXT>A unit consisting of a chain and sprocket drive, connected to a worm and worm gear final reduction unit with 
+all bearings of the tapered roller type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bridge Supported Drive Torque Tube</TTL><BRK/>
+<BRK/>
+<TXT>Bolt a steel torque tube to the final reduction gear to support and rotate the sludge collection arms.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>][<SPT><TTL>Center Column and Cage</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  NOTE:  Select paragraph BRIDGE SUPPORTED DRIVES or paragraph CENTER COLUMN 
+AND CAGE.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Column</TTL><BRK/>
+<BRK/>
+<TXT>Provide and mount a cylindrical steel center column at the center of the tank floor to support the mechanism 
+without torque transmitted to the<BRK/>
+walkway.  Anchor the center column to the concrete floor with a sufficient number of anchor bolts required for 
+the torque load.  The<MET> 8 mm</MET><ENG> 1/4 inch</ENG> minimum thickness steel plate center column minimum diameter is listed in 
+table at paragraph RESIDUALS THICKENING EQUIPMENT DESIGN CRITERIA.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cage</TTL><BRK/>
+<BRK/>
+<TXT>Design a steel center cage, bolted to the internal gear,<MET> 6 mm</MET><ENG> 1/4 inch</ENG> minimum thickness structural steel and 
+sufficiently strong and stiff to support and rotate the rake arms.  Minimum square dimensions of the center cage 
+are listed in above Table at paragraph RESIDUALS THICKENING EQUIPMENT DESIGN CRITERIA.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material</TTL><BRK/>
+<BRK/>
+<TXT>Hot dip galvanize center column and cage as described in Section <SRF>05 50 13</SRF> MISCELLANEOUS METAL FABRICATIONS and 
+Section <SRF>05 50 14</SRF> STRUCTURAL METAL FABRICATIONS equipment.</TXT><BRK/>
+<BRK/>
+<TXT>Comply with <RID>ASTM A148/A148M</RID> for all high strength steel casting for structural purpose.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Center Pier-Supported Drive Reduction Unit</TTL><BRK/>
+<BRK/>
+<TXT>Provide the helical or worm gear type primary speed reducer, coupled to the intermediate speed reducer directly 
+or by a standard steel roller chain and steel sprockets.  Protect chain and sprockets by chain guards.  The intermediate 
+speed reducer consists of a worm and worm gear or planetary gear, keyed to a shaft which drives the internal 
+spur gear.  Ensure the final speed reducer is a spur gear designed to withstand the maximum torque loads imposed 
+on the clarifier mechanism. Provide antifriction type bearings.  Run bearings in cast iron units in replaceable 
+hardened alloy steel races.  Run all gears in an oil bath.  Provide oil seals and oil fill, drain, and level 
+check systems.  Lubricate chains as recommended by the manufacturer.  Provide a drive cage, with provision to 
+connect to the final reduction unit.  Fabricate drive cage from structural steel members and design to withstand 
+the momentary peak torque of the collector without permanent deformation of the members.  Provide the drive cage 
+with provision for attachment of sludge removal arms.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Overload Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide drive unit with an overload protection system, enclosed in a weatherproof housing.  The system consists 
+of two micro-switches actuated by the movement of the worm shaft in the worm gear housing.  Adjust switches to 
+sound an alarm when the torque reaches [120] [_____] percent of the continuous operating torque and to stop the 
+drive motor when the torque load reaches [140] [_____] percent of the continuous operating torque.  Visually 
+indicate overload points.  Provide a shear pin assembly to serve as back-up overload protection and set to fail 
+at [160 to 180] [_____] percent of continuous operating torque.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select paragraph STRIP LINER TYPE DRIVE OVERLOAD DEVICE or paragraph 
+PRECISION GEAR OVERLOAD DEVICE.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Strip Liner Type Drive Overload Device</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The type of overload protection needs to be properly selected and designed 
+based on manufacturer's recommendation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Actuate the overload device by the thrust from the worm shaft and have a pointer to indicate the load on the 
+mechanism at all times.  Equip the overload device with two micro-switches so adjusted that one will open for 
+actuating a remotely located alarm when the load on the mechanism approaches an overload, and to open the motor 
+circuit when an excessive overload occurs.  Enclose the overload device in a separate NEMA 4X [_____] weather-proof 
+epoxy coated [cast aluminum] [_____] housing.  Preset the two micro-switches at the factory to sound an alarm 
+at 100 percent of the continuous design torque rating and to stop the motor at 125 percent of the continuous 
+design (cut-out) torque.  Provide a motor back-up safety shear pin device set at 135 percent of the mechanism 
+continuous design torque (AGMA).</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Precision Gear Type Drive Overload Device</TTL><BRK/>
+<BRK/>
+<TXT>Provide an overload device in a stainless steel, weatherproof enclosure.  Actuate the device by torque generated 
+from the main drive with three independently adjustable switches (the alarm switch at 100 percent of design running 
+torque, the motor cutout switch at 125 percent of design running torque and the second motor cutout switch at 
+135 percent of design running torque).  Accurately calibrate the alarm torque value and the two overload positions 
+by three switches.  Provide and orient a visual torque indicator so that it may be read from the walkway.  Calibrate 
+tongue indicator from 0 to 160 percent of design running torque.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>[<SPT><TTL>Center Hopper Agitator</TTL><BRK/>
+<BRK/>
+<TXT>Provide a central steel agitator at the base of the torque tube and fit within the concrete sludge hopper with 
+a maximum of<MET> 75 mm</MET><ENG> 3.0 inches</ENG> clearance and a minimum of<MET> 95 mm</MET><ENG> 3.8 inch</ENG> thickness.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Influent</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>Siphon Feed Influent/Support Column</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Siphon feed influent is most commonly associated with center pier supported 
+mechanisms.  Select siphon feed, side feed influent feed, or peripheral feed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a combination influent and support column to support the drive, collector mechanism, and access bridge 
+and to serve as the center influent pipe.  Fabricate column from steel plate and anchor to the concrete.  Equip 
+the minimum [_____]<MET> mm</MET><ENG> inches</ENG> in diameter column with a series of openings near the upper end to direct flow 
+into the influent feedwell at low velocity.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Siphon Feed Influent Feedwell</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use<MET> 76 mm per second</MET><ENG> 0.25 fps</ENG> for primary collectors and<MET> 46 mm per second</MET><ENG>
+ 0.15 fps</ENG> for secondary collectors.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fabricate the influent feedwell from steel plate sections with bolted connections and support from the center 
+cage.  Ensure the feedwell is of adequate size and design to diffuse the flow into the tank.  Design feedwell 
+such that the flow-through velocity does not exceed<MET> [46] [76] mm/second</MET><ENG> [0.15] [0.25] fps</ENG> at maximum flow.  Provide 
+baffled ports at the water surface in the feedwell to permit the escape of scum.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Side Feed Influent Feedwell</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Side feed influent is most commonly associated with bridge supported 
+mechanisms.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fabricate the influent feedwell from steel plate with necessary stiffening members.  Support the feedwell by 
+structural steel members which span the tank and are attached to brackets mounted on the tank wall above design 
+water level.  Design feedwell to diffuse the flow into the tank and with baffled ports at the water surface to 
+permit the escape of scum.  Provide a flanged pipe connection and an influent pipe from the tank side.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Influent Feedwell for Thickeners</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Energy dissipating feedwells may not be required for all thickeners.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fabricate the influent feedwell from steel plate with necessary stiffening angles with a minimum diameter and 
+depth below the water surface as listed in Table above.  Extend the feedwell at least<MET> 125 mm</MET><ENG> 5 inches</ENG> above the 
+minimum thickener water level.  Hot dip galvanize the<MET> 6 mm</MET><ENG> 1/4 inch</ENG> minimum thickness plate influent well as 
+described in Section <SRF>05 50 13</SRF> MISCELLANEOUS METAL FABRICATIONS and Section <SRF>05 50 14</SRF> STRUCTURAL METAL FABRICATIONS.</TXT><BRK/>
+<BRK/>
+<TXT>Design the center influent well to dissipate energy without catching debris so as not to enable clogging while 
+minimizing short circuiting of the flow.  Provide the well with scum release ports.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Peripheral Feed Influent</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section is recommended for existing facility modification or improvement 
+and not for new facility.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide peripheral feed system consisting of an influent channel and either an orifice and baffle system or a 
+downcomer pipe system.  Construct influent channel of [concrete] [steel plate] at the periphery of the tank and 
+in conjunction with the effluent channel.  Design influent and effluent channels for proper flow distribution 
+and collection.  The orifice and baffle system consists of orifice openings in the floor of the influent channel, 
+a steel plate orifice baffle for each orifice, and a steel plate influent skirt to prevent short circuiting.  
+Use orifice dimensions and spacing as determined by the manufacturer for even flow distribution.  Provide equal 
+or greater orfice baffle openings than the diameter of the orifice or greater than the orifice diameter plus<MET> 
+25 mm</MET><ENG> 1 inch</ENG>.  Extend the influent skirt<MET> 1.5 m</MET><ENG> 5 feet</ENG> below the water surface or<MET> 300 mm</MET><ENG> 1 foot</ENG> below the influent 
+channel bottom, whichever is greater.  Provide sufficient clearance between the bottom of the influent skirt 
+and the tank floor to permit operation of the collector mechanism.  Provide downcomer pipe system consisting 
+of steel drop pipes spaced evenly around the influent channel.  Provide a fiberglass 90 degree bend for bottom 
+of the drop pipe and flared discharge nozzle oriented toward the center of the tank.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Rotating Thickening Arms</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Rigidly connect two structural steel arms of truss construction for the thickeners to the center cage.  Do not 
+require the use of any guy or tie rods by arms and design the bottom of top chords at least<MET> 750 mm</MET><ENG> 30 inches</ENG> 
+above the top of the tank floor to minimize island formation and facilitate removal of concentrated underflow.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fabrication</TTL><BRK/>
+<BRK/>
+<TXT>Fully shop weld each rack and ship as a complete fabricated unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material</TTL><BRK/>
+<BRK/>
+<TXT>Hot dip galvanize totating thickening arms as described in Section <SRF>05 50 13</SRF> MISCELLANEOUS METAL FABRICATIONS 
+and Section <SRF>05 50 14</SRF> STRUCTURAL METAL FABRICATIONS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Rake Sludge Scraper System</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Rake Sludge Scraper System</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Equip rakes with steel blades to rake and flow the thickened sludge along the tank bottom to the concentric 
+sludge channel surrounding the center column.  Arrange rakeblades to scrape the entire floor area twice 
+per revolution.Bolt all rake blades to the arms by vertical memberswhich and serve as thickening pickets.</OLI><BRK/>
+<BRK/>
+<OLI>Furnish [316 stainless steel][_____] squeegees for all the blades and project<MET> 40 mm</MET><ENG> 1-1/2 inch</ENG> below 
+the bottom of the blades and adjustably secure by 316 stainless steel bolts and nuts.</OLI><BRK/>
+<BRK/>
+<OLI>Arrange four center scrapers, supported from the center cage to move the concentrated sludge within the 
+annular sludge trough to the point of withdrawal as shown on the contract Drawings.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Hydraulic Sludge Removal</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Hydraulic sludge removal is most commonly associated with activated sludge 
+systems.  Delete hydraulic sludge removal types if scraper blade type selected.  
+If using hydraulic sludge removal types, select header and manifold or uptake 
+pipe system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Accomplish hydraulic sludge removal by the use of the header and manifold system or the uptake pipe system.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Header</TTL><BRK/>
+<BRK/>
+<TXT>Design header to continuously remove the required proportional settled solids volume to effect uniform withdrawal 
+over the entire tank diameter, collecting larger volumes of sludge at greater distances from the tank center.  
+Collect the sludge from the tank bottom and transmit it through the header to the manifold, removal being accomplished 
+by hydrostatic pressure.  Maximum peripheral speed of the header is not allowed to exceed<MET> [0.061] [_____] meters/second</MET><ENG>
+ [12] [_____] fpm</ENG> and maximum allowable head loss from the clarifier water level to the sludge pipe connection 
+at the pier bottom is [_____]<MET> mm</MET><ENG> feet</ENG>.  Provide header that is fabricated from steel plate, rectangular, and 
+varies in size from a minimum at the outer end to a maximum at the center of the tank.  Stepped and constant 
+cross sectional area type headers are not acceptable.  Align the header parallel to the tank bottom, and mount 
+the longitudinal cross sectional axis at an angle of 45 degrees to provide a peaked top.  Extend the leading 
+edge of the header downward<MET> 50 mm</MET><ENG> 2 inches</ENG> to provide an equalizing vane as an integral part of the header and 
+to direct the sludge into the area of influence of the orifice.  Provide a<MET> 3.175 mm</MET><ENG> 10 gauge</ENG> [stainless steel] 
+[_____] scraper with a neoprene blade to clean the tank bottom around the manifold and direct the sludge to the 
+first orifice.  Space inlet orifices along the length of the header such that in a single revolution the header 
+will clean the entire tank bottom.  Maximum orifice spacing is<MET> [775] [_____] mm</MET><ENG> [30] [_____] inches</ENG>.  Drill orifices 
+accurately in the header.  Support the header from the center cage by steel tie-bars with turnbuckles, clevises, 
+and locknuts.  Hold the header in alignment both horizontally and vertically by the support system.  Provide 
+a suitable counterweight to counterbalance the header.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Manifold</TTL><BRK/>
+<BRK/>
+<TXT>Fabricate the sludge collection manifold from steel plate.  Provide two seals to ensure that the sludge enters 
+the manifold only through the headers.  Anchor the bottom plate to the tank bottom, align, and grout in place.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Uptake Pipe System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  An uptake pipe system is an alternative sludge suction to the manifold 
+type.  Provide sufficient quantity of nozzles for a maximum of<MET> 1 to 1.5 meter</MET><ENG>
+ 3 to 5 foot</ENG> spacing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide system consisting of a sludge discharge column within the influent column; [two] [_____] truss-type sludge 
+collection arms, supported from and driven by the drive cage; V-plow blades and squeegees attached to the sludge 
+collection arms; a minimum of [_____] suction nozzles per arm, supported by the sludge collection arms, and piping 
+to a sitewell; and either sludge control boxes or variable orifice slip tubes inside the sitewell.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Fabricate sludge discharge column from steel plate and extend from the sludge sitewell to the bottom 
+of the stationary influent column where it connects to the sludge discharge pipe under the tank bottom.</OLI><BRK/>
+<BRK/>
+<OLI>Provide sludge collection arms of welded truss construction requiring no tie rods for support.  Provide 
+V-plow blades with [spring brass] [_____] squeegees with [brass] [_____] fasteners.  Ensure the blades 
+completely rake the bottom [twice] [_____] per revolution.</OLI><BRK/>
+<BRK/>
+<OLI>Provide suction nozzles that are a minimum of [_____]<MET> mm</MET><ENG> inches</ENG> in diameter.  Provide Schedule 80 PVC 
+suction piping sized for a flow velocity no less than<MET> 0.16 meters/second</MET><ENG> 0.5 fps</ENG> at minimum flow to prohibit 
+solids settling in the piping.  Provide Type 304 stainless steel or Schedule 80 PVC fittings with bell-type 
+ends with O-ring seals.</OLI><BRK/>
+<BRK/>
+<OLI>Provide sitewell approximately [_____]<MET> mm</MET><ENG> feet</ENG> square by [_____]<MET> mm</MET><ENG> feet</ENG> deep, fabricated from steel 
+plate, and containing either sludge control boxes or variable orifice slip tubes.  Provide a neoprene 
+seal between the sitewell and influent column.  Ensure sludge control boxes are integral with the sitewell.  
+Control sludge being withdrawn from each section of the arm by a submerged orifice sludge control box 
+to allow pacing of the recycled rate.  Equip each box with a manually controlled PVC gate valve with 
+positioning stem and position indicator.  Provide variable orifice slip tubes of steel or PVC pipe construction 
+that permit throttling of individual sludge lines by rotating the slip tubes.</OLI><BRK/>
+<BRK/>
+<OLI>Induce sludge flow by means of hydraulic head differential between the tank water level and the sludge 
+control boxes or variable orifice slip tubes at a head of [_____]<MET> mm</MET><ENG> feet</ENG>.  Control the total sludge 
+drawoff solely by the pumping rate from outside the mechanism.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</SPT>]<SPT><TTL>Corner Scrapers for Square Tanks</TTL><BRK/>
+<BRK/>
+<TXT>Provide a corner blade on [one] [each] sludge scraper arm.  Corner scraper blades consist of a straight blade 
+attached to two horizontal members mounted on the main scraper arm.  Pivot the scraper mechanism on special underwater 
+bearings and actuate by a counterweight or spring to keep the end of the arm in contact with the side of the 
+tank.  Provide steel guide plates for the tank corners to direct the path of the corner blades.  Provide a carrier 
+wheel on the outer end of each corner blade.  Provide springs, cable, and chain composed of stainless steel, 
+galvanized steel, or other corrosion-resistant material.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Scum Removal for Tank Water Surface</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use of dual skimmer arms and wide scum beach/box improves scum removal 
+performance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Scum removal  consists of a [single] [dual] skimming device, a scum baffle, and [one] [two] skimmer blade ramp(s) 
+and scum box(es).</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Sweep the water surface of the tank and automatically move the scum up the skimmer blade ramp and into 
+the scum box.  Support skimming devices by structural steel members attached to the [sludge collection 
+arms and counterweight] [torque tube].  Do not rely on the scum baffle for support.  Provide neoprene 
+scum scraper blade.</OLI><BRK/>
+<BRK/>
+<OLI>Fabricate scum baffle from [steel plate] [or] [fiberglass reinforced polyester plastic].  [Provide fiberglass 
+scum baffle plates in standard lengths not to exceed<MET> 3600 mm</MET><ENG> 12 feet</ENG>.]  Construct connections between 
+baffle sections in a manner that will not interfere with smooth contact of the skimmer.  Provide all 
+supports and connectors required for a complete installation.</OLI><BRK/>
+<BRK/>
+<OLI>Provide scum boxes of the dimensions indicated and fabricated from steel plate.  Provide assembly with 
+a scum sump, vertical steel sides, and a sloping skimmer blade ramp.  Provide a flexible connector between 
+the scum outlet piping and the tank wall.  [Provide an automatic flushing device, which will open as 
+the scraper passes.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Influent Channel Scum Removal</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Influent channel scum removal is required only on peripheral feed collectors.  
+Delete the inapplicable system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>In addition to the tank water surface scum removal, provide a system for removal of scum from the influent channel.  
+The system consists of [an additional scraper blade attached to the main tank skimmer,] [or] [an influent channel 
+spray nozzle system designed to move the scum to the scum box,] a scum box, and a motorized telescopic scum control 
+valve.  Provide all controls required for the system.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Effluent</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Weir Plates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Sludge collectors which require additional linear footage of weir, beyond 
+weir trough circumference length can utilize finger weir or weir pans to increase 
+length up to two and one-half times length of single circumferential weir.  
+Manufacturer of this type should be required to have at least five years experience 
+in furnishing weir pan systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [fiberglass reinforced polyester plastic] weir plates [fabricated from [steel] [stainless steel]] with 
+the dimensions indicated.  Mold vee notches in fiberglass weir plates in the plate; cut edges are not acceptable.  
+Mount weir plates in a manner to be watertight and to provide a minimum of<MET> 50 mm</MET><ENG> 2 inches</ENG> vertical adjustment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Effluent Trough and Drop Box</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The effluent trough and drop box may be cast of concrete with the tank 
+wall and deleted from this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Fabricate the effluent trough and drop box from [stainless steel] [or] [fiberglass reinforced polyester plastic].  
+Trough and drop box dimensions are as indicated.  Ensure joints between sections are watertight.  Provide support 
+assemblies of adequate strength to prevent trough or box distortion through filling and draining of the tank.</TXT>]<BRK/>
+<BRK/>
+[<TXT>Cast-in-place concrete integral to concrete tank wall.</TXT>]<BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Structural Work</TTL><BRK/>
+<BRK/>
+<TXT>Fabricate structural steel components from new and undamaged materials that conform to applicable provisions 
+of the AISC specifications for the design and fabrication of structural steel and to pertinent ASTM standard 
+specifications including the following:</TXT><BRK/>
+<TXT><TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="257.25"/>
+      <COL AUTOWIDTH="0" WIDTH="256.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Material</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">ASTM Standard Specification</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Structural Steel not Welded</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A36/A36M</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Welded Structural Steel</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A36/A36M</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Cast Iron</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A48/A48M</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Machine Bolts</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A307</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Stainless Steel</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM A276/A276M</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL>
+<DTA TYPE="STRING">Stainless Steel Bolts</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM F593</RID></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<TXT>Conform to applicable AISC specifications for all welds and welding operations.  Provide 316 stainless steel 
+anchor bolts and fasteners for all underwater locations.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL><SUB>SLUDGE COLLECTORS FOR RECTANGULAR TANKS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer needs to understand the different types of thickener mechanisms 
+and make a selection based on manufacturer's recommendation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Rectangular Thickener Mechanism</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Design the thickener mechanism for continuous duty and exposure to wastewater, scum and sludges containing 
+organic and inorganic solids, including vegetable parts, grits, grit, paper and rubber products, rags 
+petroleum products, animal fats and greases, industrial solvent, ammonia, and detergents.</OLI><BRK/>
+<BRK/>
+<OLI>Provide complete thickener mechanism of sufficient strength and sufficient mechanical ability to operate 
+continuously thickening of the [WAS] [sludge] listed in table below at paragraph RECTANGULAR THICKENER 
+DESIGN CRITERIA.  Remove the thickened sludge by the flights in a straight path cross collector located 
+at the influent end of the tanks.  Convey the thickened solids by the cross collector to a sump located 
+at one end of the cross collector trough.  Configure the equipment to allow operation for up to 8 hours 
+when the thickener basins are dry.</OLI><BRK/>
+<BRK/>
+<OLI>Design both the chain and flight mechanism and the cross collector mechanisms with sufficient strength 
+to withstand torque levels occurring at cut-out of the overload device without exceeding allowable stresses, 
+causing damage or undue deflection.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Rectangular Thickener Design Criteria</TTL><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="15">
+      <COL AUTOWIDTH="0" WIDTH="257.25"/>
+      <COL AUTOWIDTH="0" WIDTH="256.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">Design Criteria</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Value</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">Type of Sludge</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">WWTP WAS or WTP Chemical Sludge</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">Sludge Flow Rate</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> m<SPS>3</SPS>/hr</MET><ENG> gpd</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">Influent Sludge Concentration</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.5 percent</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">Thickened Sludge Concentration</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.5 to 2.0 percent</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">Minimum Solids Recovery</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">90 percent</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">Design Surface Loading</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>4.07 m/d</MET><ENG>100 gpm/sq. ft</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">Solids Loading Rate</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>19 kg/d/sq m</MET><ENG>4.0 lbs/hour/sq ft</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">Number of Units</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ea</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">Tank Dimension</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="17.25">
+         <CEL>
+<DTA TYPE="STRING">    Basin Length</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> meter</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">    Basin Width</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> meter</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">    Side Water Depth</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> meter</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="17.25">
+         <CEL>
+<DTA TYPE="STRING">    Tank Bottom Slope</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="93.75">
+         <CEL>
+<DTA TYPE="STRING">    Freeboards</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]<MET> meter</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Chain and Flight Scraper Type Collectors</TTL><BRK/>
+<BRK/>
+<TXT>Provide sludge collector including chain, flight and wear shoes, sprockets, shafts, wall bearings, return tracks 
+with support brackets, tee rails, drive unit complete with reducer, motor and overload device, and all associated 
+attachment and anchor bolts.  Allow chain for primary tank collectors to run over four sets of sprocket wheels 
+at a design speed of [_____]<MET> mpm</MET><ENG> fpm</ENG>, so that the flights will clean the sludge from the tank bottom and skim 
+the surface on the return run, concentrating scum in front of the scum pipe.  Allow chains for intermediate tank 
+collectors to run over three sets of sprocket wheels at a design speed of [_____]<MET> mpm</MET><ENG> fpm</ENG>, so that the flights 
+will clean the sludge from the tank bottom and route it to the sludge collection trough.  Ensure cross collectors 
+run at twice the speed of the longitudinal collectors.  Select collector components based upon the following 
+criteria:  operation under dry tank conditions; friction factor for dry steel on dry steel of 0.33; friction 
+factor for polyurethane on dry steel of 0.25; bearing friction of 5 percent of shaft assembly.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Metallic Chains</TTL><BRK/>
+<BRK/>
+<TXT>Manufacture metallic chains of corrosion-resistant processed metal having an average tensile strength of<MET> 551.6 
+MPa</MET><ENG> 80,000 psi</ENG> and a hardness range of 179-229 Brinell.  Provide 7205 heavy pintle type chains with<MET> 150 mm</MET><ENG> 6 
+inch</ENG> pitch, weighing<MET> 7.6 kg/m</MET><ENG> 5.1 lb/ft</ENG>, and with plain and attachment links assembled with<MET> 19 mm</MET><ENG> 3/4 inch</ENG> diameter 
+hardened steel pins and rivets.  Proof test each assembled strand of the chain with allowable working load capacity 
+of<MET> 15.7 kN</MET><ENG> 3,540 pounds</ENG> at a minimum of<MET> 83.6 kN</MET><ENG> 18,800 pounds</ENG> to detect and remove defective castings.  Provide 
+rigid attachments for full depth of the flight and attach with four<MET> 10 mm</MET><ENG> 3/8 inch</ENG> diameter bolts.  Match chain 
+sections within<MET> 5 mm in 3 meters</MET><ENG> 3/16 inch in 10 feet</ENG>, tag, and wire together in pairs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nonmetallic Chains</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Chains</TTL><BRK/>
+<BRK/>
+<TXT>Provide nonmetallic chains with<MET> 152 mm</MET><ENG> 6 inch</ENG> pitch links.  Manufacture chain of thermoplastic polyester resin 
+with a minimum chain weight of<MET> 2.24 kg/m</MET><ENG> 1.5 lbs/ft</ENG>.  Design the chain for a working load of not less than<MET> 1,362 
+kg</MET><ENG> 3,100 lbs</ENG> based on strength, fatigue, and wear considerations.  Integrally mold chain links with the barrel 
+and both sideboard formed in one piece.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pins</TTL><BRK/>
+<BRK/>
+<TXT>Mold non-metallic connection pins in one piece from reinforced nylon resin with T-heads, which seat and lock 
+inside the molded chain link to prevent pin location.  Positively lock pins when chain is assembled, and install 
+a non-metallic retaining clip molded in one piece from acetyl acetal resin to insure positive locking of the 
+pin.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Links</TTL><BRK/>
+<BRK/>
+<TXT>Provide rigid, non-metallic flight attachment links, manufactured from the same material as the chain link, with 
+an appropriate height to suit the flights.  Extend the attachment links full depth of the flight and integrally 
+mold in one piece to assure flight alignment.  Conform to industrial standards and accommodate four<MET> 10 mm</MET><ENG> 3/8-inch</ENG>
+-diameter Type 316 stainless steel flight attachment bolts for the attachment link olt pattern.  Connect attachment 
+links to collector chain with pine as described above.</TXT><BRK/>
+<BRK/>
+<TXT>Wrap cross collector chain barrels and attachment link barrels with Type 301 stainless steel armor bands to resist 
+grit, prevent chain link outer barrel wear, increase sprocket life, and extend the life of the chain.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Drive Chains</TTL><BRK/>
+<BRK/>
+<TXT>Provide H-78 mill type drive chains manufactured of a corrosion resistant processed metal, consisting of[<MET> 66.27 
+mm</MET><ENG> 2.609 inch</ENG>] [_____] pitch links, and with an allowable working load of<MET> [10.4] [_____] kN</MET><ENG> [2,350] [_____] pounds</ENG>
+.  Proof test each assembled strand at a minimum of<MET> [44.5] [_____] kN</MET><ENG> [10,000] [_____] pounds</ENG> to detect and remove 
+defective castings.  Provide a hot-dip galvanized chain tightener to take up unnecessary slack in the drive chain.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fiberglass Scraper Flights</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide fiberglass scraper flights of<MET> 75 by 200 mm</MET><ENG> 3 by 8 inch</ENG> nominal size, especially designed for 
+sludge collector service and proven in collectors of similar width and length.</OLI><BRK/>
+<BRK/>
+<OLI>Construct the pultruded scraper flights  from fiberglass, reinforced, isophthalic polyester resin, having 
+continuous fiberglass filaments in addition to a fiberglass mat running the full length of the member.  
+Water adsorption maximum is 0.6 percent, measured in accordance with <RID>ASTM D570</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a scraper lip with minimum fiberglass content of 55 percent on the leading edge of the scraper 
+flight to insure cleaning of the tank floor.</OLI><BRK/>
+<BRK/>
+<OLI>Drill and notch all scraper flights at the factory.  Space scraper flights at a maximum of<MET> 3 m</MET><ENG> 10 foot</ENG>
+ spacing.  Provide type 316 stainless steel attachment hardware.</OLI><BRK/>
+<BRK/>
+<OLI>Provide non-metallic fill blocks for bolting to the chain attachment links to the scraper flight.</OLI><BRK/>
+<BRK/>
+<OLI>Angle or L-shaped scraper flights are not acceptable.  Buoyant flight design is not acceptable.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Wearing Shoes</TTL><BRK/>
+<BRK/>
+<TXT>Provide each scraper flight with wear shoes,<MET> 13 mm</MET><ENG> 1/2 inch</ENG> thickness, to run on floor rails and return rails.  
+Manufacture the wear shoes from Nylon 6-6 and have a minimum tensile strength of<MET> 1,856 Kpa</MET><ENG> 12,800 psi</ENG>, as measured 
+in accordance with <RID>ASTM D638</RID>.  Measure minimum Rockwell hardness of R116, in accordance with <RID>ASTM D785</RID>.  Provide 
+reversible wear shoes giving two usable wearing surface.  Run carrying wear shoes on floor rails and locate central 
+to chain attachment link to avoid additional drilling of scraper flight.  Run return wear shoes on angle tracks 
+and lug to ensure flight tracking.  Round leading edge for smooth transition between wear strips.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Return Rails Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Design the return rail with a design loading of<MET> 3 kg/m</MET><ENG> 2.5 lb/ft</ENG> and minimum dimensions of<MET> 75 mm x 75 mm x 10 
+mm</MET><ENG> 3 inch x 3 inch x 3/8 inch</ENG> thick fiberglass angle.  Space the return rail supports at approximately<MET> 3 m</MET><ENG> 10 
+feet</ENG> on center.  Supply the rails in<MET> 6 m</MET><ENG> 20 foot</ENG> lengths and cut and drill in the field so that the thickener 
+mechanism is supported to the maximum extent possible.</TXT><BRK/>
+<BRK/>
+<TXT>Solids-type construction wall bracket assemblies consist of predrilled bracket mounted to two wall anchors and 
+rail support shoe manufactured from Nylon 6-6 with molded mounting holes and attached to wall bracket and return 
+rail.  Install wall bracket assemblies at approximately<MET> 3 m</MET><ENG> 10 feet</ENG> on center with type 316 stainless steel anchors 
+and hardware.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Deflector Rails</TTL><BRK/>
+<BRK/>
+<TXT>Provide deflector rails if required based on tank geometry with minimum dimensions of<MET> 75 mm by 50 mm by 10 mm</MET><ENG>
+ 3 inches by 2 inches by 3/8 inch</ENG> thick fiberglass angle designed to accommodate all potential loads.  Mount 
+equipment using Type 316 stainless steel hardware.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Collector Chain Sprockets</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Equip collector chain sprocket with chain-saver rims and provide all reversible and compatible sprockets with 
+non-metallic chain.  Manufacture collector chain  sprockets from cast nylon and have a minimum tensile strength 
+of<MET> 1,450 Kpa</MET><ENG> 10,000 psi</ENG> measured in accordance with <RID>ASTM D638</RID>.  Measure mnimum Rockwell hardness of R116 with <RID>
+ASTM D785</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Headshaft Sprockets</TTL><BRK/>
+<BRK/>
+<TXT>Utilize a headshaft sprocket split-construction with type 316 stainless steel bolts to secure the halves of the 
+sprockets together.  Clamping bands are not acceptable.  Key and set-screw headshaft sprocket to headshaft with 
+not less than a [_____]<MET> mm</MET><ENG>  inch</ENG> pitch diameter with [_____] teeth.  Design the headshaft sprockets with a machined 
+keyway designed to restrict lateral movement.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Idler Sprockets</TTL><BRK/>
+<BRK/>
+<TXT>Mount one piece idler sprockets on stub shaft spindles.  Provide polycarbonate retainer plates with Type 316 
+stainless steel hardware to hold idler sprockets in place.  Provide the Idler sprockets with not less than a 
+[_____]<MET> mm</MET><ENG>  inch</ENG> pitch diameter with [_____] teeth.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT>Collector Stub <TTL>Shafts/Stub Shaft Spindles</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Stub Shafts</TTL><BRK/>
+<BRK/>
+<TXT>Manufacture one piece, non-metallic factory-drilled stub shafts for idler sprockets and stub shaft spindles for 
+headshaft assemblies mounted to wall anchors.  Manufacture the stud shafts and stub shaft spindles from Cast 
+Nylon-6 with a minimum tensile strength of<MET> 1,450 Kpa</MET><ENG> 10,000 psi</ENG> measured in accordance with <RID>ASTM D638</RID> and a minimum 
+Rockwell hardness of R116 measured in accordance with <RID>ASTM D785</RID> and <RID>ASTM E18</RID>.  Manufacture stub shaft retainer 
+plates from polycarbonate and provide Type 316 stainless steel hardware to hold the idler sprockets in space.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Diaphragm Plates</TTL><BRK/>
+<BRK/>
+<TXT>Furnish type 316 stainless steel diaphragm plate(s)as required to support the headshaft assemblies on the wall 
+shared by the collectors bays.  Provide minimum [_____]<MET> mm</MET><ENG>  inch</ENG> thick solid stainless steel plate(s) that incorporate 
+mounting holes and threaded road studs as necessary to support both longitudinal collector headshafts.  Provide 
+shop drawings and anchorage details for review by the Engineer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Head Shaft Assembly</TTL><BRK/>
+<BRK/>
+<TXT>The longitudinal and cross collector head shafts will be non-metallic telescoping or Mono cross tubes for ease 
+of shaft assembly to non-metallic wall mounted stub shaft spindles.  Manufacture the head shaft assemblies from 
+high strength glass fiber reinforced epoxy resin, bi-axially wrapped at 45 degrees.  After the tubular assembly 
+is expanded and fitted over the stub shaft spindle assembly, secure it in place with glass-reinforced nylon 6-6 
+keys, collars, and Type 316 stainless steel hardware, as required.  Equip the head shafts with keyways and keys 
+sized to fit the non-metallic headshaft sprockets.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Collector Bearings</TTL><BRK/>
+<BRK/>
+<TXT>Provide the inside of each end tube and Mono tubes of headshaft assemblies with a one-piece ultra-high molecular 
+weight polyethylene (UHMW-PE) replaceable, tubular bearing. Slide fit headshaft assembly with UHMW-PE bearing 
+over Cast Nylon-6 stubshaft spindle.</TXT><BRK/>
+<BRK/>
+<TXT>Provide the outside of idler stub shafts assemblies with a one-piece ultra-high molecular weight polyethylene 
+(UHMW-PE) replaceable, thermally integrated tubular bearing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wear Strips</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Provide wear strips of ultra-high molecular weight polyethylene (UHMW-PE) measuring approximately<MET> 65 mm</MET><ENG> 2-5/8 
+inches</ENG> wide by<MET> 10 mm</MET><ENG> 3/8 inches</ENG> thick, with one countersunk round and three countersunk slotted holes to allow 
+for thermal expansion.  Supply wear strips in a minimum of<MET> 3 mm</MET><ENG> 10 foot</ENG> lengths and provide butt joints with 
+a minimum of<MET> 10 mm</MET><ENG> 3/8 inch</ENG> expansion gap between wearstrips.  Cut and fit wearstrips in the field, if necessary, 
+and provide Type 316 stainless steel hardware.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Mount floor rail wear strips directly to concrete floors attached with plastic drop-in anchors and #14 slotted 
+pan head screws.</TXT><BRK/>
+<BRK/>
+<TXT>Attach return rail wear strips to return rail with<MET> 8 mm x 32 mm</MET><ENG> 1/4 inches x 1-1/4 inches</ENG> long slotted pan head 
+machine screws, flat washers, split lock washers and hex nuts, all Type 316 stainless steel.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Drive Chain</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Design the drive chain with a [_____]<MET> mm</MET><ENG> inches</ENG> pitch link and a published working load of not less than [_____]<MET>
+ kg</MET><ENG> pounds</ENG> based upon both strength and water considerations.  Manufacture the drive chain from reinforced nylon 
+resin with stainless steel pins.  Insulate the links pin from the barrel with a sleeve in order to resist the 
+ingress of abrasive or deleterious materials.</TXT><BRK/>
+<BRK/>
+<TXT>Provide unit with a nylon materials drive chain tightener designed to remove excess slack from drive chain.  
+Install at the same elevation as the system drive units.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Include a removable [nylon] [type 304 stainless steel] chain guard for chain installed above grade level to prevent 
+accidental jumping or insertion of equipment.</TXT><BRK/>
+<BRK/>
+<TXT>Wrap drive chain for the cross collectors with 301 stainless steel armor bands to resist grit, prevent chain 
+link outer barrel wear, increase sprocket life, and extend the life of the chain.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Driven Sprockets</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Drive Sprocket</TTL><BRK/>
+<BRK/>
+<TXT>Manufacture drive sprockets acetal and hub assemblies of Type 316 stainless steel.  Provide the drive sprocket 
+and hub assemblies with keyway and Type 316 stainless steel setscrews to attach the hub to the reducer shaft 
+and a Type 316 stainless steel retaining ring to secure the drive sprocket to the hub.</TXT><BRK/>
+<BRK/>
+<TXT>Provide drive sprockets with a pitch diameter not less than [_____]<MET> mm</MET><ENG> inches</ENG> and have no fewer than [_____] 
+teeth.  Provide an appropriately rated NEMA enclosure for positioning the limit switch for each torque device.  
+Include pins in the sprockets that are designed to limit damage to the remaining components in the even of a 
+high-torque even occurs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bull Sprocket</TTL><BRK/>
+<BRK/>
+<TXT>Provide driven bull sprockets manufactured from Cast Nylon-6 as required with a minimum tensile strength of<MET> 1.45 
+Kpa</MET><ENG> 10 psi</ENG> measured in accordance with <RID>ASTM D638</RID> and a minimum Rockwell hardness of R115 measured in accordance 
+with <RID>ASTM D785</RID>.  Utilize a driven bull sprocket with two-piece split construction, offset type, to facilitate 
+installation and assembly using Type 316 stainless steel hardware.</TXT><BRK/>
+<BRK/>
+<TXT>Provide the driven bull sprocket a keyway in the hub and secure the Type 316 stainless steel key and set screws 
+to the factory cut keyway in the headshaft assembly.  Provide the driven bull sprocket with a pitch diameter 
+of not less than [_____]<MET> mm</MET><ENG> inches</ENG> pitch diameter and no fewer than [_____] teeth.  Offset the bull sprocket 
+so that the flights may pass over the headshaft without interference from the sprocket or modifications to the 
+flights.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cross Collector Chain and Sprocket</TTL><BRK/>
+<BRK/>
+<TXT>Design the drive chains with [_____]<MET> mm</MET><ENG> inches</ENG> pitch link for a published working load of not less than [_____]<MET>
+ kg</MET><ENG> pounds</ENG> based upon both strength and wear considerations.  Manufacture links from reinforced nylon resin with 
+stainless steel pins.  Manufacture drive sprockets  from nylon and manufacture hub assemblies from Type 316 stainless 
+steel.</TXT><BRK/>
+<BRK/>
+<TXT>Provide the drive sprocket and hub assemblies with keyway and setscrews to attach the hub to the reducer shaft 
+and a Typical 316 stainless steel retaining ring to secure the drive sprocket to the hub.  Design drive sprockets 
+with a pitch diameter not less than [_____]<MET> mm</MET><ENG> inches</ENG> and no fewer than [    ] teeth.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive Unit</TTL><BRK/>
+<BRK/>
+<TXT>Provide a drive unit at the influent end of each thickener to drive the longitudinal chain and flight collector. 
+Provide separate drive units at the influent end of each thickener to drive the cross collector. Provide all 
+electrical actuator to operate the scum skimmer equipment.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Motor Performance Characteristics</OLI><BRK/>
+<BRK/>
+<OLI><TAB WIDTH="99">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="28">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="283.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="197.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Parameter</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Value</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Thickener Drive</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Motor Size</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>[0.75 kw]</MET> <ENG>[1 hp]</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Operating Voltage</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[480] [_____] VAC</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Phase</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Frequency</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">60 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Synchronous Speed</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[0.5] [_____] rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Inverter Duty?</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">No</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Motor Over-temperature Protection?</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">No</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Classified Environment</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Yes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Cross Collector Drive</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Motor Size</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>[0.75 kw]</MET> <ENG>[1 hp]</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Operating Voltage</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[480] [_____] VAC</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Phase</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Frequency</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">60 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Synchronous Speed</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[0.5] [_____] rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Inverter Duty?</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">No</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Motor Over-temperature Protection?</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">No</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Classified Environment</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Yes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Scum Drive</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Motor Drive</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>[0.75 kw]</MET> <ENG>[1 hp]</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Operating Voltage</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[480] [_____] VAC</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Phase</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Frequency</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">60 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Synchronous Speed</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[0.5] [_____] rpm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Inverter Duty?</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">No</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Motor Over-temperature Protection?</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">No</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="114.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Classified Environment</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Yes for Class I Division 2 or No for Unclassified</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Overload Protection System</TTL><BRK/>
+<BRK/>
+<TXT>Protect the sludge collectors and screw cross collectors by means of a shear pin device on each drive sprocket 
+and hub assembly.  Suitable size the shear pin to break and disengage the drive sprocket and hub assembly in 
+the event of a high load condition in the collector system.</TXT><BRK/>
+<BRK/>
+<TXT>Provide the drive sprocket and hub assemblies with a trip pin designed so that in the event of an overload in 
+the collector system and breaking of the shear pin, the trip pin extends and contacts the actuator arm of a double 
+throw limit switch.  Use the limit switch to provide an alarm signal on over-torque conditions.  Equip the limit 
+switch with a SPDT dry contact suitable for use with a [120] VAC or [24] VDC input in a PLC discrete input module 
+and list the unit as suitable for Class I, Division 2, Group D, applications.  The manufacturer also provides 
+a support bracket designed to position the limit switch adjacent to the over-torque device.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sprocket Torque Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide each primary longitudinal and cross collector mechanism with a sprocket monitoring system (SMM) that 
+will monitor the rotation of the rail sprockets and safeguard against catastrophic failure/damage to the thickener 
+mechanism.  Coordinate the SMM with the proposed electrical components shown on the Plans and as specified herein 
+to ensure compatibility.  Bring any discrepancies between the proposed SMM system and the proposed electrical 
+components to the attention of the Engineer as soon as possible.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Monitor the collector sprocket motion at the lower rear idler stub shafts with the SMM.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Each chain and flight mechanism include two SMM idler sprockets mounted on the lower rear idler 
+stub shafts.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">100 percent molded from Cast Nylon-6 sprockets with a minimum tensile strength of<MET> 1,450 Kpa</MET><ENG>
+ 10,000 psi</ENG> and a minimum Rockwell Hardness R115 when measured at time of manufacture.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Maximum water absorption of 1.3 percent measured in accordance with <RID>ASTM D570</RID>, at 24-hour exposure 
+at<MET> 23 degrees C</MET><ENG> 73 degree F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Equip SMM sprockets with a "hunting tooth" profile.  Provide a compatible and reversible odd 
+number of teeth, with NCS-720-S non-metallic chain.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide solid one piece construction for ease of installation on to stub shafts.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Mount and secure idler SMM sprockets on stub shafts with Polycarbonate retainer plates and<MET> 
+15 mm</MET><ENG> 1/2 inch</ENG> diameter 316 stainless steel hardware.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Design the SMM sprockets with a minimum of [_____] teeth and a minimum pitch diameter of[_____]<MET>
+ mm</MET><ENG> inch</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Equip each SMM sprocket with 12 equally spaced rare earth magnet targets imbedded in the web 
+of the sprocket and flush with sprocket surface.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Secure a factory potted and sealed Namur style magnetic sensor to the idler stub shaft with 
+a 316 stainless steel or FRP mounting angle and 316 hardware.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide complete sensor system including watertight conduit and<MET> 15 m</MET><ENG> 50 feet</ENG> cable to run from 
+the sensor location to the deck level above.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide sensor in compliance with DIN 19234.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Locate sensor at the diameter of the magnet circle, but not touch the sprocket or magnets.  
+As each SMM sprocket rotates, detect the encapsulated magnet targets as they pass the sensor. 
+During this rotation, pass the target to the sensor field creating a signal state.  Compare 
+the timing of these state changes to determine a change in speed by the control system.</OLI><BRK/>
+<BRK/>
+<OLI>Control System</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Supply control panel(s) by the chain and flight manufacturer to monitor the sprocket motion 
+of the systems and include the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Incorporate collector system speed for sprocket motion calculations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Compensate for system harmonics or vibrations.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Provide noise isolation for sensor signals.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Compensate for multiple signals during starting and stopping transitions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Match the control panel with design and configuration provided for thickener.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Incorporate a PLC design to run the SMM system.  Hardwire the SMM system to the panel.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Provide connection of the SMM system from grade level at the tail end of each collector system 
+to the appropriate boxes/panels, as well as all associated labor, materials, and equipment 
+by the Contractor.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Cross Collector</TTL><BRK/>
+<BRK/>
+<TXT>Provide cross collector of either the helical coil or the conveyor type and designed to scrape and convey the 
+collected sludge from the sludge channel to a sludge sump.  Use materials in the construction of the cross collector 
+of the same type and quality as those used in the main sludge collector.  Helical coil consists of a helical 
+steel blade mounted on a steel shaft, driven by a sprocket-connected drive.  Provide cross collector conveyor 
+similar in operation to the conveyor used in the main sludge collector.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Traveling Bridge Type Collectors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section is recommended for existing facility modification or improvement 
+and not for new facility.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide traveling bridge collector composed of a complete bridge assembly supported on ASCE type rails.  Provide 
+bridge assembly consisting of a traveling bridge with walkway, bridge drive, sludge removal system, support rail 
+and anchorage parts, and electrical control panel with necessary controls for the operation of the mechanism.  
+Design drive train to withstand maximum horizontal loads placed on the bridge and sludge removal system.  Ensure 
+all parts of each mechanism are proportioned for stresses that may occur during fabrication, erection, and operation.  
+Provide bridge with a travel speed of [_____]<MET> meters/second</MET><ENG> fpm</ENG> and a reverse speed of [_____]<MET> meters/second</MET><ENG> 
+fpm</ENG>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Bridge Drive</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Gear and rack drivers are desirable in climates that have freezing rain 
+and snow.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide bridge drive consisting of a drive assembly, wheels, rails, drive shaft, [rack and pinion,] and controls.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide drive assembly consisting of a [single speed] [dual speed] [variable speed] drive, gear reducer, 
+drive chain, and drive and driven sprockets.  Fully enclose all gearing in an oil-tight housing with 
+the gears running in oil.  Use anti-friction type bearings.  Provide roller chain type drive chain.  
+Provide motor in conformance with paragraph MOTORS.  V-belts drives are not acceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Furnish each motor with a magnetic full-voltage starter conforming to <RID>NEMA ICS 1</RID>.  Provide starter in 
+weatherproof cast metal enclosure.  Provide a separate pole with manually reset thermal-overload protection 
+in each ungrounded conductor.  Mount controls in starter cover or in separate weatherproof cast metal 
+enclosure.</OLI><BRK/>
+<BRK/>
+<OLI>Provide drive shaft of sufficient size to adequately and safely withstand all bending and torsional loads 
+of starting and operating.  Support drive shaft by multiple, grease lubricated bearings.  Provide two 
+load-bearing wheels, one flanged and one flangeless, running on roller bearings mounted on idler shafts 
+at each end of the bridge.  Provide running rails that are<MET> 18 kg</MET><ENG> 40 pound</ENG> [_____] ASCE with standard 
+rail splices and anchor to the tank wall.  Provide four rail stops; locate at travel extremes.  Drive 
+bridge by gears with a<MET> 75 mm</MET><ENG> 3 inch</ENG> pitch, keyed to the ends of the drive shaft.  Mesh gears with a steel 
+rack anchored to the top of the tank wall.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Scraper Sludge Removal, Blades, and Supports</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Scraper type traveling bridge collectors are normally used for primary 
+basins where the volume of sludge is low and the main requirement is to increase 
+the sludge concentration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide scraper blades consisting of a minimum<MET> 300</MET><ENG> 12 inch</ENG> deep structural steel channel, polyurethane wear shoes, 
+and neoprene strips acting as squeegees on the tank bottom.  Position and guide scraper blade assembly by two 
+or more rigid structural steel support assemblies attached to the bridge.  Attach scraper blade assemblies through 
+pivot joints and bearings to the support assemblies.  Ensure scraper assembly retracts above the water surface 
+for maintenance and inspection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Scraper Sludge Removal Cross Collector</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Cross collectors are normally desirable on long basins.  Spacing of cross 
+collectors is dependent upon the type of sludge encountered.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a screw cross collector consisting of a drive unit with an overload alarm, vertical drive torque shaft, 
+underwater gear box, helical screw, bearings, and anchors.  Provide drive unit consisting of a motor and gear 
+reducer connected to a vertical drive shaft through a flexible coupling.  Provide motor in conformance with paragraph 
+MOTORS.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide gear reducer of the worm gear type with anti-friction bearings and completely immersed in oil 
+in a sealed housing.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a replaceable switch, with normally open and normally closed contacts to be actuated upon shear 
+pin failure.  Design drive unit to rotate the screw at a speed of [_____] rpm.  Provide pressure lubricated 
+underwater gear box with bearings and seals designed for submerged operation.  Install automatic greasers 
+and provide grease lubrication lines from each submerged bearing to an accessible location.  Provide 
+helical screw with [_____]<MET> mm</MET><ENG> inch</ENG> diameter blades of<MET> 4.8 mm</MET><ENG> 3/16 inch</ENG> thick steel plate welded to a 
+hollow steel core.  Support screw by end bearings [and intermediate bearings].  Provide all screw threads 
+to conform with <RID>ASME B1.1</RID> for Unified Inch Screw Threads (UN and UNR Thread Form).</OLI><BRK/>
+<BRK/>
+<OLI>Provide an electric overload system, consisting of suitable relays and an indicating meter plainly showing 
+the overload points.  Sound an alarm by the overload system when the load reaches full load torque capacity 
+of the drive motor and de-energize the motor.  Provide a torque sensing and indicating device to indicate 
+percentage of maximum torque being developed.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Vacuum Sludge Removal</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Vacuum and siphon sludge removal systems are normally used for secondary 
+basins in activated sludge systems where large volumes of sludge are removed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide traveling bridge with [_____] sludge pick-up heads, each [_____]<MET> mm</MET><ENG> feet, inches</ENG> long, suspended from 
+the bridge.  Provide pick-up heads with continuous slot orifices or include neoprene sludge guides covering all 
+settling areas to divert the sludge to large diameter inlet ports.  Power vacuum system by [_____] self-priming 
+centrifugal solids handling pumps mounted on the bridge.  Provide pumps capable of pumping [_____]<MET> L/second</MET><ENG> gpm</ENG>
+ per pump at a static head of [_____]<MET> mm</MET><ENG> feet</ENG>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide motor in conformance with paragraph MOTORS.  Connect motor directly to the speed reducer by a 
+flexible coupling. V-belt drives are not acceptable.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Siphon Sludge Removal</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Sludge Removal Siphons</TTL><BRK/>
+<BRK/>
+<TXT>Provide traveling bridges with [_____] sludge removal siphons, [each consisting of a horizontal pipe header with 
+uniformly spaced inlet ports] [each having one large diameter pick-up port and neoprene sludge guides covering 
+all settling areas to divert sludge to the inlet ports].  Submerge siphon discharge in the sludge trough.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Vacuum Priming System</TTL><BRK/>
+<BRK/>
+<TXT>[Provide a portable vacuum pump for siphon priming.  Connect pump manually to a male hose cock on the siphon 
+pipe.  Manually turn connection between the pump and siphon pipe to "OFF" as the pipe is primed.][  Provide a 
+bridge mounted vacuum pump for siphon priming.  Pipe pump to a vacuum header through a vacuum canister.  Terminate 
+vacuum header by hand-operated valve to allow vacuum header purging after the priming operation.  Manually turn 
+each connection between the vacuum header and siphon pipes to "OFF" as the pipe is primed.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Siphon Flow Control</TTL><BRK/>
+<BRK/>
+<TXT>[Control sludge removal rate of each siphon pipe by an eccentric plug valve, manually operated from the bridge 
+by a handwheel.]  [Control sludge removal rate of each siphon pipe by a pneumatically controlled variable orifice 
+pinch valve.  Size valve to provide no restriction or change of shape in the siphon pipe when in the full open 
+position.  Adjust throttling status of each valve manually and independently maintain by a pneumatic control 
+circuit.  Automatically allow the siphon pipes to purge daily at maximum velocity and then return flows to the 
+preset quantities.]  [Control sludge removal rate of the siphons by a control box at the discharge end of the 
+traveling bridge.  Provide control box of sufficient depth to allow filling the box to the water level in the 
+tank.  Regulate discharge from the control box by a [manually] [pneumatically] [hydraulically] [electromechanically] 
+operated sluice gate.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Airlift Pump Sludge Removal</TTL><BRK/>
+<BRK/>
+<TXT>Provide traveling bridge with [_____] sludge pick-up heads, each [_____]<MET> mm</MET><ENG> feet, inches</ENG> long, suspended from 
+the bridge.  Provide pick-up heads including neoprene sludge guides covering all settling areas to divert the 
+sludge to large diameter inlet ports.  Size drop pipes for a maximum sludge removal rate of 100 percent of the 
+average daily flow.  Use airlift to provide a pumping rate of [_____]<MET> L/second</MET><ENG> gpm</ENG> per pump at a static head 
+of [_____]<MET> mm</MET><ENG> feet</ENG>.  Power airlift system by a positive displacement blower or centrifugal compressor, depending 
+on air volume required.  Mount compressor on the bridge.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide motor in conformance with paragraph MOTORS.  Connect motor directly to the speed reducer by a 
+flexible coupling or V-belt drive.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Power Supply Stretch Cable System</TTL><BRK/>
+<BRK/>
+<TXT>Provide a stretch cable system, consisting of a stainless steel cable stretched between two anchor posts.  Provide 
+cable with a number of pulleys which support the electrical cable used to power the collector.  Loop electrical 
+cable in coils with each coil being attached to a separate pulley.  Upon traveling to the end of the basin, extend 
+the coils to form a draped electrical cable supported by the pulleys, and as the cable returns, retract the loops 
+by the action of the bridge.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Supply Trolley Track System</TTL><BRK/>
+<BRK/>
+<TXT>Provide a trolley track system, which allows the electrical cable to uncoil and retract as the bridge moves.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Supply Cable Reel System</TTL><BRK/>
+<BRK/>
+<TXT>Provide a cable reel system capable of unwinding and rewinding the power cable while maintaining a constant tension 
+on the cable.  Provide a strain relief device to protect the fixed end of the cable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control System for Bridge Drive</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  NEMA Class 250, Type 4X is recommended where corrosive gases, dust, or 
+water hosedown are environmental factors.  NEMA 4X type is not ventilated.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an electric overload system, consisting of suitable relays and an indicating meter plainly showing the 
+overload points.  Sound an alarm by the overload system when the load reaches full load torque capacity of the 
+drive motor and de-energize the motor.  Provide a torque sensing and indicating device, mounted on the bridge, 
+to indicate percentage of maximum torque being developed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Center Track Airlift Pump Type Collectors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Center track airlift pump type collectors are normally limited to basins 
+no larger than<MET> 12 m</MET><ENG> 40 feet</ENG> long and<MET> 6 m</MET><ENG> 20 feet</ENG> wide.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide collector consisting of a support beam and track assembly, carriage assembly, motor and gear reducer, 
+drive chain and sprockets, sludge pick-up assembly, and compressor.  Ensure all moving parts are above the water 
+level. Ensure lubrication and adjustment points are readily accessible.  Design system to handle a horizontal 
+load (drag) of<MET> [438] [_____] N</MET><ENG> [30] [_____] pounds</ENG> per lineal<MET> meter</MET><ENG> foot</ENG> on the scraper blade and all stresses 
+which may occur in fabrication, shipping, erection, and operation.  Provide unit with a traverse speed of [_____]<MET>
+ mm/second</MET><ENG> fpm</ENG> in both directions.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Support Beam and Track Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Assemble the support beam and integral track as a single box structure spanning the length of the basin.  Locate 
+track inside the support beam for weather protection.  Provide assembly of sufficient rigidity to withstand both 
+horizontal and vertical loads without supplemental stiffening members.  Provide a mounting assembly for attaching 
+the beam and track to the basin wall at the correct height.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Carriage Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Provide a carriage assembly to traverse the track assembly.  Provide assembly with four flanged support wheels 
+to travel along the track.  Ensure assembly has four additional wheels to oppose moment resulting from drag on 
+the scraper blade.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Provide drive assembly consisting of a motor and gear reducer driving a continuous chain through a shear pin 
+protected drive sprocket.  Provide motor in conformance with paragraph MOTORS.  Mount motor and gear reducer 
+directly on the support beam.  Totally enclose drive sprocket, chain, and driven sprocket in the support beam 
+assembly.  Provide a means for adjusting chain tension at the driven sprocket.  Direct linkage between the drive 
+chain and the carriage is prohibited.  Allow chain to run continuously in one direction with reciprocating motion 
+of the carriage imparted by a fitting on the chain which will engage the carriage at two different points.  Allow 
+a brief dwell time at each end of the travel.  Do not produce eccentric loads on the chain by engagement of the 
+carriage.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide motor in conformance with paragraph MOTORS.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Airlift Pump</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Airlift pumps are made of noncorrosive materials.  Air lines are removable 
+with multiorifice diffuser discharge end.  Proprerly reinforce airlift pump 
+to handle structural and dynamic loads.  Capacity, submergence, and air requirements 
+should be calculated for each airlift pump.  Priming pump vacuum is heavy-duty 
+industrial vacuum with minimum liquid volume of<MET> 23 liters</MET><ENG> 6 gallons</ENG>, double 
+filtration system, and automatic water level shutoff float.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide each collector with a sludge pick-up head [_____]<MET> mm</MET><ENG> feet, inches</ENG> long, suspended from the carriage.  
+Provide pick-up head including neoprene sludge guides covering all settling areas to divert the sludge to large 
+diameter inlet ports.  Size drop pipe for a maximum sludge removal rate of 100 percent of the average daily flow.  
+Use airlift to provide a pumping rate of [_____]<MET> L/second</MET><ENG> gpm</ENG> per pump at a static head of [_____]<MET> mm</MET><ENG> feet</ENG>.  
+Power airlift system by positive displacement blowers or centrifugal compressors, depending on air volume required.  
+Provide a pair of compressors to feed a common air manifold to provide air supply for [_____] collectors as shown.  
+Provide required check valves, shut-off valves, and regulating valves for isolation, regulation, and balancing.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide compressor motor in conformance with paragraph MOTORS.  Connect motor directly to the blower 
+by a flexible coupling or V-belt drive.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Floating Bridge Siphon-Type Collectors</TTL><BRK/>
+<BRK/>
+<TXT>Provide collector consisting of a floating bridge, bridge drive and idler stand, siphons and sludge removal system, 
+float system, control system, and necessary support structures and anchorage.  Ensure collector is capable of 
+removing settled solids from the tank floor and discharging them into a sludge trough.  Control flow rate of 
+the mechanism over a range of [_____]<MET> L/second</MET><ENG> gpm</ENG> to [_____]<MET> L/second</MET><ENG> gpm</ENG> per collector bridge assembly by individually 
+adjustable siphon pipes.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Floating Bridge</TTL><BRK/>
+<BRK/>
+<TXT>Design and construct floating assembly to comply with the hydraulic conditions of the system.  Provide bridge 
+consisting of rigidly interlaced aluminum beams, stainless siphon pipes, and fiberglass floats, all designed 
+to support the entire mechanism and maintain a minimum floating clearance of<MET> 50 mm</MET><ENG> 2 inches</ENG> from the floor of 
+the collector basin.  Furnish beams of sufficient size to support the floats and the siphon pipes.  Furnish stainless 
+steel brackets and pipe clamps to securely mount all of the siphon pipes in the proper position to the support 
+beams.  Mount floats securely to the siphon pipes to provide uniform travel of the bridge in both directions, 
+the full length of the collector basin.  Design floats for the general hydraulic conditions and consisting of 
+closed cell polyurethane foam encased in a fiberglass enclosure and support by structural aluminum angle.  Ensure 
+recyclable materials conform to EPA requirements in accordance with Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS 
+AND REPORTING.  Secure aluminum tow brackets to the siphon pipes and furnish with stainless steel mounting hardware 
+of adequate quantity and size to withstand the loading and tension applied to the towing cable when the collector 
+reverses direction.  Secure inboard and outboard end trucks and guide wheel assemblies to the floats or support 
+beams and design to allow for thermal expansion and contraction of the floating bridge.  Provide wheels composed 
+of noncorrosive material.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bridge Drive Assembly and Idler Stand</TTL><BRK/>
+<BRK/>
+<TXT>Tow each floating bridge along the longitudinal length of the basin by a stainless steel, stranded wire cable.  
+Use cable of adequate size to tow the entire structure and span the length of the tank with a minimum of catenary.  
+Affix drive cable to floating bridge assembly through tow bridle assembly.  Provide bridge drive consisting of 
+a reducer driven by a constant torque, variable speed dc electric motor, [single][_____] phase, 60 Hz, [120][_____] 
+volts, totally enclosed, suitable for continuous duty.  House reducer in an oil- and dust-tight casing, equip 
+with anti-friction bearings, and design for splash-type lubrication.  Provide switches permitting directional 
+change of the unit on the drive base assembly.  Provide an idler stand complete with adjustable base and sheave 
+at the opposite end of the tank.  Provide a complete corrosion-resistant enclosure for each drive and idler assembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sludge Removal System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Assemblies, parts, and connectors in submerged service should be made 
+of 304/316 stainless steel or fiberglass, rather than aluminum.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide total sludge removal capacity range of the vacuum sludge removal system which is adjustable from [_____]<MET>
+ L/second</MET><ENG> gpm</ENG> to [_____]<MET> L/second</MET><ENG> gpm</ENG>.  Construct all siphon piping and headers of stainless steel with vacuum 
+tight welded joints.  Design piping assembly structure to adequately support itself on the tank floor with the 
+basin dewatered.  Provide orifices of adequate size and spacing in each header pipe.  Design entrance velocity 
+at each orifice to create an angular zone in influence, to permit all sludge on the basin floor to be cleaned 
+at the end of each cycle.  Independently control each independent siphon pipe.  Terminate and discharge each 
+siphon pipe into a sludge control device.  Furnish individual sludge control for each siphon as an integral part 
+of the siphon collector.  Ensure control is corrosion resistant and adequately supported.  Suspend control device 
+from the floating structure and secured to the siphon piping.  Manually adjust flow rate by setting the adjustable 
+discharge opening using a rising stem operator.  Construct sludge control device to prevent air from breaking 
+the siphon during priming.  Design siphon collector to permit priming of each suction header.  Furnish a priming 
+device consisting of a portable, wet-dry vacuum pump with handle and wheels.  Provide valves for each siphon 
+pipe that are capable of holding<MET> 635 mm</MET><ENG> 25 inches</ENG> of mercury with zero leakage.  Provide flexible single ply 
+rubber priming hose and quick disconnect couplings with each unit.  Provide industrial wet/dry type, [single] 
+[_____] phase, 60 Hz, [120] [_____] volts ac vacuum pump.  Provide one priming pump per pair of siphon collector 
+mechanisms.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Panel</TTL><BRK/>
+<BRK/>
+<TXT>Furnish a control panel by the collector manufacturer containing all controls necessary for the operation of 
+the collector.  Include manual override controls for collector travel in addition to the automatic operations.  
+Furnish a reversing mechanism with time delay relays to change the collector direction of travel automatically.  
+Provide a SCR controller to vary the speed of the collector at between<MET> [1.2][_____] m/minute</MET><ENG> [4][_____] fpm</ENG> and<MET>
+ [3.7][_____] m/minute</MET><ENG> [12][_____] fpm</ENG> for both directions of the bridge travel.  Furnish limit switches with 
+internal heaters and stainless steel limit switch actuators to reverse the movement of the collector.  Mount 
+one limit switch securely to the bridge drive, and mount the other limit switch securely to the idler stand.  
+Affix microswitch to overclutch clutch to activate alarm and shut down.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Automatic Programmer</TTL><BRK/>
+<BRK/>
+<TXT>Provide a programmer in the control panel to automatically adjust rate of collector travel.  Upon reversing direction 
+of the collector, allow collector rate of travel to increase automatically for manually preset distance and then 
+return to preset normal rate of travel.  Ensure programmer has a manual override.  Provide a single phase, [60][_____] 
+Hz, [120][_____] volts ac solid state, encapsulated, proximity switch as an integral part of the programming 
+control.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Scum Removal</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Accomplish scum removal for each thickener using a motor operated scum pipe assembly complete with a variable 
+time operator with ability to manually operate.  Each scum removal mechanism consists of a Type 304 stainless 
+steel skimmer pipe, manual operator, motor operator, seals, UHMW-PE wall bearings, stops, fasteners, anchor bolts, 
+and central supports for the skimmer pipe.  Proportion all mechanisms and parts for the stresses that may occur 
+during operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Skimmer Mechanism</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Provide [_____]<MET> mm</MET><ENG> inch</ENG> diameter slotted, revolving, Type 304 stainless steel pipe skimmer.  Include UHMW-PE 
+wall bearing and seal plates for each scum pipe, flange, and bearings for bolting to the wall incoming spool 
+pipe.  Cut full length 6-degree-wide slots cut symmetrically about the vertical axis of each pipe except at locations 
+of stiffeners and wall connections.  Cut all edges smooth, rounded, and free of any deviations.  The slots serve 
+as a weir over which the scum will flow into the pipe when the pipe is rotated.  Set the edges parallel to the 
+longitudinal axis and have<MET> 50 mm</MET><ENG> 2 inch</ENG> wide bands left in the pipe at regular intervals of not more than<MET> 750 
+mm</MET><ENG> 30 inches</ENG> to maintain the roundness of the pipe.  Create an unobstructed and continuous pathway for the scum 
+pipe through the thickener tank walls, allowing scum to flow seamlessly across all thickeners and discharge into 
+the designated scum discharge location.</TXT><BRK/>
+<BRK/>
+<TXT>Install the revolving pipe in a fabricated bearing/collar wall plate supports at each end not to interfere with 
+the smooth operation of the pipe by a slight vertical or horizontal misalignments.  The skimmer utilize solid, 
+one-piece wall bearing plates which have a minimum of<MET> 75 mm</MET><ENG> 3 inches</ENG> thickness, and incorporate a bearing surface 
+for the pipe.  Fasten the wall plates to the concrete tank wall using Type 316 stainless steel threaded rods 
+in adhesive anchors, extending a minimum of <MET> 25 mm</MET><ENG> 1 inch</ENG> behind the reinforcing steel in the concrete wall.  
+Completely seal the wall plate to prevent leakage into the skimmer pipe.  Provide a "D"-shaped watertight and 
+replaceable seal for each of the skimmer where it rests in the wall support bearing.  Construct the seal so that 
+it remains effective even with a slight misalignment of the skimmer pipe and bearing and provide a positive and 
+removable retainer to hold the seal in position over the full 360 degrees.  Select seal system for compatibility 
+with grease, mild acids, or alkalis.  Design readily renewable seal without removing the skimmer pipe from the 
+supporting brackets and without binding or impeding the smooth action of the revolving pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Worm Gear Operator</TTL><BRK/>
+<BRK/>
+<TXT>Equip each scum skimmer with an electrically controlled worm gear operator.  Equip the worm gear operators with 
+a UHMW-PE worm gear (or ring gear) and a nylon worm, which engage to rotate the skimmer pipe as the shaft is 
+turned.  Design the worm with<MET> 90 mm</MET><ENG> 3.5 inches</ENG> pitch diameter and<MET> 100 mm</MET><ENG> 4 inches</ENG> in length made of nylon 6-6.  
+Attach the worm (ring) gear to a skimmer pipe by easily replaceable Type 316 stainless steel bolts.  Size the 
+UHMW-PE worm gear with a<MET> 75 mm</MET><ENG> 3 inches</ENG> face and with the number of teeth required to obtain a pitch diameter 
+of at least<MET> 58 mm</MET><ENG> 2.25 inches</ENG> larger than the scum pipe outside diameter.  Arrange the skimmer wall plate supports 
+and the worm and shaft supports in such a manner that a slight misalignment of the skimmer will not affect the 
+gear operation or cause a leakage.  A bearing housing attached to the wall plate that includes UHMW-PE bearings 
+supports the worm.  No grease or oil will be required for the operating of the worm and worm gear. Provide a 
+core drilled hole and/or wall sleeves to allow scum to flow unrestricted through walls of the adjacent tanks 
+and pass to the scum box.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a retracting surface skimmer to remove scum from the tank.  Attach mechanism with a blade extending the 
+width of the tank, or as required, to the bridge.  Allow skimmer to operate while the bridge is traveling in 
+one direction only and retract for the return trip of the bridge.  Provide a beaching type scum trough across 
+one end of the basin.  Construct trough of [steel plate] [or] [fiberglass] to the dimensions indicated.  Provide 
+all hardware required for trough installation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Effluent Removal</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with paragraph WEIR PLATES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide weir plates composed of [fabricated steel plate] [or] [fiberglass reinforced polyester plastic] of the 
+dimensions indicated.  Mold vee notches in fiberglass weir plates in the plate; cut edges are not acceptable. 
+Mount weir plates in a manner to be watertight and to provide a minimum of<MET> 50 mm</MET><ENG> 2 inches</ENG> vertical adjustment.  
+Fabricate effluent trough from [steel plate] [or] [fiberglass reinforced polyester plastic] to the dimensions 
+indicated.  Ensure joints between sections are watertight.  Provide support assemblies of adequate strength to 
+prevent trough distortion through filling and draining of the tank.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>TUBE AND PLATE THICKENER</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Tube and plate style thickeners are similar to rectangular thickener, but with inclined plates or tubes.  The 
+plate or tube thickener is usually designed for thickening the chemical sludge for water treatment plant.  The 
+tube and plate thickener consists of inclined plate settler or tube, effluent troughs, support system and sludge 
+collector assembly, including collector drive, center well, scrapers, walkway and handrails.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tube and Plate Thickener Design Criteria</TTL><BRK/>
+<BRK/>
+<TXT><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="23">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="257.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="256.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Design Criteria</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Value</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of Sludge</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">WTP Chemical Sludge</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sludge Flow Rate</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> m<SPS>3</SPS>/day</MET><ENG> gpd</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Influent Sludge Concentration</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.5 percent</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum Thickened Sludge Concentration</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2.0 percent</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum Solids Recovery</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">90 percent</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Surface Loading for Clarifier</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>7.3 m<SPS>3</SPS>/m<SPS>2</SPS>/day</MET><ENG> 179 gpd/sq ft</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Loading Rate at Design Flow for Plate</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>20.64 m<SPS>3</SPS>/m<SPS>2</SPS>/day</MET><ENG> 506.50 gpd/sq ft</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maximum Weir Loading Rate</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> m<SPS>3</SPS>/m<SPS>2</SPS>/day</MET><ENG> gpd/sq ft</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Allowed Plate Efficiency</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">90 percent</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of Rows per Tank</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of Modules Per Row</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of Plates per Module</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Plate Surface Area</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> m<SPS>2</SPS></MET><ENG> ft<SPS>2</SPS></ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Plate Spacing</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5<MET> cm</MET><ENG> inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Plate Inclined Angle</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">60 degree</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of Units</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ea</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Tank Dimension</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Basin Length</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> m</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Basin Width</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> m</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Side Water Depth</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> m</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Tank Bottom Slope</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="122.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">  Freeboard</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.5<MET> m</MET><ENG> foot</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Material of Construction</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Module frame and top tube:  316L SS</OLI><BRK/>
+<BRK/>
+<OLI>Inclined plates:  316L SS</OLI><BRK/>
+<BRK/>
+<OLI>Troughs/Inlet Baffle/Weirs:  316L SS</OLI><BRK/>
+<BRK/>
+<OLI>Support Beam Bracket:  316L SS</OLI><BRK/>
+<BRK/>
+<OLI>Sludge Collector:  316L SS</OLI><BRK/>
+<BRK/>
+<OLI>Center Well:  316L SS</OLI><BRK/>
+<BRK/>
+<OLI>Walkway and Handrail:  316L SS</OLI><BRK/>
+<BRK/>
+<OLI>Bolts, Nuts, Fasteners:  316L SS</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Plate Settle Modules</TTL><BRK/>
+<BRK/>
+<TXT>The plate settling units operate in counter-current mode with clarified water flowing upward while settled solids 
+move down.  Feed the incoming water near the lower end of the plate from the side to allow the settled solids 
+to fall to the floor of the thickener without being re-entrained by the incoming flow.  Incline the plates at 
+an angle of 60 degrees from the horizontal.  No moving parts are allowed for the plate settlers.</TXT><BRK/>
+<BRK/>
+<TXT>Remove the effluent flow at the top of the plate in at least four points to insure even distribution across the 
+full width of the plate.  Configure the unit visible from the entire top of each plate settler for inspection.  
+Design the plates structurally for the following conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI><MET>15 kg</MET><ENG> 33 lbs</ENG> per plate live load. </OLI><BRK/>
+<BRK/>
+<OLI>A maximum live load deflection of L/360 for all structures, troughs, etc. </OLI><BRK/>
+<BRK/>
+<OLI>A concentrated load of<MET> 113 kg</MET><ENG> 250 lb</ENG> anywhere on the flow deck (top tubes) or top edge of plates</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Effluent Trough</TTL><BRK/>
+<BRK/>
+<TXT>Locate the rectangular-shaped effluent troughs to the side of the plate rows.  Troughs located over the plate 
+settlers obstructing access to the tops of the plates are not acceptable.  Effluent troughs that establish a 
+water level of more than<MET> 50 mm</MET><ENG> 2 inch</ENG> above the plate tops are not acceptable.  Manufacture the effluent collection 
+troughs from 304 L stainless steel.</TXT><BRK/>
+<BRK/>
+<TXT>Provide all brackets, trough supports, reinforcing sections, stiffeners, and flanges of 304 L stainless steel 
+for complete installation. Provide stairs and ladders to facilitate access.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Support System (not including Concrete Beam)</TTL><BRK/>
+<BRK/>
+<TXT>Adequately size support frames and beams to carry the load of the plate settling system under both wet and dry 
+conditions without exceeding a maximum deflection of L/360 of the span.  Coordinate the structural details of 
+the design with the Engineer.  Determine the final location of beams, through wall openings, sludge collection 
+mechanism and other design details which affect the supply of structural support components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drive Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Equip each sludge collector drive assembly with a [3] [_____] Phase, [400] [_____] VAC, [_____] <MET> 1 kW</MET><ENG> 1.5 hp</ENG> 
+motor which is coupled to a sludge collector assembly.  Equip the assembly with a center shaft, scraper, rod 
+and turnbuckle constructed of 316L stainless steel. </TXT><BRK/>
+<BRK/>
+<TXT>Design the cycloid reducer drive assembly to cease operation on an excessive load without physical damage to 
+the drive unit.  During an overload, protection built into the VFD will cease operation and activate an alarm.  
+Operation will continue after alarm is reset.  Back up protection in the form of a shear pin is required.</TXT> <BRK/>
+<BRK/>
+<TXT>Pre-wire a large, red palm operated emergency disconnect button to the drive assembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Accessories</TTL><BRK/>
+<BRK/>
+<TXT>Provide catwalks with railings for each side of clarifier and back end. </TXT><BRK/>
+<BRK/>
+<TXT>Provide stairs and ladders to facilitate access as required.</TXT><BRK/>
+<BRK/>
+<TXT>Provide cleanout hatch and drain for each stage. </TXT><BRK/>
+<BRK/>
+<TXT>Incorporate bolted and flanged type construction for catwalks, stairs, and portions of unit piping requiring 
+disassembly after fabrication and testing to facilitate shipping.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>COATINGS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  There are several types of coatings to consider depending on the sludge 
+type.  Factory coated components greatly reduces field application of coatings 
+where skilled labor and control of surface preparation and coating application 
+environmental control is variable.  Field touch up of factory applied coatings 
+should be expected due to shipping and installation damage.  Specifier needs 
+to coordinate coating needs with equipment suppliers and expected sludge characteristics.  
+Common coatings for typical sludge services include zinc rich primers, epoxy 
+coating systems, urethanes, or hot dipped galvanized. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Comply with requirements in <RID>ASTM A123/A123M</RID> for all zinc coatings on iron and steel product.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>POLYMER FEED SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specifier may delete paragraph 2.10 POLYMETER FEED SYSTEM and refer to 
+separate specification if part of a larger project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Provide a skid mounted polymer feed system for sludge conditioning including pumps, mixing chamber, controls, 
+piping, valves, and appurtenances.</TXT><BRK/>
+<BRK/>
+<TXT>Automatic polymer dilution/feed system consists of an integrated equipment package capable of automatically metering, 
+diluting, activating, and feeding liquid polymer and water.  System needs to activate concentrated polymer in 
+a motor-driven multi-zone mixing vessel.</TXT><BRK/>
+<BRK/>
+<TXT>Design polymer feed system to effectively activate and fully blend polymer and water into a homogenous polymer 
+solution ranging from 0.01 to 0.05 percent concentration depending on the application point.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Materials</TTL><BRK/>
+<BRK/>
+<TXT>Provide compatible materials of the feed system and components with continuous use of the chemicals specified. 
+Materials of the feed system, components, and enclosures need to be resistant to corrosive attack of wet chemicals 
+specified.</TXT><BRK/>
+<BRK/>
+<TXT>Materials of construction:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Skid - Polyethylene</OLI><BRK/>
+<BRK/>
+<OLI>Plumbing - Schedule 80 PVC</OLI><BRK/>
+<BRK/>
+<OLI>Mixing chamber - PVC</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Multi-zone Mixing Chamber</TTL><BRK/>
+<BRK/>
+<TXT>Design the multi-zone mixing chamber to mix polymer and water in a chamber with sufficient mixing energy.  Minimum 
+of two distinct mixing zones are required.  Motor driven impeller creates high fluid sheer at point of polymer 
+and water introduction and is capable of ultra-high, non-damaging mixing energy at all flow rates.  Polymer solution 
+needs to undergo a tapered mixing intensity slope as it exits the initial sheer zone and passes through the next 
+mixing zone(s) isolated by baffles.  Polymer activity efficiency is consistent over dilution water range in mixing 
+chamber.  Chamber is rated for minimum of <ENG>100 psig</ENG> operating pressure, maximum design pressure of <ENG>150 psig</ENG>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a wash-down duty TEFC motor.  The impeller speed is  a minimum of  1,730 rpm. Motor is directly coupled 
+to impeller shaft.  Mixing chamber needs to be opaque.  Acrylic chambers prone to becoming brittle over time 
+and cracking are unacceptable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with all details of the work, verify all dimensions in the field, and advise the Contracting 
+Officer of any discrepancy before performing the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FACTORY PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>Ensure all ferrous metal equipment, except stainless steel and galvanized steel, is cleaned, primed, and given 
+two coats of machinery enamel at the factory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FRAMED INSTRUCTIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Post framed instructions, containing wiring and control diagrams under glass or in laminated plastic, where directed.  
+Show wiring and control diagrams and complete layout of the entire system.  Include, in typed form, condensed 
+operating instructions explaining preventive maintenance procedures, methods of checking the system for normal 
+safe operation and procedures for safely starting and stopping the system.  Submit a copy of the posted instructions 
+proposed to be used.  Post framed instructions before acceptance testing of the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EQUIPMENT INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Installation</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Install equipment as indicated and in accordance with the manufacturer's written instructions.  Submit drawings 
+containing complete wiring and schematic diagrams and any other details required to demonstrate that the system 
+has been coordinated and will properly function as a unit.  Show proposed layout and anchorage of equipment and 
+appurtenances, and equipment relationship to other parts of the work including clearances for maintenance and 
+operation.</TXT><BRK/>
+<BRK/>
+<TXT>Furnish grease and oil, of grades recommended by the manufacturer, as part of the installation and as required 
+for initial operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Adjusting</TTL><BRK/>
+<BRK/>
+<TXT>Make field adjustments as required for proper operation of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Testing</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL><TST>Operational Test</TST></TTL><BRK/>
+<BRK/>
+<TXT>Subject each mechanism to an operational test, under the observation of the Contracting Officer.  Demonstrate 
+that the equipment is not defective and is in safe and satisfactory operating condition.  Submit performance 
+test reports in booklet form showing all field tests performed to adjust each component and all field tests performed 
+to prove compliance with the specified performance criteria, upon completion and testing of the installed system.  
+Indicate in each test report the final position of controls.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST>Torque Test</TST></TTL><BRK/>
+<BRK/>
+<TXT>Conduct a torque test on one mechanism selected by the Contracting Officer.  Conduct test under the supervision 
+of a factory serviceman and observation of the Contracting Officer.  The purpose of the test is to verify the 
+structural integrity and adequacy of the mechanism and drive.  Perform torque test consisting of securing all 
+rake arms at multiple points by cables to anchor bolts installed in the tank floor at locations recommended by 
+the manufacturer.  Apply a torque load to the drive by hand if possible.  Measure the magnitude of the applied 
+load by a calibrated pressure reading, the plunger and rod area, and the distance of the line of action of each 
+cylinder from the centerline of the mechanism.  Take readings at 100, 120, and 140 percent of continuous operating 
+torque.  Apply test loads such that the torque overload device can be used to indicate the alarm and motor shut-off 
+torque values of the drive.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Retesting</TTL><BRK/>
+<BRK/>
+<TXT>If any deficiencies are revealed during any test, correct such deficiencies and reconduct the tests.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Tank Bottom</TTL><BRK/>
+<BRK/>
+<TXT>Finish the tank bottom in such a manner that full contact will be obtained between the [sludge scrapers] [flights] 
+[manifold] and the surface.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WELDING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the need exists for more stringent pipe welding requirements, delete 
+the sentences in the first set of brackets.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Weld piping in accordance with qualified procedures using performance qualified welders and welding operators.  
+Use qualified procedures and welders in accordance with <RID>ASME BPVC SEC IX</RID>.  Welding procedures qualified by others, 
+and welders and welding operators qualified by another employer may be accepted as permitted by <RID>ASME B31.1</RID>.  
+Notify the Contracting Officer 24 hours in advance of tests and perform the tests at the work site if practical.  
+Mark each weld by the welder or welder operator applying his assigned symbol near each weld as a permanent record.  
+Weld structural members in accordance with Section <SRF>05 05 23.16</SRF> STRUCTURAL WELDING.]  [Use welding and nondestructive 
+testing procedures for piping as specified in Section <SRF>40 05 13.96</SRF> WELDING PROCESS PIPING.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MANUFACTURER'S SERVICES</TTL><BRK/>
+<BRK/>
+<TXT>Provide the services of a manufacturer's representative who is experienced in the installation, adjustment, and 
+operation of the equipment specified.  Supervise the installation, adjustment, and testing of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Field Training</TTL><BRK/>
+<BRK/>
+<TXT>Provide a field training course for designated operating and maintenance staff members.  Provide training for 
+a total period of [4] [_____] hours of normal working time and start after the system is functionally complete 
+but prior to final acceptance tests.  Cover all of the items contained in the Operating and Maintenance Manuals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Operating and Maintenance Manuals</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Six][_____] [hard][optical disc] copies of operation and [six][_____] copies of maintenance manuals for the 
+equipment furnished.  One complete set prior to performance testing and the remainder upon acceptance.</TXT><BRK/>
+<BRK/>
+<TXT>Detail in the Operation manuals the step-by-step procedures required for system startup, operation, and shutdown.  
+Include in the Operation manuals the manufacturer's name, model number, parts list, and brief description of 
+all equipment and their basic operating features.  List in the Maintenance manuals routine maintenance procedures, 
+possible breakdowns and repairs, and troubleshooting guides.  Include in the Maintenance manuals piping and equipment 
+layout and simplified wiring and control diagrams of the system as installed.  Obtain approval of manuals prior 
+to the field training course.  Schedule original equipment manufacturer (OEM) recommended Preventive Maintenance 
+tasks into Service's Computerized Maintenance Management System at OEM recommended frequencies.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

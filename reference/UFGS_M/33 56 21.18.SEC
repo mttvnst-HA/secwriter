@@ -1,0 +1,997 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-33 56 21.18 (May 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-33 56 21.18 (November 2018)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 33 56 21.18</SCN><BRK/>
+<BRK/>
+<STL>SINGLE WALL POL TANK UNDERTANK INTERSTITIAL SPACE</STL><BRK/>
+<DTE>05/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification <SCP>is intended to be used in conjunction with Section 33 56 21.17 SINGLE WALL ABOVE 
+GROUND FIXED ROOF STEEL POL STORAGE TANK</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information must be shown on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  The extent of the work included in the project should be indicated on drawings showing the site layout and 
+other data required for design by the Contractor.</NPR><BRK/>
+<BRK/>
+<NPR>2.  If concrete foundation work is provided under a separate contract, Government work should include foundations, 
+setting anchor bolts, and other pertinent work such as piles and ringwall penetrations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For steel and stainless steel piping, pipe fittings, flanges, gaskets, and bolting, refer to Section 
+<SRF>33 52 43.13</SRF> AVIATION FUEL PIPING or Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN PETROLEUM INSTITUTE (API)</ORG><BRK/><BRK/><RID>API Std 650</RID><RTL>(2025) Welded Tanks for Oil Storage</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM B221</RID><RTL>(2021) Standard Specification for Aluminum and Aluminum-Alloy Extruded Bars, Rods, Wire, Profiles, and Tubes</RTL><BRK/><BRK/><RID>ASTM B221M</RID><RTL>(2021) Standard Specification for Aluminum and Aluminum-Alloy Extruded Bars, Rods, Wire, Profiles, and Tubes (Metric)</RTL><BRK/><BRK/><RID>ASTM C33/C33M</RID><RTL>(2024a) Standard Specification for Concrete Aggregates</RTL><BRK/><BRK/><RID>ASTM C88</RID><RTL>(2018) Standard Test Method for Soundness of Aggregates by Use of Sodium Sulfate or Magnesium Sulfate</RTL><BRK/><BRK/><RID>ASTM C1218/C1218M</RID><RTL>(2020c) Standard Test Method for Water-Soluble Chloride in Mortar and Concrete</RTL><BRK/><BRK/><RID>ASTM C1580</RID><RTL>(2015) Standard Test Method for Water-Soluble Sulfate in Soil</RTL><BRK/><BRK/><RID>ASTM D396</RID><RTL>(2021) Standard Specification for Fuel Oils</RTL><BRK/><BRK/><RID>ASTM D471</RID><RTL>(2016a; R 2021) Standard Test Method for Rubber Property - Effect of Liquids</RTL><BRK/><BRK/><RID>ASTM D751</RID><RTL>(2019) Standard Test Methods for Coated Fabrics</RTL><BRK/><BRK/><RID>ASTM D814</RID><RTL>(1995; R 2020) Rubber Property - Vapor Transmission of Volatile Liquids</RTL><BRK/><BRK/><RID>ASTM D2136</RID><RTL>(2019; E 2021) Coated Fabrics - Low-Temperature Bend Test</RTL><BRK/><BRK/><RID>ASTM D2665</RID><RTL>(2025) Standard Specification for Poly(Vinyl Chloride) (PVC) Plastic Drain, Waste, and Vent Pipe and Fittings</RTL><BRK/><BRK/><RID>ASTM D3389</RID><RTL>(2016) Standard Test Method for Coated Fabrics Abrasion Resistance (Rotary Platform, Double-Head Abrader)</RTL><BRK/><BRK/><RID>ASTM D4354</RID><RTL>(2012; R 2020) Sampling of Geosynthetics for Testing</RTL><BRK/><BRK/><RID>ASTM D4491/D4491M</RID><RTL>(2017) Standard Test Methods for Water Permeability of Geotextiles by Permittivity</RTL><BRK/><BRK/><RID>ASTM D4533/D4533M</RID><RTL>(2015) Standard Test Method for Trapezoid Tearing Strength of Geotextiles</RTL><BRK/><BRK/><RID>ASTM D4632/D4632M</RID><RTL>(2015a) Grab Breaking Load and Elongation of Geotextiles</RTL><BRK/><BRK/><RID>ASTM D4751</RID><RTL>(2020) Standard Test Method for Determining Apparent Opening Size of a Geotextile</RTL><BRK/><BRK/><RID>ASTM D4759</RID><RTL>(2011; R 2018) Standard Practice for Determining the Specification Conformance of Geosynthetics</RTL><BRK/><BRK/><RID>ASTM D4814</RID><RTL>(2020a) Standard Specification for Automotive Spark-Ignition Engine Fuel</RTL><BRK/><BRK/><RID>ASTM D4972</RID><RTL>(2018) Standard Test Methods for pH of Soils</RTL><BRK/><BRK/><RID>ASTM D5261</RID><RTL>(2010; R 2018) Standard Test Method for Measuring Mass Per Unit Area of Geotextiles</RTL><BRK/><BRK/><RID>ASTM D6241</RID><RTL>(2014) Standard Test Method for the Static Puncture Strength of Geotextiles and Geotextile-Related Products Using a 50-mm Probe</RTL><BRK/><BRK/><RID>ASTM G187</RID><RTL>(2018) Standard Test Method for Measurement of Soil Resistivity Using the Two-Electrode Soil Box Method</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-DTL-5624</RID><RTL>(2024; Rev X) Turbine Fuel, Aviation, Grades JP-4 and JP-5</RTL><BRK/><BRK/><RID>MIL-DTL-38219</RID><RTL>(1998; Rev D; Notice 1 2016) Turbine Fuel, Low Volatility, JP-7</RTL><BRK/><BRK/><RID>MIL-DTL-83133</RID><RTL>(2015; Rev J) Turbine Fuels, Aviation, Kerosene Type, JP-8 (NATO F-34), NATO F-35 and JP-8 + 100 (NATO F-37)</RTL><BRK/><BRK/></REF><REF><ORG>U.S. GENERAL SERVICES ADMINISTRATION (GSA)</ORG><BRK/><BRK/><RID>CID A-A-52557</RID><RTL>(2001; Rev A; Notice 1) Fuel Oil, Diesel; for Posts, Camps and Stations</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 971</RID><RTL>(1995; Reprint Mar 2006) UL Standard for Safety Nonmetallic Underground Piping for Flammable Liquids</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Membrane Liner</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Fiberglass Pipe, Fittings, and Adhesive</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Leak Detection Tell-Tale Pipe Well Screen</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>PVC Pipe, Fittings, and Adhesive</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>CP/Tracer Pipe Well Screen</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Membrane Liner (FML)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Geotextile Fabric</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Filter Fabric</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Aluminum Flat Bar</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>FML Ringwall Sealant</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sand Cushion</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-04 Samples</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>FML Samples</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>CP/Tracer Pipe Installation Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>FML Inspections</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>FML Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sand Cushion Tests - Prior to Delivery</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Sand Cushion Tests - Post Delivery</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Photographic Construction Documentation of the Undertank Interstitial Space</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of FML Field Engineer</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>FML Manufacturer's Representative</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Liner Manufacturer's Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Certificate of Surface Preparation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Membrane Liner (FML)</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-09 Manufacturer's Field Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>FML Factory Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Product to be stored in the tank is [JP-5] [JP-8] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALIFICATIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Qualifications of FML Field Engineer</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include any local regulatory requirements that must be met by the Contractor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Contractor must meet the licensing requirements of the State in which the work is to be performed.  The Contractor must provide a field engineer 
+full time to this project during FML installation and testing.  The field engineer must have successfully completed manufacturer's training for 
+handling and installing FML systems, as well as have at least<MET> 100,000 square meter</MET><ENG> one-million square feet</ENG> of installation experience.  Submit 
+a letter providing evidence of the Contractor's and the field engineer's experience, training, and licensing.  Statements of previous FML job experience 
+must be provided with a point of contact, a phone number, address, the type of installation, and the current status of the installation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Flexible Membrane Liner</SUB> Drawing Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Submit drawings of the FML installation indicating the locations of field seams, penetrations, contours, and transitions and details of penetrations, 
+boots, and miscellaneous components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FML Manufacturer's Representative</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a letter, prior to placing the FML, from the FML manufacturer naming their authorized representative complete with their address, phone 
+number, and a point of contact.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>LINER MANUFACTURER'S CERTIFICATION</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Following the successful installation and testing of the liner, submit a letter signed by the liner manufacturer's authorized representative certifying 
+that the liner installation and testing results are satisfactory and that each meets the company's quality expectations and warranty.  Include 
+in the letter the representative's name, address, phone number, and qualifications for being a manufacturer's representative.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>STEEL PIPE AND FITTINGS</TTL><BRK/>
+<BRK/>
+<TXT>Steel and stainless steel pipe and fittings must be provided in accordance with Section <SRF>33 52 43.13</SRF> AVIATION FUEL PIPING or Section <SRF>33 52 40</SRF> FUEL 
+SYSTEMS PIPING (NON-HYDRANT) and <RID>API Std 650</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>LEAK DETECTION TELL-TALE PIPE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Since a leak in the undertank tell-tale pipe could result in contamination of ground water, PVC may only 
+be considered as an alternative material for the undertank drain tell-tale pipe if certified by the manufacturer 
+as compatible with jet fuel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Fiberglass Pipe, Fittings, and Adhesive</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Fiberglass pipe and fittings must be fiber reinforced plastic pipe per <RID>UL 971</RID> Standard for Safety Nonmetallic Underground Piping for Flammable 
+Liquids.  Fiberglass adhesives must be as recommended by the manufacturer for use with jet fuel and water.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Leak Detection Tell-Tale Pipe Well Screen</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Well screen must be fiberglass pipe as specified above, or if PVC or similar alternative material is proposed, it must be supplied with documentation 
+from the manufacturer certifying compatibility with jet fuel.  The<MET> 100 mm</MET><ENG> 4-inch</ENG> well screen must have four rows of<MET> 0.25 mm</MET><ENG> 0.010-inch</ENG> wide slots 
+with a net open area of at least<MET> 102 square centimeters/meter</MET><ENG> 4.8 square inches/foot</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CP/TRACER PIPE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>PVC Pipe, Fittings, and Adhesive</SUB></TTL><BRK/>
+<BRK/>
+<TXT>CP/tracer pipe and leak simulation probe pipe, fittings, and well screen must be <RID>ASTM D2665</RID> SCH 40 PVC Pipe.  PVC adhesives must be as recommended 
+by the manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>CP/Tracer Pipe Well Screen</SUB></TTL><BRK/>
+<BRK/>
+<TXT>CP/Tracer Gas Detection well screen must be PVC pipe as specified above and must have three rows of<MET> 0.25 mm</MET><ENG> 0.010-inch</ENG> wide slots.  CP/Tracer Gas 
+Detection piping must be slotted, starting at<MET> 600 mm</MET><ENG> 2 feet</ENG> within the ringwall on one side of the tank and continuing under the tank bottom to 
+within<MET> 600 mm</MET><ENG> 2 feet</ENG> of the foundation ringwall on the other side of the tank.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>FLEXIBLE MEMBRANE LINER (FML)</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The secondary containment (under-tank-bottom) FML must demonstrate the acceptable limits of the properties listed under Table 1.  The FML must 
+be factory produced from a base fabric that is completely covered with a polymer.  The base fabric must be made of aramid (kevlar), polyester, 
+or nylon.  Factory seams must be made with a<MET> 50 mm</MET><ENG> 2-inch</ENG> overlap, plus or minus<MET> 6 mm</MET><ENG> 1/4-inch</ENG>, by an automatic thermal high-pressure welding process.  
+The FML must retard the growth of mildew and be capable of containing the liquid stored, withstanding temperatures up to<MET> 71 degrees C</MET><ENG> 160 degrees 
+F</ENG>, and withstanding humidity up to 100 percent relative humidity.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Job Lot of FML</TTL><BRK/>
+<BRK/>
+<TXT>A job lot of FML is defined by this specification as the amount of FML product that can be produced from a singular mixture of chemicals.  Any 
+FML material created from a new or altered mixture of chemicals must be considered a new job lot.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FML Samples</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Twenty four samples must be cut from every job lot of FML.  Each sample must be approximately<MET> 216 by 280 mm</MET><ENG> 8-1/2 by 11 inches</ENG> in size.  Eight 
+of the samples must be cut across factory seams.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FML Factory Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Each manufacturer's job lot of FML must have each of the FML properties verified by the factory test procedures and methods listed below.  No substitute 
+methods are allowed for verification of any property.  Each separate verification of a property must be made on a separate sample.  The FML must 
+demonstrate through factory testing the acceptable limits of the following properties listed in Table 1.  The properties must be verified by each 
+of the test standards listed.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include testing for permeability using the liquid stored in addition to Fuel B.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<MET><TAB HEADERROWS="2">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="13">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="380.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="380.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL4>TABLE 1.  Standards and Limits for FML Properties (Metric)</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Property</HL1></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL1>Minimum Acceptable Value</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Base Fabric Weight (nominal)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">441 g/m<SPS>2</SPS></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="50.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Finished Coated Weight <RID>ASTM D751</RID></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1085 g/m<SPS>2</SPS><BRK/><HL1>plus</HL1> 70 g/m<SPS>2</SPS></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Thickness <RID>ASTM D751</RID></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.86 mm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Grab Tensile <RID>ASTM D751</RID></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3338 N</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Strip Tensile <RID>ASTM D751</RID> Procedure B</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">490 daN/5cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Adhesion <RID>ASTM D751</RID> Dielectric Weld</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">18 daN/5cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hydrostatic Resistance <RID>ASTM D751</RID> Procedure A</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5.52 MPa</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Bursting Strength <RID>ASTM D751</RID> Ball Tip</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5340 N</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Low Temperature <RID>ASTM D2136</RID> 3 mm mandrel, 4 hour</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Pass minus 46 degrees C</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Abrasion Resistance <RID>ASTM D3389</RID> H22 wheel/1000 g load</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">10,000 cycles (min) before fabric exposure</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Permeability <RID>ASTM D814</RID> Fuel B and [_____]</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">19.1 mL/m<SPS>2</SPS>/24 hr</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></MET><BRK/>
+<ENG><TAB HEADERROWS="2">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="13">
+      <COL AUTOWIDTH="0" WIDTH="380.25"/>
+      <COL AUTOWIDTH="0" WIDTH="380.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING"><HL4>TABLE 1.  Standards and Limits for FML Properties (English)</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING"><HL1>Property</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>Minimum Acceptable Value</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Base Fabric Weight (minimum)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">13.0 oz/yd<SPS>2</SPS></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="26.25">
+         <CEL>
+<DTA TYPE="STRING">Finished Coated Weight <RID>ASTM D751</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">30 oz/yd<SPS>2</SPS></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Thickness <RID>ASTM D751</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.034 inches</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Grab Tensile <RID>ASTM D751</RID></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">750 lb<SBS>f</SBS>/in</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Strip Tensile <RID>ASTM D751</RID> Procedure B</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">550 lb<SBS>f</SBS>/in</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Adhesion <RID>ASTM D751</RID> Dielectric Weld</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">20 lb<SBS>f</SBS>/in</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Hydrostatic Resistance <RID>ASTM D751</RID> Procedure A</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">800psi</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Bursting Strength <RID>ASTM D751</RID> Ball Tip</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1200 lb<SBS>f</SBS></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Low Temperature <RID>ASTM D2136</RID> 1/8 inch mandrel, 4 hour</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Pass minus 50 degrees F</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Abrasion Resistance <RID>ASTM D3389</RID> H22 wheel/1000 g load</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">10,000 cycles (min) before fabric exposure</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL>
+<DTA TYPE="STRING">Permeability <RID>ASTM D814</RID> Fuel B and [_____]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.05 fl. oz/ft<SPS>2</SPS>/24 hr</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></ENG><BRK/></SPT>
+<SPT><TTL>FML Components</TTL><BRK/>
+<BRK/>
+<TXT>Components, such as sleeves, boots, must be factory prefabricated from the FML material and have the same fabrication characteristics.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fuels for Testing FML</TTL><BRK/>
+<BRK/>
+<TXT>Other materials, in addition to the FML, must be resistant to the fuel or fuels being stored.  Fuels, as required or mentioned by this specification, 
+must be in accordance with the following:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Motor Gasoline (Mogas)</TTL><BRK/>
+<BRK/>
+<TXT>Mogas must be in accordance with <RID>ASTM D4814</RID> REV B.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Diesel</TTL><BRK/>
+<BRK/>
+<TXT>Diesel must be in accordance with <RID>CID A-A-52557</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>No. 2 and No. 4 Fuel Oils</TTL><BRK/>
+<BRK/>
+<TXT>Oils must be in accordance with <RID>ASTM D396</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>JP-4 and JP-5</TTL><BRK/>
+<BRK/>
+<TXT>Fuels must be in accordance with <RID>MIL-DTL-5624</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>JP-7</TTL><BRK/>
+<BRK/>
+<TXT>Fuel must be in accordance with <RID>MIL-DTL-38219</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>JP-8</TTL><BRK/>
+<BRK/>
+<TXT>Fuel must be in accordance with <RID>MIL-DTL-83133</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ASTM Fuel B</TTL><BRK/>
+<BRK/>
+<TXT>ASTM Fuel B as referenced in this section must be in accordance with <RID>ASTM D471</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>GEOTEXTILE FABRIC</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide geotextile fabric between sand and underside of flexible membrane liner under the tank bottom with the following properties:</TXT><BRK/>
+<BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="8">
+      <COL AUTOWIDTH="0" WIDTH="336.00"/>
+      <COL AUTOWIDTH="0" WIDTH="183.00"/>
+      <COL AUTOWIDTH="0" WIDTH="241.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">PROPERTY</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">TEST VALUE</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">TEST METHOD</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Unit Weight g/sq. meter (oz/yd<SPS>2</SPS>)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">335 min. (10)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D5261</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Elongation at Break, Percent</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">50</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4632/D4632M</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Apparent Opening, mm (mil)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.15 max. (6)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4751</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Permittivity, sec-1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1.2 max.</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4491/D4491M</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Puncture, N (lbs)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">710 min. (160)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D6241</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Grab Tensile, N (lbs)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1110 min. (250)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4632/D4632M</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Trapezoidal Tear, N (lbs)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">445 min. (100)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4533/D4533M</RID></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<SPT><TTL>Geotextile</TTL><BRK/>
+<BRK/>
+<TXT>Geotextile must be a woven or nonwoven (as noted) pervious sheet of polymeric material and must consist of long-chain synthetic polymers composed 
+of at least 95 percent by weight polyolefins, polyesters, or polyamides.  The use of woven, slit-film geotextiles (i.e., geotextiles made from 
+yarns of a flat, tape-like character) will not be allowed.  Stabilizers [and][or] inhibitors must be added to the base polymer, as needed, to make 
+the filaments resistant to deterioration by ultraviolet light, oxidation, and heat exposure.  Regrind material, which consists of edge trimmings 
+and other scraps that have never reached the consumer, may be used to produce the geotextile.  Post-consumer recycled material may also be used.  
+Geotextile must be formed into a network such that the filaments or yarns retain dimensional stability relative to each other, including the selvages.  
+Geotextiles and factory seams must meet the requirements specified in Table 1.  Where applicable, Table 1 property values represent minimum average 
+roll values (MARV) in the weakest principal direction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturing Quality Control Sampling and Testing</TTL><BRK/>
+<BRK/>
+<TXT>Manufacturing quality control sampling and testing must be performed in accordance with the manufacturer's approved quality control manual.  As 
+a minimum, geotextiles must be randomly sampled for testing in accordance with <RID>ASTM D4354</RID> Procedure A.  Acceptance of geotextile must be in accordance 
+with <RID>ASTM D4759</RID>.  Tests not meeting the specified requirements must result in the rejection of applicable rolls.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>FILTER FABRIC</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Wrap Leak Detection Tell-Tale and CP/Tracer Pipe well screen, with filter fabric.  Filter fabric must be needle-punched, non-woven geotextile with 
+a typical weight of<MET> 200 g/square meter</MET><ENG> 6 oz/square yard</ENG> with the following qualities:</TXT><BRK/>
+<BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="336.00"/>
+      <COL AUTOWIDTH="0" WIDTH="183.00"/>
+      <COL AUTOWIDTH="0" WIDTH="241.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">PROPERTY</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">TEST VALUE</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">TEST METHOD</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Elongation at Break, Percent</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">50</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4632/D4632M</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Apparent Opening, mm (U.S. Sieve)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.212 max. (70)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4751</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Permittivity, sec-1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2.1 max.</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4491/D4491M</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Puncture, N (lbs)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">240 min. (55)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D6241</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Grab Tensile, N (lbs)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">400 min. (90)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4632/D4632M</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.75">
+         <CEL>
+<DTA TYPE="STRING">Trapezoidal Tear, N (lbs)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">175 min. (40)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4533/D4533M</RID></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<SPT><TTL>BATTEN BAR</TTL><BRK/>
+<BRK/>
+<TXT>The FML must be installed using a batten bar bolted to the concrete ringwall as indicated.  Batten bar must be<MET> <RID>ASTM B221M</RID></MET><ENG> <RID>ASTM B221</RID></ENG> <SUB>aluminum flat 
+bar</SUB> rolled to the inside diameter of the ringwall foundation.  Anchor bolt, nut, and washer must be galvanized steel.  Neoprene mounting pad must 
+be rated with a Shore A hardness of not more than 40.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FML RINGWALL SEALANT</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The FML-to-ringwall sealant must be fuel and water resistant and as recommended by the FML manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>SAND CUSHION</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Sand must be fine sand aggregate in accordance with <RID>ASTM C33/C33M</RID>, except maximum allowable percentage passing a 150 micron sieve and a 300 micron 
+sieve must be reduced to 5 and 15 percent, respectively.  Cushion must contain no more than 300 parts per million (ppm) chlorides in accordance 
+with <RID>ASTM C1218/C1218M</RID>, no more than 150 ppm sulfates in accordance with <RID>ASTM C1580</RID>, and have a pH greater than 7 in accordance with <RID>ASTM D4972</RID>
+.  Cushion must have a minimum electrical resistivity of<MET> 35,000 ohm-cm</MET><ENG> 13,780 ohm-inch</ENG> in accordance with <RID>ASTM G187</RID>.  Magnesium sulfate must be 
+used in the <RID>ASTM C88</RID> soundness test.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>CONSTRUCTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Sand Cushion</TTL><BRK/>
+<BRK/>
+<TXT>Provide compacted clean sand above and below the FML as indicated.  Thoroughly compact the sand cushion below each of the interstitial space components 
+(i.e., liner, CP anodes, leak detection tell-tale pipe, CP/tracer pipe).  Grade sand to match slope of the tank bottom and protect from contamination 
+and disturbance until after the tank bottom is installed.  Provide self-draining protective covering over the top of any sand placed on top of 
+FML and keep sand dry at all times during construction.<BRK/></TXT>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the first bracketed sentence for self anchored tanks.  Include the second bracketed sentence for 
+anchored tanks.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[For anchored tanks, build up the sloped sand pad so that the tank bottom will rest on the sand and the foundation ringwall shims.  ][For unanchored 
+tanks, build up the sand so that the tank bottom will rest on the sand and the foundation ringwall gasket.  ]Do not use or place fiberboard on 
+top of the foundation ringwall or on top of the sand.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation of FML</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Field Engineer</TTL><BRK/>
+<BRK/>
+<TXT>The field engineer must supervise the complete installation of the FML and perform each FML inspection and test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Preparation</TTL><BRK/>
+<BRK/>
+<TXT>Prior to laying out the FML, three sample field seams must be performed.  Each seam must be<MET> 1500 mm</MET><ENG> 5 feet</ENG> in length.  Seams must be made only 
+when the ambient temperature and the temperature of the FML are both<MET> minus 4 degrees C</MET><ENG> 25 degrees F</ENG> or higher.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surface Preparation</TTL><BRK/>
+<BRK/>
+<TXT>The surfaces to be covered must be concrete or clean sand, as specified in the paragraph SAND CUSHION, free of rocks, debris, and smooth with no 
+abrupt projections of any kind.  Submit a <SUB>certificate of surface preparation</SUB> signed by the field engineer, prior to placing any geotextile or liner, 
+stating the subgrade was adequately prepared per the specification and the liner manufacturer's recommendations.  Prior to laying the FML, cover 
+prepared surfaces with geotextile fabric as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FML Layout and Installation</TTL><BRK/>
+<BRK/>
+<TXT>After successful completion of the FML visual inspection, the FML must be laid out.  Install FML over geotextile fabric.  Laying out and welding 
+of FML must only be done when the ambient temperature and the temperature of the FML are both<MET> minus 4 degrees C</MET><ENG> 25 degrees F</ENG> or higher.  Field 
+seams must have a<MET> 50 mm</MET><ENG> 2-inch</ENG> overlap, plus or minus<MET> 6 mm</MET><ENG> 1/4-inch</ENG>.  Panels or sheets of FML to be seam welded together must be laid out prior 
+to welding field seams.  The overlapped areas must be cleaned and prepared according to the installation instructions and procedures.  Welds must 
+be tightly bonded.  Seal the FML around the penetrations using preformed boots.  Use fuel resistant adhesive sealant between the boot and the penetration.  
+Clamp the boots to the penetrations using stainless steel hose clamps as indicated.  Prepare and weld the boots to the FML using the same preparation 
+and welding methods used to weld the FML seams.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cathodic Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide the underside of the tank bottom with impressed current cathodic protection.  Install the cathodic protection anodes, slotted PVC tube 
+for portable reference cell, and portable reference cell in the sand between the FML and the tank bottom in accordance with Section <SRF>26 42 17</SRF> IMPRESSED 
+CURRENT CATHODIC PROTECTION (ICCP) SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Leak Detection Tell-Tale Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include verbiage in the coating specification and on the drawing to provide, on the lower<MET> 300 mm</MET><ENG> one foot</ENG>
+ of the shell,<MET> 50 mm</MET><ENG> 2-inch</ENG> high black stencil lettering with an arrow, pointing down, over the "Leak Detection 
+Tell-Tale", the "Leak Simulation Probe", and the CP/Tracer Pipe.  Identify the later as "Tracer Gas/CP Slider 
+Tube" and identify the CP/Tracer pipe by its unique number.  Refer to paragraph CP/TRACER PIPE INSTALLATION for 
+additional information on CP/Tracer Pipe identification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to steel tank construction, install leak detection tell-tale pipe through the ringwall and in the sand below the planned location of the 
+tank bottom as indicated.  System piping must slope evenly downward (gravity draining) from the interior termination point at the tank bottom FML 
+sump to the exterior termination point as indicated.  Interior termination point must be fiberglass well screen as indicated and covered with two 
+wraps of filter fabric held in place with nylon ties or straps.  Exterior termination point must be as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CP/Tracer Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Locate the CP/Tracer gas detection well screens, with one well screen at<MET> 600 mm</MET><ENG> 2 feet</ENG> off from tank center, 
+no greater than<MET> 13411 mm</MET><ENG> 44 feet</ENG> apart and with all areas of the tank bottom within<MET> 6700 mm</MET><ENG> 22 feet</ENG> of at least 
+one well screen.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to steel tank construction, install the CP/tracer pipe and well screen piping through the ringwall and in the sand below the tank bottom 
+as indicated.  Cover with two wraps of filter fabric held in place with nylon ties or straps.  The material, number, and lengths of the well screens 
+and pipe must be as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Leak Simulation Probe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Locate the end of the leak simulation probe under the tank approximately<MET> 3000 mm</MET><ENG> 10 feet</ENG> from the ringwall 
+foundation and as far from a CP/Tracer gas well screen as practical.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to steel tank construction, install the leak simulation probe through the ringwall and in the sand below the tank bottom as indicated.  Interior 
+termination point (under tank bottom) must be an open ended coupling with two wraps of filter fabric held in place with nylon ties or straps.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Filter Fabric Wrap</TTL><BRK/>
+<BRK/>
+<TXT>Prior to steel tank construction, cover all of the well screen pipe segments with two wraps of filter fabric held in place with nylon ties or straps 
+placed<MET> 300 mm</MET><ENG> one foot</ENG> on center.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>CP/Tracer Pipe Installation Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>After installation of the CP/tracer pipe and well screen is complete, prove that each of the CP/tracer pipes is clear (without obstructions or 
+bends) in the presence of the contracting officer using a continuous length (including couplings) of<MET> 25 mm</MET><ENG> one-inch</ENG> PVC pipe at least as long as 
+the pipe being tested plus<MET> 1 meter</MET><ENG> 3 feet</ENG>.  The test must be performed by passing the<MET> 25 mm</MET><ENG> one-inch</ENG> PVC pipe through each of the<MET> 50 mm</MET><ENG> 2-inch</ENG> 
+CP/tracer pipes and removing the<MET> 25 mm</MET><ENG> one-inch</ENG> PVC pipe from the opposite end of the<MET> 50 mm</MET><ENG> 2-inch</ENG> pipe on the other side of the ringwall.  Notify 
+the contracting officer at least 24 hours prior to the test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Leak Simulation Probe[ and Leak Detection Tell-Tale Pipe] Test[s]</TTL><BRK/>
+<BRK/>
+<TXT>Repeat the "CP/Tracer Pipe Installation Test" for the Leak Simulation Probe; exercise care not to damage the filter fabric wrap at the end.[  For 
+elevated foundation type tanks, repeat the "CP/Tracer Pipe Installation Test" for the Leak Detection Tell-Tale Pipe but use a<MET> 65 mm</MET><ENG> 2-1/2 inch</ENG> 
+PVC pipe.  Exercise care not to damage the end.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must perform all trial operations and field tests and provide all labor, equipment, and incidentals required for testing.  The FML 
+manufacturer authorized representative must be present for all FML tests.  The representative must supervise and approve all FML tests.  The representative 
+must provide detailed test results.  Notify and provide the Contracting Officer with the opportunity to witness all field tests at least 24 hours 
+in advance of their performance.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>FML Inspections</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>FML Initial Visual Inspection</TTL><BRK/>
+<BRK/>
+<TXT><TST>The visual inspection must verify the finished surface to be covered with the FML is properly graded and compacted.  A visual inspection of the 
+FML must be performed on each FML panel or sheet as it is unrolled.  The Contracting Officer must be notified of any damage detected.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sample Field Seam Inspection</TTL><BRK/>
+<BRK/>
+<TXT>Field seam samples must be subjected to a visual inspection performed within 30 hours after the seam has been made, cured, and cooled.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>FML Tests</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>FML Seam Pull Test</TTL><BRK/>
+<BRK/>
+<TXT>Just prior to vacuum box testing the FML field seams, perform manual pull testing of the FML field seams at ten locations selected by the Contracting 
+Officer.  The test must be performed by applying at least<MET> 222 N</MET><ENG> 50 pounds</ENG> of force across the selected seams and maintaining for at least 60 seconds.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FML Vacuum Box Test</TTL><BRK/>
+<BRK/>
+<TXT><TST>After successful completion of the FML visual inspection, a vacuum box test must be performed on all field seams, the area around the seams, and 
+all FML surfaces showing scuffing, penetration by foreign objects, or distress from rough subgrade.</TST>  A glass topped vacuum box, which has a neoprene 
+sealing gasket, must be used.  The vacuum box test must be performed as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A commercial bubble forming solution must be applied to the area to be tested.</OLI><BRK/>
+<BRK/>
+<OLI>The vacuum box must be positioned over the area and a vacuum slowly applied until a differential pressure of<MET> 7 kPa</MET><ENG> one psi</ENG> is achieved 
+and held for at least 5 seconds while observing the solution for bubble formation.</OLI><BRK/>
+<BRK/>
+<OLI>If the vacuum box test indicates a continuous stream of bubbles on repeated testing at the same location, then the area being tested must 
+be considered damaged and must be repaired and retested.</OLI><BRK/>
+<BRK/>
+<OLI>If the vacuum box test does not indicate a leak, then the vacuum must be slowly increased until a maximum differential pressure of<MET> 14 kPa 
+plus 0.0 or minus 2 kPa</MET><ENG> 2 psi plus 0.0 or minus 0.25 psi</ENG> is achieved and held for at least 20 seconds.  If the test indicates a continuous 
+stream of bubbles on repeated testing at the same location, then the area being tested must be considered damaged and must be repaired 
+and retested.  Care must be taken to limit the vacuum to no more than the maximum differential pressure because, if it is exceeded by more 
+than<MET> 2 kPa</MET><ENG> 0.25 psi</ENG>, the FML must be considered damaged and must be replaced and retested.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>FML Air Lance Tests</TTL><BRK/>
+<BRK/>
+<TXT><TST>After successful completion of the FML vacuum box test, an air lance test must be performed on all seams not accessible with a vacuum box test 
+(i.e., small seams around penetrations, irregular patches).</TST>  The air lance test will be performed using a<MET> 345 kPa</MET><ENG> 50 psig</ENG> jet of air regulated 
+and directed through a<MET> 5 mm</MET><ENG> 3/16-inch</ENG> diameter nozzle, applied to the upper edge of an overlapped seam or repaired area to detect an unbonded area.  
+Inflation of any section of the seam by the impinging air stream must be indicative of an unbonded area.  Unbonded areas must be repaired and retested.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FML Acceptance Inspection</TTL><BRK/>
+<BRK/>
+<TXT><TST>As soon as practicable after successful completion of the FML vacuum box test and the air lance tests, an acceptance inspection must be performed.</TST>
+  If the inspection reveals any defects in the work, such defects must be repaired or the unsatisfactory work replaced before acceptance.  The 
+cost of such repairs and replacements must be borne by the Contractor.  The Contractor must notify the Contracting Officer at least 48 hours in 
+advance of the acceptance inspection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Field Service</TTL><BRK/>
+<BRK/>
+<TXT>If any problems are noticed in any inspection of an FML seam, the Contracting Officer must be notified immediately.  The FML manufacturer's point 
+of contact must also be contacted by telephone and e-mail and informed that the installation of their product cannot be adequately completed.  
+After the FML manufacturer and their authorized representative have identified the problem and developed and exercised a solution, another set 
+of sample field seams must be made and reinspected.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Sand Cushion Tests - Prior to Delivery</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Sample and test the sand prior to delivery and demonstrate that the sand meets the requirements of <RID>ASTM C33/C33M</RID> as well as for other properties 
+described under the paragraph SAND CUSHION.</TST></TXT><BRK/>
+<BRK/>
+<TXT><TST>For each sample, along with the requirements of <RID>ASTM C33/C33M</RID>, verify the amount of chlorides (ppm) and sulfates (ppm) and determine the pH value 
+of the sand and the resistivity.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Sand Cushion Tests - Post Delivery</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Sample and test the sand after delivery and demonstrate that the sand meets the requirements of <RID>ASTM C33/C33M</RID> as well as for other properties 
+described under the paragraph SAND CUSHION.</OLI><BRK/>
+<BRK/>
+<OLI>During delivery, stockpile the sand for each individual storage tank bottom into separate stockpiles.</OLI><BRK/>
+<BRK/>
+<OLI>Take one sample from each tank bottom stockpile, and test.  The Contractor must notify the Contracting Officer at least 48 hours in advance 
+of the sand delivery for each tank in order to allow the Contracting Officer the opportunity to witness the sampling.  The sand cushion(s) 
+may be placed before the results of the past delivery testing have been submitted.</OLI><BRK/>
+<BRK/>
+<OLI>For each sample, along with the requirements of <RID>ASTM C33/C33M</RID>, verify the amount of chlorides (ppm) and sulfates (ppm) and determine the 
+pH value of the sand and the resistivity.</OLI><BRK/>
+<BRK/>
+<OLI>Deliveries and stockpiles of sand found not to conform to the requirements specified in the paragraph SAND CUSHION must not be used to 
+construct the sand cushion, but must be promptly removed from the site.  This must be the case even if the stockpiled sand has been placed 
+and the tank is partially or completely constructed.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Retesting</TTL><BRK/>
+<BRK/>
+<TXT>Deficiencies found must be rectified and work effected by such deficiencies must be completely retested.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Photographic Construction Documentation of the Undertank Interstitial Space</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide photographic documentation of the construction of the undertank interstitial space and the installation of the FML liner.  Mark-up a plan 
+view of the liner ringwall penetrations identifying each penetration by a unique number starting clockwise of the fill nozzle and proceeding clockwise.  
+Identify the FML penetration in each photograph by the same number shown for that penetration on the marked-up drawing specified above.  Submit 
+the marked-up plan review of the penetrations and all photographs to the Contracting Officer in digital form at high resolution (1MB per picture, 
+minimum) on the media type chosen by the Contracting Officer.  As Basis of Bid, provide them on compact disc(s) in JPEG format.  Take the photographs 
+prior to placement of the sand cushion.  Include photographs of the installation of all ringwall penetrations by undertank piping,[ including foundation 
+drains,] and cathodic protection.  Particular attention must be paid to the way the FML is sealed to the pipe and conduit penetrations.  Number 
+all ringwall penetrations clockwise from tank fill line nozzle and document all penetrations using the penetration number.  Each penetration must 
+have at least three photographs: left side, right side, and close-up from the open end of the boot seal, showing the caulk and clamp arrangement.</TXT><NED/><BRK/>
+<BRK/>
+<TXT>Particular attention must also be paid to the way the FML is sealed to the interior tank ringwall[ and to the tank column base]; photograph the 
+completed FML/batten bar installation at<MET> 1 meter</MET><ENG> 3 foot</ENG> intervals.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

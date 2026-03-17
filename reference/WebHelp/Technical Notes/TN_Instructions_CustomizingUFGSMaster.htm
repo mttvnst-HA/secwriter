@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+  <meta name="gRootRelPath" content=".."/>
+	<meta name="gCommonRootRelPath" content=".."/>
+  <meta name="gTopicId" content="1"/>
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Azure_SI5/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/><link rel="stylesheet" type="text/css" href="../assets/css/SIHelpdefault.css"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2022"/>
+  <title>Instructions for Customizing The UFGS Master For A District Master</title>
+  <meta name="rh-authors" content="C. Fitz-Simon"/>
+  <meta name="topic-comment" content="Instructions for Customizing the UFGS Master for a District Master"/>
+  <meta name="template" content="../assets/masterpages/SpecsIntact_KB_MasterPage.htt"/>
+  <meta http-equiv="Content-Language" content="en-US"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/SIHelpdefault.css"/>
+  <meta name="topic-status" content="Sent for Review"/>
+  
+<meta name="description" content="Instructions for Customizing the UFGS Master for a District Master"/></head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="SpecsIntact Help">
+        <span>SpecsIntact Help</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <div>
+    <h1>FAQs, Troubleshooting, and Technical Notes</h1>
+  </div>
+  <div>
+  <h2>Instructions for Customizing the UFGS Master for a district Master</h2>
+  <h3>Getting Started</h3>
+  <p>For the foundation of the custom <strong>UFGS Master</strong>, you will need to ensure you have the latest <strong>UFGS Master</strong> and the corresponding <a href="https://www.wbdg.org/dod/ufgs/ufgs-changes-revisions" title="Hyperlink to the WBDG UFGS Changes and Revisions List">UFGS Changes and Revisions List</a>.</p>
+  <h3>Step 1: Duplicate The UFGS Master</h3>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer&#39;s Available Projects</strong> panel, <em>right-click</em> the <strong>UFGS Master</strong> and <em>select</em> <strong>Duplicate Master UFGS</strong></li>
+    <li>On the <strong>Duplicate Master</strong> window below <strong>Enter New Master Information</strong>, <i>enter</i> a new name into the <strong>New name</strong> field (e.g., UFGS202401Q1, UFGSFEB2024Q1, UFGS-FEB-2025, or UFGS-022025)</li>
+    <li>On the right of the <strong>New name</strong> field, leave <strong>Connect Master</strong> selected</li>
+    <li>In the <strong>Working Directory</strong> field, <em>verify</em> the correct Working Directory is selected. If you have established multiple Working Directories, you can <em>click</em> the drop-down arrow to <em>select</em> a different Working Directory from the list</li>
+    <li><em>Select</em> <strong>Restore print settings to default values</strong></li>
+    <li><i>Deselect</i> <strong>Duplicate Section comments</strong></li>
+    <li><em>Click</em> <strong>OK</strong></li>
+  </ol>
+  <p style="margin-left: 75px;"><img src="../assets/images/Explorer/DuplicateUFGSMaster.png"/></p>
+  <ol class="LowerAlphaMultiLevel">
+    <li style="counter-set: item1 7;">When prompted to <strong>Duplicate UFGS as</strong>, <em>click</em> <strong>Yes</strong></li>
+    <li>When prompted that the <strong>Master UFGS duplicated to</strong>, <em>click</em> <strong>OK</strong></li>
+  </ol>
+  <h3>Step 2: Changing the column header views</h3>
+  <ol class="LowerAlphaMultiLevel">
+    <li> In the <strong>SpecsIntact Explorer&#39;s Available Projects</strong> panel, under the <strong>Masters</strong> folder, <em>select</em> the duplicated Master (e.g., <strong>UFGS202401Q1</strong> or <strong>UFGSFEB2024Q1</strong>)</li>
+    <li><em>Select</em> the <strong>View</strong> menu and <em>select</em> <strong>Columns</strong></li>
+    <li>On the <strong>Select Columns for Sections</strong> window, <em>select</em> the <strong>Preparing Activity</strong></li>
+    <li><em>Click</em> <strong>OK</strong></li>
+  </ol>
+  <p>Once the process has been completed, you should <em>reset</em> the <strong>Columns</strong> by <i>deselecting</i> the <strong>Preparing Activity</strong> to avoid loading delays when displaying the Section files.</p>
+  <h3>Step 3: Remove Agency-Specific Sections</h3>
+  <p>The <strong>UFGS Master</strong> is a combination of unified and non-unified agency-specific Sections. Each agency is responsible for maintaining both the unified and non-unified Sections. The focus of this section is the agency&#39;s fifth-level Sections that are unique to each agency. Army-specific Sections use 10, Navy 20, and Air Force 30.</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer&#39;s Contents</strong> panel, <em>click</em> on the <strong>Preparing Activity</strong> column header to sort the Sections by agency</li>
+  </ol>
+  <p style="margin-left: 75px;"><img src="../assets/images/Explorer/ColumnHeaders.png"/></p>
+  <ol class="LowerAlphaMultiLevel">
+    <li style="counter-set: item1 1;"><em>Highlight</em> the first <strong>Navy (NAVFAC)</strong> Section</li>
+    <li><i>Scroll down</i> until you see the last <strong>Navy (NAVFAC)</strong> Section, then <strong></strong><em>press-and-hold</em> the <strong>Shift</strong> key and <em>select</em> the last <strong>Navy (NAVFAC)</strong> Section</li>
+    <li>WIth all the <strong>Navy (NAVFAC)</strong> Sections highlighted, <em>press</em> the <strong>Delete</strong> key</li>
+    <li>On the <strong>Confirm Sections to Delete</strong> window, <em>select</em> <strong>OK</strong></li>
+  </ol>
+  <p style="margin-left: 40px;"><img alt="Illustration Icon Indicating Important Information To Note" border="0" height="23" src="../assets/images/Help/Icon_ImportantInformation.png" style="border: none; cursor: nesw-resize; padding-top: 10px; margin-right: 12px;" title="Icon Indicating Important Information To Note" width="23"/>If your District does not use the Air Force (AFCEC) Sections, then repeat steps 2 - 5 to remove the Sections.</p>
+  <h3>Step 4: Tailor the Local District Master</h3>
+  <p>The steps in this Section will remove the Navy (NAVFAC) agency-specific information within the District Master so the only two remaining agencies will be the Army (USACE) and Air Force (AFCEC).</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer&#39;s Available Projects</strong> panel, <em>right-click</em> on the custom District Master (e.g., <strong>UFGS202401Q1</strong> or <strong>UFGSFEB2024Q1</strong>) and <em>select</em> <strong>Tailor Master</strong></li>
+    <li>On the <strong>Tailor Sections in Master...</strong> window below <strong>Tailor Options</strong>, <i>deselect</i> <strong>Use Revisions</strong> and <i>select</i> <strong>Automatically apply check/uncheck to identical Tailoring Options...</strong></li>
+    <li>Begin <i>deselecting</i> the <strong>Tailoring Options</strong> provided in the table below:</li>
+  </ol>
+  <table border="1" cellpadding="1" cellspacing="1" class="hdrevenrowsnobdr" margin-left="60" style="border-collapse: collapse;width: 499px;margin-left: 70px">
+    <tbody>
+      <tr>
+        <td colspan="2" style="margin-left: auto;margin-right: auto;text-align: center;font-weight: bold;padding-top: 10p">Tailoring Options Deselected by USACE SPK</td>
+      </tr>
+      <tr style="padding-left: 50p">
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">Azores</td>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC NW</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">HAWAII</td>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC PAC</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC EURAFSWA</td>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC SE</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC FE</td>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC SW</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC HAWAII</td>
+        <td style="margin-left: 2\">NAVFAC WASH</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC HI</td>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVY</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC LANT</td>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVY ACCEPTANCE ENGINEER</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC MAR</td>
+        <td style="margin-left: 0px;margin-right: auto;padding-top: 10p">NORFOLK NAVAL SHIPYARD</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC MARIANAS</td>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">PAC</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC MIDLANT</td>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">PEARL HARBOR SHIPYARD</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">NAVFAC ML</td>
+        <td style="margin-left: 4px;margin-right: auto;padding-top: 10p">RCBEA</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 10px;margin-left: 40px;padding-bottom: 10px"><img alt="Illustration Icon Indicating Caution" border="0" height="26" src="../assets/images/Help/Icon_Caution.png" style="border: none; padding-top: 10px; margin-right: 10px; margin-bottom: 0px;" title="Icon Indicating Caution" width="26"/> Do not solely rely on the list above, since new Tailoring Options are added regularly.</p>
+  <h3 style="padding-bottom: 10px">Step 5: Incorporate USACE SPKGS Local District Master</h3>
+  <p style="padding-bottom: 10px">Local District Masters are developed to address specific State, County, City, and local regulations such as Air boards, Water Quality requirements, Stormwater pollution prevention, and local environmental requirements for protecting threatened and endangered local flora and fauna. Additionally, District Masters will also ensure the local base and installation requirements are addressed.</p>
+  <p style="padding-bottom: 10px">In the steps below, we are only going to highlight all the unique Sacramento District (SPKGS) Master specifications with the fifth-level <strong>.41</strong> designation and copy them into the custom <strong>UFGS Master</strong> (e.g., <strong>UFGS202401Q1</strong> or <strong>UFGSFEB2024Q1</strong>). There is no need to copy Section 01 33 00 Submittal Procedures Section.</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer&#39;s Available Projects</strong> panel, <em>select</em> the <strong>SPKGS</strong> District Master<strong></strong></li>
+    <li>In the <strong>Contents</strong> panel, <em>press-and-hold</em> the <strong>Ctrl</strong> key to select the <strong>Division 01 - .41</strong> Sections above the 01 33 00 Submittal Procedures Section</li>
+    <li>With the Sections highlighted, <em>press</em> <strong>Ctrl+C</strong> to copy the Sections</li>
+    <li>In the <strong>Available Projects</strong> panel, <i>select</i> the custom District Master (e.g., <strong>UFGS202501Q1</strong> or <strong>UFGSFEB2024Q1</strong>)</li>
+    <li><em>Press</em> <strong>Ctrl+V</strong> to paste the Sections in the custom District Master</li>
+    <li>When the <strong>Copy Files</strong> window appears, <i>click</i> <strong>Yes</strong></li>
+    <li>In the <strong>Contents</strong> panel, <em>press-and-hold</em> the <strong>Shift</strong> key to <em>select</em> the remaining <strong>.41</strong> Sections below the 01 33 00 Submittal Procedures Section</li>
+    <li>Repeat steps 3 - 7</li>
+  </ol>
+  <h3 style="padding-bottom: 10px">Step 6: Generate and Resolve the Quality Assurance (QA) Report Issues</h3>
+  <p style="padding-bottom: 10px">This section will address the steps for generating the Verification Reports to clean up any issues that surfaced from combining the <strong>UFGS Master</strong> with the District Master.</p>
+  <p style="margin-left: 40px;padding-bottom: 10px"><span style="margin-right:5px;"><img alt="Illustration Icon Indicating Helpful Hint" border="0" height="28" src="../assets/images/Help/Icon_HelpfulHint.png" style="border: none; margin-right: 5px; margin-bottom: 0px;" title="Icon Indicating Helpful Hint" width="27"/></span>If you need to familiarize yourself with correcting the Verification Reports, review the <strong>Chapter 6</strong> eLearning modules.</p>
+  <p style="padding-bottom: 10px">Follow the steps below to process the Verification Reports.</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SI Explorer</strong>, <em>select</em> the <strong>Print/Publish</strong> button on the <strong>Toolbar</strong></li>
+    <li>On the <strong>Print Processing for Master</strong> window, <strong>Sections</strong> tab, <em>verify</em> <strong>All Sections</strong> is selected</li>
+    <li><em>Select</em> the <strong>Reports</strong> tab, below <strong>Reports</strong> <em>verify</em> all the <strong></strong>Verification Reports are selected</li>
+    <li><i>Click</i> the <strong>Process Only</strong> button</li>
+  </ol>
+  <p style="margin-left: 40px;padding-bottom: 10px"><span style="margin-right:5px;"><img alt="Illustration Icon Indicating Important Information To Note" border="0" height="23" src="../assets/images/Help/Icon_ImportantInformation.png" style="border: none; cursor: nesw-resize; padding-top: 10px; margin-right: 12px;" title="Icon Indicating Important Information To Note" width="23"/></span>The processing may take a few minutes to process due to the number of Sections within the custom Master. At this phase of the procedure, focus on correcting the issues found in the <strong>Reference Title</strong> and <strong>Submittal Verification Reports</strong>.</p>
+  <h3 style="padding-bottom: 10px">Step 7: Review the UFGS Changes and Revisions</h3>
+  <p style="padding-bottom: 10px">Moving forward, the process is more detailed since you will be comparing the SPKGS .41 Sections with the changed UFGS Sections, which requires you to go to the Whole Building Design Guide (WBDG) <a href="https://www.wbdg.org/dod/ufgs/ufgs-changes-revisions" title="Hyperlink to the WBDG UFGS Changes and Revisions Page">UFGS Changes and Revisions</a> page.</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>On the <strong>UFGS Changes and Revisions</strong> page, <em>scroll down</em> until you see the <strong>Key</strong>, <strong>Release</strong>, and <strong>UFGS Search</strong></li>
+  </ol>
+  <p style="margin-left: 75px;padding-bottom: 0px"><img src="../assets/images/General/UFGSChangeRevision.png"/></p>
+  <ol class="LowerAlphaMultiLevel">
+    <li style="counter-set: item1 1;">Below <strong>Release</strong>, <em>click</em> the drop-down arrow and <em>select</em> the latest release (e.g., Feb-2024, May-2024, etc.)</li>
+    <li><em>Click</em> the <strong>Apply</strong> button</li>
+    <li>After you <em>click</em> the <strong>Apply</strong> button, <em>click</em> <strong>PRINT REPORT</strong> (located in the third paragraph on this page)</li>
+  </ol>
+  <p style="padding-bottom: 10px">If the changes are minor, you will update the Sections in the SPKGS .41 Sections. However, if they are major, you will update the UFGS Sections to include the local requirements.</p>
+  <h3 style="padding-bottom: 10px">Step 8: Compare SPKGS and UFGS Section 01 33 00 And Incorporate Changes</h3>
+  <p style="padding-bottom: 10px">This method may not detect minor changes to a word or a measurement, but it will be close. There are other methods for comparing Section files, but they provide more detail and take more time. These methods include Publishing the Sections to PDF or Word, then using the built-in comparison tools that will assist you in identifying the changes in the UFGS Sections that will require attention. Although the ragged edge method seems to be faster, these methods tend to be more accurate. It&#39;s up to you to determine what method is best for you.</p>
+  <p style="padding-bottom: 10px">Always start by comparing the two Master&#39;s 01 33 00 Submittal Procedures Sections, to locate the changes, and then incorporate the changes into the <strong>SPKGS</strong> District Master&#39;s 01 33 00 Submittal Procedures Section.</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer&#39;s Available Projects</strong> panel, <em>select</em> the <strong>SPKGS</strong> District Master<strong></strong></li>
+    <li>In the <strong>Contents</strong> panel, <em>double-click</em> to open the 01 33 00 Submittal Procedures Section</li>
+    <li>In the <strong>SI Editor</strong>, <em>select</em> the <strong>Open</strong> button on the <strong>Toolbar</strong></li>
+    <li>In the <strong>SI Editor</strong>, <strong></strong><em>select</em> the <strong>Window</strong> menu and <em>select</em> <strong>Tile Vertical</strong> to display the two Sections side-by-side</li>
+    <li>Before you begin, <em>close</em> the <strong>Navigator</strong> in <u>both<strong></strong></u> Sections to maximize the workspace</li>
+    <li>As you <em>scroll down</em>, watch the right side of each Section file using the ragged edge pattern (as illustrated below)</li>
+  </ol>
+  <p style="margin-left: 60px;padding-bottom: 10px"><img src="../assets/images/Editor/SectionCompareRaggedEdge.png"/></p>
+  <p style="margin-left: 40px;padding-bottom: 10px"><span style="margin-right:5px;"><img alt="Illustration Icon Indicating Helpful Hint" border="0" height="28" src="../assets/images/Help/Icon_HelpfulHint.png" style="border: none; margin-right: 5px; margin-bottom: 0px;" title="Icon Indicating Helpful Hint" width="27"/></span>When using this method, it is unnecessary to read the entire line to detect changes by only checking the words at the end to see pattern differences.</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li style="counter-set: item1 6;">When the pattern visibly changes, <em>read</em> that line of text to find what has changed, then <em>update</em> the <strong>SPKGS</strong> specification</li>
+    <li>Continue to <em>scroll</em> through both Sections, making the necessary changes until the end of the Section</li>
+    <li>Once the <strong>SPKGS</strong> District Master&#39;s 01 33 00 Submittal Procedures Section has been updated, <em>close</em> both Sections</li>
+    <li>In the <strong>Contents</strong> panel, <em>select</em> the <strong>SPKGS </strong>District Master&#39;s 01 33 00 Submittal Procedures Section</li>
+    <li><em>Press</em> <strong>Ctrl+C</strong> to copy the Section</li>
+    <li>In the <strong>Available Projects</strong> panel, <em>select</em> the custom<strong> UFGS Master</strong> (e.g., <strong>UFGS202401Q1</strong> or <strong>UFGSFEB2024Q1</strong>)</li>
+    <li><em>Press</em> <strong>Ctrl+V</strong> to paste the Section into the custom <strong>UFGS Master</strong></li>
+  </ol>
+  <p style="margin-left: 40px;padding-bottom: 10px"><span style="margin-right:5px;"><img alt="Illustration Icon Indicating Helpful Hint" border="0" height="28" src="../assets/images/Help/Icon_HelpfulHint.png" style="border: none; margin-right: 5px; margin-bottom: 0px;" title="Icon Indicating Helpful Hint" width="27"/></span>Once the custom<strong> UFGS Master&#39;s</strong> 01 33 00 Submittal Procedures Section has been overwritten with the <strong>SPKGS</strong> District Master&#39;s Section, you will see the Preparing Activity reflects <strong>CESPK</strong>.</p>
+  <h3 style="padding-bottom: 10px">Step 9: Merge District References With The Custom UFGS Master&#39;s 01 42 00 Sources For Reference Publications Section</h3>
+  <p style="padding-bottom: 10px">In this section, we will focus on merging the <strong>SPKGS</strong> District Master&#39;s Reference Publications into the custom <strong>UFGS Master&#39;s </strong>01 42 00 Sources for Reference Publications Section. To simplify this process, the Sacramento District created a local District 01 42 00.13 41 Section to easily maintain the District&#39;s unique Reference Publications.</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer&#39;s Available Projects</strong> panel, <em>select</em> the <strong>SPKGS</strong> District Master</li>
+    <li>In the <strong>Contents</strong> panel, <em>double-click</em> to open the District 01 42 00.13 41 Section</li>
+    <li><em>Highlight</em> all the Reference Publications, then <em>press</em> <strong>Ctrl+C</strong> or <em>right-click</em> and <em>select</em> <strong>Copy</strong></li>
+    <li><em>Close</em> the 01 42 00.13 41 Section</li>
+    <li>In the <strong>Available Projects</strong> panel, <em>select</em> the custom <strong>UFGS Master</strong> (e.g., <strong>UFGS202401Q1</strong> or <strong>UFGSFEB2924Q1</strong>)</li>
+    <li>In the <strong>Contents</strong> panel, <em>double-click</em> to open the UFGS 01 42 00 Sources for Reference Publications Section</li>
+    <li><em>Navigate</em> to PART 2 PRODUCTS</li>
+    <li><em>Place</em> your cursor between the ending &lt;/REF&gt; and beginning &lt;REF&gt; tags, <em>right-click</em> and <em>select</em> <strong>Paste</strong></li>
+    <li><em>Close</em> the UFGS 01 42 00 Sources for Reference Publications Section</li>
+    <li><i>Select</i> the <strong>SPKGS</strong> Master</li>
+    <li>In the <strong>Contents</strong> panel, <em>select</em> and <em>delete</em> the District 01 42 00.13 41 Section</li>
+  </ol>
+  <p style="padding-bottom: 10px">Now you are going to refer to the <strong>UFGS Changes and Revisions</strong> list that was previously downloaded from the WBDG&#39;s Website to identify what other Sections need modification. Once the task of comparing and revising the Sections that require modifications is complete, then delete the duplicate Sections from the custom District Master.</p>
+  <ul class="Disc">
+    <li>If the changes are minor, you will update the District Master specifications with the fifth-level designation and delete the duplicated <strong>UFGS Master</strong> specifications.</li>
+    <li>If the changes are major, that means the local requirements were incorporated in the <strong>UFGS Master</strong> specification with the intent that this Section would replace the District Master (.41) Section. In this case, <em>delete</em> the District (.41) Section first, then <em>rename</em> the custom <strong>UFGS Master</strong> Section to add the fifth-level (.41) designation, and then <em>modify</em> the <strong>Section Header</strong> accordingly. This Section now becomes the District Guide Specification.</li>
+    <li>Before continuing to the next section make sure to backup your custom <strong>UFGS Master</strong> (e.g. <strong>UFGS2024401Q1</strong> or <strong>UFGSFEB2024Q1</strong>). If you need to familiarize yourself with the <strong>Backup and Restore</strong> functionality, review the <strong>Chapter 8</strong> eLearning modules.</li>
+  </ul>
+  <h3 style="padding-bottom: 10px">Step 10: Delete Sections</h3>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer&#39;s Available Projects</strong> panel, <em>select</em> the custom <strong>UFGS Master</strong> (e.g., <strong>UFGS202401Q1</strong> or <strong>UFGSFEB2024Q1</strong>)</li>
+    <li>In the <strong>Contents</strong> panel, <em>press-and-hold</em> the <strong>Ctrl</strong> key to <em>highlight</em> and <em>delete</em> the Sections listed in the table below:</li>
+  </ol>
+  <table border="1" cellpadding="1" cellspacing="1" class="hdrevenrowsnobdr" style="border-collapse: collapse;width: 562px;margin-left: 80px;padding-bottom: 10px">
+    <colgroup>
+      <col style="width: 121px;"/>
+      <col style="width: 434px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style="margin-left: 70px"><strong>Section Number</strong></td>
+        <td style="margin-left: 70px"><strong>Title</strong></td>
+      </tr>
+      <tr>
+        <td style="margin-left: 70px">01 32 01.00 10</td>
+        <td style="margin-left: 70px">PROJECT SCHEDULE</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 70px">01 50 00</td>
+        <td style="margin-left: 70px">TEMPORARY CONSTRUCTION FACILITIES AND CONTROLS</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 70px">01 57 19</td>
+        <td style="margin-left: 70px">TEMPORARY ENVIRONMENTAL CONTROLS</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 70px">01 78 00</td>
+        <td style="margin-left: 70px">CLOSEOUT SUBMITTALS</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 style="padding-bottom: 10px">Step 11: Generate And Update The SPKGS District Master References</h3>
+  <p style="padding-bottom: 10px">The final process will entail generating the custom <strong>UFGS Master</strong> References. SpecsIntact provides the <strong>Unified Master References List (UMRL)</strong>, which contains all the Reference publications used by the latest <strong>UFGS Master</strong>. The <strong>SPKGS</strong> District Master now contains a mix of References that appear in the <strong>UFGS Master&#39;s</strong> UMRL as well as the District&#39;s local or unique References.</p>
+  <p style="padding-bottom: 10px">To update the custom <strong>UFGS Master&#39;s</strong> &#39;unified&#39; References using the current UMRL as well as update or leave other local or unique References unchanged by generating the Master Reference List (MRL) for the District Master, update the local unique References, then Reconcile the References against the UMRL and the MRL. A written procedure for this portion of the task is located in the <strong>Resources</strong> section on <a href="https://SpecsIntact.wbdg.org/elearning" title="Hyperlink to the SpecsIntact Website&#39;s eLearning Page">eLearning</a> web page (<a href="https://www.wbdg.org/tools/specsintact/update_ref_local_master_using_two_mrls.pdf" title="Hyperlink to the Update Reference for a Local Master Using Two Master Reference Lists">Update References for a local Master Using Two Master Reference Lists</a>).</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer&#39;s Available Projects</strong> panel, <em>select</em> the <strong>SPKGS</strong> District Master</li>
+    <li><em>Right-click</em> and <em>select</em> <strong>Release Processing</strong></li>
+    <li>On the <strong>Release Processing for Master</strong> window, leave the default selections checked</li>
+    <li><i>Select</i> <strong>OK</strong></li>
+    <li>When the <strong>Release Processing</strong> confirmation window appears, <i>click</i> <strong>OK</strong></li>
+    <li>When returned to the <strong>SpecsIntact Explorer</strong>, <em>select<strong></strong></em> the <strong>Process</strong> menu and <em>select</em> <strong>Reference Processing for Master</strong> to update the District Master&#39;s unique References</li>
+    <li><i>Select</i> the <strong>Master Reference List</strong> tab, under <strong>Action</strong>, <em>select</em> <strong>Edit list</strong></li>
+    <li>Below the <strong>Master Reference file</strong>, <em>verify</em> the path is for the <strong>SPKGS</strong> District Master</li>
+    <li><em>Click</em> <strong>OK</strong> to open the <strong>Master.ref</strong> file to update the unique District References</li>
+    <li>Once the updates are complete, <em>save</em> and <em>close</em> the <strong>Master.ref</strong> file</li>
+    <li><em>Close<strong></strong></em> the <strong>Reference Processing</strong> window to return to the <strong>SpecsIntact Explorer</strong></li>
+  </ol>
+  <h3 style="padding-bottom: 10px"> Step 12: Reconcile References With The UMRL</h3>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer&#39;s Available Projects</strong> panel, <em>select</em> the custom <strong>UFGS Master</strong> (e.g., <strong>UFGS202401Q1</strong> or <strong>UFGSFEB2024Q1</strong>)</li>
+    <li><em>Select</em> the <strong>Process</strong> menu and <em>select</em> <strong>Reference Processing for Master</strong></li>
+    <li>On the <strong>Reconciliation</strong> tab, under <strong>Action</strong>, <em>select</em> <strong>Generate New Reference Articles but preserve unlisted References</strong></li>
+    <li>Under <strong>Master/Supplemental Reference List to Use</strong>, <em>select</em> <strong>Unified Master Reference List</strong></li>
+    <li><em>Click</em> <strong>OK</strong></li>
+    <li>When the <strong>Back Up Project</strong> window appears, <em>select</em> <strong>Process references in Master</strong> (e.g., <strong>UFGS202401Q1</strong> or <strong>UFGSFEB2024Q1</strong>) without first backing it up</li>
+    <li>When the <strong>Reference Processing</strong> confirmation window appears asking to continue, <em>click</em> <strong>OK</strong></li>
+    <li>When the processing is complete and the <strong>Reference Processing</strong> confirmation window appears, <em>click</em> <strong>OK</strong></li>
+  </ol>
+  <h3 style="padding-bottom: 10px"> Step 13: Reconcile References With The SPKGS District Master</h3>
+  <ol class="LowerAlphaMultiLevel">
+    <li>While the focus is still on the <strong>Reference Processing for Master</strong> window <strong>Reconciliation</strong> tab, under <strong>Action</strong>, <em>select</em> <strong>Reconcile references in Reference Article</strong></li>
+    <li>Under <strong>Master/Supplemental Reference List to Use</strong>, <em>select</em> the custom <strong>UFGS Master</strong> (e.g., <strong>UFGS202401Q1</strong> or <strong>UFGSFEB2024Q1</strong>)</li>
+    <li><em>Click</em> <strong>OK</strong></li>
+    <li>When the <strong>Reference Processing</strong> confirmation window appears asking to continue, <em>click</em> <strong>OK</strong></li>
+    <li><em>Click</em><strong></strong> <strong>Close</strong> to close the <strong>Reference Processing</strong> window</li>
+  </ol>
+  <p style="margin-left:60px;margin-top:10px">Make sure to generate the Verification Reports to resolve any remaining issues to include duplicate References. Once the report issues are resolved, make another backup of the custom <strong>UFGS Master</strong> for distribution. You will provide a copy to the AE Negotiations Office for distribution to the AE firms. Once this is complete, notify the Designers to connect to the new custom <strong>UFGS Master</strong>.</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li style="counter-set: item1 5;">In the <strong>SpecsIntact Explorer&#39;s Available Projects</strong> panel, <em>select</em> the custom <strong>UFGS Master</strong> (e.g., <strong>UFGS202401Q1</strong> or <strong>UFGSFEB2024Q1</strong>)</li>
+    <li>In the <strong>Contents</strong> panel, <em>select</em> <u>all</u> the <strong>CESPK</strong> guide specifications</li>
+    <li><em>Press</em> <strong>Ctrl+C</strong> or <em>right-click</em> and <em>select</em> <strong>Copy</strong></li>
+    <li><em>Select</em> the <strong>SPKGS</strong> District Master</li>
+    <li><em>Press</em> <strong>Ctrl+V</strong> or <em>right-click</em> and <em>select</em> <strong>Paste</strong></li>
+  </ol>
+  <p>This will allow for the maintenance and development of the new Master Guide Specifications. This process will be followed after each <strong>UFGS Master</strong> Release (February, May, August, and November).</p>
+
+</div>
+  <p> </p>
+  <div style="border-width: 2px;border-style: ridge;border-color: #2d5986">
+    <h2 class="footer" style="padding-left: 5px"><span style="padding-left:5px">Technical Support Information</span></h2>
+    <p style="padding-left: 10px;padding-right: 10px;text-align: left"><span style="padding-right:10px;"><span style="border-color:#000000;border-style:none;border-width:1px">Users are encouraged to visit the SpecsIntact Website&#39;s <a href="https://www.wbdg.org/dod/specsintact/help-center" title="Hyperlink to the SpecsIntact Website&#39;s Support &amp; Help Center Page"><span style="color:#336699;">Support &amp; Help Center</span></a> for access <span style="border-color:#000000;border-style:none;border-width:1px">to all of our User Tools, including Web-Based Help (containing Troubleshooting, Frequently Asked Questions (FAQs), Technical Notes, and Known Problems), <a href="https://SpecsIntact.wbdg.org/elearning" style="color: #336699;font-weight: normal" title="Hyperlink to the SpecsIntact Website&#39;s eLearning Page">eLearning</a> Modules (video tutorials), and printable Guides.</span></span></span></p>
+    <table border="1" cellpadding="1" cellspacing="1" style="border-collapse:collapse;width:100%;border-left-width:1px;border-left-style:none;border-left-color:#2d5986;border-top-width:1px;border-top-style:none;border-top-color:#2d5986;border-right-width:1px;border-right-style:none;border-right-color:#2d5986;border-bottom-width:1px;border-bottom-style:none;border-bottom-color:#2d5986">
+      <colgroup>
+        <col style="width: 16px;"/>
+        <col style="width: 19px;"/>
+        <col style="width: 740px;"/>
+      </colgroup>
+      <tbody>
+        <tr style="padding-left: 5px;color: #2d5986">
+          <td colspan="3" style="border-width: 0px;border-color: transparent"><span style="font-weight:bold;color:#2d5986;padding-left:10px">CONTACT US:</span></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><i class="fa-solid fa-phone fa-sm" style="color: #336699"></i></td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><span style="font-family:Calibri;"><span style="color:#336699">256.895.5505</span></span></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><i class="fa-solid fa-envelope fa-sm" style="color: #336699"></i></td>
+          <td style="border-width: 0px;border-color: transparent"><a href="mailto:SpecsIntact@usace.army.mil?subject=SpecsIntact%20Technical%20Support%20Request" style="padding-left: 10px" title="Send Email to SpecsIntact&#39;s Technical Support">SpecsIntact@usace.army.mil</a></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><i class="fa-solid fa-globe fa-sm" style="color: #336699"></i></td>
+          <td style="border-width: 0px;border-color: transparent"><a href="https://SpecsIntact.wbdg.org" style="padding-left: 10px" title="Hyperlink to the SpecsIntact Website">SpecsIntact.wbdg.org</a></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent"> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p> </p>
+  <p> </p>
+
+</body></html>

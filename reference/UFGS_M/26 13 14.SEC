@@ -1,0 +1,1471 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-26 13 14 (November 2021)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 13 14</SCN><BRK/>
+<BRK/>
+<STL>SWITCHGEAR HOUSE</STL><BRK/>
+<DTE>11/21</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>environmentally controlled, exterior prefabricated, 
+pre-engineered structures to house a coordinated grouping of electrical switchgear and associated power and control 
+equipment</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ALUMINUM ASSOCIATION (AA)</ORG><BRK/><BRK/><RID>AA ADM</RID><RTL>(2020) Aluminum Design Manual</RTL><BRK/><BRK/><RID>AA ASD1</RID><RTL>(2024) Aluminum Standards and Data</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN INSTITUTE OF STEEL CONSTRUCTION (AISC)</ORG><BRK/><BRK/><RID>AISC 325</RID><RTL>(2017) Steel Construction Manual</RTL><BRK/><BRK/><RID>AISC 360</RID><RTL>(2016) Specification for Structural Steel Buildings</RTL><BRK/><BRK/><RID>ANSI/AISC 341</RID><RTL>(2022) Seismic Provisions for Structural Steel Buildings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN IRON AND STEEL INSTITUTE (AISI)</ORG><BRK/><BRK/><RID>AISC/AISI 121</RID><RTL>(2007) Standard Definitions for Use in the Design of Steel Structures</RTL><BRK/><BRK/><RID>AISI SG03-3</RID><RTL>(2002; Suppl 2001-2004; R 2008) Cold-Formed Steel Design Manual Set</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF CIVIL ENGINEERS (ASCE)</ORG><BRK/><BRK/><RID>ASCE 7</RID><RTL>(2017) Minimum Design Loads for Buildings and Other Structures</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 90.1 - IP</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS A5.1/A5.1M</RID><RTL>(2025) Specification for Carbon Steel Electrodes for Shielded Metal Arc Welding</RTL><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/><RID>AWS D1.3/D1.3M</RID><RTL>(2025) Structural Welding Code - Sheet Steel</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A36/A36M</RID><RTL>(2019) Standard Specification for Carbon Structural Steel</RTL><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/><RID>ASTM A153/A153M</RID><RTL>(2023) Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware</RTL><BRK/><BRK/><RID>ASTM A193/A193M</RID><RTL>(2025) Standard Specification for Alloy-Steel and Stainless Steel Bolting Materials for High-Temperature Service and Other Special Purpose Applications</RTL><BRK/><BRK/><RID>ASTM A307</RID><RTL>(2023) Standard Specification for Carbon Steel Bolts, Studs, and Threaded Rod 60 000 PSI Tensile Strength</RTL><BRK/><BRK/><RID>ASTM A325</RID><RTL>(2014) Standard Specification for Structural Bolts, Steel, Heat Treated, 120/105 ksi Minimum Tensile Strength</RTL><BRK/><BRK/><RID>ASTM A325M</RID><RTL>(2014) Standard Specification for Structural Bolts, Steel, Heat Treated, 830 MPa Minimum Tensile Strength (Metric)</RTL><BRK/><BRK/><RID>ASTM A463/A463M</RID><RTL>(2025b) Standard Specification for Steel Sheet, Aluminum-Coated, by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM A475</RID><RTL>(2022) Standard Specification for Metallic-Coated Steel Wire Strand</RTL><BRK/><BRK/><RID>ASTM A500/A500M</RID><RTL>(2023) Standard Specification for Cold-Formed Welded and Seamless Carbon Steel Structural Tubing in Rounds and Shapes</RTL><BRK/><BRK/><RID>ASTM A501/A501M</RID><RTL>(2021) Standard Specification for Hot-Formed Welded and Seamless Carbon Steel Structural Tubing</RTL><BRK/><BRK/><RID>ASTM A529/A529M</RID><RTL>(2019) Standard Specification for High-Strength Carbon-Manganese Steel of Structural Quality</RTL><BRK/><BRK/><RID>ASTM A563</RID><RTL>(2021; E 2022a) Standard Specification for Carbon and Alloy Steel Nuts</RTL><BRK/><BRK/><RID>ASTM A563M</RID><RTL>(2007; R 2013) Standard Specification for Carbon and Alloy Steel Nuts (Metric)</RTL><BRK/><BRK/><RID>ASTM A572/A572M</RID><RTL>(2025) Standard Specification for High-Strength Low-Alloy Columbium-Vanadium Structural Steel</RTL><BRK/><BRK/><RID>ASTM A606/A606M</RID><RTL>(2025) Standard Specification for Steel Sheet and Strip, High-Strength, Low-Alloy, Hot-Rolled and Cold-Rolled, with Improved Atmospheric Corrosion Resistance</RTL><BRK/><BRK/><RID>ASTM A653/A653M</RID><RTL>(2025a) Standard Specification for Steel Sheet, Zinc-Coated (Galvanized) or Zinc-Iron Alloy-Coated (Galvannealed) by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM A755/A755M</RID><RTL>(2018; R 2024) Standard Specification for Steel Sheet, Metallic Coated by the Hot-Dip Process and Prepainted by the Coil-Coating Process for Exterior Exposed Building Products</RTL><BRK/><BRK/><RID>ASTM A780/A780M</RID><RTL>(2020) Standard Practice for Repair of Damaged and Uncoated Areas of Hot-Dip Galvanized Coatings</RTL><BRK/><BRK/><RID>ASTM A792/A792M</RID><RTL>(2025a) Standard Specification for Steel Sheet, 55% Aluminum-Zinc Alloy-Coated by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM A992/A992M</RID><RTL>(2022) Standard Specification for Structural Steel Shapes</RTL><BRK/><BRK/><RID>ASTM A1008/A1008M</RID><RTL>(2025) Standard Specification for Steel, Sheet, Cold-Rolled, Carbon, Structural, High-Strength Low-Alloy, High-Strength Low-Alloy with Improved Formability, Required Hardness, Solution Hardened, and Bake Hardenable</RTL><BRK/><BRK/><RID>ASTM A1011/A1011M</RID><RTL>(2025) Standard Specification for Steel, Sheet and Strip, Hot-Rolled, Carbon, Structural, High-Strength Low-Alloy, High-Strength Low-Alloy with Improved Formability, and Ultra-High-Strength</RTL><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM B209</RID><RTL>(2014) Standard Specification for Aluminum and Aluminum-Alloy Sheet and Plate</RTL><BRK/><BRK/><RID>ASTM B209M</RID><RTL>(2014) Standard Specification for Aluminum and Aluminum-Alloy Sheet and Plate (Metric)</RTL><BRK/><BRK/><RID>ASTM B221</RID><RTL>(2021) Standard Specification for Aluminum and Aluminum-Alloy Extruded Bars, Rods, Wire, Profiles, and Tubes</RTL><BRK/><BRK/><RID>ASTM B221M</RID><RTL>(2021) Standard Specification for Aluminum and Aluminum-Alloy Extruded Bars, Rods, Wire, Profiles, and Tubes (Metric)</RTL><BRK/><BRK/><RID>ASTM B695</RID><RTL>(2021) Standard Specification for Coatings of Zinc Mechanically Deposited on Iron and Steel</RTL><BRK/><BRK/><RID>ASTM C273/C273M</RID><RTL>(2020) Standard Test Method for Shear Properties of Sandwich Core Materials</RTL><BRK/><BRK/><RID>ASTM C518</RID><RTL>(2021) Standard Test Method for Steady-State Thermal Transmission Properties by Means of the Heat Flow Meter Apparatus</RTL><BRK/><BRK/><RID>ASTM C553</RID><RTL>(2024) Standard Specification for Mineral Fiber Blanket Thermal Insulation for Commercial and Industrial Applications</RTL><BRK/><BRK/><RID>ASTM C612</RID><RTL>(2025) Standard Specification for Mineral Fiber Block and Board Thermal Insulation</RTL><BRK/><BRK/><RID>ASTM C665</RID><RTL>(2024) Standard Specification for Mineral-Fiber Blanket Thermal Insulation for Light Frame Construction and Manufactured Housing</RTL><BRK/><BRK/><RID>ASTM C920</RID><RTL>(2018; R 2024) Standard Specification for Elastomeric Joint Sealants</RTL><BRK/><BRK/><RID>ASTM C991</RID><RTL>(2025a) Standard Specification for Flexible Fibrous Glass Insulation for Metal Buildings</RTL><BRK/><BRK/><RID>ASTM C1289</RID><RTL>(2023a) Standard Specification for Faced Rigid Cellular Polyisocyanurate Thermal Insulation Board</RTL><BRK/><BRK/><RID>ASTM C1363</RID><RTL>(2024) Standard Test Method for Thermal Performance of Building Materials and Envelope Assemblies by Means of a Hot Box Apparatus</RTL><BRK/><BRK/><RID>ASTM D522/D522M</RID><RTL>(2017; R 2021) Mandrel Bend Test of Attached Organic Coatings</RTL><BRK/><BRK/><RID>ASTM D523</RID><RTL>(2014; R 2018) Standard Test Method for Specular Gloss</RTL><BRK/><BRK/><RID>ASTM D714</RID><RTL>(2002; R 2017) Standard Test Method for Evaluating Degree of Blistering of Paints</RTL><BRK/><BRK/><RID>ASTM D822</RID><RTL>(2013; R 2018) Filtered Open-Flame Carbon-Arc Exposures of Paint and Related Coatings</RTL><BRK/><BRK/><RID>ASTM D968</RID><RTL>(2022) Standard Test Methods for Abrasion Resistance of Organic Coatings by Falling Abrasive</RTL><BRK/><BRK/><RID>ASTM D1056</RID><RTL>(2020) Standard Specification for Flexible Cellular Materials - Sponge or Expanded Rubber</RTL><BRK/><BRK/><RID>ASTM D1308</RID><RTL>(2020) Standard Test Method for Effect of Household Chemicals on Clear and Pigmented Coating Systems</RTL><BRK/><BRK/><RID>ASTM D1621</RID><RTL>(2016; R2023) Standard Test Method for Compressive Properties of Rigid Cellular Plastics</RTL><BRK/><BRK/><RID>ASTM D1622/D1622M</RID><RTL>(2014) Apparent Density of Rigid Cellular Plastics</RTL><BRK/><BRK/><RID>ASTM D1667</RID><RTL>(2022) Standard Specification for Flexible Cellular Materials - Poly (Vinyl Chloride) Foam (Closed-Cell)</RTL><BRK/><BRK/><RID>ASTM D2244</RID><RTL>(2025) Standard Practice for Calculation of Color Tolerances and Color Differences from Instrumentally Measured Color Coordinates</RTL><BRK/><BRK/><RID>ASTM D2247</RID><RTL>(2025) Standard Practice for Testing Water Resistance of Coatings in 100 Percent Relative Humidity</RTL><BRK/><BRK/><RID>ASTM D2794</RID><RTL>(1993; R 2024) Standard Test Method for Resistance of Organic Coatings to the Effects of Rapid Deformation (Impact)</RTL><BRK/><BRK/><RID>ASTM D3363</RID><RTL>(2022) Standard Test Method for Film Hardness by Pencil Test</RTL><BRK/><BRK/><RID>ASTM D4060</RID><RTL>(2019) Abrasion Resistance of Organic Coatings by the Taber Abraser</RTL><BRK/><BRK/><RID>ASTM D4214</RID><RTL>(2023) Standard Test Method for Evaluating the Degree of Chalking of Exterior Paint Films</RTL><BRK/><BRK/><RID>ASTM D4541</RID><RTL>(2022) Standard Test Method for Pull-Off Strength of Coatings Using Portable Adhesion Testers</RTL><BRK/><BRK/><RID>ASTM D6226</RID><RTL>(2021) Standard Test Method for Open Cell Content of Rigid Cellular Plastics</RTL><BRK/><BRK/><RID>ASTM DEFONLINE</RID><RTL>(2008) ASTM Online Dictionary of Engineering Science and Technology</RTL><BRK/><BRK/><RID>ASTM E84</RID><RTL>(2025) Standard Test Method for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/><RID>ASTM E119</RID><RTL>(2024) Standard Test Methods for Fire Tests of Building Construction and Materials</RTL><BRK/><BRK/><RID>ASTM E136</RID><RTL>(2026) Standard Test Method for Assessing Combustibility of Materials Using a Vertical Tube Furnace at 750 °C</RTL><BRK/><BRK/><RID>ASTM E283</RID><RTL>(2019) Standard Test Method for Determining the Rate of Air Leakage Through Exterior Windows, Curtain Walls, and Doors Under Specified Pressure Differences Across the Specimen</RTL><BRK/><BRK/><RID>ASTM E331</RID><RTL>(2000; R 2023) Standard Test Method for Water Penetration of Exterior Windows, Skylights, Doors, and Curtain Walls by Uniform Static Air Pressure Difference</RTL><BRK/><BRK/><RID>ASTM E1592</RID><RTL>(2025) Standard Test Method for Structural Performance of Sheet Metal Roof and Siding Systems by Uniform Static Air Pressure Difference</RTL><BRK/><BRK/><RID>ASTM E1646</RID><RTL>(1995; R 2024) Standard Test Method for Water Penetration of Exterior Metal Roof Panel Systems by Uniform Air Pressure Difference</RTL><BRK/><BRK/><RID>ASTM E1680</RID><RTL>(2016) Standard Test Method for Rate of Air Leakage Through Exterior Metal Roof Panel Systems</RTL><BRK/><BRK/><RID>ASTM F436</RID><RTL>(2011) Hardened Steel Washers</RTL><BRK/><BRK/><RID>ASTM F436M</RID><RTL>(2011) Hardened Steel Washers (Metric)</RTL><BRK/><BRK/><RID>ASTM F1554</RID><RTL>(2020) Standard Specification for Anchor Bolts, Steel, 36, 55, and 105-ksi Yield Strength</RTL><BRK/><BRK/><RID>ASTM F1852</RID><RTL>(2014) Standard Specification for "Twist Off" Type Tension Control Structural Bolt/Nut/Washer Assemblies, Steel, Heat Treated, 120/105 ksi Minimum Tensile Strength</RTL><BRK/><BRK/><RID>ASTM G152</RID><RTL>(2013; R 2021) Standard Practice for Operating Open Flame Carbon Arc Light Apparatus for Exposure of Nonmetallic Materials</RTL><BRK/><BRK/><RID>ASTM G153</RID><RTL>(2013; R 2021) Standard Practice for Operating Enclosed Carbon Arc Light Apparatus for Exposure of Nonmetallic Materials</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/><RID>IEEE C37.20.2A</RID><RTL>(2020) Metal-Clad Switchgear Amendment 1: Control and Secondary Circuits and Devices, and All Wiring</RTL><BRK/><BRK/><RID>IEEE C57.12.29</RID><RTL>(2023) Standard for Pad-Mounted Equipment - Enclosure Integrity for Coastal Environments</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTRICAL TESTING ASSOCIATION (NETA)</ORG><BRK/><BRK/><RID>NETA ATS</RID><RTL>(2025) Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</RTL><BRK/><BRK/></REF><REF><ORG>METAL BUILDING MANUFACTURERS ASSOCIATION (MBMA)</ORG><BRK/><BRK/><RID>MBMA MBSM</RID><RTL>(2018) Metal Building Systems Manual</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ASSOCIATION OF ARCHITECTURAL METAL MANUFACTURERS (NAAMM)</ORG><BRK/><BRK/><RID>NAAMM AMP 500</RID><RTL>(2006) Metal Finishes Manual</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 80</RID><RTL>(2025) Standard for Fire Doors and Other Opening Protectives</RTL><BRK/><BRK/><RID>NFPA 252</RID><RTL>(2022) Standard Methods of Fire Tests of Door Assemblies</RTL><BRK/><BRK/></REF><REF><ORG>SHEET METAL AND AIR CONDITIONING CONTRACTORS' NATIONAL ASSOCIATION (SMACNA)</ORG><BRK/><BRK/><RID>SMACNA 1793</RID><RTL>(2012) Architectural Sheet Metal Manual, 7th Edition</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY FOR PROTECTIVE COATINGS (SSPC)</ORG><BRK/><BRK/><RID>SSPC Paint 15</RID><RTL>(1999; E 2004) Steel Joist Shop Primer/Metal Building Primer</RTL><BRK/><BRK/><RID>SSPC Painting Manual</RID><RTL>(2002) Good Painting Practice, Steel Structures Painting Manual, Volume 1</RTL><BRK/><BRK/><RID>SSPC SP 2</RID><RTL>(2024) Hand Tool Cleaning</RTL><BRK/><BRK/><RID>SSPC SP 10/NACE No. 2</RID><RTL>(2015) Near-White Blast Cleaning</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 580</RID><RTL>(2006; Reprint Apr 2024) UL Standard for Safety Tests for Uplift Resistance of Roof Assemblies</RTL><BRK/><BRK/><RID>UL Bld Mat Dir</RID><RTL>(updated continuously online) Building Materials Directory</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>GENERAL REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Scope</TTL><BRK/>
+<BRK/>
+<TXT>Provide a prefabricated walk-in skid-mounted switchgear house and foundation system including an insulated metal enclosure, structural steel skid, 
+switchgear, interior power, control equipment, interior and exterior lighting, heating, cooling, [lightning protection] and related equipment. 
+The switchgear house manufacturer must provide the equipment and materials as specified within this and related specifications. All equipment within 
+the switchgear house must be totally complete, fully integrated and tested as an assembly prior to the shipment and arrival to the construction 
+site providing a turn-key operational package. The structural grid base and floor system must be designed for applicable floor loading allowing 
+the switchgear house to be lifted and transported with the interior equipment installed.</TXT><BRK/>
+<BRK/>
+<TXT>The switchgear house must be a completely self-contained pre-engineered package custom designed to specific power requirements and environmental 
+conditions. The enclosure must be designed to house specified electrical equipment and any associated relay and control panels. The minimum aisle 
+space and clearance around the equipment must be [as shown on drawings][designed per Article 110 of the latest National Electrical Code (<RID>NFPA 70</RID>
+).]  Provide provisions for future removal and replacement of all electrical equipment.</TXT><BRK/>
+<BRK/>
+<TXT>There must be a minimum clear space of <ENG>24 inches</ENG><MET>610 mm</MET> above the top of the tallest interior electrical equipment cabinet to the interior ceiling 
+structure. Access doors must be provided in the exterior walls where required for each rear accessible equipment cabinets. Each access door must 
+attach to a frame which matches the width of the respective interior equipment cabinet.</TXT><BRK/>
+<BRK/>
+<TXT>The switchgear house supplier must furnish, install, interconnect and test the equipment and materials specified herein, as well as any equipment 
+specified in any related documents.</TXT><BRK/>
+<BRK/>
+<TXT>The specific site conditions must be considered when sizing and designing the equipment and structures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Structural Performance</TTL><BRK/>
+<BRK/>
+<TXT>Provide prefabricated building capable of withstanding the effects of gravity loads and the following loads and stresses within the limits and 
+conditions indicated.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Engineering</TTL><BRK/>
+<BRK/>
+<TXT>Design prefabricated building systems conforming to procedures described in <RID>MBMA MBSM</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Design Loads</TTL><BRK/>
+<BRK/>
+<TXT>Conform to the requirements of <RID>MBMA MBSM</RID>, <RID>ASCE 7</RID>, and the building code applicable to the project geographical location.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Live Loads</TTL><BRK/>
+<BRK/>
+<TXT>Include all vertical loads induced by the building occupancy indicated on the drawings, as well as loads induced by maintenance workers, materials 
+and equipment for roof live loads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Roof Snow Loads</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph if the project is not subject to snow loads.  Insert the ground snow load as determined 
+by ASCE 7.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include vertical loads induced by the ground snow load at the project site of [_____].  Allow for unbalanced and drift loads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wind Loads</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert the basic wind speed as determined by ASCE 7.  Verify that design wind loads are in accordance with 
+the referenced ASCE 7.  It may be necessary to revise the date of the referenced ASCE 7 in 1.1 Reference paragraph 
+to be compatible with the required design wind loads.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include horizontal loads induced by a basic wind speed Project site of [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Collateral Loads</TTL><BRK/>
+<BRK/>
+<TXT>Include additional dead loads other than the weight of metal building system for permanent items such as sprinklers, mechanical systems, electrical 
+systems, and ceilings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Auxiliary Loads</TTL><BRK/>
+<BRK/>
+<TXT>Include dynamic live loads, such as those generated by cranes and materials-handling equipment indicated on detail drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Load Combinations</TTL><BRK/>
+<BRK/>
+<TXT>Design switchgear house to withstand the most critical effects of load factors and load combinations as required by <RID>MBMA MBSM</RID>, <RID>ASCE 7</RID>, and the 
+building code applicable to the project location.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Deflection Limits</TTL><BRK/>
+<BRK/>
+<TXT>Engineer assemblies to withstand design loads with deflections no greater than the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Purlins and Rafters; vertical deflection of [1/180] [1/240] [_____] of the span.</OLI><BRK/>
+<BRK/>
+<OLI>Girts; horizontal deflection of [1/180] [1/240] [_____] of the span.</OLI><BRK/>
+<BRK/>
+<OLI>Metal <SUB>Roof Panels</SUB>; vertical deflection of [1/180] [1/240] [_____] of the span.</OLI><BRK/>
+<BRK/>
+<OLI>Metal <SUB>Wall Panels</SUB>; horizontal deflection of [1/180] [1/240] [_____] of the span.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Design secondary framing system to accommodate deflection of primary building structure and construction tolerances, and to maintain clearances 
+at openings. Provide metal panel assemblies capable of withstanding the effects of loads and stresses indicated, based on testing according to <RID>
+ASTM E1592</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Seismic Performance</TTL><BRK/>
+<BRK/>
+<TXT>Design and engineer the switchgear house capable of withstanding the effects of earthquake motions determined according to <RID>ASCE 7</RID>, <RID>ANSI/AISC 341</RID>
+, and the applicable portions of the building code in the geographic area where the construction will take place.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermal Movements</TTL><BRK/>
+<BRK/>
+<TXT>Provide metal panel systems that allow for thermal movements resulting from the following maximum change (range) in ambient and surface temperatures 
+by preventing buckling, opening of joints, overstressing of components, failure of joint sealants, failure of connections, and other detrimental 
+effects.   Base engineering calculation on surface temperatures of materials due to both solar heat gain and nighttime-sky heat loss as follows:</TXT><BRK/>
+<BRK/>
+<TXT>Temperature Change (Range);<MET> [67 degrees C]</MET><ENG> [120 degrees F]</ENG> [_____], ambient;<MET> 100 degrees C</MET><ENG> 180 degrees F</ENG> [_____], material surfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermal Performance</TTL><BRK/>
+<BRK/>
+<TXT>Provide insulated metal panel assemblies with the following maximum U-factors and minimum R-values for opaque elements when tested according to <RID>
+ASTM C1363</RID> or <RID>ASTM C518</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Metal Roof Panel Assemblies</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert the required U factors and R values.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>U-Factor:  [_____]</OLI><BRK/>
+<BRK/>
+<OLI>R-Value:  [_____]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Metal Wall Panel Assemblies</TTL><BRK/>
+<OLG><BRK/>
+<OLI>U-Factor:  [_____]</OLI><BRK/>
+<BRK/>
+<OLI>R-Value:  [_____]</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Air Infiltration for Metal Roof Panels</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select or insert infiltration volume and negative pressure.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Air leakage through assembly must not exceed<MET> [0.3 L/s per sq. m ]</MET><ENG> [0.06 cfm/sq.ft.]</ENG> [_____] of roof area when tested according to <RID>ASTM E1680</RID> at 
+negative test-pressure difference of<MET> [75 Pa]</MET><ENG> [1.57 lb/sq.ft.]</ENG> [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air Infiltration for Metal Wall Panels</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select or insert infiltration volume and<BRK/>
+negative pressure.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Air leakage through assembly of not more than<MET> [0.3 L/s per sq. m]</MET><ENG> [0.06 cfm/sq.ft.]</ENG> [_____] of wall area when tested according to <RID>ASTM E283</RID> at 
+static-air-pressure difference of<MET> [300 Pa]</MET><ENG> [6.24 lbf/sq.ft.]</ENG> [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Penetration for Metal Roof Panels</TTL><BRK/>
+<BRK/>
+<TXT>No water penetration when tested according to <RID>ASTM E1646</RID> at test-pressure difference of<MET> [137 Pa]</MET><ENG> [2.86 lbf/sq.ft.]</ENG> [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Penetration for Metal Wall Panels</TTL><BRK/>
+<BRK/>
+<TXT>No water penetration when tested according to <RID>ASTM E331</RID> at a minimum differential pressure of [20] [_____] percent of inward-acting, wind-load 
+design pressure of not less than<MET> [300 Pa]</MET><ENG> [6.24 lbf/sq.ft.]</ENG> [_____] and not more than<MET> 575 Pa</MET><ENG> 12 lbf/sq. ft</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wind-Uplift Resistance</TTL><BRK/>
+<BRK/>
+<TXT>Provide metal roof panel assemblies that comply with[ <RID>UL 580</RID> for Class [30] [60] [90]][ <RID> ASCE 7</RID>,][ the building code in the geographic area where 
+the construction will take place].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Skid base and Floor</TTL><BRK/>
+<BRK/>
+<TXT>The switchgear house must be mounted on a <RID>AWS D1.1/D1.1M</RID> all welded structural steel skid base, constructed entirely of <RID>ASTM A36/A36M</RID> steel.  Structural 
+steel skid base including design, materials, installation, workmanship, fabrication, assembly, erection inspection, quality control, and testing 
+must be in accordance with <RID>AISC 325</RID>.  The exterior perimeter and underside of the skid base must be protected with a minimum 800 micron coating 
+of a coal tar epoxy.  The entire skid must be blasted clean to <RID>SSPC SP 10/NACE No. 2</RID> requirements prior to coating.  The coating must meet the 
+performance requirements of <RID>ASTM D4060</RID> for abrasion, <RID>ASTM D4541</RID> for adhesion, <RID>ASTM D2794</RID> for impact, and <RID>ASTM B117</RID> for salt fog.  Stainless steel 
+plates not less than<MET> 6 mm</MET><ENG> 1/4 inch</ENG> must cover entire top of skid base except under incoming cable compartments.  Paint coating system must comply 
+with <RID>IEEE C57.12.29</RID>.  After the unit is complete, the top side (floor) is painted with a [_____] color epoxy paint and sand mix for the non-skid 
+finish.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM DEFONLINE</RID> applies to this definition paragraph.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Bay:  Dimension between main frames measured normal to frame (at centerline of frame) for interior bays, and dimension from centerline 
+of first interior main frame measured normal to end wall (outside face of end-wall girt) for end bays.</OLI><BRK/>
+<BRK/>
+<OLI>Building Length:  Dimension of the building measured perpendicular to main framing from end wall to end wall (outside face of girt to outside 
+face of girt).</OLI><BRK/>
+<BRK/>
+<OLI>Building Width:  Dimension of the building measured parallel to main framing from sidewall to sidewall (outside face of girt to outside 
+face of girt).</OLI><BRK/>
+<BRK/>
+<OLI>Clear Span:  Distance between supports of beams, girders, or trusses (measured from lowest level of connecting area of a column and a rafter 
+frame or knee).</OLI><BRK/>
+<BRK/>
+<OLI>Eave Height:  Vertical dimension from finished floor to eave (the line along the sidewall formed by intersection of the planes of the roof 
+and wall).</OLI><BRK/>
+<BRK/>
+<OLI>Clear Height under Structure:  Vertical dimension from finished floor to lowest point of any part of primary or secondary structure, not 
+including crane supports, located within clear span.</OLI><BRK/>
+<BRK/>
+<OLI>Terminology Standard:  Refer to MBMA "Metal Building Systems Manual" for definitions of terms for metal building system construction not 
+otherwise defined in this Section or in referenced standards.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>General:  Provide a complete, integrated set of mutually dependent components and assemblies that form a system capable of withstanding structural 
+and other loads, thermally induced movement, and exposure to weather without failure or infiltration of water into building interior.  Include 
+primary and secondary framing,[ metal roof panels,][ metal wall panels,] and accessories complying with requirements indicated.</TXT><BRK/>
+<BRK/>
+<TXT>Provide switchgear house of a size to accommodate the contained electrical equipment while maintaining the code required working clearance around 
+all electrical equipment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Primary Frame Type</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the appropriate primary frame type from the following.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>Rigid Clear Span:  Solid-member, structural-framing system without interior columns.</OLI><BRK/>
+<BRK/>
+][<OLI>Truss-Frame Clear Span:  Truss-member, structural-framing system without interior columns.</OLI><BRK/>
+<BRK/>
+][<OLI>Long Bay: Solid- or truss-member, structural-framing system without interior columns.</OLI><BRK/>
+<BRK/>
+][<OLI>Lean To:  Solid- or truss-member, structural-framing system without interior columns, designed to be partially supported by another structure.</OLI><BRK/>
+<BRK/>
+][<OLI>As determined by the manufacturer.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>[<SPT><TTL>Fixed End-Wall Framing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select fixed or expandable end wall type and delete the other.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide manufacturer's standard fixed end wall, for buildings not required to be expandable, consisting of[ primary frame, capable of supporting 
+one-half of a bay design load, and end-wall columns][ load-bearing end-wall with corner columns, and rafters].</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Expandable End-Wall Framing</TTL><BRK/>
+<BRK/>
+<TXT>Provide engineered end walls to be expandable.   Provide primary frame, capable of supporting full-bay design loads, and end-wall columns.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Secondary Frame Type</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's standard purlins and joists and [flush-framed] [partially inset-framed] [exterior-framed (bypass)] girts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Eave Height</TTL><BRK/>
+<BRK/>
+<TXT>Eave height must be<MET> [4.9 m] [6.1 m] [7.3 m] [8.5 m]</MET><ENG> [16 feet] [20 feet] [24 feet] [28 feet]</ENG> [_____] [as determined by the manufacturer].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bay Spacing</TTL><BRK/>
+<BRK/>
+<TXT>Bay Spacing must be<MET> [6.1 m] [7.6 m] [9.1 m]</MET><ENG> [20 feet] [25 feet] [30 feet]</ENG> [_____] [as determined by manufacturer].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Roof Slope</TTL><BRK/>
+<BRK/>
+<TXT>Roof slope must be<MET> [1:48] [1:24] [1:12] [1:3]</MET><ENG> [1/4 inch per 12 inches] [1/2 inch per 12 inches] [1 inch per 12 inches] [4 inches per 12 inches]</ENG>
+ [_____] [manufacturer's standard for frame type required].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Roof System</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's standard[ vertical-rib, standing-seam][ trapezoidal-rib standing-seam][ lap-seam] metal roof panels[ with <SUB>insulation</SUB>].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Switchgear House Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<TXT>Manufacturer's data indicating percentage of recycle material of the following to verify <SUB>sustainable acquisition compliance</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-04 Samples</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Coil Stock</SUB>,<MET> 304.8 mm</MET><ENG> 12 inches</ENG> long by the actual panel width; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Roof Panels</SUB>,<MET> 304.8 mm</MET><ENG> 12 inches</ENG> long by actual panel width; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wall Panels</SUB>,<MET> 304.8 mm</MET><ENG> 12 inches</ENG> long by actual panel width; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fasteners</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Metal Closure Strips</SUB><MET> 250 mm</MET><ENG> 10 inches</ENG> long of each type; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Insulation</SUB>, approximately<MET> 200 by 280 mm</MET><ENG> 8 by 11 inches</ENG>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Vapor Barrier</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Color Charts and Chips</SUB>,<MET> 101.6 mm by 101.6 mm</MET><ENG> 4 by 4 inches</ENG>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Descriptive and Technical Literature</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Building Design Analysis</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Test Reports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coatings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Finishes</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Submit test reports in accordance with specification Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Coil Stock Certification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Aluminized Steel Repair Paint</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Galvanizing Repair Paint</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Enamel Repair Paint</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualification of Erection Contractor</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation of Roof and Wall Panels</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Shipping, Handling, and Storage</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Warranty</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Contractor's Warranty for Installation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Shop Drawing Requirements</TTL><BRK/>
+<BRK/>
+<TXT><SUB>Switchgear house drawings</SUB> must include, but are not limited to the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Dimensioned architectural floor plan drawings at<MET> 6 mm = 304 mm</MET><ENG> 1/4 inch = 12 inch</ENG> scale.</OLI><BRK/>
+<BRK/>
+<OLI>Building elevations, section views and skid foundation details.  Section views must include electrical and mechanical equipment.</OLI><BRK/>
+ <BRK/>
+<OLI>Electrical and mechanical equipment floor plan drawings at<MET> 6 mm = 304 mm</MET><ENG> 1/4 inch = 12 inch</ENG> scale.  Drawings must show all electrical and 
+HVAC equipment including all required working clearances and access to the electrical equipment.  Indicate removal path for large equipment 
+such as switchgear.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical floor plan drawing at<MET> 6 mm = 304 mm</MET><ENG> 1/4 inch = 12 inch</ENG> scale showing electrical receptacle, lighting and lighting control layout 
+and circuiting.</OLI><BRK/>
+<BRK/>
+<OLI>Provide drawings showing conduit and cable entry areas for switchgear field connections.</OLI><BRK/>
+<BRK/>
+<OLI>Provide rigging plan showing lifting points and shipping splits.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Technical Representative</TTL><BRK/>
+<BRK/>
+<TXT>The representative must have authorization from manufacturer to approve field changes and be thoroughly familiar with the products, erection of 
+structural framing and <SUB>installation of roof and wall panels</SUB> in the geographical area where construction will take place.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Manufacturer's Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Switchgear House manufacturer must have a minimum of five years experience as a qualified manufacturer[ and a member of MBMA] of metal building 
+systems and accessory products.</TXT><BRK/>
+<BRK/>
+<TXT>Provide engineering services by an authorized currently licensed engineer in the geographical area where construction will take place, having a 
+minimum of five years of experience as an engineer knowledgeable in building design analysis, protocols and procedures for the "Metal Building 
+Systems Manual" (<RID>MBMA MBSM</RID>); <RID>ASCE 7</RID>,[ the building code in the geographic area where the construction will take place] and <RID>ASTM E1592</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide certified engineering calculations using the products submitted for:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Roof and Wall Wind Loads with basic wind speed, exposure category, co-efficient, importance factor, designate type of facility, negative 
+pressures for each zone, methods and requirements of attachment.</OLI><BRK/>
+<BRK/>
+<OLI>Roof Dead and Live Loads</OLI><BRK/>
+<BRK/>
+<OLI>Collateral Loads</OLI><BRK/>
+<BRK/>
+<OLI>Foundation Loads</OLI><BRK/>
+<BRK/>
+<OLI>Roof Snow Load</OLI><BRK/>
+<BRK/>
+<OLI>Seismic Loads</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualification of Erection Contractor</SUB></TTL><BRK/>
+<BRK/>
+<TXT>An experienced erector who has specialized in erecting and installing work similar in material, design, and extent to that indicated for this Project 
+and must be approved and certified by the switchgear house manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Single Source</TTL><BRK/>
+<BRK/>
+<TXT>Obtain primary and secondary components and structural framing members, each type of metal roof, wall and liner panel assemblies, clips, closures 
+and other accessories from the standard products of the single source from a single manufacturer to operate as a complete system for the intended 
+use.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<TXT>Qualify procedures and personnel according to <RID>AWS A5.1/A5.1M</RID>, <RID>AWS D1.1/D1.1M</RID>, and <RID>AWS D1.3/D1.3M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Structural Steel</TTL><BRK/>
+<BRK/>
+<TXT>Comply with <RID>AISC 325</RID>,[ <RID>ANSI/AISC 341</RID> for seismic impacted designs,] <RID>AISC 360</RID>, for design requirements and allowable stresses.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cold-Formed Steel</TTL><BRK/>
+<BRK/>
+<TXT>Comply with <RID>AISC/AISI 121</RID> and <RID>AISI SG03-3</RID> for design requirements and allowable stresses.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fire-Resistance Ratings</TTL><BRK/>
+<BRK/>
+<TXT>Where indicated, provide metal panels identical to those of assemblies tested for fire resistance per <RID>ASTM E119</RID> by a qualified testing agency.  
+Identify products with appropriate markings of applicable testing agency.</TXT><BRK/>
+<BRK/>
+<TXT>Indicate design designations from <RID>UL Bld Mat Dir</RID> or from the listings of another qualified testing agency.  Combustion Characteristics must conform 
+to <RID>ASTM E136</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surface-Burning Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>Provide metal panels having[ field-insulation][ insulation core][ insulation and <SUB>vapor barrier</SUB>] material with the following surface-burning characteristics 
+as determined by testing identical products according to <RID>ASTM E84</RID> by a qualified testing agency.  Identify products with appropriate markings of 
+applicable testing agency showing:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Flame-Spread Index:  [25] [_____] or less.</OLI><BRK/>
+<BRK/>
+<OLI>Smoke-Developed Index:  [450] [_____] or less.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Fabrication</TTL><BRK/>
+<BRK/>
+<TXT>Fabricate and finish the switchgear house at the factory to greatest extent possible, by manufacturer's standard procedures and processes and as 
+necessary to fulfill indicated performance requirements.  Comply with indicated profiles with dimensional and structural requirements.</TXT><BRK/>
+<BRK/>
+<TXT>Provide metal panel profile, including major ribs and intermediate stiffening ribs, if any, for full length of panel.  Aluminum and aluminum-alloy 
+sheet and plate must conform to <RID>ASTM B209</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Fabricate metal panel side laps with factory-installed captive gaskets or separator strips that provide a tight seal and prevent metal-to-metal 
+contact, in a manner that will seal weather-tight and minimize noise from movements within panel assembly.</TXT><BRK/>
+<BRK/>
+<TXT>Sheet Metal Accessories:  Fabricate flashing and trim to comply with recommendations in <RID>SMACNA 1793</RID> that apply to the design, dimensions, metal, 
+and other characteristics of item indicated:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Form exposed sheet metal accessories that are without excessive oil canning, buckling, and tool marks and that are true to line and levels 
+indicated, with exposed edges folded back to form hems.</OLI><BRK/>
+<BRK/>
+<OLI>End Seams:  Fabricate nonmoving seams with flat-lock seams.  Form seams and seal with epoxy seam sealer.  Rivet joints for additional strength.</OLI><BRK/>
+<BRK/>
+<OLI>Sealed Joints:  Form non-expansion but movable joints in metal to accommodate elastomeric sealant to comply with SMACNA standards.</OLI><BRK/>
+<BRK/>
+<OLI>Conceal fasteners and expansion provisions where possible.  Exposed fasteners are not allowed on faces of accessories exposed to view.</OLI><BRK/>
+<BRK/>
+<OLI>Fabricate cleats and attachment devices of size and metal thickness recommended by SMACNA or by metal building system manufacturer for 
+application, but not less than thickness of metal being secured.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Certifications</TTL><BRK/>
+<BRK/>
+<TXT>The switchgear house must be Third Party certified by UL as NEC (National Electric Code) compliant and / or UL 3R RAIN TEST and / or <RID>IEEE C37.20.2A</RID>
+ RAIN TEST compliant and must bear a UL Label.</TXT><BRK/>
+<BRK/>
+[<TXT>The switchgear house design must be accomplished by a Professional Engineer and drawings and supporting calculations will bear the Professional 
+Engineer's seal.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL><SUB>Finishes</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Comply with <RID>NAAMM AMP 500</RID> for recommendations for applying and designating finishes.</TXT><BRK/>
+<BRK/>
+<TXT>Appearance of Finished Work:  Noticeable variations in same piece are not acceptable.  Variations in appearance of adjoining components are acceptable 
+if they are within the range of approved Samples and are assembled or installed to minimize contrast.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Erection Conference</TTL><BRK/>
+<BRK/>
+<TXT>After submittals are received and approved but before metal building system work, including associated work, is performed, the Contracting Officer 
+will hold a pre-erection conference to review the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The detail drawings, specifications, and <SUB>manufacturer's descriptive and technical literature</SUB>.</OLI><BRK/>
+<BRK/>
+<OLI>Finalize construction schedule and verify availability of materials, erector's personnel, equipment, and facilities needed to make progress 
+and avoid delays.</OLI><BRK/>
+<BRK/>
+<OLI>Methods and procedures related to metal building system erection, including, but not limited to:  qualification of manufacturer, qualification 
+of erector, manufacturer's catalog data, <SUB>manufacturer's building design analysis</SUB>, lateral force calculations, written instructions and 
+test reports.  Lateral force calculations must include all analysis and confirmation of system components required to transfer lateral 
+forces to the foundation.</OLI><BRK/>
+<BRK/>
+<OLI>Support conditions for compliance with requirements, including alignment between and erection of structural members.</OLI><BRK/>
+<BRK/>
+<OLI>Flashing, special roofing and siding details, roof and wall penetrations, openings, and condition of other construction that will affect 
+the metal building system, including coatings and base metals, factory color finish performance requirements, system components, and <SUB>coil 
+stock certification</SUB>.</OLI><BRK/>
+<BRK/>
+<OLI>Governing regulations and requirements for, certificates, insurance, tests and inspections if applicable.</OLI><BRK/>
+<BRK/>
+<OLI>Temporary protection requirements for metal panel assembly during and after installation.</OLI><BRK/>
+<BRK/>
+<OLI>Samples of roof panels, wall panels, <SUB>aluminized steel repair paint</SUB>, <SUB>galvanizing repair paint</SUB>, and <SUB>enamel repair paint</SUB>.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Pre-Roofing and Siding Installation Conference</TTL><BRK/>
+<BRK/>
+<TXT>After structural framing system erection and approval but before roofing, siding[, insulation and vapor barrier] work, including associated work, 
+is performed;  the Contracting Officer will hold a pre-roofing and siding conference to review the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Examine purlins, sub-girts and formed shapes conditions for compliance with requirements, including flatness and attachment to structural 
+members.</OLI><BRK/>
+<BRK/>
+<OLI>Review structural limitations of purlins, sub-girts and formed shapes during construction and after roofing and siding.</OLI><BRK/>
+<BRK/>
+<OLI>Review flashings, special roof and wall details, roof drainage, roof and wall penetrations, roof equipment curbs, and condition of other 
+construction that will affect the metal building system.</OLI><BRK/>
+<BRK/>
+<OLI>Review temporary protection requirements for metal roof and wall panels' assembly during and after installation.</OLI><BRK/>
+<BRK/>
+<OLI>Review roof and wall observation and repair procedures after metal building system erection.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>SHIPPING, HANDLING AND STORAGE</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Delivery</TTL><BRK/>
+<BRK/>
+<TXT>Package and deliver the assembly and other manufactured items so as not to be damaged or deformed and protected during transportation and handling.</TXT><BRK/>
+<BRK/>
+<TXT>For a building that must be shipped in multiple shipping sections, junction boxes must be provided at the shipping splits for easy breakdown of 
+the building wiring for shipment and reconnection at the job site.  Prior to shipment the open end/sides of each shipping section will be crated 
+(weatherproofed) for transit to the job site.</TXT><BRK/>
+<BRK/>
+<TXT>Each shipping piece must be designed for lifting by lugs located along the base perimeter members at<MET> 4.5 m</MET><ENG> 15 feet</ENG> approximate intervals.  All 
+lifting lugs must be removable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PROJECT CONDITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Weather Limitations</TTL><BRK/>
+<BRK/>
+<TXT>Proceed with installation preparation only when existing and forecasted weather conditions permit Work to proceed without water entering into the 
+switchgear house.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Measurements</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Established Dimensions for Foundations</TTL><BRK/>
+<BRK/>
+<TXT>Comply with established dimensions on approved anchor-bolt plans, established foundation dimensions, and proceed with fabricating structural framing.  
+Do not proceed without verifying field measurements.  Coordinate anchor-bolt installation to ensure that actual anchorage dimensions correspond 
+to established dimensions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Verification Record</TTL><BRK/>
+<BRK/>
+<TXT>Verify locations of all framing and opening dimensions by field measurements before metal panel fabrication and indicate measurements on Shop Drawings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>COORDINATION</TTL><BRK/>
+<BRK/>
+<TXT>Coordinate size and location of concrete foundations and casting of anchor-bolt inserts into foundation walls and footings.  Concrete, reinforcement, 
+and formwork requirements are specified in section on <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/>
+[<TXT>Coordinate installation of [fire suppression system] [equipment supports] [piping and supports][ and ][accessories], which are specified in Division 
+21 - FIRE SUPPRESSION.</TXT><BRK/>
+<BRK/>
+][<TXT>Coordinate installation of [plumbing system] [equipment supports] [piping and supports][ and ][accessories], which are specified in Division 22 
+- PLUMBING.</TXT><BRK/>
+<BRK/>
+]<TXT>Coordinate installation of [HVAC system] [equipment supports] [ductwork and supports] [piping and supports][ and ][accessories], which are specified 
+in Division 23 - HEATING, VENTILATING AND AIR-CONDITIONING (HVAC).</TXT><BRK/>
+<BRK/>
+<TXT>Coordinate installation of [equipment supports][ and ][roof penetrations], which are specified in Division 07 - THERMAL AND MOISTURE PROTECTION.</TXT><BRK/>
+<BRK/>
+<TXT>Coordinate metal panel assemblies with rain drainage work, flashing, trim, and construction of supports and other adjoining work to provide a<BRK/>
+leak-proof, secure, and non-corrosive installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Building System Warranty</TTL><BRK/>
+<BRK/>
+<TXT>Furnish manufacturer's no-dollar-limit warranty for the metal building system.  The warranty period is to be no less than [10] [15] [20] years 
+from the date of acceptance of the work and be issued directly to the Government.  The warranty must provide that if within the warranty period, 
+the switchgear house shows evidence of deterioration resulting from defective materials and/or workmanship, correcting of any defects is the responsibility 
+of the metal building system manufacturer.  Repairs that become necessary because of defective materials and workmanship while metal building system 
+is under warranty are to be performed within [32] [_____] hours after notification, unless additional time is approved by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Roof System Weather-Tightness Warranty</TTL><BRK/>
+<BRK/>
+<TXT>Furnish manufacturer's no-dollar-limit warranty for the metal panel system.  The warranty period is to be no less than [10] [20] [_____] years 
+from the date of acceptance of the work and be issued directly to the Government.</TXT><BRK/>
+<BRK/>
+<TXT>The warranty is to provide that if within the warranty period the roof panel system shows evidence of corrosion, perforation, rupture, lost of 
+weather-tightness or excess weathering due to deterioration of the panel system resulting from defective materials and correction of the defective 
+workmanship is to be the responsibility of the metal building system manufacturer.</TXT><BRK/>
+<BRK/>
+<TXT>Repairs that become necessary because of defective materials and workmanship while roof panel system is under warranty are to be performed within 
+[24] [_____] hours after notification, unless additional time is approved by the Contracting Officer.  Immediate follow-up and completion of permanent 
+repairs must be performed within [_____] days from date of notification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Roof and Wall Panel Finish Warranty</TTL><BRK/>
+<BRK/>
+<TXT>Furnish manufacturer's no-dollar-limit warranty for the metal panel system.  The warranty period is to be no less than [10] [20] [_____] years 
+from the date of acceptance of the work and be issued directly to the Government.</TXT><BRK/>
+<BRK/>
+<TXT>The warranty is to provide that if within the warranty period the metal panel system shows evidence of checking, delaminating cracking, peeling, 
+chalk in excess of a numerical rating of eight, as determined by <RID>ASTM D4214</RID> test procedures; or change colors in excess of five CIE or Hunter units 
+in accordance with <RID>ASTM D2244</RID> or excess weathering due to deterioration of the panel system resulting from defective materials and finish or correction 
+of the defective workmanship is to be the responsibility of the metal building system manufacturer.</TXT><BRK/>
+<BRK/>
+<TXT>Liability under this warranty is exclusively limited to replacing the defective coated materials.</TXT><BRK/>
+<BRK/>
+<TXT>Repairs that become necessary because of defective materials and workmanship while roof and wall panel system is under warranty are to be performed 
+within [32] [_____] hours after notification, unless additional time is approved by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>STRUCTURAL FRAMING MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>W-Shapes</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A992/A992M</RID>; <RID>ASTM A572/A572M</RID> or <RID>ASTM A529/A529M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Channel, Angles, M-Shapes and S-Shapes</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A36/A36M</RID>; <RID>ASTM A572/A572M</RID> or <RID>ASTM A529/A529M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plate and Bar</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A36/A36M</RID>, <RID>ASTM A572/A572M</RID> or <RID>ASTM A529/A529M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel Pipe</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A36/A36M</RID>, <RID>ASTM A53/A53M</RID>, <RID>ASTM A572/A572M</RID> or <RID>ASTM A529/A529M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cold-Formed and Hot Formed Hollow Structural Sections</TTL><BRK/>
+<BRK/>
+<TXT>Cold formed: <RID>ASTM A500/A500M</RID> or <RID>ASTM B221</RID>, <RID>ASTM B221M</RID>.  Hot-formed: <RID>ASTM A501/A501M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Structural-Steel Sheet</TTL><BRK/>
+<BRK/>
+<TXT>Hot-rolled, <RID>ASTM A1011/A1011M</RID> or cold-rolled, <RID>ASTM A1008/A1008M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Metallic-Coated Steel Sheet</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A653/A653M</RID>, <RID>ASTM A606/A606M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Metallic-Coated Steel Sheet Pre-painted with <SUB>Coil Stock</SUB> Coating</TTL><BRK/>
+<BRK/>
+<TXT>Steel sheet metallic coated by the hot-dip process and pre-painted by the coil-coating process to comply with <RID>ASTM A755/A755M</RID>.</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Zinc-Coated (Galvanized) Steel Sheet:  <RID>ASTM A653/A653M</RID>, and <RID>ASTM A123/A123M</RID>.</OLI><BRK/>
+<BRK/>
+][<OLI>Aluminum-Zinc Alloy-Coated Steel Sheet:  <RID>ASTM A792/A792M</RID>, and <RID>ASTM A463/A463M</RID>.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>[<SPT><TTL>Joist Girders</TTL><BRK/>
+<BRK/>
+<TXT>Refer to Section <SRF>05 21 00</SRF> STEEL JOIST FRAMING.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Steel Joists</TTL><BRK/>
+<BRK/>
+<TXT>Refer to the following sections subject to project design requirements:</TXT><BRK/>
+<BRK/>
+<TXT>Section <SRF>05 21 00</SRF> STEEL JOIST FRAMING.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>High-Strength Bolts, Nuts, and Washers</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A325M</RID> <RID>ASTM A325</RID> heavy hex steel structural bolts; <RID>ASTM A563M</RID> <RID>ASTM A563</RID> heavy hex carbon-steel nuts; and <RID>ASTM F436M</RID> <RID>ASTM F436</RID> hardened carbon-steel 
+washers.</TXT><BRK/>
+<BRK/>
+<TXT>Finish:  [Hot-dip zinc coating, <RID>ASTM A153/A153M</RID>] [Mechanically deposited zinc coating, <RID>ASTM B695</RID>] [Stainless steel].</TXT><BRK/>
+<BRK/>
+<TXT>Tension-Control, High-Strength Bolt-Nut-Washer Assemblies:  <RID>ASTM F1852</RID>, heavy-hex-head steel structural bolts with spline.</TXT><BRK/>
+<BRK/>
+<TXT>Finish:  [Mechanically deposited zinc coating, <RID>ASTM B695</RID>] [Mechanically deposited zinc coating, <RID>ASTM B695</RID> baked epoxy coated] [Stainless steel].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anchor Rods</TTL><BRK/>
+<BRK/>
+<TXT>[<RID>ASTM F1554</RID>] [<RID>ASTM A572/A572M</RID>] [<RID>ASTM A36/A36M</RID>] [<RID>ASTM A307</RID>].</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Configuration:  Straight.</OLI><BRK/>
+<BRK/>
+<OLI>Nuts:  Heavy duty stainless steel.</OLI><BRK/>
+<BRK/>
+<OLI>Plate Washers:  Stainless steel.</OLI><BRK/>
+<BRK/>
+<OLI>Washers:  Stainless steel.</OLI><BRK/>
+<BRK/>
+<OLI>Finish:  [Hot-dip zinc coating, <RID>ASTM A153/A153M</RID>] [Mechanically deposited zinc coating,<RID> ASTM B695</RID>].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Threaded Rods</TTL><BRK/>
+<BRK/>
+<TXT>[<RID>ASTM A193/A193M</RID>] [<RID>ASTM A572/A572M</RID>] [<RID>ASTM A36/A36M</RID>] [<RID>ASTM A307</RID>].</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Nuts: Heavy duty stainless steel.</OLI><BRK/>
+<BRK/>
+<OLI>Washers: Stainless steel.</OLI><BRK/>
+<BRK/>
+<OLI>Finish:  [Hot-dip zinc coating, <RID>ASTM A153/A153M</RID>] [Mechanically deposited zinc coating, <RID>ASTM B695</RID>].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Floors</TTL><BRK/>
+<BRK/>
+<TXT>Floor must be<MET> 6 mm</MET><ENG> 1/4 inch</ENG> minimum thickness flat <RID>ASTM A36/A36M</RID> steel plate, welded to all longitudinal and transverse base members.  Floor plate 
+seams must be continuously welded at all joints, and ground smooth to minimize visibility of seams.  Welding of floor plate must be staggered to 
+produce a flat and ripple free surface.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Primer</TTL><BRK/>
+<BRK/>
+<TXT><RID>SSPC Paint 15</RID>, Type I, red oxide.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FABRICATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>All facets of construction through coating and weatherproofing must be performed indoors, protected from outdoor weather conditions.  Construction 
+prior to this stage out-of-doors is not acceptable.</TXT><BRK/>
+<BRK/>
+<TXT>All permanent coatings and finishes must be applied inside a dedicated paint booth with ventilation and filtration provisions in compliance with 
+the coating manufacturer's requirements.  <SUB>Coatings</SUB> applied in outside, ambient air conditions must not be acceptable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>STRUCTURAL FRAMING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Clean all framing members to remove loose rust and mill scale.  Provide one shop coat of primer to an average dry film thickness of 1 mil according 
+to <RID>SSPC SP 2</RID>.  Balance of painting and coating procedures must conform to <RID>SSPC Paint 15</RID> and <RID>SSPC Painting Manual</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Primary Framing</TTL><BRK/>
+<BRK/>
+<TXT>Manufacturer's standard structural primary framing system includes transverse and lean-to frames; rafter, rakes, and canopy beams; sidewall, intermediate, 
+end-wall, and corner columns; and wind bracing designed to withstand required loads and specified requirements.  Provide frames with attachment 
+plates, bearing plates, and splice members.</TXT><BRK/>
+<BRK/>
+<TXT>Shop fabricate framing components by welding or by using high-strength bolts to the indicated size and section with base-plates, bearing plates, 
+stiffeners, and other items required.</TXT>  <BRK/>
+<OLG><BRK/>
+[<OLI>Rigid Clear-Span Frames:  I-shaped frame sections fabricated from shop-welded, built-up steel plates or structural-steel shapes.  Interior 
+columns are not permitted.</OLI><BRK/>
+<BRK/>
+][<OLI>Rigid Modular Frames:  I-shaped frame sections fabricated from shop-welded, built-up steel plates or structural-steel shapes.  Provide 
+interior columns fabricated from [steel round pipe] [steel tube] [shop-welded, built-up steel plates].</OLI><BRK/>
+<BRK/>
+]<OLI>Frame Configuration:  [Single gable] [One-directional sloped] [Lean to, with high side connected to, and supported by, another structure] 
+[Multiple gables] [Load-bearing-wall type] [Multistory].</OLI><BRK/>
+<BRK/>
+<OLI>Exterior Column Type:  [Uniform depth] [Tapered].</OLI><BRK/>
+<BRK/>
+<OLI>Rafter Type:  [Uniform depth] [Tapered].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Secondary Framing</TTL><BRK/>
+<BRK/>
+<TXT>Manufacturer's standard secondary framing members, including purlins, girts, eave struts, flange bracing, base members, gable angles, clips, headers, 
+jambs, and other miscellaneous structural members.  Fabricate framing from cold-formed, structural-steel sheet or roll-formed, metallic-coated 
+steel sheet pre-painted with coil coating, unless otherwise indicated.</TXT><BRK/>
+<BRK/>
+<TXT>Shop fabricate framing components by roll-forming or break-forming to the indicated size and section with base-plates, bearing plates, stiffeners, 
+and other plates required for erection.  Cut, form, punch, drill, and weld secondary framing for bolted field connections to primary framing.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Purlins:  C or Z-shaped sections; fabricated from steel sheet, built-up steel plates, or structural-steel shapes; minimum depth [as indicated] 
+[as required to comply with system performance requirements] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Girts:  C or Z-shaped sections; fabricated from steel sheet, built-up steel plates, or structural-steel shapes.  Form ends of Z-sections 
+with stiffening lips angled 40 to 50 degrees to flange minimum depth [as indicated] [as required to comply with system performance requirements] 
+[_____].</OLI><BRK/>
+<BRK/>
+<OLI>Eave Struts:  Unequal-flange, C-shaped sections; fabricated from steel sheet, built-up steel plates, or structural-steel shapes; to provide 
+adequate backup for metal panels.</OLI><BRK/>
+<BRK/>
+<OLI>Flange Bracing: Structural-steel angles or cold-formed structural tubing to stiffen primary frame flanges.</OLI><BRK/>
+<BRK/>
+<OLI>Sag Bracing:  Structural-steel angles.</OLI><BRK/>
+<BRK/>
+<OLI>Base or Sill Angles:  Zinc-coated (galvanized) steel sheet.</OLI><BRK/>
+<BRK/>
+<OLI>Purlin and Girt Clips:  Steel sheet.  Provide galvanized clips where clips are connected to galvanized framing members.</OLI><BRK/>
+<BRK/>
+<OLI>Secondary End-Wall Framing:  Manufacturer's standard sections fabricated from [zinc-coated (galvanized) steel sheet] [structural-steel 
+sheet].</OLI><BRK/>
+<BRK/>
+<OLI>Framing for Openings:  Channel shapes; fabricated cold-formed, structural-steel sheet or structural-steel shapes.  Frame head and jamb 
+of door openings, and head, jamb, and sill of other openings.</OLI><BRK/>
+<BRK/>
+<OLI>Miscellaneous Structural Members:  Manufacturer's standard sections fabricated from cold-formed, structural-steel sheet; built-up steel 
+plates; or zinc-coated (galvanized) steel sheet; designed to withstand required loads.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Bracing</TTL><BRK/>
+<BRK/>
+<TXT>Provide adjustable wind bracing as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Rods:  <RID>ASTM A36/A36M</RID>; <RID>ASTM A572/A572M</RID>; or <RID>ASTM A529/A529M</RID> [threaded full length] [threaded a minimum of [_____]] at each end.</OLI><BRK/>
+<BRK/>
+<OLI>Cable:  <RID>ASTM A475</RID>, [_____] diameter, extra-high-strength grade, zinc-coated, [_____]-strand steel; with threaded end anchors.</OLI><BRK/>
+<BRK/>
+<OLI>Angles:  Fabricated from structural-steel shapes to match primary framing, of size required to withstand design loads.</OLI><BRK/>
+<BRK/>
+<OLI>Rigid Portal Frames:  Fabricate from shop-welded, built-up steel plates or structural-steel shapes to match primary framing; of size required 
+to withstand design loads.</OLI><BRK/>
+<BRK/>
+<OLI>Fixed-Base Columns:  Fabricate from shop-welded, built-up steel plates or structural-steel shapes to match primary framing; of size required 
+to withstand design loads.</OLI><BRK/>
+<BRK/>
+<OLI>Diaphragm Action of Metal Panels:  Design metal building to resist wind forces through diaphragm action of metal panels.</OLI><BRK/>
+<BRK/>
+<OLI>Bracing:  Provide wind bracing using any method specified above, at manufacturer's option.</OLI><BRK/></OLG>
+<BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PANEL MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Aluminum Sheet</TTL><BRK/>
+<BRK/>
+<TXT>Roll-form aluminum [roof] [wall] [liner] panels to the specified profile, with fy =<MET> [30] [40] [50] [80] ksi</MET><ENG> [.032] [.040] [.050] inch</ENG> thickness 
+and depth as indicated.  Material must be plumb and true, and within the tolerances listed:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Aluminum Sheet conforming to <RID>ASTM B209M</RID> <RID>ASTM B209</RID>, <RID>AA ADM</RID> and <RID>AA ASD1</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Individual panels to have continuous length to cover the entire length of any [roof slope] [wall area] with no joints or seams and formed 
+without warping, waviness, or ripples that are not part of the panel profile and free of damage to the finish coating system.</OLI><BRK/>
+<BRK/>
+<OLI>Provide panels with thermal expansion and contraction consistent with the type of system specified.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the desired profile from below and delete remaining items.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI LEVEL="2">Profile and coverage to be a minimum height and width from manufacturer's standard for the indicated [roof slope] [wall area].</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Profile to be a<MET> 38 mm</MET><ENG> 1-1/2 inch</ENG> high rib at<MET> 304.8 mm</MET><ENG> 12 inches</ENG> o.c. with small stiffening ribs,<MET> 965.2 mm</MET><ENG> 38 inch</ENG> overall width 
+with<MET> 914.4 mm</MET><ENG> 36 inch</ENG> coverage and exposed fasteners.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Profile to be a<MET> 38 mm</MET><ENG> 1-1/2 inch</ENG> high rib at<MET> 182.9 mm</MET><ENG> 7.2 inches</ENG> o.c.,<MET> 987.4 mm</MET><ENG> 38-7/8 inch</ENG> overall width with<MET> 914.4 mm</MET><ENG> 36 inch</ENG>
+ coverage and exposed fasteners.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Profile to be a<MET> 25.4 mm</MET><ENG> 1 inch</ENG> high rib at<MET> 101.6 mm</MET><ENG> 4 inches</ENG> o.c.,<MET> 1260.5 mm</MET><ENG> 49-5/8 inch</ENG> overall width with<MET> [1219.2] [1117.6] 
+mm</MET><ENG> [48] [44] inch</ENG> coverage and exposed fasteners.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Profile to be a<MET> 25.4 mm</MET><ENG> 1 inch</ENG> high rib at<MET> 203.2 mm</MET><ENG> 8 inches</ENG> o.c.,<MET> 1057.3 mm</MET><ENG> 41-5/8 inch</ENG> overall width with<MET> 1016 mm</MET><ENG> 40 inch</ENG> coverage 
+and exposed fasteners.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Profile to be a<MET> 44.5 mm</MET><ENG> 1-3/4 inch</ENG> high V-beam rib at<MET> 127 mm</MET><ENG> 5 inches</ENG> o.c.,<MET> 1139.9 mm</MET><ENG> 44-7/8 inch</ENG> overall width with<MET> 1066.8 mm</MET><ENG>
+ 42 inch</ENG> coverage and exposed fasteners.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Profile to be a<MET> 22.2 mm</MET><ENG> 7/8 inch</ENG> high corrugated rib at<MET> 50 mm</MET><ENG> 2 inches</ENG> o.c.,<MET> 987.4 mm</MET><ENG> 38-7/8 inch</ENG> overall width with<MET> 914.4 mm</MET><ENG>
+ 36 inch</ENG> coverage and exposed fasteners.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Profile to be a<MET> 76 mm</MET><ENG> 3 inch</ENG> high standing seam,<MET> 609.6 mm</MET><ENG> 24 inch</ENG> coverage, factory-caulked and mechanical crimping or snap-together 
+seams with concealed clips and fasteners.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Profile to be a<MET> [25.4] [44.5] [50.8] [63.5] mm</MET><ENG> [1] [1-3/4] [2] [2-1/2] inch</ENG> high standing seam,<MET> [304.8] [406.4] [457.2] mm</MET><ENG> [12] 
+[16] [18] inch</ENG> coverage, with mechanical crimping or snap-together seams with concealed clips and fasteners.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">[Smooth, flat] [Embossed] Surface Texture.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Custom profile to be [_____] [as shown on drawings].</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Steel Sheet</TTL><BRK/>
+<BRK/>
+<TXT>Roll-form steel [roof] [wall] [liner] panels to the specified profile, with fy = [30] [40] [50] [80] ksi [26] [24] [22] [20] [18] gauge and depth 
+as indicated.  Material must be plumb and true, and within the tolerances listed:</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Galvanized Steel Sheet conforming to <RID>ASTM A653/A653M</RID> and <RID>AISI SG03-3</RID>.</OLI><BRK/>
+<BRK/>
+][<OLI>Aluminum-Zinc Alloy-coated Steel Sheet conforming to <RID>ASTM A792/A792M</RID> and <RID>AISI SG03-3</RID>.</OLI><BRK/>
+<BRK/>
+][<OLI>Individual panels to have continuous length to cover the entire length of any unbroken [roof slope] [wall area] with no joints or seams 
+and formed without warping, waviness, or ripples that are not part of the panel profile and free of damage to the finish coating system.</OLI><BRK/>
+<BRK/>
+]<OLI>Provide panels with thermal expansion and contraction consistent with the type of system specified;</OLI><BRK/>
+<BRK/>
+[<LST>profile and coverage to be a minimum height and width from manufacturer's standard for the indicated [roof slope] [wall area].</LST><BRK/>
+<BRK/>
+][<LST>profile to be a<MET> 38 mm</MET><ENG> 1-1/2 inch</ENG> high rib at<MET> 304.8 mm</MET><ENG> 12 inches</ENG> o.c. with small stiffening ribs<ENG>,<MET> 965.2 mm</MET> 38 inch</ENG> overall width with<MET> 914.4 
+mm</MET><ENG> 36 inch</ENG> coverage and exposed fasteners.</LST><BRK/>
+<BRK/>
+][<LST>profile to be a <MET>38 mm</MET><ENG>1-1/2 inch</ENG> high rib at<MET> 182.9 mm</MET><ENG> 7.2 inches</ENG> o.c.,<MET> 987.4 mm</MET><ENG> 38-7/8 inch</ENG> overall width with<MET> 914.4 mm</MET><ENG> 36 inch</ENG> coverage 
+and exposed fasteners.</LST><BRK/>
+<BRK/>
+][<LST>profile to be a<MET> 25.4 mm</MET><ENG>1 inch</ENG> high rib at<MET> 101.6 mm</MET><ENG> 4 inches</ENG> o.c.,<MET> 1260.5 mm</MET><ENG> 49-5/8 inch</ENG> overall width with<MET> [1219.2] [1117.6] mm</MET><ENG> [48] [44] 
+inch</ENG> coverage and exposed fasteners.</LST><BRK/>
+<BRK/>
+][<LST>profile to be a<MET> 25.4 mm</MET><ENG>1 inch</ENG> high rib at<MET> 203.2 mm</MET><ENG> 8 inches</ENG> o.c.,<MET> 1057.3 mm</MET><ENG> 41-5/8 inch</ENG> overall width with<MET> 1016 mm</MET><ENG> 40 inch</ENG> coverage and 
+exposed fasteners.</LST><BRK/>
+<BRK/>
+][<LST>profile to be a<MET> 22.2 mm</MET><ENG> 7/8 inch</ENG> high corrugated rib at<MET> 50 mm</MET><ENG> 2 inches</ENG> o.c.,<MET> 987.4 mm</MET><ENG> 38-7/8 inch</ENG> overall width with<MET> 914.4 mm</MET><ENG> 36 inch</ENG> coverage 
+and exposed fasteners.</LST><BRK/>
+<BRK/>
+][<LST>profile to be a<MET> 76 mm</MET><ENG> 3 inch</ENG> high standing seam,<MET> 609.6 mm</MET><ENG> 24 inch</ENG> coverage, factory-caulked and mechanical crimping or snap-together seams 
+with concealed clips and fasteners.</LST><BRK/>
+<BRK/>
+][<LST>profile to be a<MET> [25.4] [44.5] [50.8] [63.5] mm</MET><ENG> [1] [1-3/4] [2] [2-1/2] inch</ENG> high standing seam,<MET> [304.8] [406.4] [457.2] mm</MET><ENG> [12] [16] [18] 
+inch</ENG> coverage, with mechanical crimping or snap-together seams with concealed clips and fasteners.</LST><BRK/>
+<BRK/>
+][<LST>[Smooth, flat] [Embossed] Surface Texture.</LST><BRK/>
+<BRK/>
+][<LST>profile to be custom as shown on drawings.</LST><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Foam-Insulation Core Wall Panel</TTL><BRK/>
+<BRK/>
+<TXT>Provide factory-formed [aluminum] [steel] [roof] [wall] panel assembly fabricated from two sheets of metal with modified polyisocyanurate or polyurethane 
+foam insulation core [foamed-in-place] [board] during fabrication with joints between panels designed to form weather-tight seals.  Include accessories 
+required for weather-tight installation.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Closed-Cell Content:  90 percent when tested according to <RID>ASTM D6226</RID>, <RID>ASTM C1289</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Density: <MET> 32 to 42 kg/cu. m</MET><ENG> 2.0 to 2.6 lb/cu. ft.</ENG> when tested according to <RID>ASTM D1622/D1622M</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Compressive Strength:  Minimum<MET> 140 kPa</MET><ENG> 20 psi</ENG> when tested according to <RID>ASTM D1621</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Shear Strength: <MET> 179 kPa</MET><ENG> 26 psi</ENG> when tested according to <RID>ASTM C273/C273M</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Insulated Panel Construction</TTL><BRK/>
+<BRK/>
+<TXT>Shop fabricate or field assemble insulated panel construction with specified exterior and interior [aluminum] [steel] sheet in accordance with 
+manufacturer's printed instructions.</TXT><BRK/>
+<BRK/>
+<TXT>Insulation to be [glass-fiber-<RID>ASTM C991</RID>] [slag-wool-fiber] [rock-wool-fiber] conforming to <RID>ASTM C553</RID> and <RID>ASTM C612</RID> of thickness and density as 
+required for the geographical area where construction will take place.  Glass-Fiber and Mineral-Wool-Fiber are materials listed in the EPA's Comprehensive 
+Procurement Guidelines (CPG), and are a component of <SUB>sustainable acquisition compliance</SUB>.</TXT><BRK/>
+<BRK/>
+<TXT>Insulation fasteners to be adhesively attached, plate welded to projecting spindle anchors; capable of holding insulation of thickness indicated, 
+secured in position with self-locking washer and complying with the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Plate:  Perforated galvanized carbon-steel sheet,<MET> 0.762 mm</MET><ENG> 0.030 inch</ENG> thick by<MET> 50 mm</MET><ENG> 2 inches</ENG> square.</OLI><BRK/>
+<BRK/>
+<OLI>Spindle:  Copper-coated, low carbon steel; fully annealed;<MET> 2.67 mm</MET><ENG> 0.105 inch</ENG> in diameter; length to suit depth of insulation indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Insulation-Retaining Washers:  Self-locking washers formed from <MET>0.41-mm-</MET><ENG> 0.016-inch-</ENG>thick galvanized steel sheet, with beveled edge for 
+increased stiffness, sized as required to hold insulation securely in place, but not less than<MET> 38 mm</MET><ENG> 1-1/2 inches</ENG> square or in diameter.</OLI><BRK/>
+<BRK/>
+<OLI>Anchor adhesive to be a product with demonstrated capability to bond insulation anchors securely to substrates indicated without damaging 
+insulation, fasteners, and substrates.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Finishes</TTL><BRK/>
+<BRK/>
+<TXT>All panels are to receive a factory-applied [polyvinylidene fluoride] [Kynar 500/Hylar 5000] [_____] finish consisting of a baked-on top-coat with 
+a manufacturer's recommended prime coat conforming to the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Metal Preparation:  All metal is to have the surfaces carefully prepared for painting on a continuous process coil coating line by alkali 
+cleaning, hot water rinsing, application of chemical conversion coating, cold water rinsing, sealing with acid rinse, and thorough drying.</OLI><BRK/>
+<BRK/>
+<OLI>Prime Coating:  A base coat of epoxy paint, specifically formulated to interact with the top-coat, is to be applied to the prepared surfaces 
+by roll coating to a dry film thickness of 0.20 plus 0.05 mils.  This prime coat must be oven cured prior to application of finish coat.</OLI><BRK/>
+<BRK/>
+<OLI>Exterior Finish Coating:  Apply the finish coating over the primer by roll coating to dry film thickness of 0.80 plus 5 mils (3.80 plus 
+0.50 mils for Vinyl Plastisol) for a total dry film thickness of 1.00 plus 0.10 mils (4.00 plus 0.10 mils for Vinyl Plastisol).  This finish 
+coat must be oven-cured.</OLI><BRK/>
+<BRK/>
+<OLI>Interior Finish Coating:  Apply a wash-coat on the reverse side over the primer by roll coating to a dry film thickness of 0.30 plus 0.05 
+mils for a total dry film thickness of 0.50 plus 0.10 mils.  The wash-coat must be oven-cured.</OLI><BRK/>
+<BRK/>
+<OLI>[Color:  The exterior finish chosen from the <SUB>manufacturer's color charts and chips</SUB>.] [_____]</OLI><BRK/>
+<BRK/>
+<OLI>Physical Properties: Coating must conform to the industry and manufacturer's standard performance criteria as listed by the following certified <SUB>
+test reports</SUB>:</OLI><BRK/>
+<BRK/>
+<LST>Chalking:  <RID>ASTM DEFONLINE</RID></LST><BRK/>
+<BRK/>
+<LST>Color Change and Conformity:  <RID>ASTM D2244</RID></LST><BRK/>
+<BRK/>
+<LST>Weatherometer:  <RID>ASTM G152</RID>, <RID>ASTM G153</RID> and <RID>ASTM D822</RID></LST><BRK/>
+<BRK/>
+<LST>Humidity:  <RID>ASTM D2247</RID> and <RID>ASTM D714</RID></LST><BRK/>
+<BRK/>
+<LST>Salt Spray:  <RID>ASTM B117</RID></LST><BRK/>
+<BRK/>
+<LST>Chemical Pollution:  <RID>ASTM D1308</RID></LST><BRK/>
+<BRK/>
+<LST>Gloss at 60 degrees:  <RID>ASTM D523</RID></LST><BRK/>
+<BRK/>
+<LST>Pencil Hardness:  <RID>ASTM D3363</RID></LST><BRK/>
+<BRK/>
+<LST>Reverse Impact:  <RID>ASTM D2794</RID></LST><BRK/>
+<BRK/>
+<LST>Flexibility:  <RID>ASTM D522/D522M</RID></LST><BRK/>
+<BRK/>
+<LST>Abrasion:  <RID>ASTM D968</RID></LST><BRK/>
+<BRK/>
+<LST>Flame Spread:  <RID>ASTM E84</RID></LST><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Repair Of Finish Protection</TTL><BRK/>
+<BRK/>
+<TXT>Repair paint for color finish enameled metal panel must be compatible paint of the same formula and color as the specified finish furnished by 
+the metal panel manufacturer, conforming to <RID>ASTM A780/A780M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MISCELLANEOUS METAL FRAMING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Cold-formed metallic-coated steel sheet conforming to <RID>ASTM A653/A653M</RID> and specified in Section <SRF>05 40 00</SRF> COLD-FORMED METAL FRAMING unless otherwise 
+indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Fasteners</SUB> for Miscellaneous Metal Framing</TTL><BRK/>
+<BRK/>
+<TXT>Refer to the following paragraph FASTENERS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FASTENERS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Type, material, corrosion resistance, size and sufficient length to penetrate the supporting member a minimum of<MET> 25.4 mm</MET><ENG> 1 inch</ENG> with other properties 
+required to fasten miscellaneous metal framing members to substrates in accordance with the metal panel manufacturer's and <RID>ASCE 7</RID> requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Exposed Fasteners</TTL><BRK/>
+<BRK/>
+<TXT>Fasteners for metal panels to be corrosion resistant coated steel, aluminum, stainless steel, or nylon capped steel compatible with the sheet panel 
+or flashing and of a type and size recommended by the manufacturer to meet the performance requirements and design loads.  Fasteners for accessories 
+to be the manufacturer's standard.  Provide an integral metal washer matching the color of attached material with compressible sealing EPDM gasket 
+approximately<MET> .09 mm</MET><ENG> 3/32 inch</ENG> thick.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Screws</TTL><BRK/>
+<BRK/>
+<TXT>Screws to be corrosion resistant coated steel, aluminum and/or stainless steel being the type and size recommended by the manufacturer to meet 
+the performance requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rivets</TTL><BRK/>
+<BRK/>
+<TXT>Rivets to be closed-end type, corrosion resistant coated steel, aluminum or stainless steel where watertight connections are required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Attachment Clips</TTL><BRK/>
+<BRK/>
+<TXT>Fabricate clips from steel hot-dipped galvanized in accordance with <RID>ASTM A653/A653M</RID> or Series 300 stainless steel.  Size, shape, thickness and 
+capacity as required meeting the insulation thickness and design load criteria specified.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FRAMES AND MATERIALS FOR OPENINGS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Doors</TTL><BRK/>
+<BRK/>
+<TXT>The switchgear house must be provided with a minimum of [two] [_____] entrance doors.  The doors must be double wall construction, with brushed 
+aluminum panic hardware with cylinder lock and thumb latch, brushed aluminum automatic closure with built-in hold open device, stainless steel 
+hinges, threshold, weather-stripping, drip shields/water flashing, "DANGER, HIGH VOLTAGE, KEEP OUT" sign.[  Provide a<MET> [304 mm]</MET><ENG> [12-inch]</ENG> [_____] 
+removable transom above the equipment door to allow for future equipment removal.]  The personnel door must be<MET> [914 mm by 2438 mm]</MET><ENG> [36-inch by 
+96-inch]</ENG> [_____].  The equipment door must be<MET> [1219 mm by 2438 mm]</MET><ENG> [48-inch by 96-inch]</ENG> [_____].</TXT><BRK/>
+<BRK/>
+<TXT>Fire-Rated and Non-Fire-Rated Door Assemblies conforming with <RID>NFPA 80</RID> and based on testing according to <RID>NFPA 252</RID> as specified in Division 08 - 
+OPENINGS unless otherwise indicated.  Doors must open in the direction of egress from the electrical space and be equipped with listed panic hardware 
+and wind safety chain.</TXT><BRK/>
+<BRK/>
+<TXT>Entrance and egress from the electrical equipment working space must be in accordance with <RID>NFPA 70</RID>, Article 110.</TXT><BRK/>
+<BRK/>
+[<TXT>For equipment requiring rear access, provide rear access doors in exterior walls. Doors must be equipped as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Posts (mullions) must be easily removable (allowing total door and post removal) providing full open access, of (at least) any four continuous 
+doors without temporary structural reinforcement, for potential equipment replacement or the addition of future equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Stainless steel continuous piano type hinge.</OLI><BRK/>
+<BRK/>
+<OLI>Stainless steel pad lockable vault handle.</OLI><BRK/>
+<BRK/>
+<OLI>Three-point latching system.</OLI><BRK/>
+<BRK/>
+<OLI>Full gasketing and drip shield.</OLI><BRK/>
+<BRK/>
+<OLI>Signage as appropriate for internal equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Hold open device.</OLI><BRK/>
+<BRK/>
+<OLI>Metal inner skin over insulation welded to door.</OLI><BRK/>
+<BRK/>
+<OLI>"Danger High Voltage / Keep Out" signs.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT></SPT><SPT><TTL>ACCESSORIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>All accessories to be compatible with the metal panels; sheet metal flashing, trim, <SUB>metal closure strips</SUB>, caps and similar metal accessories must 
+not be less than the minimum thickness specified for the metal panels.  Exposed metal accessories/finishes to match the panels furnished, except 
+as otherwise indicated.  Molded foam rib, ridge and other closure strips to be non-absorbent closed-cell or solid-cell synthetic rubber or pre-molded 
+neoprene to match configuration of the panels.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Roof and Wall Accessories and Specialties</TTL><BRK/>
+<BRK/>
+<TXT>[Aluminum ][Steel ]roof curbs, equipment supports, roof hatches, dropout-type heat and smoke vents, hatch-type heat and smoke vents, gravity and 
+roof ridge ventilators, wall louvers and other miscellaneous roof and wall equipment or penetrations conforming to AAMA, ASTM, and UL as specified 
+in Division 07 unless otherwise indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Faced, Glass-Fiber Blanket Insulation:  <RID>ASTM C665</RID>, Type [I, blankets without membrane coverings][ and ][II, blankets with non-reflecting coverings][ 
+and ][III, blankets with reflective coverings]; Class [A, membrane-faced surface with a flame spread of 25 or less] [B, membrane-faced surface 
+with a flame propagation resistance; critical radiant flux of<MET> 0.12 W/m2</MET><ENG> 0.11 Btu/ft2</ENG> or greater], except a flame spread rating of [25] [75] [100] 
+or less[ and a smoke developed rating of 150 or less] when tested in accordance with <RID>ASTM E84</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Polyethylene Vapor Retarder</TTL><BRK/>
+<BRK/>
+<TXT>Install polyethylene vapor retarder membrane over entire [wall][ and roof] surface.  Use fully compatible polyethylene tape to seal the edges of 
+the sheets to provide a vapor tight membrane.  Lap sheets not less than<MET> 150 mm</MET><ENG> 6 inch</ENG>.  Provide sufficient material to avoid inducing stresses 
+in sheets due to stretching or binding.  All tears or punctures visible in the finished surface, at anytime during the construction process, must 
+be sealed with polyethylene tape.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wall Liner</TTL><BRK/>
+<BRK/>
+<TXT>Securely fasten wall liner into place in accordance with the manufacturer's recommendation and in a neatly presented appearance.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Rubber Closure Strips</TTL><BRK/>
+<BRK/>
+<TXT>Closed-cell, expanded cellular rubber conforming to <RID>ASTM D1056</RID> and <RID>ASTM D1667</RID>; extruded or molded to the configuration of the specified metal panel 
+and in lengths supplied by the metal panel manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Metal Closure Strips</TTL><BRK/>
+<BRK/>
+<TXT>Factory fabricated [aluminum] [steel] closure strips to be the same [gauge] [thickness], color, finish and profile of the specified [roof] [wall] 
+panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Joint Sealants</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Sealants</TTL><BRK/>
+<BRK/>
+<TXT>Sealants are to be an approved gun type for use in hand or air-pressure caulking guns at temperatures above<MET> 4 degrees C</MET><ENG> 40 degrees F</ENG> (or frost-free 
+application at temperatures above minus<MET> 12 degrees C</MET><ENG> 10 degrees F</ENG> with minimum solid content of 85 percent of the total volume.  Sealant is to 
+dry with a tough, durable surface skin which permits it to remain soft and pliable underneath, providing a weather-tight joint.  No migratory staining 
+is permitted on painted or unpainted metal, stone, glass, vinyl, or wood.</TXT><BRK/>
+<BRK/>
+<TXT>Prime all joints to receive sealants with a compatible one-component or two-component primer as recommended by the metal panel manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shop-Applied</TTL><BRK/>
+<BRK/>
+<TXT>Sealant for shop-applied caulking must be an approved gun grade, non-sag one component polysulfide or silicone conforming to <RID>ASTM C920</RID>, Type II, 
+and with a curing time to ensure the sealant's plasticity at the time of field erection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field-Applied</TTL><BRK/>
+<BRK/>
+<TXT>Sealant for field-applied caulking must be an approved gun grade, non-sag one component polysulfide or two-component polyurethane with an initial 
+maximum Shore A durometer hardness of 25, and conforming to <RID>ASTM C920</RID>, Type II.  Color to match panel colors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tape Sealant</TTL><BRK/>
+<BRK/>
+<TXT>Pressure sensitive, 100 percent solid with a release paper backing; permanently elastic, non-sagging, non-toxic and non-staining as approved by 
+the metal panel manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Floor Cutouts</TTL><BRK/>
+<BRK/>
+<TXT>Floor Cutouts:  Under equipment for cable entry and exit from below floor with gasketed<MET> 1.214 mm</MET><ENG> 12 ga</ENG> galvanized top cover plates attached to 
+the floor by screws.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Stairs and Landings</TTL><BRK/>
+<BRK/>
+<TXT>Where required for access, provide landings and stairs for the building. The stairs must be hot-dipped galvanized after fabrication.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></SPT><SPT><TTL>SHEET METAL FLASHING AND TRIM</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Fabrication</TTL><BRK/>
+<BRK/>
+<TXT>Shop fabricate sheet metal flashing and trim where practicable to comply with recommendations in <RID>SMACNA 1793</RID> that apply to design, dimensions, 
+metal, and other characteristics of item indicated.  Obtain field measurements for accurate fit before shop fabrication.</TXT><BRK/>
+<BRK/>
+<TXT>Fabricate sheet metal flashing and trim without excessive oil canning, buckling, and tool marks and true to line and levels indicated, with exposed 
+edges folded back to form hems.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FINISHES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Comply with <RID>NAAMM AMP 500</RID> for recommendations for applying and designating finishes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Appearance of Finished Work</TTL><BRK/>
+<BRK/>
+<TXT>Variations in appearance of abutting or adjacent pieces are acceptable if they are within one-half of the range of approved Samples.  Noticeable 
+variations in the same piece are not acceptable.  Variations in appearance of other components are acceptable if they are within the range of approved 
+Samples and are assembled or installed to minimize contrast.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>HEATING VENTILATION AND AIR CONDITIONING (HVAC)</TTL><BRK/>
+<BRK/>
+<SPT><TTL>HVAC Performance</TTL><BRK/>
+<OLG><BRK/>
+[<OLI>Redundancy: NONE.  One or multiple units as required to meet atmospheric and internal heating and cooling requirements.</OLI><BRK/>
+<BRK/>
+][<OLI>Redundancy:  N+1.  Multiple units as required to meet atmospheric and internal heating and cooling requirements plus one additional unit 
+for redundancy purposes.</OLI><BRK/>
+<BRK/>
+][<OLI>Redundancy: 100 percent.  Two independent systems consisting of multiple units as required meeting atmospheric and internal heating and 
+cooling requirements.</OLI><BRK/>
+<BRK/>
+]<OLI>Exterior Design Temperatures:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Summer: (Per ASHRAE 2.5 percent design temperature).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Winter: (Per ASHRAE 97.5 percent design temperature).</OLI><BRK/>
+<BRK/>
+<OLI>Interior Design Temperatures:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Summer: <MET> 27 degrees C</MET><ENG> 80 degree F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Winter: <MET> 16 degrees C</MET><ENG> 60 degree F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Occupancy:  Number of Persons [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Ventilation Air (cfm):  [_____].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>The switchgear house must be provided with self-contained, package type HVAC system.  It must consist of through-the-wall type units.  The system 
+must have a free or ducted air discharge and return.  The total design load for the system must include infiltration, ventilation load and heat 
+generated by the equipment within the house.  Provide at least<MET> 0.762 (l/s)/sq m</MET><ENG> 0.15 cfm/sq feet</ENG> of mechanical induced outside air for ventilation.  
+The HVAC system must be provided with an electronic, automatic changeover thermostat.</TXT><BRK/>
+<BRK/>
+<TXT>HVAC system must maintain the maximum interior temperature required with consideration to ambient conditions and the specified internal equipment 
+total heat load.</TXT><BRK/>
+<BRK/>
+<TXT>HVAC Unit(s):  Size and quantity as required to maintain interior design temperatures and redundancy requirements.  Industrial quality, vertical, 
+self-contained, wall mounted unit(s) with aluminum fin, and copper coils:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Cooling capacity:  [_____] tons capacity as required to meet design temperatures as specified.</OLI><BRK/>
+<BRK/>
+<OLI>Heating capacity:  [_____] Kw as required to meet design temperatures as specified.</OLI><BRK/>
+<BRK/>
+<OLI>Thermostat, Auto Change Over, Digital, F or C Display:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Smart recovery (heating mode).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Droopless control, 4 cycles/hr.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Backlit display.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Settings never lost during power failure.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">5-minute compressor protection.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Separate set points for heating and cooling.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Battery-less operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Electro-Mechanical relay design.</OLI><BRK/>
+<BRK/>
+<OLI>Low Pressure Switch.</OLI><BRK/>
+<BRK/>
+<OLI>High Pressure Switch.</OLI><BRK/>
+<BRK/>
+<OLI>Low Ambient Control.</OLI><BRK/>
+<BRK/>
+<OLI>Compressor anti-cycle relay.</OLI><BRK/>
+<BRK/>
+<OLI>Alarm Relay.</OLI><BRK/>
+<BRK/>
+<OLI>Barometric Damper.</OLI><BRK/>
+<BRK/>
+<OLI>Supply and Return Grills.</OLI><BRK/>
+<BRK/>
+<OLI>Pleated Filter<MET> 51 mm</MET><ENG> 2 inches</ENG> MERV 8.</OLI><BRK/>
+<BRK/>
+<OLI>R410A Refrigerant.</OLI><BRK/></OLG>
+<BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ELECTRICAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Provide conductors, conduits, fittings, panelboards, circuit breakers, receptacles, GFI receptacles, toggle switches,[ dry-type transformers,][ 
+automatic transfer switches,] surge protective devices, lighting contactors, grounding and related switchgear house accessories in accordance with 
+Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  All electrical equipment and devices must be UL listed.  All wiring must be installed in metallic 
+conduit.  Utilize EMT for interior locations and rigid galvanized steel for exterior locations and areas subject to physical damage.  Access and 
+working space must be maintained about all electrical equipment to permit ready and safe operation and maintenance of such equipment in accordance 
+with <RID>NFPA 70</RID>, Article 110.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Interior Lighting</TTL><BRK/>
+<BRK/>
+<TXT>Provide surface mounted interior LED lighting fixtures in accordance with Section <SRF>26 51 00</SRF> INTERIOR LIGHTING.  The interior lighting system must 
+provide a minimum light level of 300 lux with a 3:1 average to minimum ratio.  Provide toggle switch type control at each entry door to the switchgear 
+house.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Exit Signs</TTL><BRK/>
+<BRK/>
+<TXT>Provide LED lamp exit sign that operates in normal, AC input with emergency battery power backup in accordance with Section <SRF>26 51 00</SRF> INTERIOR LIGHTING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Emergency Lighting</TTL><BRK/>
+<BRK/>
+<TXT>Provide battery backup type emergency lighting units at each entry door.  The emergency lighting units must be in accordance with Section 
+<SRF>26 51 00</SRF> INTERIOR LIGHTING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Provide normal lighting and exit-emergency combo units lighting on the same branch circuit.  Wire exit-emergency combo units ahead of the local 
+switch within the same area.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Exterior Lighting</TTL><BRK/>
+<BRK/>
+<TXT>Provide wall pack LED luminaires that are suitable for outdoor applications in accordance with Section <SRF>26 56 00</SRF> EXTERIOR LIGHTING.  Mount wall 
+pack LED luminaires exterior of the switchgear house and above personnel exit doors.  Wall packs must utilize LED sources.  Wall packs must be 
+constructed of rugged, weather resistant, die cast aluminum housing with an integral photocell.  Control for exterior lighting must be in accordance 
+with <RID>ASHRAE 90.1 - IP</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Metal-Clad Switchgear</TTL><BRK/>
+<BRK/>
+<TXT>Provide in accordance with Section <SRF>26 13 13</SRF> METAL-CLAD SWITCHGEAR.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Provide grounding system in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Provide listed grounding pads welded to the switchgear 
+house skid base for bonding of the steel structure in two places.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Lightning Protection System</TTL><BRK/>
+<BRK/>
+<TXT>Provide lightning protection system in accordance with Section <SRF>26 41 00</SRF> LIGHTNING PROTECTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Examination</TTL><BRK/>
+<BRK/>
+<TXT>Before the installation begins, conduct an inspection with the erector present.  The inspection must ensure that the following items are in compliance 
+with the switchgear house manufacturer's approved shop drawings.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Concrete foundation dimensions and layout.</OLI><BRK/>
+<BRK/>
+<OLI>Anchor bolt size, type and placement.</OLI><BRK/>
+<BRK/>
+<OLI>Survey information showing the foundation elevations.</OLI><BRK/>
+<BRK/>
+<OLI>Location of bearing plates and other embedment's to receive structural framing.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Examine roughing-in for electrical feeders serving the contained switchgear and equipment within the switchgear house to ensure proper placement.</TXT><BRK/>
+<BRK/>
+<TXT>Submit to the Contracting Officer a written report, endorsed by Erector, listing conditions detrimental to performance of the Work.</TXT><BRK/>
+<BRK/>
+<TXT>Proceed with erection only after unsatisfactory conditions have been corrected.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Electrical installations must conform to <RID>IEEE C2</RID>, <RID>NFPA 70</RID>, and to the requirements specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING</TTL><BRK/>
+<BRK/>
+<TXT><RID>NFPA 70</RID> and <RID>IEEE C2</RID>, except that grounds and grounding systems must have a resistance to solid earth ground not exceeding 5 ohms.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Grounding Electrodes</TTL><BRK/>
+<BRK/>
+<TXT>Provide driven ground rods as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections</TTL><BRK/>
+<BRK/>
+<TXT>Connections must be installed as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.  Inaccessible connections or connections below 
+finished grade must be exothermic weld type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding and Bonding Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Grounding and bonding of equipment must be in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  The switchgear house steel structure 
+must be bonded to the grounding system.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>INSTALLATION OF EQUIPMENT AND ASSEMBLIES</TTL><BRK/>
+<BRK/>
+<TXT>Install and connect the switchgear house furnished under this section as indicated on project drawings, the approved shop drawings, and as specified 
+herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FOUNDATION FOR EQUIPMENT AND ASSEMBLIES</TTL><BRK/>
+<BRK/>
+<TXT>Mount the switchgear house on concrete slab as required to satisfy the required loading.  The mounting design must be performed by a registered 
+structural engineer and included in the Structural Design Report which is sealed by the structural engineer of record.  Provide conduit turn-ups 
+and cable entrance space required by the equipment to be mounted.  Seal voids around conduit openings in slab with water and oil-resistant caulking 
+or sealant.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Performance of Acceptance Checks and Tests</TTL><BRK/>
+<BRK/>
+<TXT>Perform in accordance with the manufacturer's recommendations and include the following visual and mechanical inspections and electrical tests, 
+performed in accordance with <RID>NETA ATS</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding System</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect ground system for compliance with contract plans and specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform ground-impedance measurements utilizing the fall-of-potential method.  On systems consisting of interconnected ground 
+rods, perform tests after interconnections are complete.  On systems consisting of a single ground rod perform tests before any 
+wire is connected.  Take measurements in normally dry weather, not less than 48 hours after rainfall.  Use a portable ground 
+testing megger in accordance with manufacturer's instructions to test each ground or group of grounds.  The instrument must be 
+equipped with a meter reading directly in ohms or fractions thereof to indicate the ground value of the ground rod or grounding 
+systems under test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Submit the measured ground resistance of each ground rod and grounding system, indicating the location of the rod and grounding 
+system.  Include the test method and test setup (i.e., pin location) used to determine ground resistance and soil conditions 
+at the time the measurements were made.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Follow-Up Verification</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion of acceptance checks, settings, and tests, the Contractor must show by demonstration in service that circuits and devices are in 
+good operating condition and properly performing the intended function.  Circuit breakers must be tripped by operation of each protective device.  
+Test must require each item to perform its function not less than three times.  As an exception to requirements stated elsewhere in the contract, 
+notify the Contracting Officer 10 working days in advance of the dates and times for checks, settings, and tests.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Manufacturer's Warranty</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit all manufacturers' signed warranties to Contracting Officer prior to final commissioning and acceptance.</TXT><NED/><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Contractor's Warranty for Installation</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit warranty for installation to the Contracting Officer prior to final commissioning and acceptance.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

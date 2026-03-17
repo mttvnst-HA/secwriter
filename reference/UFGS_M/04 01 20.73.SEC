@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.75"/>
+      <COL AUTOWIDTH="0" WIDTH="224.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-04 01 20.73 (May 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-04 01 20.73 (November 2015)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 04 01 20.73</SCN><BRK/>
+<BRK/>
+<STL>MASONRY STRENGTHENING USING FRP BARS</STL><BRK/>
+<DTE>05/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>strengthening of 
+masonry walls and is intended for use in defining those requirements for procurment 
+of structural strengthening using fiber reinforced polymer (FRP) composit systems</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In general, reinforced masonry is defined as masonry construction that 
+contains vertical bar reinforcement, horizontal bar reinforcement, mortar, and 
+grout combined so that the component materials will act together to resist the 
+design loading conditions.  Under certain circumstances, joint reinforcement 
+may be designed as structural reinforcement to resist applied loads, but is 
+typically used only to resist shrinkage cracking in concrete masonry.<BRK/>
+<BRK/>
+Masonry not meeting the above definition but bonded together with mortar and 
+containing, if necessary, the minimum amount of reinforcement for crack control 
+and vertical stiffeners, is classified as non-reinforced or unreinforced masonry (URM).<BRK/>
+<BRK/>
+The project drawings should show all necessary details, architectural and structural, 
+including wall sections, masonry bond and pattern, control joint locations, 
+joint dimensions, reinforcement locations, anchors, bond beam and special units, 
+masonry dimensions, and FRP composite details to complement this section.<BRK/>
+<BRK/>
+It may be useful to include the SUMMARY article at the beginning of this specification 
+section:</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>SUMMARY</TTL><BRK/>
+<BRK/>
+<TXT>This section includes design, performance, and construction requirements for strengthening masonry walls by adding 
+near-surface fiber reinforced polymer (FRP) bars in mortar joints.  The scope includes assessment of existing 
+masonry conditions, including cracks, and providing (furnishing and installing) materials, labor, equipment and 
+other items necessary for masonry strengthening as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN CONCRETE INSTITUTE (ACI)</ORG><BRK/><BRK/><RID>ACI 440.2R</RID><RTL>(2017) Guide for the Design and Construction of Externally Bonded FRP Systems for Strengthening Concrete Structures</RTL><BRK/><BRK/><RID>ACI 440.7R</RID><RTL>(2010) Guide for the Design and Construction of Externally Bonded Fiber-Reinforced Polymer Systems for Strengthening Unreinforced Masonry Structures</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM D638</RID><RTL>(2014) Standard Test Method for Tensile Properties of Plastics</RTL><BRK/><BRK/><RID>ASTM D882</RID><RTL>(2012) Tensile Properties of Thin Plastic Sheeting</RTL><BRK/><BRK/><RID>ASTM D2240</RID><RTL>(2015; R 2021) Standard Test Method for Rubber Property - Durometer Hardness</RTL><BRK/><BRK/><RID>ASTM D3039/D3039M</RID><RTL>(2017; R 2025) Standard Test Method for Tensile Properties of Polymer Matrix Composite Materials</RTL><BRK/><BRK/><RID>ASTM D3171</RID><RTL>(2011) Standard Test Method for Constituent Content of Composite Materials</RTL><BRK/><BRK/><RID>ASTM D3916</RID><RTL>(2008; R 2016) Standard Test Method for Tensile Properties of Pultruded Glass-Fiber-Reinforced Plastic Rod</RTL><BRK/><BRK/><RID>ASTM D4501</RID><RTL>(2001; R 2014) Adhesive Bonds Between Rigid Substrates by the Block-Shear Method</RTL><BRK/><BRK/></REF><REF><ORG>ICC EVALUATION SERVICE, INC. (ICC-ES)</ORG><BRK/><BRK/><RID>ICC ES AC125</RID><RTL>(2014; R 2015) Acceptance Criteria for Concrete and Reinforced and Unreinforced Masonry Strengthening Using Externally Bonded Fiber-reinforced Polymer (FRP) Composite Systems</RTL><BRK/><BRK/><RID>ICC ES AC178</RID><RTL>(2013; R 2017) Acceptance Criteria for Inspection and Verification of Concrete and Reinforced and Unreinforced Masonry Strengthening Using Fiber-reinforced Polymer (FRP) Composite Systems</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>PRE-INSTALLATION MEETING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Add requirements for Special Inspector qualifications, observations, 
+and testing of this FRP composite system to Section <SRF>01 45 35</SRF> SPECIAL INSPECTIONS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to commencement of work, arrange and conduct a meeting between the Contracting Officer, Contractor, and 
+the Special Inspector to discuss the project requirements.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Review the requirements of the Specification and overall project requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Review and discuss all aspects of the project, including containment, environmental control, surface 
+preparation, strengthening system application, quality assurance, schedule requirements, and safety.</OLI><BRK/>
+<BRK/>
+<OLI>Request clarification of ambiguities and advise the Contracting Officer of potential conflicts [and][or] 
+any technical requirements that appear improper or inappropriate.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Quality Control Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Manufacturer</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Contractor Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Contractor's Field Representative Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>FRP Composite System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Safety Data Sheets (SDS)</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>FRP Rods And Shapes</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Structural [Paste][Adhesive] Material</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-04 Samples</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Materials</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>FRP Rods And Shapes</SUB>; <SUB>G<TAI OPT="ARMY">, [____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Structural [Paste][Adhesive] Material</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Design Calculations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>FRP Rods And Shapes</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Structural [Paste][Adhesive] Material</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Testing</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>ICC Evaluation Services Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Regulatory Requirements</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Installers</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Installer Training</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>FRP Composite System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Installation Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Record Maintenance</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Maintenance</SUB>; <SUB>G<TAI OPT="ARMY">, [____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Quality Control Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a quality control plan for installation and curing of materials, personnel safety, installer certification, 
+application and inspection of the FRP system, structural [paste][adhesive] curing provisions, means to assure 
+clean, dry masonry surfaces, quality control samples and cleanup.  Indicate the testing that will be performed 
+and identify the party or parties responsible for this testing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Regulatory Requirements</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>Safety Data Sheets (SDS)</SUB> to demonstrate that the composite system will not release volatile organic compounds 
+(VOC) into the air in excess of the most restrictive of NIOSH RELs, OSHA PELs or ACGIH TLVs for worker or occupant 
+exposure during installation [and][or] over the useful life of the structure.  If VOCs exceed any of these exposure 
+limits during installation or use, provide additional ventilation for the duration of the excess outgassing.  
+Ensure that at no time will they exceed STEL, even if additional ventilation or air supply is provided.  Provide 
+the necessary equipment to comply with these requirements.  Once cured, ensure the FRP composite system does 
+not exhibit detectable odor at a distance of<MET> 300 mm</MET><ENG> one foot</ENG> from the FRP surface.</TXT><BRK/>
+<BRK/>
+<TXT>Submit certification that resins proposed for use meet Federal VOC regulations and those of the local Air Pollution 
+Control Districts having jurisdiction over the geographical area in which the project is located.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Qualifications</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>System Manufacturer</SUB> Experience</TTL><BRK/>
+<BRK/>
+<TXT>Submit an approved <SUB>ICC Evaluation Services Report</SUB> for the selected manufacturer's system.</TXT><BRK/>
+<BRK/>
+<TXT>Submit a certified list of a minimum five successfully completed FRP composite strengthening projects completed 
+with the manufacturer's composite system.  Include the following information, at a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The dates of work</OLI><BRK/>
+<OLI>Type, description and amount of work performed</OLI><BRK/>
+<OLI>Point of contact for an owner representative to include:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Name</OLI><BRK/>
+<OLI LEVEL="2">Address</OLI><BRK/>
+<OLI LEVEL="2">Company/Agency Name</OLI><BRK/>
+<OLI LEVEL="2">Telephone Number</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Contractor Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a list of a minimum five FRP composite strengthening projects completed by the Contractor on masonry surfaces, 
+with a minimum of three of those jobs using the manufacturer's composite system.  Include the following information, 
+at a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The dates of work</OLI><BRK/>
+<OLI>Type, description and amount of work performed</OLI><BRK/>
+<OLI>Point of contact for an owner representative to include:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Name</OLI><BRK/>
+<OLI LEVEL="2">Address</OLI><BRK/>
+<OLI LEVEL="2">Company/Agency name</OLI><BRK/>
+<OLI LEVEL="2">Telephone Number</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Contractor's Field Representative Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a Field Representative who will be present on site during installation of the FRP system.  Submit the 
+name of the Contractor's Field Representative that will perform the actual work supervision and a list of a minimum 
+of five FRP composite strengthening projects supervised by that Field Representative, at least three of which 
+use the manufacturer's composite system.  Include the following information, at a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The dates of work</OLI><BRK/>
+<OLI>Type, description and amount of work performed</OLI><BRK/>
+<OLI>Point of contact for an owner representative to include:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Name</OLI><BRK/>
+<OLI LEVEL="2">Address</OLI><BRK/>
+<OLI LEVEL="2">Company/Agency name</OLI><BRK/>
+<OLI LEVEL="2">Telephone Number</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Installers</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Installer Training</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit certification for the FRP composite installers who have completed, as a minimum, a course provided by 
+the FRP manufacturer which includes hands-on application of FRP systems to masonry substrates in accordance with 
+the ICC Services Report.</TXT><BRK/>
+<BRK/>
+<TXT>Train workers in the safe handling and application, and the exposure limit, for each material that the worker 
+will use or otherwise be exposed to during the course of the project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Experience</TTL><BRK/>
+<BRK/>
+<TXT>Only assign qualified installers meeting these requirements and those having prior experience in the specified 
+application preparation to perform the work described herein.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Laboratory</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If rectangular FRP shapes are specified to be used, the laboratory should 
+have experience using test method ASTM D3039/D3039M.  If FRP bars are specified, 
+ASTM D3916 should be cited.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a testing laboratory experienced in testing FRP materials in accordance with the requirements set forth 
+in the ICC Evaluation Services Report.  Laboratory must have successfully completed testing on a minimum of [3][5] 
+prior projects.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>FRP Reinforcing Bars and Shapes</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  FRP reinforcing bars are susceptible to surface damage.  Puncturing their 
+surface can significantly reduce the strength capacity of the FRP reinforcements.  
+In the case of glass FRP rods, the surface damage can cause a loss of durability 
+due to infiltration of alkalis.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Comply with the following handling guidelines to minimize damage to the FRP bars and workers handling them:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Handle FRP reinforcing bars with work gloves to avoid personal injuries from either exposed fibers or 
+sharp edges.</OLI><BRK/>
+<BRK/>
+<OLI>Do not store the FRP bars on the ground.  Place pallets under the bars to keep them clean and to provide 
+easy handling.</OLI><BRK/>
+<BRK/>
+<OLI>Avoid high temperatures, ultraviolet rays, and chemical substances because they can damage FRP bars.</OLI><BRK/>
+<BRK/>
+<OLI>Occasionally, bars become contaminated with form releasing agents or other substances.  Substances that 
+decrease bond should be removed by wiping the bars with solvents before placing them in the masonry.</OLI><BRK/>
+<BRK/>
+<OLI>It may be necessary to use a spreader bar so that the FRP bars can be hoisted without excessive bending.</OLI><BRK/>
+<BRK/>
+<OLI>Conduct construction activities in such a way that potential damage to the FRP bars and shapes is minimized.Apply 
+touch-up epoxy coating to FRP bars which contain nicks or cuts which reduce cross sectional area by 5 
+percent or less.  FRP bars which contain nicks or cuts which reduce cross sectional area by more than 
+5 percent must not be used.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Structural [Pastes][Adhesives]</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Labeling</TTL><BRK/>
+<BRK/>
+<TXT>Deliver structural [pastes][adhesives] in original factory-sealed containers with the manufacturer's labels intact 
+and legible with verification of product nomenclature, manufacturer's name, product identification and batch 
+number, date of manufacture and shelf life or expiration date.  Do not use adhesive materials that have exceeded 
+the shelf life as indicated in the ICC Evaluation Services Report.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Storage</TTL><BRK/>
+<BRK/>
+<TXT>Store all structural [paste][adhesive] materials in a covered, well-ventilated area and protected from exposure 
+to any detrimental conditions in accordance with the manufacturer's requirements as stated in the ICC Evaluation 
+Services Report.  Store polymer resins and hardeners in a separate area from construction materials that can 
+absorb odors.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>PROJECT/SITE CONDITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Environmental Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Do not install the FRP composite if the ambient air temperature or substrate surface temperature is outside the 
+range recommended by the system manufacturer.  Submit manufacturer's requirements for ambient, surface, and component 
+temperatures at the time of mixing of the structural [paste][adhesive].</TXT><BRK/>
+<BRK/>
+<TXT>Do not install the FRP composite when surface moisture is present on the substrate or when rainfall or condensation 
+is anticipated in the work areas.</TXT><BRK/>
+<BRK/>
+<OLG><BRK/>
+<OLI>When the air or substrate temperature is outside the prescribed range, do not proceed with work unless 
+other measures approved by the Contracting Officer are employed.</OLI><BRK/>
+<BRK/>
+<OLI>Do not apply structural [pastes][adhesives] to cold or frozen surfaces.  When the surface temperature 
+of the masonry surface falls below a minimum level, as specified by the FRP system manufacturer, cease 
+work until both the air and masonry temperature rise above the specified minimum.  Do not use supplemental 
+sources of heat to raise the air or masonry surface temperature unless method is endorsed by the FRP 
+system manufacturer and approved by the Contracting Officer</OLI><BRK/>
+<BRK/>
+<OLI>When the surface temperature of the masonry [and][or] the air temperature rises above the maximum level, 
+as specified by the FRP system manufacturer, cease work until both the air temperature and masonry temperature 
+cool below the specified maximum.</OLI><BRK/>
+<BRK/>
+<OLI>Unless they have been formulated for such applications, do not apply structural [pastes][adhesives] to 
+damp or wet surfaces.</OLI><BRK/>
+<BRK/>
+<OLI>Should the potential for adverse temperatures occur during installation, stop the application of FRP 
+until temperatures return to within the range specified in the Manufacturer's Instructions.  Obtain written 
+approval of the FRP manufacturer and the Contracting Officer before using supplemental heating or cooling 
+sources.</OLI><BRK/>
+<BRK/>
+<OLI>Should the potential for direct contact by rain, dust, dirt, excessive sunlight, high humidity, or vandalism 
+occur during installation, provide temporary protection, such as tents [and][or] plastic screens, until 
+the construction [pastes][adhesives] have cured.  Cure the structural [paste][adhesive] before removal 
+of temporary protection or allowing the structure to be exposed to new loads.  In the event of suspected 
+damage to the FRP system during installation, notify the Contracting Officer as soon as possible.  Should 
+the damage be caused by the Contractor's negligence, perform repairs at no additional cost to the Government.</OLI></OLG><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Existing Conditions</TTL><BRK/>
+<BRK/>
+<TXT>As-built drawings of the structure[ are attached][ can be accessed at [_____]].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>Furnish manufacturer's standard warranty for FRP composite system installation, including the FRP composite system[ 
+design,] installation, bond to the substrate, and interlaminar bond, as well as mechanical property retention, 
+and bar-adhesive compatibility.  Provide a warranty period of not less than 5 years from the date of Government's 
+acceptance.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>System Definition</TTL><BRK/>
+<BRK/>
+<TXT>Provide an FRP systems that consists of procured composite rods and shapes, manufactured in the system supplier's 
+facility and shipped to the job site, and a structural [paste][adhesive] to bond the precured rods and shapes 
+into grooves cut in the masonry surface.  Ensure that materials supplied for the work of this section are from 
+a single system manufacturer.  Substitution of FRP rods or shapes, and substitution of structural [pastes][adhesives] 
+that differ from those which comprise the approved manufacturer's FRP system are not allowed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide the parameters of strength or force that must be provided by 
+the FRP system application.  The following variables must be considered in determining 
+the enhanced performance requirements:  the load on the wall, the size of the 
+wall, the wall aspect ratio, wall openings, etc.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the FRP composite system with[ in-plane][ out-of-plane][ seismic][ wind][ and][ blast] strengthening 
+for [clay brick][concrete] masonry walls by [[_____]percent][ the quantity indicated on the Drawings].  Provide 
+a system that transfers[ seismic][ wind][ and][ blast] loading, in concert with the existing masonry, to provide 
+adequate load transfer from the [roof][floor] system to the building foundation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FRP Composite System</SUB> Design Requirements</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Design Basis</TTL><BRK/>
+<BRK/>
+<TXT>Design the FRP composite system in accordance with <RID>ACI 440.2R</RID> and <RID>ACI 440.7R</RID> to provide[ seismic][ wind][ and][ 
+blast] strengthening for clay brick and concrete masonry walls.  Design walls with the FRP system to fail by 
+cracking through the masonry units and mortar prior to debonding or rupture of the FRP composite system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shop Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Submit complete FRP composite system shop drawings[ signed and sealed by the registered professional engineer 
+responsible for their preparation] for each installation of the composite system including details of the fiber 
+reinforcement type, dimensions, end details, proposed connections to the diaphragms and adjacent walls, and locations 
+to be applied as specified.  Include calculations prepared by or on behalf of the Contractor to determine the 
+layout of the FRP materials to be installed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Design Calculations</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit design calculations for the FRP composite system stamped by a registered professional engineer.  Submit 
+calculations in accordance with <RID>ICC ES AC125</RID>; Acceptance Criteria based on tension force and strain limits.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>MATERIALS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The values listed in the following tables should be those values and 
+assumptions that were used in developing the preliminary rehab/strengthening 
+design.  Those items in Table 1 below will be the minimum acceptable property 
+values for the FRP bars and shapes to be installed.  Those items in Table 2 
+will be the minimum acceptable properties for the structural paste/adhesive.<BRK/>
+<BRK/>
+For tests with two methods listed, the first refers to round shapes such as 
+FRP bars and the second pertains to rectangular cross-sectional shapes.<BRK/>
+<BRK/>
+The arbitrary selection of a fiber reinforcement and an adhesive material from 
+different manufacturers or systems can lead to failure of the installed FRP 
+system due to possible matrix-reinforcement incompatibility.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>FRP Composite System</TTL><BRK/>
+<BRK/>
+<SPT><TTL>System Materials</TTL><BRK/>
+<BRK/>
+<TXT>Provide an FRP system consisting of [glass][carbon][aramid][rods][rectangles][grids] with a resin matrix of [vinyl 
+ester][polyester][epoxy][urethane][specialty resin] binder and an [epoxy][urethane][_____] structural adhesive.  
+Formulate the structural [paste][adhesive] for use as an embedding material to bond masonry and FRP materials 
+and, once cured, protect the FRP shapes from the environment.  Provide a structural [paste][adhesive] that is 
+suitable for use in both non-load bearing and load bearing applications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Submittals</TTL><BRK/>
+<BRK/>
+<SPT><TTL>ICC Certification</TTL><BRK/>
+<BRK/>
+<TXT>Submit results of testing in accordance with the ICC Evaluation Services Reporton walls that are representative 
+of the actual configuration and loading conditions for this contract to demonstrate structural equivalency of 
+the proposed system to the properties specified herein for the proposed FRP Composite system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Manufacturer's Installation Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit manufacturer's printed installation instructions for the FRP Composite System, including the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Brand name</OLI><BRK/>
+<OLI>Catalog number</OLI><BRK/>
+<OLI>Names of manufacturer for each material to be used.  Include with instructions the estimated quantity 
+of each material to be used on the job.</OLI><BRK/>
+<OLI>Detailed mixing and application instructions per the ICC Evaluation Services Report to include but not 
+limited to:</OLI><BRK/>
+<OLI LEVEL="2">Mixing instructions</OLI><BRK/>
+<OLI LEVEL="2">Curing times between coats or layers</OLI><BRK/>
+<OLI LEVEL="2">Application procedures for surface coatings</OLI><BRK/>
+<OLI LEVEL="2">Cold weather installation to include the minimum application temperature recommended by the 
+FRP system manufacturer.</OLI><BRK/>
+<OLI LEVEL="2">Hot weather installation to include the maximum application temperature recommended by the 
+FRP system manufacturer.</OLI><BRK/>
+<OLI LEVEL="2">Inclement weather installation</OLI><BRK/>
+<OLI LEVEL="2">Application procedures of top coating material</OLI></OLG><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>FRP Rods and Shapes</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Material Properties</TTL><BRK/>
+<BRK/>
+<TXT>Provide FRP [rods][shapes] conforming to the material properties listed in Table 1.</TXT><BRK/>
+<TXT><TAB HEADERROWS="2">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="151.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="151.50"/>
+      <COL AUTOWIDTH="0" WIDTH="153.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="2" STYLEID="s51">
+<DTA TYPE="STRING">TABLE 1: Properties of Pre-formed FRP Rods and Shapes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">COMPOSITE PROPERTY</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">FRP TEST REQUIREMENT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">METHOD (shape)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Elongation: max.</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] percent</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D3916</RID> (round)<BRK/><RID>ASTM D3039/D3039M</RID> (rectangular)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Guaranteed Tensile Strength, min.,</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> kPa</MET><ENG> psi</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D3916</RID> (round)<BRK/><RID>ASTM D3039/D3039M</RID> (rectangular)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Tensile Modulus of Elasticity, min.</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> kPa</MET><ENG> psi</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D3916</RID> (round)<BRK/><RID>ASTM D3039/D3039M</RID> (rectangular)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Cross-sectional Area</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> square mm</MET><ENG> square inches</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D3916</RID> (round)<BRK/><RID>ASTM D3039/D3039M</RID> (rectangular)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Fiber Volume Fraction</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] percent</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D3171</RID> (all)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Rods and Shapes Submittals</TTL><BRK/>
+<BRK/>
+<OLG><BRK/>
+<OLI>Submit a sample FRP bar,<MET> 300 mm</MET><ENG> 12 inches</ENG> long.</OLI><BRK/>
+<OLI>Submit material property test reports indicating the following physical properties of the FRP bar or 
+shape.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Tensile strength, as determined in accordance with <RID>ASTM D3916</RID> for FRP rods or <RID>ASTM D3039/D3039M</RID>
+ for flat or rectangular shaped FRP reinforcement.</OLI><BRK/>
+<OLI LEVEL="2">Design elastic modulus by the strength and rupture strain values.  Determine ultimate tensile 
+strength and rupture strain values by subtracting three standard deviations from the average 
+values of 20 or more tensile tests.</OLI><BRK/>
+<BRK/>
+<OLI>Submit product data with documented evidence that the [rods][shapes] meet the requirements of Table 1.</OLI></OLG><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Structural [Paste][Adhesive] Material</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Material Properties</TTL><BRK/>
+<BRK/>
+<TXT>Provide structural [paste][adhesive] that conforms to the material properties listed in Table 2.</TXT><BRK/>
+<TXT><TAB HEADERROWS="2">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="6">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="203.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="138.75"/>
+      <COL AUTOWIDTH="0" WIDTH="114.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="2" STYLEID="s51">
+<DTA TYPE="STRING">TABLE 2 Minimum Properties of Structural Pastes/Adhesives/Polymer Adhesives</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">COMPOSITE PROPERTY</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">FRP TEST REQUIREMENT</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">METHOD</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Elongation:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] percent</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D882</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Ultimate Tensile Strength, min.,</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> kPa</MET><ENG> psi</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D638</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Modulus of Elasticity, min.</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> kPa</MET><ENG> psi</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D638</RID></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Bond Strength</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]<MET> kPa</MET><ENG> psi</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ASTM D4501</RID></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Structural [paste][adhesive] Material Submittals</TTL><BRK/>
+<BRK/>
+<OLG><BRK/>
+<OLI>Submit a sample plate of cured structural [paste][adhesive]<MET> 75 x 75 mm</MET><ENG> 3 x 3 inches</ENG>.</OLI><BRK/>
+<OLI>Submit product data with documented evidence that the structural [paste][adhesive] meets the requirements 
+of Table 2.</OLI></OLG><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Accessories</TTL><BRK/>
+<BRK/>
+<TXT>Provide all other materials as needed for the proper installation of the complete composite system as specified.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MIXES</TTL><BRK/>
+<BRK/>
+<TXT>Perform mixing of structural [paste][adhesive] materials in accordance with the FRP system manufacturer's recommended 
+procedure.  Ensure that adhesive components are at a proper temperature and mixed in the correct ratio until 
+there is a complete mixing of components and a uniform color.  Mix each batch of adhesive materials in quantities 
+sufficiently small to ensure that the mixed structural [paste][adhesive] can be used within its pot life.  Do 
+not use mixed structural [paste][adhesive] that exceeds its pot life, as defined by the system manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>Examine existing conditions to assess the quality of the masonry substrate, identify potential obstructions, 
+and verify dimensions/geometries shown on shop drawings.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure that other scheduled masonry repairs are complete and cured prior to starting the work of this Section.  
+Provide mortar surfaces, to which the FRP system is to be applied, that are free of loose and unsound materials 
+and other conditions that would inhibit bond, such as oil, efflorescence and moisture.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PREPARATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Protection</TTL><BRK/>
+<BRK/>
+<TXT>Coordinate the work to minimize exposure of building occupants, other personnel, and visitors to dust, mists, 
+and odors from preparation, FRP system application and clean-up operations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FRP Material Verification</TTL><BRK/>
+<BRK/>
+<TXT>Prior to starting the project and together with the Special Inspector, ensure that delivered FRP materials meet 
+the specified requirements.  </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surface Preparation</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Surface</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the bracketed option that accurately describes the masonry condition 
+prior to the start of the Work of this Section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[The mortar joints to receive FRP composite are relatively sound structurally.][There are known problems associated 
+with the condition of the original masonry and the masonry substrate that can compromise the integrity of the 
+FRP system.][Remove areas of loose or spalling mortar material and repoint in accordance with Section 
+<SRF>04 03 00</SRF> UNIT MASONRY CLEANING AND RESTORATION.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Subsurface</TTL><BRK/>
+<BRK/>
+<TXT>Do not apply FRP systems to masonry substrates containing corroded reinforcing steel.  Note evidence of localized 
+cracking [and][or] spalling at grouted cells and rust stains and report them to the Contracting Officer.  Do 
+not proceed with Work until the cause[s] of the corrosion is[are] addressed and the corrosion-related deterioration 
+repaired.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Obstructions</TTL><BRK/>
+<BRK/>
+<TXT>Prior to installing the FRP system, modify or remove obstructions and embedded objects that affect performance 
+of the FRP system.  Obtain Contracting Officer's approval before performing such modifications and removals.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>FRP SYSTEM INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Do not make modifications to the manufacturer's installation procedures or to the design and shop drawings without 
+the written approval of the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Embedment Slot Preparation</TTL><BRK/>
+<BRK/>
+<TXT>Lay out embedment slot locations on the wall surface at the specified locations.  Prepare containment to catch 
+dust and masonry chips generated during the embedment slot [cutting][grinding].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Slot Cutting</TTL><BRK/>
+<BRK/>
+<TXT>Using a grinder or saw with a blade manufactured to cut substrate, cut slots in the masonry to the width and 
+depth recommended by the FRP manufacturer.  Take special care to avoid local fracture of the masonry. Any damage 
+to the existing masonry as a result of slot cutting must be repaired at the Contractor's expense prior to application 
+of structural repairs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Slot Finishing</TTL><BRK/>
+<BRK/>
+<TXT>Provide masonry slot surfaces to receive FRP composite that are free from fins, and protrusions that may prevent 
+the FRP [bars][shapes] from being embedded to the specified depth in the wall.  Dry the contact surfaces as recommended 
+by the FRP system manufacturer.  Provide contact surfaces that have no loose particles, paint, oil, dirt, dust, 
+efflorescence, mildew or free moisture on them at the time of application.  Do not use solvent or chemical cleaning 
+methods to clean surfaces.  Clean contact surfaces by hand using wire brushes or by using compressed air.[  Using 
+masking tape or other suitable adhesive tape, fix a strip at each edge of the slots.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cutting FRP Bars and Shapes</TTL><BRK/>
+<BRK/>
+<TXT>Perform cutting of the FRP bars with a high-speed grinding cutter or a fine blade saw.  Do not shear FRP bars.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Application of Structural [Paste][Adhesive]</TTL><BRK/>
+<BRK/>
+<TXT>Mix the structural [paste][adhesive] according to the specifications prescribed by the manufacturer.  Place a 
+layer of structural [paste][adhesive] uniformly in the slots cut in the masonry substrate.</TXT><BRK/>
+<BRK/>
+<TXT>Ventilate work areas during structural [paste][adhesive] application per ICC Evaluation Services Report requirements 
+or as required by a more stringent applicable local regulation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FRP Reinforcing [Bar][Shape] Installation</TTL><BRK/>
+<BRK/>
+<TXT>Press the FRP reinforcing [bar][shape] into the slot so that the surface of the [bar][shape] is fully embedded 
+in the [paste][adhesive] and does not protrude to the surface of the wall.  Completely fill the slot with the 
+structural [paste][adhesive] to encapsulate the bar and strike the surface even with the surface of the masonry.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Curing</TTL><BRK/>
+<BRK/>
+<TXT>Maintain structural [paste][adhesive] curing temperatures within the required temperature range designated by 
+the manufacturer for the formulation used for the manufacturer specified time.  Protect the composite system 
+from contact by moisture for a minimum period of 24 hours.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Finish</TTL><BRK/>
+<BRK/>
+<TXT>Once cure is complete, remove any masking tape applied around the edges of the slots taking care not to damage 
+the structural [paste][adhesive].[  [Stain][Paint] the structural [paste][adhesive] according to the Shop Drawings 
+in accordance with the manufacturer's instructions.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Movement Joints</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Control Joints</TTL><BRK/>
+<BRK/>
+<TXT>Maintain all control joints.  Do not bridge existing control joints with the FRP composite.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Expansion Joints</TTL><BRK/>
+<BRK/>
+<TXT>Maintain all expansion joints.  Do not bridge existing expansion joints with the FRP composite.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Maintain quality control (QC) programs and criteria provided in the pre-construction submittals.  Comply with 
+the approved quality control plan.</TXT><BRK/>
+<BRK/>
+<TXT>Submit inspection and progress reports daily to the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inspection</TTL><BRK/>
+<BRK/>
+<TXT>Provide a Special Inspector, who is trained and certified by the FRP system manufacturer and approved by the 
+Contracting Officer, to perform inspections in accordance with Section <SRF>01 45 35</SRF> SPECIAL INSPECTIONS, and <RID>ICC ES AC178</RID>
+.  Provide a Special Inspector who is not an employee of the Contractor nor financially associated with the Contractor 
+beyond the inspection contract.  Perform all tests indicated within the Special Inspections section of the ICC 
+Evaluation Services report.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Field Testing</SUB> During Construction</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Mixed Structural [Paste][Adhesive] Hardness and Curing</TTL><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sample Preparation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The required resin samples are a minimum of<MET>  6 mm</MET><ENG> 0.25-inch</ENG> in thickness, 
+whereas FRP placed on a wall is much thinner, typically<MET> 3 mm</MET><ENG> 1/8-inch</ENG> or less.  
+During initial stages of curing, thicker cross sections tend to be softer than 
+thin ones.  There is, therefore a variation in the required hardness to account 
+for this phenomenon.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>During installation, prepare two samples of mixed structural [paste][adhesive] per shift from two, separate,[ 
+nonconsecutive batches][ tube sets] of structural [paste][adhesive].  Provide structural [paste][adhesive] samples 
+that are a minimum of<MET> 6 mm</MET><ENG> 1/4-inch</ENG> thick and<MET> 50 mm</MET><ENG> 2-inches</ENG> in diameter for testing, by the Special Inspecor, 
+to evaluate curing progress.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Curing and Hardness Evaluation</TTL><BRK/>
+<BRK/>
+<TXT>Evaluate relative curing progress of the resin on the job site by measuring the hardness of the resin sample 
+in accordance with provisions of the manufacturer's <SUB>ICC Evaluation Services Report</SUB>.  Take measurements at a minimum 
+of three different points distributed over the surface of the structural [paste][adhesive] at least<MET> 6 mm</MET><ENG> 0.25 
+inch</ENG> apart from each other.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Testing Report</TTL><BRK/>
+<BRK/>
+<TXT>Report the mean hardness value obtained, structural [paste][adhesive] identification, manufacturer, and batch 
+number, structural [paste][adhesive] mixing date and time, test date and time minimum air temperature during 
+the curing evaluation time, and the type and serial number of the durometer used.  Report whether the shore hardness 
+measurements exceed the minimum hardness values submitted by the materials manufacturer, based on the lowest 
+air temperature during the curing period evaluated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Resolution of Noncompliances</TTL><BRK/>
+<BRK/>
+<TXT>In the event that curing does not meet the minimum values submitted by the materials manufacturer, take remedial 
+measures in accordance with paragraph REMEDIAL MEASURES.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>In-Place Structural [paste][adhesive] Hardness</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Testing Frequency</TTL><BRK/>
+<BRK/>
+<TXT>During installation, perform a minimum of one test on each<MET> 152 m</MET><ENG> 500 linear feet</ENG> or portion thereof of FRP bar 
+installed at 3 hours after installation and at 24 hours after installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Curing Evaluation</TTL><BRK/>
+<BRK/>
+<TXT>Evaluate relative curing progress of the in-place FRP resin using the Shore hardness test described in <RID>ASTM D2240</RID>
+.  The shore hardness measurements must exceed the minimum hardness values submitted by the materials manufacturer 
+based on the minimum substrate temperature observed during the evaluation period.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Testing Report</TTL><BRK/>
+<BRK/>
+<TXT>Report both the individual and mean hardness values obtained, the locations where each hardness test was performed, 
+the FRP application date, test date and time, air and substrate temperature when the FRP was applied, air and 
+substrate temperature when testing was performed, and the type and serial number of durometer used.  Report whether 
+the shore hardness measurements exceed the minimum hardness values submitted by the materials manufacturer, based 
+on the lowest air temperature during the curing period evaluated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Resolution of Noncompliances</TTL><BRK/>
+<BRK/>
+<TXT>In the event that curing does not meet the minimum values submitted by the materials manufacturer, take remedial 
+measures in accordance with paragraph REMEDIAL MEASURES.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Remedial Measures</TTL><BRK/>
+<BRK/>
+<TXT>For strengthened sections where testing indicates that the installed composite system has material properties 
+below the minimum specified values, remove the installed FRP composite and replace it with FRP composite meeting 
+or exceeding the minimum specified values.  Remove unacceptable FRP composite, repair damaged masonry as a result 
+of the FRP removal, and install replacement FRP composite at no cost to the Government.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>Record Maintenance</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Retain samples of mixed structural [paste][adhesive] and maintain a record of the placement of each batch.  Submit 
+the record at the end of the project.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ADJUSTING AND CLEANING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Repairs</TTL><BRK/>
+<BRK/>
+<TXT>Repair all defects according to the FRP maintenance and repair procedure provided by the system manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Work Area Clean Up</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion of the work, remove staging, scaffolding, and containers from the site or destroy them in an 
+approved manner.  Remove FRP composite, structural [paste][adhesive], and other deposits on adjacent surfaces. 
+Leave the project site cleaned to equal or better condition to that prior to the start of the job.  Place cloths, 
+cotton waste and other debris, which might constitute a fire hazard, in closed metal containers and remove at 
+the end of each day.  Store, transport, and dispose of adhesives properly as indicated on the SDS sheets.  Contain 
+masonry dust and chips and dispose of properly, as required by local authorities.  Contain material to be disposed 
+of at the site until proper disposition is achieved.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>MAINTENANCE</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit procedures to properly maintain the installed FRP system and written manufacturer recommended repair procedures 
+for damage to the in-place FRP system.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

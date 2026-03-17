@@ -1,0 +1,1795 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-33 08 55 (May 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-33 08 55 (August 2019)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 33 08 55</SCN><BRK/>
+<BRK/>
+<STL>FUEL DISTRIBUTION SYSTEM START-UP (NON-HYDRANT)</STL><BRK/>
+<DTE>05/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>the start-up (flushing, cleaning, equipment tests), 
+and performance testing of new and existing fuel systems that are dead head type</SCP>.  That is, systems where fuel 
+is issued out of a tank, through a pump, and then into a dead-end piping system with an outlet such as a fueling 
+pier, a truck fillstand or a transfer pipeline.  The following types of systems are covered by this specification:The 
+following types of systems are covered by this specification:</NPR><BRK/>
+<BRK/>
+<NPR>a.  Tank truck, rail (tank) car, pipeline, and marine off-loading and loading systems.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Fuel transfer piping and pumphouses.</NPR><BRK/>
+<BRK/>
+<NPR>c.  Installation pipelines, and interterminal pipelines.</NPR><BRK/>
+<BRK/>
+<NPR>d.  Military Service Station (MSS) facilities handling gasoline, diesel, and/or jet fuel that refuel (that is, 
+provide motive fuel for) commercial type government and military type tactical vehicles; and that load fuel into 
+the storage tank of tactical refueler tank trucks.</NPR><BRK/>
+<BRK/>
+<NPR>e.  Any "dead end" system.  This system has only a supply line.  There is no return line to return unused fuel 
+to the storage system.</NPR><BRK/>
+<BRK/>
+<NPR>f.  Any system that uses a "bypass" pressure control device (a relief valve or a control valve mounted directly 
+downstream of the pumps) to relieve pressure from the downstream side of the pumps to the suction side of the 
+pumps.</NPR><BRK/>
+<BRK/>
+<NPR>The following types of systems are not covered by this specification:</NPR><BRK/>
+<BRK/>
+<NPR>a.  Private vehicle fueling stations such as military exchange service stations.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Looped aircraft direct fueling systems  such as DoD Type III/IV/V hydrant systems, Cut and Cover Tank hydrant 
+systems.</NPR><BRK/>
+<BRK/>
+<NPR>c.  Looped edge of apron and rotary wing aircraft direct refueling systems that are looped, plumbed, and controlled 
+like a looped hydrant system.</NPR><BRK/>
+<BRK/>
+<NPR>d.  Looped piping systems for loading trucks  that are looped, plumbed and controlled like a hydrant system.  
+These are often labeled as "super truck fill systems."</NPR><BRK/>
+<BRK/>
+<NPR>e.  A "looped" piping system is a piping system with a permanent supply line and a return line.  This system issues 
+fuel out the supply line and returns and "unused" fuel, (not issued to a truck or aircraft(), back through the 
+return line.</NPR><BRK/>
+<BRK/>
+<NPR>f.  For "looped" systems use Section <SRF>33 08 53</SRF> AVIATION FUEL DISTRIBUTION SYSTEM START-UP.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must edit this specification section as required to perform a successful start-up and acceptance 
+of the new, repaired, upgraded, or modified fuel system.</NPR><BRK/>
+<BRK/>
+<NPR>The startup process must be designed such that the cleanliness of the existing system can be verified prior to 
+flushing, or flushing and cleaning the new system or system extension.</NPR><BRK/>
+<BRK/>
+<NPR>The startup process must be designed to the extent possible, to avoid contaminating or disrupting the existing 
+fuel system when the new system is filled, flushed, cleaned, and tested with fuel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>SUMMARY/APPLICABILITY</TTL><BRK/>
+<BRK/>
+<TXT>This specification defines the requirements and procedures for startup and performance testing of all equipment, components, control systems, devices, 
+and associated appurtenances which are used for the receipt, storage, transfer and issue of petroleum fuel products for non-hydrant fuel facility 
+systems.  It covers requirements for safety, Government scheduling and coordination, device testing, existing and new system cleanliness, system[ 
+flushing][ flushing and cleaning], demonstration of indicated and specified system performance, and final acceptance and reporting.  The types 
+of fuel systems covered include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>tank truck, rail car, pipeline and marine off-loading and loading systems</OLI><BRK/>
+<BRK/>
+<OLI>fuel transfer pumphouses and systems</OLI><BRK/>
+<BRK/>
+<OLI>installation pipelines and interterminal pipelines</OLI><BRK/>
+<BRK/>
+<OLI>military service station facilities handling gasoline, diesel, and jet fuel that:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">refuel (provide motive fuel for) commercial type government vehicles.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">refuel (provide motive fuel for) military tactical vehicles.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">load fuel into the storage tanks of tactical refueler tank trucks.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>It does not cover private vehicle fueling stations such as exchange service stations, nor aircraft direct refueling hydrant systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN PETROLEUM INSTITUTE (API)</ORG><BRK/><BRK/><RID>API 570</RID><RTL>(2024; Addendum 1 2025) Piping Inspection Code: In-Service Inspection, Rating, Repair, and Alteration of Piping Systems</RTL><BRK/><BRK/><RID>API RP 1595</RID><RTL>(2012; R 2019; 2nd Ed) Design, Construction, Operation, Maintenance, and Inspection of Aviation Pre-Airfield Storage Terminals</RTL><BRK/><BRK/></REF><REF><ORG>U.S. ARMY CORPS OF ENGINEERS (USACE)</ORG><BRK/><BRK/><RID>ER 1110-1-8167</RID><RTL>(2016) Engineering and Design -- Petroleum, Oil, and Lubricants Mandatory Center Of Expertise</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-STD-3004-1</RID><RTL>(2018) Quality Assurance for Bulk Fuels, Lubricants and Related Products</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>ADMINISTRATIVE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Plans</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must submit detailed written plans[ (prepared by the System Supplier)] for implementation of the System Start-Up Plan,[ the Existing 
+System Cleanliness Confirmation Plan,] the <SUB>Fuel Provisioning Plan</SUB>, and the <SUB>Performance Testing Plan</SUB>.  The plans must specify a detailed plan incorporating 
+in a sequential manner all work specified in PART 3 EXECUTION of this specification section.  Plan elements must include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Personnel.  List of Contractor's personnel by trade, list of key personnel, list of safety equipment, list of miscellaneous equipment such 
+as two-way radios, and personnel transportation vehicles.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must identify what type of fluid is used for each section of the system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Fluid Used for Hydrotesting,[ and Cleaning Pigging,][ and Verification Pigging,][ and Flushing][ Flushing, and Cleaning].  Identify what 
+fluid will be used for each operation in each system section.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  During the design process the Designer must investigate who is providing fuel to the project and identify 
+that entity in this paragraph.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  The periods shown in this specification are nominal.  The Designer must also investigate how long it will 
+take for the fuel to arrive once the Plans have been approved by the Government and modify the periods listed 
+in this specification accordingly.  For CONUS locations, minimum period is 60 days.  For OCONUS locations, the 
+minimum period is normally 90 days but can sometimes take 120 days or even longer.  This may, but does not necessarily, 
+include approval time.  Fuel delivery must be coordinated with the Installation and Service Headquarters.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Fuel.  See the Fuel Provisioning Plan.</OLI><BRK/>
+<BRK/>
+[<OLI>Water.  Specification and quantities of water needed for all system start-up activities and water delivery schedules.  Water must meet 
+the characteristics requirements specified.  In cases where it is not specified, water must be potable and treated and must meet all the 
+requirements of water used for hydrostatic testing in <RID>API 570</RID>.  Plan must include requirements and schedules for Government-provided materials 
+and equipment.</OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Designer must identify where the piping system contents are going to be pushed into for hydrotesting, pigging,[ 
+and flushing][ flushing, and cleaning].  This may be a simple decision for permanently looped systems or for systems 
+where temporary loops can be provided.  It is more complex for "dead end" systems where the Government or Contractor 
+must provide temporary or mobile tankage.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Storage-Into.  Identify where the contents of the piping will be pushed into including the capacity required, how the storage vessel will 
+be prepared for receiving the piping content, how it will be emptied and how it will be cleaned after the contents are removed.</OLI><BRK/>
+<BRK/>
+<OLI>Storage-From.  Identify where the fluid that will be drained or pushed into the piping will come from including the capacity required, 
+the number, size and type of the storage vessel, how the storage vessel is filled, how it will be emptied, and how it will be cleaned  
+after the contents are removed.</OLI><BRK/>
+<BRK/>
+<OLI>Piping.  Notwithstanding the requirements described elsewhere, every pipe section and individual component in the system covered by this 
+specification section must be filled, vented, hydrostatically tested, flushed, cleaned, and tested for fuel quality.  It must also be able 
+to be isolated and drained if found that it needs repair.  The Plans must detail how this is to be done.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment Tests.  Detailed procedures and schedules for each system component to perform all system tests under each operating scenario 
+in accordance with paragraph EQUIPMENT TESTS.</OLI><BRK/>
+<BRK/>
+<OLI>Performance Testing.  Detailed procedures and schedules for each system component to perform all system tests under each operating scenario 
+in accordance with paragraph PERFORMANCE TESTING.</OLI><BRK/>
+<BRK/>
+[<OLI>Pigging Plans.  See Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+][<OLI>Hydrotesting Plans.  See the Work Plan in Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+]<OLI>Schedule.  Schedules must be generated with listing dates and durations of all system start-up activities as well as regular coordination 
+and safety meetings and dates of key events for Government participation.</OLI><BRK/>
+<BRK/>
+<OLI>Contingency plans.  Information on spill and fire contingencies, along with the required Government Fire and Safety Office involvement 
+and approvals.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer should identify all base-specific phasing and operational issues for incorporation in the Contract 
+documents.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Coordination with Installation.  Description of how Contractor[ and System Supplier] must implement system start-up in coordination with 
+ongoing operations at the Installation.  Plan must incorporate all phasing and work restriction requirements of the Contract documents.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Copies of API Publication </TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Ensure that copies of API publications which are provided to the Contracting Officer are distributed to 
+the construction execution team and the system operator.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide four <SUB>copies of <RID>API RP 1595</RID></SUB> to the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Existing System Cleanliness Confirmation Plan</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide an Existing System Cleanliness Confirmation Plan when connecting into an existing system to confirm 
+the fuel coming into the new system is clean.</NPR><BRK/>
+<BRK/>
+<NPR>Provide a method of checking the fuel quality at the entrance point into a new system and the exit point out of 
+a new system to identify where the contamination is coming from during start-up.  If there are no fuel sample 
+points at these points, a method acceptable to the Contracting Officer must be provided.  The use of piping connections 
+such as vents, drains, reliefs, and gauges can sometimes be modified and used; existing flanged spool pieces that 
+can be removed and new ones with fuel sample points provided is another method.  Avoid to the fullest extent possible 
+the introduction of permanent small piping connections in pipe that is to remain for temporary fuel sample points.</NPR><BRK/>
+<BRK/>
+<NPR>While the Designer does not prepare the plan, the Designer must design the project with at least one method for 
+the Contractor to check the existing system cleanliness to serve as a Basis of Bid for the Contractor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit a detailed written plan prepared by the[ Contractor][ System Supplier] for the Contractor to verify and confirm the cleanliness of the existing 
+system before connecting it to the new system or extension.  The cleanliness confirmation test of the existing system (pre-cleanliness test) must 
+be per <RID>MIL-STD-3004-1</RID>.  Submit the plan[ 60 (CONUS)][ 90 (OCONUS)] [_____] days prior to making the connection to the existing system.  The Contractor[ 
+and System Supplier] are responsible for implementing the Existing System Cleanliness Confirmation Plan in coordination with ongoing base operations.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Fuel Testing Laboratory Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Contractor must submit the qualifications of the DoD Fuel Testing Laboratory which will be used to test the fuel samples.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>System Start-up Plan</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Insert number of days of notice after consulting with the Contracting Officer.</NPR><BRK/>
+<BRK/>
+<NPR>The periods shown below are nominal and the Designer must coordinate through the Contracting Officer with facility 
+personnel, required Government witnesses, and other stakeholders to determine the actual period required.</NPR><BRK/>
+<BRK/>
+<NPR>See paragraph FUEL for discussion on how long it may take for fuel to be available for Start-Up before setting 
+period below.  The periods below are probably only valid when the project does not require that additional fuel 
+be brought in for start-up and performance testing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit a detailed written plan prepared by the[ Contractor][ and System Supplier] for implementation of System Start-Up.  Submit the plan[ 60 (CONUS)][ 
+90 (OCONUS)] [_____] days prior to System Start-Up.  The Contractor[ and System Supplier] are responsible for implementing System Start-Up in coordination 
+with ongoing operations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Testing Plan</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Develop Performance Testing Plan as a function of the system layout. An example plan is provided.  See 
+Attachment 2 - Performance Testing.</NPR><BRK/>
+<BRK/>
+<NPR>The periods shown below are nominal and the Designer must coordinate through the Contracting Officer with facility 
+personnel, required Government witnesses, and other stakeholders to determine the actual period required.</NPR><BRK/>
+<BRK/>
+<NPR>See paragraph FUEL for discussion on how long it may take for fuel to be available for Start-Up before setting 
+period below.  The periods below are probably only valid when the project does not require that additional fuel 
+be brought in for start-up and performance testing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit a detailed written plan prepared by the[ Contractor][ Single System Supplier] for implementation of Performance Testing.  Submit the plan[ 
+60 (CONUS)][ 90 (OCONUS)] [_____] days prior to System Start-Up.  The Contractor[ and the System Supplier][ is][ are] responsible for implementing 
+the Performance Testing Plan in coordination with ongoing operations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fuel Provisioning Plan</TTL><BRK/>
+<BRK/>
+<TXT>Submit a detailed written Fuel Provisioning Plan prepared by the Contractor.  The Fuel Provisioning Plan must include a timeline for the required 
+receipt date(s), grade of fuel, and quantity of fuel on each receipt date required to execute the Start-up and the Performance Testing plans.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Certification (Ready for Start-Up and Performance Testing)</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The periods shown below are nominal and may be much longer for remote and/or complex projects.  The Designer 
+must coordinate through the Contracting Officer with facility personnel, required Government witnesses, and other 
+stakeholders to determine the actual period required.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>As a prerequisite to fuel system start-up, the Contractor must submit a certificate that certifies all work provided on the fuel system, except 
+for touch-up field painting, has been inspected and approved by the specified approving authorities.  Further, the Contractor must certify on this 
+certificate that all specified checks and inspections have been successfully completed prior to start-up.  Submit the plan[ 30 (CONUS)][ 45 (OCONUS)] 
+[_____] calendar days prior to commencement of fuel system start-up.  The Contractor must submit the Certificate of Completion to the Contracting 
+Officer at least [7][_____] calendar days prior to commencement of system start-up and performance testing.  The Contracting Officer must then 
+be responsible for scheduling the Government representatives[ and appropriate military command authority][ and designers] for participation in 
+the inspection, performance testing, and final approval activities.  Any contractual deficiencies observed must be corrected by the Contractor 
+without cost to the Government.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select water options in this specification section for flushing pier piping only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Copies of <RID>API RP 1595</RID></SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Existing System Cleanliness Confirmation Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>System Start-Up Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Performance Testing Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fuel Provisioning Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Final Reports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Water for Flushing Pier Piping</SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Cathodic Protection Reports</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Equipment Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Piping Flushing Checklist</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Piping Cleaning Checklist</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Fuel Testing Laboratory Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Certification (Ready for Start-Up and Performance Testing)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Contractor Start-Up Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Certificate of Calibration</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Disposal Of Waste Materials</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Certification of Entire System</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CLOSEOUT SUBMITTALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Final Reports</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Contractor must prepare a final report that documents the execution of the approved start-up and performance testing plan.  All items of work specified 
+in the Start-up and Performance Testing plans must be carried out and reported in this report unless otherwise approved by the Contracting Officer.  
+Include as a part of this report:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Verification letters of approved fuel storage tank hydrostatic tests and the approved piping hydrostatic tests, as generated under other 
+specification sections.</OLI><BRK/>
+<BRK/>
+<OLI>Final settings of the valves and switches.</OLI><BRK/>
+<BRK/>
+<OLI>A copy of the flow and pressure output graphs and excel data and charts on CDR media with an explanation of what the graph indicates and 
+what the system is doing.</OLI><BRK/>
+<BRK/>
+<OLI>A schematic flow diagram drawing of the resultant system showing major valves with the "normal" position of each manual valve noted, equipment, 
+and the type, location, and setpoints of each safety relief valve and thermal relief valve.</OLI><BRK/>
+<BRK/>
+<OLI>A certified pipeline inventory - a detailed list with sizes, lengths, quantity, and volumes must be provided for the systems in this project.  
+Such systems include, but are not limited to: marine receipt, pipeline receipt, truck off-loading receipt, pumphouse, pump pad, truck loading, 
+marine loading, transfer pipeline, product recovery, and other miscellaneous piping systems.  Fuel system volume must be calculated using 
+as constructed pipe lengths, internal diameters, fittings, and components.  Totals must be provided for all items containing fuel with 
+the exception of tanks which is covered by other specifications.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+[<SPT><TTL><SUB>Contractor Start-Up Qualifications</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If there is a System Supplier requirement, that entity will be responsible for the start-up of the system.  
+In the case of systems where the System Supplier requirement is not included, include the bracketed text below 
+to designate that the Contractor is responsible for start-up.</NPR><BRK/>
+<BRK/>
+<NPR>The System Supplier requirements and qualifications are defined in Specification <SRF>33 57 55</SRF> FUEL SYSTEMS COMPONENTS 
+(NON-HYDRANT).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit the following data for approval:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Certification stating that the Contractor has provided start-up services (including start-up, existing system cleanliness confirmation, 
+and performance testing experience) for five similar systems in the last 5 years.</OLI><BRK/>
+<BRK/>
+<OLI>Project names, locations, system description, and items provided at these installations.  Include user point-of-contact and current telephone 
+numbers.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Water for Flushing Pier Piping</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit results of water testing and amount of water required.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Certification of Entire System</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The periods shown below are nominal and may be much longer for remote and/or complex projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to the acceptance of the newly constructed system by the Government, all installed mechanical and electrical system components must be inspected 
+and approved by the Contracting Officer.  Provide the Contracting Officer [45][60][_____] days notice in order to schedule the Installation[, DLA] 
+and Service Headquarters [and][or] their designated appointee for participation in the inspection, Performance Testing, and approval.  Any deficiencies 
+observed must be corrected by the Contractor without cost to the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Headquarters Definition</TTL><BRK/>
+<BRK/>
+<TXT>SME is defined as Service Headquarters Subject Matter Experts: Air Force - The Air Force Fuels Facilities Subject Matter Expert (AFCEC/COS); Army 
+- Headquarters, U.S. Army Corps of Engineers; POL-MCX Facilities Proponent (CECW-EC) through the Army Petroleum Center (APC); Navy/Marine Corps 
+- NAVFAC POL Facility Subject Matter Expert (NAVFAC EXWC, SH25).  <RID>ER 1110-1-8167</RID> Engineering and Design Petroleum, Oil, and Lubricants Mandatory 
+Center of Expertise must be followed.</TXT><BRK/>
+<BRK/>
+<TXT>The Service Control Point (SCP) is defined as follows:  Army - Army Petroleum Center; Air Force - Air Force Petroleum Office; Navy - Navy Petroleum 
+Office; Marine Corps - MCICOM G4.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>SYSTEM SUPPLIER INVOLVEMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In most projects, including those requiring control valves, motorized or alarmed isolation valves, wired 
+sensors and controllers, pumps, control panels and other equipment and system components a System Supplier will 
+be used to Start-Up and Performance Test a system.  Include the bracketed text to require the use of a System 
+Supplier for system components/controls supply, coordination and installation verification.</NPR><BRK/>
+<BRK/>
+<NPR>In the simplest of projects such as one with only simple piping modifications, the addition of thermal relief 
+valves, the replacement of assorted manual valves, etc, the Contractor will cover that role.  In that case, require 
+the Contractor to demonstrate his qualifications in a Submittal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The System Supplier is defined in Specification <SRF>33 57 55</SRF> FUEL SYSTEMS COMPONENTS (NON-HYDRANT).  The Contractor and the System Supplier must work 
+together to prepare the Start-Up Plan,[ the Existing System Cleanliness Confirmation Plan,] Equipment Testing Plan, Performance Testing Plan, and 
+the Final Reports.  They must both be present during all activities described in this section.  The System Supplier must be responsible to the 
+Contractor for scheduling all Contractor, sub-Contractor, and manufacturer's service personnel during activities described in this specification 
+section.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>DISPOSAL OF WASTE MATERIALS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must be responsible for properly disposing of any sludge, debris, filtration elements,[ waste water, contact water,] and waste fuel 
+resulting from piping and tank[ flushing][ flushing and cleaning] activities as specified in Section [_____].[  Comply with all applicable Installation, 
+local (city and county), State, and Federal Regulations for hazardous waste disposal.]</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>GOVERNMENT-FURNISHED MATERIAL AND EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>The Government will furnish the following materials, equipment and services during the performance of the work under this section.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Fuel</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  During the design process the Designer must determine if the fuel is DLA or Service funded.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  The Designer must also investigate how long it will take for the fuel to arrive once the Plan has been 
+approved by the Government and modify the periods listed below accordingly.  For CONUS locations, minimum period 
+is 60 days.  For OCONUS locations, the minimum period is normally 90 days but can sometimes take 120 days or even 
+longer.  This may, but does not necessarily, include approval time.  Fuel delivery must be coordinated with the 
+Installation and Service Headquarters.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  During the design process the Designer must investigate how much fuel can reasonably be expected to be 
+"lost" during construction.  Experience has shown that 200 gallons is a reasonable maximum amount for a new system 
+(project that does not tie into an existing system).  For projects tying into existing systems, and for very large 
+new systems, the number may be larger.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>[Sub Title]</TTL><BRK/>
+<BRK/>
+<TXT>Some fuel loss should be expected.  Fuel that is lost during[ flushing][ flushing and cleaning], equipment testing, and performance testing is 
+viewed as a Start-up and Performance Testing expense and should be budgeted for in Contractor estimates.  As Basis of Bid, the Contractor must 
+allow for [200][_____] gallons of fuel losses in the bid.</TXT><BRK/>
+<BRK/>
+<TXT>The Contractor must establish a Department of Defense Activity Address Code and must reimburse the US Government for any US Government fuel lost 
+resulting from poor workmanship or contamination.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lead Time</TTL><BRK/>
+<BRK/>
+<TXT>The Government will provide fuel given that the requirements are submitted with sufficient lead time to allow the US Government to secure the grade 
+and volume required and make the necessary transportation requirements.  The Contractor must provide a copy of the Start-up, Fuel Provisioning, 
+and Performance Testing plans a minimum of [60][90][_____] days in advance of System Start-up.[  When Defense Working Capital Fund (DLA Owned) 
+fuel is used, provide a copy of the Start-up, Fuel Provisioning, and Performance Testing plans to DLA Energy at the same time.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Flushing, Cleaning, Equipment Tests and Performance Testing</TTL><BRK/>
+<BRK/>
+<TXT>The[ flushing,][ flushing and cleaning] and testing phases will be identified separately in the start-up and Performance Testing  plans.  Fuel 
+used for[ flushing][ flushing and cleaning], and testing will become contaminated, the fuel must be isolated and is considered off-specification 
+until the quality can be verified.  Fuel volumes required for[ flushing][ flushing and cleaning] and testing should be minimized to limit costs, 
+so estimates should be made accordingly. The Contractor will be responsible for disposing of any waste product.</TXT><BRK/>
+<BRK/>
+<TXT>Upon satisfactory completion of the[ flushing][ flushing and cleaning] operations, the Government will supply the additional quantities of fuel 
+required to complete the other work under this section.  This larger volume of fuel will not be delivered to the system until the Contractor has 
+satisfactorily completed all work and, in particular,[ the cleaning and coating of the interior surfaces of the storage tanks and] the removal 
+of preservatives and foreign matter from those portions coming in contact with the fuel valves, pumps, filter-separators and other such system 
+components.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Refueler Tank Trucks</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  During the design process the Designer must investigate who is providing the refueler tank trucks for this 
+project.  If they are to be provided by the Contractor, add requirement under Contractor-furnished Equipment and 
+delete this paragraph.</NPR><BRK/>
+<BRK/>
+<NPR>If the refueler tank trucks are to be provided by the Fuel Facility Operator and they are not Government-owned 
+vehicles, the Fuel Facility Operator's Contract will need modification to provide the equipment and the service 
+if this is not already in the Contract.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Government will furnish and operate the refueler tank trucks for the testing of truck fill stands.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Vacuum Trucks</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  During the design process the Designer must investigate who is providing the vacuum trucks for this project.  
+If they are to be provided by the Contractor, add requirement under Contractor-furnished Equipment and delete 
+this paragraph.</NPR><BRK/>
+<BRK/>
+<NPR>If they are to be provided by the Fuel Farm Operator and they are not Government-owned vehicles, the Fuel farm 
+Operator's Contract will need modification to provide the equipment and the service if this is not already in 
+the Contract.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Government will furnish and operate the vacuum trucks required for removing water and fuel from pits, drains, and other systems.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Fuel Bowser</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A fuel bowser is a small towed tank often used for larger projects to vent fuel vapor laden air into.  
+During the design process the Designer must investigate if a fuel bowser is needed for this project and who is 
+providing the fuel bowser for this project.  If they are to be provided by the Contractor, add requirement under 
+Contractor-furnished Equipment and delete this paragraph.</NPR><BRK/>
+<BRK/>
+<NPR>If they are to be provided by the Fuel Farm Operator and they are not Government-owned vehicles, the Fuel Farm 
+Operator's Contract will need modification to provide the equipment and the service if this is not already in 
+the Contract.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Government will furnish and operate the fuel bowser required for removing water and fuel from pits, drains, and other systems.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>[Barge(s)][Ship(s)]</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  During the design process the Designer must investigate who is providing the barges/ships for this project.  
+If they are to be provided by the Contractor, add requirement under Contractor-furnished Equipment and delete 
+this paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[The Government will furnish and operate the[ barge(s)][ ship(s)] that provide the fuel required for system start-up activities.][The Government 
+will furnish[ Barge(s)][ Ship(s)] for the use of water for pier piping hydrotesting and flushing.]</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>CONTRACTOR-FURNISHED MATERIAL AND EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Contractor-furnished</TTL><BRK/>
+<BRK/>
+<TXT>Provide material, equipment and labor not specified to be Government-furnished and required for proper System Start-Up of the system.  Equipment 
+being provided must be calibrated and the <SUB>certificate of calibration</SUB> be submitted to the Contracting Officer prior to use.  Equipment must include 
+but not be limited to the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Temporary strainers.</OLI><BRK/>
+<BRK/>
+<OLI>Pipe spools.</OLI><BRK/>
+<BRK/>
+<OLI>Flow meters.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include bracketed text for bottom loading of refueler truck loading systems using pressure fueling nozzles.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Pressure gauges[ to include bayonet type gauge to be used on the single point receptacle (SPR) on the Government truck.  Gauge must be 
+turned over to the Government after startup is complete].</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  All systems include fueling pumps.  Most systems except military service stations include a pump control 
+panel (PCP).  Such systems may include a truck loading control valve, back pressure control valve, a bypass pressure 
+control valve, and an issue venturi.  Edit as appropriate for the particular project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Electronic sensors and recorders for pressure[ and flow recording] are included in the Pump Control Panel (PCP).  This equipment must be 
+used to monitor and record the system during the "Equipment Tests" and "Performance Testing" portions of this Specification Section.  Recorded 
+data must be used by the Contractor and equipment factory representatives to achieve final control valve and equipment adjustments.  Recorded 
+data must include:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Fueling pumps discharge pressures.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Storage Tank levels.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Product Recovery Tank levels.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Fueling pumps suction pressures.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Truck Loading Control Valve upstream pressures.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Truck Loading Control Valve downstream pressures.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Truck Fillstand Flowrate (measure flowrate at the fillstand using local instruments).</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Supply Venturi flow rates.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Back Pressure Control Valve upstream pressures.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Back Pressure Control Valve downstream pressures.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Bypass Pressure Control Valve upstream pressures.</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Bypass Pressure Control Valve downstream pressures.</OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Delete below paragraph if project does not include filter-separators. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>The Contractor must have on hand sufficient filter elements[, spin-on filters,] and coalescer cartridges to adequately clean the system.  
+During the cleaning operation, provide a flow versus pressure drop graph for each filter-separator, as provided in Attachment 1 - Equipment 
+Tests.  Change coalescers and cartridges upon reaching a differential pressure of<MET> 103 kPa</MET><ENG> 15 psi</ENG> or when pressure drop is less than previous 
+graph or fails to increase properly.  Isolate each filter-separator, one at a time and use one fueling pump to obtain rated flow rate<MET> [19 
+lps][38 lps]</MET><ENG> [300 gpm][600 gpm]</ENG>.  A minimum of one complete set of coalescer elements and separator cartridges for each filter-separator 
+must be turned over to the Government after new coalescer elements and separator cartridges are installed in each filter-separator vessel 
+after completion of Performance Testing.</OLI><BRK/>
+<BRK/>
+][<OLI>Vacuum Trucks for removing water and fuel from pits, drains, and other systems.</OLI><BRK/>
+<BRK/>
+][<OLI>Fuel Bowser for removing water and fuel from pits, drains, and other systems.</OLI><BRK/>
+<BRK/>
+][<OLI>[Barge(s)][Ship(s)] to provide the fuel required for system start-up activities</OLI><BRK/>
+<BRK/>
+][<OLI>[Barge(s)][Ship(s)] for the use of water for pier piping hydrotesting and flushing.</OLI><BRK/>
+<BRK/>
+][<OLI>Over-the-road (OTR) tank trucks for[ flushing,][ flushing, cleaning] and draining of the system and for starting up and performance testing 
+truck off-loading systems.</OLI><BRK/>
+<BRK/>
+][<OLI>Temporary Tankage for[ flushing,][ flushing, cleaning] and draining of the system and for starting up and performance testing.</OLI><BRK/>
+<BRK/>
+][<OLI>Temporary Piping to form a temporary "looped" piping system for[ flushing,][ flushing, cleaning] and draining of the system and for starting 
+up and performance testing.</OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  During the design process the Designer must investigate who is providing utilities for this project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>The Contractor must be responsible for providing the electrical power from a source identified by the Government to the testing locations.</OLI><BRK/>
+<BRK/>
+][<OLI>Temporary filtration/strainers.</OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Include bracketed text for systems indicated as piggable if they do not already have them.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Pigging equipment and services per Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT) including pig launching and receiving barrels, kicker 
+line, and receiver line.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Design Conditions</TTL><BRK/>
+<BRK/>
+<TXT>Use temporary flushing lines and equipment that are equal in strength, stability, and materials to the associated permanent components.  However, 
+spools may be carbon steel.  Additional design conditions must be as specified in Section <SRF>33 57 55</SRF> FUEL SYSTEMS COMPONENTS (NON-HYDRANT).</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  During the design process the Designer must investigate who is providing electric power.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+[<SPT><TTL>Electric Power</TTL><BRK/>
+<BRK/>
+<TXT>Electric power required for the performance of the work under this section[ will be furnished by the Government at no charge to the Contractor][ 
+must be furnished by the Contractor].</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>[<SPT><TTL>WATER FOR FLUSHING PIER PIPING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Water may only be used for work in this section for flushing pier piping.  The use of water in hydrotesting 
+and cleaning pigging is covered in Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</NPR><BRK/>
+<BRK/>
+<NPR>Availability of water services and charges are established by the activity and should be stated in Division 1 
+of the contract specifications.  Contact authority having jurisdiction to determine what kind of water can be 
+used, what flow rate is available for filling, days and hours of availability, allowable disposal rate, required 
+testing, and characteristics.</NPR><BRK/>
+<BRK/>
+<NPR>Include location regulatory requirements for water disposal permits, treatment, and testing of test water prior 
+to disposal.  Verify water discharge may be dumped without treatment.</NPR><BRK/>
+<BRK/>
+<NPR>During the design process the Designer must investigate who is providing water.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Water[ will be furnished by the Government at no charge to the Contractor][ must be furnished by the Contractor] and must be potable and treated 
+and must meet all the requirements of water used for hydrostatic testing in <RID>API 570</RID>.</TXT><BRK/>
+<BRK/></SPT>
+]</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  There are essentially five kinds of piping and equipment systems covered by this specification.  Tailor 
+this specification section to suit the actual system:</NPR><BRK/>
+<BRK/>
+<NPR>a.  Systems or parts of systems that have fixed storage tanks that fuel can be pushed into as part of the start-up 
+and performance testing.  Examples include receipt systems of all types, pump stations where the pump discharge 
+can be directed back to the tank, systems that have been provided with permanent piping as a method of connecting 
+discharge piping back into receipt or return piping (flushing connection at some truck fill stands, etc.).  It 
+may be acceptable to allow the Contractor to construct a temporary piping system to convert one of the below systems 
+into a "looped" system that can be flushed back into a storage tank.  If so, the piping and fittings should be 
+the same rating and strength as the system being flushed.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Relatively short, small volume, large diameter piping systems or parts of systems that do not have fixed storage 
+tanks that fuel can be pushed into as part of the Start-up and Performance Testing.  Examples include truck fillstands 
+at Air National Guard bases where the piping is usually<MET> 200 mm</MET><ENG> 8-inch</ENG>or less in diameter and are typically a few 
+hundred feet long at most.</NPR><BRK/>
+<BRK/>
+<NPR>c.  Relatively long, high volume, large diameter piping systems or parts of systems that do not have fixed storage 
+tanks that fuel can be pushed into as part of the start-up and performance testing.  Examples include pipelines 
+and marine loading systems.</NPR><BRK/>
+<BRK/>
+<NPR>d.  Small diameter piping systems that are within a larger system and it is not desirous to flush them back into 
+an existing, clean system.  Examples include thermal relief systems, and long vent and drain lines.</NPR><BRK/>
+<BRK/>
+<NPR>e.  Relatively short sections of larger piping that are within a larger system, and it is not desirous to flush 
+them back into an existing, clean system.  Examples include replacement sections of pipelines.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Adjust the following to account for whether or not water is used for hydrotesting, pigging, or flushing 
+(pier piping only).  If water is used in any of these, it must take place before Initial Fuel Receipt into that 
+section of piping.  The use of water in hydrotesting and pigging is covered in Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING 
+(NON-HYDRANT) and is only mentioned here because of how it affects the timing of the initial fuel receipt.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete pigging paragraphs if piping is not piggable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>SEQUENCE OF EVENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Aviation fuel piping and equipment systems require flushing and cleaning.  Non-aviation fuel piping and 
+equipment systems require only flushing.</NPR><BRK/>
+<BRK/>
+<NPR>Jet Fuel systems where the jet fuel is used as a ground product, and is not used for aircraft or helicopters require 
+only flushing.</NPR><BRK/>
+<BRK/>
+<NPR>Filter vessels (such as filter-separators, spin-on filters and micronic filters) and strainers that are designed 
+to be opened for cleaning purposes must be opened and cleaned no matter the product.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Adjust the following to account for whether or not water is used for hydrotesting, or pigging.  If water 
+is used in any of these, it must take place before Initial Fuel Receipt into that section of piping.</NPR><BRK/>
+<BRK/>
+<NPR>-   The use of water in hydrotesting and pigging is covered in Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT) 
+and is only mentioned here because of how it affects the timing of the initial fuel receipt.</NPR><BRK/>
+<BRK/>
+<NPR>-   The use of water in flushing pier piping is required and is covered in this section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The following events take place in the Start-Up and Performance Testing of a system and their definitions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>System Start-Up Phase:  The System Start-Up phase encompasses all of the events described below up to the Performance Tests Phase.</OLI><BRK/>
+<BRK/>
+<OLI>Preliminary Requirements:  Confirms completion of the system before fuel is received[ including verification of the cleanliness of the 
+existing piping system being connected to].</OLI><BRK/>
+<BRK/>
+<OLI>Preparations for Flushing:  Activities that take place before initial receipt of fuel.</OLI><BRK/>
+<BRK/>
+<OLI>Pneumatic Testing:  Test for leaks in a piping system using air under pressure as the test medium.  For requirements see Section 
+<SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+[<OLI>Pipe Pigging - Pneumatic:  Use of pneumatically propelled foam pigs to confirm that lines are clear and free of debris and obstructions.  
+For requirements see Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+][<OLI>Hydrostatic Testing - Water:  Use of water to test for leaks in a piping system using liquid under pressure as the test medium.  For requirements 
+see Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+][<OLI>Pipe Pigging - Cleaning with Water:  Use of water propelled pigs to clean the line of gross contamination.  For requirements see Section 
+<SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+][<OLI>Pipe Pigging - Verification with Water:  Use of water propelled pigs to inspect the condition of the pipeline.  For requirements see Section 
+<SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+][<OLI>Initial Fuel Receipt:  The point in time at which fuel is introduced into the system with all that implies for safety, spill prevention 
+and control, and inventory control.</OLI><BRK/>
+<BRK/>
+][<OLI>Hydrostatic testing - Fuel:  Use of fuel to test for leaks in a piping system using liquid under pressure as the test medium.  For requirements 
+see Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+]<OLI>Soak Testing:  Perform "Soak Testing" of the piping system using fuel, as per Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+[<OLI>Pipe Pigging - Cleaning with Fuel:  Use of fuel propelled pigs to clean the line of gross contamination.  Perform this as part of the work 
+in Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+][<OLI>Pipe Pigging - Verification with Fuel:  Use of fuel propelled pigs to inspect the condition of the pipeline.  For requirements see Section 
+<SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+]<OLI>Flushing:  In this context, refers to removing gross contamination (free water and solids) from a fuel system using[ fuel][ water (fuel 
+pier only)].</OLI><BRK/>
+<BRK/>
+[<OLI>Cleaning (except filter vessels and strainers):  In this context, refers to removing the remaining water and contamination from aviation 
+fuel to the quality (allowable) levels suitable for issuing the final product using fuel as the cleaning medium.</OLI><BRK/>
+<BRK/>
+]<OLI>Cleaning (filter vessels and strainers):  Filter vessels and strainers that are designed to be opened for cleaning must be opened and cleaned.</OLI><BRK/>
+<BRK/>
+<OLI>Control Valve Adjustment:  Control valve adjustment so that equipment can be safely tested and adjusted.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment Tests:  Tests performed by the Contractor[ and the System Supplier] to confirm that individual components of the fuel system 
+are correctly installed and are operational.</OLI><BRK/>
+<BRK/>
+<OLI>Performance Tests Phase:  Government witnessed demonstration of the proper operation of the individual pieces of equipment and the system 
+or systems as a whole.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>PRELIMINARY REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete bracketed text if system does not include an Oil/Water Separator.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All activities listed in paragraph PART 3 EXECUTION must be performed sequentially in the order they are presented.  Prior to any on-site system 
+start-up activities, the Contractor must ensure that all requirements of the paragraph SAFETY are satisfied.  Project must be substantially complete, 
+except for touch-up field painting, and Contractor's work area must be free of debris, trash and obstacles.[  Correct functioning of oil/water 
+separator(s) must be verified prior to receipt of fuel.]  Perform the following activities prior to receipt of fuel:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Safety</TTL><BRK/>
+<BRK/>
+<TXT>Prior to any on-site system start-up activities, the following safety procedures must be accomplished in all fueling areas to be started up and 
+performance tested under this specification section:  testing/operation of emergency showers and eyewash stations, placement of Contractor-provided 
+portable eyewash units within<MET> 31 meters</MET><ENG> 100 feet</ENG> or 10 seconds from the fueling point, verification of proper grounding throughout system, coordination 
+with Government Fire and Safety Office and Fuels personnel, placement of[ Contractor-][ Government-]provided spill pads[ and containment booms], 
+placement of[ Contractor-][ Government-]provided fire extinguishers capable of extinguishing a fuel fire.  Ensure that all radios/devices at all 
+Class I, Division 1 areas are intrinsically safe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electrical Preparations</TTL><BRK/>
+<BRK/>
+<TXT>Prior to energizing the electrical system components, verify that short-circuit links have been removed from current transformer and that secondary 
+circuits have been connected.  Confirm that all tests required for fire detection and suppression systems have been performed and accepted.  Verify 
+all electrical transmitter connections and ensure proper calibration.  Verify all electrical system components meet the classification and division 
+as required by the design.  Verify correct rotation of all motors prior to testing.  Verify paddle type flow switches by physically actuating vanes 
+and checking outputs.  Conduit explosion-proof sealoffs must be poured after initial electrical checks but before fuel receipt.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Emergency Fuel Shutoff (EFSO) System Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify as required for actual system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to initial fuel receipt, verify that each switch will trip the circuit breaker of the fuel pump[s][ and de-energize the EFSO relay and close 
+the[ main emergency fuel shut-off valve][ flow control valve of each filter-separator]].</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Storage Tanks</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete entire paragraph if project does not include fuel flowing into a tank.  All of the features described 
+below may not be needed if project does not include starting up a new tank or modifications to an existing tank.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure approved performance of storage tank integrity testing, hydrostatic tests, leak detection system, and coating application/inspection per 
+the applicable specifications.  Include verification letter of approved test results for information in the Final Reports.  Ensure that tank interior 
+is clean and free of any fuel-contaminating debris.  Verify operation of tank level alarms[ by closing tank connection valves and filling housings 
+with fuel to confirm action].  Ensure that certified strapping charts for all tanks are available for start-up personnel.  [API][STI] tank inspections 
+have been performed per applicable specifications and the reports are on hand prior to commencement with the initial fill and Performance Testing.[  
+Ensure tank cathodic protection inspections are performed per applicable specifications and the <SUB>cathodic protection reports</SUB> are on hand prior to 
+initial fill and performance testing.][  Verify correct orientation of internal tank inlet diffuser.]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Piping System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify as required for the system.  Ensure a method of assessing the quality of the fuel and that start 
+and end of the piping and/or system to be started up is provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure that all piping weld integrity, leak detection systems, and coating inspections have been performed per the applicable specifications.  
+Provide statement that required testing has been completed in the Final Reports.  Evacuate all accumulated water from piping low point drains, 
+valve cavities, and equipment drains.  Verify all bolted connections are tightness tested to required torque using a calibrated torque wrench.  
+Verify that all pressure gauges are properly calibrated, located and installed.  Ensure that piping's cathodic protection system is tested, calibrated 
+and operational.[  Ensure the cathodic protection inspections are performed per applicable specifications and the cathodic protection are on hand 
+prior to initial fill and performance testing.]  Ensure that pipe marking and identification are provided as specified.  Ensure that piping system 
+thermal relief provisions are installed as designed.  Verify the correct installation of piping expansion loops[, joints,] and supports.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Pier Piping Systems</TTL><BRK/>
+<BRK/>
+<TXT>For pier delivery/receipt systems or other over-water piping installations, ensure compliance with the Contractor's previously approved spill control 
+plans.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>[Transfer ][Installation ][Interterminal ]Pipeline Systems</TTL><BRK/>
+<BRK/>
+<TXT>For pipeline systems or any other piping running outside the fuel facility fence, ensure compliance with the Contractor's previously approved spill 
+control plans.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>[<SPT><TTL>Existing System Cleanliness Confirmation</TTL><BRK/>
+<BRK/>
+<TXT>Contractor[ and System Supplier] must conduct tests to confirm the cleanliness of the existing system before connecting it to the new system or 
+an extension, upgrade or repair of the existing system.  Confirm that the fuel in the existing system meets the intra-governmental receipt limits 
+defined in <RID>MIL-STD-3004-1</RID>.  Sampling must be performed by the[ Government][ Contractor] and testing must be done by[ the Service][ a DoD regional 
+fuels testing laboratory][ an independent fuel testing laboratory approved by the Contracting Officer].</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>PREPARATIONS FOR FLUSHING</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion of the system to the satisfaction of the Contracting Officer and the Service Headquarters [and][or] their designated appointee, 
+make the following preparations for flushing the system.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Protection of System Components</TTL><BRK/>
+<BRK/>
+<TXT>The following items must be removed from the system prior to start of flushing operations and, where applicable, replaced with spools of pipe, 
+diameter equal to the item removed.</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Control valves.  This also includes control valve tubing exterior to the valve such as that which runs from tank level control valves up 
+to tank float pilots.</OLI><BRK/>
+<BRK/>
+][<OLI>Sensors which are exposed to the fluid such as pressure gauges and thermometers.</OLI><BRK/>
+<BRK/>
+][<OLI>Coalescer and separator elements in filter-separators.</OLI><BRK/>
+<BRK/>
+][<OLI>Venturi Tubes and Pressure Indicating Transmitters.</OLI><BRK/>
+<BRK/>
+][<OLI>Meters.</OLI><BRK/></OLG>
+<BRK/>
+]<TXT>After flushing, the above items must be reinstalled in the system and the spool sections turned over to the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Strainers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remove temporary strainers unless directed otherwise by Service Headquarters.</NPR><BRK/>
+<BRK/>
+<NPR>Use temporary strainers ahead of the pumps only if there are no permanent basket strainers immediately upstream 
+of the pump.  Consult with Service Control Point to determine appropriate mesh size.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure strainers are clean before flushing.  Temporary[ 7][ 40][ 60][ 100] [_____] mesh strainers with minimum 300 percent open area must be provided 
+in the suction line ahead of each fueling pump[ for the entire flushing operation][ to remain permanently in the system].[  A temporary strainer 
+should be installed immediately upstream of the product recovery tank overfill valve.]  Any damaged permanent or temporary strainers must be replaced 
+by the Contractor at no additional cost to the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Draw-off</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete reference to returning through filtration if no filtration to return to is available as part of 
+the project and-or if no storage tank is being used to push fuel through as part of the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Remove any accumulated water from piping,[ equipment,][ and storage tanks' sumps and bottoms].[  Drain water and return fuel via filtration to 
+storage tank.]  Repeat process until all water is removed.  Dispose of petroleum contaminated water in accordance with Installation, local, State, 
+and Federal regulations.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>INITIAL FUEL RECEIPT INTO STORAGE TANK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  All projects involve fuel receipt.  Choose either paragraph INITIAL FUEL RECEIPT INTO STORAGE TANK or INITIAL 
+FUEL RECEIPT DIRECTLY INTO PIPING SYSTEM.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Description below is written for a system with piping and systems to be started up that are upstream of 
+the fixed system storage tanks.  These systems have their initial fuel receipt through receipt piping, receipt 
+filtration, and then into a storage tank.  It covers pipeline receipt and any kind of truck, railcar, ship, or 
+barge offloading system.  If the storage tank is existing and not started up as part of this project, and fuel 
+is still pushed into a tank, the process is the same but without a storage tank.</NPR><BRK/>
+<BRK/>
+<NPR>Edit as required to suit the actual system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Utilize one storage tank for initial fuel receipt to isolate contaminated fuel.  Initial receipt of fuel must be done by gravity if possible.  
+The Contractor must station personnel throughout piping system at high point vents to bleed air.  All flanges and system components will be periodically 
+inspected for leaks during filling procedures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Storage Tanks</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete bracket for horizontal tank or vertical tanks that do not have a floating pan.</NPR><BRK/>
+<BRK/>
+<NPR>Delete paragraph for tanks where receipt is by gravity drop from an adjacent or nearby tank truck such as most 
+service stations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Receipt flow rate into an empty storage tank must not exceed<MET> 1 m/s</MET><ENG> 3 feet per second</ENG> (FPS), as measured in the main receipt piping, until outlet 
+of tank fill tube is submerged[ and pan/roof legs are lifted].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Components</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete filter-separators and vessels if they are not being filled during this start-up.  Delete strainer 
+call-outs if the piping section is so short that using strainers is not possible.  To use temporary strainers 
+a flanged connection is normally needed.</NPR><BRK/>
+<BRK/>
+<NPR>Provide either a differential pressure gauge or a pressure gauge on either side of the strainer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Ensure that[ filter-separators and other] vessels are filled slowly by closing outlet valves and venting through air eliminators.[  Fill filter 
+vessels using slow-fill line][  Fill vessels using throttled downstream valves] to maintain a packed condition in vessels throughout initial fill 
+of piping system.  ]Differential pressure across strainers must be continuously monitored.  Any time a strainer differential pressure reaches<MET> 138 
+kPa</MET><ENG> 20 psig</ENG>, it must be cleaned.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fuel Quality</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide fuel sample connection to allow for checking fuel quality.  This may be difficult in some cases.  
+See the Designer Notes in paragraph PLANS for a discussion of this.  A method of checking fuel quality acceptable 
+to the Contracting Officer must be provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fuel used during initial receipt must be considered contaminated and must be positively isolated, with blind flanges or closed, padlocked manual 
+valves, from any active transfer, or aircraft fueling or tank truck loading operations.  Fuel isolation must continue until all[ flushing][ flushing 
+and cleaning] is completed.  A method of checking fuel quality that is acceptable to the Contracting Officer must be provided at the beginning 
+and end of any new piping section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fuel Receipt</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose one of the following and modify as required for the particular project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Fuel Receipt by Pipeline</TTL><BRK/>
+<BRK/>
+<TXT>Start-up personnel must meet with Government personnel in charge of existing fuel storage to discuss fuel transfer procedures.  Topics must include:  
+methods of communication to start/stop remote transfer pumps; flow rate and head characteristics of transfer pumps; methods of restricting initial 
+receipt flow rate; methods of straining and filtering initial receipt fuel; accommodating multiple pump starts resulting from required strainer 
+and filter cleaning operations; required quantity of fuel to be transferred.  Contractor must provide a written summary of pipeline receipt procedures 
+to the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Fuel Receipt by Commercial Truck</TTL><BRK/>
+<BRK/>
+<TXT>Start-up personnel must meet with Government personnel in charge of existing fuel storage to discuss fuel transfer procedures.  Topics must include:  
+methods of communication to start/stop pumps; flow rate and head characteristics of transfer pumps; methods of restricting initial receipt flow 
+rate; methods of straining and filtering initial receipt fuel; accommodating multiple pump starts resulting from required strainer and filter cleaning 
+operations; required quantity of fuel to be transferred.  Coordinate with Government personnel to schedule quantity of trucks required.  Contractor's 
+personnel must be positioned at each offloading position, at the pumphouse and at the receipt tank, all in radio contact.  Contractor must provide 
+a written summary of truck receipt procedures to the Contracting Officer.[  If truck unloading system is newly constructed, perform initial receipt, 
+flushing, and testing prior to performance testing].</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Fuel Receipt from Piping System</TTL><BRK/>
+<BRK/>
+<TXT>Start-up personnel must meet with Government personnel in charge of existing fuel storage to discuss fuel transfer procedures.  Topics must include:  
+methods of communication to start/stop remote pumps; flow rate and head characteristics of pumps; methods of restricting initial receipt flow rate; 
+methods of straining and filtering initial receipt fuel; accommodating multiple pump starts resulting from required strainer and filter cleaning 
+operations; required quantity of fuel to be used.  Contractor must provide a written summary of piping fill procedures to the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Fuel Receipt from Pier</TTL><BRK/>
+<BRK/>
+<TXT>Start-up personnel must meet with Government personnel in charge of existing fuel storage to discuss fuel transfer procedures.  Topics must include:  
+methods of communication to start/stop pumps; flow rate and head characteristics of transfer pumps; methods of restricting initial receipt flow 
+rate; methods of straining and filtering initial receipt fuel; accommodating multiple pump starts resulting from required strainer and filter cleaning 
+operations; required quantity of fuel to be transferred.  Contractor must provide a written summary of pipeline receipt procedures to the Contracting 
+Officer.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Initial Low Point Flush</TTL><BRK/>
+<BRK/>
+<TXT>Perform an initial low point flush operation by flushing each low point drain through a portable basket strainer for 10 seconds at a system pressure 
+of<MET> 207 kPa</MET><ENG> 30 psig</ENG>.  Repeat flush until basket strainer collects no additional debris.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Storage Tank Hydrostatic Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if API 650 Aboveground Storage Tanks are not being hydrotested as part of this project.</NPR><BRK/>
+<BRK/>
+<NPR>A 24-hour minimum hold time is required by API 653.  Hold time should be selected as short as possible to limit 
+exposure of uncoated tank to water.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Hydrostatically test the storage tanks per Specification Section <SRF>33 56 21.17</SRF> SINGLE WALL ABOVE GROUND FIXED ROOF STEEL POL STORAGE TANK.Duration 
+of the test must be a minimum of [1][4] days and maximum of 7 days.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Soak Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Soak Test must be completed after all interior coating has been completed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Upon completion of hydrostatic testing, perform "Soak Testing" of the tanks per <RID>API RP 1595</RID>.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Storage Tank Tightness Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if Factory Fabricated Storage Tanks are not being tested as part of this project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform tightness testing and manufacturer's tests of the storage tanks per Specification Section <SRF>33 56 10</SRF> FACTORY-FABRICATED FUEL STORAGE TANKS.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Piping Hydrostatic Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the following if piping is hydrostatically tested with water.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Hydrostatically test the piping system with fuel as required by Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Piping Soak Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the first option if hydrostatically testing with fuel.  Select the second option if hydrostatically 
+testing with water.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Upon completion of hydrostatic testing with fuel,][After initial receipt of fuel,] perform "Soak Testing" of the piping systems per <RID>API RP 1595</RID>
+.  Duration of the test must be a minimum of 4 days and maximum of 7 days.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>][<SPT><TTL>INITIAL FUEL RECEIPT DIRECTLY INTO PIPING SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  All projects involve fuel receipt.  Choose either paragraph INITIAL FUEL RECEIPT INTO STORAGE TANK or INITIAL 
+FUEL RECEIPT DIRECTLY INTO PIPING SYSTEM.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Description below is written for a system where the project does not involve one of the fixed storage tanks 
+to push product into.</NPR><BRK/>
+<BRK/>
+<NPR>Edit as required to suit the actual system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Initial receipt of fuel must be done by gravity if possible.  The Contractor must station personnel throughout piping system at high point vents 
+to bleed air.  All flanges and system components will be periodically inspected for leaks during filling procedures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Components</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete filter-separators and vessels if they are not being filled during this start-up.  Delete strainer 
+call-outs if the piping section is so short that using strainers is not possible.  To use temporary strainers 
+a flanged connection is normally needed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Ensure that[ filter-separators and other] vessels are filled slowly by closing outlet valves and venting through air eliminators.  Downstream 
+valves must be throttled to maintain a packed condition in vessels throughout initial fill of piping system.  ]Differential pressure across strainers 
+must be continuously monitored.  Any time a strainer DP reaches<MET> 138 kPa</MET><ENG> 20 psig</ENG>, it must be cleaned.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Fuel Quality</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide fuel sample connection to allow for checking fuel quality.  This may be difficult in some cases.  
+See the Designer Notes in the paragraph PLANS for a discussion of this.  A method of checking fuel quality acceptable 
+to the Contracting Officer must be provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fuel used during initial receipt must be considered contaminated and must be positively isolated, with blind flanges or closed, padlocked manual 
+valves, from any active transfer, or aircraft fueling or truck loading operations.  Fuel isolation must continue until all[ flushing][ flushing 
+and cleaning] is completed.  A method of checking fuel quality that is acceptable to the Contracting Officer must be provided at the beginning 
+and end of any new piping section.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Fuel Receipt</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose one of the following and modify as required for the particular project.  If there is another method 
+of receiving fuel, add it and modify accordingly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Fuel Receipt from Existing Piping System</TTL><BRK/>
+<BRK/>
+<TXT>Start-up personnel must meet with Government personnel in charge of existing fuel system to discuss fuel transfer procedures.  Topics must include:  
+methods of communication to start/stop remote pumps; flow rate and head characteristics of pumps; methods of restricting initial receipt flow rate; 
+methods of straining and filtering initial receipt fuel; accommodating multiple pump starts resulting from required strainer and filter cleaning 
+operations; required quantity of fuel to be used.  Contractor must provide a written summary of piping fill procedures to the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Fuel Receipt from Pier</TTL><BRK/>
+<BRK/>
+<TXT>Start-up personnel must meet with Government personnel in charge of existing fuel storage to discuss fuel transfer procedures.  Include barge or 
+tanker operator(s) in this meeting.  Topics must include:  methods of communication to start/stop pumps; flow rate and head characteristics of 
+transfer pumps; methods of restricting initial receipt flow rate; methods of straining and filtering initial receipt fuel; accommodating multiple 
+pump starts resulting from required strainer and filter cleaning operations; required quantity of fuel to be transferred.  Contractor must provide 
+a written summary of pipeline receipt procedures to the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Initial Low Point Flush</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the system cannot generate<MET> 207 kPa</MET><ENG> 30 psig</ENG> (such as a gravity system), use the highest pressure possible. <MET>
+ 207 kPa</MET><ENG> 30 psig</ENG> is the desired minimum pressure.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform an initial low point flush operation by flushing each low point drain through a portable basket strainer for 10 seconds at a minimum system 
+pressure of<MET> [200][_____] kPa</MET><ENG> [30][_____] psig</ENG>.  Repeat flush until basket strainer collects no additional debris.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Piping Hydrostatic Tests</TTL><BRK/>
+<BRK/>
+<TXT>Hydrostatically test the piping system with fuel as required by Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Piping Soak Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the first option if hydrostatically testing with fuel.  Select the second option if hydrostatically 
+testing with water.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Upon completion of hydrostatic testing with fuel,][After initial receipt of fuel,] perform "Soak Testing" of the piping systems per <RID>API RP 1595</RID>
+.  Duration of the test must be a minimum of 4 days and maximum of 7 days.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>FLUSHING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete and add names of piping segments and systems as needed.</NPR><BRK/>
+<BRK/>
+<NPR>Flushing must be using fuel except for pier piping, which must be flushed with fresh water.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Flushing procedures remove gross particulate and water contaminants[ and must precede cleaning procedures].  All piping including but not limited 
+to[ receipt piping,][ issue piping,][ transfer piping,][ pump house piping,][ supply and return lines to the storage tanks,][ product recovery 
+lines,][ truck off-loading lines,][ truck loading lines,][ railcar off-loading lines,][ railcar loading lines,][ installation pipelines,][ interterminal 
+pipelines,][ thermal relief piping,][ high point vents,][ low point drains,][ control valve tubing on the control valves,][ control valve tubing 
+exterior of the control valves,] [_____] must be flushed with fuel.[  Pier piping must be flushed with water.]</TXT><BRK/>
+<BRK/>
+<TXT>In the event flushing identifies the presence of clay or soil like material in the system, Contractor must immediately notify Contracting Officer 
+for direction.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Flushing Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select bracketed text based on available pumping capacity.  Require temporary pumps only after A/E feasibility 
+review; if used, provide detailed work sequence/limitations on contract documents.</NPR><BRK/>
+<BRK/>
+<NPR>Select volume of flush based on practicality.  For systems that are not looped, the system must either be flushed 
+into a tank truck, or a portable tank, or into another storage tank at the end of the line in the case of an installation 
+or interterminal pipeline.  For very large piping systems, dozens of over-the-road tank trucks may be necessary 
+to flush a single pipeline volume.  Consider as well where the flushed fuel will have to go to be cleaned and 
+re-used again and whose equipment may have to be used to clean the fuel up.  Contact the Service Headquarters 
+for guidance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Begin flushing of fuel system piping at low flow rates using[ one pump in multiple pump systems][ a throttled pump in single pump systems (using 
+the downstream isolation valve to throttle the pump)] at [_____] percent of rated flow.  Slowly increase flushing flow rate[ until a plus or minus<MET>
+ 3.5 m/s</MET><ENG> 12 FPS</ENG> fuel velocity is achieved][ to full flow capacity of [_____]<MET> lps</MET><ENG> gpm</ENG>].  Flush for[ a minimum of 30 minutes][ four piping volumes][ 
+one piping volume] [_____].[  For gravity, suction, or other non-pumped piping segments, minimum flushing volume must be[ four] [_____] times the 
+pipe volume.]  Sampling must be performed by the[ Government][ Contractor] and testing must be done by[ the Service][ a DoD regional fuels testing 
+laboratory][ an independent fuels testing laboratory approved by the Contracting Officer].  Fuel must be free of gross contamination and visible 
+free water to the satisfaction of the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<TXT>In the event flushing identifies the presence of clay or soil like material in the system, Contractor must immediately notify Contracting Officer 
+for direction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fueling System Piping</TTL><BRK/>
+<BRK/>
+<TXT>During flushing procedure periodically bleed air through high point vent and drain water through low point drains.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For many projects that only involve replacing piping, the above paragraph alone may prove sufficient.  
+For others, select one or more of the following paragraphs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>General Fuel Lines</TTL><BRK/>
+<BRK/>
+<TXT>The flushing of all of the system piping segments must be accomplished by pumping fuel through the fueling system piping and[ back into the same 
+tank the fuel was withdrawn from][ back to another tank in the fuel farm][ into over-the-road (OTR) tank trucks][ into refueler tank trucks][ into 
+temporary tankage][ into an existing tank] [_____].[  After high-speed flush of main system piping, all piping laterals to fuel dispensing points 
+must be flushed with at least[<MET> 18,930 L</MET><ENG> 5000 gallons</ENG> for<MET> 200mm</MET><ENG> 8-inch</ENG> piping and smaller][ three pipe volumes] with fuel.]  Air must be bled from 
+system high points.  The procedure must be continued until the fuel being delivered[ into the tanks][ into OTR tank trucks][ into temporary tanks][ 
+into [_____]] is acceptable to the Contracting Officer.  After the piping system segments have been flushed to the satisfaction of the Contracting 
+Officer (and periodically during the flushing operation), the Contractor must flush all high point vents and low point drains for a minimum of 
+10 seconds at a pressure of<MET> 207 kPa</MET><ENG> 30 psig</ENG>.[  Remove any accumulated water from  tank sumps and bottoms by means of the Water Draw-off systems.]  
+Flush all plug valves of debris using the drain port at the bottom of the valve.  Cone strainers must be kept clean in order to insure maximum 
+flow rate.  All accumulated material from the strainers must be reviewed and identified, including source if possible.  Upon completion of the 
+first flushing operations, the cone strainers must be[ removed from the system.][ cleaned, reinstalled, and remain in the system.]  In addition, 
+baskets from all strainers must be removed and cleaned.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>[Receipt Pipeline][Transfer Line]</TTL><BRK/>
+<BRK/>
+<TXT>Flushing of the[ receipt pipeline][ transfer line] must occur during the initial receipt/filling operations.  Samples of the incoming fuel must 
+be taken at the point of connection with the upstream and downstream systems at the start and the end of the flushing and every [_____] minutes 
+in between the two.  These samples must be tested by the designated government agency and turned over to the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Truck Offloading System Piping</TTL><BRK/>
+<BRK/>
+<TXT>Flushing of the truck offloading system and piping must occur during the receipt operations.  Samples of the incoming fuel must be taken at the 
+point of connection with the OTR tank truck.  Sample the fuel into and out of each offloading station.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Rail-Car Offloading System Piping</TTL><BRK/>
+<BRK/>
+<TXT>Flushing of the rail-car offloading system and piping must occur during the receipt operations.  Samples of the incoming fuel must be taken at 
+the point of connection with the rail car.  Sample the fuel into and out of each offloading station.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>[Pump House][Pump Pad][Pump Shelter] Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Create a procedure based on the system's actual characteristics.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Remove system components as specified in paragraph PROTECTION OF SYSTEM COMPONENTS.  Perform the following flushing operations by withdrawing fuel 
+from one tank and[ returning it to another tank][ pumping it to Contractor-furnished tankage][ pumping it to Contractor-furnished over-the-road 
+tank trucks].  [Circulate][Transfer] a sufficient amount of fuel for each operation.  Bleed air from high points.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Position manual valves to circulate fuel through one pump, filter-separator combination.</OLI><BRK/>
+<BRK/>
+[<OLI>Provide a temporary connection between each truck fillstand nozzle and its associated return line connection  single point receptacle.  
+Position manual valves to circulate fuel through the nozzle and back to the tanks, upstream of the receipt filter-separators.  Flush each 
+fillstand using one fueling pump.</OLI><BRK/>
+<BRK/>
+][<OLI>Position manual valves to circulate fuel through the bypass line.  Flush this line using two fueling pumps.</OLI><BRK/>
+<BRK/>
+]</OLG></SPT>][<SPT><TTL>[Interterminal Pipeline][Installation Pipeline]</TTL><BRK/>
+<BRK/>
+<TXT>Samples of the incoming fuel must be taken at the point of connection with the upstream and downstream systems at the start and the end of the 
+flushing and every [_____] minutes between the two.  These samples must be tested by the designated government agency and turned over to the Contracting 
+Officer.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Truck Fillstand Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph if fillstand piping can be looped back into permanent piping without going through 
+an over-the-road tank truck.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Position an over-the-road tank truck at each fillstand position and flush each fillstand lateral into the tank truck.  Sample the fuel at the connection 
+to the truck.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Rail-Car Loading System Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph if piping can be looped back into permanent piping without going through an over-the-road 
+tank truck or a rail car.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Position an[ OTR tank truck][ rail car] at each position and flush each fillstand lateral into the[ tank truck][ rail car].  Sample the fuel at 
+the connection to the[ truck][ rail car].</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Product Recovery Tank Lines</TTL><BRK/>
+<BRK/>
+<TXT>During the flushing of pumphouse piping, operate all manual drain lines individually to flush their connection to the product recovery tank.  Fill 
+the tank a minimum three times, each time utilizing[ the fuel transfer ][ tank drain pump][ vacuum truck][ [_____] pump] to drain it by returning 
+the fuel to storage.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Amount of line changes will vary.  It should be at least 10. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+][<SPT><TTL>[High Point Vent Lines][Low Point Drain Lines][Thermal Relief Piping][Instrumentation Piping and Tubing]</TTL><BRK/>
+<BRK/>
+<TXT>During the flushing of pumphouse piping, operate valves and connections on all lines individually to flush their connection to a tank.  Put at 
+least [25][_____] times the volume of the line through each line.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Pier Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify to suit project-specific facilities/water availability at pier.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Pier piping and loading arms should be hydrostatically tested with fresh water per the requirements of Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).  
+After testing, flush piping with fresh water at<MET> 3.5 m/s</MET><ENG> 12 FPS</ENG> for 30 minutes.[  The Contractor will be allowed to use Government-furnished hoses.]  
+Drain all water from piping system and refill with product.  Perform flushing with product at<MET> 3.5 m/s</MET><ENG> 12 FPS</ENG> for[ 30 minutes] [_____].[  Government 
+barges/equipment may be used to facilitate system flushing.  ]At end of testing, drain pier piping of water.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL><SUB>Piping Flushing Checklist</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must generate a comprehensive matrix of all new[ and existing] piping sections in the system.  Matrix must serve as an Owner's piping 
+inventory and a checklist for all Contractor-provided flushing operations.  Column entries must include pipe section name, location, diameter, 
+approximate length, flushing fuel velocity and volume achieved and acceptable results of sampling.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete cleaning if system is not for aviation fuel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLEANING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph will most often be used for systems that issue aviation fuel to refueler trucks.  Include 
+this paragraph for any system with filter-separators.  Delete this paragraph if system is for ground products.  
+Delete this paragraph for aviation jet fuel systems if the system being cleaned is bulk fuel handling farm, a 
+marine loading and offloading operation, or an Interterminal or Installation pipeline without filter-separators.</NPR><BRK/>
+<BRK/>
+<NPR>Cleaning will always take place with fuel.  Do not clean with water.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>After initial flushing is completed, clean each piping segment with product in accordance with the procedure specified hereafter.  Isolate Tanks 
+from the system and clean them as specified in Section <SRF>33 01 50.55</SRF> CLEANING OF PETROLEUM STORAGE TANKS.</TXT><BRK/>
+<BRK/>
+<TXT>In the event cleaning identifies the presence of clay or soil like material in the system, Contractor must immediately notify Contracting Officer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Preparation for Cleaning</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When two tanks are being used for this project, the Contracting Officer may want to allow the contractor 
+to transfer fuel from a "dirty tank" to a "clean tank" through filtration in order to clean the "dirty fuel" of 
+its water and/or solids contamination.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Filter elements must be installed in the filter-separators.  Adjust filter-separator flow control valve.  ]Valves and system components removed 
+for flushing must be reinstalled.  Tanks must be drained, vapor freed and cleaned.[  Transfer the contents from one tank to the other for the purposes 
+of cleaning where possible.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleaning Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select independent or DOD fuels laboratory, include in MOU.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Cleaning must continue until the Contracting Officer certifies that the fuel meets the intra-governmental receipt limits as defined in <RID>MIL-STD-3004-1</RID>
+.  Sampling must be performed by the[ Government][ Contractor] and testing must be done by[ the Service][ a DoD regional fuels testing laboratory][ 
+an independent testing laboratory approved by the Contracting Officer].[  Also take samples at truck fillstands.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleaning Procedure</TTL><BRK/>
+<BRK/>
+<TXT>During cleaning procedure periodically bleed air through high point vent and drain water through low point drains.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>General Fuel Lines</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For many projects that only involve replacing piping this paragraph alone may prove sufficient.  This paragraph 
+covers piping that is not part of a looped system.  For others, select one or more of the following paragraphs 
+in addition to this one.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>General fuel lines must be cleaned as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Position manual valves to circulate fuel through the piping and into[ the receiving tank][ temporary tanks][ over-the-road tank trucks][ 
+refueler tank trucks] [_____] at the discharge end[ through the receiving filter-separators].</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The flowrates are nominal and must be adjusted to suit the individual system.  It may be necessary to provide 
+temporary filtration to achieve the desired goals although that is very seldom done and may prove prohibitively 
+expensive.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Initially pump fuel at a flow rate of<MET> [38][_____] lps</MET><ENG> [600][_____] gpm</ENG>, then increase flow rate up to the same velocity the line was flushed 
+at using as many pumps and filter/separators as required, starting manually one pump at a time.[  When pumping at a rate greater than<MET> [76][_____] 
+lps</MET><ENG> [1200][_____] gpm</ENG>, by-pass receiving filter-separators].</OLI><BRK/>
+<BRK/>
+<OLI>Monitor pressure drop through the filter-separators during the cleaning operation and provide flow vs. pressure drop graphs as specified 
+herein before.</OLI><BRK/>
+<BRK/>
+<OLI>Periodically take samples from all sample connections.  Continue cleaning until the fuel meets specified requirements of paragraph CLEANING 
+REQUIREMENTS.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>[Receipt Pipeline][Transfer Line][Rail Car Offloading Line][Truck Off-Loading Line]</TTL><BRK/>
+<BRK/>
+<TXT>Continue to receive fuel until the fuel samples taken at the tanks meet the requirements of paragraph CLEANING REQUIREMENTS above.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>[Pump House][Pump Pad][Pump Shelter] Piping</TTL><BRK/>
+<BRK/>
+<TXT>Piping must be cleaned as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Position manual valves so that fuel is withdrawn from one tank, circulated through one fueling pump and issue filter-separator, then returned 
+to the tank through the receiving filter-separators.</OLI><BRK/>
+<BRK/>
+<OLI>Clean the piping system using one pump at a time.  Alternate the fueling pumps and filter-separators during the operation to clean the 
+individual fueling pump suction and discharge lines.</OLI><BRK/>
+<BRK/>
+<OLI>Monitor pressure drop through the filter-separators during each cleaning operation and provide flow vs. pressure drop graphs as specified 
+herein before.</OLI><BRK/>
+<BRK/>
+<OLI>Periodically take samples from all sample connections.  Cleaning must continue until the fuel meets the specified requirements.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Truck Fillstands with a Return Line</TTL><BRK/>
+<BRK/>
+<TXT>Piping must be cleaned as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide a temporary connection between the truck fillstand connection and the return line.  Position valves to circulate fuel through the 
+fill line and back to the return line.  Clean each position using two fueling pumps, two issue filter separators and two return filter 
+separators.</OLI><BRK/>
+<BRK/>
+<OLI>Monitor pressure drop through the filter-separators during each cleaning operation and provide flow vs. pressure drop graphs as specified 
+herein before.</OLI><BRK/>
+<BRK/>
+<OLI>Periodically take samples from all sample connections.  Cleaning must continue until the fuel meets the specified requirements.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>[Truck Fillstands][Rail Car Loading Positions] without a Return Line</TTL><BRK/>
+<BRK/>
+<TXT>Piping must be cleaned as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Position a[ OTR tank truck][ refueler truck][ rail car] at the[ fillstands][ railcar loading position] and clean each one, one at a time.  
+Clean the lines using two fueling pumps, two issue filter separators and two return filter separators.</OLI><BRK/>
+<BRK/>
+<OLI>Monitor pressure drop through the filter-separators during each cleaning operation and provide flow vs. pressure drop graphs as specified 
+herein before.</OLI><BRK/>
+<BRK/>
+<OLI>Periodically take samples from all sample connections.  Cleaning must continue until the fuel meets the specified requirements.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>[Interterminal Pipeline][Installation Pipeline]</TTL><BRK/>
+<BRK/>
+<TXT>Pipelines must be cleaned as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Position manual valves to circulate fuel through the piping and into[ the receiving tank][ temporary tanks][ over-the-road tank trucks][ 
+refueler tank trucks] [_____] at the discharge end[ through the receiving filter-separators].</OLI><BRK/></OLG>
+<OLG><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The flowrates are nominal and must be adjusted to suit the individual system.  It may be necessary to provide 
+temporary filtration to achieve the desired goals although that is very seldom done and may prove prohibitively 
+expensive.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Initially pump fuel at a flow rate of<MET> [38][_____] lps</MET><ENG> [600][_____] gpm</ENG>, then increase flow rate up to the full capacity (all pumps running) 
+starting manually one pump at a time.  When pumping at a rate greater than<MET> [76][_____] lps</MET><ENG> [1200][_____] gpm</ENG>, by-pass receiving filter-separators.</OLI><BRK/>
+<BRK/>
+<OLI>Monitor pressure drop through the filter-separators during the cleaning operation and provide flow vs. pressure drop graphs as specified 
+herein before.</OLI><BRK/>
+<BRK/>
+[<OLI>Periodically take samples from all sample connections.  Continue cleaning until the fuel meets specified requirements of paragraph CLEANING 
+REQUIREMENTS.</OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Delete if piping is not piggable.  In some cases of a line designed to be piggable, the pig launcher and 
+receiver is not permanently installed and the specifications will need to be written to indicate the contractor 
+will need to provide temporary units.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>First clean the pipe using pigs as called out in paragraph PIPE PIGGING-VERIFICATION, Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).  
+During this, low point drains and high point vents must be blown clean.  Monitor pressure drop through the filter-separators during the 
+cleaning operation.</OLI><BRK/>
+<BRK/>
+<OLI>Inspect the pipe as called out in paragraph PIPE PIGGING - VERIFICATION, Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+]</OLG></SPT>][<SPT><TTL>Looped Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If piping is permanently looped consider using SECTION <SRF>33 08 53</SRF> AVIATION FUEL DISTRIBUTION SYSTEM START-UP.  
+Delete this paragraph if the piping is not permanently looped or if the decision is made that it must not be temporarily 
+looped. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Loop piping must be cleaned as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Position manual valves to circulate fuel out the issue line and back to the tank through the return line and through the receiving filter-separators.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if piping is not piggable In some cases if a line designed to be piggable, the pig launcher and 
+receiver is not permanently installed and the specifications will need to be written to indicate the contractor 
+will need to provide temporary units. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>First clean the pipe using pigs as called out in paragraph PIPE PIGGING-VERIFICATION, Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).  
+During this, low point drains and high point vents must be blown clean.  Monitor pressure drop through the filter-separators during the 
+cleaning operation.</OLI><BRK/>
+<BRK/>
+][<OLI>Inspect the pipe as called out in paragraph PIPE PIGGING - VERIFICATION, Section <SRF>33 52 40</SRF> FUEL SYSTEMS PIPING (NON-HYDRANT).</OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  The flowrates are nominal and must be adjusted to suit the individual system. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Initially pump fuel through the loop at a flow rate of [<MET>38 lps</MET> <ENG>600 gpm</ENG>] [_____]<MET> lps</MET><ENG> gpm</ENG>, then increase flow rate up to the full capacity 
+(all pumps running) starting manually one pump at a time.  When pumping at a rate greater than [<MET>76 lps</MET> <ENG>1200 gpm</ENG>] [_____]<MET> lps</MET><ENG> gpm</ENG>, by-pass 
+receiving filter-separators.</OLI><BRK/>
+<BRK/>
+<OLI>Monitor pressure drop through the filter-separators during the cleaning operation and provide flow vs. pressure drop graphs as specified 
+herein before.</OLI><BRK/>
+<BRK/>
+[<OLI>Periodically take samples from all sample connections.  Continue cleaning until the fuel meets specified requirements of paragraph CLEANING 
+REQUIREMENTS.</OLI><BRK/>
+<BRK/>
+]</OLG></SPT>][<SPT><TTL>[Product Recovery Tank Lines][High Point Vent Lines][Low Point Drain Lines][Thermal Relief Piping][Instrumentation Piping and Tubing]</TTL><BRK/>
+<BRK/>
+<TXT>Repeat the process described under initial flushing until samples taken at the end of the piping meet the requirements.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL><SUB>Piping Cleaning Checklist</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The Contractor must generate a comprehensive matrix of all new[ and existing] piping sections in the system.  Matrix must serve as an Owner's piping 
+inventory and a checklist for all Contractor-provided cleaning operations.  Column entries must include pipe section name, location, diameter, 
+approximate length, cleaning fuel velocity and volume achieved and acceptable results of sampling.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CONTROL VALVE ADJUSTMENT</TTL><BRK/>
+<BRK/>
+<TXT>Check all control valve settings and field adjust from the factory settings at System Start-Up as necessary to provide a smooth operation, devoid 
+of pressure surges, spikes, and hunting.  Check the[ filter separator control valves][ and][ fueling pump non-surge check valve] and adjust as 
+follows:</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Rate of Flow Control Feature on Fueling Pump Non-Surge Check Valve</TTL><BRK/>
+<BRK/>
+<TXT>Run one pump at a time and adjust rate of flow feature at nominal rated flow.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Control Valves on Issue Filter-Separator Downstream Side</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Position valves so that one fueling pump can pump through only one filter-separator.  Close the valve at the entrance of the apron loop, 
+and open the bypass valve, allowing discharge into the circulating line.</OLI><BRK/>
+<BRK/>
+<OLI>Start the pump and adjust the filter-separator control valve for the rated flow capacity of the filter-separator at nominal rated flow.</OLI><BRK/>
+<BRK/>
+<OLI>Repeat above for each remaining filter-separator.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]</SPT><SPT><TTL><SUB>EQUIPMENT TESTS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer to edit Equipment Tests (Attachment 1) for this project and provide to the Contractor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>After completion of flushing,[ cleaning,][ and control valve and electrical components adjusting operations,][ Contractor][ System Supplier] must 
+complete and submit the Equipment Tests (see Attachment 1 - Equipment Tests).  Equipment Tests must be submitted prior to Performance Testing[ 
+(Government approval not required prior to Performance Testing)].</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select from the following all those that apply.  The only one that must be in every project is the EMERGENCY 
+SHUTDOWN testing.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Control System and Control Valves</TTL><BRK/>
+<BRK/>
+<TXT>Field adjustment of[ automatic control valves][ and][ automatic pump controls] while in operation must be made only by the valve manufacturer's 
+authorized field test engineer.[  For final adjustment of installed electrical control equipment provide an experienced electrical engineer, factory 
+representative of pump control panel manufacturer][ and][ factory representative of[ pressure indicating transmitter (PIT) manufacturer]][ and][ 
+differential pressure transmitter (DPT) manufacturer].  Both the mechanical and electrical components must be adjusted concurrently.  Record required 
+data necessary to prepare Equipment Tests Report.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Tank Level Alarms</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify to suit adjustments for tanks in this project, if any.  The critical level alarms in the tanks are 
+the ones that that stop the fueling pumps (Low or Low-Level) as they protect the pumps from running dry at startup, 
+and the ones that act to keep the tank from overflowing (High or High Level).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Position valves to transfer fuel between tanks.</TXT><BRK/>
+<BRK/>
+<TXT>Start fueling pump and pump sufficient fuel out of the first tank to allow the[ low][ low-low] level alarm[ (LLA)][ (LLLA)] to stop the fueling 
+pump.  Repeat procedure for each fueling pump and each tank until the[ low][ low-low] level alarm[ (HLA)][ (HHLA)][ stops the fueling pumps][ sounds 
+an alarm][ closes the valve] due to low liquid level in tank.</TXT><BRK/>
+<BRK/>
+<TXT>Repeat testing for[ high][ high-high] level alarm other alarms checking each one in turn.  Repeat procedure for each fueling pump and each tank 
+until the[ high][ high-high] level alarm[ (HLA)][ (HHLA)][ stops the fueling pumps][ sounds an alarm][ closes the valve] due to high liquid level 
+in tank.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Fuel Delivery with Loading Control Valve </TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select loading control valve size and verify flow rate with Service Headquarters and/or their designated 
+appointee.  Coordinate the flowrate with the control system setpoints.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Deliver fuel to each fueling point with a Loading Control Valve against a backpressure at the outlet of the control valve created by the[ tank 
+trucks and hoses][ tank trucks and pantograph] [_____] used during the tests.  The flow rate must not be less than [_____] gallons per minute.  
+Flow rates might be affected by the vehicle's being loaded capability.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Fuel Delivery without Loading Control Valve </TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select valve size and verify flow rate with Service Headquarters and/or their designated appointee.  Coordinate 
+the flowrate with the control system setpoints.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Deliver fuel to each fueling point without a Loading Control Valve against a backpressure at the outlet set by modulating a manual downstream valve.  
+The flow rate must not be less than [_____] gallons per minute.  Flow rates might be affected by vehicle's being loaded capability.  Ensure that 
+the Loading Control Valve is tested per <SRF>33 52 43.14</SRF> AVIATION FUEL CONTROL VALVES.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Fueling Pump Operation</TTL><BRK/>
+<BRK/>
+<TXT>Demonstrate operation of all[ pressure and flow devices][ pump control start/stop station] to start and stop the fueling pumps[ at the indicated 
+pressure and flow rates] in the presence of the Contracting Officer.  Repeat the operating sequence with each of the pumps being selected as lead 
+pump if the pumps are controlled by a Pump Control Panel or an automatic control system with a variable lead pump.  For this test, measure the 
+flow rates.  Witness and record flow rates and test results.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Emergency Shutdown</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Should be present in every project as it is either being worked on as part of the project, and/or its proper 
+functioning is necessary to shut down the system during start-up and performance testing operations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>With one fueling pump circulating fuel through the system, test each "Emergency Stop" pushbutton station to verify that the pump stops[ and the 
+emergency shutoff solenoid activates and the control valve closes].  Repeat above procedure for each fueling pump and "Emergency Stop" pushbutton 
+station.  Conduct tests for both the automatic and manual modes.  With all the fueling pumps circulating fuel through the system, push an "Emergency 
+Stop" pushbutton station.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Loading Control Valves</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if no Loading Control Valves are provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each Loading Control Valve must be operated to demonstrate the following:</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Surge Shut-Down Capability</TTL><BRK/>
+<BRK/>
+<TXT>Surge from shut-off of a downstream valve can be simulated by closing a quick turn valve downstream of the control valve, use a 3 second closure.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Pressure Control at Setpoint Plus<MET> 15 kPa</MET><ENG> 2 psi</ENG></TTL><BRK/>
+<BRK/>
+<TXT>Requires use of a pressure gage downstream of the control valve.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>][<SPT><TTL>Filter-Separator Float Control Valves with Manual Tester</TTL><BRK/>
+<BRK/>
+<TXT>Using the manual float control test level on each Filter-Separator, lift the weight from the float ball slowly and observe the operation and closure 
+of the water slug shut-off feature on the Filter-Separator Control Valve.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Overfill Valve</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete if no Overfill Valve.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Place fuel transfer pump in the "off" position.  Delivery quantity of fuel to Product Recovery Tank to demonstrate capability of valve to close.  
+Empty the tank  pump to demonstrate capability of valve to open when fuel level drops below set point.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>PERFORMANCE TESTS</TTL><BRK/>
+<BRK/>
+<TXT>Performance testing must occur after the Contractor has performed the Equipment Tests.  Performance testing must demonstrate to the satisfaction 
+of the Contracting Officer and Service Headquarters [and][or] their designated appointee these portions of the fueling system are working as specified.  
+Performance testing must consist of repeating the Equipment Tests (indicated in previous paragraphs) and operating the fueling system during actual 
+operations in the presence of Government Witnesses.  The maximum rated capacity of the system must be demonstrated.  The Contractor must notify 
+the Contracting Officer[ 30][ 45][ 60] [_____] calendar days in advance of the test to permit arrangement for the use of Government-furnished items.  
+During the time period of performance testing, no construction activities will be allowed on the project site.  The project site must be considered 
+an operational (fuel) zone (verses a construction zone) during this performance testing period.  Personnel, dressed for fuel's operation, will 
+be present to witness testing and participate in Contractor provided training.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Final Performance Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose as many below as applicable to the project.  Add ones not on the list.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>A final performance test must consist of demonstrating the operation of the system for the purpose for which it is intended:</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>loading refueler trucks</OLI><BRK/>
+<BRK/>
+][<OLI>loading over-the-road tank trucks</OLI><BRK/>
+<BRK/>
+][<OLI>loading rail cars</OLI><BRK/>
+<BRK/>
+][<OLI>loading marine vessels</OLI><BRK/>
+<BRK/>
+][<OLI>off-loading over-the-road tank trucks</OLI><BRK/>
+<BRK/>
+][<OLI>off-loading rail cars</OLI><BRK/>
+<BRK/>
+][<OLI>off-loading marine vessels</OLI><BRK/>
+<BRK/>
+][<OLI>transferring fuel through the[ pipeline][ piping system]</OLI><BRK/>
+<BRK/>
+][<OLI>loading motive fuel into vehicles</OLI><BRK/>
+<BRK/>
+]</OLG></SPT><SPT><TTL>Satisfactory Performance</TTL><BRK/>
+<BRK/>
+<TXT>In the event a portion of the system or any piece of equipment fails to meet the test, make the necessary repairs or adjustments and repeat the 
+Performance Test until satisfactory performance is obtained.  The determination of satisfactory performance must be made by the Contracting Officer 
+and the Service Headquarters and/or their designated appointee.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Testing Plan</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer to edit Performance Testing Plan (Attachment 2) for this project and provide to the Contractor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Contractor][System Supplier] must edit the example Performance Testing plan and submit for approval.  An example Performance Testing plan can 
+be found at the end of this Section as Attachment 2 - Performance Testing Plan.  Submit plan a minimum of[ 60][ 180] [_____] days prior to performance 
+testing.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Equipment Tests</TTL><BRK/>
+<BRK/>
+<TXT>[Contractor][System Supplier] must provide[ 10 hard copies][ and ][ electronic copies] of the completed Equipment Tests to the Service Headquarters 
+[and][or] their designated appointee at the start of Performance Testing for validation during Performance Testing.</TXT><BRK/>
+<BRK/></SPT>
+]<TST>[<SPT><TTL>Control Valve Tagging</TTL><BRK/>
+<BRK/>
+<TXT>After the performance testing and system acceptance, tag the control valves with their final adjustments.</TXT><BRK/>
+<BRK/></SPT>
+]</TST><TST><SPT><TTL>Final Acceptance</TTL><BRK/>
+<BRK/>
+<TXT>Fill the system with fuel and operate leak-free prior for acceptance.  Anything wet with fuel is considered to be leaking.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Tank High Liquid Level Shut-Off Valve Test and Adjustments</TTL><BRK/>
+<BRK/>
+<TXT>During the final filling of tanks, check the tank automatic high liquid level shut-off valve for proper functioning at least three times by lowering 
+the fuel level and refilling again.  Adjust valve to achieve a safe fill level.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Tank Level Indicator Adjustments</TTL><BRK/>
+<BRK/>
+<TXT>Also, during the final filling of tanks, adjust and calibrate the tank level indicators including the final setting of the high high level (HHLA) 
+and high level (HLA) alarms.  Since the HHLA is at a point higher than the High Liquid Level Shut-Off Valve float set point, an artificial method 
+of simulating HHL must be used.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Water Draw-Off System Test</TTL><BRK/>
+<BRK/>
+<TXT>During the performance testing, fill Water Draw-off Systems from tank sump to ensure proper operation.  After filling system, allow time for <NED/>fuel/water 
+mixture to separate.  Verify liquid separation through system's sight glasses.  Proper operation includes capability to drain separated water and 
+capability to pump separated fuel back to a full tank.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT></TST></SPT></PRT>    <END/><BRK/></SEC>

@@ -1,0 +1,1269 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="394.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="393.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-01 91 00.15 (May 2023)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Change 3 - 08/24</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-01 91 00.15 10 (May 2019)<BRK/>UFGS-01 91 00.15 20 (February 2021)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 01 91 00.15</SCN><BRK/>
+<BRK/>
+<STL>BUILDING COMMISSIONING</STL><BRK/>
+<DTE>05/23, CHG 3: 08/24</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers <SCP>Building Commissioning requirements for design and construction of Army 
+managed, Navy managed, and Air Force Managed: new building; additions; existing building sustainment, restoration, 
+and modernization</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>For Air Force managed projects, either ARMY or NAVY tailoring options may be applied.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate all Sections that reference commissioning with this section, including Sections <SRF>01 45 00</SRF> QUALITY CONTROL, 
+01 91 19 BUILDING ENCLOSURE COMMISSIONING, <SRF>23 08 00</SRF> COMMISSIONING OF MECHANICAL[ AND PLUMBING] SYSTEMS, 
+<SRF>22 33 30</SRF> SOLAR WATER HEATING EQUIPMENT, <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING, <SRF>26 31 00</SRF> SOLAR PHOTOVOLTAIC 
+(PV) COMPONENTS, <SRF>26 51 00</SRF> INTERIOR LIGHTING, and <SRF>26 56 00</SRF> EXTERIOR LIGHTING.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section contains tailoring options for KTR HIRED COMMISSIONING PROVIDER, GOVT HIRED COMMISSIONING 
+PROVIDER, ARMY, NAVY, DESIGN-BUILD, DESIGN-BID-BUILD, and INTEGRATED SYSTEMS TESTING.  For Air Force managed projects, 
+either ARMY or NAVY tailoring options may be applied.</NPR><BRK/>
+<BRK/>
+<NPR>Select KTR HIRED COMMISSIONING PROVIDER tailoring for projects that require the Commissioning Provider to be provided 
+by the Construction Contractor.</NPR><BRK/>
+<BRK/>
+<NPR>Select GOVT HIRED COMMISSIONING PROVIDER tailoring for Navy managed projects where the Commissioning Provider 
+is retained under a separate contract with the Government.</NPR><BRK/>
+<BRK/>
+<NPR>ARMY tailoring applies to construction projects managed by the Army.  Army managed projects will always have a 
+KTR HIRED COMMISSIONING PROVIDER in accordance with Engineering Regulation 1110-345-723 TOTAL BUILDING COMMISSIONING 
+PROCEDURES.  Do NOT select GOVT HIRED COMMISSIONING PROVIDER tailoring for Army managed projects.  Refer to Engineering 
+Regulations for further information.</NPR><BRK/>
+<TAI OPT="ARMY"><BRK/>
+<NPR>Army Engineering Regulation (ER) 1110-345-723 describes Army managed  project commissioning leadership structure.  
+In all cases, the construction contractor will be required to provide a Contractor's Commissioning Specialist 
+(CxC), herein referred to as the Lead Commissioning Specialist, to perform the duties listed.  For design-build 
+projects, the CxC serves as the Commissioning Specialist for Design (CxD) as defined in ER 1110-345-723.  The 
+Army will utilize a Government Commissioning Specialist (CxG) as described in the ER.  Regardless of whether the 
+CxG is provided by Army personnel or third party contract, all communication and coordination with the CxG will 
+be managed through the Contracting Officer via processes established in other specification sections such as Quality 
+Control and Submittal Procedures.</NPR><BRK/></TAI>
+<BRK/>
+<NPR>NAVY tailoring applies to construction projects managed by the Navy.</NPR><BRK/>
+<BRK/>
+<NPR>For Air Force projects managed by the Army or the Navy, tailor this Section for the Service that is managing the 
+construction project.  If Air Force is managing the construction project, choose the Service tailoring option 
+that best fits the project requirements.</NPR><BRK/>
+<BRK/>
+<NPR>Select DESIGN-BUILD tailoring for Design-Build project execution.</NPR><BRK/>
+<BRK/>
+<NPR>Select DESIGN-BID-BUILD tailoring for Design-Bid-Build project execution.</NPR><BRK/>
+<BRK/>
+<NPR>Select INTEGRATED SYSTEMS TESTING tailoring for buildings with central control systems and interactive operation 
+among different systems.  (Examples include mission critical facilities such as hospitals, laboratories, mission 
+operations, or other essential (RCIV) and strategic asset (RCV) facilities.)</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate this Section with the commissioning requirements of ASHRAE Standard 90.1 as required by UFC 1-200-02, 
+"High Performance and Sustainable Building Requirements" paragraph "Commissioning".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Building Commissioning is a systematic, quality-focused process for enhancing the delivery of a project that focuses on verifying and documenting 
+that all of the commissioned systems and assemblies are planned, designed, installed, tested, operated, and maintained to meet the project requirements.  
+The purpose is to reduce the cost and performance risks associated with delivering facilities projects, and to increase value to owners, occupants, 
+and users.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ASHRAE 90.1 - IP</RID><RTL>(2019) Energy Standard for Buildings Except Low-Rise Residential Buildings</RTL><BRK/><BRK/><RID>ASHRAE 180</RID><RTL>(2018) Standard Practice for Inspection and Maintenance of Commercial Building HVAC Systems</RTL><BRK/><BRK/><RID>ASHRAE 202</RID><RTL>(2018) Commissioning Process for Buildings and Systems</RTL><BRK/><BRK/></REF><REF><ORG>ASSOCIATED AIR BALANCE COUNCIL (AABC)</ORG><BRK/><BRK/><RID>ACG Commissioning Guideline</RID><RTL>(2005) Commissioning Guideline</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ENVIRONMENTAL BALANCING BUREAU (NEBB)</ORG><BRK/><BRK/><RID>NEBB S1110</RID><RTL>(2019) Whole Building Technical Commissioning of New Construction; 2nd Edition</RTL><BRK/><BRK/></REF><REF><ORG>SHEET METAL AND AIR CONDITIONING CONTRACTORS' NATIONAL ASSOCIATION (SMACNA)</ORG><BRK/><BRK/><RID>ANSI/SMACNA 014</RID><RTL>(2013) HVAC Systems Commissioning Manual, 2nd Edition</RTL><BRK/><BRK/></REF><REF><ORG>U.S. ARMY CORPS OF ENGINEERS (USACE)</ORG><BRK/><BRK/><RID>ER 25-345-1</RID><RTL>(2019) Commissioning -- Systems Manual</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Commissioning Process (Cx) - a quality-focused process for enhancing the delivery of a project.  Refer to <RID>ASHRAE 202</RID> for a comprehensive description 
+of the commissioning process.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph contains tailoring for ARMY, NAVY, and GOVT-HIRED COMMISSIONING PROVIDER.  For 
+Air Force managed projects, either ARMY or NAVY tailoring options may be applied.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="NAVY">Commissioning Provider </TAI><TAI OPT="ARMY">Lead Commissioning Specialist </TAI>(CxC) - The entity <TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">hired by the Government, </TAI></TAI>who leads, plans, and coordinates the Commissioning 
+Team.  The terms Commissioning Provider, Commissioning Firm, Lead Commissioning Specialist, Commissioning Specialist, and Commissioning Authority 
+(CA or CxA) when used by sustainable Third Party Certification (TPC) programs, are interchangeable.</TXT><BRK/>
+<BRK/>
+<TXT>Commissioning Authority – The Government retains the authority for oversight and assurance of the entire commissioning process, and final approval 
+of all commissioning deliverables.</TXT><BRK/>
+<TAI OPT="NAVY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph is tailored for NAVY.  For Navy managed projects, refer to NAVFAC Instruction 3960.1 
+"Technical Oversight and Acceptance Testing of Critical Systems" for information on Acceptance Testing Representatives' 
+roles and responsibilities.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government Acceptance Testing Representatives - Government Acceptance Testing Representatives perform the inherently Governmental function of technical 
+oversight and quality assurance for critical systems, and is distinctly separate from the commissioning process.  Government Acceptance Testing 
+Representatives witness final testing of critical systems and report systems' acceptance to the COR.  Submittals to be surveilled and approved 
+by Government Acceptance Testing Representatives are identified in Section<TAI OPT="DESIGN-BID-BUILD"> <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES</TAI><TAI OPT="DESIGN-BUILD"> 01 33 00.05 20 CONSTRUCTION SUBMITTAL 
+PROCEDURES</TAI>.  Testing required to be witnessed by Government Acceptance Testing Representatives are identified in system level sections.</TXT><BRK/></TAI>
+<NTE><BRK/>
+<AST/><BRK/>
+<TAI OPT="NAVY"><NPR>NOTE:  The Owner's Project Requirements (OPR) document may be included as deemed appropriate by the project team 
+or as required by some Third Party Certification (TPC) systems (such as LEED and Green Globes).  The preliminary 
+design deliverables and preliminary design authority (PDA) documentation (1391, Basis of Design, UFCs, etc.) constitute 
+the Owner's Project Requirements (OPR) and may be used in lieu of a stand-alone OPR.  If used, the OPR is referenced 
+by the CxC during design review when the specification is tailored for KTR HIRED COMMISSIONING PROVIDER.</NPR><BRK/></TAI>
+<TAI OPT="ARMY"><NPR>NOTE:  The Owner's Project Requirements (OPR) document may be included as deemed appropriate by the project team 
+or as required by some Third Party Certification (TPC) systems (such as LEED and Green Globes).  When not otherwise 
+required for TPC, inclusion of the OPR for CxC review may be beneficial for ensuring large or complex projects 
+conform to the Owner's needs.  This may be unnecessary for more typical construction projects.  If used, the OPR 
+is referenced by the CxC during design review and during submittal review, inspections, and testing.</NPR><BRK/></TAI>
+<BRK/>
+<NPR>NOTE:  If used, insert the OPR as Appendix A to the specification section.  Include a statement on the OPR cover 
+stating that the document is provided for commissioning review purposes only and is not a contract requirement.  
+Retain the bracketed references to Owner's Project Requirements (OPR) throughout the specification when one is 
+included.  Delete the bracketed OPR references when the OPR is not included.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Owner's Project Requirements (OPR) - document that details the stakeholders' requirements for the project and the expectations for how it will 
+be used and operated.  The OPR is provided for commissioning review purposes only and is not a contract requirement.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>COMMUNICATION WITH THE GOVERNMENT <TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">COMMISSIONING PROVIDER</TAI></TAI></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph contains tailoring for ARMY, NAVY, KTR HIRED COMMISSIONING PROVIDER, and GOVT HIRED 
+COMMISSIONING PROVIDER.  For Air Force managed projects, either ARMY or NAVY tailoring options may be applied.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>The Lead Commissioning Specialist (CxC) must submit all plans, schedules, reports, and documentation directly to the Contracting Officer's Representative 
+concurrent with submission to the Quality Control (QC) Manager.</TXT></TAI><BRK/>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>The Lead Commissioning Specialist must have direct communication with the Contracting Officer's Representative regarding all elements of the commissioning 
+process; however, the Government has no direct contract authority with the Lead Commissioning Specialist.</TXT></TAI><BRK/>
+<BRK/>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>The QC Manager must communicate directly with the CxC and Contracting Officer’s Representative regarding all elements of the commissioning process; 
+however, the CxC has no direct contract authority.  Coordinate with the Contracting Officer's Representative for all commissioning activities required 
+by the Commissioning Provider.  Inform the Contracting Officer's Representative when systems are ready for commissioning activities, and allow 
+access to the construction site and system(s) to be tested.</TXT><BRK/>
+<BRK/></TAI>
+</TAI></SPT><TAI OPT="NAVY"><SPT><TTL>COMMUNICATION WITH GOVERNMENT ACCEPTANCE TESTING REPRESENTATIVES</TTL><BRK/>
+<BRK/>
+<TXT>The QC Manager must communicate directly with the Government Acceptance Testing Representatives and Contracting Officer's Representative regarding 
+Government acceptance testing activities.  Inform the Contracting Officer's Representative when systems are ready for testing to be witnessed by 
+Government Acceptance Testing Representatives, and allow access to the construction site and system(s) to be tested.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>SYSTEMS TO BE COMMISSIONED</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following systems are required to be commissioned per ASHRAE Standard 90.1 as required by UFC 1-200-02 
+paragraph "Commissioning."  Select all systems that are part of the scope.  Add other systems as required by the 
+scope of the project or required by the applied sustainable third party certification program.  Other systems 
+may be appropriate for commissioning depending on scope and funding such as communications systems or specialty 
+process systems.  Per UFC 1-200-02, paragraph Outdoor Water, new, permanent, potable irrigations systems are not 
+allowed.  Only include the bracketed irrigation system line item for new, non-potable irrigation systems or existing 
+irrigation systems that are part of the commissioning scope of work.</NPR><BRK/>
+<BRK/>
+<NPR>Include bracketed "Building envelope" for new buildings and renovation projects that include significant envelope 
+scope.  Coordinate with Section <SRF>01 91 19</SRF> BUILDING ENCLOSURE COMMISSIONING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate commissioning and quality control activities for the following systems, equipment, and associated controls.  System-specific requirements 
+are located in the associated specification sections.  Commission the following systems, equipment, and associated controls in accordance with 
+this section and the inspection, testing, and quality control requirements of their respective sections:</TXT><BRK/>
+<BRK/>
+[<LST>Heating, ventilating, air-conditioning, and refrigeration systems (mechanical and passive) and associated controls (HVAC)</LST><BRK/>
+<BRK/>
+][<LST>Lighting systems: interior and exterior, automatic and manual daylighting controls, occupancy sensing devices, automatic shut-off controls, 
+time switching, and other lighting control devices, and dimming systems</LST><BRK/>
+<BRK/>
+][<LST>Service hot-water systems and controls</LST><BRK/>
+<BRK/>
+][<LST>Water pressure-booster systems</LST><BRK/>
+<BRK/>
+][<LST>Building Control Systems</LST><BRK/>
+<BRK/>
+][<LST>Utility Monitoring and Control Systems</LST><BRK/>
+<BRK/>
+][<LST>Metering and sub-metering</LST><BRK/>
+<BRK/>
+][<LST>Automatic Receptacle Control</LST><BRK/>
+<BRK/>
+][<LST>Building Envelope in accordance with Section <SRF>01 91 19</SRF> BUILDING ENCLOSURE COMMISSIONING.</LST><BRK/>
+<BRK/>
+]<LST>[_____]</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RELATED SECTIONS</TTL><BRK/>
+<BRK/>
+<TXT>Refer to the following technical sections for additional commissioning requirements for respective systems:</TXT><BRK/>
+<BRK/>
+[<LST>Section <SRF>01 91 19</SRF> BUILDING ENCLOSURE COMMISSIONING</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>23 08 00</SRF> COMMISSIONING OF MECHANICAL[ AND PLUMBING] SYSTEMS</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING</LST><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>COMMISSIONING TEAM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph contains ARMY, NAVY, and DESIGN-BUILD tailoring.  For Air Force managed projects, 
+either ARMY or NAVY tailoring options may be applied.</NPR><BRK/>
+<BRK/>
+<NPR>Select the contractors and Government team members based on systems to be commissioned and the commissioning plan.<TAI OPT="NAVY">
+  Include Government Acceptance Testing Representatives for all Navy managed projects.</TAI></NPR><BRK/>
+<BRK/>
+<NPR>DOR involvement in commissioning is required for design-build projects.  DOR involvement is highly encouraged 
+for design-bid-build projects when available during the construction phase of the project (such as with in-house 
+design personnel or when construction phase services are contracted for the DOR).  When DESIGN-BUILD tailoring 
+is selected, the DOR in included in the list.  When DESIGN-BID-BUILD is selected, the DOR is in brackets, and 
+the project team will include the DOR as appropriate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Commissioning team will include, but is not limited to the following team members.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure all <TAI OPT="DESIGN-BUILD">Design and </TAI>Construction Activities for systems to be commissioned are coordinated with the appropriate commissioning team members.</TXT><BRK/>
+<OLG><BRK/>
+<OLI><TAI OPT="NAVY"> Commissioning Provider</TAI><TAI OPT="ARMY"> Lead Commissioning Specialist (CxC)</TAI></OLI><BRK/>
+<BRK/>
+<OLI>QC Manager</OLI><BRK/>
+<BRK/>
+<OLI>Sub-Contractor Representatives for each trade responsible for construction/installation of systems to be commissioned</OLI><BRK/>
+<BRK/>
+<OLI><TAI OPT="NAVY"> Construction Manager (CM)</TAI><TAI OPT="ARMY"> Contractor's Project Manager</TAI></OLI><BRK/>
+<BRK/>
+<OLI>Technical Commissioning Specialists for each system to be commissioned</OLI><BRK/>
+<BRK/>
+<OLI>TAB Representative</OLI><BRK/>
+<BRK/>
+<OLI>Equipment manufacturer representatives</OLI><BRK/>
+<BRK/>
+<OLI>Government Contracting Officer</OLI><BRK/>
+<BRK/>
+<OLI>Government Representatives</OLI><BRK/>
+<BRK/>
+<OLI>Installation Maintenance Representative</OLI><BRK/>
+<BRK/>
+<OLI>Facility End User</OLI><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BID-BUILD">[</TAI><OLI>Designer of Record (DOR)</OLI><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BID-BUILD">]</TAI><TAI OPT="DESIGN-BUILD"><OLI>Designer of Record (DOR)</OLI><BRK/>
+<BRK/></TAI>
+<TAI OPT="NAVY"><OLI>Government Acceptance Testing Representatives</OLI><BRK/>
+<BRK/></TAI>
+<OLI>[_____]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>PROJECT SCHEDULE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY and NAVY.  For Air Force managed projects, either ARMY 
+or NAVY tailoring options may be applied.</NPR><BRK/>
+<BRK/>
+<NPR>Edit milestones based on systems to be commissioned and the requirements of the contract documents.</NPR><BRK/>
+<BRK/>
+<NPR>Select bracketed items as applicable.  Include additional schedule tasks as necessary.  Final editing will require 
+renumbering remaining items.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include the following tasks in the project schedule required by Section<TAI OPT="ARMY"> <SRF>01 32 01.00 10</SRF> PROJECT SCHEDULE</TAI><TAI OPT="NAVY"> <SRF>01 32 17.00 20</SRF> COST-LOADED NETWORK ANALYSIS 
+SCHEDULES (NAS) and in the construction phase commissioning plan</TAI>.  Ensure sufficient time is scheduled to complete each item.  The order of items 
+listed below is not intended to imply a specified sequence:</TXT><BRK/>
+<OLG><TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following two items are tailored for KTR HIRED COMMISSIONING PROVIDER and DESIGN-BUILD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Submission and approval of the Commissioning Firm Qualifications</OLI><BRK/>
+<TAI OPT="DESIGN-BUILD"><BRK/>
+<OLI>Submission and approval of the Design Phase Commissioning Plan</OLI><BRK/></TAI>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following items are tailored for KTR HIRED COMMISSIONING PROVIDER. <TAI OPT="NAVY"> Select the Design Review Report 
+submittal if a design review will be conducted post-contract award.  Commissioning design review report may be 
+required by applicable Sustainability Third Party Certification guidelines.</TAI></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Submission and approval of the Design Review Report</OLI><BRK/>
+<BRK/>
+]<OLI>Submission and approval of the Interim and Final Construction Phase Commissioning Plans</OLI><BRK/></TAI>
+<BRK/>
+<OLI>Commissioning Kickoff Meeting</OLI><BRK/>
+<BRK/>
+<OLI>Regular Commissioning Coordination Meetings</OLI><BRK/>
+<BRK/>
+<OLI>Installation of permanent utilities (gas, water, electric, steam)</OLI><BRK/>
+<BRK/>
+<OLI>Building Enclosure Construction</OLI><BRK/>
+<BRK/>
+<OLI>Submission and approval of the Completed Building Enclosure Inspection Checklists</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's Equipment Start-Up for each of the systems to be commissioned</OLI><BRK/>
+<BRK/>
+<OLI>Submission and approval of the Completed Commissioning Observation Checklists</OLI><BRK/>
+<BRK/>
+<OLI>Submission and approval of Certificate of Readiness for each system to be commissioned</OLI><BRK/>
+<BRK/>
+<OLI>Commissioning Testing, including Functional Performance Testing, for each system to be commissioned</OLI><BRK/>
+<TAI OPT="INTEGRATED SYSTEMS TEST"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following item is tailored for INTEGRATED SYSTEMS TEST.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Integrated Systems Tests</OLI><BRK/></TAI>
+<BRK/>
+<OLI>Post-test deficiency correction for each system to be commissioned</OLI><BRK/>
+<BRK/>
+<OLI>Re-Testing</OLI><BRK/>
+<TAI OPT="ARMY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following two items are tailored for ARMY.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Submission and approval of the Maintenance and Service Life Plans</OLI><BRK/>
+<BRK/>
+<OLI>Submission and approval of the Systems Manual</OLI><BRK/></TAI>
+<BRK/>
+<OLI>Training for each of the systems to be commissioned</OLI><BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following item is tailored for KTR HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Submission and approval of the <TAI OPT="NAVY">Initial and </TAI>Final Commissioning Reports</OLI><BRK/></TAI>
+<TAI OPT="NAVY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following item is tailored for NAVY.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Final testing required to be witnessed by Government Acceptance Testing Representatives, as identified in system level sections.</OLI><BRK/></TAI>
+<BRK/>
+[<OLI>[_____]</OLI><BRK/>
+<BRK/>
+]</OLG></SPT>[<SPT><TTL>PHASING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include this bracketed paragraph and provide instruction to contractor for projects with phases or multiple 
+buildings to convey particular commissioning scheduling requirements beyond the Contractor's means and methods.  
+Determine whether systems are to be commissioned as each phase or building is completed, or deferred until all 
+phases or buildings are complete.  Coordinate scheduling requirements with project manager.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[This project includes multiple [phases][ and ][buildings].  Commissioning activities for each project phase[ and ][building] must be scheduled 
+separately and must correspond to each completion milestone in the master schedule.] [_____]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army managed projects, fill in the empty brackets following the "G" classification, with a code of up to three 
+characters to indicate the approving authority.  Codes for Army projects using the Resident Management System 
+(RMS) are:  "AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization 
+in the District Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following 
+the "G" typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<BRK/>
+<NPR>For Navy design-build projects, delete Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES, and replace with Section 01 33 00.05 
+20 CONSTRUCTION SUBMITTAL PROCEDURES and Section 01 33 10.05 20 DESIGN SUBMITTAL PROCEDURES.  For Army managed 
+projects, use Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES for both design-build and design-bid-build projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section<TAI OPT="ARMY,DESIGN-BID-BUILD"> <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES</TAI><TAI OPT="NAVY"><TAI OPT="DESIGN-BUILD">
+ 01 33 00.05 20 CONSTRUCTION SUBMITTAL PROCEDURES</TAI></TAI>:</TXT><BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TAI OPT="DESIGN-BUILD"><BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following submittal is tailored for KTR HIRED COMMISSIONING PROVIDER and DESIGN-BUILD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Design Phase Commissioning Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/></TAI>
+</TAI><BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Completed Construction Observation Checklists</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><NTE><AST/><BRK/>
+<NPR>NOTE:  The following submittals are tailored for KTR HIRED COMMISSIONING PROVIDER.<TAI OPT="NAVY">  Select the Design Review Report 
+submittal if a design review will be conducted post-contract award.  Commissioning design review report may be 
+required by applicable Sustainability Third Party Certification guidelines.</TAI></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="NAVY">[</TAI><ITM><SUB>Design Review Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="NAVY">]</TAI><ITM><SUB>Interim Construction Phase Commissioning Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Final Construction Phase Commissioning Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="NAVY"><ITM><SUB>Initial Commissioning Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Issues Log</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following submittal is tailored for KTR HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Commissioning Firm</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/></TAI>
+<BRK/>
+<ITM><SUB>Certificate of Readiness</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TAI OPT="ARMY"><NTE><AST/><BRK/>
+<NPR>NOTE:  The following submittal is tailored for ARMY and KTR HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Maintenance and Service Life Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+</TAI><ITM><SUB>Systems Manual</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following submittals are tailored for KTR HIRED COMMISSIONING PROVIDER.  Retain the Updated Final Commissioning 
+Report submittal for projects that require a Warranty Phase Site Visit.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Final Commissioning Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Updated Final Commissioning Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain the following submittal for projects that are required to track "S" submittals in the Sustainability 
+eNotebook, in accordance with Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<ITM><SUB>Final Commissioning Report (eNotebook)</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Updated Final Commissioning Report (eNotebook)</SUB>; <SUB>S</SUB></ITM><BRK/>
+<BRK/>
+]</TAI></SPT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><SPT><TTL><SUB>COMMISSIONING FIRM</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraphs are tailored for KTR HIRED COMMISSIONING PROVIDER.  Verify the certifications 
+below cover the requirements of the systems to be commissioned in the project.  Add or delete certificates as 
+appropriate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Employ the services of a Commissioning Firm and all Commissioning Specialists required to perform work for this project.  The Commissioning Firm 
+must be a first-tier subcontractor that is financially and corporately independent from prime contractor and all other subcontractors and the Designer 
+of Record and that is not participating in any other work on this Contract, including design, furnishing equipment, construction, or testing, adjusting, 
+and balancing.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose the bracketed option 60 days for large or complex projects or projects with long duration.  Choose 
+the bracketed option 30 days for small or non-complex projects, or projects with shorter duration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Submit the Commissioning Firm's and Commissioning Specialists' qualifications, including the name of the firm and each CxC and each certification, 
+no later than [60][30] calendar days after <TAI OPT="NAVY"><TAI OPT="DESIGN-BID-BUILD"> contract award</TAI><TAI OPT="DESIGN-BUILD"> notice to proceed</TAI></TAI><TAI OPT="ARMY"> notice to proceed</TAI>.</OLI><BRK/>
+<BRK/>
+<OLI>If, for any reason, a specialist loses a certification during this period, immediately notify the Contracting Officer and submit another 
+Commissioning Specialist for approval.  An approved successor must validate all work performed for this project by the CxC who lost a certification.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Commissioning Specialists (CxC)</TTL><BRK/>
+<BRK/>
+<TXT>Assign Lead Commissioning Specialist and other appropriate Commissioning Specialists for the systems to be commissioned.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Lead Commissioning Specialist (CxC)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain the bracketed certifications for CONUS and other locations where commissioning firms are likely 
+to achieve this level of qualification.  Delete the bracketed certification requirements in locations, such as 
+other countries, where these certificates are not normally acquired.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Lead Commissioning Specialist (CxC) coordinates all aspects of the commissioning process.  Duties include leading and overseeing the commissioning 
+work and acting as the primary point of contact for the commissioning work.  CxC may serve as a systems Specialist if all requirements for both 
+designations are met.  CxC must have a minimum of five years of commissioning experience, including two projects of similar size and complexity 
+to this project.</TXT><BRK/>
+<BRK/>
+[<TXT>CxC must be certified in one of the following:</TXT><BRK/>
+<BRK/>
+<LST>NEBB Building System Commissioning Professional (CxCP)</LST><BRK/>
+<BRK/>
+<LST>ACG Certified Commissioning Authority (CxA)</LST><BRK/>
+<BRK/>
+<LST>ICB/TABB Certified Commissioning Supervisor</LST><BRK/>
+<BRK/>
+<LST>BCA Certified Commissioning Professional (CCP)</LST><BRK/>
+<BRK/>
+<LST>AEE Certified Building Commissioning Professional (CBCP)</LST><BRK/>
+<BRK/>
+<LST>University of Wisconsin-Madison Qualified Commissioning Process Provider (QCxP)</LST><BRK/>
+<BRK/>
+<LST>ASHRAE Building Commissioning Professional (BCxP).</LST><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Commissioning Specialists</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain Commissioning Specialists based on the systems to be commissioned.  Coordinate requirements with 
+referenced UFGS Sections.</NPR><BRK/>
+<BRK/>
+<NPR>Choose bracketed phrases that are part of the project scope of work.  Add any specialists necessary to execute 
+the commissioning scope of this project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Refer to the related technical commissioning specification section for additional qualifications for each Commissioning Specialist associated with 
+each system.  Include all Commissioning Specialist qualifications with the Commissioning Firm submittal:</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Mechanical Commissioning Specialist:  The technical work associated with mechanical systems to be commissioned must be performed by a Commissioning 
+Specialist certified by NEBB, ACG, ICB/TABB, AEE, University of Wisconsin-Madison, ASHRAE, or BCA in the commissioning of HVAC systems 
+with five years of experience in the commissioning of HVAC systems.</OLI><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Low complexity electrical systems, such as lighting control systems, may not necessitate the use of an 
+electrical specialist.  In such cases, the project team may allow the mechanical specialist to perform the electrical 
+specialist role.  Select the appropriate bracketed language.  The contractor may then determine which type of 
+specialist to use.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  More complex electrical systems may necessitate an electrical commissioning specialist.  When the project 
+includes specification Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING, the engineering technician performing 
+the inspection and testing work described in that section may serve as the electrical commissioning specialist 
+for commissioning.  Select the appropriate bracketed language.  Include bracketed option for utilizing Mechanical 
+Commissioning Specialist to commission low complexity systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Electrical Commissioning Specialist:  The technical work associated with electrical systems to be commissioned must be performed by an 
+engineering technician with five years of experience inspecting, testing, and calibrating electrical distribution and generation equipment, 
+systems, and devices.[  The lead engineering technician specified in specification Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING may 
+serve as the Electrical Commissioning Specialist.][  The Mechanical Commissioning Specialist may be utilized to perform the technical work 
+associated with electrical systems to be commissioned.]</OLI><BRK/>
+<BRK/>
+]<OLI>Building Enclosure Commissioning Specialist:  The technical work associated with the Building Envelope system must be performed by a Building 
+Enclosure Commissioning Specialist that is a[ registered architect or engineer, or building scientist, with five years of building enclosure 
+design or construction experience][ or a professional with training and Certification in Building Enclosure Commissioning from a third-party 
+certification organization plus five years of commissioning experience].  The commissioning provider must have the necessary training, 
+experience, and FPT equipment.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></SPT></TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><SPT><TTL>GOVERNMENT HIRED COMMISSIONING PROVIDER</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for NAVY and GOVT HIRED COMMISSIONING PROVIDER when the Commissioning Provider 
+is retained under a separate contract by the Government.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Commissioning Provider (CxC) is employed by Government under separate contract.  Incorporate key milestones of the Commissioning process into 
+the Project Schedule identified in this Section.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></TAI><TAI OPT="ARMY,KTR HIRED COMMISSIONING PROVIDER"><SPT><TTL>COMMISSIONING STANDARD</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for ARMY or KTR HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="ARMY">Comply with <RID>ASHRAE 202</RID> and the commissioning standards under which the Commissioning Firm and Specialists qualifications are approved, which may 
+include <RID>ACG Commissioning Guideline</RID>, <RID>NEBB S1110</RID>, or <RID>ANSI/SMACNA 014</RID>.  </TAI><TAI OPT="NAVY">Comply with the requirements of the commissioning standard under which the 
+Commissioning Firm and Specialists qualifications are approved.  When the firm and specialists are certified by BCA, AEE, ASHRAE, or the University 
+of Wisconsin-Madison, comply with the requirements of one of these acceptable standards: <RID>ACG Commissioning Guideline</RID>, <RID>NEBB S1110</RID>, <RID>ANSI/SMACNA 014</RID>
+, or <RID>ASHRAE 202</RID>.  </TAI>In a conflict, the most stringent requirements apply.  In addition, comply with <RID>ASHRAE 90.1 - IP</RID> commissioning requirements for 
+all systems.  Refer to related technical commissioning specification sections for additional standards requirements.[  Comply with applicable International 
+Electrical Testing Association (NETA) testing standards for electrical systems.]  The following requirements apply to all project commissioning 
+and test standards:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Implement all recommendations and suggested practices contained in the Commissioning Standard and test standards.</OLI><BRK/>
+<BRK/>
+<OLI>Use the Commissioning Standard for all aspects of Commissioning, including calibration of instruments.</OLI><BRK/>
+<BRK/>
+<OLI>Where the instrument manufacturer calibration recommendations are more stringent than those listed in the Commissioning Standard, adhere 
+to the manufacturer calibration recommendations.</OLI><BRK/>
+<BRK/>
+<OLI>All quality assurance provisions of the Commissioning Standard such as performance guarantees are part of this contract.</OLI><BRK/>
+<BRK/>
+<OLI>The Commissioning Specialists must develop commissioning procedures for any systems or system components not covered in the Commissioning 
+Standard.</OLI><BRK/>
+<BRK/>
+<OLI>Use any new requirements, recommendations, and procedures published or adopted by the body responsible for the applicable Commissioning 
+Standards at the time of project award.</OLI><BRK/>
+<BRK/>
+<OLI>If there is a conflict between the requirements of the contract documents and the commissioning standard used, the contract documents take 
+precedent.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</TAI><TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><SPT><TTL>SUSTAINABILITY THIRD PARTY CERTIFICATION (TPC)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select this paragraph for projects applying sustainability Third Party Certification (TPC) requirements.  
+Refer to UFC 1-200-02 to determine when SUSTAINABLE THIRD PARTY CERTIFICATION (TPC) is required.  Coordinate with 
+Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING.  This paragraph is tailored for KTR HIRED COMMISSIONING 
+PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Commissioning Specialist must perform all commissioning activities, coordination, and submittals required by the sustainability Third Party 
+Certification (TPC) program applied to this project, in accordance with Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose this paragraph for projects applying sustainability third party certification LEED.  Edit the bracketed 
+phrases based on the credits (options and paths) in the project scope.  For design-bid-build projects, ensure 
+a Government team member<TAI OPT="ARMY"> or a third party contractor</TAI> is qualified to act as the LEED Commissioning Authority, 
+based on LEED requirements.</NPR><BRK/>
+<BRK/>
+<NPR>Include bracketed option "and Option 2: Envelope Commissioning" on LEED projects for new buildings or renovation 
+projects with significant envelope scope.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>CxC must provide documentation or perform commissioning activities, coordination and submittals as required by Leadership in Energy and Environmental 
+Design (LEED) Fundamental Commissioning and Verification[ and Enhanced Commissioning [Option 1: Path 1 Enhanced Commissioning] [Option 1: Path 
+2 Enhanced and Monitoring-Based Commissioning] [and Option 2: Envelope Commissioning]].</TXT><BRK/>
+<BRK/>
+]</SPT></TAI><SPT><TTL>ISSUES LOG</TTL><BRK/>
+<BRK/>
+<TXT>The Commissioning Specialist develops and maintains an Issues Log for the systems to be commissioned.  The issues log documents and tracks resolution 
+of deficiencies identified during submittal reviews, inspection, and testing.  At any point during construction, any commissioning team member 
+finding deficiencies may communicate those deficiencies in writing to the Commissioning Specialist for inclusion into the Issues Log.  For each 
+issue, the Issues Log includes, but is not limited to, a unique reference number, description of the issue with contract requirement referenced, 
+location of or equipment name/tags exhibiting the issue, the initials of the individual's name whom reported the issue, the date of first observation, 
+the proposed resolution of the issue and date proposed, the date of any subsequent observations with applicable additional information, and the 
+date of implementation of the final resolution of the issue as confirmed by the Commissioning Specialist and Contracting Officer.  Issues must 
+not be deleted from the issues log.</TXT><BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for KTR HIRED COMMISSIONING PROVIDER, ARMY, and NAVY.  For Air 
+Force managed projects, either ARMY or NAVY tailoring options may be applied.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>CxC must submit the <SUB>Issues Log</SUB> monthly and within three working days from changes to the Issue Log.  The CxC is responsible for distributing the 
+Issues Log to the Commissioning Team.<TAI OPT="ARMY">  QC Manager must track construction deficiencies identified in the Issues Log using a quality management 
+system in accordance with Section[ <SRF>01 45 00.15 10</SRF> RESIDENT MANAGEMENT SYSTEM CONTRACTOR MODE(RMS CM)][ <SRF>01 45 00</SRF> QUALITY CONTROL].</TAI><TAI OPT="NAVY">  The QC Manager 
+is responsible for notifying the CxC and Contracting Officer of outstanding deficiencies and tracking them to resolution in accordance with Section 
+<SRF>01 45 00</SRF> QUALITY CONTROL, "Quality Control Plan".</TAI></TXT><BRK/></TAI>
+<BRK/></SPT>
+<SPT><TTL><SUB>CERTIFICATE OF READINESS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY and NAVY.  For Air Force managed projects, either ARMY 
+or NAVY tailoring options may be applied.</NPR><BRK/>
+<BRK/>
+<NPR>Choose the bracketed phrases required in the project scope.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to scheduling Commissioning Tests for each system, the Quality Control Manager must issue a Certificate of Readiness for each system, certifying 
+that inspections have been completed, open issues have been resolved, and the system is ready for Commissioning Tests.  Refer to each related technical 
+commissioning specification section for additional requirements.</TXT><BRK/>
+<BRK/>
+<TXT>Submit the Certificate of Readiness for each system <TAI OPT="ARMY">[30] [_____] calendar days </TAI><TAI OPT="NAVY">[20] [_____] working days </TAI>prior to Commissioning Tests of that system.  
+Do not schedule Commissioning Tests for a system until the Certificate of Readiness is approved by the Government.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></PRT>
+<PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BUILD"><SPT><TTL>DESIGN COMMISSIONING COORDINATION MEETING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for DESIGN-BUILD, and contains tailoring options for KTR HIRED COMMISSIONING 
+PROVIDER and GOVT HIRED COMMISSIONING PROVIDER.</NPR><BRK/>
+<BRK/>
+<NPR>The design phase commissioning coordination meeting should occur prior to 50 percent design completion.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">Conduct a design commissioning coordination meeting led by the CxC prior to the [35] [50] percent design submittal for systems to be commissioned.  
+Discuss </TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">Participate in a design commissioning coordination meeting led by the CxC prior to the [35] [50] percent design submittal for system to 
+be commissioned.  The purpose of the meeting is to discuss </TAI></TAI>the commissioning process, including project contract requirements, lines of communication, 
+roles and responsibilities, schedules, and documentation requirements.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY and NAVY.  For Air Force managed projects, either ARMY 
+or NAVY tailoring options may be applied.  Choose bracketed option for command and maintenance activity representatives 
+as applicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The <TAI OPT="NAVY">Construction Manager, </TAI><TAI OPT="ARMY">Contractor's Project Manager, </TAI>Quality Control team, Designer of Record, and the Government<TAI OPT="NAVY"> Acceptance Testing Representatives 
+and other Government team members</TAI> must attend this meeting.  Invite the User and<TAI OPT="ARMY">[ a Directorate of Public Works Representative][ a Reserve Support 
+Command Representative] [_____]</TAI><TAI OPT="NAVY">[ a Public Works Division Representative]</TAI> [Base Civil Engineering Representative] [_____] to attend this meeting.  
+The meeting may be conducted by teleconferencing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>DESIGN PHASE COMMISSIONING PLAN</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for DESIGN-BUILD and contains tailoring options for KTR HIRED COMMISSIONING 
+PROVIDER, GOVT HIRED COMMISSIONING PROVIDER, and NAVY.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>Submit the Design Phase Commissioning Plan no later than 14 calendar days after the Design Commissioning Coordination Meeting.  Outline the commissioning 
+process, commissioning team members and responsibilities, lines of communication, and documentation requirements for the design phase of the project 
+in the Design Phase Commissioning Plan.  Identify the Commissioning Standards chosen for the project.</TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>Provide a list of team members for systems to be commissioned with contact information, a list of tests as required by Section <TAI OPT="DESIGN-BID-BUILD"><SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES</TAI><TAI OPT="DESIGN-BUILD">01 33 00.05 20 CONSTRUCTION SUBMITTAL PROCEDURES</TAI>, and project schedule as required by Section <SRF>01 32 17.00 20</SRF> COST-LOADED NETWORK ANALYSIS 
+SCHEDULE for inclusion in the Design Phase Commissioning Plan no later than 14 calendar days after the Design Commissioning Coordination Meeting.</TXT><BRK/>
+<BRK/></TAI>
+</TAI></SPT></TAI><TAI OPT="NAVY">[</TAI><SPT><TTL>DESIGN REVIEW</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy managed projects, the DESIGN REVIEW paragraph is a bracketed selection; select the DESIGN REVIEW 
+paragraph if a design review is required after contract award.  For Army managed projects, the DESIGN REVIEW paragraph 
+is not bracketed.  Commissioning design review report is required for Army managed projects and may be required 
+by applicable Sustainability Third Party Certification guidelines.</NPR><BRK/>
+<BRK/>
+<NPR>This paragraph contains tailoring options for ARMY, NAVY, KTR HIRED COMMISSIONING PROVIDER and GOVT HIRED COMMISSIONING 
+PROVIDER.  For Air Force managed projects, either ARMY or NAVY tailoring options may be applied.</NPR><BRK/>
+<BRK/>
+<NPR>Choose bracketed language regarding the Owner's Project Requirements Document for projects that require one (refer 
+to specifier note regarding OPR in paragraph DEFINITIONS for further information).</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  When a KTR hired commissioning provider is used for a DESIGN-BID-BUILD project, the first opportunity for 
+the CxC to review the project is early in construction.  Leveraging the CxC's experience in review of the design 
+to identify any remaining problems allows early correction, where correction is necessary.  This can allow major 
+problems to be addressed with minimal time and cost growth during construction.  The Government, in coordination 
+with designers, must review the Design Review Report to determine if any design changes are necessary.  Changes 
+to the construction contract are still at the sole discretion of the Contracting Officer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>The CxC and other Commissioning Specialists must review design documents.<TAI OPT="DESIGN-BUILD">  The design review must occur prior to [60] [_____] percent design completion.  
+The design review must include verifying that the design for the systems to be commissioned are prepared in accordance with the contract documents.</TAI></TXT><BRK/>
+<BRK/>
+<TXT>Provide a <SUB>Design Review Report</SUB> identifying discrepancies or deficiencies that would prevent the systems to be commissioned from operating or performing <TAI OPT="ARMY">
+effectively </TAI><TAI OPT="NAVY">in accordance with the design requirements </TAI>or being <TAI OPT="ARMY">adequately </TAI><TAI OPT="NAVY">safely </TAI>maintained.  Report must include individual list of each deficiency 
+and corresponding corrective action necessary for proper system performance.[  Identify any discrepancies between the design and the Owner's Project 
+Requirements Document.  The Owner's Project Requirements Document is provided for commissioning review purposes only and does not form a part of 
+the contract documents for this project.]<HL3>  Submit the Design Review Report no later than [14] [_____] calendar days<TAI OPT="DESIGN-BID-BUILD"> after approval of the Commissioning 
+Firm and Commissioning Specialists</TAI><TAI OPT="DESIGN-BUILD"> after completing the review of the design</TAI>.</HL3>  The Contracting Officer, <TAI OPT="NAVY">Construction Manager, </TAI><TAI OPT="ARMY">the Contractor's 
+Project Manager, </TAI>the CxC, and the Designers of Record for the associated systems must meet, discuss, and resolve any outstanding items contained 
+in the report no later than 14 calendar days after submission of the report.<TAI OPT="DESIGN-BUILD">  The CxC must verify that their review comments have been adequately 
+addressed in subsequent design submittals.</TAI></TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TAI OPT="DESIGN-BUILD"><TXT>The CxC is responsible for reviewing the design and preparing a Design Review Report identifying discrepancies or deficiencies that would prevent 
+the systems to be commissioned from operating or performing in accordance with the design requirements or being safely maintained.</TXT><BRK/>
+<BRK/>
+<TXT>The Contracting Officer, the CxC, and the Designers of Record for the associated systems must meet, discuss, and resolve any outstanding items 
+contained in the report no later than 14 calendar days after submission of the report.  The CxC will verify that their review comments have been 
+adequately addressed in subsequent design submittals.</TXT><BRK/>
+<BRK/></TAI>
+</TAI></TAI></SPT><TAI OPT="NAVY">]</TAI><SPT><TTL>CONSTRUCTION SUBMITTAL REVIEWS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for KTR HIRED COMMISSIONING PROVIDER, GOVT HIRED COMMISSIONING 
+PROVIDER, and DESIGN-BUILD.</NPR><BRK/>
+<BRK/>
+<NPR>This paragraph contains tailoring for ARMY.  Choose bracketed "and the Owner's Project Requirements" for projects 
+that require one.  Refer to specifier note regarding OPR in paragraph DEFINITIONS for further information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate construction submittal document reviews for commissioned systems and assemblies with the CxC.  The commissioning submittal review does 
+not replace the <TAI OPT="DESIGN-BUILD">designer of record (DOR) or </TAI>Government submittal review, in accordance with Section<TAI OPT="ARMY,DESIGN-BID-BUILD"> <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES</TAI><TAI OPT="NAVY"><TAI OPT="DESIGN-BUILD"> 01 33 00.05 20 
+CONSTRUCTION SUBMITTAL PROCEDURES</TAI></TAI>.</TXT><BRK/>
+<BRK/>
+<TXT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">The CxC must identify construction submittals to be provided by the contractor for the commissioned systems.  The CxC must evaluate construction 
+submittals for compliance with the contract documents<TAI OPT="ARMY">[ and Owner's Project Requirements Document] <TAI OPT="DESIGN-BID-BUILD">prior to submission to the Government </TAI><TAI OPT="DESIGN-BUILD">concurrent 
+with DOR review</TAI>.  Include a copy of CxC comments with the construction submittals</TAI>.  </TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">The CxC is responsible for identifying construction submittals 
+to be provided by the contractor for the commissioned systems.  The CxC is responsible for evaluating construction submittals for compliance with 
+the contract documents.  </TAI></TAI><TAI OPT="DESIGN-BUILD">The DOR must consider the CxC's comments, and the DOR provides direction to the contractor as necessary.  Provide a copy 
+of final DOR submittal reviews with comment responses to the CxC.</TAI><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">  Include a copy of the submittal document review transmittal and response in 
+the Commissioning Report.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COMMISSIONING KICKOFF MEETING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for KTR HIRED COMMISSIONING PROVIDER and GOVT HIRED COMMISSIONING 
+PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">Conduct a Commissioning Kickoff Meeting, led by the CxC, after approval of the Commissioning Firm and Commissioning Specialists, and no later than 
+[30] [_____] days following approval of the Commissioning Firm and Specialists.  Discuss </TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">The CxC is responsible for conducting a Commissioning 
+Kickoff Meeting no later than 60 days following construction notice to proceed to discuss </TAI></TAI>the commissioning process including contract requirements, 
+lines of communication, roles and responsibilities, schedules, documentation requirements, inspection and test procedures, and logistics as specified 
+in this section.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY and NAVY.  For Air Force managed projects, either ARMY 
+or NAVY tailoring options may be applied.  Choose bracketed option for command and maintenance activity representatives 
+as applicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The <TAI OPT="NAVY">Construction Manager, </TAI><TAI OPT="ARMY">Contractor's Project Manager, </TAI>Quality Control team, Designer of Record, and the Government<TAI OPT="NAVY"> Acceptance Testing Representatives 
+and other Government team members</TAI> must attend this meeting.  Invite the User and<TAI OPT="ARMY">[ a Directorate of Public Works Representative][ a Reserve Readiness 
+Division Representative] [_____]</TAI><TAI OPT="NAVY">[ a Public Works Division Representative]</TAI> [Base Civil Engineering Representative] [_____] to attend this meeting.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REGULAR COMMISSIONING COORDINATION MEETINGS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY, NAVY, KTR HIRED COMMISSIONING PROVIDER, and GOVT HIRED 
+COMMISSIONING PROVIDER.  For Air Force managed projects, either ARMY or NAVY tailoring options may be applied.  
+Choose bracketed option for command and maintenance activity representatives as applicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Quality Control team, Designer of Record, and the Government<TAI OPT="NAVY"> Acceptance Testing Representatives and other Government team members</TAI> must attend 
+this meeting.  Sub-Contractor Representatives for each trade responsible for construction/installation of systems to be commissioned must attend 
+this meeting as requested by the CxC.  Invite the User and<TAI OPT="ARMY">[ a Directorate of Public Works Representative][ a Reserve Readiness Division Representative]</TAI><TAI OPT="NAVY">
+[ a Public Works Division Representative] [_____]</TAI> [a Base Civil Engineering Representative] [_____] to attend this meeting.</TXT><BRK/>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>CxC must conduct monthly commissioning coordination meetings when installation of commissioned systems begins.  Provide status of commissioned 
+systems, open issues log items, outstanding submittals, and upcoming commissioning activities.  Conduct bi-weekly commissioning coordination meetings 
+within 30 days of the scheduled date for commissioning testing.</TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>Participate in monthly commissioning coordination meetings led by the CxC when installation of commissioned systems begins.  Provide status of 
+commissioned systems, open issues log items, outstanding submittals, and upcoming commissioning activities.  Participate in bi-weekly commissioning 
+coordination meetings within 30 days of the scheduled date for commissioning testing.</TXT><BRK/>
+<BRK/></TAI>
+</SPT><SPT><TTL>CONSTRUCTION PHASE COMMISSIONING PLANS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Portions of the following paragraphs contain tailoring options for KTR HIRED COMMISSIONING PROVIDER, GOVT 
+HIRED COMMISSIONING PROVIDER,  INTEGRATED SYSTEMS TEST, ARMY, and NAVY.</NPR><BRK/>
+<BRK/>
+<NPR>Include bracketed "and Template Building Enclosure Inspection Checklists" for new buildings or renovation projects 
+with significant envelope scope.</NPR><BRK/>
+<BRK/>
+<NPR>Choose Sustainability eNotebook bracketed option as applicable.  Refer to Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS 
+AND REPORTING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Interim Construction Phase Commissioning Plan identifies the commissioning and testing standards and outline the overall commissioning process, 
+the commissioning schedule, the commissioning team members and responsibilities, lines of communication, documentation requirements for the construction 
+phase of the project[, and Template Building Enclosure Inspection Checklists].<TAI OPT="KTR HIRED COMMISSIONING PROVIDER">  Submit the <SUB>Interim Construction Phase Commissioning Plan</SUB>, prepared 
+by the CxC, 14 calendar days after the Construction Commissioning Coordination Meeting and 14 days prior to the start of construction of the building 
+enclosure.  Include the following items in the commissioning schedule in addition to the items in paragraph PROJECT SCHEDULE: [Commissioning Site 
+Visits, ]Seasonal Testing, Warranty Phase Site Visit, Post-Construction Endurance Testing, and Updated Commissioning Report.</TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">  Provide a list of 
+team members for systems to be commissioned with contact information, a list of tests as required by Section<TAI OPT="DESIGN-BID-BUILD"> <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES</TAI><TAI OPT="DESIGN-BUILD"> 01 33 
+00.05 20 CONSTRUCTION SUBMITTAL PROCEDURES</TAI>, and project schedule as required by Section <SRF>01 32 17.00 20</SRF> COST-LOADED NETWORK ANALYSIS SCHEDULE for 
+inclusion in the Interim Construction Phase Commissioning Plan no later than 14 calendar days after the Commissioning Coordination Meeting.</TAI></TAI></TXT><BRK/>
+<BRK/>
+<TXT>The Final Construction Phase Commissioning Plan includes the information provided in the Interim Construction Phase Commissioning Plan as well 
+as commissioning construction observation checklists and test procedures such as Pre-Functional Checklists<TAI OPT="INTEGRATED SYSTEMS TEST">, Integrated Systems Test Checklists,</TAI>
+ and Functional Performance Test Checklists and other Commissioning Test Checklists for each building, for each system required to be commissioned, 
+and for each component for inclusion in the Final Construction Phase Commissioning Plan.  Refer to the related technical commissioning specification 
+section for additional requirements for checklists.<TAI OPT="KTR HIRED COMMISSIONING PROVIDER">  Submit the <SUB>Final Construction Phase Commissioning Plan</SUB>, prepared by the CxC, no later than 
+[90] [_____] calendar days prior to the start of Commissioning Inspections.[  Once approved, file the approved plan in the Sustainability eNotebook.]</TAI><TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">
+  Provide updates to the list of team members for systems to be commissioned with contact information, a list of tests as required by Section 
+<SRF>01 33 00</SRF> SUBMITTAL PROCEDURES, and project schedule as required by Section <SRF>01 32 17.00 20</SRF> COST-LOADED NETWORK ANALYSIS SCHEDULE for inclusion in 
+the Final Construction Phase Commissioning Plan within 14 calendar days of a written request from the CxC.</TAI></TAI></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Construction Observation Checklists</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for KTR HIRED COMMISSIONING PROVIDER and GOVT HIRED COMMISSIONING 
+PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>Construction Observation Checklists must include items for physical inspection or testing that demonstrate that installation and start-up of equipment 
+and systems is complete.  Refer to paragraph COMMISSIONING INSPECTIONS.  Construction observation checklists must be tailored to verify the specific 
+installation requirements and details of the construction documents and manufacturer's instructions.</TXT><BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>Use the Construction Observation Checklists prepared by the CxC for physical inspection or testing to demonstrate that installation and start-up 
+of equipment and systems is complete.  Refer to paragraph COMMISSIONING INSPECTIONS.</TXT><BRK/></TAI>
+</TAI><BRK/></SPT>
+<SPT><TTL>Test Procedures and Checklists</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for KTR HIRED COMMISSIONING PROVIDER and GOVT HIRED COMMISSIONING 
+PROVIDER.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>Test procedures and checklists must include procedures that explain, step-by-step, the actions and expected results that will demonstrate that 
+the systems perform in accordance with the contract.  Refer to paragraph COMMISSIONING TESTS.  Include the following sections and details appropriate 
+to the systems being tested in the test procedures and checklists:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Notable system features including information about controls to facilitate understanding of system operation</OLI><BRK/>
+<BRK/>
+<OLI>Conclusions and recommendations.  Conclusions must clearly indicate if system does or does not perform in accordance with contract requirements.  
+Recommendation must clearly indicate that the system should or should not be approved by the Government.</OLI><BRK/>
+<BRK/>
+<OLI>Test conditions including date, beginning and ending time, and beginning and ending outdoor air conditions</OLI><BRK/>
+<BRK/>
+<OLI>Attendees</OLI><BRK/>
+<BRK/>
+<OLI>Identification of the equipment involved in the test</OLI><BRK/>
+<BRK/>
+<OLI>Control system feature identification</OLI><BRK/>
+<BRK/>
+<OLI>As-found condition of the system operation</OLI><BRK/>
+<BRK/>
+<OLI>List of test items with step numbers along with the corresponding feature or operation, intended test procedure, expected system response, 
+and pass/fail indication.</OLI><BRK/>
+<BRK/>
+<OLI>Space for comments for each test item.</OLI><BRK/></OLG>
+<BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>Use the test procedures and checklists prepared by the CxC that list, step-by-step, the actions and expected results that will demonstrate that 
+the systems perform in accordance with the contract.  Refer to paragraph COMMISSIONING TESTS.</TXT><BRK/>
+<BRK/></TAI>
+</TAI></SPT></SPT><TAI OPT="KTR HIRED COMMISSIONING PROVIDER">[<SPT><TTL>COMMISSIONING SITE VISITS</TTL><BRK/>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring for KTR HIRED COMMISSIONING PROVIDER and ARMY.  Choose the bracketed 
+"and the Owner's Project Requirements Document" for projects that will include an OPR.</NPR><BRK/>
+<BRK/>
+<NPR>Commissioning Inspections will require the CxC to visit the site to the extent necessary to validate completion 
+of Construction Observation Checklists.  This paragraph requires additional site visits throughout the construction 
+of the commissioned systems to provides an opportunity to identify issues earlier when impacts to schedule and 
+costs are lower.  This may be beneficial for large, complex projects or when additional support is needed to supplement 
+construction quality assurance personnel.  The paragraph should be included at the project team's discretion.  
+Project teams should specify the frequency of commissioning site visits based on project complexity, number of 
+facilities or phases, and anticipated construction schedule.</NPR><BRK/>
+<BRK/>
+<NPR>An alternative strategy to setting a frequency of visit is to tie visits to specific events during construction.  
+The project team may replace the paragraph with a schedule of visits, if appropriate.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<TXT>The CxC must visit the construction site no less than once every[ 90] [_____] days during construction of the commissioned systems to verify that 
+construction is achieving the requirements of the contract documents<TAI OPT="ARMY">[ and the Owner's Project Requirements Document]</TAI>.[  The frequency of the site 
+visits must increase to[ bi-weekly] [_____] within[ 90] [_____] days of the scheduled commissioning tests.]  The CxC must vist the construction 
+site more frequently, as needed, to complete commissioning inspections.  Document deficiencies or issues in the Issues Log. </TXT><BRK/>
+<BRK/></SPT>
+]</TAI><SPT><TTL>COMMISSIONING INSPECTIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose bracketed "and the Owner's Project Requirements (OPR)" for projects that will include an Owner's 
+Project Requirements (OPR) document.  Refer to specifier note regarding OPR in paragraph DEFINITIONS for further 
+information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Complete inspections using Construction Observation Checklists for each individual item of equipment or system for each system required to be commissioned 
+in accordance with the commissioning plan.  Indicate commissioning team member inspection and validation of each checklist item by initials.  Validation 
+of each checklist item by each team member indicates that item conforms to the contract documents and design in their area of responsibility.  
+Commissioning Specialist validation of each checklist item indicates that each item has been installed correctly and in accordance with contract 
+documents<TAI OPT="ARMY">[ and the Owner's Project Requirements (OPR)]</TAI>.  Submit the initialed and <SUB>Completed Construction Observation Checklists</SUB> no later than 7 
+calendar days after completion of inspection of all checklists items for each system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COMMISSIONING TESTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring for ARMY and NAVY.  For Air Force managed projects, either ARMY or NAVY 
+tailoring options may be applied.  Choose bracketed "and the Owner's Project Requirements Document" for projects 
+that will include an Owner's Project Requirements (OPR) document.  Refer to specifier note regarding OPR in paragraph 
+DEFINITIONS for further information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Demonstrate that all systems, equipment, and components have been installed correctly and that the systems operate and perform, including interactive 
+operation between systems, in accordance with contract documents<TAI OPT="ARMY">[ and the Owner's Project Requirements Document]</TAI>.  Perform tests as specified in 
+related technical commissioning specifications.  Provide all materials, services, and labor required to perform all commissioning tests.</TXT><BRK/>
+<BRK/>
+<TXT>Commissioning Specialist's duties include leading and documenting all tests for the systems to be commissioned with appropriate sub-contractors 
+performing the Tests.  The representatives listed in the paragraph COMMISSIONING TEAM must attend the tests with the exception of the<TAI OPT="NAVY"> Construction 
+Manager</TAI><TAI OPT="ARMY"> Contractor's Project Manager</TAI>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Test Scheduling and Coordination</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following paragraph contains tailoring for INTEGRATED SYSTEMS TEST.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Schedule Commissioning Tests for each system only after the Certificate of Readiness has been approved by the Government for the system.  Correct 
+all deficiencies identified through any prior review, inspection, or test activity before the start of Commissioning tests.</TXT><BRK/>
+<BRK/>
+<TXT>Commissioning Tests <TAI OPT="INTEGRATED SYSTEMS TEST">and Integrated Systems Tests </TAI>must be performed with the CxC present.  Government reserves the right to witness all tests. Coordinate 
+test schedule with Government representatives.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Testing Procedures</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select bracketed language for electrical system testing.  Mechanical and building enclosure testing requirements 
+are included in related sections.  Until an electrical commissioning specification section is available, detailed 
+requirements for electrical system testing are not available.  Testing will be as required in referenced standards, 
+including ASHRAE Standard 90.1.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Commissioning tests include tests such as functional performance and integrated systems tests.[  For electrical systems testing, include testing 
+of sensor calibrations, control responses, safeties, interlocks, operating modes, capacity, lighting levels, and verification of all other electrical 
+system contract performance requirements.] Perform test procedures in accordance with the commissioning standards specified.  In addition, comply 
+with the testing procedures specified in the sections listed in paragraph RELATED SECTIONS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sample Strategy</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring for DESIGN-BUILD AND DESIGN-BID-BUILD.  For design-bid-build projects, 
+sample strategy will be addressed by the related technical commissioning specification sections (such as Section 
+<SRF>23 08 00</SRF> COMMISSIONING OF MECHANICAL[ AND PLUMBING] SYSTEMS).  Because of the need for Section 01 91 00.15 to 
+stand-alone for some design-build solicitations, sample strategy will be specified in this paragraph for design-build 
+projects.</NPR><BRK/>
+<BRK/>
+<NPR>For design-build projects, select the percentage sample size for large groups of identical equipment as determined 
+by the project delivery team.  Higher percentages may be appropriate for critical systems or projects or for small 
+numbers of equipment.</NPR><BRK/>
+<BRK/>
+<NPR>Electrical systems sampling must be addressed in this specification.  Add equipment/system types and sample size 
+for each electrical item as appropriate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TAI OPT="DESIGN-BID-BUILD">Refer to the sections identified in paragraph RELATED SECTIONS for sample strategy.  </TAI><TAI OPT="DESIGN-BUILD">Perform commissioning tests for all systems and equipment 
+to be commissioned using the sample strategy identified herein.  Complete a Test Checklist for each item of equipment or system to be tested.  
+For sample sizes less than 100 percent for similar equipment, the Contracting Officer's Representative reserves the right to select the specific 
+equipment or system to be tested.</TAI></TXT><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BID-BUILD">[<TXT>For electrical systems, test 100 percent of all equipment and systems except for the following.  Test at the sample rate shown:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Lighting Controls [_____]</OLI><BRK/>
+<BRK/>
+<OLI>[_____]</OLI><BRK/>
+<BRK/>
+<OLI>[_____]</OLI><BRK/></OLG>
+<BRK/>
+]</TAI><TAI OPT="DESIGN-BUILD"><TXT>Test all central plant equipment, primary air handling units, and process cooling or heating equipment.  Test all system-level equipment serving 
+multiple zones.  [Twenty-five ][Fifty ][_____] percent sample testing is allowed for large groups of identical equipment with identical controllers 
+serving single zones such as air terminal units, fan coil units, unitary equipment, and plumbing fixtures.  Sample size may be no less than three 
+units.</TXT><BRK/>
+<BRK/>
+<TXT>For electrical systems, test 100 percent of all equipment and systems except for the following[.  Test at the sample rate shown]:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>[_____]</OLI><BRK/>
+<BRK/>
+<OLI>[_____]</OLI><BRK/>
+<BRK/>
+<OLI>[_____]</OLI><BRK/></OLG>
+<BRK/></TAI>
+<TAI OPT="DESIGN-BUILD"><SPT><TTL>100 Percent Sample Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Systems or equipment for which 100 percent sample size are tested fail if one or more of the test procedures results in discovery of a deficiency 
+and the deficiency cannot be resolved within 5 minutes during the test.</TXT><BRK/>
+<BRK/>
+<TXT>Re-test to the extent necessary to confirm that the deficiencies have been corrected without negatively impacting the performance of the rest of 
+the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Less than 100 Percent Sample Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Randomly test each sample group of identical equipment.  Sample size must be at least three units.  If 10 percent of the units in the first sample 
+fail the commissioning tests, test a second sample group, the same size as the first sample group.  The second sample must not include any units 
+from the first sample group.</TXT><BRK/>
+<BRK/>
+<TXT>If 10 percent of the units in the second sample fail, test all remaining units.  If at any point frequent failures occur, the CxC may stop the 
+testing and require the contractor to perform and document a checkout of the remaining equipment prior to continuing commissioning testing.</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT><SPT><TTL>Aborted Tests and Re-Testing</TTL><BRK/>
+<BRK/>
+<TXT>Abort any test if any deficiency prevents successful completion of the test or if any required commissioning team member is not present for the 
+test.  Re-test after all deficiencies identified during the original test have been corrected.  Contracting Officer may withhold payment equivalent 
+to lost time, re-testing, and aborted tests.  These costs may include salary, travel costs, and per diem for Government team members.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TRAINING PLAN</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate requirements with Sections <SRF>01 91 19</SRF> BUILDING ENCLOSURE COMMISSIONING, <SRF>01 78 23</SRF> OPERATION AND 
+MAINTENANCE DATA, and <SRF>01 45 00</SRF> QUALITY CONTROL, all of which address training plans.</NPR><BRK/>
+<BRK/>
+<NPR>This paragraph contains tailoring options for NAVY.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>CxC must review the training plan for training associated with the equipment and systems to be commissioned, checking that each plan has the trainer 
+name, trainer contract information, training schedule and location.  Submit review at least 30 days prior to the first training event.  Incorporate 
+CxC review comments prior to submitting training plan in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA<TAI OPT="NAVY"> and <SRF>01 78 24.00 20</SRF> FACILITY 
+DATA WORKBOOK (FDW)</TAI>.  Update and resubmit the training plan based on any corrective action taken.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>SYSTEMS MANUAL</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for ARMY, NAVY, DESIGN-BUILD, KTR HIRED COMMISSIONING PROVIDER, GOVT HIRED COMMISSIONING 
+PROVIDER, and INTEGRATED SYSTEMS TEST.  For Air Force managed projects, either ARMY or NAVY tailoring options 
+may be applied.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  <TAI OPT="ARMY">A Systems Manual is required for Army managed projects in accordance with Engineering Regulations.  </TAI>A Systems 
+Manual is required for projects applying LEED or Green Globes sustainability third party certification.  Refer 
+to Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS AND REPORTING.  Coordinate requirements with Section <SRF>01 78 23</SRF> 
+OPERATION AND MAINTENANCE DATA and <SRF>01 45 00</SRF> QUALITY CONTROL, both of which address manuals.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="NAVY"><TXT>The Systems Manual includes <TAI OPT="DESIGN-BUILD">the Basis of Design, </TAI>system single line diagrams, as-built sequences of operation and controls drawings, as-built control 
+setpoints, recommended schedule for sensor and actuator calibration, recommended schedule of maintenance when not in the O&amp;M manuals, recommended 
+re-testing schedule with proposed testing forms, and full equipment warranty information for all commissioned systems.  <TAI OPT="GOVT HIRED COMMISSIONING PROVIDER">Incorporate CxC review 
+comments prior to submitting Systems Manual in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA and <SRF>01 78 24.00 20</SRF> FACILITY DATA 
+WORKBOOK (FDW).  <TAI OPT="KTR HIRED COMMISSIONING PROVIDER">[Obtain the Basis of Design for incorporation into the Systems Manaul from the Contracting Officer.]  Submit Systems Manual no 
+later than 30 calendar days following completion of Functional Performance Tests<TAI OPT="INTEGRATED SYSTEMS TEST"> and Integrated Systems Tests</TAI>.  </TAI></TAI>Update and resubmit the system 
+manual information based on any corrective action taken during the warranty period.</TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="ARMY"><NTE><AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for ARMY and KTR HIRED COMMISSIONING PROVIDER and includes tailoring for DESIGN-BID-BUILD.  
+For Army design-bid-build projects, the contractor must obtain the Basis of Design from the Government for inclusion 
+in the Systems Manual.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prepare and submit a Systems Manual, including a signed certification or letter from the Commissioning Specialists and the CxC stating that the 
+Systems Manual is complete, clear, and accurate.  The Systems Manual, for all commissioned systems, must conform to Appendix A SYSTEMS MANUAL ORGANIZATION 
+AND CONTENT per <RID>ER 25-345-1</RID>, available at the USACE Publications website at the following location: <URL HREF="https://www.publications.usace.army.mil/USACE-Publications/Engineer-Regulations">https://www.publications.<BRK/>
+usace.army.mil/USACE-Publications/Engineer-Regulations/</URL>.<TAI OPT="DESIGN-BID-BUILD">  Obtain the Basis of Design for incorporation into the Systems Manual from the Contracting 
+Officer.</TAI>  Submit Systems Manual no later than 30 calendar days following completion of Functional Performance Tests<TAI OPT="INTEGRATED SYSTEMS TEST"> and Integrated Systems Tests</TAI>
+.  Update and resubmit the Systems Manual based on any corrective action taken during the warranty period.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure Systems Manual is coordinated with the requirements of Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA and Quality Control requirements.</TXT><BRK/>
+<BRK/></TAI>
+</SPT>]<TAI OPT="ARMY"><SPT><TTL><SUB>MAINTENANCE AND SERVICE LIFE PLAN</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is tailored for ARMY.  This paragraph contains tailoring for INTEGRATED SYSTEMS TEST.  The 
+Maintenance and Service Life Plans are required for Army and Army Reserve projects.  Coordinate requirements with 
+Sections <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA and <SRF>01 45 00</SRF> QUALITY CONTROL, both of which address maintenance 
+requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Maintenance Plan</TTL><BRK/>
+<BRK/>
+<TXT>Prepare and submit a Maintenance Plan for the project mechanical, electrical, plumbing, and fire protection systems.  Prepare the HVAC and refrigeration 
+sections of the Maintenance Plan in accordance with <RID>ASHRAE 180</RID>.  Develop required inspection and maintenance tasks similar to Section 5 of <RID>ASHRAE 180</RID>
+ for the other commissioned systems and fire protection systems.  Ensure Maintenance Plan is coordinated with the requirements of Section 
+<SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</TXT><BRK/>
+<BRK/>
+<TXT>Submit the Maintenance Plan no later than 30 calendar days following the completion of Functional Performance Tests<TAI OPT="INTEGRATED SYSTEMS TEST"> and Integrated Systems Tests</TAI>
+.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Life Plan</TTL><BRK/>
+<BRK/>
+<TXT>Prepare and submit a Service Life Plan for the building enclosure, structural systems, and site hardscape that includes the following for each 
+assembly or component:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A description of each including the materials or products.</OLI><BRK/>
+<BRK/>
+<OLI>The estimated service life, in years.</OLI><BRK/>
+<BRK/>
+<OLI>The estimated maintenance frequency and description of maintenance tasks.</OLI><BRK/>
+<BRK/>
+<OLI>The point of maintenance access for the components with estimated service life less than service life of the building.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Ensure Service Life Plan is coordinated with the requirements of Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.  Submit the Service Life Plan 
+no later than 30 calendar days following the completion of Functional Performance Tests<TAI OPT="INTEGRATED SYSTEMS TEST"> and Integrated Systems Tests</TAI>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><SPT><TTL>COMMISSIONING REPORT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring options for ARMY, NAVY, KTR HIRED COMMISSIONING PROVIDER, GOVT HIRED 
+COMMISSIONING PROVIDER, and INTEGRATED SYSTEMS TESTS.  For Air Force managed projects, either ARMY or NAVY tailoring 
+options may be applied.</NPR><BRK/>
+<BRK/>
+<NPR>Choose Sustainability eNotebook bracketed option as applicable.  Refer to Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS 
+AND REPORTING.  Choose bracketed "and the Owner's Project Requirements Document" for projects that require one.  
+Refer to specifier note regarding OPR in paragraph DEFINITIONS for further information.</NPR><BRK/>
+<BRK/>
+<NPR>Include two bracketed "Building Enclosure Inspection Checklists" for new buildings or renovation projects with 
+significant envelope scope.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Include the bracketed option Air Leakage Test Reports and Diagnostic Test Reports for Army managed projects 
+that include this report in Section <SRF>01 91 19</SRF> BUILDING ENCLOSURE COMMISSIONING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>Submit an<TAI OPT="NAVY"> <SUB>Initial Commissioning Report</SUB></TAI><TAI OPT="ARMY"> <SUB>Final Commissioning Report</SUB></TAI> no later than 14 calendar days following commissioning team validation of all 
+Commissioning Tests, including Functional Performance Tests,<TAI OPT="INTEGRATED SYSTEMS TEST"> and Integrated Systems Tests</TAI>, with the exception of Seasonal Tests.  <TAI OPT="NAVY">Submit a <SUB>Final 
+Commissioning Report</SUB> upon completion of training and trend log reviews.  </TAI>[File the approved <SUB>Final Commissioning Report (eNotebook)</SUB> in the Sustainability 
+eNotebook.  ]Include the following information in the Final Commissioning Report:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>An executive summary describing the overall commissioning process, the results of the commissioning process, outstanding deficiencies and 
+recommended resolutions, and seasonal testing that must be scheduled for a later date.  Indicate, in the executive summary, whether the 
+systems meet the requirements of the contract documents<TAI OPT="ARMY">[ and the Owner's Project Requirements Document]</TAI>.</OLI><BRK/>
+<BRK/>
+<OLI>A list of deficiencies discovered during the commissioning process and the corrective actions taken in the report.</OLI><BRK/>
+<BRK/>
+<OLI>Completed [Building Enclosure Inspection Checklists, ]Pre-Functional Checklists and other Commissioning Observation Checklists, Commissioning 
+Test Checklists such as Functional Performance Test Checklists<TAI OPT="INTEGRATED SYSTEMS TEST"> and Integrated Systems Test Checklists,</TAI><TAI OPT="ARMY">[, the Air Leakage Test Reports and 
+Diagnostic Test Reports,]</TAI> the Final Construction Phase Commissioning Plan, the Issues Log, Training Attendance Rosters, the Design Review 
+Reports, Submittal Review Report, and any other documents as specified by related technical commissioning specification sections.</OLI><BRK/></OLG>
+<BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>The Commissioning Specialist is responsible for preparing a Commissioning Report following commissioning team validation of all Commissioning Tests, 
+including Functional Performance Tests,<TAI OPT="INTEGRATED SYSTEMS TEST"> and Integrated Systems Tests</TAI>, with the exception of Seasonal Tests.  [File the Commissioning Report in 
+the Sustainability eNotebook.  ]Provide information including, but not limited to, outstanding deficiencies and recommended resolutions, seasonal 
+testing that must be scheduled for a later date, Completed [Building Enclosure Inspection Checklists,] Pre-Functional Checklists and other Commissioning 
+Observation Checklists, Training Attendance Rosters, PVT Report, and the approved TAB Report within 14 days of request.</TXT><BRK/>
+<BRK/></TAI>
+</TAI></SPT>[<SPT><TTL>WARRANTY PHASE SITE VISIT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Warranty phase site visit is recommended to document any deficiencies and verify systems function according 
+to project requirements post-occupancy.  Warranty phase site visit may be required by applicable Sustainability 
+Third Party Certification guidelines.</NPR><BRK/>
+<BRK/>
+<NPR>Choose Sustainability eNotebook bracketed option as applicable.  Refer to Section <SRF>01 33 29</SRF> SUSTAINABILITY REQUIREMENTS 
+AND REPORTING.  Choose bracketed "and the OPR" for projects that will include an Owner's Project Requirements 
+(OPR) document.  Refer to specifier note regarding OPR in paragraph DEFINITIONS for further information.</NPR><BRK/>
+<BRK/>
+<NPR>This paragraph contains tailoring options for ARMY,  KTR HIRED COMMISSIONING PROVIDER and GOVT HIRED COMMISSIONING 
+PROVIDER.</NPR><BRK/>
+<BRK/>
+<NPR>Choose bracketed "and the Owner's Project Requirements" for projects that require one.  Refer to specifier note 
+regarding OPR in paragraph DEFINITIONS for further information.  Choose bracketed Post-Construction Endurance 
+Test and Trend Log Report if included in the project from Section <SRF>23 08 00</SRF> COMMISSIONING OF MECHANICAL[ AND PLUMBING] 
+SYSTEMS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="KTR HIRED COMMISSIONING PROVIDER"><TXT>The Lead Commissioning Specialist must visit the building site concurrent with the 9 month warranty inspection to inspect building system equipment 
+and review building operation with the building operating/maintenance staff, and identify any deficiency of the building systems to operate in 
+accordance with the contract documents<TAI OPT="ARMY">[ and the Owner's Project Requirements Document]</TAI>.  The Commissioning Specialist must notify the Contracting 
+Officer of any identified deficiencies and the proposed corrective action.  Submit <SUB>Updated Final Commissioning Report</SUB> and Systems Manuals, documenting 
+the results of the warranty phase inspection.  Include other warranty or post-construction phase activities as specified in related technical commissioning 
+specification sections, such as Seasonal testing results[ and Post-Construction Endurance Test and Trend Log Report].[  File the approved <SUB>Updated 
+Final Commissioning Report (eNotebook)</SUB> in the Sustainability eNotebook.]</TXT><BRK/>
+<BRK/></TAI>
+<TAI OPT="NAVY"><TAI OPT="GOVT HIRED COMMISSIONING PROVIDER"><TXT>Notify the Lead Commissioning Specialist at least 28 calendar days prior to visiting building site for the 9 month warranty inspection.  Provide 
+updates to any documentation included in the Commissioning Report based on the results of the warranty phase inspection.  Provide all warranty 
+phase documentation, such as Seasonal testing results to the Commissioning Specialist.[  File the <SUB>Updated Final Commissioning Report (eNotebook)</SUB>
+ in the Sustainability eNotebook.]</TXT><BRK/>
+<BRK/></TAI>
+</TAI></SPT>]<BRK/>
+<PGE/><BRK/>
+[<TXT><HL4><HL3><ATT>APPENDIX A - OWNER'S PROJECT REQUIREMENTS DOCUMENT</ATT></HL3></HL4></TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: If an Owner's Project Requirements document (OPR) is to be included with the specification, attach it as 
+Appendix A.  Include a statement on the OPR cover stating that the document is provided for commissioning review 
+purposes only and is not a contract requirement.  Refer to paragraph DEFINITIONS for information regarding the 
+OPR.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/>
+]</PRT>    <END/><BRK/></SEC>

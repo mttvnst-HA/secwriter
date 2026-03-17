@@ -1,0 +1,1472 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 65 00 (May 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="57.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 65 00 (November 2016)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 65 00</SCN><BRK/>
+<BRK/>
+<STL>COOLING TOWERS AND REMOTE EVAPORATIVELY-COOLED CONDENSERS</STL><BRK/>
+<DTE>05/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>induced mechanical draft cooling towers (both packaged 
+and field-erected)</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the following information on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Design wet bulb temperature for capacity<BRK/>
+2.  GPM<BRK/>
+3.  Entering water temperature<BRK/>
+4.  Leaving water temperature<BRK/>
+5.  Motor voltage, phase, and horsepower of fans<BRK/>
+6.  Fan quantity<BRK/>
+7.  Sound rating.<BRK/>
+8.  Operating weight<BRK/>
+9.  Make-up water gpm<BRK/>
+10.  Vibration isolator type<BRK/>
+11.  When applicable, basin heater KW and voltage and phase.<BRK/>
+12.  Vibration isolation<BRK/>
+13.  When applicable, indicate variable frequency drive or EC motor for variable speed operation.<BRK/>
+14.  Power circuit for chemical treatment<BRK/>
+15.  Make-up water system and metering<BRK/>
+16.  Freeze protection measures<BRK/>
+17.  Drainage system for the basin</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ACOUSTICAL SOCIETY OF AMERICA (ASA)</ORG><BRK/><BRK/><RID>ASA S1.13</RID><RTL>(2020; R 2025) American National Standard Measurement of Sound Pressure Levels in Air</RTL><BRK/><BRK/></REF><REF><ORG>AIR-CONDITIONING, HEATING AND REFRIGERATION INSTITUTE (AHRI)</ORG><BRK/><BRK/><RID>ANSI/AHRI 495</RID><RTL>(2005) Performance Rating of Refrigerant Liquid Receivers</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ANSI/ASHRAE 15 &amp; 34</RID><RTL>(2022) ASHRAE Standard 15-Safety Standard for Refrigeration Systems and ANSI/ASHRAE Standard 34-Designation and Safety Classification of Refrigerants</RTL><BRK/><BRK/><RID>ASHRAE 64</RID><RTL>(2020) Methods of Testing Remote Mechanical-Draft Evaporative Refrigerant Condensers</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS Z49.1</RID><RTL>(2021) Safety in Welding, Cutting and Allied Processes</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A48/A48M</RID><RTL>(2022) Standard Specification for Gray Iron Castings</RTL><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/><RID>ASTM A153/A153M</RID><RTL>(2023) Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware</RTL><BRK/><BRK/><RID>ASTM A653/A653M</RID><RTL>(2025a) Standard Specification for Steel Sheet, Zinc-Coated (Galvanized) or Zinc-Iron Alloy-Coated (Galvannealed) by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM C67/C67M</RID><RTL>(2025) Standard Test Methods for Sampling and Testing Brick and Structural Clay Tile</RTL><BRK/><BRK/><RID>ASTM D520</RID><RTL>(2025) Standard Specification for Zinc Dust Pigment</RTL><BRK/><BRK/><RID>ASTM D1784</RID><RTL>(2025) Standard Classification System and Basis for Specification for Rigid Poly(Vinyl Chloride) (PVC) Compounds and Chlorinated Poly(Vinyl Chloride) (CPVC) Compounds</RTL><BRK/><BRK/><RID>ASTM D2996</RID><RTL>(2023) Standard Specification for Filament-Wound "Fiberglass" (Glass-Fiber-Reinforced Thermosetting-Resin) Pipe</RTL><BRK/><BRK/><RID>ASTM E84</RID><RTL>(2025) Standard Test Method for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/></REF><REF><ORG>COOLING TECHNOLOGY INSTITUTE (CTI)</ORG><BRK/><BRK/><RID>CTI ATC-105</RID><RTL>(2019) Acceptance Test Code for Water Cooling Towers</RTL><BRK/><BRK/><RID>CTI STD-111</RID><RTL>(2024) Gear Speed Reducers for Application on Industrial Water Cooling Towers</RTL><BRK/><BRK/><RID>CTI Std-137</RID><RTL>(2017) Fiberglass Pultruded Structural Products for Use in Cooling Towers</RTL><BRK/><BRK/><RID>CTI Std-201</RID><RTL>(2011) Standard for the Certification of Water Cooling Tower Thermal Performance</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/><RID>NEMA MG 11</RID><RTL>(1977; R 2012) Energy Management Guide for Selection and Use of Single Phase Motors</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 214</RID><RTL>(2026) Standard on Water-Cooling Towers</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY OF AUTOMOTIVE ENGINEERS INTERNATIONAL (SAE)</ORG><BRK/><BRK/><RID>SAE J534</RID><RTL>(2021) Lubrication Fittings</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 723</RID><RTL>(2018; Reprint Jun 2025) UL Standard for Safety Test for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Open Cell Cooling Towers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TAI OPT="ARMY"><ITM><SUB>Posted Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></TAI>
+<ITM><SUB>Demonstrations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Verification of Dimensions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Remote Evaporatively-Cooled Condensers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Closed Circuit Coolers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Packaged Cooling Tower - Installation Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Field-Erected Cooling Tower - Installation Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Packaged Cooling Tower - Field Acceptance Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Field-Erected Cooling Tower - Field Acceptance Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Packaged Cooling Tower - Field Acceptance Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Field-Erected Cooling Tower - Field Acceptance Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Start-Up Testing Report</SUB>; <SUB>G<TAI OPT="ARMY">, [____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Service Organization</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cooling Tower</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Packaged Cooling Tower - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+][<ITM><SUB>Field-Erected Cooling Tower - Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance Manuals</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Remote Evaporatively-Cooled Condensers</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SAFETY REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Catwalk, ladder and guardrail may be required.  If so, select the applicable item and delete the others 
+and indicate on drawings the selected item.  If not applicable, delete the entire sentence within the brackets.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Exposed moving parts, parts that produce high operating temperature, parts which may be electrically energized, and parts that may be a hazard 
+to operating personnel must be insulated, fully enclosed, guarded, or fitted with other types of safety devices.  Safety devices must be installed 
+so that proper operation of equipment is not impaired.  Welding and cutting safety requirements must be in accordance with <RID>AWS Z49.1</RID>.[  [Catwalk, 
+][ladder, ][and guardrail ]must be provided where indicated and in accordance with[ Section <SRF>05 50 13</SRF> MISCELLANEOUS METAL FABRICATIONS][ Section 
+<SRF>05 51 33</SRF> METAL LADDERS][ Section <SRF>05 52 00</SRF> METAL RAILINGS][ Section <SRF>05 51 00</SRF> METAL STAIRS].]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Stored items must be protected from the weather, humidity and temperature variations, dirt and dust, or other contaminants.  Proper protection 
+and care of all material both before and during installation must be the Contractor's responsibility.  Any materials found to be damaged must be 
+replaced at the Contractor's expense.  During installation, piping and similar openings must be capped to keep out dirt and other foreign matter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PROJECT/SITE CONDITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Because of the small scale of the drawings, it is not possible to indicate all offsets, fittings, and accessories that may be required.  The Contractor 
+must carefully investigate the plumbing, fire protection, electrical, structural and finish conditions that would affect the work to be performed 
+and must arrange such work accordingly, furnishing required offsets, fittings, and accessories to meet such conditions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>STANDARD COMMERCIAL PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Materials and equipment must be standard commercial catalogued products of a manufacturer regularly engaged in the manufacturing of such products, 
+which are of a similar material, design and workmanship.  The standard products must have been in satisfactory commercial or industrial use in 
+field service for two years prior to bid opening.  The two year use must include applications of equipment and materials under similar circumstances 
+and of similar size.  Products having less than a two year field service record will be acceptable if a certified record of satisfactory field 
+operation, for not less than 6000 hours exclusive of the manufacturer's factory tests, can be shown.  This 6000 hour record must not include any 
+manufacturer's prototype or factory testing.  Records of satisfactory field use must be completed by a product that had been, and presently is, 
+sold, or offered for sale on a commercial market through the following copyrighted means:  advertisements, manufacturer's catalogs, or brochures.  
+Products must be supported by a <SUB>service organization</SUB>.  System components must be environmentally suitable for the indicated locations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MANUFACTURER'S STANDARD NAMEPLATES</TTL><BRK/>
+<BRK/>
+<TXT>Major equipment including cooling towers, cooling tower gear drive assemblies, fans, and motors must have the manufacturer's name, address, type 
+or style, model or serial number, and catalog number on a plate secured to the item of equipment.  Plates must be durable and legible throughout 
+equipment life.  Plates must be fixed in prominent locations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ELECTRICAL WORK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where motor starters for mechanical equipment are provided in motor-control centers, the references to 
+motor starters must be deleted.</NPR><BRK/>
+<BRK/>
+<NPR>Show the electrical characteristics, motor starter type(s), enclosure type, and maximum rpm on the drawings in 
+the equipment schedules.</NPR><BRK/>
+<BRK/>
+<NPR>Where reduced-voltage motor starters are recommended by the manufacturer or required otherwise, specify and coordinate 
+the type(s) required in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Reduced voltage starting is required when 
+full voltage starting will interfere with other electrical equipment and circuits and when recommended by the 
+manufacturer.  Where adjustable speed drives (ASD) are specified, reference Section <SRF>26 29 23</SRF> ADJUSTABLE SPEED 
+DRIVE (ASD) SYSTEMS UNDER 600 VOLTS.  The methods for calculating the economy of using an adjustable speed drive 
+is described in UFC 3-520-01, "Interior Electrical Systems".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide motors, controllers, integral disconnects, contactors, and controls with their respective pieces of equipment, except controllers 
+indicated as part of motor control centers.  Provide electrical equipment, including motors and wiring, as specified in Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Manual or automatic control and protective or signal devices required for the operation specified 
+and control wiring required for controls and devices specified, but not shown, must be provided.  For packaged equipment, the manufacturer 
+must provide controllers including the required monitors and timed restart.</OLI><BRK/>
+<BRK/>
+<OLI>For single-phase motors, provide high-efficiency type, fractional-horsepower alternating-current motors, including motors that are part 
+of a system, in accordance with <RID>NEMA MG 11</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>For polyphase motors, provide squirrel-cage medium induction motors, including motors that are part of a system, and that meet the efficiency 
+ratings for premium efficiency motors in accordance with <RID>NEMA MG 00001</RID>.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Bracketed sentence "Motor bearings..." to be used for Army projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Provide motors in accordance with <RID>NEMA MG 00001</RID> and of sufficient size to drive the load at the specified capacity without exceeding the 
+nameplate rating of the motor.  Motors must be rated for continuous duty with the enclosure specified.  Motor duty requirements must allow 
+for maximum frequency start-stop operation and minimum encountered interval between start and stop.  Motor torque must be capable of accelerating 
+the connected load within 20 seconds with 80 percent of the rated voltage maintained at motor terminals during one starting period.  Provide 
+motor starters complete with thermal overload protection and other necessary appurtenances.<TAI OPT="ARMY">[  Motor bearings must be fitted with grease 
+supply fittings and grease relief to outside of the enclosure.]</TAI>  Motor enclosure type may be either TEAO or TEFC.</OLI><BRK/>
+<BRK/>
+<OLI>[Where two-speed motors are indicated, variable-speed controllers may be provided to accomplish the same function.  ][Use adjustable frequency 
+drives for all variable-speed motor applications.  ]Provide variable frequency drives for motors as specified in Section <SRF>26 29 23</SRF> ADJUSTABLE 
+SPEED DRIVE (ASD) SYSTEMS UNDER 600 VOLTS.</OLI><BRK/>
+<BRK/>
+<OLI>Provide inverter duty premium efficiency motors for use with variable frequency drives.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>COOLING TOWER MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Fiberglass Reinforced Plastic (FRP)</TTL><BRK/>
+<BRK/>
+<TXT>FRP components must be inert, corrosion resistant, and fire-retardant with a thickness of<MET> 3.66 kg per square meter</MET><ENG> 12 ounces per square foot</ENG>.  
+FRP components must contain an ultraviolet (UV) ray inhibitor as per <RID>CTI Std-137</RID>, Grade 1 or 3.  Components manufactured of polystyrene are not 
+permitted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Zinc-Coated Steel</TTL><BRK/>
+<BRK/>
+<TXT>Components fabricated of zinc-coated steel must be not lighter than 16 gauge<MET> 1.613 mm</MET><ENG> 0.0635 inch</ENG> steel, protected against corrosion by a zinc 
+coating.  The zinc coating must conform to <RID>ASTM A653/A653M</RID>, as applicable and have an extra heavy coating of not less than<MET> 760g per square meter</MET><ENG>
+ 2.35 ounces per square foot</ENG> of surface.  Galvanized surfaces damaged due to welding must be coated with zinc rich coating conforming to <RID>ASTM D520</RID>
+, Type 1.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Polyvinyl Chloride (PVC) Formed Sheets</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D1784</RID>, Type I, Grade 1 with a flame spread rating in accordance with <RID>ASTM E84</RID>, Class A.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Density Polyethylene (HDPE)</TTL><BRK/>
+<BRK/>
+<TXT>Components manufactured from HDPE must be seamless with a minimum thickness of<MET> 10 mm</MET><ENG> 0.375 inch</ENG>.  The material must have the appropriate inhibitors 
+to protect the component from any UV degradation.  Tanks and cooling tower shells must be seamlessly molded to minimize water loss/consumption.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stainless Steel Sheets</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer should consider location (non-coastal, coastal, extremely corrosive areas) when specifying corrosion 
+protection.  Additional lead time and cost may be a factor.  Designer must consult local review team for guidance 
+on corrosion protection.  Type 316 stainless steel is generally needed in coastal areas, while stainless steel 
+type 304 is generally acceptable in all other areas.  For other corrosive environments review with equipment vendors.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Components manufactured from stainless steel must be stainless steel type[ 304][ 316].  Provide welded stainless steel seams at panels, basins, 
+and other components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Concrete</TTL><BRK/>
+<BRK/>
+<TXT>Concrete must conform to Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.  Exposed concrete must be rub-finished for smooth and uniform surfaces free of 
+form marks and defects.  Honeycomb concrete is not permitted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hardware</TTL><BRK/>
+<BRK/>
+<TXT>Bolts must be cadmium-plated, zinc-coated steel, or Type 304 stainless steel.  Each bolt must be provided with neoprene and cadmium-plated steel 
+washers under the heads.  Nails must be silicon bronze, commercial bronze, or stainless steel.  Hardware must meet the salt-spray fog test as defined 
+by <RID>ASTM B117</RID>.  Angle brackets and similar parts must be zinc-coated steel.  Zinc coatings must conform to <RID>ASTM A153/A153M</RID> and[ <RID>ASTM A123/A123M</RID>], 
+as applicable, and must have an extra heavy coating of not less than<MET> 760g per square meter</MET><ENG> 2.35 ounces per square foot</ENG> of surface.  No signs of 
+corrosion must be evident after 1,000 hours continuous exposure to a 5 percent salt spray.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>OPEN CELL COOLING TOWERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit and update the specification, including adding features as necessary, per actual equipment selection 
+and project requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Factory Assembled Towers</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Description</TTL><BRK/>
+<BRK/>
+<TXT>The cooling tower must be of the[ induced mechanical draft][ or forced mechanical draft] type.  The cooling tower must include frames and casings, 
+louvers, drift eliminators, partitions, windbreak baffles, drift-check walls, cold water basin equipment, fans and fan walls, blowers, drives, 
+electric motors, access doors,[ working platforms,] inspection plates, and panels.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Construction</TTL><BRK/>
+<BRK/>
+<TXT>Tower must be constructed to withstand a wind pressure of not less than<MET> 1.44 kilopascal (kPa)</MET><ENG> 30 psf</ENG> on any external surface.  Fan deck must be 
+constructed to withstand a live load of not less than<MET> 2.87 kPa</MET><ENG> 60 psf</ENG> in addition to the concentrated or distributed loads of equipment mounted 
+on the fan deck.[  A 15 percent increased loading must be included for ice or snow load.]</TXT><BRK/>
+<BRK/>
+<TXT>The hot water distribution system must be of the open basin gravity feed type or the pressurized spray header type design.</TXT> <BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tower Frame and Louvers</TTL><BRK/>
+<BRK/>
+<TXT>Provide frame constructed from [galvanized steel][_____].  Intermediate structural members must be provided for rigidity and support of casings, 
+louvers, fill, distribution systems, fan decks, and other equipment.  Inlet air louvers must permit free air passage but no splash out, and must 
+be designed to prevent debris and sunlight from entering the cold water basin.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Air Inlet and Discharge Connections</TTL><BRK/>
+<BRK/>
+<TXT>On forced draft centrifugal type units, the air inlet and discharge connections must have flanged or lipped projections for connecting to ductwork.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Fill</TTL><BRK/>
+<BRK/>
+<TXT>The fill must support expected loads without sag or failure and arranged to effectively break up the water.  The fill must be manufactured and 
+performance tested by the cooling tower manufacturer.  The fill must be of the materials as specified.  Polyvinyl chloride (PVC) fill is suitable 
+for inlet temperatures to<MET> 51.7 degrees C</MET><ENG> 125 degrees F</ENG> on cross flow type units and temperatures to<MET> 54.4 degrees C</MET><ENG> 130 degrees F</ENG> on counterflow 
+type units.  Chlorinated polyvinyl chloride(CPVC) fill must be used for applications where inlet temperatures are greater than<MET> 51.7 degrees C</MET><ENG> 125 
+degrees F</ENG>.  Fill must be in accordance with <RID>ASTM E84</RID>, Class A.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drift Eliminators </TTL><BRK/>
+<BRK/>
+<TXT>Provide drift eliminator sections designed and arranged to effectively trap water droplets entrained in the discharge airstream.  Sections must 
+be assembled in easily removable sections for[ forced mechanical drift tower ][ and][ counterflow induced mechanical draft tower].  Drift eliminators 
+must be constructed of Polyvinyl chloride (PVC) in accordance with <RID>ASTM E84</RID>, Class A.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cold Water Basin Equipment.</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose galvanized steel, except in corrosive environments, choose Type 304 stainless steel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include[ galvanized steel][ Type 304 stainless steel] sump with stainless steel removable screen and vortex breaker, float valves, and necessary 
+pipe connections and fittings within the tower.[  Provide float valves with adjustable arms.  Valve sizes larger than<MET> 13 mm</MET><ENG> 1/2 inch</ENG> pipe size 
+must be the balanced piston type.  Valve seats and disks must be replaceable.][  Electronic water level control must be provided.]</TXT><BRK/>
+<BRK/>
+<TXT>Provide cold water basins and casings suitably sealed and flashed at joints and connections to ensure watertight construction.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Electric Basin Heater</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate ambient temperature with Electric Basin heater paragraph below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Heater must be the electric immersion type with water-tight junction boxes mounted in the basin with sufficient capacity to maintain the basin 
+water temperature above<MET> 4.4 degrees C</MET><ENG> 40 degrees F</ENG> at an ambient temperature of [_____]<MET> degrees C</MET><ENG> degrees F</ENG>.  Heater must be complete with control 
+thermostat, transformer, contactor, and low water level heater protection.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Fans, Blowers, and Drives.</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer should consider reduced maintenance requirements associated with direct drive assemblies.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The towers must have axial propeller-type fans having not less than four aluminum alloy or glass-reinforced polypropylene blades or squirrel-cage, 
+centrifugal-type blowers, as applicable.  Fans and blowers must be designed and constructed to withstand 50 percent overspeed above normal maximum 
+operating speeds.</TXT><BRK/>
+<BRK/>
+<TXT>If belt drives are utilized, multi-grooved solid back single belt design must be used to avoid uneven belt stretch.  Adjustment must be provided 
+for belt tension and drive centers.  Belt drives must be designed and constructed for 150 percent overload.  Sheaves located in the airstream must 
+be corrosion-resistant material.  Shafting for gear drives must have flexible-type couplings requiring no lubrication.  The gear assemblies must 
+be enclosed in an oil-filled housing provided with fill and drain plugs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tower Piping</TTL><BRK/>
+<BRK/>
+<TXT>Piping must be schedule 40 PVC and conform to <RID>ASTM D2996</RID>.  Piping supports must be corrosion resistant hangers and supports that are designed to 
+resist movement during operation and shipment.  Fittings for other piping materials must be of the same material or equal and of the same class 
+and grade as the pipe.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Motors</TTL><BRK/>
+<BRK/>
+<TXT>Requirements are specified in paragraph ELECTRICAL WORK.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Vibration Cutout Switch.</TTL><BRK/>
+<BRK/>
+<TXT>Provide[ mechanical vibration cutout switch][ electronic vibration cutout switch with auxiliary contacts] in a protected position and most effective 
+location, interlocked with the fan wiring to electrically open the motor circuit under excessive fan vibration.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Performance</TTL><BRK/>
+<BRK/>
+<TXT>The factory assembled tower must have <SUB>Cooling Tower</SUB> Institute certification that, in accordance with <RID>CTI Std-201</RID>, the cooling tower must perform 
+thermally at the rating published by the tower manufacturer in his copyrighted literature.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sound Power Level</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The numbers shown in Tables I &amp; II  are ranges of acceptable/recommended sound power levels.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Sound power levels, in decibels (dB)with a reference pressure of 0.0002 microbars, of the cooling tower must be not greater than the maximum permitted 
+dB levels for the designated octave band as set forth in Table I or Table II.  The sound power level data for the cooling tower must have been 
+verified in tests conducted in accordance with <RID>ASA S1.13</RID>.</TXT><BRK/>
+<BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="9" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="157.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="78.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL MERGEACROSS="8" STYLEID="s51">
+<DTA TYPE="STRING">Table I.  Sound Power Level for Induced Mechanical Draft Type</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Octave Band (Hz)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">63</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">125</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">250</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">500</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">8000</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="42.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sound Power Level (dB)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">112</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">112</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">110</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">108</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">102</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">98</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">93</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">90</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="9" ROWCOUNT="3">
+      <COL AUTOWIDTH="0" WIDTH="157.50"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="75.00"/>
+      <COL AUTOWIDTH="0" WIDTH="78.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL MERGEACROSS="8" STYLEID="s50">
+<DTA TYPE="STRING">Table II.  Sound Power Level for Forced Mechanical Draft Type</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL>
+<DTA TYPE="STRING">Octave Band (Hz)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">63</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">125</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">250</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">500</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">8000</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="42.75">
+         <CEL>
+<DTA TYPE="STRING">Sound Power Level (dB)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">112</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">112</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">110</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">108</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">102</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">98</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">93</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">90</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drift Loss</TTL><BRK/>
+<BRK/>
+<TXT>Drift loss must be not greater than 0.005 percent of the water circulated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Lubrication</TTL><BRK/>
+<BRK/>
+<TXT>The lubricating points must be extended to the outside of the unit for easy accessibility.  Hydraulic lubrication fittings must be in accordance 
+with <RID>SAE J534</RID>.  Where use of high pressure lubricating equipment,<MET> 6894 kPa</MET><ENG> 1000 psi</ENG> or higher, will damage grease seals or other parts, a suitable 
+warning must be affixed to the equipment in a conspicuous location.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Factory Finish System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Galvanized metal is the standard finish for most manufacturers.  Provide finish systems with 3,000 hour 
+salt spray compliance for seacoast installations</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Factory painting system ][Galvanized metal ]must have been proven to withstand 125 hours in a salt-spray fog test, except that equipment located 
+outdoors must withstand 500 hours in a salt-spray fog test.  Equipment located in a seacoast environment must withstand 3,000 hours in a salt-spray 
+fog test.  Salt-spray fog test must be in accordance with <RID>ASTM B117</RID>.  For salt-spray fog test, the acceptance criteria must be as follows:  immediately 
+after completion of the test, the paint must show no signs of blistering, wrinkling, or cracking, and no loss of adhesion; and the specimen must 
+show no signs of rust creepage beyond<MET> 3 mm</MET><ENG> 0.125 inch</ENG> on either side of the scratch mark.</TXT><BRK/>
+<BRK/>
+<TXT>The film thickness of the factory painting system applied on the equipment must not be less than the film thickness used on the test specimen.  
+If manufacturer's standard factory painting system is being proposed for use on surfaces subject to temperatures above<MET> 50 degrees C</MET><ENG> 120 degrees 
+F</ENG>, the factory painting system must be designed for the temperature service and must have been proven to pass the specified salt-spray test.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Field-Assembled Cooling Towers</TTL><BRK/>
+<BRK/>
+<TXT>Factory fabricated, factory-assembled towers which are shipped to the job site in separate cells or modules must be provided with all appropriate 
+manufacturer's hardware for assembly in the field.  Factory fabricated, field-assembled towers must be assembled and adjusted at the job site by 
+a factory representative.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Framework, Casing, and Supports</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Packaged type cooling towers are typically constructed to withstand a 1.4 kPa (30 psf) wind load.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Towers must be designed and constructed to withstand a wind pressure of not less than<MET> [1.4][_____] kPa</MET><ENG> [30][_____] pound-force per square foot 
+(psf)</ENG> on external surfaces.[  A 15 percent increased loading must be included for ice or snow load.][  Air inlet and discharge terminations must 
+have flanged or lipped projections for connecting ductwork.]  Framework, structural supports, and equipment supports must be[ zinc-coated steel,][ 
+Type 304 stainless steel,][ air-entrained concrete][ or][ FRP].  Casing (exterior enclosing walls) must be constructed of[ zinc-coated steel][ 
+Type 304 stainless steel][ air-entrained concrete][ or][ FRP].  Materials provided for framework, casings and equipment supports must be compatible.  
+Structural supports must be provided in accordance with the recommendations of the manufacturer of the tower unless otherwise indicated.[  Cold-pour 
+concrete joints in vertical walls must have a continuous water-stop stripping of molded polyvinyl plastic (<MET>150 mm </MET><ENG>6 inch </ENG>dumbbell).]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Foundations</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the design of a tower foundation, indicate the location, the size, the reinforcement requirements, 
+etc. necessary for a cooling tower available from three commonly known manufacturers.  For small retrofit type 
+jobs the designer may choose to show the general layout of the foundation and rely on the Contractor to design 
+and construct the foundation based on the cooling tower to be provided.  Delete the last two sentences of the 
+paragraph if the foundation is not to be designed by the Contractor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Cooling tower foundations must meet the requirements of the cooling tower manufacturer and wind and seismic loads, wind and seismic loads and be 
+as indicated.  Foundation design must be based on the load conditions and soil bearing value indicated.  Foundation calculations must be submitted 
+with the equipment drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stairways and Ladders</TTL><BRK/>
+<BRK/>
+<TXT>Provide stairs, 60-degree ship ladders or straight-rung ladders of standard design, starting at[ ground][ roof] level and extending as high as 
+required to gain access to fan decks and water distribution systems.  Stairways and ladders must be hot-dip, zinc-coated steel.  Ladders higher 
+than<MET> 3.66 meters</MET><ENG> 12 feet</ENG> must have a safety cage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hand Railings</TTL><BRK/>
+<BRK/>
+<TXT>Steel hand railings must be not less than<MET> 1067 mm</MET><ENG> 42 inches</ENG> high around the exterior of each working surface that is<MET> 3.66 m</MET><ENG> 12 feet</ENG> or more above 
+the ground, roof, or other supporting construction.  Railings must be not smaller than<MET> 32 mm</MET><ENG> 1-1/4 inch</ENG> zinc-coated steel pipe with standard zinc-coated 
+steel railing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Access Doors</TTL><BRK/>
+<BRK/>
+<TXT>Each tower must be provided with access doors at grade level to provide entry to the interior for service maintenance without removal of the fill.  
+Doors must be provided on each end wall of each cooling tower cell.  Frame and brace access doors to prevent damage when opening and closing.  
+Doors must be located adjacent to float controls.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Louvers</TTL><BRK/>
+<BRK/>
+<TXT>Air inlets for each cooling tower must be provided with individually removable louvers arranged to prevent the escape of water.  Louvers must be 
+constructed of[ PVC][ fiberglass reinforced polyester][ zinc-coated steel][ Type 304 stainless steel][ FRP].  Materials provided for casings and 
+louvers must be compatible; one material must not produce stains upon the other.  Air intakes must be provided with<MET> 25 mm</MET><ENG> 1 inch</ENG> zinc-coated steel 
+mesh.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fan Deck and Cylinder</TTL><BRK/>
+<BRK/>
+<TXT>Each fan must be mounted in a fan cylinder (or stack) to elevate the fan discharge air.  Total extension height must not exceed the fan diameter.  
+Each fan cylinder must be provided with a zinc-coated steel, 12 gauge<MET> 2.753 mm</MET><ENG> 0.108 inch</ENG> wire mesh securely mounted to the top of the cylinder 
+in accordance with manufacturer's recommendations.  Fan decks must be designed to withstand a live load of not less than<MET> [1.9][2.9] kPa</MET><ENG> [40][60] 
+psf</ENG> in addition to the concentrated or distributed loads of equipment mounted on the fan decks.[  Fan deck and cylinders must be constructed of 
+zinc-coated steel, Type 304 stainless steel, or FRP and be compatible with the entire tower construction.][  Fan deck must be constructed of precast, 
+reinforced lightweight concrete, in multiple sections, forming a complete, vibration-free base for mounting fan, speed reducer, drive shaft, motor, 
+and fan stacks.  Fan cylinders (or stacks) must be constructed of precast, reinforced lightweight concrete in multiple sections, constrained with 
+bands of zinc-coated steel conforming to <RID>ASTM A123/A123M</RID>, not less than<MET> 3 by 75 mm</MET><ENG> 1/8 by 3 inches</ENG>, and bolted to form a compressive load on stack 
+perimeter.  Fan cylinder must be secured in place on the fan deck with Class A mortar.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fans</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When the density of the ambient air to be handled by the fans differs substantially from the density of 
+the standard air value of<MET> 1.2 kg per cubic m</MET><ENG> 0.075 pound per cubic foot</ENG> at<MET> 21 degrees C</MET><ENG> 70 degrees F</ENG> and<MET> 101 kPa</MET><ENG>
+ 29.92 inches mercury</ENG>, the density of the air and the elevation above mean sea level must be shown on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fans must be the[ centrifugal][ or][ adjustable-pitch propeller] type, constructed of zinc-coated steel, Type 304 stainless steel, aluminum or 
+an aluminum alloy, or FRP.  Propeller type fans must have a maximum tip speed of<MET> 330 m/minute</MET><ENG> 10,800 fpm</ENG>.  Fan blade assembly must be both statically 
+and dynamically balanced after assembly of the cooling tower.  Fan hub must be constructed of[ zinc-coated steel][ stainless steel][ cast aluminum] 
+with adequate surface protection against corrosion.  Complete fan assembly (fan and mounting) must be designed to give maximum fan efficiency and 
+long life when handling saturated air at high velocities.  Each cooling tower fan must be provided with a ball and pedestal type vibration limit 
+switch which must stop the corresponding fan motor in the event of sensing excessive fan vibration.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Speed Reducers Gears and Drive Shaft</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Double reduction gear reducer should be considered where low noise requirement is a factor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Speed reducer gears must be rated in accordance with <RID>CTI STD-111</RID>.  Gear reducers must be of the[ spiral bevel, single reduction][ spiral or helical, 
+double reduction] type.  Reducer must be mounted in accordance with manufacturer's recommendations.  Each reducer must be provided with an oil 
+level cutoff switch interlocked to the fan motor.  Each reducer must be provided with an oil level sight glass, fill, drain, and vent lines located 
+in a readily accessible position.  Drive shafts must be the full floating type with flexible couplings at both ends and have a service factor of 
+1.0 or greater.  Drive shafts must be of stainless steel, fitted each end with flexible couplings (stainless steel plate type).  Each drive shaft 
+must be provided with a galvanized steel guard, to prevent damage to surrounding equipment in case of shaft failure.  Provision must be made for 
+lubrication of all bearings.  Bearings must be accessible to the extent that each bearing can be lubricated without dismantling fan.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Motors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the last sentence if inapplicable.</NPR><BRK/>
+<BRK/>
+<NPR>Consider the following for energy efficiency in cooling towers:</NPR><BRK/>
+<BRK/>
+<NPR>Induced draft fans, VFD's and designing to 0.4 percent wet bulb temperature.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each motor must be a[ single speed][ two speed][ variable speed], totally enclosed, insulation Class B, NEMA Design B, continuous-rated type which 
+conforms to <RID>NEMA MG 00001</RID>.  Motors must have[ open][ drip proof][ totally enclosed][ explosion proof] enclosures and be located outside the discharge 
+airstream.  Motors must be mounted according to manufacturer's recommendations.[  Two-speed motors must have a single winding with variable torque 
+characteristics.][  Motors for variable speed application must be inverter-duty type.]  Motors must be provided specifically for either pump or 
+fan application and must comply with the requirements of paragraph ELECTRICAL WORK.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cold Water Basin</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose zinc-coated steel, except in corrosive environments, choose Type 304 stainless steel or FRP.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Basin must be completely watertight and constructed of[ zinc-coated steel][ Type 304 stainless steel][ FRP].  Basin must be constructed and installed 
+to ensure that air will not be entrained in outlets when operating and no water will overflow on shutdown.  Each individual sump must be provided 
+with an individual outlet.  Each outlet must be provided with a<MET> 13 mm</MET><ENG> 1/2 inch</ENG> stainless steel wire mesh, securely mounted to prevent trash from 
+entering the outlet.  Each basin must be provided with overflow and drain valve connections.  Each basin must be provided with a float-controlled, 
+makeup water valve as indicated.  The makeup water must discharge not less than<MET> 50 mm</MET><ENG> 2 inches</ENG> or two pipe diameters, whichever is greater, above 
+the top of the basin.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Basin Heater</TTL><BRK/>
+<BRK/>
+<TXT>Heater must be the electric immersion type with water-tight junction boxes mounted in the basin with sufficient capacity to maintain the basin 
+water temperature above<MET> 4.4 degrees C</MET><ENG> 40 degrees F</ENG> at an ambient temperature of [_____]<MET> degrees C</MET><ENG> degrees F</ENG>.  Heater must be complete with control 
+thermostat, transformer, contactor, and low water level heater protection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hot Water Distribution System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The gravity-flow type distribution system is the system of choice.  Pressurized-flow type systems will 
+typically only be specified for field-erected, counterflow type towers </NPR><BRK/>
+<BRK/>
+<NPR>Piping connecting to a cooling tower must be externally supported, independent of the tower structure and piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Water distribution must be the[ gravity-flow][ pressurized-flow] type system which distributes water evenly over the entire fill surface.  Each 
+tower cell must be designed so that a water flow of 140 percent capacity will not cause overflowing or splashing.  The distribution system for 
+each cell must include adjustable flow control valves.  The entire distribution system must be self-draining and non-clogging.  Piping must be 
+either cast iron, ductile iron, threaded-glass-fiber reinforced epoxy pipe, polypropylene, PVC or Schedule 80 black steel.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Gravity-Flow System:  System must be provided with open basins which include a splash box or baffles to minimize splashing of incoming 
+hot water and holes that evenly distribute the water over the entire decking area.  Holes used in a water basin must be provided with ceramic 
+or plastic orifice inserts.</OLI><BRK/>
+<BRK/>
+<OLI>Pressurized-Flow System:  System must include piping, fittings, branches, and spray nozzles.  Spray nozzles must be schedule 40 PVC.  Nozzles 
+must be cleanable, non-clogging, removable, and spaced for even distribution.</OLI><BRK/>
+<BRK/>
+<OLI>Basin Cover:  Hot water distribution basins must be provided with the tower manufacturer's standard removable,[ zinc-coated galvanized 
+steel][ 304 stainless steel][ FRP] covers.  Covers must prevent airborne debris from entering the basin.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Drift Eliminators</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Per ICC IgCC, 601.3.2.3(c) 6.3.2.3(c), as invoked from UFC 1-200-02, cooling towers must be equipped with 
+efficient drift eliminators that achieve drift reduction to a maximum of 0.002 percent if the recirculated water 
+volume for counterflow towers and 0.005 percent of the recirculated water flow for crossflow towers.</NPR><BRK/>
+<BRK/>
+<NPR>Delete the last set of bracketed sentences if a field-erected type tower is not specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Eliminators must be provided in the tower outlet to limit drift loss to not over[ 0.002][ 0.005] percent of the circulating water rate.  Eliminators 
+must be constructed of polyvinyl chloride (PVC).[  Eliminators sections must be supported on PVC or FRP tee sections.  Tee sections must be suspended 
+with<MET> 6.35 mm</MET><ENG> 1/4 inch</ENG> brass rods connected to stainless steel clips embedded in the bottom side of the roof deck at the time of casting.  Stainless 
+steel clips must be supplied by cooling tower manufacturer for installation by Contractor at time of roof deck pour.  Eliminators may be supported 
+by brass or stainless steel suspension rods from the fan deck or supported directly on concrete beams.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cold Water Basin Equipment.</TTL><BRK/>
+<BRK/>
+<TXT>Include sump with removable screen and vortex breaker, float valves, and necessary pipe connections and fittings within the tower.  Provide float 
+valves with adjustable arms.  Valve sizes larger than<MET> 13 mm</MET><ENG> 1/2 inch</ENG> pipe size must be the balanced piston type.  Valve seats and disks must be 
+replaceable.[  Electric water level control must be provided.]</TXT><BRK/>
+<BRK/>
+<TXT>Provide cold water basins and casings suitably sealed and flashed at joints and connections to ensure watertight construction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fill (Heat Transfer Surface)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typically, both the splash or film type tower fill will be allowed.  Film type fill must not be allowed 
+where there is a highly likely possibility that the circulating water will become contaminated with debris (leaves, 
+etc.).  Debris in the circulating water will significantly impact the efficiency of a tower with film type fill 
+because of the close spacing of the film material.  Note that hot water distribution basin covers will typically 
+prevent most debris from ever getting to the fill material.</NPR><BRK/>
+<BRK/>
+<NPR>The most predominant fill material is PVC formed sheets.  PVC formed sheets, zinc-coated steel will be the typical 
+choices for fill material.  Aluminum or stainless steel fill must only be specified where either high inlet water 
+temperatures or fireproof construction are concerns.  PVC formed sheets must not be provided when the inlet water 
+temperature exceeds 125 degrees F.  Tile file will only be considered on field-erected type towers where economically 
+justified.</NPR><BRK/>
+<BRK/>
+<NPR>Delete the bracketed sentences at the end of the paragraph if tile type fill material is not specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Tower fill must be the[ splash][ or][ film] type.  Fill material must be free to expand or contract without warping or cracking.  No plasticized 
+wood cellulose must be provided for fill material.  Fill must be removable or otherwise made accessible for cleaning.  Space supports must be corrosion 
+resistant and must prevent warping, sagging, misalignment, or vibration of the fill material.  Fill material and supports must be designed to provide 
+for an even mixing of air and water.  Fill material must be constructed of[ aluminum][ stainless steel][ tile of multi-cell design, set without 
+mortar][ PVC formed sheets, zinc-coated steel] in a pattern, and of sufficient height to meet the performance specifications.[  Tile fill must 
+be vitreous, with a low water absorption that must pass a freeze-thaw test conducted in accordance with <RID>ASTM C67/C67M</RID>.  Tile fill must have a minimum 
+crushing strength of<MET> 13.8 MPa</MET><ENG> 2,000 psi</ENG> over the gross area of the tile when the load is applied parallel to the cells as tested in accordance 
+with <RID>ASTM C67/C67M</RID>.  Cast iron tee section lintels supporting the tile fill must conform to <RID>ASTM A48/A48M</RID>, Class 25,<MET> 3.2 mm</MET><ENG> 1/8 inch</ENG> additional 
+thickness for corrosion.  Lintels must be designed with a safety factor of 2 minimum.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fire Safety</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Locate the tower in accordance with NFPA 214, and determine the extent and type of fire protection required 
+for all size towers using the factors indicated in NFPA 214.  Indicate fire protection system requirements in 
+the design documents.  Coordinate with fire protection specs and make sure any additional requirements are added 
+to Section <SRF>21 13 16</SRF> DRY PIPE SPRINKLER SYSTEMS, FIRE PROTECTION as needed for cooling towers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Towers must conform to <RID>NFPA 214</RID>.  Fire hazard rating for plastic impregnated materials must not exceed 25.  Plastics must not drip or run during 
+combustion.  Fire hazard ratings must be in accordance with <RID>ASTM E84</RID>, Class A and <RID>UL 723</RID>.[  Refer to Section <SRF>21 13 16</SRF> DRY PIPE SPRINKLER SYSTEMS, 
+FIRE PROTECTION for fire suppression systems requirement associated with the equipment.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Meters and Controls</TTL><BRK/>
+<BRK/>
+<TXT>Tower must be provided with makeup and blowdown meters, conductivity controller[, electric immersion heaters and controls], and water level control 
+system with overflow alarm.  Include a controller with a NEMA 4 control panel containing[ unfused disconnect switch][, interlocks and relays][, 
+pilot lights and push buttons][, and must integrate into the building automation system specified in[ Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL 
+FOR HVAC][ Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS,][ Section <SRF>25 10 10</SRF> UTILITY MONITORING 
+AND CONTROL SYSTEM (UMCS) FRONT END AND INTEGRATION][ or][ Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL 
+SYSTEMS][, and must integrate into the existing building automation system]].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>CLOSED CIRCUIT COOLERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Closed circuit cooling towers are generally used for heat pump, other water cooled systems with smaller 
+heat exchangers in the equipment, or smaller tonnage systems.</NPR><BRK/>
+<BRK/>
+<NPR>Edit and update the specification including adding features as necessary, per actual equipment selection and project 
+requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Description</TTL><BRK/>
+<BRK/>
+<TXT>Provide a closed circuit cooler factory assembled and tested induced draft unit with vertical air discharge, complete with vertical discharge axial 
+fan, motors, and drive system, heat exchanger, fill and drift eliminators, louvers, heat-loss closure dampers, spray water system, and accessories 
+and rigging supports.  The tower and piping systems are to be arranged for retention and storage of spray water in the tower basin.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Casing and Finish</TTL><BRK/>
+<BRK/>
+<TXT>Construct the fan section (up to top of intake louvers) of heavy gage stainless steel designed for a minimum uniform live load of<MET> 292 kgf/m</MET><ENG> 260 
+psf</ENG> and construct casing of hot-dip galvanized steel.  Apply corrosion protection system to the outside of galvanized surfaces.  Construct non-stainless 
+metal components of mill hot-dip galvanized steel.  Coat component edges and welds with a 95 percent pure zinc-rich compound.  Preparation for 
+coating must include degreasing, cleaning, and light surface burnishing.  The coating must be suitable for field repair with the same original 
+coating material applied in the same manner.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Louvers</TTL><BRK/>
+<BRK/>
+<TXT>Provide air inlet louver that is UV resistant PVC.  Mount louvers in removable frames for maintenance access to the cold water basin.  Provide 
+louvers with a minimum of two changes in air direction to prevent splash out and block direct sunlight.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Discharge Hood with Positive Closure Dampers</TTL><BRK/>
+<BRK/>
+<TXT>Provide unit with discharge hood, positive closure dampers, and 120-volt spring-return normally closed actuator for reduction of heat loss during 
+idle periods of winter time operation.  Construct the discharge hood and dampers of[ hot dipped galvanized steel][ stainless steel].  Equip hoods 
+with access panels to facilitate maintenance on the eliminators and water distribution system.  Factory assemble the dampers, damper actuator, 
+and linkage.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Heat Exchanger</TTL><BRK/>
+<BRK/>
+<TXT>The coil must be[ steel, encased in steel framework with the entire assembly hot-dip galvanized after fabrication][ copper][ stainless steel].  
+Arrange tubes in a self-spacing, staggered pattern in the direction of airflow for maximum heat transfer efficiency and minimum pressure drop, 
+without the use of additional spacers between the coil tubes.  Design coil with sloping tubes for free drainage of liquid and test to<MET> 2413 kPa</MET><ENG> 
+350 psi</ENG> air pressure under water.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drift Eliminators</TTL><BRK/>
+<BRK/>
+<TXT>Construct eliminators of inert PVC in easily handled sections.  Provide an eliminator design that incorporates three changes in air direction to 
+ensure complete removal of entrained moisture from the discharge airstream.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cold Water Basin and Intermediate Basins</TTL><BRK/>
+<BRK/>
+<TXT>The cold water basin, intermediate basins (when applicable), and any steel components in contact with the water must be constructed of Type 304 
+stainless steel.  Slope the basin area under the fill to facilitate cleaning.  Factory weld all basin seems for tight construction.  Standard basin 
+accessories must include louver access, overflow, drain, Type 304 stainless steel strainers, removable anti-vortexing device made of 304 stainless 
+steel to prevent air entrainment, and corrosion resistant make-up valve with float that allows for easy adjustment of the operating water level.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Electric Basin Heater</TTL><BRK/>
+<BRK/>
+<TXT>Electric pan heater package consists of electric immersion heaters, heater thermostat, and low water cutout, all installed in pan.  Size heaters 
+to maintain plus<MET> 5 degrees C</MET><ENG> 40 degrees F</ENG> basin water at [_____]<MET> degrees C</MET><ENG> degrees F</ENG> ambient air temperature with the fans off at design conditions 
+indicated on drawings.  Control the heaters with a thermostat and provide water cutout to prevent heaters from cycling on unless they are completely 
+submerged.  Provide heater contactor and wiring under Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Fans and Drives</TTL><BRK/>
+<BRK/>
+<TXT>Provide statically balanced heavy duty axial propeller type fans.  Construct fans with aluminum alloy blades and install in a closed fitted cowl 
+with venturi air inlet.  Fan drive must be multi-groove, solid V-belt type with taper lock sheaves designed for 150 percent of nameplate kW HP.  
+Fan and motor sheaves must be aluminum alloy construction.  Belt adjustment must be accomplished from exterior of unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping</TTL><BRK/>
+<BRK/>
+<TXT>The system must provide a water flow rate of not less than .3846 l/sec 6 gpm over each square foot of unit face area to ensure proper flooding 
+of the coil.  Construct spray header of Schedule 40 polyvinyl chloride (PVC) pipe for corrosion resistance.  Provide removable spray branches for 
+cleaning.  Distribute water over the entire coil surface by spray nozzles (<MET>381 by 8 mm </MET><ENG>15 by 5/16 inch </ENG>orifice) with internal sludge ring to eliminate 
+clogging.  Thread nozzles into spray header to provide easy removal for maintenance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Motors</TTL><BRK/>
+<BRK/>
+<TXT>Fan Motors:  Motors must be totally enclosed, ball bearing type, and suitable for outdoor service.  Motors 1 Hp and greater must be the premium 
+efficiency type in accordance with <RID>NEMA MG 00001</RID>.  Provide fan motor speed control for motors 7.5 hp or larger.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Recirculation Pump</TTL><BRK/>
+<BRK/>
+<TXT>Provide a close-coupled, centrifugal type pump with mechanical seal, installed vertically at the factory to allow free drainage at shutdown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drift Loss</TTL><BRK/>
+<BRK/>
+<TXT>Design the tower such that maximum drift rate is less than 0.005 percent of the circulating water rate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sound Power Level</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The numbers shown in Tables I &amp; II  are ranges of acceptable/recommended sound power levels.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Sound power levels, in decibels (dB)with a reference pressure of 0.0002 microbars, of the closed circuit cooler must be not greater than the maximum 
+permitted dB levels for the designated octave band as set forth in Table I or Table II.  The sound power level data for the closed circuit cooler 
+must have been verified in tests conducted in accordance with <RID>ASA S1.13</RID>.</TXT><BRK/>
+<BRK/>
+<TAB WIDTH="98">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="9" ROWCOUNT="3">
+      <COL AUTOWIDTH="0" WIDTH="166.50"/>
+      <COL AUTOWIDTH="0" WIDTH="71.25"/>
+      <COL AUTOWIDTH="0" WIDTH="71.25"/>
+      <COL AUTOWIDTH="0" WIDTH="71.25"/>
+      <COL AUTOWIDTH="0" WIDTH="71.25"/>
+      <COL AUTOWIDTH="0" WIDTH="71.25"/>
+      <COL AUTOWIDTH="0" WIDTH="71.25"/>
+      <COL AUTOWIDTH="0" WIDTH="71.25"/>
+      <COL AUTOWIDTH="0" WIDTH="78.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="8">
+<DTA TYPE="STRING"><CTR>Table I.  Sound Power Level for Induced Mechanical Draft Type</CTR></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL>
+<DTA TYPE="STRING">Octave Band (Hz)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">63</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">125</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">250</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">500</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">8000</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Sound Power <BRK/>Level (dB)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">112</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">112</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">110</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">108</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">102</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">98</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">93</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">90</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TAB WIDTH="97">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="9" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="162.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="70.50"/>
+      <COL AUTOWIDTH="0" WIDTH="70.50"/>
+      <COL AUTOWIDTH="0" WIDTH="70.50"/>
+      <COL AUTOWIDTH="0" WIDTH="70.50"/>
+      <COL AUTOWIDTH="0" WIDTH="70.50"/>
+      <COL AUTOWIDTH="0" WIDTH="70.50"/>
+      <COL AUTOWIDTH="0" WIDTH="70.50"/>
+      <COL AUTOWIDTH="0" WIDTH="79.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL MERGEACROSS="8" STYLEID="s50">
+<DTA TYPE="STRING"><CTR>Table II.  Sound Power Level for Forced Mechanical Draft Type</CTR></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Octave Band (Hz)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">63</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">125</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">250</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">500</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4000</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">8000</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sound Power <BRK/>Level (dB)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">112</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">112</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">110</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">108</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">102</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">98</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">93</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">90</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<SPT><TTL>Vibration Cutout Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide[ mechanical vibration cutout switch][ electronic vibration cutout switch with auxiliary contacts] in a protected position and most effective 
+location, interlocked with the fan wiring to electrically open the motor circuit under excessive fan vibration.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>REMOTE EVAPORATIVELY-COOLED CONDENSERS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Condenser must be rated and tested in accordance with the requirements of <RID>ASHRAE 64</RID>.  Condenser must include fans, water pump with suction strainer, 
+electric motor and drive equipment, water eliminators if required, condensing coil, liquid receiver if required, water pan or sump, spray nozzles 
+or water-distribution pan, water strainer, water make-up assembly, bleeder with flow valve of the needle valve type sized for the flow required 
+or a fixed orifice, enclosure with suitable access doors, and air-inlet and outlet openings.  No water may carry over into the unit discharge outlet.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Condenser Casing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Standard casing construction is galvanized steel.  For excessively corrosive atmospheres, Type 304 stainless 
+steel should be considered.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Enclosure must be constructed of not lighter than 18 gauge<MET> 1.311 mm</MET><ENG> 0.516 inch</ENG>[ hot-dip galvanized steel][ 304 stainless steel], reinforced and 
+braced.  Access doors or panels suitably sized and located must be provided for access to water nozzles or distribution pan, coils, and valves 
+for cleaning, repair, or removal of the item.  Access doors or panels must be gasketed with synthetic rubber, or equivalent gasket material, and 
+locked in place with thumb screws or catches.  One-half inch mesh hot-dip galvanized steel or copper air-inlet screens must be provided on each 
+air inlet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigerant Section</TTL><BRK/>
+<BRK/>
+<TXT>Condenser coil must be constructed of unfinned copper or steel tubes hot-dip galvanized after fabrication.  The receiver must be welded steel and 
+must be fitted and tested in accordance with <RID>ANSI/AHRI 495</RID>.  A refrigerant charging valve must be installed in the liquid line between the receiver 
+cut-off valve and the expansion device.  Refrigerant section must be tested in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID> for the refrigerant employed 
+in the system.  CFC-based refrigerants are prohibited.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fans</TTL><BRK/>
+<BRK/>
+<TXT>Fans must be centrifugal or propeller type as best suited for the application.  Fans must be direct or V-belt driven.  Belt drives must be completely 
+enclosed within the unit casing or equipped with a guard.  When belt drive is provided, an adjustable sheave to furnish not less than 20 percent 
+fan-speed adjustment must be provided.  The sheaves set must be matched and selected to provide the capacity indicated at the approximate midpoint 
+of the adjustment.  Fans must be statically and dynamically balanced.  Fan motor must be totally enclosed type or open drip-proof and located within 
+an enclosure to be fully protected from the weather.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Section</TTL><BRK/>
+<BRK/>
+<TXT>Water eliminators must be constructed of nonferrous metal, of an approved nonmetallic material, or of not lighter than 24 gauge<MET> 0.701 mm</MET><ENG> 0.0276 
+inch</ENG> steel, hot-dip galvanized after fabrication.  Spray nozzles must be brass non-clogging type designed to permit easy disassembly and must be 
+arranged for easy access.  Water pump must be bronze-fitted centrifugal or turbine type and may be mounted as an integral part of the evaporative 
+condenser or remotely on a separate mounting pad.  Pump suction must be fully submerged and provided with screened inlet.  Water pan or sump must 
+be constructed of not lighter than 14 gauge<MET> 1.994 mm</MET><ENG> 0.0785 inch</ENG> steel, hot-dip galvanized after fabrication, or molded acid-resistant glass-fiber-reinforced 
+polyester.  Water distribution pan must be constructed of not lighter than 16 gauge<MET> 1.613 mm</MET><ENG> 0.0635 inch</ENG> steel, hot-dip galvanized after fabrication.  
+Joints must be watertight.  Water pan or sump must be provided with drain, overflow, and make-up water connection with stop valve and float valve.  
+A bleed line with a flow valve of the needle type sized for the flow required or fixed orifice must be provided in the pump discharge line and 
+must be extended to the nearest drain for continuous discharge.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FABRICATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For equipment to be installed outdoors, adequate protection must be specified.  Manufacturers must submit 
+evidence that unit specimen have passed the specified salt spray fog test.  A 500 hour test must be specified 
+in a non-corrosive environment.  A 3,000 hour test must be specified for seacoast environments.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Equipment and component items must have been proven to withstand 125 hours in a salt-spray fog test, except that equipment located outdoors must 
+withstand 500 hours in a salt-spray fog test.  Equipment located in a seacoast environment must withstand 3,000 hours in a salt-spray fog test.  
+Salt-spray fog test must be in accordance with <RID>ASTM B117</RID>.  Cut edges of galvanized surfaces where hot-dip galvanized sheet steel is used must be 
+coated with a zinc-rich coating conforming to <RID>ASTM D520</RID>, Type I.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUPPLEMENTAL COMPONENTS/SERVICES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Condenser Water Piping and Accessories</TTL><BRK/>
+<BRK/>
+<TXT>Condenser water piping and accessories must be provided and installed in accordance with Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, AND CONDENSER WATER 
+PIPING SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cooling Tower Water Treatment Systems</TTL><BRK/>
+<BRK/>
+<TXT>Cooling tower water treatment systems must be provided and installed in accordance with Sections <SRF>23 25 00</SRF> CHEMICAL TREATMENT OF WATER FOR MECHANICAL 
+SYSTEMS and <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT AND CONDENSER WATER PIPING SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Cooling Tower Passivation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Cooling towers that have galvanized metal require special treatment during startup call passivation.  Systems 
+that are not properly treated may experience rapid corrosion of the new galvanized cooling towers, deposition 
+of dirt and debris in the piping and heat exchanger equipment, microbiological control issues, and fouling from 
+oil and grease.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform passivation of galvanized steel components in accordance with the cooling tower manufacturer's passivation guidelines.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Cold Water Basin Sweeping System</TTL><BRK/>
+<BRK/>
+<TXT>Provide a side-stream basin sweeping and solids[ separation][ filtration] system, including packaged pumping and control system.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Basin Sweeping System</TTL><BRK/>
+<BRK/>
+<TXT>Fit the cold water basin with schedule 80 PVC sump sweeper piping complete with high-flow educator nozzles to facilitate in basin cleaning.  Provide 
+a system that contains two inlet connections and one outlet connection per basin, prepared for connection to a separately furnished separator.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Separator</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Either a hydrocyclone separator or sand filter is needed to remove solids from the basin.  The separator 
+is most common, economical, and sufficient for most HVAC open tower condenser water applications.  The sand filter 
+provides a higher removal rate of smaller particles that may be more appropriate in dirtier environments.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a packaged hydrocyclone separator and pump system that is factory assembled with separator, high-head pump and motor(s), pre-strainer, 
+pressure gauges, inlet and outlet manual isolation valves, skid, interconnecting face piping, control panel, and automatic purge.  Incorporate 
+a true tangential inlet and dumbbell body design in the hydrocyclone separator is required by the manufacturer through published results from an 
+independent third-party testing laboratory.  Standard test protocol of upstream injection, downstream capture, and separator purge recovery is 
+allowed with 50-200 mesh particles to enable effective, repeatable results.  Single pass test performance must not be less than 95 percent removal.  
+In a single pass through the separator, given solids with a specific gravity of 2.6 and water at 1.0, performance, removal must be 98 percent of 
+74 microns and larger.  Additionally, particles as fine as 5 microns with specific gravity greater than 2.6 must also be removed.  Provide a hand-hole 
+at the collection chamber access for either inspection or the removal of unusual debris on all separators with inlet/outlet connections 4 inches 
+and larger.  Locate the purge location at the lowest point of the separator accumulation chamber to prevent the buildup of unnecessary particular 
+within the separator.  Provide automatic and manual air relief vents.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Filtration</TTL><BRK/>
+<BRK/>
+<TXT>Provide a packaged sand filter and pump system that is factory assembled with filter media, system specific pump and motor(s), pre-strainer, inlet 
+and outlet manual isolation valves, skid, interconnecting face piping, manual/auto air vent assembly, pressure gauges, control panel, and automatic 
+backwash with electric valves and actuators and control panel.  Provide a fully assembled sand media filter system to prevent the accumulation 
+of troublesome solids in the open condenser water system.  The influent fluid must be dispersed evenly over the filter media.  Provide a system 
+design that traps suspended solids in the pores formed between the media.  The effluent fluid must pass from the vessel through the under-drain 
+and return to the condenser water system.  Provide a filter vessel, along with manway/hand-holes, fabricated of ASME stamped carbon steel with 
+an epoxy lining and polyester coating.  The vessel must be rated for 125 psi.  Properly size the filter vessel inlet and outlet connections, drain 
+connection, access ports, and vent fittings.  Provide a filter unit with removable under-drain laterals, constructed of schedule 80 PVC.  Provide 
+a filter unit with a Schedule 80 PVC 3-point distribution over-drain for even flow across media, and a drain screen installed at the bottom of 
+the filter vessel in order to retain media during scheduled draining of vessel.  Provide a permanent sand type filter media with filter performance 
+of 98 percent (nominal) of 10 micron particulate or larger and have achievable filtration down to 0.5 micron.  Filter manufacturer must supply 
+all required 10 micron media.  Provide automatic and manual air relief vents.  Provide backwash that are industrial grade 3-way ball type with 
+a brass body and chrome plated brass ball for vessels 30 inches and smaller.  For vessels 36 inches and larger, valves must be industrial grade 
+cast iron lug style butterfly valves with stainless steel discs.  Provide and utilize a motorized type electric actuator to cycle 3-way ball valves/butterfly 
+valves between filter and backwash modes.  Mechanically link the control valves.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Pump Package</TTL><BRK/>
+<BRK/>
+<TXT>Provide cast iron bronze fitted, close coupled end-suction type pumps.  Provide with 1/8-inch minimum perforated stainless steel basket pre-strainer 
+with flange removable lid.  Provide schedule 80 PVC packaged piping. Provide a structural steel framework constructed of carbon steel that mounts 
+the pump and[ separator][ filtration unit].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power and Control</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Separator units have a purge cycle while filter units have a backwash cycle.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>UL listed and labeled NEMA type 4X polycarbonate enclosure with door disconnect switch for single point power connection, motor starter with short 
+circuit/overload protection, step-down transformer, pressure differential switch, adjustable solid state timer and[ purge timer][ 24-hour backwash 
+clock], manual backwash push button, and remote start-stop with pump Hand-Off-Auto (HOA) switch.  Control the pump by the Direct Digital Control 
+(DDC) system.  The pumps system is commanded off by the DDC system suspend the[ purge][ backwash] cycle.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Temperature Controls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify this paragraph as required to coordinate the central equipment controls with the cooling tower system 
+controls.  In projects where this section of the specifications is intended to produce control equipment for existing 
+systems, this paragraph must be rewritten to properly integrate the specified controls into the existing temperature 
+control system.</NPR><BRK/>
+<BRK/>
+<NPR>A sequence of control, a schematic of controls, and a ladder diagram should be included on the drawings for each 
+cooling tower fan, chilled water pump, condenser water pump, etc. in order to define the overall system operation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Cooling towers must be fully coordinated with and integrated [into the temperature control system specified in[ Section <SRF>23 09 00</SRF> INSTRUMENTATION 
+AND CONTROL FOR HVAC][ Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS][ Section <SRF>25 10 10</SRF> UTILITY 
+MONITORING AND CONTROL SYSTEM (UMCS) FRONT END AND INTEGRATION][ or][ Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING 
+CONTROL SYSTEMS]][ into the existing air-conditioning system].</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>DEMONSTRATIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Contractor must conduct a training course for the operating staff as designated by the Contracting Officer.  The training period must consist of 
+a total [_____] hours of normal working time and start after the system is functionally completed but prior to final acceptance tests.  The training 
+course must cover all of the items contained in the approved <SUB>Operation and Maintenance Manuals</SUB> as well as demonstrations of routine maintenance 
+operations.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a schedule, at least [2][_____] weeks prior to the date of the proposed training course, which identifies the date, time, and location 
+for the training.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Installation of cooling tower systems including materials, installation, workmanship, fabrication, assembly, erection, examination, inspection, 
+and testing must be in accordance with <RID>NFPA 70</RID>, and in compliance with the manufacturer's written installation instructions, including the following:</TXT><BRK/>
+<OLG><BRK/>
+[<OLI LEVEL="2"><SUB>Packaged cooling tower - installation instructions</SUB></OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2"><SUB>Field-erected cooling tower - installation instructions</SUB></OLI><BRK/>
+<BRK/>
+]</OLG><SPT><TTL>Installation Instructions</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturer's standard catalog data, at least [5][_____] weeks prior to the purchase or installation of a particular component, highlighted 
+to show features such as materials of construction, dimensions, options, performance and efficiency.  Data must include manufacturer's recommended 
+installation instructions and procedures.  Provide installation instructions that include assembly, alignment of components, piping connections, 
+electrical connections, start-up procedures and checklists.  Consider all recommendations in the written instructions of the manufacturer as mandatory 
+requirements.  Data must be adequate to demonstrate compliance with contract requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Vibration Isolation</TTL><BRK/>
+<BRK/>
+<TXT>If vibration isolation is specified for a unit, vibration isolator literature must be included containing catalog cuts and certification that the 
+isolation characteristics of the isolators provided meet the manufacturer's recommendations.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="ARMY"><SPT><TTL><SUB>Posted Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide posted instructions, including equipment layout, wiring and control diagrams, piping, valves and control sequences, and typed condensed 
+operation instructions.  The condensed operation instructions must include preventative maintenance procedures, methods of checking the system 
+for normal and safe operation, and procedures for safely starting and stopping the system.  The posted instructions must be framed under glass 
+or laminated plastic and be posted where indicated by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL><SUB>Verification of Dimensions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Prior to beginning construction, the Contractor and the manufacturer's representative must become familiar with all details of the work, verify 
+all dimensions in the field, verify clearances to enclosures, maintain manufacturer clearances to prevent recirculation, and advise the Contracting 
+Officer of any discrepancy before performing any work.  Before performing any work, the manufacturer representative must provide a letter stating 
+the dimensions and the clearances to enclosures are within the recommendations of the equipment.  Provide a letter including the date the site 
+was visited, conformation of existing conditions, and any discrepancies found.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Demonstrations</TTL><BRK/>
+<BRK/>
+<TXT>Provide a schedule, at least [2][_____] weeks prior to the date of the proposed training course, which identifies the date, time, and location 
+for the training.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Certificates</TTL><BRK/>
+<BRK/>
+<TXT>Where the system, components, or equipment are specified to comply with requirements of AGA, NFPA, ARI, ASHRAE, ASME, or UL,  proof of such compliance 
+must be provided.  The label or listing of the specified agency must be acceptable evidence.  In lieu of the label or listing, a written certificate 
+from an approved, nationally recognized testing organization equipped to perform such services, stating that the items have been tested and conform 
+to the requirements and testing methods of the specified agency may be submitted.  When performance requirements of this project's drawings and 
+specifications vary from standard ARI rating conditions, computer printouts, catalog, or other application data certified by ARI or a nationally 
+recognized laboratory as described above must be included.  If ARI does not have a current certification program that encompasses such application 
+data, the manufacturer may self-certify that his application data complies with project performance requirements in accordance with the specified 
+test standards.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Start-Up Testing Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a start-up report documenting the start-up of the cooling tower.  In the start-up report document cleaning and disinfection of the tower, 
+passivation, filling of the tower, application of chemical treatment, compliance inspections, and start up the fan(s), basin heater, make-up water 
+system, drainage system, and freeze protection devices.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Operation and Maintenance Manuals</TTL><BRK/>
+<BRK/>
+<TXT>Provide [Six] [_____] complete copies of an operation manual in bound<MET> 216 by 279 mm</MET><ENG> 8 1/2 by 11 inch</ENG> booklets listing step-by-step procedures required 
+for system startup, operation, abnormal shutdown, emergency shutdown, and normal shutdown at least [4][_____] weeks prior to the first training 
+course.  The booklets must include the manufacturer's name, model number, and parts list.  The manuals must include the manufacturer's name, model 
+number, service manual, and a brief description of all equipment and their basic operating features.  [Six][_____] complete copies of maintenance 
+manual in bound<MET> 216 by 279</MET><ENG> 8 1/2 by 11 inch</ENG> booklets listing routine maintenance procedures, possible breakdowns and repairs, and a trouble shooting 
+guide.  The manuals must include piping and equipment layouts, and simplified wiring and control diagrams of the system as installed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections to Existing Systems</TTL><BRK/>
+<BRK/>
+<TXT>Notify the Contracting Officer in writing at least 15 calendar days prior to the date the connections are required.  Obtain approval before interrupting 
+service.  Furnish materials required to make connections into existing systems and perform excavating, backfilling, compacting, and other incidental 
+labor as required.  Furnish labor and tools for making actual connections to existing systems.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>RELATED FIELD TESTING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Test Plans</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Manufacturer's Test Plans:  Within [120][_____] calendar days after contract award, submit the following plans:</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2"><SUB>Packaged cooling tower - field acceptance test plan</SUB></OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2"><SUB>Field-erected cooling tower - field acceptance test plan</SUB><BRK/>
+<BRK/>
+Field acceptance test plans must be developed by the cooling tower manufacturer detailing recommended field test procedures for 
+that particular type and size of equipment.  Field acceptance test plans must be developed by the installing Contractor, or the 
+equipment sales agency furnishing the equipment, must not be acceptable.<BRK/>
+<BRK/>
+The Contracting Officer reviews and approves the field acceptance test plan for each of the listed equipment prior to commencement 
+of field testing of the equipment.  The approved field acceptance test plans must be the plan and procedures followed for the 
+field acceptance tests of the cooling towers and subsequent test reporting.</OLI><BRK/>
+<BRK/>
+]<TAI OPT="NAVY"><NTE><AST/><BRK/>
+<NPR>NOTE:  In the item below, Section <SRF>23 09 53.00 20</SRF> SPACE TEMPERATURE CONTROL SYSTEMS is for Navy projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<OLI>Coordinated testing:  Indicate in each field acceptance test plan when work required by this section requires coordination with test work 
+required by other specification sections.  Furnish test procedures for the simultaneous or integrated testing of tower system controls 
+which interlock and interface with controls for the equipment provided under<TAI OPT="NAVY">[ Section <SRF>23 09 53.00 20</SRF>, SPACE TEMPERATURE CONTROL SYSTEMS]</TAI>
+[ Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC][ Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING 
+CONTROL SYSTEMS][ Section <SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL SYSTEM (UMCS) FRONT END AND INTEGRATION][ or][ Section <SRF>23 09 23.02</SRF> BACNET 
+DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS].</OLI><BRK/>
+<BRK/>
+<OLI>Prerequisite testing:  Cooling towers for which performance testing is dependent upon the completion of the work covered by Section 
+<SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING FOR HVAC must have that work completed as a prerequisite to testing work under this section.  
+Indicate in each field acceptance test plan when such prerequisite work is required.</OLI><BRK/>
+<BRK/>
+<OLI>Test procedure:  Indicate in each field acceptance test plan each equipment manufacturers published installation, start-up, and field acceptance 
+test procedures.  Include in each test plan a detailed step-by-step procedure for testing automatic controls provided by the manufacturer.<BRK/>
+<BRK/>
+    Each test plan must include the required test reporting forms to<BRK/>
+    be completed by the Contractor's testing representatives.<BRK/>
+    Procedures must be structured to test the controls through all<BRK/>
+    modes of control to confirm that the controls are performing with<BRK/>
+    the intended sequence of control.<BRK/>
+<BRK/>
+    Controllers must be verified to be properly calibrated and have the<BRK/>
+    proper set point to provide stable control of their respective<BRK/>
+    equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Performance variables:  Each test plan must list performance variables that are required to be measured or tested as part of the field test.<BRK/>
+<BRK/>
+    Include in the listed variables performance requirements indicated<BRK/>
+    on the equipment schedules on the design drawings.  Tower<BRK/>
+    manufacturer must furnish with each test procedure a description of<BRK/>
+    acceptable results that have been verified.<BRK/>
+<BRK/>
+    Tower manufacturer must identify the acceptable limits or<BRK/>
+    tolerances within which each tested performance variable must<BRK/>
+    acceptably operate.</OLI><BRK/>
+<BRK/>
+<OLI>Job specific:  Each test plan must be job specific and must address the particular cooling towers and particular conditions which exist 
+with this contract.  Generic or general preprinted test procedures are not acceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Specialized components:  Each test plan must include procedures for field testing and field adjusting specialized components, such as hot 
+gas bypass control valves, or pressure valves.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>TESTING</TTL><BRK/>
+<OLG><BRK/>
+<OLI><TST>Each cooling tower system must be field acceptance tested[ for thermal performance][, efficiency][, noise][, and vibration] in compliance 
+with its approved field acceptance test plan and the resulting following field acceptance test report submitted for approval:</TST></OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2"><SUB>Packaged cooling tower - field acceptance test report</SUB></OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2"><SUB>Field-erected cooling tower - field acceptance test report</SUB></OLI><BRK/>
+<BRK/>
+]<OLI>Manufacturer's recommendeded testing:  Conduct the manufacturer's recommend field testing in compliance with the approved test plan.  Furnish 
+a factory trained field representative authorized by and to represent the equipment manufacturer at the complete execution of the field 
+acceptance testing.</OLI><BRK/>
+<BRK/>
+<OLI>Operational test:  Conduct a continuous 24 hour operational test for each item of equipment.  Equipment shutdown before the test period 
+is completed must result in the test period being started again and run for the required duration.  For the duration of the test period, 
+compile an operational log of each item of equipment.  Log required entries every two hours.  Use the test report forms for logging the 
+operational variables.</OLI><BRK/>
+<BRK/>
+<OLI>Notice of tests:  Conduct the manufacturer's recommended tests and the operational tests; record the required data using the approved reporting 
+forms.  Notify the Contracting Officer in writing at least 15 calendar days prior to the testing.  Within 30 calendar days after acceptable 
+completion of testing, submit each test report for review and approval.</OLI><BRK/>
+<BRK/>
+<OLI>Report forms:  Type data entries and writing on the test report forms.  Completed test report forms for each item of equipment must be 
+reviewed, approved, and signed by the Contractor's test director.  The manufacturer's field test representative must review, approve, and 
+sign the report of the manufacturer's recommended test.  Signatures must be accompanied by the person's name typed.</OLI><BRK/>
+<BRK/>
+<OLI>Deficiency resolution:  The test requirements acceptably met; deficiencies identified during the tests must be corrected in compliance 
+with the manufacturer's recommendations and corrections retested in order to verify compliance.</OLI><NED/><BRK/>
+<BRK/>
+<OLI>Towers with thermal performance not CTI certified to <RID>CTI Std-201</RID> must have their thermal performance verified by field testing that meets 
+the requirements of <RID>CTI ATC-105</RID></OLI><BRK/></OLG>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

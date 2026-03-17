@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-41 22 13.33 (May 2010)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-41 22 13.33 (April 2008)<BRK/>UFGS-41 22 23.23 20 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 41 22 13.33</SCN><BRK/>
+<BRK/>
+<STL>PORTAL CRANE TRACK INSTALLATION</STL><BRK/>
+<DTE>05/10</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>procurement, installation and testing of portal crane 
+trackage</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this specification in conjunction with the following NAVFAC Standard Drawings that form part of MIL-DTL-82020 
+and MIL-DTL-29229 and following Definitive Drawings and  UFC 4-860-02N, "Design: Trackage ."  These are available 
+in inch-pound units only.</NPR><BRK/>
+<BRK/>
+<NPR>NAVFAC NO./TITLE</NPR><BRK/>
+<BRK/>
+<NPR>1404353 "Definitive Drawing - Fabricated Portal Crane Track Switch Throw Linkage"</NPR><BRK/>
+<BRK/>
+<NPR>1404354 "Definitive Drawing - Portal Crane Track Switch Power Mechanism"</NPR><BRK/>
+<BRK/>
+<NPR>1404355 "Definitive Drawing - Portal Crane Track Turntable Frog Power Mechanism"</NPR><BRK/>
+<BRK/>
+<NPR>Crane track material, especially fittings, frequently require long lead time to become available to the Contractor.  
+Ensure that the lead time required for material specified in this guide specification is considered when project 
+construction time is established.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: TO DOWNLOAD UFGS GRAPHICS<BRK/>
+<BRK/>
+Go to <URL>https://www.wbdg.org/dod/ufgs/ufgs-forms-graphics-tables</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the following information  on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Existing material to be reused, if required</NPR><BRK/>
+<BRK/>
+<NPR>2.  Crane rail system type</NPR><BRK/>
+<BRK/>
+<NPR>3.  Crane wheel type</NPR><BRK/>
+<BRK/>
+<NPR>4.  Rail curvature geometry</NPR><BRK/>
+<BRK/>
+<NPR>5.  Switch throw mechanism</NPR><BRK/>
+<BRK/>
+<NPR>6.  Utility line connections for power operated switch throw mechanism</NPR><BRK/>
+<BRK/>
+<NPR>7.  Drainage for track fittings and switch throw mechanism housings</NPR><BRK/>
+<BRK/>
+<NPR>8.  Rail alignment and gage</NPR><BRK/>
+<BRK/>
+<NPR>9.  Rail joint connection types</NPR><BRK/>
+<BRK/>
+<NPR>10.  Welding method at each welded joint</NPR><BRK/>
+<BRK/>
+<NPR>11.  Sketch No. 41 22 13.33-1 and Sketch No. 41 22 13.33-2</NPR><BRK/>
+<BRK/>
+<NPR>Scheduling restraints which impact on the Contractor's time or cost to perform the work, station operations affected 
+by the Contractor's work, and station operations which may affect the performance of the Contractor's work should 
+be addressed in Section <SRF>01 30 00</SRF> ADMINISTRATIVE REQUIREMENTS.  The following is a sample paragraph which may be 
+used in Section <SRF>01 30 00</SRF> ADMINISTRATIVE REQUIREMENTS, paragraph "Special Scheduling Requirements."</NPR><BRK/>
+<BRK/>
+<NPR>INTERFACE WITH TRACK OPERATIONS:  Schedule work to minimize interference to crane, (train,) and vehicular traffic 
+operations.  Crane and/or train operations will be scheduled to minimize interruptions to Contractor's work.  
+However, critical materials must be transported as necessary. When it is required to transport critical material 
+over trackage where Contractor is working, or to utilize portal cranes in work areas, Government will notify Contractor 
+at least 5 calendar days, or as required, in advance so that he may schedule his work accordingly.  If necessary, 
+work scheduling for the entire project will be discussed during the pre-construction conference and present a 
+proposed work schedule not later than 5 calendar days (or as required) after the pre-construction conference.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN RAILWAY ENGINEERING AND MAINTENANCE-OF-WAY ASSOCIATION (AREMA)</ORG><BRK/><BRK/><RID>AREMA Eng Man</RID><RTL>(2023) Manual for Railway Engineering</RTL><BRK/><BRK/><RID>AREMA Track Plans</RID><RTL>(2008) Portfolio of Trackwork Plans</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B18.2.1</RID><RTL>(2012; R 2021) Square, Hex, Heavy Hex, and Askew Head Bolts and Hex, Heavy Hex, Hex Flange, Lobed Head, and Lag Screws (Inch Series)</RTL><BRK/><BRK/><RID>ASME B18.2.2</RID><RTL>(2022) Nuts for General Applications: Machine Screw Nuts, and Hex, Square, Hex Flange, and Coupling Nuts (Inch Series)</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A1</RID><RTL>(2000; R 2018) Standard Specification for Carbon Steel Tee Rails</RTL><BRK/><BRK/><RID>ASTM A36/A36M</RID><RTL>(2019) Standard Specification for Carbon Structural Steel</RTL><BRK/><BRK/><RID>ASTM A49</RID><RTL>(2012; R 2019) Standard Specification for Heat Treated Carbon Steel Joint Bars, Microalloyed Joint Bars and Forged Carbon Steel Compromise Joint Bars</RTL><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A128/A128M</RID><RTL>(2019; R 2025) Standard Specification for  Steel Castings, Austenitic Manganese</RTL><BRK/><BRK/><RID>ASTM A183</RID><RTL>(2014; R 2020) Standard Specification for Carbon Steel Track Bolts and Nuts</RTL><BRK/><BRK/><RID>ASTM A283/A283M</RID><RTL>(2024) Standard Specification for Low and Intermediate Tensile Strength Carbon Steel Plates</RTL><BRK/><BRK/><RID>ASTM A325</RID><RTL>(2014) Standard Specification for Structural Bolts, Steel, Heat Treated, 120/105 ksi Minimum Tensile Strength</RTL><BRK/><BRK/><RID>ASTM A325M</RID><RTL>(2014) Standard Specification for Structural Bolts, Steel, Heat Treated, 830 MPa Minimum Tensile Strength (Metric)</RTL><BRK/><BRK/><RID>ASTM C109/C109M</RID><RTL>(2024) Standard Test Method for Compressive Strength of Hydraulic Cement Mortars (Using 2-in. or (50-mm) Cube Specimens)</RTL><BRK/><BRK/><RID>ASTM C144</RID><RTL>(2025) Standard Specification for Aggregate for Masonry Mortar</RTL><BRK/><BRK/><RID>ASTM C157/C157M</RID><RTL>(2024; E 2024) Standard Test Method for Length Change of Hardened Hydraulic-Cement Mortar and Concrete</RTL><BRK/><BRK/><RID>ASTM D1763</RID><RTL>(2000; R 2013) Epoxy Resins</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-DTL-29229</RID><RTL>(Rev B, Notice 1) Switches and Frogs, Track, Fabricated, for Portal Cranes</RTL><BRK/><BRK/><RID>MIL-DTL-82020</RID><RTL>(1997; Rev C; Notice 1; CANC Notice 2) Switches and Frogs, Track, Cast Manganese Steel, for Portal Cranes</RTL><BRK/><BRK/><RID>MIL-STD-1699</RID><RTL>(1992; Rev B) Nondestructive Evaluation of Butt Welds in Crane and Railroad Rails</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+[<ITM><SUB>Crane track fittings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]<BRK/>
+<BRK/>
+[<ITM><SUB>Switch throw mechanisms</SUB> and housings; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]<BRK/>
+<BRK/>
+[<ITM><SUB>Drainage lines</SUB> connections; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]<BRK/>
+<BRK/>
+[<ITM><SUB>Weldable, adjustable rail clips</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]<BRK/>
+<BRK/>
+[<ITM><SUB>Impact pads</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM>]<BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Rail materials</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>joint bars</SUB> and methods of installation; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Rail clips</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Anchor bolts</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Grout</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Drainage lines</SUB>; materials, pipe, and fittings; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Test for grout</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Visual inspection</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ultrasonic inspection</SUB> of welded rail joints; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Load test</SUB>; <SUB>G</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Throw mechanism <SUB>operational test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Retesting</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Standard railway fittings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Base plates</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Grout</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Aggregate materials</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welding method</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welder qualification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Welder, <SUB>Welding Method</SUB>, and <SUB>Welder Qualification</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Manual Shielded-Arc Welding Method:  <RID>AWS D1.1/D1.1M</RID>, submit certification for each welder stating the type of welding and positions qualified 
+for, the code and procedure qualified under, date qualified, and the firm and individual certifying the qualification tests.</OLI><BRK/>
+<BRK/>
+<OLI>Thermite Welding Method:  Welder qualification requirements for thermite welding method are defined in Section <SRF>34 11 19.00 20</SRF> WELDING CRANE 
+AND RAILROAD RAIL - THERMITE METHOD.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Certifications Required</TTL><BRK/>
+<BRK/>
+<TXT>Submit certifications for <SUB>standard railway fittings</SUB> as outlined in AREA Manual and for base plates, grout, and <SUB>aggregate materials</SUB> used in crane 
+track support in accordance with requirements specified herein.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Deliver assembled items, and other materials to the job site in an undamaged condition.  Handle and store materials to protect against damage before 
+and after delivery.  [Prevent distortion of double-tongue switches in transit and storage.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EXISTING CONDITIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  An additional description of existing conditions may be included in this paragraph.  If there is doubt 
+as to foundation location, provide for confirmation by the Contractor.  A description of any special conditions, 
+such as any required salvage or reuse of existing crane track components or fittings, may be included in this 
+paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When existing crane rail trackage is to be removed, use Section <SRF>34 11 00</SRF> RAILROAD TRACK AND ACCESSORIES, 
+subparts 1.2 38 through 1.2.46 as applicable, or the EFD regional guide specification for removal work.  Provide 
+specific requirements for removal of crane rail trackage material.  When existing materials are to be reused, 
+list materials here and indicate quantities on project drawings.  The designer must determine the appropriateness 
+of reusing existing materials.  When it is determined that existing materials to be reused require reconditioning, 
+identify the materials and include reconditioning requirements at the end of Part 2.<BRK/>
+<BRK/>
+<HL3>This "NOTE" applies to Parts 2 and 3.</HL3></NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Confirm existing rail, rail fittings, foundations, and utility locations by means of a field survey.  Do not prepare drawings before the completion 
+of field survey and measurements.<BRK/>
+<BRK/>
+Submit details for [casting] [and] [fabrication] of fittings.  Include complete dimensioning, alignment data, shop instructions, and a material 
+list indicating description and quantity of components and fasteners for each fitting.  Submit drawings for each individual fitting which is adequate 
+to determine the conformance of fittings with project drawings and as provided for herein.  Show details of drainage connections from fittings 
+and housings to drain pipes.<BRK/>
+<BRK/>
+Do not manufacture materials until drawings have been approved.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>RAIL MATERIALS</SUB></TTL><BRK/>
+<TXT>Provide new track material [except for existing material approved for reuse.  Perform removal work as specified in Section <SRF>34 11 00</SRF> RAILROAD TRACK 
+AND ACCESSORIES.  The following material is existing and may be reused: [_____]].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Crane Rail</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Rail Section Weight and Hardness</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Requirements for minimum length of closure rail sections do not apply to stub rail sections provided as 
+part of fabricated crane rail fittings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  All references in this section to rail section specify per yard (135-CR) crane rail.  The 135-CR section 
+is the most common for new and replacement portal crane track.  In some work, rail sections other than 135-CR 
+may be required for crane use.  These include heavier rail section or, for connection to older existing installations, 
+use of<MET> 60 kilogram</MET><ENG> 132 pound</ENG> or other railroad rail may be specified.  Make changes where rail sections are required 
+that are different than the 135-CR.<BRK/>
+<BRK/>
+This also applies to subparts 2.1.4 through 2.1.6, and 2.2.1.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>AREMA Eng Man</RID> and <RID>ASTM A1</RID>.  Rails must be<MET> [664] [_____] kg per meter</MET><ENG> [135] [_____] pounds per yard</ENG> in weight and be control-cooled, [fully heat-treated,] 
+[321 to 388] [250 minimum] Brinell hardness carbon steel referred to herein as [135-CR] [_____].  Crane rail hardness must not exceed crane wheel 
+Brinell hardness of [388] [_____].  Provide standard<MET> 12 m</MET><ENG> 39 foot</ENG> rail lengths except for closure rails.  Provide closure rails in one or two sections 
+as long as practical, but in no case less than<MET> 4 m</MET><ENG> 13 feet</ENG> long.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Metallurgical Composition</TTL><BRK/>
+<BRK/>
+<TXT>Provide steel crane rail with  chemical composition within the following limits:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Carbon, percent 0.67 to 0.82</OLI><BRK/>
+<BRK/>
+<OLI>Manganese, percent 0.60 to 1.00</OLI><BRK/>
+<BRK/>
+<OLI>Phosphorus, percent 0.04 maximum</OLI><BRK/>
+<BRK/>
+<OLI>Silicon, percent 0.10 to 0.23</OLI><BRK/>
+<BRK/>
+<OLI>Sulfur, percent 0.04 maximum</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Joint Bars</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A49</RID> and <RID>AREMA Eng Man</RID>, Chapter 4.  Provide heat-treated carbon steel six-hole joint bars sized to fit the rail section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Track Bolts, Nuts, and Washers</TTL><BRK/>
+<BRK/>
+<TXT><RID>AREMA Eng Man</RID>, Chapter 4.  Provide track bolts not less than<MET> 23 mm</MET><ENG> one inch</ENG> in diameter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Rail Clips</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Rail clips should be used on curves for lateral support.  If rail clips are not used provide some form 
+of lateral restraint.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TXT>Provide single clips and holders designed for tight fit and sized to match [135-CR] [_____] crane rail section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT>[<TTL><SUB>Weldable, Adjustable Rail Clips</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Rail clips should be used on curves for lateral support.  If rail clips are not used provide some form 
+of lateral restraint.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use weldable, adjustable rail clips if the rail will not be permanently anchored in the pavement.  Adjustable 
+rail clips are normally used on overhead electric traveling cranes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TXT>Provide weldable, adjustable rail clips sized for [135-CR] [_____] crane rail section.  Provide rail clips made by a manufacturer currently manufacturing 
+crane rail clips.  Rail clips must be forged steel which can be welded directly to structural steel.  Rail clip bolts must conform to<MET> <RID>ASTM A325M</RID></MET><ENG>
+ <RID>ASTM A325</RID></ENG>.  Provide rail clips designed for a side thrust of<MET> [_____] kg</MET><ENG> [_____] pounds</ENG>.  Provide rail clips designed to allow rail removal without 
+the removal of the welded portion of the rail clip.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT>[<TTL><SUB>Impact Pads</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use impact pads where there will be a large number of crane movements or where vibration could cause excessive 
+wear on the crane or rail.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TXT>Provide impact pads sized for [135-CR] [_____] crane rail section.  Provide pads which are impervious to water, oil, fuels, grease and ultraviolet 
+rays.  Provide pads with vulcanized reinforcing and encapsulated in synthetic rubber.  The required properties are:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Shore hardness:  [75 to 85] [_____] to [_____] degrees</OLI><BRK/>
+<BRK/>
+<OLI>Thickness (minimum): <MET> [6] [_____] mm</MET><ENG> [1/4] [_____] inch</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Ultimate tensile strength (minimum): <MET> [17] [_____] MPa</MET><ENG> [2500] [_____] pounds per square inch</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Reduction in load per square<MET> mm</MET><ENG> inch</ENG> (minimum): [30] [_____] percent</OLI><BRK/>
+<BRK/>
+<OLI>Temperature range:  Minus<MET> 7 to 100 degrees C</MET><ENG> 20 to 212 degrees F</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Wheel Load: <MET> [_____] kg</MET><ENG> [_____] pounds</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Crane rail bending stress (maximum): 75 percent of allowable bending</OLI><BRK/></OLG>
+<BRK/>
+<TXT>The pads must meet the required properties for a minimum of 1,000,000 wheel passes at the maximum permissible wheel load.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Electrodes</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Welded rail joints are preferred for crane rail except at connections between rail and rail fittings such 
+as switches and frogs where bolted joints are recommended.  Indicate on the drawings each joint type (bolted and/or 
+welded).  Accomplish welded connections between carbon steel rail and rail fittings fabricated from carbon steel, 
+using either of the methods identified in paragraph "Welded Crane Rail Joints."  Determine the welding method(s) 
+to be used and show on project drawings location of each welding method.  Welded connections between carbon steel 
+rail and cast manganese steel are not recommended.  However, if the activity requires a dissimilar metal welded 
+connection such as this, the cast manganese stub rail end section must be prepared for welding in accordance with 
+Sketch NFGS-14606-1.  Use the manual shielded arc welding method in accordance with paragraph "Manual Shielded-arc 
+Welding Method" and electrodes in accordance with paragraph "Electrodes" .  Thermite method is not acceptable 
+for welding dissimilar metal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide AWS low-hydrogen, high-tensile E 14018 or E 14016 electrodes.  Utilize electrodes of the smallest practical diameter worked at the lowest 
+compatible current.  Coating on low-hydrogen type electrodes must be thoroughly dry when the electrode is used.  Use electrodes taken from hermetically 
+sealed packages within one hour of the time the package is opened.  Dry electrodes not used within this one hour period and electrodes taken from 
+nonhermetically sealed packages for at least one hour between<MET> 370 and 430 degrees C</MET><ENG> 700 and 800 degrees F</ENG> before use.  Store dried electrodes at 
+temperatures between<MET> 110 and 200 degrees C</MET><ENG> 225 and 400 degrees F</ENG> until used, or if not stored and not used within one hour after this drying is 
+completed,re-dry before use.  [Do not use electrodes which have been wet.] [Hard surfacing rod used on top<MET> 3 mm </MET><ENG> 1/8 inch</ENG> of railheads must be 
+alloy with the following composition:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Carbon, percent 0.4 to 0.6</OLI><BRK/>
+<BRK/>
+<OLI>Manganese, percent 4.0</OLI><BRK/>
+<BRK/>
+<OLI>Chromium, percent 18.0 to 21.0</OLI><BRK/>
+<BRK/>
+<OLI>Nickel, percent 9.0 to 10.5</OLI><BRK/>
+<BRK/>
+<OLI>Molybdium, percent 1.2</OLI><BRK/></OLG>
+<BRK/>
+f.  Iron, base<BRK/>
+<BRK/>
+<TXT>Heat railhead to a minimum temperature of<MET> 260 degrees C</MET><ENG> 500 degrees F</ENG> for a distance of<MET> 200 mm</MET><ENG> 8 inches</ENG> on each side of the joint before welding 
+overlay.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>CRANE TRACK FITTINGS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Two types of crane rail fittings are available:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Manganese Steel Castings:  Most existing crane track fittings are of this type, which has a superior ability 
+to withstand wear.  These castings are, however, costly when custom-manufactured, and require long lead time to 
+order.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Fabricated (Build-up) Fittings:  Fabricated crane track switches and frogs are alternatives to the conventional 
+cast fittings.  They consist of stock rails and a number of steel plates bolted and/or welded together into the 
+required configuration.  Due to the use of standard components, many machine shops are capable of producing fabricated 
+fittings, thus reducing cost and lead time.  Fabricated fittings are, however, heavier and less wear-resistant 
+than cast fittings.</NPR><BRK/>
+<BRK/>
+<NPR>Military standards as listed in this guide specification are available for both types of fittings and paragraphs 
+are provided for both types. Delete paragraphs referring to inapplicable types of fittings.  For further information 
+on use of cast and fabricated fittings contact:</NPR><BRK/>
+<BRK/>
+<NPR>Commander</NPR><BRK/>
+<NPR>Atlantic Division</NPR><BRK/>
+<NPR>Naval Facilities Engineering Systems Command</NPR><BRK/>
+<NPR>Code 15C2</NPR><BRK/>
+<NPR>Bldg. N-26, Room 234</NPR><BRK/>
+<NPR>Norfolk, VA  23511-6287</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide configuration and geometry of fittings as indicated and as specified herein.  Substitutions will not be accepted.  Fittings include [switches] 
+[and] [frogs] for use with crane wheels indicated.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Four-Rail Portal Crane Track Systems</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  There are two types of portal crane trackage systems in use in the Naval Shore Establishment:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Four-Rail System:  This system consists of two standard gage (railroad) tracks.  The cranes for this system 
+are equipped with single-flanged wheels.  Switches and frogs are of the standard railroad type except for some 
+small frog angles, where turntable frogs may be required.  For details of two- and four-rail system applications, 
+see UFC 4-860-02N.  This guide specification may be used for either two-rail or four-rail crane track systems 
+by deletion of inapplicable paragraphs describing the use of specific types of switches and frogs.  For four-rail 
+systems, additional references based on Section <SRF>34 11 00</SRF> RAILROAD TRACK AND ACCESSORIES for Standard Gage Railroad 
+Track may be used.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Two-Rail System:  The cranes for this system are equipped with double-flanged wheels.  Special double-tongue 
+switchpoints and ramp-type frogs are required for this system.  Turntable frogs may also be required for small 
+frog angles.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Crane track switches and frogs for use with single-flanged wheels must conform to applicable requirements of the <RID>AREMA Eng Man</RID> and <RID>AREMA Track Plans</RID>
+, with the following limitations:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide fittings for use with [135-CR] [_____] crane rail section.</OLI><BRK/>
+<BRK/>
+<OLI>[b.  Provide turntable frogs.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Two-Rail Portal Crane Track Systems</TTL><BRK/>
+<TXT>Crane track switches and frogs for use with double-flanged wheels must be special fittings meeting the following requirements:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cast Manganese Steel Double-Tongue Switch Points</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If deviation from the military specification is necessary, include the phrase, "except as specified in 
+paragraph entitled "_____."  Either specify the deviations in the appropriate paragraph or list together in a 
+new paragraph.This NOTE applies to subparts 2.2.2.1 through 2.2.2.6</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>MIL-DTL-82020</RID> [, except as specified in paragraph [_____],] for use with double-flanged wheels.  Provide manganese steel castings conforming to <RID>
+ASTM A128/A128M</RID>.  [Provide double-tongue switch points with rail curvature geometry indicated.  Variations will not be accepted.]  [Confirm switch 
+point dimensions by preparation of full-size patterns before molds for castings are made.]  [Provide switch points for use in a single crane track 
+turnout in matched pairs.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cast Manganese Steel Rigid Ramp-Type Frogs</TTL><BRK/>
+<TXT><RID>MIL-DTL-82020</RID> [, except as specified in paragraph [_____],] for use with double-flanged crane [and railroad] wheels.  Provide manganese steel castings 
+conforming to <RID>ASTM A128/A128M</RID>.  [Provide rigid frogs with frog angle and rail curvature geometry indicated.  Variations will not be accepted.] 
+[Cast half-crossings at the intersection of a crane rail and a standard gage railroad track as an integral one- or two-piece unit.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cast Manganese Steel Turntable Frogs</TTL><BRK/>
+<TXT><RID>MIL-DTL-82020</RID> [, except as specified in paragraph [_____],] for use with double-flanged crane [and railroad] wheels.  Provide manganese steel castings 
+conforming to <RID>ASTM A128/A128M</RID>.  [Provide turntable frogs with frog angle and rail curvature geometry indicated.  Variations will not be accepted.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fabricated Double-Tongue Switch Points</TTL><BRK/>
+<TXT><RID>MIL-DTL-29229</RID> [, except as specified in paragraph [_____],] for use with double-flanged wheels.  [Provide double-tongue switch points with rail 
+curvature geometry indicated.  Variations will not be accepted.]  [Confirm switch point dimensions by preparation of full-size patterns before 
+fabrication is commenced.]  [Provide switch points for use in a single crane track turnout in matched pairs.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fabricated Rigid Ramp-Type Frogs</TTL><BRK/>
+<TXT><RID>MIL-DTL-29229</RID> [, except as specified in paragraph [_____],] for use with double-flanged crane [and railroad] wheels.  [Provide rigid frogs with 
+frog angle and rail curvature geometry indicated.  Variations will not be accepted.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fabricated Turntable Frogs</TTL><BRK/>
+<TXT><RID>MIL-DTL-29229</RID> [, except as specified in paragraph [_____],] for use with double-flanged crane [and railroad] wheels.  [Provide turntable frogs 
+with frog angle and rail curvature geometry indicated.  Variations will not be accepted.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manually-Operated <SUB>Switch Throw Mechanisms</SUB> and Housings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Manually-operated switch throw mechanisms and housings are commercially available items preferably supplied 
+and pre-tested by the switch manufacturer whenever possible.  NAVFAC Definitive Drawing No. 1404353, "Portal Crane 
+Track Switch Throw Linkage," contains definitive details for a manually operated throw mechanism but may not be 
+similar to commercially available units.  If paragraph entitled "Power-Operated Switch Throw Mechanism" is used, 
+then paragraph entitled "Manually-Operated Switch Throw Mechanisms and Housings" must be used.</NPR><BRK/>
+<BRK/>
+<NPR>The power throw mechanism utilizes a hydraulic linear actuator of a manufacturer's standard design employing an 
+electric or air-driven motor pump.  NAVFAC Definitive Drawing No. 1404354 "Portal Crane Track Switch Power Mechanism" 
+and 1404355 "Portal Crane Track Turntable Frog Power Mechanism" contain definitive details for the layout of a 
+power-operated switch throw mechanism but may not be similar to commercially available designs.  The minimum performance 
+characteristics for the NAVFAC Definitive Design power throw mechanisms are as follows:</NPR><BRK/>
+<BRK/>
+<NPR><HL1>Turntable Frog</HL1>:</NPR><BRK/>
+<BRK/>
+<NPR>Stroke: <MET> 300 mm</MET><ENG> 12 inches</ENG></NPR><BRK/>
+<BRK/>
+<NPR>Speed: <MET> 20 mm/s</MET><ENG> 3/4 inches per second</ENG></NPR><BRK/>
+<BRK/>
+<NPR>Force: <MET> 5 kN</MET><ENG> 1200 pounds</ENG> working: <MET> 70 kN</MET><ENG> 16,000 pounds</ENG> maximum</NPR><BRK/>
+<BRK/>
+<NPR><HL1>Switch Points</HL1>:</NPR><BRK/>
+<BRK/>
+<NPR>Stroke: <MET> 250 mm</MET><ENG> 10 inches</ENG></NPR><BRK/>
+<BRK/>
+<NPR>Speed: <MET> 20 mm/s</MET><ENG> 3/4 inches per second</ENG></NPR><BRK/>
+<BRK/>
+<NPR>Force: <MET> 13 kN</MET><ENG> 3000 pounds</ENG> working: <MET> 187 kN</MET><ENG> 42,000 pounds</ENG> maximum</NPR><BRK/>
+<BRK/>
+<NPR>Satisfactory commercially available power throw mechanisms for certain site specific crane rail switches have 
+recently been installed at:</NPR><BRK/>
+<BRK/>
+<NPR>Puget Sound, Naval Shipyard, Bremerton, Washington</NPR><BRK/>
+<BRK/>
+<NPR>The Public Works Departments at that activity may be able to provide additional information pertaining to these 
+units.  If paragraph "Power-Operated Switch Throw Mechanism," is used, then paragraph "Manually-Operated Switch 
+Throw Mechanisms and Housings," must be used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide switch points in a single crane track turnout (including turnouts containing shared railroad tracks) to operate simultaneously 
+by a single throw mechanism.</OLI><BRK/>
+<BRK/>
+<OLI>Provide each switch with a manually operated throw mechanism.  [Provide switch throw as indicated.] [Provide switch throw designed and 
+fabricated by the manufacturer of the switch point.]  Base the design on a [bell crank] [lever] operator principle so that the switch can 
+be readily and easily operated by one person without causing damage to the linkage or component parts.</OLI><BRK/>
+<BRK/>
+<OLI>Provide throw mechanism to automatically lock into place at the end of the throw in both operating positions.</OLI><BRK/>
+<BRK/>
+<OLI>Provide throw handles which indicate the position of the switch, easily accessible, and visible to the crane operator</OLI><BRK/>
+<BRK/>
+<OLI>[Provide visible indicators capable of being seen by the crane operator to indicate position of switch.]</OLI><BRK/>
+<BRK/>
+<OLI>Provide throw mechanism of a heavy-duty type for specific use with double-flange wheel crane rail fittings.</OLI><BRK/>
+<BRK/>
+<OLI>Provide linkage oriented 90 degrees to the switch tongue.</OLI><BRK/>
+<BRK/>
+<OLI>All component parts must be readily accessible to allow for inspection, cleaning, maintenance and easy removal and replacement of parts.</OLI><BRK/>
+<BRK/>
+<OLI>Provide turn buckles of the open type to permit inspection to ensure engagement of ends of threaded rods.</OLI><BRK/>
+<BRK/>
+<OLI>Provide rods and throw linkage components adequately sized and laterally supported to prevent bending and buckling during operation.</OLI><BRK/>
+<BRK/>
+<OLI>Provide box housing frames bolted to base plates and equipped with heavy-duty cover plates designed to fit neatly over the housing frame.</OLI><BRK/>
+<BRK/>
+<OLI>[When an unequal throw is required for crane track switch points, achieve throw using mechanical bar linkage and not by use of lost motion 
+spring action.]</OLI><BRK/>
+<BRK/>
+<OLI>[Lost motion utilizing a spring system action may be employed to facilitate the operation of a railroad switch used in conjunction with 
+the throw of a crane rail switch.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT>[<TTL>Power-Operated Switch Throw Mechanism</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If deviation from the military specification is necessary, include the phrase, "except as specified in 
+paragraph entitled "_____."  Either specify the deviations in the appropriate paragraph or list together in a 
+new paragraph.</NPR><BRK/>
+<BRK/>
+<NPR>Manually-operated switch throw mechanisms and housings are commercially available items and should be supplied 
+and pre-tested by the switch manufacturer whenever possible.  NAVFAC Definitive Drawing No. 1404353, "Portal Crane 
+Track Switch Throw Linkage," contains definitive details for a manually operated throw mechanism but may not be 
+similar to commercially available units.  If paragraph entitled "Power-Operated Switch Throw Mechanism" is used, 
+then paragraph entitled "Manually-Operated Switch Throw Mechanisms and Housings" must be used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide power-operated switch throw mechanism with all the features specified for the manually operated switch, except remove the throw handle 
+mechanism (and retain at the site for backup operation) and allow the switch operation to be accomplished with the aid of a hydraulic linear actuator 
+driven by [compressed air] [electric] power.  Provide utility line connections to the power unit as indicated.  Minimum performance characteristics 
+for [turntable frog] [switch point] are as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Stroke: <MET> [_____] mm</MET><ENG> [_____] inches</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Speed: <MET> [_____] mm/s</MET><ENG> [_____] inches per second</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Force: <MET> [_____] N</MET> working<ENG> [_____] pounds</ENG></OLI><BRK/>
+<BRK/>
+<OLI>[d. <MET> [_____] N</MET><ENG> [_____] pounds</ENG> maximum]</OLI><BRK/></OLG>
+<BRK/>
+]</SPT></SPT></SPT><SPT><TTL><SUB>DRAINAGE LINES</SUB> FOR FITTINGS</TTL><BRK/>
+<BRK/>
+<TXT>Provide storm water drains for [turntable frogs,] [double-tongue switch points,] [_____] and [throw mechanism housings] to prevent ponding of water 
+therein.  Provide<MET> 100 mm</MET><ENG> 4 inch</ENG> diameter steel drainage pipe lines conforming to <RID>ASTM A53/A53M</RID> to drain the fittings and housings as indicated.  
+Slope pipes not less than 2 percent.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FOUNDATION MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Base Plates</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A36/A36M</RID> or <RID>ASTM A283/A283M</RID>.  [Provide continuously welded plates, except where existing crane rail base covers the joint between the plates.] 
+[Stagger rail joints and base plate joints.]  Shape plates to conform to the configuration of rail curvature and to each special fitting.  Minimum 
+width of plates under rails must be<MET> 300 mm</MET><ENG> 12 inches</ENG>. Minimum length of plates must be<MET> 1200 mm</MET><ENG> 4 feet</ENG> and maximum length <MET> 3000 mm</MET><ENG> 10 feet</ENG>.  Minimum 
+edge distance for holes as indicated.  Provide<MET> [28] [_____] mm </MET><ENG> [1 1/8] [_____] inch</ENG> diameter anchor bolt holes, field or shop fabricated.  Provide 
+grouting holes<MET> 50 mm</MET><ENG> 2 inches</ENG> in diameter in plates wider than<MET> 900 mm</MET><ENG> 3 feet</ENG>.  Center grout holes, spaced approximately<MET> 600 mm</MET><ENG> 2 feet</ENG> apart, and 
+locate so as not to interfere with the proper function of the plate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Anchor Bolts</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A183</RID>, square head<MET> [25] [_____] mm</MET><ENG> 1 [_____] inch</ENG>diameter steel.  Provide each bolt with two finished hexagon nuts and one spring washer.  
+Provide bolt threads conforming to <RID>ASME B18.2.1</RID>, and nuts and threads to <RID>ASME B18.2.2</RID>.  [For bolts fastened to existing grade beams determine lengths 
+in the field after the elevation of the concrete support beams has been determined and the finished profile grade from the drawings has been taken 
+into consideration.]  [Minimum length of anchor bolt is<MET> [_____] mm</MET><ENG> [_____] inches</ENG>.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nonmetallic Nonshrink <SUB>Grout</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide grout under base plates as indicated.  Provide high early strength, nonshrink, nonmetallic grout, with components passing the No. 4 sieve 
+and proportioned so as to provide a 3-day compressive strength of not less than<MET> [28] [45] MPa </MET><ENG> [4,000] [6,500] psi</ENG> as determined by <RID>ASTM C109/C109M</RID>
+, an expansion-to-original length ratio of 0.018 to 0.020 as determined by <RID>ASTM C157/C157M</RID>.  As an option, commercial premixed grout may be used 
+if it meets the strength, workability, nonshrink, and nonmetallic requirements herein specified.  When the depth of grouting exceeds<MET> 25 mm</MET><ENG> one 
+inch</ENG>, the addition of crushed stone,<MET> 6 to 10 mm</MET><ENG> 1/4 inch to 3/8 inch</ENG> maximum size, to the grout mixture will be allowed.  The ratio of grout to 
+crushed stone by weight must be maximum 2:1 or as specified in the manufacturer's instructions.  After installation, cure the nonshrink grout a 
+minimum of 3 days in accordance with the curing requirements as recommended by the manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Epoxy Grout</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM D1763</RID>, two component, Grade 1.  Provide epoxy grout for cored anchor bolt holes in existing concrete grade beams.  Aggregates for epoxy grout 
+must conform to <RID>ASTM C144</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Portland Cement Concrete</TTL><BRK/>
+<BRK/>
+<TXT>Provide concrete for flangeways, [grade beams] and [encasements] conforming to Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>STANDARD GAGE RAILROAD TRACK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use Section <SRF>34 11 00</SRF> RAILROAD TRACK AND ACCESSORIES and AREMA Eng Man and PTWP for standard gage railroad 
+track intersecting with crane tracks.  Provide specification for guardrails as required opposite rigid frogs for 
+use by standard gage wheels.  Where guardrail flangeway is for use by crane wheels, provide adequate flangeway 
+width or flare.  For a railroad in dual gage with crane track, add references as required for half ties or rail 
+on grade beam foundation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>In accordance with Section <SRF>34 11 00</SRF> RAILROAD TRACK AND ACCESSORIES.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OIL FOR TRACK FIXTURES</TTL><BRK/>
+<BRK/>
+<TXT>Meet the following requirements:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Flash point, minimum: <MET> 57 degrees C</MET><ENG> 135 degrees F</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Asphalt, 100 penetration, minimum 45 percent viscosity, saybolt Universal: <MET> 54 degrees C</MET><ENG> 130 degrees F,</ENG> 240 to 350 seconds</OLI><BRK/></OLG>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>WORKMANSHIP</TTL><BRK/>
+<BRK/>
+<TXT>Handle fittings, rails, and accessories to avoid kinking or other damage.  Maintain tracks in proper grade, alignment, curvature, and gage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION OF CRANE TRACK AND FITTINGS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Crane Rails</TTL><BRK/>
+<BRK/>
+<TXT>Install crane rails to the alignment indicated.  Install rails atop continuous steel base plates with anchor bolts and rail clips.  Do not bend 
+rail in the field, but preform rail to the required radii in a plant prior to installation.  [Assemble the entire curved layout with all pieces 
+match-marked.]  Completely lay out and mark in the field and have approved by the Contracting Officer before any portion of crane rail alignment 
+is installed.  Tolerances are as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Horizontal alignment:  Place rails within plus or minus<MET> 6 mm</MET><ENG> 1/4 inch</ENG> of the designed rail centerline alignment indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Crane track gage:  Provide track gage between railheads within plus or minus<MET> 12 mm</MET><ENG> 1/2 inch</ENG> of the design gage indicated. Crane rail gage 
+is measured from centerline of rail to centerline of rail.</OLI><BRK/>
+<BRK/>
+<OLI>Vertical alignment:  Place top of rails within plus or minus<MET> 3 mm</MET><ENG> 1/8 inch</ENG> of the designed rail elevation indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Cross-level elevation:  Elevation differences between rails must not exceed<MET> 3 mm</MET><ENG> 1/8 inch</ENG>.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Regarding the text below, use Section <SRF>34 11 00</SRF>RAILROAD TRACK AND ACCESSORIES and AREMA Eng Man and PTWP 
+for standard gage railroad track intersecting with crane tracks.  Provide specification for guardrails as required 
+opposite rigid frogs for use by standard gage wheels.  Where guardrail flangeway is for use by crane wheels, provide 
+adequate flangeway width or flare.  For a railroad in dual gage with crane track, add references as required for 
+half ties or rail on grade beam foundation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Where the crane rail also serves as one rail of a standard gage railroad track, gage the railroad rail from the crane rail based on standard 
+gage requirements in accordance with Section <SRF>34 11 00</SRF> RAILROAD TRACK AND ACCESSORIES.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Welded Crane Rail Joints</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Welded rail joints are preferred for crane rail except at connections between rail and rail fittings such 
+as switches and frogs where bolted joints are recommended.  The project drawings must indicate each joint type 
+(bolted and/or welded). Welded connections between carbon steel rail and rail fittings fabricated from carbon 
+steel, if desired, may be accomplished using either of the methods identified in paragraph "Welded Crane Rail 
+Joints."  Determine the welding method(s) to be used and show location of each welding method on project drawings.  
+Welded connections between carbon steel rail and cast manganese steel are not recommended.  However, if the activity 
+requires a dissimilar metal welded connection such as this, the cast manganese stub rail end section must be prepared 
+for welding in accordance with Sketch 14606-1.  Use the manual shielded arc welding method in accordance with 
+paragraph "Manual Shielded-arc Welding Method" and electrodes in accordance with paragraph "Electrodes".  Thermite 
+method is not acceptable for welding dissimilar metal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Weld crane rail joints [, except those joints at fittings].  The welding together of rails which have been bored for bolted joints is not permitted.  
+Clean rails of foreign substances prior to welding.  [Welded compromise joints must be by the thermite method.]  Align and weld rail in accordance 
+with the recommendations and specifications of the manufacturer and supplier of the particular welding process used.  Do not weld when the rail 
+temperature is lower than that recommended for the welding method used.  Use the following method[s].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Thermite Method</TTL><BRK/>
+<BRK/>
+<TXT>In accordance with Section <SRF>34 11 19.00 20</SRF> WELDING CRANE AND RAILROAD RAIL - THERMITE METHOD.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manual Shielded-Arc Welding Method</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWS D1.1/D1.1M</RID> and the following:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Regarding the text below, when manual shielded-arc welding method is specified, prepare rail ends in accordance 
+with Sketch No. NFGS-41 22 13.33-1.  Show sketch information on the project drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Prepare rail end as indicated and as specified herein.  Bevel ends of the rails at approximately 35 degrees full bevel on the head, 35 
+degrees double bevel on the web, and 35 degrees full bevel on the upper side of the base.  Retain a narrow "nose" of approximately<MET> 2 mm</MET><ENG>
+ 1/16 inch</ENG> of original rail-end face across the base and up the web, following beveling operation, to permit proper alignment of rail ends.  
+When beveling with a torch, first preheat each rail end to<MET> 260 degrees C</MET><ENG> 500 degrees F</ENG>.  After torch cutting, grind off scale and oxides.  
+Grind level faces only after preheating.  Use proper grinding wheel and speed to avoid grinding "burns" or formation of "hard spots" from 
+localized overheating.</OLI><BRK/>
+<BRK/>
+<OLI>Align the beveled rail ends, allowing approximately<MET> 3 mm</MET><ENG> 1/8-inch</ENG> root clearance, and place a copper shim under the joint opening.  Clamp 
+the rails during the welding with up to<MET> 6 mm</MET><ENG> 1/4 inch</ENG> vertical camber (ends high) in<MET> 1200 mm</MET><ENG> 4 feet</ENG>, centered over the joint to compensate 
+for contracting distortion.</OLI><BRK/>
+<BRK/>
+<OLI>Preheat the joint area to approximately<MET> 260 degrees C</MET><ENG> 500 degrees F</ENG> for a distance of<MET> 150 to 200 mm</MET><ENG> 6 to 8 inches</ENG>on each side of the joint 
+using a suitable heat source, such as an oxy-acetylene or propane torch.</OLI><BRK/>
+<BRK/>
+<OLI>Initiate arc welding of the joint immediately after preheating in the following sequence:  base, web, and head.  Weld alternately on both 
+sides of base and web.  Do not entrap foreign material, such as slag, in the weld.  Grind, chip, or arc-air the root of the initial weld 
+to sound metal before welding is started from the second side.  Maintain a<MET> 260 degrees C</MET><ENG> 500 degree F</ENG> to moderately higher interpass temperature.  
+Proceed with welding until the joint is completed and sufficient metal has been deposited to permit grinding to finish contour in the head 
+area. Provide slight reinforcement of the web and top of the base areas.</OLI><BRK/>
+<BRK/>
+<OLI>Postheat the joint area to approximately<MET> 370 degrees C</MET><ENG> 700 degrees F</ENG> immediately after the welding operation, using the same technique 
+for preheating.  After postheating, protect the weld area against rain and snow and cool as slowly as possible by covering with an insulating 
+blanket.</OLI><BRK/>
+<BRK/>
+<OLI>Grind the excess deposited weld metal from sides and top of rail head using heavy-duty grinder.  Heat area of the weld to at least<MET> 290 
+degrees C</MET><ENG> 550 degrees F</ENG> before and during grinding.  Grind the area smooth, finishing to within plus or minus<MET> 0.5 mm</MET><ENG> 0.020 inch</ENG> of original 
+contour.  Use proper grinding wheel, speed, and rate of metal removal to avoid grinding "burns" or formation of "hard spots" from localized 
+overheating.  Prevent grinding cracks.</OLI><BRK/>
+<BRK/>
+<OLI>Measure temperatures specified by temperature pencils.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Electrical Flash-Butt Method</TTL><BRK/>
+<BRK/>
+<TXT>Welding process must conform to applicable provisions of Chapter 4 of <RID>AREMA Eng Man</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Bolted Rail Joints</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Welded rail joints are preferred for crane rail except at connections between rail and rail fittings such 
+as switches and frogs where bolted joints are recommended.  Indicate on project drawings each joint type (bolted 
+and/or welded). Welded connections between carbon steel rail and rail fittings fabricated from carbon steel, if 
+desired, may be accomplished using either of the methods identified in paragraph "Welded Crane Rail Joints."  
+Determine the welding method(s) to be used and show location of each welding method on drawings.  Welded connections 
+between carbon steel rail and cast manganese steel are not recommended.  However, if the activity requires a dissimilar 
+metal welded connection such as this, prepare the cast manganese stub rail end section for welding in accordance 
+with Sketch 14606-1.  Use the manual shielded arc welding method in accordance with paragraph "Manual Shielded-Arc 
+Welding Method" and electrodes in accordance with paragraph "Electrodes".  Thermite method is not acceptable for 
+welding dissimilar metal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide bolted joints at rail connectors.]  [Provide bolted rail joints to connect crane rail to crane rail fittings.]  Bolted joints will be 
+permitted for connection of crane rail fittings to intersecting railroad rail not for use by cranes.  Chamfer rail head at joints in accordance 
+with <RID>AREMA Eng Man</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Joint Bars</TTL><BRK/>
+<BRK/>
+<TXT>Install joint bars with the full number of bolts, nuts and washers.  After track has been tested as provided for herein and before flangeway concrete 
+is poured, check and tighten bolts.  The openings between railheads must not deviate more than<MET> 3 mm</MET><ENG> 1/8 inch</ENG> from the opening recommended for a 
+given temperature.  Vertical or horizontal mismatch at joints must not exceed<MET> 2 mm</MET><ENG> 1/16 inch</ENG>.  Joints must conform to applicable <RID>AREMA Eng Man</RID>.  
+Tighten joint bar bolts to a tension no less than the proof load given in <RID>ASTM A183</RID>.  Perform tightening with a properly calibrated wrench[ or 
+by turn of the nut method].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Compromise Joints</TTL><BRK/>
+<BRK/>
+<TXT>Provide bolted [and welded] compromise joints for connection of adjoining rails or fittings of differing cross sections.  Make joints by means 
+of either cast or fabricated compromise bars or welded transition rails.  Provide step chairs, as required, at joints of rails of differing height.  
+Provide compromise joints with proper allowance for rail wear.  The offset of compromise joints or of either surface or gage alignment must not 
+exceed<MET> 3 mm</MET><ENG> 1/8 inch</ENG>.  Rails at compromise joints of rails for double-flanged wheels must have the centerlines of the rails in alignment and provide 
+a smooth surface along the top of rails.  Grind edges of the wider of the two rail heads smooth over a minimum transition length of<MET> 450 mm</MET><ENG> 18 inches</ENG>
+.  Heat area to be ground to at least<MET> 290 degrees C</MET><ENG> 550 degrees F</ENG> before and during grinding.  Clad welding is not permitted to achieve transitions 
+for compromise joints.  [Align compromise joints of rails for single-flange wheels only along top and gage side of rails.]  [Use thermite method 
+to weld compromise joints.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Anchor Bolts</TTL><BRK/>
+<BRK/>
+<TXT>Provide pairs of anchor bolts for connection of rail clips and crane rails to base plate and supporting grade beam.  At crane track fittings, provide 
+separate groups of anchor bolts for connection of fittings to base plate and to supporting grade beam.  [Install anchor bolts with epoxy grout 
+specified herein into<MET> 50 mm</MET><ENG> 2 inch</ENG> diameter holes drilled into existing concrete rail support beams.]  [Cast anchor bolts into new concrete grade 
+beams.]  Tighten anchor bolt nuts to snug tight using the effort of an ordinary man with a 6'-0" spud wrench.  Perform tightening with properly 
+calibrated wrenches [or by turn of nut method].  Make longitudinal spacing as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Base Plates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Install base plates in accordance with Sketch No. NFGS-41 22 13.33-2.  The sketch is based on<MET> 61 kilogram</MET><ENG>
+ 135 pound</ENG> crane rail and should be modified as required to reflect actual size of crane rail to be installed.  
+Show sketch information on the project drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install as indicated and as specified herein.  Install<MET> 25 mm</MET><ENG> 1 inch</ENG> thick base plates to support rail, switches, frogs, and throw mechanism housings.  
+Shape base plates, as necessary, under [switches] [and] [frogs].  Furnish plates with anchor bolt holes located and drilled in field or shop fabricated; 
+use as template for setting anchor bolts.  Do not enlarge bolt holes in the field.  Do not torch, cut holes.  Provide finished plate free of bows, 
+bends, and lips, and cleaned of grease and oil.  After installation of rail, vertically align base plates to within plus or minus<MET> 3 mm</MET><ENG> 1/8 inch</ENG>
+ of the profile grade elevation indicated by adjustment of base leveling nut and washer underneath plates.  After installation, check to ensure 
+proper grade and alignment of the base plates and install temporary hold-down nuts before grouting with nonshrink grout.  After grout has hardened, 
+and with rail clips, crane rail, and fittings in place, tighten anchor bolt nuts to snug tight using the effort of an ordinary man with a 6'-0" 
+spud wrench.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Crane Track Fittings</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Crane Switches</TTL><BRK/>
+<BRK/>
+<TXT>Install fittings and throw mechanisms atop steel base plates and align vertically by means of leveling nuts as indicated.  Connect switch points 
+to adjacent rails by means of [bolted] [welded] joints.  [Secure the nuts of bolted joints in place with a cotter pin through the bolt.]  Install 
+throw mechanisms complete in housings as indicated.  Mechanisms must operate smoothly and reliably and hold the switchpoints in position securely, 
+against motion of crane wheels.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rigid Frogs</TTL><BRK/>
+<BRK/>
+<TXT>Install crane track rigid frogs atop steel base plates and align vertically be means of leveling nuts as indicated.  Connect to adjacent crane 
+rails [and railroad rails] by means of [bolted] [welded] joints.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Turntable Frogs</TTL><BRK/>
+<BRK/>
+<TXT>Install frog [and throw mechanism] atop steel base plates and align vertically by means of leveling nuts as indicated.  Connect fittings to adjacent 
+rails by means of [bolted] [welded] joints.  Install throw arm complete in housings as indicated.  Mechanism must operate smoothly and reliably, 
+and hold the turntable in position securely, against motion of crane wheels.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Standard Gage Railroad Tracks</TTL><BRK/>
+<BRK/>
+<TXT>Install in accordance with Section <SRF>34 11 00</SRF> RAILROAD TRACK AND ACCESSORIES.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Oiling Track Fixtures</TTL><BRK/>
+<BRK/>
+<TXT>Swab [track bolts,] [switch points,] [throw mechanisms,] and [joint bars] with oil specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Concrete</TTL><BRK/>
+<BRK/>
+<TXT>Install concrete for flangeways [, grade beams] and [encasements] in accordance with Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLEANUP</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion of the work, clear job site of equipment, surplus material, and debris.  [Dispose of such material [off Government property] [at 
+the site indicated].]  [Disposal is as required in Section <SRF>01 57 19</SRF> TEMPORARY ENVIRONMENTAL CONTROLS.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Test for Grout</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Verify nonmetallic, <TST>nonshrink grout strength</TST> during placement of grout at daily intervals by molding and testing standard cubes of samples taken 
+at the job site.  Take three test cubes each day for grout placed that day.  Mold and cure test specimens in accordance with <RID>ASTM C109/C109M</RID>.  
+Furnish necessary labor, materials, and facilities for molding the samples and for handling and storing the cubes at the site of the work.  Transport 
+cubes to the laboratory not sooner than 24 hours after molding.  Test specimens for compressive strength in accordance with <RID>ASTM C109/C109M</RID>.  Grout 
+strength test evaluation is the average of the strengths of specimens tested at 3 days.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Visual Inspection</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Inspect rail fittings</TST> thoroughly.  Inspect for defects that might hinder satisfactory operation.  [Inspect bolted joints for loose bolts and smooth 
+transitions between rails of different sections.]  Inspect each welded joint thoroughly after removal of the mold and grinding of excess metal.  
+Correct or replace welds containing surface cracking, slag inclusion, gas pockets, and lack of fusion.  Method of correction must be approved by 
+the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Ultrasonic Inspection</SUB> of Welded Rail Joints</TTL><BRK/>
+<BRK/>
+<TXT>[The Government will inspect each weld ultrasonically following the visual inspection.]  Perform <TST>ultrasonic inspection and testing of each weld</TST>
+ in accordance with <RID>MIL-STD-1699</RID>.  Correct or replace defective welds.  Clean rails at testing locations as directed by Contracting Officer.  The 
+method of correction must be approved by Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Load Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Load test of trackage</TST> will be performed by the Government prior to work on concrete flangeways, encasements, and pavement.  The load test is to 
+be performed after completion of track work, but before rails are covered by concrete flangeways and encasements.  The load test for crane trackage 
+consists of a portal crane supporting a load designated by the Contracting Officer traversing new track work.  The crane must operate without difficulty, 
+without binding of crane wheel flanges, or without visible rail deflection.  Vertical movement of the ends of crane [switches] [and] [turntable 
+frogs] must not exceed<MET> 3 mm</MET><ENG> 1/8 inch</ENG> during the passage of any crane.  Correct or replace defective welded rail joints, rail, and fittings.  Correct 
+the causes of excess deflections, and retighten anchor bolts loosened under crane wheel loading.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Throw Mechanism <SUB>Operational Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Test throw mechanisms</TST> for effectiveness, security, integrity, and reliability in accordance with the operational requirements of the mechanical 
+and electrical sections of the specifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Retesting</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Retest corrected and replaced items.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Record Drawing Survey</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A Record Drawing survey may be required where alignment of crane rails, gage reduction, or orientation 
+of fittings is expected to be critical or problematic.  The survey may be performed by Contractor, Government, 
+or independent surveyor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include bracketed (last) sentence if Contractor is to perform record drawing survey.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>At completion of crane track replacement work, and before start of work on concrete flangeways, encasements, and paving, [perform] <TST>a record drawing 
+survey of crane track alignment</TST> [will be performed by Contracting Officer.  Notify Contracting Officer [_____] calendar days in advance of the 
+availability of the crane trackage for conducting the survey.  Execution of the survey will require [_____] days for completion].  Deviation of 
+record drawing horizontal crane rail alignment in excess of tolerances specified herein will constitute grounds for rejection of the work.  Surveys, 
+in addition to the initial survey made necessary by nonconforming work, are at Contractor's expense.  [Provide two sets of full-size contract drawings <NED/>
+marked-up to show record drawing conditions.  The requirements for these surveys are in addition to the requirements of Division 1 for quality 
+control.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

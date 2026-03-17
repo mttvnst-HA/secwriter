@@ -1,0 +1,2854 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="14.25">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-26 42 15 (February 2026)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-26 42 15 (May 2021)<BRK/><BRK/></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 42 15</SCN><BRK/>
+<BRK/>
+<STL>CATHODIC PROTECTION SYSTEM FOR THE INTERIOR OF STEEL WATER TANKS</STL><BRK/>
+<DTE>02/26</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>steel water tank 
+cathodic protection systems using either galvanic or impressed current systems 
+(impressed current or galvanic anodes)</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and must be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NAVY"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Each Service has a specialized facilities engineering activity: Naval 
+Facilities Engineering and Expeditionary Warfare Center (NAVFAC EXWC) for the 
+Navy and Marine Corps, Engineering Research and Development Center (ERDC) for 
+the Army, and Air Force Civil Engineering Corps (AFCEC) for the Air Force, has 
+significant experience and technical expertise in the area of field testing 
+and commissioning of new systems.  If Reach-Back support is required, the technical 
+representative (electrical engineer) editing this document for a specific project 
+must contact the NAVFAC EXWC Design and Construction Department" and the relevant 
+ERDC and AFCEC departments for consultation during the design stage of the project 
+and include the bracketed option in the 'Submittals' section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  One of the major factors influencing selection of the type of cathodic 
+protection system is the resistivity of the water involved.  When the water 
+resistivity is higher than 10,000 ohm-cm, impressed current systems are usually 
+used.  Other considerations include availability of electric power and the costs 
+of installation, operation and maintenance.  Where relatively large currents 
+are required and reasonable access to power is available, the impressed current 
+system will generally be found to be more economical.  The requirements for 
+the cathodic protection systems should be determined by a corrosion engineer 
+following the criteria, design, and installation recommendations included in 
+the National Association of Corrosion Engineers Standard; SP-0388, "Impressed 
+Current Cathodic Protection of Internal Submerged Surfaces of Steel Water Tanks", 
+and SP0-196, "Galvanic Anode Cathodic Protection of Internal Submerged Surfaces 
+of Steel Water Storage Tanks".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information must be shown on the drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Dimensions of tank, including riser (if tank is elevated), structural supports 
+and overflow.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Locations of all equipment, including anodes, reference electrodes, junction 
+boxes, test boxes, rectifiers, power connections (with branch circuit source), 
+wire conduit, and remote monitoring equipment.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Installation details for anodes, test stations and rectifiers.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Electrical single-line diagrams, elevations, limiting dimensions, and equipment 
+ratings which are not covered in the specification.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Single-line diagrams elevations, limiting dimensions, and equipment ratings 
+which are not covered in the specification.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Remote indicating or control requirements.</NPR><BRK/>
+<BRK/>
+<NPR>6.  Grounding (riser diagrams).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The requirements for the cathodic protection systems must be determined 
+by a corrosion engineer following the criteria, design, and installation recommendations 
+included in the National Association of Corrosion Engineers (NACE) Standard 
+Practice NACE SP0388(2018) Impressed Current Cathodic Protection of Internal 
+Submerged Surfaces of Carbon Steel Water Storage Tanks, NACE SP0196,(2015) Galvanic 
+Anode Cathodic Protection of Internal Submerged Surfaces of Steel Water Storage 
+Tanks, and others listed in the specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information must be on the drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Installation details for anodes and test stations.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Location of equipment.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Single-line diagrams elevations, limiting dimensions, and equipment ratings 
+which are not covered in the specification.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Remote indicating or control requirements.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Grounding.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B1.1</RID><RTL>(2024) Unified Inch Screw Threads (UN, UNR, and UNJ Thread Form)</RTL><BRK/><BRK/><RID>ASME B18.2.1</RID><RTL>(2012; R 2021) Square, Hex, Heavy Hex, and Askew Head Bolts and Hex, Heavy Hex, Hex Flange, Lobed Head, and Lag Screws (Inch Series)</RTL><BRK/><BRK/><RID>ASME B18.2.2</RID><RTL>(2022) Nuts for General Applications: Machine Screw Nuts, and Hex, Square, Hex Flange, and Coupling Nuts (Inch Series)</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WATER WORKS ASSOCIATION (AWWA)</ORG><BRK/><BRK/><RID>AWWA D104</RID><RTL>(2011) Automatically Controlled, Impressed-Current Cathodic Protection for the Interior Submerged Surfaces of Steel Water Storage Tanks</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A194/A194M</RID><RTL>(2024) Standard Specification for Carbon Steel, Alloy Steel, and Stainless Steel Nuts for Bolts for High-Pressure or High-Temperature Service, or Both</RTL><BRK/><BRK/><RID>ASTM A307</RID><RTL>(2023) Standard Specification for Carbon Steel Bolts, Studs, and Threaded Rod 60 000 PSI Tensile Strength</RTL><BRK/><BRK/><RID>ASTM A518/A518M</RID><RTL>(1999; R 2022) Standard Specification for Corrosion-Resistant High-Silicon Iron Castings</RTL><BRK/><BRK/><RID>ASTM B3</RID><RTL>(2013; R 2024) Standard Specification for Soft or Annealed Copper Wire</RTL><BRK/><BRK/><RID>ASTM B8</RID><RTL>(2023) Standard Specification for Concentric-Lay-Stranded Copper Conductors, Hard, Medium-Hard, or Soft</RTL><BRK/><BRK/><RID>ASTM B418</RID><RTL>(2016a; R2021) Standard Specification for Cast and Wrought Galvanic Zinc Anodes</RTL><BRK/><BRK/><RID>ASTM B843</RID><RTL>(2018; R 2025) Standard Specification for Magnesium Alloy Anodes for Cathodic Protection</RTL><BRK/><BRK/><RID>ASTM C94/C94M</RID><RTL>(2025a) Standard Specification for Ready-Mixed Concrete</RTL><BRK/><BRK/><RID>ASTM D709</RID><RTL>(2017) Standard Specification for Laminated Thermosetting Materials</RTL><BRK/><BRK/><RID>ASTM D1248</RID><RTL>(2016) Standard Specification for Polyethylene Plastics Extrusion Materials for Wire and Cable</RTL><BRK/><BRK/><RID>ASTM D2028/D2028M</RID><RTL>(2015; R 2021) Cutback Asphalt (Rapid-Curing Type)</RTL><BRK/><BRK/><RID>ASTM D3381/D3381M</RID><RTL>(2018) Standard Specification for Viscosity-Graded Asphalt Binder for Use in Pavement Construction</RTL><BRK/><BRK/><RID>ASTM F1182</RID><RTL>(2007; R 2023) Anodes, Sacrificial Zinc Alloy</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 81</RID><RTL>(2025) IEEE Guide for Measuring Earth Resistivity, Ground Impedance, and Earth</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/><RID>IEEE C135.30</RID><RTL>(1988) Standard for Zinc-Coated Ferrous Ground Rods for Overhead or Underground Line Construction</RTL><BRK/><BRK/></REF><REF><ORG>NACE INTERNATIONAL (NACE)</ORG><BRK/><BRK/><RID>NACE SP0188</RID><RTL>(2024) Discontinuity (Holiday) Testing of New Protective Coatings on Conductive Substrates</RTL><BRK/><BRK/><RID>NACE SP0193</RID><RTL>(2016) Application of Cathodic Protection to Control External Corrosion of Carbon Steel On-Grade Storage Tank Bottoms</RTL><BRK/><BRK/><RID>NACE SP0196</RID><RTL>(2020) Galvanic Anode Cathodic Protection of Internal Submerged Surfaces of Steel Water Storage Tanks</RTL><BRK/><BRK/><RID>NACE SP0388</RID><RTL>(2018) Impressed Current Cathodic Protection of Internal Submerged Surfaces of Carbon Steel Water Storage Tanks - Item No. 21040</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>ANSI C119.1</RID><RTL>(2023) Electric Connectors - Sealed Insulated Underground Connector Systems Rated 600 Volts</RTL><BRK/><BRK/><RID>NEMA BI 50009</RID><RTL>(2024) Low Voltage Cartridge Fuses</RTL><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/><RID>NEMA RN 1</RID><RTL>(2018) Polyvinyl-Chloride (PVC) Externally Coated Galvanized Rigid Steel Conduit and Intermediate Metal Conduit</RTL><BRK/><BRK/><RID>NEMA ST 1</RID><RTL>(1988; R 1994; R 1997) Specialty Transformers (Except General Purpose Type)</RTL><BRK/><BRK/><RID>NEMA TC 2</RID><RTL>(2020) Standard for Electrical Polyvinyl Chloride (PVC) Conduit</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>NSF INTERNATIONAL (NSF)</ORG><BRK/><BRK/><RID>NSF/ANSI/CAN 61</RID><RTL>(2024) Drinking Water System Components - Health Effects</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-A-18001</RID><RTL>(1993) Anodes, Sacrificial Zinc Alloy</RTL><BRK/><BRK/><RID>MIL-I-1361</RID><RTL>(1985; Rev C; Notice 1 1991; Notice 2 2021) Instrument Auxiliaries, Electrical Measuring:  Shunts, Resistors and Transformers</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 6</RID><RTL>(2022) UL Standard for Safety Electrical Rigid Metal Conduit-Steel</RTL><BRK/><BRK/><RID>UL 44</RID><RTL>(2018; Reprint Oct 2025 ) UL Standard for Safety Thermoset-Insulated Wires and Cables</RTL><BRK/><BRK/><RID>UL 83</RID><RTL>(2017; Reprint Oct 2025) UL Standard for Safety Thermoplastic-Insulated Wires and Cables</RTL><BRK/><BRK/><RID>UL 467</RID><RTL>(2022) UL Standard for Safety Grounding and Bonding Equipment</RTL><BRK/><BRK/><RID>UL 486A-486B</RID><RTL>(2025) UL Standard for Safety Wire Connectors</RTL><BRK/><BRK/><RID>UL 489</RID><RTL>(2025) UL Standard for Safety Molded-Case Circuit Breakers, Molded-Case Switches and Circuit-Breaker Enclosures</RTL><BRK/><BRK/><RID>UL 506</RID><RTL>(2017; Reprint Jan 2022) UL Standard for Safety Specialty Transformers</RTL><BRK/><BRK/><RID>UL 510</RID><RTL>(2020; Dec 2022) UL Standard for Safety Polyvinyl Chloride, Polyethylene and Rubber Insulating Tape</RTL><BRK/><BRK/><RID>UL 514A</RID><RTL>(2024) UL Standard for Safety Metallic Outlet Boxes</RTL><BRK/><BRK/><RID>UL 514B</RID><RTL>(2012; Reprint Mar 2024) UL Standard for Safety Conduit, Tubing and Cable Fittings</RTL><BRK/><BRK/><RID>UL 854</RID><RTL>(2020; Reprint Jul 2024) Standard for Service-Entrance Cables</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>It is convenient to classify corrosion by the forms in which it manifests itself, the basis for this classification 
+being the appearance of the corroded metal.  Each form can be identified by visual observation, although, in 
+some cases, magnification is required.  Valuable information for the solution of a corrosion problem can often 
+be obtained through careful observation of the corroded test specimens or failed equipment.  Examination before 
+cleaning is particularly desirable.  Cathodic Protection is a method used to control corrosion.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cathodic Protection</TTL><BRK/>
+<BRK/>
+<TXT>Cathodic Protection (CP) is an electrochemical (half electrical and half chemical) method used to control corrosion 
+of buried or submerged metallic structures.  It prevents corrosion by making the protected structure a cathode 
+by installing a more anodic metal (sacrificial or galvanic) anode or a metallic (impressed current) anode connected 
+to a Direct Current (DC) power source.  When the proper amount of current is applied to the structure, it becomes 
+a cathode.  Since all corrosion occurs at the anode, the structure no longer corrodes.  The electrons move in 
+the metallic path (electrical).  Reduction (chemical) reactions occur at the surface of the cathode resulting 
+in a hydrogen coating and more alkaline environment.  Oxidation (chemical) reactions occur at the surface of 
+the anode resulting in corrosion and a more acidic environment.  After a CP system is installed and adjusted 
+to provide adequate protection, the hydrogen coats the defects in the coating and polarizes in the negative direction 
+(to a copper/copper sulfate reference electrode) over time the current and potentials remain relatively stable; 
+changes in currents or potentials indicate a problem.  An error-free measurement of negative 850 millivolts DC 
+or more negative to the copper/copper-sulfate reference electrode proves the structure is a cathode and corrosion 
+has been mitigated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Corrosion</TTL><BRK/>
+<BRK/>
+<TXT>It is convenient to classify corrosion by the forms in which it manifests itself, the basis for this classification 
+being the appearance of the corroded metal.  Each form can be identified by visual observation, although, in 
+some cases, magnification is required.  Valuable information for the solution of a corrosion problem can often 
+be obtained through careful observation of the corroded test specimens or failed equipment.  Examination before 
+cleaning is particularly desirable.  Some of the eight forms of corrosion are unique, but all of them are more 
+or less interrelated.</TXT><BRK/>
+<BRK/>
+<TXT>The eight forms of corrosion are: (1) Uniform Attack, (2) Galvanic or Two-Metal Corrosion, (3) Crevice Corrosion, 
+(4) Pitting Corrosion, (5) Intergranular Corrosion, (6) Selective Leaching, (7) Erosion Corrosion, and (8) Stress 
+Corrosion Cracking.  This listing is arbitrary but covers practically all corrosion failures and problems.  The 
+forms are not listed in any particular order of importance.  Below, the eight forms of corrosion are discussed 
+in terms of their characteristics, mechanisms, and preventive measures.  Hydrogen damage, although not a form 
+of corrosion, often occurs indirectly as a result of corrosive attack and is, therefore, included in this discussion.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alternating Current (AC) Corrosion</TTL><BRK/>
+<BRK/>
+<TXT>AC corrosion occurs when there is a source of AC current, typically from a high voltage overhead AC (OHAC) power-line, 
+when there is a low soil resistivity - typically less than 5,000 ohm-cm and there is very small coating holidays.  
+The AC corrosion pits typically have a tubercle of corrosion product at the pit.  AC interference study modeling 
+software can determine the mitigation solution to solve this problem.  Typically, AC Corrosion mitigation is 
+done in conjunction with high AC potentials and fault current mitigation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>AC Interference</TTL><BRK/>
+<BRK/>
+<TXT>AC interference occurs when a pipeline parallels a high-voltage overhead AC (OHAC) power-line.  An interference 
+study is required when this situation occurs as AC interference can cause high AC potentials along the pipeline 
+(safety), can cause a fault condition between the pipeline and power-line and could cause AC corrosion to occur.  
+The pipeline coating when exposed can have blisters/bubbles caused by the excessive AC.  The interference study 
+will use modeling software to determine what combination of interference may be occurring (if any) and provide 
+the mitigation solution to solve the problem.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Uniform Attack</TTL><BRK/>
+<BRK/>
+<TXT>Uniform attack is the most common form of corrosion.  It is normally characterized by a chemical or electrochemical 
+reaction that proceeds uniformly over the entire exposed surface or over a large area.  The metal becomes thinner 
+and eventually fails.  For example, a piece of steel or zinc immersed in dilute sulfuric acid normally dissolves 
+at a uniform rate over its entire surface.  A sheet iron roof shows essentially the same degree of rusting over 
+its entire outside surface.</TXT><BRK/>
+<BRK/>
+<TXT>Uniform attack, or general overall corrosion, represents the greatest destruction of metal on a tonnage basis.  
+This form of corrosion, however, is not of great concern from a technical standpoint, because the life of equipment 
+can be accurately estimated on the basis of comparatively simple tests.  Merely immersing specimens in the fluid 
+involved is often sufficient.  Uniform attack can be prevented or reduced by (1) materials, such as coatings, 
+that reduce contact between metal and electrolytes, (2) inhibitors, or (3) cathodic protection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Galvanic or Two-Metal Corrosion</TTL><BRK/>
+<BRK/>
+<TXT>A potential difference usually exists between two dissimilar-metals when they are immersed in a corrosive or 
+conductive solution.  If these metals are placed in contact (or otherwise electrically connected), this potential 
+difference produces electron flow between them.  Corrosion of the less corrosion-resistant metal is usually increased, 
+and attack of the more resistant material is decreased, compared to the behavior of these metals when they are 
+not in contact.  The less resistant metal becomes anodic and the more resistant metal becomes cathodic.  Usually 
+the cathode or cathodic metal corrodes very little or not at all in this type of couple.  Because of the electric 
+currents and dissimilar-metals involved, this form of corrosion is called galvanic, bi-metallic or two-metal, 
+corrosion.  Galvanic corrosion is restricted to electrochemical corrosion caused by dissimilar-metal effects.  
+It is electrochemical corrosion, but this document must restrict the term galvanic to dissimilar-metal effects 
+for purposes of clarity.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Crevice Corrosion</TTL><BRK/>
+<BRK/>
+<TXT>Intense localized corrosion frequently occurs within crevices and other shielded areas on metal surfaces exposed 
+to corrosives.  This type of attack is usually associated with small volumes of stagnant solution caused by holes, 
+gasket surfaces, lap joints, surface deposits, and crevices under bolt and rivet heads.  As a result, this form 
+of corrosion is called crevice corrosion or, sometimes, deposit or gasket corrosion.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pitting Corrosion</TTL><BRK/>
+<BRK/>
+<TXT>Pitting is a form of extremely localized attack that results in holes in the metal.  These holes may be small 
+or large in diameter, but in most cases they are relatively small.  Pits are sometimes isolated or so close together 
+that they look like a rough surface.  Generally a pit may be described as a cavity or hole with the surface diameter 
+about the same as or less than the depth.  Pitting is one of the most destructive and insidious forms of corrosion.  
+It causes equipment to fail because of perforation with only a small percent weight loss of the entire structure.  
+It is often difficult to detect pits because of their small size and because the pits are often covered with 
+corrosion products.  In addition, it is difficult to measure quantitatively and compare the extent of pitting 
+because of the varying depths and numbers of pits that may occur under identical conditions.  Pitting is also 
+difficult to predict by laboratory tests.  Sometimes the pits require a long time (several months or a year) 
+to show up in actual service.  Pitting is particularly vicious because it is a localized and intense form of 
+corrosion, and failures often occur with extreme suddenness.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Intergranular Corrosion</TTL><BRK/>
+<BRK/>
+<TXT>Grain boundary effects are of little or no consequence in most applications or uses of metals.  If a metal corrodes, 
+uniform attack results since grain boundaries are usually only slightly more reactive than the matrix.  However, 
+under certain conditions, grain interfaces are very reactive and intergranular corrosion results.  Localized 
+attack at and adjacent to grain boundaries, with relatively little corrosion of the grains, is intergranular 
+corrosion.  The alloy disintegrates (grains fall out) or loses its strength.  Intergranular corrosion can be 
+caused by impurities at the grain boundaries, enrichment of one of the alloying elements, or depletion of one 
+of these elements in the grain-boundary areas.  Small amounts of iron in aluminum, wherein the solubility of 
+iron is low, have been shown to segregate in the grain boundaries and cause intergranular corrosion.  It has 
+been shown that, based on surface tension considerations, the zinc content of a brass is higher at the grain 
+boundaries.  Depletion of chromium in the grain-boundary regions results in intergranular corrosion of stainless 
+steels.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Selective Leaching</TTL><BRK/>
+<BRK/>
+<TXT>Selective leaching is the removal of one element from a solid alloy by corrosion processes.  The most common 
+example is the selective removal of zinc in brass alloys (dezincification).  Similar processes occur in other 
+alloy systems in which aluminum, iron, cobalt, chromium, and other elements are removed.  Selective leaching 
+is the general term to describe these processes, and its use precludes the creation of terms such as de-aluminumification, 
+de-cobaltification.  Parting is a metallurgical term that is sometimes applied, but selective leaching is preferred.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Erosion Corrosion</TTL><BRK/>
+<BRK/>
+<TXT>Erosion corrosion is the acceleration or increase in rate of deterioration or attack on a metal because of relative 
+movement between a corrosive fluid and the metal surface.  Generally, this movement is quite rapid, and mechanical 
+wear effects or abrasion are involved.  Metal is removed from the surface as dissolved ions, or it forms solid 
+corrosion products, which are mechanically swept from the metal surface.  Sometimes, movement of the environment 
+decreases corrosion, particularly when localized attack occurs under stagnant conditions; this is not erosion 
+corrosion because deterioration is not increased.  Erosion corrosion is characterized in appearance by grooves, 
+gullies, waves, rounded holes, and valleys and usually exhibits a directional pattern.  In many cases, failures 
+because of erosion corrosion occur in a relatively short time, and they are unexpected largely because evaluation 
+corrosion tests were run under static conditions or because the erosion effects were not considered.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stress-Corrosion Cracking</TTL><BRK/>
+<BRK/>
+<TXT>Stress-corrosion cracking refers to cracking caused by the simultaneous presence of tensile stress and a specific 
+corrosive medium.  Many investigators have classified all cracking failures occurring in corrosive media as stress-corrosion 
+cracking, including failures due to hydrogen embrittlement.  However, these two types of cracking failures respond 
+differently to environmental variables.  To illustrate, CP is an effective method for preventing stress-corrosion 
+cracking; however, hydrogen-embrittlement may be caused when excessive current is applied, especially on stainless 
+steel.  Hence, the importance of considering stress-corrosion cracking and hydrogen embrittlement as separate 
+phenomena is obvious.  During stress-corrosion cracking, the metal or alloy is virtually unattacked over most 
+of its surface, while fine cracks progress through it.  This cracking phenomenon has serious consequences, since 
+it can occur at stresses within the range of typical design stress.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Exothermic Welding</TTL><BRK/>
+<BRK/>
+<TXT>Exothermic welding is used in CP to connect a copper wire to a metallic structure, usually steel or cast-iron.  
+It is a pyrotechnic composition of copper oxide, aluminum powder and magnesium powder.  The magnesium powder 
+is ignited with a spark gun or electronic ignition equipment.  The aluminum powder serves as fuel, and melts 
+the copper oxide, which bonds the wire to the structure.  Although not explosive, it can create brief bursts 
+of heat and high temperature in a small area.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Error-Free</TTL><BRK/>
+<BRK/>
+<TXT>Potential measurement error due to a voltage drop caused by current flowing through a resistor (the electolyte) 
+between the reference electrode and the protected structure.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ADMINISTRATIVE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>After award of the contract, but prior to commencement of any work at the<BRK/>
+site, meet with the Contracting Officer or the Contracting Officer's Representative, Technical Expert and Project 
+Manager.  Develop a mutual understanding relative to the administration of the value engineering, the safety 
+program, preparation of the schedule of prices or the earned value report.  Review shop drawings, other submittals, 
+scheduling programming, execution of the work, and clear expectations of the "Interim Department of Defense (DD) 
+Form 1354" submittal.  Major subcontractors who will engage in the work must also attend.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Preconstruction Survey</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wiring and Schematic Diagram</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Anode junction boxes</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Contractor's Modifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Equipment</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Components</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Rectifiers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Remote Monitoring Equipment</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Anodes</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Permanent reference electrodes</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Anode junction boxes</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cable and wire</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Shunts</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Extra Materials</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Contractor's Modifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Anode Connecting Cables</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Rectifier Testing</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>SD-10 Operation and Maintenance Data</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cathodic Protection System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Course</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Contractor's Modifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11, Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Initial Cathodic Protection System Testing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>One Year Warranty Period Cathodic Protection System Field Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Final Acceptance Field Testing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<SPT><TTL>Material and Equipment Manufacturer Data</TTL><BRK/>
+<LST><TAB WIDTH="86">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="5" ROWCOUNT="6">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="63.00"/>
+      <COL AUTOWIDTH="0" WIDTH="77.25"/>
+      <COL AUTOWIDTH="0" WIDTH="83.25"/>
+      <COL AUTOWIDTH="0" WIDTH="101.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL3><BRK/>DATE</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL3><BRK/>ISSUE NO.</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3><BRK/>REQUEST DATE</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3><BRK/>REQUESTED BY</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3><BRK/>REQUEST REF. NO.</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="4" STYLEID="s51">
+<DTA TYPE="STRING"><BRK/><HL3>MANUFACTURER NAME</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL MERGEACROSS="4" STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL MERGEACROSS="4" STYLEID="s51">
+<DTA TYPE="STRING"><BRK/><HL3>DESCRIPTION OF EQUIPMENT</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="122.25">
+         <CEL MERGEACROSS="4" STYLEID="s50"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/></SPT>
+</SPT><SPT><TTL>MAINTENANCE MATERIAL SUBMITTALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Spare Parts</SUB></TTL><BRK/>
+<BRK/>
+<TXT>After approval of shop drawings, furnish spare parts data for each different item of material and <SUB>equipment</SUB> specified.  
+The data must include a complete list of parts, special tools, and supplies, with current unit prices and source 
+of supply.</TXT><BRK/>
+<BRK/>
+<TXT>After approval of shop drawings, furnish revised spare parts for any changes made from original submittal.  One 
+spare anode of each type must be furnished.  In addition, supply information for material and equipment replacement 
+for all other components of the complete system, including <SUB>anodes</SUB>, cables, splice kits and connectors, corrosion 
+test stations, and any other components not listed above.  Furnish [one reference electrode on a hand reel with<MET>
+ 120 meters</MET><ENG> 350 feet</ENG> of conductor], [one digital voltmeter that can be used in the maintenance of this CP system].  
+Demonstrate use of furnished equipment in actual tests during the <SUB>training course</SUB>.  Provide a description of 
+equipment of the pipe-to-soil protected structure and foreign structures at electrical isolation between the 
+utility supplier and the facility piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Extra Materials</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Furnish [one submersible reference electrode on a reel with enough wire to reach the bottom of the tank, or the 
+bottom of the riser as required] and [one high input impedance multimeter that can be used in the maintenance 
+of this CP system].  Demonstrate equipment in actual tests during the training course.  Include a description 
+of the equipment and measurement of the tank-to-water potentials, anode voltage, anode current and water level.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Obtain the services of a corrosion expert to supervise, inspect, and test the installation and performance of 
+the CP system.  The term "corrosion expert" refers to a person, who by thorough knowledge of the physical sciences 
+and the principles of engineering and mathematics, acquired by professional education and related practical experience, 
+is qualified to engage in the practice of corrosion control of buried or submerged metallic structures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The corrosion expert must be accredited or certified by NACE International, as a CP-4 CP Specialist or be a NACE 
+International certified Corrosion Specialist or a registered professional engineer who has certification or licensing 
+that includes education and experience in CP of the type of CP system being installed.  The corrosion expert 
+must have not less than [three] [five] [_____] years of experience in the type of CP for buried or submerged 
+metallic structures under this contract.  Submit evidence of qualifications of the corrosion expert including 
+their name and qualifications certified in writing to the Contracting Officer or the Contracting Officer's Representative, 
+Technical Expert and Project Manager prior to the start of construction.  Certification must be submitted giving 
+the name of the firm, the number of years of experience, and a list of not less than five of the firm's installations, 
+three or more years old, that have been tested and found satisfactory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Services of Corrosion Expert</TTL><BRK/>
+<BRK/>
+<TXT>The corrosion expert must make a minimum of three visits to the project site.  The first of these visits will 
+include obtaining water/electrolyte resistivity data, acknowledging the type of tank coatings to be used and 
+reporting to the contractor the type of CP required (GACP or ICCP).  Once the submittals are approved and the 
+materials delivered, the corrosion expert will revisit the site to verify the materials meet submittal requirements, 
+ensure the contractor understands installation practices and that the contractor is capable and qualified to 
+complete the installation.</TXT><BRK/>
+<BRK/>
+<TXT>The "corrosion expert" will be available (but not necessarily be onsite the entire time) during the installation 
+of the CP system to answer questions, approve any changes or additions required during construction, or to provide 
+recommendations as required.  The third visit is to complete the training and demonstrations to applicable personnel 
+on proper testing and maintenance techniques and to complete testing the installed CP systems to ensure it has 
+been installed properly and meets adequate CP criteria.  An additional visit is required if the One-Year-Warranty-Period-Testing 
+is required.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Storage area for corrosion material will be designated by the Contracting Officer or the Contracting Officer's 
+Representative, Technical Expert and Project Manager.  If materials are not stored in a building, tarps or similar 
+protection must be used to protect materials from inclement weather.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PROJECT/SITE CONDITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Environmental Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The environmental requirements with which the contractor must comply 
+must be developed during the design process, included in the bidding documents, 
+and made a part of the contract.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Existing Conditions</TTL><BRK/>
+<BRK/>
+<TXT>Prior to start of any onsite construction activities, perform a <SUB>Preconstruction Survey</SUB> of the project site with 
+the Contracting Officer or the Contracting Officer's Representative, Technical Expert and Project Manager, and 
+take photographs showing existing environmental conditions in and adjacent to the site.  Submit a report for 
+the record.  Include in the report a plan describing the features requiring protection under the provisions of 
+the Contract Clauses, which are not specifically identified on the drawings as environmental features requiring 
+protection along with the condition of trees, shrubs and grassed areas immediately adjacent to the site of work 
+and adjacent to the contractor's assigned storage area and access route(s), as applicable.  The Contractor and 
+the Contracting Officer or the Contracting Officer's Representative, Technical Expert and Project Manager will 
+sign this survey report upon mutual agreement regarding its accuracy and completeness.  Protect those environmental 
+features included in the survey report and any indicated on the drawings, regardless of interference that their 
+preservation may cause to the work under the Contract.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment items that are supported by service organizations which are reasonably convenient to the equipment 
+installation in order to render satisfactory service to the equipment on a regular and emergency basis during 
+the warranty period of the contract.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Corrosion Control System Description</TTL><BRK/>
+<BRK/>
+<TXT>Coating Systems (CS) are a critical factor in performance of all CP systems.  All coatings, including coatings 
+in structure guide specifications and Green Seal (GS) coatings, must be compatible with the structure and the 
+CP system, and have high disbondment capabilities.  A high resistance to cathodic disbondment is critical for 
+long term service life of coatings on buried or submerged metallic structures under CP.  Due to the limited voltage 
+and current of galvanic anodes, a highly dielectric bonded coating is required to attain adequate protective 
+current distribution using galvanic CP systems.  For paints and coatings refer to Section <SRF>09 97 13.16</SRF> INTERIOR 
+COATING OF WELDED STEEL WATER TANKS.  For discontinuity (Holiday) testing of new protective coatings on conductive 
+substrates refer to <RID>NACE SP0188</RID>.  Discontinuity (Holiday) Testing of New Protective Coatings on Conductive Substrates.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Construction Design Requirements (CDR) for the interior of steel water tanks are found in the UFGS.  
+Section <SRF>33 16 15</SRF> WATER STORAGE STEEL TANKS <RID>NACE SP0196</RID> and <RID>NACE SP0388</RID>, External CP of On-Grade Carbon 
+Steel Tank Bottoms <RID>NACE SP0193</RID>.</OLI><BRK/></OLG>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Some state and local health agencies have listings of acceptable paint 
+materials to be used for the interior of potable water tanks and to be used 
+on the exterior of structures.  As an example, the State of California will 
+not allow vinyl paints to be applied due to air emission restrictions.  The 
+designer must contact the appropriate state and local authorities to determine 
+if the paint systems are acceptable.  If these systems are not acceptable, the 
+designer must determine the best acceptable system and revise this specification 
+accordingly.  However, any deviation from this specification and American Water 
+Works Association (AWWA} Standards must be submitted with justification to Civil 
+Emergency Management Program (CEMP-ET) for approval.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Any AC test voltage over 15 VAC must be mitigated.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification covers a CP system for metal surfaces against corrosion 
+by producing a continuous flow of direct current from impressed current or galvanic 
+anodes to the metal to be protected.  The anodes should be of sufficient size 
+and quantity to protect the submerged metal items for a specified number of 
+years before replacement.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide impressed current CP and protective coatings for the interior 
+submerged surfaces of potable water storage tanks, including bolted panel tanks 
+in accordance with NSF/ANSI/CAN 61 and UFC 3-570-01. Galvanic Anodes are not 
+allowed in potable water tanks, Reference: NSF/ANSI/CAN 61.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Construction Design Requirements (CDR) for the interior of steel water 
+tanks are found in the UFGS for water storage tanks Section <SRF>33 16 15</SRF> WATER STORAGE 
+STEEL TANKS and NACE SP0388, Impressed Current CP of Internal submerged Surfaces 
+of Steel Water Storage Tanks or NACE SP0196 Galvanic CP of Internal submerged 
+Surfaces of Steel Water Storage Tanks.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This UFGS is for internal CP of Submersed Surfaces of Steel Water Storage 
+Tanks. For the external CP of On-Grade Carbon Steel Tank Bottoms refer to UFGS 
+for impressed current or galvanic CP for buried or submerged metallic structures 
+and NACE SP0193.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Design Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information must be shown on the drawings: Dimensions of 
+tank, including riser (if tank is elevated), structural supports and overflow.  
+Locations of all anodes, reference electrodes, junction boxes, test boxes, rectifiers, 
+power connections, wire and conduit.  Installation details for anodes and rectifiers.  
+Electrical single-line diagrams, elevations, limiting dimensions, and equipment 
+ratings which are not covered in the specification.  Remote indicating or control 
+requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit [six] [_____] copies of detail drawings consisting of a complete list of equipment and material including 
+manufacturer's descriptive and technical literature, catalog cuts, <SUB>Contractor's modifications</SUB>, results of system 
+design calculations including water/electrolyte-resistivity, installation instructions and certified test data 
+showing location of anodes and stating the maximum recommended anode current output density.  Include in the 
+detail drawings complete wiring and schematic diagrams, permanent reference electrodes and bonding and any other 
+details required to demonstrate that the system has been coordinated and will function properly as a unit.  Reference 
+locations to two permanent facilities or mark points.  Provide [one] [_____] electronic [digital] [PDF] [_____] 
+copy and digital photos of the completed installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Summary of Services Required</TTL><BRK/>
+<BRK/>
+<TXT>Include the following scope of services:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>CP Installation System requirements,</OLI><BRK/>
+<BRK/>
+<OLI>System testing,</OLI><BRK/>
+<BRK/>
+<OLI>Training,</OLI><BRK/>
+<BRK/>
+<OLI>Operating and maintenance manual,</OLI><BRK/>
+<BRK/>
+<OLI>Coating and holiday testing.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Take potential test measurements on all permanent reference electrodes, witnessed by the Contracting Officer 
+or the Contracting Officer's Representative, Technical Expert and Project Manager.</TXT><BRK/>
+<BRK/>
+<TXT>Provide submittals identifying test locations on separate drawing, showing all metal to be protected and all 
+CP equipment.  Distinguish and identify test points equipment and protected metal.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Performance Requirements</TTL><BRK/>
+<BRK/>
+<TXT>The design must allow for synchronized interruption of all applied current.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Criteria of Cathodic Protection</TTL><BRK/>
+<BRK/>
+<TXT>The design must allow for synchronized interruption of all applied current.  Criteria for adequate CP must be 
+identified by the designer or the contractor's corrosion engineer and approved by the Government corrosion engineer.  
+The method of voltage drop consideration must also be identified by the contractor's corrosion engineer and approved 
+by the Government.  Use of the 100 mV shift criteria is not applicable to bi-metallic structures.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to applicable current NACE International Standard Practice NACE 
+SP0388 Impressed Current Cathodic Protection of Internal Submerged Surfaces 
+of Steel Water Storage Tanks or NACE International Standard Practice NACE SP0196 
+Galvanic Anode Cathodic Protection of Internal Submerged Surfaces of Steel Water 
+Storage Tanks to determine the appropriate criteria.  Other criteria may not 
+be applicable to this type of CP system(s) and structure being designed.  The 
+designer or the contractor's corrosion engineer may select the applicable criteria 
+with approval of the Government.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>The measurements for the native potential measurement must be made before the CP system is energized.  
+If CP has previously been applied, use the polarized potentials or the polarization decay potentials 
+to determine if adequate CP has been achieved.</OLI><BRK/>
+<BRK/>
+<OLI>Determination of the on and polarized (instant off) potentials must be made with the protective current 
+applied to the [structure] [tank] for a minimum of [2] [4] [7] [_____] [days].</OLI><BRK/>
+<BRK/>
+<OLI>The polarization decay (off) potentials must be made with the protective current off for a minimum of 
+[24] [48] [_____] hours.</OLI><BRK/>
+<BRK/>
+<OLI>Polarized (instant off) potentials and polarization decay potentials must be made with the reference 
+electrode at the same location.</OLI><BRK/>
+<BRK/>
+<OLI>The polarization decay will be the difference between the polarized potential and the polarization decay 
+(off) potential made after the interruption of protective current.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Maximum Potential</TTL><BRK/>
+<BRK/>
+<TXT>The polarized potential between a copper/copper sulfate reference electrode and the tank [riser pipe] at any 
+point must not be more negative than a negative 1.1 volts (with the protective current interrupted instantaneously 
+or modulated).  Do not use on potentials to determine maximum allowed potentials.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tanks Subject to Icing Conditions</TTL><BRK/>
+<BRK/>
+<TXT>Suspend anodes in a manner similar to that in non-icing climates, except<BRK/>
+provisions must be made to prevent the anodes and suspending cables from<BRK/>
+being damaged by freezing or falling ice or by suspended floating flexible anode rings from the tank walls.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></SPT><SPT><TTL>EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Remote Monitoring</TTL><BRK/>
+<BRK/>
+<TXT><SUB>Remote monitoring equipment</SUB> must be designed, manufactured and procured specifically for CP use and must be provided 
+as per design and drawings to monitor [potential (requires permanent reference electrode)] [bond(s)] [interference 
+bond] [test station(s) shunts] [_____] and must match or be compatible with previously installed remote monitoring 
+equipment in use at the installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Corrosion Rate Monitoring</TTL><BRK/>
+<BRK/>
+<TXT>Corrosion probes must be designed, manufactured and procured specifically for the application and matched to 
+the structure being protected. Manufacturer must match or be compatible with previously installed rate monitoring 
+equipment in use at the installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Rectifiers</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Below about 500 volt-amperes of dc rating output, single phase selenium 
+rectifiers cost less to acquire and operate than silicon rectifiers.  Above 
+1000 volt-amperes silicon rectifiers are more economical for both single phase 
+and three phase.  Silicon rectifiers are more economical to repair.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Air Cooled Enclosure</TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA ICS 6</RID> Type [3] [3R] [3X] [4X] Air Cooled enclosure suitable for [wall] [post] [pad] mounting.  Enclosures 
+must be of <MET>3.1 mm</MET><ENG> (11 gauge)</ENG> steel or heavier.  Enclosure must include front hinged door with [padlock hasp] 
+[key lock, provide [three] [_____] keys.] [locks keyed alike.] [left side door] [right side door] fit with screened 
+openings to provide for cooling by natural convection.  Provide holes, conduit knockouts and threaded hubs of 
+sufficient size and location.  The cabinet and mounting support must be [painted][hot-dipped galvanized] [aluminum] 
+[stainless] steel [according to the manufacturer's standards].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Oil Cooled Enclosure</TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA ICS 6</RID> Type 11-Oil Immersed Enclosure, suitable for pad mounting.  Enclosure must include top hinged door 
+with [padlock hasp] [key lock, provide [three] [_____] keys.] [locks keyed alike.] Enclosures must be of <MET>3.1 
+mm</MET><ENG> 11 gauge</ENG> steel or heavier, with an accessible drain plug.  The oil level must be clearly marked.  The lid 
+must be hinged and have quick release clamps to secure it in the closed position.  A stop must limit the swing 
+of the lid when opened.  A compressible, oil resistant, positive sealing gasket must be provided.  The gasket 
+must return to its original shape upon release of lid pressure.  The gasket attached to the tank or lid and joints 
+must be free of gaps.  Base mounting using<MET> 102 mm</MET><ENG> 4 inch</ENG> high channels provided.  Conduits entering the enclosure 
+must be internally sealed and enter or exit above the oil fill line.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Explosion Proof Enclosure</TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA ICS 6</RID> Type 7 Explosion Proof Enclosure suitable for pad mounting.  Enclosure must include top hinged lid 
+with [padlock hasp] [key lock, provide [three] [_____] keys.] [locks keyed alike.]  Enclosures must be of <MET>3.1 
+mm</MET><ENG> 11 gauge</ENG> steel or heavier, with an accessible drain plug.  The oil level must be clearly marked.  The lid 
+must have quick release clamps to secure it in the closed position.  A stop must limit the swing of the lid when 
+opened.  A compressible, oil resistant, positive sealing gasket must be provided.  The gasket must return to 
+its original shape upon release of lid pressure.  The gasket attached to the tank or lid and joints must be free 
+of gaps.  Base mounting using <MET>102 mm</MET><ENG> 4 inch</ENG> high channels provided. Conduits entering the enclosure must be internally 
+sealed and enter or exit above the oil fill line.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cabinet Paint System</TTL><BRK/>
+<BRK/>
+<TXT>[The cabinet and mounting support must be [painted] [hot dipped galvanized] [aluminum] [stainless steel] with 
+the manufacturer's standard painting system.]  [The mounting support for the fiberglass cabinet must be [painted] 
+[hot dipped galvanized] [aluminum] [stainless steel] with the manufacturer's standard painting system.]</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Below about 500 volt-amperes of dc rating output, single phase selenium 
+rectifiers cost less to acquire and operate than silicon rectifiers.  Above 
+1000 volt-amperes silicon rectifiers are more economical for both single phase 
+and three phase.  Silicon rectifiers are more economical to repair.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Transformers</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 506</RID> and <RID>NEMA ST 1</RID>, as applicable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electrical Ratings</TTL><BRK/>
+<BRK/>
+<TXT>Electrical ratings as follows:  Input voltage at 60 Hz:  [[115] [208] [230] volts single phase] [[208] [230] 
+[460] volts three phase].</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Output voltage, dc:  [9] [12] [18] [24] [_____] volts [as indicated].</OLI><BRK/>
+<BRK/>
+<OLI>Output current, dc:  [8] [16] [24] [32] [_____] amperes [as indicated].</OLI><BRK/></OLG>
+<BRK/>
+<TXT>The rectifier must be capable of supplying continuous full rated output at an ambient temperature of<MET> 44 degrees 
+C</MET><ENG> 112 degrees F</ENG> in full sunlight with expected life of 10 years minimum.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rectifying Elements</TTL><BRK/>
+<BRK/>
+<TXT>Provide silicon diode rectifying elements, connected in such manner as to provide full-wave rectification.[  
+Protect silicon diodes with selenium cells or varistors against overvoltage surges and by current limiting devices 
+against overcurrent surges.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Wiring and Schematic Diagram</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a complete wiring and schematic diagram of the power unit showing both the ac and the dc connections 
+to anodes on the inside of the cabinet door.  Show and label components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Overload and Short Circuit Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>UL 489</RID>, single-pole, flush-mounted molded case circuit breaker, [magnetic] [thermal-magnetic] type, in 
+the primary circuit of the rectifier supply transformer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Circuit Breaker(s)</TTL><BRK/>
+<BRK/>
+<TXT>A [single] [double] [three]-pole, flush-mounted, fully magnetic, properly rated non-terminal type circuit breaker 
+must be installed in the primary circuit of the rectifier supply transformer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fuses</TTL><BRK/>
+<BRK/>
+<TXT>Cartridge-type fuses conforming to <RID>NEMA BI 50009</RID>.  Provide suitable fuse holders in each leg of the D.C. circuit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT>Protect silicon diodes by use of AC and DC lightning arresters or metal oxide varistors against overvoltage surges 
+and by current-limiting device against overcurrent surges.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DC Output Control</TTL><BRK/>
+<BRK/>
+<TXT>Provide adjustable DC output voltage by [transformer taps] [automatic controls].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Transformer Taps</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A minimum of five coarse and five fine taps is recommended to provide 
+sufficient voltage adjustment.  Variacs must not be used where subjected to 
+corrosive or marine air atmospheres.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Transformer taps, [5] [_____] coarse, [5] [_____] fine.]  [Variac.] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Automatic Controls</TTL><BRK/>
+<BRK/>
+<TXT>Provide a control system capable of maintaining a preselected tank-to-water potential, within plus or minus 0.025 
+volt regardless of changes in water chemistry, temperature, or water level in the tank.  [Provide separate dc 
+output circuits, means of adjustment, reference electrodes, and metering for the tank bowl and riser pipe.]  
+Make provisions for readily changing the range and limits of the operating potential.  Refer to <RID>AWWA D104</RID> Automatically 
+Controlled Impressed-Current Cathodic Protection for the Interior Submerged Surfaces of Steel Water Storage Tanks.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Meters</TTL><BRK/>
+<BRK/>
+<TXT>Provide separate panel voltmeter and ammeter, not less than<MET> 63.5 mm</MET><ENG> 2 1/2 inch</ENG> [round] [rectangular]  2 percent 
+full scale accuracy at<MET> 30 degrees C</MET><ENG> 80 degrees F</ENG>, temperature stability above and below<MET> 30 degrees C</MET><ENG> 80 degrees 
+F</ENG> of at least 1 percent per<MET> 5 degrees C</MET><ENG> 10 degrees F</ENG>.  Provide toggle switch for each meter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding Provisions</TTL><BRK/>
+<BRK/>
+<TXT>Grounding provisions must [be as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.] [comply with <RID>NFPA 70</RID>
+ and <RID>UL 467</RID> including a ground terminal in the cabinet.]  The grounding conductor from the terminal to the earth 
+grounding system must be solid or stranded copper not smaller than No. 6 AWG.  Provide an earth grounding system 
+consisting of one or more rods.  Ground rods must be [copper-clad steel conforming to <RID>UL 467</RID>] [zinc-coated steel 
+conforming to <RID>IEEE C135.30</RID>] [solid stainless steel] not less than<MET> [16] [19] mm</MET><ENG> [5/8] [3/4] inch</ENG> in diameter by<MET>
+ [2.4] [3.1] m</MET><ENG> [8] [10] feet</ENG> in length.  Drive rods full length into the earth.  Sectional type rods may be used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Resistance to Ground</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remove this paragraph if not required in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Measure the resistance to ground using the fall-of-potential method described in <RID>IEEE 81</RID>.  The maximum resistance 
+of driven ground must not exceed 25 ohms under normally dry conditions.  If this resistance cannot be obtained 
+with a single rod, [_____] additional rods not less than<MET> 1.8 m</MET><ENG> 6 feet</ENG> on centers, or if sectional type rods are 
+used, [_____] additional couple sections and drive with the first rod.  In high-ground-resistance, use UL listed 
+chemically charged ground rods.  If the resultant resistance exceeds 25 ohms measured not less than 48 hours 
+after rainfall, notify the Contracting Officer or the Contracting Officer's Representative, Technical Expert 
+and Project Manager immediately.  Exothermically weld all connections below grade.  Exothermically weld connections 
+above grade or use <RID>UL 467</RID> approved connectors.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Exothermic welding is not recommended for splicing since it is a higher 
+resistance splice that also degrades the conductivity of the conductors. The 
+most recent mechanical or hydraulic-crimp splice results in no degradation of 
+the conductivity of the conductors and is not dependent on the ambient conditions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Efficiency</TTL><BRK/>
+<BRK/>
+<TXT>Overall efficiency of [65 percent] [90 percent] [_____] minimum when operated at full output.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Optional Rectifier Special Required Features</TTL><BRK/>
+<OLG>[<BRK/>
+<OLI LEVEL="2">An efficiency filter (choke) (may be required to improve the rectifiers efficiency).[  Capacitor] 
+(A capacitor may also be required to be used in conjunction with the filter to further improve 
+the efficiency and minimize noise.)</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Convenience Outlet mounted on Faceplate</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Safety shield panel covering Taps or all energized conductors on faceplate</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Stainless Steel Perforated screens on Air Cooled Rectifiers</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Heavy duty Draw-pull Stainless steel cabinet latch</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Separate Slide-out equipment racks for Transformer and Stack</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Additional [_____]coarse or [_____] fine voltage control link bar taps</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Quick-change, heavy-duty knobs for changing tap link bars Minimum 5/16" diameter</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Soldered tap changing studs 3/16" Grade XX</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Phenolic front panel</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Nickel Plated and double-nutted or soldered connections</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Terminal block for AC input wires</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Terminal block for Remote Monitoring Connections</OLI><BRK/>
+<BRK/>
+][<OLI LEVEL="2">Primary tap change panel for dual input voltages (Single Phase models only)</OLI><BRK/>
+]</OLG><BRK/></SPT>
+<SPT><TTL>Potable Water Storage Tanks</TTL><BRK/>
+<BRK/>
+<TXT>Provide CP and protective coatings for the interior submerged surfaces of potable water storage tanks, including 
+bolted panel tanks in accordance with <RID>NSF/ANSI/CAN 61</RID>.  Include requirements in the contract specifying that 
+the contractor is responsible for providing an interior coating system and ensuring that the coating system is 
+compatible with an impressed current CP (ICCP) system, if specified, and <RID>NSF/ANSI/CAN 61</RID>.  For bolted panel storage 
+tanks, require the contractor to ensure all panels of a bolted panel storage tank are electrically continuous.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fire Protection Water Storage Tanks</TTL><BRK/>
+<BRK/>
+<TXT>Fire protection water storage tanks are mission critical facilities and must be properly protected against corrosion.  
+Provide an ICCP system for the interior submerged surfaces of all fire protection water storage tanks, including 
+bolted panel tanks.  When the backfill beneath an on-grade tank is corrosive, provide an ICCP system for the 
+exterior bottom of the on-grade tank.  Refer to UFGS Section <SRF>26 42 17</SRF> IMPRESSED CURRENT CATHODIC PROTECTION (ICCP) 
+SYSTEM, NACE International SP0193 External Cathodic Protection of On-Grade Carbon Steel Storage Tank Bottoms.  
+Include requirements in the contract specifying that the contractor is responsible for providing an interior 
+coating system and ensuring that the coating system is compatible with the ICCP system.  For bolted panel storage 
+tanks, require the contractor to ensure all panels of a bolted panel storage tank are electrically continuous.</TXT><BRK/>
+<BRK/>
+<TXT>For Navy projects, allow ICCP or galvanic anode (GCP) systems for fire protection water storage tanks.  See above 
+references and UFGS Section <SRF>26 42 13</SRF> GALVANIC (SACRIFICIAL) ANODE CATHODIC PROTECTION (GACP) SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>COMPONENTS</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Junction Box Enclosures (Access and Physical Protection)</TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA ICS 6</RID>, Type [3R] [4X] [_____] enclosure with [clamped cover] [Type [304] [316] stainless steel hinges and 
+[clamped] [latched] cover] [and padlocked hasp].  Enclosure must be of [galvanized steel] [painted steel] [aluminum] 
+[fiberglass] [non-metallic] construction with terminal board.  Knockout for conduit must be the size and location 
+as per design drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Shunts</SUB> for Junction Boxes</TTL><BRK/>
+<BRK/>
+<TXT>[<RID>MIL-I-1361</RID>.  ][0.1] [0.01] [_____] ohm, [2] [8] ampere, accuracy plus or<BRK/>
+minus one percent, polycarbonate circuit board type, color coded for value recognition [red for 0.1 ohm shunt] 
+[yellow for 0.01 ohm shunt] with Nickel plated brass posts and standard<MET> [64] 6.35 mm</MET><ENG> 0.25 inch</ENG> holes on<MET> 2.54 
+cm</MET><ENG> 1 inch</ENG> centers to fit test stations and terminal boards <MET>0.01 ohm</MET><ENG> 6 ampere</ENG>, accuracy plus or minus one percent, 
+manganin (Trade Mark/alloy).</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Provide nameplate in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM and <RID>ASTM D709</RID>.  Provide laminated 
+plastic nameplates for each enclosure as specified or as indicated on the drawings.  Each nameplate inscription 
+must identify the function.  Nameplates will be melamine plastic, <MET>3 mm</MET> <ENG>0.125 inch</ENG> thick, white with [black] [_____] 
+center core.  Surface will be matte finish.  Corners will be square.  Accurately align lettering and engrave 
+into the core.  Minimum size of nameplates must be<MET> 635 mm</MET><ENG> 25 inch</ENG> by<MET> 65 mm</MET><ENG> 2.5 inch</ENG>es.  Lettering must be a minimum 
+of<MET> 6.35 mm</MET><ENG> 0.25 inch</ENG> high normal block style.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Terminal Boards</TTL><BRK/>
+<BRK/>
+<TXT>Provide terminal boards for <SUB>anode junction boxes</SUB>, bonding boxes, and test stations made of phenolic plastic<MET> [3] 
+[6] [_____] mm</MET><ENG> [1/8] [1/4] [_____] inch</ENG> thick with dimensions as indicated.  Insulated terminal boards must have 
+the required number of terminals (one terminal required for each conductor).  Install solderless copper lugs 
+and copper buss bars, shunts, and variable resistors on the terminal board as indicated.  Test station terminal 
+connections will be permanently tagged to identify each termination of conductors (e.g. identify the conductors 
+connected to the protected structure, anodes, reference electrodes and coupons).</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Anodes</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The actual compositions required must be determined to provide adequate 
+and economical service. The anode material composition must be submitted for 
+approval in accordance with "Submittals Procedures." Any deviation from chemical 
+compositions listed must be approved by the government.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose from anodes listed below.  The chemical composition listed are 
+examples only.  The actual compositions required must be determined to provide 
+adequate and economical service, and conform to the standards established by 
+NACE.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Dimensions and Weights</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following dimensions and weights of anodes are not all inclusive, 
+additional sizes not included in the following tables may be available from 
+various manufacturers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Bare anode weight<MET> [4.1] [7.72] [9.7] [14.53] [_____] kg</MET><ENG> [9] [17] [20] [32] [_____] pounds</ENG> not including core.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High-Silicon Chromium Bearing Cast Iron</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  High-silicon cast iron anodes are rugged, long lasting, and commonly 
+used in icing and non-icing climates.  They are generally classified as relatively 
+non-sacrificial having a consumption rate between<MET> 227 to 454 grams</MET><ENG> 0.5 to 1.0 
+pounds</ENG> per ampere-year in most fresh waters.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM A518/A518M</RID>.  Provide cast iron anodes with the following characteristics:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Electrical resistivity:  72 micro-ohm-centimeter at<MET> minus 6.6 degrees C</MET><ENG> 20 degrees F</ENG> (maximum).</OLI><BRK/>
+<BRK/>
+<OLI>Physical properties (nominal):</OLI><BRK/>
+<BRK/>
+<TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="5">
+      <COL AUTOWIDTH="0" WIDTH="133.50"/>
+      <COL AUTOWIDTH="0" WIDTH="334.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Tensile strength</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET> 103.4 MPa</MET><ENG> 15,000 psi</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Compressive strength</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET> 689.4 MPa</MET><ENG> 100,000 psi</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Brinell hardness</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">520</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Density</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">7.0 grams per cubic centimeter</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Melting point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET> 1260 degrees C</MET><ENG> 2300 degrees F</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<OLI>Coefficient of expansion from<MET> zero to 100 degrees C</MET><ENG> 32 to 212 degrees F</ENG>: <MET> 0.132 micrometers per degree 
+C</MET><ENG> 0.733 micrometers per degree F</ENG>.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Chemical Composition (Nominal)</TTL><BRK/>
+<TXT><TAB WIDTH="59">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="100.50"/>
+      <COL AUTOWIDTH="0" WIDTH="168.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Element</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Percent by Weight Grade 2</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Silicon</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">14.20-14.75</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Manganese</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.50 Max.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Carbon</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.75-1.15</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Chromium</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3.25-5.00</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="38.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Iron</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Balance</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Electrical Resistivity</TTL><BRK/>
+<BRK/>
+<TXT>Seventy-two microhm-centimeter at<MET> minus 7 degrees C</MET><ENG> 20 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Physical Properties (Nominal)</TTL><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="227.25"/>
+      <COL AUTOWIDTH="0" WIDTH="229.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Tensile strength</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>103.4 MPa</MET> <ENG>15,000 psi</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Compressive strength</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>689.5 MPa</MET> <ENG>100,000 psi</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Brinell hardness</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">520</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Density</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">7.0 grams per cubic centimeter</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Melting Point</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>1260 degrees C</MET> <ENG>2300 degrees F</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="42.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Coefficient of expansion from<MET> 0 to 100 degrees C</MET><ENG> 32 to 212 degrees F</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>132 nanometer per degree C</MET> <ENG>0.733 micrometer per degree F</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL><SUB>Anode Connecting Cables</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Anodes must have connecting cables installed at the factory.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Aluminum Anodes</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Aluminum anodes are used in cases where annual or frequent replacement 
+is required due to ice damage, and routine cleaning of the tank makes it possible 
+to remove any expended or broken pieces of anode stock from the tank before 
+they accumulate.  Also, see the technical note for "Precious Metal Anodes" regarding 
+alternative anode systems for icing conditions.  The designer must consider 
+system maintainability impacts when selecting the anode system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide aluminum anodes with composition and size conforming to NACE mandated requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Precious Metal Anodes</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  At installations where icing conditions exist and the scaling index of 
+water is less than 20,000 (i.e., low hardness water), the designer must consider 
+using precious metal anodes, such as platinized niobium, platinized titanium, 
+or mixed metal oxide for CP systems.  The consumption rate of precious metal 
+anodes is less than that of other relatively non-sacrificial anodes.  However, 
+precious metal anodes are more vulnerable to damage and loss particularly during 
+cleaning and reconditioning of the tank.</NPR><BRK/>
+<BRK/>
+<NPR>Selection of the configuration must be left to the designer of the system.  
+Long, continuous wire from lengths of precious metal anodes may have an attenuating 
+effect.  This can be overcome by using an anode header cable connected to lengths 
+of precious metal anodes at a common junction box.  Such precious metal anode 
+assemblies must be assembled with factory sealed and tested electrical connections 
+to the anodes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [precious metal anodes] [_____], [solid] [composite] [wire] [rod] [expanded mesh] [ribbon] in form.  
+Anode core must be [copper] [niobium] [titanium] with [platinum] [mixed metal oxide] [_____] coating with thickness 
+of [_____]<MET> [millimeters]</MET><ENG> [mils]</ENG>.[  Precious metal anode assemblies must have factory sealed and tested electrical 
+connections to the anodes.]  Size and length as indicated by engineering design drawings.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  mils is an abbreviated dimension in inches; millimeters is a metric dimension.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Mixed Metal Oxide (MMO) Anodes</TTL><BRK/>
+<BRK/>
+<TXT>Titanium Wire anodes with a mixed metal oxide crystalline electrically conductive coating with [<MET>1.5 mm</MET> <ENG>0.062 
+inches</ENG>] [<MET>3.0 mm</MET> <ENG>0.118 inches</ENG>] diameter.</TXT><BRK/>
+<HL4><TAB HEADERROWS="2" WIDTH="99">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="10" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="44.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING"><HL3>Nominal<BRK/>Wire Size</HL3></DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL3>Diameter Tolerance</HL3></DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><BRK/><HL3>Titanium</HL3></DTA>
+         </CEL>
+         <CEL INDEX="7" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL3>Active Surface Area</HL3></DTA>
+         </CEL>
+         <CEL INDEX="9" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><BRK/><HL3>Weight</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="46.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><BRK/><HL3>mm</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><BRK/><HL3>inches</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><BRK/><HL3>mm</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><BRK/><HL3>inches</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>Percent by Weight</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>Percent by Volume</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>m<SPS>2</SPS>/m of Length</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>ft<SPS>2</SPS>/ft of Length</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><BRK/><HL3>g/m</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><BRK/><HL3>lbs/ft</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>1.5</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><ENG>0.062</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>+0.062 -0.00</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>+0.007 -0.00</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">36.1</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">52.7</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.0051</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.017</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>13.7</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.009</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>3.0</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><ENG>0.118</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>+0.062 -0.00</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>+0.010 -0.00</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">17.1</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">29.0</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.010</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.033</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.042</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.042</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></HL4><BRK/>
+<TXT>Titanium Rod anodes with a mixed metal oxide crystalline electrically conductive coating with [<MET>3.175 mm</MET> <ENG>0.125 
+inches STD</ENG>] [<MET>3.175 mm</MET> <ENG>0.125 inches XL</ENG>] [<MET>6.35 mm</MET> <ENG>0.25 inches STD</ENG>] [<MET>13.97 mm</MET> <ENG>0.55 inches</ENG>] [<MET>19.05 mm</MET> <ENG>0.75 inches 
+STD</ENG>] diameter and [<MET>60.96 mm</MET> <ENG>24 inches XL</ENG>] [<MET>121.92 mm</MET> <ENG>48 inches XL</ENG>] length for use in [freshwater or brackish 
+water] [seawater].  STD is standard MMO coating thickness, XL is extended life (greater MMO coating thickness).  
+Titanium tubular anodes with a mixed metal oxide crystalline electrically conductive coating with [___] diameter, 
+[___] length.</TXT><BRK/>
+<TAB HEADERROWS="2">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="9" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="63.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="51.75"/>
+      <COL AUTOWIDTH="0" WIDTH="51.75"/>
+      <COL AUTOWIDTH="0" WIDTH="51.75"/>
+      <COL AUTOWIDTH="0" WIDTH="51.75"/>
+      <COL AUTOWIDTH="0" WIDTH="51.75"/>
+      <COL AUTOWIDTH="0" WIDTH="51.75"/>
+      <COL AUTOWIDTH="0" WIDTH="51.75"/>
+      <COL AUTOWIDTH="0" WIDTH="42.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL3>Anodes</HL3></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING"><HL3>Diameter</HL3></DTA>
+         </CEL>
+         <CEL INDEX="4" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL3>Length</HL3></DTA>
+         </CEL>
+         <CEL INDEX="6" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL3>Surface Area</HL3></DTA>
+         </CEL>
+         <CEL INDEX="8" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL3>Weight</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL3>mm</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL3>cm</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>inches</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>cm</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>inches</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>m<SPS>2</SPS></HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>ft<SPS>2</SPS></HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>kg</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>lbs</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>1.6 x 100</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>1.6</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.063</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>100</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>39.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.050</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.78</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.21</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.47</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>2.5 x 50</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>2.5</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.00</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>50</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>19.7</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.039</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.42</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.18</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.40</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>2.5 x 100</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>2.5</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.00</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>100</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>39.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.079</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.84</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.35</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.77</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>3.1 x 76</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>3.1</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.22</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>76</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>30.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.076</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.82</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.32</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>0.70</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>3.1 x 122</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>3.1</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.22</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>122</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>48.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.121</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.30</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>0.50</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.10</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Wire, rod or tubular MMO anodes may be used underground with selected 
+backfill, in deep anode beds, and are available in cannisters with selected 
+backfill for use underground.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Platinized Niobium [Titanium] Anode</TTL><BRK/>
+<BRK/>
+<TXT>Standard platinized niobium anode must be [20 percent][40 percent] niobium by cross-sectional area with a copper 
+core and [single][double] platinum thickness.  The following table shows examples of platinized niobium anodes. 
+Other platinized niobium anodes and platinized titanium may be specified.</TXT><BRK/>
+<LST><TAB HEADERROWS="3">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="5" ROWCOUNT="16">
+      <COL AUTOWIDTH="0" WIDTH="81.75"/>
+      <COL AUTOWIDTH="0" WIDTH="108.00"/>
+      <COL AUTOWIDTH="0" WIDTH="81.75"/>
+      <COL AUTOWIDTH="0" WIDTH="81.75"/>
+      <COL AUTOWIDTH="0" WIDTH="78.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL MERGEACROSS="4" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>20 Percent Niobium</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL3>Diameter</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL3>Niobium Thickness</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL3>Resistance</HL3></DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>Platinum Thickness</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL3>inches</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL3>inches</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL3>micro-ohm/ft</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL3>u-in.</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><HL3>u-in.</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.75</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.038</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">22</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">300</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">600</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.5</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.025</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">50</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">400</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.375</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.019</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">89</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">150</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">300</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.25</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.013</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">201</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.188</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.009</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">356</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">75</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><ENG>150</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.125</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.006</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">806</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">50</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL MERGEACROSS="4" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>40 Percent Niobium</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.375</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.038</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">113</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">150</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">300</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.25</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.025</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">256</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.188</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.019</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">453</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">75</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">150</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.125</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.013</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1025</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">50</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.093</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.01</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1822</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">38</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">75</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="99.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.063</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.007</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4102</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">25</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">50</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/></SPT>
+<SPT><TTL>Anode Life Test</TTL><BRK/>
+<BRK/>
+<TXT>The anode wire material must sustain current densities of <MET>100 amperes per square meter</MET><ENG> 9.29 amperes per square 
+feet</ENG> in an oxygen-generating electrolyte for 20 years.  The manufacturer must certify that a representative sample 
+taken from the same lot used to construct the anode, has been tested and meets the following criteria.  The test 
+cell must sustain a current density of <MET>10,000 amperes per square meter</MET><ENG> 9.29 amperes per square feet</ENG> in a 15-weight 
+percent sulfuric acid electrolyte at<MET> 66 degrees C</MET><ENG> 150 degrees F</ENG> without an increase in anode to cathode potential 
+of more than 1 volt.  The cell containing the anode is to be powered with a constant current power supply for 
+the 30-day test period.  The representative sample must include a minimum of<MET> 125 mm</MET><ENG> 5 inch</ENG> in length taken from 
+the lot of wire that is to be used for the anode.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Galvanic Anodes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Magnesium</TTL><BRK/>
+<BRK/>
+<TXT>[<RID>ASTM B843</RID>] Chemical composition as mandated by NACE.</TXT><BRK/>
+<BRK/>
+<TXT>Bare anode weight: <MET> [7.71] [9.07] [14.51] [_____] kg</MET><ENG> [17] [20] [32] [_____] pounds</ENG> [not including core].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Zinc</TTL><BRK/>
+<BRK/>
+<TXT>[<RID>ASTM B418</RID>, Type [I] [II].]  [<RID>ASTM F1182</RID>.]  [<RID>MIL-A-18001</RID>] Bare anode weight: <MET> [2.2] [2.27] [6.8] [13.61] [_____] 
+kg</MET><ENG> [5] [15] [30] [_____] pounds</ENG> [not including core].</TXT><BRK/>
+<TAB HEADERROWS="3" WIDTH="84">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="8" ROWCOUNT="12">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="48.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="48.75"/>
+      <COL AUTOWIDTH="0" WIDTH="48.00"/>
+      <COL AUTOWIDTH="0" WIDTH="52.50"/>
+      <COL AUTOWIDTH="0" WIDTH="48.00"/>
+      <COL AUTOWIDTH="0" WIDTH="48.00"/>
+      <COL AUTOWIDTH="0" WIDTH="46.50"/>
+      <COL AUTOWIDTH="0" WIDTH="52.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="43.50">
+         <CEL MERGEACROSS="7" STYLEID="s51">
+<DTA TYPE="STRING"><HL3><BRK/>Typical Zinc Bare Anode Sizes and Packaged Weight</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="31.50">
+         <CEL MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL3><BRK/>Bare Weight</HL3></DTA>
+         </CEL>
+         <CEL INDEX="3" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL3><BRK/>Width</HL3></DTA>
+         </CEL>
+         <CEL INDEX="5" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL3><BRK/>Height</HL3></DTA>
+         </CEL>
+         <CEL INDEX="7" MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING"><HL3><BRK/>Length</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL3>kg</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><HL3>pounds</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>mm</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>inches</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>mm</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>inches</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>mm</HL3></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><HL3>inches</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>2.3</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><ENG>5</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>36</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>36</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>254</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>10</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>5.4</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><ENG>12</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>36</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>36</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>610</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>24</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>6.8</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><ENG>15</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>36</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>36</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>762</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>30</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>6.8</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><ENG>15</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>51</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>2.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>51</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>2.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>381</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>15</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>8.2</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><ENG>18</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>36</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>36</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>914</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>36</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>13.6</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><ENG>30</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>36</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>36</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>1.4</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>1524</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>60</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>13.6</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><ENG>30</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>51</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>2.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>51</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>2.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>762</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>30</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="19.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><MET>20.4</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING"><ENG>45</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>51</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>2.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>51</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>2.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>1143</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>45</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.75">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>27.2</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>60</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>51</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>2.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>51</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>2.0</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><MET>1524</MET></DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING"><ENG>60</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT><SPT><TTL>Anode Wires and Cable</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Anode Connecting Wire</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Any pinhole, cut, scratch or other damage to the anode cable exposing 
+bare copper to the electrolyte will result in early failure of the CP system.  
+For this reason, special, extra heavy insulation is used on anode cable.  While 
+it is often expedient to use the same type wire for the cathodic (negative) 
+cable in order to avoid a mix-up in the field, the cathode cable is not subject 
+to anodic failure and lesser insulation can be used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Anode connecting wire must be No. [8] [_____] AWG stranded copper wire with type CP High Molecular Weight Polyethylene 
+(HMWP) insulation, <MET>2.8 mm</MET><ENG> 7/64 inch</ENG> thick, 600 volt rating.  Cable-to-anode contact resistance must be 0.003 
+ohms maximum.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anode Header Cable</TTL><BRK/>
+<BRK/>
+<TXT>Cable for anode header and distribution must be No. [_____] AWG stranded copper wire with type [CP HMWP, <MET>2.8 
+mm</MET><ENG> 7/64 inch</ENG> thick insulation] [HMWPE protective jacketed cable with a fluoropolymer inner or primary insulation], 
+600-volt rating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Polyethylene Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Polyethylene insulation must comply with the requirements of <RID>ASTM D1248</RID> and of the following types, classes, 
+and grades:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HMWP</TTL><BRK/>
+<BRK/>
+<TXT>HMWP must be Type I, Class C, Grade E5.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Density Polyethylene (HDPE)</TTL><BRK/>
+<BRK/>
+<TXT>HDPE must be Type III, Class C, Grade E3.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Attachment of Anode Lead Wire</TTL><BRK/>
+<BRK/>
+<TXT>Install anode lead wires at factory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>End-Connected Anode</TTL><BRK/>
+<BRK/>
+<TXT>[Drill] [Cast] a recess<MET> [150] [_____] mm</MET><ENG> [6] [_____] inches</ENG> deep in one end of the anode.  Attach the lead wire 
+to the anode with an anchor device.  Not more than<MET> 10 mm</MET><ENG> 1/2 inch</ENG> of bare wire must protrude from the anchor 
+device.  Attachment must withstand a<MET> 1446 Newton</MET><ENG> 325 pound</ENG> pull without loosening the wire or anchor device.  
+Fill the recess with an epoxy sealing compound [, leaving sufficient space for a plug].  [Provide non-metallic 
+plug flush with the anode end surface.]  [Install a heat shrinkable anode cap over the attachment. Cap must extend 
+not less than<MET> 65 mm</MET><ENG> 2 1/2 inches</ENG> on the lead wire and<MET> 75 mm</MET><ENG> 3 inches</ENG> on the anode.]  Cable-to-anode contact resistance 
+must not exceed 0.02 ohms.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Center-Connected Anode</TTL><BRK/>
+<BRK/>
+<TXT>Attach the lead wire to the center of the anode with an anchor device suitably fastened to the wire.  Not more 
+than<MET> 20 mm</MET><ENG> one inch</ENG> of bare wire must protrude from the anchor device.  Encapsulate [each side of] the connection 
+point with [a minimum of<MET> 152 mm</MET><ENG> 6 inches</ENG> [_____] of] high voltage insulating compound mastic and<MET> 102 mm</MET><ENG> 4 inches</ENG>
+ [_____] of epoxy resin.  Attachment must withstand<MET> [4000] [6675] [_____] N</MET><ENG> [900] [1500] [_____] pounds</ENG> pull 
+without loosening the wire or anchor device.  Provide a non-metallic [plug flush with the anode end] [end cap] 
+to prevent chaffing of the anode lead wire.  Cable-to-anode contact resistance must not exceed 0.02 ohms.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mixed-Metal-Oxide-Anode Lead Wires</TTL><BRK/>
+<BRK/>
+<TXT>[[Solidly crimp] [and solder] the connection between the anode rod or ribbon and the lead wire. Seal the connection 
+[with two layers of half lapped mastic tape covered with a heat shrinkable sleeve] [in cast epoxy].] [Tin and 
+anneal the copper wire and hydraulically swage the tubular anode onto copper bushings in contact with the wire.  
+Place a<MET> 28 mm</MET><ENG> 1 1/8 inch</ENG> copper sleeve, inner diameter slightly larger than the tubular anode outer diameter, 
+over the tube prior to swaging.] Cable to anode contact resistance must not exceed 0.02 ohms.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Permanent Reference Electrodes</SUB></TTL><BRK/>
+<BRK/>
+<TXT><SUB>Permanent reference electrodes</SUB> must be [copper/copper-sulfate] [silver silver-chloride] [zinc] [Hydrocarbon-Proof 
+Palladium (Pd/PdCl<SBS>2</SBS>)] specifically manufactured for submersible use, <MET> [32] [_____] mm</MET><ENG> [1 1/4] [_____] inch</ENG> diameter, 
+by<MET> [203] [255] [_____] mm</MET><ENG> [8] [10] [_____] inches</ENG> long, [plastic] [_____] tube with a minimum surface sensing 
+area of [_____] <MET>[_____] square centimeters</MET><ENG>[_____] square inches</ENG>.  Must never need recharging, maintenance, or 
+recalibration.  Must have impregnated membrane which keeps electrode electrolytes from drying out or getting 
+the reference electrode electrolyte contaminated.  Must have ion trap to prevent reference electrode damage from 
+hydrogen sulfide or excess chloride ions.  Provide electrodes with No. [10] [12] [_____] AWG, Rubber Heat (resistant) 
+Wire (RHW) [RHW] Thermoplastic Heat and Water-resistant Nylon-coated (THHN) [THHN] [_____] cable of sufficient 
+length to extend to the [rectifier] [junction box] without splicing.  No splices are allowed below the high-water 
+level.  Reference electrodes will have a minimum 20-year life, stability of plus or minus 5 millivolts under 
+3 microamp load.  The manufacturer must calibrate the PRC to 316 mV plus or minus 10mV referenced to a standard 
+hydrogen electrode (SHE) and provide a calibration certificate detailing the results of the calibration.  Procedures 
+for evaluating the accuracy annually must be included in the Operation and Maintenance Manual.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to NACE TM0113-2013 Standard Test Method for Evaluating the Accuracy 
+of Field-Grade Reference Electrodes and NACE TM0211-2011 Standard Test Method 
+for Durability Test for Copper/Copper Sulfate Permanent Reference Electrodes 
+for Direct Burial Applications for information for evaluating the accuracy or 
+durability of the PRE.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</SPT><SPT><TTL>ACCESSORIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Shunt Resistors</TTL><BRK/>
+<BRK/>
+<TXT>[0.01] [_____] ohm, [6] [_____] amp, with an accuracy of plus or minus one percent.[  Shunts must conform to <RID>
+MIL-I-1361</RID> [rating as shown]].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Conduit</TTL><BRK/>
+<BRK/>
+<TXT>[<RID>UL 6</RID>, rigid galvanized steel.]  [Outlet boxes:  <RID>UL 514A</RID> and Fitting:  <RID>UL 514B</RID>, threaded hubs.]  [Metallic conduit 
+and fittings to be polyvinyl-chloride coated in accordance with [<RID>NEMA RN 1</RID>, Type A40] [<RID>NEMA TC 2</RID>, Type EPC-40-PVC]].  
+Provide non-metallic conduit conforming to <RID>NEMA TC 2</RID>.  Provide conduit support in accordance with <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wires and Cables (other than Anodes)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to paragraph ANODE WIRES AND CABLE for anode lead wires.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide copper wire conforming to <RID>ASTM B3</RID> and <RID>ASTM B8</RID>.  Wires terminating in a rectifier, junction box or test 
+station must have a cable identification tag.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>AC Power Supply Wiring</TTL><BRK/>
+<BRK/>
+<TXT>[<RID>UL 83</RID>, Type [THW] [THWN] [THHN]] [<RID>UL 44</RID>, Type RHW,] [<RID>UL 854</RID>, Type USE], stranded [solid] copper conductors, 
+gauge (AWG) and color coded as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reference Electrode Wire</TTL><BRK/>
+<BRK/>
+<TXT>[UL 83, Type [THW] [THWN] [THHN]] [UL 44, Type RHW,] stranded [solid] copper conductors, gauge (AWG) and color 
+coded as indicated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Wire Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Safety Standard for Wire Connectors must conform to <RID>UL 486A-486B</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Splices</TTL><BRK/>
+<BRK/>
+<TXT>[Splices are not permitted in submerged sections of anode lead wire or anode header cable.]  Provide splices 
+with a compression connector on the conductor, and insulation and waterproofing using one of the following methods 
+which are suitable for continuous submersion in water and comply with <RID>ANSI C119.1</RID>.</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">(1) Provide cast-type splice insulation by means of molded casting process employing a thermosetting 
+epoxy-resin-insulating material applied by a gravity-poured method or pressure-injected method.  Provide 
+component materials of the resin insulation in a packaged form ready for convenient mixing without removing 
+from the package.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">(2) Gravity poured method must employ materials and equipment contained in and approved commercial splicing 
+kit which includes a mold suitable for the cables to be spliced.  When the mold is in place around the 
+joined conductors, prepare the resin mix and pour into the mold.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">(3) Provide [heavy wall] heat-shrinkable splice insulation by means of a thermoplastic adhesive sealant 
+material which must be applied with a clean burning propane gas torch per manufacturer's instructions.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insulating Tape</TTL><BRK/>
+<BRK/>
+<TXT>Safety Standard for Insulating Tape must conform to <RID>UL 510</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bolting</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM A307</RID>, Grade B for bolts; <RID>ASTM A194/A194M</RID>, Grade 2 for nuts. Dimensions: <RID>ASME B18.2.1</RID> for bolts, <RID>ASME B18.2.2</RID>
+ for nuts.  Threads: <RID>ASME B1.1</RID>, Class 2A fit for bolts, Class 2B fit for nuts.  Bolts must extend completely 
+through the nuts and may have reduced shanks of a diameter not less than the diameter at the roof of threads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Cable and Wire</SUB> Identification Tags</TTL><BRK/>
+<BRK/>
+<TXT>[Laminated plastic material with black letters on a yellow background] [[Brass] [Stainless steel] material with 
+stamped or engraved letters.] Print letters and numbers a minimum<MET> 5 mm</MET><ENG> 3/16 inch</ENG> in size.  Provide identifier 
+legend [in accordance with the drawings] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Clevis Assemblies</TTL><BRK/>
+<BRK/>
+<TXT>Provide clevis assemblies,<MET> 6.35 mm</MET><ENG> 1/4 inch</ENG> flat steel with a spool opening of<MET> 53.975 mm</MET><ENG> 2 1/8 inch</ENG>,<MET> 114.3 mm</MET><ENG>
+ 4 1/2 inch</ENG> long to the centerline of the spindle.  Provide porcelain spools, with an outside diameter of<MET> 57.15 
+mm</MET><ENG> 2 1/4 inch</ENG> and an overall height of<MET> 53.975 mm</MET><ENG> 2 1/8 inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pin Insulators</TTL><BRK/>
+<BRK/>
+<TXT>Provide pin insulator assemblies,<MET> 100 mm</MET><ENG> 4 inches</ENG> long overall and <MET>6.35 mm</MET> <ENG>1/4 inch</ENG> diameter aluminum bolt<MET> 19 
+mm</MET><ENG> 3/4 inch</ENG> long attached to the flat end with an aluminum nut and lock washer.  Provide porcelain insulator 
+of non-conducting material with hard glazed finish.  Provide insulator with a hole through the bottom at least<MET>
+ 13 mm </MET><ENG> 1/2 inch</ENG> diameter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hand-hole Assemblies</TTL><BRK/>
+<BRK/>
+<TXT>Provide aluminum hand-hole covers, <MET>175 mm</MET> <ENG>7 inches</ENG> in diameter and<MET> 1.588 mm</MET><ENG> 1/16 inch</ENG> thick and connected to 
+insulating rubber gasket,<MET> 175 mm</MET><ENG> 7 inches</ENG> in diameter and<MET> 3.175 mm</MET><ENG> 1/8 inch</ENG> thick.  Cut handholes<MET> 150 mm</MET><ENG> 6 inches</ENG>
+ in diameter.  Provide hand-hole assemblies with<MET> 12.7 mm</MET><ENG> 1/2 inch</ENG> bolts and<MET> 6.35 mm</MET><ENG> 1/4 inch</ENG> plate clamping bars.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The interiors and exteriors of bolted tanks are factory-coated.  Electrical 
+continuity must be verified and ensured across the bolted joints to ensure proper 
+CP system operation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Exothermic Weld Kits</TTL><BRK/>
+<BRK/>
+<TXT>Provide exothermic weld kits specifically designed by the manufacturer for welding the types of materials and 
+shapes provided.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Nameplate</TTL><BRK/>
+<BRK/>
+<TXT>Each item of equipment must have a nameplate bearing the manufacturer's name, address, model number, and serial 
+number securely affixed in a conspicuous place; the nameplate of the distributing agent will not be acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Fabricated Nameplates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the following paragraph where nameplates are fabricated to identify 
+specific equipment designated on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM D709</RID>.  Provide laminated plastic nameplates for each equipment enclosure, relay, switch, and device, as 
+specified or as indicated on the drawings.  Each nameplate inscription must identify the function and, when applicable, 
+the position.  Nameplates must be melamine plastic,<MET> 3 mm</MET><ENG> 0.125 inch</ENG> thick, white with [black] [_____] center 
+core.  Surface must be matte finish.  Corners must be square.  Accurately align lettering and engrave into the 
+core.  Minimum size of nameplates must be<MET> 25 by 65 mm</MET><ENG> one by 2.5 inches</ENG>.  Lettering must be a minimum of<MET> 6.35 
+mm</MET><ENG> 0.25 inch</ENG> high normal block style.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cathodic Protection System Operation and Maintenance Manual</TTL><BRK/>
+<BRK/>
+<TXT>A Cathodic Protection System Operation and Maintenance Manual must outline the step-by-step procedures required 
+for system startup, operation, adjustment of current flow, and shutdown. The manual must include the manufacturer's 
+name, model number, service manual, parts list, and brief description of all equipment and their basic operating 
+features. The manual must list routine maintenance procedures, recommendations for maintenance testing, possible 
+breakdowns and repairs, and troubleshooting guides. The manual must include single line diagrams for the system 
+as installed, instructions in making tank-to-reference electrode potential measurements and frequency of monitoring. 
+The instructions must include precautions to ensure safe conditions during troubleshooting and repair of the 
+CP system.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Information must meet or exceed applicable sections in UFC 3-570-06, 
+Operation and Maintenance: Cathodic Protection Systems. Applicable sections 
+include Chapter 3.2.6 for water tank calibration for all tanks and chapter 3.2.1 
+for rectifier operational inspection for tanks with rectifiers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SAFETY PRECAUTIONS AND HAZARDOUS LOCATIONS</TTL><BRK/>
+<BRK/>
+<TXT>Any operations that will generate heat, sparks, or flame include, but are not limited to, grinding, soldering, 
+welding, cutting, brazing and exothermic welding.  Ensure that hot work equipment is in good repair and used 
+according to manufacturer's recommendations.  A thorough safety inspection of the area must be conducted.  Remove 
+flammable gasses and liquids from the area.  Combustibles in the work area must be moved or covered with fire-retardant 
+blankets.  One or more 20-pound ABC-type fire extinguisher(s) must be inspected before each planned use, and 
+be readily available.  A qualified fire watch must be present and remain 30 minutes after completion of the task(s).  
+If work is being conducted in an area where explosive vapors could accumulate, adequate ventilation must be provided 
+and air monitoring must be conducted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Anode Installation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Proprietary systems of anode installations are available for areas where 
+icing is expected.  For such areas, paragraph ICING CLIMATE REQUIREMENTS should 
+be included.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[<RID>IEEE C2</RID>] [<RID>NFPA 70</RID>].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Icing Climate Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Suspend anodes in a manner similar to that in non-icing climates, except provisions must be made to prevent the 
+anodes and suspending cables from being damaged by freezing or falling ice or by suspended floating flexible 
+anode rings from the tank walls.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anode Placement</TTL><BRK/>
+<BRK/>
+<TXT>Arrange anodes in the tank [and riser pipe] as shown in the drawings [so that protection can be provided to surfaces 
+without exceeding potentials [in the vicinity of the anodes] that will be detrimental to coatings].  Suspend 
+anodes from [roof] [wall] [plate] [structure] by means of factory-installed connecting wire designed to support 
+the anodes in air [before submergence] without failure of the electrical wire insulation or the electrical conductors.  
+Prevent contact between anode and tank surfaces such as man-access hatches, ladders, heater pipes, and stay rods.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anode Hangers</TTL><BRK/>
+<BRK/>
+<TXT>Anode hangers must electrically insulate the anode suspending wire from the tank steel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Handholes</TTL><BRK/>
+<BRK/>
+<TXT>Provide a handhole having a diameter of<MET> 150 mm</MET><ENG> 6 inches</ENG> in the tank roof for each anode string to permit replacement 
+or inspection of anodes.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Anode Connection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A single split-bolt will work loose when wires it connects are moved.  
+Minimum of two split bolts will prevent this from happening.  In water tanks, 
+split bolts are used (above water line only) because working space is limited 
+and hydraulic or mechanical compression tools may be cumbersome and hazardous 
+to use.  At ground level or in trenches, compression tools can be used conveniently, 
+and swedged sleeve connection produced by such tools is more reliable than split 
+bolts.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Anode Lead Wires</TTL><BRK/>
+<BRK/>
+<TXT>Electrically connect anodes to the positive D.C. header cable with compression connectors or split bolts, or 
+the header cable may terminate in a junction box for connection with all anode cables.  Use a minimum of two 
+split bolts for each connection if split bolts are used.  Mark each of the wires terminating in the junction 
+box.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Anode Header Cable</TTL><BRK/>
+<BRK/>
+<TXT>Provide header cable on the [underside of the roof] [wall] with electrically insulating hangers which enter the 
+tank near the roof line from an externally mounted junction box.  External wiring must be in conduit.  Mark each 
+of the wires terminating in the junction box.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Splices and Terminations</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Splices are not allowed below water level.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Locate under-roof electric wire splices above the high water line and seal water-tight using cast-type splice, 
+gravity-poured method or heat shrinkable splice insulation as described in Section 2. Splices are not permitted 
+in submerged sections of the anode lead wire or anode header cable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Rectifiers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For impressed current systems only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Rectifier Installation</TTL><BRK/>
+<BRK/>
+<TXT>Location and mounting as indicated.  Assemble and attach equipment enclosures to [wall] [post] [pad] in accordance 
+with the manufacturer's instructions.  Handle wires to prevent stretching or kinking the conductors or damaging 
+the insulation.  Use lubricants when pulling wires into conduits.  Bond the equipment enclosures to a grounding 
+electrode.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rectifier Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Locate ground rod(s) as indicated in drawings.  Measure resistance to earth.  If resistance to earth is more 
+than 25 ohms, install additional ground rod(s) at a distance of<MET> 3.65 meters</MET><ENG> 12 feet</ENG> or more and retest. Repeat 
+if required.  Low-resistance backfill, certified for use in grounding systems, may be required in exceptionally 
+high soil resistivities using manufacturer's recommendations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wire-To-Tank Connections</TTL><BRK/>
+<BRK/>
+<TXT>Connect the structure wire to the tank [_____] [by use of an exothermic weld kit] [by brazing].  Clean the structure 
+surface by scraping, filing, or wire brushing to produce a clean, bright surface.  [Weld connections using the 
+exothermic weld kits in accordance with the manufacturer's instructions.  Test the integrity of the weld, prior 
+to coating, by striking with a <MET>908 gram</MET><ENG> 2 pound</ENG> hammer.]  [Cover connections and surrounding cleaned surface 
+with an electrically insulating coating compatible with the existing coating.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Permanent Reference Electrodes</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Permanent Reference Electrode Verification</TTL><BRK/>
+<BRK/>
+<TXT><TST>Verify permanent reference electrodes against a portable electrode in the presence of the Contracting Officer 
+or the Contracting Officer's Representative, Technical Expert and Project Manager before installation.  Verify 
+in a non-metallic container of water with the same composition as the tank to be protected.  Permanent electrode 
+must measure a reference potential agreeing with that measured by the portable electrode within plus or minus 
+0.010 volt when the sensing windows of the two electrodes being compared are not more than<MET> 2 mm</MET><ENG> 0.07 inch</ENG> apart 
+but not touching.  Remove permanent reference electrodes not within this potential range from the construction 
+site by the end of the day and replace at the contractor's expense.  The testing provision applies to replacement 
+permanent reference electrodes as well.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation</TTL><BRK/>
+<BRK/>
+<TXT>Provide permanent reference electrodes at points in the tank [and riser pipe] which monitor minimum and maximum 
+[tank] [/riser]-to-water [potentials], regulate the automatic control system [_____], and maintain continuous 
+immersion.  Sensing windows of reference electrodes must be equidistant to and located within<MET> 25 mm</MET><ENG> one inch</ENG> 
+of the steel tank/riser pipe surface and be fixed in position, preventing contact with tank wall or appurtenances.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>BOLTED AND RIVETED TANKS</TTL><BRK/>
+<BRK/>
+<TXT>Ensure electrical continuity of joining components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GASEOUS EVOLUTION</TTL><BRK/>
+<BRK/>
+<TXT>Provide for possible evolution of gases from anode reaction and ventilation requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Field tests must be witnessed by the Contracting Officer or the Contracting Officer's Representative, Technical 
+Expert and Project Manager or their designated representative.  Advise the Contracting Officer or Contracting 
+Officer's Representative [5] [_____] days prior to performing each field test.  Quality control for the <SUB>cathodic 
+protection system</SUB> must consist of the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Initial field testing by the contractor upon construction.</OLI><BRK/>
+<BRK/>
+<OLI>Government field testing after contractor has submitted initial field test report.</OLI><BRK/>
+<BRK/>
+<OLI>Warranty period field testing by the contractor.</OLI><BRK/>
+<BRK/>
+<OLI>Final field testing by the contractor after one year of service.</OLI><BRK/></OLG>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Additional testing may be required based upon the specific project or 
+design.  All tests listed below may not be required.  Designer must consider 
+the project requirements for selection of test procedures.  Specify 30-day notice 
+for large systems to allow the Government corrosion engineer to be on-site during 
+the initial and final field testing of the CP systems. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>TESTS AND MEASUREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Native Potentials</TTL><BRK/>
+<BRK/>
+<TXT>Notify the Contracting Officer or the Contracting Officer's Representative, Technical Expert and Project Manager 
+a minimum of five (5) working days prior to each test.  <TST>Base potential tests</TST>:  At least [one week] [24 hours] 
+[_____]  after [installation of structure to be protected] [initial operation of structures containing fluids] 
+and installation of the anodes, but before connection of anodes to the structure, measure base (native) structure-to-electrolyte 
+potentials of the [structure].  Perform measurements at <SUB>anode junction boxes</SUB>, test stations and other locations 
+suitable for test purposes.  The locations of these measurements must be identical to the locations specified 
+for potential measurements with anodes connected.  Use the same measuring equipment that is specified for measuring 
+protected potential measurements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protected Potentials</TTL><BRK/>
+<BRK/>
+<TXT>Systems must be tested and inspected by the contractor's corrosion engineer in the presence of the Contracting 
+Officer or the Contracting Officer's Representative, Technical Expert and Project Manager corrosion protection 
+engineer or an approved representative.  Notify the Contracting Officer or the Contracting Officer's Representative, 
+Technical Expert and Project Manager a minimum of five working days prior to each test.  At least [one week] 
+[24 hours] [_____] after native potential testing and connection of anodes to the structure, measure protected 
+structure-to-electrolyte potentials.  The locations of these measurements must be identical to the locations 
+specified for native potential measurements.  Use the same measuring equipment that is specified for measuring 
+protected potential measurements.  Record test data, including date, time, and locations of testing and submit 
+report to the Contracting Officer or the Contracting Officer's Representative, Technical Expert and Project Manager.  
+Contractor must correct and retest, at the contractors and Technical Experts expense, deficiencies in the materials 
+and installation observed by these tests and inspections.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reference Electrode Potential Measurements</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion of the installation and with the entire CP system in operation, electrode potential measurements 
+must be made using a copper/copper sulfate reference electrode and a potentiometer-voltmeter, or a direct-current 
+voltmeter having an internal resistance (sensitivity) of not less than 10 megohms per volt and a full scale of 
+10 volts.  The locations of these measurements must be identical to the locations used for baseline potentials.  
+The values obtained and the date, time, and locations of measurements must be recorded.  No less than eight (8) 
+measurements will be made.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Holiday Test</TTL><BRK/>
+<BRK/>
+<TXT>Any damage to the protective coating during installation must be repaired before completion.  After repair-coating 
+has been applied, the entire structure, tank,  wall or pipe must be inspected by an electric holiday detector 
+with impressed current in accordance with <RID>NACE SP0188</RID>.  The holiday detector will be equipped with a bell, buzzer, 
+or other type of audible signal which sounds when a holiday is detected.  Holidays in the protective coating 
+must be repaired upon detection.  Occasional checks of holiday detector potential will be made by the Contracting 
+Officer or the Contracting Officer's Representative, Technical Expert and Project Manager to determine suitability 
+of the detector.  Labor, materials, and equipment necessary for conducting the inspection must be furnished by 
+the contractor.  The coating system must be inspected for holes, voids, cracks, and other damage during installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Rectifier Testing</SUB> (impressed current systems only)</TTL><BRK/>
+<BRK/>
+<TXT>The purpose of the rectifier operational inspection is to determine the serviceability of all components required 
+to impress current to the anodes of the impressed current system.  The inspection must be thorough to ensure 
+dependable current until the next inspection.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Before energizing the rectifier, visually check all rectifier components, shunt box components, safety 
+switches, circuit breakers, and other system power components.</OLI><BRK/>
+<BRK/>
+<OLI>Tighten all accessible connections and check temperature of all the components.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure all permanent reference electrode caps are removed and placed inside the rectifier cabinet for 
+verification of removal and for use during tank cleaning.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not increase the amount of current by requiring the S/E potential 
+not to be more negative than -1150 mV with respect to a CSE of the tank. Excessive 
+current may dis-bond the coating.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Startup testing of the rectifier must include voltage and current testing at all tap settings up to the 
+level of protection or maximum of the rectifier rated current, whichever is the lowest.  Do not apply 
+excessive current to the tank.  For automatic rectifiers, record each tap setting (if available) before 
+switching to automatic potential control.</OLI><BRK/>
+<BRK/>
+<OLI>Using a dependable hand-held meter, measure the output voltage and current, and calibrate the rectifier 
+meters, if present.  For rectifiers with more than one circuit, measure the output voltage and current 
+for each circuit using a dependable hand-held meter, and calibrate the rectifier meters, if present.</OLI><BRK/>
+<BRK/>
+<OLI>For systems with permanent reference electrodes, using a calibrated reference electrode, measure the 
+potential difference to each installed permanent reference electrode by placing both electrodes together 
+in the electrolyte with CP current off (may be tested before installation).  If the difference is more 
+than 10 mV, replace the permanent reference electrode.  For rectifiers with potential voltmeters, using 
+a dependable hand-held meter, measure the potentials for each voltmeter, and calibrate that rectifier 
+meter.</OLI><BRK/>
+<BRK/>
+<OLI>Calculate the CP system circuit resistance of each circuit by dividing the rectifier DC voltage output 
+of each circuit by the rectifier DC ampere output for that circuit.</OLI><BRK/>
+<BRK/>
+<OLI>Calculate the rectifier efficiency.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Initial Cathodic Protection System Testing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Initial field testing must be completed by the contractor upon completion of construction. Field testing must 
+be witnessed by the Contracting Officer or the Contracting Officer's Representative, Technical Expert and Project 
+Manager or their designated representative.  Advise the Contracting Officer or Contracting Officer's Representative 
+[5] [_____] days prior to performing each field test.  Field testing must include native and protected potentials, 
+anode current testing and permanent reference electrode testing.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Additional testing may be required based upon the specific project or 
+design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The contractor must submit an initial field test report of the CP system.  Tank-to-electrolyte measurements, 
+including initial potentials, protected potentials, anode outputs, rectifier and other required testing must 
+be recorded on applicable forms.  Identification of test locations, test station and anode test stations will 
+coordinate with the as-built drawings and be provided on system drawings included in the report.  The contractor 
+must locate, correct, and report to the Contracting Officer or the Contracting Officer's Representative, Technical 
+Expert and Project Manager any short circuits encountered during the checkout of the installed CP system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Government Field Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The requirements of paragraph entitled "Government Field Testing" are 
+required for CP projects in either the Army, Navy, Air Force or Marines area.  
+The designer must verify their applicability to projects outside the area with 
+the appropriate Engineering Field Division (EFD) corrosion program manager.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>The government corrosion [engineer] [program manager] must review the contractor's initial testing report.  Approximately 
+four weeks after receipt of the contractor's initial test report, the system will be tested and inspected in 
+the contractor's presence by the government corrosion [engineer] [program manager].  The contractor must correct, 
+at the contractor's expense, materials and installations observed by these tests and inspections to not be in 
+conformance with the plans and specifications.  The contractor will pay for all retesting done by the government 
+engineer made necessary by the correction of deficiencies.<BRK/></TST>
+.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For CP projects in either the Army, Navy, Air Force or Marines area, 
+select the appropriate options for paragraphs entitled "One Year Warranty Period 
+Testing."</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>One-Year-Warranty-Period-Testing</TTL><BRK/>
+<BRK/>
+<TXT><TST>The contractor must inspect, test, and adjust the CP system [quarterly] [semi-annually] [_____] for one year, 
+[4] [2] [_____] interim inspections total, to ensure its continued conformance with the criteria outlined below.</TST>
+  The performance period for these tests will commence upon the completion of all CP work, including changes 
+required to correct deficiencies identified during initial testing, and preliminary acceptance of the CP system 
+by the Contracting Officer or the Contracting Officer's Representative, Technical Expert and Project Manager.  
+Copies of the <SUB>One Year Warranty Period Cathodic Protection System Field Test Report</SUB>, including field data, and 
+certified by the contractor's corrosion engineer must be submitted to the Contracting Officer or Contracting 
+Officer's Representative, the activity, and the geographic EFD corrosion [engineer] [program manager] [Contracting 
+Officer] [Contracting Officer's Representative] [Technical Expert] [Project Manager].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Final Acceptance Field Testing</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Conduct final acceptance field testing of the CP system utilizing the same procedures specified under the Initial 
+Field Testing of the CP systems.  The contractor will inspect, test, and adjust the CP system after one year 
+of operation to ensure its continued conformance with the criteria outlined below.  The performance period for 
+these tests will commence upon preliminary acceptance for the CP system by the Contracting Officer or the Contracting 
+Officer's Representative, Technical Expert and Project Manager</TST>.  Copies of the Final Cathodic Protection System 
+Test Report, certified by the contractor's corrosion engineer must be submitted to the Contracting Officer or 
+the Contracting Officer's Representative, Technical Expert and Project Manager and the geographic EFD corrosion 
+[engineer] [program manager] for approval, and as an attachment to the Operation and Maintenance Manual in accordance 
+with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.  The government corrosion [engineer] [program manager] 
+must review the contractor's final field testing report.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Reconditioning of Surfaces</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Concrete</TTL><BRK/>
+<BRK/>
+<TXT>Concrete must be<MET> 20 MPa</MET><ENG> 3000 psi</ENG> minimum ultimate 28-day compressive strength with<MET> 25 mm</MET><ENG> one inch</ENG> minimum aggregate 
+conforming to [<RID>ASTM C94/C94M</RID>] [Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Restoration of Sod</TTL><BRK/>
+<BRK/>
+<TXT>Restore unpaved surfaces disturbed during the installation to their original elevation and condition.  In areas 
+where grass cover exists, it is possible that sod can be carefully removed, watered, and stored during construction 
+operations, and replaced after the operations are completed.  Where the surface is disturbed in a newly seeded 
+area, re-seed the area with the same quality and formula of seed as that used in the original seeding. Seeding 
+must be done as directed, in all unsurfaced locations where sod and topsoil could not be preserved and replaced.  
+The use of sod in lieu of seeding will require approval by the Contracting Officer or the Contracting Officer’s 
+Representative, Technical Expert and Project Manager.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Restoration of Pavement</TTL><BRK/>
+<BRK/>
+<TXT>Repair pavement, sidewalks, curbs, and gutters where existing surfaces are removed or disturbed for construction.  
+Saw cut pavement edges.  Graded aggregate base course must have a maximum aggregate size of<MET> 40 millimeters</MET><ENG> 1 
+1/2 inches</ENG>.  Prime base course with [liquid asphalt, <RID>ASTM D2028/D2028M</RID>, Grade RC-70] [_____] prior to paving.  
+Match base course thickness to existing but must be atleast<MET> 150 millimeters</MET><ENG> 6 inches</ENG>.  Asphalt aggregate size 
+must be<MET> 15 mm</MET><ENG> 1/2 inch</ENG> [_____], asphalt cement must [conform to <RID>ASTM D3381/D3381M</RID>, Grade AR-2000] [_____].  Match 
+asphalt concrete thickness to existing but must not be less than<MET> 50 millimeters</MET><ENG> 2 inches</ENG>.  Repair Portland cement 
+concrete pavement, sidewalks, curbs, and gutters using<MET> 20.67 MPa</MET><ENG> 3,000 psi</ENG> concrete conforming to [<RID>ASTM C94/C94M</RID>
+] [Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.]  Match existing pavement, sidewalk, curb, and gutter thicknesses. 
+Final surface must be the same level as the existing surface.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cleanup</TTL><BRK/>
+<BRK/>
+<TXT>The contractor is responsible for cleanup of the construction site.  All paper bags, wire clippings, must be 
+disposed of as directed.  Paper bags, wire clippings and other waste will not be put in bell holes or anodes 
+excavation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Training</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Instruction to Government Personnel</TTL><BRK/>
+<BRK/>
+<TXT><TST>During the warranty testing or at a time designated by the Contracting Officer or the Contracting Officer's Representative, 
+Technical Expert and Project Manager, make available the services of a technician regularly employed or authorized 
+by the manufacturer of the CP system for instructing Government personnel in the proper operation, maintenance, 
+safety, and emergency procedures of the CP system.  The period of instruction must be atleast [two] [four] [_____] 
+hour[s] and at most [two] [_____] 8-hour working day[s].  Conduct the training at the jobsite or at another location 
+mutually satisfactory to the government and the contractor.</TST>  The field instructions will cover all of the items 
+contained in the Operation and Maintenance Manual.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></PRT><END/><BRK/></SEC>

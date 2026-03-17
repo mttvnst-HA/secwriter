@@ -1,0 +1,1960 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="366.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="365.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-23 74 33 (May 2024)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="37.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">NEW</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 74 33</SCN><BRK/>
+<BRK/>
+<STL>DEDICATED OUTDOOR AIR SYSTEMS (DOAS)</STL><BRK/>
+<DTE>05/24</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>dedicated outdoor air systems (DOAS)</SCP>where ventilation 
+airflow exceeds<MET> 354 L/S</MET><ENG> 750 cfm</ENG> per UFC 3-410-01, as calculated by ASHRAE 62.1 and/or air balance requirements.  
+"DOAS" in this specification refers to the air handling piece of equipment and internal components only.  Other 
+components such as ductwork and sensors should be specified elsewhere.</NPR><BRK/>
+<BRK/>
+<NPR>Show cooling and dehumidification requirements, capacity, mounting details, power connections, etc. on drawings 
+or schedule.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This note applies to this whole specification section.  Refer to applicable UFCs for requirements on how 
+to size and design DOAS and all components; including but not limited to UFC 3-400-02 Design: Engineering Weather 
+Data, UFC 3-401-01 Mechanical Engineering, UFC 3-410-01 Heating, Ventilating, and Air Conditioning Systems, and 
+UFC 3-410-02 Direct Digital Control for HVAC and Other Building Control Systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification uses tailoring options to select the required protocol for control system interfaces 
+for equipment.  These tailoring options are:<BRK/>
+   1. BACnet Only<BRK/>
+   2. LonWorks Only<BRK/>
+   3. BACnet or LonWorks (this will require the unit<BRK/>
+      match the building control system)</NPR><BRK/>
+<BRK/>
+<NPR>DESELECT all three if not requiring control system interfaces.  Otherwise SELECT exactly ONE of these tailoring 
+options.</NPR><BRK/>
+<BRK/>
+<NPR>You have currently SELECTED the following option:<BRK/>
+----------------<BRK/>
+<TAI OPT="BACNET ONLY">  BACnet Only</TAI><BRK/>
+<TAI OPT="LONWORKS ONLY">  LonWorks Only</TAI><BRK/>
+<TAI OPT="BACNET OR LONWORKS">  BACnet or LonWorks</TAI><BRK/>
+----------------</NPR><BRK/>
+<BRK/>
+<NPR>If more than one item appears between the dashes above, you have included more than one control system interface 
+tailoring option and need to DESELECT all but one.  If there is no text between the dashes above, you have not 
+included any control system interface tailoring option.  Select ONE of the control system interface tailoring 
+options for inclusion.</NPR><BRK/>
+<BRK/>
+<NPR><HL1>Service Tailoring Option</HL1><BRK/>
+This specification also includes tailoring options for the Service (Air Force, Army, Navy) the specification is 
+used for.  There is a "NAVY ACCEPTANCE ENGINEER" tailoring option that is used on Navy projects which have an 
+Acceptance Engineer.  There is a "Service Generic" tailoring option that can also be used when none of the other 
+services tailoring options apply.  Only ONE of the five tailoring options related to the services should be used.  
+You have currently included the following option:<BRK/>
+----------<BRK/>
+<TAI OPT="AIR FORCE">AIR FORCE</TAI><BRK/>
+<TAI OPT="ARMY">ARMY</TAI><BRK/>
+<TAI OPT="NAVY">NAVY</TAI><BRK/>
+<TAI OPT="NAVY WITH ACCEPTANCE ENGINEER">NAVY WITH ACCEPTANCE ENGINEER</TAI><BRK/>
+<TAI OPT="SERVICE GENERIC">SERVICE GENERIC</TAI><BRK/>
+-----------</NPR><BRK/>
+<BRK/>
+<NPR>If more than one item appears between the dashes above, you have included more than one service tailoring option 
+and need to DESELECT all but one.  If there is no text between the dashes above, you have not included any service 
+tailoring option.  Select ONE of the service tailoring options for inclusion.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate the use of this specification with other sections, as appropriate, in order to specify a complete 
+HVAC built-up system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit <SUB>equipment and performance data</SUB> for each DOAS consisting of use life, total static pressure, all entering and leaving temperatures of each 
+component, fan curves, provide psychrometric chart with processes shown for both summer and winter conditions, power ratings, capacity ranges, 
+face area classifications, rotational velocities, controls instrument locations [with recommended installation locations], [and ][all information 
+shown on the equipment schedule on the design drawings][ and ][_____].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+[<TXT>Design and construction must comply with current applicable Host Nation codes and standards.  In case of conflicting U.S. and H.N. codes and standards, 
+the most stringent must apply, unless otherwise specified by the applicable Bilateral U.S./H.N. Agreements.</TXT><BRK/>
+<BRK/>
+]<REF><ORG>AIR MOVEMENT AND CONTROL ASSOCIATION INTERNATIONAL, INC. (AMCA)</ORG><BRK/><BRK/><RID>AMCA 99</RID><RTL>(2016) Standards Handbook</RTL><BRK/><BRK/><RID>AMCA 201</RID><RTL>(2002; R 2011) Fans and Systems</RTL><BRK/><BRK/><RID>AMCA 204</RID><RTL>(2005; R 2012) Balance Quality and Vibration Levels for Fans</RTL><BRK/><BRK/><RID>AMCA 210</RID><RTL>(2025) Laboratory Methods of Testing Fans for Certified Aerodynamic Performance Rating</RTL><BRK/><BRK/><RID>AMCA 300</RID><RTL>(2014) Reverberant Room Method for Sound Testing of Fans</RTL><BRK/><BRK/><RID>AMCA 301</RID><RTL>(2014) Methods for Calculating Fan Sound Ratings from Laboratory Test Data</RTL><BRK/><BRK/></REF><REF><ORG>AIR-CONDITIONING, HEATING AND REFRIGERATION INSTITUTE (AHRI)</ORG><BRK/><BRK/><RID>AHRI 410</RID><RTL>(2001; Addendum 1 2002; Addendum 2 2005; Addendum 3 2011) Forced-Circulation Air-Cooling and Air-Heating Coils</RTL><BRK/><BRK/><RID>AHRI 430</RID><RTL>(2009) Central-Station Air-Handling Units</RTL><BRK/><BRK/><RID>AHRI 490 I-P</RID><RTL>(2011) Performance Rating of Remote Mechanical-Draft Evaporatively-Cooled Refrigerant Condensers</RTL><BRK/><BRK/><RID>AHRI 540</RID><RTL>(2015) Performance Rating Of Positive Displacement Refrigerant Compressors And Compressor Units</RTL><BRK/><BRK/><RID>AHRI 920 I-P</RID><RTL>(2020) Performance Rating of Direct Expansion-Dedicated Outdoor Air System Units</RTL><BRK/><BRK/><RID>AHRI 921 SI</RID><RTL>(2020) Performance Rating of Direct Expansion-Dedicated Outdoor Air System Units</RTL><BRK/><BRK/><RID>AHRI 1060 I-P</RID><RTL>(2014) Performance Rating of Air-to-Air Heat Exchangers for Energy Recovery Ventilation Heat Equipment</RTL><BRK/><BRK/><RID>AHRI Guideline D</RID><RTL>(1996) Application and Installation of Central Station Air-Handling Units</RTL><BRK/><BRK/><RID>ANSI/AHRI 210/240</RID><RTL>(2008; Add 1 2011; Add 2 2012) Performance Rating of Unitary Air-Conditioning &amp; Air-Source Heat Pump Equipment</RTL><BRK/><BRK/><RID>ANSI/AHRI 370</RID><RTL>(2015; Addendum 1 2016) Sound Rating of Large Outdoor Refrigerating and Air-Conditioning Equipment</RTL><BRK/><BRK/><RID>ANSI/AHRI 460</RID><RTL>(2005) Performance Rating of Remote Mechanical-Draft Air-Cooled Refrigerant Condensers</RTL><BRK/><BRK/><RID>ANSI/AHRI 640</RID><RTL>(2005) Performance Rating of Commercial and Industrial Humidifiers</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN BEARING MANUFACTURERS ASSOCIATION (ABMA)</ORG><BRK/><BRK/><RID>ABMA 9</RID><RTL>(2015) Load Ratings and Fatigue Life for Ball Bearings</RTL><BRK/><BRK/><RID>ABMA 11</RID><RTL>(2014; R 2020) Load Ratings and Fatigue Life for Roller Bearings</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF HEATING, REFRIGERATING AND AIR-CONDITIONING ENGINEERS (ASHRAE)</ORG><BRK/><BRK/><RID>ANSI/ASHRAE 15 &amp; 34</RID><RTL>(2022) ASHRAE Standard 15-Safety Standard for Refrigeration Systems and ANSI/ASHRAE Standard 34-Designation and Safety Classification of Refrigerants</RTL><BRK/><BRK/><RID>ASHRAE 52.2</RID><RTL>(2025) Method of Testing General Ventilation Air-Cleaning Devices for Removal Efficiency by Particle Size</RTL><BRK/><BRK/><RID>ASHRAE 62.1</RID><RTL>(2016) Ventilation for Acceptable Indoor Air Quality</RTL><BRK/><BRK/><RID>ASHRAE 64</RID><RTL>(2020) Methods of Testing Remote Mechanical-Draft Evaporative Refrigerant Condensers</RTL><BRK/><BRK/><RID>ASHRAE 84</RID><RTL>(2024) Method of Testing Air-to-Air Heat/Energy Exchangers</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A48/A48M</RID><RTL>(2022) Standard Specification for Gray Iron Castings</RTL><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/><RID>ASTM A153/A153M</RID><RTL>(2023) Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware</RTL><BRK/><BRK/><RID>ASTM A167</RID><RTL>(2011) Standard Specification for Stainless and Heat-Resisting Chromium-Nickel Steel Plate, Sheet, and Strip</RTL><BRK/><BRK/><RID>ASTM A653/A653M</RID><RTL>(2025a) Standard Specification for Steel Sheet, Zinc-Coated (Galvanized) or Zinc-Iron Alloy-Coated (Galvannealed) by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM B117</RID><RTL>(2025) Standard Practice for Operating Salt Spray (Fog) Apparatus</RTL><BRK/><BRK/><RID>ASTM B280</RID><RTL>(2023) Standard Specification for Seamless Copper Tube for Air Conditioning and Refrigeration Field Service</RTL><BRK/><BRK/><RID>ASTM C1071</RID><RTL>(2025) Standard Specification for Fibrous Glass Duct Lining Insulation (Thermal and Sound Absorbing Material)</RTL><BRK/><BRK/><RID>ASTM D4587</RID><RTL>(2011; R 2019; E 2019) Standard Practice for Fluorescent UV-Condensation Exposures of Paint and Related Coatings</RTL><BRK/><BRK/><RID>ASTM E84</RID><RTL>(2025) Standard Test Method for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/><RID>ASTM G21</RID><RTL>(2015; R 2021; E 2021) Standard Practice for Determining Resistance of Synthetic Polymeric Materials to Fungi</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ENVIRONMENTAL SCIENCES AND TECHNOLOGY (IEST)</ORG><BRK/><BRK/><RID>IEST RP-CC-001</RID><RTL>(2016; Rev 6) HEPA and ULPA Filters</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/><RID>NEMA MG 10</RID><RTL>(2017) Energy Management Guide for Selection and Use of Fixed Frequency Medium AC Squirrel-Cage Polyphase Induction Motors</RTL><BRK/><BRK/><RID>NEMA MG 11</RID><RTL>(1977; R 2012) Energy Management Guide for Selection and Use of Single Phase Motors</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 54</RID><RTL>(2024) National Fuel Gas Code</RTL><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 90A</RID><RTL>(2024) Standard for the Installation of Air Conditioning and Ventilating Systems</RTL><BRK/><BRK/></REF><REF><ORG>SHEET METAL AND AIR CONDITIONING CONTRACTORS' NATIONAL ASSOCIATION (SMACNA)</ORG><BRK/><BRK/><RID>SMACNA 1884</RID><RTL>(2003) Fibrous Glass Duct Construction Standards, 7th Edition</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 1-200-01</RID><RTL>(2022; with Change 4, 2024) DoD Building Code</RTL><BRK/><BRK/><RID>UFC 4-010-06</RID><RTL>(2023) Cybersecurity of Facility-Related Control Systems</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 586</RID><RTL>(2009; Reprint Sep 2022) UL Standard for Safety High-Efficiency Particulate, Air Filter Units</RTL><BRK/><BRK/><RID>UL 705</RID><RTL>(2017; Reprint Sep 2024) UL Standard for Safety Power Ventilators</RTL><BRK/><BRK/><RID>UL 900</RID><RTL>(2015; Reprint Aug 2022) UL Standard for SafetyStandard for Air Filter Units</RTL><BRK/><BRK/><RID>UL 1995</RID><RTL>(2015; Reprint Aug 2022) UL Standard for Safety Heating and Cooling Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Compressor</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coils</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Controls</SUB>; G<TAI OPT="ARMY">, [_____]</TAI></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Unit Cabinet</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Casing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Air-Cooled Condenser</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Evaporative Condenser</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Installation Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Equipment and Performance Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Air-Conditioning Systems</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Compressor</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coils</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fans</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Controls</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Unit Cabinet</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Casing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Air Filters</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Air-Cooled Condenser</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Evaporative Condenser</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Energy Recovery Devices</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Humidifier</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Refrigerant Tests, Charging, and Start-Up</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Performance Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>List of Product Installations</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Warranty</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Coil Coating Warranty</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance Training</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Submit in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA<TAI OPT="NAVY"> and Section <SRF>01 78 24.00 20</SRF> FACILITY 
+DATA WORKBOOK (FDW)</TAI>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Operation and Maintenance Manuals, Data Package 2</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RELATED DOCUMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the following sections are not included in the project specification, insert applicable requirements 
+and delete the following paragraphs as needed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<LST>Section <SRF>01 45 00</SRF> QUALITY CONTROL applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>23 05 48.19</SRF> [SEISMIC] BRACING FOR HVAC applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>23 05 93</SRF> TESTING, ADJUSTING AND BALANCING FOR HVAC applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC applies to work specified in this section</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>23 09 13</SRF> INSTRUMENTATION AND CONTROL DEVICES FOR HVAC applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>23 23 00</SRF> REFRIGERANT PIPING applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>23 30 00</SRF> HVAC AIR DISTRIBUTION applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>23 81 00</SRF> DECENTRALIZED UNITARY HVAC EQUIPMENT applies to work specified in this section.</LST><BRK/>
+<BRK/>
+][<LST>Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS applies to work specified in this section.</LST><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Submit a <SUB>list of product installations</SUB> of each DOAS showing a minimum of five installed units, similar to those proposed for use, that have been 
+in successful service for a minimum period of 5 years.  Provide a list that includes the purchaser, address of installation, service organization, 
+and date of installation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Material and Equipment Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are standard products of manufacturers regularly engaged in the manufacture of such products, which are of 
+a similar material, design and workmanship.  Standard products must have been in satisfactory commercial or industrial use for 5 years prior to 
+bid opening.  The 5-year use must include applications of equipment and materials under similar circumstances and of similar size.  The product 
+must have been for sale on the commercial market through advertisements, manufacturers' catalogs, or brochures during the 5 year period.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Support</TTL><BRK/>
+<BRK/>
+<TXT>The equipment items must be supported by service organizations.  Submit a certified list of a minimum of three qualified permanent service organizations 
+for support of the equipment which includes their addresses and qualifications.  These service organizations must be able to render satisfactory 
+service to the equipment on a regular and emergency basis during the warranty period of the contract within [24][48][_____] hours.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Nameplate</TTL><BRK/>
+<BRK/>
+<TXT>For each item of equipment, provide a nameplate bearing the manufacturer's name, address, model number, and serial number securely affixed in a 
+conspicuous place; the nameplate of the distributing agent will not be acceptable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Modification of References</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the word, "must" had been substituted 
+for "should" wherever it appears.  Interpret references in these publications to the "authority having jurisdiction", or words of similar meaning, 
+to mean the Contracting Officer.<TAI OPT="ARMY">  "Authority having jurisdiction" must be in accordance with the applicable year of <RID>UFC 1-200-01</RID> DOD BUILDING CODE.</TAI></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Definitions</TTL><BRK/>
+<BRK/>
+<TXT>For the International Code Council (ICC) Codes referenced in the contract documents, advisory provisions must be considered mandatory, the word 
+"should" is interpreted as "must."  Reference to the "code official" must be interpreted to mean the "Contracting Officer."  For Navy owned property, 
+references to the "owner" must be interpreted to mean the "Contracting Officer."  For leased facilities, references to the "owner" must be interpreted 
+to mean the "lessor."  References to the "permit holder" must be interpreted to mean the "Contractor."</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Administrative Interpretations</TTL><BRK/>
+<BRK/>
+<TXT>For ICC Codes referenced in the contract documents, the provisions of Chapter 1, "Administrator," do not apply.  These administrative requirements 
+are covered by the applicable Federal Acquisition Regulations (FAR) included in this contract and by the authority granted to the Officer in Charge 
+of Construction to administer the construction of this project.  References in the ICC Codes to sections of Chapter 1, must be applied appropriately 
+by the Contracting Officer as authorized by his administrative cognizance and the FAR.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Handle, store, and protect equipment and materials to prevent damage from the weather, humidity and temperature variations, dirt and dust, or other 
+contaminants before and during installation in accordance with the manufacturer's recommendations, and as approved by the Contracting Officer.  
+Additionally, cap or plug all pipes until installed. Replace damaged or defective items.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ELECTRICAL WORK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show the electrical characteristics, motor starter type(s), enclosure type, and maximum rpm on the drawings 
+in the equipment schedules.</NPR><BRK/>
+<BRK/>
+<NPR>Where reduced-voltage motor starters are recommended by the manufacturer or required otherwise, specify and coordinate 
+the type(s) required in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Reduced-voltage starting is required when 
+full voltage starting interferes with other electrical equipment and circuits and when recommenced by the manufacturer.  
+Where adjustable speed drives (SD) are specified, reference Section <SRF>26 29 23</SRF> ADJUSTABLE SPEED DRIVE (ASD) SYSTEMS 
+UNDER 600 VOLTS.  The methods for calculating the economy of using an adjustable speed drive is described in UFC 
+3-520-01 INTERIOR ELECTRICAL SYSTEMS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide motors, controllers, integral disconnects, contactors, and controls with their respective pieces of equipment, except controllers 
+indicated as part of motor control centers.  Provide electrical equipment, including motors and wiring, as specified in Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Provide manual or automatic control and protective or signal devices required for the operation 
+specified and control wiring required for controls and devices specified, but not shown.  For packaged equipment, include manufacturer 
+provided controllers with the required monitors and timed restart.</OLI><BRK/>
+<BRK/>
+<OLI>For single-phase motors, provide high-efficiency type, fractional-horsepower alternating-current motors, including motors that are part 
+of a system, in accordance with <RID>NEMA MG 11</RID>.  Provide premium efficiency type integral size motors in accordance with <RID>NEMA MG 00001</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>For polyphase motors, provide squirrel-cage medium induction motors, including motors that are part of a system , and that meet the efficiency 
+ratings for premium efficiency motors in accordance with <RID>NEMA MG 00001</RID>.  Select premium efficiency polyphase motors in accordance with <RID>
+NEMA MG 10</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide motors in accordance with <RID>NEMA MG 00001</RID> and of sufficient size to drive the load at the specified capacity without exceeding the 
+nameplate rating of the motor.  Provide motors rated for continuous duty with the enclosure specified.  Provide motor duty that allows 
+for maximum frequency start-stop operation and minimum encountered interval between start and stop.  Provide motor torque capable of accelerating 
+the connected load within 20 seconds with 80 percent of the rated voltage maintained at motor terminals during one starting period.  Provide 
+motor starters complete with thermal overload protection and other necessary appurtenances.  Fit motor bearings with grease supply fittings 
+and grease relief to outside of the enclosure.</OLI><BRK/>
+<BRK/>
+<OLI>Where two-speed or variable-speed motors are indicated, solid-state variable-speed controllers are allowed to accomplish the same function.  
+Use solid-state variable-speed controllers for motors rated<MET> 7.45 kW</MET><ENG> 10 hp</ENG> or less and adjustable frequency drives for larger motors.  Provide 
+variable frequency drives for motors as specified in Section <SRF>26 29 23</SRF> ADJUSTABLE SPEED DRIVE (ASD) SYSTEMS UNDER 600 VOLTS.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>INSTRUCTION TO GOVERNMENT PERSONNEL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate this with paragraph OPERATION AND MAINTENANCE TRAINING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Furnish the services of competent instructors to give full video recorded instruction to the designated Government personnel in the adjustment, 
+operation, and maintenance, including pertinent safety requirements, of the specified equipment or system.  Instructors must be thoroughly familiar 
+with all parts of the installation and must be trained in operating theory as well as practical operation and maintenance work.  Instruction must 
+be given during the first regular work week after the equipment or system has been accepted and turned over to the Government for regular operation.  
+The number of man-days (8 hours per day) of instruction furnished must be as specified in the individual section.[  When more than 4 man-days of 
+instruction are specified, use approximately half of the time for classroom instruction.  Use other time for instruction with the equipment or 
+system.]</TXT><BRK/>
+<BRK/>
+<TXT>When significant changes or modifications in the equipment or system are made under the terms of the contract, provide additional instruction to 
+acquaint the operating personnel with the changes or modifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ACCESSIBILITY</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following requirement is intended to solicit the installer's help in the prudent location of equipment 
+when he has some control over locations.  However, designer's should not rely on it at all since enforcing this 
+requirement in the field would be difficult.  Therefore, the system designer needs to layout and indicate the 
+locations of equipment, control devices, and access doors so that most of the accessibility questions are resolved 
+inexpensively during design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install all work so that parts requiring periodic inspection, operation, maintenance, and repair are readily accessible.  Install concealed valves, 
+expansion joints, controls, dampers, and equipment requiring access, in locations freely accessible through access doors.  Contractor and manufacturer 
+are responsible for verifying equipment, including any additional parts such as controls devices and other equipment requiring access, fits in 
+the space provided. The Government review does not relieve contractor from delivering the product that meets minimum capacity and mandatory efficiency 
+requirements to meet all codes and standards.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>Submit the <SUB>manufacturer's warranty</SUB> for the unit.</TXT><BRK/>
+<BRK/>
+<TXT>[Submit the <SUB>coil coating warranty</SUB>.]  Provide unit with the [ Manufacturer's Standard Warranty.][ [1 year ][2 year ][5 year ][10 year ][_____ year 
+]manufacturer's warranty.][  Provide [compressors][ and ][gas heat exchangers] with the[ Manufacturer's Standard Warranty.][ [1 year ][2 year ][5 
+year ][10 year ][_____ year ]manufacturer's warranty.] ]</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>TYPES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must, at a minimum, comply with applicable year of ASHRAE 90.1 and ASHRAE 55 for equipment efficiencies, 
+energy recovery effectiveness, thermal comfort, etc.  All applicable design requirements should be incorporated 
+by the designer into the contract documents.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with paragraph FANS and paragraph COILS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [single-zone draw-through type][ or ][single-zone blow-through type][ or ][multizone blow-through type][blow-through double-deck type][blow-through 
+triple deck type] units as indicated.  Units must include fans, coils, airtight insulated casing,[ energy recovery devices,][ required controls 
+devices for temperature and humidity control,][ prefilters,][ secondary filter sections,][ and ][diffuser sections where indicated,][ air blender] 
+adjustable V-belt drives, belt guards for externally mounted motors, access sections where indicated,[ mixing box][ combination sectional filter-mixing 
+box,][ [pan][drysteam][spray type] humidifier,] vibration-isolators, and appurtenances required for specified operation.  Provide vibration isolators 
+as indicated.  Physical dimensions of each air handling unit must be suitable to fit space allotted to the unit with the capacity and efficiencies 
+indicated.  Provide air handling unit that is rated in accordance with<MET> [<RID>AHRI 920 I-P</RID>]</MET><ENG> [<RID>AHRI 921 SI</RID>]</ENG> [<RID>AHRI 430</RID>] [_____] and AHRI certified for cooling.[  
+Protect outdoor air coils  from incidental contact to coil fins by a coil guard.  Coil guard must be constructed of cross wire welded steel with 
+PVC coating.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>UNIT CONSTRUCTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Unit Cabinet</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Units must have a leakage rate not to exceed 1 percent of supply air volume to<MET> [2][2.5][_____] kPa</MET><ENG> [8][10][_____] inches water gauge</ENG> static pressure 
+in either positive or negative pressure tests.  Manufacturer must provide test data confirming cabinet construction can meet the requirement.  
+Indoor cabinets must be suitable for the specified indoor service and enclose all unit components. Outdoor cabinets must be suitable for outdoor 
+service with a weathertight, insulated and corrosion-protected structure.  Cabinets constructed exclusively for indoor service which have been 
+modified for outdoor service are not acceptable.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:</NPR><BRK/>
+<NPR>Class A total static pressure to<MET> 750 pascals</MET><ENG> 3 inches</ENG> water gauge.</NPR><BRK/>
+<BRK/>
+<NPR>Class B total static pressure of<MET> 750 to 1375 pascals</MET><ENG> 3 to 5.5 inches</ENG> water gauge.</NPR><BRK/>
+<BRK/>
+<NPR>Class C total static pressure over<MET> 1375 pascals</MET><ENG> 5.5 inches</ENG> water gauge.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Class A and Class B Cabinets</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the following paragraph for AMCA Class A and Class B cabinets.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an AHU cabinet suitable for the pressure class shown and has leaktight joints, closures, penetrations, and access provisions.  Provide 
+a cabinet that does not expand or contract perceptibly when fans are starting or stopping and that does not pulsate during operation.  Reinforce 
+cabinet surfaces with deflections in excess of 0.004167 of unsupported span before acceptance.  Stiffen pulsating panels, which produce low-frequency 
+noise due to diaphragming of unstable panel walls, to raise the natural frequency to an easily attenuated level.  Fabricate the enclosure from 
+continuous hot-dipped-galvanized steel no lighter than<MET> 0.91 millimeter</MET><ENG> 20 gauge</ENG> thickness, to match the industry standard.  Provide mill-galvanized 
+sheet-metal that conforms to <RID>ASTM A653/A653M</RID> and that is coated with not less than<MET> 0.38 kilogram of zinc per square meter</MET><ENG> 1.25 ounces of zinc per 
+square foot</ENG> of a two-sided surface.  Provide mill-rolled structural-steel that is hot-dip-galvanized or primed and painted.  Corrosion-protect 
+cut edges, burns, and scratches in galvanized surfaces.  Provide primed and painted black carbon steel cabinet construction that complies with 
+this specification.</TXT><BRK/>
+<BRK/>
+<TXT>Provide removable panels to access the interior of the unit cabinet.  Provide seams that are welded, bolted, or gasketed and sealed with a rubber-based 
+mastic.  Make entire cabinet floor and ceiling hot-dipped-galvanized steel.  Provide removable access doors on both sides of all access, filter, 
+and fan sections for inspection and maintenance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Class C Cabinets</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the following paragraph for AMCA Class C cabinets.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an AHU cabinet that is suitable for the pressure class shown and has leaktight joints, closures, penetrations, and access provisions.  
+Provide a cabinet that does not expand or contract perceptibly when the fans are starting or stopping and that does not pulsate during operation.  
+Reinforce cabinet surfaces with deflections in excess of 0.002778 of unsupported span before acceptance by the Contracting Officer.  Stiffen pulsating 
+panels, which produce low-frequency noise due to diaphragming of unstable panel walls, to raise the natural frequency to an easily attenuated level.  
+Provide the enclosure that is fabricated from mill-galvanized or primed and painted carbon sheet steel.  Provide mill-galvanized sheet metal that 
+conforms to <RID>ASTM A653/A653M</RID> and that is coated with not less than<MET> 0.38 kilogram of zinc per square meter</MET><ENG> 1.25 ounces of zinc per square foot</ENG> of 
+a two-sided surface.  Provide mill-rolled structural steel that is hot-dip galvanized or primed and painted.  Corrosion-protect edges, burns, and 
+scratches in galvanized surfaces.  Provide primed and painted black carbon steel cabinet construction that complies with this specification.</TXT><BRK/>
+<BRK/>
+<TXT>Provide removable panels to access the interior of the unit cabinet.  Provide seams that are welded, bolted, or gasketed and sealed with a rubber-based 
+mastic.  Make the entire cabinet floor and ceiling hot-dipped galvanized steel.  Provide removable access doors on both sides of all access, filter, 
+and fan sections for inspection and maintenance.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Casing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>[Casing sections[ [single][<MET>50 mm </MET><ENG>2 inch </ENG>double] wall type][ as indicated], constructed of a minimum<MET> 1.3 mm</MET><ENG> 18 gauge</ENG> galvanized steel, or<MET>
+ 1.3 mm</MET><ENG> 18 gauge</ENG> corrosion-resisting sheet steel conforming to <RID>ASTM A167</RID>, Type 304.  ][Inner casing of double-wall units that are a minimum<MET>
+ one mm</MET><ENG> 20 gauge</ENG> solid galvanized steel or corrosion-resisting sheet steel conforming to <RID>ASTM A167</RID>, Type 304.  ]Design and construct casing 
+with an integral insulated structural galvanized steel frame such that exterior panels are non-load bearing.</OLI><BRK/>
+<BRK/>
+<OLI>Individually removable exterior panels with standard tools.  Removal must not affect the structural integrity of the unit.  Furnish casings 
+with access sections, inspection doors, and access doors, all capable of opening a minimum of 90 degrees, as indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Insulated, fully gasketed, double-wall type inspection and access doors, of a minimum<MET> 1.3 mm</MET><ENG> 18 gauge</ENG> outer and<MET> one mm</MET><ENG> 20 gauge</ENG> inner panels 
+made of either galvanized steel or corrosion-resisting sheet steel conforming to <RID>ASTM A167</RID>, Type 304.  Provide rigid doors with heavy duty 
+hinges and latches.  Inspection doors must be a minimum<MET> 300 mm</MET><ENG> 12 inches</ENG> wide by<MET> 300 mm</MET><ENG> 12 inches</ENG> high.  Access doors must be a minimum<MET>
+ 600 mm</MET><ENG> 24 inches</ENG> wide, the full height of the unit casing or a minimum of<MET> 1800 mm</MET><ENG> 6 foot</ENG>, whichever is less.[  Install a minimum<MET> 200 by 
+200 mm</MET><ENG> 8 by 8 inches</ENG> sealed glass window suitable for the intended application, in all access doors.]</OLI><BRK/>
+<BRK/>
+<OLI>Access doors must be installed to open against the greatest pressure relative to air pressure on each side of access door. Provide<MET> 25 mm</MET><ENG>
+ 1 inch</ENG> diameter test ports with screwed caps on casing upstream and downstream of all coils and filters for pressure and temperature measurement 
+across internal components to limit unnecessary or unauthorized access inside the unit.</OLI><BRK/>
+<BRK/>
+<OLI>Double-wall insulated type drain pan (thickness equal to exterior casing) constructed of<MET> 1.4 mm</MET><ENG> 16 gauge</ENG>[ stainless steel][ corrosion resisting 
+sheet steel conforming to <RID>ASTM A167</RID>, Type 304], conforming to <RID>ASHRAE 62.1</RID>.  Galvanized steel pans are not acceptable.  Construct drain 
+pans water tight, treated to prevent corrosion, and designed for positive condensate drainage.[  When two or more cooling coils are used, 
+with one stacked above the other, condensate from the upper coils must not flow across the face of lower coils.  Provide intermediate drain 
+pans or condensate collection channels and downspouts, as required to carry condensate to the unit drain pan out of the air stream and 
+without moisture carryover.]  Construct drain pan to allow for easy visual inspection, including underneath the coil without removal of 
+the coil and to allow complete and easy physical cleaning of the pan underneath the coil without removal of the coil.  Provide coils that 
+are individually removable from the casing.  Provide[ <MET>40 mm</MET><ENG> 1.5 inch</ENG>][_____] minimum drain pan connection[ as indicated].</OLI><BRK/>
+<BRK/>
+<OLI>Casing insulation that conforms to <RID>NFPA 90A</RID>.  Insulate single-wall casing sections handling conditioned air with not less than<MET> 25 mm</MET><ENG> 1 
+inch</ENG> thick,<MET> 24 kg/cubic meter</MET><ENG> 1-1/2 pound</ENG> density coated fibrous glass material having a thermal conductivity not greater than<MET> 0.033 W/m-K</MET><ENG>
+ 0.23 Btu/hr-sf-F</ENG>.  Insulate double-wall casing sections handling conditioned air with not less than<MET> 50 mm</MET><ENG> 2 inches</ENG> of the same insulation 
+specified for single-wall casings.  Foil-faced insulation is not an acceptable substitute for use with double wall casing.  Seal double 
+wall insulation completely by inner and outer panels.</OLI><BRK/>
+<BRK/>
+<OLI>Factory applied fibrous glass insulation that conforms to <RID>ASTM C1071</RID>, except that the minimum thickness and density requirements do not 
+apply, and that meets the requirements of <RID>NFPA 90A</RID>.  Make air handling unit casing insulation uniform over the entire casing.  Foil-faced 
+insulation is not an acceptable substitute for use on double-wall access doors and inspections doors [and casing sections].</OLI><BRK/>
+<BRK/>
+<OLI>Duct liner material, coating, and adhesive that conforms to fire-hazard requirements specified in Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR 
+MECHANICAL SYSTEMS.  Protect exposed insulation edges and joints where insulation panels are butted with a metal nosing strip or coat to 
+meet erosion resistance requirements of <RID>ASTM C1071</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>A latched and hinged inspection door, in the fan, filter and coil sections.  Plus additional inspection doors, access doors and access 
+sections [_____][where indicated].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Access Sections and Filter/Mixing Boxes</TTL><BRK/>
+<BRK/>
+<TXT>Provide access sections where indicated and furnish with access doors as shown.  Construct access sections and filter/mixing boxes in a manner 
+identical to the remainder of the unit casing and equip with access doors.  Design mixing boxes to minimize air stratification and to promote thorough 
+mixing of the air streams.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Diffuser Sections</TTL><BRK/>
+<BRK/>
+<TXT>Furnish diffuser sections between the discharge of all housed supply fans [and cooling coils of blow-through single zone units][ and ][filter sections 
+of those units with high efficiency filters located immediately downstream of the air handling unit fan section].  Provide diffuser sections that 
+are fabricated by the unit manufacturer in a manner identical to the remainder of the unit casing, designed to be airtight under positive static 
+pressures up to<MET> [2][_____] kPa</MET><ENG> [8][_____] inches water gauge</ENG> and with an access door on each side for inspection purposes.  Provide a diffuser 
+section that contains a perforated diffusion plate, fabricated of galvanized steel, Type 316 stainless steel, aluminum, or steel treated for corrosion 
+with manufacturer's standard corrosion-resisting finish, and designed to accomplish uniform air flow across the down-stream[ coil][ filters] while 
+reducing the higher fan outlet velocity to within plus or minus 5 percent of the required face velocity of the downstream component.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Roof Curb</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Roof curb must be in accordance with the Hurricane, Seismic and Wind requirements associated with the site.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a roof curb that mates with the unit to provide support and be completely weather tight.  Provide curb with sealing strips to ensure an 
+airtight seal between supply and return openings of the curb and unit.  Design curb to allow ductwork to be directly connected to the curb.[  The 
+roof curb must be provided by the Manufacturer of the equipment.][  The roof curb must be a minimum of [_____]<MET> mm</MET><ENG> inches</ENG> tall.][  Provide an acoustical 
+roof curb to meet noise requirements.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Corrosion Protection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Higher Corrosion Protection is required in high-humidity locations and coastal environments.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to UFC 1-200-01 DoD Building Code, Chapter 4 for additional requirements for corrosion protection.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the interior of the unit with corrosion protection which must be capable of withstanding at least 3000 hours, with no visible corrosive 
+effects, when tested in a salt spray and fog atmosphere in accordance with <RID>ASTM B117</RID> test procedure.  Air tunnel, fans and dampers must all include 
+the corrosion protection.  Provide all coils in contact with outside air a flexible, epoxy polymer e-coat uniformly applied to all coil surface 
+areas without material bridging between fins.  Confirm corrosion durability through testing to no less than 3000 hours salt spray per <RID>ASTM B117</RID>
+.  Coated coil must receive a spray-applied, UV-resistant polyurethane topcoat to prevent UV degradation of the e-coat.  Coating is not required 
+on coils utilizing copper tubes and copper fins.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Remote Outdoor Condenser Coils</TTL><BRK/>
+<BRK/>
+<TXT>Epoxy Immersion Coating - Electrically Deposited: The multi-stage corrosion-resistant coating application comprised of cleaning (heated alkaline 
+immersion bath) and reverse-osmosis immersion rinse prior to the start of the coating process.  Maintain the coating thickness between 0.6-mil 
+and 1.2-mil.  Before the coils are subjected to high-temperature oven cure, treat to permeate immersion rinse and spray.  Where the coils are subject 
+to UV exposure, apply UV protection spray treatment comprising of UV-resistant urethane mastic topcoat.  Provide complete coating process traceability 
+for each coil and minimum five years of limited warranty.  The coating process must be such that uniform coating thickness is maintained at the 
+fin edges.  Comply with the applicable ASTM Standards for the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Salt Spray Resistance: [ 500][ 1,000][ 3,000][ 6,000][ 10,000][_____] hours (<RID>ASTM B117</RID>)</OLI><BRK/>
+<BRK/>
+<OLI>Humidity Resistance (Minimum 1,000 Hours)</OLI><BRK/>
+<BRK/>
+<OLI>Water Immersion (Minimum 260 Hours)</OLI><BRK/>
+<BRK/>
+<OLI>Cross-Hatch Adhesion (Minimum 4B-5B Rating)</OLI><BRK/>
+<BRK/>
+<OLI>Impact Resistance (Up to 160 Inch/Pound)</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Exposed Outdoor Cabinet</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Recommend minimum salt-spray resistance of 3,000 hours unless specifically not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Casing Surfaces (Exterior and Interior):  Protect all exposed and accessible metal surfaces with a water-reducible acrylic with stainless steel 
+pigment spray-applied over the manufacturer's standard finish.  The spray coating thickness must be 2-4 mils and provide minimum salt-spray resistance 
+of [500][1,000][3,000][6,000][10,000][_____] hours (<RID>ASTM B117</RID>) and [500][1,000][_____] hours UV resistance (<RID>ASTM D4587</RID>).</TXT><BRK/>
+<BRK/>
+<TXT>Provide outdoor cabinets with a roof panels sloped at a minimum pitch of<MET> 2 percent</MET><ENG> 1/4 inch per foot</ENG>.  The roof must overhang side and end panels 
+by a minimum of<MET> 50 mm</MET><ENG> 2 inches</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NAVY"><SPT><TTL>Corrosion Protection for Coastal Installations</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph for Navy projects only.</NPR><BRK/>
+<BRK/>
+<NPR>Specify corrosion protection for exterior HVAC equipment, including air handling units, heat exchanger coil surfaces, 
+equipment casings, air-cooled water chiller coils, heat pumps, and air conditioning units, that is exposed to 
+the weather within<MET> 8 km</MET><ENG> 5 miles</ENG> of a sea (salt) water coast.</NPR><BRK/>
+<BRK/>
+<NPR>At these coastal locations, this corrosion protection is also required on HVAC equipment within buildings that 
+are subject to the outside weather conditions.  Specifically, equipment requiring protection is defined as the 
+first HVAC equipment (excluding louvers) met by the outside air in the supply air ductwork system.</NPR><BRK/>
+<BRK/>
+<NPR>Specifier will survey the HVAC equipment market place, find and specify the manufacturer's standard off-the-shelve 
+anti-corrosion options for "coastal" or "sea coast" installations.  Specify the various systems (utilizing the 
+word "or") offered by three competitive equipment selections.  This approach is by far less costly than specifying 
+custom corrosion protection.</NPR><BRK/>
+<BRK/>
+<NPR>Manufacturer's standard off-the-shelve anti-corrosion options for "coastal" or "sea coast" installations also 
+vary with type and size of HVAC equipment.</NPR><BRK/>
+<BRK/>
+<NPR>After thorough investigation of the commercial market, determines manufacturer's standard off-the-shelve anti-corrosion 
+options are not available for the selected equipment, contact the Mechanical Design Branch, NAVFAC LANT for consultation 
+if the need for this protection is considered mandatory by the station.</NPR><BRK/>
+<BRK/>
+<NPR>For installations at MCAS Cherry Point and MCB Camp LeJeune, including New River, and installations at NAS Oceana 
+including Dam Neck, specify corrosion protection for all outside, and specific inside HVAC equipment exposed to 
+the weather.  Follow the guidance specified in the criteria NOTE above.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[_____]</TXT><BRK/>
+<BRK/></SPT>
+</TAI></SPT></SPT><SPT><TTL><SUB>FANS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<BRK/>
+<NPR>NOTE:  Refer to UFC 3-450-01, Noise and Vibration Control for vibration criteria.  Detail vibration isolation 
+required on the drawings and include it in the appropriate schedule.  Include any applicable noise criteria in 
+appropriate equipment schedule on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Design and detail ductwork near air moving devices to minimize system effect on the fans in accordance with AMCA 
+201.  Add system effect to the duct friction loss and indicate fan static pressure on drawings for the designed 
+ductwork configuration.</NPR><BRK/>
+<BRK/>
+<NPR>Indicate the location of each duct smoke detector in the HVAC system and include the detectors on the schematic 
+and associated ladder diagram.  Provide duct smoke detectors  according to NFPA 90A.  Duct detectors are intended 
+to shut associated air distribution fans and smoke dampers, if provided.  Duct smoke detectors are not for use 
+inside ducts where ambient temperatures exceeds<MET> 38 degrees C</MET><ENG> 100 degrees F</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>When the building is equipped with a fire alarm system, connect the duct smoke detectors to the fire alarm control 
+panel (FACP) for alarm initiation.  Show wiring to the FACP for either new or existing fire alarm systems.</NPR><BRK/>
+<BRK/>
+<NPR>Fans with motors greater than<MET> 0.5 kW</MET><ENG> 3/4 hp</ENG> must have automatic controls capable of shutting off fans when not 
+required.</NPR><BRK/>
+<BRK/>
+<NPR>HVAC systems having a total fan system power exceeding<MET> 3.7 kW</MET><ENG> 5 hp</ENG> must meet the provisions of ASHRAE 90.1.  These 
+include ASHRAE 90.1, Table 6.5.3.1, Fan Power Limitation:</NPR><BRK/>
+<BRK/>
+<NPR>For supply air volumes less than<MET> 9,400 L/s</MET><ENG> 20,000 cfm</ENG> the allowable nameplate motor power for a constant volume 
+fan is<MET> 1.9 kW/1000 L/s</MET><ENG> 1.2 hp/1000 cfm</ENG> and for a variable volume fan is<MET> 2.7 kW/1000 L/s</MET><ENG> 1.7 hp/1000 cfm</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>For supply air volumes of<MET> 9,400 L/s</MET><ENG> 20,000 cfm</ENG> and greater the allowable nameplate motor power for a constant 
+volume fan is<MET> 1.7 kW/1000 L/s</MET><ENG> 1.1 hp/1000 cfm</ENG> and for a variable volume fan is<MET> 2.4 kW/1000 L/s</MET><ENG> 1.5 hp/1000 cfm</ENG>
+.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Test and rate fans according to <RID>AMCA 210</RID>.  Calculate system effect on air moving devices in accordance with <RID>AMCA 201</RID> where installed ductwork 
+differs from that indicated on drawings.  Install air moving devices to minimize fan system effect.  Where system effect is unavoidable, 
+determine the most effective way to accommodate the inefficiencies caused by system effect on the installed air moving device.  The sound 
+power level of the fans must not exceed 85 dBA when tested according to <RID>AMCA 300</RID> and rated in accordance with <RID>AMCA 301</RID>.  Provide all fans 
+with an AMCA seal.  Connect fans to the motors either directly or indirectly with V-belt drive.  Use V-belt drives designed for not less 
+than [150][140][120] percent of the connected driving capacity.  Provide variable pitch motor sheaves for<MET> 11 kW</MET><ENG> 15 hp</ENG> and below, and fixed 
+pitch as defined by <RID>AHRI Guideline D</RID> (A fixed-pitch sheave is provided on both the fan shaft and the motor shaft. This is a non-adjustable 
+speed drive.).  Select variable pitch sheaves to drive the fan at a speed which can produce the specified capacity when set at the approximate 
+midpoint of the sheave adjustment.  When fixed pitch sheaves are furnished, provide a replaceable sheave when needed to achieve system 
+air balance.  Provide motors for V-belt drives with adjustable rails or bases.  Provide removable metal guards for all exposed V-belt drives, 
+and provide speed-test openings at the center of all rotating shafts.  Provide fans with personnel screens or guards on both suction and 
+supply ends, except that the screens need not be provided, unless otherwise indicated, where ducts are connected to the fan.  Provide fan 
+and motor assemblies with vibration-isolation supports or mountings as indicated.  Use vibration-isolation units that are standard products 
+with published loading ratings.  Select each fan to produce the capacity required at the fan static pressure indicated.  Provide sound 
+power level as indicated.  Obtain the sound power level values according to <RID>AMCA 300</RID>.  Provide standard AMCA arrangement, rotation, and 
+discharge as indicated.  Provide power ventilators that conform to <RID>UL 705</RID> and have a UL label.</OLI><BRK/>
+<BRK/>
+<OLI>Each fan/motor assembly must be factory balanced to <RID>AMCA 204</RID>, [BV-5, Balance Quality Grade G1.0 ][BV-4, Balance Quality Grade G2.5 ][BV-3, 
+Balance Quality Grade G6.3 ][Balance Quality Grade indicated on Drawings ][_____] or better through entire operating speed range from minimum 
+speed to maximum speed.</OLI><BRK/>
+<BRK/>
+<OLI>Mount fan/motor on [aluminum ][galvanized-steel ][ or ][powder-coated steel ]base.  Include base and vibration isolators in accordance 
+with requirements indicated.  Weld structural members to form a rigid base.  Size and design the base construction to withstand the rigors 
+of shipping and rigging.  Include the base with lifting lugs or holes.</OLI><BRK/>
+<BRK/>
+<OLI>Each fan/motor assembly must be capable of lock-out/tag-out procedure without interrupting operation of other fans in air-handling unit.  
+Fan wheel/motor assembly must pass through the air-handling unit access door servicing fans.  Design and incorporate features to permit 
+safe, rapid, and economical maintenance.</OLI><BRK/>
+<BRK/>
+<OLI>Include easily removable safety screens where fan inlet and outlet are exposed to maintenance personnel, including walk-in air-handling 
+unit plenums.[  Safety screens are not required on fan inlets and outlets with backdraft dampers.]  Safety screens must be expanded-metal 
+or wire screens, fastened to a flat bar perimeter frame.  Screens must comply with OSHA requirements.  Screens and frame must be constructed 
+of aluminum, stainless steel, or powder-coated steel.  Fasten screens to fan using removable and reusable hardware designed for easy removal 
+by maintenance personnel.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Centrifugal Fan Arrays</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Determine sizing, number of fans, and redundancy requirements based on project needs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fan arrangement within fan array must produce a uniform airflow and velocity profile across air-handling unit air tunnel when measured[<MET> 300 mm</MET><ENG> 
+12 inches</ENG>][_____] upstream of fan inlet and[ <MET>1200 mm</MET><ENG> 48 inches</ENG>][_____] downstream of fan inlet.  Remaining fans in array must continue to operate 
+with one or multiple failed fans.  A single mechanical, electrical, and control device failure must not result in a fan array available capacity 
+of less than [33][_____] percent of air-handling unit total scheduled airflow capacity.</TXT><BRK/>
+<BRK/>
+<TXT>Each fan/motor assembly must be controlled through a variable-frequency controller, except for fans with electronically commutated (EC) motors 
+having integral motor controls.[  Include a dedicated variable-frequency controller for each fan/motor assembly in the fan array.][  If fan array 
+is served from a single variable-frequency controller, include a redundant variable-frequency controller with automatic switchover in event of 
+primary variable-frequency controller failure.]</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Airflow Measurement</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain paragraph below to include airflow measurement as integral part of air-handling unit.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each fan within fan array must include airflow measurement indication in<MET> L/s</MET><ENG> cfm</ENG>.  Include airflow totalization of all operating fans in fan array.  
+Airflow measurement instrumentation must not restrict or deflect air travel through fan and must not impact fan air and sound performance.  Include 
+digital display of individual fan airflow and total fan array airflow on face of fan control panel.  Include a 4- to 20-mA output signal for remote 
+monitoring of total fan array airflow.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Fan Array Control</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain one of the two paragraphs below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Include fan control panel with operator interface to control fan array locally through the fan control panel and to switch to control of fan array 
+through a remote-control source. Local control must include on/off operation [and speed adjustment ]for entire fan array and each individual fan/motor 
+in fan array.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The component panel functional intent is manual operation of the fan array which is independent from the building automation system and 
+automated control for the VFD / ECM motor by the building automation system.  The component panel must provide all life safety and HVAC 
+equipment safeties AHU shutdown interlocks wired to termination blocks.</OLI><BRK/>
+<BRK/>
+<OLI>The component panel must be designed using only ladder logic hard wired methods and must not execute any programmed logic specified in 
+the sequence of operation which cannot be submitted in a ladder wiring diagram.  The component panel must provide all relevant inputs and 
+outputs necessary for the building automation system to execute the specified sequence of operation.</OLI><BRK/>
+<BRK/>
+<OLI>Coordinate component panel design with Division 25.  Submit design for approval prior to construction of component panel.  Laminate final 
+approved as-built ladder wiring diagram and mount inside component panel door.</OLI><BRK/></OLG>
+<BRK/>
+][<TXT>Include fan control panel with control interface for remote control.  Fan array on/off operation must be remotely controlled through a single hardwired 
+digital output signal.  Fan array speed must be remotely controlled through a single hardwired analog (4- to 20-mA) output signal.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Fan Array Construction</TTL><BRK/>
+<BRK/>
+<TXT>Include a precision-spun or die-formed, matched inlet and wheel cone to ensure streamlined airflow into the wheel and full loading of fan blades.  
+Inlet cone must be a smooth hyperbolic shape.  Inlet cone must be a single piece, constructed of aluminum or powder-coated steel. Fasten inlet 
+cone to fan panel using bolts, nuts, and washers to provide a positive and secure attachment that can be field removable.  Fan blades must be a 
+true hollow airfoil shape, welded to backplate and wheel cone.  Construct blades of aluminum, reinforced for AMCA fan class.  Design blades to 
+provide smooth airflow over all surfaces of blade.  Construct fan hubs of aluminum with integral bracing for extra strength and stiffness.  Castings 
+must be sound and free of shrink holes, blow holes, cracks, scale, blisters, or other similar injurious defects.  Clean surfaces of castings by 
+blasting, pickling, or any other standard method.  Mold-parting fins and remains of gates and risers must be chipped, filed, and ground flush.  
+Design hubs to maintain a high resistance to fatigue and low relative wheel imbalance.  Hubs must be keyed and setscrewed to motor shaft for positive 
+attachment.  Construct wheel backplates of aluminum.  Select entire rotating assembly so first critical speed is at least [30][_____] percent greater 
+than fan design speed and at least [20][_____] percent greater than maximum speed in AMCA fan class.</TXT><BRK/>
+<BRK/>
+<TXT>Fan must be direct drive, arrangement 4 in accordance with <RID>AMCA 99</RID>.  Adjust wheel width and diameter to match motor speed while providing performance 
+scheduled.  Fasten fan wheel directly to motor shaft using a key in motor shaft and setscrew. Construct motor base and pedestal supports of [aluminum 
+][galvanized steel ][or ][powder-coated steel].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fan Array Motors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain one of two bracketed paragraphs below and coordinate with Fan Motors paragraph. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>See Fan Motors for more information.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide Electronically Commutated (EC), variable-speed, dc, programmable brushless motor with integral controller/inverter that operates a wound 
+stator and senses rotor position to electronically commutate the stator.  Controller must control motor speed either through manual adjustment 
+locally at fan array control panel or through a remote 0- to 10-V-dc control signal.  Coordinate motor mounting with driven equipment.  Motor must 
+be suitable for mounting with motor shaft in either horizontal or vertical position.  Motor must be suitable for operation at site altitude and 
+ambient temperature range.  Electrical characteristics must be suitable for operation with field power source.  Coordinate with electrical installer.  
+Motor efficiency must comply with governing energy codes; [80][_____] percent or higher maintained throughout entire operating range.  Power Factor 
+must be [0.9][_____] or higher at full load.  Service Factor must be 1.0 or higher.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide with zero to 100 percent variable speed control.  Controller must be capable of synchronous speed rotation with no slip losses, 
+gradual ramp-up to set point upon receiving a start signal, soft speed change ramps, overcoming reverse rotation without impact, and controlling 
+airflow within 5 percent of set point regardless of static pressure.</OLI><BRK/>
+<BRK/>
+<OLI>Provide with thermal protection to automatically break electrical power to motor when temperature exceeds a safe value and automatically 
+resets and restores power when temperature returns to normal range.</OLI><BRK/>
+<BRK/>
+<OLI>Bearings must be sealed and permanently lubricated ball bearings.  Enclosure must be ODP or TEFC.  Insulation must be Class B or Class 
+F.  Rotor must be permanent magnet with near zero rotor losses that operates independent of motor current.</OLI><BRK/>
+<BRK/>
+<OLI>Enclosure and Frame must be constructed of aluminum, painted steel, or stainless steel.  End brackets must be cast aluminum.  Shaft must 
+be steel or stainless steel.  Motor leads must be Pin or screw terminals. Provide with manufacturer's standard nameplates and paint.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Fan Array Discharge</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain paragraph below to add fan discharge enclosure for physical separation between operating fans without 
+sound attenuation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Include each fan in fan array with integral single-wall enclosure constructed of solid [aluminum ][galvanized-steel ][or ][powder-coated steel 
+]sheet.  Enclosure must not increase fan array length beyond size indicated on Drawings.  Enclosure must not add static pressure loss. Enclosure 
+must provide a physical separation between operating adjacent fans to prevent negative performance.</TXT><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Retain paragraph below to add fan discharge sound attenuation.  Consult manufacturers about expected sound 
+attenuating performance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Include each fan of fan array with integral sound silencer enclosure to reduce the bare fan discharge sound levels by at least [8][15][_____] dBs 
+through octave band frequencies from 125 to 8000 Hz.  Enclosure must not increase the fan array length beyond size indicated on Drawings.  Silencing 
+enclosure must not add static pressure loss. Double-wall construction consisting of sound-absorbing insulation sandwiched between a solid metal 
+outer skin and perforated metal inner skin.  Outer skin material must be[Aluminum][Galvanized steel][Powder-coated steel].  Inner skin material 
+must be [Aluminum][Galvanized steel][Powder-coated steel].  Insulation must be [Mineral fiber][mineral fiber wrapped in a tight woven fiberglass 
+cloth or polymer sheet][ or ][fiber free].  Enclosure must provide a physical separation between operating adjacent fans to prevent a negative 
+performance.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Fan Array Accessories</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain paragraph below to include backdraft dampers on fans.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Include each fan in the fan array with a backdraft damper at the fan [inlet][ or ][outlet] to prevent air circulation through a fan that is not 
+operating.  Open backdraft damper when fan is operating and close when fan is not operating.  Design backdraft damper assembly to operate with 
+little to no static pressure loss with fan operating throughout entire operating range from design to minimum airflow.  Add damper pressure loss 
+to fan scheduled total static pressure.  If pressure loss requires a change field electrical power, air-handling unit manufacturer must be responsible 
+for associated cost of change.  Fasten backdraft damper assembly to fan panel or enclosure using hardware designed for easy removal by maintenance 
+personnel.  Dampers must not create measurable additional noise above the sound level of fan.  Dampers must not vibrate or rattle.  Construct dampers 
+of extruded aluminum, stainless steel, or powder-coated steel.</TXT><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Retain paragraph below to include blank-off panels to prevent bypass airflow through individual fans that 
+are not operating.  Coordinate with backdraft paragraph above.  Fan arrays with backdraft dampers do not require 
+blank-off panels.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Include[ one][ two][ 10 percent of][_____] blank-off panel(s) with each air-handling unit fan array for use by operators in the field to prevent 
+air circulation through any of the fans in fan array that are not operating.  Design blank-off panels for attachment to fan panels using easily 
+removable and reusable hardware.  Construct blank-offs of aluminum, stainless steel, or powder-coated steel sheets, not less than[<MET> 1.8 mm</MET><ENG> 0.07 
+inch</ENG>][_____] thick.  Mount fan blank-off panels in the fan inlet access section for convenient operator access and use in the future.</TXT><BRK/>
+<BRK/>
+]</SPT></SPT><SPT><TTL>Centrifugal Plenum Fans</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Construct fan panel of aluminum or powder-coated steel.  Support fan wheel and bearings from a structural aluminum or powder-coated steel 
+framework.  Reinforce and brace fan panel to prevent vibration and pulsation.  Include stiffeners to form a rigid panel that is free of 
+structural resonance and vibration.</OLI><BRK/>
+<BRK/>
+<OLI>Include a precision-spun or die-formed, matched inlet and wheel cone to ensure streamlined airflow into the wheel and full loading of blades.  
+Inlet and wheel cones must be hyperbolic.  Inlet cone must be a single piece, constructed of aluminum or powder-coated carbon steel.  Fasten 
+inlet cone to fan panel using bolts, nuts, and washers to provide a positive and secure attachment that can be field removable. Inlet cones 
+that are held in place using retaining clips are unacceptable.</OLI><BRK/>
+<BRK/>
+<OLI>Fan blades must be a true hollow airfoil shape,[ continuously] welded to backplate and wheel cone. Construct blades of aluminum, reinforced 
+for AMCA fan class and operating conditions scheduled.  Design blades to provide smooth and aerodynamic airflow over all surfaces of blade.  
+Construct fan hubs of cast aluminum or cast iron, <RID>ASTM A48/A48M</RID> Class 20A and better, with integral bracing for extra strength and stiffness.  
+Castings must be sound and free of shrink holes, blow holes, cracks, scale, blisters, or other similar injurious defects.  Clean surfaces 
+of castings by blasting, pickling, or other standard method.  Mold-parting fins and remains of gates and risers must be chipped, filed, 
+and ground flush.  Design hubs to maintain a high resistance to fatigue and low relative wheel imbalance.  Hubs must be keyed and set-screwed 
+to shaft for positive attachment.  Construct the wheel backplates of aluminum. Statically and dynamically balance fan wheel before fan 
+is assembled.  Select entire rotating assembly so first critical speed is at least [30][_____] percent greater than fan design speed and 
+at least [20][_____] percent greater than maximum AMCA class speed.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Only direct drives are indicated.  If applications require belt-drive plenums fans, copy requirements for 
+belt drives indicated in HOUSED CENTRIFUGAL FANS paragraph and revise to suit application.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Fans must be direct drive, arrangement 4 in accordance with <RID>AMCA 99</RID> for single-width, single-inlet fans.  Adjust wheel width and diameter 
+to match motor speed while providing performance scheduled.  Fasten fan wheel directly to motor shaft using a key and setscrew as previously 
+specified.  Construct motor base and pedestal of aluminum or powder-coated carbon-steel plate.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Housed Centrifugal Fans</TTL><BRK/>
+<BRK/>
+<TXT>Continuously weld housing constructed of [aluminum ][carbon-steel ][or ][stainless steel ]sheets, plates, and structural shapes.  Support fan housing 
+and shaft bearings from a rigid structural framework.  Brace fan housing to prevent vibration and pulsation with external stiffeners to form a 
+rigid housing that is free of operating resonance.  Extend fan housing side sheets not more than[<MET> 13 mm</MET><ENG> 1/2 inch</ENG>][_____] past fan scroll.  Fan 
+Cut-off: Designed for pressure distribution required by the application. Fan Blast Area:  At least [80][_____] percent of fan outlet area.  Wheel 
+Removal:  Construct fan housing for fan wheel(s) removal through the inlet opening when the inlet cone is removed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Housed Centrifugal Fan Construction</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain the following subparagraphs below as needed for the indicated items.  These include requirements for:<BRK/>
+<BRK/>
+a. Split housings on large fans for enhanced access.<BRK/>
+b. Access doors for enhanced access.<BRK/>
+c. Drains on fans capable of accumulating moisture.<BRK/>
+d. Fans with flanged discharge connections.<BRK/>
+e. Fans with flanged inlet connections.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>For fans with wheel diameters nominal[<MET> 1225 mm</MET><ENG> 49 inches</ENG>][_____] and larger, include diagonally flanged, gasketed, and bolted split housings.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide access doors with quick-opening, gasketed, with heavy-duty latches. Conform to housing contour. Locate in 5 o'clock or 7 o'clock 
+position about the end of the shaft and position to gain internal access.  Maximize size of square access door up to[<MET> 600 mm</MET><ENG> 24 inches</ENG>][_____].</OLI><BRK/>
+<BRK/>
+][<OLI>Provide[<MET> DN 25</MET><ENG> NPS 1</ENG>][_____] female NPT threaded half coupling welded to lowest point of fan housing. Position the drain connection to 
+accommodate field-installed drain piping.  Include each drain coupling with a stainless steel threaded plug.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide welded flanged discharge with a matching companion flange having evenly spaced holes for threaded hardware.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide welded flanged inlet with a matching companion flange having evenly spaced holes for threaded hardware.</OLI><BRK/>
+<BRK/>
+]<OLI>Include precision-spun or die-formed, matched inlet and wheel cones with hyperbolic shape to ensure streamlined airflow into the wheel 
+and fully load the blades for efficient aerodynamic performance.  Inlet cone must be a single piece, constructed of[ aluminum][ carbon 
+steel][ or][ stainless steel].  Fasten inlet cone to fan housing using bolts, nuts, and washers to provide a positive and secure attachment 
+that can be removed and replaced in the field.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Provide fan blades with true hollow airfoil shape, continuously welded to backplate or centerplate and wheel cone(s).  Construct blades of[ aluminum][ 
+carbon steel][ or][ stainless steel], reinforced for AMCA fan class.  Design blades to provide smooth and aerodynamic airflow over all surfaces 
+of blade.  Construct fan hubs of[ cast aluminum][ cast iron, <RID>ASTM A48/A48M</RID> Class 20A and better][ or][ stainless steel], with integral bracing 
+for extra strength and stiffness.  Castings must be sound and free of shrink holes, blow holes, cracks, scale, blisters, or other similar injurious 
+defects.  Clean surfaces of castings by blasting, pickling, or other standard method.  Mold-parting fins and remains of gates and risers must be 
+chipped, filed, and ground flush.  Design hubs to maintain a high resistance to fatigue and low relative wheel imbalance.  Key and setscrew hubs 
+to shaft for positive attachment.  Construct wheel backplates or centerplates of[ aluminum][ carbon steel][ or][ stainless steel].  Statically 
+and dynamically balance fan wheel before fan is assembled.  Select entire rotating assembly so first critical speed is at least [30][_____] percent 
+greater than fan design speed and at least [20][_____] percent greater than maximum AMCA class speed.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Housed Centrifugal Fan Drive</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain paragraph below for belt-drive fan applications and for direct-drive fan applications with a drive 
+coupling.  Paragraph is not required for applications where fan wheel is directly connected to motor shaft.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fan shaft must be one piece, solid [carbon][ or ][stainless] steel, accurately turned, ground, polished, and inspected.  Polish shafts at the point 
+of bearing contact to comply with bearing manufacturer's recommended tolerances.  Inspect shafts for straightness after the keyways are cut.  Coat 
+carbon-steel shafts with a rust-inhibitive coating.  Fan bearings must be foot-mounted type, bolted on a rigid welded steel framework that is integral 
+with, or independent of, the housing.  Size bearings for L-10 life of at least [200,000][_____] hours, a DN factor less than [200,000][_____] and 
+a load factor less than [2,700,000][_____] at the maximum fan class load limit horsepower, including belt pull.  Select bearings in accordance 
+with [<RID>ABMA 9</RID>][ and ][ or ][<RID>ABMA 11</RID>].</TXT><BRK/>
+<BRK/>
+<TXT>Bearings for Fans with Motor Horsepower up to[<MET> 7.5 kW</MET><ENG> 10 HP</ENG>][_____]: Single-row ball or spherical bearings, self-aligning, grease lubricated, and 
+housed in a pillow block housing.  Bearings for Larger-Size Fans: Double-row spherical, self-aligning, grease lubricated, and housed in a horizontally 
+split pillow block housing.  Extend [copper][ or ][plastic] grease lines to an accessible location within sight of bearing for greasing the bearings 
+without removing guards, inlet screens, linkages, and other appurtenances.  Terminate bearings and extended grease lines with grease gun fittings.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Direct Drive</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain subparagraph below for direct-drive fan applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fans must be direct drive Double-Width, Double-Inlet: Arrangement 7 in accordance with <RID>AMCA 99</RID>.  Single-Width, Single-Inlet: Arrangement [4][ or 
+][5] in accordance with <RID>AMCA 99</RID>.  For AMCA arrangements 4 and 5, fasten fan wheel directly to motor shaft using a key and setscrew indicated.  
+Construct motor base and pedestal for AMCA arrangement 4 and 7 fans of[ aluminum][ carbon-steel][ stainless steel] plate.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Belt Drive</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Retain paragraphs below for belt-drive fan applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fans must be Multiple V-Belt Design.  Size two belt drives for at least [2.0][_____] times the fan motor horsepower.  Size belt drives with more 
+than two belts, for at least [1.5][_____] times the fan motor horsepower.  Coordinate, with motor manufacturer, the size and location of motor 
+sheave required to satisfy motor L-10 bearing life using motor manufacturer's written instructions.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>]<SPT><TTL>Additional Fan Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain paragraphs below for belt-drive fan applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>Sheave and V-belt selections must be in accordance with manufacturer's published data.  For constant-Speed Applications, utilize fixed 
+or variable sheaves for applications up to[<MET> 4 kW</MET><ENG> 5 hp</ENG>][_____] and fixed sheaves for applications with larger horsepower.  For variable-speed 
+applications, utilize fixed sheaves.  Sheave profile must be machined to Mechanical Power Transmission Association Standards.  Construct 
+sheaves of high-strength cast iron having a minimum tensile strength of[<MET> 172.4 MPa</MET><ENG> 25,000 psi</ENG>][_____].  Sheave rim speeds must not exceed[<MET>
+ 25.4 m/s</MET><ENG> 5000 fpm</ENG>][_____].  Sheave side wobble and runout, and eccentricity must be within Mechanical Power Transmission Association and 
+Rubber Manufacturers Association (RMA) tolerances.  Balance sheaves to satisfy vibration performance requirements.  Mount sheaves on the 
+shaft using a taperlock split and keyed bushing or an integral keyed bushing.  V-belts must be oil resistant, non-static conducting, and 
+high quality in accordance with RMA standards.  Classic A, B, C, D, and E, non-cogged, cross sections.  Multiple belt drives must be a 
+matched set with belt tolerances in accordance with RMA standards.  Tension belts in accordance with manufacturer's written instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Furnish and factory install fan drive guard(s) for bearing assemblies, rotating shafts, sheaves, belts, couplings, and heat slingers.  
+Arrangement 3 fans do not require guards for bearings on the side opposite the drive.  Make provision for motor and fan rpm measurement 
+without removing the guard.  Construct the guard of flattened expanded aluminum or steel wrapped around a channel frame, suitably braced 
+to prevent vibration.  Paint guards using the same coating as fan, except color must be safety yellow.  Design attachment to fan for easy 
+removal by maintenance personnel using a clamp and latch.</OLI><BRK/>
+<BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Retain paragraph below for exhaust applications requiring a seal to minimize leakage.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Provide single-width, single-inlet fans with shaft seal(s) where indicated on Drawings.  Shaft seal(s) must minimize fan leakage when operating 
+and not operating.  Construct shaft seal of an aluminum or split stainless steel plate with non-asbestos material fitted under the split 
+metal plate and seated around the shaft.  Secure split plates to housing using threaded hex-head hardware.  Shaft seals must be replaceable 
+from outside the housing without disturbing the shaft or bearings.  Select shaft seal clearances and materials for operating temperature, 
+pressure, and air quality encountered.  Shaft seals, including labyrinth, floating bushing, or close clearance annulus, are acceptable 
+alternatives.</OLI><BRK/>
+<BRK/>
+][<OLI>Piezometer Ring: Mount piezometer ring at fan inlet cone for airflow measurement.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT></SPT><SPT><TTL>Special Fan Construction</TTL><BRK/>
+<BRK/>
+<TXT>Where indicated on Drawings, construct individual fans with the following additional features.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Spark-Resistant Construction</TTL><BRK/>
+<BRK/>
+<TXT>Construct fans in accordance with <RID>AMCA 99</RID>[ Type A][ Type B][ Type C] spark-resistant construction[ where indicated on Drawings].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heat Slinger</TTL><BRK/>
+<BRK/>
+<TXT>Provide for fans handling air with temperatures exceeding[<MET> 65 deg C</MET><ENG> 150 deg F</ENG>][_____].  Provide a cast aluminum, split-design, internally-finned 
+rotor to create a strong circulation of air over the shaft and inboard bearing, and reduce heat conduction along the shaft to bearings.  Secure 
+the split halves together using at least two stainless steel bolts and use a setscrew to secure the assembly to fan shaft.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Corrosion-Resistant Coating</TTL><BRK/>
+<BRK/>
+<TXT>Provide Baked phenolic[, equal to Heresite's "P-4403 Brown Baked Phenolic Coating."]  &lt;Insert manufacturer's name and product name or designation.&gt;  
+Total Dry Film Thickness: [7][_____] mils.  Application in accordance with manufacturer's written instructions.  Mist bonding pass and allow to 
+flash off for several minutes, but not long enough to allow film to completely dry.  Not less than three crisscross multipasses maintaining a wet-appearing 
+film.  Air dry approximately 45 to 60 minutes with ventilation before applying heat.  After air dry period has elapsed, raise temperature in recommended 
+increments of 30 minutes until desired temperature is reached.  Bake intermediate coats at approximately half the final temperature for 10 to 20 
+minutes.  Final Bake: [<MET> 205 deg C</MET><ENG> 400 deg F</ENG>][_____] for 1-1/2 hours.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Fan Motors</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Comply with <RID>NEMA MG 00001</RID> unless more stringent requirements are indicated.  <RID>NEMA MG 00001</RID>, [Design B][_____], as required to comply with 
+capacity and torque characteristics; medium-induction motor.</OLI><BRK/>
+<BRK/>
+<OLI>Capacity and torque must be sufficient to start, accelerate, and operate connected loads at designated speeds, at installed altitude and 
+environment, with indicated operating sequence, and without exceeding nameplate ratings or considering service factor.  Provide NEMA Premium 
+Efficiency rating complying with <RID>NEMA MG 00001</RID>.  Motor must operate fan under all conditions indicated without exceeding motor nameplate 
+and without use of motor service factor.  Comply with minimum requirements of Class F or Class H insulation, suitable for "inverter-duty" 
+or "drive-duty" applications in accordance with <RID>NEMA MG 00001</RID>.  Motor operation through a variable-frequency controller must not adversely 
+affect the motor performance, operation, useful life, and warranty.  Motor Service Factor must be [1.15][_____].  Enclosure Type: must 
+be [ODP][ or ][TEFC].</OLI><BRK/>
+<BRK/>
+<OLI>Provide Shaft grounding system to protect bearings from induced voltage.  Shaft grounding system must have low drag (less than 0.05 percent 
+of motor horsepower), and must operate for a minimum of 3 years without periodic maintenance or adjustments.  Shaft grounding system must 
+be mounted external [or internal ] to motor enclosure.  Provide frames with integrally cast feet unless other requirements of driven equipment 
+require a different arrangement.  Frame, front and back end brackets, and front and back end bearing intercaps constructed of cast iron, <RID>
+ASTM A48/A48M</RID>, Class 25 or better.  Fabricate rotor frame from die-cast aluminum, copper, or associated alloys.  Key rotors to motor shaft.  
+Rotating assembly must be dynamically balanced to within limits defined in <RID>NEMA MG 00001</RID>.  Motors must have the entire rotating assembly 
+between bearing inner caps coated with a corrosion-resistant coating.</OLI><BRK/>
+<BRK/>
+<OLI>Copper windings must be spike resistant to withstand 1600 peak V. Entire wound and insulated stator coated with a coating to protect against 
+moisture and corrosion.</OLI><BRK/>
+<BRK/>
+<OLI>Solid shaft fabricated of[ carbon][ Type 304 stainless][ Type 316 stainless][ Type 416 stainless] steel, accurately turned, ground and 
+polished, and inspected for accuracy.  End of shaft with drilled hole for use in field measurements.</OLI><BRK/>
+<BRK/>
+<OLI>Grease-lubricated ball or roller bearings.  <RID>ABMA 11</RID> L-10 motor bearing life of [100,000][_____] hours.  Factory lubricate motor bearings 
+using a premium moisture-resistant polyurea thickened grease with rust inhibitors suitable for extreme operating temperatures encountered. 
+Coordinate special requirements that may impact lubrication and include appropriate lubrication.</OLI><BRK/>
+<BRK/>
+<OLI>Equip each bearing housing with an easily accessible grease inlet.  Fit grease inlets with a grease fitting and protective fitting cap.  
+Equip inlets with an automatic grease relief fitting to prevent excessive greasing.  Equip each bearing housing with grease drain and threaded 
+plug.</OLI><BRK/>
+<BRK/>
+<OLI>Conduit box material must be the same as frame.  For motor frames 365T and below, furnish conduit boxes sized with internal volumes in 
+accordance with <RID>NEMA MG 00001</RID>.  For motor frames larger than 365T, furnish conduit boxes one size larger than <RID>NEMA MG 00001</RID>.  Coordinate 
+the location and mounting of conduit box with driven equipment manufacturer.  Factory mount conduit box on motor.  Provide NRTL-listed 
+clamp-type grounding lug mounted in conduit box.</OLI><BRK/>
+<BRK/>
+<OLI>Motor leads must be non-wicking type, Class F temperature rating or better, and permanently numbered over entire length for identification.  
+Lead terminals must be manufacturer's standard.</OLI><BRK/>
+<BRK/>
+<OLI>Provide motor with drain holes at the lowest point for drainage of condensate.  Each drain hole with a threaded removable plug.</OLI><BRK/>
+<BRK/>
+[<OLI>TEFC Motor Fans must be corrosion-resistant construction, non-sparking, metallic or non-metallic, bi-directional, and keyed to shaft.  
+Motor Fan Cover must be[ Steel][ Same material as frame].</OLI><BRK/>
+<BRK/>
+]<OLI>Motor hardware must be hex-head, high-strength, zinc-plated carbon steel or stainless steel.</OLI><BRK/>
+<BRK/>
+<OLI>Provide lifting eyebolts threaded into frame receptacle and designed to prevent moisture and other foreign material from entering motor 
+cavity when eyebolt is removed.</OLI><BRK/>
+<BRK/>
+<OLI>Construct nameplates of aluminum or stainless steel and attach to motor frame with aluminum, stainless steel, or brass drive pins.  Engrave 
+or stamp data on the nameplate.  At a minimum, include nameplate data in accordance with <RID>NEMA MG 00001</RID>.[  Also include ABMA bearing designation 
+for the drive and opposite end bearing.]</OLI><BRK/>
+<BRK/>
+<OLI>Motor must successfully pass[ 500][ 1000][ 2000][_____]-hour salt spray test for corrosion in accordance with <RID>ASTM B117</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>COILS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to UFC 1-200-01 DoD Building Code, Chapter 4 for additional requirements for corrosion protection 
+and coordinate with CORROSION PROTECTION sub-paragraph.  Research local conditions to determine the effect of 
+corrosive atmosphere on dissimilar metals.  Where condenser or evaporator coils are to be installed in corrosive 
+atmospheres, rewrite the specification for coils and fins for these specific conditions.  Consider the following 
+coil and fin combinations based on past experience with the suitability of these materials in dealing with the 
+local conditions.</NPR><BRK/>
+<BRK/>
+<NPR>a.  Copper coil and aluminum fins, coated.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Copper coil and copper fins, coated.</NPR><BRK/>
+<BRK/>
+<NPR>c.  Aluminum coil and aluminum fins, coated.</NPR><BRK/>
+<BRK/>
+<NPR>d.  Aluminum coil and aluminum fins, uncoated.</NPR><BRK/>
+<BRK/>
+<NPR>e.  Copper coil and copper fins, uncoated.</NPR><BRK/>
+<BRK/>
+<NPR>Provide either phenolic, vinyl or epoxy/electrodeposition coating.  For coils with relatively close fin spacing 
+such as those found in most unitary equipment, the phenolic or epoxy/electrodeposition coating is preferred, as 
+these have less tendency to bridge across the fins than vinyl, better thermal conductivity than vinyl and in many 
+conditions weathers better than vinyl.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide fin-and-tube type coils constructed of seamless [copper][red brass] tubes and [aluminum][ or ][copper] fins mechanically bonded or soldered 
+to the tubes.[  Provide copper tube wall thickness that is a minimum of<MET> [0.406][0.508][0.6096] mm</MET><ENG> [0.016][0.020][0.024] inches</ENG>.][  Provide red 
+brass tube wall thickness that is a minimum of<MET> [0.89][1.24] mm</MET><ENG> [0.035] [0.049] inches</ENG>.][  Provide aluminum fins that are<MET> [0.14][0.19] mm</MET><ENG> [0.0055][0.0075] 
+inch</ENG> minimum thickness.][  Provide copper fins that are<MET> 0.114 mm</MET><ENG> 0.0045 inch</ENG> minimum thickness.]  Provide casing and tube support sheets that are 
+not lighter than<MET> 1.6 mm</MET><ENG> 16 gauge</ENG> galvanized steel, formed to provide structural strength.  When required, provide multiple tube supports to prevent 
+tube sag.  Mount coils for counterflow service.  Rate and certify coils to meet the requirements of <RID>AHRI 410</RID>.[  Provide factory applied phenolic, 
+vinyl or epoxy/electrodeposition coating.]</TXT><BRK/>
+<BRK/>
+<TAI OPT="AIR FORCE,ARMY"><SPT><TTL>Direct-Expansion Coils</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph for Army and Air Force projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide suitable direct-expansion coils for the refrigerant involved.  Provide refrigerant piping that conforms to <RID>ASTM B280</RID> and clean, dehydrate 
+and seal.  Provide seamless copper tubing suction headers or seamless or resistance welded steel tube suction headers with copper connections.  
+Provide supply headers that consist of a distributor which distributes the refrigerant through seamless copper tubing equally to all circuits in 
+the coil.  Provide circuited tubes to ensure minimum pressure drop and maximum heat transfer.  Provide circuiting that permits refrigerant flow 
+from inlet to suction outlet without causing oil slugging or restricting refrigerant flow in coil.  Provide field installed coils which are completely 
+dehydrated and sealed at the factory upon completion of pressure tests.  Pressure test coils in accordance with <RID>UL 1995</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Water Coils</TTL><BRK/>
+<BRK/>
+<TXT>Install water coils with a pitch of not less than<MET> 10 mm/m</MET><ENG> 1/8 inch/foot</ENG> of the tube length toward the drain end.  Use headers constructed of cast 
+iron, welded steel or copper.  Furnish each coil with a plugged vent and drain connection extending through the unit casing.  Provide removable 
+water coils with drain pans.  Pressure test coils in accordance with <RID>UL 1995</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steam Heating Coils</TTL><BRK/>
+<BRK/>
+<TXT>Construct steam coils from cast semisteel, welded steel or copper headers, and [red brass][copper] tubes.  Construct headers from cast iron, welded 
+steel or copper.  Provide fin tube and header section that float within the casing to allow free expansion of tubing for coils subject to high 
+pressure steam service.  Provide each coil with a field or factory installed vacuum breaker.  Provide single-tube type coils with tubes not less 
+than<MET> 13 mm</MET><ENG> 1/2 inch</ENG> outside diameter, except for steam preheat coils.  Provide supply headers that distribute steam evenly to all tubes at the 
+indicated steam pressure.  Factory test coils to ensure that, when supplied with a uniform face velocity, temperature across the leaving side is 
+uniform with a maximum variation of no more than 5 percent.  Pressure testcoils in accordance with <RID>UL 1995</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steam Preheat (Nonfreeze) Coils</TTL><BRK/>
+<BRK/>
+<TXT>Provide steam-distribution-tube type steam (nonfreeze) coils with condensing tubes not less than<MET> 25 mm</MET><ENG> 1 inch</ENG> outside diameter for tube lengths<MET>
+ 1.5 m</MET><ENG> 60 inches</ENG> and over and<MET> 13 mm</MET><ENG> 1/2 inch</ENG> outside diameter for tube lengths under<MET> 1.5 m</MET><ENG> 60 inches</ENG>.  Construct headers from cast iron, welded 
+steel, or copper.  Provide distribution tubes that are not less than<MET> 15 mm</MET><ENG> 5/8 inch</ENG> outside diameter for tube lengths<MET> 1.5 m</MET><ENG> 60 inches</ENG> and over 
+and<MET> 10 mm</MET><ENG> 3/8 inch</ENG> outside diameter for tube lengths under<MET> 1.5 m</MET><ENG> 60 inches</ENG> with orifices to discharge steam to condensing tubes.  Install distribution 
+tubes concentric inside of condensing tubes and hold securely in alignment.  Limit maximum length of a single coil to<MET> 3.66 m</MET><ENG> 144 inches</ENG>.  Factory 
+test coils to ensure that, when supplied with a uniform face velocity, temperature across the leaving side is uniform with a maximum variation 
+of no more than 5 percent.  Pressure test coils in accordance with <RID>UL 1995</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<TAI OPT="NAVY"><SPT><TTL>Electric Heating Coil</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph for Navy projects only.  Choose the second set of brackets if an air-conditioning unit 
+for EDP is specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an electric duct heater coil in accordance with <RID>UL 1995</RID> and <RID>NFPA 70</RID>.  Provide duct- or unit-mounted coil.  Provide[ nickel chromium resistor, 
+single stage, strip][ nickel chromium resistor, single stage, strip or stainless steel, fin tubular] type coil.  Provide coil with a built-in or 
+surface-mounted high-limit thermostat interlocked electrically so that the coil cannot be energized unless the fan is energized.  Provide galvanized 
+steel or aluminum coil casing and support brackets.  Mount coil to eliminate noise from expansion and contraction and for complete accessibility 
+for service.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Eliminators</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this paragraph for Navy projects only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Equip each cooling coil having an air velocity of over<MET> 2 m/s</MET><ENG> 400 fpm</ENG> through the net face area with moisture eliminators, unless the coil manufacturer 
+guarantees, over the signature of a responsible company official, that no moisture can be carried beyond the drip pans under actual conditions 
+of operation.  Construct of minimum 24 gage[ zinc-coated steel][ copper][ copper nickel][ or][ stainless steel], removable through the nearest 
+access door in the casing or ductwork.  Provide eliminators that have not less than two bends at 45 degrees and are spaced not more than<MET> 63 mm</MET><ENG> 
+2-1/2 inches</ENG> center-to-center on face.  Provide each bend with an integrally formed hook as indicated in the <RID>SMACNA 1884</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</TAI><SPT><TTL>Sprayed Coil Dehumidifiers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Sprayed coil dehumidifiers are not recommended due to additional maintenance and the potential of mold 
+and mildew, only use when another option is not feasible.  Consider weather impacts when deciding to use this 
+or not.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide assembly with reinforced, braced, and externally insulated galvanized steel casing, vertical in-line spray pump, bronze self-cleaning spray 
+nozzles, galvanized steel pipe spray headers, adjustable float valve with replaceable neoprene seat, manufacturer's standard cooling coil, and 
+welded black steel drain tank.  Provide overflow drain, make-up, and bleed connection.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>REFRIGERATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must at a minimum comply with applicable year of ASHRAE 90.1 for equipment efficiencies and indicate 
+required efficiencies on the equipment schedules on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Air-to-Refrigerant Coils</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the copper or aluminum tubes and the coating requirement except in corrosive or coastal environments.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide air-to-refrigerant coils with [seamless copper][ or ][aluminum] tubes of<MET> 8 mm</MET><ENG> 5/16 inch</ENG> minimum diameter with [copper][ or ][aluminum] 
+fins that are mechanically bonded or soldered to the tubes.  Casing must be [galvanized steel][ or ][aluminum].  Avoid contact of dissimilar metals.  
+Test coils in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID> at the factory and must be suitable for the working pressure of the installed system.  Factory 
+pressure and leak test each coil.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide separate expansion devices for each compressor circuit.  Condensate drain pans must be removable and double-sloped.</OLI><BRK/>
+<BRK/>
+<OLI>Dual compressor units must have intermingled evaporator coils.</OLI><BRK/>
+<BRK/>
+<OLI>Condensate drain pans must be removable and double-sloped.</OLI><BRK/>
+<BRK/>
+[<OLI>Provide condenser coils with hail protection guards.</OLI><BRK/>
+<BRK/>
+]<OLI>Coat[ condenser][ evaporator][ condenser and evaporator] coil with a uniformly applied[ epoxy electrodeposition][ phenolic][ vinyl][ epoxy 
+electrodeposition, phenolic, or vinyl] type coating to all coil surface areas without material bridging between fins.  Apply coating at 
+either the coil or coating manufacturer's factory.  Coating process must ensure complete coil encapsulation.  Coating must be capable of 
+withstanding a minimum [500][1000][_____] hours exposure to the salt spray test specified in <RID>ASTM B117</RID> using a 5 percent sodium chloride 
+solution.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Compressor</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide direct drive, semi-hermetic or hermetic reciprocating, or scroll type compressor capable of operating at partial load conditions.  Compressor 
+must be capable of continuous operation down to the lowest step of unloading as specified.  Equip compressors of<MET> 35 kW</MET><ENG> 10 tons</ENG> and larger with 
+capacity reduction devices to produce automatic capacity reduction of at least 50 percent.  If standard with the manufacturer, two or more compressors 
+may be used in lieu of a single compressor with unloading capabilities, in which case the compressors operate in sequence, and each compressor 
+has an independent refrigeration circuit through the condenser and evaporator.  Start compressors in the unloaded position.  Provide each compressor 
+with vibration isolators, crankcase heater, thermal overloads,[ lubrication pump,][ high][ high and low] pressure safety cutoffs and protection 
+against short cycling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigeration Circuit</TTL><BRK/>
+<BRK/>
+<TXT>Refrigerant containing components must comply with <RID>ANSI/ASHRAE 15 &amp; 34</RID> and be factory tested, cleaned, dehydrated, charged, and sealed.  Provide 
+refrigerant lines with service pressure tap ports and refrigerant line filter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Remote Condenser or Condensing Unit</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the sound requirements unless the unit is located in a sound-sensitive area.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Units with capacities<MET> 39.5 kW</MET><ENG> 135,000 Btuh</ENG> or greater must produce a maximum AHRI sound rating of [85][_____] dB when rated in accordance with <RID>
+ANSI/AHRI 370</RID>.  Fit each remote condenser coil with a manual isolation valve and an access valve on the coil side.  Saturated refrigerant condensing 
+temperature must not exceed<MET> 49 degrees C</MET><ENG> 120 degrees F</ENG> at<MET> 40 degrees C</MET><ENG> 95 degrees F</ENG> ambient.  Provide unit with low ambient condenser controls 
+to ensure proper operation in an ambient temperature of<MET> [-6][13][_____] degrees C</MET><ENG> [20][55][_____] degrees F</ENG>.  Provide fan and cabinet construction 
+must be provided as specified in paragraph UNIT CONSTRUCTION.  Fan and condenser motors must have[ open][ dripproof][ totally enclosed][ explosion 
+proof] enclosures.[  Condensing unit must have controls to initiate a refrigerant pump down cycle at system shut down on each refrigerant circuit.][  
+Provide outdoor unit with louvered, weather-proof enclosure for protection of integral elements.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Air-Cooled Condenser</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide unit rated in accordance with <RID>ANSI/AHRI 460</RID> and conform to the requirements of <RID>UL 1995</RID>.  Provide factory fabricated, tested, packaged, 
+and self-contained unit.  Unit must be complete with casing, propeller or centrifugal type fans, heat rejection coils, connecting piping and wiring, 
+and all necessary appurtenances.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide interconnecting refrigeration piping, electrical power, and control wiring between the condensing unit and the indoor unit as required 
+and as indicated.  Provide electrical and refrigeration piping terminal connections between[ condenser][ condensing unit] and evaporator 
+units.</OLI><BRK/>
+<BRK/>
+<OLI>Low ambient control for multi-circuited units serving more than one evaporator coil must provide independent condenser pressure controls 
+for each refrigerant circuit.  Set controls to produce a minimum of<MET> 40 degrees C</MET><ENG> 95 degrees F</ENG> saturated refrigerant condensing temperature.  
+Provide unit with a liquid subcooling circuit that ensures proper liquid refrigerant flow to the expansion device over the specified application 
+range of the condenser.  Unit must be provided with[ manufacturer's standard][ not less than<MET> [4][_____] degrees C</MET><ENG> [8][_____] degrees F</ENG>] 
+liquid subcooling.  Liquid seal the subcooling circuit.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the copper or aluminum tubes and the coating requirement except in corrosive environments.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Coils must have[ nonferrous][ copper or aluminum] tubes of<MET> 10 mm</MET><ENG> 3/8 inch</ENG> minimum diameter with copper or aluminum fins that are mechanically 
+bonded or soldered to the tubes.[  Protect coil in accordance with paragraph COILS.]  Casing must be galvanized steel or aluminum.  Avoid 
+contact of dissimilar metals.  Test coils in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID> at the factory and ensure suitability for the working 
+pressure of the installed system.  Dehydrate and seal each coil after testing and prior to evaluation and charging.  Provide each unit 
+with a factory operating charge of refrigerant and oil or a holding charge.  Field charge unit shipped with a holding charge.  Provide 
+separate expansion devices for each compressor circuit.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a complete control system with required accessories for regulating condenser pressure by fan cycling, solid-state variable fan 
+speed, modulating condenser coil or fan dampers, flooding the condenser, or a combination of the above.  Construct unit mounted control 
+panels or enclosures in accordance with applicable requirements of <RID>NFPA 70</RID> and house in <RID>NEMA ICS 6</RID>, Class 1 or 3A enclosures.  Controls 
+must include[ control transformer,][ fan motor[ starters],][ solid-state speed control,][ electric heat tracing controls,][ time delay 
+start-up,] overload protective devices, interface with local and remote components, and intercomponent wiring to terminal block points.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Evaporative Condenser</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Evaporative condensers are only used in dry climates due to problems with condensate scaling and algaie 
+formation in other climates.  Verify with the user that their environmental conditions support the installation 
+or evaporative condensers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide a counter-flow blow-through design, with single-side air entry.  ]The unit must have fan assemblies built into the unit base, with all 
+moving parts factory mounted and aligned.  Primary construction of the pan section and the cabinet must not be lighter than<MET> 1.6 mm</MET><ENG> 16-gauge</ENG> steel, 
+protected against corrosion by a zinc coating.  Conform the zinc coating <RID>ASTM A153/A153M</RID> and <RID>ASTM A123/A123M</RID>, as applicable and have an extra heavy 
+coating of not less than<MET> 0.76 kg/square meter</MET><ENG> 2.5 ounces/square foot</ENG> of surface.  Give cut edges a protective coating of zinc-rich compound.  After 
+assembly, apply the manufacturer's standard zinc chromatized aluminum or epoxy paint finish to the exterior of the unit.  Unit must be rated in 
+accordance with <RID>AHRI 490 I-P</RID> and tested in accordance with the requirements of <RID>ASHRAE 64</RID>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide a watertight pan complete with drain, overflow, and make-up water connections.  Provide standard pan accessories to include circular 
+access doors, a lift-out strainer of anti-vortexing design and a brass make-up valve with float ball.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a direct driven, statically and dynamically balanced, [centrifugal][ or ][propeller] type fan.  Do not locate fan and fan motor 
+in the discharge airstream of the unit.  Enclose motors in[ open][ splashproof][ totally enclosed] enclosure that is suitable for the indicated 
+service.  Design the condensing unit design to prevent water from entering into the fan section.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the copper or aluminum tubes and the coating requirement except in corrosive environments.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Provide condensing coils with[ nonferrous][ copper][ or][ aluminum] tubes of<MET> 10 mm</MET><ENG> 3/8 inch</ENG> minimum diameter without fins.[  Protect coil 
+in accordance with paragraph COILS.]  Provide [galvanized steel][ or ][aluminum] casing.  Avoid contact of dissimilar metals.  Test coils 
+in accordance with <RID>ANSI/ASHRAE 15 &amp; 34</RID> at the factory and ensure suitability for the working pressure of the installed system.  Dehydrate 
+and seal each coil after testing and prior to evaluation and charging.  Provide each unit with [a factory operating charge of refrigerant 
+and oil][ or ][a holding charge].[  Field charge unit shipped with a holding charge with refrigerant and oil.]</OLI><BRK/>
+<BRK/>
+<OLI>Provide a water distribution system that distributes water uniformly over the condensing coil to ensure complete wetting of the coil at 
+all times.  Provide[ brass,][ stainless steel,][ or][ high-impact plastic] spray nozzles that are the cleanable, non-clogging, removable 
+type.  Design nozzles to permit easy disassembly and arrange for easy access.</OLI><BRK/>
+<BRK/>
+<OLI>Provide [a][two] bronze-fitted [centrifugal][ or ][turbine] type water pump[s] that may be mounted as an integral part of the evaporative 
+condenser or remotely on a separate mounting pad.  Pumps must have cast-iron casings.  Impellers must be bronze, and shafts stainless steel 
+with bronze casing wearing rings.  Use mechanical type shaft seals.  Factory coat the pump casing with epoxy paint.  Pump motors must have[ 
+open][ drip proof][ totally enclosed][ explosion proof] enclosures.  Provide a bleed line with a flow valve or fixed orifice in the pump 
+discharge line and extend to the nearest drain for continuous discharge.  Fully submerge pump suction and provide with a [galvanized steel][ 
+or ][monel] screened inlet.</OLI><BRK/>
+<BRK/>
+<OLI>Provide drift eliminators to limit drift loss to not over 0.005 percent of the specified water flow.  Construct eliminators of [zinc-coated 
+steel][ or ][polyvinyl chloride (PVC)].  Eliminators must prevent carry over into the unit's fan section.</OLI><BRK/>
+<BRK/>
+<OLI>Provide the evaporative condenser unit with modulating capacity control dampers mounted in the discharge of the fan housing.  On a decrease 
+in refrigerant discharge pressure the dampers must modulate to reduce the airflow through the evaporative condenser.  Controls must include 
+a proportional acting pressure controller, a control transformer, motor actuator with linkages and end switches to cycle fan motor on and 
+off.  Cycle a fan motor on and off in accordance with the manufacturer's instructions.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Compressor</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph if only a remote condenser is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide compressor rated in accordance with <RID>AHRI 540</RID>.  Provide direct drive, semi-hermetic or hermetic reciprocating, or scroll type compressor 
+capable of operating at partial load conditions.  Compressor must be capable of continuous operation down to the lowest step of unloading as specified.  
+Provide units<MET> 35 kW</MET><ENG> 120,000 Btuh</ENG> and larger with capacity reduction devices to produce automatic capacity reduction of at least 50 percent.  If 
+standard with the manufacturer, two or more compressors may be used in lieu of a single compressor with unloading capabilities, in which case the 
+compressors operate in sequence, and each compressor must have an independent refrigeration circuit through the condenser and evaporator.  Each 
+compressor must start in the unloaded position.  Provide each compressor with vibration isolators, crankcase heater,[ lubrication pump,] thermal 
+overloads, and[ high][ high and low] pressure safety cutoffs and protection against short cycling.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Fans</TTL><BRK/>
+<BRK/>
+<TXT>Provide fan wheel shafts supported by either maintenance-accessible grease lubricated antifriction block-type bearings, or permanently lubricated 
+ball bearings.  Mount fan motor and fan assembly on a common base to allow consistent belt tension with no relative motion between fan and motor 
+shafts.  The entire fan motor and fan assembly must be completely vibrationally isolated from the unit.  Select unit fans to produce the airflow 
+required at the fan total pressure.  Motor starters, if applicable, must be magnetic across-the-line type with a[n][ open drip-proof][ totally 
+enclosed][ explosion proof] enclosure.  Provide [manual][ or ][automatic-reset] type thermal overload protection.  Construct fan wheels of [aluminum][ 
+or ][galvanized steel].  Provide centrifugal fan wheel housings of galvanized steel, and construct centrifugal fan casings of [aluminum][ or ][galvanized 
+steel].  Steel elements of fans, except fan shafts, must be [hot-dipped galvanized after fabrication][ or ][fabricated of mill galvanized steel].  
+Recoat mill-galvanized steel surfaces and edges damaged or cut during fabrication by forming, punching, drilling, welding, or cutting with an approved 
+zinc-rich compound.  Statically and dynamically balance [fan wheels][ or ][propellers].  Provide double inlet[ forward-curved][ air foil] type 
+fan wheels.  Fan must reach rated rpm before the fan shaft passes through the first critical speed.  Fans must be belt-driven with adjustable sheaves.  
+Select the sheave size so that the fan speed at the approximate midpoint of the sheave adjustment produces the specified air quantity.  Provide 
+centrifugal scroll-type fans with streamlined orifice inlet and V-belt drive.  Each drive must be independent of any other drive.  Condenser fans 
+must be propeller type, direct drive, statically balanced with galvanized steel blades and permanently lubricated ball bearings.  Protect condenser 
+fan motor drive bearings with water slingers or shields.  Fit all belt drives with guards where exposed to contact by personnel.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>GAS-FIRED HEATING SECTION</TTL><BRK/>
+<BRK/>
+<TXT>Construct gas-fired heat exchanger and burner of stainless steel suitable for[ natural gas][ liquid propane gas] fuel supply.  Provide burner with[ 
+direct spark][ pilot] ignition.  Heating section must have modulation with a turn down ratio of at least [4][3] to 1.  Provide heating section 
+completely assembled and integral to unit.  Fire test all units prior to shipment.  Valve must include a pressure regulator.  Supply combustion 
+air with a centrifugal combustion air blower with built-in thermal over load protection.  Safety controls must include a flame sensor and air pressure 
+switch.  Mount heater section to eliminate noise from expansion and contraction and completely accessible for service.  Gas equipment must bear 
+the AGA label for the type of service involved.[  Provide burner in accordance with <RID>NFPA 54</RID>.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Direct Gas-Fired Heating Section</TTL><BRK/>
+<BRK/>
+<TXT>Direct gas-fired heat module(s) must have a stainless-steel burner with aluminum burner head casting, non-clogging gas ports; spark-ignition intermittent 
+pilot, flame safeguard system with integral flame sensing, air pressure switch and automatic high limit switch set to<MET> [85][_____] degrees C</MET><ENG> [185][_____] 
+degrees F</ENG>.  Burner assembly must be mechanically secured to vestibule panels.  The burner combustion must be clean and odorless, with combustion 
+efficiency limiting the products of combustion to a maximum of 5 ppm carbon monoxide and 0.5 ppm nitrogen dioxide.  The burner profile to be equipped 
+with adjustable profile plates.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Indirect Gas-Fired Heating Section</TTL><BRK/>
+<BRK/>
+<TXT>Heat module must be listed for outdoor installation with a Category IV venting system.  Vent connectors provided must be suitable for connection 
+to commercially available PVC pipe.  Module must have [2][4][_____]-pass tubular heat exchangers, constructed of[ aluminized steel][ type 409 stainless 
+steel].  Heat exchanger tubes must be installed on the vest plate by means of swaged assembly, welded connections are not acceptable.  Module must 
+be encased in a weather-tight metal housing with intake air vents.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>AIR FILTERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select filters based on the functional needs of the area served, including indoor air quality.  The combination 
+of the extended surface pleated panel filters and the extended surface nonsupported pocket filters or the cartridge 
+filter of the same efficiency are intended to fulfill the filtration requirements in UFC 3-410-01, Heating, Ventilating, 
+and Air-Conditioning Systems for areas where indoor air quality is of primary concern.  Consider limiting the 
+variety of filter sizes required to minimize inventory requirements for system maintenance.</NPR><BRK/>
+<BRK/>
+<NPR>In the event the retention of efficiency values in the specification becomes too cumbersome, revise the requirements 
+by referring to the efficiencies indicated on the drawings, to show for each air handling unit or system the efficiency 
+of the air filters required, and the maximum initial resistance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>List air filters according to requirements of <RID>UL 900</RID>, except list high efficiency particulate air filters of 99.97 percent efficiency by the DOP 
+Test method under the Label Service to meet the requirements of <RID>UL 586</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Extended Surface Pleated Panel Filters</TTL><BRK/>
+<BRK/>
+<TXT>Provide<MET> 50 mm</MET><ENG> 2 inch</ENG> depth, sectional, disposable type filters of the size indicated with a MERV of 8 when tested according to <RID>ASHRAE 52.2</RID>.  Provide 
+initial resistance at<MET> 2.54 m/s</MET><ENG> 500 fpm</ENG> that does not exceed<MET> 0.09 kPa</MET><ENG> 0.36 inches water gauge</ENG>.  Provide UL Class 2 filters, and nonwoven cotton 
+and synthetic fiber mat media.  Attach a wire support grid bonded to the media to a moisture resistant fiberboard frame.  Bond all four edges of 
+the filter media to the inside of the frame to prevent air bypass and increase rigidity.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Extended Surface Nonsupported Pocket Filters</TTL><BRK/>
+<BRK/>
+<TXT>Provide<MET> [750][_____] mm</MET><ENG> [30][_____] inch</ENG> depth, sectional, replaceable dry media type filters of the size indicated with a MERV of 13 when tested 
+according to <RID>ASHRAE 52.2</RID>.  Provide initial resistance at<MET> [2.54][_____] m/s</MET><ENG> [500][_____] fpm</ENG> that does not exceed<MET> [0.1125][_____] kPa</MET><ENG> [0.45][_____] 
+inches water gauge</ENG>.  Provide UL Class 1 filters.  Provide fibrous glass media, supported in the air stream by a wire or non-woven synthetic backing 
+and secured to a galvanized steel metal header.  Provide pockets that do not sag or flap at anticipated air flows.  Install each filter [with an 
+extended surface pleated panel filter as a prefilter] in a factory preassembled, side access housing or a factory-made sectional frame bank, as 
+indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cartridge Type Filters</TTL><BRK/>
+<BRK/>
+<TXT>Provide<MET> 305 mm</MET><ENG> 12 inch</ENG> depth, sectional, replaceable dry media type filters of the size indicated with a MERV of 13 when tested according to <RID>ASHRAE 52.2</RID>
+.  Provide initial resistance at<MET> [2.54][_____] m/s</MET><ENG> [500][_____] fpm</ENG> that does not exceed<MET> [0.14][_____] kPa</MET><ENG> [0.56][_____] inches, water gauge</ENG>.  
+Provide UL class 1 filters, and pleated microglass paper media with corrugated aluminum separators, sealed inside the filter cell to form a totally 
+rigid filter assembly.  Fluctuations in filter face velocity or turbulent airflow have no effect on filter integrity or performance.  Install each 
+filter[ with an extended surface pleated media panel filter as a prefilter] in a factory preassembled side access housing, or a factory-made sectional 
+frame bank, as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sectional Cleanable Filters</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete washing and charging racks when not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide<MET> [25][50] mm</MET><ENG> [1][2] inch</ENG> thick cleanable filters.  Provide viscous adhesive in<MET> 20 L</MET><ENG> 5 gallon</ENG> containers in sufficient quantity for 12 cleaning 
+operations and not less than<MET> one L</MET><ENG> one quart</ENG> for each filter section.  Provide one washing and charging tank for every 100 filter sections or fraction 
+thereof; with each washing and charging unit consisting of a tank and[ single][ double] drain rack mounted on legs and drain rack with dividers 
+and partitions to properly support the filters in the draining position.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Replaceable Media Filters</TTL><BRK/>
+<BRK/>
+<TXT>Provide the[ dry-media][ viscous adhesive] type replaceable media filters, of the size required to suit the application.  Provide filtering media 
+that is not less than<MET> 50 mm</MET><ENG> 2 inches</ENG> thick fibrous glass media pad supported by a structural wire grid or woven wire mesh.  Enclose pad in a holding 
+frame of not less than<MET> 1.6 mm</MET><ENG> 16 gauge</ENG> galvanized steel, equipped with quick-opening mechanism for changing filter media.  Base the air flow capacity 
+of the filter on net filter face velocity not exceeding<MET> [1.5][_____] m/s</MET><ENG> [300][_____] fpm</ENG>, with initial resistance of<MET> [32][_____] Pa</MET><ENG> [0.13][_____] 
+inches water gauge</ENG>.  Provide MERV that is not less than [_____] when tested according to <RID>ASHRAE 52.2</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electrostatic Filters</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The combination dry agglomerator/extended surface, nonsupported pocket electrostatic filters or the combination dry agglomerator/automatic 
+renewable, media (roll) type electrostatic filters, as indicated (except as modified).  Supply each dry agglomerator electrostatic air 
+filter with the correct quantity of fully housed power packs and equip with silicon rectifiers, manual reset circuit breakers, low voltage 
+safety cutout, relays for field wiring to remote indication of primary and secondary voltages, with lamps mounted in the cover to indicate 
+these functions locally.  Equip power pack enclosure with external mounting brackets, and low and high voltage terminals fully exposed 
+with access cover removed for ease of installation.  Furnish interlock safety switches for each access door and access panel that permits 
+access to either side of the filter, so that the filter is de-energized in the event that a door or panel is opened.</OLI><BRK/>
+<BRK/>
+<OLI>Ozone generation within the filter that does not exceed five parts per one hundred million parts of air.  Locate high voltage insulators 
+in a serviceable location outside the moving air stream or on the clean air side of the unit.  Fully expose ionizer wire supports and furnish 
+ionizer wires precut to size and with formed loops at each end to facilitate ionizer wire replacement.</OLI><BRK/>
+<BRK/>
+<OLI>Agglomerator cell plates that allow proper air stream entrainment of agglomerates and prevent excessive residual dust build-up, with cells 
+that are open at the top and bottom to prevent accumulation of agglomerates which settle by gravity.  Where the dry agglomerator electrostatic 
+filter is indicated to be the automatic renewable media type, provide a storage section that utilizes a horizontal or vertical traveling 
+curtain of adhesive-coated bonded fibrous glass for dry agglomerator storage section service supplied in<MET> 19.8 m</MET><ENG> 65 foot</ENG> lengths in convenient 
+roll form.  Otherwise, provide section construction and roll media characteristics as specified for automatic renewable media filters.  
+Also a dry agglomerator/renewable media combination with an initial air flow resistance, after installation of clean media, that does not 
+exceed<MET> 62.3 Pa</MET><ENG> 0.25 inch water gauge</ENG> at<MET> 2.54 m/s</MET><ENG> 500 fpm</ENG> face velocity.</OLI><BRK/>
+<BRK/>
+<OLI>A MERV of the combination that is not less than 15 when tested according to <RID>ASHRAE 52.2</RID> at an average operating resistance of<MET> 125 Pa</MET><ENG> 0.50 
+inch water gauge</ENG>.  Where the dry agglomerator electrostatic filter is indicated to be of the extended surface nonsupported pocket filter 
+type, provide a storage section as specified for extended surface non-supported pocket filters, with sectional holding frames or side access 
+housings as indicated.</OLI><BRK/>
+<BRK/>
+<OLI>A dry agglomerator/extended surface nonsupported pocket filter section combination with initial air flow resistance, after installation 
+of clean filters, that does not exceed<MET> 162 Pa</MET><ENG> 0.65 inch water gauge</ENG> at<MET> 2.54 m/s</MET><ENG> 500 fpm</ENG> face velocity, with a MERV of the combination not 
+less than 16 when tested according to <RID>ASHRAE 52.2</RID>.  Furnish front access filters with full height air distribution baffles and upper and 
+lower mounting tracks to permit the baffles to be moved for agglomerator cell inspection and service.  When used in conjunction with factory 
+fabricated air handling units, supply side access housings which have dimensional compatibility.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>High-Efficiency Particulate Air (HEPA) Filters</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use high-efficiency particulate air filters in CLEAN ROOMS (White Rooms or Dust Controlled Facilities), 
+clean work stations, and for critical areas of hospitals.  Show the efficiency of the prefilter on the drawings.  
+Provide efficiency that is sufficient for the anticipated contamination load and the degree of prefiltration required.  
+Reference ASME AG-1 either all or in part when extreme temperature or humidity requirements exist.  Ensure that 
+requirements added to text from ASME AG-1 are essential to customer's needs to prevent unnecessary expenses from 
+being added to the project, as this standard is not intended for routine commercial applications.  When used, 
+add ASME AG-1 to paragraph REFERENCES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide HEPA filters that meet the requirements of <RID>IEST RP-CC-001</RID> and are individually tested and certified to have an efficiency of not less than 
+[95][99.97] percent, and an initial resistance at [_____]<MET> m/s</MET><ENG> fpm</ENG> that does not exceed [_____]<MET> Pa</MET><ENG> inches water gauge</ENG>.  Provide filters that are 
+constructed by pleating a continuous sheet of filter medium into closely spaced pleats separated by corrugated aluminum or mineral-fiber inserts, 
+strips of filter medium, or by honeycomb construction of the pleated filter medium.  Provide interlocking, dovetailed, molded neoprene rubber gaskets 
+of 5-10 durometer that are cemented to the perimeter of the[ upstream][ downstream] face of the filter cell sides.  Provide self-extinguishing 
+rubber-base type adhesive or other materials conforming to fire hazard classification specified in Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL 
+SYSTEMS.  Provide filter cell sides that are[<MET> 19 mm</MET><ENG> 3/4 inch</ENG> thick exterior grade fire-retardant plywood][ cadmium plated steel][ galvanized steel] 
+assembled in a rigid manner.  Provide overall cell side dimensions that are correct to<MET> 2 mm</MET><ENG> 1/16 inch</ENG>, and squareness that is maintained to within<MET>
+ 3.2 mm</MET><ENG> 1/8 inch</ENG>.  Provide holding frames that use spring loaded fasteners or other devices to seal the filter tightly within it and that prevent 
+any bypass leakage around the filter during its installed life.  Provide air capacity and the nominal depth of the filter as indicated.  Install 
+each filter in a factory preassembled side access housing or a factory-made sectional supporting frame as indicated.  Provide prefilters of the 
+type, construction and efficiency indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Holding Frames</TTL><BRK/>
+<BRK/>
+<TXT>Fabricate frames from not lighter than<MET> 1.6 mm</MET><ENG> 16 gauge</ENG> sheet steel with rust-inhibitor coating.  Equip each holding frame with suitable filter 
+holding devices.  Provide gasketed holding frame seats.  Make all joints airtight.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Filter Gauges</TTL><BRK/>
+<BRK/>
+<TXT>Provide dial type filter gauges, diaphragm actuated draft for all filter stations, including those filters which are furnished as integral parts 
+of factory fabricated air handling units.  Provide gauges that are at least<MET> 98 mm</MET><ENG> 3-7/8 inches</ENG> in diameter, with white dials with black figures, 
+and[ graduations][ graduated in<MET> 0.0025 kPa</MET><ENG> 0.01 inch water gauge</ENG>,] with a minimum range of<MET> 0.25 kPa</MET><ENG> 1 inch water gauge</ENG> beyond the specified final 
+resistance for the filter bank on which each gauge is applied.  Provide each gauge with a screw operated zero adjustment and two static pressure 
+tips with integral compression fittings, two molded plastic vent valves, two<MET> 1.5 m</MET><ENG> 5 foot</ENG> minimum lengths of<MET> 6.35 mm</MET><ENG> 1/4 inch</ENG> diameter[ aluminum][ 
+vinyl] tubing, and all hardware and accessories for gauge mounting.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>ENERGY RECOVERY DEVICES</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must comply with applicable year of ASHRAE 90.1 for energy recovery effectiveness, including calculation 
+methodology as part of the calculations submittal package.  Include exhaust air transfer ratio (EATR) or outdoor 
+air correction factor (OACF) in the equipment schedule on the drawings as applicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Energy Recovery Performance</TTL><BRK/>
+<BRK/>
+<TXT>Energy recover equipment must comply with[ ASHRAE Design Guide for Dedicated Outdoor Air Systems (DOAS)][ ANSI/AHRI Guideline V Calculating the 
+Efficiency of Energy Recovery Ventilation and its Effect on Efficiency and Sizing of Building HVAC Systems][ and][ ANSI/AHRI Guideline W Selecting, 
+Sizing, and Specifying Packaged Air-to-Air Energy Recovery Ventilation Equipment].</TXT><BRK/>
+<BRK/>
+<TXT>[Energy transfer ratings must be AHRI Certified to <RID>AHRI 1060 I-P</RID> and bear the AHRI certification seal for AHRI Air-to-Air Energy Recovery Ventilation 
+Equipment Program based on <RID>AHRI 1060 I-P</RID>.][  The manufacturer must provide certified performance data in accordance with <RID>ASHRAE 84</RID> and <RID>AHRI 1060 I-P</RID>
+.  Independent performance test results must be used to rate the product in accordance with the AHRI Air-to-Air Energy Recovery Ventilation Equipment 
+Program.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rotary Wheel</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show energy recovery device supply/exhaust filters, preheat coils, backdraft dampers, exhaust dampers, 
+recirculation dampers, face and bypass dampers, drainage provisions, controls and like ancillaries on the drawings 
+and supplement by the specifications as necessary.  Select minimum acceptable energy transfer effectiveness and 
+maximum acceptable cross-contamination.</NPR><BRK/>
+<BRK/>
+<NPR>Delete moisture resistance and chain drive if not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide unit that is a factory fabricated and tested assembly for air-to-air energy recovery by transfer of sensible[ and latent] heat from exhaust 
+air to supply air stream, with device performance according to <RID>ASHRAE 84</RID> and that delivers an energy transfer effectiveness of not less than [70][85][_____] 
+percent with cross-contamination not in excess of [0.1][1.0][_____] percent of exhaust airflow rate at system design differential pressure, including 
+purging sector if provided with wheel.  Provide exchange media that is chemically inert, moisture-resistant, fire-retardant, laminated, nonmetallic 
+material which complies with <RID>NFPA 90A</RID>.  Isolate exhaust and supply streams by seals which are static, field adjustable, and replaceable.  Equip 
+chain drive mechanisms with ratcheting torque limiter or slip-clutch protective device.  Fabricate enclosure from galvanized steel and include 
+provisions for maintenance access.  Provide recovery control and rotation failure provisions as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Run-Around-Coil</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete "factory fabricated and tested" if not required.</NPR><BRK/>
+<BRK/>
+<NPR>Coordinate with paragraph GLYCOL SOLUTION in Section <SRF>23 64 26</SRF> CHILLED, CHILLED-HOT, AND CONDENSER WATER PIPING 
+SYSTEMS.  Glycol is considered a hazardous waste.  If the base does not have a used glycol waste program, using 
+glycol can be an expensive maintenance item.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide assembly that is factory fabricated and tested air-to-liquid-to-air energy recovery system for transfer of sensible heat from exhaust air 
+to supply air stream and that delivers an energy transfer effectiveness not less than that indicated without cross-contamination with maximum energy 
+recovery at minimum life cycle cost.  Computer optimize components for capacity, effectiveness, number of coil fins per inch, number of coil rows, 
+flow rate, heat transfer rate of [_____] percent by volume of[ ethylene][ propylene] glycol solution, and frost control.  Provide coils that conform 
+to paragraph COILS.  Provide related pumps, and piping specialties that conform to requirements of[ Section <SRF>23 63 00.00</SRF> COLD STORAGE REFRIGERATION 
+SYSTEMS][ Section <SRF>23 57 10.00 10</SRF> FORCED HOT WATER HEATING SYSTEMS USING WATER AND STEAM HEAT EXCHANGERS][ Section<SRF>23 69 00.00 20</SRF> REFRIGERATION EQUIPMENT 
+FOR COLD STORAGE] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heat Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include face air velocity, static pressure drop, temperature requirements for entering and leaving air 
+or exhaust streams on the equipment schedule for heat pipes.</NPR><BRK/>
+<BRK/>
+<NPR>Delete flexible connectors if not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a device that is a factory fabricated, assembled and tested, counterflow arrangement, air-to-air heat exchanger for transfer of sensible 
+heat[ between exhaust and supply streams] and that delivers an energy transfer effectiveness not less than that indicated without cross-contamination.  
+Provide heat exchanger tube core that is<MET> [15][18][25] mm</MET><ENG> [1/2][5/8][1] inch</ENG> nominal diameter, seamless aluminum or copper tube with extended surfaces, 
+utilizing wrought aluminum Alloy 3003 or Alloy 5052, temper to suit.  Provide maximum fins per unit length and number of tube rows as indicated.  
+Provide tubes that are fitted with internal capillary wick, filled with a refrigerant complying with <RID>ANSI/ASHRAE 15 &amp; 34</RID>, selected for system 
+design temperature range, and hermetically sealed.  Refrigerants containing chlorofluorocarbons (CFC) are prohibited.  Provide heat exchanger frame 
+that is constructed of not less than<MET> 1.6 mm</MET><ENG> 16 gauge</ENG> galvanized steel and fitted with intermediate tube supports, and flange connections.  Provide 
+tube end-covers and a partition of galvanized steel to separate exhaust and supply air streams without cross-contamination and in required area 
+ratio.[  Provide a drain pan constructed of welded Type 300 series stainless steel.]  Provide heat recovery regulation by[ system face and bypass 
+dampers and related control system as indicated][ interfacing with manufacturer's standard tilt-control mechanism for summer/winter operation, 
+regulating the supply air temperature and frost prevention on weather face of exhaust side at temperature indicated].  Coil must be fitted with 
+pleated flexible connectors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Desiccant Wheel</TTL><BRK/>
+<BRK/>
+<TXT>Provide counterflow supply, regeneration airstreams, a rotary type dehumidifier designed for continuous operation, and extended surface type wheel 
+structure in the axial flow direction with a geometry that allows for laminar flow over the operating range for minimum air pressure differentials.  
+Provide the dehumidifier complete with a drive system utilizing a fractional-horsepower electric motor and speed reducer assembly driving the rotor.  
+Include a slack-side tensioner for automatic take-up for belt-driven wheels.  Provide an adsorbing type desiccant material.  Apply the desiccant 
+material to the wheel such that the entire surface is active as a desiccant and the desiccant material does not degrade or detach from the surface 
+of the wheel which is fitted with full-face, low-friction contact seals on both sides to prevent cross leakage.  Provide rotary structure that 
+has underheat, overheat and rotation fault circuitry.  Provide wheel assembly with a warranty for a minimum of five years.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plate Heat Exchanger</TTL><BRK/>
+<BRK/>
+<TXT>Provide energy recovery ventilator unit that is factory-fabricated for indoor installation, consisting of a flat plate cross-flow heat exchanger, 
+cooling coil, supply air fan and motor and exhaust air fan and motor.  The casing must be<MET> 1 mm</MET><ENG> 20 gauge</ENG> G90, galvanized steel, double wall construction 
+with<MET> 25 mm</MET><ENG> one inch</ENG> insulation.  Provide fibrous desiccant cross-flow type heat exchanger core capable of easy removal from the unit.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plate Total Energy Exchanger</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate filter requirements of the DOAS with the plate total energy exchanger.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide enthalpy plate energy exchanger that must transfer both sensible and latent energy between outgoing and incoming air streams in a cross 
+or counter flow arrangement with no moving parts.  The enthalpy plate exchanger media must be [coated with hydrophilic resin][ or ][impregnated 
+with a polymeric desiccant].  The material must allow the exchange water by direct vapor transfer using molecular transport without the need of 
+condensation.  The frame supporting enthalpy matrix must be constructed of G90 Galvanized material with end caps constructed of<MET> [1.3][1.6] mm</MET><ENG> [18][16] 
+gauge</ENG> galvanized plates.  The enthalpy plate exchanger must operate at temperatures between<MET> minus 40 degrees C and 60 degrees C</MET><ENG> minus 40 degrees 
+F and 140 degrees F</ENG>.[  The enthalpy plate exchanger must have a warranty of at least 5 years against manufacturing defects.][  The enthalpy plate 
+exchanger manufacturer must have at least 10 years of experience in the manufacturing of energy recovery components.]</TXT><BRK/>
+<BRK/>
+<TXT>The enthalpy plate exchanger must bear the AHRI 1060 Certified Product Seal.  Sensible, latent and total effectiveness along with pressure drop, 
+exhaust air transfer ratio (EATR) and outdoor air correction factor (OACF) rating must be clearly documented with performance tests conducted in 
+accordance with <RID>ASHRAE 84</RID> and per the official AHRI laboratory.  The enthalpy plate exchanger must withstand pressure differentials of minimum<MET> 
+1.25 kPa 5 inches water gauge</MET><ENG> 2.5 kPa 10 inches water gauge</ENG>.  Following <RID>UL 1995</RID>, the enthalpy plate exchanger must be a UL Recognized Component 
+and bear the UL Certification Mark (tested under UL723 with success by the UL laboratory).  The exchanger must have a flame spread rating not more 
+than 25 and a smoke developed rating not more than 50 when tested in accordance with <RID>ASTM E84</RID>.  The membrane must not promote the growth of mold 
+or bacteria and must have successfully passed <RID>ASTM G21</RID> testing.  Provide heat exchanger core capable of easy removal from the unit.  Enthalpy plate 
+exchangers must be cleanable outside of cabinet.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL><SUB>HUMIDIFIER</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must decide when to use a humidifier provided by the DOAS manufacturer or to specify separately 
+under a separate specification section.  If humidifier is not provided by DOAS manufacturer, remove the entire 
+section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide humidifiers that meet the requirements of <RID>ANSI/AHRI 640</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Electrode Canister Type Humidifier</TTL><BRK/>
+<BRK/>
+<TXT>Provide humidifier of the self-contained steam generating electrode type utilizing a[ plastic][ disposable] canister with full probes connected 
+to electric power via electrode screw connectors.  Construct the electrodes from expanded low carbon steel, zinc plated and dynamically formed 
+for precise current control.  The humidifier assembly must include integral fill cup, fill and drain valves and associated piping.  Design the 
+canister to collect the mineral deposits in the water and provide clean particle free steam to the air stream.  Water chemistry requirements must 
+be provided with humidifier submittal data.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ultrasonic Type Humidifier</TTL><BRK/>
+<BRK/>
+<TXT>Provide self-contained ultrasonic type humidifier operating on the principle of ultrasonic nebulization of water.  Make the casing of high-quality 
+stainless steel.  The ultrasonic humidifier must not produce any unacceptable noise radiation or frequency interference with communications or 
+other electronic equipment.  Water chemistry requirements must be provided with humidifier submittal data.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gas-Fired Steam Humidifiers (Stand-Alone)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a stand-alone gas-fired steam humidifier that includes an enclosed cabinet of[ powder coated][ baked enamel] [14][_____] gauge steel construction 
+with an air gap between cabinet and insulated humidifier tank to ensure safe surface temperatures.  Install all tank surfaces insulated with minimum<MET>
+ 12 mm</MET><ENG> 1/2 inch</ENG> thick insulation and enclosed within unit cabinetry.</TXT><BRK/>
+<BRK/>
+<TXT>Unit must include a drain water cooler to ensure drain water tempering to below<MET> 60 degrees C</MET><ENG> 140 degrees F</ENG>.  Humidifier must prevent "back-siphoning" 
+using an internal air gap for supply water and the drain line must include a vacuum breaker to prevent siphon drainage of the tank in accordance 
+with Section <SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide a unit that includes heat treated type [316][_____] Stainless Steel combustion chamber(s) and heat exchanger(s).</OLI><BRK/>
+<BRK/>
+<OLI>Each burner, capable of modulation at a [5:1][_____] ratio must provide steam production as indicated on the HUMIDIFIER SCHEDULE.  Provide 
+burner in accordance with <RID>NFPA 54</RID>.</OLI> <BRK/>
+<BRK/>
+<OLI>[Control system must seamlessly interface with temperature control system as specified in [Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL 
+CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS][Section <SRF>23 09 23.02</SRF> BACnet DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL 
+SYSTEMS] without requiring gateways or any other interface devices.  ]Ensure that all controls equipment meets the requirements of <RID>UFC 4-010-06</RID>
+.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Electrically Heated Steam Humidifiers (Stand-Alone)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a stand-alone electrically heated steam humidifier that includes an enclosed cabinet of[ powder coated][ baked enamel] [14][_____] gauge 
+steel construction with an air gap between cabinet and insulated humidifier tank to ensure safe surface temperatures.  Install all tank surfaces 
+insulated with minimum<MET> 12 mm</MET><ENG> 1/2 inch</ENG> thick insulation and enclosed within unit cabinetry.</TXT><BRK/>
+<BRK/>
+<TXT>Unit must include a drain water cooler to ensure drain water tempering to below<MET> 60 degrees C</MET><ENG> 140 degrees F</ENG>.  Humidifier must prevent "back-siphoning" 
+using an internal air gap for supply water and the drain line must include a vacuum breaker to prevent siphon drainage of the tank in accordance 
+with Section <SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide a unit that includes heat treated type [316][_____] Stainless Steel combustion chamber(s) and heat exchanger(s).</OLI><BRK/>
+<BRK/>
+<OLI>Each humidifier must operate at the voltage and provide steam production as indicated on the HUMIDIFIER SCHEDULE.</OLI> <BRK/>
+<BRK/>
+<OLI>[Control system must seamlessly interface with temperature control system as specified in[ Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL 
+CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS][ Section <SRF>23 09 23.02</SRF> BACnet DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL 
+SYSTEMS] without requiring gateways or any other interface devices.  ]Ensure that all controls equipment meets the requirements of <RID>UFC 4-010-06</RID>
+.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>]<SPT><TTL><SUB>CONTROLS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph uses tailoring options to select the required protocol for control system interfaces for 
+equipment.</NPR><BRK/>
+<BRK/>
+<NPR>Select Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS for use 
+on all USACE and AFCEC projects and for additions or retrofits to existing NAVFAC LonWorks systems.  New NAVFAC 
+systems should use Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.  
+Also coordinate with Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC.</NPR><BRK/>
+<BRK/>
+<NPR>Ensure that all controls equipment meets the requirements of UFC 4-010-06 Cybersecurity of Facility-Related Control 
+Systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Unit Controls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In regards to head pressure control, insert the appropriate minimum or lowest expected ambient temperature.  
+Delete head pressure controls if inapplicable.  Delete low cost cooling if inapplicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide units internally prewired by manufacturer with a 24 volt electromechanical control circuit powered by an internal transformer.  Provide 
+terminal blocks for power wiring and external control wiring.  Internally protect unit by [fuses][ or ][a circuit breaker] in accordance with <RID>UL 1995</RID>
+.  Units with three-phase power must be equipped with phase monitoring protection to protect against problems caused by phase loss, phase imbalance 
+and phase reversal.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>[Provide unit with microprocessor controls to provide all 24V control functions.  ]Control unit by a[ two stage heating /cooling thermostat][ 
+one stage heating/cooling thermostat] with[ manual][ automatic] changeover.[  Control unit by a programmable electronic thermostat with 
+heating setback and cooling setup with 7-day programming capability.]</OLI><BRK/>
+<BRK/>
+<OLI>Provide unit with[ low voltage electric controls][ factory supplied DDC control system].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Unit DDC Controller</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Unit controller must include input, output and self-contained programming as needed for complete control of unit.</OLI><BRK/>
+<BRK/>
+<OLI>All program sequences must be stored on board in EEPROM.  Batteries cannot be used to retain logic program.  Execute all program sequences 
+by controller 10 times per second and must be capable of multiple PID loops for control of multiple devices.  Programming of logic controller 
+must be completely modifiable in the field over installed[ BACnet LANs][ LonWorks LANs].</OLI><BRK/>
+<BRK/>
+<OLI>Temperature Control System Interface:  Points must be available from the unit controller for service access and display or control.</OLI><BRK/>
+<BRK/>
+<OLI>Provide device, either graphical interface or an additional laptop with communication cabling along with the manufacturer’s diagnostic 
+software, to enable the maintenance/service technicians to log directly into the DOAS stand-alone controller for system diagnostics/maintenance.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<TAI OPT="BACNET ONLY,BACNET OR LONWORKS,LONWORKS ONLY"><SPT><TTL>Control System Interface</TTL><BRK/>
+<TAI OPT="BACNET ONLY"><BRK/>
+<TXT>Controls must include a control system interface to a BACnet Control system.  The control system interface must meet DDC Hardware requirements 
+of Section <SRF>23 09 23.02</SRF> BACNET DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.</TXT><BRK/></TAI>
+<TAI OPT="LONWORKS ONLY"><BRK/>
+<TXT>Controls must include a control system interface to a LonWorks control system.  The control system interface must meet DDC Hardware requirements 
+of Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.</TXT><BRK/></TAI>
+<TAI OPT="BACNET OR LONWORKS"><BRK/>
+<TXT>Controls must include a control system interface to a BACnet or LonWorks control system, whichever is used by the control system in the building 
+in which the unit is installed.  For BACnet, the control system interface must meet DDC Hardware requirements of Section <SRF>23 09 23.02</SRF> BACNET DIRECT 
+DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.  For LonWorks, the control system interface must meet DDC Hardware requirements of 
+Section <SRF>23 09 23.01</SRF> LONWORKS DIRECT DIGITAL CONTROL FOR HVAC AND OTHER BUILDING CONTROL SYSTEMS.</TXT><BRK/></TAI>
+<BRK/></SPT>
+</TAI></SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install equipment in accordance with the <SUB>manufacturer's installation instructions</SUB> and manufacturer's recommendations.</TXT><BRK/>
+<BRK/>
+<TXT>Submit <SUB>installation drawings</SUB> for each DOAS in accordance with referenced standards in this section.  Contractor and manufacturer are responsible 
+for verifying equipment, including any additional parts such as controls devices and other equipment requiring access, fits in the space provided. 
+The Government review does not relieve contractor from delivering the product that meets minimum capacity and mandatory efficiency requirements 
+to meet all codes and standards.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TESTING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Quality Control</TTL><BRK/>
+<BRK/>
+<TXT><TST>Test and rate components of the <SUB>air-conditioning systems</SUB> as a system in accordance with <RID>ANSI/AHRI 210/240</RID>.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>SYSTEM PERFORMANCE TESTS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Before each system is accepted, conduct tests to demonstrate the general operating characteristics of all equipment by a registered professional 
+engineer or an approved manufacturer's start-up representative experienced in system start-up and testing, at such times as directed.  Provide 
+in electronic format.[  Also provide with [six][_____] copies of the report provided in bound<MET> 216 by 279 mm</MET><ENG> 8-1/2 by 11 inch</ENG> booklets.]  The report 
+must document compliance with the specified performance criteria upon completion and testing of the system.  The report must indicate the number 
+of days covered by the tests and any conclusions as to the adequacy of the system.</TXT><BRK/>
+<BRK/>
+<TXT>For equipment providing heating and cooling the system performance tests must be performed during the heating and cooling seasons.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Submit a schedule, at least [2][_____] weeks prior to the start of related testing, for the system performance tests.  The schedules must 
+identify the proposed date, time, and location for each test.  Tests must cover a period of not less than [48][_____] hours for each system 
+and must demonstrate that the entire system is functioning in accordance with the drawings and specifications.</OLI><BRK/>
+<BRK/>
+<OLI>Make corrections and adjustments, as necessary, tests must be re-conducted to demonstrate that the entire system is functioning as specified.  
+Prior to acceptance, install and tighten service valve seal caps and blanks over gauge points.  Replace any refrigerant lost during the 
+system startup.</OLI><BRK/>
+<BRK/>
+<OLI>If tests do not demonstrate satisfactory system performance, correct deficiencies and retest the system.  Conduct tests in the presence 
+of the Contracting Officer.  Water and electricity required for the tests will be furnished by the Government.  Provide all material, equipment, 
+instruments, and personnel required for the test.</OLI><BRK/>
+<BRK/>
+<OLI>Coordinate field tests with Section <SRF>23 05 93</SRF> TESTING, ADJUSTING, AND BALANCING OF HVAC SYSTEMS.  Submit [six][_____] copies of the report 
+provided in bound<MET> 216 by 279 mm</MET><ENG> 8-1/2 by 11 inch</ENG> booklets.  The report must document compliance with the specified performance criteria 
+upon completion and testing of the system.  The report must indicate the number of days covered by the tests and any conclusions as to 
+the adequacy of the system.  Submit the report including the following information (where values are taken at least three different times 
+at outside dry-bulb temperatures that are at least<MET> 3 degrees C</MET><ENG> 5 degrees F</ENG> apart):</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Date and outside weather conditions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The load on the system based on the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">The refrigerant used in the system.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Condensing temperature and pressure.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Suction temperature and pressure.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Ambient, condensing and coolant temperatures.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Running current, voltage and proper phase sequence for each phase of all motors.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The actual on-site setting of operating and safety controls.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Thermostatic expansion valve superheat - value as determined by field test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Subcooling.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">High and low refrigerant temperature switch set-points</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Low oil pressure switch set-point.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Defrost system timer and thermostat set-points.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Moisture content.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Capacity control set-points.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Field data and adjustments which affect unit performance and energy consumption.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Field adjustments and settings which were not permanently marked as an integral part of a device.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>REFRIGERANT TESTS, CHARGING, AND START-UP</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Split-system refrigerant piping systems must be tested and charged as specified in Section <SRF>23 23 00</SRF> REFRIGERANT PIPING.  Packaged refrigerant systems 
+which are factory charged must be checked for refrigerant and oil capacity to verify proper refrigerant levels in accordance with manufacturer's 
+recommendations.  Following charging, packaged systems must be tested for leaks with a halide torch or an electronic leak detector.  Provide in 
+electronic format.[  Also provide with [six][_____] copies of each test containing the information described below in bound<MET> 216 by 279 mm</MET><ENG> 8-1/2 
+by 11 inch</ENG> booklets.  Individual reports must be submitted for the refrigerant system tests.]</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The date the tests were performed.</OLI><BRK/>
+<BRK/>
+<OLI>A list of equipment used, with calibration certifications.</OLI><BRK/>
+<BRK/>
+<OLI>Initial test summaries.</OLI><BRK/>
+<BRK/>
+<OLI>Repairs/adjustments performed.</OLI><BRK/>
+<BRK/>
+<OLI>Final test results.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Refrigerant Leakage</TTL><BRK/>
+<BRK/>
+<TXT>If a refrigerant leak is discovered after the system has been charged, the leaking portion of the system must immediately be isolated from the 
+remainder of the system and the refrigerant pumped into the system receiver or other suitable container.  Under no circumstances must the refrigerant 
+be discharged into the atmosphere.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contractor's Responsibility</TTL><BRK/>
+<BRK/>
+<TXT>Take steps, at all times during the installation and testing of the refrigeration system, to prevent the release of refrigerants into the atmosphere.  
+The steps must include, but not be limited to, procedures which will minimize the release of refrigerants to the atmosphere and the use of refrigerant 
+recovery devices to remove refrigerant from the system and store the refrigerant for reuse or reclaim.  At no time must more than<MET> 85 g</MET><ENG> 3 ounces</ENG>
+ of refrigerant be released to the atmosphere in any one occurrence.  Any system leaks within the first year must be repaired in accordance with 
+the requirements herein at no cost to the Government including material, labor, and refrigerant if the leak is the result of defective equipment, 
+material, or installation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Operation and Maintenance Manuals, Data Package 2</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit [six][_____] manuals at least 2 weeks prior to field training.  Submit data complying with the requirements specified in Section 
+<SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA<TAI OPT="NAVY"> and <SRF>01 78 24.00 20</SRF> FACILITY DATA WORKBOOK (FDW)</TAI>.  Submit Data Package 3 for the items/units listed under 
+SD-10 Operation and Maintenance Data</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Operation and Maintenance Training</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Determine the number of hours of instruction based on the number and complexity of the systems specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conduct a video recorded training course for the members of the operating staff as designated by the Contracting Officer.  Make the training period 
+consist of a total of [16][_____] hours of normal working time and start it after all work specified herein is functionally completed and the Performance 
+Tests have been approved.  Conduct field instruction that covers all of the items contained in the Operation and Maintenance Manuals as well as 
+demonstrations of routine maintenance operations.  Submit the proposed On-site Training schedule concurrently with the Operation and Maintenance 
+Manuals and at least 14 days prior to conducting the training course.  Provide a copy of the recorded training to the designated operating staff.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Acceptance</TTL><BRK/>
+<BRK/>
+<TXT>With the warranty, provide a cover letter/sheet clearly marked with the system name, date, and the words "Equipment Warranty" - "Forward to the 
+Systems Engineer/Condition Monitoring Office/Predictive Testing Group for inclusion in the Maintenance Database."</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PAINTING OF NEW EQUIPMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For NAVFAC SE projects, delete all painting requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>New equipment painting must be factory applied or shop applied, and must be as specified herein, and provided under each individual section.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Factory Painting Systems</TTL><BRK/>
+<BRK/>
+<TXT>Manufacturer's standard factory painting systems may be provided subject to certification that the factory painting system applied will withstand 
+125 hours in a salt-spray fog test, except that equipment located outdoors must withstand 500 hours in a salt-spray fog test.  Salt-spray fog test 
+must be in accordance with <RID>ASTM B117</RID>, and for that test the acceptance criteria must be as follows:  immediately after completion of the test, 
+the paint must show no signs of blistering, wrinkling, or cracking, and no loss of adhesion; and the specimen must show no signs of rust creepage 
+beyond<MET> 3 mm</MET><ENG> 0.125 inch</ENG> on either side of the scratch mark.</TXT><BRK/>
+<BRK/>
+<TXT>The film thickness of the factory painting system applied on the equipment must not be less than the film thickness used on the test specimen.  
+If manufacturer's standard factory painting system is being proposed for use on surfaces subject to temperatures above<MET> 50 degrees C</MET><ENG> 120 degrees 
+F</ENG>, the factory painting system must be designed for the temperature service.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shop Painting Systems for Metal Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>Clean, pretreat, prime and paint metal surfaces; except aluminum surfaces need not be painted.  Apply coatings to clean dry surfaces.  Clean the 
+surfaces to remove dust, dirt, rust, oil and grease by wire brushing and solvent degreasing prior to application of paint, except metal surfaces 
+subject to temperatures in excess of<MET> 50 degrees C</MET><ENG> 120 degrees F</ENG> must be cleaned to bare metal.</TXT><BRK/>
+<BRK/>
+<TXT>Where more than one coat of paint is specified, apply the second coat after the preceding coat is thoroughly dry.  Lightly sand damaged painting 
+and retouch before applying the succeeding coat. Color of finish coat must be aluminum or light gray.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Temperatures Less Than<MET> 50 Degrees C</MET><ENG> 120 Degrees F</ENG>: Immediately after cleaning, the metal surfaces subject to temperatures less than<MET> 50 
+degrees C</MET><ENG> 120 degrees F</ENG> must receive one coat of pretreatment primer applied to a minimum dry film thickness of<MET> 0.0076 mm</MET><ENG> 0.3 mil</ENG>, one 
+coat of primer applied to a minimum dry film thickness of<MET> 0.0255 mm</MET><ENG> 1 mil</ENG>; and two coats of enamel applied to a minimum dry film thickness 
+of<MET> 0.0255 mm</MET><ENG> 1 mil</ENG> per coat.</OLI><BRK/>
+<BRK/>
+<OLI>Temperatures Between<MET> 50 and 205 Degrees C</MET><ENG> 120 and 400 Degrees F</ENG>:  Metal surfaces subject to temperatures between<MET> 50 and 205 degrees C</MET><ENG> 120 
+and 400 degrees F</ENG> must receive two coats of<MET> 205 degrees C</MET><ENG> 400 degrees F</ENG> heat-resisting enamel applied to a total minimum thickness of<MET> 0.05 
+mm</MET><ENG> 2 mils</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Temperatures Greater Than<MET> 205 Degrees C</MET><ENG> 400 Degrees F</ENG>:  Metal surfaces <NED/>subject to temperatures greater than<MET> 205 degrees C</MET><ENG> 400 degrees F</ENG>
+ must receive two coats of<MET> 315 degrees C</MET><ENG> 600 degrees F</ENG> heat-resisting paint applied to a total minimum dry film thickness of<MET> 0.05 mm</MET><ENG> 2 
+mils</ENG>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

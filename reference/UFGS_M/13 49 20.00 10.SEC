@@ -1,0 +1,2404 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.75"/>
+      <COL AUTOWIDTH="0" WIDTH="224.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-13 49 20.00 10 (October 2007)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Nontechnical Title Revision<BRK/>(August 2015)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 13 49 20.00 10</SCN><BRK/>
+<BRK/>
+<STL>RFI/EMI SHIELDING</STL><BRK/>
+<DTE>10/07</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>electromagnetic 
+shielded facilities.</SCP><BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information must be shown on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Assembly details.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Typical penetration details.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Method of mounting shielded enclosure within building.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Shield penetration plan containing wall elevations, floor and ceiling plans 
+showing the locations of all penetrations (to include all mechanical, electrical, 
+fire protection, etc.) to the HEMP shield.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Location of mechanical and electrical equipment within shielded enclosure.</NPR><BRK/>
+<BRK/>
+<NPR>6.  Detail equipment mounted or suspended from the shielded ceiling.</NPR><BRK/>
+<BRK/>
+<NPR>7.  Shield penetration schedule to include:</NPR><BRK/>
+<NPR>  a. Location of the waveguide.</NPR><BRK/>
+<NPR>  b. Size of waveguide (dimensions).</NPR><BRK/>
+<NPR>  c. No. of penetrations in the waveguide.</NPR><BRK/>
+<NPR>  d. Penetration designation of each penetration in the waveguide (if more than 
+one).</NPR><BRK/>
+<NPR>  e. Size of pipe for each penetration in the waveguide.</NPR><BRK/>
+<NPR>  f. Type of pipe for each waveguide penetration.</NPR><BRK/>
+<NPR>  g. Type of penetration.</NPR><BRK/>
+<NPR>  h. The detail/sheet no. of the waveguide detail.</NPR><BRK/>
+<NPR>  i. Any remarks pertaining to the waveguide.</NPR><BRK/>
+<BRK/>
+<NPR>8.  Filter schedule to include:</NPR><BRK/>
+<NPR>  a. Location of filter.</NPR><BRK/>
+<NPR>  b. Type of filter (power or signal).</NPR><BRK/>
+<NPR>  c. No. Of filters in the filter enclosure.</NPR><BRK/>
+<NPR>  d. Electrical characteristics of the filter (, amperage, no. of poles, frequency).</NPR><BRK/>
+<NPR>  e. Purpose of the filter.</NPR><BRK/>
+<NPR>  f. The detail/sheet no. Of the typical filter detail.</NPR><BRK/>
+<NPR>  g. Any remarks pertaining to the filter.</NPR><BRK/>
+<BRK/>
+<NPR>9.  Typical filter details.</NPR><BRK/>
+<BRK/>
+<NPR>10.  Hardness critical items (HCI) should be identified using the (HCI) symbol 
+on project drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Refer to MIL-HDBK 419 for special grounding and bonding requirements for EM 
+shielded enclosures.  Refer to the U.S. Air Force Handbook for the Design and 
+Construction of HEMP/TEMPEST and Other Shields in Facilities (March 1993).  
+This document can be obtained from HQ AFIC/LEEE, San Antonio, Texas 78243-5001.  
+Also refer to AR 380-19.  MIL-HDBK 423 should be used for projects requiring 
+HEMP protection.  The designer should consult these documents and other appropriate 
+sources before applying this guide specification to large-scale EM shielded 
+enclosures or to HEMP or TEMPEST projects.  The requirement for thermal expansion 
+joints inherent to large-scale enclosures is not addressed in this guide specification.  
+The extent and location of the work to be accomplished and wiring, equipment, 
+and accessories necessary for a complete installation should be indicated on 
+the project drawings.  The Air Force contracts with an independent testing laboratory 
+to perform their acceptance testing.  The test can consist of a SELDS or equivalent 
+test and H-field and plane wave CW tests per MIL-STD-188-125 and/or IEEE 299.  
+See the U.S. Air Force Handbook for the Design and Construction of HEMP/TEMPEST 
+and Other Shields in Facilities for more details.  Methodology and procedures 
+for setting up equipment are contained in MIL-HDBK-423.  Full MIL-STD-188-125 
+acceptance testing (PCI tests as specified in appendix B) should be avoided.  
+(Also see designer notes K and U).  Although not addressed in this specification, 
+fiber optic cable has gained acceptance as an effective method of transmitting 
+data across the boundary of shielded enclosures without filtering.  If fiber 
+optic cable is used, describe the waveguide penetration of the shield in detail.  
+Fiber optic cable is specified in Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS 
+CABLING SYSTEM.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN INSTITUTE OF STEEL CONSTRUCTION (AISC)</ORG><BRK/><BRK/><RID>AISC 325</RID><RTL>(2017) Steel Construction Manual</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS A5.18/A5.18M</RID><RTL>(2025) Specification for Carbon Steel Electrodes and Rods for Gas Shielded Arc Welding</RTL><BRK/><BRK/><RID>AWS BRH</RID><RTL>(2007; 5th Ed) Brazing Handbook</RTL><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/><RID>AWS D1.3/D1.3M</RID><RTL>(2025) Structural Welding Code - Sheet Steel</RTL><BRK/><BRK/><RID>AWS D9.1/D9.1M</RID><RTL>(2018) Sheet Metal Welding Code</RTL><BRK/><BRK/></REF><REF><ORG>APA - THE ENGINEERED WOOD ASSOCIATION (APA)</ORG><BRK/><BRK/><RID>APA L870</RID><RTL>(2010) Voluntary Product Standard, PS 1-09, Structural Plywood</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A36/A36M</RID><RTL>(2019) Standard Specification for Carbon Structural Steel</RTL><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/><RID>ASTM A227/A227M</RID><RTL>(2024) Standard Specification for Steel Wire, Cold-Drawn for Mechanical Springs</RTL><BRK/><BRK/><RID>ASTM A568/A568M</RID><RTL>(2025a) Standard Specification for Steel, Sheet, Carbon, Structural, and High-Strength, Low-Alloy, Hot-Rolled and Cold-Rolled, General Requirements for</RTL><BRK/><BRK/><RID>ASTM A653/A653M</RID><RTL>(2025a) Standard Specification for Steel Sheet, Zinc-Coated (Galvanized) or Zinc-Iron Alloy-Coated (Galvannealed) by the Hot-Dip Process</RTL><BRK/><BRK/><RID>ASTM B194</RID><RTL>(2022) Standard Specification for Copper-Beryllium Alloy Plate, Sheet, Strip, and Rolled Bar</RTL><BRK/><BRK/><RID>ASTM B545</RID><RTL>(2022) Standard Specification for Electrodeposited Coatings of Tin</RTL><BRK/><BRK/><RID>ASTM B633</RID><RTL>(2023) Standard Specification for Electrodeposited Coatings of Zinc on Iron and Steel</RTL><BRK/><BRK/><RID>ASTM E84</RID><RTL>(2025) Standard Test Method for Surface Burning Characteristics of Building Materials</RTL><BRK/><BRK/><RID>ASTM E90</RID><RTL>(2023) Standard Test Method for Laboratory Measurement of Airborne Sound Transmission Loss of Building Partitions and Elements</RTL><BRK/><BRK/></REF><REF><ORG>COMPOSITE PANEL ASSOCIATION (CPA)</ORG><BRK/><BRK/><RID>ANSI/CPA A135.4</RID><RTL>(2012; R2020) Basic Hardboard</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 142</RID><RTL>(2007; Errata 2014) Recommended Practice for Grounding of Industrial and Commercial Power Systems - IEEE Green Book</RTL><BRK/><BRK/><RID>IEEE 299</RID><RTL>(2006; R 2012) Standard Method for Measuring the Effectiveness of Electromagnetic Shielding Enclosures</RTL><BRK/><BRK/><RID>IEEE C62.11</RID><RTL>(2020) Standard for Metal-Oxide Surge Arresters for Alternating Current Power Circuits (&gt;1kV)</RTL><BRK/><BRK/><RID>IEEE C62.33</RID><RTL>(2016) Test Methods and Performance Values for Metal-Oxide Varistor Surge Protective Components</RTL><BRK/><BRK/><RID>IEEE C62.41.1</RID><RTL>(2002; R 2008) Guide on the Surges Environment in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/><RID>IEEE C62.41.2</RID><RTL>(2002) Recommended Practice on Characterization of Surges in Low-Voltage (1000 V and Less) AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA ICS 2</RID><RTL>(2000; R 2020) Industrial Control and Systems Controllers, Contactors, and Overload Relays Rated 600 V</RTL><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 77</RID><RTL>(2024; ERTA 1 2023) Recommended Practice on Static Electricity</RTL><BRK/><BRK/><RID>NFPA 80</RID><RTL>(2025) Standard for Fire Doors and Other Opening Protectives</RTL><BRK/><BRK/><RID>NFPA 80A</RID><RTL>(2022) Recommended Practice for Protection of Buildings from Exterior Fire Exposures</RTL><BRK/><BRK/><RID>NFPA 101</RID><RTL>(2024) Life Safety Code</RTL><BRK/><BRK/><RID>NFPA 780</RID><RTL>(2026) Standard for the Installation of Lightning Protection Systems</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-HDBK-419</RID><RTL>(1987; Rev A) Grounding, Bonding, and Shielding for Electronic Equipments and Facilities Volumes 1 of 2 Basic Theory</RTL><BRK/><BRK/><RID>MIL-STD-188-124</RID><RTL>(1998; Rev B; Notice 2 1998; Notice 3 2000; Notice 4 2013) Grounding, Bonding and Shielding for Common Long Haul/Tactical Communications Systems, Including Ground Based Communications - Electronics Facilities and Equipments</RTL><BRK/><BRK/><RID>MIL-STD-188-125-1</RID><RTL>(1998; Rev A; Notice 1 2021) High-Altitude Electromagnetic Pulse (HEMP) Protection for Ground-Based Facilities Performing Critical, Time-Urgent Missions, Part I Fixed Facilities</RTL><BRK/><BRK/><RID>MIL-STD-220</RID><RTL>(2009; Rev C; Notice 2 2024) Method of Insertion Loss Measurement</RTL><BRK/><BRK/><RID>UFC 3-301-01</RID><RTL>(2023; with Change 6, 2026) Structural Engineering</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 486A-486B</RID><RTL>(2025) UL Standard for Safety Wire Connectors</RTL><BRK/><BRK/><RID>UL 1283</RID><RTL>(2025) UL Standard for Safety Electromagnetic Interference Filters</RTL><BRK/><BRK/><RID>UL 1449</RID><RTL>(2021; Reprint Oct 2025) UL Standard for Safety Surge Protective Devices</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Approved Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>EM Shielding System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Installation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Quality Control Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Welders</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>EM Door</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Filter Assemblies</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Penetrations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Impulse Sparkover Voltage</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>ESA Extinguishing Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>ESA Extreme Duty Discharge Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Testing</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications of Welders</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operating and Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Service Organization</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<TXT>Work performed under this section must be supervised and inspected by the shielding specialist.  Approve and 
+verify materials and equipment before submitting to the Contracting Officer for approval.  The submittal must 
+be date stamped and signed by the shielding specialist.  The shielding specialist is responsible for coordinating 
+the required shielding work with the work of all other trades that will interface or affect the shielding work 
+in any way.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Shielding Specialists, Installers and Testing Specialists</TTL><BRK/>
+<BRK/>
+<TXT>Provide the name and background <SUB>qualifications</SUB> of individuals who will be responsible for installation, supervision, 
+and testing of the shielding systems on this project.  Include credentials such as a bachelor's degree in science 
+or engineering and post-degree training and experience with EM shielding for shielding and testing specialists.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Testing Experience</TTL><BRK/>
+<BRK/>
+<TXT>The testing specialist must have experience during the previous 5 years in shielded enclosure leak detection 
+system (SELDS), <RID>IEEE 299</RID>, and other methods of shielded enclosure testing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Work Experience</TTL><BRK/>
+<BRK/>
+<TXT>Provide EM shielded system by an experienced firm or individual that has been regularly and successfully engaged 
+in the installation, supervision, and/or testing of equivalent EM shielded systems for at least the previous 
+5 years.  The principal work of this firm or individual must be the satisfactory installation and construction 
+of EM shielded protection systems.  Include experience such as achieving specified requirements for shielded 
+system attenuation and maintainability of attenuation levels on work performed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Project Experience</TTL><BRK/>
+<BRK/>
+<TXT>Furnish a project experience list on projects of similar scope which have been completed during the previous 
+5 years.  Include project completion dates and the name and telephone number of the user and/or owner of each 
+project.  Indicate project experience for installers such as installation responsibilities, performance, materials, 
+and methods used.  Project experience for the shielding specialist must indicate the responsibilities performed.  
+Project experience for the testing specialist must indicate the test methods performed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Qualifications of Welders</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Perform welding by certified welders.  Provide the names of the welders to be employed and certification that 
+each welder has passed qualification tests within the last 2 years in the processes specified in <RID>AWS D1.1/D1.1M</RID>
+, <RID>AWS D9.1/D9.1M</RID>, and as required by the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Filter and Electrical Work Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Perform filter and electrical work in compliance with <RID>NFPA 70</RID>, <RID>UL 486A-486B</RID>, and <RID>UL 1283</RID>.  The label and listing 
+of the Underwriters Laboratories or other nationally recognized testing laboratory will be acceptable evidence 
+that the material or equipment conforms to the applicable standards of that agency.  In lieu of the label or 
+listing, a certificate may be furnished from an acceptable testing organization adequately equipped and competent 
+to perform such services.  State that the items have been tested and that they conform to the specified standard.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Samples</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Requests for field samples and mock-ups usually add cost to the project.  
+Samples should only be required for special applications and should be limited 
+to scaled-down items.  For example, the designer may ask for a welded floor/wall 
+corner section.  Do not normally ask for samples of filters and full-size waveguide 
+vents.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide field samples for the following:  [shielding sheet installation,] [shielding fastening,] [doors,] [[30] 
+[100] [_____] ampere power filter,] [communication filter,] [waveguide,] [penetration,] and [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Installation Meeting</TTL><BRK/>
+<BRK/>
+<TXT>Hold a pre-installation meeting with the subcontractors and installers working in, on, or near the EM shield.  
+Discuss coordination requirements and instructions to ensure the integrity of the EM shield.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect equipment delivered and stored from excessive humidity and temperature variation, dirt, and other contaminants.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PROJECT/SITE CONDITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Perform welding of EM shielding material and sheet steel at an ambient temperature of<MET> 10 degrees C</MET><ENG> 50 degrees 
+F</ENG> minimum to<MET> 32 degrees C</MET><ENG> 90 degrees F</ENG>.  Do not install shielding until the building has been weather enclosed.  
+Do not perform sheet steel welding in direct sunlight.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Maintenance Supplies and Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Provide maintenance supplies sufficient for a [3] [_____] year period or [50,000] [_____] open-close cycles, 
+whichever is greater, for each EM shielded door.  Prominently display maintenance instructions required to maintain 
+the door through the cycle count nearby.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Extra Materials</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Filters</TTL><BRK/>
+<BRK/>
+<TXT>Furnish [one extra EM power filter] [[_____] extra EM power filters] and [one extra communications filter] [[_____] 
+extra communications filters] of each different type furnished on the project as a spare.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EM Shielded Doors</TTL><BRK/>
+<BRK/>
+<TXT>Furnish one set of finger stock and EM gaskets (if used) for each hinged EM shielded door provided.  In addition, 
+provide one set of manufacturer recommended and Contracting Officer approved spare parts for EM shielded doors 
+of each style installed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tools</TTL><BRK/>
+<BRK/>
+<TXT>Furnish one full set of tools that are required to maintain the doors and are not typically available from tool 
+vendors.  Furnish environmentally safe lubricants, cleaning solvents, or coatings in sufficient quantities to 
+last for [6] [_____] months.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Special Tools</TTL><BRK/>
+<BRK/>
+<TXT>Provide one set of special tools, calibration devices, and instruments required for operation, calibration, and 
+maintenance of the equipment as follows:  [SELDS Test Set][_____]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Operating and Maintenance Manuals</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit manufacturer's written instructions for operation and maintenance of EM Shielding system.  Address all 
+components and aspects of the EM shielding and include, but not be limited to, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A complete set of assembly drawings to include penetration locations and installation details.</OLI><BRK/>
+<BRK/>
+<OLI>The construction specification on EM shielding.</OLI><BRK/>
+<BRK/>
+<OLI>Shield penetration schedule.</OLI><BRK/>
+<BRK/>
+<OLI>Power/signal filter schedule.</OLI><BRK/>
+<BRK/>
+<OLI>Test plan.</OLI><BRK/>
+<BRK/>
+<OLI>The prepared preventive maintenance instructions for periodic inspection, testing and servicing, lubrication, 
+alignment, calibration, and adjustment events normally encountered.  Extract complex preventive maintenance 
+events from or refer to detailed vendor or manufacturer data.  Derive this information from an evaluation 
+of engineering data considering local environmental conditions, manufacturer's recommendations, estimated 
+operating life for the specific application and use of the equipment, and types of job skills available 
+at the operating site.</OLI><BRK/>
+<BRK/>
+<OLI>Spare parts data approved and verified by the shielding specialist prior to submission.  Include a complete 
+list of recommended parts and supplies with current unit prices and source of supply.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a list of hardness critical items (HCI) requiring periodic inspection to maintain EM shield integrity.  
+Hardness critical items are those components and/or construction features which singularly and collectively 
+provide specific levels of HEMP protection, such as the EM shield, surge arresters, EM shielded doors, 
+shield welding, electrical filters, honeycomb waveguides, and waveguides-below-cutoff.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Projects involving military communications equipment must be designed 
+to incorporate the applicable requirements of MIL-STD-188-124, which will be 
+provided in the ELECTRICAL WORK, INTERIOR specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Provide shielded facility that meets or exceeds minimum attenuation decibel (dB) levels specified.  The EM shielding 
+system includes, but is not limited to, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The [welded steel] [bolted] EM shield.</OLI><BRK/>
+<BRK/>
+<OLI>EM shielded doors for access into the facility.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical and electronic penetrations of the shield.</OLI><BRK/>
+<BRK/>
+<OLI>EM filter/surge arrester assemblies, including their EM enclosures.</OLI><BRK/>
+<BRK/>
+<OLI>EM shielded pull boxes and junction boxes.</OLI><BRK/>
+<BRK/>
+<OLI>EM shielded conduit runs.</OLI><BRK/>
+<BRK/>
+<OLI>Special protective measures for mission-essential equipment outside the EM shield.</OLI><BRK/>
+<BRK/>
+<OLI>Structural penetrations.</OLI><BRK/>
+<BRK/>
+<OLI>Mechanical and utility penetrations (such as air ducts, gas, and water).</OLI><BRK/>
+<BRK/>
+<OLI>Instrumentation and control.</OLI><BRK/>
+<BRK/>
+<OLI>Equipment door/access panels.</OLI><BRK/>
+<BRK/>
+<OLI>Sufficient supervisory and/or quality control personnel onsite to supervise the installation crew and 
+to conduct in-progress quality assurance tests.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Factory Tests</TTL><BRK/>
+<BRK/>
+<TXT>Perform factory tests as specified.  The Contracting Officer reserves the right to witness the specified factory 
+tests.  Notify the Contracting Officer at least 30 days before factory tests are scheduled to be performed.  
+Include a detailed description of the test instrumentation and equipment, including calibration dates, a detailed 
+description of the test procedure, and the recorded test data.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MATERIALS AND EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment which are the standard products of a manufacturer regularly engaged in the manufacture 
+of such products and essentially duplicate items that have been in satisfactory use for at least 2 years prior 
+to bid opening.  Support equipment by a <SUB>service organization</SUB> that is, in the opinion of the Contracting Officer, 
+reasonably convenient to the site.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>For each major item of equipment, secure a plate with the manufacturer's name, address, type or style, model 
+or serial number, and catalog number to the item of equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Testability</TTL><BRK/>
+<BRK/>
+<TXT>Design and build equipment and materials of the EM shielding to facilitate testing and maintenance.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EM SHIELDING EFFECTIVENESS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer will consider the shield as early in the design as possible 
+while the geometry of the shielded enclosure can be located to utilize components 
+inherent in the structure.  Failure to consider the shield configuration first 
+in the design will increase design costs, cause problems in its incorporation 
+into the structure, and lose installation simplicity.  The EM shielded enclosure 
+design should be coordinated by the structural, mechanical, and electrical engineers 
+and architect.  The structural and shielding systems should drive each other 
+on large projects.  Multi-story shielded enclosures require continuous connections 
+of shielding steel interconnected to the structural steel.  In these cases, 
+the shielding wall layout should coincide with the structural steel beam layout.  
+The shield within an exterior building concept must employ a design which allows 
+for settling, seismic motion, and differential thermal expansion between the 
+steel and concrete of the building and the steel of the EM shielding.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide EM shielded enclosure complete with all filters, doors, and/or waveguides with the following minimum 
+EM shielding effectiveness attenuation.  Use minimum magnetic field attenuation of [20 dB] [_____] at 14 kHz 
+increasing linearly to [50 dB] [100 dB] at [200 kHz] [1 MHz] [_____].  Use minimum electric field and plane wave 
+attenuation of [50 dB] [100 dB] [_____] from 14 kHz to [1 GHz] [10 GHz] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EM SHIELDING ENCLOSURE REQUIREMENTS (WELDED CONSTRUCTION)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the EM shielding enclosure, choose either welded or bolted construction.  
+The unused method should be deleted from the project specification.  Welded 
+construction will usually consist of continuous<MET> 1.897 mm</MET><ENG> 14 gauge</ENG> thick steel 
+plate and angles to form the enclosure.  Thicker material may be used if it 
+is more cost-effective or required for structural reasons.  Welded construction 
+is used when a shielded facility requires a long maintainable service life of 
+high-level protection, 100 dB attenuation, or HEMP protection, 100 dB.  Bolted 
+construction is associated with a lower level (50 dB) of maintained shielding 
+effectiveness.  Bolted construction will usually consist of modular panels bolted 
+together with metal strips or channels.  Panels are commonly plywood with steel 
+sheets laminated to one or both sides.  Bolted construction is used when a shielded 
+facility's service life is short, 10 years or less, or the system is required 
+to be demountable for change of location.  This system requires more maintenance 
+than a welded system and requires access to the panels.  The EM shield layout 
+may restrict attenuation testing of the enclosure.  It is desirable for large 
+facilities to place the shield at least<MET> 1 meter</MET><ENG> 3.3 feet</ENG> inside the exterior 
+walls, although cost and construction restrict this consideration.  The floor 
+shielding can be tested by SELDS test but not by IEEE 299 if it is on grade.  
+The facility layout must be carefully planned to allow for testing and shield 
+maintenance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Welded Shielding Enclosure</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Shielding steel thickness should not be based solely on the minimum thickness 
+required for HEMP/TEMPEST attenuation.  Thicker steel may be necessary because 
+of structural factors and heat deformation or burn-through from seam welding.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The intent of this section and the drawings is to provide a complete metal enclosure including floor, walls, 
+ceiling, doors, penetrations, welds, and the embedded structural members to form a continuous EM shielded enclosure.  
+Provide shielding sheets and closures consisting of<MET> [3.416] [_____] mm</MET><ENG> [10] [_____] gauge</ENG> thick hot-rolled steel 
+conforming to <RID>ASTM A568/A568M</RID>.  Use steel plates, channels, or angles of minimum<MET> 6 mm</MET><ENG> 1/4 inch</ENG> thick to reinforce 
+shield sheets for attachments of ducts, waveguides, conduit, pipes, and other penetrating items.  Use furring 
+channels to attach shielding sheets to walls or floors that are the minimum gauge of the shielding steel.  The 
+shielding sheet steel gauge may be thicker at the Contractor's option to reduce labor and welding effort only 
+if structurally tolerable with the existing design.  Use steel that is free of oil, dents, rust, and defects.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Metal Members</TTL><BRK/>
+<BRK/>
+<TXT>Provide structural steel shapes, plates, and miscellaneous metal conforming to <RID>ASTM A36/A36M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel and Welding Material</TTL><BRK/>
+<BRK/>
+<TXT>Provide welding materials complying with the applicable requirements of <RID>AWS D1.1/D1.1M</RID> and <RID>AWS D9.1/D9.1M</RID>.  Provide 
+steel and welding material conforming to <RID>AISC 325</RID>.  Use welding electrodes conforming to <RID>AWS D1.1/D1.1M</RID> for metal 
+inert gas (MIG) welding method.  Use weld filler metal conforming to <RID>AWS A5.18/A5.18M</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fasteners</TTL><BRK/>
+<BRK/>
+<TXT>Do not use self-tapping screws for attachment of shielding.  Use zinc-coated steel, Type I, pin size No. 4 power-actuated 
+drive pins to secure steel sheets to concrete surfaces and to light gauge furring channels.  The drive pins must 
+conform to <RID>ASTM A227/A227M</RID> Class 1 for materials and <RID>ASTM B633</RID> for plating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Miscellaneous Materials and Parts</TTL><BRK/>
+<BRK/>
+<TXT>Provide miscellaneous bolts and anchors, supports, braces, and connections necessary to complete the miscellaneous 
+metal work.  Provide the necessary lugs, rebars, and brackets to assemble work.  Drill or punch holes for bolts 
+and screws.  Poor matching of holes will be cause for rejection.  Thickness of metal and details of assembly 
+and supports must provide ample strength and stiffness.  The materials must be galvanically similar.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Penetrations</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Configure the facility to minimize the number of metallic structural 
+elements required to penetrate the barrier.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Seal penetrations of the shield, including bolts or fasteners, with puddle welds or full circumferential EM welds.  
+Provide structural penetrations including beams, columns, and other metallic structural elements with continuously 
+welded or brazed seams and joints between the penetrating element and the shield.  Nonmetallic structural elements 
+are not allowed to penetrate the electromagnetic barrier.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Penetration Plates (Welded Construction)</TTL><BRK/>
+<BRK/>
+<TXT>The penetration plate is the central location for treatment of penetrations.  Construct panel of<MET> 6 mm</MET><ENG> 1/4 inch</ENG>
+ thick <RID>ASTM A36/A36M</RID> steel plate welded to the shield.  Weld waveguide, conduit, and piping penetrations circumferentially 
+at the point of penetration to the inner surface of the penetration plate.  Extend penetration plates at least<MET>
+ 150 mm</MET><ENG> 6 inch</ENG> beyond all penetrations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Floor Finish</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate or specify whether other flooring is to be provided or higher 
+floor loads are required.  This is most critical when raised floors are specified.  
+Allowances must be made for elevated door thresholds.  Specify special requirements 
+for laboratory loads, provide seismic requirements, if a Government designer 
+is the Engineer of Record, and show on the drawings.  Delete the inappropriate 
+bracketed phrase.  Pertinent portions of UFC 3-310 04 and Sections <SRF>13 48 73</SRF> 
+and <SRF>23 05 48.19</SRF> must be enclosed in the contract documents.</NPR><BRK/>
+<BRK/>
+<NPR>If concrete floor wearing slabs are specified, they should be thick enough to 
+hold anchor bolts for equipment, supports, and interior partitions.  Concrete 
+wearing slabs may be provided in most applications with a minimum thickness 
+of<MET> 100 mm</MET><ENG> 4 inches</ENG>.  The Air Force is opposed to placing concrete wearing slabs 
+over shielding steel because of problems with testing and repair.  Placing concrete 
+over floor shielding requires a waiver from HQ AFCEC/ENE.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Cover floor EM shielding by a reinforced cast-in-place concrete slab<MET> [100] [_____] mm</MET><ENG> [4] [_____] inch</ENG> thick.  
+Conform to seismic requirements [in accordance with <RID>UFC 3-301-01</RID> and Sections <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL 
+COMPONENTS and <SRF>23 05 48.19</SRF> SEISMIC BRACING FOR MECHANICAL SYSTEMS and [<SRF>09 69 13</SRF> RIGID GRID ACCESS FLOORING][
+<SRF>09 69 19</SRF> STRINGERLESS ACCESS FLOORING] (if needed)].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EM SHIELDING ENCLOSURE REQUIREMENTS (BOLTED CONSTRUCTION)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For the EM shielding enclosure, choose either welded or bolted construction.  
+The unused method should be deleted from the project specification.  Welded 
+construction will usually consist of continuous<MET> 1.897 mm</MET><ENG> 14 gauge</ENG> thick steel 
+plate and angles to form the enclosure.  Thicker material may be used if it 
+is more cost-effective or required for structural reasons.  Welded construction 
+is used when a shielded facility requires a long maintainable service life of 
+high-level protection, 100 dB attenuation, or HEMP protection, 100 dB.  Bolted 
+construction is associated with a lower level (50 dB) of maintained shielding 
+effectiveness.  Bolted construction will usually consist of modular panels bolted 
+together with metal strips or channels.  Panels are commonly plywood with steel 
+sheets laminated to one or both sides.  Bolted construction is used when a shielded 
+facility's service life is short, 10 years or less, or the system is required 
+to be demountable for change of location.  This system requires more maintenance 
+than a welded system and requires access to the panels.  The EM shield layout 
+may restrict attenuation testing of the enclosure.  It is desirable for large 
+facilities to place the shield at least<MET> 1 meter</MET><ENG> 3.3 feet</ENG> inside the exterior 
+walls, although cost and construction restrict this consideration.  The floor 
+shielding can be tested by SELDS test but not by IEEE 299 if it is on grade.  
+The facility layout must be carefully planned to allow for testing and shield 
+maintenance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Panel Construction</TTL><BRK/>
+<BRK/>
+<TXT>Laminate flat steel sheets to each side of a<MET> 19 mm</MET><ENG> 3/4 inch</ENG> thick structural core of either plywood or hardboard.  
+Provide panels with a flame spread rating of less than 25 when tested according to <RID>ASTM E84</RID>.  Provide flat steel 
+conforming to <RID>ASTM A653/A653M</RID> with G-60 coating, minimum<MET> 0.5512 mm</MET><ENG> 26 gauge</ENG> thick, zinc-coated phosphatized.  
+Use plywood conforming to <RID>APA L870</RID> for exterior, sound grade hardwood, Type I.  Provide hardboard conforming 
+to <RID>ANSI/CPA A135.4</RID>, Class 4, SIS, for standard type hardboard.  Use waterproof type adhesive for laminating steel 
+sheets to structural core which maintains a permanent bond for the lifetime of the enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Framing</TTL><BRK/>
+<BRK/>
+<TXT>Join and support panels by specially designed framing members that clamp the edges of the panels and provide 
+continuous, uniform, and constant pressure for contact to connect the shielding elements of the panels.  Provide 
+walls that are self supporting from floor to ceiling with no bracing.  Deflection of walls under a static load 
+of<MET> 335 N</MET><ENG> 75 pounds</ENG> applied normally to the wall surface at any point along the framing members must not exceed 
+1/250 of the span between supports.  [Ceilings must be self-supporting from wall to wall.] [Support ceilings 
+by adjustable, nonconducting, isolated hangers from the structural ceiling above.]  Design ceilings to have a 
+deflection under total weight, including ceiling finish, of no more than 1/270 of the span.  Provide a one-piece 
+factory pre-welded corner section or trihedral corner framed with a brass machine cast corner cap assembly consisting 
+of inner and outer parts at all corner intersections of walls and floor or ceiling.  Design the modular enclosure 
+for ease of erection, disassembly, and reassembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Channel</TTL><BRK/>
+<BRK/>
+<TXT>The framing-joining system members must consist of<MET> 3 mm</MET><ENG> 1/8 inch</ENG> thick zinc-plated steel channels having a minimum<MET>
+ 16 mm</MET><ENG> 5/8 inch</ENG> overlap along each side of the contacting surface.  Space screw fasteners at<MET> 75 or 100 mm</MET><ENG> 3 or 
+4 inch</ENG> intervals.  Use screw fasteners that are either zinc or cadmium-plated steel, minimum size<MET> 6 mm</MET><ENG> 1/4 inch</ENG>
+, with a pan or flat Phillips head.  Heat-treat and harden fasteners with a minimum tensile strength of<MET> 931 MPa</MET><ENG>
+ 135,000 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sound Transmission Class (STC)</TTL><BRK/>
+<BRK/>
+<TXT>Provide enclosure panels with an STC of [30] [_____] dB minimum when tested according to <RID>ASTM E90</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Penetration Plates (Bolted Construction)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a minimum<MET> 3 mm</MET><ENG> 1/8 inch</ENG> thick <RID>ASTM A36/A36M</RID> steel plate, sized<MET> [450] [_____] by [450] [_____] mm</MET><ENG> [18] 
+[_____] by [18] [_____] inch</ENG> with a<MET> 6 mm</MET><ENG> 1/4 inch</ENG> thick extruded brass frame for mounting to the shielded enclosure 
+wall panel.  Extend penetration plates at least<MET> 150 mm</MET><ENG> inch</ENG> beyond all penetrations.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EM SHIELDED DOORS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Edit these paragraphs depending on type of door used on project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Material in shielded doors and frames must be steel conforming to <RID>ASTM A36/A36M</RID> or <RID>ASTM A568/A568M</RID> and stretcher-leveled 
+and installed free of mill scale.  Use thicker metal where indicated or required for its use and purpose.  Provide 
+metal thresholds of the type for proper shielding at the floor.  Provide fire rated shielded doors and assemblies 
+meeting <RID>NFPA 80</RID> and <RID>NFPA 80A</RID> requirements and bearing the identifying label of a nationally recognized testing 
+agency qualified to perform certification programs.  Provide EM shielded doors by a single supplier who has been 
+regularly engaged in the manufacture of these items for at least the previous 5 years.  Supply assemblies complete 
+with a rigid structural frame, hinges, latches, and parts necessary for operation.  Duplicate assemblies that 
+have been in satisfactory use for at least 2 years.  Provide door frame consisting of steel suitable for [welding] 
+[bolting] to the surrounding structure and shield.  Provide EM filters, EM waveguide penetrations for door systems, 
+and miscellaneous material for a complete system.  Provide nonsagging and nonwarping enclosure door.  The EM 
+shielded door must provide a shielding effectiveness of [10 dB] [20 dB] greater than the minimum EM shielding 
+effectiveness requirements.  Provide door with a clear opening [as shown on the drawings] [of<MET> [915] [_____] mm</MET><ENG>
+ [36] [_____] inch</ENG> wide and<MET> [2135] [_____] mm</MET><ENG> [84] [_____] inch</ENG>] high.  The door and frame assembly must have 
+a sound rating of STC [30] [_____] minimum.  Perform testing in accordance with <RID>ASTM E90</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Door Latch</TTL><BRK/>
+<BRK/>
+<TXT>The door latch must be lever controlled with roller cam action requiring no more than<MET> 67 N</MET><ENG> 15 pounds</ENG> of operating 
+force on the lever handle for both opening and closing.  Equip door with a latching mechanism having a minimum 
+of three latching points that provides proper compressive force for the EM seal.  The mechanism must be operable 
+from both sides of the door with permanently lubricated ball or thrust bearings as required at points of pivot 
+and rotation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hinges</TTL><BRK/>
+<BRK/>
+<TXT>Equip doors with a minimum of three well-balanced adjustable ball-bearing or adjustable radial thrust bearing 
+hinges suitable for equal weight distribution of the shielded doors.  Hinges must allow adjustment in two directions.  
+Do not exceed a force of<MET> 22 N</MET><ENG> 5 pounds</ENG> to move the doors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Threshold Protectors</TTL><BRK/>
+<BRK/>
+<TXT>Furnish threshold protectors for each EM shielded door.  Provide protectors consisting of portable ramps that 
+protect the threshold when equipment carts or other wheeled vehicles are used to move heavy items across the 
+threshold.  The ramps may be asymmetrical to account for different floor elevations on each side, but the slope 
+of the ramp must not exceed 4:1 on either side.  Design ramps to support a<MET> [227] [_____] kg</MET><ENG> [500] [_____] pound</ENG>
+ vertical force applied to a<MET> 75 by 13 mm</MET><ENG> 3 by 1/2 inch</ENG> area for a personnel door, and a<MET> [907] [_____] kg</MET><ENG> [2,000] 
+[_____] pound</ENG> vertical force applied to a<MET> 75 by 13 mm</MET><ENG> 3 by 1/2 inch</ENG> area for an equipment double leaf door.  
+Apply force to the contact area between the threshold and the door.  Provide mounting brackets, convenient to 
+the entry, to store the ramp when not in use.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Frequency of Operation</TTL><BRK/>
+<BRK/>
+<TXT>With proper maintenance, door assemblies must function properly through 100,000 cycles and 15-year service life 
+minimum without the shielding effectiveness decreasing below the overall shield required attenuation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Interlocking Devices</TTL><BRK/>
+<BRK/>
+<TXT>Provide electric interlocking devices for vestibules equipped with shielded doors at each end.  Provide electric 
+interlocking devices so that shielded doors at the ends of the vestibule cannot be opened at the same time during 
+normal operation.  Provide a manual override to allow emergency egress, and provide an audible alarm to indicate 
+that doors at each end of the vestibule are open.  The alarm will continue to sound while both doors are open.  
+Provide a low- piezoelectric-type alarm, in a tamperproof enclosure, at a location shown on the project drawings 
+or as directed by the Contracting Officer's representative.  The sound intensity must be 45 dBA minimum at<MET> 3.05 
+m</MET><ENG> 10 feet</ENG>.  Provide lights on the side of each door outside the vestibule to indicate that the other door is 
+open.  Interlock systems may be integrated into a cypher lock system.  Power the interlock system by an uninterruptible 
+power source which is fail-safe in an unlocked condition in the event of a power failure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Connectivity</TTL><BRK/>
+<BRK/>
+<TXT>Install electric connectivity for sensors, alarms, and electric interlocking devices in accordance with the door 
+manufacturer's instructions, the <SUB>approved drawings</SUB>, and Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Submit 
+detail drawings showing location, number, and method of penetrating the shielding material.  Fabrication details 
+for penetrations of the shielding material and the complete EM shielded enclosure to include doors and filters.  
+Show erection details and sequence of erection and clearly indicate the methods necessary to ensure shield integrity 
+under all columns and other structural members.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Threshold Alarm</TTL><BRK/>
+<BRK/>
+<TXT>Apply a press-at-any-point ribbon switch to the threshold.  The switch must enunciate an alarm whenever pressure 
+is applied to the threshold of the EM shielded door.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hold Open and Stop Device</TTL><BRK/>
+<BRK/>
+<TXT>Provide each EM shielded door leaf with a hold open and stop device permanently attached to the door leaf.  Weld 
+a fastener plate onto the door.  The device must not interfere with the finger stock.  Drilling or tapping of 
+the shielded door will not be allowed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Emergency Exit Hardware</TTL><BRK/>
+<BRK/>
+<TXT>Equip emergency exit EM shielded doors with single motion egress hardware.  The force required to latch and unlatch 
+emergency exit hardware on EM shielded doors must meet life safety code <RID>NFPA 101</RID>.  Field alterations or modifications 
+to panic hardware will not be allowed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Finish</TTL><BRK/>
+<BRK/>
+<TXT>Factory prime paint EM shielded doors with zinc chromate primer.  Doors may be factory finish painted or galvanized.  
+Touch up any damaged finish.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Door Counter</TTL><BRK/>
+<BRK/>
+<TXT>Provide a door operation counter on the enclosure interior.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Additional Hardware</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Alarms would normally be specified in Section <SRF>28 10 05</SRF> ELECTRONIC SECURITY 
+SYSTEMS (ESS).  Hardware will be specified in the hardware section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>See door schedule on drawings and Section <SRF>08 71 00</SRF> DOOR HARDWARE, for additional hardware requirements.  Provide 
+fire rating and STC sound ratings as required by the door finish schedule on the drawings or in the specifications.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Latching Type Doors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Make the knife edge of stainless steel 430 series if it will be exposed 
+to moist air containing salt (near the sea coast) or in an uncontrolled or corrosive 
+environment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [steel] [laminated] type doors.  [Provide steel doors that are a minimum of<MET> 3.416 mm</MET><ENG> 10 gauge</ENG> thick steel 
+sheet electrically and mechanically joined by welded steel frames overlapping joints with continuous EM welds.] 
+[Laminated type must be the same construction as enclosure panels, except electrically and mechanically join 
+the steel faces by channels or overlapping seams, both of which are continuously seam welded or soldered along 
+all joined surfaces.]  The closure seal must utilize an extruded brass channel containing a recess into which 
+[two] [_____] sets of [beryllium copper condition HT in accordance with <RID>ASTM B194</RID>] [stainless steel 430 (magnetic 
+type) series] contact fingers and a closed cell foam rubber air seal are fitted and can be easily removed and 
+replaced without the use of special tools and without the application of solders.  Mate the door to the frame 
+in a manner that allows the insertion of a brass knife edge between the two rows of the radio frequency finger 
+stock, to obtain optimum conductivity and electromagnetic shielding.  Use high-temperature silver solder to attach 
+the brass knife edge components to the door panels and the frame.  Protect the fingers that form a contact between 
+the door and its frame from damage due to physical contact and conceal within the door and frame assembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pneumatic Sealing Doors</TTL><BRK/>
+<BRK/>
+<TXT>Pneumatic sealing mechanisms must achieve EM shielding by using pressure to force the door panel against the 
+frame surface.  Contact areas of door and frame must be a peripheral strip no less than<MET> 75 mm</MET><ENG> 3 inch</ENG> wide completely 
+around the door with a tinned or highly conductive noncorrosive surface.  After the door is in a closed position, 
+the pneumatic sealing mechanism must exert pressure in no more than 10 seconds.  Actuate sealing mechanism release 
+in no more than 5 seconds.  Manual [override] [operation] must not exceed a maximum of<MET> [155] [_____] N</MET><ENG> [35] [_____] 
+pounds</ENG>.  When the door is sealed, the attenuation around the edges must meet the EM shielding effectiveness requirements 
+of this specification.  Provide swinging doors with a threshold of zinc-plated steel, no less than<MET> 9.5 mm</MET><ENG> 3/8 
+inch</ENG> thick.  Provide door with a pneumatic system that maintains a nominal sealing pressure of<MET> [240] [_____] 
+kPa</MET><ENG> [35] [_____] psi</ENG>.  Attach a label to pneumatic doors warning against painting of the mating surfaces.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Door and Enclosure Design</TTL><BRK/>
+<BRK/>
+<TXT>Design doors for long life and reliability without the use of EM gaskets, EM finger stock, or other sealing devices 
+other than the direct metal-to-metal contact specified.  Provide EM sealing device that is fail-safe upon loss 
+of air pressure and readily allows manual opening of the door.  For either normal or fail-safe operation, the 
+maximum time to reach the open position must be no more than 7 seconds.  Include provision for removing the door 
+for routine maintenance without disturbing its alignment and EM sealing properties.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Panel</TTL><BRK/>
+<BRK/>
+<TXT>Provide a control panel including the necessary opening and closing pneumatic valves on the inside and outside 
+of the shielded enclosure.  The outside control panel must also have a pressure regulator and filter.  Ensure 
+door air supply is capable of quick opening from inside the enclosure to allow escape when opening pneumatic 
+valves fail or malfunction.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Air System for Pneumatic Sealing</TTL><BRK/>
+<BRK/>
+<TXT>Provide complete air system including compressor, filter alarm, tank, lines, air filter, dryer, air control valves, 
+and controls.  Size air tank capacity so that the air volume and pressure are sufficient to operate the door 
+through ten complete cycles after the loss of normal power.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Magnetic Sealed Door Type</TTL><BRK/>
+<BRK/>
+<TXT>Form an EM seal by a solid metal-to-metal contact around the periphery of the door frame.  Provide materials 
+at the contact area which are compatible and corrosion resistant.  Provide contact force for the door EM seal 
+by electromagnets.  When the electromagnet is energized, pull the door leaf in to ensure a solid and continuous 
+contact with the door frame.  When the electromagnet is de-energized, the door leaf must be free to swing.  The 
+EM shielded doors may use electromagnets or a combination of permanent magnets and electromagnets.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sliding Type Door</TTL><BRK/>
+<BRK/>
+<TXT>Provide a sliding shielded door of the size and operating direction indicated.  Clear openings indicated on the 
+drawings must not require dismantling of any part of the door.  Manually operate door from either side, inside 
+or outside, with a maximum pull (force) of<MET> 155 N</MET><ENG> 35 pounds</ENG> to set the shielded door in motion.  Construct shielded 
+door face panels and frames of reinforced steel suitable for achieving the specified attenuation.  Construct 
+frames of steel shapes welded together to form a true rectangular opening.  In the sealed position, the shielded 
+doors must provide the minimum shielding effectiveness specified without any derating.  Design doors for long 
+life and reliability and do not use EM gaskets, EM finger stocks, or other sealing devices other than the specified 
+direct metal-to-metal contact.  Attach a label to sliding doors warning against painting of the mating surfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Operators</TTL><BRK/>
+<BRK/>
+<TXT>Provide [pneumatic] [electric] type power operators conforming to <RID>NFPA 80</RID> and the requirements specified.  Provide 
+readily adjustable limit switches to automatically stop the door in its full open or closed position.  Ensure 
+all operating devices are suitable for the hazardous class, division, and group defined in <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pneumatic Operators</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer will coordinate with the drawings to ensure compressed air is 
+available at door locations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide heavy-duty industrial type pneumatic operators designed to operate the door at no less than<MET> 0.2 m/s</MET><ENG> 2/3 
+fps</ENG> or more than<MET> 0.3 m/s</MET><ENG> 1 fps</ENG> with air pressure of [_____]<MET> kPa</MET><ENG> psi</ENG>.  Provide a pressure regulator if the operator 
+is not compatible with available air pressure.  Provide dryer, filter, and filter alarm  Provide pneumatic piping 
+up to the connection with building compressed air, but no more than<MET> 6 m</MET><ENG> 20 feet</ENG> from door jambs.  Make provisions 
+for immediate emergency manual operation of the door in case of failure.  The operator must open, close, start, 
+and stop the door smoothly.  Control must be [electrical, conforming to <RID>NEMA ICS 2</RID> and <RID>NEMA ICS 6</RID>; enclosures 
+must be Type 12 (industrial use), Type 7 or 9 in hazardous locations, or as otherwise indicated] [pneumatic] 
+[with] [pushbutton wall switches] [ceiling pull switches] [rollover floor treadle] [as indicated].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Operators</TTL><BRK/>
+<BRK/>
+<TXT>Provide heavy-duty industrial type electrical operators designed to operate the door at no less than<MET> 0.2 m/s</MET><ENG> 
+2/3 fps</ENG> or more than<MET> 0.3 m/s</MET><ENG> 1 fps</ENG>.  Provide electrical controls that are [pushbutton wall switches] [ceiling 
+pull switches] [rollover floor treadle] [as indicated].  Provide electric power operators complete with an electric 
+motor, brackets, controls, limit switches, magnetic reversing starter, and other accessories necessary.  Design 
+the operator so that the motor may be removed without disturbing the limit switch timing and without affecting 
+the emergency operator.  Provide power operator with a slipping clutch coupling to prevent stalling of the motor.  
+Make provisions for immediate emergency manual operation of the door in case of electrical failure.  Where controls 
+differ from motor voltage, provide a control voltage transformer inside as part of the starter.  Use control 
+voltage of 120 volts or less.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Motors</TTL><BRK/>
+<BRK/>
+<TXT>Provide drive motors conforming to <RID>NEMA MG 00001</RID> that are the high-starting torque reversible type and of sufficient 
+output to move the door in either direction from any position at the required speed without exceeding the rated 
+capacity.  Provide motors that are suitable for operation on [[120] [208] [277] [480] volts, 60 Hz] [[220] [240] 
+[380] volts, 50 Hz], [single] [three] phase and suitable for across-the-line starting.  Design motors to operate 
+at full capacity over a supply variation of plus or minus 10 percent of the motor voltage rating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controls</TTL><BRK/>
+<BRK/>
+<TXT>Provide an enclosed reversing across-the-line type magnetic starter with thermal overload protection, limit switches, 
+and remote control switches for each door motor.  Provide control equipment conforming to <RID>NEMA ICS 2</RID>; provide 
+enclosures conforming to <RID>NEMA ICS 6</RID>, which are Type 12 (industrial use), Type 7 or 9 in hazardous locations, 
+or as otherwise indicated.  Each wall control station must be of the three-button type, with the controls marked 
+and color coded:  OPEN - white; CLOSE - green; and STOP - red.  When the door is in motion and the stop control 
+is pressed, the door must stop instantly and remain in the stop position.  From the stop position, operate the 
+door in either direction by the open or close controls.  Use full-guarded type controls to prevent accidental 
+operation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Leading Edge Safety Shutdown</TTL><BRK/>
+<BRK/>
+<TXT>Provide a safety shutdown switch strip the entire length of the leading edge of the door with operators.  The 
+safety strip must be press-at-any-point ribbon switches.  Activate the strip to shut down the operator and release 
+the door with reset required to continue door operation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EM Shielded Door Factory Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When specifying nonlatching doors, delete door static load and sag tests 
+and cycle test for door latches.  Retain cycle test for door hinges.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide test data on at least one shielded door of each type provided for the facility to verify that the EM 
+shielded doors of the design supplied have been factory tested for compliance with this specification.  Do not 
+furnish test doors on the project.  Submit test data reports in accordance with paragraph SUBMITTALS.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Swinging Door Static Load Test</TTL><BRK/>
+<BRK/>
+<TXT>Mount and latch the door to its frame, then set down in a horizontal position such that it will open downward 
+with only the frame rigidly and continuously supported from the bottom.  Apply a load of<MET> 195 kg/psm</MET><ENG> 40 lb/psf</ENG>
+ uniformly over the entire surface of the door for at least 10 minutes.  The door will not be acceptable if this 
+load causes breakage, failure, or permanent deformation which causes the clearance between door leaf and stops 
+to vary more than<MET> 1.6 mm</MET><ENG> 1/16 inch</ENG> from the original dimension.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Swinging Door Sag Test</TTL><BRK/>
+<BRK/>
+<TXT>Install the door and its frame normally and open 90 degrees.  Suspend two<MET> 45 kg</MET><ENG> 100 pound</ENG> weights, one on each 
+side of the door, from the door within<MET> 130 mm</MET><ENG> 5 inch</ENG> of the outer edge for at least 10 minutes.  The door will 
+not be acceptable if this test causes breakage, failure, or permanent deformation which causes the clearance 
+between the door leaf and door frame to vary more than<MET> 1.6 mm</MET><ENG> 1/16 inch</ENG> from the original dimension.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Door Closure Test</TTL><BRK/>
+<BRK/>
+<TXT>Operate each door design 100,000 complete open-close cycles.  The door will not be acceptable if the closure 
+test causes any breakage, failure, or permanent deformation which causes the clearance between the door and door 
+frame to vary more than<MET> 1.6 mm</MET><ENG> 1/16 inch</ENG> from the original dimension.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Handle-Pull Test</TTL><BRK/>
+<BRK/>
+<TXT>Mount and latch the door to its frame.  Provide handle with a force of<MET> 1100 N</MET><ENG> 250 pounds</ENG> applied outward (normal 
+to the surface of the door) at a point within<MET> 50 mm</MET><ENG> 2 inch</ENG> of the end of the handle.  The door will not be acceptable 
+if this test causes any breakage, failure, or permanent deformation exceeding<MET> 3 mm</MET><ENG> 1/8 inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Door Electromagnetic Shielding Test</TTL><BRK/>
+<BRK/>
+<TXT>Factory test EM shielded door in accordance with the requirements of this specification both before and after 
+the mechanical tests described above.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>ELECTROMAGNETIC FILTERS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  All EM filters for power and signal lines should be scheduled on the 
+drawings.</NPR><BRK/>
+<BRK/>
+<NPR>This guide specification covers electromagnetic filters for 50, 60, and 400 
+Hz power lines and signal lines for General Use Only.  This specification is 
+NOT applicable for filters to be used with a specific individual item of electronic 
+equipment.  Filters for use with specific individual items of equipment must 
+be scheduled on the drawings showing voltage, current, insertion loss, passband, 
+frequency, baud rate, and cutoff frequency.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a filter for each power, data, and signal line penetrating the enclosure.  These lines include, but are 
+not limited to, power lines, lines to dummy loads, alarm circuits, lighting circuits, and signal lines such as 
+telephone lines, antenna lines, HVAC control, and fire alarm.  Enclose filters [and ESAs] in metallic cases which 
+protect the filter elements from moisture and mechanical damage.  Ensure all external bonding or grounding surfaces 
+are free from insulating protective finishes.  Protect all exposed metallic surfaces against corrosion by plating, 
+lead-alloy coating, or other means.  The finish must provide good electrical contact when used on a terminal 
+or as a conductor, have uniform texture and appearance, be adherent, and free from blisters, pinholes and other 
+defects.  The filter [and ESA] assemblies must also meet the requirements of <RID>UL 1283</RID>.  Insertion loss in the 
+stop band between the load side of the filter and the power supply side must be no less than the EM shielding 
+attenuation specified.  Provide filter used for 400 Hz with power factor correcting coil to limit the reactive 
+current to 10 percent maximum of the full load current rating.  Each filter unit must be capable of being mounted 
+individually and include one filter for each phase conductor of the power line and the neutral conductor.  Include 
+one filter for each conductor.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Enclosure</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The intent of this paragraph is to preserve the integrity of the filter 
+and to shield the input and output circuits from each other.  Usually, this 
+is accomplished by mounting the filters in an EM-modified NEMA Type 1 enclosure 
+with separate compartments for the input and the output terminals.  If a weatherproof 
+or hazardous area type enclosure is needed, it must be specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mount filter units in an EM modified NEMA Type [1] [_____] enclosure in accordance with <RID>NEMA ICS 6</RID> and meet the 
+requirements of <RID>UL 1283</RID>.  Make enclosures of corrosion resistant steel of<MET> 1.9837 mm</MET><ENG> 14 gauge</ENG> minimum thickness 
+with welded seams and galvanized bulkhead cover plates.  Finish enclosure nonconductive surfaces with a corrosion-inhibiting 
+primer and two coats of baked or finish enamel.  The input compartment must house the individual line filters 
+and the input terminals of the filters and mounting for the surge arrestor.  Space live parts in accordance with <RID>
+NFPA 70</RID>.  Use copper filter leads.  Test filter enclosures for shielding effectiveness in accordance with <RID>IEEE 299</RID>
+ and Table I of this specification.  [Provide test leads and coaxial connectors through the enclosure for HEMP 
+testing.] [Use the imbedded configuration for filter enclosures as required by <RID>MIL-STD-188-125-1</RID>.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Filter Unit Mounting</TTL><BRK/>
+<BRK/>
+<TXT>Mount each filter unit individually in an enclosure containing one filter for each penetrating conductor.  Attach 
+one end of the individual filter case to the rf barrier plate between the two compartments to provide a rf tight 
+seal between the rf barrier plate and the filter case.  The terminals of the filters must project through openings 
+in the rf barrier plate into the inner terminal compartment.  Attach the case of each filter to both the enclosure 
+and to the barrier plate to prevent undue stress being applied to the rf seal between the filter case and the 
+rf barrier plate.  Individual filters must be removable from the enclosure.  Like filters must be interchangeable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Conduit Connections to Enclosures</TTL><BRK/>
+<BRK/>
+<TXT>Provide load terminal and input compartments without knockouts, and provide each compartment with weldable threaded 
+conduit hubs.  EM weld hubs circumferentially in place and size and locate as required for the conduits indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Access Openings and Cover Plates</TTL><BRK/>
+<BRK/>
+<TXT>Provide enclosures with separate clear front access cover plates on terminal and power input compartments.  Provide 
+access cover plates which are hinged with EM gaskets and<MET> 75 mm</MET><ENG> 3 inch</ENG> maximum bolt spacing.  Include thick cover 
+plates and folded enclosure edges to prevent enclosure deformation, bolt spacers to prevent uneven gasket compression, 
+and gasket mounting to facilitate replacement.  All gasket contact areas must be tin-plated using the electrodeposited 
+type I method in accordance with <RID>ASTM B545</RID>.  Permanently fasten nuts and bolts to the enclosure by welding or 
+captive attachments.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operating Temperature</TTL><BRK/>
+<BRK/>
+<TXT>Provide filter and ESA assembly which is rated for continuous operation, with filters at rated voltage and full-load 
+currents, in ambient temperatures from minus 55 to plus 65 degrees C (measured outside the EM filter enclosure).  
+Useilter components that are suitable for continuous full load operation at a temperature from minus 55 to plus 
+85 degrees C.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Short Circuit Withstand</TTL><BRK/>
+<BRK/>
+<TXT>Label and build filters to have standard short circuit withstand ratings in accordance with <RID>UL 1283</RID>.  The minimum 
+ratings are as follows:</TXT><BRK/>
+<TXT><TAB WIDTH="61">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="151.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="195.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">FILTER RATED CURRENT, RMS AMPERE</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">SHORT CIRCUIT FULL LOAD AMPERES SYMMETRICAL</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">0-100</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">10,000</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">101-400</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">14,000</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Filter Connections</TTL><BRK/>
+<BRK/>
+<TXT>Provide individual filters with prewired standoffs and solderless lugs.  Provide hexagonal head bolt or screw 
+type lugs conforming to <RID>UL 486A-486B</RID>.  Space live parts in accordance with <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Internal Encapsulated Filters (Filter Units)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  There are two kinds of power filters, commonly known as "W" and "X" series.  
+The "W" series filters are designed to achieve rated insertion loss under load 
+when tested in accordance with MIL-STD-220, which only requires testing under 
+load conditions from 100 kHz to 20 MHz.  The "X" series device data sheets will 
+contain the phrase "tested using extended range buffer networks" and will satisfy 
+the stated performance under full load at frequencies below 100 kHz.  The "X" 
+series filters will also be tested in accordance with MIL-STD-220.  The "X" 
+series filters can also be differentiated from "W" devices by the fact that 
+they are usually two to three times greater in weight.</NPR><BRK/>
+<BRK/>
+<NPR>Fire alarm, signal, energy monitoring and control system, telephone, and control 
+lines require filters that pass a specific frequency, voltage, and number of 
+conductors.  Fire alarm circuits with ground fault indicators will show a ground 
+fault when connected through a filter and should be avoided.  A fiber optic 
+connection through the shield is recommended.  Keepconductors penetrating the 
+shield perimeter to a minimum.  Systems penetrating the shield will have special 
+requirements in their specifications for compatibility between system signal 
+and control circuits and the EM filters.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Filter Construction</TTL><BRK/>
+<BRK/>
+<TXT>Individual filters must be heavy-duty type sealed in a steel case.  After the filter is filled with an impregnating 
+or encapsulating compound, weld the seams.  When a solid potting compound is used to fill the filter, the filters 
+may be mechanically secured and sealed with solder. Use hermetically sealed impregnated capacitors, or vacuum 
+impregnate the complete filter assembly.  Faricate individual filter cases of no less than<MET> 2 mm</MET><ENG> 14 gauge</ENG> thick 
+steel and finish with a corrosion-resistant plating,or one coat of corrosion-resistant primer and two coats of 
+finish enamel.  Fill the filter with an impregnating or potting compound that is chemically inactive with respect 
+to the filter unit and case.  The compound, either in the state of original application or as a result of having 
+aged, must have no adverse effect on the performance of the filter.  Use the same material for impregnating as 
+is used for filling.  Use copper filter terminals that can withstand the pull requirements specified and measured 
+in accordance with paragraph ELECTROMAGNETIC FILTERS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ratings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate maximum current, voltage, and pass band frequency ratings on 
+the drawings.  If no drawings are furnished with the specifications, specify 
+the ratings here.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide filters in the current, voltage, and frequency ratings indicated on the drawings.]  [Filter current 
+must be [_____].]  [Filter voltage must be [[120] [208] [277] [480] volts, 60 Hz] [[230] [250] [400] volts, 50 
+Hz].]  [The pass band frequencies [_____] Hz to [_____] Hz must be suitable for use with the [50] [60] [_____] 
+[and] [400] [_____] Hz power source and signal line filters as indicated.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Voltage Drop</TTL><BRK/>
+<BRK/>
+<TXT>Voltage drop through the filter at operation frequency must not exceed 2 percent of the rated line voltage when 
+the filter is fully loaded with a resistive load (unity power factor).  Measure voltage drop in accordance with 
+paragraph Voltage Drop Measurements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Input Elements</TTL><BRK/>
+<BRK/>
+<TXT>Provide filters with inductive inputs.  If inductive input is used an ESA is required to protect the filter.  
+The inductor must ensure firing potential for the preceding ESA and limit the current through the filter capacitor.  
+Design the input inductor to withstand at least a 10,000-volt transient.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drainage of Stored Charge</TTL><BRK/>
+<BRK/>
+<TXT>Provide filters with bleeder resistors to drain the stored charge from the capacitors when power is shut off.  
+Drain stored charge in accordance with <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insertion Loss</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use 100 dB insertion loss at 14 kHz to 10 GHz for applications such as 
+secure communications installations.  For other applications, insert appropriate 
+insertion loss and frequency range for the specific product.  Consult filter 
+manufacturer for detailed requirements.  Also consult the manufacturer when 
+leakage current is important, such as in life safety areas.  There is a tradeoff 
+between leakage current and insertion loss when insertion loss is measured according 
+to MIL-STD-220 because of the test connection and the line-to-ground capacitance.  
+Harmonic loading of EM filters will require alterations to the electrical system 
+design to protect the filters from damage.  Large individual loads, such as 
+adjustable speed drive and uninterruptible power supplies, should have shielded 
+isolation transformers on their input line side.  Multiple small individual 
+loads, such as computers, should have EM filters derated or shielded isolation 
+transformers between filter output and the harmonic generating loads.  EM filters 
+should be derated by 50 percent when serving loads with substantial harmonic 
+components.  If a facility is formally required to fully comply with MIL-STD-188-125, 
+filter and ESA characteristics should meet the standard's requirements as applied 
+to the facility.  The facility's electrical system should be designed to meet 
+the requirements of MIL-STD-188-125 with commercially available filters and 
+ESA.  The commercial electrical power feeder should be arranged in a manner 
+that will meet MIL-STD-188-125 requirements.  Voice and data lines should be 
+converted to fiber optics prior to penetration of the EM shield.  The requirements 
+of MIL-STD-188-125 should be applied by a shielding specialist experienced in 
+the standard's requirements and applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Insertion loss must meet or exceed the levels complying with EM shielding effectiveness attenuation requirements 
+herein when measured in accordance with <RID>MIL-STD-220</RID>.  Perform insertion loss measurements in accordance with <RID>
+MIL-STD-220</RID> and the paragraph ELECTROMAGNETIC FILTERS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operating Temperature Range</TTL><BRK/>
+<BRK/>
+<TXT>Mount individual filters in the filter enclosure operating at full load amperage and rated voltage that do not 
+exceed plus<MET> 85 degrees C</MET><ENG> 185 degrees F</ENG> based on an ambient temperature of<MET> 65 degrees C</MET><ENG> 150 degrees F</ENG> outside 
+the filter enclosure.  Demonstrate continuous operation from<MET> minus 55 to plus 85 degrees C</MET><ENG> minus 67 to plus 185 
+degrees F</ENG> according to paragraph "Filter Life Test (at Elevated Ambient Temperature)".  Filters must also withstand 
+temperature cycling as specified in paragraph ELECTROMAGNETIC FILTERS.  Maintain the filter at rated voltage 
+and full-load current until temperature equilibrium is reached or 24 hours, whichever is greater.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Current Overload Capability</TTL><BRK/>
+<BRK/>
+<TXT>Provide filters that are capable of operating at 140 percent of rated current for 15 minutes, 200 percent of 
+rated current for 1 minute, and 500 percent of rated current for 1 second when tested in accordance with paragraph 
+Overload Test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reactive Shunt Current</TTL><BRK/>
+<BRK/>
+<TXT>The reactive shunt current drawn by the filter operating at rated voltage must not exceed 30 percent of the rated 
+full-load current when measured in accordance with paragraph Reactive Shunt Current Measurements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dielectric Withstand Voltage</TTL><BRK/>
+<BRK/>
+<TXT>Provide filters which conform to the minimum values of dielectric withstanding voltage.  Perform filter dielectric 
+withstand voltage test in accordance with paragraph "Dielectric Withstand Voltage Test".  Provide HEMP filters 
+that are capable of operating continuously at full-rated voltage and of withstanding an overvoltage test of 2.8 
+times the rated voltage for 1 minute.  In addition, ensure each filter is capable of withstanding a 20-kV or 
+4-kA peak transient pulse of approximately 20 ns pulse width at full operating voltage, without damage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insulation Resistance</TTL><BRK/>
+<BRK/>
+<TXT>The insulation resistance between each filter terminal and ground must be greater than 1 megohm when tested in 
+accordance with paragraph Insulation Resistance Test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Parallel Filters (Current Sharing)</TTL><BRK/>
+<BRK/>
+<TXT>Where two or more individual filters are electrically tied in parallel to form a larger filter, they must equally 
+share the current.  Equally sharing is defined to be within 5 percent of the average current.  Perform tests 
+in accordance with paragraph ELECTROMAGNETIC FILTERS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Harmonic Distortion</TTL><BRK/>
+<BRK/>
+<TXT>Harmonics generated by the insertion of a filter must not increase line voltage distortion more than 2.5 percent 
+when measured with a unity power factor in accordance with the paragraph ELECTROMAGNETIC FILTERS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Marking of Filter Units</TTL><BRK/>
+<BRK/>
+<TXT>Mark each filter case with HCI tags and with the rated current, rated voltage, manufacturer s name, type of impregnating 
+or potting compound, operating frequency, and model number.  In addition, provide individual filter cases, the 
+filter enclosures, and supply and load panelboards of filtered circuits marked by the manufacturer with the following:  
+"WARNING:  Before working on filters, terminals must be temporarily grounded to ensure discharge of capacitors.  
+Attach nameplates and warning labels securely.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Minimum Life</TTL><BRK/>
+<BRK/>
+<TXT>Design <SUB>filter assemblies</SUB> for a minimum service life of 15 years.  Submit filter schedule including voltage, amperage, 
+enclosure type (low, high, band pass), location, cut-off frequency, band pass frequencies, and electrical surge 
+arresters (ESA).  Submit data and/or calculations for design of EM door including schedule of EM penetrations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power and Signal Line Factory Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In most cases, test results for equal filters are sufficient to determine 
+compliance with specification requirements.  Factory tests on individual filters 
+may be required for higher than average temperature applications, special filter 
+configurations, and other special project requirements.</NPR><BRK/>
+<BRK/>
+<NPR>Filters with nonstandard configuration or ratings may require testing by an 
+independent testing organization.  These ratings would be for filters above 
+1,000 amperes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit factory test report data for each filter configuration, voltage, and amperage which shows the ability 
+of filters to meet the specified requirements.  Base filter test reports on prior tests of the same filter assembly 
+design and components.  Submit test data reports in accordance with paragraph SUBMITTALS.  Include the following 
+in the test data:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Voltage Drop Measurements.</OLI><BRK/>
+<BRK/>
+<OLI>Insertion Loss Measurements.</OLI><BRK/>
+<BRK/>
+<OLI>Filter Life Test.</OLI><BRK/>
+<BRK/>
+<OLI>Thermal Shock Test.</OLI><BRK/>
+<BRK/>
+<OLI>Overload Test.</OLI><BRK/>
+<BRK/>
+<OLI>Reactive Shunt Current Measurements.</OLI><BRK/>
+<BRK/>
+<OLI>Dielectric Withstand Voltage.</OLI><BRK/>
+<BRK/>
+<OLI>Insulation Resistance Test.</OLI><BRK/>
+<BRK/>
+<OLI>Current Sharing.</OLI><BRK/>
+<BRK/>
+<OLI>Harmonic Distortion.</OLI><BRK/>
+<BRK/>
+<OLI>Terminals.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>Voltage Drop Measurements</TTL><BRK/>
+<BRK/>
+<TXT>Perform voltage drop measurements on both ac and dc filters with the components mounted in the filter/ESA assembly 
+enclosure or mounted on a metal plate by the same holding method that will be used for mounting in the enclosure.  
+For ac rated filters, make measurements by using expanded scale-type meters.  For dc rated filters, make measurements 
+by using a dc meter when the filter is carrying rated current and rated voltage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insertion Loss Measurements</TTL><BRK/>
+<BRK/>
+<TXT>Insertion loss measurements for power filters must have the following modifications.  Install filters in the 
+filter/ESA assembly enclosure.  Operate load current power supply at the rated voltage of the filters and provide 
+any current from no-load through rated full-load current.  The rf signal generator must be a swept continuous 
+wave (cw) source.  Modify buffer networks to permit valid measurements over the entire frequency band on which 
+insertion loss requirements are specified (14 kHz-1 Ghz).  Provide receiver or network analyzer capable of operating 
+over the entire frequency band on which insertion loss requirements are specified (14 kHz-1 Ghz).  Use adequate 
+sensitivity to provide a measurement dynamic range at least 10 dB greater than the insertion loss requirement.  
+Use resistive load impedance which is capable of dissipating the rated full-load filter current.  Make insertion 
+loss measurements at 20 percent, 50 percent, and 100 percent of the filter full-load operating current.  Perform 
+insertion loss measurements for communication/signal line filters the same as for power filters except that the 
+insertion loss measurements are required at a load impedance equal to the image impedance of the filter.  Do 
+not perform load insertion loss measurements over the frequencies defined in the EM shielding effectiveness attenuation 
+requirements for both power and communication filters.  [Perfom load to source testing for TEMPEST.]  [Perform 
+source to load testing for HEMP.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Filter Life at High Ambient Temperature</TTL><BRK/>
+<BRK/>
+<TXT>This test is conducted for the purpose of determining the effects on electrical and mechanical characteristics 
+of a filter, resulting from exposure of the filter to a high ambient temperature for a specified length of time, 
+while the filter is performing its operational function.  Surge current, total resistance, dielectric strength, 
+insulation resistance, and capacitance are types of measurements that would show the deleterious effects due 
+to exposure to elevated ambient temperatures.  Use a suitable test chamber which will maintain the temperature 
+at the required test temperature and tolerance.  Make temperature measurements within a specified number of unobstructed<MET>
+ mm</MET><ENG> inches</ENG> from any one filter or group of like filters under test.  Make this test in still air.  Mount specimens 
+by their normal mounting means.  When groups of filters are to be tested simultaneously, specify the mounting 
+distance between filters for the individual groups otherwise use sufficient mounting distance to minimize the 
+temperature on one filter affecting the temperature of another.  Do not test filters fabricated of different 
+materials simultaneously.  Use a test temperature of<MET> 85 + 2 degrees C</MET><ENG> 184 + 34 degrees F</ENG>.  Perform test for a 
+length of 5,000 hours.  Make specified measurements prior to, during, or after exposure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Thermal Shock Test</TTL><BRK/>
+<BRK/>
+<TXT>This test is conducted for the purpose of determining the resistance of a filter to exposures at extremes of 
+high and low temperatures, and to the shock of alternate exposures to these extremes.  Use suitable temperature 
+controlled systems to meet the temperature requirements and test conditions.  Use environmental chambers to meet 
+test requirements and to reach specified temperature conditions.  Place filters so that there is no obstruction 
+to the flow of air across and around the filter.  Subject filter to the specified test condition.  Run the first 
+five cycles continuously.  After five cycles, the test may be interrupted after the completion of any full cycle, 
+and the filter allowed to return to room ambient temperature before testing is resumed.  One cycle consists of 
+steps 1 through 4 of the applicable test condition for dual environmental test chambers (one low temperature 
+and one high temperature test chamber) and steps 1 and 3 for single compartment test chambers where both high 
+and low temperatures are achieved without moving the filter.  The test conditions are as follows:</TXT><BRK/>
+<BRK/>
+<ITM>1.  -55 deg C. 0 deg and -3 deg</ITM><BRK/>
+<ITM>2.  25 deg C. +10 deg and -5 deg</ITM><BRK/>
+<ITM>3.  85 deg C. + 3 deg and -0 deg</ITM><BRK/>
+<ITM>4.  25 deg C. +10 deg and -5 deg</ITM><BRK/>
+<BRK/>
+<TXT>Do not exceed an effective total transfer time from the specified low temperature to the specified high temperature 
+of 5 minutes.  The exposure time in air at the extreme temperatures is a function of the weight of the filter.  
+Use minimum exposure time per the weight of the filter as follows:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="270.00"/>
+      <COL AUTOWIDTH="0" WIDTH="270.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1 oz. and below</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">15 minutes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Above 1 oz. to 4.8 oz.</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">30 minutes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Above 4.8 oz. to 3 lb.</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1 hour</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Above 3 lb. to 30 lb.</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2 hours</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Above 30 lb. to 300 lb.</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4 hours</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Above 300 lb.</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">8 hours</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/>
+<TXT>Make specified measurements prior to the first cycle and upon completion of the final cycle, except base failures 
+on measurements made after the specimen has stabilized at room temperature following the final cycle.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Overload Test</TTL><BRK/>
+<BRK/>
+<TXT>Mount filters in the filter/ESA assembly enclosure or mounted on a metal plate by the same holding method that 
+will be used for mounting in the enclosure.  Apply a specified current for a specified period of time.  After 
+the filter has returned to room temperature, measure the insulation resistance and voltage drop.  Measure the 
+insulation resistance using the method in paragraph ELECTROMAGNETIC FILTERS.  Make AC voltage drop measurements 
+by using expanded scale-type meters which will enable voltage differences of less than 1 volt to be read.  Make 
+DC voltage drop measurements by using a dc reading meter when the filter is carrying rated current and rated 
+voltage.  The insulation resistance and the voltage drop will be measured after each separate overload test.  
+Filters will also be visually examined for evidence of physical damage after each test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reactive Shunt Current Measurements</TTL><BRK/>
+<BRK/>
+<TXT>Perform reactive shunt current measurements with the filters mounted in the filter/ESA assembly enclosure or 
+mounted on a metal plate by the same holding method that will be used for mounting in the enclosure.  Terminate 
+filter in the inner compartment in an open circuit.  Apply rated ac voltage between the filter outer compartment 
+terminal and the enclosure or metal plate.  Monitor the ac current into the outer compartment terminal.  The 
+measured current is equal to the filter reactive shunt current.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dielectric Withstand Voltage Test</TTL><BRK/>
+<BRK/>
+<TXT>The dielectric withstanding voltage test (also called high-potential, over potential, .voltage breakdown, or 
+dielectric-strength test) consists of the application of a voltage higher than rated voltage for a specific time 
+between mutually insulated portions of a filter or between insulated portions and ground.  Repeated application 
+of the test voltage on the same filter is not recommended as even an overpotential less than the breakdown voltage 
+may injure the insulation.  When subsequent application of the test potential is specified in the test routine, 
+make succeeding tests at reduced potential.  When an alternating potential (ac) is used, the test voltage must 
+be 60 Hz. and approximate a true sine wave in form.  Express all ac potentials as root-mean-square values.  The 
+KVA rating and impedance of the source must permit operation at all testing loads without serious distortion 
+of the waveform and without serious change in voltage for any setting.  When a direct potential (dc) is used, 
+the ripple content must not exceed 5 percent rms of the test potential.  Use a voltmeter to measure the applied 
+voltage to an accuracy of 5 percent.  When a transformer is used as a high-voltage source of ac, connecta voltmeter 
+across the primary side or across a tertiary winding provided that the actual voltage across the filter will 
+be within the allowable tolerance under any normal load condition.  Unless otherwise specified, use the dc test 
+voltage as follows:</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0" WIDTH="92">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="3">
+      <COL AUTOWIDTH="0" WIDTH="278.25"/>
+      <COL AUTOWIDTH="0" WIDTH="217.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">DC rated only</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2.5 times rated voltage</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">For filters with ac and dc ratings</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2.5 times rated dc voltage</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.75">
+         <CEL>
+<DTA TYPE="STRING">AC rated only</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4.2 times rated rms voltage</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/>
+<TXT>The duration of the dc test voltages must be 5 seconds minimum, 1 minute maximum, after the filter has reached 
+thermal stability at maximum operating temperature produced by passage of rated current.  Apply the test voltage 
+between the case (ground) and connect all live (not grounded) terminals of the same circuit together.  Raise 
+test voltage from zero to the specified value as uniformly as possible, at a rate of approximately 500 volts 
+(rms or dc) per second.  Upon completion of the test, reduce the test voltage gradually to avoid voltage surges.  
+The changing current is 50 mA maximum.  During the dielectric withstanding voltage test, monitor the fault indicator 
+for evidence of disruptive discharge and leakage current.  Use sufficient sensitivity of the breakdown test equipment 
+to indicate breakdown when at least 0.5 mA of leakage current flows through the filter under test.  Perform test 
+with the components mounted in the filter/ESA assembly enclosure.  Test filters for ac circuits with an ac source.  
+Test filters for dc circuits with a dc source.  After the test, examine the filter and perform measurements to 
+include insulation resistance measurements to determine the effect of the dielectric withstanding voltage test 
+on specific operating characteristics.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insulation Resistance Test</TTL><BRK/>
+<BRK/>
+<TXT>This is a test to measure the resistance offered by the insulating members of a filter to an impressed direct 
+voltage tending to produce a leakage current through or on the surface of these filters.  Make insulation-resistance 
+measurements on an apparatus suitable for the characteristics of the filter to be measured such as a megohm bridge, 
+megohm-meter, insulation-resistance test set, or other suitable apparatus.  Perform test with the components 
+mounted in the filter/ESA assembly enclosure or mounted on a metal plate by the same holding method that will 
+be used for mounting in the enclosure.  Disconnect the bleeder resistor.  Apply direct potential to the specimen 
+which is the largest test condition voltage (100, 500, or 1,000 volts +10 percent) that does not exceed the rated 
+peak ac voltage or the rated dc voltage.  A separate dc power supply may be used to charge the filters to the 
+test voltage.  Do not exceed a measurement error of 10 percent at the insulation-resistance value required.  
+Use proper guarding techniques to prevent erroneous readings due to leakage along undesired paths.  Make insulation-resistance 
+measurements between the mutually insulated points or between insulated points and ground.  Read the insulation 
+resistance value with a megohmmeter and record after the reading has stabilized.  When more than one measurement 
+is specified, make subsequent measurements of insulation resistance using the same polarity as the initial measurements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Current Sharing</TTL><BRK/>
+<BRK/>
+<TXT>Perform testing with the filters mounted in the filter/ESA assembly enclosure or mounted on a metal plate by 
+the same holding method that will be used for mounting in the enclosure.  Load filter inner compartment terminals 
+with a resistor equal in value to the rated operating voltage divided by the sum of the current ratings of the 
+devices in parallel.  Use resistor capable of dissipating the total current.  Apply rated operating voltage at 
+the filter outer compartment terminals.  Monitor the current into each filter outer compartment terminal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Harmonic Distortion Test</TTL><BRK/>
+<BRK/>
+<TXT>Make harmonic distortion measurements using a spectrum analyzer having a dynamic range of [70 dB] [_____] and 
+a frequency range from [10 kHz to 1.7 GHz] [_____].  Measure total harmonic distortion at the input and output 
+terminals of the filter when operating at 25, 50, and 100 percent of rated full-load current.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Terminals Pull Test</TTL><BRK/>
+<BRK/>
+<TXT>The purpose of this test is to determine whether the design of the filter terminals can withstand the mechanical 
+stresses to which they will be subjected during installation or disassembly in equipment.  Perform testing with 
+the components mounted in the filter/ESA assembly enclosure or mounted on a plate by the same holding method 
+that will be used for mounting in the enclosure.  Apply a force of<MET> 89 N</MET><ENG> 20 pounds</ENG> to the terminal.  The point 
+of application of the force and the force applied must be in the direction of the axes of the terminations.  
+Apply force gradually to the terminal and maintain for a period of 5 to 10 seconds.  Check the terminals before 
+and after the pull test for poor workmanship, faulty designs, inadequate methods of attaching of the terminals 
+to the body of the part, broken seals, cracking of the materials surrounding the terminals, and the changes in 
+electrical characteristics such as shorted or interrupted circuits.  Measurements are to be made before and after 
+the test.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>ELECTRICAL SURGE ARRESTERS (ESA)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  ESA application guidance is found in MIL-HDBK 423.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Power and Signal Line ESA</TTL><BRK/>
+<BRK/>
+<SPT><TTL>ESA General</TTL><BRK/>
+<BRK/>
+<TXT>Provide ESAs consisting of metal oxide varistors (MOVs) or spark gaps.  When a spark gap is specified, enclose 
+the ESA within a metal case.  Contain discharges within the case; no external corona or arcing will be permitted.  
+Provide factory installed ESAs with minimum lead lengths within the outer compartment.  For all power filter/ESA 
+assemblies, install the ESAs a minimum of<MET> 75 mm</MET><ENG> 3 inch</ENG> apart, with terminals at least<MET> 75 mm</MET><ENG>3 inch</ENG> from a grounded 
+surface.  For telephone filter/ESA assemblies, install the ESAs with a minimum clearance spacing of<MET> 25 mm</MET><ENG> 1 inch</ENG>
+, and place terminals at least<MET> 75 mm</MET><ENG> 3 inch</ENG> from a grounded surface.  Connect each phase, neutral and telephone 
+circuit conductor through an ESA to the ground bus.  Install the ESA [in the power input compartment of the filter] 
+[in a separate EM shielded enclosure].  Provide ESA units within the filter/ESA assembly that are individually 
+replaceable.  Like ESAs must be interchangeable.  ESA terminals mus withstand the<MET> 89 N</MET><ENG> 20 lb</ENG> pull test.  Space 
+live parts in accordance with <RID>NFPA 70</RID>.  Use copper ESA leads.  Mark individual ESAs with HCI tags containing 
+the manufacturer's name or trademark and part number.  Provide ESA meeting the requirements of <RID>IEEE C62.11</RID>, <RID>IEEE C62.41.1</RID>
+, <RID>IEEE C62.41.2</RID>, and <RID>UL 1449</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wiring</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Some designers prefer coiling the wire between the ESA and the filter, 
+because it creates enough inductance to develop the ESA firing potential during 
+transients for HEMP applications.  Short leads, as recommended herein, improve 
+the voltage-limiting effectiveness of the ESA.  Fusing of the ESA is not recommended 
+because protection may be lost without the operator's knowledge.  If fusing 
+is necessary, a light to indicate a blown fuse will be provided on the ESA enclosures.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Locate ESAa so that leads of minimum length connect the ESA ground terminal to the enclosure.  The total lead 
+length connecting the ESA to the filter and the ESA ground terminal to the enclosure must be less than<MET> 300 mm</MET><ENG>
+ 12 inch</ENG>.  Power line ESA wiring must be No. 4 AWG minimum.  Provide communication/signal line ESA wiring of 
+the same or heavier gauge than the communication/signal line conductor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Voltage Characteristics</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Clamping voltage requirement is intended to ensure that the ESA does 
+not have excessive series resistance.  The specific value should be chosen after 
+reviewing manufacturer's data.</NPR><BRK/>
+<BRK/>
+<NPR>Specified dc breakdown voltage (or MOV voltage at 1 milliampere dc current) 
+for dc and single phase ac power should be in the range of 150 to 200 percent 
+of the peak (not rms) operating voltage.  Use 200 to 250 percent on three-phase 
+circuits, so that a short-circuit fault in one phase will not fire ESA on the 
+other two phases.</NPR><BRK/>
+<BRK/>
+<NPR>The spark gap dc breakdown voltage requirement is intended to ensure that the 
+spark gap is a low-inductance, fast device.  The precise values are not critical 
+and should be chosen after reviewing ESA catalog information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Make measurements of (MOV) voltage at 1 mA dc current and spark gap dc breakdown voltage in accordance with the 
+following procedure.  Perform testing with the ESAs mounted in the filter/ESA assembly enclosure or mounted on 
+a metal plate by the same holding method which will be used for mounting in the enclosure.  Connect a variable 
+dc power supply between the ESA terminal and the enclosure (or plate).  Increase the applied dc voltage at a 
+rate not to exceed 10 percent of the rated firing voltage per second.  The (MOV) voltage at 1 mA dc current is 
+the power supply output voltage, when the output current is 1 milliampere.  The spark gap dc breakdown voltage 
+is the applied voltage just prior to breakdown (indicated by a rapid decrease in the voltage across the device).  
+De-energize the power supply immediately after the value has been recorded.  MOV direct current breakdown voltage 
+at 1 milliampere dc current must be at least [340] [500] [1,000] [_____] volts and less than [425] [1,500] [_____] 
+volts.  Perform MOV testing in accordance with <RID>IEEE C62.33</RID>.  Spark gap direct current breakdown (sparkover) voltage 
+must be at least [500] [1,000] [_____] volts and less than [1,500] [3,000] [_____] volts.  Spark gap impulse 
+sparkover voltage of the ESA must be less than 4,000 volts.  This voltage must be on surges of either polarity 
+having a rate of rise of 1,000 volts/nanosecond.  Perform testing of the ESA <SUB>impulse sparkover voltage</SUB> with the 
+spark gaps mounted in the filter/ESA assembly enclosure or mounted on a metal plate by the same holding method 
+which will be used for mounting in the enclosure.  Connect the pulse generator between the spark gap terminal 
+and the enclosure (or plate) with a minimum inductance connection.  Use pulse generator capable of providing 
+a ramp voltage of 1 kV/ns to a peak voltage which is at least twice the open circuit impulse sparkover voltage.  
+Monitor voltage across the spark gap on an oscilloscope or transient digitizing recorder, capable of at least 
+1 ns resolution.  The peak transient voltage during the pulse is the impulse sparkover voltage.  Response time 
+must be less than 4 nanoseconds.  Clamping voltage of the ESA must be less than [900] [_____] volts at a current 
+pulse of 10 kA.  Perform ESA clamping voltage measurements with the ESAs mounted in the filter/ESA assembly enclosure 
+or mounted on a metal plate by the same holding method which will be used for mounting in the enclosure.  Connect 
+the pulse generator between the ESA terminal and the enclosure (or plate) with a minimum inductance connection.  
+Use pulse generator capable of providing a 10 kA current pulse, on an 8- by 20-microsecond waveshape into the 
+ESA.  Monitor current through the ESA and monitor voltage across the ESA on oscilloscopes or transient digitizing 
+recorders.  The asymptotic voltage during the 10 kA portion of the pulse is the clamping voltage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ESA Extinguishing Characteristics</TTL><BRK/>
+<BRK/>
+<TXT>The ESA must extinguish and be self-restoring to the normal nonconductive state within one-half cycle at the 
+operating frequency.  Perform <SUB>ESA extinguishing test</SUB> with the ESA mounted in the filter/ESA assembly enclosure 
+or mounted on a metal plate by the same holding method which will be used for mounting in the enclosure.  Use 
+an ac power source connected between the ESA terminal and ground at the rated voltage and frequency capable of 
+providing at least 25 amperes into a short-circuit load.  Also connect a pulse generator capable of providing 
+a short pulse which will fire the ESA across the ESA.  Monitor voltage across the ESA on an oscilloscope or transient 
+digitizing recorder.  Inject a series of ten pulses.  Performance of the ESA is satisfactory if the arc extinguishes 
+(indicated by re-occurrence of the sinusoidal waveform) within 8.5 milliseconds after the start of each pulse.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ESA Extreme Duty Discharge Current</TTL><BRK/>
+<BRK/>
+<TXT>Provide ESA which is rated to survive the extreme duty discharge current of a single 8- x 20-microsecond pulse 
+with a 10 to 90 percent rise time of 8 microseconds and fall time to a value of 36.8 percent of peak in 20 microseconds.  
+Use ESA for high voltage power lines (above 600 volts) with an extreme duty discharge capability equal to or 
+greater than 70 kA. The ESA for low voltage power lines (below 600 volts) to such things as building interiors, 
+area lighting, and external HVAC equipment with an extreme duty discharge capability equal to or greater than 
+50 kA.  Provide ESAs for control circuits such as interior alarms, indicator lights, door access controllers, 
+HVAC controls, and telephones, with an extreme duty discharge capability equal to or greater than 10 kA.  Perform <SUB>
+ESA extreme duty discharge test</SUB> with the ESA mounted in the filter/ESA assembly enclosure or mounted on a metal 
+plate by the same holding method which will be used for mounting in the enclosure.  Connect a pulse generator 
+between the ESA terminal and the enclosure (or plate) with a minimum inductance connection.  Use pulse generator 
+capable of supplying an 8- x 20-microsecond waveshape and a only single pulse is required.  Monitor current through 
+the ESA and monitor voltage across the ESA on oscilloscopes or transient digitizing recorders.  Monitor the ESA 
+visually during the test and after the pulse inspected for charring, cracks, or other signs of degradation or 
+damage. Test must be on a prototype only.  Repeat the dc breakdown voltage test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Minimum Operating Life</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Surge life test will be performed only when required by the user.  Coordinate 
+current amplitude with manufacturer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform ESA operating life tests with the ESA mounted in the filter/ESA assembly enclosure or mounted on a metal 
+plate by the same holding method which will be used for mounting in the enclosure.  Connect a pulse generator 
+between the ESA terminal and the enclosure (or plate) with a minimum inductance connection.  Use pulse generator 
+capable of supplying repetitive 4 kA current pulses, with a 50 ns x 500 ns waveshape, to the ESA.  A series of 
+ten pulses is required.  Monitor current through the ESA and voltage across the ESA on oscilloscopes or transient 
+digitizing recorders.  Monitor the ESA visually during the series of pulses for indications of external breakdown.  
+The ESA must be able to conduct 2,000 pulses at a peak current of 4 kA and 50 nanoseconds x 500 nanoseconds waveform.  
+Post-test includes inspection for charring, cracks, or signs of degradation.  Repeat the dc breakdown voltage 
+test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operating Temperature</TTL><BRK/>
+<BRK/>
+<TXT>The ESA must be rated for continuous operation in ambient temperatures from<MET> minus 25 to plus 125 degrees C</MET><ENG> minus 
+12 to plus 255 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ESA Testing</TTL><BRK/>
+<BRK/>
+<TXT>Submit ESA factory test data which shows the ability to meet the requirements herein, based on prior tests of 
+the same ESA assembly components and design.  Perform testing with the ESA mounted in the filter/ESA assembly 
+enclosure or mounted on a metal plate by the same holding method which will be used for mounting in the enclosure.  
+Connect the pulse generator between the ESA terminal and the enclosure (or plate) with a minimum inductance connection.  
+Monitor current through the ESA and voltage across the ESA on oscilloscopes or transient digitizing recorders.  
+Include the following in the test data:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Breakdown Voltage.</OLI><BRK/>
+<BRK/>
+<OLI>Impulse Sparkover Voltage.</OLI><BRK/>
+<BRK/>
+<OLI>Clamping Voltage.</OLI><BRK/>
+<BRK/>
+<OLI>Extinguishing.</OLI><BRK/>
+<BRK/>
+<OLI>Extreme Duty Discharge.</OLI><BRK/>
+<BRK/>
+<OLI>Surge Life.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>WAVEGUIDE ASSEMBLIES</TTL><BRK/>
+<BRK/>
+<TXT>Provide waveguide-below-cutoff (WBC) protection for all piping, ventilation, fiber optic cable penetrations and 
+microwave communications barrier penetrations of the HEMP electromagnetic barrier.  Protect these WBC penetrations 
+with cutoff frequencies and attenuation no less than the EM shielding effectiveness values listed herein.  Ensure 
+cutoff frequencies are no less than 1.5 times the highest frequency of the shielding effectiveness.  For 1 GHz, 
+the maximum rectangular linear diagonal dimension must be<MET> 100 mm</MET><ENG> 4 inch</ENG> and the maximum circular diameter must 
+be<MET> 100 mm</MET><ENG> 4 inch</ENG>.  The length-to-cell cross-section dimension ratio of the waveguide must be a minimum of [5:1 
+to attain 100 dB] [3:1 to attain 50 dB].  Arrange penetration locations to facilitate installation and testing 
+by minimizing the number of locations.  Factory test waveguides of each assembly type in accordance with <RID>IEEE 299</RID>
+ and Table I of this specification.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Waveguide-Type Air Vents</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Occurrence of dissimilar metals will use corrosion resistant design.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each ventilation WBC array must be a honeycomb-type air vent with a core fabricated of corrosion resistant steel 
+as shown on the drawings.  Include heavy frames to dissipate the heat of welding to the shield in waveguide construction.  
+Construct a welded WBC array from sheet metal or square tubes.  Form array cells by welding the sheets at intersections 
+or welding adjacent tubes along the entire length of the WBC section.  Use a maximum cell size of<MET> 100 mm</MET><ENG> 4 inch</ENG>
+ on a diagonal.  Use a WBC section length of at least five times the diagonal dimension of the cells.  Provide 
+air vents with a shielding effectiveness equal to that of the total enclosure as a permanent part of the shielded 
+enclosure.  Do not exceed a static pressure drop through the vents of<MET> 3.4 gpscm</MET><ENG> 0.01 inch of water</ENG> at an air 
+velocity of<MET> 305 m/s</MET><ENG> 1000 fpm</ENG>.  Provide waveguides for air vents (honeycomb) with access doors in duct work for 
+maintenance.  [Weld] [Bolt] the frame of the honeycomb panel into the penetration plate [with continuous circumferential 
+EM welds.] [with bolts<MET> 75 mm</MET><ENG> 3 inch</ENG> on center.]  Welds for fabrication and installation of honeycomb waveguide 
+panels are primary shield welds and inspect as indicated.  Include acceptance testing of all honeycomb panels 
+with the final acceptance test.  Do not pass conductors, such as wires and louver operating rods, through the 
+waveguide openings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping Penetrations</TTL><BRK/>
+<BRK/>
+<TXT>Make all piping penetrations of the HEMP barrier to include utility piping, fire mains, vent pipes, and generator 
+and boiler exhausts with piping WBC sections.  Provide steel WBC material with a composition suitable for welding 
+to the HEMP shield.  Provide a minimum wall thickness of<MET> 3.2 mm</MET><ENG> 0.125 inch</ENG>.  Provide a maximum inside diameter 
+of<MET> 100 mm</MET><ENG> 4 inch</ENG> or install a metallic honeycomb insert with a maximum cell dimension of<MET> 100 mm</MET><ENG> 4 inch</ENG>.  Provide 
+WBC section with an unbroken length of at least five diameters to form a minimum cutoff frequency of 1.5 times 
+the highest frequency of the shield effectiveness.  Weld or braze the piping WBC section circumferentially to 
+the HEMP shield, pipe sleeve or a penetration plate as shown on the drawings.  Construct generator and boiler 
+exhausts as shown in the drawings and configure as a WBC or WBC array.  The circumferential penetration welds 
+are primary shield welds and inspect and test as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Waveguide Penetrations</TTL><BRK/>
+<BRK/>
+<TXT>Implement waveguide penetrations for dielectric fibers or hoses in the same manner as piping penetrations.  Convert 
+dielectric hoses or pipes to metal waveguide piping before penetrating the shield.  Do not pass conductors, such 
+as wires and fiber cable strength members, through the waveguide opening.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING STUD</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Grounding stud will be provided only for small (under<MET> 100 square meters</MET><ENG>
+ 1,000 square feet</ENG> of floor area) bolted and welded enclosures.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide enclosure with<MET> 13 mm</MET><ENG> 1/2 inch</ENG> diameter stud circumferentially welded to each side of the shielding penetration 
+plate.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PENETRATION PLATES</TTL><BRK/>
+<BRK/>
+<TXT>Provide penetration plates that are minimum<MET> 6 mm</MET><ENG> 1/4 inch</ENG> thick and sized as shown on the drawings.  The penetration 
+plate must overlap the shield penetration cutout dimension by a minimum of<MET> 150 mm</MET><ENG> 6 inch</ENG> on each side.  [Weld] 
+[Bolt] the penetration plate to the HEMP shield [with continuous circumferential EM welds.] [with bolts<MET> 75 mm</MET><ENG>
+ 3 inch</ENG> on center.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GALVANIZING</TTL><BRK/>
+<BRK/>
+<TXT>Galvanizing, when practical and not otherwise indicated, must be hot-dipped processed after fabrication.  Galvanizing 
+must be in accordance with <RID>ASTM A123/A123M</RID>, or <RID>ASTM A653/A653M</RID>, as applicable.  Exposed fastenings must be galvanically 
+compatible material.  Avoid electrolytic couples and dissimilar metals that tend to seize or gall. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EM SHIELDED CABINETS AND PULL BOXES</TTL><BRK/>
+<BRK/>
+<TXT>Provide cabinets and pull boxes which are modified NEMA [1] [_____] in accordance with <RID>NEMA ICS 6</RID> made of corrosion 
+resistant steel of no less than <MET> 2 mm</MET><ENG> 14 gauge</ENG> thick with welded seams and galvanized bulkhead cover plates.  
+Provide hinged access cover plates with EM gaskets and<MET> 75 mm</MET><ENG> 3 inch</ENG> maximum bolt spacing.  Include thick cover 
+plates, folded enclosure edges, and bolt spacers to prevent uneven gasket compression and enclosure deformation 
+in the design.  Gasket must be easy to replace.  Gasket contact areas must be tin-plated using the electrodeposited 
+type I method in accordance with <RID>ASTM B545</RID>.  EM weld conduit hub circumferentially to the enclosure.  Finish 
+cabinets with a corrosion-inhibiting primer and two coats of baked or finish enamel.  Provide cabinets with mounting 
+brackets for wall mounting or legs for floor mounting.  Factory test cabinets and boxes of each type in accordance 
+with <RID>IEEE 299</RID> and Table I of this specification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITATIVE MONITORING SYSTEM</TTL><BRK/>
+<BRK/>
+<TXT>Provide a built-in shield monitoring system for SELDS testing.  Provide system consisting of either multiple 
+injection points or a surface loop system.  Bring driving conductors to a single lockable EM shielded connection 
+box, located outside the shield in a controlled space.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with all details of the work, verify dimensions in the field, and advise the Contracting 
+Officer of any discrepancy before performing the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>INSTALLATION</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Coordination</TTL><BRK/>
+<BRK/>
+<TXT>The EM shielding installer must instruct other trades in the presence and with the direction of the Government 
+representative, in advance of the <SUB>EM shielding system</SUB> installation, to ensure that all individuals are aware 
+of the critical installation requirements.  Submit manufacturer's data, catalog cuts, and printed documentation 
+regarding the work.  Provide cleaners, solvents, coatings, finishes, physical barriers, and door threshold protectors 
+as required to protect the shielding system from corrosion, damage, and degradation.  Obatin approval of the 
+shielding installation plan before construction begins.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Verification</TTL><BRK/>
+<BRK/>
+<TXT>Before, during, and after the EM shielding and penetration protection subsystem installation, the shielding specialist 
+must verify and approve the installation for compliance with the specifications.  Provide materials and methods, 
+shop drawings, and other items for the shielding subsystem bearing an approval stamp of the shielding specialist.  
+Provide compliance notification to the Contracting Officer before materials are installed or methods performed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inspection</TTL><BRK/>
+<BRK/>
+<TXT>During and after EM shielding and penetration protection subsystem installation, including EM filters and waveguides, 
+a qualified shielding specialist must inspect the installation for compliance with the specifications.  Complete 
+the inspection before a finish or concrete topping coat is installed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer's Services</TTL><BRK/>
+<BRK/>
+<TXT>Provide the services of a manufacturer's representative who is experienced in the installation, adjustment, and 
+operation of the equipment specified.  Supervise the installation, adjustment, and testing of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Posting Framed Instructions</TTL><BRK/>
+<BRK/>
+<TXT>Post framed instructions containing wiring and control diagrams under glass or in laminated plastic.  Frame condensed 
+operating instructions, prepared in typed form, as specified above and post beside the diagrams before acceptance 
+testing of the system.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ENCLOSURE INSTALLATION - WELDED STEEL CONSTRUCTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Either the welded or bolted construction will be used for the EM shielding 
+enclosure.  Choose the appropriate construction and delete the non-applicable 
+paragraphs.</NPR><BRK/>
+<BRK/>
+<NPR>Welded construction will usually consist of continuous<MET> 1.897 mm</MET><ENG> 14 gauge</ENG> thick 
+steel plate and angles to form the enclosure.  Thicker material may be used 
+if it is more cost-effective or required for structural reasons.  Welded construction 
+is used when a shielded facility requires a long maintainable service life of 
+high-level protection, 100 dB attenuation, or HEMP protection, 100 dB.  For 
+bolted construction see the NOTE and paragraphs below under the title ENCLOSURE 
+INSTALLATION - BOLTED CONSTRUCTION</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install the EM shielded enclosure in accordance with this specification, the drawings, and the recommendations 
+of the manufacturer and EM shielding specialist.  Handle and install shielding steel without damage.  Penetrations 
+of the shield, other than those indicated on the drawings, will not be permitted, including fasteners and mounting 
+bolts, without prior written authorization from the Contracting Officer.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Surface Preparation</TTL><BRK/>
+<BRK/>
+<TXT>Clean and buff contacting surfaces to ensure firm contact with shielding steel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control of Warping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Steel plates exposed to sunlight and changing environmental conditions 
+increase warpage and buckling.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Keep warping of steel shielding plates during installation and welding within<MET> 1 mm in 1 meter</MET><ENG> 1/8 inch in 10 
+feet</ENG>.  use embeds, drive pins, and/or anchor bolts or ties to hold plates in place during welding.  Also use 
+other techniques such as skip welding to reduce warpage.  The system chosen must be fully coordinated and approved 
+by the Contracting Officer.  Seal fasteners, drive pins, and other shield penetrations with full penetration 
+circumferential EM welds.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Placement of Floor Shield</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The shingle overlap method is one successful method of floor shield placement.  
+Designers have the option to select other methods.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Do not begin placement of the floor shield until at least 14 days after the pouring of the floor slab and Contracting 
+Officer approval of all required submittals.  [The placement of the floor shield must utilize [the shingle overlap 
+method] [_____].]  [Attach individual floor sheet on the top and one side only with air-pressure drive tools 
+to the floor.  Oerlap floor shielding sheets<MET> 50 mm</MET><ENG> 2 inch</ENG> at joints, Bend and lay flat on the concrete floor 
+without voids or gaps, and seal with continuous EM welds at all seams and joints.]  Start floor shield installation 
+at the center of the space.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Placement of Overslab</TTL><BRK/>
+<BRK/>
+<TXT>Before placement of the overslab over any portion of the floor shield, the Contracting Officer's approval is 
+required.  Successfully complete both visual and SELDS testing of the shielding within the area to be covered, 
+repair and retest any defects, and supply full test results to the Contracting Officer prior to placement of 
+the overslab.  Place a vapor barrier over the floor shield.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<TXT>Provide shielding work in accordance with the performance criteria specified.  Shielding steel structurally welded 
+to the steel frame must be welded in accordance with <RID>AWS D1.1/D1.1M</RID> and <RID>AWS D1.3/D1.3M</RID>.  Seal EM shielding seams 
+EM-tight by the MIG method, using electrodes structurally and electrically compatible with the adjacent steel 
+sheets.  [Weld sheet steel to support steel by plug or tack welding at<MET> 300 mm</MET><ENG> 12 inch</ENG> on center, and then EM 
+weld sheet seams continuously to seal the enclosure] [_____].  Slag inclusions, gas pockets, voids, or incomplete 
+fusion will not be allowed anywhere along welded seams.  Correct weld failures by grinding out such welds and 
+replacing with new welds.  A qualified welder must perform welding, both structural and EM sealing.  Weldments 
+critical to shielding effectiveness are shown on the drawings and perform in the manner shown on the drawings.  
+Where both structural integrity and shielding quality are required for a given weldment, meet both criteria simultaneously.  
+Perform brazing conforming to the documents discussed above, where practical, and also conform to requirement 
+of <RID>AWS BRH</RID>.  Seal structural, mechanical, or electrical systems penetrations by providing a continuous solid 
+perimeter weld, or braze to the shield as specified.  Provide all shield joints and seams with a minimum<MET> 50 mm</MET><ENG>
+ 2 inch</ENG> overlap and seal with a continuous solid weld.  After testing, the Contracting Officer will inspect and 
+approve the installation prior to covering by other trades.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wall Shielding Attachment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The wall attachment method outlined in this paragraph is one successful 
+example.  Site-specific methods must be edited at this point in this specification.  
+Note that all attachment penetrations must be welded closed.  Metal wall studs 
+or furring strips should be of equal or greater thickness (gauge) than the shield 
+steel when shield steel is welded to supporting metal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Secure continuous<MET> [1.613] [_____] mm</MET><ENG> [16] [_____] gauge</ENG> thick furring channels spaced no more than<MET> 600 mm</MET><ENG> 24 
+inch</ENG> on center to steel wall studs by using self-tapping sheet metal screws.  Tack weld steel sheets to the furring 
+strips every<MET> 400 mm</MET><ENG> 16 inch</ENG> on center horizontally and<MET> 600 mm</MET><ENG> 24 inch</ENG> on center vertically.  Make a continuous 
+full penetration EM weld to join the sheets and form the shield.  Welds must not form dimples or depressions 
+causing fish mouths at the edge of the sheet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Formed Closures</TTL><BRK/>
+<BRK/>
+<TXT>Install formed closures where indicated and/or necessary to completely close all joints, openings, enclosures 
+of pipe chases, and structural penetrations, columns, and beams.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sequence of Installation</TTL><BRK/>
+<BRK/>
+<TXT>Sequence erection of the steel to prevent steel sheet warpage.  Install shielding components that have passed 
+initial testing (part 1) before construction of any features that would limit access for repairs to the shield.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Door Assemblies</TTL><BRK/>
+<BRK/>
+<TXT>Mount doors to perform as specified.  Weld door framing continuously to the EM shield.  The structural system 
+supporting the door frame must provide proper support for doors and frame.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ENCLOSURE INSTALLATION - BOLTED CONSTRUCTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Either welded or bolted construction will be used for the EM shielding 
+enclosure.  For welded construction see the NOTE and paragraphs above.</NPR><BRK/>
+<BRK/>
+<NPR>Bolted construction is associated with a lower level (50 dB) of maintained shielding 
+effectiveness.  Bolted construction will usually consist of modular panels bolted 
+together with metal strips or channels. Panels are commonly plywood with steel 
+sheets laminated to one or both sides.  Bolted construction is used when a shielded 
+facility's service life is short, 10 years or less, or the system is required 
+to be demountable for change of location.  This system requires more maintenance 
+than a welded system and requires access to the panels.  The EM shield layout 
+may restrict attenuation testing of the enclosure.  It is desirable for large 
+facilities to place the shield at least<MET> 1 meter</MET><ENG> 3.3 feet</ENG> inside the exterior 
+walls, although cost and construction restrict this consideration.  The floor 
+shielding can be tested by SELDS test but not by IEEE 299 if it is on grade.  
+The facility layout must be carefully planned to allow for testing and shield 
+maintenance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Enclosure Panel Installation</TTL><BRK/>
+<BRK/>
+<TXT>Install panels, without damage to the shielding steel, in accordance with the shielding manufacturer's recommendations.  
+Clean exposed surfaces of dirt, finger marks, and foreign matter resulting from manufacturing processes, handling, 
+and installation.  Install electrical conduits as close to the EM shield as possible.  Do not use framing-joining 
+system bolts to mount material and equipment.  Seam weld or solder material and equipment which penetrate the 
+shielded enclosure to both shielding surfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surface Preparation</TTL><BRK/>
+<BRK/>
+<TXT>Clean and buff surfaces to ensure good electrical contact with shielding surface.  Remove paint or other coverings 
+on mating surfaces of special boxes such as for fire alarm systems, buzzers, and signal lights, including areas 
+between box and cover, box and wall, and box and conduit.  Remove insulating material to maintain a low-resistance 
+ground system and to ensure firm mating of metal surfaces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Floor Panel Setting</TTL><BRK/>
+<BRK/>
+<TXT>Place a polyethylene film<MET> 0.15 mm</MET><ENG> 6 mil</ENG> thick vapor barrier over the structural floor of the parent room before 
+any other work is set thereon.  Provide a<MET> 3 mm</MET><ENG> 1/8 inch</ENG> thick layer of hardboard over this film with joints loosely 
+butted.  Over this layer, provide an additional layer of similar filler material of equal thickness as the projection 
+of the framing-joining member from the bottom surface of the floor panel leaving no more than<MET> 6 mm</MET><ENG> 1/4 inch</ENG> of 
+space between the hardboard and the framing-joining member.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Framing-Joining System</TTL><BRK/>
+<BRK/>
+<TXT>Tighten screws with a calibrated adjustable torque wrench with equal torque set for each screw.  Use proper torque 
+values in accordance with the manufacturer's requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Door Assemblies</TTL><BRK/>
+<BRK/>
+<TXT>Mount the door to perform as specified.  The door must be through-bolted to the EM shield.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Filter Installation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When the filter unit must be installed inside the shielded enclosure, 
+the input terminal compartment will be EM-tight instead of the load terminal 
+compartment, and the filters will be located in the load terminal compartment.  
+This arrangement is necessary to prevent radiated EM energy within the shielded 
+enclosure from inducing EM energy in the power conductors between the filters 
+and the point where the conductors pass through the shielded enclosure wall.  
+To provide for this arrangement, change the wording as necessary; i.e., change 
+the word "load" to read "input" and change the words "input" to read "output" 
+or "load," as appropriate.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Support filters independently of the wall shielding.  Conduct inspections on filters provided under this specification, 
+to verify compliance with the specified requirements.  Ship filters after successful testing and examine prior 
+to installation to determine if damage occurred during shipment.  Damage, no matter how slight, will be reason 
+for rejection of the filter.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WAVEGUIDE INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Treat penetrations of the EM shield with the appropriate waveguide method.  Provide waveguides suitable for piping 
+and for fluids or gases contained within, in accordance with specified requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SHIELDING PENETRATION INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install penetrations in accordance with requirements of the penetration schedule and coordinate with system installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Develop a <SUB>quality control plan</SUB> to ensure compliance with contract requirements; maintain quality control records 
+for construction operations required under this section; and submit the quality control plan to the Contracting 
+Officer.  Furnish a copy of testing records, as well as the records of corrective actions taken.  Perform in-progress 
+and final acceptance testing of EM shielding and penetration protection system work as specified. Correct deficiencies 
+at no additional cost to the Government.  Maintain legible copies of the daily inspection reports by the shielding 
+specialist at the project site, and deliver copies of the Construction Quality Control Report to the Contracting 
+Officer on the third workday following the date of the report.  Include the type of work being performed during 
+the report period and locations, type of testing, deficiencies, corrective actions, unsolved problems, and recommendations 
+to assure adequate quality control in the daily inspections.  Attach results of inspections and tests performed 
+in accordance with this specification to the daily Construction Quality Control Report.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD TRAINING</TTL><BRK/>
+<BRK/>
+<TXT>Provide a field training course for designated operating and maintenance staff members.  Provide training for 
+a total period of [8] [_____] hours of normal working time and start after the system is functionally complete 
+but prior to the final acceptance test.  Cover all the items contained in the Operating and Maintenance Manuals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SHIELDING QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Integrate the Contractor's organizational structure for shielding quality control into the jobsite management.  
+Perform testing by [an independent testing firm] [the shielding installer].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>HEMP Hardness Critical Item Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Identify hardness critical items during the detail drawing submittal period.  These items are those components 
+and/or construction features which singularly and collectively provide specified levels of HEMP protection, such 
+as the EM shield, surge arresters, EM shielded doors, shield welding, electrical filters, honeycomb waveguides, 
+and waveguides-below-cutoff.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Performance Test Plan</TTL><BRK/>
+<BRK/>
+<TXT>Submit a performance test plan for Contracting Officer approval.  Accomplish testing in three parts:  (1) in-progress; 
+(2) initial shielded enclosure effectiveness; and (3) final acceptance, shield enclosure effectiveness.  Include 
+in the test plan equipment listings (including calibration dates and antenna factors) and the proposed test report 
+format.  Also include specific test dates and durations during the overall construction period so that the Contracting 
+Officer may be scheduled to observe the testing and so that repairs may be made to the shield and retests conducted.  
+This separate testing schedule for the EM enclosure must show the points, during construction, when it begins 
+and ends as well as a day-by-day test schedule.  Indicate proposed dates and duration of lowest and highest frequency 
+tests so that the Contracting Officer may be available for these final acceptance tests.  Identify a test grid 
+and provide plan for correlation of that grid to the structure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Reports</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specifications and/or quality assurance test results of this paragraph 
+may be classified for some projects.  Provide appropriate instructions when 
+this occurs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include the method of testing, equipment used, personnel, location of tests, and test results.  Submit daily 
+reports of results of each test performed on each portion of the shielding system to the Contracting Officer 
+within 3 working days of the test. Clearly identify location of the area tested.  Identify leaks detected during 
+testing with sufficient accuracy to permit relocation for testing in accordance with test procedures.  Submit 
+reports of testing to the Contracting Officer with required certification by the testing agency representative 
+or consultant.  Submit three reports (in-progress test report, initial test report, and final acceptance test 
+report) in accordance with the format described below.</TXT><BRK/>
+<BRK/>
+<ITM>Cover Page:</ITM><BRK/>
+<ITM>A cover page is required.</ITM><BRK/>
+<BRK/>
+<ITM>Administrative Data:</ITM><BRK/>
+<ITM>Test personnel.</ITM><BRK/>
+<ITM>Contract number.</ITM><BRK/>
+<ITM>Date of test.</ITM><BRK/>
+<BRK/>
+<ITM>Authentication.  Contractor personnel responsible for performance of the tests and witnessing 
+organization or representatives.</ITM><BRK/>
+<BRK/>
+<ITM>Contents:</ITM><BRK/>
+<ITM>Shielded facility description.</ITM><BRK/>
+<ITM>Nomenclature of measurement equipment.</ITM><BRK/>
+<BRK/>
+<TXT>Serial numbers of measurement equipment.  Date of last calibration of measurement equipment.  Type of test performed.  
+Measured level of reference measurements and ambient level at each frequency and test point.  Measured level 
+of attenuation in decibels at each frequency and test point. Dynamic range at each test frequency and test point.  
+Test frequencies. Location on the shielded enclosure of each test point.  Actual attenuation level at each test 
+point.</TXT><BRK/>
+<BRK/>
+<ITM>Conclusions:  Include results of the tests in brief narrative form in this section.</ITM><BRK/>
+<BRK/>
+<ITM>Number of Copies of the Report:</ITM><BRK/>
+<ITM>[Three] [_____] copies.</ITM><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><TST><SUB>Field Testing</SUB></TST></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If a facility is required to fully comply with MIL-STD-188-125 by the 
+Joint Chiefs of Staff, a military department headquarters, or a major command, 
+coordinate with the using organization to establish test requirements.  Quality 
+assurance and the testing required by appendix A of that standard should be 
+performed.  However, the using organization may insist on full testing in accordance 
+with appendix B as well.  In that case, advise the user that, based on limited 
+testing to date, no existing EM filter/ESA devices have survived the E-2 and 
+E-3 waveforms.  Include appropriate cost and scheduling considerations if appendix 
+B testing is required.  If MIL-STD-188-125 is not a requirement, avoid its reference.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit reports of certified test results and results of all field and factory tests as specified and as required 
+by the Contracting Officer.  Accomplish testing in the three parts described below.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Testing - Part 1</TTL><BRK/>
+<BRK/>
+<TXT>Perform Part 1 as in-progress testing including inspection, visual seam inspection, and seam testing of all EM 
+shielding materials and installation.  [In-progress testing of welded shielding must include testing the structural 
+welds to be embedded prior to concrete placement by dye penetrant and magnetic particle testing and 100 percent 
+testing of wall, ceiling, and floor shielding welds by the SELDS tests.] [In-progress testing of bolted construction 
+must include 100 percent testing of floor, wall, and ceiling shielding seams by the SELDS testing.]  After successful 
+completion of in-progress testing, including defect repairs and retest, and with prior approval of the Contracting 
+Officer, placement of embedments covering may be made to complete the structural systems.  Submit an in-progress 
+test report.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Testing - Part 2</TTL><BRK/>
+<BRK/>
+<TXT>Part 2 initial testing consists of inspection, visual seam inspection, seam testing, and shielded enclosure effectiveness 
+testing after shielding and shielding penetrations are completed, but before the installation of finish materials 
+over the shielding.  Access to penetrations is required.  SELDS test all [seams] [welds], including shielding 
+and penetrations not tested in part 1.  Prform initial shielded enclosure effectiveness acceptance test consisting 
+of a <RID>MIL-STD-188-125-1</RID> test utilizing specified test frequencies for magnetic and plane wave.  Conduct testing 
+in accordance with the paragraph EM Shielding Effectiveness Testing.  Perform these tests with the number of 
+shield penetrations limited to those required to support the test.  After successful completion of Part 2 initial 
+testing, including defect repairs and retest, and with prior approval of the Contracting Officer, placement of 
+any covering may be made except in areas where penetrations are located.  Submit an initial test report.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Testing - Part 3</TTL><BRK/>
+<BRK/>
+<TXT>Perform Part 3 final acceptance testing consisting of a visual inspection and a shielded enclosure effectiveness 
+test of the EM shielding materials and installation.  SELDS test all [seams] [welds], including shielding and 
+penetrations not tested in parts 1 and 2.  Perform part 3 testing upon completion of construction and when the 
+building is ready for occupancy.  Test facilities requiring HEMP protection for shielding effectiveness in accordance 
+with acceptance test procedures in <RID>MIL-STD-188-125-1</RID>.  Notify the Contracting Officer in writing 14 days prior 
+to tests to permit adequate monitoring by authorized representatives.  Accomplish corrective work immediately 
+upon detection that any area has failed to meet the requirements specified.  Perform retesting to verify that 
+remedial work done to meet the required attenuation has been properly installed.  Submit a final acceptance test 
+report.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><TST>Weld Inspection</TST></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Additional welding tests may be specified, such as ultrasonic or radiographic 
+tests, but these tests are costly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Inspect weld seams visually by a qualified welder during the welding operation and after welding is completed.  
+Inspect completed welds after the welds have been thoroughly cleaned by hand or power wire-brush.  Inspect welds 
+with magnifiers under bright light for surface cracking, porosity, slag inclusion, excessive roughness, unfilled 
+craters, gas pockets, undercuts, overlaps, size, and insufficient throat and concavity.  Grind out defective 
+welds and replace with sound welds.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST>Shielded Enclosure Leak Detection System (SELDS) Testing</TST></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  SELDS testing the welds in the floor shielding is usually performed on 
+the interior only because it is not possible to "sniff" on both sides (assuming 
+the shield is on the ground level).  Dye penetrant may also be used to test 
+the welds where SELDS testing is not possible.  The SELDS can be obtained commercially 
+from the following:  1.  Carnel Labs Corporation 21434 Osborne Street Canoga 
+Park, CA 91304 Telephone:  (818) 882-3977  2.  Rayproof Shielding Systems Corporation 
+50 Keeler Avenue Norwalk, CT 06854 Telephone:  (203) 838-4555  3.  Retlif Corporation 
+795 Marconi Avenue Ronkonkoma, NY 11779 Telephone:  (516) 737-1500</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The leak detection system must use a 95- to 105-kHz oscillator and a battery operated hand-held receiver.  Provide 
+receiver or "sniffer" with a ferrite loop probe capable of sensing leaks within<MET> 6 mm</MET><ENG> 1/4 inch</ENG> of the probe location 
+with a dynamic range of 140 dB.  Conduct testing in accordance with test equipment manufacturer's instructions.  
+Place test loops or leads under the shield floor or into inaccessible locations prior to installation to assist 
+in the detection of seam leaks in the floor, ceiling and walls.  Place the loop or lead wires between the vapor 
+barrier and the structural slab for the floor shield with the leads brought to an accessible location.  Provide 
+test leads that are insulated stranded copper conductors<MET> 2 to 2.5 mm</MET><ENG> 5/64 to 3/32 inch</ENG> diameter and bond to the 
+shield only at the end.  Place test leads in plastic conduit for protection and do not exceed<MET> 45 m</MET><ENG> 150 ft</ENG> in 
+length.  The surface area of the shield will determine the number of test leads (drive points) that are required.  
+Install drive points on the shielding exterior and attach to two sets of diagonally opposing corners during construction.  
+The distance between test lead connections on a shield surface must not be more than<MET> 20 m</MET><ENG> 66 ft</ENG>.  The maximum 
+testing area must be<MET> 400 sm</MET><ENG> 4300 sf</ENG>.  If the shield area exceeds this requirement, provide additional drive points.  
+Bonding of the test leads to the shield is accomplished by brazing or high-temperature soldering.  Run test leads 
+from the drive points to a lockable test cabinet for connection to the SELDS oscillator.  If more than one test 
+cabinet is required for a given area or building, duplicate test leads that would be common to different surface 
+areas at each test cabinet to ensure that test point parings are maintained.  Record the location of the permanent 
+test leads and provide this information to the Contracting Officer for permanent reference.  Welds and seams 
+must be 100 percent tested.  Probe seams continuously with the test receiver set to detect abrupt changes of 
+shielding level greater than 10 dB on the shielding unit scale.  Mark points having a change greater than 10 
+dB clearly and have the weld repaired to meet the specified requirement.  Retest each repaired point until there 
+are no points on seams which fail the test.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST>EM Shielding Effectiveness Testing</TST></TTL><BRK/>
+<BRK/>
+<TXT>Furnish services of an EM shielding testing specialist, approved by the Contracting Officer, to test the shielded 
+enclosure.  Equip and staff the laboratory to perform field tests of EM shielded enclosures and perform these 
+tests as a normal service.  Use test equipment which has been calibrated within the last 12 months.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Test Procedure</TTL><BRK/>
+<BRK/>
+<TXT>Provide test procedure and equipment similar to that specified in <RID>MIL-STD-188-125-1</RID>.  Test frequencies are specified 
+herein.  Test points are as indicated in Table I.  Corner points of the grid must occur at the intersection of 
+three planes (two-wall surfaces and ceiling or two wall surfaces and floor).  Record measurement data at all 
+test points, and provide a grid map for each surface tested.  For any test point where required attenuation is 
+not provided, correct the discrepancy and retest.  Provide the results of the test failure as well as the successful 
+results.  Perform enclosure effectiveness test for magnetic attenuation with the antennas located directly opposite 
+each other and separated by a distance of<MET> 600 mm</MET><ENG> 2 ft</ENG> plus the wall thickness.  Perform plane wave attenuation 
+tests with the antennas located directly opposite each other and with the transmitting antenna placed<MET> 300 mm</MET><ENG> 
+1 ft</ENG> away from the enclosure wall and with the receiving antenna set<MET> 300 mm</MET><ENG> 1 ft</ENG> from the wall for stationary 
+measurements and<MET> 50 to 600 mm</MET><ENG> 2 inch to 2 ft</ENG> from the wall for swept measurements.  Perform the magnetic field 
+test and the plane wave test using the following sequence.  Perform calibrations at the beginning of each test 
+day.  Then set up the test area for the 100 to 400 MHz stationary measurement in on to the two required polarizations.  
+With the transmitter off check the receiver sensitivity.  Energize the transmitter, and record the fixed measurement 
+data.  Remove the receiving antenna from the test stand and perform the swept measurement at the same frequency 
+and transmitting antenna polarization.  Rotate the transmitting antenna, and perform the second 100 to 400 MHz 
+stationary measurement.  Perform the swept measurement for the second transmitting antenna polarization.  Reconfigure 
+the equipment for the 900 to 1000 MHz test frequency, and repeat the series of four measurements.  To perform 
+the swept measurement, remove the receiving antenna from the test stand and hold with a dielectric rod at least<MET>
+ 300 mm</MET><ENG> 12 inch</ENG> in length.  Attach a dielectric spacer to the sweeping antenna to assist in maintaining the<MET> 50 
+mm</MET><ENG> 2 inch</ENG> distance from the shield.  Make a rapid sweep to locate hot spots by rotating the polarization and 
+waving the antenna through the specified volume.  The final activity of each test day is to repeat the calibrations 
+and verify the consistency with the previous calibration results.  Include a definition of all test points including 
+but not limited to walls, door frames, accessible joints, and around filters and penetrations in the test procedures.  
+Test each <SUB>EM door</SUB> at the locations indicated in Table I.</TXT><BRK/>
+<TXT><TAB HEADERROWS="2">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="14">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="287.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="284.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL MERGEACROSS="1" STYLEID="s51">
+<DTA TYPE="STRING">TABLE I - SHIELDING EFFECTIVENESS TEST POINTS</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Testing Location</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">Test Points Spacing</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Joints between steel panels for roof, walls, and floors</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Test every<MET> 3 m</MET><ENG> 10 feet</ENG><BRK/>(Note 1; minimum of one test point per side)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Corner seams for walls to floor, walls to roof, and wall to wall</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Test every<MET> 3 m</MET><ENG> 10 feet</ENG><BRK/>(Note 1; minimum of one test point per corner seam)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Corners (intersection of three surfaces)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Test at all corners in Shield</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Single doors</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Test at each corner; at midpoint of each side longer than<MET> 1.5 m</MET><ENG> 5 feet</ENG>; and at center</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Double doors</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Test each separately at same test point as single doors</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="80.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">WBC vents and panels</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Test in center (on axis) for all sizes (including single); at all four corners if<MET> 300 by 300 mm</MET><ENG> 12 by 12 inches</ENG> or larger; and at the midpoint of each side longer than<MET> 1.5 m</MET><ENG> 5 feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">At treated penetrations of shield (and entry panel and backshield)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Test as close to "an-axis" as possible, or orient for maximum signal</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="57.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">All other shield joints, seams, or corners</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sweep all surfaces at one frequency in the range of 400 MHz to 1 GHz.  Test every<MET> 3 m</MET><ENG> 10 feet</ENG> max. plane wave</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Doors</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Door handles</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">EM filter enclosures</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Test at each seam corner and midpoint of each side longer than<MET> 1.5 m</MET><ENG> 5 feet</ENG> at center</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">EM cabinets and enclosures</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Test at each seam corner and each side<MET> 1.5 m</MET><ENG> 5 feet</ENG> on center</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">NOTE 1.  Sweep each point in space<MET> 600 mm</MET><ENG> 2 feet</ENG> around the point.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Test Points</TTL><BRK/>
+<BRK/>
+<TXT>Measure additional test points in accordance with <RID>MIL-STD-188-125-1</RID> for facilities requiring HEMP protection.  
+Test points include the periphery of doors and covers, handles, latches, power filter penetrations, air vent 
+filters, communications line filter penetrations, and points of penetration by pipes, tubes, and bolts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Methodology</TTL><BRK/>
+<BRK/>
+<TXT>Orient antennas for maximum signal pickup.  Probe each test point for area of maximum leakage, such as around 
+door frames, accessible joints, filters, pipes, and air ducts.  Determine magnitude and location of maximum signal 
+levels emanating from the enclosure for each accessible wall at a minimum of two locations on each wall, around 
+doors, and at penetrations and seams of the enclosure.  Accomplish measurement of attenuation in accordance with 
+Table I.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Frequencies</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Test frequencies will be in accordance with MIL-STD-188-125 when applicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Testing frequencies for shielded enclosures are as follows:</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0" WIDTH="88">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="138.00"/>
+      <COL AUTOWIDTH="0" WIDTH="336.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Magnetic field</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[14 kHz,] [400 kHz,] and [10.1 MHz] [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Electric field</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[200 kHz] and [16 MHz] [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Plane wave</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[100 MHz], [415 MHz], and [1.29] [18] [_____] [GHz]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING"><RID>MIL-STD-188-125-1</RID> frequencies are as follows:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Magnetic</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Plane wave</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><TST>Weld Testing</TST></TTL><BRK/>
+<BRK/>
+<TXT>Test structural welds to be embedded in accordance with <RID>AWS D1.1/D1.1M</RID> using magnetic particle inspection or 
+dye penetrant inspection and 100 percent of the shielding seams by the SELDS testing prior to embedment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>GROUNDING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Grounding method will be in accordance with MIL-STD-188-124.  An equipotential 
+ground plane is recommended for shielded facilities.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The contract drawings indicate the extent and general arrangement of the shielded enclosure grounding system.  
+The grounding methods must be an equipotential grounding plane method in accordance with <RID>UL 1283</RID>, <RID>NFPA 70</RID>, <RID>NFPA 77</RID>
+, <RID>NFPA 780</RID>, <RID>IEEE 142</RID>, <RID>MIL-STD-188-124</RID>, and <RID>MIL-HDBK-419</RID>.  For additional facility grounding requirements, see 
+Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

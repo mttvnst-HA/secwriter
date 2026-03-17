@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="393.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="393.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-27 51 23 (November 2021)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="56.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-27 21 00.00 20 (April 2006)<BRK/>UFGS-27 21 00.00 40 (February 2016)<BRK/>UFGS-27 51 23.10 (May 2011)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 27 51 23</SCN><BRK/>
+<BRK/>
+<STL>INTERCOMMUNICATION SYSTEM</STL><BRK/>
+<DTE>11/21</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>electronic intercommunication systems, including master 
+and remote stations of the wired and wireless types</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers intercommunication systems and lists desirable features of electronic systems; 
+however, not all manufacturers produce products with all the listed features.  Consult manufacturers as to the 
+availability of features desired and the availability of  those features.  Additional features, requirements, 
+etc., may be made to this specification.  Where intercommunication systems are to be used with other communication 
+devices, consider the electromagnetic compatibility of the intercommunication system in accordance with AR 5-12 
+- Army Use of the Electromagnetic Spectrum.  This intercommunication system guide specification does not include 
+all features and design parameters which are available.  Do not specify exact equipment configuration or design 
+parameters that are unnecessarily restrictive.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ACOUSTICAL SOCIETY OF AMERICA (ASA)</ORG><BRK/><BRK/><RID>ASA S3.2</RID><RTL>(2020; R 2025) American National Standard Method for Measuring the Intelligibility of Speech Over Communication Systems</RTL><BRK/><BRK/></REF><REF><ORG>ELECTRONIC COMPONENTS INDUSTRY ASSOCIATION (ECIA)</ORG><BRK/><BRK/><RID>ECIA EIA/ECA 310-E</RID><RTL>(2005) Cabinets, Racks, Panels, and Associated Equipment</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>TELECOMMUNICATIONS INDUSTRY ASSOCIATION (TIA)</ORG><BRK/><BRK/><RID>ANSI/TIA-568.1</RID><RTL>(2020e) Commercial Building Telecommunications Infrastructure Standard</RTL><BRK/><BRK/><RID>ANSI/TIA-568.2</RID><RTL>(2024e) Balanced Twisted-Pair Telecommunications Cabling and Components Standards</RTL><BRK/><BRK/><RID>ANSI/TIA-568.3</RID><RTL>(2022e) Optical Fiber Cabling Components Standard</RTL><BRK/><BRK/><RID>TIA-568.0</RID><RTL>(2020e) Generic Telecommunications Cabling for Customer Premises</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 50</RID><RTL>(2024) UL Standard for Safety Enclosures for Electrical Equipment, Non-Environmental Considerations</RTL><BRK/><BRK/><RID>UL 1449</RID><RTL>(2021; Reprint Oct 2025) UL Standard for Safety Surge Protective Devices</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS applies to this section.</TXT><BRK/>
+<BRK/>
+<TXT>Section <SRF>27 51 16</SRF> PUBLIC ADDRESS SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Public address systems are covered in specification <SRF>27 51 16</SRF> PUBLIC ADDRESS SYSTEMS and not in this specification; 
+this guide specification covers the requirements for three different types of intercommunication systems, select 
+those appropriate to the project and remove those not applicable to the project.</NPR><BRK/>
+<BRK/>
+<NPR>For brig facilities, a 2-way public address system for paging and monitoring must be provided in addition to the 
+intercom system; use specification <SRF>27 51 16</SRF> PUBLIC ADDRESS SYSTEMS for the 2-way public address system.  The various 
+types are as follows:</NPR><BRK/>
+<BRK/>
+<NPR>Type 1 systems are hardwired, single-master systems with selector switches at the master station allowing for 
+a single 2-way conversation with a remote station at a time.  This system also allows for calls to the master 
+station from a remote station, allows the master station to make a one-way announcement to one, several, or all 
+remote stations at one time.  Remote stations typically consist of a single speaker, a call button, and a visual 
+indicator to show that the master station is connected to the particular remote station.  This system typically 
+cannot provide a video option.  This type of system is applicable for relatively small systems (maximum quantity 
+of remote stations approximately 30).  If there is a requirement for annunciation at more than one location, multiple 
+master stations, a large number of remote stations,or a requirement for multiple conversation paths, the use of 
+a Type 1 system might not be appropriate; consider a Type 2 or 3 system instead.</NPR><BRK/>
+<BRK/>
+<NPR>Type 2 systems are typically microprocessor-based, and hardwired or multiplexed with one or more multiple master 
+stations; the master station typically utilizes a telephone-type instrument.  This system allows for calls to 
+the master station from a remote station, calls from master station to master station, and allows each master 
+station to make a one-way announcement to one, several, or all of its remote stations at one time.  A multiplexed 
+version of this system could be appropriate for a facility with multiple remote stations distributed in various 
+wings, such as in a BEQ, detention facility, or other building where it is not desirable to provide an individual 
+cable from the master station to each remote station.  Remote stations can be connected to a local electronic 
+(not necessarily an IP Ethernet switch) switch and each switch connected to the master station by a single cable.  
+Some of these systems allow for a designated master station to take control from another master station such as 
+in a correctional facility where central control might need to take over the master station in a particular block 
+in case of an emergency.  These systems do not have to be IP-based, although addition of video will often require 
+an IP system.</NPR><BRK/>
+<BRK/>
+<NPR>Type 3 systems are similar to Type 2 systems except that they can communicate among multiple buildings and sites 
+and are IP-based to allow communications over local and wide area networks.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Data Package 5 in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</TXT><BRK/>
+<BRK/>
+<TXT>Provide an Intercommunication System that is solid state, modular in design, and as indicated.[  Stations must have capacity for later expansion 
+to [[_____] master] [and] [[_____] remote] stations [with [_____] handset] [and][or] [with hands free operation] without sacrificing any equipment 
+or feature of performance.][  When both wired and wireless circuitry are used, such interface must not present a reduction of function or quality.][  
+System must provide one-way video from the remote stations to the master stations where video-type remote stations are indicated].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Sound Reproduction</TTL><BRK/>
+<BRK/>
+<TXT>Provide system with normally acceptable speech intelligibility, defined as a score of at least 75 percent obtained utilizing the phonetically balanced 
+monosyllabic work intelligibility test in accordance with <RID>ASA S3.2</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide an intercommunication system to provide an audio output of no less than 10 dBA above ambient at<MET> [900] [_____] mm</MET><ENG> [3] [_____] feet</ENG> from 
+the surface of each receiving stations over the frequency range of [200] [_____] to [5000] [_____] Hz, when driven by a sound pressure level at 
+the calling station of at least 70 dBA at the face of the transducer enclosure.  All sound pressure levels are referenced to 1 pascal equals 94 
+dB.  The entire system must have a dynamic range of at least 40 dB.  The root-mean-square (rms) extraneous noise (e.g. hum) level introduced by 
+the intercommunication system must be at least [30] [_____] dB below the nominal signal level.  Distortion, including envelope delay, intermodulation, 
+cross talk, and other nonlinear sources, must not exceed 5 percent.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Video Capability</TTL><BRK/>
+<BRK/>
+<TXT>Provide intercom stations with video in addition to audio.  Master stations must be able to view individuals at remote stations equipped with video, 
+but remote stations must not be able to view video from the master station(s).  Provide video equipped remote stations where indicated and provide 
+master stations with video feature.</TXT><BRK/>
+<BRK/>
+<TXT>Video Master Stations must have the following features:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Color touch screen with a diagonal size of at least<MET> 170 mm</MET><ENG> 7 inches</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Hands-free (VOX) and handset communications.</OLI><BRK/>
+<BRK/>
+<OLI>Pan, tilt, zoom,contrast, and brightness controls.</OLI><BRK/>
+<BRK/>
+<OLI>Automatic camera pan, tilt, and zoom setting specific to the remote stations when communicating with a remote station.</OLI><BRK/>
+<BRK/>
+<OLI>Audio and video storage of at least twenty calls of at least five minutes each on removable SD or SDHC media.  Include software for viewing 
+and listening on a standard PC if files are a proprietary format.</OLI><BRK/>
+<BRK/>
+<OLI>Low voltage power supply requirement complete with AC power adapter.</OLI><BRK/>
+<BRK/>
+[<OLI>Door release function.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>]<SPT><TTL>System Operation And Service Features</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Control and Power Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide the system with a power switch and an associated visual indicator for ON and OFF operations.  Provide a volume control at each station 
+to regulate listening volume.  System must operate on [110-125 Vac] [220-250 Vac], single phase, [60] [50] Hz.</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Remote stations must utilize Power over Ethernet (PoE).  Include all necessary PoE switches, equipment and PoE injectors.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide an IP-based system[ utilizing Power over Ethernet (PoE)].  Include all necessary PoE switches, equipment and injectors.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Call-In Indication</TTL><BRK/>
+<BRK/>
+<TXT>Master stations must have an audible and visual call-in indicator to provide indication of incoming calls from remote stations.  Indication must 
+identify the specific calling station and status, and remain actuated until the call is answered by a master station.  Visual call-in indicators 
+must be clearly visible at off-center angles of at least 45 degrees.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Identification Plates</TTL><BRK/>
+<BRK/>
+<TXT>In addition to the manufacturer's standard identification plates, provide engraved laminated acrylic plastic identification plates for each component, 
+connection, and terminal.  Identification labels must be 3-layered white on black, engraved to show black letters on a white background.  Warning 
+and caution labels must be 3-layered white on red, engraved to show white letters on red background.  Control switches and knobs must be clearly 
+marked with their function and status.  Identification strips for station selector switches must be located to clearly identify remote and master 
+stations and must be protected by transparent plastic inserts.  Lettering must be no smaller than<MET> 6.35 mm</MET><ENG> 1/4 inch</ENG> high, normal block style.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Combination Speaker-Handset Stations</TTL><BRK/>
+<BRK/>
+<TXT>At combination speaker-handset stations, lifting the handset must automatically cut out the loudspeaker in the station and all conversation must 
+be carried through the handset.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Privacy Switch</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where ambient noise does not exceed 55 dBA, specify hands-free operation from distances up to<MET> 4.5 m</MET><ENG> 15 
+feet</ENG>.  In areas where the noise occasionally exceeds 55 dB, a talk-listen switch that overrides the hands-free 
+operation should be specified.  Where a high noise environment exists (above 80 dBA), delete hands-free operation 
+and specify only a talk-listen switch.</NPR><BRK/>
+<BRK/>
+<NPR>General Noise Level Guidelines Library 30 dBA, Quiet Private Office 40 dBA, General Open Office 50 dBA, face-to-face 
+conversation 60 dBA; full symphony 90 dBA.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide privacy switch at [each] [each indicated] remote station that prevents listening to that station when activated.  Activation of the privacy 
+switch must provide a initial temporary audible indication at the master station along with a constant visual indication of the specific station 
+that activated its privacy switch.  The visual indication at the master station must only be turned off by resetting the privacy switch at the 
+remote station.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Submit detail drawings consisting of illustrations, schedules, performance charts, instructions, brochures, 
+diagrams, catalog cuts, manufacturer's data, materials and equipment lists, and operational and general maintenance 
+instructions, including the overall system and for each major component.  Indicate the quantities of stations 
+and provided spare capacity, including amplifier and power supply spare capacity; amplifer headroom must not be 
+considered part of the spare capacity.  Illustrate on the drawings how each item of equipment has been coordinated 
+to function properly in the system.  Include on detail drawings an overall system schematic indicating relationship 
+of intercommunication units on one diagram and showing power source, system controls, impedance matches, plus 
+number, size, and maximum lengths of interconnecting wires and indicate clearances required for maintenance and 
+operation.  Provide calculations for power requirements of equipment to show that the proper power levels, including 
+headroom, are provided for the specified equipment.</NPR><BRK/>
+<BRK/>
+<NPR>[Submit details of interface with Electronic Security System when providing door control via the intercom system.]</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>All-Call Amplifier</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cone-Type Loudspeakers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Horn-Type Loudspeakers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Intercommunication Amplifier</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Master Station</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Remote Audio and Video Station</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Remote Audio-Only Station</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Speaker Enclosures</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB>;</LST><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>All-Call Amplifier</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Intercommunication Amplifier</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Master Station</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Remote Audio and Video Station</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Remote Audio-Only Station</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect all equipment delivered and placed in storage from the weather, humidity and temperature variation, dirt and dust, or other contaminants.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EXTRA MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>After approval of detail drawings and not later than [2] [_____] months prior to the date of beneficial occupancy, furnish <SUB>spare parts</SUB> data for 
+each different item of equipment and component in the system.  Include with the data a complete list of parts and supplies, with current unit prices 
+and source of supply.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>MATERIALS AND EQUIPMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Project drawings should clearly indicate the exact location of all stations, conduit, wiring, and junction 
+boxes.  If no drawings of the locations of master stations, remote stations, junction boxes, etc., are furnished 
+with the specification, the number and type of stations and junction boxes and the distance between them must 
+be included as a part of the project specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment which are the standard products of a manufacturer regularly engaged in the manufacture of such products and that 
+essentially duplicate equipment that have been in satisfactory use at least 2 years prior to bid opening.  Equipment must be supported by a service 
+organization that is, in the opinion of the Contracting Officer, reasonably convenient to the site.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Product Data</TTL><BRK/>
+<BRK/>
+<TXT>Submit Product Data including, but not limited to, capabilities, technical data, operating parameters, operating instructions, and installation 
+instruction for Intercommunication System equipment and components requiring submittals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Identical Items</TTL><BRK/>
+<BRK/>
+<TXT>Items of the same classification must be identical.  This requirement includes equipment, modules, assemblies, parts, and components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Each major component of equipment must have the manufacturer's name, model number, serial number, and markings for all required code, compliant, 
+and conformant certification on plates mechanically attached to the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Common Equipment Requirements</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Intercommunication Amplifier</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The system intercommunication amplifier must, as a minimum, conform to the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="5">
+      <COL AUTOWIDTH="0" WIDTH="169.50"/>
+      <COL AUTOWIDTH="0" WIDTH="287.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Rated Output Power</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">10 watts rms minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">Total Harmonic Distortion</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Less than 5 percent at rated output power with a load equivalent to one station connected to output terminals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Signal-To-Noise Ratio</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">60 dB or greater at rated output</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Frequency Response</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Plus or minus 3 dB from 150 Hz to 12,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="72.75">
+         <CEL>
+<DTA TYPE="STRING">Input Sensitivity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Matched to input circuit and providing full-rated output with sound-pressure level of not more than 70 dBA impinging on master stations, speaker microphones, or handset transmitters.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL><SUB>All-Call Amplifier</SUB></TTL><BRK/>
+<BRK/>
+<TXT>All-call amplifier must, as a minimum, conform to the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="8">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="169.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="287.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Rated Output Power</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum of 2 watts rms for each station, but no less than 20 watts.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="41.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Harmonic Distortion</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Less than 5 percent at rated output power with a load equivalent to the quantity of stations connected to it in all-call mode of operation</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Signal-To-Noise Ratio</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">60 dB or greater at rated output</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Frequency Response</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Plus or minus 2 dB from 200 Hz to 10,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Output Regulation</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Maintains output level within 2dB from full to no load</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="74.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Input Sensitivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Compatible with master stations and central equipment so amplifier delivers full-rated output with sound pressure level of less than<MET> 10 dynes/sq. cm</MET><ENG> 0.000145 psi</ENG> impinging on master station, speaker microphone or hand set transmitter.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">External Microphone Input</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Balanced low-impedance with switchable 48VDC phantom power</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Amplifier Protection</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Prevent damage from shorted and open circuits</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Power Line Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide a permanently-mounted (not a portable power strip) UL 1449 Type 3 Listed Surge Protective Device for all amplifiers.  The surge protector 
+must have a Maximum Continuous Operating Voltage of 150 volts for 120 VAC supply voltage and 300 volts for a 230 or 240 VAC supply voltage.  The 
+maximum Voltage Protection Rating must not exceed 600 VAC line-to-neutral, 700 VAC line-to-ground, and 600 VAC neutral-to-ground for a 120 VAC 
+supply voltage or 1200 VAC line-to-neutral, 1500 VAC line-to-ground, and 1200 VAC neutral-to-ground for a 230 or 240 VAC supply voltage.  Surge 
+protection device must be UL listed and labeled as having been tested in accordance with <RID>UL 1449</RID>, 4th Edition.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Signal Circuit Protection</TTL><BRK/>
+<BRK/>
+<TXT>All amplifiers must have internal protection circuits that protect the internal components from mismatched loads, direct current and shorted output 
+lines.  Communication conductors must have surge protection installed at each point where it exits or enters a building.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Remote Audio-Only Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Desk] [Surface wall] [Recessed wall]-mounted remote station must have [stainless steel] [anodized aluminum] faceplate with tamper proof mounting 
+screws and [galvanized steel] [aluminum] backbox.  The remote station must have:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A speaker with a minimum sensitivity of 90 dB on axis at<MET> 1200 mm</MET><ENG> 4 feet</ENG> from the speaker when driven at one watt rms.</OLI><BRK/>
+<BRK/>
+<OLI>A call announcement visual indicator that illuminates when there are incoming calls.  Visual announcement indicators must be clearly visible 
+at off-center angles of at least 45 degrees.</OLI><BRK/>
+<BRK/>
+<OLI>A recurring momentary tone that announces incoming calls.</OLI><BRK/>
+<BRK/>
+<OLI>Call Switch that permits a call to the master station.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a privacy switch at each remote station.  When in the ON position, the switch must prevent any transmission of sound from the remote 
+station.  When in the OFF position, persons must be able to respond to incoming call without manual intervention.</OLI><BRK/>
+<BRK/>
+[<OLI>A handset with hook switch, telephone type, arranged to disconnect the speaker when the handset is lifted.  The cord must be<MET> 450 mm</MET><ENG> 18 
+inches</ENG> long and [permanently coiled] [metallic jacketed].</OLI><BRK/>
+<BRK/>
+][<OLI>NEMA 4X IP66 rating.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>[<SPT><TTL><SUB>Remote Audio and Video Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Wall-mounted remote station must have [stainless steel] [anodized aluminum] faceplate with tamper proof mounting screws and [galvanized steel] 
+[aluminum] backbox.  The remote audio-video station must have the following features:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A speaker with a minimum sensitivity of 90 dB on axis at<MET> 1200 mm</MET><ENG> 4 feet</ENG> from the speaker when driven at one watt rms.</OLI><BRK/>
+<BRK/>
+<OLI>A call announcement indicator that illuminates when there are incoming calls.  Visual announcement indicators must be clearly visible at 
+off-center angles of at least 45 degrees.</OLI><BRK/>
+<BRK/>
+<OLI>A recurring momentary tone that announces incoming calls.</OLI><BRK/>
+<BRK/>
+<OLI>Call Switch that permits a call to the master station.</OLI><BRK/>
+<BRK/>
+<OLI>A fixed-focal length, recessed color camera with the following features:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Sufficient depth of field to provide clear images with no discernable difference in sharpness for subjects between<MET> 300 to 1800 
+mm</MET><ENG> 12 inches to 84 inches</ENG> from the camera lens surface.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">An angle of view between 80 and 115 degrees.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Resolution of at least one megapixel.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Full color video when the vertical illumination on the subject's face is as low as<MET> 20 lux</MET><ENG> 2 footcandles</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Effective frame rate of at least 20 frames per second.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Dynamic range of at least 100 to 1.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">H.264 or H.265 compressed video output.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Integral white LED to illuminate subject to maintain above specifications when ambient light level is below<MET> 20 lux</MET><ENG> 2 footcandles</ENG>
+.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Scratch-resistant multicoated clear or neutral-tinted optical cover.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Operating temperature of<MET> minus 30 to plus 55 degrees Celsius</MET><ENG> minus 20 to plus 130 degrees Fahrenheit</ENG> with no discernable loss 
+of performance.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Operation over IPv4 and IPv6 network protocol</OLI>.<BRK/>
+<BRK/>
+[<OLI LEVEL="2">NEMA 4X IP66 rating.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>]<SPT><TTL><SUB>Cone-Type Loudspeakers</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Larger diameter speakers will typically have better low-frequency response than smaller diameter speakers, 
+but is not as important for intercom use.  Smaller diameter speakers typically have a wider dispersion angle than 
+larger diameter speakers and can often be placed further apart than larger diameter speakers for the same coverage.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Cone-type loud speakers, not integral with a remote station, must be enclosed in a [steel housing] [back boxes] and must be acoustically dampened 
+with a front face of at least<MET> 1.21 mm</MET><ENG> 0.0478 inches</ENG> steel.  The whole assembly must be rust proofed and factory primed complete with mounting assembly.[  
+Baffle for flush speakers must be a minimum thickness of<MET> 0.8128 mm</MET><ENG> 0.032 inches</ENG> aluminum [brushed to a satin sheen and lacquered] [with textured 
+white finish] [_____]].[  Vandal-proof high strength baffles for flush mounted speakers must be cast aluminum with tensile strength of<MET> 3,093 kg/sq. 
+cm</MET><ENG> 44,000 psi</ENG> and a minimum thickness of<MET> 0.635 mm</MET><ENG> 0.025 inch</ENG>.  The mounting screws must be heat-treated alloy.]  The cone-type loudspeakers must 
+comply with the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="8">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="192.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="264.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Axial Sensitivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum of [90][_____] dB with one watt input measured at<MET> 1 meter</MET><ENG> 4 feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Frequency Response</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Within plus or minus 6 dB from [70][180] to 15,000 Hz</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum Power Rating</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">8 watts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum Dispersion Angle</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[100][135] degrees</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Line Transformers Power Rating</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">At least 4 watts with at least four taps with insertion loss of no more than 0.5 dB</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="42.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Speaker Size</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>[200][100] mm</MET> <ENG>[8][4] inches</ENG> with<MET> 25 mm</MET><ENG> 1 inch</ENG> voice coil and minimum<MET> 142 grams</MET><ENG> 5 oz</ENG> ceramic magnet</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Speaker Cone</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Resistant to fracture and delamination.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="42.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Speaker Cone Surround</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Provide sealer on cone surround to minimize environmental effects and aging degradation.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL><SUB>Horn-Type Loudspeakers</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A round horn speaker might have a dispersion angle of 95 to 130 degrees in all directions.  Rectangular 
+horns might control the dispersion pattern 70 x 95 degrees or, for a sectoral horn, 60 x 80 degrees.  Specify 
+the type of horn speaker based on the area of coverage, weather resistance, and whether an explosion proof speaker 
+is needed.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Horn-type loudspeakers must be all metal [weather proof] construction complete with universal mounting brackets.[  Horn-type loudspeakers must 
+be suitable for Class [1, Groups C and D] [1, Groups B, C, and D] [2, Groups E, F and G] hazardous locations and equipped with<MET> 13 mm</MET><ENG> 1/2 inch</ENG> threaded 
+conduit entry].  The horn type loudspeakers must be provided with an internally mounted, factory installed line transformers and must as a minimum 
+conform to the following specifications:</TXT><BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="5">
+      <COL AUTOWIDTH="0" WIDTH="186.00"/>
+      <COL AUTOWIDTH="0" WIDTH="270.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Minimum Power Rating</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[25][_____] watts</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Horizontal Dispersion Angle</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[57][70][90][115][_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">Vertical Dispersion Angle</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[57][90][115][_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Axial Sensitivity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Minimum of [110][_____] dB with one watt input measured at<MET> 1 meter</MET><ENG> 4 feet</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">Line Transformers Power Rating</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">At least 4 watts with at least four taps with insertion rate of 0.5 dB</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Master Station Capacity</TTL><BRK/>
+<BRK/>
+<TXT>Master Stations and associated equipment, regardless of system type, must have an as-installed spare capacity of at least [25] [____] percent to 
+allow this amount of remote stations to be added without additional system, software, or hardware additions or modifications except for the added 
+remote stations and their connection to their immediate upstream device.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT>[<SPT><TTL>TYPE 1 SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this System unless specifying a Type 1 System.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>A manually switched direct connected keyed intercommunication system that must accommodate at least [_____] remote stations.  Remote stations must 
+be provided in the quantities indicated.  The master station must selectively communicate with  any remote station by actuation of an appropriate 
+selector switch.[  The master station must be  capable of initiating a message to all remote stations simultaneously or in groups of not less than 
+10 stations per group.]</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Master Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Desk] [Surface wall] [Recessed wall] [Rack]-mounted master stations must have:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Station-selector switches and talk-listen switches with heavy duty type gold plated contacts rated for at least five million operations.</OLI><BRK/>
+<BRK/>
+<OLI>Volume Control to regulate incoming call volume.</OLI><BRK/>
+<BRK/>
+<OLI>A light annunciation that identifies the calling stations and stations in use.  The light must remain on until the call is answered.</OLI><BRK/>
+<BRK/>
+<OLI>A tone annunciator with a momentary audible tone signal that announces incoming calls.</OLI><BRK/>
+<BRK/>
+[<OLI>A handset with hook switch, telephone type, arranged to disconnect the speaker when the handset is lifted.  The cord must be permanently 
+coiled and have a length between<MET> 450 and 1500 mm</MET><ENG> 18 and 60 inches</ENG> when extended.</OLI><BRK/>
+<BRK/>
+]<OLI>A lockable, ventilated metallic central control cabinet complying with <RID>ECIA EIA/ECA 310-E</RID>.  The cabinet must house terminal strips, power 
+supplies, amplifiers, system volume control, and auxiliary equipment.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>][<SPT><TTL>TYPE 2 SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this Type unless specifying a Type 2 System.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>A microprocessor switched single conversation path, central control intercommunication system must include[ an annunciator panel,] a master station, 
+automatic switching equipment, remote stations and all amplifiers, control equipment and ancillary devices required to provide features specified.  
+The master station must selectively communicate with any remote station by actuating the number assigned to that remote station.[  The master station 
+must be designed to communicate with all remote stations simultaneously or in groups of not less than 10 stations by actuating an assigned "all-call" 
+number.]  Only the selected remote station must be able to listen or talk to the master station.  A non-selected remote station must not be able 
+to hear or interfere with any portion of conversation between a master station and the selected remote station.  Hanging up the master station 
+handset must reset the system for next call.  The quantity and location of remote stations must be as indicated on the drawings.  The system must 
+be programmable and password protected and allow access to be granted or denied to various stations on an individual basis for each master station.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Master Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Desk-top] [Surface wall] [Recessed wall] [Rack-mounted] type master station equipped with:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A 12 digit keypad selector to transmit calls to other stations and initiate commands for programming operations.</OLI><BRK/>
+<BRK/>
+<OLI>Volume control to regulate incoming call volume.</OLI><BRK/>
+<BRK/>
+<OLI>Visual annunciation to identify calling stations and stations in use.  The light must remain on until a call is answered.  Visual indicators 
+must be clearly visible at off-center angles of at least 45 degrees.</OLI><BRK/>
+<BRK/>
+<OLI>Tone annunciation with a momentary audible tone signal that announces incoming calls.</OLI><BRK/>
+<BRK/>
+<OLI>Reset controls that cancels calls and resets system for the next call.</OLI><BRK/>
+<BRK/>
+[<OLI>A handset with hook switch, telephone type, arranged to disconnect the speaker when the handset is lifted.  The cord must be permanently 
+coiled and have a length between<MET> 450 and 1500 mm</MET><ENG> 18 and 60 inches</ENG> when extended.</OLI><BRK/>
+<BRK/>
+]<OLI>A metallic central control cabinet that must comply with <RID>ECIA EIA/ECA 310-E</RID>.  The cabinet must house terminal strips, power supplies, amplifiers, 
+system volume control, and auxiliary equipment.  It must be lockable and ventilated.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Not all systems require door release.  Determine if the controlled door should be monitored and possibly 
+also controlled by the Electronic Security System.  Not having this interface could mean that unauthorized access 
+to an area could occur with no security personnel response.  Coordinate the requirements with Government security.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Door release feature to allow activation of electric strikes and electric latches from the video master station.  Coordinate with the electronic 
+security system design and Section <SRF>28 10 05</SRF> ELECTRONIC SECURITY SYSTEMS (ESS).</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>][<SPT><TTL>TYPE 3 SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this Type unless specifying a type 3 system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>A microprocessor switched multiple conversation path central control intercommunication system must be provided.  The system must be capable of 
+communicating with other master stations and remote stations selectively or in any combination thereof over local and wide-area networks.  Each 
+master station must selectively communicate with any other master station or any remote station by entering a  number assigned to the called station.[  
+Each master station must also be designed to initiate a message to all other master stations and all remote stations simultaneously or in groups 
+of not less than 10 stations.]  Station quantities must be as indicated on drawings.  The system must be programmable and password protected and 
+allow access to be granted or denied to various stations on an individual basis for each master station.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Master Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Desk-top] [Surface wall] [Recessed wall] [Rack-mounted] master stations equipped with:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>A 12 digit keypad selector to transmit calls to other stations and initiate commands for programming operations.</OLI><BRK/>
+<BRK/>
+<OLI>Volume control to regulate incoming call volume.</OLI><BRK/>
+<BRK/>
+<OLI>Light annunciation to identify calling stations and stations in use.  The light must remain on until a call is answered.</OLI><BRK/>
+<BRK/>
+<OLI>Tone annunciation with a momentary audible tone signal that announces incoming calls.</OLI><BRK/>
+<BRK/>
+<OLI>Reset controls that cancels calls and resets system for the next call.</OLI><BRK/>
+<BRK/>
+[<OLI>A handset with hook switch, telephone type, arranged to disconnect the speaker when the handset is lifted.  The cord must be permanently 
+coiled and have a length between<MET> 450 and 1500 mm</MET><ENG> 18 and 60 inches</ENG> when extended.</OLI><BRK/>
+<BRK/>
+]<OLI>A metallic central control cabinet that must comply with <RID>ECIA EIA/ECA 310-E</RID>.  The cabinet must house terminal strips, power supplies, amplifiers, 
+system volume control, and auxiliary equipment.  It must be lockable and ventilated.</OLI><BRK/>
+<BRK/>
+<OLI>Door release feature to allow activation of electric strikes and electric latches from the video master station.  Coordinate with the electronic 
+security system design and Section <SRF>28 10 05</SRF> ELECTRONIC SECURITY SYSTEMS (ESS).</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>]<SPT><TTL><SUB>SPEAKER ENCLOSURES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Speaker enclosures must be compatible with the speakers specified and comply with <RID>UL 50</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TERMINALS</TTL><BRK/>
+<BRK/>
+<TXT>Terminals must be [solderless, tool-crimped pressure] [or] [_____] type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COMMUNICATIONS WIRING</TTL><BRK/>
+<BRK/>
+<TXT>Type of signal and control circuit wire and number of conductors must be provided as recommended by the intercommunication system manufacturer, 
+and as necessary to provide a complete and operable system.  Where required, cable must be UL classified low smoke and low flame for use in air 
+plenums in accordance with <RID>NFPA 70</RID>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Unless manufacturer, voltage drop, or attenuation requirements are more stringent, multi-conductor cables not used with modular connectors 
+must contain only stranded conductors of minimum 22 AWG gauge, insulated with minimum 105-degree Celsius-rated insulation.  Cable jacket 
+must be rated at minimum of 105 degrees Celsius.</OLI><BRK/>
+<BRK/>
+<OLI>Balanced twisted-pair telecommunications cables must be rated as above, except that conductors must be minimum 24 AWG; cables including 
+modular connectors must be rated at least Category [5e] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Comply with Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS CABLING SYSTEM when utilizing IP-based systems.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SURGE PROTECTION</TTL><BRK/>
+<BRK/>
+<TXT>Major components of the system such as Master Stations, Amplifiers, and Remote Stations, must have devices, either internal or external, that must 
+provide protection against voltage spikes and current surges.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Consider fiber-optic transmission media, without any metallic elements to connect far away remote intercom 
+stations.  An example of this is a remote station at a vehicle gate hundreds of feet from the connection to the 
+system.  This can provide better protection from the differential voltage which can occur between the two locations 
+in case of a lightning strike in the vicinity.  Do not run any metallic conductors or raceways for signal, power, 
+or data between those locations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Signal, Data, and low-voltage power:  Continuous voltage rating of surge protective devices internal to the units must be between 120 and 
+140 percent of the nominal circuit voltage, maximum leakage current must be less than one milliampere, and the unit must be able to absorb 
+at least one hundred 1,000-ampere 8x 20 microsecond pulses without appreciable degradation</OLI>.<BRK/>
+<BRK/>
+<OLI>External surge protective devices for incoming AC line-voltage protection must be UL 1449-listed Type 3 with a maximum Voltage Protective 
+Rating (VPR) of 330 volts for nominal line voltages of 120 VAC and a VPR of 600 volts for nominal line voltages above 120 volts when tested 
+in accordance with UL 1449.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with the details of the work and working conditions, verify locations and dimensions in the field, and advise the Contracting 
+Officer of any discrepancies before performing the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>INSTALLATION</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  State precisely what is to be shown in detail drawings.  State also the calculations that need to be a 
+part of the submittal.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install all system components and appurtenances in accordance with the manufacturer's instructions and as specified and shown.  Units to be mounted 
+outside or subject to inclement conditions must be weatherproof or be mounted in weatherproof enclosures.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Signal and Control Circuits Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Install signal and control circuits in accordance with <RID>NFPA 70</RID>, <RID>TIA-568.0</RID>, <RID>ANSI/TIA-568.1</RID>, <RID>ANSI/TIA-568.2</RID>, <RID>ANSI/TIA-568.3</RID>, and as indicated.  The 
+conductors must be separated as recommended by the equipment manufacturer.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Size conductors to maintain voltage drop in power circuits to no more than 3-percent and loss in signal circuits to no more than 0.5 dB.  
+Comply with Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS CABLING SYSTEM for IP-based systems.  Include boosters, additional power supplies, 
+amplifiers, switches, etc. as necessary to maintain these requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Run conductors and cables from unit to unit without splicing.</OLI><BRK/>
+<BRK/>
+<OLI>Cables that do not use modular connectors can use terminal strips and junction boxes to extend the cable if in conformity with manufacturer 
+recommendations.</OLI><BRK/>
+<BRK/>
+<OLI>Provide data switches to extend cable length as necessary for IP-based systems when cable run would  otherwise exceed requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Follow applicable portions of Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS CABLING SYSTEM when utilizing IP-based systems.</OLI><BRK/>
+<BRK/>
+<OLI>Locate switches and other consolidation points in Telecommunications Rooms.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Conduit, Cable Tray and Tubing Systems</TTL><BRK/>
+<BRK/>
+<TXT>Install wiring in rigid conduit, intermediate metal conduits, cable trays, or electric metallic tubing as specified in Section <SRF>26 20 00</SRF> INTERIOR 
+DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>Provide a [5] [_____]-year warranty for all units, parts,and assemblies and a [2] [_____]-year warranty on all labor.  Include travel and expense 
+costs associated with repair and supervisory persons such that owner is not charged for these when warranty labor is provided.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING</TTL><BRK/>
+<BRK/>
+<TXT>Perform the connection of interfacing components through the use of transformers and the tying of interconnecting lines to a unit ground bus at 
+one end only.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TRAINING</TTL><BRK/>
+<BRK/>
+<TXT>Conduct a training course for [_____] members of the operating staff and for [______] members of the maintenance staff as designated by the Contracting 
+Officer.  The training course must be given at the installation during normal working hours for a total of [2] [_____] hours for the operating 
+staff and [4] [_____] hours for the maintenance staff, and must start after the system is functionally complete but prior to final acceptance tests.  
+The field instructions must cover all of the items contained in the approved operating and maintenance instructions, as well as the demonstration 
+of routine maintenance operations.  Notify the Contracting Officer at least 14 days prior to the start of the training course.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST><SUB>ACCEPTANCE TESTS</SUB></TST></TTL><BRK/>
+<BRK/>
+<TXT>After installation has been completed, conduct an acceptance test, using the approved test plan, to demonstrate that the equipment operates in 
+accordance with specification requirements.  Submit test plan and procedures for the acceptance test explaining in detail step-by-step actions 
+and expected results to demonstrate compliance with the requirements specified.  The procedures must also explain methods for simulating the necessary 
+conditions of operation to demonstrate system performance.  Notify the Contracting Officer [_____] days prior to the performance of tests.  In 
+no case must notice be given until after the written approval of the test plans.  The acceptance tests must include as a minimum the following 
+tests:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Operational Test</TTL><BRK/>
+<BRK/>
+<TXT>Test originating station-to-station, and all call at each intercommunication station.  Verify proper routing and volume levels and that the system 
+is free of noise and distortion.  Test available message path from each station on system.[  Test for proper video displays and automatic display 
+of pre-preprogrammed video views.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Frequency Response Test</TTL><BRK/>
+<BRK/>
+<TXT>Determine frequency response of two transmission paths, including all-call, by transmitting and recording audio tones.  Minimum acceptable performance 
+is within 3 dB from 150 to 2500 Hz.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Signal-to-Noise Ratio Test</TTL><BRK/>
+<BRK/>
+<TXT>Measure signal-to-noise ratio of complete system at normal gain setting as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Disconnect speaker microphone and replace it in the circuit with a signal generator using a 1000 Hz signal.  Measure signal-to-noise ratio 
+at intercom station speakers.</OLI><BRK/>
+<BRK/>
+<OLI>Repeat test for 10-percent of the  speaker microphones, but no less than one speaker-microphone.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum acceptable ratio is 35 dB.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Distortion Test</TTL><BRK/>
+<BRK/>
+<TXT>Measure distortion at normal gain settings and rated power.  Feed signals at frequencies of 150, 200, 400, 1000, and 2500 Hz into each all-call 
+amplifier, and a minimum of two selected intercommunication amplifiers.  For each frequency, measure distortion in the all-call amplifier outputs.  
+Maximum acceptable distortion at any frequency is 5 percent total harmonics.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Video Tests</TTL><BRK/>
+<BRK/>
+<TXT>Verify that video from all remote stations appears at all master stations with proper resolution, focus, and color balance meeting the manufacturer's 
+published specifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Reports</TTL><BRK/>
+<BRK/>
+<TXT>Submit test reports in booklet form, upon completion and testing of the installed system, showing all field tests performed to adjust each component 
+and to prove compliance with the specified performance criteria.  <NED/>Include in each test report the final position of controls and operating mode 
+of the system.  Include the manufacturer, model number, and serial number of test equipment used in each test.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>     <END/><BRK/></SEC>

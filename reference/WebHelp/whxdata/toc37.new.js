@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"Cannot Open Exported Web Files in Excel","type":"item","tilePath":"","description":"Unable to open web files in Microsoft Excel","url":"Troubleshooting/Export_Issues/TS_CannotOpenWebFiles.htm"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

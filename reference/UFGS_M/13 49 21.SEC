@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="282.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="280.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-13 49 21 (November 2020)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">New</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 13 49 21</SCN><BRK/>
+<BRK/>
+<STL>RADIO FREQUENCY (RF) SHIELDING: MAGNETIC RESONANCE IMAGING (MRI)</STL><BRK/>
+<DTE>11/20</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>radio frequency 
+(RF) interference shielding for magnetic resonance imaging (MRI) facilities 
+of copper construction</SCP> with a delegated design by the RF Shielding Vendor in 
+conjunction with a Medical Physicist/MR Scientist, and evaluation of site conditions 
+with electromagnetic interference (EMI) field measurements.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+items(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a RID outside 
+of the Section's Reference Article to automatically place the reference in the 
+Reference Article.  Also use the Reference Wizard's Check Reference feature 
+to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN COLLEGE OF RADIOLOGY (ACR)</ORG><BRK/><BRK/><RID>ACR</RID><RTL>MRI Accreditation Program Requirements, Latest Edition</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM B370</RID><RTL>(2022) Standard Specification for Copper Sheet and Strip for Building Construction</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 142</RID><RTL>(2007; Errata 2014) Recommended Practice for Grounding of Industrial and Commercial Power Systems - IEEE Green Book</RTL><BRK/><BRK/><RID>IEEE 299</RID><RTL>(2006; R 2012) Standard Method for Measuring the Effectiveness of Electromagnetic Shielding Enclosures</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 486A-486B</RID><RTL>(2025) UL Standard for Safety Wire Connectors</RTL><BRK/><BRK/><RID>UL 1283</RID><RTL>(2025) UL Standard for Safety Electromagnetic Interference Filters</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>RF Shielding Vendor Qualifications</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>RF Shielding Supervisor Qualifications</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Medical Physicist/MR Scientist Qualifications</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Quality Control Plan</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>RF Attenuation Performance Requirements</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>RF Shielding Shop Drawings</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Materials, Equipment, and Manufactured Units </SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>In Progress RF Testing</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Preliminary RF Testing</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Final RF Testing</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operating And Maintenance Manual</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>RF Shielding Enclosure Warranty</SUB>[; <SUB>G, [_____]</SUB>]</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Supervise and inspect all work under this section, approve all materials and equipment, coordinate shielding 
+work with all other work and trades.<BRK/>
+<BRK/>
+Ensure that RF shielding system fully complies with the MRI equipment manufacturer's requirements, is fully compatible 
+with <RID>ACR</RID> accreditation, and complies with all applicable codes.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Ensure minimum qualifications as indicated.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>RF Shielding Vendor Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>A firm that has continuously executed the design installation, supervision, and testing of equivalent RF shielding 
+systems for the previous 5 years for all the RF shielding work.<BRK/>
+<BRK/>
+Submit a project experience list of projects of similar scope completed during the previous 5 years for approval.  
+Include project completion dates, name and contact information of the user and/or owner.  Include installation 
+materials, construction system, responsibilities, and performance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>RF Shielding Supervisor Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>RF Shielding Vendor to provide a supervisor continuously engaged in the design, installation, supervision, and 
+testing of equivalent RF shielded systems for the previous 5 years to supervise all RF shielding installation work.<BRK/>
+<BRK/>
+Submit the name, qualifications and a list of projects of similar scope completed during the previous 5 years 
+for approval.  Include project completion dates, name and contact information of the user and/or owner. Include 
+field investigations and measurements, installation materials, construction system, testing method, responsibilities, 
+and performance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Medical Physicist/MR Scientist Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>RF Shielding Vendor to engage a Medical Physicist/MR Scientist, meeting the minimum <RID>ACR</RID> requirements, who has 
+been continuously engaged in the design, installation, supervision, and testing of equivalent RF shielded systems 
+for the previous 5 years.<BRK/>
+<BRK/>
+Submit the name, qualifications and a list of projects of similar scope completed during the previous 5 years 
+for approval.  Include, project completion dates, name and contact information of the user and/or owner. Include 
+field investigations and measurements, installation materials, construction system, testing method, responsibilities, 
+and performance.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>RF Shielding Shop Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit shop drawings for the RF shielding system including: the construction method, materials, arrangement and 
+attachment of the RF walls, ceiling and floor, method of RF sealing joints, the connection and method of RF sealing 
+RF shielding system components and any other attachment to the RF shield.  Include attachment details for interior 
+elements, including suspended ceiling, wall finish and floor finish systems.<BRK/>
+<BRK/>
+Locate and label all RF shielding system components and equipment locations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material and Component Certification</TTL><BRK/>
+<BRK/>
+<TXT>Where certification is required, provide materials and equipment with Underwriters Laboratories or other nationally 
+recognized testing laboratory label and listing.  Comply with <RID>NFPA 70</RID>, [<RID>UL 486A-486B</RID>, ]and <RID>UL 1283</RID> for filter 
+and electrical work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Field Quality Control Plan</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a field quality control plan to demonstrate compliance with contract requirements.  Include: schedule, 
+personnel, methodology, inspection and testing stages and procedures, test equipment and the proposed test report 
+format.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pre-Construction Conference</TTL><BRK/>
+<BRK/>
+<TXT>Hold a pre-construction conference with all contractors and installers associated with the RF shielding construction 
+and fit out.  Review requirements and coordination to ensure the integrity of the RF shielding.  Include: Sequence 
+and schedule, coordination of trades, penetrations, attachment of other construction and equipment, and modification 
+and notification procedures.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Deliver equipment, components, and materials in original packaging, labeled with the manufacturer/vendor, brand 
+name and part number.<BRK/>
+<BRK/>
+Inspect equipment, components, and materials upon receipt.  Remove and replace damaged items.  Minor damage may 
+be repaired at the discretion of the Contracting Officer and the repair matches the new condition.<BRK/>
+<BRK/>
+Comply with manufacturers/vendors instructions and recommendations for storage and handling of all equipment, 
+components, and materials.<BRK/>
+<BRK/>
+Protect materials and components from deleterious environments including weather, direct sunlight, moisture, 
+contamination, corrosion, and construction traffic.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>[PROJECT][SITE] CONDITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Construct the RF shield in a weather enclosed building or environmentally controlled building, according to the 
+RF shielding vendor's or MRI manufacturers' requirements, whichever is more stringent.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Maintenance Materials</TTL><BRK/>
+<BRK/>
+<SPT>[<TTL>Filters</TTL><BRK/>
+<BRK/>
+<TXT>Provide one RF power filter and one communications filter of each type used on the project as a spare.</TXT><BRK/>
+]<BRK/></SPT>
+<SPT><TTL>RF Shielded Doors</TTL><BRK/>
+<BRK/>
+<TXT>Provide one set of manufacturer recommended spare parts for each type of RF shielded door[ and 2 sets of knife 
+edge RF door seals].<BRK/>
+<BRK/>
+Provide one full set of tools required to maintain the doors if not typically available from tool vendors.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Operating And Maintenance Manual</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit an Operation and Maintenance Manual for the RF Shielding system.  Address all components and aspects of 
+the RF shielding and including:<BRK/></TXT>
+<OLG><BRK/>
+<OLI>The system RF attenuation performance requirements.</OLI><BRK/>
+<BRK/>
+<OLI>The RF shielding shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI>The construction specification for the RF shielding.</OLI><BRK/>
+<BRK/>
+<OLI>RF shielding penetration schedule.</OLI><BRK/>
+<BRK/>
+<OLI>RF power filter schedule.</OLI><BRK/>
+<BRK/>
+<OLI>RF signal filter schedule.</OLI><BRK/>
+<BRK/>
+<OLI>RF test plan.</OLI><BRK/>
+<BRK/>
+<OLI>Vendor/manufacturer maintenance data.</OLI><BRK/>
+<BRK/>
+<OLI>Spare parts data.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>RF SHIELDING ENCLOSURE WARRANTY</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit an RF shielding system warranty for the RF attenuation performance of the complete RF shielding system, 
+to meet the MRI equipment manufacturer's requirements and be fully compatible with <RID>ACR</RID> accreditation of [5] [_____] 
+years from date of completion of the final RF test for defective design, materials and/or workmanship.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>RF Shielding System Components</TTL><BRK/>
+<BRK/>
+<TXT>The RF shielding system includes, but is not limited to:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>RF complete metallic enclosure including walls, floor and ceiling.</OLI><BRK/>
+<BRK/>
+<OLI>RF shielded doors.</OLI><BRK/>
+<BRK/>
+<OLI>RF shielded windows.</OLI><BRK/>
+<BRK/>
+<OLI>Over-pressure relief hatch.</OLI><BRK/>
+<BRK/>
+<OLI>Magnet delivery access panel.</OLI><BRK/>
+<BRK/>
+<OLI>All electrical, mechanical, utility, signal, and cryogen ventilation penetrations, penetration plates 
+and wave guides.</OLI><BRK/>
+<BRK/>
+<OLI>Dielectric fittings.</OLI><BRK/>
+<BRK/>
+<OLI>Power filters.</OLI><BRK/>
+<BRK/>
+<OLI>Signal filters.</OLI><BRK/>
+<BRK/>
+<OLI>Access panels.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>RF Attenuation Performance Requirements</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit RF attenuation performance requirements based on Medical Physicist/MR Scientist electromagnetic interference 
+(EMI) field measurements,and evaluation of site conditions, in consultation with the MRI equipment manufacturer.  
+Ensure that RF shielding system fully complies with the MRI equipment manufacturer's requirements and is fully 
+compatible with <RID>ACR</RID> accreditation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MATERIALS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Materials, Equipment, And Manufactured Units</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment and manufactured units that have been continuously in production and documented for at least 
+2 years, with a service organization that provides maintenance, parts and support.<BRK/>
+<BRK/>
+Submit product data for all materials, equipment, and manufactured units forming or integrated with the RF shielding 
+including the RF shielding walls, floor and ceiling materials/construction, doors, windows, overpressure relief 
+hatch, power filters, signal filters, and wave guides.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Provide the manufacturers' nameplate including: name, model type, model number, and serial number, on all items 
+of equipment and manufactured units.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>RF SHIELDING ENCLOSURE CONSTRUCTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Copper Enclosure Construction</TTL><BRK/>
+<BRK/>
+<TXT>Form a continuous RF shielding enclosure including floor, walls, and ceiling, incorporating all RF shielding 
+system components, and conforming to the Medical Physicist/MR Scientist RF attenuation performance requirements.  
+Acceptable enclosure types:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Solid copper sheet conforming to <RID>ASTM B370</RID> on non-ferrous sub-frame.</OLI><BRK/>
+<BRK/>
+<OLI>Annealed copper foil on non-ferrous panel or composite substrate.</OLI><BRK/>
+<BRK/>
+<OLI>Other enclosure types pre-approved in writing.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Use soldered connections only on horizontal joints of solid copper sheet. Overlap copper a minimum of<MET> 51 mm</MET><ENG> 2 
+inches</ENG> at all joints, and continuously solder. <BRK/>
+<BRK/>
+Use continuously fastened mechanical connections on all vertical or overhead joints.  Seal over all mechanical 
+connection fastener penetrations with not less than<MET> 51 mm</MET><ENG> 2 inches</ENG> wide conductive copper foil tape with conductive adhesive.<BRK/>
+<BRK/>
+Use stainless steel screws to attach RF doors, windows, overpressure relief hatch, and other opening frame assemblies 
+or attachments. <BRK/>
+<BRK/>
+Provide a minimum<MET> 51 mm</MET><ENG> 2 inches</ENG> deep isolation space between the back of the RF shielding walls and any adjacent 
+building walls or structure.<BRK/>
+<BRK/>
+Provide vapor barrier isolation membrane below RF shielding floor where required/recommended.<BRK/>
+<BRK/>
+Provide isolated support for RF shielding walls and ceiling as required by the Medical Physicist/MR Scientist.<BRK/>
+<BRK/>
+Use copper material free of oil, dents, and defects.<BRK/>
+<BRK/>
+Comply with all applicable codes.[<BRK/>
+<BRK/>
+Include seismic bracing as required by code.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dielectric Decoupling</TTL><BRK/>
+<BRK/>
+<TXT>Provide dielectric decoupling of conductive services including piping and ductwork.  Do not penetrate RF shielding 
+with continuously conductive elements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Electrically ground the shielding enclosure at a single point, with a minimum resistance to alternate ground 
+of 1,000 ohms.  Coordinate with Medical Physicist/MR Scientist.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>RF SHIELDED DOORS</TTL><BRK/>
+<BRK/>
+<TXT>Provide door[s], frame[s], hardware and threshold[s] as indicated with purpose manufactured MRI door system with 
+a demonstrated life cycle test rating of at least [10,000] operational cycles without loss of specified RF attenuation, 
+from a single manufacturer with a minimum of 5 years track record[ and 2 years for the products supplied].  Supply 
+assemblies complete with a rigid structural frame, hardware, seals and parts necessary for operation.</TXT><BRK/>
+<BRK/>
+<TXT>Provide door[s] meeting MRI manufacturer's acoustic requirements/recommendations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RF SHIELDED WINDOWS</TTL><BRK/>
+<BRK/>
+<TXT>Provide window[s] as indicated with purpose manufactured high visibility MRI window system from a single manufacturer 
+with a minimum of 5 years track record[ and 2 years for the products supplied].  Supply assemblies complete with 
+frame, glazing, and seals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OVERPRESSURE RELIEF HATCH</TTL><BRK/>
+<BRK/>
+<TXT>Provide a clearly visible, easily accessible and instantly operable overpressure relief hatch for an overpressure 
+emergency.  Operate from inside by pushing the hatch.  Operate from outside by pulling the hatch, with an appropriate 
+device operated by a person located a minimum of four feet from the hatch.  Mitigate the effects of the outflow 
+of super-cooled gas when locating the hatch to avoid injury or hazardous conditions in adjacent areas.</TXT><BRK/>
+<BRK/>
+<TXT>Provide permanent signage inside and outside the MRI room stating: "OVERPRESSURE RELIEF HATCH OPEN IN CASE OF 
+EMERGENCY"</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAGNET DELIVERY ACCESS PANEL</TTL><BRK/>
+<BRK/>
+<TXT>Provide a magnet delivery access panel for removal and replacement of the MRI magnet without dismantling the 
+RF shielding enclosure.  Coordinate the location and dimensions with the magnet delivery path, the MRI equipment 
+manufacturer and clearances for rigging.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>POWER AND COPPER SIGNAL RF FILTERS</TTL><BRK/>
+<BRK/>
+<TXT>Provide a filter for each power, and cable signal line penetrating the enclosure, including power, lighting, 
+HVAC control, alarms, and communications to achieve RF attenuation specified.  Factory test filters.  Comply 
+with <RID>NFPA 70</RID>, <RID>UL 486A-486B</RID>, and <RID>UL 1283</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WAVEGUIDE ASSEMBLIES</TTL><BRK/>
+<BRK/>
+<TXT>Provide waveguide-below-cutoff (WBC) protection for all piping, ventilation, fiber signal and cable penetrations 
+of the RF shielding to achieve RF attenuation performance requirements.  Use no less than 1.5 times the highest 
+frequency of the RF attenuation performance requirements for the cutoff frequency.<BRK/>
+<BRK/>
+Provide exterior dielectric collars to maintain a minimum of [1,000] ohms DC resistance to ground earth.<BRK/>
+<BRK/>
+Provide exhaust cryogenic gas waveguide assemblies of sufficient structural strength for magnet quench.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>Verify site dimensions, conditions, and electromagnetic interference (EMI) measurements before commencing work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Coordination</TTL><BRK/>
+<BRK/>
+<TXT>Ensure that all relevant construction, testing, and supply organizations, and personnel are aware of RF attenuation 
+critical installation requirements.<BRK/>
+<BRK/>
+Co-ordinate internal services and finishes to MRI equipment manufacturer's requirements, all applicable codes 
+and to be fully compatible with <RID>ACR</RID> accreditation.<BRK/>
+<BRK/>
+Ensure that the interior suspended ceiling and walls within the RF shielding enclosure are constructed entirely 
+with non-ferrous materials.<BRK/>
+<BRK/>
+Ensure that fluorescent fixtures, magnetic ballasts, magnetic dimmers or similar equipment are not located within 
+the RF shielding enclosure.<BRK/>
+<BRK/>
+Ensure that building elements or equipment that require access, maintenance or servicing are not located in inaccessible 
+spaces including between the RF shielding enclosure and adjacent walls, floors or ceilings.<BRK/>
+<BRK/>
+Ensure that building services that cross the MRI room pass[ in the interstitial space] above the RF shielding 
+enclosure and do not pass through the enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Process</TTL><BRK/>
+<BRK/>
+<TXT>Verify the installation process for compliance with the contract documentation, shop drawings, equipment and 
+material submissions and specifications, and coordinate the work of all trades.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Inspection</TTL><BRK/>
+<BRK/>
+<TXT>Inspect installation for compliance with the contract documentation, shop drawings, equipment and material submissions 
+and specifications.  Inspect prior, during and following the application of coverings and finishes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ground Isolation Monitoring</TTL><BRK/>
+<BRK/>
+<TXT>Continuously monitor alternate ground earth isolation for a minimum of [1,000] ohms DC resistance prior to connection 
+to ground earth.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>RF Attenuation Field Testing</TTL><BRK/>
+<BRK/>
+<TXT>Perform systematic field control inspection and testing.  Include the method of inspection and testing, equipment 
+used, personnel, location of tests, test results and corrective action taken or to be taken within RF test reports.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>In Progress RF Testing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Perform in-progress RF enclosure inspection and testing by the RF shielding vendor as construction proceeds to 
+monitor shielding effectiveness and rectify shielding defects as shielding construction progresses.  Include 
+visual inspection and where possible, RF shielded enclosure leak detection system (SELDS) testing of all component 
+parts including seams, penetrations and installations as work progresses.[  Submit in progress RF test reports 
+within 3 days of inspection/testing.]  Conduct testing to <RID>IEEE 299</RID>, to validate the minimum RF attenuation performance 
+requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Preliminary RF Testing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Perform preliminary RF enclosure inspection and testing, by the[ RF shielding vendor,][ and the Medical Physicist/MR 
+Scientist,][ and the MRI equipment manufacturer,] prior to the application of coverings and finishes to demonstrate 
+completed RF shielding RF attenuation prior to installation of any closure over the RF shield.  Include visual 
+inspection and RF SELDS testing of all component parts including seams, corners, penetrations and installations.  
+Conduct testing to <RID>IEEE 299</RID> to validate the minimum RF attenuation performance requirements.  Submit preliminary 
+RF test report for approval prior to installation of any closure or finish.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Final RF Testing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Perform final RF enclosure inspection and testing, by[ RF shielding vendor,][ and the Medical Physicist/MR Scientist,][ 
+and MRI equipment manufacturer,] following the application of all coverings and finishes, when the facility is 
+complete and is ready for occupancy to demonstrate completed construction RF attenuation.  Include visual inspection 
+and RF SELDS testing of all component parts including seams, corners, penetrations and installations.  Conduct 
+testing to <RID>IEEE 299</RID> to validate the minimum RF attenuation performance requirements.  [Notify the Contracting 
+Officer in writing 14 days prior to tests and assist monitoring by client representatives.]  Submit the final 
+RF test report.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>GROUNDING</TTL><BRK/>
+<BRK/>
+<TXT>Use an equipotential grounding plane method in accordance with <RID>IEEE 142</RID>, <RID>NFPA 70</RID>, and <RID>UL 1283</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>   <END/><BRK/></SEC>

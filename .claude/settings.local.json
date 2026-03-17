@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx vite:*)",
+      "Bash(node -e \"\nconst fs = require\\('fs'\\);\n// Test round-trip: load blocks, serialize, re-parse\nconst blocks = JSON.parse\\(fs.readFileSync\\('src/data/sample-31-00-00.json', 'utf8'\\)\\);\n\n// Dynamic import for ESM\nimport\\('./src/lib/sec-serializer.js'\\).then\\(\\({ serializeSEC }\\) => {\n  const xml = serializeSEC\\(blocks, {\n    sectionNumber: '31 00 00',\n    sectionTitle: 'EARTHWORK',\n    date: '08/23'\n  }\\);\n  console.log\\('=== First 60 lines of output ==='\\);\n  console.log\\(xml.split\\('\\\\n'\\).slice\\(0, 60\\).join\\('\\\\n'\\)\\);\n  console.log\\('...'\\);\n  console.log\\('Total lines:', xml.split\\('\\\\n'\\).length\\);\n  console.log\\('Total chars:', xml.length\\);\n  \n  // Try re-parsing with DOMParser \\(Node doesn't have it, so just check XML validity\\)\n  console.log\\('\\\\\\\\n=== Checking structure ==='\\);\n  console.log\\('Has <?xml:', xml.startsWith\\('<?xml'\\)\\);\n  console.log\\('Has <SEC:', xml.includes\\('<SEC '\\)\\);\n  console.log\\('Has </SEC>:', xml.includes\\('</SEC>'\\)\\);\n  console.log\\('PRT count:', \\(xml.match\\(/<PRT>/g\\) || []\\).length\\);\n  console.log\\('SPT open:', \\(xml.match\\(/<SPT>/g\\) || []\\).length\\);\n  console.log\\('SPT close:', \\(xml.match\\(/<\\\\\\\\/SPT>/g\\) || []\\).length\\);\n  console.log\\('TTL count:', \\(xml.match\\(/<TTL>/g\\) || []\\).length\\);\n  console.log\\('TXT count:', \\(xml.match\\(/<TXT>/g\\) || []\\).length\\);\n  console.log\\('NPR count:', \\(xml.match\\(/<NPR>/g\\) || []\\).length\\);\n  console.log\\('OLI count:', \\(xml.match\\(/<OLI/g\\) || []\\).length\\);\n  console.log\\('TAB count:', \\(xml.match\\(/<TAB /g\\) || []\\).length\\);\n}\\);\n\" 2>&1)",
+      "Bash(npm list:*)",
+      "Bash(npm install:*)",
+      "Bash(node tools/roundtrip-test.js reference/31_00_00.SEC 2>&1)",
+      "Bash(cd C:/working_claude/specsintact-modern && node tools/diagnose-depth.js 2>&1)",
+      "Bash(cd C:/working_claude/specsintact-modern && node tools/diagnose-html.js 2>&1)",
+      "Bash(cd C:/working_claude/specsintact-modern && node tools/diagnose-depth-summary.js 2>&1)",
+      "Bash(cd C:/working_claude/specsintact-modern && node tools/diagnose-html-summary.js 2>&1)",
+      "Bash(cd C:/working_claude/specsintact-modern && node tools/diagnose-html-detail.js 'reference/UFGS_M/01 33 00.SEC' 2>&1)",
+      "Bash(cd C:/working_claude/specsintact-modern && node tools/diagnose-html-deep.js 'reference/UFGS_M/01 33 00.SEC' 4 2>&1)",
+      "Bash(cd C:/working_claude/specsintact-modern && node tools/diagnose-html-categories.js 2>&1)",
+      "Bash(node tools/roundtrip-test.js 2>&1)",
+      "Bash(node -e \"\nimport { parseHTML } from 'linkedom';\nconst { DOMParser } = parseHTML\\(''\\);\nglobalThis.DOMParser = DOMParser;\n\nconst parser = new DOMParser\\(\\);\nconst html = 'Hello <span class=\\\\\"mark-rid\\\\\">ASTM D2487</span> world';\nconst doc = parser.parseFromString\\('<body>' + html + '</body>', 'text/html'\\);\nconsole.log\\('body:', doc.body\\);\nconsole.log\\('documentElement tag:', doc.documentElement?.tagName\\);\nconsole.log\\('children:', doc.documentElement?.children?.length\\);\n// Try text/xml instead\nconst doc2 = parser.parseFromString\\('<div>' + html + '</div>', 'text/xml'\\);\nconsole.log\\('xml root tag:', doc2.documentElement?.tagName\\);\nconsole.log\\('xml innerHTML:', doc2.documentElement?.innerHTML\\);\n\" 2>&1)",
+      "Bash(node -e \"\nimport { parseHTML } from 'linkedom';\nconst { DOMParser } = parseHTML\\(''\\);\nglobalThis.DOMParser = DOMParser;\n\nconst parser = new DOMParser\\(\\);\n\n// Test with text/html\nconst html = 'Hello <span class=\\\\\"mark-rid\\\\\">ASTM D2487</span> world';\nconst doc = parser.parseFromString\\('<body>' + html + '</body>', 'text/html'\\);\nconst body = doc.body;\nconsole.log\\('childNodes count:', body.childNodes.length\\);\nfor \\(const c of body.childNodes\\) {\n  console.log\\('  nodeType:', c.nodeType, 'tagName:', c.tagName, 'textContent:', c.textContent?.substring\\(0,40\\)\\);\n}\n\" 2>&1)",
+      "Bash(node -e \"\nimport fs from 'fs';\nconst xml = fs.readFileSync\\('reference/UFGS_M/07 14 00.SEC', 'latin1'\\);\n// Find the NTE section that contains tables\nconst start = xml.indexOf\\('<NTE>'\\);\nconst end = xml.indexOf\\('</NTE>', start\\) + 6;\nconsole.log\\(xml.substring\\(start, Math.min\\(start + 3000, end\\)\\)\\);\n\" 2>&1)",
+      "Bash(node -e \"\nimport fs from 'fs';\nconst xml = fs.readFileSync\\('reference/UFGS_M/07 14 00.SEC', 'latin1'\\);\n// Find the SECOND NTE section \\(the one with tables\\)\nlet idx = xml.indexOf\\('</NTE>'\\);\nidx = xml.indexOf\\('<NTE>', idx\\);\nif \\(idx === -1\\) { console.log\\('No second NTE'\\); process.exit\\(\\); }\nconst end = xml.indexOf\\('</NTE>', idx\\) + 6;\nconsole.log\\(xml.substring\\(idx, Math.min\\(idx + 2000, end\\)\\)\\);\n\" 2>&1)",
+      "Bash(node -e \"\nimport fs from 'fs';\nconst xml = fs.readFileSync\\('reference/UFGS_M/07 14 00.SEC', 'latin1'\\);\n// Find all NTEs and tables before PRT\nconst prtIdx = xml.indexOf\\('<PRT>'\\);\nconst prePart = xml.substring\\(0, prtIdx\\);\n// Look for TAB in pre-part area\nconst tabIdx = prePart.indexOf\\('<TAB'\\);\nif \\(tabIdx === -1\\) { console.log\\('No pre-part TAB'\\); process.exit\\(\\); }\nconsole.log\\('TAB found at position', tabIdx\\);\n// Show context around it\nconsole.log\\(prePart.substring\\(Math.max\\(0, tabIdx - 200\\), tabIdx + 800\\)\\);\n\" 2>&1)",
+      "Bash(node -e \"\nimport fs from 'fs';\nconst xml = fs.readFileSync\\('reference/UFGS_M/07 14 00.SEC', 'latin1'\\);\nimport { parseHTML } from 'linkedom';\nconst { DOMParser } = parseHTML\\(''\\);\nconst parser = new DOMParser\\(\\);\nconst doc = parser.parseFromString\\(xml, 'text/xml'\\);\nconst root = doc.documentElement;\nconsole.log\\('Root children tags:'\\);\nfor \\(const child of root.children\\) {\n  console.log\\(' ', child.tagName\\);\n}\n\" 2>&1)"
+      "Bash(npm run dev)",
+      "Bash(npx playwright test*)",
+      "Bash(npx playwright install*)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(wc *)",
+      "Bash(node *)",
+      "Read(*)",
+      "Write(src/*)",
+      "Write(tests/*)",
+      "Write(CLAUDE.md)",
+      "Write(TESTING.md)",
+      "Write(package.json)",
+      "Write(playwright.config.js)"
+    ]
+  }
+}

@@ -1,0 +1,1109 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-26 27 29 (May 2021)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-26 27 29 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 27 29</SCN><BRK/>
+<BRK/>
+<STL>MARINA ELECTRICAL WORK</STL><BRK/>
+<DTE>05/21</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>procurement, installation, and testing of electrical 
+wiring systems for construction projects</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  These wiring systems primarily involve voltages of 600 volts and less and exterior systems.  When voltages 
+greater than 600 volts are brought to a facility, consult and use Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION; 
+Section <SRF>26 11 16</SRF> SECONDARY UNIT SUBSTATIONS; Section <SRF>33 71 01</SRF> OVERHEAD TRANSMISSION AND DISTRIBUTION; and Section 
+<SRF>26 12 19</SRF> PAD-MOUNTED, LIQUID-FILLED, MEDIUM-VOLTAGE TRANSFORMERS or <SRF>26 12 21 </SRF>SINGLE-PHASE PAD-MOUNTED TRANSFORMERS 
+as required.  Requirements for materials and procedures for special or unusual design should be added as necessary 
+to fit specific projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information must be shown on the project drawings.</NPR><BRK/>
+<BRK/>
+<NPR>1.  Where specification identifies type, size, color, finish, or other definitive information to be "as indicated," 
+the engineer must include the information on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Location of manholes, handholes, ducts, and cables.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Types of wire and cable; number and sizes of conductors.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Limits of each hazardous location, clearly indicating class, division, and group classification of each hazard.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Special conditions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM B1</RID><RTL>(2013) Standard Specification for Hard-Drawn Copper Wire</RTL><BRK/><BRK/><RID>ASTM B8</RID><RTL>(2023) Standard Specification for Concentric-Lay-Stranded Copper Conductors, Hard, Medium-Hard, or Soft</RTL><BRK/><BRK/><RID>ASTM D709</RID><RTL>(2017) Standard Specification for Laminated Thermosetting Materials</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL CONTRACTORS ASSOCIATION (NECA)</ORG><BRK/><BRK/><RID>NECA NEIS 1</RID><RTL>(2015) Standard for Good Workmanship in Electrical Construction</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/><RID>NEMA KS 1</RID><RTL>(2013) Enclosed and Miscellaneous Distribution Equipment Switches (600 V Maximum)</RTL><BRK/><BRK/><RID>NEMA RN 1</RID><RTL>(2018) Polyvinyl-Chloride (PVC) Externally Coated Galvanized Rigid Steel Conduit and Intermediate Metal Conduit</RTL><BRK/><BRK/><RID>NEMA ST 20</RID><RTL>(2014) Dry-Type Transformers for General Applications</RTL><BRK/><BRK/><RID>NEMA TC 2</RID><RTL>(2020) Standard for Electrical Polyvinyl Chloride (PVC) Conduit</RTL><BRK/><BRK/><RID>NEMA TC 14</RID><RTL>(2002) Standard for Reinforced Thermosetting Resin Conduit (RTRC) and Fittings</RTL><BRK/><BRK/><RID>NEMA WD 1</RID><RTL>(1999; R 2020) Standard for General Color Requirements for Wiring Devices</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 303</RID><RTL>(2026) Fire Protection Standards for Marinas and Boatyards</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 50</RID><RTL>(2024) UL Standard for Safety Enclosures for Electrical Equipment, Non-Environmental Considerations</RTL><BRK/><BRK/><RID>UL 67</RID><RTL>(2018; Reprint Aug 2025) UL Standard for Safety Panelboards</RTL><BRK/><BRK/><RID>UL 83</RID><RTL>(2017; Reprint Oct 2025) UL Standard for Safety Thermoplastic-Insulated Wires and Cables</RTL><BRK/><BRK/><RID>UL 467</RID><RTL>(2022) UL Standard for Safety Grounding and Bonding Equipment</RTL><BRK/><BRK/><RID>UL 486A-486B</RID><RTL>(2025) UL Standard for Safety Wire Connectors</RTL><BRK/><BRK/><RID>UL 489</RID><RTL>(2025) UL Standard for Safety Molded-Case Circuit Breakers, Molded-Case Switches and Circuit-Breaker Enclosures</RTL><BRK/><BRK/><RID>UL 498</RID><RTL>(2017; Reprint Jun 2024) UL Standard for Safety Attachment Plugs and Receptacles</RTL><BRK/><BRK/><RID>UL 510</RID><RTL>(2020; Dec 2022) UL Standard for Safety Polyvinyl Chloride, Polyethylene and Rubber Insulating Tape</RTL><BRK/><BRK/><RID>UL 514B</RID><RTL>(2012; Reprint Mar 2024) UL Standard for Safety Conduit, Tubing and Cable Fittings</RTL><BRK/><BRK/><RID>UL 514C</RID><RTL>(2014; Reprint Apr 2024) UL Standard for Safety Nonmetallic Outlet Boxes, Flush-Device Boxes, and Covers</RTL><BRK/><BRK/><RID>UL 651</RID><RTL>(2011; Reprint Jan 2026) UL Standard for Safety Schedule 40, 80, Type EB and A Rigid PVC Conduit and Fittings</RTL><BRK/><BRK/><RID>UL 869A</RID><RTL>(2006; Reprint Jun 2020) Reference Standard for Service Equipment</RTL><BRK/><BRK/><RID>UL 870</RID><RTL>(2016; Reprint Nov 2023) UL Standard for Safety Wireways, Auxiliary Gutters, and Associated Fittings</RTL><BRK/><BRK/><RID>UL 943</RID><RTL>(2016; Reprint Aug 2025) UL Standard for Safety Ground-Fault Circuit-Interrupters</RTL><BRK/><BRK/><RID>UL 1203</RID><RTL>(2023; Reprint May 2024) UL Standard for Safety Explosion-Proof and Dust-Ignition-Proof Electrical Equipment for Use in Hazardous (Classified) Locations</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT><SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM, applies to this section with additions and modifications specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify submittals paragraphs to ensure that an appropriate submittal is required for each item in the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Panelboards</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Transformers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wireways</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Receptacles</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Enclosed Circuit Breakers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Disconnect Switches</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Conduit and Fittings</SUB> (each type)</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Power Pedestal</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Grounding and Bonding Equipment</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Device Plates</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wires and Cables</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Outlet Boxes and Covers</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Transformers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Splice and Termination Components</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wireways</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cabinets, Junction Boxes, and Pull Boxes</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Mounting Straps</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Conduit Support</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Marine Signal Lantern</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Solar Power Station</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Transformer Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>600-volt Wiring Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Grounding System Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Solar Power Station Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit test results for approval in report format.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Solar Power Station</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit coordination data as specified in paragraph SOLAR POWER STATION.</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Grounding System Tests</TTL><BRK/>
+<BRK/>
+<TXT>Submittal must include written results of each test and indicate location of rods as well as resistance and soil conditions at the time measurements 
+were made.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>MATERIALS AND EQUIPMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where possible use nonmetallic enclosures, conduits, and mounting hardware.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Materials, equipment, and devices must, as a minimum, meet requirements of UL where UL standards are established for those items, and requirements 
+of <RID>NFPA 70</RID> and <RID>NFPA 303</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>CONDUIT AND FITTINGS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Rigid nonmetallic conduit][Plastic-coated rigid steel conduit] conforming to the following:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Rigid Nonmetallic Conduit</TTL><BRK/>
+<BRK/>
+<TXT>PVC Type EPC-80[ and EPC-40] in accordance with <RID>NEMA TC 2</RID>, or fiberglass conduit in accordance with <RID>NEMA TC 14</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plastic-Coated Rigid Steel Conduit</TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA RN 1</RID>, Type 40<MET> one millimeter thick</MET><ENG> 40 mils thick</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fittings for Metal Conduit and Liquidtight Flexible Metal Conduit</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 514B</RID>.  Ferrous fittings must be cadmium or zinc coated in accordance with <RID>UL 514B</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Fittings for Rigid Metal Conduit</TTL><BRK/>
+<BRK/>
+<TXT>Threaded type.  Split couplings unacceptable.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Fittings for Use in Hazardous Locations</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 1203</RID>.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Fittings for Rigid Nonmetallic Conduit</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 514B</RID> and <RID>UL 651</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Expansion Joints</TTL><BRK/>
+<BRK/>
+<TXT>Provide conduit expansion joints having<MET> 150 mm</MET><ENG> 6 inch</ENG> expansion at each expansion joint in the pier and in each conduit run exceeding<MET> 75 meters</MET><ENG>
+ 250 feet</ENG>.  Provide expansion joints having<MET> 50 mm</MET><ENG> 2 inch</ENG> expansion in each conduit run of less than<MET> 75 meters</MET><ENG> 250 feet</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>POWER PEDESTAL</SUB></TTL><BRK/>
+<BRK/>
+<TXT>A complete factory-assembled and prewired unit specifically constructed for marine applications.  Power center must be a [two][ or ][four] outlet 
+[pedestal][surface] mounted type having a separate circuit breaker for each outlet.  Circuit breaker size must be the same size as outlet to which 
+it is connected.  Power outlets must be single, locking and grounding type, size and voltage as indicated.  Power center enclosure must be stainless 
+steel, fiberglass, or foamed thermoplastic with polyurethane coating.  Each individual outlet and circuit breaker enclosure must have a separate 
+gasketed weatherproof cover.  Entire exterior surface of power center must be nonmetallic design for exposure to saltwater environment.[  Provide 
+photo controlled LED station light.][  Provide with [one] [_____] telephone outlet[s].]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Warning Sign</TTL><BRK/>
+<BRK/>
+<TXT>Provide permanently mounted waterproof warning sign at each power center.  Sign must have red letters on a white background with letters no less 
+than<MET> 6 mm</MET><ENG> .25 inch</ENG> in height.  Sign must be worded as follows:</TXT><BRK/>
+<TAB HEADERROWS="0" WIDTH="86">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="1" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="402.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">"WARNING</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">To minimize shock and fire hazards:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Turn off the boat's shore connection switch before connecting or disconnecting shore cable.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Connect shore power cable at the boat first.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Disconnect shore power cable at shore outlet first.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Close shore power inlet cover tightly.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">DO NOT ALTER SHORE POWER CABLE CONNECTORS"</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT><SPT><TTL><SUB>OUTLET BOXES AND COVERS</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 514C</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Outlet Boxes in Hazardous Locations</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 1203</RID>.  Suitable for wet locations.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>CABINETS, JUNCTION BOXES, AND PULL BOXES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Volume greater than<MET> 3280 mL</MET><ENG> 200 cubic inches</ENG>, <RID>UL 50</RID>, NEMA 4X [nonmetallic][ or ][stainless steel].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>WIRES AND CABLES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Must meet applicable requirements of <RID>NFPA 70</RID> and UL for type of insulation, jacket, and conductor specified or indicated.  Do not provide wires 
+and cables manufactured more than 12 months prior to date of delivery to site.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Conductors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In overseas locations, for conductor sizes No. 10 AWG and smaller diameter, consideration may be given 
+to the use of stranded wires, if suitable terminal devices can be applied which enable proper connection.  Also, 
+stranded wires in sizes No. 10 AWG and smaller diameter may be required for projects involving uninterrupted power 
+supply (UPS) installations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>No. 8 AWG and larger diameter must be stranded; No. 10 AWG and smaller must be solid, except that conductors for remote control, alarm, and signal 
+circuits, Classes 1, 2, and 3, must be stranded.  Conductors must be copper.  Conductor sizes and ampacities shown are based on copper.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Minimum Conductor Sizes</TTL><BRK/>
+<BRK/>
+<TXT>Minimum size for branch circuits must be No. 12 AWG; for Class 1 remote-control and signal circuits, No. 14 AWG; for Class 2 low-energy, remote-control 
+and signal circuits, No. 18 AWG; and for Class 3 low-energy, remote-control, alarm, and signal circuits, No. 22 AWG.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Color Coding</TTL><BRK/>
+<BRK/>
+<TXT>Provide for service, feeder, branch, control, and signaling circuit conductors.  Color must be green for grounding conductors and white for neutrals; 
+except where neutrals of more than one system are installed in same raceway or box, other neutral must be white with colored, except green, stripe.  
+Color of ungrounded conductors in different voltage systems must be as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>120/208 volt, three phase:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase A - black</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase B - red</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase C - blue</OLI><BRK/>
+<BRK/>
+<OLI>277/480 volt, three phase:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase A - brown</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase B - orange</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Phase C - yellow</OLI><BRK/>
+<BRK/>
+<OLI>120/240 volt, single phase:  red and black</OLI><BRK/>
+<BRK/>
+[<OLI>On three-phase, four-wire delta system, high leg must be orange, as required by <RID>NFPA 70</RID>.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Insulation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Be sure conduit fill calculations are based on largest diameter insulation type allowed.  Designer may 
+select other insulation types which may be more suitable for a particular project.  For rewiring project where 
+existing conduit is to be utilized, specify types THHN and THWN.  If conduit is sized for conductors other than 
+THW, ensure the specification is properly edited and a note indicating the conductor type specified is added to 
+the drawings.  Type RHW insulation is not allowed on Navy projects.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Unless otherwise required by <RID>NFPA 70</RID>, power and lighting wires must be 600-volt, Type THWN, XHHW, [or RHW, ]except that grounding wire may be Type 
+TW; remote-control and signal circuits must be Type TW, THW, or TF.  Conductors must conform to <RID>UL 83</RID>.  Where lighting fixtures require 90-degree 
+C conductors, provide only conductors with 90-degree C insulation or better.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bonding Conductors</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASTM B1</RID>, solid bare copper wire for sizes No. 8 AWG and smaller diameter; <RID>ASTM B8</RID>, Class B, stranded bare copper wire for sizes No. 6 AWG and larger 
+diameter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Splice and Termination Components</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 486A-486B</RID>, for wire connectors, and <RID>UL 510</RID> for insulating tapes.  Connectors for No. 10 AWG and smaller diameter wires must be insulated, pressure 
+type in accordance with <RID>UL 486A-486B</RID>, twist-on splicing connector.  Provide solderless terminal lugs on stranded conductors.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Watertight Pin Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Connectors must be rated 600 volts, and individual pins must have ampere rating equal to or greater than the cable to which they are joined.  Connectors 
+must be molded-to-cable, quick-disconnect, polarized type having full male shroud so that when male and female assemblies are joined the shroud 
+must provide a completely sealed connection.  Connector material must be neoprene resistant to oil, dust, acids, and sunlight and must be watertight.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>DEVICE PLATES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide UL listed, one-piece device plates for outlets to suit the devices installed.  Plates must be nylon or lexan, minimum<MET> 2.54 mm</MET><ENG> 0.10 inch</ENG>
+ wall thickness.  Plates must be same color as receptacle with which they are mounted.  Screws must be stainless steel machine type with countersunk 
+heads in color to match finish of plate.  Use of sectional-type device plates will not be permitted.  Plates must be gasketed and UL listed for 
+wet locations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>DISCONNECT SWITCHES</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Switches requiring frequent operation should be the heavy-duty type and should be so indicated on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>NEMA KS 1</RID>.  Switches serving as motor-disconnect means must be horsepower rated.  Provide heavy duty-type switches where indicated, where switches 
+are rated greater than 240 volts, and for double-throw switches. Provide switches in NEMA 4X [nonmetallic][ or ][stainless steel] enclosure in 
+accordance with <RID>NEMA ICS 6</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>RECEPTACLES</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 498</RID> and <RID>NEMA WD 1</RID>, heavy-duty, grounding type.  Bodies must be of [brown] [ivory] thermosetting plastic supported on a metal mounting strap.  
+Provide screw type, side wired wiring terminals.  Connect grounding pole to mounting strap.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Duplex Receptacles</TTL><BRK/>
+<BRK/>
+<TXT>Receptacles must be 20 amperes, 125 volts, specification grade.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Weatherproof Receptacles</TTL><BRK/>
+<BRK/>
+<TXT>Provide in nonmetallic box with gasketed, weatherproof, nonmetallic cover plate and gasketed cap over each receptacle opening.  Provide caps with 
+a spring-hinged flap.  Provide UL listed receptacle for use in wet locations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ground-Fault Protection of Equipment (GFPE) and Ground-Fault Circuit Interrupter (GFCI) Receptacles</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 943</RID>.  Receptacles providing shore power must have individual GFPE set to open at currents not exceeding 30 milliamperes.</TXT><BRK/>
+<BRK/>
+<TXT>GFCI protection for personnel, duplex type for mounting in standard outlet box.  Device must be capable of detecting current leak of 5 milliamperes 
+or greater and tripping in accordance with <RID>UL 943</RID> for Class A GFCI devices.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Special-Purpose Receptacles</TTL><BRK/>
+<BRK/>
+<TXT>Receptacles serving [_____] are special purpose.[  Provide in ratings indicated.][  NEMA [_____] configuration, rated [_____] amperes, [_____] 
+volts.][  Furnish one matching plug with each receptacle.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>PLUGS</TTL><BRK/>
+<BRK/>
+[<TXT>Provide heavy-duty, rubber-covered[ three,][ four,][ or][ five]-wire cord of required size, install plugs thereon, and attach to equipment.  Provide 
+UL listed plugs with receptacles, complete with grounding blades.  Where equipment is not available, turn in plugs and cord assemblies to the Government.</TXT><BRK/>
+<BRK/>
+]<SPT><TTL>Weatherproof Cord and Plug Assemblies</TTL><BRK/>
+<BRK/>
+<TXT>Furnish [one] [_____] cord and plug assembly[ies] consisting of a [30-ampere, 125-volt twist-lock plug on one end, a<MET> 8 meter</MET><ENG> 25 foot</ENG> length of 
+three conductor, No. 10 type STO cord, and two 20-ampere, 125-volt twist-lock receptacles on the other end][ and ][furnish [one] [_____] cord and 
+plug assembly[ies] consisting of a 20-ampere, 125-volt twist-lock plug on one end, a<MET> 8 meter</MET><ENG> 25 foot</ENG> length of three conductor, No. 12 type STO 
+cord and a 20-ampere twist-lock receptacle on the other end.]  Plugs must be compatible with power center outlets.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]<SPT><TTL><SUB>PANELBOARDS</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 67</RID> and <RID>UL 50</RID> having a short-circuit current rating of [10,000] [_____] amperes symmetrical minimum.  Panelboards for use as service disconnecting 
+means must additionally conform to <RID>UL 869A</RID>.  Panelboards must be circuit breaker equipped.  Design must be such that individual breakers can be 
+removed without disturbing adjacent units or without loosening or removing supplemental insulation supplied as means of obtaining clearances as 
+required by UL.  Where "space only" is indicated, make provisions for future installation of breakers.  Key panelboard locks the same.  Directories 
+must indicate load served by each circuit in panelboard and main source of service to panelboard, such as Panel PA served from Panel MDP.  Type 
+directories and mount in holder behind transparent protective covering.  When panelboards are used as a service disconnecting means, conform to <RID>
+UL 869A</RID></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Panelboard Buses</TTL><BRK/>
+<BRK/>
+<TXT>Copper.  Support bus bars on bases independent of circuit breakers.  Design main buses and back pans so that breakers may be changed without machining, 
+drilling, or tapping.  Provide isolated neutral bus in each panel for connection of circuit neutral conductors.  Provide separate ground bus identified 
+as equipment grounding bus in accordance with <RID>UL 67</RID> for connecting grounding conductors; bond to steel cabinet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Circuit Breakers</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 489</RID> thermal magnetic type having a minimum short-circuit current rating equal to the short-circuit rating of the panelboard in which the circuit 
+breaker will be mounted.  Breaker terminals must be UL listed as suitable for type of conductor provided.  Circuit breakers must be bolt-on type.  
+Din-rail mounted and half-width circuit breakers are not acceptable.  Plug-in circuit breakers and series rated circuit breakers are unacceptable.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Multipole Breakers</TTL><BRK/>
+<BRK/>
+<TXT>Provide common trip type with single operating handle.  Breaker design must be such that overload in one pole automatically causes all poles to 
+open.  Maintain phase sequence throughout each panel so that any three adjacent breaker poles are connected to Phases A, B, and C respectively.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Circuit Breaker With GFCI</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 943</RID> and <RID>NFPA 70</RID>.  Provide with push-to-test button, visible indication of tripped condition, and ability to detect and trip on current imbalance 
+of 6 milliamperes or greater in accordance with <RID>UL 943</RID> for Class A GFCI devices.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Panelboard Enclosure</TTL><BRK/>
+<BRK/>
+<TXT>NEMA 4X [nonmetallic][ or ][stainless steel].  Hardware must be stainless steel.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>ENCLOSED CIRCUIT BREAKERS</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 489</RID>.  Individual molded case circuit breakers with short-circuit current rating of [10,000] [_____] amperes symmetrical minimum.  Circuit breakers 
+must be bolt-on type.  Plug-in circuit breakers and series rated circuit breakers are not acceptable.  Enclosure must be NEMA 4X [nonmetallic][ 
+or ][stainless steel] type.[  Provide solid neutral.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>TRANSFORMERS</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA ST 20</RID>, general purpose, dry-type, self-cooled, [unventilated] [sealed].  Provide transformers in NEMA [3R] [stainless steel] [_____] enclosure.  
+Transformer must have 220 degrees C insulation system for transformers 15 kVA and greater and must have 180 degrees C insulation for transformers 
+rated 10 kVA and less, with temperature rise not exceeding [150] [115] [80] degrees C under full-rated load in maximum ambient of 40 degrees C.[  
+Transformer of 150 degrees C temperature rise must be capable of carrying continuously 100 percent of nameplate kVA without exceeding insulation 
+rating.][  Transformer of 115 degrees C temperature rise must be capable of carrying continuously 115 percent of nameplate kVA without exceeding 
+insulation rating.][  Transformer of 80 degrees C temperature rise must be capable of carrying continuously 130 percent of nameplate kVA without 
+exceeding insulation rating.][  Transformers must be quiet type with maximum sound level of 3 decibels less than NEMA standard level for transformer 
+ratings indicated.]</TXT><BRK/>
+<BRK/>
+[<TXT>Submit manufacturer factory test reports with transformers provided.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>TELEPHONE SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph applies only if provision is made for telephone system by others.  If a complete system 
+is provided by contract, refer to Section <SRF>27 51 23</SRF> INTERCOMMUNICATION SYSTEM and Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS 
+CABLING SYSTEM.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide system of telephone wire-supporting structures, including conduits with pull wires, terminal boxes, outlet and junction boxes, [and ]other 
+accessories for telephone outlets[, and telephone cabinets].</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Outlet Boxes</TTL><BRK/>
+<BRK/>
+<TXT>Standard type, as specified herein, [[_____]<MET> mm</MET><ENG> inches</ENG> by [_____]<MET> mm</MET><ENG> inches</ENG>].  Mount at height [indicated][specified for telephone outlet receptacles].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cover Plates</TTL><BRK/>
+<BRK/>
+<TXT>Blank cover with same finish specified for receptacle and switch cover plates.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Conduit Sizing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For guidelines on conduit sizing, see UFC 3-520-01.  Telephone raceway requirements should be coordinated 
+with the entity providing the telephone wires and cable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conduit for single outlets must be minimum of<MET> 21 mm</MET><ENG> 3/4 inch</ENG> and for multiple outlets minimum of<MET> 27 mm</MET><ENG> one inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Terminal Cabinets</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For guidelines on sizing cabinets, see UFC 3-580-01.  Coordinate with entity providing telephone service.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>NEMA 4X [nonmetallic][ or ][stainless steel] with backboard.  Hardware must be stainless steel.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>MOUNTING STRAPS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Fiberglass][ or ][PVC coated steel], two-hole type designed for rigid steel conduit support.  PVC coating must be between<MET> 0.5 and one mm</MET><ENG> 20 and 
+40 mil</ENG> thickness.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>GROUNDING AND BONDING EQUIPMENT</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 467</RID>.  Ground rods must be copper-clad steel, with minimum diameter of<MET> 19 mm</MET><ENG> 3/4 inch</ENG> and minimum length of<MET> 3050 mm</MET><ENG> 10 feet</ENG>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Grounding Connections</TTL><BRK/>
+<BRK/>
+<TXT>Make grounding connections which are buried or otherwise normally inaccessible,[ excepting specifically those connection for which access for periodic 
+testing is required,] by exothermic weld or high compression connector.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Make exothermic welds strictly in accordance with the weld manufacturer's written recommendations.  Welds which are "puffed up" or which 
+show convex surfaces indicating improper cleaning are not acceptable.  Mechanical connectors are not required at exothermic welds.</OLI><BRK/>
+<BRK/>
+<OLI>Make high compression connections using a hydraulic or electric compression tool to provide the correct circumferential pressure.  Provide 
+tools and dies as recommended by the manufacturer.  Use an embossing die code or other standard method to provide visible indication that 
+a connector has been adequately compressed on the ground wire.</OLI><BRK/></OLG>
+<BRK/></SPT>
+[<SPT><TTL>Ground Rod Mounting Straps</TTL><BRK/>
+<BRK/>
+<TXT>Provide mounting straps to support ground rods at fueling pier.  Do not use dissimilar metals.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Alligator Clips</TTL><BRK/>
+<BRK/>
+<TXT>Heavy duty type, copper, insulated handles, rated 100 amperes and up to 250 volts for maximum No. 2 AWG.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>[<SPT><TTL>HAZARDOUS LOCATIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following information must be shown on the project drawings.</NPR><BRK/>
+<BRK/>
+<NPR>1.  Where specification identifies type, size, color, finish, or other definitive information to be "as indicated," 
+the engineer must include the information on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Location of manholes, handholes, ducts, and cables.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Types of wire and cable; number and sizes of conductors.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Limits of each hazardous location, clearly indicating class, division, and group classification of each hazard.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Special conditions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Electrical materials, equipment, and devices for installation in hazardous locations must be specifically approved by UL or Factory Mutual Research 
+Corporation (FM) for particular class, division, and group of hazardous locations involved.  Equipment must be waterproof and suitable for marine 
+environment.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>WIREWAYS</SUB></TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 870</RID>.  Material must be [nonmetallic] [or] [stainless steel], 16 gage for size[s]<MET> [63.5 by 63.5] [100 by 100] [150 by 150] mm,</MET><ENG> [2 1/2 by 2 1/2] 
+[4 by 4] [6 by 6] inches,</ENG> 14 gage for size[s]<MET> [200 by 200] [300 by 300] mm</MET><ENG> [8 by 8] [12 by 12] inches</ENG>.  Provide in length [indicated] [required 
+for the application] with gasketed [hinged] [screw] cover NEMA 4X enclosure in accordance with <RID>NEMA ICS 6</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD FABRICATED NAMEPLATES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the following paragraph where nameplates are fabricated to identify specific equipment designated on 
+the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide field fabricated nameplates in accordance with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI><RID>ASTM D709</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide laminated plastic nameplates for each equipment enclosure, relay, switch, and device; as specified or as indicated on the drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Each nameplate inscription:  identify the function and, when applicable, the position.</OLI><BRK/>
+<BRK/>
+<OLI>Nameplates:  melamine plastic,<MET> 3 mm</MET><ENG> 0.125 inch</ENG> thick, white with [black] [_____] center core.</OLI><BRK/>
+<BRK/>
+<OLI>Surface:  matte finish.  Corners:  square.  Accurately align lettering and engrave into the core.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum size of nameplates: <MET> 25 by 65 mm</MET><ENG> one by 2.5 inches</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Lettering size and style:  a minimum of<MET> 6.35 mm</MET><ENG> 0.25 inch</ENG> high normal block style.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>ARC FLASH WARNING LABEL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the Arc Flash Warning Label detail on the drawings.  See UFC 3-560-01 for more information.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide arc flash warning labels on electrical equipment likely to require examination, servicing, or maintenance while energized.  Some typical 
+types of equipment include pad-mounted transformers, switchgears, switchboards, panelboards, and disconnect switches.  Place label on the outside 
+of the enclosure warning of potential electrical arc flash hazards and appropriate PPE required.  Provide label format as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>MARINE SIGNAL LANTERN</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide with nonmetallic base, [155-mm] [_____], [red] [_____] [acrylic] [UV stable polycarbonate] fresnel lens, LED light source, [solid state 
+flasher,] [lamp changer,] [solar power station,]<MET> [1220 mm]</MET><ENG> [4 foot]</ENG> [_____] nonmetallic support pedestal, and photo control.  The entire system 
+must be watertight and approved for marine environment.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Flasher</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to "USCG Aids to Navigation Manual - Short Range Aids to Navigation" for signaling sequence for lanterns.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Flasher must have a [_____]-second cycle period with [[_____]-second "ON" time] [Morse code letter "[_____]"] [_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Lamp Changer</TTL><BRK/>
+<BRK/>
+<TXT>[120 volt ac, four place automatic lamp changer with LED lamps] [[6] [12]] volt dc, six place automatic lamp changer with [_____] ampere lamps.  
+When lamps burn out, lamp changer must stop operation[ and power must turn off].</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Ac to Dc Converter</TTL><BRK/>
+<BRK/>
+<TXT>Converter must convert [120] [240] [_____] volts ac input into a [6] [12] volt dc output.  Converter must be sized for the signal lantern specified.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Solar Power Station</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Power station must consist of encased silicon solar energy cells, nonmetallic battery box with blocking diodes, rechargeable sealed batteries, 
+and mounting brackets.  The solar power station must be a complete unit supplied and coordinated by a single manufacturer, sized to provide adequate 
+year-round power to fully operate the signal lantern specified at the exact geographic location of the signal lantern.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PIER LIGHTING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Fixture enclosures located on marina piers must be watertight and constructed on nonmetallic material or 
+cast aluminum with baked enamel or powdered polyester finish.  Hardware must be nonmetallic or stainless steel.  
+Conduit or cable entrances into lighting fixtures must be watertight.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide as specified in Section <SRF>26 56 00</SRF> EXTERIOR LIGHTING.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Electrical installations must conform to requirements of <RID>NFPA 70</RID> and to requirements specified herein.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Underground Service</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose this paragraph or the paragraph OVERHEAD SERVICE below.  When using this paragraph, designer may 
+insert additional details describing the specific project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Underground service conductors and associated conduit must be continuous from service equipment to the power system connection.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Overhead Service</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When using this paragraph, coordinate with Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION or Section 
+<SRF>33 71 01</SRF> OVERHEAD TRANSMISSION AND DISTRIBUTION (if in project).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Overhead service conductors must terminate at service equipment weatherhead.  Overhead service conductors and support bracket for overhead conductors 
+are included in Section <SRF>33 71 01</SRF> OVERHEAD TRANSMISSION AND DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Hazardous Locations</TTL><BRK/>
+<BRK/>
+<TXT>Perform work in hazardous locations, as defined by <RID>NFPA 70</RID>, in strict accordance with <RID>NFPA 70</RID> for particular class, division, and group of hazardous 
+locations involved.  Provide conduit and cable seals where required by <RID>NFPA 70</RID>.  Conduit must have tapered threads.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Service Entrance Identification</TTL><BRK/>
+<BRK/>
+<TXT>Label or identify service entrance disconnect devices, switches, and enclosures.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Where work results in service disconnect devices in more than one enclosure, as permitted by <RID>NFPA 70</RID>, label each enclosure, new and existing, as 
+one of several enclosures containing service entrance disconnect devices.  Label, at minimum, must indicate number of service disconnect devices 
+housed by enclosure and must indicate total number of enclosures that contain service disconnect devices.  Provide laminated nameplates with letters 
+no less than<MET> 6 mm</MET><ENG> 0.25 inch</ENG> in height; and engrave on black-on-white matte finish.  Fasten nameplates to the device with a minimum of two sheet-metal 
+screws or two rivets.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Wiring Methods</TTL><BRK/>
+<BRK/>
+<TXT>Provide insulated conductors installed in rigid conduit, except where specifically indicated or specified otherwise or required by <RID>NFPA 70</RID> to be 
+installed otherwise.  Grounding conductor must be separate from electrical system neutral conductor.  Provide insulated, green equipment grounding 
+conductors for circuits installed in conduit and raceways.  Minimum conduit size must be<MET> 16 mm</MET><ENG> 1/2 inch</ENG> in diameter for low-voltage lighting and 
+power circuits.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Plastic-Coated Galvanized Rigid Steel</TTL><BRK/>
+<BRK/>
+<TXT>Use only for service entrance conduit and as required by NFPA for hazardous locations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PVC Schedule 40 and PVC Schedule 80</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Do not install PVC Schedule 40 in areas subject to physical damage.</OLI><BRK/>
+<BRK/>
+<OLI>Do not install PVC Schedule 80 in areas subject to severe physical damage.</OLI><BRK/>
+<BRK/>
+<OLI>Do not install in hazardous areas.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Service Entrance Conduit, Overhead</TTL><BRK/>
+<BRK/>
+<TXT>PVC, Type EPC-40, plastic-coated galvanized rigid steel from service entrance to service weatherhead.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Entrance Conduit, Underground</TTL><BRK/>
+<BRK/>
+<TXT>PVC, Type EPC-40, plastic-coated galvanized rigid steel.  Encase underground portion in a minimum of<MET> 75 mm</MET><ENG> 3 inches</ENG> of concrete.  Install a minimum 
+of<MET> 460 mm</MET><ENG> 18 inches</ENG> below slab or grade.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Liquidtight Flexible Metal Conduit</TTL><BRK/>
+<BRK/>
+<TXT>Install in accordance with <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Underground Conduit Other Than Service Entrance</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Soil conditions in some locations require that underground conduit be supported to prevent damage due to 
+settlement.  The designer must determine if the problem exists, and, if so, determine the best method for supporting 
+the conduit.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>PVC, Type EPC-40, plastic-coated rigid steel, or fiberglass.  Convert nonmetallic conduit, other than PVC Schedule 40 or 80, to plastic-coated 
+rigid conduit before rising through pier deck.  Plastic coating must extend minimum<MET> 150 mm</MET><ENG> 6 inches</ENG> above pier deck.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Conduit Installation</TTL><BRK/>
+<BRK/>
+<TXT>Run conduit [exposed on side of [wood][ and ][existing concrete] pier structures], [supported by hangers under pier structure] [concealed in new 
+concrete pier structure].  Install conduit parallel with or at right angles to structural members.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Conduit Support</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Support conduit by nonmetallic pipe straps, wall brackets, hangers, or trapeze.  Fasten by stainless steel wood screws to wood and by concrete 
+inserts or expansion bolts on concrete.  Threaded C-clamps may be provided on rigid steel conduit only.  Load applied to fasteners must not exceed 
+one-fourth proof test load.  Fasteners attached to concrete ceiling must be vibration resistant and shock resistant.  Holes cut to depth of more 
+than<MET> 40 mm</MET><ENG> 1 1/2 inches</ENG> in reinforced concrete beams or to depth of more than<MET>20 mm</MET><ENG> 3/4 inch</ENG> in concrete joints must not cut main reinforcing bars.  
+Fill unused holes.  Where conduit crosses expansion joints, provide suitable [watertight ]expansion fitting that maintains conduit electrical continuity 
+by bonding jumpers or other means.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Directional Changes in Conduit Runs</TTL><BRK/>
+<BRK/>
+<TXT>Make changes in direction of runs with symmetrical bends or molded fittings.  Make field-made bends and offsets with conduit-bending machine suitable 
+for type of conduit used.  Do not install crushed or deformed conduits.  Avoid trapped conduits.  Prevent dirt or trash from lodging in conduits, 
+boxes, fittings, and equipment during construction.  Free clogged conduits of obstructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Expansion Joints</TTL><BRK/>
+<BRK/>
+<TXT>Install as recommended by the manufacturer for the temperature conditions at time of installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pull Wire</TTL><BRK/>
+<BRK/>
+<TXT>Install in empty conduits in which wire is to be installed by others.  Pull wire must be plastic having minimum<MET> 890 N</MET><ENG> 200 pound</ENG> tensile strength.  
+Leave minimum<MET> 300 mm</MET><ENG> 12 inches</ENG> of slack at each end of pull wire.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telephone and Signal System Conduits</TTL><BRK/>
+<BRK/>
+<TXT>Install in accordance with specified requirements for conduit and with additional requirement that no length of run must exceed<MET> 45 meters</MET><ENG> 150 feet</ENG>
+ for trade sizes<MET> 50 mm</MET><ENG> 2 inches</ENG> and smaller and must not contain more than two<MET> 1.57 rad</MET><ENG> 90 degree</ENG> bends or equivalent.  Provide pull or junction 
+boxes where necessary to comply with these requirements.  Inside radii of bends in conduits<MET> 16 mm</MET><ENG> one inch</ENG> trade size and larger must be minimum 
+five times nominal diameter.  Terminate conduit in terminal cabinet with two locknuts and plastic bushing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Conduit Installed in Concrete</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Electrical designer must closely coordinate this information with the designer of the slab to ensure that 
+slab thickness, conduit placement/separation, and reinforcement spacing is sufficient to meet requirements of 
+this paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Locate so as not to adversely affect structural strength of slabs.  Install conduit within middle one-third of concrete slab.[  Do not stack conduits.][  
+Do not stack conduits more than two diameters high with minimum vertical separation of [_____]<MET> millimeters</MET><ENG> inches</ENG>.]  Space conduits horizontally 
+minimum three diameters, except at cabinet locations.  Curved portions of bends must not be visible above finish slab.  Increase slab thickness 
+as necessary to provide minimum<MET> 25 mm</MET><ENG> one inch</ENG> cover over conduit.  Where embedded conduits cross expansion joints, provide suitable watertight 
+expansion fittings[ and bonding jumpers when using metallic conduits].  Conduit larger than<MET> 27 mm</MET><ENG> one inch</ENG> trade size must be parallel with or 
+at right angles to main reinforcement; when at right angles to reinforcement, conduit must be close to one of supports of slab.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Locknuts and Bushings</TTL><BRK/>
+<BRK/>
+<TXT>Fasten conduits to sheet metal boxes and cabinets with two locknuts where required by <RID>NFPA 70</RID>, where insulated bushings are provided, and where 
+bushings cannot be brought into firm contact with the box; otherwise, provide minimum single locknut and bushing.  Locknuts must have sharp edges 
+for digging into wall of metal enclosures.  Install bushings on ends of conduits, and provide insulating type where required by <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Stub-Ups</TTL><BRK/>
+<BRK/>
+<TXT>Provide conduits stubbed up through concrete structures for connection to freestanding equipment with adjustable top or coupling threaded inside 
+for plugs, set flush with finished structure.  Extend conductors to equipment in rigid conduit.  Where no equipment connections are made, install 
+screwdriver-operated threaded flush noncorroding plugs in conduit end.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Conduit and Cable Connections</TTL><BRK/>
+<BRK/>
+<TXT>Provide watertight connectors for conduit and cable connections to boxes and cabinets.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Boxes, Outlets, and Supports</TTL><BRK/>
+<BRK/>
+<TXT>Provide boxes in wiring or raceway systems wherever required for pulling of wires, making connections, and mounting of devices or fixtures.  Boxes 
+for metallic raceways must be stainless steel type 304, hub type, and when specifically indicated.  Boxes in other locations must be nonmetallic 
+boxes provided with nonmetallic conduit system.  Each box must have volume required by <RID>NFPA 70</RID> for number of conductors enclosed in a box.  Provide 
+gaskets for boxes.  Provide separate boxes for flush or recessed fixtures when required by fixture terminal operating temperature.  Fasten boxes 
+and supports with wood screws on wood and with bolts and expansion shields on concrete.[  Threaded studs driven in by powder charge and provided 
+with lockwashers and nuts[ or nail-type nylon anchors] may be provided in lieu of wood screws, expansion shields, or machine screws.]  Support 
+boxes directly from structure or by [nonmetallic][ or ][stainless steel] hangers.  Where [nonmetallic] stainless steel bar hangers are provided, 
+attach bar to raceways on opposite sides of box, and support raceway with approved-type fastener maximum<MET> 600 mm</MET><ENG> 24 inches</ENG> from box.  When penetrating 
+reinforced concrete members, avoid cutting reinforcing steel.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Boxes</TTL><BRK/>
+<BRK/>
+<TXT>Boxes for use with raceway systems must be minimum<MET> 38 mm</MET><ENG> 1 1/2 inches</ENG> deep, except where shallower boxes required by structural conditions are 
+approved.  Boxes must be minimum<MET> 100 mm</MET><ENG> 4 inches</ENG> square, except that<MET>100  by 50 mm</MET><ENG> 4 by 2 inch</ENG> boxes may be provided where only one raceway enters 
+outlet.  Telephone outlets must be minimum of<MET> 100 mm square by 38 mm</MET><ENG> 4 inches square by 1 1/2 inches</ENG> deep.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pull Boxes</TTL><BRK/>
+<BRK/>
+<TXT>Construct of at least minimum size required by <RID>NFPA 70</RID> compatible with nonmetallic raceway systems, except where stainless steel boxes are required 
+in locations specified herein.  Furnish boxes with screw-fastened covers.  Where several feeders pass through common pull box, tag feeders to indicate 
+clearly electrical characteristics, circuit number, and panel designation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Mounting Heights</TTL><BRK/>
+<BRK/>
+<TXT>Mount panelboards, circuit breakers, and disconnecting switches so maximum height of operating handle is<MET> 1980 mm</MET><ENG> 78 inches above</ENG> finished structure.  
+Mount receptacles a minimum of<MET> [460] [_____] mm</MET><ENG> [18] [_____] inches</ENG> above finished structure.  In no case must entire or part of panelboards, boxes, 
+cabinets, receptacles, and other electrical devices be mounted below the electrical datum plane as defined in <RID>NFPA 303</RID>.  Measure mounting heights 
+of wiring devices and outlets to center of device or outlet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Conductor Identification</TTL><BRK/>
+<BRK/>
+<TXT>Provide within each enclosure where tap, splice, or termination is made.  For conductor sizes No. 6 AWG and smaller diameter, color coding must 
+be by factory-applied, color-impregnated insulation.  For conductor sizes No. 4 AWG and larger diameter, color coding must be by plastic-coated, 
+self-sticking markers; colored nylon cable ties and plates; or heat shrink-type sleeves.  Identify control circuit terminations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Splices</TTL><BRK/>
+<BRK/>
+<TXT>Make splices in accessible locations.  Make splices in conductor sizes No. 10 AWG and smaller diameter with insulated, pressure-type connector.  
+Make splices in conductor sizes No. 8 AWG and larger diameter with solderless connector, and cover with insulation material equivalent to conductor 
+insulation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Covers and Device Plates</TTL><BRK/>
+<BRK/>
+<TXT>Install gasketed plates with alignment tolerance of<MET> 1.6 mm</MET><ENG> 1/16 inch</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding and Bonding</TTL><BRK/>
+<BRK/>
+<TXT><RID>NFPA 70</RID>.  Ground-exposed, noncurrent-carrying metallic parts of electrical equipment, metallic raceway systems, grounding conductor in metallic 
+and nonmetallic raceways, and neutral conductor of wiring systems.[  Make ground connection at main service equipment, and extend grounding conductor 
+to point of entrance of metallic water service.  Make connection to water pipe by suitable ground clamp or lug connection to plugged tee.  When 
+flanged pipes are encountered, make connection with lug bolted to street side of flanged connection.  Supplement metallic water service grounding 
+system with additional made electrode in compliance with <RID>NFPA 70</RID>.][  Make ground connection to driven ground rods.]  Where ground-fault protection 
+is employed, ensure that connection of ground and neutral does not interfere with correct operation of fault protection.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Resistance</TTL><BRK/>
+<BRK/>
+<TXT><TST>Maximum resistance-to-ground of grounding system must not exceed [5] [_____] ohms under dry conditions.  Where resistance obtained exceeds [5] 
+[_____] ohms, contact Contracting Officer for further instructions.</TST></TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Telephone Service</TTL><BRK/>
+<BRK/>
+<TXT>Provide main telephone service equipment ground consisting of separate No. 6 AWG ground wire in conduit between equipment backboard and readily 
+accessible grounding connection.  Equipment end of ground wire must consist of coiled length at least twice as long as terminal cabinet.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Equipment Connections</TTL><BRK/>
+<BRK/>
+<TXT>Provide power wiring for the connection of motors and control equipment under this section.  Except as otherwise noted or specified, automatic 
+control wiring, control devices, and protective devices within the control circuitry are not included in this section, but must be provided under 
+the section specifying associated equipment.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Government-Furnished Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Contractor [must rough-in for Government-furnished equipment][must make connections to Government-furnished equipment] to make equipment operate 
+as intended, including providing miscellaneous items such as plugs, receptacles, wire, cable, conduit, and outlet boxes or fittings.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>REPAIR AND SERVICE OF EXISTING STRUCTURES AND EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Perform repair of existing structures and equipment[, demolition, and modification of existing electrical distribution systems] as follows:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Workmanship</TTL><BRK/>
+<BRK/>
+<TXT><RID>NECA NEIS 1</RID>.  Lay out work in advance.  Exercise care where cutting, channeling, chasing, or drilling of existing surfaces is necessary for proper 
+installation, support, or anchorage of conduit, raceways, or other electrical work.  Repair damage to structure, piping, and equipment using skilled 
+craftsmen of trades involved.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Existing Concealed Wiring to be Removed</TTL><BRK/>
+<BRK/>
+<TXT>Disconnect from its source.  Remove conductors, cut exposed conduit flush with structure, and seal openings with material to match adjacent surfaces.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Existing Electrical Distribution System Removal</TTL><BRK/>
+<BRK/>
+<TXT>Include removal of equipment's associated wiring, including conductors, cables, exposed conduit, boxes, fittings, anchors, supports, and other 
+such items, [back to equipment's source][as indicated].  Fill holes in structure where electrical equipment is removed with material to match adjacent 
+surface.  Provide unused openings in remaining boxes, fittings, and equipment with watertight nonmetallic knockout seals.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Continuation of Service</TTL><BRK/>
+<BRK/>
+<TXT>Maintain continuity of service to existing circuits of equipment to remain.  Existing circuits of equipment must remain energized.  Circuits which 
+are to remain but were disturbed during demolition must have circuits wiring and power restored back to original condition.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide any additional test requirements for equipment requiring running tests or tests that must be coordinated 
+with mechanical equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><TST>Furnish test equipment and personnel.  Notify Contracting Officer [5] [_____] working days prior to [each] [_____] test[s].</TST></TXT><BRK/>
+<BRK/>
+<SPT><TTL>Devices Subject to Manual Operation</TTL><BRK/>
+<BRK/>
+<TXT><TST>Operate each device subject to manual operation at least five times, demonstrating satisfactory operation each time.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Transformer Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Perform tests classified as routine in accordance with <RID>NEMA ST 20</RID> on each transformer.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>600-Volt Wiring Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Test wiring rated 600 volts and less to verify that no short circuits or accidental grounds exist.  Perform insulation resistance tests on wiring 
+No. 6 AWG and larger diameter using instrument which applies voltage of approximately 500 volts to provide direct reading of resistance.  Minimum 
+resistance must be 250,000 ohms.</TST></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Grounding System Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT><TST>Test grounding system to ensure continuity and resistance to ground is not excessive.</TST>  Test each ground rod for resistance to ground before making 
+connections to rod; tie grounding system together and test for resistance to ground.  Make resistance measurements in dry weather, not earlier 
+than 48 hours after rainfall.  Submit written results of each test to Contracting Officer, and indicate location of rods as well as resistance 
+and soil conditions at time measurements were made.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Solar Power Station Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Test solar power station for proper operation in accordance with manufacturer's recommendation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SCHEDULE</TTL><BRK/>
+<BRK/>
+<TXT>Some metric measurements in this section are based on mathematical conversion of inch-pound measurements, and not on metric measurement commonly 
+agreed to by the manufacturers or other parties.  The inch-pound and metric measurements are as follows:</TXT><BRK/>
+<TAB WIDTH="90">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="13">
+      <COL AUTOWIDTH="0" WIDTH="157.50"/>
+      <COL AUTOWIDTH="0" WIDTH="170.25"/>
+      <COL AUTOWIDTH="0" WIDTH="198.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING"><HL1>PRODUCTS</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>INCH-POUND</HL1></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL1>METRIC</HL1></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">a.  Device plate (thickness)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.10 inch</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2.54 mm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">b.  Mounting straps (thickness)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">20 and 40 mil</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0.5 and one mm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">c.  Ground rod</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Diameter</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3/4 inch</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">19 mm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Length</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">10 feet</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">3050 mm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">d.  Wireways</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">2 1/2 by 2 1/2 inches</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">63.5 by 63.5 mm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">4 by 4 inches</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">100 by 100 mm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">8 by 8 inches</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">200 by 200 mm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">12 by 12 inches</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">300 by 300 mm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">e.  Boxes</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Depth</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1 1/2 inches</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">38 mm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Size</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">4 inches (square)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">100 mm</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/></TAB><BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

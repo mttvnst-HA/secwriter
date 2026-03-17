@@ -1,0 +1,884 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="393.75"/>
+      <COL AUTOWIDTH="0" WIDTH="393.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-01 31 23.13 20 (August 2023)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL>
+<DTA TYPE="STRING">Change 1 - 02/24</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-01 31 23.13 20 (May 2017)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 01 31 23.13 20</SCN><BRK/>
+<BRK/>
+<STL>ELECTRONIC CONSTRUCTION AND FACILITY SUPPORT CONTRACT MANAGEMENT SYSTEM (eCMS)</STL><BRK/>
+<DTE>08/23, CHG 1: 02/24</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>the Navy use of NAVFAC's web-based Electronic Construction 
+and Facility Support Contract Management System (eCMS)</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification includes tailoring options for Design-Build (DB) projects.  Selection or de-selection 
+of a tailoring option will include or exclude that option in the section, but editing the resulting section to 
+fit the project is still required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+NOTE:  <NPR>(1) For all military construction (MILCON) projects and other construction projects above $1M utilize eCMS for 
+requests for information (RFIs), submittals, issues, non-compliance notices, punch lists, checklists, and daily 
+reports to allow for the collection of necessary construction data, KPIs, and metrics. An example list is below:<BRK/>
+  (a) Navy centrally managed facilities sustainment; <BRK/>
+  (b) Restoration and maintenance (FSRM) projects; <BRK/>
+  (c) U.S. Marine Corps – M2R2 projects; <BRK/>
+  (d) Defense Logistics Agency bulk fuel tank repair; or <BRK/>
+  (e) Air Force FSRM. <BRK/>
+(2) For all projects above the Simplified Acquisition Threshold (SAT) (as of publication is $250K) and less than 
+$1M, project teams will continue to utilize eCMS, at a minimum, as an electronic file repository to ensure maintenance 
+of project related technical information. Use of the various communication and site management modules is highly recommended.<BRK/>
+(3) For all projects below the SAT, project teams are encouraged to utilize eCMS, but its use remains optional.</NPR><BRK/>
+<BRK/>
+<NPR>Waivers. NAVFAC's business requirement is to utilize eCMS to store crucial DoD project documents, such as RFIs, 
+submittals, QASP/CPARS checklists, etc. and to manage associated KPIs (e.g., processing times). Waivers that deviate 
+from this policy pose unwarranted risks and additional costs to the eCMS, the business system integration, and 
+the Authority-to-Operate. As such, waivers are disadvantageous to the government, are highly discouraged, and 
+will only be considered in rare, extenuating circumstances where eCMS is non-functional and the contractor's solution 
+does not pose unacceptable risks or additional costs to NAVFAC. Requests for waivers may be submitted via OPS 
+for adjudication by HQ DCBL.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>CONTRACT ADMINISTRATION</TTL><BRK/>
+<BRK/>
+<TXT>Utilize the Naval Facilities Engineering Systems Command's (NAVFAC's) Electronic Construction and Facility Support Contract Management System (eCMS) 
+for the transfer, sharing, and management of electronic technical submittals and documents.  The web-based eCMS is the designated means of transferring 
+technical documents between the Contractor and the Government.  Paper media or email submission, including originals or copies, of the documents 
+are not permitted unless identified within the contract.</TXT><BRK/>
+<BRK/>
+<TXT>All government contracting specialist/officer, legal, and command communications will remain the same.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>USER PRIVILEGES</TTL><BRK/>
+<BRK/>
+<TXT>The Contractor's key staff may be provided access to eCMS.  Contact the COR for eCMS account access.  Project roles and system roles will be established 
+to control each user's menu, application, and software privileges, including the ability to create, edit, or delete objects.  Additional project 
+roles may be assigned for workflow.  The COR makes the final decision on roles for the project.  User's ability to view, edit documents may be 
+lowered at the discretion of the COR.</TXT><BRK/>
+<BRK/>
+<TXT>Only one eCMS user account is required regardless of the number of user's projects.  Notify the COR within seven calendar days if a contractor 
+user is no longer associated with company or project so they can remove them from any open record and inactivate them from the project.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>eCMS Subcontractor Users</TTL><BRK/>
+<TAI OPT="DESIGN-BUILD"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The second paragraph is tailored for DESIGN-BUILD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>If the contractor's user is a subcontractor, the subcontractor must be registered under the name of their company and email.  For example it is 
+common for contractors to contract Quality Control Managers.  The QC Manager's account should be under their company's name and email reducing 
+the number of eCMS accounts required.</TXT><BRK/>
+<BRK/>
+<TAI OPT="DESIGN-BUILD"><TXT>For Design Build, the contractor's Designer of Record Architectural Engineer will be given a single account.  Only one account per AE is required.  
+The role of the AE is determined by the project role assigned by the COR.  The contractor is to request their AE staff be placed into the AE-KTR-DOR 
+project role.</TXT><BRK/>
+<BRK/></TAI>
+</SPT><SPT><TTL>Users with Multiple Roles</TTL><BRK/>
+<BRK/>
+<TXT>Users may have multiple roles associated with their account within eCMS. Roles are used in workflow.  When a user is added to the project, they 
+will be assigned the default role when the user was created.  Contact the COR to change or add roles to the user for the project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Loss of Privilege</TTL><BRK/>
+<BRK/>
+<TXT>Users may lose privilege to access eCMS at the discretion of the Contracting Officer.  The eCMS is a collaborative system that allows flexibility 
+of use and does not restrict all inappropriate user actions.  User activities are logged into eCMS in visible and background data collection.  
+Users found to use eCMS in an inappropriate action may have their eCMS access revoked.  Examples include, but not limited to, fraudulent representations, 
+sharing user accounts with others, and changing approved records without the consent of the COR.  Depending on the severity of the infraction, 
+the users can lose eCMS access for a period of time, permanently for the project, or lose eCMS access for any project.  The contractor may appeal 
+the suspension in writing to the contracting officer within 14 calendar days of notice.  The appeal must identify the infraction, supporting information, 
+and steps to ensure the infraction will not happen in the future.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TAI OPT="NAVY DESIGN-BUILD"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy Design-Build projects, delete <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES, and replace with UFGS 01 33 00.05 
+20 CONSTRUCTION SUBMITTAL PROCEDURES and 01 33 10.05 20 DESIGN SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For projects in the NAVFAC PAC Area of Operation, and for the submittals identified as SD-01 Preconstruction 
+Submittals, remove the "G" designation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>List of Contractor's Personnel</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>For Division 1 government approved Pre-Construction submittals, combine into a single Pre-Construction Submittal Package.  Annotated 
+with SD Type of SD-01.  Pre-Construction submittal package approval date will be used as a KPI.</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM REQUIREMENTS AND CONNECTIVITY</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>NAVFAC eCMS requires a web-browser (platform-neutral) and Internet connection.  For best results, recommend using browser in InPrivate/Incognito 
+mode; Internet speeds greater than 40mbps when uploading files, computers with high RAM and Solid State Drives, "White List" eCMS website, Zip 
+or Split files for better uploading.  Non-NAVFAC Users are not to use VPN when using eCMS per NAVFAC IT.</TXT><BRK/>
+<BRK/>
+<TXT>The use of eCMS is required by the Contractor and all associated costs and time necessary to utilize eCMS will be borne by the Contractor with 
+no allowance for time extensions and at no additional cost to the government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Contractor Personnel List</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph contains tailoring for Design-Build.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Within 20 calendar days of contract award, provide to the Contracting Officer a <SUB>list of Contractor's personnel</SUB> who will have the responsibility 
+for the transfer, sharing and management of electronic <TAI OPT="DESIGN-BUILD">design, </TAI>submittals, RFIs, daily reports, and other files and will require access to the 
+eCMS.  Project personnel roles which must be filled as applicable in the eCMS, include, at a minimum, the Contractor's Project Manager (KTR-PM), <TAI OPT="DESIGN-BUILD">
+Designer of Record (AE-KTR-DOR), </TAI>Superintendent (KTSUPT), Quality Control (QC) Manager (KTR-QC), Principal (KTR-PRIN), and Site Safety and Health 
+Officer (KTR-SSHO).  Notify the COR immediately of any personnel changes to the project.  The Contracting Officer reserves the right to perform 
+a security check on all potential users.</TXT><BRK/>
+<BRK/>
+[<TXT>Internal design deliberations under a D-B contract are managed outside of eCMS.  Besides the D-B DOR Representative, D-B design team members are 
+neither required nor encouraged to create user accounts in eCMS.  Users are highly recommended to take eCMS live or online training prior to use.  
+See <URL HREF="https://www.navfac.navy.mil/Business-Lines/Design-and-Construction/About-Us/Design-and-Construction-Documents/Electronic-Construction-Management-System-eCMS">https://www.navfac.navy.mil/Business-Lines/Design-and-<BRK/>
+Construction/About-Us/Design-and-Construction-Documents/Electronic-<BRK/>
+Construction-Management-System-eCMS/</URL> for eCMS useful information</TXT><BRK/>
+<BRK/>
+]<TXT>Provide the following information:</TXT><BRK/>
+<BRK/>
+<LST>Company Name</LST><BRK/>
+<BRK/>
+<LST>Name (First, Last)</LST><BRK/>
+<BRK/>
+<LST>Email Address</LST><BRK/>
+<BRK/>
+<LST>Project Role (CQM, SSHO, Superintendent, CM, PM, Principal)</LST><BRK/>
+<BRK/>
+<LST>Existing or New eCMS User</LST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SECURITY CLASSIFICATION</TTL><BRK/>
+<BRK/>
+<TXT>In accordance with Department of Navy guidance, all military construction contract data are unclassified, unless specified otherwise by a properly 
+designated Original Classification Authority (OCA) and in accordance with an established Security Classification Guide (SCG).  Refer to the project's 
+OCA when questions arise about the proper classification of information.</TXT><BRK/>
+<BRK/>
+<TXT>In conformance with the Freedom of Information Act (FOIA),  DoD INSTRUCTION 5200.48 CONTROLLED UNCLASSIFIED INFORMATION (CUI), and DoD requirements, 
+any unclassified project documentation uploaded into the eCMS must be designated either "U - UNCLASSIFIED" (U) or "CUI - CONTROLLED UNCLASSIFIED 
+INFORMATION" (CUI).NAVFAC eCMS must only be used for the transaction of unclassified information associated with construction projects.  Controlled 
+Unclassified Identification (CUI) documents may be loaded into eCMS with the appropriate markings.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Markings on CUI Documents</TTL><BRK/>
+<BRK/>
+<TXT>Contractor's proprietary information, or documents determined by the originator in accordance with CUI guidance, should be marked CUI.  Proprietary 
+information not marked CUI can be released under the Freedom of Information Act (FOIA).  Apply the appropriate markings before any document is 
+uploaded into eCMS.  Markings are not required on Unclassified U documents.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>eCMS UTILIZATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is written for "Full Use" on projects greater than $1M.  The project team is encouraged 
+to choose Full Use regardless of dollar amount.  The project team can optionally select "eCMS as an Electronic 
+File Repository" if the project is less than $1M. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Establish, maintain, and update data and documentation in the eCMS throughout the duration of the contract.  Utilize eCMS to transfer all submittals, 
+RFIs, daily reports, and other files required by contract to be forwarded to the government.</TXT><BRK/>
+<BRK/>
+[<TXT>Full eCMS use is required. All Submittals/Information to use eCMS Modules including, but not limited to, RFIs, Daily Reports, Meeting Minutes, 
+Communications, Issues, Punch Lists, Checklists, and Flysheets, unless otherwise directed by the COR or Contracting Officer.</TXT><BRK/>
+<BRK/>
+][<TXT>The eCMS as an Electronic File Repository is authorized for projects under $1M.  Upload all files using the appropriate eCMS module or as directed 
+by the COR. Bulk uploads of RFIs, Submittals, Daily Reports, Issues, Meeting Minutes or Communications records into eCMS modules are allowed.  
+For RFIs, group files by specification number, RFP Part number, or sheet number.  For Submittals, group files by specification number. For Daily 
+Reports, group by date range(s), Issues by date range(s), Meeting Minutes by date range(s), and Communications by Type.</TXT><BRK/>
+<BRK/>
+]<SPT><TTL>Restricted Information</TTL><BRK/>
+<BRK/>
+<TXT>Personally Identifiable Information (PII) transmittal such as credit card, driver's license, passport, social security, and payroll number are 
+not permitted in eCMS.  Name, address, and email are permitted.  Pre-negotiation information such as cost estimates that require formal negotiations 
+are not allowed.  For example, proposed changes over the SAP level of $250k require formal negotiations.  Cost estimates for LEAN, ULTRA LEAN, 
+and Design Changes under the SAP level are at the discretion of the COR's or Contract Specialist/Officer's direction.  The eCMS must only be used 
+for the transaction of unclassified information associated with construction projects. Controlled Unclassified Identification (CUI) documents may 
+be loaded into eCMS with the appropriate markings.  Uploading of files directly into the Documents folder is not allowed.  All documents must be 
+uploaded using an eCMS module.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Naming Convention for Files</TTL><BRK/>
+<BRK/>
+<TXT>Titles of files uploaded are to be descriptive of the purpose and content of the file.  For example RFI_ROOF_Leak.doc or for submittals, SUB_LIGHT_FIXTURE.pdf.  
+Titles of file to be uploaded must only contain uppercase letters, lowercase letters, numbers, hyphens (-), underscores (_) and periods (.).  Use 
+of any other characters is not allowed and may create an error.  When practicable, adding the record number to the title is desired.  For example 
+RFI_XYZ12345_ROOF_Leak.doc.  Uploading files with the same title will create a new revision in eCMS.  Original revision is Rev 0, the first revision 
+is Rev 1.  Uploaded files are to use the default file location regardless of the module used unless directed by the COR.</TXT><BRK/>
+<BRK/>
+<TXT>Table 1 also identifies which eCMS application is to be used in the transmittal of data (these are subject to change based on the latest software 
+configuration).</TXT><BRK/>
+<BRK/>
+<TXT>Table 1 - Project Documentation Types</TXT><BRK/>
+<TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="43">
+      <COL AUTOWIDTH="0" WIDTH="159.75"/>
+      <COL AUTOWIDTH="0" WIDTH="285.75"/>
+      <COL AUTOWIDTH="0" WIDTH="139.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING"><HL4><HL3>SUBJECT/NAME</HL3></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4><HL3>REMARKS</HL3></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4><HL3>eCMS APPLICATION</HL3></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="75.00">
+         <CEL>
+<DTA TYPE="STRING">As-Built Drawings</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Locations of sensitive areas must be labeled as either "Controlled Area" or "Restricted Area" and may be shown on unclassified documents with the approval from Site Security Manager</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="77.25">
+         <CEL>
+<DTA TYPE="STRING">Building Information Modeling (BIM)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Locations of sensitive areas must be labeled as either "Controlled Area" or "Restricted Area" and may be shown on unclassified documents with the approval from Site Security Manager</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL>
+<DTA TYPE="STRING">Construction Permits</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Refer to rules of the issuing activity, state or jurisdiction</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="57.00">
+         <CEL>
+<DTA TYPE="STRING">Construction Schedules (Activities and Milestones)</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Construction Schedules</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="60.00">
+         <CEL>
+<DTA TYPE="STRING">Construction Schedules (3-Week Look ahead)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Import the schedule file into the scheduling application, and select "Approve" to establish a new schedule baseline</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Meeting Minutes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">DD 1354 Transfer of Real Property</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">When applicable, required for final billing.</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL>
+<DTA TYPE="STRING">Daily Production Reports</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Provide weather conditions, crew size, man-hours, equipment, and materials information</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Daily Report</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL>
+<DTA TYPE="STRING">Daily Quality Control (QC) Reports</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Provide QC Phase, Definable Features of Work<BRK/>Identify visitors<BRK/></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Daily Report</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="81.00">
+         <CEL>
+<DTA TYPE="STRING">Designs and Specifications</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Locations of sensitive areas must be labeled as either "Controlled Area" or "Restricted Area" and may be shown on unclassified documents with the approval from Site Security Manager</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="57.00">
+         <CEL>
+<DTA TYPE="STRING">Environmental Notice of Violation (NOV), Corrective Action Plan</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Refer to rules of the issuing activity, state or jurisdiction</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL>
+<DTA TYPE="STRING">Environmental Protection Plan (EPP)</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">Invoice (Supporting Documentation)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Applies to supporting documentation only.  Invoices are submitted in Wide-Area Workflow (WAWF)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="54.00">
+         <CEL>
+<DTA TYPE="STRING">Jobsite Documentation, Bulletin Board, Labor Laws, 
+SDS</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Redact any PII information when loaded into eCMS</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Meeting Minutes</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Meeting Minutes</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">Modification Documents</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Provide final modification documents for the project.  Upload into Modifications RFPs folder</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Communications</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="105.00">
+         <CEL>
+<DTA TYPE="STRING">Operations &amp; Maintenance Support Information (OMSI/eOMSI), Facility Data Worksheet</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">1. Locations of sensitive areas must be labeled as either "Controlled Area" or "Restricted Area" and may be shown on unclassified documents with the approval from Site Security Manager<BRK/>2. Design reviews will be performed in existing "Dr Checks"</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Photographs</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Subject to base/installation restrictions</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">QCM Initial Phase Checklists</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Meeting Minutes or Checklists</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL>
+<DTA TYPE="STRING">QCM Preparatory Phase Checklists</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Meeting Minutes or Checklists</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Quality Control Plans</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">QC Certifications</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">QC Punch List</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Punch Lists</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Red-Zone Checklist</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Punch List or Checklists</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Rework Items List</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Punch Lists</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.00">
+         <CEL>
+<DTA TYPE="STRING">Request for Information (RFI) Post-Award<BRK/></DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">RFIs</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Safety Plan</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.00">
+         <CEL>
+<DTA TYPE="STRING">Safety - Activity Hazard Analyses (AHA)</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.00">
+         <CEL>
+<DTA TYPE="STRING">Safety - Mishap Reports</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Daily Report</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="78.00">
+         <CEL>
+<DTA TYPE="STRING">Shop Drawings</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Locations of sensitive areas must be labeled as either "Controlled Area" or "Restricted Area" and may be shown on unclassified documents with the approval from Site Security Manager</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="71.25">
+         <CEL>
+<DTA TYPE="STRING">Storm Water Pollution Prevention (Notice of Intent - Notice of Termination)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Refer to rules of the issuing activity, state or jurisdiction</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">Submittals and Submittal Register</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">Testing Plans, Logs, and Reports</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">Training/Reference Materials</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">Training Records (Personnel)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Redact any PII information if storing in eCMS</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL>
+<DTA TYPE="STRING">Utility Outage/Tie-In Request/Approval</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">Warranties/BOD Letter</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Submittals</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL>
+<DTA TYPE="STRING">Quality Assurance Reports</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Checklists (Government initiated)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="48.00">
+         <CEL>
+<DTA TYPE="STRING">Non-Compliance Notices</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">Non-Compliance Notices (Government initiated)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="38.25">
+         <CEL>
+<DTA TYPE="STRING">Other Government- prepared documents</DTA>
+         </CEL>
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING">GOV ONLY</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="84.00">
+         <CEL>
+<DTA TYPE="STRING">Letters to government contracting, claims, REAs, and other contracting officer communications</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">eCMS is not the primary tool to use in contracting officer communications.  eCMS can only store documents or letters after the submission to the contracting officer is made.</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Communications</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="43.50">
+         <CEL>
+<DTA TYPE="STRING">All O
+
+there Documents</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Refer to FOIA guidelines and contact the FOIA official to determine whether exemptions exist</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">As applicable</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<SPT><TTL>RFIs Module</TTL><BRK/>
+<BRK/>
+<TXT>Create contractor RFIs using eCMS RFIs module.  The contractor must confirm the numbering convention with the COR if different than eCMS default.</TXT><BRK/>
+<BRK/>
+<TXT>If the government (GOV) Response has "No" Cost or Schedule Impact, this reply is given with the expressed understanding that it does not constitute 
+a basis for any change in the amount or time of subject contract.  Information provided in this response does not authorize work not currently 
+included in the contract.  If GOV Response is "Yes" or "Potentially" then this response may require a change to the contract.  If the contractor 
+disagrees with either the government's No Cost determination or No Schedule impact determination, or both, the contractor has 14 calendar days 
+to notify the COR and Contracting Officer in writing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Submittals Module</TTL><BRK/>
+<BRK/>
+<TXT>Create contractor submittals using eCMS Submittals module.  The contractor must confirm the numbering convention with the COR if different than 
+eCMS default.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Submittal Packages Module</TTL><BRK/>
+<BRK/>
+<TXT>Create submittal packages using the eCMS Submittal Packages module in lieu of or in addition to Related Objects.  Submittal Packages track completion 
+of the packaged submittals and is used in NAVFAC HQ's KPIs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Communications Module</TTL><BRK/>
+<BRK/>
+<TXT>Create communications using the eCMS Communications module.  The Communications module is used to create or document communications that are not 
+a part of other eCMS modules.  Use of Communications module will memorialize information into an eCMS record file.  The following are Types of 
+Communications:</TXT><BRK/>
+<BRK/>
+<LST>Email</LST><BRK/>
+<BRK/>
+<LST>Memo to File</LST><BRK/>
+<BRK/>
+<LST>Face to Face</LST><BRK/>
+<BRK/>
+<LST>Telephone</LST><BRK/>
+<BRK/>
+<LST>Web Collaboration</LST><BRK/>
+<BRK/>
+<LST>Photos</LST><BRK/>
+<BRK/>
+<LST>Other Documents</LST><BRK/>
+<BRK/>
+<LST>Other</LST><BRK/>
+<BRK/>
+<TXT>Unless directed by the COR, upload documents or files that do not have a corresponding eCMS module.  Choose "Photos" Type for Photos and "Other 
+Documents" for all other documents.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Issues Module</TTL><BRK/>
+<BRK/>
+<TXT>Create or respond to issues using the eCMS Issues module.  Respond to CPARS issues using the Issues module.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Meeting Minutes Module</TTL><BRK/>
+<BRK/>
+<TXT>Create or respond to Meeting Minutes using the eCMS Meetings module.</TXT><BRK/>
+<BRK/>
+<TXT>Document required contractual meetings.  Dates of meetings are used in NAVFAC KPIs.  Minimum meetings in eCMS include the following:</TXT><BRK/>
+<BRK/>
+<LST>Post Award Kickoff (PAK)</LST><BRK/>
+<BRK/>
+<LST>Pre-construction (Pre Con)</LST><BRK/>
+<BRK/>
+<LST>Initial and Preparatory Three Phases of Control</LST><BRK/>
+<BRK/>
+<LST>Quality Control (QC)</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Potential Change Items Module</TTL><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Daily Report Module</TTL><BRK/>
+<BRK/>
+<TXT>Create Daily Reports using the eCMS Daily Report Module.  The contractor must confirm the numbering convention with the COR if different than eCMS 
+default.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Punchlists Testing Logs (Legacy)</TTL><BRK/>
+<BRK/>
+<TXT>Punchlist Testing Logs is a legacy program that is being replaced by the Punch Lists Module.  This module is to be used for reference of past projects.  
+Use the Punch Lists Module for all future work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Punch Lists Module</TTL><BRK/>
+<BRK/>
+<TXT>The eCMS Punch Lists module is useful more than just for Punchlists.  The module includes the capability of batch editing, create items from Optical 
+Character Recognition (OCR) plans, assign tasks and track completion of individual items.</TXT><BRK/>
+<BRK/>
+<TXT>Create the following using the Punch Lists module:</TXT><BRK/>
+<BRK/>
+<LST>Rework Items List</LST><BRK/>
+<BRK/>
+<LST>DFOW List</LST><BRK/>
+<BRK/>
+<LST>Punch-Out Inspection</LST><BRK/>
+<BRK/>
+<LST>Pre-Final Punchlist Inspection</LST><BRK/>
+<BRK/>
+<LST>Final Punchlist Inspection</LST><BRK/>
+<BRK/>
+<LST>Testing Logs</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FWD UltraLean COAR RFP Module</TTL><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Non-Compliance Notices (NCN) Module</TTL><BRK/>
+<BRK/>
+<TXT>Respond to Non-Compliance Notices listed in the Non-Compliance Notices module.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Checklists</TTL><BRK/>
+<BRK/>
+<TXT>Use Checklist listed in the contractor's eCMS menu and as directed by the COR.  Checklists capture data and is used in dashboards and KPIs.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Partnering Team Health Survey Checklist</TTL><BRK/>
+<BRK/>
+<TXT>Contractor must use the eCMS checklist to document the partnering team health survey. Partnering Team Health Survey is in accordance with the Partnering 
+Specification of this contract.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Flysheets</TTL><BRK/>
+<BRK/>
+<TXT>Use Flysheets listed in the contractor's eCMS menu, if available, and as directed by the COR.  Flysheets allow the contractor to print out information 
+from other systems and upload into eCMS.  The eCMS will use OCR to capture the information as data. Flysheets capture data and used in dashboards 
+and KPIs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>eCMS Outage</TTL><BRK/>
+<BRK/>
+<TXT>In the case where eCMS is unavailable for 8 hours or more, paper or email may be used in the interim to maintain project schedule.</TXT><BRK/>
+<BRK/>
+<TXT>Once the system is operational, all final records are required to be recreated using the appropriate module.  Subject/title of the record to include 
+the type of record i.e., RFI/Submittal/Daily Report/Communication/Other, the identification number(s), and the statement "Processed Outside of 
+eCMS".  Example, "RFI 001 Processed Outside of eCMS".</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>User Account Activity</TTL><BRK/>
+<BRK/>
+<TXT>NAVFAC eCMS captures user data and activities that are directly related to the user's account.  The user agrees through the use of eCMS, their 
+account activities will be captured and can be displayed on eCMS printed reports.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<TXT>Requested Government response dates on Submittals must be in accordance with the terms and conditions of the Contract unless previously agreed 
+by the COR.  Requesting response dates earlier than the required review and response time, without concurrence by the Government COR, may be cause 
+for rejection.</TXT><BRK/>
+<BRK/>
+<TXT>Incomplete submittals will be rejected without further review and must be resubmitted.  Required Government response dates for resubmittals must 
+reflect the date of resubmittal, not the original submittal date.</TXT><BRK/>
+<BRK/>
+<TXT>All submittals and associated attachments must be transmitted to the Government via the COR.  Transmittals are no longer required when using eCMS 
+since approval status is tracked on the submittal.  Transmittal forms can be attached to submittals if approved by the COR.  Submittals requiring 
+government approval are "Transmitted For" "Approval".  Submittals requiring contractor approved submittals, including those designated for Contractor 
+Quality Control approval or Information Only, are "*Transmitted For" "Information Only" in the Submittal Module.  Provide and sign the QC certification 
+or approving statement on the attachment per submittal specification section.  When Submittal Packages are required, use eCMS Submittal Packages 
+after creating individual submittals.  Importing Submittals from the Submittal Register is optional.  Contact the COR for the data conversion requirements.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><NED/><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></PRT>
+<PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<TXT>Not used.</TXT><BRK/>
+<BRK/></PRT>
+    <END/><BRK/></SEC>

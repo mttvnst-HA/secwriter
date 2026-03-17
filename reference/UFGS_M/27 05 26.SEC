@@ -1,0 +1,1482 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="3">
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="34.50">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-27 05 26 (November 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="10.50">
+         <CEL/>
+         <CEL>
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3><BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="50.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:   <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">New</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 27 05 26</SCN><BRK/>
+<BRK/>
+<STL>GROUNDING AND BONDING FOR COMMUNICATIONS SYSTEMS</STL><BRK/>
+<DTE>11/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This guide specification covers <SCP>requirements for building telecommunications 
+grounding and bonding infrastructure and its interconnection to electrical systems 
+and telecommunications systems</SCP>.<BRK/>
+<BRK/>
+Coordinate telecommunications grounding and bonding requirements with electrical 
+grounding requirements.  Coordinate all requirements with the proponent Technical Authority.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> United Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions, and recommended changes for this guide specification 
+are welcome and should be submitted as a  <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: UFC 3-580-01, "Information and Communications Technology Infrastructure 
+Planning and Design," provides requirements for grounding, bonding, and static 
+protection of telecommunications systems for DoD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: This paragraph is used to list the publications cited in the text of the 
+guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates. <BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ALLIANCE FOR TELECOMMUNICATIONS INDUSTRY SOLUTIONS (ATIS)</ORG><BRK/><BRK/><RID>ATIS 0600334</RID><RTL>(2024) Electrical Protection of Communications Towers and Associated Structures</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM B1</RID><RTL>(2013) Standard Specification for Hard-Drawn Copper Wire</RTL><BRK/><BRK/><RID>ASTM B8</RID><RTL>(2023) Standard Specification for Concentric-Lay-Stranded Copper Conductors, Hard, Medium-Hard, or Soft</RTL><BRK/><BRK/></REF><REF><ORG>BICSI International Standards Program (BICSI)</ORG><BRK/><BRK/><RID>ANSI/BICSI N1</RID><RTL>(2019) Installation Practices for Telecommunications and ICT Cabling and Related Cabling Infrastructure</RTL><BRK/><BRK/><RID>ANSI/BICSI N3</RID><RTL>(2020) Planning and Installation Methods for the Bonding and Grounding of Telecommunication and ICT Systems and Infrastructure</RTL><BRK/><BRK/><RID>BICSI TDMM</RID><RTL>(2024; 15th Edition) Telecommunications Distribution Methods Manual</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 780</RID><RTL>(2026) Standard for the Installation of Lightning Protection Systems</RTL><BRK/><BRK/></REF><REF><ORG>TELECOMMUNICATIONS INDUSTRY ASSOCIATION (TIA)</ORG><BRK/><BRK/><RID>ANSI/TIA-606</RID><RTL>(2021d) Administration Standard for Telecommunications Infrastructure</RTL><BRK/><BRK/><RID>ANSI/TIA-607</RID><RTL>(2019d) Generic Telecommunications Bonding and Grounding (Earthing) for Customer Premises</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>MIL-HDBK-419</RID><RTL>(1987; Rev A) Grounding, Bonding, and Shielding for Electronic Equipments and Facilities Volumes 1 of 2 Basic Theory</RTL><BRK/><BRK/><RID>UFC 3-580-01</RID><RTL>(2024) Information and Communications Technology Infrastructure Planning and Design</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 467</RID><RTL>(2022) UL Standard for Safety Grounding and Bonding Equipment</RTL><BRK/><BRK/><RID>UL 486A-486B</RID><RTL>(2025) UL Standard for Safety Wire Connectors</RTL><BRK/><BRK/><RID>UL 969</RID><RTL>(2025) UL Standard for Safety Marking and Labeling Systems</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Ensure that design grounding and bonding system meets UFC 3-580-01 as 
+a minimum requirement. <BRK/>
+<BRK/>
+The telecommunications grounding and bonding system must support the Information 
+Technology (IT) and Operational Technology (OT) requirements of the end <BRK/>
+user. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM, Section <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS CABLING SYSTEM, and 
+Section <SRF>33 82 00</SRF> TELECOMMUNICATIONS OUTSIDE PLANT (OSP) apply to this section with additions and modifications 
+specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified or indicated, electrical and electronics terms used in this specification must be 
+as defined in <RID>ANSI/TIA-607</RID>, <RID>BICSI TDMM</RID>, <RID>UFC 3-580-01</RID>, <SRF>27 10 00</SRF> BUILDING TELECOMMUNICATIONS CABLING SYSTEM, and 
+herein.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Activity Specific Telecommunications Manager</TTL><BRK/>
+<BRK/>
+<TXT>Throughout this document, the term "Telecommunications Manager" or "Information Communications Technology (ICT) 
+Manager refers to the following:</TXT> <BRK/>
+<ITM INDENT="-0.33">Army - the Network Enterprise Center (NEC) or the Information Officer (G6, S6, J6)</ITM> <BRK/>
+<ITM INDENT="-0.33">Navy - the Base Communications Officer (BCO) or the Naval Computer and Telecommunications Area 
+Mater Station (NCTAMS) Regional Coordinator (RC) </ITM><BRK/>
+<ITM INDENT="-0.33">Marine Corps - the Installation Communications-G6 </ITM><BRK/>
+<ITM INDENT="-0.33">Air Force - the Base/Installation Communications Squadron-A6.</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alternating Current Equipment Ground (ACEG) Bonding Conductor</TTL><BRK/>
+<BRK/>
+<TXT>A conductor installed from the alternating current equipment ground inside an electrical panel to a secondary 
+bonding busbar or primary bonding busbar.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Backbone Bonding Conductor (BBC)</TTL><BRK/>
+<BRK/>
+<TXT>A telecommunication bonding connection which interconnects telecommunications bonding backbones (formerly known 
+as the grounding equalizer)</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bonding Network (BN)</TTL><BRK/>
+<BRK/>
+<TXT>A set of interconnected conductive structures that provides a low impedance path for the associated telecommunications 
+infrastructure. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electromagnetic Impulse (EMI)</TTL><BRK/>
+<BRK/>
+<TXT>Radiated or conducted electromagnetic energy that has an undesirable effect on electronic equipment or signal 
+transmissions. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mesh Bonding Network (mesh-BN)</TTL><BRK/>
+<BRK/>
+<TXT>A bonding network to which all associated equipment (e.g., cabinets, frames, racks, trays, pathways) are connected 
+using a bonding grid, which is connected to multiple points on the common bonding network (formerly known as 
+the signal reference grid).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mesh-Isolated Bonding Network (mesh-IBN)</TTL><BRK/>
+<BRK/>
+<TXT>A bonding network to which all associated equipment (e.g., cabinets, frames, racks, trays, pathways) are connected 
+using a bonding grid, which is connected to a single point on the common bonding network (formerly known as the 
+isolated signal reference grid).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Primary Bonding Busbar (PBB)</TTL><BRK/>
+<BRK/>
+<TXT>A busbar placed in a convenient and accessible location and bonded, by means of the telecommunications bonding 
+conductor, to the buildings service equipment (power) ground (formerly known as the telecommunications main grounding 
+busbar).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rack Bonding Busbar (RBB)</TTL><BRK/>
+<BRK/>
+<TXT>A busbar within a cabinet, frame, or rack.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Rack Bonding Conductor (RBC)</TTL><BRK/>
+<BRK/>
+<TXT>Bonding conductor from the rack bonding busbar to the telecommunications equipment bonding conductor.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Secondary Bonding Busbar (SBB)</TTL><BRK/>
+<BRK/>
+<TXT>A common point of connection for telecommunications system and equipment bonding to ground and located in satellite 
+telecommunications rooms (formerly known as the telecommunications grounding busbar). </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Secondary Bonding Conductor (SBC)</TTL><BRK/>
+<BRK/>
+<TXT>Bonding conductor from the secondary bonding busbar to the telecommunications bonding backbone. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Bonding Backbone (TBB)</TTL><BRK/>
+<BRK/>
+<TXT>A conductor that interconnects the primary bonding busbar to the secondary bonding busbar. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Bonding Conductor (TBC)</TTL><BRK/>
+<BRK/>
+<TXT>A conductor that interconnects the telecommunications bonding infrastructure to the building's service equipment 
+(power) ground (formerly known as the bonding conductor for telecommunications).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Drawings - T3</TTL><BRK/>
+<BRK/>
+<TXT>Drawings in accordance with <RID>ANSI/TIA-606</RID> that include telecommunications rooms plan views, pathway layout (cable 
+tray, ladder racks, and conduit), mechanical/electrical layout, and[ cabinet,][ rack,][ backboard,][ and] wall 
+elevations.  Drawings must show layout of applicable equipment including incoming cable stub or connector blocks, 
+building protector assembly, outgoing cable connector blocks, patch panels and equipment spaces, and cabinet/racks.  
+Drawings must include a complete list of equipment and material, equipment rack details to include conduit and 
+cable tray data, proposed layout and bonding of equipment and appurtenances, and equipment relationship to other 
+parts of the work including clearance for maintenance and operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Drawings - T4</TTL><BRK/>
+<BRK/>
+<TXT>Detailed drawings of symbols and typical details such as labeling, bonding, installation procedures, detail racking, 
+and raceways.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Drawings - T6</TTL><BRK/>
+<BRK/>
+<TXT>Drawings to include grounding riser diagrams</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Equipment Bonding Conductor (TEBC)</TTL><BRK/>
+<BRK/>
+<TXT>A conductor that connects the primary bonding busbar, secondary bonding busbar or supplementary bonding network 
+to equipment racks or cabinets, rack bonding busbars or rack bonding conductors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unit Bonding Conductor (UBC)</TTL><BRK/>
+<BRK/>
+<TXT>A bonding conductor from equipment or a patch panel to a rack bonding busbar.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G".  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a "G" to an item if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Bonding Busbar</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bonding Conductors</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Bonding Components</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Grounding and Bonding System Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Contractor Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Key Personnel Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Report Of Prior Installations</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Telecommunications Grounding and Bonding System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Record Documentation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Qualifications</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The critical bond between the ACEG and the PBB or SBB must be installed 
+by a licensed electrician.  Once the TBC or ACEG Bonding Conductor is bonded, 
+a telecommunications installer may install the remainder of the telecommunications 
+grounding and bonding system.  It is preferred that a licensed electrician install 
+the entirety of the telecommunications grounding and bonding system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Work and equipment installation under this section must be performed by and provided by approved contractor(s) 
+and key personnel.  Qualifications must be provided for: the telecommunications grounding and bonding contractor, 
+the telecommunications grounding and bonding installer, and the supervisor (if different from the installer).  
+A minimum of 30 days prior to installation, submit documentation of the experience, and certifications of the 
+contractor and all key personnel.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Contractor Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The contractor must be a firm which is regularly and professionally engaged in the business of the implementation, 
+installation, and testing of the specified telecommunications grounding and bonding systems and equipment.  The 
+contractor must demonstrate experience in providing successful telecommunications grounding and bonding systems 
+within the past three years of similar scope and size.  Submit documentation for a minimum of three and a maximum 
+of five successful telecommunications grounding and bonding system installations for the contractor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Key Personnel Qualifications</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For complex installations or critical applications, delete the bracketed 
+option for alternative qualification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide key personnel who are regularly and professionally engaged in the business of providing implementation, 
+installation, and testing of the specified telecommunications grounding and bonding systems and equipment.  There 
+may be one key person, or more key persons proposed for this solicitation depending upon how many of the key 
+roles each has successfully provided.  Each of the key personnel must demonstrate experience in providing successful 
+telecommunications grounding and bonding systems within the past 5 years.  Submit documentation for a minimum 
+of three and a maximum of five successful telecommunications grounding and bonding system installations for the 
+submitted key personnel.  The initial bond between the ACEG busbar and the PBB/SBB must be installed by a licensed 
+electrician.  Supervisors, installers, and testers assigned to the installation of subsequent work of this system 
+or any of its components must be Building Industry Consulting Services International (BICSI) Registered Cabling 
+Installers, Technician Level.  Submit documentation of current electrician's license and BICSI certification 
+for each of the key personnel.[ In lieu of BICSI certification, supervisors and installers assigned to the installation 
+and testing of this system or any of its components must have a minimum of [5][_____] years' experience in the 
+installation of the specified grounding and bonding components and training that is deemed equivalent by the 
+COR.  These must include factory or factory approved certification from each equipment manufacturer indicating 
+that they are qualified to install and test the provided products.] Documentation for each key person must include 
+at least two successful system installations provided that are equivalent in system size and in construction 
+complexity to the telecommunications grounding and bonding system proposed for this solicitation.  Include specific 
+experience in installing and testing telecommunications grounding and bonding systems and provide the names and 
+locations of at least two project installations successfully completed using telecommunications grounding and 
+bonding systems.</TXT><BRK/>
+<BRK/>
+<TXT>All the existing telecommunications grounding and bonding system installations offered by the key persons as 
+successful experience must have been in successful full-time service for at least 18 months prior to the issuance 
+date for this solicitation.  Provide the name and role of the key person, the title, location, and completed 
+installation date of the referenced project, the referenced project owner point of contact information including 
+name, organization, title, and telephone number, and generally, the referenced project description including 
+system size and construction complexity.  Indicate that all key persons are currently employed by the [electrical 
+contractor][ or ][telecommunications contractor] or have a commitment to the [electrical contractor][ or ][telecommunications 
+contractor] to work on this project.  Note that only the key personnel identified in the approved submittals 
+of the successful proposal, and approved by the Contracting Officer, are permitted to do work on this telecommunications 
+grounding and bonding system.  Key personnel must function in the same roles in the contract, as they functioned 
+in the successful experience offered.  Any substitutions for the telecommunications contractor's key personnel 
+requires the resubmission of the qualifications and new approval from the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Minimum <SUB>Manufacturer Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Cabling and equipment manufacturers must have a minimum of [3][_____] year[s] experience in the manufacturing, 
+assembly, and factory testing of components which comply with <RID>ANSI/TIA-607</RID></TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>REGULATORY REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory, as though the 
+word "must" had been substituted for "shall" or "should" wherever it appears.  Interpret references in these 
+publications to the "authority having jurisdiction," or words of similar meaning, to mean the Contracting Officer.  
+Equipment, materials, installation, and workmanship must be in accordance with the mandatory and advisory provisions 
+of <RID>NFPA 70</RID> unless more stringent requirements are specified or indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>STANDARD PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such 
+products which are of equal material, design, and workmanship.  Products must have been in satisfactory commercial 
+or industrial use for [2][_____] year[s] prior to bid opening.  The [2][_____]-year period must include applications 
+for equipment and materials under similar circumstances and of comparable size.  The product must have been on 
+sale on the commercial market through advertisements, manufacturers' catalogs, or brochures during the 2-year 
+period.  Where two or more items of the same class of equipment are required, these items must be products of 
+a single manufacturer; however, the component parts of the item need not be the products of the same manufacturer 
+unless stated in this section.</TXT><BRK/>
+[<BRK/>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a [1][2][_____]-year field service record will be acceptable if a certified record 
+of satisfactory field operation for not less than 6000 hours, excluding the manufacturer's factory or laboratory 
+tests, is provided. </TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Material and Equipment Manufacturing Date</TTL><BRK/>
+<BRK/>
+<TXT>Products manufactured more than 1 year prior to date of delivery to site must not be used, unless specified otherwise.  
+Products must not be delivered to site earlier than 6 months prior to installation. </TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY AND STORAGE</TTL><BRK/>
+<BRK/>
+<TXT>Provide protection from weather, moisture, extreme heat and cold, dirt, dust, and other contaminants for telecommunications 
+cabling and equipment placed in storage.  Visual inspection, for damage, of all material must be performed prior 
+to installation. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE</TTL><BRK/>
+[<BRK/>
+<SPT><TTL><SUB>Telecommunications Grounding and Bonding System</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit operation and maintenance data in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA and 
+as specified herein.  Submit operation and maintenance manuals for telecommunications grounding and bonding system 
+that provide basic data relating to the design, operation, and maintenance of the telecommunications grounding 
+and bonding system for the building.  Include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Riser diagram of the "as-built" building telecommunications grounding and bonding system.</OLI><BRK/>
+<BRK/>
+<OLI>Manufacturers' maintenance manuals on grounding and bonding hardware, bonding features of material, and 
+installation requirements.</OLI><BRK/></OLG>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Record Documentation</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: ANSI/TIA-606 describes the necessary data fields and reports for hard 
+copy, spreadsheet, and electronic media as well as cable management software 
+requirements.  Check with activity ICT Manager to determine if cable management 
+software is currently employed at the activity and provide necessary data input 
+to the existing system to include information associated with project installation 
+in the coordinated/approved/proper format. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide T3, T4, and T6 drawings including documentation on cables and termination hardware in accordance with <RID>
+UFC 3-580-01</RID>.  Drawings must include enlarged floor plans, details, and grounding riser diagrams to show information 
+for grounding and bonding locations and interconnection of grounding systems.  Drawings must be provided [in 
+hard copy format][on electronic media using Windows based computer cable management software].[ A licensed copy 
+of the cable management software including documentation, must be provided.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>The equipment items must be supported by service organizations which are reasonably convenient to the equipment 
+installation to render satisfactory service to the equipment on a regular and emergency basis during the warranty 
+period of the contract and as required in Section <SRF>01 78 00</SRF> CLOSEOUT SUBMITTALS.</TXT><BRK/></SPT>
+</PRT><BRK/>
+<PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>MATERIALS AND EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>As a minimum, meet requirements of UL, where UL standards are established for those items, and requirements of <RID>
+ANSI/TIA-607</RID>, <RID>NFPA 70</RID>, and <RID>NFPA 780</RID> for all materials, equipment, and devices.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COMPONENTS</TTL><BRK/>
+<BRK/>
+<TXT>Components must be UL, or third party certified by a nationally recognized testing laboratory (NRTL).  Where 
+equipment or materials are specified to conform to industry and technical society reference standards of the 
+organizations, submit proof of such compliance.  The label or listing by the specified organization will be acceptable 
+evidence of compliance.  In lieu of the label or listing, submit a certificate from an independent testing organization, 
+competent to perform testing, and approved by the Contracting Officer.  The certificate must state that the item 
+has been tested in accordance with the specified organization's test methods and that the item complies with 
+the specified organization's reference standard.  Provide a complete system of telecommunications grounding and 
+bonding conductors and hardware.  Provide support structures and pathways, complete with conductors, connecting 
+hardware, and grounding busbars.</TXT><BRK/>
+<BRK/>
+<TXT>Conductors and interconnecting hardware and components for telecommunications grounding and bonding systems must 
+be UL listed, or third-party independent testing laboratory certified and must comply with <RID>NFPA 70</RID>, <RID>ANSI/TIA-607</RID>
+, and conform to the requirements specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BONDING PRODUCTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Indicate bonding components and conductor sizes on drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide in accordance with <RID>UL 467</RID>, <RID>ANSI/TIA-607</RID>, and <RID>NFPA 70</RID>.  Components must be labeled as required by <RID>ANSI/TIA-606</RID>
+ and as indicated.  Conductor sizes shown are based on copper, unless indicated otherwise.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Bonding Conductors</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: A TBB is required between the PBB and all SBBs and a BBC is employed to 
+interconnect multiple TBBs through the associated busbars on the same floor 
+in a multi-story building.  A TBB, a BBC, or both are not required for installation 
+when: 1) Only a single PBB is installed; or<BRK/>
+2) Structural steel in the building is electrically continuous and bonded to 
+the electrical grounding electrode system (GES) and available in the TR; and<BRK/>
+3) when an ACEG busbar is available in the TR per UFC 3-580-01.<BRK/>
+Before utilizing structural metal in place of a TBB, building plans (including 
+as-builts as applicable) and specifications must be reviewed to ensure the structural 
+metal is electrically continuous or can be made so.  Additionally, a two point 
+continuity test must be performed on the structural metal to verify electrical 
+continuity and acceptable resistance along the paths used as bonding conductors.  
+Concrete reinforcing steel must not be used as a TBB.<BRK/>
+Improved bonding performance at high frequencies can be achieved by using structural 
+metal in place of or in addition to a TBB.<BRK/>
+A TBC is required between the PBB and the building grounding electrode system.  
+The sizing requirements of the TBC are not listed in UFC 3-580-01, and ANSI/TIA-607 
+states that as a minimum, the TBC must be the same size as the largest TBB.  
+BICSI TDMM provides IAEI calculations for determining the size of the TBC.  
+Size the TBC per IAEI calculations unless a larger TBB or BBC is installed.<BRK/>
+<BRK/>
+<HL4><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="1" ROWCOUNT="1">
+      <COL AUTOWIDTH="0" WIDTH="395.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING"><HL4><HL3>Sizing of the TBB and BBC</HL3></HL4></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/></TAB></HL4><TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="16">
+      <COL AUTOWIDTH="0" WIDTH="198.00"/>
+      <COL AUTOWIDTH="0" WIDTH="197.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><HL3>TBB/BBC linear length <ENG>ft</ENG></HL3></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4><HL3>Conductor Size<BRK/>(AWG)</HL3></HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4>less than<MET> 4</MET><ENG> 
+13</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>6</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>4 - 6</MET> <ENG>14 - 20</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>4</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>6 - 8</MET> <ENG>21 - 26</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>3</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>8 - 10</MET> <ENG>27 - 33</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>2</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>10 - 13</MET> <ENG>34 - 41</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>1</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>13 - 16</MET> <ENG>42 - 52</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>1/0</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>16 - 20</MET> <ENG>53 - 66</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>2/0</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>20 - 26</MET> <ENG>67 - 84</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>3/0</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>26 - 32</MET> <ENG>85 - 105</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>4/0</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>32 - 38</MET> <ENG>106 - 125</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>250 kcmil</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>38 - 46</MET> <ENG>126 - 150</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>300 kcmil</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>46 - 53</MET> <ENG>151 - 175</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>350 kcmil</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>53 - 76</MET> <ENG>176 - 250</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>500 kcmil</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL>
+<DTA TYPE="STRING"><HL4><MET>76 - 91</MET> <ENG>251 - 300</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>600 kcmil</HL4></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING"><HL4>Greater than<MET> 91</MET><ENG> 301</ENG></HL4></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><HL4>750 kcmil</HL4></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<BRK/>
+Choose the second bracketed options where a lightning protection system is provided 
+in the solicitation and specified in other sections.  Choose insulated TBB when 
+pathway is a dissimilar metal than copper.  See ANSI/TIA-607 E Section 6 for 
+further information.<BRK/>
+<BRK/>
+Choose BBC bracketed conductor when two or more stacks of TR’s are required. <BRK/>
+ <BRK/>
+When a tower or antenna is installed, the installation must meet the grounding 
+and bonding requirements of ATIS 0600334.  See annex B of ANSI/TIA-607 for information 
+regarding grounding and bonding of towers and antennas. <BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>ASTM B1</RID>, solid bare copper wire for sizes No. 8 AWG and smaller diameter; <RID>ASTM B8</RID>, Class B, stranded bare copper 
+wire for sizes No. 6 AWG and larger diameter.  Conductors must be installed using two-hole compression type lugs 
+in accordance with <RID>ANSI/TIA-607</RID> and <RID>UL 486A-486B</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Telecommunications Bonding Conductor (TBC)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copper TBC in accordance with <RID>ANSI/TIA-607</RID> and <RID>BICSI TDMM</RID>.  [The TBC must be sized using IAEI calculations 
+as described in <RID>BICSI TDMM</RID> Chapter 9 but must not be smaller than the largest TBB.][The TBC must be sized at 
+2 kcmil per<MET> 30 cm</MET><ENG> linear foot</ENG> with a minimum size of No. 6 AWG and a maximum size of 750 kcmil.][  Provide TBC 
+with insulation as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph INSULATION and meeting 
+the fire ratings of its pathway.]</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Telecommunications Bonding Backbone (TBB)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copper TBB in accordance with <RID>ANSI/TIA-607</RID>.  The TBB must be sized at 2 kcmil per<MET> 30 cm</MET><ENG> linear foot</ENG>
+ with a minimum size of No. 6 AWG and a maximum size of 750 kcmil.  Determine linear length as the shortest practical 
+route between the PBB and the furthest SBB.[  Provide TBB with insulation as specified in Section <SRF>26 20 00</SRF> INTERIOR 
+DISTRIBUTION SYSTEM paragraph INSULATION and meeting the fire ratings of its pathway.]</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Backbone Bonding Conductor (BBC)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copper BBC in accordance with <RID>ANSI/TIA-607</RID>.  The BBC must be sized at 2 kcmil per<MET> 30 cm</MET><ENG> linear foot</ENG>
+ with a minimum size of No. 6 AWG but must not be smaller than the largest TBB to which it is connected.[  Provide 
+BBC with insulation as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph INSULATION and meeting 
+the fire ratings of its pathway.]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Alternating Current Equipment Ground (ACEG) Bonding Conductor</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copper ACEG Bonding Conductor in accordance with <RID>ANSI/TIA-607</RID> and <RID>BICSI TDMM</RID>.[  The ACEG Bonding Conductor 
+must be sized using IAEI calculations as described in <RID>BICSI TDMM</RID> Chapter 9, but must not be smaller than the 
+largest TBB.][  The ACEG Bonding Conductor must be sized at 2 kcmil per<MET> 30 cm</MET><ENG> linear foot</ENG> with a minimum size 
+of No. 6 AWG and no smaller than the largest TBB.]  Provide ACEG Bonding Conductor with insulation as specified 
+in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph INSULATION and meeting the fire ratings of its pathway. </TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Rack Bonding Conductor (RBC)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If telecommunications racks/cabinets are provided by the contractor as 
+a part of the scope, retain this paragraph.<BRK/>
+<BRK/>
+ANSI/TIA-607 Figure 8, Example "A" is not allowed for DOD installations.  Coordinate 
+design drawing to implement Example "B" or Example "C" only. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a copper Rack Bonding Conductor (RBC) in accordance with <RID>ANSI/TIA-607</RID>.  Provide RBC with insulation as 
+specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph INSULATION.  RBC must be at a minimum No. 
+6 AWG.<RID>ANSI/TIA-607</RID> Figure 8, Example "A" is not allowed and an RBC must not be substituted for an Rack Bonding 
+Busbar (RBB) in any location.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Secondary Bonding Conductor (SBC)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: A Secondary Bonding Conductor (SBC) is used only when the SBB is not bonded 
+directly to the TBB.  Projects that require a PBB only, or a single SBB will 
+not have an SBC.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a copper Secondary Bonding Conductor (SBC) in accordance with <RID>ANSI/TIA-607</RID>.  Provide SBC with insulation 
+as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph INSULATION.  At a minimum, the SBC must 
+be the greater of No. 6 AWG or the largest conductor bonded to the associated SBB.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Telecommunications Equipment Bonding Conductor (TEBC)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copper TEBC in accordance with <RID>ANSI/TIA-607</RID>.  Provide TEBC with insulation as specified in Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph INSULATION.  The TEBC must be continuous and sized not less than 
+a No. 6 AWG or as the largest size equipment grounding conductor in the branch power circuit(s) serving the rack/cabinet 
+lineup.  Cable shields, metal conduit, cable runway or ladder, or any other metallic cable pathway do not satisfy 
+the requirements for a TEBC.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unit Bonding Conductor (UBC)</TTL><BRK/>
+<BRK/>
+<TXT>Provide a copper UBC in accordance with <RID>ANSI/TIA-607</RID> for appliances that have manufacturer bonding connections 
+available.  Provide UBC with insulation as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph 
+INSULATION.[  Size UBC per telecommunications equipment manufacturer recommendations.][  UBC must be at a minimum 
+No. 12 AWG.]  Bonding per Example "A" of <RID>ANSI/TIA-607</RID> is not permitted.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Structural Metal Bonding Conductor</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Structural metal bonding conductors are typically provided as bare copper 
+wires and are exothermically welded to structural steel.  Delete bracketed option 
+unless required otherwise by ICT Manager.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a copper structural metal bonding conductor in accordance with <RID>ANSI/TIA-607</RID>.[  Provide structural metal 
+bonding conductor with insulation as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph INSULATION.]  
+The structural metal bonding conductor must be sized at 2 kcmil per<MET> 30 cm</MET><ENG> linear foot</ENG> with a minimum size of 
+No. 6 AWG and a maximum size of 750 kcmil.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Cable Tray Bonding Jumper</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The bonding of cable tray sections can be accomplished with the use of 
+approved mechanical bonds that provide a maximum bonding resistance of 100 micro-ohms.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Bonding jumpers or mechanical bonds supplied by the cable tray manufacturer must provide a maximum bonding resistance 
+of 1 milliohm.  If not supplied by the cable tray manufacturer or if unable to meet the maximum bonding resistance 
+requirements, provide a copper bonding jumper across connection points in accordance with <RID>ANSI/TIA-607</RID>.[  Provide 
+cable tray bonding jumper with insulation as specified in Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM paragraph 
+INSULATION.] Provide cable tray bonding jumpers not smaller than [10 AWG][6 AWG] and not longer than<MET> 300 mm</MET><ENG> 12 
+in</ENG>.  If jumper is wire, it must be terminated with lugs having [one hole and standard barrel for one crimp][two 
+holes and long barrel for two crimps].  If jumper is flexible braid, it must be terminated with [one- or two-hole 
+ferrule][one-hole ferrule].  Attach with bonding screw or connector provided by cable tray manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Bonding Busbar</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: ANSI/TIA-607 lists theminimum width for the PBB as<MET> 100 mm</MET><ENG> 4 in</ENG> and for 
+the SBB as<MET> 50 mm</MET><ENG> 2 in</ENG>.  However, to allow for future expansion and mitigate 
+the need for replacement of the SBB, the minimum width for the SBB is<MET> 100 mm</MET><ENG>
+ 4 in</ENG>.  Telecommunications bonding busbar provides bonding termination for all 
+metallic elements in the telecommunications systems.  Choose the bracketed option 
+for SBB when there are more than one telecommunications rooms or telecommunications 
+equipment rooms included in the project. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide isolated, corrosion-resistant bonding busbar suitable for [indoor][outdoor] installation in accordance 
+with <RID>ANSI/TIA-607</RID>.  Busbars: plated for reduced contact resistance.  Provide a Primary bonding busbar (PBB) in 
+the telecommunications entrance facility [and a Secondary bonding busbar (SBB) in all other telecommunications 
+rooms and equipment rooms].  The PBB[ and the SBB]: sized in accordance with the immediate application requirements 
+and with consideration of future growth.[  Provide[ vertical][ horizontal] Rack Bonding Busbar (RBB) in each[ 
+rack][ cabinet].]  Provide bonding busbars with the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Predrilled copper busbar provided with holes for use with standard sized two-hole lugs.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum dimensions of<MET> 6 mm</MET><ENG> 0.25 in</ENG> thick by<MET> 100 mm</MET><ENG> 4 in</ENG> wide for the PBB[ and SBBs] with length [as required 
+for the number of terminations plus 50 percent with a minimum length of<MET> 300 mm</MET><ENG> 12 in</ENG>][as indicated][ 
+and[<MET> 6 mm</MET><ENG> 0.25 in</ENG> thick by[<MET> 762 mm</MET><ENG> 30 in</ENG>][<MET> 648 mm</MET><ENG> 25.5 in</ENG>][_____] for a vertical RBBs][ or ][<MET>[483 mm]</MET><ENG>
+[19 in]</ENG>[_____] for horizontal RBBs.]]</OLI><BRK/>
+<BRK/>
+<OLI>Minimum stand-off distance of <MET>[50 mm]</MET><ENG>[2 in]</ENG><MET>[100 mm]</MET><ENG>[4 in]</ENG> for the PBB[ and <MET>[50 mm]</MET><ENG>[2 in]</ENG><MET>[100 mm]</MET><ENG>[4 in]</ENG>
+ for the SBB][ and<MET> 19 mm</MET><ENG> 0.75 in</ENG> for the RBB].  The PBB[,[ and][ SBBs]][[,][ and RBBs]] must be insulated 
+from supports using insulators that are listed for the purpose.</OLI><BRK/>
+<BRK/>
+<OLI>Listed by a nationally recognized testing laboratory.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Bonding Components</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Exothermic Weld</TTL><BRK/>
+<BRK/>
+<TXT>Make exothermic welds strictly in accordance with the weld manufacturer's written recommendations.  Welds which 
+are "puffed up" or which show convex surfaces indicating improper cleaning are not acceptable.  Mechanical connectors 
+are not required at exothermic welds.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Irreversible Compression-Type Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Make irreversible compression type connections using a hydraulic or electric compression tool to provide the 
+correct circumferential pressure.  Provide tools and dies as recommended by the manufacturer.  Use an embossing 
+die code or other standard method to provide visible indication that a connector has been adequately compressed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Mesh Bonding Network (mesh-BN)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Mesh-BNs serve two purposes: (1) they approximate an equipotential plane 
+for communication signals; and (2) they help mitigate damage to electronic equipment 
+from lightning electromagnetic pulses imposed on the grounding conductors.  
+The grid pattern provides adequate performance for frequencies with wavelengths 
+larger than half the spacing of the grid.  A<MET> 1200 mm</MET><ENG> 4 ft</ENG> spacing performs well 
+up to about 500 MHz.  A<MET> 10 mm</MET><ENG> 4 in</ENG> spacing performs well up to about 6 GHz.  
+Also, the closer the spacing, the smaller the size of conductor needed.  At 
+each crossing of the grid, the lightning pulse splits to follow all paths; so, 
+the magnitude of the pulse current drops rapidly when the spacing of the grid 
+is small.  See IEEE Std 142 and MIL-HDBK-419A for technical discussion and recommended 
+guidelines for mesh-BNs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a mesh-BN in accordance with <RID>MIL-HDBK-419</RID> and as specified herein.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Access Floor mesh-BN</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: ANSI/TIA-607 recommends No. 6 AWG minimum mesh-BN conductor size.  The 
+mesh-BN must be bonded together no further than every<MET> 3.7 m</MET><ENG> 12 ft</ENG> (approximately 
+6 pedestals) in each direction using listed pedestal ground clamps, but is recommended 
+at least every<MET> 2.4 m</MET><ENG> 8 ft</ENG> (approximately 4 pedestals) in each direction.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide low-impedance path between telecommunications cabinets, equipment racks, and mesh-BN by installing [No. 
+6 AWG][_____] bonding conductors in a grid pattern under the floor.  Bond the mesh-BN conductors every[<MET> 3.7 m</MET><ENG>
+ 12 ft</ENG>][<MET> 2.4 m</MET><ENG> 8 ft</ENG>] in each direction using listed pedestal ground clamps.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>mesh-BN - Wire Mesh</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Retain mesh-BN - Wire Mesh for higher frequency performance and installation 
+in concrete.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide low-impedance path between telecommunications cabinets, equipment racks, and mesh-BN by installing wire 
+mesh [in concrete floor slab][above ceiling] with [No. 10 AWG][No. 8 AWG][No. 6 AWG][No. 4 AWG][No. 2 AWG].</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>mesh-BN - Grid Tape</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Retain mesh-BN - Grid Tape for installation under floor finishes.  Be 
+aware that tape mesh usually becomes visible through the floor finish and causes 
+wear patterns.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide low-impedance path between telecommunications cabinets, equipment racks, and mesh-BN by installing tape 
+mesh under floor finish<MET> 50 mm by 16 mm</MET><ENG> 2 in by 16 mil</ENG> solid copper.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>][<SPT><TTL>Mesh-Isolated Bonding Network (mesh-IBN)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Mesh-IBNs serve two purposes: (1) they approximate an equipotential plane 
+for communication signals; and (2) they help mitigate damage to electronic equipment 
+from lightning electromagnetic pulses imposed on the grounding conductors.  
+The grid pattern provides adequate performance for frequencies with wavelengths 
+larger than half the spacing of the grid.  A<MET> 1200 mm</MET><ENG> 4 ft</ENG> spacing performs well 
+up to about 500 MHz.  A<MET> 10 mm</MET><ENG> 4 in</ENG> spacing performs well up to about 6 GHz.  
+Also, the closer the spacing, the smaller the size of conductor needed.  At 
+each crossing of the grid, the lightning pulse splits to follow all paths; so, 
+the magnitude of the pulse current drops rapidly when the spacing of the grid 
+is small.  The mesh_IBN is typically limited to a restricted area within a building 
+such as in a computer room.  The primary benefit is the blocking of building 
+currents, such as lightning and power faults from entering into the IBN.  See 
+IEEE Std 142 and MIL-HDBK-419A for technical discussion and recommended guidelines 
+for mesh-IBNs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a mesh-IBN in accordance with <RID>MIL-HDBK-419</RID> and as specified herein.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Access Floor mesh-IBN</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: ANSI/TIA-607 recommends No. 6 AWG minimum mesh-IBN conductor size.  The 
+mesh-BN must be bonded together no further than every<MET> 3.7 m</MET><ENG> 12 ft</ENG> (approximately 
+6 pedestals) in each direction using listed pedestal ground clamps, but is recommended 
+at least every<MET> 2.4 m</MET><ENG> 8 ft</ENG> (approximately 4 pedestals) in each direction.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide low-impedance path between telecommunications cabinets, equipment racks, and mesh-IBN by installing [No. 
+6 AWG][_____] bonding conductors in a grid pattern under the floor.  Bond the mesh-IBN conductors every[<MET> 3.7 
+m</MET><ENG> 12 ft</ENG>][<MET> 2.4 m</MET><ENG> 8 ft</ENG>] in each direction using listed pedestal ground clamps.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>mesh-IBN - Wire Mesh</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Retain mesh-IBN - Wire Mesh for higher frequency performance and installation 
+in concrete.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide low-impedance path between telecommunications cabinets, equipment racks, and mesh-IBN by installing wire 
+mesh [in concrete floor slab][above ceiling] with [No. 10 AWG][No. 8 AWG][No. 6 AWG][No. 4 AWG][No. 2 AWG].</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>mesh-IBN - Grid Tape</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Retain mesh-IBN - Grid Tape for installation under floor finishes.  Be 
+aware that tape mesh usually becomes visible through the floor finish and causes 
+wear patterns.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide low-impedance path between telecommunications cabinets, equipment racks, and mesh-IBN by installing tape 
+mesh under floor finish<MET> 50 mm by 16 mm</MET><ENG> 2 in by 16 mil</ENG> solid copper.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>]</SPT><SPT><TTL>LABELS</TTL><BRK/>
+<BRK/>
+<TXT>Comply with <RID>ANSI/TIA-606</RID> and <RID>UL 969</RID> for a system of labeling materials, including label stocks, laminating adhesives, 
+and inks used by label printers.</TXT><BRK/>
+<OLG><BRK/>
+<BRK/>
+<OLI>Brass Tag: Pre-pressed,<MET> 38 mm</MET><ENG> 1-1/2 inch</ENG> diameter brass label with the words "DO NOT DISCONNECT".</OLI><BRK/>
+<BRK/>
+[<OLI>Vinyl Wraparound Labels: Preprinted, flexible labels laminated with a clear, weather- and chemical-resistant 
+coating and matching wraparound clear adhesive tape for securing label ends.</OLI><BRK/>
+<BRK/>
+][<OLI>Snap-Around Labels: Slit, pretensioned flexible, preprinted, color-coded acrylic sleeves, with diameters 
+sized to suit diameters of raceway or cable they identify, that stay in place by gripping action.</OLI><BRK/>
+<BRK/>
+][<OLI>Self-Adhesive Wraparound Labels: Preprinted,<MET> 0.08 mm</MET><ENG> 3 mil</ENG> thick, [polyester][vinyl] flexible labels 
+with acrylic pressure-sensitive adhesive.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Self-Lamination: Clear; UV-, weather-, and chemical-resistant; self-laminating protective shields 
+over the legend.  Labels sized such that the clear shield overlaps the entire printed legend.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Machine-printed, permanent, waterproof black ink recommended by printer manufacturer.</OLI><BRK/>
+<BRK/>
+][<OLI>Self-Adhesive Labels: [Polyester][Vinyl], thermal, transfer-printed,<MET> 0.08 mm</MET><ENG> 3 mil</ENG> thick, multicolor, 
+weather- and UV-resistant, pressure-sensitive adhesive labels, configured for intended use and location.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Minimum Nominal Size:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3"><MET>37 by 150 mm </MET><ENG>1-1/2 by 6 inches </ENG>for raceway and conductors.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3"><MET>76 by 127 mm </MET><ENG>3-1/2 by 5 inches </ENG>for busbars.</OLI><BRK/></OLG>
+]<BRK/></SPT>
+<SPT><TTL>FIRESTOPPING MATERIAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Firestopping material requirements are specified in Section <SRF>07 84 00</SRF> FIRESTOPPING.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide as specified in Section <SRF>07 84 00</SRF> FIRESTOPPING.  Ends of conduit stubs must be treated as part of the 
+overall assembly.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Minimum requirement is for 25 ohm resistance.  Only require a resistance 
+of 5 ohms or less for critical facilities or as directed by the Telecommunications 
+Manager.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Examine facility's grounding electrode system and equipment grounding for compliance with requirements 
+for [25 ohm][5 ohm] maximum ground-resistance level and other conditions affecting performance of grounding 
+and bonding of electrical system.</OLI><BRK/>
+<BRK/>
+<OLI>Inspect test results of grounding system measured at point of TBC connection.</OLI><BRK/>
+<BRK/>
+<OLI>Prepare written <SUB>report of prior installations</SUB>, endorsed by Installer, listing conditions detrimental 
+to performance of the Work.</OLI><BRK/>
+<BRK/>
+<OLI>Proceed with connection of TBC only after unsatisfactory conditions have been corrected.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Grounding through the equipment Alternating Current (AC) power cord does not meet the intent of this specification.  
+Information technology equipment must be provided with a supplementary and specific ground path for the equipment 
+over and above the required alternating current or direct current power ground path.  Install all grounding and 
+bonding conductors in accordance with <RID>ANSI/BICSI N3</RID>, <RID>ANSI/TIA-607</RID>, and manufacturer's published instructions.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Bonding Conductors</TTL><BRK/>
+<BRK/>
+<TXT>Bonding conductors must not be placed in ferrous metallic conduit unless otherwise required by <RID>NFPA 70</RID>.  If it 
+is necessary to place bonding conductors in ferrous metallic conduit, bond the conductors to each end of the 
+conduit using a grounding bushing where the bonding jumper is the same size or larger than the bonding conductor.  
+Outside of telecommunications spaces, install conductors in<MET> metric designator 21</MET><ENG> trade size 3/4</ENG> conduit in accordance 
+with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/>
+<TXT>Bonding conductors routed through ferrous metallic enclosures must be bonded to the enclosure with a grounding 
+bushing where the bonding jumper is the same size or larger than the bonding conductor.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For new construction, delete the allowance for stacked bonding conductors.  
+For renovations where existing bonding space is limited, stacking of conductors 
+is permitted utilizing listed hardware.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Stacking of conductors under a single bolt must utilize hardware listed for the application.][Stacking of conductors 
+under a single bolt is not permitted.]  Assemble wire connector to conductor, complying with manufacturer's published 
+instructions and as follows: Use crimping tool and die specific to the connector, pre-twist the conductor, and 
+apply antioxidant compound to bolted and compression connections.</TXT><BRK/>
+<BRK/>
+<TXT>Install all bonding conductors to the maximum extent possible without splices and routed in the shortest possible 
+straight-line path.  Where splices are necessary, the number of splices are to be minimized as much as possible.  
+Make necessary splices accessible and located in telecommunications spaces.  Make necessary splices using exothermic 
+welding or irreversible compression-type connectors.  Install all joints to be adequately supported and protected 
+from damage.  Support conductors at not more than<MET> 900 mm</MET><ENG> 36 in</ENG> intervals.</TXT><BRK/>
+<BRK/>
+<TXT>Bends of bonding conductors terminating at the Primary Bonding Busbar (PBB)[ or Secondary Bonding Busbar (SBB)] 
+must have a minimum inside bend radius of<MET> 200 mm</MET><ENG> 8 in</ENG>.  At other locations, make bends in bonding conductors 
+with the greatest practical inside bend radius.  A minimum bend radius of 10 times the bonding conductor diameter 
+is recommended.  A minimum included angle of 90 degrees must be used.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Telecommunications Bonding Conductor (TBC)</TTL><BRK/>
+<BRK/>
+<TXT>Install a TBC between the PBB and service equipment power ground.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Telecommunications Bonding Backbone (TBB)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The type of building construction, building size, general telecommunications 
+requirements, and the configuration of the telecommunications pathways and spaces 
+should be considered when designing the TBB. <BRK/>
+A TBB is not required for installation when: <BRK/>
+1) Only a single PBB is installed; or<BRK/>
+2) Structural steel in the building is electrically continuous and bonded to 
+the electrical grounding electrode system (GES) and available in the TR; and<BRK/>
+3) when an ACEG bus is available in the TR per UFC 3-580-01.<BRK/>
+Before utilizing structural metal in place of a TBB, building plans (including 
+as-builts as applicable) and specifications must be reviewed to ensure the structural 
+metal is electrically continuous or can be made so.  Additionally, a two point 
+continuity test must be performed on the structural metal to verify electrical 
+continuity and acceptable resistance along the paths used as bonding conductors.  
+Concrete reinforcing steel must not be used as a TBB.<BRK/>
+Improved bonding performance at high frequencies can be achieved by using structural 
+metal in place of or in addition to a TBB.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The TBB must: be connected to the PBB, be consistent with the design of the telecommunications backbone cabling 
+system, permit multiple TBBs as necessary, be continuous from the PBB to the furthest SBB to which it is connected, 
+and minimize, to the extent practical, the lengths of the TBB(s).  The TBB conductors must be protected from 
+physical and mechanical damage.  Metallic cable shield(s) or any metal pathway for cable must not be used as 
+a TBB nor water piping systems be used as a TBB.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Bonding Backbone Conductor (BBC)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: When there are multiple TBBs, the BBC is employed to interconnect them 
+through the associated busbars on the same floor in a multi-story building. <BRK/>
+A BBC is not required for installation when: <BRK/>
+1) Only a single TBB is installed; or<BRK/>
+2) Structural steel in the building is electrically continuous and bonded to 
+the electrical grounding electrode system (GES) and available in the TR; and<BRK/>
+3) when an ACEG bus is available in the TR per UFC 3-580-01.<BRK/>
+Before utilizing structural metal in place of a BBC, building plans (including 
+as-builts as applicable) and specifications must be reviewed to ensure the structural 
+metal is electrically continuous or can be made so.  Additionally, a two point 
+continuity test must be performed on the structural metal to verify electrical 
+continuity and acceptable resistance along the paths used as bonding conductors.  
+Concrete reinforcing steel must not be used as a BBC.<BRK/></NPR>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a Bonding Backbone Conductor (BBC) between all TBBs in a multistory building at the top floor, and at 
+a minimum of every third floor in between to the lowest floor level.  The BBC must be bonded to the associated 
+SBB utilizing exothermic welding, listed compression two-hole lugs, or listed exothermic two-hole lugs.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Bonding Conductors for Connections to the [mesh-BN or ]RBB</TTL><BRK/>
+<BRK/>
+<TXT>Bonding conductors used to bond components to the [mesh-BN or ]RBB must: be stranded copper conductors, be neatly 
+routed and no longer than practical to bond the component to the[ mesh-BN or] RBB, be secured at no greater than<MET>
+ 1 m</MET><ENG> 3 ft</ENG> intervals, not be routed so as to create a tripping hazard or impair access to equipment, not be attached 
+with any method that could damage the conductors, be listed as suitable for bonding applications, and be available 
+for use in the space in which they will be placed.  [Where uninsulated conductors are utilized, they must be 
+supported by standoff insulators at intervals no greater than<MET> 60 cm</MET><ENG> 2 ft</ENG> or be contained in electrical non-metallic 
+tubing (ENT).  Uninsulated bonding conductors must not be in contact with metallic surfaces or other conductors 
+that are not part of the telecommunications grounding and bonding system.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Telecommunications Equipment Bonding Conductor (TEBC)</TTL><BRK/>
+<BRK/>
+<TXT>Install a TEBC between the Primary Bonding Busbar (PBB)[ or Secondary Bonding Busbar (SBB)] and the equipment 
+Rack Bonding Busbar (RBB).[  Provide a separate TEBC per rack or cabinet.][  The TEBC must be continuous from 
+the PBB[ or SBB] and the furthest RBB.  Connections to the TEBC must be made with listed compression connections, 
+suitable for multiple conductors, and with the Rack Bonding Conductors (RBCs) routed toward the PBB[ or SBB].]  
+Cable shields, metal conduit, cable runway or ladder, or any other metallic cable pathway do not satisfy the 
+requirements for a TEBC.  The TEBC may be routed within cable trays, on the outside of ladder rack tray supported 
+at no greater than<MET> 1 m</MET><ENG> 3 ft</ENG> intervals, or along equipment platforms.  The TEBC must be separated a minimum of<MET>
+ 50 mm</MET><ENG> 2 in</ENG> from conductors of other cable groups, except when conductors are grouped together to enter or exit 
+an enclosure, and ferrous material.  In locations where TEBC cannot meet separation requirements from ferrous 
+material, bond the TEBC to the ferrous material.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unit Bonding Conductor (UBC)</TTL><BRK/>
+<BRK/>
+<TXT>Install a UBC between the Rack Bonding Busbar (RBB) and the cabinet/rack mounted equipment.  The UBC must be 
+connected to the RBB using a listed compression connection and to the grounding post of the cabinet/rack mounted 
+equipment per manufacturer's instructions.  Only bond equiment that has manufacturer bonding connections available.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Bonding Busbar</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The vertical location of the PBB and SBB should be determined by considering 
+whether the bonding conductors are routed in an access floor or overhead cable 
+support.  Its placement should provide for the shortest and straightest practical 
+routing of the TBC and the primary protector grounding conductor if installed.<BRK/>
+<BRK/>
+Modern building construction techniques will bond structural metal to the main 
+alternating current power entrance or another grounding source.  Ensure that 
+when working in existing buildings that the structural metal is bonded to a 
+suitable ground source.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Primary Bonding Busbar (PBB)</TTL><BRK/>
+<BRK/>
+<TXT>Install a Primary Bonding Busbar (PBB) as close as practical to the panelboard serving the Telecommunications 
+Entrance Facility (TEF) and located within the TEF while providing the shortest and straightest practical routing 
+of the Telecommunications Bonding Conductor (TBC).  Maintain clearances as required by <RID>NFPA 70</RID>.  Mount the PBB[[<MET>
+ 460 mm</MET><ENG> 18 in</ENG>][<MET> 2 m</MET><ENG> 6.5 ft</ENG>][_____] above finished floor.][ as indicated.] The PBB and the electrical service 
+ground, where the grounding electrode conductors are bonded together, serve separate purposes and must be two 
+separate busbars even when both are located in the same room or area.<BRK/>
+<BRK/>
+Bonds to the PBB:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Panelboard: Bond all panelboard Alternating Equipment Ground (ACEG) busbars[ or panelboard enclosures] 
+serving the TEF equipment to the PBB using an ACEG Bonding Conductor.</OLI><BRK/>
+<BRK/>
+[<OLI>Primary Protector: Bond the primary protector grounding conductor to the PBB.  A minimum of<MET> 30 cm</MET><ENG> 1 ft</ENG>
+ separation must be maintained between this conductor and any direct current power cables, switchboard 
+cable, or high frequency cables, even when placed in metal conduit.</OLI><BRK/>
+<BRK/>
+][<OLI>Outside Plant Cables: Bond the cable shield on the building side of the cable shield isolation gap to 
+the PBB.</OLI><BRK/>
+<BRK/>
+]<OLI>Structural Metal: Where structural metal is accessible and in the same room as the PBB, bond the structural 
+metal to the PBB using a structural metal bonding conductor.  When practical, because of shorter distances 
+and where horizontal steel members are permanently electrically bonded to vertical column members, the 
+PBB may be bonded to horizontal members in lieu of vertical column members.  When the structural metal 
+is external to the room, but readily accessible, bond the structural metal to the PBB using a structural 
+metal bonding conductor.</OLI><BRK/>
+<BRK/>
+<OLI>Metallic Pathways: Bond all metallic telecommunications pathways<MET> 1 m</MET><ENG> 3 ft</ENG> or greater to the PBB with 
+a minimum [No. 6 AWG][_____] in accordance with <RID>ANSI/BICSI N3</RID>.  For metallic pathways containing bonding 
+conductors where the pathway is bonded to the bonding conductor, no additional bond is required.</OLI><BRK/>
+<BRK/>
+<OLI>Cable Tray: Bond cable tray or runway to the PBB with a cable tray equipment grounding conductor.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical Service Ground: Provide a TBC between the PBB and readily accessible grounding connection 
+of the electrical service in accordance with <RID>ANSI/TIA-607</RID>, <RID>BICSI TDMM</RID>, and <RID>NFPA 70</RID> Section 250.94.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: A TBB is used when two or more telecommunications bonding busbars are 
+installed.  The TBB is installed between the PBB and the furthest SBB with an 
+SBC used to bond any additional SBBs to the TBB.  If only one bonding busbar 
+is installed as part of the project, delete this paragraph.<BRK/>
+A TBB is not required for installation when: <BRK/>
+1) Only a single PBB is installed; or<BRK/>
+2) Structural steel in the building is electrically continuous and bonded to 
+the electrical grounding electrode system (GES) and available in the TR; and<BRK/>
+3) when an ACEG bus is available in the TR per UFC 3-580-01.<BRK/>
+Before utilizing structural metal in place of a TBB, building plans (including 
+as-builts as applicable) and specifications must be reviewed to ensure the structural 
+metal is electrically continuous or can be made so.  Additionally, a two point 
+continuity test must be performed on the structural metal to verify electrical 
+continuity and acceptable resistance along the paths used as bonding conductors.  
+Concrete reinforcing steel must not be used as a TBB.<BRK/>
+Improved bonding performance at high frequencies can be achieved by using structural 
+metal in place of or in addition to a TBB.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Telecommunications Bonding Backbone (TBB): Provide a TBB between the PBB and the furthest Secondary Bonding 
+Busbar (SBB) in accordance with <RID>ANSI/TIA-607</RID>.</OLI><BRK/>
+<BRK/>
+]<OLI>Telecommunications Equipment Bonding Conductor (TEBC): Provide a TEBC between the PBB and [each Rack 
+Bonding Busbar (RBB)][the farthest Rack Bonding Busbar (RBB)].</OLI><BRK/>
+<BRK/>
+<OLI>Electronic Security System (ESS): Bond all ESS equipment located within the TEF to the PBB.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>The connection of conductors for bonding telecommunications equipment and pathways to the PBB must utilize exothermic 
+welding, listed compression two-hole lugs, or listed exothermic two-hole lugs.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Secondary Bonding Busbar (SBB)</TTL><BRK/>
+<BRK/>
+<TXT>Install a minimum of one Secondary Bonding Busbar (SBB) in all other telecommunications spaces.  Multiple SBBs 
+may be installed within the same telecommunications space to aid in minimizing bonding conductor lengths and 
+minimizing terminating space.  Locate the SBB as close as practical to the panelboard serving the telecommunications 
+space and located within the telecommunications space.  Maintain clearances as required by <RID>NFPA 70</RID>.  Mount the 
+PBB[[<MET> 460 mm</MET><ENG> 18 in</ENG>][<MET> 2 m</MET><ENG> 6.5 ft</ENG>][_____] above finished floor.][as indicated.]<BRK/>
+<BRK/>
+Bonds to the SBB:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Panelboard: Bond all panelboard Alternating Equipment Ground (ACEG) busses[ or panelboard enclosures] 
+serving the telecommunications space equipment to the SBB using an ACEG Bonding Conductor.</OLI><BRK/>
+<BRK/>
+<OLI>Telecommunications Bonding Backbone (TBB):  At SBB(s) located furthest from the PBB, bond the TBB to 
+the SBB(s).</OLI><BRK/>
+<BRK/>
+<OLI>Secondary Bonding Conductor (SBC):  Where the SBB is not directly bonded to the TBB, install an SBC between 
+the TBB and the SBB.  The SBC must be continuous and routed in the shortest practical straight-line path.</OLI><BRK/>
+<BRK/>
+[<OLI>Other SBBs:  All SBBs located within the same telecommunications space must be bonded together with [a 
+conductor the same size as the TBB.][splice bars.]</OLI><BRK/>
+<BRK/>
+]<OLI>Structural Metal:  Where structural metal is accessible and in the same room as the SBB, bond the structural 
+metal to the SBB using a structural metal bonding conductor.  When practical, because of shorter distances 
+and where horizontal steel members are permanently electrically bonded to vertical column members, the 
+SBB may be bonded to horizontal members in lieu of vertical column members.  When the structural metal 
+is external to the room, but readily accessible, bond the structural metal to the SBB using a structural 
+metal bonding conductor.</OLI><BRK/>
+<BRK/>
+<OLI>Metallic Pathways:  Bond all metallic telecommunications pathways<MET> 1 m</MET><ENG> 3 ft</ENG> or greater to the SBB with 
+a minimum [No. 6 AWG][_____] in accordance with <RID>ANSI/BICSI N3</RID>.  For metallic pathways containing bonding 
+conductors where the pathway is bonded to the bonding conductor, no additional bond is required.</OLI><BRK/>
+<BRK/>
+<OLI>Cable Tray:  Bond cable tray or runway to the SBB with a cable tray equipment grounding conductor</OLI><BRK/>
+<BRK/>
+<OLI>Telecommunications Equipment Bonding Conductor (TEBC):  Provide a TEBC between the SBB and [each Rack 
+Bonding Busbar (RBB)][the farthest Rack Bonding Busbar (RBB)].</OLI><BRK/>
+<BRK/>
+<OLI>Electronic Security System (ESS):  Bond all ESS equipment located within the telecommunications space 
+to the SBB.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>The connection of conductors for bonding telecommunications equipment and pathways to the SBB must utilize exothermic 
+welding, listed compression two-hole lugs, or listed exothermic two-hole lugs.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Rack Bonding Busbar (RBB)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: A RBB is recommended for all telecommunications equipment enclosures.  
+Delete requirement only when directed by the Telecommunications Manager.<BRK/>
+<BRK/>
+TIA 607 Figure 8, Examples "B" and "C" are the only approved methods for equipment 
+enclosure bonding.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install a [vertical][horizontal] Rack Bonding Busbar (RBB) in each telecommunications cabinet or rack. <BRK/>
+<BRK/>
+Bonds to the RBB:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Telecommunications Equipment Bonding Conductor (TEBC): Bond a TEBC to [each RBB using exothermic welding, 
+listed compression two-hole lugs, or listed exothermic two-hole lugs][the farthest RBB in the telecommunications 
+space.  For all other RBBs within the space, bond the RBB to the TEBC with a Rack Bonding Conductor (RBC).  
+The connection of the TEBC or RBC to the RBB must utilize exothermic welding, listed compression two-hole 
+lugs, or listed exothermic two-hole lugs].</OLI><BRK/>
+<BRK/>
+<OLI>Cabinet and Rack: Bond the cabinet or rack to its associated RBB using a Rack Bonding Conductor (RBC).  
+The connection of the RBC to the RBB must utilize exothermic welding, listed compression two-hole lugs, 
+or listed exothermic two-hole lugs.</OLI><BRK/>
+<BRK/>
+<OLI>Cabinet and Rack Mounted Equipment: Equipment containing metallic parts and patch panels for shielded 
+cabling within cabinets and racks must be bonded to the RBB using a Unit Bonding Conductor (UBC).  The 
+UBC must be connected to the RBB using a listed compression connection and to the grounding post of the 
+telecommunications equipment if provided.  Only bond equipment that has manufacturer bonding connections 
+available.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Telecommunications Cabling</TTL><BRK/>
+<BRK/>
+[<TXT>Metallic sheaths of OSP cables must be bonded to the Primary Bonding Busbar (PBB)[ or Secondary Bonding Busbar 
+(SBB)] as close as practical to the point of entrance in accordance with <RID>ANSI/TIA-607</RID> and manufacturer's instructions.</TXT><BRK/>
+<BRK/>
+][<TXT>Telecommunications backbone cabling incorporating a shield or metallic member must have the shield or metallic 
+member bonded to the Primary Bonding Busbar (PBB)[ or Secondary Bonding Busbar (SBB)] where the cables are terminated 
+or where pairs are "broken out" from the cable sheath in accordance with <RID>ANSI/TIA-607</RID> and manufacturer's instructions.</TXT><BRK/>
+<BRK/>
+][<TXT>The secondary protector grounding conductor or terminal must be connected to the nearest Primary Bonding Busbar 
+(PBB)[ or Secondary Bonding Busbar (SBB)] using the shortest practical path in accordance with <RID>ANSI/TIA-607</RID> and 
+manufacturer's instructions.</TXT><BRK/>
+]<BRK/></SPT>
+[<SPT><TTL>Mesh Bonding Network (mesh-BN)</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Access Floor mesh-BN</TTL><BRK/>
+<OLG><BRK/>
+<OLI>[Provide access floor with integral means to bond the flooring grid as part of the structure][Install 
+grid bonding conductors] on[<MET> 3.7 m</MET><ENG> 12 ft</ENG>][<MET> 2.4 m</MET><ENG> 8 ft</ENG>] centers, to permit bonding of every [sixth][forth] 
+pedestal using listed pedestal ground clamps.  Connect grid conductors together where they cross each 
+other.</OLI><BRK/>
+<BRK/>
+<OLI>Bond PBB[ or SBBs] in room to two or more bonding conductors of reference grid with TEBCs.</OLI><BRK/>
+<BRK/>
+<OLI>Bond equipment to nearest PBB[ or SBB] and to mesh-BN with TEBCs.</OLI><BRK/>
+<BRK/>
+<OLI>Bond conduits and piping entering equipment room with TEBCs to nearest PBB[ or SBB] and to grid conductor 
+nearest entry into room.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>mesh-BN - Wire Mesh</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install grid bonding conductors on[<MET> 50 mm</MET><ENG> 2 in</ENG>][<MET> 75 mm</MET><ENG>3 in</ENG>][<MET>100 mm</MET><ENG> 4 in</ENG>][<MET> 150 mm</MET><ENG> 6 in</ENG>][<MET> 300 mm</MET><ENG> 12 in</ENG>][<MET>
+ 610 mm</MET><ENG> 24 in</ENG>] centers.  Connect grid conductors together where they cross each other.</OLI><BRK/>
+<BRK/>
+<OLI>Bond PBB[ or SBBs] in room to two or more bonding conductors of reference grid with TEBCs.</OLI><BRK/>
+<BRK/>
+<OLI>Bond equipment to nearest PBB[ or SBB] and to mesh-BN with TEBCs.</OLI><BRK/>
+<BRK/>
+<OLI>Bond conduits and piping entering equipment room with TEBCs to nearest PBB[ or SBB] and to grid conductor 
+nearest entry into room.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>mesh-BN - Grid Tape</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install mesh tape on[<MET> 300 mm</MET><ENG> 12 in</ENG>][<MET> 610 mm</MET><ENG> 24 in</ENG>] centers.  Connect mesh tape together where they cross 
+each other.</OLI><BRK/>
+<BRK/>
+<OLI>Bond PBB[ or SBBs] in room to two or more bonding conductors of reference grid with TEBCs.</OLI><BRK/>
+<BRK/>
+<OLI>Bond equipment to nearest PBB[ or SBB] and to mesh-BN with TEBCs.</OLI><BRK/>
+<BRK/>
+<OLI>Bond conduits and piping entering equipment room with TEBCs to nearest PBB[ or SBB] and to grid conductor 
+nearest entry into room.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>][<SPT><TTL>Mesh-Isolated Bonding Network (mesh-IBN)</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Access Floor mesh-IBN</TTL><BRK/>
+<OLG><BRK/>
+<OLI>[Provide access floor with integral means to bond the flooring grid as part of the structure][Install 
+grid bonding conductors on[<MET> 3.7 m</MET><ENG> 12 ft</ENG>][<MET> 2.4 m</MET><ENG> 8 ft</ENG>] centers, to permit bonding of every [sixth][forth] 
+pedestal using listed pedestal ground clamps.  Connect grid conductors together where they cross each 
+other.]</OLI><BRK/>
+<BRK/>
+<OLI>Bond PBB[ or SBBs] in room to a single bonding conductor of reference grid with TEBC.</OLI><BRK/>
+<BRK/>
+<OLI>Bond equipment to mesh-IBN with TEBCs.</OLI><BRK/>
+<BRK/>
+<OLI>Bond conduits and piping entering equipment room with TEBCs to grid conductor nearest entry into room.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>mesh-IBN - Wire Mesh</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install grid bonding conductors on[<MET> 50 mm</MET><ENG> 2 in</ENG>][<MET> 75 mm</MET><ENG>3 in</ENG>][<MET>100 mm</MET><ENG> 4 in</ENG>][<MET> 150 mm</MET><ENG> 6 in</ENG>][<MET> 300 mm</MET><ENG> 12 in</ENG>][<MET>
+ 610 mm</MET><ENG> 24 in</ENG>] centers.  Connect grid conductors together where they cross each other.</OLI><BRK/>
+<BRK/>
+<OLI>Bond PBB[ or SBBs] in room to a single bonding conductor of reference grid with TEBC.</OLI><BRK/>
+<BRK/>
+<OLI>Bond equipment to mesh-IBN with TEBC.</OLI><BRK/>
+<BRK/>
+<OLI>Bond conduits and piping entering equipment room with TEBCs to grid conductor nearest entry into room.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>mesh-IBN - Grid Tape</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install mesh tape on[<MET> 300 mm</MET><ENG> 12 in</ENG>][<MET> 610 mm</MET><ENG> 24 in</ENG>] centers.  Connect mesh tape together where they cross 
+each other.</OLI><BRK/>
+<BRK/>
+<OLI>Bond PBB[ or SBBs] in room to a single bonding conductor of reference grid with TEBC.</OLI><BRK/>
+<BRK/>
+<OLI>Bond equipment to mesh-IBN with TEBCs.</OLI><BRK/>
+<BRK/>
+<OLI>Bond conduits and piping entering equipment room with TEBCs to grid conductor nearest entry into room.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT>]<SPT><TTL>Cabinets and Racks</TTL><BRK/>
+<BRK/>
+<TXT>Metallic enclosures, including telecommunications cabinets and racks, must be bonded to the [mesh-BN][mesh-IBN][, 
+][or ][PBB][, or][SBB] using a minimum sized [No. 6 AWG][_____].  Cabinets, racks, and other enclosures must 
+not be bonded serially; each must have its own dedicated bonding conductor to the [mesh-BN][, ][or ][PBB][, ][or 
+][SBB][, or][TEBC].  Equipment containing metallic parts and patch panels for shielded cabling in cabinets and 
+racks must be bonded to the telecommunications bonding system [in accordance with <RID>ANSI/TIA-607</RID> and manufacturer's 
+instructions.][a minimum [No. 12 AWG][_____] conductor.] For bolted cabinets and racks, bonding hardware must 
+be specifically designed to accomplish integral bonding of the cabinet and rack assembly, frame, and support, 
+and tested to meet applicable third-party nationally recognized testing laboratory requirements.  All detachable, 
+metallic parts of equipment cabinets and racks must be bonded, either directly by means of bonding jumpers or 
+through the cabinet frame, to the connection point on the cabinet where the cabinet bonding conductor connects 
+to the cabinet.  When a detachable, metallic part of an equipment cabinet or rack is connected by a bonding jumper, 
+the bonding jumper must be a minimum No. 12 AWG stranded, high strand count, insulated copper conductor with 
+green or green with yellow stripe jacket.  The bonding jumper must have an easily visible quick connect to facilitate 
+detaching and attaching the panel or door.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cable Tray Connections</TTL><BRK/>
+<BRK/>
+<TXT>Provide cable tray bonding with mechanical bonds supplied by the cable tray manufacturer or a bondingjumper between 
+connected sections of cable tray or runway.Test bonding connections to ensure a maximum bonding resistance of 
+1 milliohm.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding and Bonding for Towers and Antennas</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Refer to ANSI/TIA-607 Annex B for information regarding grounding and 
+bonding of towers and antennas.  Refer to ATIS 0600334 for additional requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The installation must meet the grounding and bonding requirements of <RID>ATIS 0600334</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Ring Electrode</TTL><BRK/>
+<BRK/>
+<TXT>Install a minimum<MET> 760 mm</MET><ENG> 30 in</ENG> below grade and a minimum<MET> 610 mm</MET><ENG> 24 in</ENG> from base of tower or mounting.  Bond each 
+tower base and metallic frame of dish to ring electrode, buried a minimum<MET> 460 mm</MET><ENG> 18 in</ENG> below grade.  Bond ring 
+electrode and antenna bonding conductors to equipment room PBB[ or SBB], buried a minimum<MET> 760 mm</MET><ENG> 30 in</ENG> below 
+grade.  Bond metal fences located within<MET> 2 m</MET><ENG> 6 ft</ENG> of towers and antennas to ring electrode, buried a minimum<MET> 
+460 mm</MET><ENG> 18 in</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Roof-Mounted Towers</TTL><BRK/>
+<BRK/>
+<TXT>Provide a roof ring that meets the requirements for ring electrode except conductors must comply with <RID>NFPA 780</RID>
+.  Bond tower base footings steel, PBB[ or SBB] in equipment room, and antenna support guys to roof ring.  Connect 
+roof ring to perimeter conductors of lightning protection system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Waveguides and Coaxial Cable</TTL><BRK/>
+<BRK/>
+<TXT>Bond cable shields at point of entry into building to the external grounding system using at minimum No. 2 AWG 
+bonding conductors.  Once cable is inside building, connect cable shields to building interior grounding system 
+using a minimum No. 6 AWG bonding conductor.  Metallic entrance plates must be bonded to cables using a minimum 
+No. 2 AWG bonding conductor for exterior of building, and No. 6 AWG for interior of building.  Bond coaxial cable 
+surge arrester to ring electrode or roof ring using bonding conductor size recommended by surge-arrester manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>IDENTIFICATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Install and label medical facilities in accordance with Defense Health 
+Agency LAN/WLAN Installation Manual.  Label other projects in accordance with 
+ANSI/TIA-606 using a mechanical device for printing.  Labeling schemes are required 
+to be detailed in design drawings and approved by the Telecommunications Manager.  
+Labeling must be IAW the architectural wayfinding and not construction space 
+number/naming conventions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Labels</TTL><BRK/>
+<BRK/>
+<TXT>Provide labeling in accordance with <RID>ANSI/TIA-606</RID>, <RID>UFC 3-580-01</RID>, and as designed.  Handwritten labeling is unacceptable.  
+Stenciled lettering for grounding must be provided using [thermal ink transfer process][laser printer][_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cable</TTL><BRK/>
+<BRK/>
+<TXT>Cables must be labeled with To/From information on opposing ends with identifiers as provided in design drawings 
+and in accordance with <RID>ANSI/TIA-606</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Cables terminated on the PBB[ and SBBs] must have "DO NOT DISCONNECT" brass tags installed at the termination 
+point.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Termination Hardware</TTL><BRK/>
+<BRK/>
+<TXT>Bonding busbars must be labeled using yellow labels with verbiage/identifiers as approved by Telecommunications 
+Manager in accordance with <RID>ANSI/TIA-606</RID>, <RID>UFC 3-580-01</RID>, and as designed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Provide test equipment and personnel and submit written copies of test results.  Technicians who have successfully 
+completed a training program for the test equipment and hold a current certificate as proof thereof must execute 
+the tests.  Give Contracting Officer [5][_____] working days notice prior to [each][_____] test[s].  Test grounding 
+and bonding system in accordance with <RID>ANSI/TIA-607</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Inspection</TTL><BRK/>
+<BRK/>
+<TXT>Prior to performing testing, a visual inspection must be performed to verify all components are installed in 
+accordance with <RID>ANSI/TIA-607</RID>, <RID>NFPA 70</RID>,[ and] <RID>ANSI/BICSI N3</RID>[,[ and] <RID>NFPA 780</RID>][,[ and] <RID>ATIS 0600334</RID>][, and <RID>MIL-HDBK-419</RID>
+].  Verify tightness of accessible, bolted electrical connections with calibrated torque wrench according to 
+manufacturer's published instructions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Grounding and Bonding System Test</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Minimum requirement is for 25 ohm resistance.  Only require a resistance 
+of 5 ohms or less for critical facilities or as directed by the Telecommunications 
+Manager.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Test structural metal using a two-point test in accordance with <RID>ANSI/TIA-607</RID>to verify its conductivity 
+to the building's electrical grounding electrode system before making connection of structural metal 
+bonding conductors. </OLI><BRK/>
+<BRK/>
+<OLI>Test the electrical grounding electrode system using a three-point fall-of-potential method in accordance 
+with <RID>ANSI/TIA-607</RID> before making connection of TBC.  The electrical grounding system must not exceed [25 
+ohms][5 ohms] resistance.  Make resistance measurements in dry weather, not earlier than 48 hours after 
+rainfall.  Document and submit test results in accordance with paragraph SUBMITTALS.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: The recommended maximum value for resistance between any point in the 
+telecommunications bonding system and the building's electrical grounding electrode 
+system is 100 milliohms.  Only require a resistance of 50 milliohms or less 
+for critical facilities or as directed by the Telecommunications Manager.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Bonding system testing is required to determine if an acceptable level of resistance is provided between 
+the telecommunications bonding system and the electrical grounding electrode system.  Perform bonding 
+testing on all segments of the bonding system using a two-point test in accordance with <RID>ANSI/TIA-607</RID> 
+and <RID>ANSI/BICSI N1</RID>.  Testing must be performed prior to the installation of any telecommunications equipment.  
+A maximum value of resistance between any two points in the telecommunications bonding system must be 
+less than 100 micro-ohms and to the buildings electrical grounding electrode system must be less than 
+[100][50] milliohms.  Document and submit test results in accordance with paragraph SUBMITTALS.</OLI><BRK/>
+<BRK/>
+<OLI>Test for ground loop currents using digital clamp-on ammeter, with full scale not more than 10 amperes, 
+displaying current in increments of 0.01 ampere accuracy of plus or minus 2.0 percent.  With grounding 
+infrastructure completed and communications system electronics operating, measure current in bonding 
+conductors connected to the PBB[ and SBB[s]].  Maximum acceptable alternating current level is 1 ampere.  
+Document and submit test results in accordance with paragraph SUBMITTALS.</OLI><BRK/>
+<BRK/>
+<OLI>Test for stray direct current voltages using direct-current voltmeter having an internal resistance (sensitivity) 
+of not less than 10 megohms per volt and a full scale of 10 volts.  With grounding infrastructure completed 
+and communications system electronics operating, measure voltage in bonding conductors connected to the 
+PBB[ and SBB[s]].  Maximum acceptable direct current voltage level is 3 millivolts.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Final labeling must be verified as part of testing and certified as accurate per record documentation.</TXT><BRK/>
+<BRK/>
+<TXT>Telecommunications grounding and bonding will be considered defective if it does not pass tests and inspections.  
+Remove and replace defective units and retest.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PROTECTION</TTL><BRK/>
+<BRK/>
+<TXT>After installation, protect busbars and conductors from construction activities.  Remove and replace items that 
+are contaminated, defaced, damaged, or otherwise caused to be unfit for use prior to acceptance.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

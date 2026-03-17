@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-23 05 48.19 (February 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 05 48.19 (May 2018)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 05 48.19</SCN><BRK/>
+<BRK/>
+<STL>SEISMIC BRACING FOR MECHANICAL SYSTEMS</STL><BRK/>
+<DTE>02/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>seismic protection 
+of mechanical equipment, ductwork, building piping, and exterior utilities.</SCP> 
+Mechanical equipment seismic protection coverage within this specification is 
+supplemental to the Equipment Bracing requirements with section <SRF>13 48 73</SRF> SEISMIC 
+CONTROL FOR NONSTRUCTURAL COMPONENTS</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to section <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS, 
+PART 1 GENERAL editor note for the three options to provide seismic protection 
+design for a project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF CIVIL ENGINEERS (ASCE)</ORG><BRK/><BRK/><RID>ASCE 7-22</RID><RTL>(2022; Supp 1 2023; Supp 2 2023; Supp 3 2025) Minimum Design Loads and Associated Criteria for Buildings and Other Structures</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME BPVC SEC IX</RID><RTL>(2017; Errata 2018) BPVC Section IX-Welding, Brazing and Fusing Qualifications</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WATER WORKS ASSOCIATION (AWWA)</ORG><BRK/><BRK/><RID>AWWA C105/A21.5</RID><RTL>(2018) Polyethylene Encasement for Ductile-Iron Pipe Systems</RTL><BRK/><BRK/><RID>AWWA C116/A21.16</RID><RTL>(2015) Protective Fusion-Bonded Coatings for the Interior and Exterior Surfaces of Ductile-Iron and Gray Iron Fittings</RTL><BRK/><BRK/><RID>AWWA C153/A21.53</RID><RTL>(2019) Ductile-Iron Compact Fittings for Water Service</RTL><BRK/><BRK/><RID>AWWA C213</RID><RTL>(2022) Fusion-Bonded Epoxy Coatings and Linings for Steel Water Pipe and Fittings</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A536</RID><RTL>(2024) Standard Specification for Ductile Iron Castings</RTL><BRK/><BRK/><RID>ASTM D1785</RID><RTL>(2021) Standard Specification for Poly(Vinyl Chloride) (PVC), Plastic Pipe, Schedules 40, 80, and 120</RTL><BRK/><BRK/><RID>ASTM D2665</RID><RTL>(2025) Standard Specification for Poly(Vinyl Chloride) (PVC) Plastic Drain, Waste, and Vent Pipe and Fittings</RTL><BRK/><BRK/><RID>ASTM F891</RID><RTL>(2024) Standard Specification for Coextruded Poly (Vinyl Chloride) (PVC) Plastic Pipe with a Cellular Core</RTL><BRK/><BRK/></REF><REF><ORG>FEDERAL EMERGENCY MANAGEMENT AGENCY (FEMA)</ORG><BRK/><BRK/><RID>FEMA P-414</RID><RTL>(January 2004) Installing Seismic Restraints for Duct and Pipe</RTL><BRK/><BRK/></REF><REF><ORG>NSF INTERNATIONAL (NSF)</ORG><BRK/><BRK/><RID>NSF/ANSI/CAN 61</RID><RTL>(2024) Drinking Water System Components - Health Effects</RTL><BRK/><BRK/></REF><REF><ORG>SHEET METAL AND AIR CONDITIONING CONTRACTORS' NATIONAL ASSOCIATION (SMACNA)</ORG><BRK/><BRK/><RID>SMACNA 1981</RID><RTL>(2024) Seismic Restraint Manual Guidelines for Mechanical Systems, 3rd Edition</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 3-301-01</RID><RTL>(2023; with Change 6, 2026) Structural Engineering</RTL><BRK/><BRK/><RID>UFC 3-301-02</RID><RTL>(2023; with Change 1, 2025) Design of Risk Category V Structures, National Strategic Military Assets</RTL><BRK/><BRK/></REF><REF><ORG>VIBRATION ISOLATION AND SEISMIC CONTROL MANUFACTURERS ASSOCIATION (VISCMA)</ORG><BRK/><BRK/><RID>VISCMA 412</RID><RTL>(2014) Installing Seismic Restraints for Mechanical Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer should verify that specified details do not interfere with the 
+performance of the cathodic protection system (when used) or of the vibration 
+isolation systems.</NPR><BRK/>
+<BRK/>
+<NPR>For systems and equipment in RC V buildings that have a performance objective 
+higher than non-mission critical (NMC), the designer should show a "G" classification 
+for the items under SD-02 Shop Drawings in the SUBMITTALS paragraph.  The Engineer 
+of Record (EOR) should review the details of these essential systems and assess 
+their impact on the structural supporting system of the essential building.  
+This also includes Designated Seismic Systems that must remain operational after 
+an earthquake.</NPR><BRK/>
+<BRK/>
+<NPR>Design done by the Contractor must be in accordance with UFC 3-301-01 (UFC 3-301-02 
+for RC V facilities). Requirements for Contractor Designed Bracing are covered 
+by specification section <SRF>13 48 73</SRF>SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS 
+which must be used in conjunction with this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Apply the requirements for seismic protection measures described in this section, Section <SRF>13 48 73</SRF> SEISMIC CONTROL 
+FOR NONSTRUCTURAL COMPONENTS, and on the drawings to the mechanical equipment and mechanical systems both inside 
+and outside of the building along with exterior utilities and systems listed below.  Where there is a conflict 
+between the specifications and the drawings, the specifications will take precedence.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mechanical Equipment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must ensure that the list below includes all mechanical 
+items to be braced.  Delete the items which are not part of the project and 
+add items which are not included in the list.</NPR><BRK/>
+<BRK/>
+<NPR>The lists should be broken out as follows:<BRK/>
+<BRK/>
+For mechanical equipment, components and systems in Risk Category V structures,  
+the designer should provide three  separate lists of equipment and systems; 
+non-Mission Critical (NMC), Mission Critical Level 1 (MC-1 equipment and components 
+must be fully operational immediately after a seismic event), or Mission Critical 
+Level 2 (MC-2 equipment and components must be repairable and operable within 
+3 days after a seismic event).</NPR><BRK/>
+<BRK/>
+<NPR>For mechanical equipment, components, and systems in Risk Category I, II, III, 
+or IV structures, two separate lists of nonstructural systems/components must 
+be provided; components/systems with Ip = 1.0 and components/systems with Ip 
+= 1.5 (Designated Seismic Systems).</NPR><BRK/>
+<BRK/>
+<NPR>The lists must be specific where more than one list is required.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mechanical equipment restraints must be in accordance with the requirements for equipment restraints specified 
+in section <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS. Mechanical equipment to be seismically protected 
+must include the following items to the extent required on the drawings or in other sections of these specifications:<BRK/>
+<BRK/>
+[Equipment/Components with Ip = 1.0]</TXT><BRK/>
+<LST><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="18">
+      <COL AUTOWIDTH="0" WIDTH="216.00"/>
+      <COL AUTOWIDTH="0" WIDTH="216.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Boilers and furnaces</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Storage Tanks for Oil and Water</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Water Heaters</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Expansion Air Separator Tanks</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Valves and Fittings for Piping</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Heat Exchangers</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Steam-fed Kitchen Appliances</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Water Chiller Units</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Thermal Storage Units</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="34.50">
+         <CEL>
+<DTA TYPE="STRING">Cooling Towers, Evaporative Coolers, and Fluid Coolers</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Air and Refrigerant Compressors</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Computer Room Air Conditioners</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Air Handling Units</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Pumps with Motors</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Lab Scrubbers</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Large Commercial Dryers</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Pollution Control Equipment</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Gas Dryers</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Split System DX Units</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Flash Tanks</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Unit Heaters</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Accumulator Tank</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Exhaust, Return and Misc. Fans</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Gas Cylinders</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Solar Heating and Hot Water Units</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Bridge Cranes and Monorails</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Pumps</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Air Terminal Units</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Unitary HVAC Systems</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Humidifiers</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Fan Coil Units</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Stacks</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Instrumentation and Control for HVAC</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL>
+<DTA TYPE="STRING">Duct Mounted Coils</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Duct Silencers</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<TXT>[Equipment/Components with Ip = 1.5 (Designated Seismic Systems)<BRK/>
+Insert edited list here similar to one above for Ip = 1.0]<BRK/>
+[Non-Mission Critical (NMC) Equipment/Components in Risk Category V<BRK/>
+Insert edited list here similar to one above for Ip = 1.0]<BRK/>
+[Mission Critical Level 1  (MC-1) Equipment/Components in Risk Category V<BRK/>
+Insert edited list here similar to one above for Ip = 1.0] <BRK/>
+[Mission Critical Level 2 (MC-2) Equipment/Components in Risk Category V<BRK/>
+Insert edited list here similar to one above for Ip = 1.0]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mechanical Systems</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer must ensure that the list below includes all piping and 
+mechanical systems which are to be installed or modified.  Delete the items 
+which are not part of the project and add items which are not included in the 
+list.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mechanical systems to be seismically protected must include the following items to the extent required on the 
+drawings or in this or other sections of these specifications:<BRK/>
+<BRK/>
+[Mechanical systems with Ip = 1.0]</TXT><BRK/>
+<OLG><BRK/>
+<OLI>All Piping and Ducts Inside the Building Except as Specifically Stated Below  Under "Items Not Covered 
+By  This Section".</OLI><BRK/>
+<BRK/>
+<OLI>Chilled Water Distribution Systems Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Steam, Water, Oil, Gas and Fuel Piping Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>All Water Supply Systems Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Storm and Sanitary Sewer Systems Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>All Process Piping Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Heat Distribution Systems (Supply, Return, and Condensate Return) Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Condenser Water and Refrigerant Piping Outside the Building.</OLI><BRK/>
+<BRK/>
+<OLI>Pneumatic Tube Distribution System Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Cold Storage Refrigeration Systems Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Fuel Storage Tanks Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Water Storage Tanks Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Ductwork Outside of Buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Stacks.</OLI><BRK/>
+<BRK/>
+<OLI>[_____]</OLI><BRK/></OLG>
+<BRK/>
+<TXT>[Mechanical systems with Ip = 1.5 (Designated Seismic Systems)<BRK/>
+Insert edited list here similar to one above for Ip = 1.0]<BRK/>
+[Non-Mission Critical (NMC) Mechanical Systems in Risk Category V <BRK/>
+Insert edited list here similar to one above for Ip = 1.0]<BRK/>
+[Mission Critical Level 1  (MC-1) Mechanical Systems in Risk Category V<BRK/>
+Insert edited list here similar to one above for Ip = 1.0] <BRK/>
+[Mission Critical Level 2 (MC-2) Mechanical Systems in Risk Category V<BRK/>
+Insert edited list here similar to one above for Ip = 1.0]</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Contractor Designed Supports and Attachments</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain this paragraph when the Contractor will design the bracing.  The 
+designer will refer and modify the listings above or will list below the equipment 
+and systems to receive seismic bracing.  Delete this paragraph when all bracing 
+details and locations are indicated on the drawings and calculations are included 
+in the Design Analysis.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The supports and attachments for the mechanical equipment designated in paragraph Mechanical Equipment must be 
+developed by the Contractor complying with the requirements of <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS.  
+Submit design calculations as required by <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS.</TXT><BRK/>
+<BRK/>
+<TXT>Design and provide seismic supports and attachments for mechanical systems listed in paragraph Mechanical Systems 
+in accordance with <RID>ASCE 7-22</RID> Chapter 13 and as modified by <RID>UFC 3-301-01</RID>[ <RID>UFC 3-301-02</RID>]. Refer to <SRF>13 48 73</SRF> SEISMIC 
+CONTROL FOR NONSTRUCTURAL COMPONENTS paragraph GENERAL REQUIREMENTS for Structural Design Criteria.</TXT><BRK/>
+<BRK/>
+<TXT>[Provide documentation of an independent design review for mission critical (MC) component or systems bracing 
+design. Documentation must be signed by the independent reviewer who must also be a registered structural engineer.]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Items Not Covered By This Section</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Fire Protection Systems</TTL><BRK/>
+<BRK/>
+<TXT>Install seismic protection of piping for fire protection systems as specified in Sections <SRF>21 30 00</SRF> FIRE PUMPS, 
+<SRF>21 13 13</SRF> WET PIPE SPRINKLER SYSTEMS, FIRE PROTECTION, <SRF>21 13 16</SRF> DRY PIPE SPRINKLER SYSTEMS, FIRE PROTECTION, 
+<SRF>21 13 18</SRF> PREACTION SPRINKLER SYSTEMS, FIRE PROTECTION, and <SRF>21 13 24.00 10</SRF> AQUEOUS FILM-FORMING FOAM (AFFF) FIRE 
+PROTECTION SYSTEM.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Items Requiring No Seismic Restraints</TTL><BRK/>
+<BRK/>
+<TXT>Seismic restraints are not required where specifically identified as exempt based on Seismic Design Category 
+(SDC), component Importance Factor (Ip), and other applicable factors indicated within <RID>ASCE 7-22</RID>, Chapter 13 
+section Mechanical and Electrical Components.  Provide listing of mechanical equipment exempt from seismic restraint 
+requirement within the Design Calculations submittal package submitted in accordance with specification 
+<SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Couplings or Joints</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coupling And Bracing</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Flexible Couplings Or Joints</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Equipment Restraint</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>GENERAL DESIGN REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Submit detailed seismic restraint drawings for mechanical equipment, duct systems, piping systems and any other 
+mechanical systems. Include calculations, catalog cuts, templates, and erection and installation details, as 
+appropriate, for the items listed below.  Indicate thickness, type, grade, class of metal, and dimensions. Show 
+construction details, reinforcement, anchorage, and installation with relation to the building construction. 
+A registered professional engineer must stamp the calculations and verify the capability of structural members 
+to which bracing is attached for carrying the load from the brace.  Include drawing for [Mission Critical Equipment 
+and] Designated Seismic System Equipment indicating the equipment location in the facility, sufficient to be 
+used for the installation.  Design must be based on actual equipment and system layout.  Design must include 
+calculated dead loads, static seismic loads and capacity of materials utilized for the connection of the equipment 
+or system to the structure.  Analysis must detail anchoring methods.</TXT><BRK/>
+<BRK/></SPT>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Appropriate materials for structural supports must be used in corrosive 
+environments.  Dissimilar metals must be isolated.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>EQUIPMENT RESTRAINT</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Seismic Bracing does not guarantee that the equipment itself is rugged 
+enough to survive earthquake shaking.  When a piece of equipment is required 
+to remain operational after an earthquake, include paragraph Special Testing 
+for Seismic Resisting Equipment.  Roof mounted equipment is especially vulnerable 
+due to building sway during seismic event.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Equipment must be rigidly or flexibly mounted as indicated on the drawings and in accordance with <SRF>13 48 73</SRF> SEISMIC 
+CONTROL FOR NONSTRUCTURAL COMPONENTS depending on vibration isolation requirements.</TXT><BRK/>
+<BRK/>
+<TXT>Roof mounted equipment such as cooling towers and condensers, both vibration isolated and nonisolated, must have 
+support members designed and anchored to building structural steel or concrete as required for seismic restraint 
+and wind loads.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FLEXIBLE JOINTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer should include reference to other specification sections containing 
+provisions for pipe pressure and temperature ratings, if deemed necessary.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Flexible joints must have same pressure and temperature ratings as adjoining pipe.  Braided hoses must not be 
+used where there is torsional or axial movement unless manufacturer allows it.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Braided Hose Expansion Joint</TTL><BRK/>
+<BRK/>
+<TXT>Braided hose expansion joint(s) must be installed in the locations indicated on the drawings and as required 
+to accommodate any thermal expansion, contraction or seismic movement of the piping system. Joints must consist 
+of two parallel sections of corrugated metal hose, compatible braid, and 180 degree return bend with inlet and 
+outlet connections. Field fabricated loops are not acceptable.  Braided hose expansion joint(s) must be installed 
+in the locations indicated on the drawings and as required to accommodate any thermal expansion, contraction 
+or seismic movement of the piping system. Joints must consist of two parallel sections of corrugated metal hose, 
+compatible braid, and 180 degree return bend with inlet and outlet connections. Field fabricated loops must not 
+be acceptable.  Braided hose in a 60 degree flexible V loop arrangement must be used for small diameter pipe 
+connections to coils in variable-air-volume (VAV)terminal units and fan coil units installed in suspended ductwork 
+whether braced or unbraced.</TXT><BRK/>
+<BRK/>
+<TXT>All braided hose expansion joints must be manufactured in accordance with the documented manufacturers weld procedure 
+specifications.  The procedure qualification record must be used to document the execution of this procedure 
+and must follow the general "guidelines" of <RID>ASME BPVC SEC IX</RID>.  Each individual welder must conform to the in-house 
+procedure qualification record and be qualified prior to each production lot.  The testing of each individual 
+welder must be documented in a welding procedure qualification record.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer would typically select Type 304 stainless steel for most applications 
+including chilled water, condenser water, heating hot water and steam.  Bronze 
+with applicable certifications would typically be selected for potable water 
+and fuel oil service.  Type 316 and 321 stainless steel would typically be selected 
+for highly corrosive fluids or surrounding environment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Corrugated Hose</TTL><BRK/>
+<BRK/>
+<TXT>Corrugated hose must be [Type [304] [321] [316] stainless steel] [bronze]. Braid must be [Type 304 stainless 
+steel for any series 300 stainless steel hose] [bronze for any bronze hose]. Fittings materials of construction 
+and end fitting type must be consistent with pipe material and equipment/ pipe connection fittings.  Copper fittings 
+must not be attached to stainless steel hose.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flexible Hose Expansion Loops</TTL><BRK/>
+<BRK/>
+<TXT>Flexible hose expansion loops must have a factory supplied, hanger / support lug located at the bottom of the 
+180 degree return. [Flexible hose expansion loop(s) must be furnished with a plugged FPT to be used for a drain 
+or air release vent.]  Flexible hose expansion loop(s) must be rated with an operating pressure which is the 
+same as the adjoining pipe. The operating pressure must be based on burst pressure with a 4 to 1 safety factor. 
+[For steam service, the operating pressure must be based on burst pressure with a 8 to 1 safety factor.]</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Flexible expansion joint suitable for liquids under pressure compatible 
+with material and pressure rating of joint.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</SPT><SPT><TTL>Double Ball Flexible Expansion Joint</TTL><BRK/>
+<BRK/>
+<TXT>Install flexible expansion joints manufactured of ductile iron conforming to the material requirements of <RID>ASTM A536</RID>
+ and <RID>AWWA C153/A21.53</RID> in the locations indicated on the drawings.  Provide foundry certification of material 
+upon request.  Each flexible expansion joint must be pressure tested prior to shipment against its own restraint 
+to a minimum of 350 psi (250 psi for flexible expansion joints 2 inch and 30 inches diameter and larger.) A minimum 
+2:1 safety factor, determined from the published pressure rating, must apply. Factory Mutual Approval for the 
+3 inch through 12 inch sizes is required.  Each flexible expansion joint must consist of an expansion joint designed 
+and cast as an integral part of a ball and socket type flexible joint, having a minimum per ball deflection of: 
+20º, 2" -  12"; 15º, 14" - 36"; 12º, 42"-48" and 4-inches minimum expansion. Additional expansion sleeves must 
+be available and easily added or removed at the factory or in the field. Both standardized mechanical joint and 
+flange end connections must be available.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Internal Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>Line all internal surfaces (wetted parts) with a minimum of 15 mils of fusion bonded epoxy conforming to the 
+applicable requirements of <RID>AWWA C213</RID>.  Sealing gaskets must be constructed of EPDM.  The coating must meet <RID>NSF/ANSI/CAN 61</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Exterior Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>Coat exterior surfaces with a minimum of 6 mils of fusion bonded epoxy conforming to the applicable requirements 
+of <RID>AWWA C116/A21.16</RID>.  Include appropriately sized polyethylene sleeves, meeting <RID>AWWA C105/A21.5</RID>, for direct buried 
+applications.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Flexible expansion joint gravity drain (non-pressurized) suitable for 
+sanitary drain, waste and vent applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</SPT><SPT><TTL>Double Ball Flexible Expansion Joint Gravity Drain (Non-Pressurized)</TTL><BRK/>
+<BRK/>
+<TXT>Flexible expansion joints gravity drain must be installed in the locations indicated on the drawings and must 
+be manufactured of pvc. All connections whether solvent weld or mechanical must be restrained to allow movement 
+to be transferred to expansion joint. Each ball must allow up to 15 degrees deflection.</TXT><BRK/>
+<BRK/>
+<TXT>End connection outside diameters must be compatible with <RID>ASTM D1785</RID>, <RID>ASTM D2665</RID> and <RID>ASTM F891</RID> PVC pipe and are 
+to be solvent welded.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUPPORTS AND ATTACHMENTS</TTL><BRK/>
+<BRK/>
+<TXT>Sway bracing materials and associated fasteners and anchors must be as specified in <SRF>13 48 73</SRF> SEISMIC CONTROL 
+FOR NONSTRUCTURAL COMPONENTS</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>COUPLING AND BRACING</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Unless otherwise determined by the Contracting Officer, A-E designs must 
+include complete seismic details showing coupling requirements.  Government 
+designer should furnish coupling details for Contractor designed systems if 
+required by the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Submit detail drawings, as specified here and throughout this specification, along with catalog cuts, 
+templates, and erection and installation details, as appropriate, for the items listed.  Submittals must 
+be complete in detail; must indicate thickness, type, grade, class of metal, and dimensions; and must 
+show construction details, reinforcement, anchorage, and installation with relation to the building construction.</OLI><BRK/>
+<BRK/>
+<OLI>Provide coupling installation conforming to the details shown on the drawings.  Provisions of this paragraph 
+apply to all piping within a<MET> 1.5 m</MET><ENG> 5 foot</ENG> line around outside of building unless buried in the ground.  
+Piping grouped for support on trapeze-type hangers must be braced at the most frequent interval as determined 
+by applying the requirements of this specification to each piping run on the common support.</OLI><BRK/>
+<BRK/>
+<OLI>Size bracing components as required for the total load carried by the common supports.  Bracing rigidly 
+attached to pipe flanges, or similar, must not be used where it would interfere with thermal expansion 
+of piping.</OLI><BRK/>
+<BRK/>
+<OLI>Adjust isolators and restraints after piping systems has been filled and equipment is at its operating 
+weight, following the manufacturer's written instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Install cables at a 45-degree slope. Where interference is present, the slope may be minimum of 30 degrees 
+or a maximum of 60 degrees per <RID>VISCMA 412</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>BUILDING DRIFT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to Section <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS 
+Structural Design Criteria under paragraph GENERAL REQUIREMENTS to determine 
+the expected drift of the building.  Insert the expected drift ratio (in terms 
+of seismic drift per unit of story height) in the bracketed space below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide joints capable of accommodating seismic displacements for vertical piping between floors of the building, 
+where pipes pass through a building seismic or expansion joint, or where rigidly supported pipes connect to equipment 
+with vibration isolators.  Provide horizontal piping across expansion joints to accommodate the resultant of 
+the drifts of each building unit in each orthogonal direction.  For threaded piping, provide swing joints made 
+of the same piping material.  For piping with manufactured ball joints the seismic drift must be [_____]<MET> meters 
+per meter</MET><ENG> feet per foot</ENG> of height above the base where the seismic separation occurs; this drift value must be 
+used in place of the expansion given in the manufacturer's selection table.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FLEXIBLE COUPLINGS OR JOINTS</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Building Piping</TTL><BRK/>
+<BRK/>
+<TXT>Provide flexible couplings or joints in building piping at bottom of all pipe risers for pipe larger than<MET> 90 
+mm</MET><ENG> 3-1/2 inches</ENG> in diameter.  Laterally brace flexible couplings or joints without interfering with the action 
+of the flexible coupling or joint.  Cast iron waste and vent piping need only comply with these provisions when 
+caulked joints are used.  Flexible bell and spigot pipe joints using rubber gaskets may be used at each branch 
+adjacent to tees and elbows for underground waste piping inside of building to satisfy these requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Underground Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph may not be required for some Seismic Design Category structures.  
+The designer will coordinate the requirements for seismic isolation of piping 
+with the structural and civil design drawings to locate flexible connections 
+as required.</NPR><BRK/>
+<BRK/>
+<NPR>The amount of annular space will depend on the stiffness of the foundation assembly 
+and of the surrounding soil, and the distance between the foundation wall and 
+the point outside the building where the pipe is considered to be restrained.  
+The geotechnical engineer will determine the pipe length necessary to provide 
+fixity.  As an approximation, a value of<MET> 76 mm</MET><ENG> 3 inches</ENG> would be necessary for 
+a pipe penetration in a one-story basement in soft soil.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install flexible coupling in underground piping and<MET> 100 mm</MET><ENG> 4 inch</ENG> or larger conduit, except heat distribution 
+system, where the piping enters the building.  Provide couplings that accommodate [_____]<MET> mm</MET><ENG> inches</ENG> of relative 
+movement between the pipe and the building in any direction.  Provide additional flexible couplings where shown 
+on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PIPE SLEEVES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer will determine the amount of differential movement of piping 
+at pipe sleeves passing through non-fire rated walls and partitions and will 
+indicate on the drawings the amount of clearance required between the pipe and 
+the sleeve based on deflection of the pipe between sway braces on either side 
+of the wall.</NPR><BRK/>
+<BRK/>
+<NPR>The designer should avoid pipe penetrations through fire rated assemblies.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Size pipe sleeves in interior non-fire rated walls to provide clearances that will permit differential movement 
+of piping without the piping striking the pipe sleeve.  Pipe sleeves in fire rated walls must conform to the 
+requirements in Section <SRF>07 84 00</SRF> FIRESTOPPING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SPREADERS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to UFC 3-301-01 for guidance on separation between pipes and requirements 
+for spreaders.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide spreaders between adjacent piping runs to prevent contact during seismic activity whenever pipe or insulated 
+pipe surfaces are less than<MET> [100][_____] mm</MET><ENG> [4][_____] inches</ENG> apart.  Apply spreaders at same interval as sway 
+braces at an equal distance between the sway braces.  If rack type hangers are used where the pipes are restrained 
+from contact by mounting to the rack, spreaders are not required for pipes mounted in the rack.  Apply spreaders 
+to surface of bare pipe and over insulation on insulated pipes utilizing high-density inserts and pipe protection 
+shields in accordance with the requirements of Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SWAY BRACES FOR PIPING</TTL><BRK/>
+<BRK/>
+<TXT>Provide sway braces to prevent movement of the pipes under seismic loading.  Provide braces in both the longitudinal 
+and transverse directions, relative to the axis of the pipe.  Provide sufficient braces for equipment to resist 
+a horizontal force as specified in <RID>UFC 3-301-01</RID>[<RID>UFC 3-301-02</RID>] without exceeding safe working stress of bracing 
+components.  Provide bracing that does not interfere with thermal expansion requirements for the pipes as described 
+in other sections of these specifications.  For seismic analysis of horizontal pipes, the equivalent static force 
+should be considered to act concurrently with the full dead load of the pipe, including contents.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Transverse Sway Bracing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Piping can be either rigid or flexible.  Rigid piping has a period of 
+vibration of 0.06 seconds or less.  Piping systems with spacing between braces 
+that exceeds allowable spacing for rigid piping will be deemed flexible and 
+will be designed accordingly.</NPR><BRK/>
+<BRK/>
+<NPR>The designer should provide requirements for bracing PVC pipes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide transverse sway bracing for steel and copper pipe at intervals not to exceed those shown on the drawings.  
+All runs (length of pipe between end joints) must have a minimum of transverse bracing at each end.  Provide 
+transverse sway bracing for pipes of materials other than steel and copper at intervals not to exceed the hanger 
+spacing as specified in Section <SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Longitudinal Sway Bracing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Locate longitudinal sway braces on the drawings for systems subject to 
+thermal expansion because indiscriminate placement of sway braces may interfere 
+with expansion requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide longitudinal sway bracing at<MET> 12 m</MET><ENG> 40 foot</ENG> intervals unless otherwise indicated.  All runs (length of 
+pipe between end joints) must have one longitudinal brace minimum.  Construct sway braces in accordance with 
+the drawings.  Do not use branch lines, walls, or floors as sway braces.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Vertical Runs</TTL><BRK/>
+<BRK/>
+<TXT>Run is defined as length of pipe between end joints.  Do not brace vertical runs of piping at intervals greater 
+than<MET> 3 meters</MET><ENG> 10 feet</ENG>. Braces for vertical runs must be above the center of gravity of the segment being braced.  
+Flexible couplings should be provided at the bottoms of risers for pipes larger than 3.5 in. (89 mm) in diameter.  
+Flexible couplings and expansion joints should be braced laterally and longitudinally unless such bracing would 
+interfere with the action of the couplings or joints. When pipes enter buildings, flexible couplings should be 
+provided to allow for relative movement between the soil and building.  Construct all sway braces in accordance 
+with the drawings.  Attach sway braces to the structural system.  Do not connect to branch lines, walls, or floors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Clamps and Hangers</TTL><BRK/>
+<BRK/>
+<TXT>Apply clamps or hangers on uninsulated pipes directly to pipe.  Insulated piping must have clamps or hangers 
+applied over insulation in accordance with Section <SRF>23 07 00</SRF> THERMAL INSULATION FOR MECHANICAL SYSTEMS.</TXT><BRK/>
+<BRK/>
+<TXT>Hanger rod stiffener angle or strut bracing must be securely attached by a series of attachment clamps manufactured 
+from a one piece metal stamping and must include all require attachment hardware and locking nuts. Attachment 
+clamps made from aluminum or cast iron must not be used in seismic applications. Do not weld vertical braces 
+to hanger rods.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SWAY BRACES FOR DUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Braced Ducts</TTL><BRK/>
+<BRK/>
+<TXT>Provide bracing details and spacing for rectangular and round ducts in accordance with <RID>SMACNA 1981</RID>.  However, 
+the design seismic loadings for these items must not be less than loadings obtained using the procedures in <RID>UFC 3-301-01</RID>
+[<RID>UFC 3-301-02</RID>].  Bracing must not attach to duct joints. Use shortest screws possible when penetrating ductwork 
+to minimize airflow noise inside duct.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unbraced Ducts</TTL><BRK/>
+<BRK/>
+<TXT>Attach hangers for unbraced ducts to the duct within<MET> 50 mm</MET><ENG> 2 inches</ENG> of the top of the duct with a minimum of 
+two #10 sheet metal screws in accordance with <RID>FEMA P-414</RID>.  Use shortest screws possible when penetrating ductwork 
+to minimize airflow noise inside duct.  Install unbraced ducts with a<MET> 150 mm</MET><ENG> 6 inch</ENG> minimum clearance to vertical 
+ceiling hanger wires.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Equipment Support Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Refer to <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS for requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controls</TTL><BRK/>
+<BRK/>
+<TXT>Ensure that controls for critical equipment that must remain operational after an earthquake are certified per 
+<SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS paragraph SPECIAL TESTING FOR SEISMIC-RESISTING EQUIPMENT 
+and are served by emergency power as required.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ANCHORS</TTL><BRK/>
+<BRK/>
+<TXT>Refer to <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS for requirements</TXT>.<BRK/>
+<BRK/></SPT>
+<SPT><TTL>SPECIAL TESTING FOR SEISMIC-RESISTING EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Refer to <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS for requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SPECIAL INSPECTION FOR SEISMIC-RESISTING SYSTEMS AND EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Refer to <SRF>13 48 73</SRF> SEISMIC CONTROL FOR NONSTRUCTURAL COMPONENTS for requirements.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="283.50"/>
+      <COL AUTOWIDTH="0" WIDTH="279.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-26 13 02 (November 2024)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">NEW</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<SCN>SECTION 26 13 02</SCN><BRK/>
+<BRK/>
+<STL>PAD-MOUNTED SOLID DIELECTRIC SWITCHGEAR</STL><BRK/>
+<DTE>11/24</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>Solid dielectric, dead-front, enclosed and non-enclosed, 
+pad-mounted switchgear with load and fault interrupting ways, with maximum ratings of 600 amperes and 38 kV (35kV 
+Class), 60 Hz.</SCP>38kV rated switchgear is available but may require proprietary justification.  Voltages up to 27kV 
+(25kV Class) and below are available from multiple manufacturers.</NPR><BRK/>
+<BRK/>
+<NPR>Solid Dielectric Switchgear should be considered in locations where flooding or water infiltration are concerns 
+due to site installation conditions.  The submersion capability of the equipment is suited to these environments.</NPR><BRK/>
+<BRK/>
+<NPR>Solid Dielectric Switchgear should be considered as an alternate to SF6 insulated switchgear where environmental 
+restrictions on greenhouse gas reductions or potential emissions are a consideration.</NPR><BRK/>
+<BRK/>
+<NPR>The insulation system for solid dielectric insulated switchgear can include any combination of rubberized insulating 
+materials, plastics, phenolic barriers, epoxy (such as cycloaliphatic epoxy) and other solid insulating materials.  
+The use of liquid insulation or synthetic gas insulation in any part of this switchgear is strictly prohibited.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification can be used for subsurface (vault) applications with appropriate modifications.</NPR><BRK/>
+<BRK/>
+<NPR>Use the following related guide specifications for power distribution equipment:</NPR><BRK/>
+<BRK/>
+<NPR>--Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING</NPR><BRK/>
+<NPR>--Section <SRF>26 11 16</SRF> SECONDARY UNIT SUBSTATIONS</NPR><BRK/>
+<NPR>--Section <SRF>26 11 13.00 20</SRF> PRIMARY UNIT SUBSTATION</NPR><BRK/>
+<NPR>--Section <SRF>26 12 19</SRF> PAD-MOUNTED, LIQUID-FILLED, MEDIUM VOLTAGE TRANSFORMERS</NPR><BRK/>
+<NPR>--Section <SRF>26 12 21</SRF> SINGLE-PHASE PAD-MOUNTED TRANSFORMERS</NPR><BRK/>
+<NPR>--Section <SRF>26 13 00</SRF> SF6/HIGH-FIREPOINT FLUIDS INSULATED PAD-MOUNTED SWITCHGEAR</NPR><BRK/>
+<NPR>--Section <SRF>33 71 01</SRF> OVERHEAD TRANSMISSION AND DISTRIBUTION</NPR><BRK/>
+<NPR>--Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Verify that the following information is indicated on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Site Plan showing location, space available, and desired arrangement of switchgear.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Single-line diagram showing: nominal system voltage; number and configuration of switched ways; type, number, 
+frequency, short circuit ratings, BIL,and size of conductors for each circuit; and method of power cable termination 
+(600 ampere deadbreak or 200A load break connectors and adapters for fixed bushings).  Individually identify each 
+switched way as load or fault interrupter and single-pole or three-pole tripping.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Grounding Detail with ground rods, ground ring and interconnecting cables when interconnecting with other 
+grounding systems or if multiple switches are provided.</NPR><BRK/>
+<BRK/>
+<NPR>4.  Special conditions, such as altitude, temperature and humidity, exposure to fumes, vapors, dust, and gases.</NPR><BRK/>
+<BRK/>
+<NPR>5.  Surge arrester locations.</NPR><BRK/>
+<BRK/>
+<NPR>6.  Power source for automatic switch control and SCADA features.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A240/A240M</RID><RTL>(2025a) Standard Specification for Chromium and Chromium-Nickel Stainless Steel Plate, Sheet, and Strip for Pressure Vessels and for General Applications</RTL><BRK/><BRK/><RID>ASTM D1535</RID><RTL>(2014; R 2018) Standard Practice for Specifying Color by the Munsell System</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 386</RID><RTL>(2016) Separable Insulated Connector Systems for Power Distribution Systems Rated 2.5 kV through 35 kV</RTL><BRK/><BRK/><RID>IEEE 495</RID><RTL>(2007) Guide for Testing Faulted Circuit Indicators</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/><RID>IEEE C37.60</RID><RTL>(2019) High-Voltage Switchgear and Controlgear - Part 111:   Automatic Circuit Reclosers for Alternating Current Systems Up to 38 kV</RTL><BRK/><BRK/><RID>IEEE C37.62</RID><RTL>(2020) Standard for Pad-Mounted Dry Vault, Submersible and Overhead Fault Interrupters for Alternating Current Systems Up to and Including 38kV</RTL><BRK/><BRK/><RID>IEEE C37.74</RID><RTL>(2014) Standard Requirements for Subsurface, Vault, and Pad-Mounted Load-Interrupter Switchgear and Fused Load-Interrupter Switchgear for Alternating Current Systems Up to 38 kV</RTL><BRK/><BRK/><RID>IEEE C37.75</RID><RTL>(2023) Standard for Pad-Mounted, Pole-Mounted, and Submersible Switchgear Enclosures and Associated Control Enclosures - Coastal and Non-Coastal Environmental Integrity</RTL><BRK/><BRK/><RID>IEEE C57.12.28</RID><RTL>(2023) Standard for Pad-Mounted Equipment - Enclosure Integrity</RTL><BRK/><BRK/><RID>IEEE C57.12.29</RID><RTL>(2023) Standard for Pad-Mounted Equipment - Enclosure Integrity for Coastal Environments</RTL><BRK/><BRK/><RID>IEEE C62.11</RID><RTL>(2020) Standard for Metal-Oxide Surge Arresters for Alternating Current Power Circuits (&gt;1kV)</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTRICAL TESTING ASSOCIATION (NETA)</ORG><BRK/><BRK/><RID>NETA ATS</RID><RTL>(2025) Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTROTECHNICAL COMMISSION (IEC)</ORG><BRK/><BRK/><RID>IEC 62271-102</RID><RTL>(2018) High-Voltage Switchgear and Controlgear - Part 102: Alternating-Current Disconnectors and Earthing Switches</RTL><BRK/><BRK/><RID>IEC 62271-103</RID><RTL>(2021; Corr 1 2025) High-voltage switchgear and controlgear - Part 103: Alternating current switches for rated</RTL><BRK/><BRK/><RID>IEC 62271-111</RID><RTL>(2019) High Voltage Switchgear And Controlgear - Part 111: Automatic Circuit Reclosers for Alternating Current Systems up to and including 38 kV</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 70B</RID><RTL>(2026) Standard for Electrical Equipment Maintenance</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>DOD 8500.01</RID><RTL>(2014; Change 1-2019) Cybersecurity</RTL><BRK/><BRK/><RID>DOD 8510.01</RID><RTL>(2022) Risk Management Framework (RMF) for DoD Systems</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 467</RID><RTL>(2022) UL Standard for Safety Grounding and Bonding Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING on all projects involving medium voltage and 
+specialized power distribution equipment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Section <SRF>26 08 00</SRF> APPARATUS INSPECTION AND TESTING, applies to this section, with the additions and modifications specified herein.  Cybersecurity 
+requirements are specified in Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Way</TTL><BRK/>
+<BRK/>
+<TXT>A way is considered a three-phase or single-phase circuit connection to the bus, which may contain combinations of switches and protective devices 
+or may be a solid bus.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Switched Way</TTL><BRK/>
+<BRK/>
+<TXT>A switched way is considered a three-phase circuit entrance to the bus through a switch.  For single-phase switches, it is a single-phase entrance 
+to the bus through a switch.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.  Submittals not having a "G" or "S" classification are<TAI OPT="AIR FORCE,NAVY"> for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY"> for information only.  When used, a code following the "G" classification identifies the office that will review the 
+submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Switchgear Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following paragraph when the switchgear will have fault interrupting ways.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<ITM><SUB>Electronic Overcurrent Control Curves</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Insulated High-Voltage Connectors</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Surge Arresters</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<ITM><SUB>Solid Dielectric Insulated Pad-mounted Switchgear</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Include data on switches and associated accessories with each submittal.  Include manufacturer's information for each component, 
+device and accessory provided with the equipment with each submittal.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Checks and Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Paint Coating System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+[<ITM><SUB>Cybersecurity</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+]<LST><SUB>SD-09 Manufacturer's Field Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Switchgear Design and Production Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Solid Dielectric Insulated Pad-mounted Switchgear Operation and Maintenance</SUB>, Data Package 5; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Submit in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Switchgear Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Furnish drawings that include, but are not limited to, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Overall dimensions, weights, plan view, and front view</OLI><BRK/>
+<BRK/>
+<OLI>Ratings</OLI><BRK/>
+<BRK/>
+<OLI>Single-line diagram</OLI><BRK/>
+<BRK/>
+<OLI>Nameplate schedule</OLI><BRK/>
+<BRK/>
+<OLI>Conduit entry/ exit locations</OLI><BRK/>
+<BRK/>
+<OLI>Anchor bolt template and locations</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Paint Coating System</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Select IEEE C57.12.29 when specifying stainless steel enclosures.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Submit[ <RID>IEEE C57.12.28</RID>][ <RID>IEEE C57.12.29</RID>][ <RID>IEEE C37.75</RID>] paint coating system performance requirement tests.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Electronic Overcurrent Control Curves</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following if one or more fault interrupting ways are specified and if the time-current curves 
+are not already provided in the specified electrical analysis software package.  Most commercially available software 
+packages already contain the time-current curves used in pad-mounted switchgear fault interrupter trip units.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide time-current characteristic curves in PDF and Excel format and in electronic format suitable for import or updating into the[ EasyPower][ 
+SKM PowerTools for Windows][ ETap] [_____] computer program.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Solid Dielectric Insulated Pad-mounted Switchgear Operation and Maintenance</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit Operation and Maintenance Manuals in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL><SUB>CYBERSECURITY</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the equipment will have SCADA or any remote control system capability, this paragraph must be included 
+and the Designer of Record must coordinate with the activity to determine the required Service Implementation 
+Policy.  Add the requirements into this specification.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>All control systems (including systems separate from an energy management control system) must be planned, designed, acquired, executed and maintained 
+in accordance with <RID>DOD 8500.01</RID> and <RID>DOD 8510.01</RID>, and as required by individual Service Imnplementation Policy.</TXT><BRK/>
+<BRK/>
+<TXT>Submit certification that equipment complies with the above DoD instructions and [_____].</TXT><BRK/>
+<BRK/></SPT>
+]</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>SOLID DIELECTRIC INSULATED PAD-MOUNTED SWITCHGEAR</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Add reference to IEC 62271-103 for projects located in Europe only after verifying that at least three 
+manufacturers of this type of switchgear comply with this standard.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>IEEE C37.74</RID>[, <RID>IEC 62271-102</RID>][, <RID>IEC 62271-103</RID>]</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Ratings and Test Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select rated impulse voltage (BIL) to correspond with the selected rated maximum voltage.</NPR><BRK/>
+<BRK/>
+<NPR>Select short circuit current as applicable for the switchgear type and system requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The maximum voltage rating of the switchgear must be[15kV ][ 15.5 kV][ 27 kV][ 38 kV][ as indicated].  Provide the corresponding ratings associated 
+with the required switchgear voltage rating as follows:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following optional ratings are available for switchgear assemblies, however, specifying these will 
+require proprietary justification.</NPR><BRK/>
+<BRK/>
+<NPR>1.  Optional short-time and short-circuit interrupting current ratings of 16,000, 20,000 and 25,000 rms symmetrical 
+amperes are available depending on voltage. Some of these ratings may be proprietary and not offered at each voltage.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Voltage of 38kV.</NPR><BRK/>
+<BRK/>
+<NPR>3.  Verify symmetrical rating of bushings specified before selecting ratings above 12.5kA.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<NED/><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="5">
+      <COL AUTOWIDTH="0" WIDTH="344.25"/>
+      <COL AUTOWIDTH="0" WIDTH="240.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Rated Maximum Voltage, kV</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[15.5] [27] [38]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Rated Withstand Impulse Voltage, kV BIL</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[95] [125] [150]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Continuous and Load Interrupting Current, A</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[600]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Short-Time Current, kA rms Sym</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[[12.5] [16] [20] [25] [_____]]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="34.50">
+         <CEL>
+<DTA TYPE="STRING">[Short-Circuit interrupting Current,kA rms Sym]</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[[12.5] [16] [20] [25] [_____]]</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TXT>Provide switch and fault interrupter ways for the required continuous and load interrupting current.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Switchgear Construction</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the options below based on the intended configuration.  Identify switched ways, fault interrupters, 
+and bus configuration on one line diagrams.</NPR><BRK/>
+<BRK/>
+<NPR>For the Navy:  Select the bracketed option to require switch position viewing windows.</NPR><BRK/>
+<BRK/>
+<NPR>Visible contact windows may not be available at higher voltages.</NPR><BRK/>
+<BRK/>
+<NPR>Some manufacturers offer modular individually insulated switched/ fault interrupter ways and others offer components 
+insulated in an overall common tank.  Consider keeping the construction type open to either design to avoid proprietary 
+requirements, unless there are dimensional replacement considerations.</NPR><BRK/>
+<BRK/>
+<NPR>Select option for accessory control cabinet only if required for the selected options for the application.  A 
+cabinet is typically required for most applications with advanced relaying, SCADA, transfer controls, or battery 
+applications.  Include IP 68 rating to match switchgear rating only if control cabinet is expected to be submerged.  
+Option will add cost and complexity to the construction.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide switchgear with the following construction configuration:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Switch contacts and cable entrance terminations contained in a dead front, enclosed in a steel compartment.  All penetrations, bussing, 
+switches and interrupters shall be potted in a liquid-tight synthetic solid dielectric insulation compound.  Unit shall carry a[ IP 68][ 
+NEMA 6P] rating on the medium voltage equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Configured with[ load interrupting][ and][ fault interrupter] switched ways as indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Accessible terminations suitable for cables entering from[ below][ top].</OLI><BRK/>
+<BRK/>
+[<OLI>Switch contact positions for switched ways visible through viewing windows in the switchgear termination compartment.</OLI><BRK/>
+<BRK/>
+]<OLI>Each switched way with two position switch; Open and Closed.  Grounding provided via grounding parking elbow.</OLI><BRK/>
+<BRK/>
+<OLI>Manual operating provisions mounted at switch and capable of hookstick operation per <RID>IEEE C37.74</RID>.</OLI><BRK/></OLG>
+<BRK/>
+[<SPT><TTL>Pad-mounting Provisions</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy-designed projects, select the option below with the switchgear installed on a concrete pad.  For 
+some Army and Air Force projects, installation on a fiberglass pad or above a vault is desired.  In these cases, 
+select the second bracketed option below.  If the switchgear is installed above a vault, provide details on associated 
+drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose stainless steel enclosure where environmental conditions are not suitable for mild steel or where 
+a higher level of corrosion protection is desired.  Select IEEE C57.12.29 when enclosure is required to be stainless 
+steel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide enclosed switchgear suitable for installation on a concrete pad with[ front access][ front and rear access], including the following;</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Fabricate switchgear[ enclosure and] enclosure base of <RID>ASTM A240/A240M</RID> type 304 or 304L stainless steel.</OLI><BRK/>
+<BRK/>
+]<OLI>Enclosure base includes any part of the switchgear enclosure that is within<MET> 75 mm</MET><ENG> 3 inches</ENG> of concrete pad.</OLI><BRK/>
+<BRK/>
+<OLI>Paint enclosure including base <RID>ASTM D1535</RID>[ Munsell 7GY3.29/1.5 green][ Munsell 8.3G6.1/0.5 light gray (ANSI No. 61)] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Comply with[ <RID>IEEE C57.12.28</RID>][ <RID>IEEE C57.12.29</RID>] for the paint coating system regardless of equipment material.</OLI><BRK/>
+<BRK/>
+[<OLI>Provide[ NEMA 4][ NEMA 4X][ NEMA 6P][ IP 68] [_____] accessory control cabinet for[ relays][ SCADA][ transfer controls][ instrument transformers][ 
+batteries] [_____]</OLI>.<BRK/></OLG>
+<BRK/>
+]</SPT>][<SPT><TTL>Pad/Vault-mounting Provisions</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy-designed projects, select the option below with the switchgear installed on a concrete pad.  For 
+some Army and Air Force projects, installation on a fiberglass pad or above a vault is desired.  In these cases, 
+select the second bracketed option below.  If the switchgear is installed above a vault, provide details on associated 
+drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose stainless steel enclosure where environmental conditions are not suitable for mild steel or where 
+a higher level of corrosion protection is desired.  Select IEEE C57.12.29 when enclosure is required to be stainless 
+steel.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide enclosed switchgear suitable for installation on a concrete pad or fiberglass box pad with[ front access][ front and rear access], including 
+the following:][Provide enclosed switchgear on a concrete vault with[ front access][ front and rear access], as indicated, including the following:]</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Fabricate a switchgear[ enclosure and] enclosure base of <RID>ASTM A240/A240M</RID> type 304 or 304L stainless steel.</OLI><BRK/>
+<BRK/>
+]<OLI>Enclosure base includes any part of the switchgear enclosure that is within<MET> 75 mm</MET><ENG> 3 inches</ENG> of concrete pad.</OLI><BRK/>
+<BRK/>
+<OLI>Paint enclosure including base <RID>ASTM D1535</RID>[ Munsell 7GY3.29/1.5 green][ Munsell 8.3G6.1/0.5 light gray (ANSI No. 61)] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Comply with[ <RID>IEEE C57.12.28</RID>][ <RID>IEEE C57.12.29</RID>] for the paint coating system regardless of equipment material.</OLI><BRK/>
+<BRK/>
+[<OLI>Provide[ NEMA 4][ NEMA 4X][ NEMA 6P][ IP68] [_____] accessory control cabinet for[ relays][ SCADA][ transfer controls][ instrument transformers][ 
+batteries] [_____].</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>]</SPT><SPT><TTL>Load Interrupting Switched Ways</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select Single-Pole switching only for single-phase applications, such as housing areas.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following for load interrupter switched ways:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>[Three][Single]-pole group operated switching.</OLI><BRK/>
+<BRK/>
+<OLI>Interrupter switches operated by means of an externally accessible switch-operating handle.</OLI><BRK/>
+<BRK/>
+<OLI>Switch-operating handle located at each dead front switch mechanism inside pad-mounted gear enclosure.</OLI><BRK/>
+<BRK/>
+<OLI>Pad lockable stainless steel access cover.</OLI><BRK/>
+<BRK/>
+<OLI>Labels to indicate switch position.</OLI><BRK/>
+<BRK/>
+[<OLI>Switch position viewing window.</OLI><BRK/></OLG>
+<BRK/>
+][<SPT><TTL>Fault Interrupting Ways</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following if fault interrupting ways are required.  Fault interrupting ways provide overcurrent 
+protection.</NPR><BRK/>
+<BRK/>
+<NPR>Each manufacturer has different options available for protective relaying.  These options have not been addressed 
+below because they are specific to each manufacturer.  Consider the requirements for circuit protection and for 
+circuit coordination and modify this paragraph as needed.</NPR><BRK/>
+<BRK/>
+<NPR>The project design must provide for the trip control power source and trip control circuits when selecting remote 
+tripping.</NPR><BRK/>
+<BRK/>
+<NPR>Most manufacturers include standard internal current transformers with self powered basic overcurrent relaying 
+and offer optional advanced microprocessor relaying and current transformer options.  Alternate relaying types 
+or current transformer sensitivity may require alternate configurations, external controls enclosures, and external 
+control power and/or battery provisions.</NPR><BRK/>
+<BRK/>
+<NPR>If using internal current transformers with self powered relays, the designer should consider relay "wake-up" 
+time delay for lightly loaded or no load situations on protected circuits which would extend trip time under fault 
+conditions.  Consult manufacturers' for parameters.  Batteries and control power should be considered if monitoring 
+of relays and status are required when circuits are de-energized.</NPR><BRK/>
+<BRK/>
+<NPR>Identify relaying and instrumentation requirements on one line drawings or schedules on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Identify the appropriate operational methodology and incorporate the associated paragraphs from the selections 
+below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>IEEE C37.60</RID>, <RID>IEC 62271-111</RID>, <RID>IEEE C37.62</RID>.  Provide non-fused, non-reclosing, manual reset, vacuum interrupters consisting of vacuum interrupter 
+and a spring or magnetic assisted operating mechanism.  Each fault interrupting way must utilize[ internal][ external] mounted current transformers 
+and an electronic overcurrent control to provide[ single-pole][ three-pole ganged] tripping[ as indicated] for single-phase[ and three-phase] faults.  
+Provide microprocessor overcurrent relaying with adjustable settings.[  Provide remote tripping via an external dry contact device[ as indicated] 
+for fault interrupting ways.  Provide[ 120 Vac][ 48 Vdc][ 24 Vdc][ from the switchgear itself][ from remote trip control power][ and internal battery].]</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>[<SPT><TTL>Automatic Switch Controls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select this option only if an automatic switch control system is part of the design.</NPR><BRK/>
+<BRK/>
+<NPR>If this option is selected, the project design must provide a control power source for the automatic switch control 
+system.</NPR><BRK/>
+<BRK/>
+<NPR>Identify the appropriate operational methodology and incorporate the associated paragraphs from the selections 
+below.</NPR><BRK/>
+<BRK/>
+<NPR>Validate voltage monitoring methods with selected voltages, accuracy, and design.  Voltage transformers may increase 
+housing size.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an automatic switch control system to execute Manual[, SCADA][, Automatic Source-Transfer][, and Fault Detection Isolation and Restoration] 
+operations.  Power the switch control system[ and associated communication port provisions] from an integral battery-charger DC supply system.  
+Use motor operators and associated motor operator controllers for switch way operation.  Use[ 120 Vac][ 48 Vdc][ 24 Vdc] [_____] control power[ 
+from switchgear itself][ from remote source][ and internal battery] for automatic switch control. Utilize[ capacitive bushing voltage sensors][ 
+voltage transformers] for voltage sensing.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Manual Operation</TTL><BRK/>
+<BRK/>
+<TXT>Provide the motor operator controllers with "Close" and "Open" pushbuttons for manual operation.[  Provide remote pendant operator to permit manual 
+motor operation at a distance.]</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>SCADA Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following if a SCADA operation system is required and coordinate with <SRF>25 05 11</SRF> CYBERSECURITY 
+FOR FACILITY-RELATED CONTROL SYSTEMS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The automatic switch control system must execute remote commands received from a SCADA master station and transmit switchgear operation information 
+to a SCADA master station via a DNP 3.0 100 Base-FX Ethernet communication port.  Include transfer of switch ways to "Close" and "Open" positions[ 
+and enabling of the Source-Transfer operation] for execution of remote commands.  Include switch way position status, voltage and current readings, 
+and DC supply system status with communication of switchgear information.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Source-Transfer Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following if source-transfer operation is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an automatic switch control system that opens an incoming switch way when voltage is lost and closes the alternate incoming switch way 
+if voltage is present.  Include with the Source-Transfer controls an overcurrent-lockout feature that prevents automatic closing of a switch way 
+into a system fault.  Include provisions for returning the system to the normal configuration via manual, SCADA, or automatic operations when voltage 
+is restored.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Fault Detection Isolation and Restoration Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide a conduit system between the pad mount switchgear units for installation of the automatic switch 
+control system optical fiber cable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The automatic switch control system must execute circuit fault detection isolation operation for closed and open loop distribution systems.  Provide 
+communication via a peer-to-peer fiber optic network for the pad mount switchgear unit automatic switch control systems.  Provide an optical fiber 
+cable approved by the automatic switch control system manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT>][<SPT><TTL>Low Voltage Test Points</TTL><BRK/>
+<BRK/>
+<TXT>Provide load interrupting switch ways with load side voltage sensors that allow for low voltage checks with relay interface at test point of elbow 
+connectors to confirm energized and in-phase conditions using a standard high-impedance voltmeter.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Key Interlock</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Add requirements for key interlock if needed. Provide details of interlock system on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide key interlock system as indicated on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Dead-Front High-Voltage Bushings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Make selection based on system voltage.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>IEEE 386</RID>. [ 15 kV, 95 kV BIL][ 25 kV, 125 kV BIL][ 35 kV, 150 kV BIL].  Provide 600 ampere one-piece deadbreak apparatus bushings for each switched 
+way.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Include standoff bushings only when the Activity requires the additional items.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>Parking stands:  Provide a parking stand near each dead-front bushing.[  Provide insulated standoff bushings for parking of energized load-break 
+connectors on each parking stands.]</OLI><BRK/></OLG>
+<BRK/>
+]</SPT></SPT><SPT><TTL><SUB>INSULATED HIGH-VOLTAGE CONNECTORS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If submersion requirements are a consideration, coordinate submersible ratings of dead break elbows to 
+match requirements.  IEEE 386 requirements may not align with switchgear IP/NEMA ratings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>IEEE 386</RID>.  Provide corresponding connector for each switched way.  Provide a grounding eye and test point on each connector.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide 200 ampere bushing interface on all 600 ampere connectors.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>600 Ampere deadbreak connector ratings:  Voltage: [ 15 kV, 95 kV BIL][ 25 kV, 125 kV BIL][ 35 kV, 150 kV BIL].  Short time rating:  25,000 
+rms symmetrical amperes.  Provide connectors with 200 ampere bushing interface.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following paragraph only when the activity requires additional grounding elbows.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Provide[ one] [_____] set[s] of three grounding elbows.  Deliver grounding elbows to the Contracting Officer.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>GROUNDING PROVISIONS</TTL><BRK/>
+<BRK/>
+<TXT>Provide a ground-connection pad in each termination compartment.[  Provide a continuous copper ground bus across the full width of each termination 
+compartment switched way.]</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include the following paragraph only when the activity requires additional grounding elbows and feed-thru 
+inserts.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>Provide[ [one][_____] set[s] of three grounding elbows][ and][ [one][_____] set[s] of three feed-thru inserts]. [ Grounding elbows][ and][ 
+Feed-thru inserts].  Deliver to the Contracting Officer.</OLI><BRK/>
+]<NTE><AST/><BRK/>
+<NPR>NOTE:  Include the following paragraph only when the activity requires additional grounding elbows and grounded 
+standoff bushings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Provide[ [one][_____] set[s] of three grounding elbows][ and][ [one][_____] set[s] of three grounded standoff brushings]. [ Grounding elbows][ 
+and][ Grounded standoff bushings.]  Deliver to the Contracting Officer.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT>[<SPT><TTL>FAULTED CIRCUIT INDICATORS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If fault indicators are desired, determine type and locations. provide information on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install one set of faulted circuit indicators on the test points of each set of separable insulated connectors. Faulted circuit indicators must 
+comply with <RID>IEEE 495</RID>.  Indicators must be self powered; with automatic trip with mechanical flag indication upon overcurrent followed by loss of 
+system voltage.  Indicators must be compact, sealed corrosion resistant construction with provision for hotstick installation and operation.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>SURGE ARRESTERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide elbow type arresters at normally open switch locations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>IEEE C62.11</RID>, rated[[ 3][ 6][ 9][ 10][ 12][ 15] [_____] kV][ as indicated], fully shielded, dead-front, metal-oxide-varistor, elbow type with resistance-graded 
+gap, suitable for plugging into inserts.  Provide arresters on switched ways as indicated.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>SOURCE QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Switchgear Design and Production Tests</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include IEEE C37.60, IEEE C37.62 and IEC 62271-111 when the switchgear will have fault interrupting ways.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Add reference to IEC 62271-103 and IEC 62271-111 for projects located in Europe only after verifying that 
+at least three manufacturers of this switchgear comply with this standard.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Furnish reports which include results of design and production tests performed according to <RID>IEEE C37.74</RID>[, <RID>IEC 62271-103</RID>][ and <RID>IEEE C37.60</RID>, <RID>IEEE C37.62</RID>
+[, <RID>IEC 62271-111</RID>]].  Perform manufacturer production tests on each switchgear assembly to ensure that design performance is maintained in production.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Conform to <RID>IEEE C2</RID>, <RID>NFPA 70</RID>, and to the requirements specified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GROUNDING</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where rock or other soil conditions prevent obtaining a specified ground value, other methods of grounding 
+should be specified.  Where it is impractical to obtain indicated ground resistance values, the designer should 
+make every effort, within reason, to obtain ground resistance values as near as possible to the indicated values.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>NFPA 70</RID> and <RID>IEEE C2</RID>, except provide grounds and grounding systems with a resistance to solid earth ground not exceeding[ 25] [_____] ohms.  When 
+work, in addition to that indicated or specified, is directed to obtain the specified ground resistance, the provision of the contract covering 
+"Changes" applies.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Grounding Electrodes</TTL><BRK/>
+<BRK/>
+<TXT>Provide driven ground rods as specified[ in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION][ at each corner of switchgear pad][ as indicated].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Switchgear Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Connect No. 4/0 bare copper conductor ground ring, not less than<MET> 600 mm</MET><ENG> 24 inches</ENG> below grade, to the upper end of the ground rods by exothermic 
+welds or compression connectors.  Provide No. 4/0 bare copper conductors connecting the switchgear grounding provisions to two different ground 
+rods.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections</TTL><BRK/>
+<BRK/>
+<TXT>Make joints in grounding conductors and ground ring by exothermic weld or compression connector.  Install exothermic welds and compression connectors 
+as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding and Bonding Equipment</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 467</RID>, except as indicated or specified otherwise.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FOUNDATION FOR EQUIPMENT AND ASSEMBLIES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select from the bracketed options below for the selected installation method.  Coordinate with paragraphs 
+PAD-MOUNTING PROVISIONS and PAD/VAULT-MOUNTING PROVISIONS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Mount switch[ on concrete slab][ on concrete box pad][ on fiberglass pad][ on fiberglass box pad][ on concrete vault][ as shown on the drawings], 
+including the following:</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>Provide box pad with a minimum depth of<MET> [813][915] mm</MET><ENG> [32][36] inches</ENG> [_____].</OLI><BRK/>
+<BRK/>
+][<OLI>Show vault size on the drawings.</OLI><BRK/>
+<BRK/>
+][<OLI>Provide slab size at least<MET> 300 mm</MET><ENG> 12 inches</ENG> thick, reinforced with a<MET> 152 by 152 - MW19 by MW19</MET><ENG> 6 by 6- W2.9 by W2.9</ENG> mesh, placed uniformly<MET>
+ 100 mm</MET><ENG> 4 inches</ENG> from the top of the slab.</OLI><BRK/>
+<BRK/>
+]<OLI>Place[ slab][ box pad] on a<MET> 150 mm</MET><ENG> 6 inch</ENG> thick, well-compacted gravel base.</OLI><BRK/>
+<BRK/>
+<OLI>Install top of concrete slab approximately<MET> 100 mm</MET><ENG> 4 inches</ENG> above finished grade.  Provide edges above grade with<MET> 15 mm</MET><ENG> 1/2 inch</ENG> chamfer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide[ slab][ box pad] of adequate size to project at least<MET> 200 mm</MET><ENG> 8 inches</ENG> beyond equipment.</OLI><BRK/>
+<BRK/>
+[<OLI>[For installations that use a box pad or vault, train the incoming cables around the box or vault prior to terminating at the switchgear.][Stub 
+up conduits, with bushings,<MET> 50 mm</MET><ENG> 2 inches</ENG> into cable wells in the concrete pad.  Coordinate dimensions of cable wells with switch cable 
+training areas.  Provide concrete work as specified in Section <SRF>03 30 00</SRF> CAST-IN-PLACE CONCRETE.]</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Performance of <SUB>Acceptance Checks and Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Perform in accordance with the manufacturer's recommendations, <RID>NFPA 70B</RID>, <RID>NETA ATS</RID> and referenced ANSI standards.  Submit reports, including acceptance 
+criteria and limits for each test in accordance with <RID>NETA ATS</RID> "Test Values".</TXT><BRK/>
+<BRK/>
+<TXT>Include the following visual and mechanical inspections and electrical tests, performed in accordance with <RID>NETA ATS</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Switchgear</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Compare equipment nameplate information with specifications and approved shop drawings.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Check for proper anchorage, alignment, required area clearances, and grounding.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform mechanical operator tests in accordance with manufacturer's instructions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Inspect all indicating devices for proper operation.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Include the following option when key interlocking is specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI LEVEL="2">Test interlock systems for proper operation and sequencing.</OLI><BRK/>
+<BRK/>
+]<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform contact-resistance tests.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Trip fault interrupters by operation of overcurrent control[ and remote trip].</OLI><BRK/>
+<BRK/>
+]<OLI LEVEL="2">Perform insulation-resistance tests.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform an over-potential test on each switched way pole with the switched way in the open position in accordance with the manufacturer's 
+instructions.</OLI><BRK/>
+<BRK/>
+[<OLI LEVEL="2">Set fault interrupter overcurrent control in accordance with government provided settings.  Request settings from government, 
+in writing, a minimum of 30 days prior to scheduling electrical tests.</OLI><BRK/></OLG>
+<BRK/>
+]</SPT><SPT><TTL>Grounding System</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and Mechanical Inspection</OLI><BRK/>
+<BRK/>
+<LST>Inspect ground system for compliance with contract plans and specifications.</LST><BRK/>
+<BRK/>
+<OLI>Electrical Tests</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Perform ground-impedance measurements utilizing the fall-of-potential method.  On systems consisting of interconnected ground 
+rods, perform tests after interconnections are complete.  On systems consisting of a single ground rod perform tests before any 
+wire is connected.  Take measurements in normally dry weather, not less than 48 hours after rainfall.  Use a portable ground 
+resistance tester in accordance with manufacturer's instructions to test each ground or group of grounds.  Use an instrument 
+equipped with a meter reading directly in ohms or fractions thereof to indicate the ground value of the ground rod or grounding 
+systems under test.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Submit the measured ground resistance of each ground rod and grounding system, indicating the location of the rod and grounding 
+system.  Include the test method and test setup (i.e., pin location) used to determine ground resistance and soil conditions 
+at the time the measurements were made.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Follow-Up Verification</TTL><BRK/>
+<BRK/>
+<TXT><TST>Upon completion of acceptance checks and tests, show by demonstration in service that devices are in good operating condition and properly performing 
+the intended function.  Perform each test function not less than three times</TST>.  As an exception to requirements stated elsewhere in the contract, 
+notify the Contracting Officer five working days in advance of the dates and times for checks and tests.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD APPLIED PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>[Where field painting of enclosures is required to correct damage to the <NED/>manufacturer's factory applied coatings, provide manufacturer's recommended 
+coatings and apply in accordance with manufacturer's instructions.][Apply field painting as specified in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.]</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

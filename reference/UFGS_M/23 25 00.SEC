@@ -1,0 +1,2572 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-23 25 00 (May 2021)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-23 25 00 (November 2008)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 23 25 00</SCN><BRK/>
+<BRK/>
+<STL>CHEMICAL TREATMENT OF WATER FOR MECHANICAL SYSTEMS</STL><BRK/>
+<DTE>05/21</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>chemical treatment 
+of water for mechanical systems</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B40.100</RID><RTL>(2022) Pressure Gauges and Gauge Attachments</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM D596</RID><RTL>(2001; R 2018) Standard Guide for Reporting Results of Analysis of Water</RTL><BRK/><BRK/><RID>ASTM D1384</RID><RTL>(2005; R 2019) Corrosion Test for Engine Coolants in Glassware</RTL><BRK/><BRK/><RID>ASTM D2688</RID><RTL>(2015; E 2016) Standard Test Method for Corrosivity of Water in the Absence of Heat Transfer (Weight Loss Methods)</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF><REF><ORG>U.S. ARMY CORPS OF ENGINEERS (USACE)</ORG><BRK/><BRK/><RID>EM 200-1-13</RID><RTL>(2016) Environmental Quality -- Minimizing the Risk of Legionellosis Associated with Building Water Systems on Army Installation</RTL><BRK/><BRK/><RID>PWTB 420-49-5</RID><RTL>(1998) Industrial Water Treatment Procedures</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 3-430-08N</RID><RTL>(2004) Central Heating Plants</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Water Treatment System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Water Analysis</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Instructions</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Course</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Condenser Water QA Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Steam Boiler Water QA Tests</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Water Treatment System</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE MATERIAL SUBMITTALS</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>spare parts</SUB> data for each different item of material and equipment specified, after approval of the detail 
+drawings, not later than [_____] months prior to the date of beneficial occupancy.  Include a complete list of 
+parts and supplies, with source of supply, with the data.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Safety</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Catwalk, ladder and guardrail may be required.  If so, select the applicable 
+item and delete the others and indicate on drawings the selected item.  If not 
+applicable, delete the entire sentence within the brackets.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure exposed moving parts, parts that produce high operating temperature, parts which may be electrically energized, 
+and parts that may be a hazard to operating personnel are insulated, fully enclosed, guarded, or fitted with 
+other types of safety devices.  Install safety devices so that proper operation of equipment is not impaired.  
+Provide [catwalk,] [ladder,] [and guardrail] where indicated and in accordance with Section [<SRF>05 50 13</SRF> MISCELLANEOUS 
+METAL FABRICATIONS] [<SRF>05 51 33</SRF> METAL LADDERS].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Because of the small scale of the drawings, it is not possible to indicate all offsets, fittings, and accessories 
+that may be required.  Carefully investigate the plumbing, fire protection, electrical, structural and finish 
+conditions that would affect the work to be performed and arrange such work accordingly, furnishing required 
+offsets, fittings, and accessories to meet such conditions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect all equipment delivered and placed in storage from the weather, humidity and temperature variations, 
+dirt and dust, or other contaminants.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL> <BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Summary</TTL><BRK/>
+<BRK/>
+<TXT>This section covers the provisions and installation procedures necessary for a complete and totally functional 
+water system(s) chemical treatment.  Provide and install the system with all necessary System Components, Accessories, 
+Piping Components, and Supplemental Components/Services.</TXT><BRK/>
+<TXT><TAI OPT="ARMY">Minimize to risk of Legionellosis by following the guidance in <RID>EM 200-1-13</RID></TAI>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide materials and equipment which are standard products of a manufacturer regularly engaged in the 
+manufacturing of such products, that are of a similar material, design and workmanship and that have 
+been in satisfactory commercial or industrial use for two years' prior to bid opening.</OLI><BRK/>
+<BRK/>
+<OLI>Include in the two-year use all applications of equipment and materials under similar circumstances and 
+of similar size.  Ensure the two years' experience has been satisfactorily completed by a product which 
+has been sold or is offered for sale on the commercial market through advertisements, manufacturer's 
+catalogs, or brochures.  Products having less than a two-year field service record are acceptable if 
+a certified record of satisfactory field operation, for not less than 6000 hours exclusive of the manufacturer's 
+factory tests, can be shown.</OLI><BRK/>
+<BRK/>
+<OLI>All products are required to be supported by a service organization.  Submit a certified list of qualified 
+permanent service organizations for support of the equipment, including their addresses and qualifications.  
+These service organizations are required to be reasonably convenient to the equipment installation and 
+able to render satisfactory service to the equipment on a regular and emergency basis during the warranty 
+period of the contract.</OLI><BRK/>
+<BRK/>
+<OLI>The selected service organization provides the chemicals required, the concentrations required, and the 
+water treatment equipment sizes and flow rates required.  The company provides all chemicals required 
+for the [condenser] [condenser and chilled] water systems and fills the systems with chemicals to the 
+levels specified.  The chemical is required to meet the requirements of this specification as well as 
+the recommendations from the manufacturers of the condenser and cooling tower.  Acid treatment chemicals 
+are not allowed to be used.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Water Analysis</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  A water analysis may be available from the user.  If an analysis is not 
+available, an analysis will be performed during the design, and appropriate 
+data will be entered.</NPR><BRK/>
+<BRK/>
+<NPR>Cooling towers with a capacity greater than<MET> 176 kW</MET><ENG> 50 tons</ENG> will be provided 
+with automatic chemical feed and blow down systems.  Smaller towers will be 
+provided with continuously activated systems.  Indicate the location of the 
+entire water treatment system. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conditions of make-up water to be supplied to the boilers, cooling towers and chilled water systems reported 
+in accordance with <RID>ASTM D596</RID> are as follows:</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="20">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="216.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="216.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Date of Sample</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Temperature</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] degrees C</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Silica (SiO 2)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Insoluble</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Iron, total (Fe)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Aluminum (Al)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Calcium (Ca)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Magnesium (Mg)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Carbonate (HCO 3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sulfate (SO 4)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Chloride (Cl)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Nitrate (NO 3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Turbidity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ntu</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Residual Chlorine</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Alkalinity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Non-Carbonate Hardness</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Hardness</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dissolved Solids</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Conductivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] Micromho/cm</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Provide a nameplate for each major component of equipment that includes the manufacturer's name, address, type 
+or style, and catalog or serial number securely attached to the item of equipment.  Provide nameplates for:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Pump(s)</OLI><BRK/>
+<BRK/>
+<OLI>Pump Motor(s)</OLI><BRK/>
+<BRK/>
+<OLI>Water Treatment Controller(s)</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Electrical Work</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where motor starters for mechanical equipment are provided in motor-control 
+centers, the references to motor starters will be deleted.  Mechanical designer 
+must ensure that the electrical designer is provided with electrical requirements 
+for chemical feed pumps.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure all electrical equipment, motors, motor efficiencies, and wiring complies with Section <SRF>26 20 00</SRF> INTERIOR 
+DISTRIBUTION SYSTEM.  Provide electrical motor driven equipment specified complete with motors, motor starters, 
+and controls.  Provide electrical characteristics and enclosure types as shown, and unless otherwise indicated, 
+provide all motors of<MET> 745 W</MET><ENG> 1 horsepower</ENG> and above with open, drip-proof, or totally enclosed fan cooled enclosures, 
+high efficiency type.  Perform field wiring in accordance with manufacturer's instructions.  Each motor is required 
+to conform to <RID>NEMA MG 00001</RID> and be of sufficient size to drive the equipment at the specified capacity without 
+exceeding the nameplate rating of the motor.  Provide continuous duty motors with the enclosure specified.  Provide 
+motor starters complete with thermal overload protection and other appurtenances necessary for the motor control 
+indicated.  Furnish motors with a magnetic across-the-line or reduced voltage type starter as required by the 
+manufacturer.  Furnish motor starters with [NEMA 1] [NEMA 3R] [NEMA [_____]] enclosures.  Provide manual or automatic 
+control and protective or signal devices required for the operation specified and any control wiring required 
+for controls and devices specified, but not shown.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gauges</TTL><BRK/>
+<BRK/>
+<TXT>Provide gauges that conform to <RID>ASME B40.100</RID>, Class 1, 2, or 3, Style X, Type I or III as required, <MET>115 mm</MET><ENG> 4-1/2 
+inches</ENG> in diameter with phenolic or metal case.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>COMPONENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Condenser Water Treatment Systems</TTL><BRK/>
+<BRK/>
+<TXT>The use of chemical-treatment products containing hexavalent chromium (Cr) is prohibited.  Treat the water to 
+be used in the condenser water systems to maintain the conditions recommended by this specification as well as 
+the recommendations from the manufacturers of the condenser and evaporator coils.  Chemicals are required to 
+meet all required federal, state, and local environmental regulations for the treatment of condenser-side heat 
+exchangers, cooling towers and direct discharge to the sanitary sewer.</TXT><BRK/>
+<BRK/>
+<TXT>Provisions should be made to effectively dose, monitor and control a water treatment program to include (1) inhibitor 
+and biocide injection (2) water sampling, (3) corrosion coupon sampling, and (4) effective bleed and control 
+points.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Condenser Water Limits</TTL><BRK/>
+<BRK/>
+<TXT>Meet the following condenser water limits, unless dictated differently by the cooling tower or chiller manufacturer's 
+recommendations:</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0" WIDTH="84">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="177.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="185.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Treatment type</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Phosphonate/Polymer</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Puckorius Index</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">4 minimum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Langelier Index</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">4 maximum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Dissolved Solids</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">5000 ppm maximum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Calcium Hardness</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1200 ppm maximum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Silica</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">150 ppm maximum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">7.5 - 8.5</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/>
+<TXT>For treated condenser/cooling tower water, minimize blowdown until the first of one of the top 5 limits is reached.  
+Specific requirements for treatment chemicals and levels are listed below in paragraphs dealing with small and 
+large systems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Glycol Solution</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If freeze protection for condenser water is not required or addressed 
+using a different method, this paragraph should be deleted.  When a glycol system 
+is used, the size of the HVAC systems should be corrected due to changes in 
+specific heat and viscosity.  ASHRAE's "HVAC systems and Equipment Handbook" 
+should be consulted for the appropriate calculation procedures.  Ethylene glycol 
+should be used for HVAC systems.  However, if the heat transfer media has the 
+possibility of mixing with a potable water system, propylene glycol should be 
+used.  The required concentration should be entered based upon the anticipated 
+ambient or operating temperature.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate minimum glycol concentration with manufacturer to avoid corrosion inhibitor degradation.  Test the 
+glycol in accordance with <RID>ASTM D1384</RID> with less than<MET> 0.013 mm</MET><ENG> 0.5 mils</ENG> penetration per year for all system metals.  
+Provide glycol that contains corrosion inhibitors.  Silicate based inhibitors are not acceptable.  Ensure the 
+solution is compatible with pump seals, other elements of the system, and water treatment chemicals used within 
+the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chemical Treatment for Small Systems</TTL><BRK/>
+<BRK/>
+<TXT>For cooling systems with a capacity of<MET> 175.8 kW</MET><ENG> 50 tons</ENG> or less, provide the following chemical treatment.  For 
+corrosion control provide<MET> 6.8 to 9.1 kg</MET><ENG> 15 to 20 pounds</ENG> polyphosphate in nylon mesh bag in cooling tower sump.  
+If biocide is needed, use either 1-bromo-3-chloro-5.5-dimethylhydantoin or gluteraldehyde as recommended by manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chemical Treatment for Large Systems</TTL><BRK/>
+<BRK/>
+<TXT>For cooling systems with capacities greater than<MET> 175.8 kW</MET><ENG> 50 tons</ENG> provide one of the three following chemical 
+treatments with the limits indicated.  The zinc and molybdate in the last two treatments help to meet the maximum 
+corrosion requirements in waters that tend to be more corrosive.  Maintain biocides to control bacteria below 
+10,000 colony forming units per milliliter.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Phosphonate Type Treatment</OLI><BRK/>
+<OLI LEVEL="2"><TAB HEADERROWS="0" WIDTH="58">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="177.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="174.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Phosphate</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3-5 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Polymer</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3-4 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">TT</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1-2 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Biocides</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">as required</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></OLI><BRK/>
+<BRK/>
+<OLI>Zinc-Phosphonate Type Treatment</OLI><BRK/>
+<OLI LEVEL="2"><TAB HEADERROWS="0" WIDTH="58">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="5">
+      <COL AUTOWIDTH="0" WIDTH="118.50"/>
+      <COL AUTOWIDTH="0" WIDTH="117.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Phosphate</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3-5 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Polymer</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3-4 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Zinc</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1-2 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">TT</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1-2 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Biocides</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">as required</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></OLI><BRK/>
+<BRK/>
+<OLI>Zinc-Molybdate Type Treatment</OLI><BRK/>
+<OLI LEVEL="2"><TAB HEADERROWS="0" WIDTH="58">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="118.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="117.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Phosphate</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3-5 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Polymer</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">3-4 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Molybdate</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">10-15 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Zinc</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">2-3 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">TT</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1-2 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Biocides</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">as required</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide a <SUB>water treatment system</SUB> capable of automatically feeding chemicals and bleeding the system to prevent 
+corrosion, scale, and biological formations.  Submit [6] [_____] complete copies, at least 5 weeks prior to the 
+purchase of the water treatment system, of the proposed water treatment plan including a layout; control scheme; 
+a list of existing make-up water chemistry, including the items listed in paragraph Water Analysis; a list of 
+treatment chemicals to be added; the proportion of chemicals to be added; the final treated water control levels; 
+and a description of health, safety and environmental concerns for handling the chemicals plus any special ventilation 
+requirements.  Automatic chemical feed systems automatically feed chemicals into the condenser water based on 
+makeup water rate.  Use electrical signals from a water meter on the makeup water line to control the output 
+of chemical feed pumps.  Set the system initially manually based on the water analysis of the make-up water.  
+Submit [6] [_____] complete copies of operating and maintenance manuals for the step-by-step water treatment 
+procedures.  Include in the manuals all testing procedures used in determining water quality.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chemical Feed Pumps and Tanks</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The required maximum pump flow rate will be shown on the drawings.  The 
+flow rate will depend upon the makeup water flow rate, the chemical composition 
+of the makeup water and the concentration of the chemical supplied.  A water 
+treatment company should be consulted for determining the proper maximum pump 
+flow rate.</NPR><BRK/>
+<BRK/>
+<NPR>A water treatment company will be consulted to determine the number of tanks 
+required and must be shown on plans.  The number will depend on the size of 
+the boiler, makeup water flow rate, and makeup water composition.  A potable 
+water line will be provided near the tanks for the mixing of chemicals.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Furnish chemical feed pumps and tanks as a package with the pumps mounted on and piping connected to 
+the tank.  Furnish chemical feed pumps of the positive displacement diaphragm type.  Furnish all pump 
+cylinders, plungers, ball check valves, and check valve bodies made of corrosion resistant materials 
+suitable for the chemicals being pumped.  Ensure the cylinders of the provided pumps are replaceable 
+for increased or reduced pressure or capacity ranges.</OLI><BRK/>
+<BRK/>
+<OLI>Provide pumps with a flow rate adjustable from 0 to 100 percent while in operation.  The volumetric accuracy 
+of the pumps is required to be within one percent over the range indicated.  Ensure pump capacities are 
+adjustable by positioning crank pin with micrometer setscrews.  Divide stroke length scale in percentage 
+graduations engraved on scale.  Ensure the discharge pressure of pumps is not less than 1.5 times the 
+line pressure at the point of connection.  Provide the pumps with a pressure relief valve and a check 
+valve mounted in the pump discharge.  Control the pump by an external controller/timer receiving signals 
+from the makeup water meter.</OLI><BRK/>
+<BRK/>
+<OLI>Provide drive motors rated at 110 volt, single phase with drip-proof enclosures.  Provide two chemical 
+tanks constructed of [materials compatible with the chemicals to be stored in the tank] [high density 
+polyethylene] [stainless steel] [fiber reinforced plastic] with a hinged cover and mounted on legs.  
+Ensure tanks have filling and drain connections and gauge glasses.  Furnish each tank with one pump, 
+mounted and piped with pipe materials and fittings suitable for working pressure and compatible with 
+the chemicals in the tank it is in contact with, with suction strainer and stainless steel screen, and 
+with<MET> 13 mm</MET><ENG> 1/2 inch</ENG> relief valve with steel body and stainless steel trim.  Provide a tank bottom that 
+is dished concave to a radius equal to the diameter of the tank.  Provide motor-driven agitator.  Size 
+the tanks to have sufficient capacity to require recharging only once per [7] [14] [21] [_____] days 
+during normal operation.</OLI> <BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Chemical Injection Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Provide an injection assembly at each chemical feed point.  Locate the injection assembly downstream of recirculating 
+pumps and upstream of the condenser.  Construct the injection assemblies of stainless steel.  Locate the discharge 
+of the assemblies in the condenser water piping as recommended by the manufacturer.  Include with each assembly 
+a shutoff valve and check valve at the point of entrance into the condenser water line.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Meter</TTL><BRK/>
+<BRK/>
+<TXT>Provide water meters with an electric contacting register and remote accumulative counter.  Install the meter 
+within the make-up water line, as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Timers</TTL><BRK/>
+<BRK/>
+<TXT>Provide timers which are of the automatic reset, adjustable type, and are electrically operated.  Ensure the 
+timers are designed to work with the contacting head water meters. Include the water meter cable with the timer.  
+Ensure timers control operation of the chemical feed pumps and are suitable for a 120 volt current.  Locate the 
+timers within the water treatment control panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bleed (Blowdown) Line</TTL><BRK/>
+<BRK/>
+<TXT>Control the flow through the bleed line by a conductivity meter and probe installed to measure the conductivity 
+of the condenser water.  Provide a high and low set point on the conductivity meter above which the meter opens 
+a solenoid valve on the bleed line.  Locate the bleed line attachment to the condenser water piping downstream 
+of the recirculating pumps and upstream of the chemical injection point.  Extend the bleed line to the nearest 
+drain for continuous discharge.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Panel</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The MAN-OFF-AUTO switch should be deleted for continuously fed systems.  
+In areas where a panel could come in contact with the water treatment chemical, 
+choose the stainless steel construction.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a NEMA 12 control panel enclosure suitable for surface mounting.  Construct the panel of [stainless steel] 
+[coated steel] with a hinged door and lock.  Include a laminated plastic nameplate identifying each of the following 
+functions:</TXT><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">(1)  Main power switch and indicating light</ITM><BRK/>
+<ITM INDENT="-0.33">(2)  MAN-OFF-AUTO selector switch</ITM><BRK/>
+<ITM INDENT="-0.33">(3)  Indicating lamp for bleed-off valve</ITM><BRK/>
+<ITM INDENT="-0.33">(4)  Indicating lamp for each chemical feed pump</ITM><BRK/>
+<ITM INDENT="-0.33">(5)  Set point reading for each timer</ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chemical Piping</TTL><BRK/>
+<BRK/>
+<TXT>Construct the piping and fittings of [schedule 80 PVC] [stainless steel] suitable for the water treatment chemicals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sequence of Operation</TTL><BRK/>
+<BRK/>
+<TXT>Add chemicals based upon sensing the make-up water flow rate and activating appropriate timers.  Provide a separate 
+timer for each chemical. Control the blow down based upon the conductivity of the condenser water.  Control the 
+injection of the chemical required for biological control manually set for proper chemical feed.  The water treatment 
+company is required to determine and set a timer set points, blow down rates, and chemical pump flow rates.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Kits</TTL><BRK/>
+<BRK/>
+<TXT>Provide one test kit of each type required to determine the water quality as outlined within the operation and 
+maintenance manuals.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Chilled Water System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The services of a company regularly engaged in water treatment for mechanical 
+systems to treat a chilled water system should only be required if the makeup 
+water available is of very poor quality.</NPR><BRK/>
+<BRK/>
+<NPR>For dual temperature systems (chilled and heated water), coordinate the compatibility 
+of the separate water treatment systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a<MET> [7.57] [18.92] [_____] L</MET><ENG> [2] [5] [_____] gallon</ENG> shot feeder on the chilled water piping as indicated.  
+Furnish the feeder with an air vent, gauge glass, funnel, valves, fittings, and piping.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Requirements for Glycol Solution</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If freeze protection for chilled water is not required, this paragraph 
+should be deleted.  When a glycol system is used, the size of the HVAC systems 
+should be corrected due to changes in specific heat and viscosity.  ASHRAE's 
+"HVAC systems and Equipment Handbook" should be consulted for the appropriate 
+calculation procedures.  Ethylene glycol should be used for HVAC systems.  However, 
+if the heat transfer media has the possibility of mixing with a potable water 
+system, propylene glycol should be used.  The required concentration should 
+be entered based upon the anticipated ambient or operating temperature.  Consult 
+with a water treatment company to determine the exact treatment levels for chilled 
+water treatment.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate minimum [ethylene][propylene] glycol concentration with manufacturer to avoid corrosion inhibitor 
+degradation. Test the glycol in accordance with <RID>ASTM D1384</RID> with less than<MET> 0.013 mm</MET><ENG> 0.5 mils</ENG> penetration per year 
+for all system metals.  Ensure the glycol contains corrosion inhibitors.  Silicate based inhibitors are not acceptable.  
+Ensure the solution is compatible with pump seals, other elements of the system, and water treatment chemicals 
+used within the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chilled Water Treatment</TTL><BRK/>
+<BRK/>
+<TXT>Treat chilled water with either a borax/nitrite type treatment or a molybdate type treatment.  Both types of 
+treatment are acceptable for use with glycol.  Maintain borax/nitrite treatment at the limits of [     ] ppm 
+nitrite, [     ] ppm copper corrosion inhibitor (TT or MBT), and pH of 8.5 to 9.5.  Maintain molybdate treatment 
+at the limits of [     ] ppm molybdate, [    ] ppm copper corrosion inhibitor (TT or MBT), and pH of 8.0 to 9.0.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dual Temperature Systems</TTL><BRK/>
+<BRK/>
+<TXT>Dual hot/chilled water systems that are treated with borax/nitrite are also to be treated with a biocide.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chilled Water Test Kits</TTL><BRK/>
+<BRK/>
+<TXT>Provide one test kit of each type required to determine the water quality as outlined within the operation and 
+maintenance manuals (e.g. pH and nitrite or molybdate).</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Low and Medium Temperature Hot Water Boilers and Heat Exchangers</TTL><BRK/>
+<BRK/>
+<TXT>Low and medium temperature hot water boilers are defined as those operating below<MET> 177 degrees C</MET><ENG> 350 degrees F</ENG>
+, (<MET>122 degrees C</MET><ENG> 250 degrees F</ENG> for Low Temperature).</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Chemical Feeder</TTL><BRK/>
+<BRK/>
+<TXT>Provide a<MET> [7.57] [18.92] [_____] L</MET><ENG> [2] [5] [_____] gallon</ENG> shot feeder on the hot water piping as indicated.  
+Base the size and capacity of feeder upon local requirements and water analysis.  Furnish the feeder with an 
+air vent, gauge glass, funnel, valves, fittings, and piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Softening System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The makeup water analysis and the boiler manufacturer's recommended feed 
+water conditions will be used to determine the need for a water softener.  Softening 
+of makeup water for hot water boilers is required if the makeup water hardness 
+is above 200 ppm or the makeup rate is above 1 percent.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a water softening system as specified in Section <SRF>22 31 03</SRF> WATER SOFTENERS, CATION-EXCHANGE (SODIUM CYCLE).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Low and Medium Temperature Hot Water Treatment</TTL><BRK/>
+<BRK/>
+<TXT>Treat hot water with either a borax/nitrite type treatment or a molybdate type treatment.  Both types of treatment 
+are acceptable to use with glycol.  Maintain borax/nitrite treatment at the limits of 600 to 1000 ppm nitrite, 
+40 - 50 ppm copper corrosion inhibitor (TT or MBT) and pH of 8.5 to 9.5.  Maintain molybdate treatment at the 
+limits of 100 to 125 ppm molybdate, 40 - 50 ppm copper corrosion inhibitor (TT or MBT) and pH of 8.0 to 9.0.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dual Temperature Systems</TTL><BRK/>
+<BRK/>
+<TXT>Dual hot/chilled water systems treated with borax/nitrite are required to also be treated with a biocide.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Test Kit Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide one test kit of each type required to determine the water quality as outlined within the operation and 
+maintenance manuals (e.g. pH and nitrite or molybdate).</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>High Temperature Hot Water Boilers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>High Temperature Hot Water Boilers are defined as those operating above<MET> 177 
+degrees C</MET><ENG> 350 deg F</ENG>.  The chemical treatment requires more attention (daily), 
+the makeup water requires softening and the chemicals and limits differ from 
+the low and medium temperature hot water boilers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Chemical Feeder Unit </TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The required maximum pump flow rate will be shown on the drawings.  The 
+flow rate will depend upon the makeup water flow rate, the chemical composition 
+of the makeup water and the concentration of the chemical supplied.  A water 
+treatment company should be consulted for determining the proper maximum pump 
+flow rate.</NPR><BRK/>
+<BRK/>
+<NPR>A company regularly engaged in water treatment for mechanical systems will be 
+consulted to determine the number of tanks required to be shown on the drawings.  
+The number will depend on the size of the boiler, makeup water flow rate, and 
+makeup water composition.  A potable water line will be provided near the tanks 
+for the mixing of chemicals.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a feeder unit for each boiler.  Ensure chemical feeder provided is automatic proportioning, shot type, 
+or pump type.  Provide all appurtenances necessary to ensure the system performs in compliance with the requirements 
+outlined herein.  Base the size and capacity of feeder upon local requirements and water analysis.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pumps and Tanks</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Furnish chemical feed pumps and tanks as a package with the pumps mounted on and piping connected to 
+the tank.  The chemical feed pumps are required to be positive displacement diaphragm type.  Furnish 
+the pump cylinders, plungers, ball check valves, and check valve bodies fabricated from corrosion resistant 
+materials suitable for the chemicals being pumped.  Ensure cylinders used are replaceable for increased 
+or reduced pressure or capacity ranges.</OLI><BRK/>
+<BRK/>
+<OLI>Provide for a flow rate of the pumps that is adjustable from 0 to 100 percent while in operation.  Ensure 
+volumetric accuracy of the pumps is within one percent over the range indicated.  Ensure pump capacities 
+are adjustable by positioning crank pin with micrometer setscrews.  Divide stroke length scale in percentage 
+graduations engraved on scale.  Ensure the discharge pressure of pumps is not less than 1.5 times the 
+line pressure at the point of connection.  Design the pumps to feed the chemical solutions into the HTW 
+return line to the system circulating pumps with a capacity to feed a maximum of<MET> [5.3] [_____] mL/second</MET><ENG>
+ [5] [_____] gph</ENG>.  Provide the pumps with a pressure relief valve and a check valve mounted in the pump 
+discharge.  Control the pumps by an external controller/timer receiving signals from the makeup water 
+meter.</OLI><BRK/>
+<BRK/>
+<OLI>Provide drive motors that are 110 volt, single phase and have drip-proof enclosures.  Provide the tanks 
+constructed of [materials compatible with the chemicals to be stored in the tank] [high density polyethylene] 
+[stainless steel] [fiber reinforced plastic] with a hinged cover and mounted on legs.  Ensure tanks have 
+both filling and drain connections and gauge glass.  Furnish each tank with one pump, mounted and piped 
+with black iron pipe and fittings suitable for working pressures and compatible with the chemicals in 
+the tank it is in contact with, with suction strainer and stainless steel screen, and with<MET> 13 mm</MET><ENG> 1/2 
+inch</ENG> relief valve with steel body and stainless steel trim. Provide tank with a dished concave bottom 
+to a radius equal to the diameter of the tank.  Provide units suitable for phosphate, caustic feed and 
+sulfite feeding.  Provide sulfite tank with a floating cover to completely cover the surface of the solution.  
+Include a motor-driven agitator.  Size tanks to have sufficient capacity to require recharging only once 
+per [7] [14] [21] [_____] days during normal operation.</OLI><BRK/>
+<BRK/>
+<OLI>For auto proportioning systems, provide controllers designed to be used with selected system specifically 
+for the purpose of injecting chemicals into boiler systems.</OLI><BRK/>
+<BRK/>
+<OLI>Mount system components on metal buses or supports instead of mounting directly to the floor.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Water Softening System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The makeup water analysis and the boiler manufacturer's recommended feed 
+water conditions will be used to determine the need for a water softener.  Hardness 
+must be maintained below 2 ppm.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide water softening system as specified in Section <SRF>22 31 03</SRF> WATER SOFTENERS, CATION-EXCHANGE (SODIUM CYCLE).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Treated Water Limits </TTL><BRK/>
+<BRK/>
+<TXT>Consult with the boiler manufacturer for the determination of the boiler water chemical composition limits.  
+Provide for the following recirculating hot water chemical limits unless dictated differently by the boiler manufacturer's 
+recommendations:</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0" WIDTH="51">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="87.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="133.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">9.3-9.9</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sulfite</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">30-60 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hardness</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Less than 2.0 ppm</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Test Kit</TTL><BRK/>
+<BRK/>
+<TXT>Provide one test kit of each type required to determine the water quality as outlined within the operation and 
+maintenance manuals (e.g. pH, hardness and sulfite).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steam Boiler Water Treatment</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The chemical piping will be indicated on the drawing.  Piping for feeding 
+sulfite will be connected to the storage section of the deaerator or feedwater 
+heater or to the feedwater line.  Piping for other treatment chemicals will 
+be connected to the boiler drum.  The chemical shot feeder will not be required 
+for larger steam boilers.</NPR><BRK/>
+<BRK/>
+<NPR>If steam is used for cooking or humidification, a separate heat exchanger will 
+be required due to environmental constraints with the use of amines (AR 420-49, 
+6-5b).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a water treatment system capable of feeding chemicals and blowdown of the system to prevent corrosion 
+and scale within the boiler and piping distribution system.  Treat the water to maintain the conditions recommended 
+by the boiler manufacturer or <RID>UFC 3-430-08N</RID> (Central Heating Plants)<TAI OPT="ARMY"> and <RID>PWTB 420-49-5</RID> (Industrial Water Treatment 
+Procedures)</TAI>.  Provide chemicals that meet all required federal, state, and local environmental regulations for 
+the treatment of boilers and discharge to the sanitary sewer.  Engage the services of a company regularly engaged 
+in the treatment of boilers to determine the correct concentrations required for water treatment.  The company 
+is required to maintain the chemical treatment and provide all chemicals required for a period of 1 year from 
+the date of occupancy.  Do not use filming amines, hydrazine and chelants.  Ensure the water treatment chemicals 
+remain stable throughout the operating temperature range of the system and are compatible with pump seals and 
+other elements of the system.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Boiler Water Limits</TTL><BRK/>
+<BRK/>
+<TXT>Provide for boiler water limits as follows unless dictated differently by the boiler manufacturer's recommendations:</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="14">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="206.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Causticity (OH)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">20-200 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Alkalinity (CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">200-800 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Phosphate (PO4)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">30-60 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Polymer (dispersant) or Tannin</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5-10 ppm or medium color, respectively</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dissolved Solids (water tube boilers)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3000-3500 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dissolved Solids (fire tube boilers)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3500-5000 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suspended Solids</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">15 ppm Maximum</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sodium Sulfite</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">20-40 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Silica</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Less than 200 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dissolved Oxygen</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Less than 7 ppb</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Iron</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Less than 10 ppm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH (Condensate)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">7.5 - 8</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Conductivity (Condensate)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Less than 35 micromhos</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hardness (Condensate and makeup)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Less than 2 ppm</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/>
+<TXT>The above limits apply to boilers operating above<MET> 100 kPa</MET><ENG> 15 psi</ENG> up<MET> 2070 kPa</MET><ENG> 300 psi</ENG>.  Above<MET> 2070 kPa</MET><ENG> 300 psi</ENG>
+ these limits decrease.  Use ABMA or chemical vendor recommended limits above<MET> 2070 kPa</MET><ENG> 300 psi</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Water Softening System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The makeup water analysis and the boiler manufacturer's recommended feed 
+water conditions will be used to determine the need for a water softener.  Generally, 
+all boilers operating above<MET> 100 kPa</MET><ENG> 15 psi</ENG> require softened water.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the water softening system as specified in Section <SRF>22 31 03</SRF> WATER SOFTENERS, CATION-EXCHANGE (SODIUM 
+CYCLE).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Boiler Water Treatment System</TTL><BRK/>
+<BRK/>
+<TXT>Provide water treatment system capable of automatically feeding chemicals to prevent corrosion and scale within 
+the boiler and condensate system.  Ensure automatic chemical feed systems feed chemicals into the boiler based 
+on makeup water rate.  Use electrical signals from a water meter on the makeup water line to control the output 
+of chemical feed pumps.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steam Boiler Chemical Feed Pumps and Tanks</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The required maximum pump flow rate will be shown on the drawings.  The 
+flow rate will depend upon the makeup water flow rate, the chemical composition 
+of the makeup water and the concentration of the chemical supplied.  A water 
+treatment company should be consulted for determining the proper maximum pump 
+flow rate.</NPR><BRK/>
+<BRK/>
+<NPR>A company regularly engaged in water treatment for mechanical systems will be 
+consulted to determine the number of tanks required to be shown on the drawings.  
+The number will depend on the size of the boiler, makeup water flow rate, and 
+makeup water composition.  A potable water line will be provided near the tanks 
+for the mixing of chemicals.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Furnish chemical feed pumps and tanks as a package with the pumps mounted on and piping connected to 
+the tank.  Use chemical feed pumps that are positive displacement diaphragm type.  Ensure the pump cylinders, 
+plungers, ball check valves, and check valve bodies are fabricated of corrosion resistant materials suitable 
+for the chemicals being pumped.  Ensure cylinders are replaceable for increased or reduced pressure or 
+capacity ranges.  Ensure the flow rate of the pumps is adjustable from 0 to 100 percent while in operation.  
+Ensure volumetric accuracy of the pumps is within one percent over the range indicated.  Pump capacities 
+are required to be adjustable by positioning crank pin with micrometer setscrews.  Divide stroke length 
+scale in percentage graduations engraved on scale.</OLI><BRK/>
+<BRK/>
+<OLI>Ensure the discharge pressure of pumps is not less than 1.5 times the line pressure at the point of connection.  
+Provide pumps with a pressure relief valve and a check valve mounted in the pump discharge.  Control 
+the pumps by an external controller/timer receiving signals from the makeup water meter.</OLI><BRK/>
+<BRK/>
+<OLI>Provide drive motors rated for 110 volt, single phase and are equipped with drip-proof enclosures.  Provide 
+tanks constructed of [materials compatible with the chemicals to be stored in the tank] [high density 
+polyethylene] [stainless steel] [fiber reinforced plastic] with a hinged cover and mounted on legs.  
+Ensure tanks have filling and drain connections and gauge glass.  Furnish each tank with one pump, mounted 
+and piped with pipe and fittings suitable for working pressures and compatible with the chemicals in 
+the tank it is in contact with, with suction strainer and stainless steel screen, and with<MET> 13 mm</MET><ENG> 1/2 
+inch</ENG> relief valve with steel body and stainless steel trim.  Shape tank bottom to be dished concave to 
+a radius equal to the diameter of the tank.  Ensure the tank for sodium sulfite is equipped with a floating 
+cover to minimize contact with air.  Provide a motor-driven agitator.  Size the tanks to have sufficient 
+capacity to require recharging only once per [7] [14] [21] [_____] days during normal operation.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Steam Boiler Chemical Injection Assemblies</TTL><BRK/>
+<BRK/>
+<TXT>Provide an injection assembly at each chemical injection point located along the boiler piping as indicated.  
+Provide injection assemblies that are constructed of stainless steel.  Extend the discharge of the assemblies 
+to the centerline of the piping. Include a shutoff valve and check valve with each assembly at the point of entrance 
+into the water line.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steam Boiler Water Meter</TTL><BRK/>
+<BRK/>
+<TXT>Provide the water meter with an electric contacting register and remote accumulative counter.  Install the meter 
+within the makeup water line, as indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steam Boiler Timers</TTL><BRK/>
+<BRK/>
+<TXT>Provide timers that are automatic reset, adjustable type, and electrically operated.  Design timers to work with 
+the contacting head water meters.  Include the water meter cable with the timer.  Ensure timers control operation 
+of the chemical feed pumps. Ensure timers are suitable for a 120 volt current.  Use timers to control the electrical 
+signals from the water meters to the chemical feed pumps.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steam Boiler Control Panel</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The MAN-OFF-AUTO switch should be deleted for continuously fed systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide control panel constructed of a NEMA 12, single door, wall-mounted box conforming with <RID>NEMA 250</RID>.  Ensure 
+the panel is constructed of [coated steel] [stainless steel] with a hinged door and lock.  Ensure the panel contains, 
+as a minimum, the following functions identified with a laminated plastic nameplate:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Main power switch and indicating light</OLI><BRK/>
+<OLI>MAN-OFF-AUTO selector switch</OLI><BRK/>
+<OLI>Indicating lamp for each chemical feed pump</OLI><BRK/>
+<OLI>Indicating lamp for the water softener</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Boiler Blowdown</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: Typically, automatic blowdown will be economical for boilers with capacities 
+greater than<MET> 2.9 MW</MET><ENG> 10,000,000 Btuh</ENG>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the boiler with [continuous blowdown] [automatic blowdown based upon conductivity or boiler load].  Provide 
+a bottom blowdown connection and valve to allow removal of solids and water from the bottom of the boiler.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Boiler Chemical Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If steel piping is selected, an interior coating may be required depending 
+upon the chemicals used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Fabricate the piping and fittings of [steel] [stainless steel].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Boiler Test Kits</TTL><BRK/>
+<BRK/>
+<TXT>Provide one test kit of each type required to determine the water quality as outlined in paragraph Boiler Water 
+Limits above and within the operation and maintenance manuals.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Supplemental Components/Services</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  All drain and makeup water piping should be indicated on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Ensure drain and makeup water piping complies with the requirements of Section <SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE.  
+Connect drains to sanitary sewer systems by means of an indirect waste connection.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with all details of the work, verify all dimensions in the field, and advise the Contracting 
+Officer of any discrepancy, before performing any work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Provide all chemicals, equipment and labor necessary to bring all system waters in conformance with the specified 
+requirements.  Perform all work in accordance with the manufacturer's published diagrams, recommendations, and 
+equipment warranty requirements.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Piping</TTL><BRK/>
+<BRK/>
+<TXT>Fabricate all connections between dissimilar metals using dielectric unions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>If the waters of the mechanical systems are not in conformance with the specified requirements or in accordance 
+with manufacturer's recommendations, the contractor is required to direct the water treatment company to take 
+corrective action to achieve compliance.  Perform daily operational tests in the directed frequencies to maintain 
+required control to prevent corrosion, scaling and damage to equipment during operation.  Submit test schedules, 
+at least 2 weeks prior to the start of related testing, for the condenser/chilled/boiler/condensate/feedwater 
+water quality tests.  Identify the date, time, frequency and collection location for each test within the schedules.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Condenser Water Quality Tests</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Small Systems (weekly)</TTL><BRK/>
+<BRK/>
+<TXT>Once a week, for cooling systems with a capacity of<MET> 175.8 kW</MET><ENG> 50 tons</ENG> or less, ensuring the following items are 
+recorded.</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="216.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="216.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Alkalinity (as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Conductivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tests for Large Systems (daily)</TTL><BRK/>
+<BRK/>
+<TXT>Daily, for cooling systems with a capacity larger than<MET> 175.8 kW</MET><ENG> 50 tons</ENG>, ensuring the following items are recorded.</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="6">
+      <COL AUTOWIDTH="0" WIDTH="216.00"/>
+      <COL AUTOWIDTH="0" WIDTH="216.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL>
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL>
+<DTA TYPE="STRING">Total Alkalinity (as CaCO3)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL>
+<DTA TYPE="STRING">Conductivity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL>
+<DTA TYPE="STRING">Phosphate</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL>
+<DTA TYPE="STRING">Zinc, if used (Zn)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="17.25">
+         <CEL>
+<DTA TYPE="STRING">Molybdate, if used (Mo)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Chilled Water Testing (monthly)</TTL><BRK/>
+<BRK/>
+<TXT>Perform the following tests on chilled water on a monthly basis.</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="3">
+      <COL AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL>
+<DTA TYPE="STRING">Nitrite or Molybdate</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL>
+<DTA TYPE="STRING">Conductivity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hot Water Boiler Water Quality Testing</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Low and Medium Temperature Systems (monthly)</TTL><BRK/>
+<BRK/>
+<TXT>Complete and record monthly testing for the following parameters.</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="2">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="28.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Nitrite or Molybdate</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Temperature Hot Water Systems (daily)</TTL><BRK/>
+<BRK/>
+<TXT>Complete and record daily testing for the following parameters.</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sulfite</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hardness</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Steam Boiler Water Testing</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Small Steam Systems</TTL><BRK/>
+<BRK/>
+<TXT>The type of treatment required for small steam systems (below<MET> 0.25 MW</MET><ENG> 25 hp</ENG>) varies greatly depending on local 
+water and system conditions.  Base the determination of the type of treatment and frequency of testing on the 
+recommendations of by the water treatment chemical vendor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Medium Steam Systems (twice weekly)</TTL><BRK/>
+<BRK/>
+<TXT>Record the following items twice a week for steam boiler systems operating between<MET> 0.25 MW</MET><ENG> 25 hp</ENG> and<MET> 1 MW</MET><ENG> 100 
+hp</ENG> and utilize data for operation purposes.</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="5">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">P Alkalinity (as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Dissolved Solids</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Phosphate (PO4)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sulfite (NaSO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Large Steam Systems (daily)</TTL><BRK/>
+<BRK/>
+<TXT>Record the following items daily for steam boiler systems operating above<MET> 100 kPa</MET><ENG> 15 psi</ENG> and<MET> 1 MW</MET><ENG> 100 hp</ENG> and 
+utilize data for operational purposes.</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sulfite (NaSO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">P Alkalinity (as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Conductivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Neutralized Conductivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Dissolved Solids</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Phosphate (PO4)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Condensate pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Condensate Conductivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Condensate Hardness (as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Makeup Water Hardness (as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Quality Assurance Testing</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:   It is important to require Quality Assurance (QA) testing performed 
+by an independent industrial water treatment laboratory/consultant to sustain 
+good water chemistry control.  Systems without good chemistry control will experience 
+higher equipment replacement costs, energy and operating costs, higher water 
+usage, more plant shutdowns, higher and decreased safety.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Conduct QA testing periodically by an independent water treatment lab/consultant to verify to managers that the 
+mechanical and water treatment systems are being maintained properly.  Provide the QA evaluation reports to the 
+government COR.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Condenser Water QA Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit test reports in bound<MET> 216 by 279 mm</MET><ENG> 8-1/2 by 11 inch</ENG> booklets.  Within the reports, identify the chemical 
+composition of the condenser water.  Also include in the reports a comparison of the manufacturer's or chemical 
+vendor's recommended operating conditions for the cooling tower and condenser in relation to the actual condition 
+of the condenser water.  Document any required corrective actions undertaken within the report.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>For cooling systems with a capacity of<MET> 175.8 kW</MET><ENG> 50 ton</ENG> or less, the perform following tests</OLI><BRK/>
+<OLI><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="8">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Presence of scale/corrosion</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Polyphosphate</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Biocide</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Alkalinity (as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Calcium Hardness (as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Conductivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="20.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Written evaluation summary</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></OLI><BRK/>
+<BRK/>
+<OLI>For cooling systems with capacities greater than<MET> 175.8 kW</MET><ENG> 50 ton</ENG>), analyze the condenser water a minimum 
+of once a month for a period of one year by the water treatment company.  Ensure the analysis includes 
+the following information recorded in accordance with <RID>ASTM D596</RID>.</OLI><BRK/>
+<OLI><TAB HEADERROWS="0" WIDTH="98">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="27">
+      <COL AUTOWIDTH="0" WIDTH="363.75"/>
+      <COL AUTOWIDTH="0" WIDTH="266.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Date of Sample</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Temperatures (before &amp; after condenser)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] &amp; [_____] degrees C</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Silica (SiO2)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Iron (total, as Fe(2)O(3))</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Copper (Cu)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Calcium Hardness(CaCO3)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Total Hardness (as CaCO3)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Chloride (Cl)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Total Alkalinity (as CaCO3)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Conductivity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Total Dissolved Solids</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Phosphonate (as PO4)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Zinc (if used) (Zn)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Molybdate (if used) (Mo)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Tolyltriazole (TT)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Biocide</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Bacteria colony count</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] colonies/mL</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Makeup water pH</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Makeup water Iron</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Makeup water Silica</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Makeup water Calcium Hardness</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Makeup water Total Hardness</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Makeup water Total Alkalinity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Makeup water Chloride (Cl)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">Makeup water Conductivity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="38.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Written evaluation summary</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/></TAB></OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Chilled Water Quality Assurance Testing (quarterly)</TTL><BRK/>
+<BRK/>
+<TXT>Perform the following tests quarterly on chilled water.</TXT><BRK/>
+<LST INDENT="-0.33"><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="5">
+      <COL AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Nitrite or Molybdate</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Conductivity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Iron (total, as Fe(2)O(3))</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Written evaluation summary</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hot Water Boiler Water Quality Assurance Testing</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Complete quarterly testing of Low and Medium Temperature Systems and record the following parameters.</OLI><BRK/>
+<OLI><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Nitrite or Molybdate</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Iron (total, as Fe(2)O(3))</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Written evaluation summary</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></OLI><BRK/>
+<BRK/>
+<OLI>Have an independent consultant analyze the hot water boiler water once a month for a period of 1 year.  
+Include the following information recorded in accordance with <RID>ASTM D596</RID> in the monthly report.</OLI><BRK/>
+<OLI><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="5">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sulfite (Na2SO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Hardness(as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Iron (total, as Fe(2)O(3))</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Written evaluation summary</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Steam Boiler Water QA Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit the water quality test report identifying the chemical composition of the boiler, feedwater and condensate 
+water.  Include in the report a comparison of the condition of the boiler water with the manufacturer's or chemical 
+vendor's recommended conditions.  Document any required corrective action within the report.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Small and Medium Steam Boiler Systems (quarterly)are systems operating between<MET> 0.25 MW</MET><ENG> 25 hp</ENG> and<MET> 1 MW</MET><ENG>
+ 100 hp</ENG>.  Perform the following tests quarterly.</OLI><BRK/>
+<OLI><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="13">
+      <COL AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Sulfite, if used, (NaSO3)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">P Alkalinity (as CaCO3)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Total Dissolved Solids</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Phosphate, if used, (PO4)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Polymer, if used</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Iron (total, as Fe(2)O(3))</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Condensate pH</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Condensate Conductivity</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Condensate Hardness (as CaCO3)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Condensate Iron (total, as Fe(2)O(3))</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Makeup Water Hardness (as CaCO3)</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Written evaluation summary</DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></OLI><BRK/>
+<BRK/>
+<OLI>Large steam boilers are those operating above<MET> 100 kPa</MET><ENG> 15 psi</ENG> and<MET> 1 MW</MET><ENG> 100 hp</ENG>.  Retain an independent 
+consultant to analyze the boiler water a minimum of once a month for a period of 1 year.  Include the 
+following information recorded in accordance with <RID>ASTM D596</RID> in the monthly report.</OLI><BRK/>
+<OLI><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="17">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="321.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Date of Sample</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sulfite (NaSO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">P Alkalinity (as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Conductivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Neutralized Conductivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Total Dissolved Solids</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Phosphate (PO4)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Polymer, if used</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Silica (SiO2)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Iron (total, as Fe(2)O(3))</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Condensate pH</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Condensate Conductivity</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] micromho/cm</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Condensate Hardness (as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Condensate Iron (total, as Fe(2)O(3))</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Makeup Water Hardness (as CaCO3)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] ppm (mg/L)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Written evaluation summary</DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/></TAB></OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Corrosion Testers</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose from the systems below to be monitored with corrosion testers. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install corrosion coupon and rack systems to verify corrosion control in the systems.  Install testers or coupons 
+in flowing system water through a sidestream or rack system.  Test both mild steel and copper metal samples in 
+the corrosion testers in accordance with <RID>ASTM D2688</RID>.  Replace and analyze samples every 3 months.  Rates of corrosion 
+less than 3 mpy for steel and 0.2 mpy for copper are acceptable. Install corrosion testers on the piping systems 
+of the following systems.</TXT><BRK/>
+<BRK/>
+<ITM INDENT="-0.33">Condenser loop</ITM><BRK/>
+<ITM INDENT="-0.33">Chilled water system</ITM><BRK/>
+<ITM INDENT="-0.33">Hot water loop</ITM><BRK/>
+<ITM INDENT="-0.33">Condensate</ITM><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Training Course</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit a schedule, at least 2 weeks prior to the date of the proposed training course that identifies the date, 
+time, and location for the training.  Conduct a training course for the operating staff as designated by the 
+Contracting Officer.  Conduct the training to include a total of [_____] hours of normal working time and start 
+after the system is functionally completed but prior to final acceptance tests.  Submit <SUB>field instructions</SUB>, at 
+least 2 weeks prior to construction completion, including equipment layout, wiring and control diagrams, piping, 
+valves and control sequences, and typed condensed operation instructions.  Include within the condensed operation 
+instructions all preventative maintenance procedures, methods of checking the system for normal and safe operation, 
+and procedures for safely starting and stopping the system.  Frame the posted instructions under glass or laminated 
+plastic and post where indicated by the Contracting Officer.  Ensure the field instructions cover all of the 
+items contained in the Operation and Maintenance Manuals as well as demonstrations of routine maintenance operations.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>INSPECTIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Inspection General Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Thirty days after project completion, inspect the cooling tower and condenser for problems due to corrosion, 
+scale, and biological growth.  If the cooling tower and condenser are found not to conform to the manufacturer's 
+recommended conditions, and the water treatment company recommendations have been followed; instruct the water 
+treatment company to provide all chemicals and labor for cleaning or repairing the equipment as required by the 
+manufacturer's recommendations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Boiler/Piping Test</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If a steam boiler is not used, delete the reference to condensate piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Thirty days after project completion, inspect the boiler and condensate piping for problems due to corrosion 
+and scale.  If the boiler is found not to conform to the manufacturer's recommendations, and the water treatment 
+company recommendations have been followed, instruct the water treatment company to provide all chemicals and 
+labor for cleaning or repairing the equipment as required by the manufacturer's recommendations.  If corrosion 
+is found within the condensate piping, proper repairs are required to be made by the water treatment company 
+at no additional cost.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

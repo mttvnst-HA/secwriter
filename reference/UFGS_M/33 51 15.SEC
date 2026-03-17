@@ -1,0 +1,1551 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-33 51 15 (August 2019)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-33 51 15 (February 2016)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 33 51 15</SCN><BRK/>
+<BRK/>
+<STL>NATURAL-GAS / LIQUEFIED PETROLEUM GAS DISTRIBUTION PIPELINES</STL><BRK/>
+<DTE>08/19</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification provides requirements for <SCP>distribution pipelines 
+that convey natural gas, manufactured gas, or Liquefied Petroleum Gas (LPG) 
+in the vapor phase in order to comply with the regulations written in 49 CFR 
+192.  LPG vapor distribution pipelines must additionally comply with the requirements 
+of NFPA 58, as is required by 49 CFR 192</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Where LPG tanks have remote filling piping system that can contain LPG in the 
+liquid phase, please refer to UFC 4-60-01, Design:  Petroleum Fuel Facilities, 
+for required design elements.</NPR><BRK/>
+<BRK/>
+<NPR>Gas piping that serves a building, downstream from the 49 CFR 192 pipeline, 
+is to be specified in Section <SRF>23 11 20</SRF> FACILITY GAS PIPING, and must be designed 
+in accordance with NFPA 54.</NPR><BRK/>
+<BRK/>
+<NPR>LPG piping and storage tank that serves a single building are to be specified 
+in Section <SRF>23 11 20</SRF> FACILITY GAS PIPING and must be designed in accordance with 
+NFPA 58 and NFPA 54.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<TAI OPT="LPG"><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification may be used for specifying liquefied petroleum 
+gas (LPG) if the following modifications are made:</NPR><BRK/>
+<BRK/>
+<NPR>a.  Delete all references to fiberglass and add the following to paragraph "Polyethylene 
+Pipe, Tubing, Fittings and Joints" in PART 2: Polyethylene pipe, tubing, and 
+fittings are recommended by the manufacturer for use with LPG.</NPR><BRK/>
+<BRK/>
+<NPR>b.  Require, where applicable, the LPG distribution system to be in accordance 
+with NFPA 58, Storage and Handling of Liquefied Petroleum Gases, instead of 
+ASME B31.8.</NPR><BRK/>
+<AST/><BRK/></NTE>
+</TAI><BRK/>
+<SPT><TTL>SUMMARY</TTL><BRK/>
+<BRK/>
+<TXT>The gas distribution pipeline includes piping that conveys [natural gas] [manufactured gas] [liquefied petroleum 
+gas (LPG) in its vapor phase] and all appurtenances from point of connection with existing system, to a point 
+approximately<MET> [1500] [_____] mm</MET><ENG> [5] [_____] feet</ENG> from the facility being served.  The distribution pipeline, 
+which must comply with <RID>49 CFR 192</RID>, terminates at the isolation valve, service pressure regulator, or meter, whichever 
+is the most downstream component before serving the facility gas piping.  The facility gas piping that connects 
+to this termination point is specified in Section <SRF>23 11 20</SRF> FACILITY GAS PIPING and must comply with <RID>NFPA 54</RID>.<BRK/>
+<BRK/>
+Section <SRF>31 10 00</SRF> SITE CLEARING, applies to this section unless otherwise specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN GAS ASSOCIATION (AGA)</ORG><BRK/><BRK/><RID>AGA ANSI B109.1</RID><RTL>(2000) Diaphragm Type Gas Displacement Meters (Under 500 cubic ft./hour Capacity)</RTL><BRK/><BRK/><RID>AGA ANSI B109.2</RID><RTL>(2000) Diaphragm Type Gas Displacement Meters (500 cubic ft./hour Capacity and Over)</RTL><BRK/><BRK/><RID>AGA ANSI B109.3</RID><RTL>(2019) Rotary-Type Gas Displacement Meters</RTL><BRK/><BRK/><RID>AGA ANSI B109.4</RID><RTL>(2016) Self-Operated Diaphragm-Type Natural Gas Service Regulators for Nominal Pipe Size 1¼ inches (32 mm) and Smaller with Outlet Pressures of 2 psig (13.8 kPa) and Less</RTL><BRK/><BRK/><RID>AGA XR0603</RID><RTL>(2006; 8th Ed) AGA Plastic Pipe Manual for Gas Service</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN NATIONAL STANDARDS INSTITUTE (ANSI)</ORG><BRK/><BRK/><RID>ANSI Z21.18/CSA 6.3</RID><RTL>(2019; R 2024) Gas Appliance Pressure Regulators</RTL><BRK/><BRK/><RID>ANSI Z21.80/CSA 6.22</RID><RTL>(2019; R 2024) Line Pressure Regulators</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN PETROLEUM INSTITUTE (API)</ORG><BRK/><BRK/><RID>API API-ASME CODE</RID><RTL>(1951) Unfired Pressure Vessels for Petroleum Liquids and Gases</RTL><BRK/><BRK/><RID>API RP 686</RID><RTL>(2009; R 2024) Recommended Practice for Machinery Installation and Installation Design</RTL><BRK/><BRK/><RID>API Spec 5L</RID><RTL>(2018; 46th Ed; ERTA 2018) Line Pipe</RTL><BRK/><BRK/><RID>API Spec 6D</RID><RTL>(2021; Addendum 1 2025) Specification for Pipeline and Piping Valves</RTL><BRK/><BRK/><RID>API Std 617</RID><RTL>(2014; 8th Ed; ERTA 1 August 2016) Axial and Centrifugal Compressors and Expander-Compressors</RTL><BRK/><BRK/><RID>API Std 618</RID><RTL>(2007; R 2016) Reciprocating Compressors for Petroleum, Chemical, and Gas Industry Services</RTL><BRK/><BRK/><RID>API Std 619</RID><RTL>(2010) Rotary-Type Positive Displacement Compressors for Petroleum, Petrochemical, and Natural Gas Industries</RTL><BRK/><BRK/><RID>API Std 1104</RID><RTL>(2013; Errata 1-3 2014; Addendum 1 2014; Errata 4 2015; Addendum 2 2016) Welding of Pipeline and Related Facilities</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF CIVIL ENGINEERS (ASCE)</ORG><BRK/><BRK/><RID>ASCE 7-16</RID><RTL>(2017; Errata 2018; Supp 1 2018) Minimum Design Loads and Associated Criteria for Buildings and Other Structures</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B1.20.1</RID><RTL>(2013; R 2018) Pipe Threads, General Purpose (Inch)</RTL><BRK/><BRK/><RID>ASME B1.20.2M</RID><RTL>(2006; R 2011) Pipe Threads, 60 Deg. General Purpose (Metric)</RTL><BRK/><BRK/><RID>ASME B16.5</RID><RTL>(2020) Pipe Flanges and Flanged Fittings NPS 1/2 Through NPS 24 Metric/Inch Standard</RTL><BRK/><BRK/><RID>ASME B16.9</RID><RTL>(2024) Factory-Made Wrought Buttwelding Fittings</RTL><BRK/><BRK/><RID>ASME B16.11</RID><RTL>(2021) Forged Fittings, Socket-Welding and Threaded</RTL><BRK/><BRK/><RID>ASME B16.21</RID><RTL>(2021) Nonmetallic Flat Gaskets for Pipe Flanges</RTL><BRK/><BRK/><RID>ASME B16.25</RID><RTL>(2022) Buttwelding Ends</RTL><BRK/><BRK/><RID>ASME B16.40</RID><RTL>(2024) Manually Operated Thermoplastic Gas Shutoffs and Valves in Gas Distribution Systems</RTL><BRK/><BRK/><RID>ASME B31.8</RID><RTL>(2022; Supplement 2022) Gas Transmission and Distribution Piping Systems</RTL><BRK/><BRK/><RID>ASME BPVC SEC IX</RID><RTL>(2017; Errata 2018) BPVC Section IX-Welding, Brazing and Fusing Qualifications</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII</RID><RTL>(2015) Boiler and Pressure Vessel Codes:  Section VIII Rules for Construction of Pressure Vessel</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII D1</RID><RTL>(2023) BPVC Section VIII-Rules for Construction of Pressure Vessels Division 1</RTL><BRK/><BRK/><RID>ASME PTC 25</RID><RTL>(2023) Pressure Relief Devices</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A47/A47M</RID><RTL>(1999; R 2022; E 2022) Standard Specification for Ferritic Malleable Iron Castings</RTL><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A106/A106M</RID><RTL>(2019a) Standard Specification for Seamless Carbon Steel Pipe for High-Temperature Service</RTL><BRK/><BRK/><RID>ASTM A181/A181M</RID><RTL>(2023) Standard Specification for Carbon Steel Forgings, for General-Purpose Piping</RTL><BRK/><BRK/><RID>ASTM A333/A333M</RID><RTL>(2016) Standard Specification for Seamless and Welded Steel Pipe for Low-Temperature Service and Other Applications with Required Notch Toughness</RTL><BRK/><BRK/><RID>ASTM A395/A395M</RID><RTL>(1999; R 2022) Standard Specification for Ferritic Ductile Iron Pressure-Retaining Castings for Use at Elevated Temperatures</RTL><BRK/><BRK/><RID>ASTM D2513</RID><RTL>(2018a) Standard Specification for Polyethylene (PE) Gas Pressure Pipe, Tubing, and Fittings</RTL><BRK/><BRK/><RID>ASTM D2513-99</RID><RTL>(1999) Standard Specification for Thermoplastic Gas Pressure Pipe, Tubing, and Fittings</RTL><BRK/><BRK/><RID>ASTM D2517</RID><RTL>(2018) Standard Specification for Reinforced Epoxy Resin Gas Pressure Pipe and Fittings</RTL><BRK/><BRK/><RID>ASTM D2683</RID><RTL>(2020) Standard Specification for Socket-Type Polyethylene Fittings for Outside Diameter-Controlled Polyethylene Pipe and Tubing</RTL><BRK/><BRK/><RID>ASTM D2774</RID><RTL>(2021a) Standard Practice for Underground Installation of Thermoplastic Pressure Piping</RTL><BRK/><BRK/><RID>ASTM D3261</RID><RTL>(2016) Standard Specification for Butt Heat Fusion Polyethylene (PE) Plastic Fittings for Polyethylene (PE) Plastic Pipe and Tubing</RTL><BRK/><BRK/><RID>ASTM D3308</RID><RTL>(2012; R 2022) Standard Specification for PTFE Resin Skived Tape</RTL><BRK/><BRK/><RID>ASTM D3350</RID><RTL>(2021) Polyethylene Plastics Pipe and Fittings Materials</RTL><BRK/><BRK/><RID>ASTM D3839</RID><RTL>(2014; R 2019) Standard Guide for Underground Installation of "Fiberglass" (Glass-Fiber-Reinforced Thermosetting-Resin) Pipe</RTL><BRK/><BRK/><RID>ASTM D3892</RID><RTL>(2015) Standard Practice for Packaging/Packing of Plastics</RTL><BRK/><BRK/><RID>ASTM D4066</RID><RTL>(2013; R 2025) Standard Classification System for Nylon Injection and Extrusion Materials (PA)</RTL><BRK/><BRK/><RID>ASTM D5685</RID><RTL>(2019) Standard Specification for "Fiberglass" (Glass-Fiber-Reinforced Thermosetting-Resin) Pressure Pipe Fittings</RTL><BRK/><BRK/><RID>ASTM F1055</RID><RTL>(2016; R 2022a) Standard Specification for Electrofusion Type Polyethylene Fittings for Outside Diameter Controlled Polyethylene and Crosslinked Polyethylene (PEX)Pipe and Tubing</RTL><BRK/><BRK/><RID>ASTM F1802</RID><RTL>(2022) Standard Test Method for Performance Testing of Excess Flow Valves</RTL><BRK/><BRK/><RID>ASTM F1948</RID><RTL>(2015) Standard Specification for Metallic Fittings for Use on Outside Diameter Controlled Thermoplastic Gas Distribution Pipe and Tubing</RTL><BRK/><BRK/><RID>ASTM F1973</RID><RTL>(2013; R 2018) Standard Specification for Factory Assembled Anodeless Risers and Transition Fittings in Polyethylene (PE) and Polyamide 11 (PA11) and Polyamide 12 (PA12) Fuel Gas Distribution Systems</RTL><BRK/><BRK/><RID>ASTM F2138</RID><RTL>(2012; R 2024) Standard Specification for Excess Flow Valves for Natural Gas Service</RTL><BRK/><BRK/><RID>ASTM F2145</RID><RTL>(2013; R 2018) Standard Specification for Polyamide 11 (PA 11) and Polyamide 12 (PA 12) Mechanical Fittings for Use on Outside Diameter Controlled Polyamide 11 and Polyamide 12 Pipe and Tubing</RTL><BRK/><BRK/><RID>ASTM F2164</RID><RTL>(2021) Standard Practice for Field Leak Testing of Polyethylene (PE) and Crosslinked Polyethylene (PEX) Pressure Piping Systems Using Hydrostatic Pressure</RTL><BRK/><BRK/><RID>ASTM F2600</RID><RTL>(2009; R 2018) Standard Specification for Electrofusion Type Polyamide-11 Fittings for Outside Diameter Controlled Polyamide-11 Pipe and Tubing</RTL><BRK/><BRK/><RID>ASTM F2620</RID><RTL>(2024) Standard Practice for Heat Fusion Joining of Polyethylene Pipe and Fittings</RTL><BRK/><BRK/><RID>ASTM F2786</RID><RTL>(2010) Standard Practice for Field Leak Testing of Polyethylene (PE) Pressure Piping Systems Using Gaseous Media Under Pressure (Pneumatic Leak Testing)</RTL><BRK/><BRK/><RID>ASTM F2897</RID><RTL>(2015a) Standard Specification for Tracking and Traceability Encoding System of Natural Gas Distribution Components (Pipe, Tubing, Fittings, Valves, and Appurtenances)</RTL><BRK/><BRK/><RID>ASTM F2945</RID><RTL>(2018) Standard Specification for Polyamide 11 Gas Pressure Pipe, Tubing, and Fittings</RTL><BRK/><BRK/></REF><REF><ORG>MANUFACTURERS STANDARDIZATION SOCIETY OF THE VALVE AND FITTINGS INDUSTRY (MSS)</ORG><BRK/><BRK/><RID>MSS SP-25</RID><RTL>(2018) Standard Marking System for Valves, Fittings, Flanges and Unions</RTL><BRK/><BRK/><RID>MSS SP-142</RID><RTL>(2012) Excess Flow Valves for Fuel Gas Service, NPS 1 1/2 through 12</RTL><BRK/><BRK/></REF><REF><ORG>MASTER PAINTERS INSTITUTE (MPI)</ORG><BRK/><BRK/><RID>MPI 9</RID><RTL>(2016) Alkyd, Exterior Gloss (MPI Gloss Level 6)</RTL><BRK/><BRK/><RID>MPI 10</RID><RTL>(2016) Latex, Exterior Flat (MPI Gloss Level 1)</RTL><BRK/><BRK/><RID>MPI 11</RID><RTL>(2016) Latex, Exterior Semi-Gloss, MPI Gloss Level 5</RTL><BRK/><BRK/><RID>MPI 119</RID><RTL>(2016) Latex, Exterior, Gloss (MPI Gloss Level 6)</RTL><BRK/><BRK/></REF><REF><ORG>NACE INTERNATIONAL (NACE)</ORG><BRK/><BRK/><RID>NACE SP0169</RID><RTL>(2024) Control of External Corrosion on Underground or Submerged Metallic Piping Systems</RTL><BRK/><BRK/><RID>NACE SP0185</RID><RTL>(2024) Extruded Polyolefin Resin Coating Systems with Soft Adhesives for Underground or Submerged Pipe</RTL><BRK/><BRK/><RID>NACE SP0274</RID><RTL>(1974; R 2011) High Voltage Electrical Inspection of Pipeline Coatings</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 54</RID><RTL>(2024) National Fuel Gas Code</RTL><BRK/><BRK/><RID>NFPA 58</RID><RTL>(2024; TIA 24-2) Liquefied Petroleum Gas Code</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY FOR PROTECTIVE COATINGS (SSPC)</ORG><BRK/><BRK/><RID>SSPC 7/NACE No.4</RID><RTL>(2007) Brush-Off Blast Cleaning</RTL><BRK/><BRK/><RID>SSPC Paint 25</RID><RTL>(1997; E 2004) Zinc Oxide, Alkyd, Linseed Oil Primer for Use Over Hand Cleaned Steel, Type I and Type II</RTL><BRK/><BRK/><RID>SSPC SP 1</RID><RTL>(2015) Solvent Cleaning</RTL><BRK/><BRK/><RID>SSPC SP 3</RID><RTL>(2024) Power Tool Cleaning</RTL><BRK/><BRK/><RID>SSPC SP 6/NACE No.3</RID><RTL>(2007) Commercial Blast Cleaning</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>49 CFR 192</RID><RTL>Transportation of Natural and Other Gas by Pipeline:  Minimum Federal Safety Standards</RTL><BRK/><BRK/><RID>49 CFR 192.105</RID><RTL>Design Formula for Steel Pipe</RTL><BRK/><BRK/><RID>49 CFR 192.197</RID><RTL>Control of the Pressure of Gas Delivered from High-Pressure Distribution Systems</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 125</RID><RTL>(2020; Reprint Jan 2026) UL Standard for Safety Flow Control Valves for Anhydrous Ammonia and LP-Gas</RTL><BRK/><BRK/><RID>UL 132</RID><RTL>(2015; Reprint Jan 2018) UL Standard for Safety Relief Valves for Anhydrous Ammonia and LP-Gas</RTL><BRK/><BRK/><RID>UL 144</RID><RTL>(2012; Reprint Nov 2014) UL Standard for Safety LP-Gas Regulators</RTL><BRK/><BRK/><RID>UL 569</RID><RTL>(2013; Repring Jul 2017) UL Standard for Safety Pigtails and Flexible Hose Connectors for LP-Gas</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pipe, Fittings, and Associated Materials</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Materials and Equipment</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pipe and Accessory Coatings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Connections to Existing Lines</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Connection and Abandonment Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pressure and Leak Tests</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Welder's training and qualifications</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Jointing of Plastic Piping</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Utility Work</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>EFV Design and Installation Guide</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Gas Distribution System and Equipment Operation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas Distribution System Maintenance</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas Distribution Equipment Maintenance</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Qualifications</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Welding General</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Qualification of welding procedures and Welder's training and qualifications, including equipment used, 
+detailed explanation of the procedure, and successfully making joints which pass tests must comply with 
+Subpart E of <RID>49 CFR 192</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Submit procedures for welding of metallic piping that comply with <RID>API Std 1104</RID> section 5, 12, or App. 
+A; or <RID>ASME BPVC SEC IX</RID>.  Quality of test welds used to qualify a procedure must be determined by destructive 
+test.  Submit the results of destructive testing of each procedure qualification for Government record.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a certificate of <SUB>Welder's training and qualifications</SUB> by test, requalification, or production 
+work testing in conformance with <RID>API Std 1104</RID> section 6, 12, or App. A; <RID>ASME BPVC SEC IX</RID>; or as allowed 
+per <RID>49 CFR 192</RID> Appendix C.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a list of names and identification symbols for all qualified welders and welding operators to 
+be used on the project.</OLI><BRK/>
+<BRK/>
+<OLI>Weld structural members in accordance with Section <SRF>05 05 23.16</SRF> STRUCTURAL WELDING.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Jointing of Plastic Piping</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Join piping by performance qualified plastic pipe joiners, qualified by a person who has been trained 
+and certified by the manufacturer of the pipe, using manufacturer's pre-qualified joining procedures 
+that have been tested in accordance with <RID>49 CFR 192</RID> Subpart F.  Inspect joints by an inspector qualified 
+in the joining procedures being used.</OLI><BRK/>
+<BRK/>
+<OLI>Submit manufacturer's pre-qualified joining procedures and the results of testing performed to <RID>49 CFR 192</RID>
+ Section 283.</OLI><BRK/>
+<BRK/>
+<OLI>Plastic pipe joiners must be re-qualified at the beginning of each project by making specimen joints 
+using the approve procedures and having those joints inspected by a qualified inspector and tested in 
+accordance with <RID>49 CFR 192</RID> Section 285.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a certificate of qualified jointing procedures, training procedures, qualifications of trainer, 
+and training test results for joiners and inspectors.  Notify the Contracting Officer at least [24] [_____] 
+hours in advance of the date to qualify joiners and inspectors.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pre-Installation Conference</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Shop Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Submit shop drawings, within [30] [_____] days of contract award, containing complete schematic and piping diagrams 
+and any other details required to demonstrate that the system has been coordinated and functions properly as 
+a unit.  Show on the drawings proposed layout and anchorage of the system and appurtenances, and equipment relationship 
+to other parts of the work including clearances for maintenance and operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connecting and Abandonment Plan</TTL><BRK/>
+<BRK/>
+<TXT>Submit written notification of the method and schedule for making connections to existing gas lines, to the Contracting 
+Officer at least 10 days in advance.  Include gas line tie in, hot taps, abandonment/removal or demolition, purging, 
+and plugging as applicable.  <RID>ASME B31.8</RID> may be used to help develop these plans, but the connection and abandonment 
+must comply with <RID>49 CFR 192</RID>.  Include in submittal [<SUB>connections to existing lines</SUB>][<SUB>connection and abandonment 
+plan</SUB>].</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Delivery and Storage</TTL><BRK/>
+<BRK/>
+<TXT>Inspect materials delivered to the site for damage, and store with a minimum of handling.  Store materials on 
+site in enclosures or under protective coverings.  Store plastic piping under cover out of direct sunlight.  
+Do not store materials directly on the ground.  Keep inside of pipes and fittings free of dirt and debris.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Handling</TTL><BRK/>
+<BRK/>
+<TXT>Handle pipe and components carefully to ensure a sound, undamaged condition.  Take particular care not to damage 
+pipe coating.  Repair damaged coatings to original finish.  Do not place pipe or material of any kind inside 
+another pipe or fitting after the coating has been applied, except as specified in paragraph INSTALLATION.  Handle 
+coated steel piping in accordance with its listing and the manufacturer's written procedures.  Handle plastic 
+pipe in conformance with <RID>AGA XR0603</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EXTRA MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>spare parts</SUB> data for each different item of equipment and material specified, after approval of the detail 
+shop drawings and not later than [_____] months prior to the date of beneficial occupancy.  Include in the data 
+a complete list of parts and supplies, with current unit prices and source of supply.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+[<SPT><TTL>LPG CONTAINERS</TTL><BRK/>
+<BRK/>
+<TXT>Provide containers for LPG that meet <RID>NFPA 58</RID> requirements and are designed, fabricated, tested, and marked in 
+accordance with the regulations of the department of transportation (DOT), <RID>ASME BPVC SEC VIII</RID>, or <RID>API API-ASME CODE</RID>
+.  Provide LPG containers with all appurtenances as required by <RID>NFPA 58</RID>, qualified to <RID>UL 125</RID>, to include vapor 
+shutoff valve, liquid shutoff valve, pressure relief valve, fixed maximum liquid level gauge, filler valve, [and 
+overfilling protection device, ][and actuated liquid withdrawal excess-flow valve].  Container appurtenances 
+must have a minimum service pressure rating of <MET>1.7 MPa</MET><ENG>250 psig</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>PIPE, FITTINGS, AND ASSOCIATED MATERIALS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>[Provide only materials that are allowed for [natural gas][manufactured gas] by <RID>49 CFR 192</RID> for the specified 
+distribution pipeline being installed.]</TXT><BRK/>
+<BRK/>
+<TXT>[Provide only materials that are allowed by LPG by <RID>NFPA 58</RID> for the specified disbribution pipeline being installed.]</TXT><BRK/>
+<BRK/>
+<TXT>Provide <SUB>materials and equipment</SUB> which are the standard products of a manufacturer regularly engaged in the manufacture 
+of the products and that essentially duplicate items that have been in satisfactory use for at least 2 years 
+prior to bid opening.  Asbestos or products containing asbestos are not allowed.  Provide written verification 
+and point of contact for a supporting service organization that is, in the opinion of the Contracting Officer, 
+reasonably convenient to the site.  Mark all valves, flanges, and fittings in accordance with <RID>MSS SP-25</RID>.  Submit 
+a complete list of <SUB>materials and equipment</SUB>, including manufacturer's descriptive and technical literature, performance 
+charts and curves, catalog cuts, and installation instructions, including, but not limited to the following:</TXT><BRK/>
+<BRK/>
+<ITM>a.  Electrical Isolation Devices and Isolating Flange Kits.</ITM><BRK/>
+<ITM>b.  Fittings</ITM><BRK/>
+<ITM>c.  Piping</ITM><BRK/>
+<ITM>d.  <SUB>Pipe and Accessory coatings</SUB></ITM><BRK/>
+<ITM>e.  Pressure Reducing Valves.</ITM><BRK/>
+<ITM>f.  Meters</ITM><BRK/>
+<ITM>g.  Regulators.</ITM><BRK/>
+<ITM>h.  Shut-off Valves</ITM><BRK/>
+<ITM>i.  Excess Flow Valve</ITM><BRK/>
+[<ITM>j.  LPG Containers</ITM>]<BRK/>
+<BRK/>
+<SPT><TTL>Steel Pipe for [Natural Gas][Manufactured Gas] Distribution</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete all words in brackets when steel pipe is expected to be subjected 
+to unusually severe conditions (including handling) such as impact stresses, 
+seismic forces, burial beneath vehicle or railroad crossings, significant differential 
+settlement, or underneath piers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide steel piping that complies with <RID>API Spec 5L</RID>, Grade [A,] B, or X42; <RID>ASTM A53/A53M</RID>, Grade[ A or] B; <RID>ASTM A106/A106M</RID>
+, Grade [A][B or] C; <RID>ASTM A333/A333M</RID>, Grade [1 or] 3.  Determine minimum pipe wall thickness as specified in <RID>
+49 CFR 192.105</RID> section "Design Formula for Steel Pipe" for the specific design conditions.  [Pipe wall thickness 
+less than schedule 80 for pipes less than 2.5 inches diameter is not permitted.]</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Steel Pipe for LPG Distribution</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  LPG piping systems covered by this specification must be designed to 
+prevent LPG in the liquid phase from being trapped between isolation valves.  
+NFPA 58 requires any LPG piping system that can trap liquid LPG to be rated 
+for <MET>2.4 MPa</MET><ENG>350 psig</ENG> and to contain a hydrostatic pressure relief valve.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide steel piping that is approved within <RID>NFPA 58</RID> and complies with <RID>ASTM A53/A53M</RID>, Grade [A or] B; <RID>ASTM A106/A106M</RID>
+, Grade [A,][B, or] C.  Provide pipe wall thickness as specified on the design drawings, but in no case less 
+than schedule 40.  Provide schedule 80 pipe where threads are to be cut in order to connect threaded valves or 
+appurtenances.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Corrosion Protection for Steel Pipe for Underground Installation</TTL><BRK/>
+<BRK/>
+<SPT><TTL>External Coating Systems</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph where steel pipe is not installed underground as 
+neither a gas carrier pipe nor as an encasement for plastic pipe.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph must be retained where steel pipe is used to encase a 
+plastic gas carrier pipe.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Where steel pipe installation below ground is required by design of the gas carrier pipe, or as encasement for 
+plastic pipe, provide pipe with a [factory applied][field plant applied] polyolefin resin coating system conforming 
+to <RID>NACE SP0185</RID>, Type A.  Pipe exterior must be cleaned to a commercial grade blast cleaning finish in accordance 
+with <RID>SSPC SP 6/NACE No.3</RID>.  Apply adhesive compound to the pipe with a nominal thickness of <MET>0.25 mm</MET><ENG>10 mils</ENG> (plus 
+or minus 10 percent).  Immediately after the adhesive is applied, extrude a seamless tube of polyolefin over 
+the adhesive to produce a bonded seamless coating, with a nominal thickness of <MET>1.0 mm</MET><ENG>40 mils</ENG> (plus or minus 10 
+percent) of polyolefin resin for pipes up to <MET>400 mm</MET><ENG>16 inches</ENG> in diameter.  For pipes <MET>450 mm</MET><ENG>18 inches</ENG> and larger 
+in diameter, apply a minimum thickness of 60 mils (plus or minus 10 percent) polyolefin resin.</TXT><BRK/>
+<BRK/>
+<TXT>Do not coat pipe and fittings for aboveground lines.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cathodic Protection Systems</TTL><BRK/>
+<BRK/>
+<TXT>Provide cathodic protection system in accordance with <RID>NACE SP0169</RID> and the applicable UFGS DIV 26 specification 
+for the designed type of cathodic protection.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Steel and Malleable Iron Fittings, <MET>40 mm</MET><ENG>1-1/2 inches</ENG> and Smaller</TTL><BRK/>
+<BRK/>
+<TXT>Provide steel butt-weld fittings conforming to <RID>ASME B16.9</RID> [or threaded malleable iron fittings for [natural gas][manufactured 
+gas] pipe conforming to <RID>ASME B16.11</RID>].</TXT><BRK/>
+<BRK/>
+<TXT>[Provide fittings for LPG piping systems that are rated for a minimum of [<MET>863 kPa</MET><ENG>125 psig</ENG>][<MET>1725 kPa</MET><ENG>250 psig</ENG>] 
+and comply with <RID>NFPA 58</RID>.  Threaded fittings must be qualified by the manufacturer for use with LPG.  Use threaded 
+fittings in an LPG pipeline only at connecting equipment and appurtenances that are provided by the manufacturer 
+with threaded connections.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel Fittings, <MET>50 mm</MET><ENG> 2 inches</ENG> and Larger</TTL><BRK/>
+<BRK/>
+<TXT>Provide weld neck pipe flanges and flanged fittings, including bolts, nuts, and bolt patterns in accordance with <RID>
+ASME B16.5</RID>, Class [150][_____].  Provide buttweld fittings in accordance with <RID>ASME B16.9</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>[Provide fittings for LPG piping systems that are rated for a minimum of [<MET>863 kPa</MET><ENG>125 psig</ENG>][<MET>1.7 MPa</MET><ENG>250 psig</ENG>] and 
+comply with <RID>NFPA 58</RID>.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel Forged Branch Connections</TTL><BRK/>
+<BRK/>
+<TXT>Provide steel forged branch connections conforming to <RID>ASTM A181/A181M</RID>, Class 60, carbon steel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flange Gaskets</TTL><BRK/>
+<BRK/>
+<TXT>[Provide gaskets for [natural][manufactured] gas systems that are non-asbestos compressed material gaskets in 
+accordance with <RID>ASME B16.21</RID>, <MET>1.6 mm</MET><ENG> 1/16 inch</ENG> minimum thickness, full face or self-centering flat ring type, 
+containing aramid fibers bonded with nitrile butadiene rubber (NBR), or glass fibers bonded with polytetrafluoroethylene, 
+suitable for maximum<MET> 315 degrees C</MET><ENG> 600 degrees F</ENG> service.]</TXT><BRK/>
+<BRK/>
+<TXT>[Provide gaskets for LPG systems constructed of metal or confined by metal that has a melting point above <MET>815 
+degrees C</MET><ENG>1,500 degrees F</ENG> and is resistant to the action of LPG and in accordance with <RID>NFPA 58</RID>.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Threads</TTL><BRK/>
+<BRK/>
+<TXT>[Provide pipe threads for [natural][manufactured] gas piping conforming to <MET><RID>ASME B1.20.2M</RID></MET><ENG><RID>ASME B1.20.1</RID></ENG>.]</TXT><BRK/>
+<BRK/>
+<TXT>[Provide only fittings manufactured for the purpose of threaded connections made in LPG piping systems.  Design 
+threaded fittings in LPG systems for no less than 250 psig operating pressure.]</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the paragraph below where LPG distribution systems are specified.  
+NFPA 58 does not allow thread sealant compounds or tape to be used in LPG piping 
+systems.  Where sealing at the threads of a connection in an LPG pipeline is 
+necessary, specify back welding of the threaded joint using minimum schedule 
+80 piping and <MET>1.7 MPa</MET><ENG>250 psig</ENG> rated fittings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Sealants for Steel Pipe Threaded Joints in [Natural][Manufactured] Gas Systems</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Sealing Compound</TTL><BRK/>
+<BRK/>
+<TXT>Provide joint sealing compound as listed in UL FLAMMABLE &amp; COMBUSTIBLE, Class 20 or less that is qualified 
+for use with [natural gas] [manufactured gas].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tape</TTL><BRK/>
+<BRK/>
+<TXT>Provide polyetrafluoroethylene tape conforming to <RID>ASTM D3308</RID> that is qualified for use with [natural gas][manufactured 
+gas].</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>PLASTIC PIPE, TUBING, FITTINGS AND JOINTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Before selecting plastic pipe material, contact the gas supplier for 
+a gas analysis to determine the types of chemicals which will be in the gas 
+to be supplied.  Select suitable plastic pipe material based on the gas analysis.</NPR><BRK/>
+<BRK/>
+<NPR>Polyethylene, per ASTM D2513, is the preferred plastic pipe material.  SDR-11 
+wall thickness is the minimum allowed on a Government Installation.  SDR is 
+the nominal pipe diameter divided by the wall thickness.  Higher SDR-# means 
+thinner wall.  Lower SDR-# means thicker wall.  Therefore, SDR-9 would be allowed; 
+while SDR-13 must be disapproved.</NPR><BRK/>
+<BRK/>
+<NPR>Polyamide-11 (PA-11), per [ASTM D2513-99][ASTM F2945], may be used only to connect 
+to existing pipelines constructed of PA-11.  PA-11 plastic cannot be connected 
+by heat fusion to any other plastic and the Government will not allow a mechanical 
+connection for this purpose.</NPR><BRK/>
+<BRK/>
+<NPR>Reinforced epoxy resin pipe, per ASTM D2517, may be used only to connect to 
+existing natural or manufactured gas pipelines constructed of reinforced epoxy 
+resin pipe.  Reinforced epoxy resin pipe is not qualified for use with LPG per 
+NFPA 58.</NPR><BRK/>
+<BRK/>
+<NPR>Do not use plastic material for gas pipelines with design pressures above <MET>690 
+kPa</MET><ENG>100 psig</ENG>, unless the manufactured products meet the requirements specified 
+'Design Limitations for Plastic Pipe', Section 192.123 of 49 CFR 192.</NPR><BRK/>
+<BRK/>
+<NPR>Do not use plastic material in gas pipelines where operating temperatures may 
+exceed the material's qualified temperature range.  PE and PA-11 materials must 
+not exceed the temperature used to determine the Hydrostatic Design Basis (HDB) 
+that was used to calculate the design pressure of the pipeline per section 192.121 
+of 49 CFR 192.  Reinforced epoxy resin pipelines must not exceed <MET>66 degrees 
+C</MET><ENG>150 degrees F</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>Do not use plastic material in pipelines where operating temperature may be 
+below <MET>-29 degrees C</MET><ENG>-20 degrees F</ENG> without consulting section 192.123 of 49 CFR 
+192 and the manufacturer of the pipe and fittings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Polyethylene Gas Pressure Pipe, Tubing, and Fittings</TTL><BRK/>
+<BRK/>
+<TXT>Provide polyethylene (PE) pipe, tubing, fittings conforming to <RID>ASTM D2513</RID>, as specified in <RID>49 CFR 192</RID> Appendix 
+B and manufactured using material that complies with <RID>ASTM D3350</RID>.  Pipe wall thickness must comply with the Standard 
+Dimension Ratio, SDR-11, or lower value, meaning thicker wall.  The Hydrostatic Design Basis (HDB) of the selected 
+PE material must exceed the Maximum Allowable Operating Pressure (MAOP), at the anticipated operating temperature 
+of the system in which it is installed.  Mark pipe, tubing, and fittings as required by <RID>ASTM D2513</RID> and with traceability 
+code per <RID>ASTM F2897</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide polyethylene fittings that are constructed of polyethylene of the same material classification and SDR 
+as the connecting pipe, and comply with <RID>ASTM D2513</RID>.  Provide fittings with [butt-type fusion fittings complying 
+with <RID>ASTM D3261</RID>][socket-type fusion fittings complying with <RID>ASTM D2683</RID>][electrofusion-type fittings complying 
+with <RID>ASTM F1055</RID>].</TXT><BRK/>
+<BRK/>
+<TXT>Where mechanical fittings are specified on the engineering drawings, provide mechanical fittings that comply 
+with <RID>ASTM F1948</RID> and are category 1 for pressure integrity, gas tightness, and provide pull-out resistance equivalent 
+to the pipe strength.</TXT><BRK/>
+<BRK/>
+<TXT>Provide heat fusion joints complying with <RID>ASTM F2620</RID> and the manufacturer's written procedure approved by the 
+contracting officer.  Electro fusion joints fittings must comply with <RID>ASTM F1055</RID> and the manufacturer's written 
+procedure approved by the contracting officer.  Perform underground installations in conformance with <RID>ASTM D2774</RID>
+.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Polyamide-11 Gas Pressure Pipe, Tubing, and Fittings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remove this paragraph where the existing distribution system that is 
+being connected to is not Polyamide-11 pipe.  Please note that 49 CFR 192 references 
+ASTM D2513, revision dated 1999, i.e, ASTM D2513-99 for PA-11 pipe, tube, and 
+fittings.  This reference will remain until 49 CFR 192 recognizes ASTM F2945 
+as the standard for PA-11 pipe, tube, and fittings.  It is recommended that 
+a dual reference for ASTM D2513-99 and ASTM F2945 be retained until 49 CFR 192 
+is revised to reference ASTM F2945.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use PA-11 pipe to connect only to existing gas distribution pipelines that are constructed of PA-11.</TXT><BRK/>
+<BRK/>
+<TXT>Provide PA-11 pipe, tubing, fittings and joints conforming to [<RID>ASTM D2513-99</RID>] [<RID>ASTM F2945</RID>], as specified in <RID>49 CFR 192</RID>
+ Appendix B and manufactured using material that complies with <RID>ASTM D4066</RID>.  Pipe wall thickness must comply with 
+the Standard Dimension Ratio, SDR-11, or lower value, meaning thicker wall.  The Hydrostatic Design Basis (HDB) 
+of the selected PA-11 material must exceed the Maximum Allowable Operating Pressure (MAOP), at the anticipated 
+operating temperature of the system in which it is installed.  Mark pipe, tubing, and fittings as required by 
+[<RID>ASTM D2513-99</RID>] [<RID>ASTM F2945</RID>] with traceability code per <RID>ASTM F2897</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide PA-11 fittings that are constructed of PA-11 of the same material classification and SDR as the connecting 
+pipe and comply with [<RID>ASTM D2513-99</RID>] [<RID>ASTM F2945</RID>].  Provide [butt-type fusion fittings complying with [<RID>ASTM D2513-99</RID>
+] [<RID>ASTM F2945</RID>],[ Annex A2] [electro fusion-type fusion fittings complying with <RID>ASTM F2600</RID>]].</TXT><BRK/>
+<BRK/>
+<TXT>Where mechanical fittings are specified on the engineering drawings, provide mechanical fittings that comply 
+with [<RID>ASTM F1948</RID> for metallic mechanical fittings] [<RID>ASTM F2145</RID> for PA-11 bodied mechanical fittings] and are 
+category 1 for pressure integrity, gas tightness, and provide pull-out resistance equivalent to the pipe strength.</TXT><BRK/>
+<BRK/>
+<TXT>Make heat fusion joints and electro fusion joints in accordance with the manufacturer's written procedure approved 
+by the contracting officer.  Perform underground installations in conformance with <RID>ASTM D2774</RID>.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Reinforced Epoxy Resin Gas Pressure Pipe and Fittings</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remove this paragraph when specifying LPG distribution pipelines or where 
+the existing distribution system that is being connected to is not reinforced 
+epoxy resin pipe complying with ASTM D2517.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Use reinforced epoxy resin pipe to connect only to existing [natural gas][manufactured gas] distribution pipelines 
+that are constructed of reinforced epoxy resin.</TXT><BRK/>
+<BRK/>
+<TXT>Provide reinforced epoxy resin pipe, tubing, fittings conforming to <RID>ASTM D2517</RID> and as specified in <RID>49 CFR 192</RID>
+ Appendix B.  Minimum wall thickness must comply with engineering drawings and <RID>49 CFR 192</RID>.  Mark pipe, tubing, 
+and fittings as required by <RID>ASTM D3892</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Provide fittings conforming to <RID>ASTM D5685</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Adhesives used to join pipe and fitting must comply with <RID>ASTM D2517</RID> and the manufacturer's written procedure 
+approved by the contracting officer.  Perform underground installations in conformance with <RID>ASTM D3839</RID>.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Mechanical Fittings for use with Plastic Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Use of mechanical fittings in distribution pipelines constructed of plastic requires the approval of Engineering 
+and the Contracting Officer.  Mechanical fittings may be approved only where others methods of connecting piping 
+and appurtenances will produce a less reliable gas tight connection.</TXT><BRK/>
+<BRK/>
+<TXT>Mechanical fittings, their use, and installation must comply with <RID>49 CFR 192</RID>.  Mechanical fittings must meet 
+the requirements of category 1 presented in [<RID>ASTM F1948</RID> for metallic mechanical fittings] [<RID>ASTM F2145</RID> for PA-11 
+mechanical fittings] to remain gas tight while resisting pull-out forces.</TXT><BRK/>
+<BRK/>
+<TXT>Mechanical fittings constructed of metal or plastic other than the plastic specified for piping must be approved 
+base on submission of manufacturer's test data and historical service records indicating their acceptability 
+for the intended service.</TXT><BRK/>
+<BRK/>
+<TXT>Submit all traceability information for each mechanical fittings to include, but not limited to, the manufacturer, 
+part number, serial number, and geographic information system coordinates of the installed location.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>FLEXIBLE METALLIC CONNECTORS FOR LPG SERVICE</TTL><BRK/>
+<BRK/>
+<TXT>Where flexible piping is required for connection of LPG container regulator to the manual shut off valve at the 
+start of the LPG pipeline, provide flexible metallic connectors complying with <RID>UL 569</RID>, rated for a working pressure 
+not less than <MET>2.4 MPa</MET><ENG>350 psig</ENG>.  Provide hose assembly with approved connectors that is designed for a pressure 
+not less than <MET>4.8 MPa</MET><ENG>700 psig</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>VALVES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Valves and pressure regulators are necessary at all points where design 
+requires pressure reduction or regulation.  Require a shut-off valve in compliance 
+with the requirements of 49 CFR 192.197.  A central regulating station is generally 
+provided by the gas company and is usually located near the entrance to the 
+installation.  When valves, gas pressure regulators, and related devices are 
+required in the contract, ensure that all necessary equipment will comply with 
+the requirements of the gas company, and revise these paragraphs as required.  
+Provide a detail of each regulating station and the following data for each 
+pressure regulator:  materials of construction, flow rate, type and specific 
+gravity of the gas, inlet and outlet pressures, accuracy of control, and size 
+and type of connections.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Carbon Steel Valves for [Natural Gas][Manufactured Gas] Pipelines</TTL><BRK/>
+<BRK/>
+<TXT>Provide valves suitable for shutoff or isolation in [natural] [manufactured] gas pipelines conforming to the 
+requirements of <RID>49 CFR 192</RID>.  All materials used in valve construction must be resistant to the action of the 
+gas being distributed under the service conditions.</TXT><BRK/>
+<BRK/>
+<TXT>Provide carbon steel valves installed in [natural gas][manufactured gas] pipelines that comply with <RID>API Spec 6D</RID>
+.  Provide ball, check, gate, and plug valves as specified in the design drawings.</TXT><BRK/>
+<BRK/>
+<TXT>Provide Class [150][_____] steel valves <MET>40 mm</MET><ENG>1-1/2 inches</ENG> and smaller installed underground with butt-weld ends 
+complying with <RID>ASME B16.25</RID>, with square wrench operator adaptor and corrosion prevention.</TXT><BRK/>
+<BRK/>
+<TXT>Provide Class [150][_____] steel valves <MET>40 mm</MET><ENG>1-1/2 inches</ENG> and smaller installed aboveground with butt-weld complying 
+with <RID>ASME B16.25</RID> or threaded ends complying with <RID>ASME B1.20.1</RID>, with hand wheel or wrench operator.</TXT><BRK/>
+<BRK/>
+<TXT>Provide Class [150][_____] steel valves <MET>50 mm</MET><ENG>2 inches</ENG> and larger installed underground with butt-weld ends complying 
+with <RID>ASME B16.25</RID>, and square wrench operator adaptor and corrosion prevention coating.</TXT><BRK/>
+<BRK/>
+<TXT>Provide Class [150][_____] steel valves <MET>50 mm</MET><ENG>2 inches</ENG> and larger installed aboveground with butt-weld complying 
+with <RID>ASME B16.25</RID> or flanged ends complying with <RID>ASME B16.5</RID>, with hand wheel or wrench operator.</TXT><BRK/>
+<BRK/>
+<TXT>Provide valves <MET>200 mm</MET><ENG>8 inches</ENG> and larger with worm or spur gear operators, totally enclosed, grease packed, and 
+sealed, with operators having Open and Closed stops and position indicators.  Provide locking feature where indicated.  
+Wherever the lubricant connections are not conveniently accessible, provide extensions for the application of 
+lubricant.  Provide valves with lubricant compatible with gas service.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Metallic Valves for LPG Pipelines</TTL><BRK/>
+<BRK/>
+<TXT>Provide manual shut-off valves, excess flow valves, and backflow check valves in LPG pipelines conforming to 
+the requirements of <RID>NFPA 58</RID> and <RID>UL 125</RID>.  Provide valves constructed from [steel, ] [ductile (nodular) iron complying 
+with <RID>ASTM A395/A395M</RID>, ] [malleable iron complying with <RID>ASTM A47/A47M</RID>, ] [brass].  All materials used in valve 
+construction must be resistant to the action of LPG under the service conditions.  Valves must have a service 
+pressure rating of [<MET>0.9 MPa</MET><ENG>125 psig</ENG> for pipeline pressure of <MET>0.9 MPa</MET><ENG>125 psig</ENG> or less] [ and ] [<MET>1.7 MPa</MET><ENG>250 psig</ENG>
+ for pipelines operating above <MET>0.9 MPa</MET><ENG>125 psig</ENG>].</TXT><BRK/>
+<BRK/>
+<TXT>[Provide pressure spring loaded relief valves that comply with <RID>UL 132</RID> with flow capability to limit the pressure 
+in the pipeline to below the Maximum Allowable Operating Pressure (MAOP) for the system.]</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Plastic Valves for [Natural Gas][Manufactured Gas][LPG] Pipelines</TTL><BRK/>
+<BRK/>
+<TXT>[Provide valves installed in polyethylene distribution pipelines that are constructed of polyethylene of the 
+same material classification and SDR as the connecting pipe.  Comply with <RID>ASTM D2513</RID> and <RID>ASME B16.40</RID> for underground 
+installation only.  Provide valves with [butt-type fusion fittings complying with <RID>ASTM D3261</RID>] [socket-type fusion 
+fittings complying with <RID>ASTM D2683</RID>][electro fusion-type fittings complying with <RID>ASTM F1055</RID>].]</TXT><BRK/>
+<BRK/>
+<TXT>[Provide valves installed in PA-11 distribution pipelines that are constructed of PA-11 of the same material 
+classification and SDR as the connecting pipe.  Comply with [<RID>ASTM D2513-99</RID>] [<RID>ASTM F2945</RID>] and <RID>ASME B16.40</RID> for 
+underground installation only.  Provide valves with [butt-type fusion fittings complying with [<RID>ASTM D2513-99</RID>] 
+[<RID>ASTM F2945</RID>], Annex A2] [electro fusion-type fusion fittings complying with <RID>ASTM F2600</RID>].]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Excess Flow Valve (EFV)</TTL><BRK/>
+<BRK/>
+<TXT>Provide [bypass type EFV with automatic reset][non-bypass type EFV with manual rest] that conforms to <RID>MSS SP-142</RID>
+ and <RID>ASTM F2138</RID> and tested to <RID>ASTM F1802</RID>.  Submit an <SUB>EFV Design and Installation Guide</SUB> which includes the manufacturer's 
+product design data and installation instructions.  Submit all traceability information for each EFV to include, 
+but not limited to, the manufacturer, part number, serial number, and geographic information system coordinates 
+of the installed location.  Provide appropriate valve box where access for maintenance or reset is required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valve Box</TTL><BRK/>
+<BRK/>
+<TXT>Provide [street valve box with cast-iron cover and two-piece <MET>130 mm</MET><ENG>5-1/4 inch</ENG> shaft-slip valve box extension][rectangular 
+concrete valve box, sized large enough for removal of valve without removing box].  Cast the word "Gas" into 
+the box cover.  Use valve box for areas as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Roads and Traffic Areas:  Heavy duty, cast iron cover.</OLI><BRK/>
+<BRK/>
+<OLI>Other Areas:  Standard duty, concrete cover.</OLI><BRK/>
+<BRK/>
+[<OLI>Airfields and Special Loadings:  As detailed.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>PRESSURE REGULATORS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate this paragraph with the specified requirements in paragraph 
+VALVES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide ferrous bodied regulators with backflow protection, designed to meet the pressure, temperature, flow 
+and other service conditions.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>LPG Main Regulators</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  There are several methods of reducing and regulating the pressure of 
+LPG within the distribution pipeline.  The designer must specify the NFPA 58 
+compliant regulator or regulator combination that is appropriate for the LPG 
+service that is provided.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>LPG regulators must comply with <RID>UL 144</RID> and <RID>NFPA 58</RID>.  Line pressure regulators that comply with <RID>ANSI Z21.80/CSA 6.22</RID>
+ are not allowed in the LPG distribution pipeline, but are used in accordance with <RID>NFPA 54</RID> to reduce a <MET>17.8 kPa</MET><ENG>
+2 psig</ENG> service line pressure to appliance regulator inlet pressure.  Appliance regulators that comply with <RID>ANSI Z21.18/CSA 6.3</RID>
+ must not be used in an LPG distribution pipeline.</TXT><BRK/>
+<BRK/>
+<TXT>Provide LPG two stage regulator systems as required by <RID>NFPA 58</RID>:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Single stage regulators are not allowed in an LPG pipeline.</OLI><BRK/>
+<BRK/>
+[<OLI>Automatic changeover regulator incorporating an integral two stage regulator, with [integral pressure 
+relief to limit second stage outlet pressure to <MET>14 kPa</MET><ENG>2 psig</ENG> when seat disc is remove and inlet pressure 
+is <MET>104 kPa</MET><ENG>15 psig</ENG>][overpressure shutoff with manual reset] on the outlet of the second stage regulator, 
+for use on multiple cylinder installation.</OLI>]<BRK/>
+<BRK/>
+[<OLI>Integral two-stage regulator with means to determine the outlet pressure of the high pressure regulator, 
+with [integral pressure relief to limit second stage outlet pressure to <MET>14 kPa</MET><ENG>2 psig</ENG> when seat disc is 
+remove and inlet pressure is <MET>104 kPa</MET><ENG>15 psig</ENG>][overpressure shutoff with manual reset].</OLI>]<BRK/>
+<BRK/>
+[<OLI>High pressure regulator installed on the LPG container with [integral][separate] relief valve, and a 
+first stage regulator, with integral pressure relief, installed downstream of the high pressure regulator 
+to serve multiple second stage regulators with [integral pressure relief to limit second stage outlet 
+pressure to <MET>14 kPa</MET><ENG>2 psig</ENG> when seat disc is remove and inlet pressure is <MET>104 kPa</MET><ENG>15 psig</ENG>][overpressure 
+shutoff with manual reset] on the outlet of the second stage regulator.</OLI>]<BRK/>
+<BRK/>
+[<OLI>First stage regulator, <MET>69 kPa</MET><ENG>10 psig</ENG> maximum outlet pressure, with integral pressure relief, and a second 
+stage regulator with [integral pressure relief to limit second stage outlet pressure to <MET>14 kPa</MET><ENG>2 psig</ENG> 
+when seat disc is remove and inlet pressure is <MET>104 kPa</MET><ENG>15 psig</ENG>][overpressure shutoff with manual reset].</OLI>]<BRK/>
+<BRK/>
+[<OLI>Integral 2 psi service regulator, <MET>17 kPa</MET><ENG>2.5 psig</ENG> maximum outlet pressure with [integral pressure relief 
+to limit outlet pressure to <MET>35 kPa</MET><ENG>5 psig</ENG> when seat disc is remove and inlet pressure is <MET>104 kPa</MET><ENG>15 psig</ENG>
+][overpressure shutoff with manual reset].</OLI>]<BRK/>
+<BRK/>
+[2 psi regulator system including a first stage regulator, </OLG><MET>69 kPa</MET><ENG>10 psig</ENG> maximum outlet pressure, with integral pressure 
+relief, and a 2 psi regulator, <MET>17 kPa</MET><ENG>2.5 psig</ENG> maximum outlet pressure with [integral pressure relief to limit 2 psi 
+regulator outlet pressure to <MET>35 kPa</MET><ENG>5 psig</ENG> when seat disc is remove and inlet pressure is <MET>104 kPa</MET><ENG>15 psig</ENG>][overpressure 
+shutoff with manual reset].]<BRK/>
+<BRK/></SPT>
+][<SPT><TTL>[Natural][Manufactured] Gas Main Regulators</TTL><BRK/>
+<BRK/>
+<TXT>Provide pressure regulators for main gas distribution pipelines from a qualified manufacture of pipeline regulators.  
+Equip distribution pipelines with regulators where that pipeline is supplied from a source of gas that is at 
+higher pressure than the maximum allowable operating pressure of the distribution pipeline.  Provide regulators 
+of adequate capacity that are rated for the inlet pressure of the gas source and the anticipated operating temperature.  
+In addition to the pressure regulating devices, provide a protective method to prevent overpressuring of the 
+system in accordance with <RID>49 CFR 192</RID>, Section 195.  Suitable protective devices are as follows:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer may design and specify the method and device used to create 
+overpressure protection that complies with 49 CFR 192, or the designer may include 
+all of the methods allowed in 49 CFR 192 to allow the contractor to select a 
+cost effective method.  However, the designer must coordinate this decision 
+with the authorized Distribution System Operator to ensure compliance with locally 
+adopted requirements or standards.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Spring-loaded relief valve meeting the provisions of <RID>ASME BPVC SEC VIII D1</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Pilot-loaded back pressure regulator used as relief valve, so designed that failure of the pilot system 
+causes the regulator to open.</OLI><BRK/>
+<BRK/>
+<OLI>Weight-loaded relief valves conforming to <RID>ASME PTC 25</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Monitoring relief valves conforming to <RID>ASME PTC 25</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Series regulator installed upstream from the primary regulator, set to limit the pressure on the inlet 
+of the primary regulator continuously to the maximum allowable operating pressure of the system, or less.</OLI><BRK/>
+<BRK/>
+<OLI>Automatic shutoff device installed in series with the primary regulator, set to shut off when the pressure 
+on the distribution system reaches the maximum allowable operating pressure of the system, or less, which 
+remains closed until manually reset.</OLI><BRK/>
+<BRK/>
+<OLI>Spring-loaded, diaphragm type relief valves.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>[Natural][Manufactured]Service Regulators</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  49 CFR 192 allows service regulators installed on service lines operating 
+at <MET>414 kPa</MET><ENG>60 psig</ENG> or less to omit pressure relief.  However, it is recommended 
+that service regulators comply with the requirements of this UFGS paragraph, 
+as written, to allow the natural gas distribution pipeline operator the maximum 
+flexibility in selecting higher distribution pipeline operating pressures.</NPR><BRK/>
+<BRK/>
+<NPR>Select one of the three bracketed texts to allow distribution pipeline operation 
+between <MET>414 kPa</MET><ENG>60 psig</ENG> and <MET>862 kPa</MET><ENG>125 psig</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>Where the service regulator pipe connection exceeds <MET>50 mm</MET><ENG>2 inches</ENG>, one of the 
+overpressure protection methods presented in the three bracketed texts is required 
+by 192.197(b)</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide ferrous bodied service regulators conforming to <RID>AGA ANSI B109.4</RID> with [full capacity internal relief] 
+[downstream pressure relief valve where distribution pipeline pressure does not exceed <MET>862 kPa</MET><ENG>125 psig</ENG>] [downstream 
+automatic overpressure shut-off].</TXT><BRK/>
+<BRK/>
+<TXT>Service regulators must meet each of the following requirements.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Capable of reducing distribution line pressure to the safe pressure required by the connected equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Capable of limiting, under no flow conditions, the build-up of downstream pressure that would cause unsafe 
+operation of the connected equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Pipe connections of <MET>50 mm</MET><ENG>2 inches</ENG> or less.</OLI><BRK/>
+<BRK/>
+<OLI>Single port with orifice diameter no greater than that recommended by the manufacturer for the maximum 
+gas pressure at the regulator inlet.</OLI><BRK/>
+<BRK/>
+<OLI>Valve seat of resilient materials designed to withstand flow conditions when pressed against the valve 
+port.</OLI><BRK/>
+<BRK/>
+<OLI>Self-contained with no external static or control lines.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Set pressure relief at a lower pressure than would cause unsafe operation of any connected and properly adjusted 
+gas utilization equipment.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Overpressure Protection for Service Lines, Operating Pressure Greater than <MET>414 kPa</MET><ENG>60 psig</ENG>, but Less than <MET>862 kPa</MET><ENG>
+125 psig</ENG></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Omit this paragraph where the service regulator specified above, para 
+2.4.2, contains internal pressure relief, a downstream relief valve, or downstream 
+automatic shut-off; because the installation of any one of these devices complies 
+with 192.197(c)(3).</NPR><BRK/>
+<BRK/>
+<NPR>49 CFR 192, Section 197(c) presents the minimum requirements for overpressure 
+protection of customer piping and appliances that are connected to a distribution 
+pipeline operated at greater than <MET>414 kPa</MET><ENG>60 psig</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>This UFGS paragraph offers the overpressure protection solutions allowed by 
+49 CFR 192.197(c).</NPR><BRK/>
+<BRK/>
+<NPR>The designer may design and specify the method and device used to create overpressure 
+protection that complies with 49 CFR 192 or, the designer may include all of 
+the methods allowed in 49 CFR 192 to allow the contractor to select a cost effective 
+method.  However, the designer must coordinate this decision with the authorized 
+Distribution System Operator to ensure compliance with locally adopted requirements 
+or standards.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Where the gas distribution system is operated at a pressure greater than <MET>414 kPa</MET><ENG>60 psig</ENG>, but less than <MET>862 kPa</MET><ENG>
+125 psig</ENG>, provide one of the following methods of overpressure protection for the service regulator and facility 
+gas piping system:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Additional upstream regulator plus pressure relief or automatic shut-off.</OLI><BRK/>
+<BRK/>
+<OLI>Additional upstream monitoring regulator that, in the event of service regulator failure, prevents the 
+pressure of gas supplied to the customer from exceeding a maximum safe value.</OLI><BRK/>
+<BRK/>
+<OLI>A service regulator with internal relief or downstream relief valve.</OLI><BRK/>
+<BRK/>
+<OLI>An automatic shut-off device with manual reset.</OLI><BRK/></OLG>
+<BRK/></SPT>
+][<SPT><TTL>Overpressure Protection for Service Lines, Operating Pressure Greater than <MET>862 kPa</MET><ENG>125 psig</ENG></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Service regulators complying with ANSI B109.4 are limited to <MET>862 kPa</MET><ENG>125 
+psig</ENG> inlet pressure.</NPR><BRK/>
+<BRK/>
+<NPR>49 CFR 192, Section 197.(c)(3) further qualifies the minimum requirements for 
+overpressure protection of service regulators connecting to a distribution pipeline 
+operated at greater than <MET>862 kPa</MET><ENG>125 psig</ENG>.  Section 197(c)(3) requires one of 
+the overpressure protection solutions listed in the bracketed text of this specification 
+paragraph.</NPR><BRK/>
+<BRK/>
+<NPR>Where the distribution system operates at a pressure, higher than <MET>862 kPa</MET><ENG>125 
+psig</ENG>, retain the following paragraph and select from the bracket text.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>In addition to the required service regulator, provide an additional upstream [regulator that is set to maintain 
+the inlet pressure to the service regulator to <MET>414 kPa</MET><ENG>60 psig</ENG> or less] [monitoring regulator to limit the pressure 
+of gas supplied to the facility gas piping to the lowest, maximum inlet pressure of any appliance regulator connected 
+to the facility gas piping].</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>METERS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Meter selection must comply with the Advanced Metering Program being 
+implemented at the specific Government Installation where work is being performed.  
+The design engineer must contact the project Contracting Officer to determine 
+the appropriate point of contact for this advanced metering program.  The design 
+engineer must then consult with the point of contact, approved by the Contracting 
+Officer, to ensure that the specified natural gas metering system is compliant 
+with the current requirements for the advanced metering program and the current, 
+site applicable cybersecurity protection.  Any metering selected must comply 
+with the requirements of Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED 
+CONTROL SYSTEMS.</NPR><BRK/>
+<BRK/>
+<NPR>The gas meters specified in this paragraph are qualified for natural gas, manufactured 
+gas and LPG in its vapor phase.  Designer must specify the maximum allowable 
+operating pressure of the meter at no less than 10 psig per 49 CFR 192 and must 
+protect the meter from over pressurization IAW 49 CFR 192.197.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide gas meters for [natural gas][manufactured gas][liquefied petroleum gas in the vapor phase] that comply 
+with [<RID>AGA ANSI B109.1</RID>] [<RID>AGA ANSI B109.2</RID>] [<RID>AGA ANSI B109.3</RID>] [pipe] [pedestal] mounted, [diaphragm] or [bellow] 
+[style], [cast-iron] [enamel-coated steel] [aluminum] case.  Rate meters for a maximum allowable operating pressure 
+of [<MET>69 kPa </MET><ENG>10 psig</ENG>][_____ psig]  [Provide with a strainer immediately upstream].  Provide [diaphragm-type meter 
+conforming to <RID>AGA ANSI B109.1</RID> for required flow rates less than 500 cfh, or <RID>AGA ANSI B109.2</RID>, for flow rates 500 
+cfh and above] [rotary-type displacement meter conforming to <RID>AGA ANSI B109.3</RID>] as required by local gas utility 
+supplier.  Provide combined [odometer-type] register totalizer index, UV-resistant index cover, water escape 
+hole in housing, and means for sealing against tampering.  Provide temperature-compensated type meters sized 
+for the required volumetric flow rate and suitable for accurately measuring and handling gas at pressures, temperatures, 
+and flow rates indicated.  Provide meters with over-pressure protection as specified in <RID>49 CFR 192</RID> and <RID>ASME B31.8</RID>
+.  Provide meters that are tamper-proof [with] [frost protection] [fungus protection][seismic protection].Provide 
+meters with a pulse switch initiator capable of operating up to speeds of 500 maximum pulses per minute with 
+no false pulses and requiring no field adjustments.  Provide not less than one pulse per <MET>2.83 cubic meters</MET> <ENG>100 
+cubic feet</ENG> of gas.  Minimum service life must be 30,000,000 cycles.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Utility Monitoring and Control System (UMCS) or Automatic Meter Reading Interfaces</TTL><BRK/>
+<BRK/>
+<TXT>Provide gas meters capable of interfacing the output signal, equivalent to volumetric flow rate, with the existing 
+UMCS for data gathering in units of <MET>cubic meters</MET> <ENG>cubic feet</ENG>.  Provide meters that do not require power to function 
+and deliver data.  Output signal must be either a voltage or amperage signal that can be converted to volumetric 
+flow by using an appropriate scaling factor.  Meters installed must comply with Section <SRF>25 05 11</SRF> CYBERSECURITY 
+FOR FACILITY-RELATED CONTROL SYSTEMS.  Meters installed must comply with Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED 
+CONTROL SYSTEMS.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Measurement Configuration</TTL><BRK/>
+<BRK/>
+<TXT>For buildings that already have a gas meter with a pulse output, ensure that the pulse output is connected to 
+a data gathering device (i.e. electric meter).  For buildings where a natural gas meter already exists but does 
+not have a pulse output, add a pulse kit to the existing meter and tie the output to a data gathering device.  
+If the existing gas meter will not accept a pulse kit or if no meter exists a new natural gas meter must be installed, 
+also requiring a pulse output to a data gathering device.  Ensure the pulse frequency and electronic characteristics 
+are compatible with the existing data gathering device, if any.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TELEMETERING OR RECORDING GAUGES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  On distribution systems supplied by a single district pressure regulating 
+station, determine the necessity of installing telemetering or recording gauges 
+in the supply line, taking into consideration the number of buildings supplied, 
+the operating pressures, the capacity of installation, and other operating conditions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Equip each distribution system supplied by more than one district pressure regulating station with telemetering 
+or recording pressure gauges to indicate the gas pressure in the district line.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GAS TRANSITION FITTINGS</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufactured steel-to-plastic gas transition fittings approved for jointing steel and polyethylene pipe, 
+conforming to <RID>ASTM F1973</RID> requirements for transition fittings.</TXT><BRK/>
+<BRK/>
+<TXT>Provide anodeless riser on service lines to transition from below grade plastic piping to above grade steel piping 
+in accordance with <RID>49 CFR 192</RID>.  Polyethylene-to-steel anodeless risers must comply with <RID>ASTM F1973</RID> and <RID>ASTM D2513</RID>
+ - Category 1 specifications for gas tight seal and pull-out resistance.  Protect steel pipe from corrosion by 
+a factory applied coating.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>IDENTIFICATION</TTL><BRK/>
+<BRK/>
+<TXT>Provide pipe flow markings and metal tags for each valve, meter, and regulator as required by the Contracting 
+Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ELECTRICALLY ISOLATED JOINT MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Provide insulating joint materials between flanged or threaded metallic pipe systems to electrically isolate 
+piping that is protected by cathodic protection systems.  Devices must comply with NACE requirements.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>NATURAL GAS COMPRESSORS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete this paragraph where natural gas compressors are not installed 
+in the project.</NPR><BRK/>
+<BRK/>
+<NPR>The Designer of Record must coordinate all operating conditions with the gas 
+compressor manufacturer and adhere to this manufacturer's advice on necessary 
+appurtenance, materials, and installation practices for piping systems connected 
+both upstream and downstream of this compressor.</NPR><BRK/>
+<BRK/>
+<NPR>Code information is limited for natural gas compression system design and installation.  
+Therefore, compliance with API standards and recommended practices and commercially 
+available information for the compressor is mandatory for the design and construction 
+of systems intended to compress natural gas.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide natural gas compressors that comply with [<RID>API Std 617</RID>][<RID>API Std 618</RID>][<RID>API Std 619</RID>].</TXT><BRK/>
+<BRK/>
+<TXT>Provide all devices necessary for safe operation and environmental protection to include snubbers, valves, fittings 
+and other appurtenances as shown on the design drawings.</TXT><BRK/>
+<BRK/></SPT>
+]</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with all details of the work, verify all dimensions in the field, and advise the Contracting 
+Officer of any discrepancy before performing the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EXCAVATION AND BACKFILLING</TTL><BRK/>
+<BRK/>
+<TXT>Earthwork is as specified in Section <SRF>31 00 00</SRF> EARTHWORK.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>LPG CONTAINERS</TTL><BRK/>
+<BRK/>
+<TXT>Install LPG containers in accordance with <RID>NFPA 58</RID> requirements for the type and volumetric capacity of the designed 
+tank.  Install each container with the required appurtenances as defined in <RID>NFPA 58</RID>.  Mount each LPG tank on 
+a concrete pad with anchor bolts or other tie down devices that provide resistance to tip over, caused by external 
+forces defined in <RID>ASCE 7-16</RID> and allow necessary movement to compensate for thermal expansion and contraction.  
+Observe required separation distance from occupied buildings and building openings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>GAS MAINS</TTL><BRK/>
+<BRK/>
+<TXT>Provide steel pipe for aboveground installation.  Provide polyethylene pipe for underground service..</TXT><BRK/>
+<BRK/>
+<TXT>[Where connection is made to an existing distribution pipeline constructed of Polyamide-11 pipe, construct new 
+system using Polyamide-11 pipe or use approved connection fitting to connect new polyethylene pipe.]</TXT><BRK/>
+<BRK/>
+<TXT>[Where connection is made to an existing distribution pipeline constructed of Reinforced Epoxy Resin pipe, construct 
+new system using Reinforced Epoxy Resin pipe or use approved connection fitting to connect new polyethylene pipe.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SERVICE LINES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Locate service line isolation valve as close to the supply main as possible, 
+but at a safe distance from traffic lanes.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Construct service lines of materials specified for gas mains and extend from a gas main to and including the 
+point of delivery within<MET> 1.5 meters</MET><ENG> 5 feet</ENG> of the building.  The point of delivery is the [meter set assembly] 
+[service regulator] [shutoff valve].  Connect the service lines to the gas mains [as indicated] [through service 
+tees, with end of run plugged]. </TXT><BRK/>
+<BRK/>
+<TXT>Where indicated, provide service line with an isolation valve of the same size as the service line, located in 
+a valve box.  Make the service lines as short and as straight as practicable between the point of delivery and 
+the gas main, without bends or lateral curves unless necessary to avoid obstructions or otherwise permitted.  
+Lay service lines with as few joints as practicable using standard lengths of pipe, use shorter lengths only 
+for closures.  Do not install polyethylene service lines aboveground.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WORKMANSHIP AND DEFECTS</TTL><BRK/>
+<BRK/>
+<TXT>Ensure pipe, tubing, and fittings are clear and free of cutting burrs and defects in structure or threading, 
+and thoroughly brushed and blown free of chips and scale.  Do not repair, but replace defective pipe, tubing, 
+or fittings. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PROTECTIVE COATING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Protective Coating for Underground Steel Pipe</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If casings are installed on plastic pipe installed below grade, then 
+retain this paragraph.  Remove this paragraph where no steel pipe is to be installed 
+below grade.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><BRK/>
+Where steel pipe is installed below grade for either the gas carrier pipe or as a casing for plastic carrier 
+pipe, protect this pipe from corrosion by an extruded polyolefin resin coating system over a soft adhesive applied 
+to the steel pipe.  This coating must be either factory applied or applied using a field plant especially equipped 
+for the purpose.  Hand apply protective covering to valves and fittings that cannot be coated and wrapped mechanically, 
+preferably at the plant that applies the covering to the pipe.  Coat and wrap joints by hand, in a manner and 
+with materials that produce a covering equal in thickness to that of the covering applied mechanically.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Field Plant Applied Polyolefin Resin Coating System</TTL><BRK/>
+<BRK/>
+<TXT>Provide a polyolefin resin coating system conforming to <RID>NACE SP0185</RID>, Type A.  Clean the exterior of the pipe 
+to a commercial grade blast cleaning finish in accordance with <RID>SSPC SP 6/NACE No.3</RID>, and apply adhesive compound 
+to the pipe with a nominal thickness of <MET>0.25 mm</MET><ENG>10 mils</ENG> (plus or minus 10 percent).  Immediately after the adhesive 
+is applied, extrude a seamless tube of polyolefin over the adhesive to produce a bonded seamless coating, with 
+a nominal thickness of <MET> 1.0 mm</MET><ENG> 40 mils</ENG> (plus or minus 10 percent) of polyolefin resin for pipes up to<MET> 400 mm</MET><ENG> 
+16 inches</ENG> in diameter.  For pipes<MET> 450 mm</MET><ENG> 18 inches</ENG> and larger in diameter, apply a minimum thickness of <MET> 1.5 
+mm</MET><ENG> 60 mils</ENG> (plus or minus 10 percent) polyolefin resin.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Joint and Field Repair Coating System</TTL><BRK/>
+<BRK/>
+<TXT>Apply joint coating and field repair material as recommended by the coating manufacturer, consisting of one the 
+following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Heat shrinkable polyethylene sleeves.</OLI><BRK/>
+<BRK/>
+<OLI>High density polyethylene/bituminous rubber compound tape.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Inspect the coating system for holes, voids, cracks, and other damage during installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Inspection of Pipe Coatings</TTL><BRK/>
+<BRK/>
+<TXT>Repair any damage to the protective covering during transit and handling before installation.  After field coating 
+and wrapping has been applied, inspect the entire pipe using an electric holiday detector with impressed current 
+set at a value in accordance with <RID>NACE SP0274</RID> using a full-ring, spring-type coil electrode.  Equip the holiday 
+detector with a bell, buzzer, or other type of audible signal which sounds when a holiday is detected.  Immediately 
+repair all holidays in the protective covering upon detection.  The Contracting Officer reserves the right to 
+inspect and determine the suitability of the detector.  Furnish labor, materials, and equipment necessary for 
+conducting the inspection.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Protective Covering for Aboveground Piping Systems</TTL><BRK/>
+<BRK/>
+<TXT>Apply finish painting conforming to the applicable paragraphs of Section <SRF>09 90 00</SRF> PAINTS AND COATINGS and as 
+follows:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Ferrous Surfaces</TTL><BRK/>
+<BRK/>
+<TXT>Touch up shop primed surfaces with ferrous metal primer of the same type paint as the shop primer.  Solvent-clean 
+surfaces that have not been shop primed in accordance with <RID>SSPC SP 1</RID>.  Mechanically clean surfaces that contain 
+loose rust, loose mill scale, and other foreign substances by power wire brushing in accordance with <RID>SSPC SP 3</RID>
+ or brush-off blast clean in accordance with <RID>SSPC 7/NACE No.4</RID> and primed with ferrous metal primer in accordance 
+with <RID>SSPC Paint 25</RID>.  Finish primed surfaces with two coats of exterior alkyd paint conforming to <RID>MPI 9</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nonferrous Surfaces</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain only the first sentence for normal conditions.  Delete the first 
+sentence and retain the second sentence for corrosive conditions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Do not paint nonferrous surfaces.] [Paint nonferrous surfaces to protect from the exposed corrosive conditions.  
+Solvent-clean the surfaces in accordance with <RID>SSPC SP 1</RID>.  Apply a first coat of <RID>MPI 10</RID>, and 2 coats of [<RID>MPI 119</RID>
+] [or] [<RID>MPI 11</RID>].]</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Protective Covering for Piping in Valve Boxes and Manholes</TTL><BRK/>
+<BRK/>
+<TXT>Apply protective coating to piping in valve boxes or manholes as specified for underground steel pipe.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>INSTALLATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When existing gas piping is abandoned, show disconnect details on the 
+drawings.  Refer to ASME B31.8 for guidance on preparing the disconnect details.  
+ASME B31.8 requires physical disconnection from gas sources.  Shutoff valves 
+are not an acceptable means of disconnect.  ASME B31.8 may be used as a reference, 
+but the disconnection and abandonment must comply with the requirements of 49 
+CFR 192, Section 727.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install gas distribution system and equipment in conformance with the manufacturer's recommendations and applicable 
+sections of <RID>49 CFR 192</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Abandonment of Natural Gas Distribution Pipelines</TTL><BRK/>
+<BRK/>
+<TXT>Perform abandonment of existing gas piping in accordance with <RID>ASME B31.8</RID>, the contract drawing details and the 
+requirements of <RID>49 CFR 192</RID>, Section 727.  Purge natural gas piping so that there is no potential hazard.  Provide 
+locking devices for the shut-off valve located at the end of the service line supplying gas to a discontinued 
+customer.  Cut the pipe without damaging the pipe.  Unless otherwise authorized, use an approved type of mechanical 
+cutter.  Use wheel cutters where practicable.  On steel pipe <MET>150 mm</MET><ENG>6 inches</ENG> and larger, an approved gas-cutting-and-beveling 
+machine may be used.  Cut plastic pipe in accordance with <RID>AGA XR0603</RID>.  Fill abandoned vaults with suitable compacting 
+material.[  Record and submit to the COR the Geographic Information System (GIS) location of any abandoned distribution 
+pipeline that crosses over, under, or through a navigable waterway.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST>Installing Pipe Underground</TST></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate profile of gas lines on the drawing.  If it is impractical to 
+comply with the minimum cover specified for pipe, and necessary to prevent damage 
+from external loads, the pipe will be installed in a casing.  The locations 
+of all casings and details of the installation will be indicated on the drawings 
+and identified by Geospatial coordinates.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Grade gas mains and service lines as indicated.  Grade service lines so as to drain back to the main or into 
+drips as indicated.  Weld joints in steel pipe except as otherwise permitted for installation of valves.  Provide 
+mains with<MET> 600 mm</MET><ENG> 24 inch</ENG> minimum cover; service lines with<MET> 485 mm</MET><ENG> 18 inch</ENG> minimum cover; and place both mains 
+and service lines on firmly compacted select material for the full length.</TXT><BRK/>
+<BRK/>
+<TXT>Where indicated, encase, bridge, or design the main to withstand any anticipated external loads as specified 
+in <RID>49 CFR 192</RID>.  Provide standard weight black steel pipe encasement material with a protective coating as specified.  
+Separate the pipe from the casing by insulating spacers and seal the ends with casing bushings.  Excavate the 
+trench below pipe grade, bed with bank sand, and compact to provide full-length bearing.  Laying pipe on blocks 
+to produce uniform grade is not permitted.  Ensure that the pipe is clean inside before it is lowered into the 
+trench and keep free of water, soil, and all other foreign matter that might damage or obstruct the operation 
+of the valves, regulators, meters, or other equipment.  When work is not in progress, securely close open ends 
+of pipe or fittings with expandable plugs or other suitable means.  Minor changes in line or gradient of pipe 
+that can be accomplished through the natural flexibility of the pipe material without producing permanent deformation 
+and without overstressing joints may be made when approved.</TXT><BRK/>
+<BRK/>
+<TXT>Make changes in line or gradient that exceed the limitations specified with fittings.  When cathodic protection 
+is furnished, provide electrically insulated joints or flanges.</TXT><BRK/>
+<BRK/>
+<TXT>When polyethylene piping is installed underground and not encased in a metallic casing, place a tracer wire or 
+other electrically conductive element above the pipe in accordance with <RID>49 CFR 192</RID> to permit locating with underground 
+detection devices.  After laying of pipe and testing, backfill the trench in accordance with Section 
+<SRF>31 00 00</SRF> EARTHWORK, and in a manner provides firm support under the pipe and prevents damage to the pipe and 
+pipe coating from equipment or from the backfill material.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installing Pipe Aboveground</TTL><BRK/>
+<BRK/>
+<TXT>Protect aboveground piping against dirt and other foreign matter, as specified for underground piping.  Weld 
+joints in steel pipe; however, joints in pipe<MET> 40 mm</MET><ENG> 1-1/2 inches</ENG> in diameter and smaller may be threaded; joints 
+may also be threaded to accommodate the installation of valves.  Provide flanges of the weld neck type to match 
+wall thickness of pipe.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PIPE JOINTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide pipe joints complying with the requirements of <RID>49 CFR 192</RID>, Subpart E for welding of steel pipelines and 
+Subpart F for joints other than welding.  Design and install pipe joints to effectively sustain the longitudinal 
+pullout forces and thrust forces caused by the contraction and expansion of piping or superimposed loads.  Make 
+each joint in accordance with the submitted and approved written joining procedure that has been proven to produce 
+strong, gas-tight joints.  Each joint must be inspected by the approved inspector.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Threaded Steel Joints</TTL><BRK/>
+<BRK/>
+<TXT>Provide threaded joints in steel pipe with tapered threads evenly cut, made with UL approved joint sealing compound 
+approved for gas service or polytetrafluoroethylene tape approved for gas service applied to the male threads 
+only.  Caulking of threaded joints to stop or prevent leaks is not permitted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welded Steel Joints</TTL><BRK/>
+<BRK/>
+<TXT>Perform gas pipe weldments, as indicated, in accordance with the submitted and approved welding procedures, and 
+by the approved qualified welders.  Make changes in direction of piping by welding fittings only; mitering or 
+notching pipe to form elbows and tees or other similar type construction is not permitted.  Branch connection 
+may be made with either welding tees or forged branch outlet fittings.  Use forged or flared branch outlet fittings 
+for improvement of flow where attached to the run, and reinforced against external strains.  Perform all beveling, 
+alignment, heat treatment, and inspection of welds conforming to <RID>API Std 1104</RID> and the ASME Boiler and Pressure 
+Vessel Code.  Remove weld defects and repair the weld, or remove the weld joints entirely and reweld.  After 
+filler metal has been removed from its original package, protect it or store so that its characteristics or welding 
+properties are not affected adversely.  Do not use electrodes that have been wetted or have lost any of their 
+coating..</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plastic Pipe Jointing Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Use jointing  procedures that have been submitted and approved for this project.  Joints in plastic pipe must 
+be made by the qualified personnel submitted and approved for this project, who have the requalification requirements 
+of <RID>49 CFR 192</RID>, Section 285.  Each joint made must be inspected by the qualified inspector that was submitted 
+and approved for this project.</TXT><BRK/>
+<BRK/>
+<TXT>Heat fusion joining of plastic pipe or fittings made from different plastic resins by classification or by manufacturer 
+are not allowed.  If heat fusion joining of similar polyethylene resin classification is required in pipe made 
+by different manufacturers, the procedure must be qualified by test in accordance with <RID>49 CFR 192</RID>, Section 283 
+requirements and <RID>AGA XR0603</RID>.  The personnel making these joints must be qualified using this procedure in accordance 
+with <RID>49 CFR 192</RID>, Section 285 requirements.  Submit all data: written procedure, test specimens, test results, 
+inspection reports, etc. to show complete jointing qualification per <RID>49 CFR 192</RID> requirements to the COR.</TXT><BRK/>
+<BRK/>
+<TXT>Where joining procedures for plastic pipes by heat fusion cannot be properly qualified, an alternative connection 
+method must be used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mechanical Couplings for Plastic Pipe Jointing</TTL><BRK/>
+<BRK/>
+<TXT>Make mechanical joints in accordance with the procedures that have been qualified in accordance with <RID>49 CFR 192</RID>
+, Section 283(b).  Submit evidence that the five specimen joints configured and tested in accordance with 283(b)(1), 
+(2) and (3) failed in a manner consistent with 283(b)(4), (5) and (6) as applicable.  For the mechanical coupling, 
+obtain the manufacturer's model number, serial number, and date of manufacture, record the date of installation 
+and obtain the Geographical Information System (GIS) location of the installed mechanical coupling.  Submit to 
+the COR, this and all other data required by <RID>49 CFR 192</RID> to be submitted to the Pipeline and Hazardous Material 
+Safety Administration (PHMSA).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connections Between Metallic and Plastic Piping</TTL><BRK/>
+<BRK/>
+<TXT>Only make metallic to plastic connections outside, underground, and with approved transition fittings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>VALVES</TTL><BRK/>
+<BRK/>
+<TXT>Install valves in locations shown on the drawings and at locations required by <RID>49 CFR 192</RID>.  Design valve installation 
+in plastic pipe to protect the plastic pipe against excessive torsional or shearing loads when the valve is operated 
+and from other stresses which may be exerted through the valve or valve box.</TXT><BRK/>
+<BRK/>
+<TXT>For systems where the maximum distribution pressure exceeds <MET>414 kPa</MET><ENG>60 psig</ENG> operating pressure, provide a method 
+to regulate and limit the pressure of the gas in the system that complies with <RID>49 CFR 192.197</RID> paragraphs (c)(1) 
+through (4).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>VALVE BOXES</TTL><BRK/>
+<BRK/>
+<TXT>Provide valve boxes of cast iron not less than <MET> 4.7 mm</MET><ENG> 3/16 inch</ENG> thick at each underground valve except where 
+concrete or other type of housing is indicated.  Provide valve boxes with locking covers that require a special 
+wrench for removal, and furnish the correctly marked wrench for each box.  Cast the word "GAS" in the box cover.  
+When the valve is located in a roadway, protect the valve box by a suitable concrete slab at least<MET> 1 square meter</MET><ENG>
+ 3 square feet</ENG> and install an access cover that is traffic rate cast iron of ample thickness to support expected 
+traffic loads.  When in a sidewalk, provide the top of the box as a removable concrete slab<MET> 600 mm</MET><ENG> 2 feet</ENG> square 
+and set flush with the sidewalk.  Make the boxes adjustable extension type with screw or slide-type adjustments.  
+Separately support valve boxes to not rest on the pipe, so that no traffic loads can be transmitted to the pipe.  
+Only locate valves in valve boxes or inside of buildings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DRIPS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If gas mains are for the distribution of high-pressure natural gas (above<MET>
+ 400 kPa</MET><ENG> 60 psig</ENG>) only, delete the entire paragraph:  DRIPS.  Require drips 
+for lines distributing natural gas at the low point immediately following reduction 
+from high pressure (above<MET> 400 kPa</MET><ENG> 60 psig</ENG>) to medium pressure<MET> (400 kPa</MET><ENG> (60 psig</ENG>
+ or less), and at occasional low points throughout the system, to provide for 
+blowing out the lines.  Require drips at all low points in lines transmitting 
+manufactured gas or a mixture of manufactured and natural gas.  Indicate locations 
+of drips.  Locate drip points to provide for proper drainage of pipe system.  
+Detail drips and discharge terminal (outlet) piping.  If the need to contain 
+and dispose of liquids through the valve for environmental concerns is required, 
+delete the first bracketed sentence.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install drips conforming to the details, provide commercial units of approved type and capacity.  Connect a blow 
+off pipe<MET> 32 mm</MET><ENG> 1-1/4 inches</ENG> or larger to each drip at its lowest point and extend to or near the ground surface 
+at a convenient location away from traffic.  Provide a reducing fitting for each discharge at each drip terminal 
+(outlet), a plug valve, and a<MET> 15 mm</MET><ENG> 1/2 inch</ENG> nipple turned down.  Locate the discharge terminal (outlet) inside 
+a length of<MET> 300 mm</MET><ENG> 12 inches</ENG> or larger vitrified clay pipe, concrete sewer pipe or concrete terminal box [set 
+vertically on a bed of coarse gravel<MET> 300 mm</MET><ENG> 1 foot</ENG> thick and<MET> 1 m</MET><ENG>3 feet</ENG> square,] [with concrete bottom to contain 
+liquids and a connection to remove liquids for disposal,] and closed at the ground surface with a suitable replacement 
+cover.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PRESSURE REGULATOR INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Main Distribution Line Regulators</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remove reference to bypasses around pressure regulators for main distribution 
+lines unless continuity of service is imperative and the bypass is regulated 
+to prevent possible overpressure of downstream lines.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install pressure regulators.  Install a valve on each side of the regulator for isolating the regulator for maintenance.[  
+Provide a bypass line with bypass valves or 3 way valves and an over-pressurization pressure regulating device.]  
+Install regulators and valves in rectangular reinforced concrete boxes, large enough so that all required equipment 
+can be properly installed, operated, and maintained, with box sidewalls extending above ground line.  Provide 
+the boxes with [steel door] [cast iron manhole] covers with locking provisions and<MET> 100 mm</MET><ENG> 4 inch</ENG> diameter vents.  
+Furnish one key or other unlocking device with each cover.  Locate discharge stacks, vents, or outlet ports of 
+all pressure relief devices where gas can be discharged into the atmosphere without undue hazard.  Provide stacks 
+and vents with fittings to preclude entry of water.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Line Regulators</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete inapplicable requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install a shutoff valve,[ meter set assembly,] and service regulator on the service line outside the building, <MET>
+450 mm</MET><ENG> 18 inches</ENG> above the ground on the riser.  Where steel service lines are used, install an insulating joint 
+on the inlet side of the [meter set assembly and] service regulator and construct to prevent flow of electrical 
+current.  Provide a<MET> 10 mm</MET><ENG> 3/8 inch</ENG> tapped fitting equipped with a plug on both sides of the service regulator 
+for installation of pressure gauges for adjusting the regulator.  Terminate all service regulator vents and relief 
+vents in the outside air in rain and insect resistant fittings.  Locate the open end of the vent where gas can 
+escape freely into the atmosphere, away from any openings into the building and above areas subject to flooding.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>METER INSTALLATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Air Force Engineering Technical Letter Number 87-5 "Utility Meters in 
+New and Renovated Facilities" provides guidance for when to exclude meters from 
+Air Force new and major renovation projects.  Review the requirements for gas 
+meters in TI 800-01 Design Criteria and 10 CFR 435.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install meters in accordance with <RID>49 CFR 192</RID>.  Install permanent gas meters with provisions for isolation and 
+removal for calibration and maintenance, and suitable for operation in conjunction with an energy monitoring 
+and control system.  Connect meter complying with the requirements of the Advanced Metering Program that is applied 
+at the particular Government Installation of this project. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>CONNECTIONS TO EXISTING LINES</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If connections to existing mains are required, retain this subparagraph, 
+and select the appropriate Paragraph.  Drawings will show existing gas lines 
+when interface with the existing gas system is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Make connections between new work and existing gas lines, where required, in accordance with <RID>49 CFR 192</RID>, using 
+proper fittings to suit the actual conditions.  When connections are made by tapping into a gas main, provide 
+the same size connecting fittings as the pipe being connected.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Connections to Publicly or Privately Operated Gas Utility Lines</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete inapplicable requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide materials for the connections to the existing gas lines.  The Utility is to make final connections and 
+turn on the gas.  The Utility is to also disconnect, purge and cap, plug or otherwise effectively seal existing 
+lines that are to be a abandoned or taken out of service.  Notify the Contracting Officer, in writing, 10 days 
+before final connections and turning on of gas lines.  Make necessary arrangements with the Utility for tie in 
+and activation of new gas lines.  Only the Operating Agency/Utility Company may reactivate the system after tie 
+in.  Furnish a certification by the Operating Agency/Utility Company that all <SUB>Utility work</SUB> has been satisfactorily 
+completed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Connection to Government Owned/Operated Gas Lines</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide the name and location of the Utility or Operating Agency of the 
+existing gas lines.  Show on the drawings, the location of valves to be operated 
+for existing system deactivation.  When lines are to be abandoned, give consideration 
+to any effects the abandonment may have on an active cathodic protection system 
+and take appropriate action.  If the segment is long and there are few line 
+valves, give consideration to plugging the abandoned segment at intervals.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide connections to the existing gas lines in accordance with approved procedures.  Only perform deactivation 
+of any portion of the existing system at the valve location indicated.  Reactivation of any existing gas lines 
+will only be done by the [Government] [local Utility] [Operating Agency].  Submit the approved <SUB>Connection and 
+Abandonment Plan</SUB> that is compliant with the requirements of <RID>49 CFR 192</RID>, Section 727 prior to making any connections 
+to existing gas lines, manicure the [Operating Agency's] [Utility's] required procedures which may be obtained 
+from [_____].  Notify the Contracting Officer, in writing, 10 days before connections to existing lines are to 
+be made.</TXT><BRK/>
+<BRK/>
+<TXT>For each pipeline that is to be abandoned in place, submit the approved Connection and Abandonment Plan that 
+is compliant with the requirements of <RID>49 CFR 192</RID>, Section 727.  Ensure the following steps are taken at a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>For each pipeline that is to be abandoned in place, physically disconnect that from all sources of gas.  
+Purge, cap, plug or otherwise effectively seal the open ends of all abandoned pipelines.  Do not complete 
+abandonment until it has been determined that the volume of gas or condensed hydrocarbons contained within 
+the abandoned section poses no potential hazard.  Use air or inert gas for purging, or fill the facility 
+with water or other inert material.  If air is used for purging, ensure that a combustible mixture is 
+not present after purging.</OLI><BRK/>
+<BRK/>
+<OLI>When a main is abandoned, together with the service lines connected to it, seal the disconnected end 
+of the main and seal the customer's end of each service line as stipulated above.</OLI><BRK/>
+<BRK/>
+<OLI>Where service lines are to be abandoned in place, disconnect the abandoned service lines from the active 
+mains as close to the main as practicable.  <RID>49 CFR 192</RID> does not require individual service lines to be 
+sealed.</OLI><BRK/>
+<BRK/>
+<OLI>Close all valves left in the abandoned segment.</OLI><BRK/>
+<BRK/>
+<OLI>Remove all above grade valves, risers, and vault and valve box covers.  Fill vault and valve box voids 
+with suitable compacted backfill material.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>CATHODIC PROTECTION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Cathodic protection is mandatory for underground metallic gas distribution 
+lines.  Select the type and design of cathodic protection in accordance with 
+UFC 3-570-01.  Provide testing stations for the cathodic protection system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide cathodic protection in accordance with <RID>NACE SP0169</RID> for all metallic gas piping installed underground 
+and install as specified in [Section <SRF>26 42 13</SRF> GALVANIC (SACRIFICIAL) ANODE CATHODIC PROTECTION (GACP) SYSTEM] 
+[Section <SRF>26 42 17</SRF> IMPRESSED CURRENT CATHODIC PROTECTION (ICCP) SYSTEM].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TESTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><TST>Destructive Tests of Plastic Pipe Joints</TST></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Destructive tests of plastic pipe joints are provided as a designer option.  
+Destructive tests are considered useful in assuring that good joints will be 
+made.  Delete the paragraph if this option is not exercised.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Prior to making heat fusion joints in plastic pipelines, make a joint of each size and type to be installed that 
+day by each person performing joining of plastic pipe that day and destructively test.  Make the specimen joint 
+per the approved written procedure.  Cut at least 3 longitudinal straps from each joint.  Visually examine each 
+strap for voids or discontinuities on the cut surfaces of the joint area.  Deform each of the 3 straps by bending, 
+torque, or impact.  Failures are not permitted in the joint area.  If a joint fails the visual or deformation 
+test, the qualified joiner who made that joint is not allowed to make further field joints in plastic pipe on 
+this job until that joiner has been retrained and re-qualified.  Record and submit the results of the destructive 
+tests including the date and time of the tests, size and type of the joints, ambient conditions, fusion iron 
+temperature and names of inspectors and joiners.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><TST><SUB>Pressure and Leak Tests</SUB></TST></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When selecting test pressure and test medium, observe the rules written 
+in 49 CFR 192 Subpart J.  The maximum test pressure and duration of pressure 
+testing of plastic pipelines must be controlled in accordance with ASTM F2786 
+for pneumatic testing and ASTM F2164 for hydrostatic testing.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="NATURAL GAS">Specify correct test pressure (including Class Location) to be used for tests 
+of gas line systems in accordance with 49 CFR 192 Subpart J.</TAI><TAI OPT="LPG">  Specify correct 
+test pressure (including Class Location) to be used for tests of gas line systems 
+in accordance with NFPA 58.</TAI>  Test pressures should recognize the weakest component 
+of each system tested for the design pressure, the maximum allowable operating 
+pressure, and the gas supplier's maximum operating pressure.</NPR><BRK/>
+<BRK/>
+<NPR>For LPG distribution pipelines, follow the requirements of 49 CFR 192 Subpart 
+J, as NFPA 58 yields these testing requirements.</NPR><BRK/>
+<BRK/>
+<NPR>49 CFR 192, Section 505 details the method of determining strength test pressures 
+for steel pipelines operating at a hoop stress of 30% or more of the Specified 
+Minimum Yield Strength (SMYS).  The pressure necessary to achieve this hoop 
+stress is higher than most distribution pipeline operating pressures.  Remove 
+the associated requirements where the pipeline is not operated at 30% of the 
+SMYS.</NPR><BRK/>
+<BRK/>
+<NPR>49 CFR 192, Section 507 details leak test requirements for metallic mains operating 
+at or above 689 kPa 100 psig.</NPR><BRK/>
+<BRK/>
+<NPR>49 CFR 192, Section 509 details leak test requirements for metallic mains operating 
+below 689 kPa 100 psig.</NPR><BRK/>
+<BRK/>
+<NPR>49 CFR 192, Section 511 details leak test requirements for metallic service 
+lines.</NPR><BRK/>
+<BRK/>
+<NPR>49 CFR 192, Section 513 details leak test requirements for plastic pipelines.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Test the system of gas mains and service lines after construction and before being placed in service, using a 
+test pressure and test medium approved in <RID>49 CFR 192</RID> Subpart J for the applicable conditions of construction.  
+In the event of conflict between the contract test pressure and medium and the test requirements of <RID>49 CFR 192</RID>
+, refer conflict to the COR before continuing with testing.  Follow all testing recommendations and safety precautions 
+as recommended by the piping manufacturer's specifications and <RID>49 CFR 192</RID>.  Follow a written test procedure that 
+ensures all potentially hazardous leaks are discovered.  Submit data in booklet form from all pressure tests 
+of the distribution system.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Test Pressure</TTL><BRK/>
+<BRK/>
+<TXT>Test each segment of the installed pipeline at the test pressure listed below for the applicable installation:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Strength test steel pipelines operated at a pressure that creates a hoop stress of 30% or more of the 
+Specified Minimum Yield Strength (SMYS), in accordance with <RID>49 CFR 192</RID>, Section 505, by hydrostatic testing 
+at a minimum of 125 percent the Maximum Allowable Operating Pressure (MAOP).  Maintain strength test 
+pressure for a minimum of 8 hours.</OLI><BRK/>
+<BRK/>
+<OLI>For metallic mains operated at or above <MET>689 kPa</MET><ENG>100 psig</ENG> that produces a hoop stress less than 30 percent 
+SMYS, leak test in accordance with <RID>49 CFR 192</RID>, Section 507, by [pneumatic][hydrostatic] testing at a 
+pressure between <MET>689 kPa</MET><ENG>100 psig</ENG> and the pressure required to produce a hoop stress of 20 percent of 
+the SMYS.  Maintain test pressure for a minimum of 24 hours.</OLI><BRK/>
+<BRK/>
+<OLI>For metallic mains operated below <MET>689 kPa</MET><ENG>100 psig</ENG>, leak test in accordance with <RID>49 CFR 192</RID>, Section 509.  
+Leak test mains operated below <MET>6.9 kPa</MET><ENG>1 psig</ENG> to a pressure not less than <MET>69 kPa</MET><ENG>10 psig</ENG>.  Leak test mains 
+operated at or above <MET>6.9 kPa</MET><ENG>1 psig</ENG> to a pressure not less than <MET>621 kPa</MET><ENG>90 psig</ENG>.  Maintain test pressure 
+for a minimum of 24 hours.</OLI><BRK/>
+<BRK/>
+<OLI>For metallic service lines, leak test in accordance with <RID>49 CFR 192</RID>, Section 511.  Leak test service 
+lines operated at <MET>276 kPa</MET><ENG>40 psig</ENG> or less to a pressure not less than <MET>345 kPa</MET><ENG>50 psig</ENG>.  Leak test service 
+lines operated above <MET>276 kPa</MET><ENG>40 psig</ENG> to a pressure of <MET>621 kPa</MET><ENG>90 psig</ENG>.  Ensure that the service line connection 
+to the main is included in this test.  Maintain test pressure for a minimum of 24 hours.</OLI><BRK/>
+<BRK/>
+<OLI>For plastic mains and service lines, leak test in accordance with <RID>49 CFR 192</RID>, Section 513.  Leak test 
+to a pressure at least 150% of the Maximum Allowable Operating Pressure (MAOP) or <MET>345 kPa</MET><ENG>50 psig</ENG>, whichever 
+is greater.  Where a compressible gas is used as the test medium, perform pneumatic leak testing of polyethylene 
+(PE) piping in accordance with <RID>ASTM F2786</RID> observing the determination of Maximum Test Pressure, which 
+is calculated using the PE material hydrostatic design stress, the pipe temperature reduction factor 
+and the leak test duration factor.  Submit a test procedure that identifies the MAOP of the pipeline, 
+the temperature dependent maximum test pressure, and a step by step procedure for increasing the pipeline 
+pressure as detailed in <RID>ASTM F2786</RID> for pneumatic testing or <RID>ASTM F2164</RID> for hydrostatic testing.  From 
+the beginning of pipeline pressurization to the depressurization of the pipeline the time duration must 
+not exceed 8 hours.  If testing must be restarted after maximum test pressure has been reached, depressurize 
+the pipeline for a minimum of 8 hours before restart of pipeline pressurization.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Test Performance</TTL><BRK/>
+<BRK/>
+<TXT>Perform testing as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Prior to testing the system, blow-out, clean, and clear the interior of all foreign materials.  Remove 
+all meters, regulators, and controls before blowing out and cleaning, and reinstall after clearing of 
+all foreign materials.</OLI><BRK/>
+<BRK/>
+<OLI>Perform testing of gas mains and service lines with due regard for the safety of employees and the public 
+during the test.  Keep persons not working on the test operations out of the testing area during testing.  
+Perform the test on the system as a whole or on sections that can be isolated.</OLI><BRK/>
+<BRK/>
+<OLI>Test joints in sections prior to backfilling when trenches are to be backfilled before the completion 
+of other pipeline sections.  Continue the test for at least 24 hours from the time of the initial readings 
+to the final readings of pressure and temperature.  Do not take the initial test readings of the instrument 
+for at least 1 hour after the pipe has been subjected to the full test pressure.  Do not take initial 
+or final readings at times of rapid changes in atmospheric conditions, and temperatures are representative 
+of the actual trench conditions.  No indication of reduction of pressure is allowed during the test after 
+corrections have been made for changes in atmospheric conditions in conformity with the relationship 
+T(1)P(2)=T(2)P(1), in which T and P denote absolute temperature and pressure, respectively, and the numbers 
+denote initial and final readings.</OLI><BRK/>
+<BRK/>
+<OLI>During the test, completely isolate the the entire system from all compressors and other sources of air 
+pressure.  Test each joint by means of soap and water or an equivalent nonflammable solution prior to 
+backfilling or concealing any work.  Secure approval of testing instruments from the Contracting Officer.  
+Furnish all labor, materials and equipment for conducting the tests subject to inspection at all times 
+during the tests.  Maintain safety precautions for air pressure testing at all times during the tests.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><TST>Meter Test</TST></TTL><BRK/>
+<BRK/>
+<TXT>Test meter to verify data transfer to data collection server and validate calibration of both meter and the data 
+that is received by the data collection server.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>NATURAL GAS COMPRESSORS</TTL><BRK/>
+<BRK/>
+<TXT>Natural gas compressors must be installed in accordance with all manufacturer's procedures and recommendation.  
+Installations must comply with the design drawings and <RID>API RP 686</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<TXT>Submit operation and maintenance data in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA, in 
+three separate packages.  Submit Data packages, as specified.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Gas Distribution System and Equipment Operation</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Include maps showing piping layout, locations of system valves, gas line markers and cathodic protection system 
+test stations; step-by-step procedures for system start up, operation and shutdown (index system components and 
+equipment to the system maps); isolation procedures including valve operation to shutdown or isolate each section 
+of the system (index valves to the system maps and provide separate procedures for normal operation and emergency 
+shutdown if required to be different).  Submit Data Package No. 4 per Section <SRF>01 78 23</SRF>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Gas Distribution System Maintenance</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Include maintenance procedures and frequency for system and equipment; identification of pipe materials and manufacturer 
+by locations, pipe repair procedures, and jointing procedures at transitions to other piping material or material 
+from a different manufacturer.  Submit Data Package No. 4 per Section <SRF>01 78 23</SRF>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Gas Distribution Equipment Maintenance</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Include identification of valves and other equipment by materials, manufacturer, vendor identification and location; 
+maintenance procedures and recommended tool kits for valves and equipment; recommended repair methods (i.e., 
+field repair, factory repair, or replacement) for each valve and piece of equipment; and preventive maintenance 
+procedures, possible failure modes and troubleshooting guide.  Submit Data Package No. 3 per Section 
+<SRF>01 78 23</SRF>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>   <END/><BRK/></SEC>

@@ -1,0 +1,1378 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-27 53 19.13 (May 2020)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">New</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 27 53 19.13</SCN><BRK/>
+<BRK/>
+<STL>FIRST RESPONDER DISTRIBUTED ANTENNAE SYSTEMS (DAS)</STL><BRK/>
+<DTE>05/20</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>distributed antenna 
+systems (DAS)</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+items(s) or insert appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether 
+or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>1.  On telecommunications floor plans, show location of headend equipment and 
+other active components.<BRK/>
+<BRK/>
+2.  On electrical floor plans, show branch circuits for all active components.  
+In healthcare occupancies, connect all active components to the life safety 
+branch of the essential electrical system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>RELATED SECTIONS</TTL><BRK/>
+<BRK/>
+[<LST>Section <SRF>07 84 00</SRF> FIRESTOPPING for additional work related to firestopping.</LST>]<BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUMMARY</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Scope</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify scope to clearly include desired capabilities of the distributed 
+antenna system.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Types of DAS are generally classified into three different categories.  
+These categories are passive DAS, active DAS, and hybrid DAS.  Coupling two 
+solutions together in the same space or facility is not recommended because 
+they could interfere with each other.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Passive DAS is typically used for buildings 125,000 square feet or less 
+and in a building that does not have a large amount of metal, masonry, or concrete 
+wall materials that block the RF signals.  Passive DAS uses only coaxial cable 
+to distribute the signals.  It is the smallest, simplest, and often the least 
+expensive DAS solution.  Passive DAS is inherently limited in bandwidth and 
+is only suitable for very small service frequency requirements.   A Passive 
+DAS is only allowed were permitted by the using military departnemt and is not 
+allowed in military medical facilities.</NPR> <BRK/>
+<BRK/>
+<NPR>NOTE;  Active DAS is a solution used for larger spaces and spaces with more 
+barrier materials that block the RF signals from traveling through the interior 
+space. Active solutions use fiber optic cabling which changes the RF signals 
+into light for distribution, and then back into usable signals at the desired 
+locations.  An active DAS is the preferred solution for military medical facilities.  
+Specify an active system for all medical facilities.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  A hybrid DAS solution includes a combination of both active and passive 
+DAS.  Do not specify a hybrid DAS solution.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>This work includes design and providing a new, complete, [passive] [active] distributed antenna system 
+(DAS) as required and as described herein for the [building name].  Provide a turnkey system capable 
+of receiving, processing, and transmitting indicated radio signals including the system wiring, raceways, 
+pull boxes, terminal cabinets, outlet and mounting boxes, control equipment, active components, passive 
+components, mounting hardware and other accessories and miscellaneous items required for a complete operating 
+system even though each item is not specifically mentioned or described.  Provide system[s] complete 
+and ready for operation.  See paragraph titled SYSTEM DESCRIPTION for additional requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Provide equipment, materials, installation, workmanship, inspection, and testing in strict accordance 
+with the required provisions of <RID>NFPA 72</RID> [and <RID>NFPA 1221</RID>]. </OLI><BRK/>
+<BRK/>
+<OLI>[c. The <SUB>system layout</SUB> on the drawings show the intent of coverage and are shown in suggested locations.  
+Submit plan view drawing showing all component locations, cable routing, junction boxes, other related 
+equipment, conduit routing, and wire counts for all floors.]<BRK/></OLI>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include project specific frequencies in the brackets.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Provide a DAS capable of receiving, processing, and transmitting first responder[, military and local 
+emergency medical services (EMS), ][radio paging,] [and ][required [UHF][and VHF]] frequencies. Provide 
+initial system capable of processing services of frequencies from [_____] to [_____].  Provide a system 
+that is upgradeable to allow future additional frequencies as required by <RID>NFPA 1221</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide letters of permission for all used frequencies for which the Government does not already have 
+a license.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification. The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a RID outside 
+of the Section's Reference Article to automatically place the reference in the 
+Reference Article.  Also use the Reference Wizard's Check Reference feature 
+to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this section to the extent referenced.  The publications are referred 
+to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 72</RID><RTL>(2025; TIA 25-1; TIA 25-2; TIA 25-3; TIA 25-4; ERTA 25-1; ERTA 25-2) National Fire Alarm and Signaling Code</RTL><BRK/><BRK/><RID>NFPA 99</RID><RTL>(2024, TIA 24-2) Health Care Facilities Code</RTL><BRK/><BRK/><RID>NFPA 780</RID><RTL>(2026) Standard for the Installation of Lightning Protection Systems</RTL><BRK/><BRK/><RID>NFPA 1221</RID><RTL>(2019; TIA 21-1) Standard for the Installation, Maintenance and Use of Emergency Services Communications Systems</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL INSTITUTE OF STANDARDS AND TECHNOLOGY (NIST)</ORG><BRK/><BRK/><RID>NIST SP 800-82</RID><RTL>(2015; Rev 2) Guide to Industrial Control Systems (ICS) Security</RTL><BRK/><BRK/></REF><REF><ORG>TELECOMMUNICATIONS INDUSTRY ASSOCIATION (TIA)</ORG><BRK/><BRK/><RID>ANSI/TIA-569</RID><RTL>(2019e; Add 1 2022) Telecommunications Pathways and Spaces</RTL><BRK/><BRK/><RID>TIA-329.1-D</RID><RTL>(2009; R 2013) Minimum Standards for Communication Antennas Base Station Antennas</RTL><BRK/><BRK/><RID>TIA-455-13</RID><RTL>(1996a; R 2012) FOTP-13 Visual and Mechanical Inspection of Fiber Optic Components, Devices, and Assemblies</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>DOD 8510.01</RID><RTL>(2022) Risk Management Framework (RMF) for DoD Systems</RTL><BRK/><BRK/><RID>UFC 4-010-06</RID><RTL>(2023) Cybersecurity of Facility-Related Control Systems</RTL><BRK/><BRK/></REF><REF><ORG>U.S. FEDERAL COMMUNICATIONS COMMISSION (FCC)</ORG><BRK/><BRK/><RID>FCC EMC</RID><RTL>(2002) FCC Electromagnetic Compliance Requirements</RTL><BRK/><BRK/><RID>FCC Part 15</RID><RTL>Radio Frequency Devices (47 CFR 15)</RTL><BRK/><BRK/><RID>FCC Part 95</RID><RTL>Personal Radio Services (47 CFR 95)</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 924</RID><RTL>(2016; Reprint Feb 2025) UL Standard for Safety Emergency Lighting and Power Equipment</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS<BRK/></TTL>
+<BRK/>
+<SPT><TTL>System Integrator</TTL><BRK/>
+<BRK/>
+<TXT>A person or organization that specializes in distributed antenna systems in bringing together component subsystems 
+in to a complete system and ensuring that those subsystems function together as a complete system.  The system 
+integrator is responsible for the system design, installation, testing including all warranties required by this 
+specification.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a "G" to an item, if the submittal is sufficiently important or complex 
+in context of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy,   and Air Force.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>System Description</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Layout</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Detail Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Coordination Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>In addition to Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES, provide shop drawings in accordance with 
+paragraph SHOP DRAWINGS.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Material and Equipment</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Uninterruptible Power Supply</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Warranty</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Design Analysis and Calculations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Test Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Test Procedure</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Test Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Accreditation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Certificates of Compliance</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>Submit Data Package 5 for each component in accordance with requirements of Section 
+<SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA.</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>As-built System Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Closeout Documentation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>SYSTEM DESCRIPTION</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Design Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide a Distributed Antenna System (DAS), capable of distributing first responder radio signals from equipment 
+including [Government Furnished, Government Installed (GFGI) wireless (802.11a/b/g/n) and LAN controllers,] communication 
+links, antenna systems, bi-directional amplifiers, [coaxial cabling,] [broadband repeaters] in necessary bandwidths 
+to support desired frequencies, couplers, decouplers, battery backup, power line surge protection and all other 
+necessary components to make a complete and operational system. Provide a complete and operational system to 
+distribute system two-way radio service from the  first response radio system. Complete coverage in accordance 
+with <RID>NFPA 1221</RID> will be provided for all interior spaces including [mechanical areas,] [open stairwells,] [and] 
+[storage areas][_____].</TXT><BRK/>
+<BRK/>
+<TXT>Provide all headend interface, antenna interfaces and amplification components, conditioners and any other equipment 
+necessary.</TXT><BRK/>
+<BRK/>
+<TXT>Provide system features that include, at a minimum, frequency conditioners, auto isolation detection (Uplink/Downlink) 
+and auto turn on-off (Downlink) functions to ensure that the repeater unit is optimally positioned and safe guarded 
+at all times. It will also have LED displays to show uplink and downlink connection, as well as LED lights for 
+power and uplink and downlink alarms.</TXT><BRK/>
+<BRK/>
+<TXT>Provide all materials and labor needed for a complete and operational system for the services in this specification 
+plus the additional system capabilities as indicated. This includes but not limited to all necessary equipment, 
+interfaces, jumpers, terminations, cabling, antennas, amplifiers, conditioners, power supplies, battery backup, 
+software and all components required to attach access points to the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Application Design</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  At a minimum, include the following on the telecommunications drawings:  
+System block diagrams showing major components, a system riser showing relative 
+locations of major equipment, telecommunications room layouts showing locations 
+of major equipment, roof conduit penetrations and antenna mounting details, 
+and cable riser and major pathway locations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the system application design required to provide a DAS that complies with and satisfies all of the requirements 
+specified in this Section[ and as indicated on the Telecommunications Drawings] for this application and project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide an application design that utilizes standard system components that are the product of a Manufacturer 
+regularly engaged in the manufacture of DAS, and that have been in satisfactory use for at least six months.  
+The System must be supported by a service organization that is, in the opinion of the Contracting Officer, reasonably 
+convenient to the facility.</TXT><BRK/>
+<BRK/>
+<TXT>Provide hardware, software, and installation of a complete and engineered system.  Provide a submitted design 
+that is properly engineered for the operational requirements.  Include all components required to meet this specification 
+section in the design, other than a change in, or in addition to the operational frequencies identified herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Local Products</TTL><BRK/>
+<BRK/>
+<TXT>Incorporate local materials to the greatest extent possible.  All proposed local products must meet all applicable 
+hardware and software requirements set forth in these specifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Minimum Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Specifications are minimum requirements.  If the provided system requires enhanced specifications that exceed 
+those specified herein in order to satisfy the specified design, configuration, capability, and performance requirements, 
+then provide a system with the enhanced specifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Current State-of-the-Art Technology</TTL><BRK/>
+<BRK/>
+<TXT>Provide DAS application design and products that utilize current state-of-the-art products that provide the enhanced 
+capability and performance specified herein.   Provide DAS design and products representing the latest manufacturer 
+make and model.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Continuous Duty Design</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment designed for 24 hours per day, 365 days per year continuous 100 percent duty operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Design Analysis and Calculations</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a comprehensive design analysis and calculations to i, at a minimum, the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Power supply requirements for each component of the system in accordance with the manufacturer's instructions 
+and the worst-case loading conditions for power supplies that are not part of the component.  Provide 
+power consumption and dissipation data under normal and maximum operating conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Cable type, size, and attenuation calculations for all cables connecting the components of the system 
+according to manufacturer's instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Definition of all interface protocols and specific preparation and application items including coordination 
+issues.</OLI><BRK/>
+<BRK/>
+<OLI>Signal calculations and anticipated signal strength for various areas of the buildings.</OLI><BRK/>
+<BRK/>
+<OLI>Frequencies of operation and the transmission characteristics throughout the facility.</OLI><BRK/>
+<BRK/>
+<OLI>Amount of concurrent users per frequency and service.</OLI><BRK/>
+<BRK/>
+<OLI>Uninterruptible power supply meeting the secondary power source requirements of <RID>NFPA 1221</RID> and <RID>UL 924</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>System monitoring meeting the requirements of <RID>NFPA 1221</RID> for Two-Way Radio Communications Enhancement 
+Systems.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Environmental Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment to be used indoors rated for continuous duty operation under ambient environmental conditions 
+of <ENG>35 to 120 degrees F</ENG><MET>1.7 to 49 degrees C</MET> dry bulb and 10 to 95 percent reflective humidity, noncondensing.  
+Provide all other equipment rated for continuous operation under the ambient environmental temperature, pressure, 
+humidity, and vibration conditions specified or normally encountered for the installed location.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electrical Requirements</TTL><BRK/>
+<BRK/>
+<TXT>105 VAC to 130 VAC at 60 Hz operating voltage range, plus or minus 2 percent.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power supplies</TTL><BRK/>
+<BRK/>
+<TXT>Provide primary and secondary power supplies in accordance with <RID>NFPA 1221</RID>that provide sufficient power for worst-case 
+conditions of system operation that could occur without signal loss or perceptible degradation.  Provide power 
+supply monitoring in accordance with <RID>NFPA 1221</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Line Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide power line surge protection for all equipment connected to AC power.  Provide surge protection integral 
+to the equipment or installed as an accessory item in accordance to manufacturer's recommendations.  Do not use 
+fuses for surge protection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Antenna Line Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT>Provide power line surge protection for all equipment connected to a radio antenna.  Provide surge protection 
+in accordance to manufacturer's recommendations.  Do not use fuses for surge protection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shielding and Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Provide shielding and grounded as required by the system design, Manufacturer's instructions, <RID>FCC Part 15</RID> listing, 
+and regulatory requirements.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Capability and Configuration</TTL><BRK/>
+<BRK/>
+<SPT><TTL>System Capability</TTL><BRK/>
+<BRK/>
+<TXT>Provide a DAS to support all indicated frequencies and services.</TXT><BRK/>
+<BRK/>
+<TXT>Coordinate requirements for interfacing with the trunked radio system which supports fire and police departments 
+and emergency personnel with the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Configuration and Major Functional Components</TTL><BRK/>
+<BRK/>
+<TXT>Provide system of automatically controlled bi-directional amplifiers (BDA), antennas, decoupling cavities, coaxial 
+cables, fiber optic cables, related filtering devices engineered into one tuned system that will accomplish the 
+specified functionality on all specified frequencies.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Performance Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide DAS coverage within the facility in accordance with <RID>NFPA 1221</RID> and as follows:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include comprehensive list of all locations where 99 percent floor area 
+radio coverage is required.  Included this list in this specification.  Consult 
+with using military department during construction document design for required 
+areas.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>99 percent floor area radio coverage for critical areas such as the [emergency command center,] [fire 
+pump rooms,] exit passageways, [elevator lobbies,] [standpipe cabinets,] fire suppression valve locations, 
+[_____] and other areas deemed critical by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>90 percent floor area radio coverage for general building areas.</OLI><BRK/></OLG>
+<BRK/>
+<SPT><TTL>System Initiation and Operation</TTL><BRK/>
+<BRK/>
+<TXT>No user controlled features are permitted on this system.  System is to be active on power up and perform as 
+specified without any form of manual control.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Signal Processing Rates</TTL><BRK/>
+<BRK/>
+<TXT>System processing rates are real time and occur without interference.  Include proper engineering to remove intermodulation 
+effects, interference within system components, echo, delay or disparity reception caused by active or passive 
+components or by the transmission media.  System must be capable of supporting a large amount of users per frequency.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Priority</TTL><BRK/>
+<BRK/>
+<TXT>All devices coexist on the system without channel control within the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Signal Strength</TTL><BRK/>
+<BRK/>
+<TXT>Provide minimum signal strength in accordance with <RID>NFPA 1221</RID> throughout the coverage areas.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Reception</TTL><BRK/>
+<BRK/>
+<TXT>Provide complete reception and transmission within the facility without shadows or dead spots.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Cybersecurity</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate DAS integration requirements with facility needs and cybersecurity 
+requirements.  Simple DAS may be segregated from the facility network and greatly 
+reduce the cost of cybersecurity compliance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>The Risk Management Framework (RMF) is the process by which information systems are accredited for operation 
+by a designated official from the Using Military Department.  It is the standard process under which 
+all DoD information systems must achieve and maintain their Authority To Operate.  The Cyber Security 
+process is documented in <RID>DOD 8510.01</RID> and <RID>NIST SP 800-82</RID>.  Refer to <RID>UFC 4-010-06</RID> for additional requirements.</OLI><BRK/>
+<BRK/>
+<OLI>All systems that are IP addressable or interface with the Assured Network must be certified to operate.  
+Coordinate with the Government to initiate and complete the <SUB>accreditation</SUB> process.</OLI><BRK/>
+<BRK/>
+<OLI>Cybersecurity requires input from the system vendor or provider and support from the local IMD.  The 
+local IMD-IA office is the point of contact for all Cybersecurity requirements.  The local CMIO is the 
+point of contact for all clinical and functional system requirements.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Shop Drawings</TTL><BRK/>
+<BRK/>
+<TXT>In exception to Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES, submitted plan drawings must be a minimum of<MET> 279 by 432 
+mm</MET><ENG> 11 by 17 inches</ENG> in size using a minimum scale of<MET> one mm per 100 mm</MET><ENG> 1/8 inch per foot</ENG>[, except as specified 
+otherwise].  Include wiring diagrams and installation details of equipment indicating proposed location, layout 
+and arrangement, control panels, accessories, piping, ductwork, and other items that must be shown to ensure 
+a coordinated installation.  Identify circuit terminals  on the wiring diagrams and indicate the internal wiring 
+for each item of equipment and the interconnection between each item of equipment.  Indicate adequate clearance 
+for operation, maintenance, and replacement of operating equipment devices.  Include the nameplate data, size, 
+and capacity.  Also include applicable federal, military, industry, and technical society publication references.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Detail Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide drawings certified by the qualified system integrator.  Include drawings specifically prepared to indicate 
+the work for this project.  Generic drawings are not acceptable.  Submit drawings to include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>System block diagram, riser diagrams, wiring and schematic diagrams, run sheets including number of conductors 
+and wire number (ID), custom assembly details, installation details, location of donor antennae and maps 
+showing donor equipment sites and signal strength at the construction site for each donor system.  Provide 
+a drawing that indicates all RF emitting elements, antennae or radiating cable within the system, differentiated 
+from all interconnecting cables and or elements, and the location and value of any non RF emitting terminations, 
+stubs or loads.</OLI><BRK/>
+<BRK/>
+<OLI>Riser diagrams that indicate the identification number (ID) for all equipment components.</OLI><BRK/>
+<BRK/>
+<OLI>Installation details that indicate layout and mounting of equipment, equipment relationship to other 
+parts of the work, including clearances required for maintenance and operation, and plan and elevation 
+details that indicate the exact and totally coordinated physical location and size of each individual 
+item of equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Installation details for equipment and cabling that is mounted within or on the ceiling, ceiling grid, 
+or hard ceiling structure and that includes the make and model of the surface or recess mounted boxes 
+and wireways, and details for any mounting hardware.</OLI><BRK/>
+<BRK/>
+<OLI>Details for the custom assembly of equipment that indicate the assembly configuration, elevations and 
+dimensions.  Typical custom assembly details include equipment panels, and equipment mounted in a rack 
+or cabinet.</OLI><BRK/>
+<BRK/>
+<OLI>Legend of graphic symbols used.</OLI><BRK/>
+<BRK/>
+[<OLI>Details that indicate anchoring and bracing provided for seismic protection in accordance with the requirements 
+of the Section <SRF>26 05 48</SRF> SEISMIC PROTECTION FOR ELECTRICAL EQUIPMENT</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Coordination Drawings</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit coordination drawings to include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The details of all electronic and physical interfaces between the DAS System and all interfaced telecommunications 
+systems and other systems, including the exact point and type of demarcation.</OLI><BRK/>
+<BRK/>
+<OLI>The layout and mounting of all DAS equipment, and the routing and mounting of cabling in telecommunications 
+rooms and the communications equipment room as coordinated with the layout of all other systems equipment 
+in these rooms.</OLI><BRK/>
+<BRK/>
+<OLI>The layout, routing, and mounting details of all equipment, cables and apparatus located in ceilings, 
+passageways, or other areas not indicated as communications spaces, and to coordination of those items 
+with ductwork, plumbing, lighting and other materials so located in those respective areas.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Qualifications</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Qualification Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The System Integrator and Installer must each have the minimum qualifications specified, related to the 
+type of system specified for this project.  All system components must meet the minimum requirements 
+of this specification.</OLI><BRK/>
+<BRK/>
+<OLI>The Government reserves the right to accept or reject the System Integrator or Installer based upon qualifications 
+and ability to conform to specified technical or licensing requirements of this Section.  System Integrator, 
+Installers that do not have the specified qualifications will not be accepted.</OLI><BRK/>
+<BRK/>
+<OLI>The Government will determine the acceptability of any proposed System Integrator or Installer based 
+on submitted and verified documentation that substantiates that the proposed System Contractor, Installer 
+and Manufacturer have the qualifications specified in this Section.</OLI><BRK/>
+<BRK/>
+<OLI>Submit documented verification of the specified qualifications as part of the Data Qualifications submittal.  
+The Government maintains the right to request, inspect and verify references and resumes of all technical 
+and managerial personnel assigned to the project.</OLI><BRK/>
+<BRK/>
+<OLI>Include qualification documentation, but not limited to the information outlined below:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A list of projects performed by the System Integrator and Installer during the last five years 
+explicitly involving the type of system specified in this section, including:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Name of facility where work was completed.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Name, title, address and telephone number of a point of contact for the listed facility.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">The make and model of the system provided and total scope of work for the facility.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Restrict list to the facilities where the same type of system was installed for 
+the same purpose provided.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">An organizational chart of the DAS System Integrator and Installer project team that will perform 
+the work included in this specification section.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">List and resumes of the principle personnel that will be assigned to the work on this project 
+to include responsibility and relationship to the project management structure.  For each individual, 
+include education, certification of factory training, and experience relevant to work assignments 
+for this project.  Do not include unrelated experience with other systems.  Include the following 
+personnel:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">System project manager</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">System Application Designer</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">[CAD][BIM] staff that will prepare submittal drawings</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Installation technician and supervisory personnel</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Acceptance Testing Personnel</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Training Personnel</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Define the work and services that will be performed at locations other than on the project 
+site, and provide points of contact, the address and telephone number of the locations where 
+such off-site work is to be done.  Include the following, at a minimum:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Project management</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">System application and design and documentation</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Testing and training plans</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Repair and maintenance services</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Maintenance supplies warehouse</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="3">Training personnel</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Telephone number that will be answered by staff 24 hours per day, 365 days per year, to obtain 
+repair parts and maintenance service.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The System Integrator and Installer qualifications relative to the the type of system specified 
+in this Section.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A letter from the System Integrator stating that system being provided satisfies all functional 
+and product requirements specified in this Section.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">.  A letter from the System Integrator guaranteeing the availability of parts as specified.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>System Integrator Qualifications</TTL><BRK/>
+<OLG><BRK/>
+<OLI>System Integrator qualifications must include the following:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The System Integrator is regularly engaged in the system application design, documentation, 
+installation, testing, training, and maintenance of the type of system specified in this section.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The System Integrator has a minimum of five years experience providing these services for systems 
+having the same level of features and functions as the system being provided.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">The System Integrator has a minimum of five years as the manufacturer or an authorized distributor 
+and service organization for the manufacturer of the system provided.</OLI><BRK/>
+<BRK/>
+<OLI>System Integrator personnel qualifications must:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Be factory trained or certified for the make and model of the components used in the system 
+provided.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Have a minimum of five years experience performing the services specified in this specification 
+section.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Maintain a full compliment of spare parts for the provided system with the ability to furnish 
+on-call maintenance 24 hours per day, 365 days per year.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Installer Qualifications</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The installer personnel must be regularly engaged in the installation of the type of system in this specification 
+section.</OLI><BRK/>
+<BRK/>
+<OLI>The installation supervisor must be factory trained and certified or licensed for the type of the system 
+provided.</OLI><BRK/>
+<BRK/>
+<OLI>The installation supervisor must have a minimum of five years experience providing services having the 
+same level of features and functions for the system included in this specification section.</OLI><BRK/>
+<BRK/>
+<OLI>The installation personnel must have a minimum of three years experience providing services having the 
+same level of features and functions for the system included in this specification section.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>The system manufacturer must:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Have a minimum of five years experience in producing the products and type of system included in this 
+specification section.</OLI><BRK/>
+<BRK/>
+<OLI>Produce a system that satisfies all specified features, functions and product requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Guarantee the availability of the replacement parts for the designed system for a minimum of seven years 
+from the date of final acceptance of the system by the Contracting Officer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide products which comply with <RID>FCC Part 15</RID></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Design and Installation Work</TTL><BRK/>
+<BRK/>
+<TXT>Provide design and installation work compliant with <RID>FCC Part 95</RID>, <RID>UL 924</RID>, <RID>NFPA 70</RID>, and <RID>ANSI/TIA-569</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electromagnetic Interference (EMI)</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Comply with <RID>FCC EMC</RID> and the EMI standards specified in <RID>FCC Part 15</RID> for EMI caused by electronics devices.</OLI><BRK/>
+<BRK/>
+<OLI>Provide a system that does not generate nor is susceptible to any harmful electromagnetic emission, radiation, 
+or induction that degrades, obstructs, or interrupts the operation of the installed system, any computer 
+system, [or] life safety system[, medical equipment] [or patient monitoring system].</OLI><BRK/>
+<BRK/>
+<OLI>In the event that any part of the system is certified by the FCC, and subject to CFR technical rules 
+and standards, and are different or in addition to those set forth herein, the standard relating to these 
+parts apply.</OLI><BRK/>
+<BRK/>
+<OLI>Comply with current CFR standards that are applicable to the system at the time of system acceptance 
+testing.</OLI><BRK/>
+<BRK/>
+<OLI>In the event of a breach of representations or warranties, the System Integrator or Installer, and its 
+own expense, is responsible to put the offending system into compliance with the current applicable CFR 
+standards or replace the offending system with an acceptable system. </OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Protection</TTL><BRK/>
+<BRK/>
+<TXT>Store all products delivered and placed in storage protection from the weather, humidity and temperature variation, 
+dirt and dust, or other contaminants.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Delivery Coordination</TTL><BRK/>
+<BRK/>
+<TXT>Coordinate deliveries with the Contracting Officer to insure a timely installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Loss Liability</TTL><BRK/>
+<BRK/>
+<TXT>The System Integrator or Installer is liable for any loss due to delivery and storage problems.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Delivery Restrictions</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Do not deliver products or installation material the project site more than one month prior to commencement 
+of its installation.</OLI><BRK/>
+<BRK/>
+<OLI>System products must not leave the factory prior to six months before the time that the facility is ready 
+for installation of the products.  Obtain prior written approval of the shipping date from the Contracting 
+Officer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>System Integrator Responsibility</TTL><BRK/>
+<BRK/>
+<TXT>The System Integrator or Installer is responsible for all handling and control of products provided under this 
+contract.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SEQUENCE AND SCHEDULING</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Install each part of the system and phase into operation as required by the project schedule.</OLI><BRK/>
+<BRK/>
+<OLI>Schedule and coordinate work with all other trades and suppliers whose work is critical to the successful 
+installation of the system.</OLI><BRK/>
+<BRK/>
+<OLI>Furnish and install all required items for a complete and operating installation so as to cause no delay 
+in work by others, or completion of the project.</OLI><BRK/>
+<BRK/>
+<OLI>Perform final inspection and acceptance testing of each system after the system installation has been 
+completed and all pre-testing, [and commissioning] have been successfully completed.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment items that are supported by service organizations which are reasonably convenient to the equipment 
+installation in order to render satisfactory service to the equipment on a regular and emergency basis during 
+the warranty period of the contract.</TXT><BRK/>
+<BRK/>
+<TXT><SUB>Warranty</SUB> the operational and physical integrity of the provided system, including a warranty against all defects 
+in design, equipment, materials, software, workmanship, and improper installation and adjustments, for a period 
+of at least one year from the date of final acceptance of the work.  If the System Integrator or Manufacturer 
+warranty is for a period longer than one year, the longest warranty period governs.  Include a warranty document 
+with the Product Data submittal.</TXT><BRK/>
+<BRK/>
+<TXT>During the warranty period any maintenance, make adjustments or repairs in accordance with the Warranty Maintenance 
+specifications herein.  Warranty repair of minor malfunctions desired by the Government at other than normal 
+working hours may be charged at current labor rates for the premium portion of time.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Operation and Maintenance Manuals</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Furnished commercial off the shelf manuals for operation, installation, configuration, and maintenance of products.  
+Submit operations and maintenance data in accordance with Section <SRF>01 78 23</SRF> OPERATION AND MAINTENANCE DATA and 
+as specified herein not later than [2] [_____] months prior to the date of beneficial occupancy.  In addition 
+to requirements of Data Package 5, include the requirements of paragraphs DETAIL DRAWINGS, and COORDINATION DRAWINGS.  
+Ensure that these drawings and documents depict the as-built configuration. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Extra Materials</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Off-The-Shelf Maintenance Parts</TTL><BRK/>
+<BRK/>
+<TXT>Provide guarantee that a stock of the subsystem component parts required for maintenance service will be available 
+off-the-shelf from the system integrator, and can be express shipped to the Facility if not available locally 
+within a 150 mile driving radius of the Facility.  Parts that must be ordered from the Manufacturer for the repair 
+of a major malfunction, as defined herein, must be express shipped for delivery within one day after the major 
+malfunction has been identified.  Parts that must be ordered from the Manufacturer for the repair of a minor 
+malfunction, as defined herein, must be express shipped for delivery two days after the minor malfunction has 
+been identified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Installation Spare Parts</TTL><BRK/>
+<BRK/>
+<TXT>The System Integrator is required to keep an adequate quantity of installation spare parts onsite to preclude 
+work stoppages and to meet other contingencies that might arise prior to the final inspection and acceptance 
+of the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Post Acceptance Spare Parts</TTL><BRK/>
+<OLG><BRK/>
+<OLI>After the system has been in acceptance by the Government, recommend and provide one of the minimum quantity 
+and type of onsite spare parts as necessary to maintain the full operation of the system in case of failure.</OLI><BRK/>
+<BRK/>
+<OLI>System Integrator is required to maintain spare parts on-site during the warranty period to facilitate 
+quick repair through plug-in module replacement of key system components, then replenished and turned 
+over to the Government at the end of warranty period.</OLI><BRK/>
+<BRK/>
+<OLI>Provide recommendation of any additional onsite spare parts deemed necessary by the Manufacturer and 
+or the System Integrator.  Furnish to the Contracting Officer the cost of recommended additional spare 
+components as a separate line item.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Special Tools and Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide any special maintenance tools, equipment and software are defined as those items that are uniquely required, 
+due to Manufacturer make or model of the provided products, to install, setup, initialize, program, and maintain 
+any component or function of the system such.  Provide, after final inspection and acceptance, one set of any 
+special tools, equipment and software necessary.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Maintenance Service</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Perform warranty maintenance service on the system using qualified maintenance personnel that have been 
+trained for the system being serviced.</OLI><BRK/>
+<BRK/>
+<OLI>System Integrator is required to offer a Service Agreement to the [medical] facility.  Include a copy 
+of the proposed Service Agreement with the Product Data Submittal.</OLI><BRK/>
+<BRK/>
+<OLI>As authorized by the [medical] facility, the contractor may utilize [medical] facility maintenance personnel 
+that have been factory trained for maintenance of the provided system for the first level of response 
+to a call for service.</OLI><BRK/>
+<BRK/>
+<OLI>If available at the project location, provide and on-line diagnostic maintenance support capability as 
+specified herein.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Service Availability and Response Time</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide maintenance service on a 24 hour per day, 7 days per week, 365 days per year basis for on-premises 
+maintenance within 8 hours after notification of a major malfunction.  Maintenance service must include 
+a 24 hour answering service available to receive after hour maintenance requests and to dispatch on-call 
+service personnel within the required response time.</OLI><BRK/>
+<BRK/>
+<OLI>All major repair malfunctions must be accomplished within 8 hours of the reported failure.  A major malfunction 
+is defined as failure of one of the following major functional components:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Complete failure of any headend or remote equipment.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Failure of a power supply, exclusive of loss of utility power feed.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Failure of 20 percent or more of all antenna locations in the facility.</OLI><BRK/>
+<BRK/>
+<OLI>Repair of a minor malfunction is any failure other than a major malfunction.  Minor malfunctions must 
+be repaired within 48 hours.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>MATERIAL AND EQUIPMENT</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>New Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide products, components, and devices that are new and free of defects.  Coordinate floor space requirements 
+and electrical branch circuits for all equipment requiring 120 VAC.  Any special cabinetry or shielded enclosures 
+are the responsibility of the System Integrator or Installer and are to be provided and installed as part of 
+this system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Unspecified Products</TTL><BRK/>
+<BRK/>
+<TXT>If the provided system requires additional products that are not specified or indicated on the Telecommunications 
+Drawings in order to satisfy the specified performance requirements for the system, then provide additional component.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Product Modifications</TTL><BRK/>
+<BRK/>
+<TXT>Modification of products that nullifies the UL listing or other agency approval is not permitted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Identical Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide identical make and model for products such as component equipment, modules, assemblies, parts and materials 
+of the same classification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates and Equipment Markings</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide nameplate and equipment marking for each major equipment component to include the Manufacturer's 
+name, model, and serial number on a plate secured to the equipment.  Also, include all compliance with 
+regulatory requirements, such as UL and CFR on the nameplate or on adjacent labels.</OLI><BRK/>
+<BRK/>
+<OLI>Plainly and permanently label all controls with the identification of the function served.  Stick on 
+marker tapes are not acceptable.</OLI><BRK/>
+<BRK/>
+[<OLI>Markings on any exposed surfaces must be resistant to housekeeping solutions normally used in medical 
+facilities.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Mounting Alignment Capability</TTL><BRK/>
+<BRK/>
+<TXT>Provide wall mounted components with capability for adjustable mounting alignment to compensate for improperly 
+aligned back boxes and to insure a plumb, square, and level installation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Model and Enhancements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide products and components that are the manufacturer's latest model, design, version, and quality 
+in production at time of delivery and installation.</OLI><BRK/>
+<BRK/>
+<OLI>Notify the Contracting Officer of any product enhancements that become available after delivery and installation, 
+and up to time of system acceptance, must be brought to the attention of the Contracting Officer upon 
+announcement by the Manufacturer and make enhancements available to the Government.  If such enhancements 
+customarily are provided at no additional cost, the Government must automatically be entitled to such 
+enhancements.  If such enhancements customarily are provided at additional cost, the Contracting Officer 
+may chose to accept or reject such enhancements.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a letter to the Contracting Officer from the Manufacturer guaranteeing that the Manufacturer will 
+inform the Government of, and make available to the Government, all commercially available enhancements 
+to the System at the then current price.  Include the letter with the Data Submittal.</OLI><BRK/>
+<BRK/>
+<OLI>Substitutions, modifications, or improvements to a System are permissible provided that such substitution, 
+modifications, or improvements will not reduce or degrade the performance or product requirements, nor 
+violate regulatory requirements.  No such substitutions, modifications, or improvements can be made without 
+the written consent of the Manufacturer and Contracting Officer.  Such consent must not be unreasonably 
+withheld or delayed.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Software and License</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Issue to the Government a nonexclusive, fully paid perpetual license to use the software provided.</OLI><BRK/>
+<BRK/>
+<OLI>Provide software maintenance that is offered to all other customers without charge to the Government 
+without charge.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>BIDIRECTIONAL AMPLIFIERS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The primary bidirectional amplifiers will be located in the [headend equipment room] [_____].</OLI><BRK/>
+<BRK/>
+[<OLI>Locate Any additional amplifiers required by the System Application Design in [telecommunications rooms][_____].  </OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>ACTIVE AND PASSIVE EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Locate all active equipment in [headend equipment room] and [telecommunications room] [_____] as may be required 
+by system application design.  Coordinate all mounting locations with the Contracting Officer.  Provide all mounting 
+materials as part of this system.  Install any passive or other components, excluding coaxial cables and antenna, 
+that are installed in the facility at locations other than the telecommunications rooms or equipment rooms in 
+locked steel cabinets, keyed alike and provided and installed as part of this system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ENCLOSURES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In accordance with NFPA 1221, all repeater, transmitter, receiver, signal 
+booster components, external filters, and battery systems must be contained 
+in NEMA 4 or NEMA 4X type enclosures</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide NEMA Type 4 enclosures in interior spaces where located in clean, dry environments.  Provide NEMA Type 
+4X for enclosures located outdoors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>OPERATING FREQUENCIES</TTL><BRK/>
+<BRK/>
+<TXT>All RF emitting devices used must be certified by the radio licensing authority to achieve the required radio 
+coverage.  Any frequencies for which the facility does not have a license to retransmit must not be amplified 
+nor retransmitted.  All RF emitting devices must have the certification of the radio licensing authority and 
+be suitable for public safety use prior to installation in accordance with <RID>NFPA 1221</RID>.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide capability to process required communications signals from outside the facility to include transmitted 
+frequencies of:</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Include specific required frequencies in the specification.  Coordinate 
+frequencies in this paragraph with paragraph 1.2 Scope.</NPR><BRK/>
+<BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI LEVEL="2">Military Band First Responder Trunked Radio Frequencies</OLI>]<BRK/>
+<BRK/>
+<OLI>Coordinate any additional frequencies with the contracting officer.</OLI><BRK/>
+<BRK/>
+[<OLI>Receive and transmit frequencies for military and public EMS.  Re-transmit frequencies unaltered.  Coordinate 
+frequencies with the installation frequency manager via the Contracting Officer.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>TRANSMISSION LINE</TTL><BRK/>
+<BRK/>
+<TXT>Provide all required cables and associated passive components in accordance with the system application design.  
+Provide plenum rated feeder and riser cables in accordance with <RID>NFPA 1221</RID>that meet all performance requirements, 
+fire and environmental regulations as installed by the specific design for this project.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DONOR ANTENNAS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide Antenna and antenna structure that conform to <RID>TIA-329.1-D</RID>.  Engineer the antennas to the proper 
+system performance for the <RID>TIA-455-13</RID>operating frequencies indicated in this specification.</OLI><BRK/>
+<BRK/>
+<OLI>Provide all required cables in accordance with the system application design and engineered to the correct 
+performance of the system.</OLI><BRK/>
+<BRK/>
+<OLI>Antennas must not interfere with [medical equipment][_____] or any other system in accordance with this 
+specification.</OLI><BRK/>
+<BRK/>
+<OLI>Provide lightning protection and equipment for separate grounding of the antenna mast as required by <RID>
+NFPA 780</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide isolation between donor antenna and all inside antennas to a minimum of 20dB under all operating 
+conditions in accordance with <RID>NFPA 1221</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>PORTABLE EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>No portable receivers, transmitters, or radio devices are to be provided as part of this system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>UNINTERRUPTIBLE POWER SUPPLY</SUB> (UPS)</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Volt-Amp capacity must be at least 130 percent of the total volt-amp load of the equipment connected 
+to the UPS. UPS must provide of runtime required by <RID>NFPA 1221</RID> under the highest system load possible. 
+Include power requirement calculations with design data submittal to verify power requirements.</OLI><BRK/>
+<BRK/>
+<OLI>Upon an ac power line outage, the UPS must automatically transfer to battery power within 4.2 milliseconds 
+of sensing ac power line loss, and provide at least 15 minutes of full power for operation of the equipment 
+connected to the UPS.  On-battery output voltage must be 115 VAC, plus or minus 5 percent.</OLI><BRK/>
+<BRK/>
+<OLI>The UPS must use sealed, maintenance free type batteries that have an expected life of at least three 
+years.  Power batteries from a constant voltage or "float type" battery charger.  Recharge time to 90 
+percent capacity after discharge to 50 percent capacity must not exceed 10 hours.</OLI><BRK/>
+<BRK/>
+<OLI>Surge energy rating must be at least 320 joules.  Surge peak current capability must be at least 26 ka.</OLI><BRK/>
+<BRK/>
+<OLI>UPS visual indicators on the UPS front panel must indicate on-line operation, output overload, low battery, 
+and replace battery.  [Provide network reporting of UPS functions and warnings.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>Perform a site survey to verify all field conditions, become familiar with the details of the work and working 
+conditions, verify dimensions in the field, and advise the Contracting Officer of any discrepancies before performing 
+the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>BUILDING UTILITY AND SUPPORT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  Indicate mounting space locations, electrical power connections, grounding 
+system, and associated HVAC on the construction drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Note:  Provide pathway survivability in accordance with NFPA 72 and NFPA 1221.  
+Pathway survivability normally includes 2-hour rated rooms that house the first 
+responder DAS equipment and 2-hour rated riser pathways.  Stacked telecommunications 
+rooms that are 2-hour rated provide a 2-hour rated riser pathway.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Locate equipment and connect to branch circuits and grounding system and utilize pathways as indicated on the 
+drawings.  Where additional space, branch circuiting, grounding, or pathways are necessary to support the system 
+as designed, notify the Contracting Officer of additional support needed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PREPARATIONS</TTL><BRK/>
+<BRK/>
+<TXT>As part of the project planning and system application design, and prior to the submittal of documents and plans, 
+gather the data required to design and install the system, and plan the work.  Include the data listed below, 
+at a minimum.<BRK/></TXT>
+<BRK/>
+<SPT><TTL>User Room Numbers and Names</TTL><BRK/>
+<BRK/>
+<TXT>Obtain from the Contracting Officer a listing of facility User room numbers and room names cross referenced to 
+the architectural room numbers and names indicated on the contract documents.  Use the facility User room numbers 
+and room names for all system functions, applications software, and as-built documentation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Interfaces and Interconnections</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Coordinate and define the details of all interfaces and interconnections with other systems and equipment 
+as specified herein.  Include a detailed definition of all electronic and physical interface requirements, 
+interface protocols, and physical demarcation points, donor frequencies, donor signal levels and injection 
+levels for directly coupled systems.  Provide details as part of Drawings and Data submittals.</OLI><BRK/>
+<BRK/>
+<OLI>Include the following interfaces and connections:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">First Responder Trunked Radio</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Certificates and Authorizations</TTL><BRK/>
+<BRK/>
+<TXT>Provide certificate of authority and/or operational authority from the licensee of all individual services utilizing 
+this System.  Include the FCC station identification information, details of frequency, power, and modulation, 
+and a specific authority to operate a distribution and/or rebroadcast system on said frequency at the project 
+location, any restrictions in operating conditions, levels, emissions or other conditions, and issued in the 
+name of the facility with a point of contact at the Licensee.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>INSTALLATION</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide installation as indicated and specified, and in accordance with acknowledged industry and professional 
+standards and practices, and the Manufacturer's instructions.</OLI><BRK/>
+<BRK/>
+<OLI>Comply with the requirements of <RID>NFPA 70</RID>, [<RID>NFPA 72</RID>,] [<RID>NFPA 1221</RID>,] [<RID>NFPA 99</RID>,] and <RID>ANSI/TIA-569</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Only the Installer as qualified in Paragraph QUALITY ASSURANCE, subparagraph Installer Qualifications, 
+is permitted install and connect all equipment and system cabling.</OLI><BRK/>
+<BRK/>
+<OLI>Maintain onsite a supervisor during the entire installation as qualified in Paragraph QUALITY ASSURANCE, 
+subparagraph Installer Qualifications.</OLI><BRK/>
+<BRK/>
+<OLI>Provide all tools and equipment needed to install the system.</OLI><BRK/>
+<BRK/>
+[<OLI>Comply with the requirements of Section <SRF>26 05 48</SRF> SEISMIC PROTECTION OF ELECTRICAL SYSTEMS.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Equipment Installation</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide appropriate waterproof gaskets for equipment installations in exposed areas.</OLI><BRK/>
+<BRK/>
+<OLI>Locate equipment where indicated on the drawings or where indicated in this specification section.  Mounting 
+of system components in any room other than a Comm Room or above finished ceilings is not acceptable 
+without written authorization by the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Rack mount system components.  Floor mounted equipment is prohibited.</OLI><BRK/>
+<BRK/>
+<OLI>Install equipment firmly secured in place, plumb, square, and level.</OLI><BRK/>
+<BRK/>
+<OLI>Provide adequate equipment ventilation and adequate equipment accessibility for service and repair.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  Indicate antenna locations and conduit pathway on the contract drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Provide roof conduit penetration for antenna pathways[, including GFGI antenna pathways].  [Locate penetrations 
+at antenna locations as indicated on the drawings.]</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>System Cabling Installation</TTL><BRK/>
+<BRK/>
+<TXT>Install system cabling using the approved qualified installer in accordance with <RID>NFPA 70</RID>.  Install cables without 
+kinks, sharp bends or deformations or abrasions as recommended by the cable manufacturer.  Install cable in cable 
+trays, conduits, and boxes as indicated.  Coordinate the system cable routing with other cable routing of other 
+systems to ensure that there will be no interference that will adversely affect the performance of this system 
+of any other specified or GFGI system.  The System Integrator is responsible to notify the Contracting Officer 
+of any routing conflicts prior to placement of cable.  Provide firestopping where penetrations are required in 
+rated floors, walls, or ceilings in accordance with Section <SRF>07 84 00</SRF> FIRESTOPPING</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Ground equipment enclosures and all other non-current carrying exposed metal parts of electric equipment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>AC POWER CONNECTIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  Coordinate electrical circuit requirements with the project electrical 
+engineer.  For medical facilities, coordinate branch circuit connection requirements 
+with UFC 4-510-01, NFPA 70 Article 517, and NFPA 99.  Show all branch circuit 
+connections on the electrical drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>AC power for all equipment must be circuited to the [electrical system] [emergency system] [life safety branch] 
+in accordance with <RID>NFPA 70</RID> [,] [<RID>NFPA 72</RID>,] [and] [<RID>NFPA 99</RID>].</TXT><BRK/>
+<BRK/>
+<TXT>[Connect the system to the essential electrical system life safety branch as indicated on the drawings.  ][The 
+System Integrator is responsible for coordinating that the active system components are provided with required 
+branch circuits.]  The System Integrator is responsible coordinating any other power requirements to active devices 
+with the Contracting Officer as necessary where adequate circuits are not indicated on the contract drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TRANSMISSION LINE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>Note:  Indicate conduit pathway to roof on the contract drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Install transmission line(s) to the roof in the indicated pathway, with the outer conductor and lighting arrestor 
+grounded to the indicated grounding system in accordance with <RID>NFPA 70</RID> and <RID>NFPA 780</RID>.  Provide any additional grounding 
+required.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION SETUP</TTL><BRK/>
+<BRK/>
+<TXT>Make all adjustments as necessary to setup the system to function in accordance with specific user requirements 
+for the overall system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Inspection, Testing and Validation</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Prepare and submit an <SUB>Acceptance Test Plan</SUB> that includes the requirements of this Section.  Include step-by-step 
+procedures and the expected results to demonstrate system compliance with the requirements of this specification.  
+Include tests defined in the Manufacturer's installation instructions; list of all test equipment to 
+be used, including data indicating that calibration of the test equipment is current; test data sheets; 
+and names and qualifications of the person(s) who will perform the tests.  [Coordinate the Test Plan 
+with the Commissioning Plan as specified.]</OLI><BRK/>
+<BRK/>
+<OLI>Furnish required test equipment, tools, consumable supplies, and technically qualified and licensed personnel 
+to perform inspections, testing and validation of the installed system.  All test equipment must be in 
+current calibration and must have a current calibration certification.</OLI><BRK/>
+<BRK/>
+<OLI>The Contracting Officer reserves the right to approve the System Contractor's choice of testing personnel, 
+and, upon rejection of any testing personnel by the Contracting Officer at any time, the System Contractor 
+is required to replace such testing personnel as soon as reasonably possible.  Upon request, provide 
+the Contracting Officer the opportunity to review the qualifications of each person proposed for testing 
+work.</OLI><BRK/>
+<BRK/>
+<OLI>Conduct all inspections and testing in accordance with submitted and approved quality control, testing 
+[and commissioning plans] and procedure, and requirements specified herein.</OLI><BRK/>
+<BRK/>
+<OLI>Notify Contracting Officer at least 30 days prior of any planned inspection and testing, but in no case 
+prior the System Integrator having received written Government approval of the submitted test plans, 
+including procedures.</OLI><BRK/>
+<BRK/>
+<OLI>Conduct inspection and testing during normal working hours with prior notice to the Contracting Officer 
+so as not to interfere with orderly work processes.</OLI><BRK/>
+<BRK/>
+<OLI>Allow inspection by the Contracting Officer of all work and workmanship, and witnessing of System Integrator 
+performed inspections, system readiness checks, integrated performance testing, and acceptance testing.</OLI><BRK/>
+<BRK/>
+<OLI>Expose any work that is enclosed or concealed before being inspected and tested and restore to the original 
+condition after inspection and testing.</OLI><BRK/>
+<BRK/>
+<OLI>Submit results of each inspection and test in electronic and hard copy format to the Contracting Officer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Periodic Inspection and Testing</TTL><BRK/>
+<BRK/>
+<TXT>The Contracting Officer reserves the right to inspect and test all work and workmanship at any and all times 
+during preparation and installation.<BRK/>
+The Contracting Officer, in his or her sole discretion, may reject defective work and workmanship and require 
+its correction.  The Government right to inspect, test, and reject, or its failure to exercise such right, as 
+provided herein, must in no way diminish the System Integrator's duty to inspect and reject work as necessary 
+to comply fully with the requirements of the contract documents.</TXT><BRK/>
+<BRK/>
+<TXT>Licensee's who have granted permissions are responsible for their frequencies operating within their license.  
+Licensee's are responsible for inspections for their operating signals and have the right to revoke permissions 
+at any time.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>System Readiness Checks</TTL><BRK/>
+<BRK/>
+<TXT>Place the system into complete working order in full compliance with specified requirements, system application 
+design, and all setup requirements, including requirements listed in the Licensee's Authority to the Facility, 
+programming and adjustments prior to the start of system testing and validation.  Perform system readiness checks 
+to certify that the system is ready for testing and validation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Integrated Performance Testing</TTL><BRK/>
+<BRK/>
+<TXT>Perform all necessary performance testing of interoperability of the telecommunications systems with each other, 
+and with other building systems.  Such testing is to demonstrate full integration and/or interface of systems 
+and to demonstrate they function as a comprehensive system where necessary.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Final Inspection and Acceptance Testing</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>After installation has been completed, and system readiness checks and integrated performance testing 
+have been successfully completed, notify the Contracting Officer that the system is ready for final inspection 
+and acceptance testing.  Conduct final inspection and acceptance tests in accordance with the approved 
+Test Plan [and Commissioning Plan], and the project schedule.</OLI><BRK/>
+<BRK/>
+<OLI>Draft <SUB>as-built system drawings</SUB>, and operating and maintenance manuals must be made available by the System 
+Integrator for use during performance of final inspection and acceptance testing.  Final inspection or 
+acceptance testing will not be scheduled nor performed without this documentation.</OLI><BRK/>
+<BRK/>
+<OLI>Upon successful completion of final acceptance tests, and 30 calendar days of consecutive operation in 
+accordance with specified requirements without the occurrence of any major malfunctions, submit the final 
+acceptance test report, including <SUB>certificates of compliance</SUB> and certificate(s) of Licensee Authority 
+with Licensee inspection report stating that all specified requirements and conditions have been satisfied. 
+The effective date for completion of the final system acceptance will be the date when the system has 
+satisfied the 30 days of operation without a major malfunction as specified above.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Acceptance Test Procedure</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide final acceptance tests that demonstrate that the system operates in full accordance with all 
+specified requirements, system application design, and user setup requirements for the system.  Demonstrate 
+that each system operating mode performs as required by operation of each individual system component 
+under normal or simulated normal system conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Include the following tests, at a minimum:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Operation under ac power failure conditions.  Include demonstration of UPS capability under 
+normal power loading conditions, and operation under emergency power conditions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Signal quality under worst-case loading conditions of low voltage power supplies.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Operation of electronic supervision circuitry.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Operation of 100 percent of all components.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">All interface functions.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Place and test devices from inside the facility to other mobile devices within the facility.   
+Place and test devices from inside the facility to other mobile devices outside the facility.  
+Place and test other devices from outside the facility to other mobile devices inside the facility.  
+Perform each inside/outside test a minimum of ten times from various points selected by the 
+Contracting Officer to demonstrate complete coverage throughout the facility.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">A test will be considered as passed if the device successfully connects and message is transferred 
+without error.  A pass rate of 100 percent is required.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Sweep test all coaxial cables for all frequencies the system is capable of transmitting whether 
+or not in service.</OLI><BRK/>
+<BRK/>
+<OLI>Include testing equipment for frequency and signal strength testing.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Corrective Action for Rejected Work</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Correct all deficiencies and another re-test as necessary to demonstrate compliance with all requirements 
+to the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>Complete all corrective action within a reasonable time consistent with project schedules and acceptable 
+to the Contracting Officer.</OLI><BRK/>
+<BRK/>
+<OLI>If, after 30 calendar days from the start of acceptance testing, the system or any equipment component 
+thereof fails to demonstrate complete and proper performance, the Government reserves the right to return 
+the total system or any equipment component to the System Integrator.  The System Integrator is required 
+refund all costs thereof to the Government and to indemnify the Government from damages, costs, and expenses 
+incurred in connection with such activity.</OLI><BRK/>
+<BRK/>
+<OLI>The Government retains absolute control of the actual date of return of any rejected system or equipment 
+component.  The Government reserves the right to continue to utilize such system and equipment until 
+the actual date of removal.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Acceptance Test Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide test reports in booklet form with witness signatures verifying execution of tests.  Include physical 
+routing and a test report for each cable from the installed outlet to the main termination point.  Submit test 
+report within 14 days after completion of the testing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Warranty Period Inspection and Testing</TTL><BRK/>
+<BRK/>
+<TXT>Observe the system in operation at the end of the 4th and 9th months after the time of acceptance and re-conduct 
+acceptance tests to demonstrate that system is continuing to perform as specified.  Coordinate with the Contracting 
+Officer.  The Contracting Officer and a Customer Representative reserve the right to participate in this activity.  
+Include interviews of users to determine if the system is satisfying specified requirements and that training 
+is adequate.  Provide written report of results to the Contracting Officer.  During the 11th month of operation, 
+re-inspect and retest the system to identify and correct any deficiencies prior to the end of the warranty period.  
+A [medical] facility Government representative reserves the right to witness this procedure.  Make all correction 
+actions necessary.  Provide written report of results to the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Training Plan</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Develop and submit a Training Plan for approval by the Contracting Officer.  The training plan must describe 
+the training to be provided.  The Training Plan must include, but not be limited to the following items:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Describe the operation and maintenance training programs, and instructional materials to be 
+provided.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">As coordinated with the user, define the number of staff members that will be expected to attend 
+each training session, and the classrooms to be used for on-site training.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Furnish the identity and qualification of training instructors, and the instructional schedules 
+for all classes.</OLI><BRK/>
+<BRK/>
+<OLI>Provide training to the Facility staff in accordance with the approved Training Plan.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>General Preparations</TTL><BRK/>
+<BRK/>
+<TXT>During the week prior to the start of training for any system, check the system to assure that it has been successfully 
+commissioned and acceptance tested, and is in full-specified operation condition.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Training Personnel</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Furnish qualified factory trained or certified instructors to train designated Facility staff in the 
+operation and maintenance of the provided system.</OLI><BRK/>
+<BRK/>
+<OLI>The Contracting Officer reserves the right to approve the System Integrator's choice of training personnel, 
+and, upon rejection of a trainer by the Contracting Officer at any time, the System Integrator must immediately 
+replace such trainers.  Upon request, the System Integrator will provide the Contracting Officer the 
+opportunity to review the qualifications of each proposed trainer.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Training Instructions</TTL><BRK/>
+<BRK/>
+<TXT>Include all specified performance and capabilities of the system in the training instructions, and all of the 
+items contained in the operation and maintenance manuals.  In addition, include preventive maintenance, routine 
+maintenance, repair and troubleshooting procedures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Training Materials and Recordings</TTL><BRK/>
+<BRK/>
+<TXT>Furnish all training materials and handouts.  Provide the quantity needed for all of the Facility maintenance 
+technicians, operations and user staff that will receive training. Provide [Six][_____] copies of all standard 
+training media, such as video recordings, CDs, and DVDs, that are available from the Manufacturer to the Contracting 
+Officer.  [Provide four copies of video recordings of onsite training sessions to the Contracting Officer.  This 
+will be a coordinated effort between the System Integrator training staff and the Facility education department 
+staff.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Onsite Training Programs and Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provided all training onsite to all Facility staff as required throughout the contract and warranty period to 
+train operations and maintenance staff for the provided system.  Include two training courses, one for maintenance 
+technicians, and one for user and operations staff.  Include classroom training and field training.  Field training 
+for Facility staff will take place in the area where the staff will be working.  Coordinate classroom training 
+with the Contracting Officer.  Conduct multiple instructional units for each onsite course on a three shift, 
+seven days a week basis as required to train all staff during their normal on-duty working hours.  The Contracting 
+Officer will designate qualified personnel to be instructed in the operation and maintenance of each system, 
+schedule instructional sessions, and provide suitable onsite instruction facilities.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>User and Operational Staff Training</TTL><BRK/>
+<BRK/>
+<TXT>Comments user and operational staff training at a time acceptable to the Contracting Officer and near the time 
+the system is scheduled for operational use by the Facility staff.  Provide classroom instructions for all Major 
+Functional Components of the system, and field instructions in each area where equipment is installed.  Nine 
+months after the system is installed and accepted by the Government, provide refresher coerce to the user and 
+operational staff.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Technician Training</TTL><BRK/>
+<BRK/>
+<TXT>Before the system is turned over to the Government for operational use, provide training for maintenance technicians 
+designated by the Contracting Officer.  Provide the number of instructional hours necessary to cover all aspects 
+of system setup, programming, operations, preventive maintenance, routine maintenance, routine repair, and troubleshooting 
+procedures for the system as installed.  Nine months after the system is installed and accepted by the Contracting 
+Officer, provide a comprehensive refresher course covering the final configuration for the system.  Provide technician 
+training on site and focus on failure diagnosis and field repair.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PROTECTION</TTL><BRK/>
+<BRK/>
+<TXT>Do not permanently install items that can be easily stolen, such as desktop computer and monitor equipment, until 
+such time as the System Integrator has been notified by the Contracting Officer that the facility is secured.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>CLOSEOUT DOCUMENTATION</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Prepare and submit all documents as required.</OLI><BRK/>
+<BRK/>
+<OLI>Maintain a record of all maintenance and repair, including subsequent field strength readings, performed 
+during the warranty period and submit the record at the end of the warranty period.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

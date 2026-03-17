@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-26 27 13.10 30 (October 2007)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Change 2 - 08/18</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>AFCEC</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50"/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 27 13.10 30</SCN><BRK/>
+<BRK/>
+<STL>ELECTRIC METERS</STL><BRK/>
+<DTE>10/07, CHG 2: 08/18</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for the <SCP>installation 
+of poly-phase electricity meters suitable for billing, allocation of costs, 
+and recording of data for energy management and control applications and is 
+intended to comply with the metering requirements of EPACT05</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="http://www.wbdg.org/ffc/dod/unified-facilities-criteria-ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present. <BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="http://www.wbdg.org/ffc/dod/unified-facilities-guide-specifications-ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Since metering for energy management and costs allocation varies widely, 
+it is expected that the designer will make significant adjustments and additions 
+to this guide specification.</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  Use the following related guide specifications for power distribution equipment:<BRK/>
+<BRK/>
+- - Section <SRF>26 12 19</SRF> PAD-MOUNTED, LIQUID-FILLED, MEDIUM-VOLTAGE TRANSFORMERS<BRK/>
+<BRK/>
+- - Section <SRF>26 11 14.00 10</SRF> MAIN ELECTRIC SUPPLY STATION AND SUBSTATION<BRK/>
+<BRK/>
+- - Section <SRF>26 22 00.00 10</SRF> 480-VOLT STATION SERVICE SWITCHBOARD AND TRANSFORMERS<BRK/>
+<BRK/>
+- - Section <SRF>26 23 00</SRF> SWITCHBOARDS AND SWITCHGEAR</NPR><BRK/>
+<BRK/>
+<NPR>NOTE:  This specification provides guidance for the facility energy manager 
+or design engineer after determining what data will be gathered and what analysis 
+procedures will be used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification. The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 100</RID><RTL>(2000; Archived) The Authoritative Dictionary of IEEE Standards Terms</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/><RID>IEEE C37.90.1</RID><RTL>(2023; ERTA) Standard for Surge Withstand Capability (SWC) Tests for Relays and Relay Systems Associated with Electric Power Apparatus</RTL><BRK/><BRK/><RID>IEEE C57.13</RID><RTL>(2016) Standard Requirements for Instrument Transformers</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTROTECHNICAL COMMISSION (IEC)</ORG><BRK/><BRK/><RID>IEC 61000-4-5</RID><RTL>(2017) Electromagnetic Compatibility (EMC) - Part 4-5: Testing and Measurement Techniques -  Surge Immunity Test</RTL><BRK/><BRK/><RID>IEC 62053-22</RID><RTL>(2020) Electricity Metering Equipment (A.C.) - Particular Requirements - Part 22: Static Meters for Active Energy (Classes 0,2 S and 0,5 S)</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>ANSI C12.18</RID><RTL>(2006; R 2023) Protocol Specification for ANSI Type 2 Optical Port</RTL><BRK/><BRK/><RID>ANSI C12.20</RID><RTL>(2015; E 2018) Electricity Meters - 0.1, 0.2, and 0.5 Accuracy Classes</RTL><BRK/><BRK/><RID>ANSI C62.61</RID><RTL>(1993) American National Standard for Gas Tube Surge Arresters on Wire Line Telephone Circuits</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified or indicated, electrical and electronics terms used in this specification and on the 
+drawings are as defined in <RID>IEEE 100</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<TXT>a. Provide the following in the maintenance manual:<BRK/>
+   1. Condensed description of how the equipment operates.<BRK/>
+   2. Block diagram indicating major assemblies.<BRK/>
+   3. Troubleshooting information<BRK/>
+   4. Preventive maintenance.<BRK/>
+   5. Spare parts information.</TXT><BRK/>
+<BRK/>
+<TXT>b. Provide operation and maintenance manuals required by submittal item "SD-10 Operation and Maintenance Data."</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Power Meters</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<BRK/>
+<ITM><SUB>Current</SUB> Transformers; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Potential Transformer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Communications Module</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Protocol Modules</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Data Recorder</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Modem</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<TXT>  Include manufacturer's information for each component, device, and accessory provided with the meter, protocol 
+module or communications module.</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Acceptance Checks and Tests</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Power Meters</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Communications Module</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Protocol Modules</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Data Recorder</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Modem</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>System Function Verification</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Installation Drawings</TTL><BRK/>
+<BRK/>
+<TXT>Drawings indicate but are not limited to the following:<BRK/>
+<BRK/>
+a. Elementary diagrams and wiring diagrams with terminals identified of[ kilowatt][ advanced] meter,[ current 
+transformers,][ potential transformers,][ protocol modules,][ communications modules,][ Ethernet connections,][ 
+telephone lines]. [For each meter installation, provide a diagram identified by the building number.]<BRK/>
+<BRK/>
+b. One-line diagram, including meters,[ switch(es),][ current transformers,][ potential transformers,][ protocol 
+modules,][ communications modules,][ Ethernet connections,][ telephone outlets,][ and fuses]. [For each meter 
+installation, provide a diagram identified by the building number.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such 
+products which are of equal material, design and workmanship. Provide products that have been in satisfactory 
+commercial or industrial use for 2 years prior to bid opening. The 2-year period includes applications of equipment 
+and materials under similar circumstances and of similar size. Provide product that has been on sale on the commercial 
+market through advertisements, manufacturers' catalogs, or brochures during the 2-year period. Where two or more 
+items of the same class of equipment are required, these items must be products of a single manufacturer; however, 
+the component parts of the item need not be the products of the same manufacturer unless stated in this section.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alternative Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Products having less than a 2-year field service record will be acceptable if a certified record of satisfactory 
+field operation for not less than 6000 hours, exclusive of the manufacturers' factory or laboratory tests, is 
+furnished.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Material and Equipment Manufacturing Data</TTL><BRK/>
+<BRK/>
+<TXT>Do not use products manufactured more than 2 years prior to date of delivery to site, unless specified otherwise.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>Provide equipment items  supported by service organizations which are reasonably convenient to the equipment 
+installation in order to render satisfactory service to the equipment on a regular and emergency basis during 
+the warranty period of the contract.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>System Requirements</TTL><BRK/>
+<BRK/>
+<TXT>The metering and reading system, consisting of commercial, off-the-shelf meters, <SUB>protocol modules</SUB>, communications 
+modules, and communication channels, will be used to record the electricity consumption and other values as described 
+in the sections that follow and as shown on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Selection Criteria</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with the Public Works Department - when an installation-wide 
+energy and utility monitoring system exists, include the last sentence.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Metering components are part of a system that includes the physical meter, <SUB>data recorder</SUB> function and communications 
+(<SUB>modem</SUB>) method. Include sufficient metering components to measure the electrical parameters identified and to 
+store and communicate the values as required in the following sections for every building site identified.  Verify 
+that the metering system installed on any building site is compatible with the facility-wide communication and 
+meter-reading protocol system.[  Contractor must connect the metering system to the facility-wide energy and 
+utility monitoring and control system.]</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>POWER METERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification is designed for projects where multiple metering systems 
+will be installed on the same project. It is expected that different buildings 
+may have different metering systems depending on the metering system that can 
+be installed economically for any specific building and that meets the needs 
+of the facility analysis and billing system.<BRK/>
+<BRK/>
+Metering features that are unique to a building should be listed in a schedule 
+either in this specification or on accompanying drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Physical and Common Requirements</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Meters will generally be installed outside the building in a readily 
+accessible location. In that case, use the socket-mount design. In the situations 
+where panel-mounting is required, add the panel-mounting section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Install metering system components according to the Metering System Schedule shown[ in this specification][ 
+on the drawings].</OLI><BRK/>
+<BRK/>
+[<OLI>Power meter must be socket-mount design.</OLI>]<BRK/>
+<BRK/>
+[<OLI>Power meter must be panel-mounted design. Furnish meters that are semi-flush, back-connected, dustproof, 
+draw-out switchboard type. Provide cases with window removable covers capable of being sealed against 
+tampering. Meters must be of a type that can be withdrawn through approved sliding contacts from fronts 
+of panels or doors without opening current-transformer secondary circuits, disturbing external circuits, 
+or requiring disconnection of any meter leads. Incorporate necessary test devices within each meter and 
+provide means for testing either from an external source of electric power or from associated instrument 
+transformers or bus voltage.</OLI>]<BRK/>
+<BRK/>
+<OLI>If existing meter base is usable, the meter base determines meter form factor. If a new meter is being 
+installed, use meter and base form factor of<HLS> 9S.</HLS></OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If the measured load is less than 220 amps, use Class 200 meters for 
+direct current reading without current transformers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Use Class 200 meters for direct current reading without current transformers.</OLI>]<BRK/>
+<BRK/>
+<OLI>Provide meter consisting of a Class 20, transformer rated design.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter that is rated for use at temperature from <HLS>-40 [_____] degrees Centigrade to +70 [_____] 
+degrees Centigrade</HLS>.</OLI><BRK/>
+<BRK/>
+<OLI>Meter must have NEMA 3R enclosure for surface mounting.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select if the recorded data will be in a module inside the meter or external 
+in a data logger. The preferred method is to install the recording module inside 
+the meter case. Some retrofit applications may require an external data logger.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Surge withstand must conform to <RID>IEEE C37.90.1</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter with a standard[ 4] [_____]-year warranty.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter in compliance with <RID>IEC 62053-22</RID> (Part 21: Static Meter for Active Energy, classes 0.2S 
+and 0.5S), certified by a qualified third party test laboratory.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Voltage Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Furnish meter that is capable of connection to the service voltage phases and magnitude being monitored. 
+If the meter is not rated for the service voltage, provide suitable potential transformers to send an 
+acceptable voltage to the meter.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter that is capable of connection to the service voltage indicated in the Metering System Schedule:</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter that accepts independent voltage inputs from each phase and is auto-ranging over the full 
+range of input voltages.</OLI><BRK/>
+<BRK/>
+<OLI>Optically isolate voltage input to 2500 volts DC from signal and communications outputs. Use components 
+meeting or exceeding <RID>IEEE C37.90.1</RID> (Surge Withstand Capability).</OLI><BRK/>
+<BRK/>
+<OLI>The Contractor is responsible for determining the actual voltage ratio of each <SUB>potential transformer</SUB>. 
+Provide transformer conforming to <RID>IEEE C57.13</RID> and the following requirements.</OLI> <BRK/>
+    <BRK/>
+   <OLI LEVEL="2">. Type:  Dry type, of two-winding construction.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Weather: Outdoor or Indoor rated for the application.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Frequency:  Nominal 60Hz, 50Hz for those bases that operate on 50Hz.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Accuracy:  Plus or minus 0.3% at 60Hz or 0.3% for those systems that operate at 50Hz.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Current</SUB> Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Accept independent current inputs from each phase. Install current transformer with a full load rating 
+as shown in the schedule.</OLI><BRK/>
+<BRK/>
+<OLI>Provide single ratio current transformer with an Accuracy Class of [ 0.3][ 0.6] [ 1.2] with a maximum 
+error of +/- [ 0.3%][ 0.6%][ 1.2%] at 5.0 amps.</OLI><BRK/>
+<BRK/>
+<OLI>Current transformer must have:</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Insulation Class:  Provide 600 volt and below current transformers rated at 10 KV BIL. Provide 
+current transformers for 2400 and 4160 volt service rated at 25 KV BIL.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Frequency:  Nominal 60Hz, 50Hz for bases that operate on 50Hz.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Burden:  Select burden class for the load.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Phase Angle Range:  0 to 60 degrees.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter that accepts current input from standard instrument transformers (5A secondary current 
+transformers.)</OLI><BRK/>
+<BRK/>
+<OLI>Current inputs must have a continuous rating in accordance with <RID>IEEE C57.13</RID>.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Since loads in building can vary over time, multi-ratio current transformers 
+allow the flexibility to change the ratio of the current transformer to match 
+the load. The accuracy of current transformer performance decreases when the 
+actual current is in the lower band of its measuring range.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Provide multi-ratio current transformer where indicated with a top range equal to or greater than the 
+actual load. The Contractor is responsible for determining the actual ratio of each transformer.  Provide 
+current transformer conforming to <RID>IEEE C57.13</RID>.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Electrical Measurements</TTL><BRK/>
+<BRK/>
+<TXT>Measure and report the following quantities:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select each of the following measuring capabilities that are required 
+and include the abbreviation in the Metering System Schedule for each building. 
+Since power meters have a service life greater that 10 years, include optional 
+features that are expected to be used and analyzed over the life of the meter.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Kilowatt-hours ("kWh" in Metering Systems Schedule) of consumption. Cumulative.</OLI><BRK/>
+<BRK/>
+<OLI>Kilowatts of demand ("kW" in Metering Systems Schedule). Peak average over a selectable demand interval 
+between 5 and 60 minutes (typically 15 minutes).</OLI><BRK/>
+<BRK/>
+<OLI>Reactive power ("kVAR" in Metering Systems Schedule). Measured over the same interval as the peak kW 
+reading.</OLI><BRK/>
+<BRK/>
+<OLI>Power factor ("PF" in Metering Systems Schedule). Measured over the same interval as the peak kW reading.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  At locations where time of use (TOU) billing is required by the electric 
+company, this specification provides that all TOD meters cover the same periods 
+as defined in the next section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Time of use consumption ("TOU" in Metering Systems Schedule). Kilowatt-hours recorded separately for 
+each period set by programming into the meter. Time periods must be capable of being changed without 
+removal from service. The meter must internally record and store Time of Use data.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. [Four (4)] minimum [_____] TOU Rates (Registers)</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. [Twenty (20)][_____] Year Calendar</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. [Two (2)] minimum [_____] seasons per year</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Interval recording is an important tool for analyzing energy consumption 
+within a building. For billing purposes, real-time reporting is not required. 
+For non EPACT05 meters, the meter can be read nominally once per month with 
+all recorded interval data captured at that time. Where real-time data is needed 
+by an energy management control system (EMCS) or other system, the systems may 
+have their own connection to the meter or its own current and potential transformers.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Interval recording ("IR" in Metering Systems Schedule). Record kilowatt-hours for each[ 15][_____] minute 
+interval and accumulate for[ 30][_____] days. Memory for recording the interval readings must be internal 
+to the meter and ANSI C12.19 compliant. Provide time-stamped readings for every measured parameter.</OLI><BRK/>
+<BRK/>
+<OLI>Meter readings must be true RMS.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Meter Accuracy</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Meters used for billing purposes should generally be held to the same 
+metering accuracies as established standards by utility companies.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the following accuracies. Measure accuracies as percent of reading at standard meter test points.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide power meter meeting <RID>ANSI C12.20</RID> for Class 0.2 and <RID>IEC 62053-22</RID> accuracy requirements.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>An on the Meter Display, Output and Reading Capabilities</TTL><BRK/>
+<BRK/>
+<TXT>Include the following output signals.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The meter will have a face display plate and will display every electrical parameter indicated to be 
+recorded. Do not require meters to indicate interval data collected in a data logger with a communications 
+output feature. Display peak values, instantaneous and cumulative values.</OLI><BRK/>
+<BRK/>
+[<OLI>Include optical output port capable of 9600 bps communication with a hand-held reading device. Provide 
+optical device that is compatible with <RID>ANSI C12.18</RID></OLI>]<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The following optional features will usually be deleted. These features 
+could be used for connection to an Energy Management and Control System.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<OLI>Include output options for analog milliamp signals.</OLI>]<BRK/>
+<BRK/>
+[<OLI>Provide meter with two channels of analog output, 0-1mA or 4-20mA, for positive[ and negative] watt/hour 
+readings.</OLI>]<BRK/>
+<BRK/>
+[<OLI>Include output option for pulse output. KYZ pulse output related to kWatts/HR.</OLI>]<BRK/>
+<BRK/>
+[<OLI>Provide meter with two form C, dry contact relay outputs for alarm or control.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Installation Methods</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pad-mounted transformers have proven to be very reliable over a long 
+life span. Installing the meters on the outside of the secondary wiring compartment 
+has become somewhat a standard installation for military facilities, resulting 
+in minimal maintenance. However, meters may be installed on the sides of buildings 
+or within buildings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Transformer mounted (XFMR)</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Locate meter base outside on the secondary side of the pad-mounted transformer.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Do not use the stand-mounted method unless the transformer pad is being 
+poured and the instrumentation conduit can be installed before the pour. Provide 
+a drawing to show details for mounting and routing conduit and wires.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Stand-mounted adjacent to transformer ("STAND" in Metering Systems Schedule)</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Mount meter base on a structural steel pole approximately 4 feet from the transformer pad. 
+See detail on the drawings.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide a drawing to show details for building mounting and routing conduit 
+and wires.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Building mounted ("BLDG" in Metering Systems Schedule)</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Mount meter base on the side of the existing building near the service entrance. See detail 
+on the drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Panel mounted. ("PNL" in Metering Systems Schedule)</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Mount meter where directed. See detail on the drawings.</OLI><BRK/>
+<BRK/>
+<OLI>Common features.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. PTs (if required for proper voltage range) and physically connect CTs to the service entrance 
+cables inside the service entrance disconnect enclosure.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Disconnecting Switches</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Shorting-type wiring blocks are recommended to allow connections to be 
+corrected and changed without the necessity of disconnecting power to the transformer, 
+resulting in another power outage to the building being served.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Provide disconnecting wiring blocks between the current transformer and the meter. Build a shorting mechanism 
+into the wiring block to allow the current transformer wiring to be changed without removing power to 
+the transformer. Locate the wiring blocks where they are accessible without the necessity of disconnecting 
+power to the transformer. For multi-ratio current transformers, provide a shorting block from each tap 
+to the common lead.</OLI><BRK/>
+<BRK/>
+<OLI>Equip voltage-monitoring circuits with disconnect switches to isolate the meter base or socket from the 
+voltage source.</OLI><BRK/></OLG>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If programming capability is not required, omit the following section.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Meter Programming</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide power meter that is programmable by software supplied by the meter manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Provide user-friendly software with Windows-compatible interface.</OLI><BRK/>
+<BRK/>
+<OLI>Operate software on [Windows][_____] operating systems.</OLI><BRK/>
+<BRK/>
+<OLI>Provide software that allows the user to configure the meter, troubleshoot meter, query and display meter 
+parameters and configuration data and stored values.</OLI><BRK/>
+<BRK/>
+<OLI>Provide meter firmware that is upgradeable through one of the communications ports without removing the 
+unit from service.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>COMMUNICATIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Communications features may not be needed. Data logging of one month 
+of data may be recorded inside the meter. Recorded data may be read simply by 
+a handheld instrument, if read daily.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Communications Methods</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Optical Port</TTL><BRK/>
+<BRK/>
+<TXT>Communicate with a hand-held reading device according to the following requirements.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Communications standards</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. <RID>ANSI C12.18</RID></OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. MV90 protocol</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. <RID>ANSI C12.20</RID></OLI><BRK/>
+<BRK/>
+<OLI>Read operations</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Current kWh values</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Demand (kW) values since last reset</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Last reset value</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Meter status</OLI><BRK/>
+<BRK/>
+   [<OLI LEVEL="2">. Load profile</OLI>]<BRK/>
+<BRK/>
+<OLI>Write operations</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Meter setup</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Serial Port</TTL><BRK/>
+<BRK/>
+<TXT>Provide serial port for connection to modem module where required in this specification.</TXT><BRK/>
+<OLG><BRK/>
+[<OLI>On-Board serial port types</OLI>]<BRK/>
+<BRK/>
+   [<OLI LEVEL="2">. RS232</OLI>]<BRK/>
+<BRK/>
+   [<OLI LEVEL="2">. \[RS485]</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Ethernet</TTL><BRK/>
+<BRK/>
+<TXT>For those meters using the Ethernet, send logged information using open standard Internet Protocols.</TXT> <BRK/>
+<OLG><BRK/>
+<OLI>On-board Ethernet port support</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. HTTP</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. SMTP</OLI><BRK/>
+<BRK/>
+      <OLI LEVEL="3">Modbus</OLI><BRK/>
+<BRK/>
+<OLI>Distribute stored data by</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. FTP</OLI><BRK/>
+<BRK/>
+   [<OLI LEVEL="2">. E-Mail</OLI>]<BRK/>
+<BRK/>
+      [<OLI LEVEL="3">On-board web server</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Communications Protocols and Methods</TTL><BRK/>
+<BRK/>
+<TXT>Use communications protocols and methods that are native to the meter. Provide <SUB>communications module</SUB>(s) as required 
+to accomplish the following.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Include an IR port ("IR" in Metering Systems Schedule) for communication to external devices such as 
+handheld readers that support a minimum speed of 9600 baud.</OLI><BRK/>
+<BRK/>
+<OLI>[Include[ one][ RS-232 ("RS232" in Metering Systems Schedule)] or[ one][ RS-485 ("RS485" in Metering 
+Systems Schedule)] digital communication port. Provide user configurable port with regard to speed, protocol, 
+address, and other communications parameters that support a minimum communication speed of 9600 baud 
+for the RS232 port.]</OLI><BRK/>
+<BRK/>
+[<OLI>Provide meter with a port that can be configured as a[ 10/100 Base-T Ethernet port ("BaseT" in Metering 
+Systems Schedule)]</OLI>] <BRK/>
+<BRK/>
+   [<OLI LEVEL="2">. A communication module that converts serial RS232 or RS485 to Ethernet will be acceptable.</OLI>]<BRK/>
+<BRK/>
+[<OLI>Auto Answer minimum 1200 baud internal modem ("A56K" in Metering Systems Schedule). Include automatic 
+data buffering to provide faster, more reliable communications and the ability to automatically answer 
+on a connected line.</OLI>]<BRK/>
+<BRK/>
+[<OLI>Equip meter with one pulse output channel ("Pulse" in Metering Systems Schedule) that can be configured 
+for operation as KYZ pulse output.</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Communications Channels Surge Protection</TTL><BRK/>
+<BRK/>
+<TXT>Protect communications equipment against surges induced on its communications channels.  Protect communication 
+interfaces to all field equipment to meet the requirements of <RID>IEEE C37.90.1</RID> or the requirements of <RID>IEC 61000-4-5</RID>
+, test level 4, while the equipment is operating.  Do not use fuses for surge protection.  For metallic cables 
+and conductors which serve as communications channels between buildings, install surge protection at equipment 
+rated for the application at each end, within<ENG> 3 feet</ENG><MET> 0.9 meters</MET> of the building cable entrance.  Provide surge 
+protectors meeting the requirements of the applicable extension of ANSI C62 (for example, <RID>ANSI C62.61</RID>).</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Communication methods, modules and software can be used for automatic 
+meter reading (AMR). AMR may not be needed. If automatic meter reading (AMR) 
+is to be implemented, considerable coordination of the communications sending, 
+receiving and protocols will be required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</SPT><SPT><TTL>METER DATA PROTOCOL</TTL><BRK/>
+<BRK/>
+<TXT>Provide power meters that have communicating data protocols native or provide in supplemental modules to communicate 
+with the communications methods that follow.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Open Protocol</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This section should be modified to be facility specific.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Support the following open protocols. Verify that the meter native protocol is consistent with the facility data 
+recording and communication and data storage system. Provide additional converters and modules as required for 
+a complete measurement, recording, communicating and data storage system.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide meter that is fully supported by MV-90 software system or existing AMR software that is MV-90 
+compatible.</OLI><BRK/>
+<BRK/>
+<OLI>For systems that use proprietary software, an alternative, competitive software system must be available.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Systems capable of using more than one brand of commercially available meters are expected.  In addition, if 
+proprietary meter reading software is used, meters are to be capable of being read by more than one manufacturer's 
+software.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SPARE PARTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Parts List</TTL><BRK/>
+<BRK/>
+<TXT>Provide spare parts as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Power meter - two for each type used.</OLI><BRK/>
+<BRK/>
+<OLI>Current transformer - three for each type used.</OLI><BRK/>
+<BRK/>
+<LST>c. Potential transformer - three for each type used.</LST><BRK/>
+<BRK/>
+<OLI>Communications module - one for each type used.</OLI><BRK/>
+<BRK/>
+<OLI>Protocol module - one for each type used.</OLI><BRK/>
+<BRK/>
+<OLI>Other electronic and power components - one for each type used.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>METERING SYSTEM SCHEDULE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Each building should be listed on a separate row. Identify the characteristics 
+for the specific meter and communications method for each building. The following 
+completed data is an example only. Delete existing values.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Metering System Schedule is available at <URL HREF="http://www.wbdg.org/ffc/dod/unified-facilities-guide-specifications-ufgs/forms-graphics-tables">http://www.wbdg.org/ffc/dod/unified-facilities-guide-specifications-ufgs/forms-graphics-tables</URL>
+ </TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Provide a drawing to show locations and details for mounting and routing 
+conduit and wires. Identify CT ratio and multi-tap ratios if known.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Perform electrical installations conforming to <RID>IEEE C2</RID>, <RID>NFPA 70</RID>, and to the requirements specified herein. Provide 
+new equipment and materials unless indicated or specified otherwise.</TXT><BRK/>
+<BRK/>
+[<SPT><TTL>Existing Condition Survey</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Remove the following section if existing condition surveys are not required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Perform a field survey, including inspection of all existing equipment, resulting clearances, and new equipment 
+locations intended to be incorporated into the system, and furnish an existing conditions report to the Government. 
+Identify those items that are non-workable as defined in the contract documents. The Contractor is responsible 
+for repairs of modifications necessary to make the system perform as required.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Scheduling of Work and Outages</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Installation of current transformers and potential transformers will 
+require that power be disconnected from the transformer and/or building. Provide 
+coordination steps for the work and require Contractor to perform the work after 
+normal hours.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The Contract Clauses govern regarding permission for power outages, scheduling of work, coordination with Government 
+personnel, and special working conditions.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>FIELD APPLIED PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>Where field painting of enclosures is required to correct damage to the manufacturer's factory-applied coatings, 
+provide manufacturer's recommended coatings and apply in accordance with manufacturer's instructions.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Performance of <SUB>Acceptance Checks and Tests</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Meter Assembly</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and mechanical inspection</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Compare equipment nameplate data with specification and approved shop drawings.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Inspect all bolted electrical connections for high resistance using low-resistance ohmmeter, 
+verifying tightness of accessible bolted electrical connections by calibrated torque-wrench 
+method.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Verify grounding of metering enclosure.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Verify the presence of surge arresters.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Verify that the CT ratio and the PT ratio are properly included in the meter multiplier or 
+the programming of the meter.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical tests</OLI><BRK/>
+<BRK/>
+   [<OLI LEVEL="2">. Calibrate watthour meters according to manufacturer's published data.</OLI>]<BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Verify that correct multiplier has been placed on face or meter where applicable.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Prior to system acceptance, the Contractor will demonstrate and confirm the meter is properly 
+wired and is displaying correct and accurate electrical information.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Current Transformers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and mechanical inspection</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Compare equipment nameplate data with specification and approved shop drawings.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Inspect physical and mechanical condition.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Verify correct connection.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Inspect all bolted electrical connections for high resistance using low-resistance ohmmeter, 
+verifying tightness of accessible bolted electrical connections by calibrated torque-wrench 
+method</OLI>.<BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Verify that required grounding and shorting connections provide good contact.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical tests</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Perform resistance measurements through all bolted connections with low-resistance ohmmeter, 
+if applicable.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Perform insulation-resistance test.</OLI><BRK/>
+   <BRK/>
+   <OLI LEVEL="2">. Perform a polarity test.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Perform a ratio-verification test.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Potential Transformers</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Visual and mechanical inspection</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. PT's are rigidly mounted.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. PT's are correct voltage.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Verify that adequate clearances exist between primary and secondary circuit.</OLI><BRK/>
+<BRK/>
+<OLI>Electrical tests</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Perform a ratio-verification test.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Follow-Up <SUB>System Function Verification</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Upon completion of acceptance checks and tests, the show by demonstration in service that circuits and devices 
+are in good operating condition and properly performing the intended function. As an exception to requirements 
+stated elsewhere in the contract, give the Contracting Officer 5 working days' advance notice of the dates and 
+times of checking and testing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Training</TTL><BRK/>
+<BRK/>
+<TXT>Conduct a training course for meter configuration, operation, and maintenance of the system as specified. Orient 
+the training for all components and systems installed under this contract. Deliver training manuals for [_____] 
+trainees with two additional copies delivered for archiving at the project site. Furnish all audiovisual equipment 
+and all other training materials and supplies. A training day is defined as eight hours of classroom instruction, 
+including two 15-minute breaks and excluding lunchtime, Monday through Friday, during the daytime shift in effect 
+at the training facility. For guidance in planning the required instruction, assume that attendees have a high 
+school education or equivalent, and are familiar with utility systems. Obtain approval of the planned training 
+schedule from the Government at least 30 days prior to the training.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Training:  Teach the course at the project site within thirty days after completion of the installation 
+for a period of one [_____] day(s). A maximum of [6][_____] personnel will attend the course. The training 
+includes:</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Physical layout of each piece of hardware.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Meter configuration, troubleshooting and diagnostics procedures.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Repair instructions.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Preventive maintenance procedures and schedules.</OLI><BRK/>
+<BRK/>
+   <OLI LEVEL="2">. Testing and calibration procedures.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/>
+<BRK/></SEC>

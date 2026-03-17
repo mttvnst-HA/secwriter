@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0" HEADERROWS="2">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="3">
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-22 14 29.00 (Feb 2023)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-22 14 29.00 40 (May 2017)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 22 14 29.00</SCN><BRK/>
+<BRK/>
+<STL>SUMP PUMPS</STL><BRK/>
+<DTE>02/23</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>automatic, electric-motor-driven, 
+centrifugal, wet-pit and submersible sump pumps up to 1000 gpm</SCP>.  For larger 
+submersible pumps use 35 45 04.00 10 Submersible Pump, Centrifugal Type or 35 
+45 04.00 10 Submersible Pump, Axial-Flow and Mixed-Flow Type.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether 
+or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN BEARING MANUFACTURERS ASSOCIATION (ABMA)</ORG><BRK/><BRK/><RID>ABMA 9</RID><RTL>(2015) Load Ratings and Fatigue Life for Ball Bearings</RTL><BRK/><BRK/><RID>ABMA 11</RID><RTL>(2014; R 2020) Load Ratings and Fatigue Life for Roller Bearings</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/></REF><REF><ORG>HYDRAULIC INSTITUTE (HI)</ORG><BRK/><BRK/><RID>HI ANSI/HI 11.6</RID><RTL>(2016) Rotodynamic Submersible Pumps for Hydraulic Performance, Hydrostatic Pressure, Mechanical, and Electrical Acceptance Tests</RTL><BRK/><BRK/><RID>HI M100</RID><RTL>(2009) HI Pump Standards Set</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO 1940-1</RID><RTL>(2003; R 2008) Mechanical Vibration - Balance Quality Requirements for Rotors in a Constant (Rigid) State - Part 1:  Specification and Verification of Balance Tolerances</RTL><BRK/><BRK/><RID>ISO 2858</RID><RTL>(1975) End Suction Centrifugal Pump (Rating 16 Bar) Designation Nominal Duty Point and Dimensions - International Restrictions</RTL><BRK/><BRK/><RID>ISO 5199</RID><RTL>(2002) Technical Specifications for Centrifugal Pumps, Class II</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.</NPR><BRK/>
+<BRK/>
+<NPR>Codes following the "G" typically are not used for Navy,   and Air Force.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Connection Diagrams</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control Diagrams</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Installation Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Catalog Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Performance Curve</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Spare Parts List</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Special Tools</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wet-Pit Sump Pumps</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Submersible Pumps</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Accessories</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Floatless Electrode Level Controls</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Hydrostatic Leak</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Static Heads</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Flow Capacity</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Certification of Bearing Life</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Manufacturer's Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Vibration Specifications</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Inspect the pump for damage or other distress when received at the project site.  Store the pump and associated 
+equipment indoors as recommended by the pump manufacturer, protected from construction or weather hazards at 
+the project site.  Before installation, provide adequate short-term storage for the pump and equipment in a covered, 
+dry, and ventilated location.  Follow the manufacturer's instructions for extended storage.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Provide a pump and motor with vibration levels conforming to <RID>ISO 1940-1</RID> unless otherwise noted.  Ensure that 
+motor vibration levels conform to <RID>NEMA MG 00001</RID>, Motors and Generators, Part 7, unless otherwise noted.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>Show details of connection of cables and pump motors on <SUB>connection diagrams</SUB> for sump pumps.</TXT><BRK/>
+<BRK/>
+<TXT>Submit <SUB>control diagrams</SUB> for sump pumps showing motor starters, relays, or any other component necessary for safe 
+operation.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure that <SUB>installation drawings</SUB> for sump pumps are in accordance with the manufacturer's recommended instructions.</TXT><BRK/>
+<BRK/>
+<TXT>Submit <SUB>manufacturer's catalog data</SUB> for sump pumps showing the sump pump size, type, and efficiency rating along 
+with performance data, including <SUB>pump performance curve</SUB>, indicating brake horsepower, head, flow rate, and NPSH 
+(net positive suction head).  Also include equipment foundation data and equipment data.</TXT><BRK/>
+<BRK/>
+<TXT>Provide <SUB>manufacturer's installation instructions</SUB> and <SUB>vibration specifications</SUB>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>EQUIPMENT</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Tailoring options are set up for wet-pit (line shaft) and submersible 
+pump options. At least one selection should be made.</NPR><BRK/>
+<BRK/>
+<NPR>The designer should consider whether a line shaft driven pump or submersible 
+motor type pump is preferred. A line shaft arrangement can provide some cost 
+savings as the motor will not need to be submersible. Shaft length is a factor 
+in this decision. Longer shafts can introduce additional alignment problems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TAI OPT="WET-PIT SUMP PUMPS"><SPT><TTL><SUB>Wet-Pit Sump Pumps</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select simplex or duplex pump units; delete the parts and the paragraphs 
+not applicable to the project requirements.</NPR><BRK/>
+<BRK/>
+<NPR>The designer should indicate when specified pumps use a separate motor and line 
+shaft.</NPR><BRK/>
+<BRK/>
+<NPR>Unit capacity conditions should be specified herein or shown on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>Show dimensions of the cast-iron, carbon steel, or concrete cast-in-place sumps 
+or basins on the drawings.  Capacities for each pump of the simplex or duplex 
+unit range from<MET> 150 to 3800 liter</MET><ENG> 40 to 1,000 gallons</ENG> per minute; total dynamic 
+heads range from<MET> 3 to 40 meter</MET><ENG> 10 to 130 feet</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>Indicate on the drawings the number of pump units required.</NPR><BRK/>
+<BRK/>
+<NPR>The difference between a wet-pit sump pump and a submersible pump is that the 
+motor of a wet-pit pump is not submerged, it is elevated above the water level. 
+A submersible pump has a submersible motor.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a pump with duty conditions as [indicated on drawings.][follows: [_____]].</TXT><BRK/>
+<BRK/>
+<TXT>Construct and furnish pumps in accordance with the applicable requirements of<MET> <RID>ISO 2858</RID> and <RID>ISO 5199</RID></MET><ENG> <RID>HI M100</RID></ENG> standards 
+and those specified herein.</TXT><BRK/>
+<BRK/>
+[<TXT>Include with the simplex pump unit a vertical, submerged, volute, centrifugal pump mounted below a coverplate; 
+a vertical, flexible-connected, solid-shaft motor; a motor and bearing support housing attached to the coverplate; 
+pump support and shaft housing pipe; discharge pipe; and automatic controls.</TXT><BRK/>
+<BRK/>
+][<TXT>Include with the duplex pump unit two individual, vertical, submerged, volute, centrifugal pumps mounted below 
+a coverplate; vertical, flexible-connected, solid-shaft motors; motor and bearing support housing attached to 
+the coverplate; pump support and shaft housing pipes; discharge pipes; and automatic controls.  Design the installation 
+of the unit to permit removal of one pump assembly without disturbing the operation of the other.</TXT><BRK/>
+<BRK/>
+]<TXT>Ensure that requirements for each material designation are in accordance with the applicable definition listed 
+in the centrifugal pump section of<MET> <RID>ISO 2858</RID> and <RID>ISO 5199</RID></MET><ENG> <RID>HI M100</RID></ENG> standards.  Ensure that materials for components 
+and accessories not covered by these definitions are as specified herein.</TXT><BRK/>
+<BRK/>
+<TXT>Avoid contact between dissimilar metals.  Where such contact cannot be avoided, protect joints between dissimilar 
+metals against galvanic corrosion by plating, organic-insulation coatings, gaskets, or other suitable means.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Selection</TTL><BRK/>
+<BRK/>
+<TXT>Where parallel pump operation is indicated, select pumps with characteristics specifically suited for the service, 
+without unstable operation.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a self-priming pump unit that delivers, at rated speed, not less than the specified<MET> liters</MET><ENG> gallons</ENG> per 
+minute against the specified or indicated discharge head while the liquid level is not more than<MET> 300 millimeter</MET>
+s <ENG>1 foot</ENG> above the datum elevation of the pump.  Use the level of the entrance eye of the impeller as the datum 
+elevation.  Include in the calculations of the discharge head both the friction head of the system piping external 
+to the pump unit and the static head measured from a point of reference on the sump to the highest point in the 
+system.  Base ratings on pumping clear, fresh water at a temperature of<MET>20 degrees C</MET><ENG> 68 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Casing</TTL><BRK/>
+<BRK/>
+<TXT>Provide cast-iron pump casing.  Provide a volute and discharge nozzle of the pump casing cast as one piece.  
+Construct the casing with a bolted plate to permit inspection and removal of the impeller.  Ensure that the casing 
+can withstand a hydrostatic pressure of not less than 1-1/2 times the design shutoff head of the pump.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impeller</TTL><BRK/>
+<BRK/>
+<TXT>Provide a cast-iron or bronze impeller, enclosed or semi-open, with vanes on the back shroud.  Refer to paragraph 
+BEARINGS AND LUBRICATION for additional requirements.  Ensure that the impeller is dynamically balanced.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Strainer</TTL><BRK/>
+<BRK/>
+<TXT>Protect the intake with a large cast-iron, slotted intake strainer with an effective free area sufficient to 
+prevent cavitation and degradation of efficiency.  Ensure that the strainer has a free area of at least four 
+times the cross-sectional area of the suction casing.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Pump Shaft</TTL><BRK/>
+<BRK/>
+<TXT>Construct the pump shaft of ground and polished AISI Type 304 or 316 corrosion-resistant steel with hardened 
+wearing surfaces at intermediate shaft-bearing locations.  Hardened surfaces may be overlays of 500 Brinell, 
+Deloro Stellite, Wall Colmonoy, or similar proprietary metals, or plasma-spray-applied ceramic materials of not 
+less than 900 Brinell hardness.  Provide 1 shaft bearing for every five feet of elevation minimum.</TXT><NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Identify the mechanical properties and diameter of the shaft to ensure 
+that whip, deflection, or vibration is not of sufficient magnitude to impose 
+greater than design loads on the specified shaft bearings under normal operating 
+conditions.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motor</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Motor specicications are covered in 26 29 01.00 10. The designer may 
+chose to move migrate some of those motor specifications to this section if 
+the design is deemed simple enough.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>See <SRF>26 29 01.00 10</SRF> ELECTRIC MOTORS, 3-PHASE VERTICAL INDUCTION TYPE for motors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings and Lubrication</TTL><BRK/>
+<BRK/>
+<TXT>Furnish one or more antifriction ball- or roller-bearings in the motor and bearing support housing above the 
+coverplate surface, with full provision for the mechanical and hydraulic radial and thrust loads imposed.  Provide 
+sealed and grease-lubricated bearings that have an L-10 rating of at least 80,000 hours in accordance with <RID>ABMA 9</RID>
+ or <RID>ABMA 11</RID>.  Ensure that the shop drawings bear the <SUB>manufacturer's certification of bearing life</SUB>.  Provide bearings 
+manufactured from vacuum-processed or degassed-alloy steels.</TXT><BRK/>
+<BRK/>
+<TXT>Provide sleeve-type intermediate shaft bearings.  Ensure that the center distance between any two bearings on 
+the shaft does not exceed<MET> 1370 millimeter</MET><ENG> 4-1/2 feet</ENG> for pumps operating between 1,700 and 1,800 revolutions 
+per minute (rpm) or<MET> 1520 millimeter</MET><ENG> 5 feet</ENG> for pumps operating at 1,200 rpm or less.  Provide a sleeve bearing 
+at least two times the shaft diameter and locate the bearing near the lower extremity of the shaft.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the appropriate paragraphs for grease or water-lubricated intermediate 
+bearings.</NPR><BRK/>
+<BRK/>
+<NPR>Where water contains suspended matter, such as sand, supply solenoid-operated 
+flush water to bearings from a protected potable water source or other clean 
+water source.</NPR><BRK/>
+<BRK/>
+<NPR>If heads are sufficiently high, a plastic centrifugal separator may be provided 
+to cleanse suspended matter from flushing water taken from pump discharge.  
+Drain the separator underflow back to the sump.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide heavy-duty bronze or bronze-backed, babbitt-lined sleeve bearings.  Provide appropriate nonferrous piping 
+and fittings to permit individual lubrication of the intermediate and lower bearings from above the sump coverplate.  
+Provide a means to prevent the pumped fluid from entering the lower bearing.  Include a suitable seal or a system 
+wherein a partial vacuum developed below the bearing by the impeller rotation induces a positive flow of lubricant 
+into the bearing.  Fit bearings with a centralized grease lubricator that is manually or electrically operated 
+from a single point.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide heavy-duty bronze- or corrosion-resistant steel-backed cutless-rubber sleeve bearings.</TXT><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where flushing water is used, delete the previous paragraph and select 
+the following paragraph.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide heavy-duty bronze- or corrosion-resistant steel-backed cutless-rubber sleeve bearings with nonferrous 
+piping and fittings provided for individual flushing of intermediate and lower bearings.</TXT><BRK/>
+<BRK/>
+]</SPT>[<SPT><TTL>Potable Water</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where potable water is used, include the following paragraph.  If discharge 
+water is centrifugally cleaned, delete the following paragraph and specify centrifugal 
+separator and performance requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Supply potable water through a piping system containing a pressure regulator, a solenoid, and a backflow preventer.  
+Provide plastic, nonmetallic composition, elastomer, or nonferrous metal for all wetted components.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Flexible Couplings</TTL><BRK/>
+<BRK/>
+<TXT>Connect the pump shaft to the motor shaft through a flexible coupling.  Provide a tire shape or a solid-mass, 
+serrated-edge, flexible disk-shaped member made of chloroprene material and retained by fixed flanges.  Provide 
+a flexible coupling that acts as a dielectric connector, that does not transmit vibration or end thrust, and 
+that permits up to 4-degree misalignment under normal duty.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Support Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Provide a wrought-iron or steel support pipe concentric with the pump shaft that connects the pump to the sump 
+coverplate.  Provide support pipe flanges that are machined and doweled to ensure proper alignment of the pump 
+and shaft whenever the pipe is disassembled and reassembled in the field.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Discharge Pipe</TTL><BRK/>
+<BRK/>
+<TXT>Furnish a discharge pipe running from the pump discharge outlet to the sump coverplate as an integral part of 
+the pump unit.  Arrange the discharge pipe to preclude discharge piping beyond the pump assembly from imposing 
+loads that could cause shaft misalignment.  Provide black steel or wrought-iron pipe, with wall thickness not 
+less than that specified in <RID>ASTM A53/A53M</RID> for Schedule 40 pipe.  Ensure that the discharge pipe is gastight through 
+the sump coverplate.  Ensure that the discharge end of the pipe terminates in a screwed or flanged connection 
+in accordance with the manufacturer's standard practice.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Liquid-Level Control</TTL><BRK/>
+<BRK/>
+[<TXT>Provide a simplex unit with a float mechanism to provide automatic operation of the pump unit when the liquid 
+in the sump rises to a predetermined level.  Provide a means of adjustment, such as a float-rod stop, to allow 
+for variation in the start and stop level-control points.  Provide an AISI Type 304 or 316 corrosion-resistant 
+steel float and stem.  For all other parts of the fluid-level-sensing mechanism below the coverplate, provide 
+bronze, brass, or material of equivalent resistance to the corrosive effects of sewage.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide a duplex pump unit with the electrical and mechanical devices necessary to provide automatic operation 
+of the pump unit when the liquid in the sump rises to a predetermined level.  Ensure that controls automatically 
+transfer the operating cycle from one pump to the other and operate both pumps simultaneously whenever the inflow 
+to the sump exceeds the capacity of the operating pump.  Provide a means of adjustment such as float-rod stops 
+to allow for variations in the start and stop level-control points.  Provide AISI Type 304 or 316 corrosion-resistant 
+steel float and rod.  For all other parts of the fluid-level-sensing mechanism below the coverplate, provide 
+bronze, brass, or material of equivalent resistance to the corrosive effects of sewage.</TXT><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the following paragraph for deep settings and where a great deal 
+of turbulence may be expected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide stilling tubes where indicated.</TXT><BRK/>
+<BRK/>
+<TXT><SUB>Floatless electrode level controls</SUB> may be submitted for approval, provided that the electrodes are isolated from 
+the fluid being sensed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sump Tank and Coverplate</TTL><BRK/>
+<BRK/>
+<TXT>Provide a [cast-iron or steel][polypropylene, corrosion-resistant][ aluminum] sump tank, strong enough to support 
+the pumps without distortion and to safely support maintenance personnel.  </TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the following paragraph if a concrete sump is designed.</NPR><BRK/>
+<BRK/>
+<NPR>If the size of the tank is such that a fabricated steel tank is specified, provide 
+coal-tar epoxy internal protection.</NPR><BRK/>
+<BRK/>
+<NPR>Show the size of the tank and influent line on the drawings or specifications.</NPR><BRK/>
+<BRK/>
+<NPR>For deep settings, show anti-sway bracing of the shaft column on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+[<OLI>Tank</OLI><BRK/>
+<BRK/>
+<TXT>Provide a [cast-iron][polypropylene, corrosion-resistant], sump tank sized to provide a clearance of<MET> 150 millimeter</MET><ENG>
+ 6 inches</ENG> or one discharge pipe iron pipe size (ips) diameter, whichever is larger, between the bottom of the 
+pump and the bottom of the tank.</TXT><BRK/>
+<BRK/>
+<TXT>Furnish a standard opening for connection to the sewage inflow pipe in the indicated size and location with respect 
+to the top of the tank.</TXT><BRK/>
+<BRK/>
+[<TXT>Polypropylene tanks require a minimum compacted subbase of<MET> 100 millimeter</MET><ENG> 4 inches</ENG>.</TXT><BRK/>
+]<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When a concrete sump is provided, include the following paragraph if 
+the concrete requires protection from sewage components.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Protect the concrete interior surface of the sump tank by not less than a two-coat, two-component system of amine-cured 
+coal-tar epoxy totaling<MET> 0.381 millimeter</MET><ENG> 15 mils</ENG> in thickness.</TXT><BRK/>
+<BRK/>
+]]<OLI>Coverplate</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Provide gasketed openings through the sump tank coverplate, unless otherwise specified.  Provide a<MET> 50 mm</MET><ENG> 2-inch</ENG>
+ ips or larger threaded outlet to permit installation of a vent pipe.  Ensure that the sump coverplate has a 
+[manhole][handhole] access to the tank.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI><TAI OPT="SUBMERSIBLE PUMPS"><SPT><TTL><SUB>Submersible Pumps</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select simplex or duplex; delete the parts and the paragraphs not applicable 
+to the project.</NPR><BRK/>
+<BRK/>
+<NPR>Specify unit capacity conditions herein or show on the drawings.</NPR><BRK/>
+<BRK/>
+<NPR>indicate the number of pump units required on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Construct and furnish pumps and <SUB>accessories</SUB> in accordance with the requirements of<MET> <RID>ISO 2858</RID> and <RID>ISO 5199</RID></MET><RID> HI ANSI/HI 11.6 </RID>
+and <ENG><RID>HI M100</RID></ENG> standards and those specified herein.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Take precautions to properly identify pumps.</NPR><BRK/>
+<BRK/>
+<NPR>Revise if other types of controls are required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Provide a simplex pump unit that includes a submersible pump with an automatic level-control mechanism mounted 
+above water level.</TXT><BRK/>
+<BRK/>
+][<TXT>Provide a simplex pump unit that includes a submersible pump with an integral diaphragm or float-switch automatic 
+level-control mechanism.</TXT><BRK/>
+<BRK/>
+]<TXT>Install an operating switch such that in case of failure, the operating switch does not require breaking of pump-motor 
+seals for repairs.</TXT><BRK/>
+<BRK/>
+[<TXT>Provide a duplex unit that includes float level controls for each submersible pump.</TXT><BRK/>
+<BRK/>
+]<TXT>Ensure that requirements for each material designation are in accordance with the applicable definition listed 
+in the centrifugal pump section of <MET><RID>ISO 2858</RID> and <RID>ISO 5199</RID></MET><ENG> <RID>HI M100</RID></ENG> standards.</TXT><BRK/>
+<BRK/>
+<TXT>Avoid contact between dissimilar metals.  Where such contact cannot be avoided, protect joints between dissimilar 
+metals against galvanic corrosion by plating, organic-insulation coatings, gaskets, or other suitable means.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Selection</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Modify to include project duty conditions.</NPR><BRK/>
+<BRK/>
+<NPR>Because submersible pump motors are not always nonoverloading for a given motor-volute-impeller 
+series, avoid possible operation at low heads.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a pump with duty conditions as [indicated on drawings.] [follows:]</TXT><BRK/>
+<OLG><BRK/>
+<OLI>[_____]</OLI><BRK/>
+<BRK/>
+<OLI>[_____]</OLI><BRK/>
+<BRK/>
+<OLI>[_____]</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Ensure that pump seals, lubricant, and electrical insulation are suitable for service in liquids up to<MET> 60 degrees 
+C</MET><ENG> 140 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Housing</TTL><BRK/>
+<BRK/>
+<TXT>Provide a pump housing that encloses the pump motor and volute with its integrally cast feet.  Provide a cast-iron 
+pump housing that is watertight under all heads normal to the service, and constructed to permit inspection and 
+repair.  Furnish a volute designed to withstand a hydrostatic pressure of not less than 1-1/2 times the design 
+shutoff head of the pump.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Impeller</TTL><BRK/>
+<BRK/>
+<TXT>Provide a dynamically balanced and totally enclosed [bronze][_____] impeller.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Submersible pumps may be furnished for heavy debris or sewage service 
+by specifying as follows and deleting the preceding paragraph.</NPR><BRK/>
+<BRK/>
+<NPR>Modify the solid-sphere handling-capability dimension as required.  The lower 
+the capacity, the smaller the passable solid sphere.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a [cast-iron][_____] nonclogging impeller designed to provide maximum freedom from clogging when liquid-containing 
+rags and stringy material is handled.  Provide an impeller that is dynamically balanced and that has a minimum 
+solid-sphere handling capability of[<MET> 40 millimeter</MET><ENG> 1-1/2 inches</ENG>][_____].</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Shaft</TTL><BRK/>
+<BRK/>
+<TXT>Provide a pump shaft that is an extension of the motor shaft and constructed of ground and polished AISI Type 
+300 or 400 series corrosion-resistant steel with hard-wearing surfaces (over 300 Brinell).</TXT><BRK/>
+<BRK/>
+[]</SPT><SPT><TTL>Mechanical Seal</TTL><BRK/>
+<BRK/>
+<TXT>Provide the manufacturer's standard mechanical pump shaft seal specifically constructed for the service duty 
+temperature and resistance to pumped fluid.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bearings and Lubrication</TTL><BRK/>
+<BRK/>
+<TXT>Furnish antifriction ball- or roller-bearings with full provision for the mechanical and hydraulic, radial, and 
+thrust loads imposed.  Provide bearings which are sealed and lubricated for life with either grease or oil.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motor and Power Cord</TTL><BRK/>
+<BRK/>
+<TXT>Provide a fully submersible motor which conforms to the requirements of <RID>NEMA MG 00001</RID>.  Size the motor to avoid 
+overload when operating at any point along the characteristic curve of the pump.  Provide 3-phase, 60-Hz, [_____] 
+V, squirrel cage induction type motors, NEMA Design B Type.  Insulate the stator windings and stator leads with 
+a moisture-resistant Class F insulation with temperature resistance of<MET> 155 degrees C</MET><ENG> 311 degrees F</ENG>.  Use a service 
+factor of 1.0.  The temperature rise above ambient for continuous full load rated conditions and for the class 
+of insulation used cannot exceed the values in <RID>NEMA MG 00001</RID>.  The motor must be rated for continuous duty when 
+submerged and also be capable of operation in the dry for short periods of time for testing and maintenance purposes.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a permanently sealed, oil-filled, and watertight motor of the manufacturer's standard construction for 
+the service.  Fit the motor space with watertight expansion provisions to accommodate the temperature normal 
+to the specified duty.  Ensure that the motor seals remain watertight under any pressure developed in the volute 
+and under a sump-level static head of not less than <MET>9 meters</MET><ENG> 30 feet</ENG> of water.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure that circuits for three-phase motors provide overload protection.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Some submersible pumps are available as three-phase in<MET> 560 watt</MET><ENG> 3/4 horsepower</ENG>
+ and larger only.</NPR><BRK/>
+<BRK/>
+<NPR>Select the following paragraph for single-phase motors only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>[Provide single-phase motors with automatic-reset thermal-overload protection.</TXT><BRK/>
+<BRK/>
+<TXT>Provide a waterproof, internally grounded, oil-resistant, Type SO chloroprene power cord, with a three-prong 
+plug of the indicated length.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Liquid-Level Control</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Simplex unit controls are specified to be integral with the housing.  
+The following remote controls may be specified upon revision of selected paragraphs 
+under the general heading.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Furnish simplex units with a float-operated switch mechanism to ensure automatic operation of the pump unit when 
+the liquid in the sump rises to a predetermined level.  Provide a cover-mounted switch and Type 1, general-purpose 
+enclosure in accordance with <RID>NEMA 250</RID>.  Provide a means of adjustment such as float-rod stops to allow for variation 
+in the start and stop level-control points.  Provide an AISI Type 304 or 316 corrosion-resistant steel float 
+and stem.  Provide bronze, brass, or materials of equivalent resistance to the corrosive effects of the pumped 
+fluid for all other wetted parts of the fluid-level sensing mechanism.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select two of the following three paragraphs if duplex units are used.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Furnish a duplex pump unit with the electrical and mechanical devices necessary to provide automatic operation 
+of the pump unit when the liquid in the sump rises to a predetermined level.  Provide controls that automatically 
+transfer the operating cycle from one pump to the other and that operate both pumps simultaneously whenever the 
+inflow to the sump exceeds the capacity of the operating pump.  Provide a means of adjustment such as float-rod 
+stops to allow for variations in the start and stop level-control points.  Provide an AISI Type 304 or 316 corrosion-resistant 
+steel float and rod.  For all other wetted parts of the fluid-level sensing mechanism, use bronze, brass, or 
+other material of equivalent resistance to the corrosive effects of the pumped fluid.</TXT><BRK/>
+<BRK/>
+<TXT>Mount the controls on the discharge pipe below the basin cover.  Provide Type 6 enclosures in accordance with <RID>
+NEMA 250</RID>.</TXT><BRK/>
+<BRK/>
+<TXT>Pedestal-mount the controls above the coverplate.  Provide Type 1, general-purpose enclosures conforming to <RID>NEMA 250</RID>
+.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select the following paragraph for deep settings and where a great deal 
+of turbulence may be expected.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide stilling tubes where indicated.</TXT><BRK/>
+<BRK/>
+<TXT>Floatless electrode level controls may be submitted for approval provided that the electrodes are isolated from 
+the fluid being sensed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sump Tank and Coverplate</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete the following paragraph if a concrete sump is designed.</NPR><BRK/>
+<BRK/>
+<NPR>If the size of tank is such that a fabricated steel tank is specified, provide 
+coal-tar epoxy internal protection.</NPR><BRK/>
+<BRK/>
+<NPR>Drawings should show size of tank and influent line.</NPR><BRK/>
+<BRK/>
+<NPR>For deep settings, show antis-way bracing and support of power cord and discharge 
+pipe on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Tank</OLI><BRK/>
+<BRK/>
+<TXT>Provide a [cast-iron,] [high-density linear polyethylene,] sump tank sized as indicated.</TXT><BRK/>
+<BRK/>
+<TXT>Furnish a standard opening for connection to the drainage inflow pipe in the indicated size and location with 
+respect to the top of the tank.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  When a concrete sump is provided, include the following paragraph if 
+the concrete requires protection from sewage components.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Protect the interior surfaces of the concrete-sump by not less than a two-coat, two-component system of amine-cured 
+coal-tar epoxy totaling <MET>0.381 millimeter</MET><ENG> 15 mils</ENG> in thickness.</TXT><BRK/>
+<BRK/>
+<OLI>Coverplate</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Provide a [cast-iron or steel][aluminum] sump coverplate, of adequate strength to support not less than<MET> 9500 
+pascal</MET><ENG> 200 pounds per square foot</ENG> without distortion.  Seal all openings through the sump cover to be gastight 
+and watertight.  Provide a standard outlet for a vent pipe.  Ensure that the sump cover provides a [manhole][handhole] 
+access to the interior.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></TAI></SPT><SPT><TTL>HIGH-WATER ALARM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate with project requirements and electrical drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a high-water alarm switch complete with actuating mechanism for operation on an electrical circuit other 
+than the motor circuit.  Design the switch to operate the indicated alarm devices whenever a predetermined high-water 
+level is reached in the sump.  Provide a switch enclosure that is the same as the level-control switch.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PAINTING</TTL><BRK/>
+<BRK/>
+<TXT>Treat and paint equipment in accordance with the manufacturer's standard practice for the specified duty.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install equipment in accordance with manufacturer's recommendations.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Alignment</TTL><BRK/>
+<BRK/>
+<TXT>Before attempting alignment, demonstrate that the pump does not have any load/force imposed by the piping system.  
+Minimum alignment values (below) are for pump and driver at normal running temperatures.  Compensate values for 
+thermal growth.  Correct limited movement of the pump or driver (commonly known as bolt-bound) to ensure alignment 
+capability.  Ensure that holddown bolts are not undercut in order to perform adjustment.</TXT><BRK/>
+<BRK/>
+<TXT>Ensure that shims are commercially die-cut, without seams  or folds, and are made of corrosion-resistant stainless 
+steel.  Do not use more than four shims at any single point.</TXT><BRK/>
+<BRK/>
+<TXT>For units with drive motors over <MET>[5.6] [7.5] [11.2] [14.9] [18.6] Kw</MET><ENG>[7.5] [10] [15] [20] [25] hp</ENG>, install alignment 
+jack bolts.</TXT><BRK/>
+<BRK/>
+<TXT>Pump and driver may have an intermediate shaft, spacer, or spool piece (sometimes called a jackshaft) Based on 
+the motor's nominal operating speed,  align the pump and driver to the following minimum specifications:</TXT><BRK/>
+<BRK/>
+<TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="117.00"/>
+      <COL AUTOWIDTH="0" WIDTH="117.00"/>
+      <COL AUTOWIDTH="0" WIDTH="117.00"/>
+      <COL AUTOWIDTH="0" WIDTH="117.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Speed(RPM)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">close-coupled <BRK/>offset(mils)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">close-coupled <BRK/>angle(mils/in)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">spool piece angle<BRK/>(mils/in @ coupling pt.)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">600</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">6.0</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2.0</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3.0</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">900</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">5.0</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2.0</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1200</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4.0</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.0</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1800</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3.0</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.5</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.0</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3600</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.5</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.4</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.5</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">7200</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">1.0</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.3</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">0.4</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TXT>Provide final alignment settings as part of the final test data.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Vibration Analyzer</TTL><BRK/>
+<BRK/>
+<TXT>Use a Fast Fourier Transform (FFT) analyzer to measure vibration levels.  Provide an FFT analyzer with the following 
+characteristics:  a dynamic range greater than 70 dB; a minimum of 400 line resolution; a frequency response 
+range of 5 Hz to 10 kHz (300 to 600,000 cpm); the capacity to perform ensemble averaging; the capability to use 
+a Hanning window; autoranging frequency amplitude; a minimum amplitude accuracy over the selected frequency range 
+of plus or minus 20 percent or plus or minus 1.5 dB.</TXT><BRK/>
+<BRK/>
+<TXT>Use an accelerometer (either stud-mounted or mounted using a rare-earth, low-mass magnet) and sound disk(or finished 
+surface) with the FFT analyzer to collect data.  Ensure that the mass of the accelerometer and its mounting has 
+minimal influence on the frequency response of the system over the selected measurement range.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pump Acceptance</TTL><BRK/>
+<BRK/>
+<TXT>Ensure that vibration analysis verifies pump conformance to specifications.  Ensure that vibration levels are 
+not more than<MET>1.9 mm/sec</MET><ENG> 0.075 in/sec</ENG> at 1 times run speed and at pump frequency, and<MET>1 mm/sec</MET><ENG> 0.04 in/sec</ENG> at other 
+multiples of run speed.</TXT><BRK/>
+<BRK/>
+<TXT><TST>Perform tests, including <SUB>hydrostatic leak</SUB> checking of piping and operation of equipment, in accordance with the 
+manufacturer's instructions.</TST><BRK/>
+<BRK/>
+<TST>Operate pumps against <SUB>static heads</SUB> indicated, and verify <SUB>pump flow capacity</SUB>.</TST></TXT><BRK/>
+<BRK/>
+<TXT>Provide final test reports to the Contracting Officer.  Provide reports with a cover letter/sheet clearly marked 
+with the System name, Date, and the words "Final Test Reports - Forward to the Systems Engineer/Condition Monitoring 
+Office/Predictive Testing Group for inclusion in the Maintenance Database."</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<TXT>Submit [six][_____] copies of the manufacturer' complete <SUB>spare parts list</SUB>, showing all parts, spare parts, and 
+bulletins for pumps.  Clearly show all details and parts, and adequately describe parts or furnish proper identification 
+marks.  Drawings incorporated in the parts lists may be reduced to one-page size provided that they are clear 
+and legible, or the full-size drawings may be folded to the size of the list pages.  Photographs or catalog cuts 
+of components may be included for identification.</TXT><BRK/>
+<BRK/>
+<TXT>Furnish one set of all <SUB>special tools</SUB> necessary to completely assemble, disassemble, or maintain the pumps.  "Special 
+tools" refers to oversized or <NED/>specially dimensioned tools, special attachments or fixtures, or any similar items.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

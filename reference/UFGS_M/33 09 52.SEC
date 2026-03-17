@@ -1,0 +1,1479 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-33 09 52 (November 2018)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 33 09 52</SCN><BRK/>
+<BRK/>
+<STL>FUEL PUMP CONTROL AND ANNUNCIATION SYSTEM (NON-HYDRANT)</STL><BRK/>
+<DTE>11/18</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>the Pump Control and Annunciation System for fueling 
+systems that are not Hydrant Systems and are not Military Service Stations</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Power requirements for equipment are to be in accordance with the available power at the Activity (such as OCONUS 
+areas).</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification is for pump control panels for systems that are not Hydrant Systems and are not Military 
+Service Stations.  Do not use this specification for super refueler fillstands.  A typical facility using this 
+specification will have two fuel storage tanks, two truck offloading positions, two truck fillstand loading positions, 
+and a pump and filter building with a conditioned control room where this panel is located.  Confirm use of this 
+specification with Service Headquarters or officially designated alternate.</NPR><BRK/>
+<BRK/>
+<NPR>Cut and Cover systems must conform to Standard Design AW 078-24-33 UNDERGROUND VERTICAL STORAGE TANKS CUT AND 
+COVER.  Field fabricated ASTs must conform to AW 078-24-27 ABOVEGROUND VERTICAL STEEL TANKS WITH FIXED ROOFS.  
+Standards can be found on the Whole Building Design Guide at the following location <URL>https://www.wbdg.org/ffc/dod/non-cos-standards</URL>
+.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE C37.90</RID><RTL>(2005; R 2011) Standard for Relays and Relay Systems Associated With Electric Power Apparatus</RTL><BRK/><BRK/><RID>IEEE C62.41</RID><RTL>(1991; R 1995) Recommended Practice on Surge Voltages in Low-Voltage AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL SOCIETY OF AUTOMATION (ISA)</ORG><BRK/><BRK/><RID>ISA 18.1</RID><RTL>(2024) Annunciator Sequences and Specifications</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA IA 2</RID><RTL>(2005) Programmable Controllers - Parts 1 thru 8</RTL><BRK/><BRK/><RID>NEMA ICS 1</RID><RTL>(2022) Standard for Industrial Control and Systems: General Requirements</RTL><BRK/><BRK/><RID>NEMA ICS 2</RID><RTL>(2000; R 2020) Industrial Control and Systems Controllers, Contactors, and Overload Relays Rated 600 V</RTL><BRK/><BRK/><RID>NEMA ICS 4</RID><RTL>(2015) Application Guideline for Terminal Blocks</RTL><BRK/><BRK/><RID>NEMA ICS 6</RID><RTL>(1993; R 2016) Industrial Control and Systems:  Enclosures</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>U.S. FEDERAL COMMUNICATIONS COMMISSION (FCC)</ORG><BRK/><BRK/><RID>FCC Part 15</RID><RTL>Radio Frequency Devices (47 CFR 15)</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 508</RID><RTL>(2018; Reprint Jul 2021) UL Standard for Safety Industrial Control Equipment</RTL><BRK/><BRK/><RID>UL 1012</RID><RTL>(2010; Reprint Jul 2025) UL Standard for Safety Power Units Other than Class 2</RTL><BRK/><BRK/><RID>UL 1449</RID><RTL>(2021; Reprint Oct 2025) UL Standard for Safety Surge Protective Devices</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>ADMINISTRATIVE REQUIREMENTS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM applies to this section, with the additions and modifications specified herein.</OLI><BRK/>
+<BRK/>
+<OLI>Programmable Logic Controllers (PLCs) receive information from pressure transmitters and other devices to control the pumps and control 
+valves.</OLI><BRK/>
+<BRK/>
+<OLI>The control system must be furnished by a single supplier.  See Section <SRF>33 57 55</SRF> FUEL SYSTEM COMPONENTS (NON-HYDRANT) for other required 
+components of the control system.  The control system supplier must be responsible for providing a fully functional control system, in 
+accordance with the drawings and specifications, including the field devices.  Installation must be in accordance with <RID>NFPA 70</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>Submit six copies of <SUB>Operation and Maintenance Manuals</SUB>, within 7 calendar days following the completion of factory tests.  Installation, 
+Operation, and Maintenance manuals for all system components supplied must be furnished following the completion of shop tests and must 
+include:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Pump Control Panel including interior and exterior system components layout.  Complete guide outlining step-by-step procedures 
+for system startup and operation.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">All documents previously submitted and approved with all comments and field changes annotated.  Complete description of the sequence 
+of operation including that described in PART 3 and any subsystems not controlled by the PLC (e.g. alarm annunciator safety/circuit).</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Complete listing of all programming of the PLCs, laptop computer, and Personal Computer.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Complete relay ladder logic diagrams, PLC input/output diagrams and control power distribution diagrams for the complete control 
+system.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Complete troubleshooting guide, which lists possible operational problems and corrective action to be taken, including all as-built 
+conditions.</OLI><BRK/>
+<BRK/>
+<OLI>Submit documents demonstrating the accuracy and completeness of the list of material and components, that items proposed comply fully with 
+contract requirements, and are otherwise suitable for the application indicated.  Documents must consist of all data or drawings published 
+by the manufacturer of individual items listed including manufacturer's descriptive and technical literature, performance data, catalog 
+cuts, and installation instructions.  Submit additional material if the listed items are not adequate to identify intent or conformance 
+to technical requirements.  Provide typed and electronic copies of these lists for approval.  Any delays associated with resubmittals of 
+incomplete or ambiguous initial submittals will be the Contractor's responsibility.</OLI><BRK/>
+<BRK/>
+<OLI>Documents must be bound in a suitable binder adequately marked or identified on the spine and front cover.  A table of contents page must 
+be included and marked with pertinent contract information and contents of the manual.  Tabs must be provided to separate different types 
+of documents, such as catalog ordering information, drawings, instructions, and spare parts data.  Index sheets must be provided for each 
+section of the manual when warranted by the quantity of documents included under separate tabs or dividers.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Shop Drawing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Tools and Spare Parts</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pump Control Panel (PCP) and Components</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Laptop Computer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Personal Computer (PC)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Laser Printer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>FCC Computer</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Programmable Logical Controller (PLC) Hardware and Software</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control Wiring Data Lists</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Graphics Display Screen</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Certified Pump Control Panel (PCP) Shop Test Report</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Record of Test</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Experience and Qualifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Testing Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Training Plan for Instructing Personnel</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operation and Maintenance Manuals</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>TOOLS AND SPARE PARTS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Any special tools necessary for operation and maintenance of the system components providing supplier name, current cost, catalog order 
+number, and a recommended list of spare parts to be stocked.</OLI><BRK/>
+<BRK/>
+<OLI>One spare set of fuses of each type and size.</OLI><BRK/>
+<BRK/>
+<OLI>Recommended manufacturer list of spare parts, including part number, current unit price, and source of supply.</OLI><BRK/>
+<BRK/>
+<OLI>One spare power supply module.</OLI><BRK/>
+<BRK/>
+<OLI>One spare I/O module for discrete devices and one for analog devices.</OLI><BRK/>
+<BRK/>
+<OLI>Two PLC RAM back-up batteries.</OLI><BRK/>
+<BRK/>
+<OLI>Two complete sets of spare ink cartridges for the laser printer.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum of 10 spare lamps for the Alarm Annunciator.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum of 10 spare lamps of each type of non-LED lamps used on the Pump Control Panel.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>EXPERIENCE AND QUALIFICATIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit the following data for approval:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Certification stating that the manufacturer has manufactured, installed, and successfully completed at least five PLC-based systems for 
+automatic cycling of pumps based upon varying dispensing demands ranging from<MET> 0 to 182 L/s</MET><ENG> 0 to 2400 GPM</ENG> utilizing multiple pumps.  At 
+least two of the five PLC-based systems must be for dispensing jet fuel into a pressurized, constant pressure, flow demand aircraft hydrant 
+system.</OLI><BRK/>
+<BRK/>
+<OLI>Certification that the control systems have successfully operated over the last 2-years and are currently in service.</OLI><BRK/>
+<BRK/>
+<OLI>Project names, locations, and system description of these installations.  Include user point-of-contact and current telephone numbers.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>WARRANTY</TTL><BRK/>
+<BRK/>
+<TXT>The Pump Control and Annunciation System including devices, hardware and software must be warranted for a period of one year from the date of acceptance 
+of the system by the Government.  This warranty service must include parts and labor service for system components supplied under this specification.  
+Upon notification by the Government of system or component failure, respond at the site with necessary parts within 48-hours of notification.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>MATERIALS AND SYSTEM COMPONENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Pump Control Panel (PCP) and Components</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Panel size indicated is for a Type III hydrant system.  Adjust as required to suit the project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>NEMA ICS 1</RID>, <RID>NEMA ICS 6</RID>, <RID>NEMA 250</RID>, and <RID>UL 508</RID>.  The PCP enclosure must be a freestanding NEMA Type 12, smooth, gasketed enclosure constructed of 
+12 gauge steel.  All seams must be continuously welded and there must be no drilled holes or knockout prior to delivery to the job site.  The pump 
+control panel dimensions must be a maximum of<MET> [2.3 m] [_____]</MET><ENG> [90-inches] [_____]</ENG> high, maximum<MET> [1.8 m] [_____]</MET><ENG> [72-inches] [_____]</ENG> wide, and a 
+maximum of<MET> [610 mm] [_____]</MET><ENG> [24-inches] [_____]</ENG> deep and must have removable lifting eyes.  The interior surfaces of the panel must be properly 
+cleaned, primed, and spray painted with white high-gloss enamel.  Exterior surfaces must have standard factory finish.  Access for the PCP must 
+be front only and must consist of hinged doors having 3-point latching mechanisms.  The doors must open approximately 120 degrees.  Rack mounting 
+angles, swing-out panels and other component mounting hardware must be installed such that servicing of one component must not require removal 
+or disconnection of other components.  No clearance will be required between the back of the panel and the room walls.  Terminal facilities must 
+be arranged for entrance of external conductors from the top or bottom of the enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ventilation System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For enclosures smaller than<MET> 1.8 m</MET><ENG> 72-inches</ENG> wide, provide one supply fan, one exhaust grill, and two thermostats.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [one] [two] supply fans, single phase, 115 volt.  Each fan must supply a minimum of<MET> 47 L/s</MET><ENG> 100 CFM</ENG>.  The supply and exhaust grill must 
+contain a filter that is easily removed from the exterior of the enclosure.  Also provide [two] [three] thermostats with an adjustable set point 
+range of<MET> 21 degrees C</MET><ENG> 70 degrees F</ENG> to<MET> 60 degrees C</MET><ENG> 140 degrees F</ENG>.  Locate the thermostats near the top in the interior of the PCP.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ground Bar</TTL><BRK/>
+<BRK/>
+<TXT>The control panel must have a tin-plated copper equipment ground bar.  The bar must have a minimum of twenty grounding screws.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Indicator Lights</TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA ICS 1</RID>, <RID>NEMA ICS 2</RID>, and <RID>UL 508</RID>.  Lights must be heavy duty, NEMA 13, <MET> 22.5 mm</MET><ENG> 1-inch</ENG> mounting hole, round indicating lights operating at 120 
+volts ac/dc or 24 volts ac/dc.  Long life bulbs must be used.  Indicator lights must have a legend plate with words as shown on drawings.  Lens 
+color as indicated on the drawings.  Lights must be "push to test (lamp)" type.  LED type lamps of comparable size and color may be substituted 
+for standard indicator lights.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Selector Switches</TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA ICS 1</RID>, <RID>NEMA ICS 2</RID>, and <RID>UL 508</RID>.  Non-illuminated lever operated selector switches must be heavy duty, NEMA 13, round, and utilize a<MET> 22.5 mm</MET><ENG>
+ 7/8-inches</ENG> mounting hole.  They must have the number of positions as indicated on the drawings.  Switches must be rated 600 volt, 10 amperes continuous.  
+Legend plates must be provided with each switch with words as indicated on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pushbuttons</TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA ICS 1</RID>, <RID>NEMA ICS 2</RID>, and <RID>UL 508</RID>.  Non-illuminated pushbuttons must be heavy duty, NEMA 13, round, utilize a<MET> 22.5 mm</MET><ENG> 7/8-inch</ENG> mounting hole, 
+and have the number and type of contacts as indicated on the drawings or elsewhere in the specifications.  The emergency stop switch must be a 
+red mushroom head,<MET> 38 mm</MET><ENG> 1.5inch</ENG> diameter, momentary contact type.  Pushbuttons must be rated 600 volt, 10 amperes continuous.  Legend plates must 
+be provided with each switch with words as indicated on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Relays</TTL><BRK/>
+<BRK/>
+<TXT><RID>IEEE C37.90</RID>, <RID>NEMA ICS 2</RID>, <RID>UL 508</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Nameplates must be made of laminated plastic with black outer layers and a white core.  Edges must be chamfered.  Nameplates must be fastened with 
+black-finished round-head drive screws or approved nonadhesive metal fasteners.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Transient Voltage Surge Suppression Devices</TTL><BRK/>
+<BRK/>
+<TXT><RID>IEEE C62.41</RID> for Category "B" transients, <RID>UL 1449</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Terminal Blocks</TTL><BRK/>
+<BRK/>
+<TXT><RID>NEMA ICS 4</RID>.  Terminal blocks for conductors exiting the PCP must be two-way type with double terminals, one for internal wiring connections and 
+the other for external wiring connections.  Terminal blocks must be made of bakelite or other suitable insulating material with full deep barriers 
+between each pair of terminals.  A terminal identification strip must form part of the terminal block and each terminal must be identified by a 
+number in accordance with the numbering scheme on the approved wiring diagrams.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Circuit Breakers</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 508</RID>.  Individual, appropriately sized, terminal block mounted, circuit breakers must be provided for all 120 volt PCP mounted system components 
+and for the 120 volt terminal boards shown on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Uninterruptible Power Supplies</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The power requirements are to be in accordance with the available power at the Activity (such as OCONUS 
+regions).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT><RID>UL 1012</RID>.  Input voltage must be 120 volts (nominal), 1 phase, 60 Hertz.  Output voltage regulation must be plus/minus 5.0 percent for the following 
+conditions:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>20 to 100 percent load on output.</OLI><BRK/>
+<BRK/>
+<OLI>Input voltage variation of minus 15 to 10 percent.</OLI><BRK/>
+<BRK/>
+<OLI>Constant load power factor between 80 and 100 percent.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Response time must be 1.5 cycles or less.  Battery capacity must be such as to provide an orderly shut down of operating programs or as a minimum 
+10 minutes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Miscellaneous Power Supplies</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 1012</RID>.  Certain field devices may require power other than 120 VAC (i.e. 24 VDC).  The power supplies must be convection cooled, have fully isolated 
+independent outputs, have constant voltage, have short circuit and overvoltage protection, and have automatic current limiting.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alarm Annunciator</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 508</RID> and <RID>ISA 18.1</RID>.  The Alarm Annunciator must provide visual annunciation, local and remote monitoring, constant or flashing visual and audible 
+alarm as specified herein.  The annunciator must be completely solid state with no moving parts.  The annunciator must be furnished with cabinet 
+and hardware appropriate for flush mounting on the control panel.  A power supply either integral or separately mounted must operate on 120 volts, 
+60 Hertz.  The annunciator must have windows arranged in a matrix configuration (rows and columns).  Each window must be at least<MET> 24 mm</MET><ENG> 15/16-inch</ENG>
+ high by<MET> 40 mm</MET><ENG> 1-5/8-inches</ENG> wide and must have rear illuminated translucent engraved nameplate.  Lettering must be at least<MET> 4 mm</MET><ENG> 5/32-inches</ENG> high.  
+System lamp voltage must be 24 to 28 volts dc.  The cells must be individually addressable and not hardwired.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alarm Horns</TTL><BRK/>
+<BRK/>
+<TXT><RID>UL 508</RID>.  The alarm horns must consist of 3-vibrating horns and 2-resonating horns.  One vibrating horn is to be mounted in the PCP, and two vibrating 
+and two resonating horns must be mounted outside of the pumphouse as shown on the drawings.  The exterior horns must each produce 100 db at<MET> 3 m</MET><ENG>
+ 10 feet</ENG> and must be provided in a weather proof housing.  The PCP horn must produce 70 db at<MET> 3 m</MET><ENG> 10 feet</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Laptop Computer</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Hardware</TTL><BRK/>
+<BRK/>
+<TXT>The following are the minimum hardware requirements for the laptop computer:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Latest [Core i3] [_____] CPU operating at 3.9 GHz or faster</OLI><BRK/>
+<BRK/>
+<OLI>8 GB RAM</OLI><BRK/>
+<BRK/>
+<OLI>1 TB hard drive</OLI><BRK/>
+<BRK/>
+<OLI>16X Read Write DVD drive</OLI><BRK/>
+<BRK/>
+<OLI><MET> 381 mm</MET><ENG> 15-inch</ENG> 1080p LED - Backlit Display</OLI><BRK/>
+<BRK/>
+<OLI>Keyboard</OLI><BRK/>
+<BRK/>
+<OLI>Pointing device (e.g. mouse, track ball)</OLI><BRK/>
+<BRK/>
+<OLI>120VAC and Battery power supply</OLI><BRK/>
+<BRK/>
+<OLI>All cables and connectors for interfacing with PLC and personal computer</OLI><BRK/>
+<BRK/>
+<OLI>HDMI Port</OLI><BRK/>
+<BRK/>
+<OLI>Two USB 3.0 communications ports</OLI><BRK/>
+<BRK/>
+<OLI>Provide a carrying case for the Laptop Computer</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Software</TTL><BRK/>
+<BRK/>
+<TXT>The following is the minimum software to be loaded on the laptop.  The software must be the most current versions and compatible with each other 
+to make a complete and usable system.  All software needs to be fully site licensed (provide with software key) and come with all disks to allow 
+a full restore or reload of software in the event of a hard drive crash.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Operating system (e.g. the latest commercially available MS Operating system)</OLI><BRK/>
+<BRK/>
+<OLI>Software for programming the PLCs</OLI><BRK/>
+<BRK/>
+<OLI>Software for programming the personal computer</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Personal Computer (PC)</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Hardware</TTL><BRK/>
+<BRK/>
+<TXT>The following are the minimum hardware requirements for the personal computer:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Latest [Core i3] [_____] CPU operating at 2.4 GHZ or faster</OLI><BRK/>
+<BRK/>
+<OLI>8 GB RAM</OLI><BRK/>
+<BRK/>
+<OLI>1 TB hard drive</OLI><BRK/>
+<BRK/>
+<OLI>16X Read Write DVD drive</OLI><BRK/>
+<BRK/>
+<OLI>Color<MET> 432 mm</MET><ENG> 17-inches</ENG> 1080p LED-Backlit flat screen monitor</OLI><BRK/>
+<BRK/>
+<OLI>Keyboard</OLI><BRK/>
+<BRK/>
+<OLI>Pointing device (e.g. mouse)</OLI><BRK/>
+<BRK/>
+<OLI>Parallel communication port</OLI><BRK/>
+<BRK/>
+<OLI>Serial communication port compatible with PLC (e.g. RS-232-C, RS-485)</OLI><BRK/>
+<BRK/>
+<OLI>120 VAC operating power</OLI><BRK/>
+<BRK/>
+<OLI>All cables and connectors interfacing with PLC and Laser Printer</OLI><BRK/>
+<BRK/>
+<OLI>Provide a modem capable of remote troubleshooting of the system.  The modem will not be permanently connected to the System</OLI><BRK/>
+<BRK/>
+<OLI>Two USB 3.0 communications ports</OLI><BRK/>
+<BRK/>
+<OLI>Two HDMI ports</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Software</TTL><BRK/>
+<BRK/>
+<TXT>The following is the minimum software to be loaded on the personal computer.  The software must be the most current versions and compatible with 
+each other to make a complete and usable system.  All software needs to be fully site licensed (provide with software key) and come with all disks 
+to allow a full restore or reload of software in the event of a hard drive crash.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Operating system (e.g. the latest commercially available MS Operating System).</OLI><BRK/>
+<BRK/>
+<OLI>Software for programming the PLCs.</OLI><BRK/>
+<BRK/>
+<OLI>The personal computer must communicate with the PLCs to display system status and change system set points.  The personal computer must 
+have run-time graphical software to display the graphical screens described later and to change set points.</OLI><BRK/>
+<BRK/>
+<OLI>Software for recording, tracking, trending, and printing out the pressures, flows, and operational status of all monitored components of 
+the fueling system on a real time basis.</OLI><BRK/>
+<BRK/>
+<OLI>MS Office Professional with Excel to allow the trending data described above to be imported to Excel where it can be studied, manipulated, 
+graphed, and easily sent electronically.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Laser Printer</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide color laser jet alarm/report printer.  The unit must print in black at a minimum speed of twelve pages per minute.  It must print in color 
+at a minimum speed of ten pages per minute.  As a minimum print color graphs of various system pressures, issue flow, and return flow vs. time 
+in seven colors.  Provide two sets of spare replacement ink cartridges.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>FCC Computer</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Hardware</TTL><BRK/>
+<BRK/>
+<TXT>The FCC computer must be a copy of the personal computer so that upon failure of the personal computer it could be relocated to the pumphouse to 
+assume the personal computers duties.  The normal duties of the FCC computer must be to serve as a remote monitor only of the screens that are 
+available on the personal computer.  The following are the minimum hardware requirements for the FCC computer:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Latest [Core i3] [_____] CPU operating at 3.9 GHZ or faster</OLI><BRK/>
+<BRK/>
+<OLI>8 GB RAM</OLI><BRK/>
+<BRK/>
+<OLI>1 TB hard drive</OLI><BRK/>
+<BRK/>
+<OLI>16X Read Write DVD drive</OLI><BRK/>
+<BRK/>
+<OLI>Color<MET> 432 mm</MET><ENG> 17-inches</ENG> 1080p LED-Backlit flat screen monitor</OLI><BRK/>
+<BRK/>
+<OLI>Keyboard</OLI><BRK/>
+<BRK/>
+<OLI>Pointing device (e.g. mouse)</OLI><BRK/>
+<BRK/>
+<OLI>Parallel communication port</OLI><BRK/>
+<BRK/>
+<OLI>Serial communication port compatible with PLC (e.g. RS-232-C, RS-485)</OLI><BRK/>
+<BRK/>
+<OLI>120 VAC operating power</OLI><BRK/>
+<BRK/>
+<OLI>All cables and connectors interfacing with PLC and Laser Printer</OLI><BRK/>
+<BRK/>
+<OLI>Provide a modem capable of remote troubleshooting of the system.  The modem will not be permanently connected to the System</OLI><BRK/>
+<BRK/>
+<OLI>Two USB 3.0 communications ports</OLI><BRK/>
+<BRK/>
+<OLI>Two HDMI ports</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Software</TTL><BRK/>
+<BRK/>
+<TXT>The following is the minimum software to be loaded on the FCC computer.  The FCC computer must be capable of replacing the Personal computer in 
+the pumphouse if the personal computer fails.  It will be set up initially to serve only as a remote monitor of the system while located at the 
+FCC.  Should the personal computer fail, the FCC computer will be relocated to the pumphouse and then assume the role of the personal computer.  
+The computer software must have a built in command to tell the computer whether it is serving as the personal computer or as the remote monitor 
+only.  The software must be the most current versions and compatible with each other to make a complete and usable system.  All software needs 
+to be fully site licensed (provide with software key) and come with all disks to allow a full restore or reload of software in the event of a hard 
+drive crash.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Operating system (the latest commercially available MS Operating System).</OLI><BRK/>
+<BRK/>
+<OLI>Software to tell the computer which mode it is to operate in, i.e. (personal computer or remote monitor).</OLI><BRK/>
+<BRK/>
+<OLI>Software to run as a remote monitor.</OLI><BRK/>
+<BRK/>
+<OLI>Software for programming the PLCs.</OLI><BRK/>
+<BRK/>
+<OLI>The personal computer must communicate with the PLCs to display system status and change system set points.  The personal computer must 
+have run-time graphical software to display the graphical screens described later and to change set points.</OLI><BRK/>
+<BRK/>
+<OLI>Software for recording, tracking, trending, and printing out the  pressures, flows, and operational status of all monitored components 
+of the fueling system, on a real time basis.</OLI><BRK/>
+<BRK/>
+<OLI>MS Office Professional with Excel to allow the trending data described above to be imported to Excel where it can be studied, manipulated, 
+graphed, and easily sent electronically.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL><SUB>PROGRAMMABLE LOGICAL CONTROLLER (PLC) HARDWARE AND SOFTWARE</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The number of PLCs is project specific.  Without specific direction otherwise, provide one PLC.  For large 
+systems or systems in remote or austere locations, redundant hot back-up PLCs may be advisable.  Confirm need 
+for redundant systems with Service Headquarters or officially designated alternate.  If you have the situation 
+where it is desired to have a redundant "SYS-1/SYS-2" system, use Section <SRF>33 09 53</SRF> AVIATION FUEL PUMP CONTROL 
+AND ANNUNCIATION SYSTEM (TYPE III) and modify accordingly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<OLG><BRK/>
+<OLI><RID>NEMA IA 2</RID>.  PLC must be able to receive discrete and analog inputs and through its programming it must control discrete and analog output 
+functions, perform data handling operations and communicate with external devices and remote I/O racks.  PLC must be a modular, field expandable 
+design allowing the system to be tailored to the process control application.  The capability must exist to allow for expansion to the 
+system by the addition of hardware [and][or] user software.  At a minimum the PLC must include mounting backplanes, power supply modules, 
+CPU module, communication modules, and I/O modules.</OLI><BRK/>
+<BRK/>
+<OLI>Design and test PLC provided for use in the high electrical noise environment of an industrial plant.  PLC module must comply with the <RID>
+FCC Part 15</RID> Part A for radio noise emissions.  The programmable controller processor must be able to withstand conducted susceptibility 
+tests as outlined in <RID>NEMA ICS 2</RID>, <RID>IEEE C37.90</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>PLC must function properly at temperatures between<MET> 0 and 50 degrees C</MET><ENG> 32 and 122 degrees F</ENG>, at 5 to 95 percent relative humidity non-condensing 
+and have storage temperatures between<MET> minus 40 to 60 degrees C</MET><ENG> minus 40 and 140 degrees F</ENG> at 5 to 95 percent relative humidity non-condensing.</OLI><BRK/>
+<BRK/>
+<OLI>PLC must have manufacturer's standard system status indicators (e.g. power supply status, system fault, run mode status, back-up battery 
+status).</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Central Processing Unit Module</TTL><BRK/>
+<BRK/>
+<TXT>The CPU must be a modular self-contained unit that will provide time of day, scanning, application (ladder rung logic) program execution, storage 
+of the application program, storage of numerical values related to the application process and logic, I/O bus traffic control, peripheral and external 
+device communications and self-diagnostics.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Supply Module</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The power requirements are to be in accordance with the available power at the Activity (such as OCONUS 
+regions).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>The power supply module must be plugged into the backplane not separately mounted.  The power supply must be wired to utilize 120 VAC, 
+60 Hz power, the system must function properly within the range of minus 10 to plus 15 percent of nominal voltage.  The power supply must 
+provide an output to the backplane at a wattage and voltage necessary to support the attached modules.  A single main power supply module 
+must have the capability of supplying power to the CPU module and local communication and I/O modules.  Auxiliary power supplies must provide 
+power to remote racks.</OLI><BRK/>
+<BRK/>
+<OLI>Each power supply must have an integral on/off disconnect switch to the module.  If the manufacturers standard power supply does not have 
+an on/off disconnect switch a miniature toggle type switch must be installed near the PLC and clearly labeled as to its function.</OLI><BRK/>
+<BRK/>
+<OLI>The power supply must monitor the incoming AC line voltage for proper levels and have provisions for both over current and over voltage 
+protection.  If the voltage level is detected as being out of range the system must have adequate time to complete a safe and orderly shutdown.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Program Storage/Memory Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The PLC must have the manufacturers standard nonvolatile executive memory for the operating system.  The PLC must also have EEPROM (Electrically 
+Erasable Programmable Read Only Memory) for storage of the user program and battery backup RAM for application memory.  The EEPROM must 
+be loaded by use of the laptop computer or the personal computer.</OLI><BRK/>
+<BRK/>
+<OLI>Submit a calculation of the required amount of EEPROM and RAM (random access memory) needed for this application plus an extra 50 percent.</OLI><BRK/>
+<BRK/>
+<OLI>The number of times a normally open (N.O.) [and][or] normally closed (N.C.) contact of an internal output can be programmed must be limited 
+only by the memory capacity to store these instructions.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Input/Output (I/O) Modules</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide all required I/O modules (analog input, analog output, discrete input, discrete output, and isolated discrete output) to manipulate 
+the types of inputs and outputs as shown on the drawings and to comply with the sequence of operations.  Also provide a minimum of 20 percent 
+(round up for calculation) spare input and output points of each type provided, but not less than 2 of each type.</OLI><BRK/>
+<BRK/>
+<OLI>I/O modules must be a self-contained unit housed within an enclosure to facilitate easy replacement.  All user wiring to I/O modules must 
+be through a heavy-duty terminal strip.  Pressure-type screw terminals must be used to provide fast, secure wire connections.  The terminal 
+block must be removable so it is possible to replace any input or output module without disturbing field wiring.</OLI><BRK/>
+<BRK/>
+<OLI>During normal operation, a malfunction in any remote input/output channel must affect the operation of only that channel and not the operation 
+of the CPU or any other channel.</OLI><BRK/>
+<BRK/>
+<OLI>Isolation must be used between all internal logic and external power circuits.  This isolation must meet the minimum specification of 1500 
+VRMS.  Provide optically isolated I/O components which are compatible with field devices.</OLI><BRK/>
+<BRK/>
+<OLI>Each I/O module must contain visual indicators to display ON/OFF status of individual input or output points.</OLI><BRK/>
+<BRK/>
+<OLI>Discrete output modules must be provided with self-contained fuses for overload and short circuit protection of the module.</OLI><BRK/>
+<BRK/>
+<OLI>All input/output modules must be color coded and titled with a distinctive label.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Interfacing</TTL><BRK/>
+<BRK/>
+<TXT>The PLC must have communication ports and communication modules using the manufacturers standard communication architecture for connections of 
+the Personal computer, and Laptop Computer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Program Requirements</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The programming format must be ladder diagram type as defined by <RID>NEMA IA 2</RID>.</OLI><BRK/>
+<BRK/>
+<OLI>There must be a means to indicate contact or output status of the contact or output on the monitor (of the personal computer) or LCD screen 
+(of the laptop computer).  Each element's status must be shown independently, regardless of circuit configuration.</OLI><BRK/>
+<BRK/>
+<OLI>The program must be full featured in its editing capabilities (e.g. change a contact from normally open to normally closed, add instructions, 
+change addresses).</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Diagnostics</TTL><BRK/>
+<BRK/>
+<TXT>The CPU must continuously perform self-diagnostic routines that will provide information on the configuration and status of the CPU, memory, communications 
+and I/O.  The diagnostic routines must be regularly performed during normal system operation.  A portion of the scan time of the controller should 
+be dedicated to perform these housekeeping functions.  In addition, a more extensive diagnostic routine should be performed at power up and during 
+normal system shutdown.  The CPU must log I/O and system faults in fault tables, which must be accessible for display.  When a fault affects I/O 
+or communication modules the CPU must shut down only the hardware affected and continue operation by utilizing healthy system components.  All 
+faults must be annunciated on the alarm annunciator.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>PUMP CONTROL PANEL (PCP) AND COMPONENTS</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Where two or more system components performing the same function are required, they must be exact duplicates produced by the same manufacturer.  
+All display instruments of each type must represent the same outward appearance, having the same physical size and shape, and the same 
+size and style of numbers, characters, pointers, and lamp lenses.</OLI><BRK/>
+<BRK/>
+<OLI>The PCP must include all required resident software programs and hardware to provide the specified sequence of operation.  All software 
+optical discs, including programming manuals, must be turned over to the Government at the completion of start-up so modification can be 
+done in the field with no outside assistance.</OLI><BRK/>
+<BRK/>
+<OLI>It is intended that process controlling devices except field devices, and motor controllers be attached to or mounted within the PCP enclosure 
+and all interconnecting wiring installed prior to shipment to the job site.  This is to allow shop testing of the system and to decrease 
+field labor requirements.</OLI><BRK/>
+<BRK/>
+<OLI>The PCP must be shipped fully assembled in one piece after the completion of the shop tests and all defects corrected.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Wiring methods and practices must be in conformance with <RID>NEMA ICS 1</RID>, <RID>NEMA ICS 2</RID>, <RID>NEMA ICS 4</RID>, and <RID>NEMA ICS 6</RID> recommendations as applicable.  All 
+wiring to instruments and control devices must be made with stranded wire, and wiring must be permanently labeled with conductor/wire numbers within 
+one-inch of termination points.  Labels must be tubular heat-shrinkable wire markers that remain legible after exposure to industrial fluids and 
+abrasion.  Position markers so that wire numbers can be read without disturbing or disconnecting wiring.  Use of individual character-markers placed 
+side-by-side is not acceptable.  Numbers must match approved shop drawings.  All wiring must be neatly laced from point of entry into enclosures 
+to termination points with nylon lacing cord or plastic lacing ties.  Lacing within wiring channels is not required.  Where the PCP contains intrinsically 
+safe wiring, barriers or other devices, the panel must be arranged so that all intrinsically safe wiring is separated from non-intrinsically safe 
+wiring by approved methods.  Wiring channels containing intrinsically safe wiring must be blue and be labeled as "Intrinsically Safe Wiring Only" 
+on the cover.  All conduit penetrations into the PCP containing intrinsically safe wiring must be separated from non-intrinsically safe conduit 
+penetrations by a minimum of<MET> 50 mm</MET><ENG> 2-inches</ENG>.  Provide typed <SUB>Control Wiring Data Lists</SUB> within each terminal cabinet and the PCP.  The data lists 
+must include: conductor identification number, wire gauge, wire insulation type, "FROM" terminal identification, "TO" terminal identification, 
+and remarks.  The preliminary lists generated by the Contractor will be submitted for approval to the Contracting Officer and will be updated to 
+As-Built conditions by the Contractor.  The As-Built data lists must be placed in a document holder within each enclosure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Certified Pump Control Panel (PCP) Shop Test Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The manufacturer must shop test the PCP, Personal computer, and laptop computer.  The procedure must include simulation of field components and 
+must provide for fully testing the pump control and annunciator system as a unit before delivery to the project site.  The test must, reveal system 
+defects, including, but not limited to, functional deficiencies, operating program deficiencies, algorithm errors, timing problems, wiring errors, 
+loose connections, short circuits, failed components and misapplication of components.  The test must be performed prior to shipment to the site 
+and problems detected must be corrected.  The final testing and correction sequence must be repeated until no problems are revealed and then two 
+additional successful tests must be performed.  Submit certified test report within 15-days after completion of the test.  The report must include 
+a statement that the Pump Control Panel performs as specified.  Notify the Contracting Officer and the Service Headquarters 30-days prior to the 
+final shop testing date.  The Contracting Officer may require a Government witness at the final test before the PCP is shipped to the site.</TXT> <BRK/>
+<BRK/></SPT>
+<SPT><TTL>Ventilation System</TTL><BRK/>
+<BRK/>
+<TXT>Thermostat T-1, must control fan F-1 [and thermostat T-2 must control fan F-2].  T-1 [and T-2] must be set at<MET> 27 degrees C</MET><ENG> 80 degrees F</ENG> to maintain 
+interior air temperature to<MET> minus 7 degrees C</MET><ENG> 20 degrees F</ENG> above ambient.  Thermostat [T-2] [T-3], set at<MET> 38 degrees C</MET><ENG> 100 degrees F</ENG>, must provide 
+a non-critical PCP HIGH TEMPERATURE alarm to the alarm annunciator.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding</TTL><BRK/>
+<BRK/>
+<TXT>The PCP ground bar must be connected to the building counterpoise via a #10 AWG conductor.  Within the enclosure all I/O racks, processor racks, 
+and power supplies must be grounded to meet the manufacturer's specifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Indicator Lights, Switches, and Pushbuttons</TTL><BRK/>
+<BRK/>
+<TXT>Indicator lights, switches, and pushbuttons must be mounted through the PCP enclosure and must be arranged to allow easy vision and operation of 
+each device.  Each device must have a nameplate [and][or] legend plate as indicated on the drawings.  Nameplate wordings must be as indicated on 
+the drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Surge Protective Devices</TTL><BRK/>
+<BRK/>
+<TXT>Surge protective devices (SPD) must be installed in the PCP to minimize effects of nearby lightning strikes, switching on and off of motors and 
+other inductive loads.  SPD must be provided for each control circuit ladder.  Each ladder may contain any combination of the following devices:  
+PLCs, power supplies (e.g., 24 volt), fans, relays, lights, switches.  SPD must also be provided for PLC I/O originating outside of the building.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Terminal Blocks</TTL><BRK/>
+<BRK/>
+<TXT>As a minimum, any PCP device that connects to a field device (devices not located in the PCP) must be connected to a terminal block.  A connection 
+diagram similar to the drawings must be provided to the field Contractor for field connections to the PCP.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Circuit Breakers</TTL><BRK/>
+<BRK/>
+<TXT>As a minimum, any 120 volt PCP device i.e. (fans, lights, power receptacles, 24 VDC power supplies, PLC CPUs, PLC I/O racks) must be provided with 
+an individual circuit breaker.  Additionally 120 volt terminal boards connecting to field devices (devices not located in the PCP) must be protected 
+by a 120 volt circuit breaker.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Uninterruptible Power supplies</TTL><BRK/>
+<BRK/>
+<TXT>The PCP must contain two uninterruptible power supplies (UPS) (each connected to a dedicated circuit).  As shown on the drawings one UPS must supply 
+the PLC System , and the second UPS must supply the miscellaneous device power.  The UPSs output capacity must be sufficient to drive all the system 
+components connected plus 25 percent.  The UPSs must be mounted on shelves near the bottom of the PCP but not rest on the floor of the PCP.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Power Supplies</TTL><BRK/>
+<BRK/>
+<TXT>Provide and install all 120 VAC and 24 VDC power supply.  Interconnecting wiring between UPSs and PLC power supplies must be completely installed 
+prior to shipment to the job site.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alarm Annunciator and Horns</TTL><BRK/>
+<BRK/>
+<TXT>Signals must be initiated by hardwired field contacts or by PCP outputs as required.  The annunciator must energize alarm horns, both an integral 
+panel mounted vibrating horn and remote horns, and flash the appropriate annunciator lamp.  The minimum number of windows must correspond to the 
+number of alarm points, plus 15 percent spare.  The drawings indicate panel layout and the alarms to be annunciated.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Non-critical Alarms</TTL><BRK/>
+<BRK/>
+<TXT>Non-critical alarm windows must be white with black lettering and must sound the PCP mounted vibrating horn and the exterior mounted vibrating 
+horns.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Critical Alarms</TTL><BRK/>
+<BRK/>
+<TXT>Critical alarm windows must be red with white lettering and must sound the PCP mounted vibrating horn and the exterior mounted resonating horns.  
+Critical alarms must also cancel all automatic pump starts in the PLC.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Alarm Sequence</TTL><BRK/>
+<BRK/>
+<TXT>Alarm sequence for each alarm must be as follows (<RID>ISA 18.1</RID> sequence 'A').</TXT><BRK/>
+<OLG><BRK/>
+<OLI>For a normal condition, visual indicator and horns will be off.</OLI><BRK/>
+<BRK/>
+<OLI>For an alarm condition, visual indicator will flash, and horns will sound (this condition will be locked in).</OLI><BRK/>
+<BRK/>
+<OLI>Upon acknowledgment of the alarm condition, visual indicator will be steady on and the horns will be off.</OLI><BRK/>
+<BRK/>
+<OLI>If, after acknowledgment of an alarm condition, another alarm condition is established, the new alarm will cause the appropriate window 
+to flash and the horn to sound.</OLI><BRK/>
+<BRK/>
+<OLI>When condition returns to normal after acknowledgment, the visual indicator and the horn will be off.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Personal Computer</TTL><BRK/>
+<BRK/>
+<TXT>The personal computer must be a stand alone, desk top mounted unit.  The personal computer must download system parameters from the PLCs for display.  
+The personal computer must also upload new set point values that the operator has changed using the personal computer keyboard, after a password 
+has been entered.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Screen Number 1</TTL><BRK/>
+<BRK/>
+<TXT>This must be a general opening screen.  As a minimum it must display the name and location of the installation (e.g. Selfridge Air National Guard 
+Base, Michigan), name of the project (e.g., Aviation Fuel Farm) and screen navigation information.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Screen Number 2</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Designer of Record must select the parameters.  See <SRF>33 09 53</SRF> AVIATION FUEL PUMP CONTROL AND ANNUNCIATION 
+SYSTEM (TYPE III) for a typical TYPE III Hydrant System PCP and adjust to suit the specific system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Screen number two must list the systems parameters monitored by the PCP and their current value.  The values must be continuously updated, a 2 
+second delay maximum between updates will be acceptable.</TXT><BRK/>
+<LST><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="5">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="216.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="216.00"/>
+      <ROW>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Parameter</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Value</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="69.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">Only one of the words separated by a slash (/) must be displayed. The xxxxx.x HOURS is the fuel pumps elapsed run time and the value must not be lost when the lead PLC is switched. The pump and valve status words must be color coded to match the colors used on the graphic display screen.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/></SPT>
+<SPT><TTL>Screen Number 3</TTL><BRK/>
+<BRK/>
+<TXT>The following table must be displayed.  The table lists the set points that can be adjusted using the operator interface.  A password must be entered 
+before the "current value" can be adjusted.  The value entered can only be a number within the "set point range".  The "default value" is the value 
+held in the program that is loaded into EEPROM memory (This screen may require more than one display screen).</TXT><BRK/>
+<TXT><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="6">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="147.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="116.25"/>
+      <COL AUTOWIDTH="0" WIDTH="106.50"/>
+      <COL AUTOWIDTH="0" WIDTH="86.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="54.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">SET POINT DESCRIPTION</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">SET POINT RANGE</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">DEFAULT VALUE</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">CURRENT VALUE</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="42.00">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="63.75">
+         <CEL STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Screen Number 4</TTL><BRK/>
+<BRK/>
+<TXT>This screen must be a duplicate of the Graphic Display Drawing showing a schematic of the process flow.  This screen must be referred to as the 
+graphical display.  Many operating parameters must be displayed here as required in later paragraphs of this specification.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Screen Number 5</TTL><BRK/>
+<BRK/>
+<TXT>This screen must be a duplicate of the Alarm Annunciator and it must be superimposed over the current active screen on the personal computer monitor 
+when an alarm is activated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Screen Number 6</TTL><BRK/>
+<BRK/>
+<TXT>This screen must be a screen designed solely for assisting the testing team during initial start up to watch all of the significant parameters 
+of the systems operation simultaneously on one screen.  This screen must include the system parameters i.e. (flows, pressures, status) from screen 
+2, the set points from screen 3, and timers for all of the actions that will take place following a delay function.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Screen Number 7</TTL><BRK/>
+<BRK/>
+<TXT>This screen must be an alarm history screen.  This screen must be referred to as the Alarm History Display.  This screen must be capable of storing 
+and displaying all alarms that have occurred in the system for at least a period of 30-days.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Screen Number 8</TTL><BRK/>
+<BRK/>
+<TXT>This screen must be a screen designed solely for displaying the parameters and process involved in the Tightness Test as described in this specification 
+and on the drawings.  The following values must be displayed concurrently against time: Pressure (as sensed by PIT3).  The system will be able 
+to produce graphs on the screen of this data and be able to print the data in color on the laser printer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Laptop Computer</TTL><BRK/>
+<BRK/>
+<TXT>The Laptop computer must be used to create, edit, and load the ladder logic program into the PLCs and the operator interface graphics control program 
+into the personal computer.  The Laptop must also be used to monitor the PLCs memory and ladder logic program.  The computer must be stored in 
+a lockable cabinet located within the Pump Control Panel.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>PROGRAMMABLE LOGICAL CONTROLLER (PLC) HARDWARE AND SOFTWARE</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>The basic operation of the PLC system is (Reference "Control System Block Diagram" on the drawings):</TXT><BRK/>
+<OLG><BRK/>
+<OLI>The CPU and its associated I/O rack (I/O-1) sends system outputs to appropriate devices and receive input signals from  field devices (PITs-1, 
+DPTs-1, DPTs-3, flow switches, valve limit switches).</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Programs</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Provide two copies of all working programs (i.e. PLC logic, personal computer) on read only optical discs as well as a printed program 
+listing.</OLI><BRK/>
+<BRK/>
+<OLI>Provide rung comments (documentation) in the ladder logic program.  Each device, on the ladder, must be identified as to the type of device, 
+i.e. limit switch XX, flow indicator XX, motor starter XX.  Rung comments must be provided for input and output rungs.  The programmer 
+must also provide a comment describing the function of each rung or group of rungs that accomplish a specific function.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>GRAPHICS DISPLAY SCREEN</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>The graphic display screen shall be capable of being displayed on the personal computer monitor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Display Presentation</TTL><BRK/>
+<BRK/>
+<TXT>The Graphic Display shall depict the process fuel flow schematically as indicated on the drawings.  Red, green, and amber symbols shall be integrated 
+with the process schematic to provide current equipment status graphically.  The symbols shall be located immediately adjacent to related equipment 
+symbol.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Process Schematic</TTL><BRK/>
+<BRK/>
+<TXT>The process schematic graphic representation shall utilize conventional symbols when possible.  Symbols and flow lines shall be sized and spaced 
+so as to provide a clear representation of the system process.  The Graphic Display shall be suitable for supervised field modification when future 
+items are added.  Minor changes may be incorporated to allow proper line width and spacing.  Component arrangement, piping routing, and location 
+of valves shall match the flow diagram.  The Graphic Display layout shall be approved by the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Digital Flow and Pressure Indicators</TTL><BRK/>
+<BRK/>
+<TXT>The graphics display screen shall have digital displays for the flows and pressures as indicated on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Installation must conform to the manufacturer's drawings, written recommendations and directions.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Shop Drawing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>The shop drawing must be clear and readable and preferably drawn using a computer aided drafting package.  At the conclusion of the project the 
+diagram drawings must be redrafted to include all as-built conditions.  These updated drawings must be included in the O&amp;M Manuals and appropriate 
+section of the drawings placed in a data pocket located in each of the enclosures.  The shop drawing at a minimum must show:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Overall dimensions, front, side and interior elevation views of the PCP showing size, location and labeling of each device.</OLI><BRK/>
+<BRK/>
+<OLI>Overall dimensions, front elevation of the GDP showing graphical layout and size, location and labeling of each device.</OLI><BRK/>
+<BRK/>
+<OLI>Power ladder diagram indicating power connections between SDP, power conditioners, PLCs, power supplies and field and panel devices.  Any 
+terminal block connection numbers used must be indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Control ladder diagram indicating control connections between field and devices and PLC I/O modules.  Terminal block connection numbers 
+and PLC terminal numbers must be indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Communication connections between PLCs and I/O racks.  Communication channel numbers must be indicated.</OLI><BRK/>
+<BRK/>
+<OLI>Bill of materials.</OLI><BRK/>
+<BRK/>
+<OLI>Written control sequence covering all inputs, outputs, and control scheme.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>System Start-Up and Testing</TTL><BRK/>
+<OLG><BRK/>
+<OLI>At PCP start-up and testing provide personnel, onsite, to provide technical assistance, program fine tuning, and to start-up and test the 
+system.  Start-up and testing must be coordinated with the overall fueling system start-up test specified in Section<SRF> 33 08 55</SRF> FUEL DISTRIBUTION 
+SYSTEM START-UP (NON-HYDRANT).  Prior to this test, all connections must have been made between the PCP, the personal computer, the motor 
+control center, and all field devices.  In addition, wiring must have been checked for continuity and short circuits.  Adjust set point 
+values, timing values, and program logic as required to provide a functional hydrant fuel control system.  Once the system has been fine 
+tuned and passed the system test, the new system default values, must be loaded into the PLC EEPROM and the personal computer screens adjusted 
+to indicate the new values.</OLI><BRK/>
+<BRK/>
+<OLI>A step-by-step <SUB>Testing Plan</SUB> of the PCP must be submitted.  The test must be designed to show that every device (lights, switches, personal 
+computer display screens, alarms) on the PCP and personal computer is in working order and that the PLC program controls the system per 
+specifications.  The test must be performed in conjunction with Section <SRF>33 08 55</SRF> FUEL DISTRIBUTION SYSTEM START-UP (NON-HYDRANT).  The 
+plan must include a place for the Contractor and government representative to initial each step of the plan after satisfactory completion 
+and acceptance of each step.  The complete initialed <SUB>Record of Test</SUB> must be certified by the Contractor and then submitted.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>Training Plan for Instructing Personnel</SUB></TTL><BRK/>
+<OLG><BRK/>
+<OLI>Upon completion of the system start-up a competent technician regularly employed by the PCP manufacturer must hold a training class for 
+the instruction of Government personnel in the operation and maintenance of the system.  Provide both classroom type theory instruction 
+and hands-on instruction using operating system components provided.  The period of instruction must be a minimum of three 8-hour working 
+days.  The training must be designed to accommodate 8 operators, 4 maintenance personnel, and 2 programmers.  The Contracting Officer must 
+receive written notice a minimum of 14-days prior to the date of the scheduled classes.</OLI><BRK/>
+<BRK/>
+<OLI>Furnish a written lesson plan and training schedule for Government approval at least 60-days prior to instructing operating, maintenance 
+and programming personnel.  Concurrently submit above to the Service Headquarters or officially designated alternate for their input into 
+the review process.  Approval of lesson plan will be based on both Government and Service Headquarters' concurrence.  This plan must be 
+tailored to suit the requirements of the Government.  The training must be divided into three separate classes.  Each class must be tailored 
+to a specific group of personnel.  The groups are: 1) Operators, those that will use the control system on a day-to-day basis; 2) Maintenance 
+personnel, those that will perform routine and non-routine maintenance and trouble shooting of the control system; 3) Programmers, those 
+that will make changes to and trouble shoot the PLC and personal computer programs.  The training program must provide:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">a detailed overview of the control system including the complete step-by-step procedures for start-up, operation and shut-down 
+of the control system.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">a general overview of programmable logic controllers.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">the maintenance of system components installed.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">the programming of the PLC and Personal Computer.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">troubleshooting of the system.</OLI><BRK/>
+<BRK/>
+<OLI>Complete approved Operation and Maintenance manuals for this specification and <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM (specifically pertaining 
+to the motor control center and its relay ladder diagrams) must be used for instructing operating personnel.  Training must include both 
+classroom and hands-on field instruction.  The class must be recorded in DVD format.</OLI><BRK/>
+<BRK/>
+<OLI>Provide training courses in DVD format covering system overview, operation, maintenance, trouble shooting, and programming.  These DVDs 
+must be produced onsite by the Contractor using the supplied Pump Control Panel as the teaching aid, or commercially produced DVDs by the 
+PLC manufacturer or third party who specializes in training on PLC systems.  Along with the DVDs, provide workbooks, which follow along 
+with the DVDs.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>PLC CONTROL SYSTEM SEQUENCE OF OPERATION</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Only the most complicated systems will have redundant hot back-up PLCs and redundant field measuring sensors 
+(dual pressure transmitters and dual differential pressure transmitters, UPSs, power supplies, CPUs, I/O modules, 
+and inputs and outputs); they are typically only required for Type III Hydrant Systems.  If you have the situation 
+where it is desired to have a redundant "SYS-1/SYS-2" system, use Section <SRF>33 09 53</SRF> AVIATION FUEL PUMP CONTROL 
+AND ANNUNCIATION SYSTEM (TYPE III) and modify accordingly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This specification assumes that the system uses manually actuated Pump Control Start/Stop Stations as described 
+in Section <SRF>33 57 55</SRF> FUEL SYSTEM COMPONENTS (NON-HYDRANT) to control the pumps.  If the system uses an automatic 
+pump control system that starts and stops the pumps based on flow and/or pressure, use <SRF>33 09 53</SRF> AVIATION FUEL 
+PUMP CONTROL AND ANNUNCIATION SYSTEM (TYPE III) instead and modify accordingly. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The following describes general functions of the fueling system components.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Abbreviations</TTL><BRK/>
+<OLG><BRK/>
+[<OLI>SYS: components of System including UPS, power supply, CPU, I/O, and system input and outputs.</OLI><BRK/>
+<BRK/>
+<OLI>CPU: SYS PLC CPU.</OLI><BRK/>
+<BRK/>
+<OLI>I/O: SYS PLC input/output modules.</OLI><BRK/>
+<BRK/>
+]<OLI>PCP: Pump Control Panel.</OLI><BRK/>
+<BRK/>
+<OLI>PC: Personal Computer.</OLI><BRK/>
+<BRK/>
+<OLI>UPS: Uninterruptible Power Supply.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Operating Tanks</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Level Control</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this and the following paragraphs if float switches rather than electronic level switches are used 
+for determining tank level alarms.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each operating tank has four level float switches to measure low-low, low, high and high-high levels.</TXT><BRK/>
+<BRK/>
+<SPT><TTL> Low-Low Level</TTL><BRK/>
+<BRK/>
+<TXT>When the low-low level float is activated the associated tank's graphic display low-low level light must light up.  If the selected tank's level 
+drops below the low-low sensor the alarm annunciator's low-low level alarm sequence activates, issue pumps running in automatic mode must be disabled.  
+If all tanks are at low-low level, no issue pumps in automatic mode must be enabled.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Low Level</TTL><BRK/>
+<BRK/>
+<TXT>When the low level float is activated the associated tank's graphic display low level light must light up and the alarm annunciator's non-critical 
+low level alarm sequence activates.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Level</TTL><BRK/>
+<BRK/>
+<TXT>When the high level float is activated the associated tank's graphic display high level light must light up and the alarm annunciator's non-critical 
+high level alarm sequence activates.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High-High Level</TTL><BRK/>
+<BRK/>
+<TXT>When the high-high level float is activated the associated tank's graphic display high-high level light must light up, the alarm annunciator's 
+critical high-high level alarm sequence activates, the pump control panel must de-energize the solenoid on the tank's high level shutoff valve 
+to force it closed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Level Control</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this and the following paragraphs if electronic level switches rather than float switches are used 
+for determining tank level alarms.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each operating tank has level switches to monitor low-low, low, high, and high-high fuel levels.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Low-Low Level</TTL><BRK/>
+<BRK/>
+<TXT>When the low-low level elevation is attained the associated tank's GDP low-low level light must light up.  If the selected tank's level drops below 
+the low-low sensor the alarm annunciator's low-low level alarm sequence activates, issue pumps running in automatic mode must be disabled.  If 
+all tanks are at low-low level, no issue pumps in automatic mode must be enabled.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Low Level</TTL><BRK/>
+<BRK/>
+<TXT>When the low level elevation is attained the associated tank's GDP low level light must light up and the alarm annunciator's non-critical low level 
+alarm sequence activates.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Level</TTL><BRK/>
+<BRK/>
+<TXT>When the high level elevation is attained the associated tank's GDP high level light must light up and the alarm annunciator's non-critical high 
+level alarm sequence activates.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High-High Level</TTL><BRK/>
+<BRK/>
+<TXT>When the high-high level elevation is attained, the associated tank's GDP high-high level light must light up and the alarm annunciator's critical 
+high-high level alarm sequence activates.  The pump control panel must de-energize the solenoid on the tank's high level shutoff valve to force 
+it closed.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Outlet Valve</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use when directed by Service Headquarters.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Each operating tank's outlet valve has two limit switches to indicate valve position.  The closed limit switch is DPDT.  The closed limit switch 
+must close when the valve is fully closed.  When the closed limit switch is closed the associated tank's valve graphic display closed light must 
+activate.  When the valve is fully open, the open limit switch is closed.  At this time the associated tank's valve graphic display open light 
+must activate.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Product Recovery Tank</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Fuel Transfer Pump (FTP)</TTL><BRK/>
+<BRK/>
+<TXT>The pump's motor controller has a status relay to indicate the on/off status of the pump.  When status relay is open the pump's graphic display 
+off light must activate.  When the status relay is closed the pump's graphic display on light must light up.  The status relay state must also 
+be used to start and stop the pumps elapsed run time timer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Overfill Valve (OV)</TTL><BRK/>
+<BRK/>
+<TXT>The tank's overfill valve has a limit switch to indicate valve position.  The switch is SPST.  The switch must close when the valve is fully closed.  
+When the limit switch is closed, the tank's graphic display valve closed light must light up and the alarm annunciator's non-critical alarm sequence 
+activates.  When the limit switch is open the tank's graphic display valve open light must light up.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High Level Alarm</TTL><BRK/>
+<BRK/>
+<TXT>The tank has a high level alarm float switch.  The switch is SPST.  When the high level alarm float is activated the tank's graphic display high 
+level light must light up and the alarm annunciator's critical alarm sequence activates.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>High-High Level Alarm</TTL><BRK/>
+<BRK/>
+<TXT>The tank has a high-high level alarm float switch.  When the high-high level alarm float is activated the tank's graphic display high-high level 
+light must light up and the alarm annunciator's critical alarm sequence activates.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Leak Detection</TTL><BRK/>
+<BRK/>
+<TXT>The tank has a leak detection system.  When the leak alarm is activated the alarm annunciator's non-critical alarm sequence activates.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Fueling Pumps (FP)</TTL><BRK/>
+<BRK/>
+<TXT>There are [three][_____] fueling pumps with a maximum of [two][_____] pumps running at one time.  The lead pump selector switch must select the 
+pump starting sequence.  Each pump's motor controller has a status relay to indicate the on/off status of the pump.  When status relay is open 
+the associated pump's graphic display off light must activate and screen number 2 must indicate on.  When the status relay is closed the associated 
+pump's graphic display on light must activate and screen number 2 must indicate off.  The status relay state must also be used to start and stop 
+the pumps elapsed run time timer and must be displayed on screen number 2.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Jockey Pump (JP)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Recommended for use in cases of long transfer lines or inter-terminal pipelines for Tightness Test System.  
+Delete this option if existing system pumps are utilized for Tightness Test.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>There is one jockey pump.  The jockey pump must not run concurrently with any of the fueling pumps.  The jockey pump's motor controller has a status 
+relay to indicate the on/off status of the pump.  When status relay is open the associated pump's graphic display off light must activate and screen 
+number 2 must indicate on.  When the status relay is closed the associated pump's graphic display on light must activate and screen number 2 must 
+indicate off.  The status relay state must also be used to start and stop the elapsed run time timer and must be displayed on screen number 2.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Flow Switch, Fueling Pump</TTL><BRK/>
+<BRK/>
+<TXT>On the discharge side of each pump is a flow switch to indicate positive flow (fail safe feature).  If the PLC has given a signal to start a pump 
+and the flow switch has not closed before the set point timer expires or if the flow switch opens after the pump has been running then the pump 
+must be in a failure state and it must be disabled (taken out of the starting sequence), the alarm annunciator's non-critical alarm sequence must 
+also be activated, and the next pump in the start sequence started.  After the PLC has stopped all of the pumps, any failed pump must be added 
+back into the start sequence.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Flow Switch, Jockey Pump</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Recommended for use in cases of long transfer lines or inter-terminal pipelines for Tightness Test System.  
+Delete this option if existing system pumps are utilized for Tightness Test.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>On the discharge side of the jockey pump is a flow switch to indicate positive flow (fail safe feature).  The flow switch is DPDT. If the PLC has 
+given a signal to start the jockey pump and the flow switch has not closed before the set point timer expires or if the flow switch opens after 
+the pump has been running, then the pump must be in a failure state and it must be disabled.  The alarm annunciator's non-critical alarm sequence 
+must also be activated.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL>Transmitters</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Differential Pressure Transmitter (DPT)</TTL><BRK/>
+<BRK/>
+<TXT>The DPT's measure flow in<MET> L/s</MET><ENG> gpm</ENG>.  The net flow is sent to the personal computer display.  The issue rate, return rate and net flow must be displayed 
+on the personal computer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Safety Circuit</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Emergency Stop Status</TTL><BRK/>
+<BRK/>
+<TXT>The emergency stop circuit status relay (ER1) N.O. contact must be connected to I/O-1, I/O-2 and UPS#2 as indicated on the Terminal Block Connection 
+drawing.  When the circuit is activated the alarm annunciator's critical alarm sequence is activated and any calls to start fueling pumps must 
+be canceled and no additional pump start signals must be sent until the circuit has been reset.  The fueling pumps will actually be stopped by 
+an emergency stop circuit status relay (ER2) N.O. contact in the fuel pump motor control circuit located in the motor control center.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Emergency Shutoff Valves (ESO) Status</TTL><BRK/>
+<BRK/>
+<TXT>The ESO status relay (ER2) N.O. contact must be connected to I/O and UPS#2 as indicated on the Terminal Block Connection drawing.  When the ESO 
+status relay is closed the [Filter Separator control valves (FSV)][_____] closed lights must light up.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Circuit Power Status</TTL><BRK/>
+<BRK/>
+<TXT>When the safety circuit power status relay is closed the PCP emergency circuit power on light must light up.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pump Control Panel</TTL><BRK/>
+<BRK/>
+<SPT><TTL>CPU Faults</TTL><BRK/>
+<BRK/>
+<TXT>The PCP mounted CPU on light is connected to SYS.  The associated CPU light must light when no system faults are detected.  When a fault is detected 
+by the CPU the faulted CPU's on light must be turned off and the alarm annunciator's non-critical alarm sequence must be activated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Mode Select Switch</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Typical switch selections are presented, adjust to suit the actual system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The 2-position switch selects what mode of fueling is active: issue, or off.  The screen number 2 status must indicate the active mode.</TXT><BRK/>
+<BRK/>
+[<TXT>The 3-position switch selects what mode of fueling is active: issue, [tightness test][transfer] or off.  The screen number 2 status must indicate 
+the active mode.</TXT><BRK/>
+<BRK/>
+][<TXT>The 4-position switch selects what mode of fueling is active: issue, transfer, tightness Test or off.  The screen number 2 status must indicate 
+the active mode.</TXT><BRK/>
+<BRK/>
+]</SPT><SPT><TTL>Lead Pump Selector Switch</TTL><BRK/>
+<BRK/>
+<TXT>The [3][_____]-position switch selects which pump must be the lead pump.  The switch position must fix the starting sequence for all pumps.  The 
+sequences must be 1-2-3, 2-3-1, and 3-1-2, 1-2-3 [_____].  The off sequence must be the reverse of the start sequence, therefore, first on will 
+be last off.  A maximum of [two] [_____] pumps will be allowed to run at one time.  If a pump fails to start or fails during operation, that pump 
+will be disabled and the next pump in the sequence started.  The screen number 2 status display must indicate the lead pump.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PCP Temperature Alarm</TTL><BRK/>
+<BRK/>
+<TXT>The alarm thermostat when activated must activate the alarm annunciator's non-critical alarm sequence.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>OPERATING PROGRAM REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<TXT>The control system's logic program must be stored on a EEPROM chip.  Default values of operator adjustable parameters must be permanently stored 
+on the chip with the capability of resetting the values in RAM to the values within the range specified below.  The default values can be changed 
+through the use of the personal computer (after the correct password has been entered).  After loss of power and battery failure the adjustable 
+settings must revert back to the default values located on the chip.  The default values shown here must be reset to the values determined during 
+the system start up and test.</TXT><BRK/>
+<LST INDENT="-0.33"><TAB>
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <INT COLOR="#f2f2f2" PATTERN="SOLID"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="8">
+      <COL AUTOWIDTH="0" WIDTH="172.50"/>
+      <COL AUTOWIDTH="0" WIDTH="135.75"/>
+      <COL AUTOWIDTH="0" WIDTH="123.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">SET POINT DESCRIPTION</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">SET POINT RANGE</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">DEFAULT VALUE</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">[Jockey] pump starting pressure</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>345 to 552 kPa</MET><ENG> 50 to 80 psi</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">65 psi</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="56.25">
+         <CEL>
+<DTA TYPE="STRING">Timer to enable start-up of [Jockey] pump</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">0 to 120 seconds</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">15 seconds</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="56.25">
+         <CEL>
+<DTA TYPE="STRING">System pressure to stop [Jockey] pump</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>345 to 552 kPa</MET><ENG> 50 to 80 psi</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">75 psi</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="58.50">
+         <CEL>
+<DTA TYPE="STRING">Timer to establish fueling pump failure</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">5 to 30 seconds</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">15 seconds</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="56.25">
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="69.00">
+         <CEL MERGEACROSS="2">
+<DTA TYPE="STRING">Should the operator enter a value not within the range for that parameter, the personal computer must indicate "INVALID ENTRY" and revert back to the previous value.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="64.50">
+         <CEL MERGEACROSS="2" STYLEID="s50">
+<DTA TYPE="STRING">A number inside braces, {x}, in the following paragraphs indicates that the number may be changed by the operator via the operator interface within the Set Point Range listed above.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></LST><BRK/></SPT>
+<SPT><TTL>AUTOMATIC MODE - [ISSUE][ISSUE OR TRANSFER] CONDITION</TTL><BRK/>
+<OLG><BRK/>
+<OLI>The lead pump will start when a Pump Control Station start pushbutton is depressed.</OLI><BRK/>
+<BRK/>
+<OLI>Depressing an additional Pump Control Station pushbutton will bring on additional pumps.</OLI><BRK/>
+<BRK/>
+<OLI>Depress the Pump Control Station stop pushbutton will disable the lead pump.</OLI><BRK/>
+<BRK/>
+<OLI>Depressing an additional Pump Control Station stop pushbuttons will disable the pumps in the order they were brought on.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>TIGHTNESS TEST MODE</TTL><BRK/>
+<BRK/>
+<TXT>This mode must be used in conjunction with the Tightness Monitoring Panel provided by Section <SRF>33 57 55</SRF> FUEL SYSTEM COMPONENTS (NON-HYDRANT) to 
+perform tightness tests.  Placing the selector switch to "TIGHTNESS TEST" the PCP will send a signal to the Tightness Monitoring Panel telling 
+it that it is ready to perform the tests.  At this time it will also operate MOV valves, closing and  opening as required to run tests.  The PCP 
+will then receive signals from the Tightness Monitoring Panel to prepare for High Pressure Test, run High Pressure Test, Prepare for Low Pressure 
+Test, run Low Pressure Test, prepare for 2nd High Pressure Test, run 2nd High Pressure Test, and when the test is over.  The following PCP actions 
+will occur after the corresponding signal:</TXT><BRK/>
+<BRK/>
+<TXT><HL1>Prepare for High Pressure Test</HL1>:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Automatically start the [jockey ]pump to obtain pressure.</OLI><BRK/>
+<BRK/>
+<OLI>When the [jockey ]pump is started, a 15 second timer must start.  If the timer expires before the flow switch closes the alarm annunciator's 
+associated non-critical alarm sequence must activate.</OLI><BRK/>
+<BRK/>
+<OLI>If the [jockey ]pump's flow switch opens after the pump successfully started the alarm annunciator's associated non-critical alarm sequence 
+must activate.</OLI><BRK/>
+<BRK/>
+<OLI>If the [jockey ]pump fails to establish flow, automatically start the lead fueling pump to obtain pressure.</OLI><BRK/>
+<BRK/>
+<OLI>When a fueling pump is started, a 15 second timer must start.  If the timer expires before the flow switch closes the alarm annunciator's 
+associated non-critical alarm sequence must activate.</OLI><BRK/>
+<BRK/>
+<OLI>If a fueling pumps flow switch opens after the pump successfully started the alarm annunciator's associated non-critical alarm sequence 
+must activate.</OLI><BRK/>
+<BRK/>
+<OLI>MOV will be opened.</OLI><BRK/>
+<BRK/>
+[<OLI>The pump will continue to run until such time as the run High Pressure test signal is received.  Note: The Tightness Monitoring Panel is 
+monitoring the Loop pressure and when it is satisfied that it is high enough it will instruct the PCP to Run the High Pressure test.</OLI><BRK/></OLG>
+<BRK/>
+]<TXT><HL1>Run High Pressure Test</HL1>:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>MOV will actuate as determined by the Tightness Test system manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>[Jockey ]Fueling pump will be shut off.</OLI><BRK/></OLG>
+<BRK/>
+<TXT><HL1>Prepare for Low Pressure Test</HL1>:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>MOV will actuate as determined by the Tightness Test system manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>The system will remain in this status until such time as the PCP receives a Run Low Pressure test signal from the Tightness Monitoring 
+Panel.  Note: The Tightness Monitoring Panel will monitor the loop pressure until it reaches the<MET> 345 kPa</MET><ENG> 50 psi</ENG> value.  It will then instruct 
+the PCP to run the Low pressure test.</OLI><BRK/></OLG>
+<BRK/>
+<TXT><HL1>Run Low Pressure Test</HL1>:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>MOV will actuate as determined by the Tightness Test system manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>The system will remain in this status until such time as the PCP receives a Prepare for 2nd High Pressure test signal from the Tightness 
+Monitoring Panel.  Note: The Tightness Monitoring Panel will wait for a ten minute settling period to expire, then it will monitor the 
+loop pressure for two minutes.  Upon finishing this test it will instruct the PCP to prepare for 2nd High Pressure Test.</OLI><BRK/></OLG>
+<BRK/>
+<TXT><HL1>Prepare for 2nd High Pressure Test</HL1>:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Automatically start the [jockey] pump to obtain pressure.</OLI><BRK/>
+<BRK/>
+<OLI>When a fueling pump is started, a 15 second timer must start.  If the timer expires before the flow switch closes the alarm annunciator's 
+associated non-critical alarm sequence must activate.</OLI><BRK/>
+<BRK/>
+<OLI>If a fueling pumps flow switch opens after the pump successfully started the alarm annunciator's associated non-critical alarm sequence 
+must activate.</OLI><BRK/>
+<BRK/>
+<OLI>MOV will actuate as determined by the Tightness Test system manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>When the [jockey ]pump is started, a 15 second timer must start. If the timer expires before the flow switch closes the alarm annunciator's 
+associated non-critical alarm sequence must activate.</OLI><BRK/>
+<BRK/>
+<OLI>If the [jockey ]pump's flow switch opens after the pump successfully started the alarm annunciator's associated non-critical alarm sequence 
+must activate.</OLI><BRK/>
+<BRK/>
+<OLI>If the [jockey ]pump fails to establish flow, automatically start the lead fueling pump to obtain pressure.</OLI><BRK/>
+<BRK/>
+<OLI>When a fueling pump is started, a 15 second timer must start.  If the timer expires before the flow switch closes the alarm annunciator's 
+associated non-critical alarm sequence must activate.</OLI><BRK/>
+<BRK/>
+<OLI>If a fueling pumps flow switch opens after the pump successfully started the alarm annunciator's associated non-critical alarm sequence 
+must activate.</OLI><BRK/>
+<BRK/>
+<OLI>MOV will actuate as determined by the Tightness Test system manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>Pump will continue to run until such time as the run 2nd High Pressure test signal is received.  Note: The Tightness Monitoring Panel is 
+monitoring the Loop pressure and when it is satisfied that it is high enough it will instruct the PCP to Run the 2nd High Pressure test.</OLI><BRK/></OLG>
+<BRK/>
+<TXT><HL1>Run 2nd High Pressure Test</HL1>:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>MOV will actuate as determined by the Tightness Test system manufacturer.</OLI><BRK/>
+<BRK/>
+<OLI>[Jockey ]Fueling pump will be shut off.</OLI><BRK/>
+<BRK/>
+<OLI>The PCP will leave the system as is until such time as the PCP selector switch is placed into a different mode.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>OFF MODE</TTL><BRK/>
+<OLG><BRK/>
+<OLI>Automatic starting of fueling [and jockey] pumps must be disabled.  All other functions (graphic display, alarm annunciator, personal computer, 
+control valve solenoids) must be active to allow manual control of the fueling pumps using the Hand-Off-Auto or Hand-Auto switch.</OLI><BRK/>
+<BRK/>
+<OLI>The second, [third][ and fourth] fueling pumps maybe started or stopped manually as needed by the operator.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>MANUAL OPERATION OF FUELING PUMPS</TTL><BRK/>
+<OLG><BRK/>
+<OLI>If the PLC system is still active see paragraph OFF MODE.</OLI><BRK/>
+<BRK/>
+<OLI>If the PLC system has no power or the CPUs have faulted (CPU light on PCP off) the pumping system will be in a completely manual mode.  
+The safety circuit will need power so that the ESO solenoids on the non-surge check valves will be open and fuel can flow.  The solenoids 
+on the other solenoid controlled valves will be de-energized so the <NED/>valves will have to be manually opened or enabled for the system to 
+run.  Other valves may need to be opened or closed manually by the operators for the system to work properly.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

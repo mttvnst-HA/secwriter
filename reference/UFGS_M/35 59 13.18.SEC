@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-35 59 13.18 (November 2021)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL/>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 35 59 13.18</SCN><BRK/>
+<BRK/>
+<STL>PNEUMATIC AND HYDRO-PNEUMATIC MARINE FENDERS</STL><BRK/>
+<DTE>11/21</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>pneumatic and hydro-pneumatic marine fenders</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Fender type should be selected based on the following considerations:<BRK/>
+<BRK/>
+1.  Performance, including energy, berthing angle, reaction, and hull pressure.<BRK/>
+<BRK/>
+2.  Geometry, including stand-off, dock configuration, vessel configuration, and tidal variation.<BRK/>
+<BRK/>
+3.  Configuration and construction, including corrosion resistance, netted vs not netted, magnetic permeability, 
+buoyancy and portability.</NPR><BRK/>
+<BRK/>
+<NPR>The following information shall be shown on the project drawings:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Location, size,and mounting elevation (if applicable) of each fender type.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Connection details to the waterfront structure.  Include connection sizes, material type, embedment, plate 
+sizes and hole sizes and locations, as applicable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN BUREAU OF SHIPPING (ABS)</ORG><BRK/><BRK/><RID>ABS 2</RID><RTL>(2019) Rules for Building and Classing Steel Vessels</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WELDING SOCIETY (AWS)</ORG><BRK/><BRK/><RID>AWS D1.1/D1.1M</RID><RTL>(2025) Structural Welding Code - Steel</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A123/A123M</RID><RTL>(2024) Standard Specification for Zinc (Hot-Dip Galvanized) Coatings on Iron and Steel Products</RTL><BRK/><BRK/><RID>ASTM A153/A153M</RID><RTL>(2023) Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware</RTL><BRK/><BRK/><RID>ASTM D412</RID><RTL>(2016; R 2021) Standard Test Methods for Vulcanized Rubber and Thermoplastic Elastomers - Tension</RTL><BRK/><BRK/><RID>ASTM D624</RID><RTL>(2000; R 2020) Standard Test Method for Tear Strength of Conventional Vulcanized Rubber and Thermoplastic Elastomers</RTL><BRK/><BRK/><RID>ASTM D2240</RID><RTL>(2015; R 2021) Standard Test Method for Rubber Property - Durometer Hardness</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION (ISO)</ORG><BRK/><BRK/><RID>ISO 34-1</RID><RTL>(2022) Rubber, Vulcanized or Thermoplastic -- Determination of Tear Strength -- Part 1: Trouser, Angle and Crescent Test Pieces</RTL><BRK/><BRK/><RID>ISO 37</RID><RTL>(2024) Rubber, Vulcanized or Thermoplastic -- Determination of Tensile Stress-Strain Properties</RTL><BRK/><BRK/><RID>ISO 815-1</RID><RTL>(2019) Rubber, Vulcanized or Thermoplastic -- Determination of Compression Set -- Part 1: At Ambient or Elevated Temperatures</RTL><BRK/><BRK/><RID>ISO 1431-1</RID><RTL>(2012) Rubber, Vulcanized or Thermoplastic - Resistance to ozone cracking - Part 1: Static and dynamic strain testing</RTL><BRK/><BRK/><RID>ISO 7619-1</RID><RTL>(2010) Rubber, Vulcanized or Thermoplastic - Determination of indentation hardness - Part 1: Duromater method (Shore hardness)</RTL><BRK/><BRK/><RID>ISO 17357-1</RID><RTL>(2014) Ships and Marine Technology - Floating Pneumatic Rubber Fenders - Part 1: High Pressure</RTL><BRK/><BRK/></REF><REF><ORG>U.S. GENERAL SERVICES ADMINISTRATION (GSA)</ORG><BRK/><BRK/><RID>FS RR-C-271</RID><RTL>(Rev H; Am 1) Chains and Attachments, Carbon And Alloy Steel</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pneumatic and Hydro-pneumatic Fenders</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pneumatic fenders are inflated with air and float on the surface of the water to serve as a protective 
+buffer for ships.  Hydro-pneumatic fenders are similar, but contain water in addition to the pressurized air, 
+with a counterweight at one end so the fender is partially submerged and are specifically designed for the berthing 
+of submarines.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Pneumatic and hydro-pneumatic fenders are constructed of an inner rubber layer, reinforcing cord layers and an outer rubber layer that form a synthetic-cord-rubber 
+sheet, which forms a cylindrical air-bag with hemispherical heads at each end,which can be inflated with air.  These fenders can be used as stand-alone 
+fenders, fendering between ships, or between a ship and a berthing structure.  In hydro-pneumatic fenders, the upper hemispherical head has a top 
+plate that allows internal placement of water and air into the bag, and the lower hemispherical head has a bottom plate that provides a connection 
+location for the counterweight.  The air-bag typically has a long cylindrical shape and is counter-weighted to float vertically.  Hydro-pneumatic 
+fenders are typically used as fenders for submarines, acting as buffers between submarines and berthing structures and as separators between submarines.  
+Hydro-pneumatic fenders can be used in combination with foam-filled fenders or pneumatic fenders to support both ships and submarines at the same 
+berth, if designed appropriately.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section 01 33 00 SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G".  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pneumatic Fenders Manufacturer's Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hydro-Pneumatic Fenders Manufacturer's Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Performance requirements:  the rated energy of the fender shall be no less than the calculated berthing 
+energy and the rated fender reaction shall not exceed the allowable load on the structure supporting it.</NPR><BRK/>
+<BRK/>
+<NPR>The maximum reaction divided by the corresponding contact area, shall be less than or equal to the maximum specified 
+hull pressure for fender panels.</NPR><BRK/>
+<BRK/>
+<NPR>Deflected standoff at specified energy must be greater than or equal to minimum specified standoff.  The undeflected 
+standoff, including nets if any, shall not be greater than any specified undeflected standoff.</NPR><BRK/>
+<BRK/>
+<NPR>Fender design load shall be less than the rated reaction of the fender.  Static shear force shall use the minimum 
+static coefficient of friction.  Dynamic shear force for  pneumatic and hydro-pneumatic shall be the rated reaction 
+times the difference between the coefficient of friction between the structure and fender and the coefficient 
+between the fender and vessel times a factor of safety of 1.5.  Dynamic shear force for rubber fenders for slicing 
+surfaces shall be twice the maximum published dynamic coefficient of friction.  For UHMW against steel, use 0.20 
+or the maximum published for the coefficient of friction.</NPR><BRK/>
+<BRK/>
+<NPR>The ultimate elastomeric elongation shall be at least three times the maximum elongation anticipated at maximum 
+design conditions.  The bond strength of the elastomer to its substrate shall be greater than the elastomer's 
+tensile strength at the ultimate elongation.</NPR><BRK/>
+<BRK/>
+<NPR>Structural components shall be sized with a design load that does not exceed 80 percent of yield.  Panel loads 
+shall be based on the greater of:</NPR><BRK/>
+<BRK/>
+<NPR>1.  Horizontal line contact applied at any elevation over the flat height of the panel.</NPR><BRK/>
+<BRK/>
+<NPR>2.  Simultaneous horizontal line contacts at top and bottom edge of the front face of the panel.</NPR><BRK/>
+<BRK/>
+<NPR>Design factor for attachment points, restraints and nets shall be based on 1.5 times the dynamic shear.  The end 
+attachment load shall not exceed 80 percent of yield.  Restraints shall be sized such that the load applied to 
+the weakest component does not exceed 50 percent of its breaking strength.</NPR><BRK/>
+<BRK/>
+<NPR>A weak link, preferably a shackle, swivel or other readily replaceable, cost effective component shall be designed 
+to fail first.  Concrete embedments shall have a break out capacity of at least 1.5 times the characteristic load 
+of the weakest link.</NPR><BRK/>
+<BRK/>
+<NPR>Mechanical hardware, such as fasteners shall be sized with a design working load that does not exceed 60 percent 
+of the lower of the yield or breaking load.</NPR><BRK/>
+<BRK/>
+<NPR>Pneumatic and hydro-pneumatic fenders should have at least 50 percent of the contact dimension in bearing on the 
+supporting structure, or as recommended by the manufacturer.  The contact surface for all floating fenders when 
+not under load, should have low abrasion characteristics.  Typically UHMWPE or plastic is used to face concrete 
+or composite elements in the wear area.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Pneumatic Fenders Performance Characteristics</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hydro-Pneumatic Fenders Performance Characteristics</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pneumatic Fenders Design Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hydro-Pneumatic Fenders Design Data</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Prototype Fender Performance Confirmation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Prototype fender performance confirmation includes the following tests:  (1) performance; (2) angular compression; 
+(3) durability; (4) compression recovery; and (5) puncture resistance.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Dimensional Inspection</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Air-leakage Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Hydrostatic-pressure Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pressure Relief Valve Test</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Design Proof</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Rubber Material Test</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM>  Submit copies of reports of tests specified herein.  Also, submit reports for tests specified in referenced documents which 
+are applicable to the particular material furnished for use.</ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Hydro-Pneumatic Certificates</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Pneumatic Certificates</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Installation Instructions</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Fender Manual</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pneumatic and Hydro-Pneumatic Fenders - Warranty</SUB>; <SUB>G</SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, HANDLING AND STORAGE</TTL><BRK/>
+<BRK/>
+<TXT>Deliver fenders undamaged.  Handle and store fenders as to prevent damage, such as bending or abrading end fittings, cutting of rubber, or damage 
+to coating of hardware.  Protect folded fender corners from forklift and/or maintenance while tires that could possibly damage the outer rubber 
+and reinforced layers of the fender.  Protect fenders from exposure to damaging liquids, oils, greases and extended exposure to sunlight.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Rejection</TTL><BRK/>
+<BRK/>
+<TXT>Fenders that are delivered to the site in a damaged condition or that are not in conformance with this specification are subject to rejection.  
+Replace any rejected materials with suitable materials, at no additional cost to the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fender Marking</TTL><BRK/>
+<BRK/>
+<TXT>Unless otherwise specified, identify all fenders in readable characters at least<MET> 25 mm</MET><ENG> 1 inch</ENG> high, either directly or on corrosion- and sunlight 
+resistant permanently attached tags.  For fenders<MET> 2500 mm</MET><ENG> 8 feet</ENG> in diameter, the letter heights must be a minimum of<MET> 100 mm</MET><ENG> 4 in</ENG>.  The markings 
+must include the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>International Standard number and applicable year, i.e. ISO 17357-1:2014.</OLI><BRK/>
+<BRK/>
+<OLI>size (Diameter and Length),</OLI><BRK/>
+<BRK/>
+<OLI>initial internal pressure,</OLI><BRK/>
+<BRK/>
+<OLI>date of manufacture or its abbreviation,</OLI><BRK/>
+<BRK/>
+<OLI>full or abbreviated name of manufacturer</OLI><BRK/>
+<BRK/>
+<OLI>individual serial number,</OLI><BRK/>
+<BRK/>
+<OLI>type of reinforcement layer,</OLI><BRK/>
+<BRK/>
+<OLI>other information as the purchase specification or contact requires.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Fender Instructions and Manual</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>installation instructions</SUB> and a <SUB>fender manual</SUB> describing maintenance requirements for each fender type.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Handling Coated Material</TTL><BRK/>
+<BRK/>
+<TXT>Store, handle, and place coated material in a manner that will minimize damage to the coating and will not reduce its effective protective value.  
+Repair damaged surfaces as directed and per the Manufacturer's recommendations.  Handle coated work which is flexible in a manner that will prevent 
+flexing sufficient to crack coating, especially when temperature is below<MET> 4 degrees C</MET><ENG> 40 degrees F</ENG>.  Do not place coated surfaces on strips or 
+skids until coating has hardened thoroughly.  Wide fabric slings used for lifting, and strips, slings, blocks, skids, cradles, and other supports 
+must provide ample bearing areas.  In transporting, fasten and protect coated materials in a manner that will prevent movement and preclude chafing 
+and rubbing, and when unloading, do not dump or drop.  Place coated material in position carefully on suitably prepared beds and with a minimum 
+of handling.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Certificates</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>pneumatic certificates</SUB> of compliance and <SUB>hydro-pneumatic certificates </SUB>of compliance certifying that materials meet the requirements specified 
+herein.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Elastomer Skin</TTL><BRK/>
+<BRK/>
+<TXT>The elastomer skin of the fender must be free from cracks, burrs, warpage, checks, chipped or blistered surfaces, and must have a smooth surface.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Steel Fabrication</TTL><BRK/>
+<BRK/>
+<TXT>The steel used in fabrication must be free from kinks, sharp bends, and other conditions which would be detrimental to the finished product.  Manufacturing 
+processes must not reduce the strength of the steel to a value less than intended by the design.  Manufacturing processes must be done neatly and 
+accurately.  Make bends by controlled means to insure uniformity of size and shape.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Welding</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWS D1.1/D1.1M</RID>.  Provide welds of sufficient size and shape to develop the full strength of the parts connected by the welds.  Welds must transmit 
+stress without permanent deformation or failure when the parts connected by the weld are subjected to proof and service loadings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>PNEUMATIC AND HYDRO-PNEUMATIC FENDERS - WARRANTY</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The warranty requirements in this guide specification have been approved by a Level I Contracting Officer 
+in accordance with the requirements of Naval Facilities Acquisition Supplement (NFAS).<BRK/>
+<BRK/>
+NFAS can be found at the following link:  <URL HREF="https://www.navfac.navy.mil">https://www.navfac.navy.mil/</URL></NPR><BRK/>
+<BRK/>
+<NPR>The paragraphs in this guide specification may be used without further approval.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Furnish the manufacturer's warranty.  Issue the warranty directly to the Government. It must not be limited in dollar value.  The warranty period 
+must be not less than 1 year from the date of Government acceptance of the work.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PNEUMATIC AND HYDRO-PNEUMATIC FENDERS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Manufacturer's Data</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Pneumatic Fenders Manufacturer's Data</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Prior to fabrication, submit copies of the manufacturer's catalog data, performance curves per <RID>ISO 17357-1</RID>, dimensions, material specifications, 
+and method of manufacture.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Hydro-Pneumatic Fenders Manufacturer's Data</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Prior to fabrication, submit copies of the manufacturer's catalog data, performance curves per <RID>ISO 17357-1</RID>, dimensions, material specifications, 
+and method of manufacture.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Design Data</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Pneumatic Fenders Design Data</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit rated performance data (RPD) and published performance curves per <RID>ISO 17357-1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Hydro-Pneumatic Fenders Design Data</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit rated performance data (RPD) and published performance curves per <RID>ISO 17357-1</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Configuration</TTL><BRK/>
+<BRK/>
+<TXT>Manufacture fenders in accordance with <RID>ISO 17357-1</RID>.  Fenders must have cylindrical mid-bodies with hemispherical shaped ends terminating in an 
+end fitting on the cylinder's centerline at each end.  Size the flange opening fittings (not to exceed 12 percent of fender diameter) so as not 
+to contact loading surfaces when the fender is compressed to 20 percent of its original diameter (80 percent compression).  Incorporate a safety 
+valve for Pneumatic and Hydro-Pneumatic fenders<MET> 2500 mm</MET><ENG> 8 feet</ENG> diameter or larger and pressure  monitoring system in their manufacture.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dimensions</TTL><BRK/>
+<BRK/>
+<TXT>Diameter and length as indicated on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fender Skin</TTL><BRK/>
+<BRK/>
+<TXT>The fender skin must have a minimum strength in accordance with <RID>ISO 17357-1</RID>.  When designing the skin thickness, consider skin strength and the 
+stress induced by the internal operating and berthing pressure, and the abrasion and impact loads caused by handling and berthing operations.  
+Ensure an adequate margin of safety is incorporated for the fender's intended use.  Design the  connection of the skin to the end fittings to resist 
+the specified minimum endurable pressure at 60 percent compression in <RID>ISO 17357-1</RID> for the respective operating pressure.  For hydro-pneumatic fenders, 
+the Minimum Endurable Pressure value in Table 5 of <RID>ISO 17357-1</RID> (Pneumatic 80 fender pressure requirements) must be used.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Elastomer</TTL><BRK/>
+<BRK/>
+<TXT>Provide <SUB>rubber material test</SUB> proving the elastomer meets the requirements of <RID>ISO 17357-1</RID>, material test of rubber.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  After aging refers to air oven aging at<MET> 70 degrees C</MET><ENG> 158 degrees F</ENG> plus/minus<MET> 1 degree C</MET><ENG> 33.8 degrees F</ENG>
+, 96 hours.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Per <RID>ISO 17357-1</RID>, the elastomer used in the outer skin must be rubber, with the following unreinforced properties:</TXT><BRK/>
+<TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="186.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">a.  Durometer Hardness, Shore A</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">(<RID>ASTM D2240</RID> or <RID>ISO 7619-1</RID>)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Before Aging</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[50 to 70] [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="29.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">After Aging</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Not to exceed the original property by more than 8</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="186.75"/>
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">b.  Minimum Tensile strength</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">(<RID>ASTM D412</RID> or <RID>ISO 37</RID>)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Before Aging</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>[18] [_____] MPa </MET><ENG>[2600] [_____] psi</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">After Aging</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Not less than 80 percent of original property</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="188.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="279.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">c.  Minimum Elongation (ultimate)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">(<RID>ASTM D412</RID> or <RID>ISO 37</RID>)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Before Aging</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[400 percent] [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">After Aging</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Not less than 80 percent of original property</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="2">
+      <COL AUTOWIDTH="0" WIDTH="189.00"/>
+      <COL AUTOWIDTH="0" WIDTH="279.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">d.  Minimum Tear strength</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>[400] [_____] N per cm </MET><ENG>[228] [_____] lbs/inch</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">(<RID>ASTM D624</RID> or <RID>ISO 34-1</RID>)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/></TAB><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="2">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="189.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="279.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="45.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">e.  Compression set</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">30 percent(<MET>70 degrees C </MET><ENG>158 degrees F </ENG>plus/minus<MET> 1 degree C</MET><ENG> 33.8 degrees F</ENG>, 22 hours) or less</DTA>
+         </CEL>
+      </ROW>
+      <ROW>
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">(<RID>ISO 815-1</RID>)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="1">
+      <COL AUTOWIDTH="0" WIDTH="191.25"/>
+      <COL AUTOWIDTH="0" WIDTH="276.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="59.25">
+         <CEL>
+<DTA TYPE="STRING">f.  Static ozone aging test (<RID>ISO 1431-1</RID>)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">No cracks after elongation by 20 percent and exposure to 50 pphm (parts of ozone per hundred million of air by volume) at<MET> 40 degrees C</MET><ENG> 104 degrees F</ENG> for 96 hours</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TXT>The elastomer used in the inner skin must be rubber, with the following unreinforced properties:</TXT><BRK/>
+<TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="188.25"/>
+      <COL AUTOWIDTH="0" WIDTH="279.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">a.  Durometer Hardness, Shore A</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">(<RID>ASTM D2240</RID> or <RID>ISO 7619-1</RID>)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Before Aging</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[40 to 60] [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="35.25">
+         <CEL>
+<DTA TYPE="STRING">After Aging</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Not to exceed the original property by more than 8</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB>   <TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="189.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="278.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">b.  Minimum Tensile strength</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1" STYLEID="s50">
+<DTA TYPE="STRING">(<RID>ASTM D412</RID> or <RID>ISO 37</RID>)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Before Aging</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>[10] [_____] MPa </MET><ENG>[1450] [_____] psi</ENG></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">After Aging</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Not less than 80 percent of original property</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="187.50"/>
+      <COL AUTOWIDTH="0" WIDTH="280.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">c.  Minimum Elongation (ultimate)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">(<RID>ASTM D412</RID> or <RID>ISO 37</RID>)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Before Aging</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[400 percent] [_____]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">After Aging</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Not less than 80 percent of original property</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<SPT><TTL>Color</TTL><BRK/>
+<BRK/>
+<TXT>Fender skin color must be black throughout the entire thickness.  Galvanized hardware must be unpainted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Repairability</TTL><BRK/>
+<BRK/>
+<TXT>The fender casing must be repairable in the event of tears or punctures in the elastomer skin.  The repaired area must have not less than 90 percent 
+of the properties as specified in paragraph ELASTOMER.  Required repair materials must be readily available.  Each fender must include a detailed 
+repair procedure from the manufacturer that outlines a step by step process for mending tears, punctures or severe abrasions to fender casings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Test Reports</TTL><BRK/>
+<BRK/>
+<TXT>Perform tests on the specified fender within 5 years of submittal of the reports for approval.  Test reports must be accompanied by notarized certificates 
+from the manufacturer certifying that the tested material is of the same type, size, quality, manufacture and make as that proposed to be supplied.  
+Perform the following tests:</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Performance Requirements</TTL><BRK/>
+<BRK/>
+<TXT>The performance of each fender must be meet the requirements of <RID>ISO 17357-1</RID>.  Confirm the performance of the fender with a <SUB>prototype fender performance 
+confirmation</SUB> per <RID>ISO 17357-1</RID>.  The tests must include a parallel performance, angular compression, durability, compression-recovery, and puncture-resistance 
+test.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Design Proof</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Design proof must document minimum endurable pressure based on at least 30 test samples that cover entire range of compression from 0 percent to 
+60 percent plus or minus 5 percent deflection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Pneumatic Fenders Performance Characteristics</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to ISO 17357-1 for guaranteed energy absorption and reaction force values for nominal size of fender 
+under consideration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the performance characteristics of each pneumatic fender ensuring they meet the following:</TXT><BRK/>
+<TAB HEADERROWS="2" WIDTH="91">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="3">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="135.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="128.25"/>
+      <COL AUTOWIDTH="0" WIDTH="162.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEDOWN="1" STYLEID="s51">
+<DTA TYPE="STRING">SIZE</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">GUARANTEED ENERGY ABSORPTION (GEA)</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">REACTION FORCE (R)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">at 60 +/- 5 percent deflection</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">at GEA deflection (+/- 10 percent)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="47.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>[_____]mm x [_____]mm </MET><ENG>[_____]ft x [_____]ft</ENG></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"><MET>[_____] kN-m </MET><ENG>[_____] ft-kips</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>[_____] kN </MET><ENG>[_____] kips</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+<SPT><TTL><SUB>Hydro-pneumatic Fenders Performance Characteristics</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The performance of the hydro-pneumatic fenders vary according to the size, water/air ratio and internal 
+pressure.  The Manufacturer should be consulted in the selection of the desired performance characteristics.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to ISO 17357-1 for guaranteed energy absorption and reaction force values for nominal size of fender 
+under consideration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the performance characteristics of each hydro-pneumatic fender ensuring they meet the following:</TXT><BRK/>
+<TAB HEADERROWS="2" WIDTH="91">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="3" ROWCOUNT="3">
+      <COL AUTOWIDTH="0" WIDTH="135.00"/>
+      <COL AUTOWIDTH="0" WIDTH="127.50"/>
+      <COL AUTOWIDTH="0" WIDTH="162.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL MERGEDOWN="1" STYLEID="s50">
+<DTA TYPE="STRING">SIZE</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">GUARANTEED ENERGY ABSORPTION (GEA)</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">REACTION FORCE (R)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING">at 60 +/- 5 percent deflection</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">at GEA deflection (+/- 10 percent)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.00">
+         <CEL>
+<DTA TYPE="STRING"><MET>[_____]mm x [_____]mm </MET><ENG>[_____]ft x [_____]ft</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>[_____] kN-m </MET><ENG>[_____] ft-kips</ENG></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><MET>[_____] kN </MET><ENG>[_____] kips</ENG></DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/></SPT>
+</SPT><SPT><TTL><SUB>Dimensional Inspection</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Perform and submit the dimensional inspection results proving the dimensions of all fenders meet the requirements of <RID>ISO 17357-1</RID>.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The dimensional tolerances per ISO 17357-1 are as follows:<BRK/>
+- length: plus 10 percent, minus 5 percent<BRK/>
+- diameter: plus 10 percent, minus 5 percent</NPR><BRK/>
+<BRK/>
+<NPR>The diameter shall be obtained from the average of at least two different measurements taken at the middle of 
+the cylindrical section of the fender.</NPR><BRK/>
+<BRK/>
+<NPR>The diameters of bead ring or other steel material around the flange opening shall be inspected, and the results 
+shall be less than 0.20 fender diameters.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/></SPT>
+<SPT><TTL>Air-leakage Test</TTL><BRK/>
+<BRK/>
+<TXT>Perform and submit the results of the <SUB>air leakage test</SUB> per <RID>ISO 17357-1</RID>.  The test must confirm that there is no air leakage when the initial pressure 
+is held for more than 30 minutes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydrostatic-pressure Test</TTL><BRK/>
+<BRK/>
+<TXT>Perform and submit the <SUB>Hydrostatic-pressure test</SUB> results per <RID>ISO 17357-1</RID>.  Perform the test for 10 minutes at the hydrostatic pressure shown as 
+"Testing pressure at 0 percent deflection" in Tables 4 and 5 in ISO 17357-1.  There must be no leakage of water and no defects during the test.</TXT><BRK/>
+<BRK/></SPT>
+<NTE><AST/><BRK/>
+<NPR>NOTE:  The frequency of the test shall be one per 20 fenders of each size and pressure.  If the customer so requests, 
+one per order of each size and pressure if the quantity is less than 20.</NPR><BRK/>
+<BRK/>
+<NPR>Circumferential and longitudinal lengths shall be measured at 10 kPa pressure and at the test pressure shown in 
+Table 4 or Table 5 in ISO 17357-1.  The temporary elongation shall be as follows:</NPR><BRK/>
+<BRK/>
+<NPR>a) maximum circumferential temporary elongation:10 percent;<BRK/>
+b) maximum longitudinal temporary elongation:10 percent.</NPR><BRK/>
+<BRK/>
+<NPR>The increase in diameter and length shall be obtained by measuring the distance of two points marked circumferentially 
+and longitudinally, at<MET> 10 kPa</MET><ENG> 1.45 psi</ENG> pressure, on the middle of the fender's body.</NPR><BRK/>
+<BRK/>
+<NPR>The distance between the two points shall be larger than one-fifth of the fender's diameter.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Pressure Relief Valve Test</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Mount the pressure relief valve to a test chamber for a pressure relief test.  After mounting, the chamber internal pressure must be slowly increased 
+until the specified relief pressure is attained.  Set the pressure relief valve to relieve pressure according to the manufacturers recommendations.  
+If the pressure relief valve opens at a higher or lower pressure than allowed, it must be adjusted as required and tested again until within the 
+specified limits.  Maintain a written test procedure and records pertaining to this test.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Connecting Hardware</TTL><BRK/>
+<BRK/>
+<TXT>Galvanize the connecting chain, swivel, and shackles in accordance with <RID>ASTM A123/A123M</RID> or <RID>ASTM A153/A153M</RID>, as appropriate.  The hardware must 
+be as follows:</TXT><BRK/>
+<TAB WIDTH="90">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="80.25"/>
+      <COL AUTOWIDTH="0" WIDTH="341.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Item</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Type</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Chain</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>ABS 2</RID>, Grade 2, Stud Link or Open Link</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Shackle</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>FS RR-C-271</RID>, Type IVA, Class 3, Grade A</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Swivel</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING"><RID>FS RR-C-271</RID>, Type VII, Class 2</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<TXT>All connecting bolts and pins must be of mild steel, matching the properties of the shackle bow.  For Class 3 shackles, secure the bolt or pins 
+in place with stainless steel (Type 316) cotter pins or locking pins.</TXT><BRK/>
+ <BRK/>
+<SPT><TTL>Hydro-pneumatic Guy Chain</TTL><BRK/>
+<BRK/>
+<TXT>Provide guy chains for attachment from the upper fender end fitting assembly to the pier.  Cover the portion of the chain extending from the fender 
+itself with protective rubber sleeves to a point beyond which the fender will be contacted for fender body protection.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydro-pneumatic Hanging Chain</TTL><BRK/>
+<BRK/>
+<TXT>Provide hanging chains for attachment from the counterweight to the pier.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydro-pneumatic Lower End Fitting Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Fabricate the lower end fitting from steel and provide connecting points for the connecting chain and the hanging chain.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydro-pneumatic Upper End Fitting Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Fabricate the upper end fitting from steel and design to house all necessary valves and fitting necessary to charge and discharge the fender body 
+with air and water necessary for proper installation and operation of the deployed fender.  Include the air charging assembly, the water charging 
+assembly, the pressure safety relief valve assembly and lifting eyes adequately sized for guy chain attachment.  Attach all valves and related 
+hardware  to the inner assembly plate.  Include an outer assembly blind flange plate  to provide protection during handling and operations.  The 
+pressure relief valve must be bronze, adjustable to ensure maintenance of the proper setting, and capable of adequate flow (volume of air released 
+per second) to maintain a safe internal pressure.  Make certain a changeable rubber gasket is installed between the top flange and plate to prohibit 
+moisture from collecting inside the upper end fitting assembly that could possibly corrode valve handles and cause debris that could foul the pressure 
+relief valve assembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydro-pneumatic Counterweight</TTL><BRK/>
+<BRK/>
+<TXT>Provide a steel counterweight for attachment to the fender's lower flange assembly by two shackles.  Include an upper eye for shackle attachment 
+of the hanging chain and coat with a marine coating system.  The counterweight must be sized in accordance with the Manufacturer's recommendation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PNEUMATIC AND HYDRO-PNEUMATIC FENDERS</TTL><BRK/>
+<BRK/>
+<TXT>Install the fendering system in accordance with the manufacturer's specifications and shop drawings.  Tighten bolts an additional 1/3 turn of the 
+nut, from the snug tight condition, and secured with cotter pins or screw lock.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>WELDING</TTL><BRK/>
+<BRK/>
+<TXT>Perform welding in accordance with <RID>AWS D1.1/D1.1M</RID>.</TXT><NED/><BRK/>
+<BRK/></SPT>
+<SPT><TTL>CONNECTIONS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Antiseize Compound</TTL><BRK/>
+<BRK/>
+<TXT>Coat threads of bolts prior to applying washers and nuts.  Recoat bolt thread projection beyond nut after tightening.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

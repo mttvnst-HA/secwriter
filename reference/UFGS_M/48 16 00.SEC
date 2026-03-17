@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-48 16 00 (May 2017)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">New</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 48 16 00</SCN><BRK/>
+<BRK/>
+<STL>LANDFILL GAS SYSTEMS</STL><BRK/>
+<DTE>05/17</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>landfill gas systems 
+as utility grade renewable power generation source</SCP>.  <BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this UFGS in conjunction with UFC 3-460-01 "Design: Petroleum Fuel 
+Facilities".  Include in this specification any additional equipment/devices 
+necessary to meet state and local regulations.<BRK/>
+<BRK/>
+The specification is written around ASME's standard Class 150 rating.  For applications 
+requiring higher pressure ratings (e.g., Class 300, etc.), the designer will 
+have to modify this specification appropriately. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN PETROLEUM INSTITUTE (API)</ORG><BRK/><BRK/><RID>API RP 540</RID><RTL>(1999; R 2004) Electrical Installations in Petroleum Processing Plants</RTL><BRK/><BRK/><RID>API RP 2003</RID><RTL>(2015; 8th Ed) Protection Against Ignitions Arising out of Static, Lightning, and Stray Currents</RTL><BRK/><BRK/><RID>API STD 610</RID><RTL>(2010; Errata 2011) Centrifugal Pumps for Petroleum, Petrochemical, and Natural Gas Industries</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME B31.3</RID><RTL>(2024) Process Piping</RTL><BRK/><BRK/><RID>ASME BPVC SEC VIII D1</RID><RTL>(2023) BPVC Section VIII-Rules for Construction of Pressure Vessels Division 1</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 112</RID><RTL>(2017) Standard Test Procedure for Polyphase Induction Motors and Generators</RTL><BRK/><BRK/><RID>IEEE 142</RID><RTL>(2007; Errata 2014) Recommended Practice for Grounding of Industrial and Commercial Power Systems - IEEE Green Book</RTL><BRK/><BRK/><RID>IEEE 1100</RID><RTL>(2005) Emerald Book IEEE Recommended Practice for Powering and Grounding Electronic Equipment</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA MG 00001</RID><RTL>(2024) Motors and Generators</RTL><BRK/><BRK/><RID>NEMA MG 11</RID><RTL>(1977; R 2012) Energy Management Guide for Selection and Use of Single Phase Motors</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 30</RID><RTL>(2024; ERTA 1 2025) Flammable and Combustible Liquids Code</RTL><BRK/><BRK/><RID>NFPA 58</RID><RTL>(2024; TIA 24-2) Liquefied Petroleum Gas Code</RTL><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 77</RID><RTL>(2024; ERTA 1 2023) Recommended Practice on Static Electricity</RTL><BRK/><BRK/><RID>NFPA 407</RID><RTL>(2022; TIA 24-2) Standard for Aircraft Fuel Servicing</RTL><BRK/><BRK/><RID>NFPA 780</RID><RTL>(2026) Standard for the Installation of Lightning Protection Systems</RTL><BRK/><BRK/></REF><REF><ORG>SOCIETY OF AUTOMOTIVE ENGINEERS INTERNATIONAL (SAE)</ORG><BRK/><BRK/><RID>SAE AMS3275</RID><RTL>(2009; Rev C) Sheet, Acrylonitrile Butadiene (NBR) Rubber and Non-Asbestos Fiber Fuel and Oil Resistant</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>40 CFR 60.18</RID><RTL>General Control Device and Work Practice Requirements</RTL><BRK/><BRK/><RID>40 CFR 60.752</RID><RTL>Standards for Air Emissions from Municipal Solid Waste Landfills</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 913</RID><RTL>(2013; Reprint May 2022) UL Standard for Safety Intrinsically Safe Apparatus and Associated Apparatus for Use in Class I, II, and III, Division 1, Hazardous (Classified) Locations</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>RELATED REQUIREMENTS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  To apply this guide specification to other divisions of the project specification, 
+insert the appropriate division number and title.  Ensure that the appropriate 
+sections having electrical equipment include the following paragraph:</NPR><BRK/>
+<BRK/>
+<NPR>Delete sections in the paragraph that are not in the job.  The requirements 
+of this specification section are being incorporated into the other specification 
+sections that reference it with the intent of phasing out this section.  As 
+the requirements of this section are incorporated into each specification section, 
+that section should be added to the list in the paragraph below.  Do not use 
+this section, and delete reference to it, if the only sections used in the job 
+are listed below.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>This section applies to certain sections of Division 13, SPECIAL CONSTRUCTION, and Divisions 22, PLUMBING.  This 
+section applies to all sections of Division 26 and 33, ELECTRICAL and UTILITIES, of this project specification 
+unless specified otherwise in the individual sections.  </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Permits are assumed to be obtained by firm holding design responsibility.  
+Ensure this is clarified in contract bid package.  </NPR><BRK/>
+<AST/><BRK/></NTE>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Grounding and Bonding</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM> <BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Condensate pump stations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Condensate knockouts</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Blowers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Propane stations</SUB> and components; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Skid mounted flare systems</SUB> and components; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas condensers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas dryer systems</SUB> and components; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Aftercoolers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas turbines</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Microturbines</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Internal combustion engines</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Filtration systems</SUB> and components; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Landfill gas analyzers</SUB> and components; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control Systems</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas Collection and Control System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Generator</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Emissions Compliance</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Warranty</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+   <LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Condensate pump stations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Condensate knockouts </SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Blowers</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Propane stations</SUB> and components; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Skid mounted flare systems</SUB> and components; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas condensers </SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas dryer systems</SUB> and components; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Aftercoolers </SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas turbines </SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Microturbines </SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Internal combustion engines </SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Filtration systems</SUB> and components; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Landfill gas analyzers</SUB> and components; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Control Systems </SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Gas Collection and Control System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Generator</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Demonstrations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Material and Equipment Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are standard products of a manufacturer regularly engaged in the manufacturing 
+of such products, that are of a similar material, design and workmanship.  Materials and equipment must have 
+been in satisfactory commercial or industrial use for a minimum two years prior to bid opening.  The two year 
+period must include applications of the equipment and materials under similar circumstances and of similar size.  
+Materials and equipment must have been for sale on the commercial market through advertisements, manufacturers' 
+catalogs, or brochures during the two year period.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In a salt water environment, substitute acceptable non-corroding metal 
+such as, but not limited to, nickel-copper, 304 stainless steel, or monel.  
+Aluminum is unacceptable.  Nomenclature (or system identification) should be 
+established by the designer.<BRK/>
+<BRK/>
+Require melamine plastic nameplates for all NAVFAC projects.  Also for NAVFAC 
+projects, require nameplates to be associated or keyed to system charts and 
+schedules.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Attach nameplates to all specified equipment, thermometers, gauges, and valves defined herein.  List on each 
+nameplate the manufacturer's name, address, contract number, acceptance date, component type or style, model 
+or serial number, catalog number, capacity or size, and the system that is controlled.  Construct plates of stainless 
+steel.  Install nameplates in prominent locations with nonferrous screws, nonferrous bolts, or permanent adhesive.  
+Minimum size of nameplates must be <MET>25 by 65 mm/</MET><ENG>1 by 2-1/2 inches</ENG>.  Lettering must be the normal block style with 
+a minimum <MET>6 mm/</MET><ENG>1/4 inch</ENG> height.  Accurately align all lettering on nameplates.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Handle, store, and protect equipment and materials to prevent damage before and during installation in accordance 
+with the manufacturer's recommendations, and as approved by the Contracting Officer.  Replace damaged or defective 
+items.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>WARRANTY</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Warranty overall landfill gas collection, processing, control, and generation system to be free from material, 
+workmanship, and manufacturing defects (excluding normal maintenance), for a period of [5] years.</TXT><BRK/>
+<BRK/>
+<LST>a. <SUB>Gas Collection and Control System</SUB>.  Free from materials, workmanship, and manufacturing defects for 
+minimum period of [5] years.</LST><BRK/>
+<BRK/>
+<LST>b. <SUB>Skid Mounted Flare Systems</SUB>. Free from materials, workmanship, and manufacturing defects for minimum 
+period of [5] years.</LST><BRK/>
+<BRK/>
+<LST>c. <SUB>Blowers</SUB>. Free from materials, workmanship, and manufacturing defects for minimum period of [5] years.</LST><BRK/>
+<BRK/>
+<LST>d. Gas Treatment System.  Free from materials, workmanship, and manufacturing defects for minimum period 
+of [5] years.</LST><BRK/>
+<BRK/>
+<LST>e. <SUB>Generator</SUB>.  Free from materials, workmanship, and manufacturing defects for minimum period of [5] 
+years.</LST><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>The landfill gas system includes the following:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Landfill gas and condensate piping and accessories;</OLI><BRK/>
+<BRK/>
+<OLI>Condensate pump stations;</OLI><BRK/>
+<BRK/>
+<OLI>Condensate knockouts;</OLI><BRK/>
+<BRK/>
+<OLI>Blowers;</OLI><BRK/>
+<BRK/>
+<OLI>Propane stations;</OLI><BRK/>
+<BRK/>
+<OLI>Skid mounted flare systems;</OLI><BRK/>
+<BRK/>
+<OLI><SUB>Gas condensers</SUB>;</OLI><BRK/>
+<BRK/>
+<OLI>Gas dryer systems;</OLI><BRK/>
+<BRK/>
+<OLI>Aftercoolers;</OLI><BRK/>
+<BRK/>
+<OLI>Gas turbines;</OLI><BRK/>
+<BRK/>
+<OLI>Microturbines;</OLI><BRK/>
+<BRK/>
+<OLI><SUB>Internal combustion engines</SUB>;</OLI><BRK/>
+<BRK/>
+<OLI>Filtration systems;</OLI><BRK/>
+<BRK/>
+<OLI>Landfill gas analyzers; and</OLI><BRK/>
+<BRK/>
+<OLI>Control systems.</OLI></OLG></SPT><BRK/>
+<BRK/>
+<SPT><TTL>DESIGN CONDITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Equipment specified herein must be designed to for:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Elevation <MET>[_____] meters/</MET><ENG>[_____] feet.</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Minimum/maximum ambient temperature <MET>[_____] / [_____] degrees C/</MET><ENG>[_____] / [_____] degrees F</ENG>. </OLI><BRK/>
+<BRK/>
+<OLI>Landfill gas and condensate to be handled.</OLI><BRK/>
+<BRK/>
+<OLI>Maintaining a [75] percent collection efficiency. </OLI><BRK/>
+<BRK/>
+<OLI>Raw gas inlet conditions of:</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">LFG flow:  <MET>[_____] liters/minute/</MET><ENG>[_____] SCFM</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">LFG temperature: <MET>[_____] / [_____] degrees C/</MET><ENG>[_____] / [_____] degrees F</ENG>. </OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Relative humidity: [100] percent.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Raw gas composition:</OLI><BRK/>
+<BRK/>
+  <ITM>[_____] percent methane</ITM><BRK/>
+<BRK/>
+<ITM>[_____] percent carbon dioxide</ITM><BRK/>
+<BRK/>
+<ITM>[_____] percent nitrogen</ITM><BRK/>
+<BRK/>
+<ITM>[_____] percent oxygen</ITM> <BRK/>
+<BRK/>
+<OLI>Treated gas conditions of:</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify for end use.  I.e. on site power generation equipment requirements, 
+direct use, or distribution.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI LEVEL="2">Sulfur (hydrogen sulfide, sulfur dioxide) less than <MET>[57] mg/MJ/</MET><ENG>[60] microgram/BTU</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Halides (chlorine/fluorine) less than <MET>[19] mg/MJ/</MET><ENG>[20] microgram/BTU</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Ammonia less than <MET>[2.81] mg/MJ/</MET><ENG>[2.96] microgram/BTU</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Particulates less than <ENG>[10] microns</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Siloxanes less than <MET>[0.56] mg/MJ/</MET><ENG>[60] microgram/BTU</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Moisture less than [80] percent relative humidity at lowest temperature.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Internal parts and components of equipment, piping, piping components, and valves that could be exposed to landfill 
+gas and/or condensate during system operation must not be constructed of zinc coated (galvanized) metal.  Do 
+not install cast iron bodied valves in piping systems that could be exposed to landfill gas and/or condensate 
+during system operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Nitrile Butadiene (Buna-N)</TTL><BRK/>
+<BRK/>
+<TXT>Provide Buna-N material that conforms to <RID>SAE AMS3275</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Acrylonitrile Butadiene Rubber (NBR)</TTL><BRK/>
+<BRK/>
+<TXT>Provide NBR material that conforms to <RID>SAE AMS3275</RID>.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ELECTRICAL WORK</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Show electrical characteristics, motor starter type(s), enclosure type, 
+and maximum rpm in the equipment schedules on the drawings.<BRK/>
+<BRK/>
+Where reduced-voltage motor starters are recommended by the manufacturer or 
+required otherwise, specify and coordinate the type(s) required in Section 
+<SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Reduced-voltage starting is required 
+when full voltage starting will interfere with other electrical equipment and 
+circuits and when recommended by the manufacturer.  Where adjustable speed drives 
+(ASD) are specified, reference Section <SRF>26 29 23</SRF> ADJUSTABLE SPEED DRIVE SYSTEMS 
+UNDER 600 VOLTS.  The methods for calculating the economy of using an adjustable 
+speed drive is described in UFC 3-520-01 DESIGN: INTERIOR ELECTRICAL SYSTEMS.<BRK/>
+<BRK/>
+Coordinate the ignition temperature of the fuel(s) to be handled with the electrical 
+design.  Ignition temperatures will be as defined in NFPA 497M.  Fuel ignition 
+temperatures will dictate the maximum allowable temperature rating of the  electrical 
+equipment.  Coordinate the area classification and the electrical design with 
+UFC 03-460-01.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Provide motors, motor starters, controllers, integral disconnects, contactors, controls, and control wiring with 
+their respective pieces of equipment, except controllers indicated as part of motor control centers.[  Provide 
+electrical equipment, including motors and wiring.]  Provide switches and devices necessary for controlling and 
+protecting electrical equipment.  Provide motor starters complete with thermal overload protection and other 
+necessary appurtenances.  Comply with <RID>API RP 540</RID> and <RID>API RP 2003</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motors</TTL><BRK/>
+<BRK/>
+<TXT>Provide motors in accordance with <RID>NEMA MG 00001</RID> and of sufficient size to drive the load at the specified capacity 
+without exceeding the nameplate rating of the motor when operating at proper electrical system voltage.  Provide 
+high efficiency type, single-phase, fractional-horsepower alternating-current motors, including motors that are 
+part of a system, in accordance with <RID>NEMA MG 11</RID>.  Provide polyphase, squirrel-cage medium induction motors, including 
+motors that are part of a system, that meet the efficiency ratings for premium efficiency motors in accordance 
+with <RID>NEMA MG 00001</RID>.  Motors must be rated for continuous duty with the enclosure specified.  Motor duty requirements 
+must allow for maximum frequency start-stop operation and minimum encountered interval between start and stop.  
+Motor torque must be capable of accelerating the connected load within 20 seconds with 80 percent of the rated 
+voltage maintained at motor terminals during one starting period.  Motor bearings must be fitted with grease 
+supply fittings and grease relief to outside of the enclosure.  Comply with <RID>IEEE 112</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motor Controllers</TTL><BRK/>
+<BRK/>
+<TXT>Where two-speed or variable-speed motors are indicated, solid-state variable-speed controllers may be provided 
+to accomplish the same function.  Use solid-state variable-speed controllers for motors rated <MET>7.45 kW/</MET><ENG>10 hp</ENG> or 
+less and adjustable frequency drives for larger motors.  Controllers and contactor must have a maximum of 120-volt 
+control circuits and must have auxiliary contacts for use with the controls provided.  For packaged equipment, 
+the manufacturer must provide controllers including the required monitors and timed restart.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Underground Wiring</TTL><BRK/>
+<BRK/>
+<TXT>Provide underground electrical wiring in PVC conduit, as specified in Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL 
+DISTRIBUTION.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Grounding and Bonding</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Grounding and bonding must be in accordance with <RID>NFPA 70</RID>, <RID>NFPA 77</RID>, <RID>NFPA 780</RID>, <RID>IEEE 1100</RID>, <RID>IEEE 142</RID>.  Provide jumpers 
+to overcome the insulating effects of gaskets, paints, or nonmetallic components.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>GAS COLLECTION AND CONTROL SYSTEM</TTL><BRK/>
+<BRK/>
+<TXT>Landfill gas collection and control system (GCCS) to comply with <RID>40 CFR 60.752</RID>.<BRK/>
+<BRK/>
+Provide piping, accessories, and valving in accordance with in Section <SRF>33 51 15</SRF> NATURAL-GAS / LIQUEFIED PETROLEUM 
+GAS DISTRIBUTION PIPELINES.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>CONDENSATE PUMP STATIONS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Refer to NAVFAC Standard Design 140-40-05 TRUCK UNLOADING SYSTEM and 
+UFC 3-460-01 for detailed information of an off-loading assembly.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Assembly must be a complete, packaged, factory fabricated for use in the landfill, transferring condensate or 
+leachate from landfill gas header and subheader piping.  Assembly must include automatic level control of condensate 
+or leachate and must pump to a point of disposal.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Condensate Pump Station and Enclosure</TTL><BRK/>
+<BRK/>
+<TXT>Provide pump station that is fully enclosed, weatherproof, polyethylene or PVC construction with an intermediate 
+storage reservoir. Provide with quick connect/disconnect fittings and corrosion resistant components.  Assembly 
+must have a vault for access and maintenance.  Comply with <RID>NEMA 250</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Condensate Pumps</TTL><BRK/>
+<BRK/>
+<TXT>Provide electric centrifugal or submersible type condensate pump sized and designed for condensate service. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Nameplate</TTL><BRK/>
+<BRK/>
+<TXT>In addition to the equipment identification nameplate, provide pump station service nameplate, of type 18-8 stainless 
+steel or monel, securely attached by stainless steel pins at an accessible and conspicuous point on the pump 
+station. Tagging in letters <MET>6 mm/</MET><ENG>1/4-inch</ENG> high must bear the equipment number as shown on the drawings. The pump 
+station service nameplate must be stamped with the following information:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Manufacturer's name;</OLI><BRK/>
+<BRK/>
+<OLI>Pump serial number;</OLI><BRK/>
+<BRK/>
+<OLI>Capacity, <MET>[_____] L/s/</MET><ENG>[_____]gpm</ENG>;</OLI><BRK/>
+<BRK/>
+<OLI>Pumping head, <MET>[_____] m/</MET><ENG>[_____] ft</ENG>;</OLI><BRK/>
+<BRK/>
+<OLI>Pumped fluid maximum specific gravity;</OLI><BRK/>
+<BRK/>
+<OLI>Revolutions per minute; and</OLI><BRK/>
+<BRK/>
+<OLI>Driver horsepower.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>CONDENSATE KNOCKOUTS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide complete packaged assembly, factory fabricated, for use in-line with the landfill gas pipelines to remove 
+condensate from the landfill gas stream.  Assembly must include automatic condensate level control and must pump 
+to a point of disposal.  Provide cleanout and monitoring ports.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Condensate Knockout Enclosure</TTL><BRK/>
+<BRK/>
+<TXT>The knockout must have a fully enclosed, weatherproof, polyethylene or PVC construction with an intermediate 
+storage reservoir.  Provide with quick connect/disconnect fittings and corrosion resistant components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Condensate Pumps</TTL><BRK/>
+<BRK/>
+<TXT>Pumps must be an electric centrifugal or submersible type.  Comply with <RID>API STD 610</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Service Nameplate</TTL><BRK/>
+<BRK/>
+<TXT>Provide a knockout service nameplate, of type 18-8 stainless steel or monel, attached by stainless steel pins 
+at an accessible point on the knockout, must be furnished in addition to the identification nameplate.  The knockout 
+service nameplate must be stamped with the following information:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Manufacturer's name;</OLI><BRK/>
+<BRK/>
+<OLI>Pump serial number;</OLI><BRK/>
+<BRK/>
+<OLI>Capacity, <MET>[_____] L/s/</MET><ENG>[_____]gpm</ENG>;</OLI><BRK/>
+<BRK/>
+<OLI>Pumping head, <MET>[_____] m/</MET><ENG>[_____] ft</ENG>;</OLI><BRK/>
+<BRK/>
+<OLI>Maximum specific gravity of fluid to be pumped;</OLI><BRK/>
+<BRK/>
+<OLI>Revolutions per minute; and</OLI><BRK/>
+<BRK/>
+<OLI>Driver horsepower.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Identification Nameplate</TTL><BRK/>
+<BRK/>
+<TXT>Provide a knockout identification nameplate of Type 18-8 stainless steel or monel and securely attached by stainless 
+steel pins to a conspicuous place on the knockout.  Tagging in letters <MET>6 mm/</MET><ENG>1/4-inch</ENG> high must bear the equipment 
+number as shown on the drawings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>BLOWERS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide positive displacement blowers, completely assembled with strainer, silencers, check valves, pressure 
+relief valves, shaft seals, and intake and discharge pressure gauges.  Provide with variable frequency drive 
+for LFG flow control. Provide actuated fail-safe valve on intake and discharge side for blower isolation during 
+normal and emergency shutdown operations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>PROPANE STATIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide propane station compatible with flare pilot system requirements and integrated into the main station 
+control panel.  Size propane storage for 6 [_____] months of operation.  Comply with <RID>ASME BPVC SEC VIII D1</RID>, ASME 
+Boiler and Pressure Vessel Code, <RID>NFPA 58</RID>, and piping as specified in <SRF>33 51 15</SRF> NATURAL-GAS / LIQUEFIED PETROLEUM 
+GAS DISTRIBUTION PIPELINES.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>SKID MOUNTED FLARE SYSTEMS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Check local air quality board for more stringent emissions requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a skid mounted flare system for use in landfill gas destruction. Assembly must include burners, louvers, 
+weather protection, insulation, access ladder and platform, heat shields, purge blower, flame arrester/thermal 
+valve, wind shields, pilot light system, flame sensor, modulation control valves, and controls.  Completely assemble 
+flare control system and test prior to shipment by the flare supplier at the supplier's own fabrication facility.  <BRK/>
+<BRK/>
+Flare system must be capable of continuous stable combustion operation with [30] to [50] percent methane at the 
+maximum required flow rate.  Flare must have a minimum exhaust gas retention time of [0.5] [1.0] [_____] seconds 
+at a minimum temperature of <MET>[760] to [980] degrees C/</MET><ENG>[1400] to [1800] degrees F</ENG>. <BRK/>
+<BRK/>
+The flare must be capable of achieving a minimum destruction efficiency of &gt;98 percent of total non-methane 
+organic compounds (NMOCs)by weight and 99 percent destruction of hydrogen sulfide.  Design flare to comply with 
+and operate in compliance of <RID>40 CFR 60.18</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Skid Mounted Flare Construction</TTL><BRK/>
+<BRK/>
+<TXT>Flare construction must be carbon steel with a stainless steel weather and heat protection at the top of the 
+flare. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flare Insulation</TTL><BRK/>
+<BRK/>
+<TXT>Insulate flare with <MET>100 mm/</MET><ENG>4 inch</ENG> ceramic fiber blanket insulation to achieve a not to exceed skin temperature 
+of <MET>121 degrees C/</MET><ENG>250 degrees F</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Burner and Propane Pilot</TTL><BRK/>
+<BRK/>
+<TXT>Burner must be stainless steel construction.  Propane pilot must be stainless steel construction.  Provide thermocouple 
+flame recognition system and purge system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manifold</TTL><BRK/>
+<BRK/>
+<TXT>Provide low pressure type manifold with flame arrestor and safety shutdown valve.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>GAS DRYER SYSTEMS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a complete packaged gas dryer system for use in landfill gas piping to remove water vapor and condition 
+the landfill gas to a quality acceptable for use specified microturbines and combustion engines.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Gas Dryer Construction</TTL><BRK/>
+<BRK/>
+<TXT>Provide modular construction gas dryer with stainless steel wetted parts, heat exchanger tubes, and moisture 
+separator.  Gas dryer system must be mounted on a structural solid steel base.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Refrigeration System</TTL><BRK/>
+<BRK/>
+<TXT>The refrigerant used must not contain CFC.  The refrigeration system must include:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Liquid line dryer;</OLI><BRK/>
+<BRK/>
+<OLI>Suction line dryer;</OLI><BRK/>
+<BRK/>
+<OLI>Site glass;</OLI><BRK/>
+<BRK/>
+<OLI>Crank case heater;</OLI><BRK/>
+<BRK/>
+<OLI>Isolation valves for compressor and evaporator;</OLI><BRK/>
+<BRK/>
+<OLI>Condenser and liquid receiver;</OLI><BRK/>
+<BRK/>
+<OLI>Condenser pressure relief valve;</OLI><BRK/>
+<BRK/>
+<OLI>Compressor discharge check valve;</OLI><BRK/>
+<BRK/>
+<OLI>Separator/filter; and</OLI><BRK/>
+<BRK/>
+<OLI>Dew point sensor and readout.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>AFTERCOOLERS</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Piston type differential pressure gauges do not require calibration.  
+Suggest showing on the drawings a pressure gauge installed on the high pressure 
+side of the differential pressure gauge.  The pressure gauge should have a scale 
+range from 0 to 2068 kPa (300 psi).</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide an aftercooler after the blower. Aftercooler cores must be made of stainless steel to resist attacks 
+from acids of sulfur, chlorine and fluorine. Provide condensate collection and piping. </TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>GAS TURBINES</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Indicate the location and approximate configuration of each station.  
+Mount all the control equipment on a single equipment rack next to the corresponding 
+receiving/dispensing equipment.  Include the sequence of operation for each 
+station on the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a gas turbine based [grid parallel] [dual mode] [grid isolated] generator system designed for landfill 
+gas fuel meeting the following criteria:<BRK/></TXT>
+<OLG><BRK/>
+<OLI>Electrical efficiency [30] percent LHV;</OLI><BRK/>
+<BRK/>
+<OLI>Nominal heat (HHV) [_____] BTU/kWh;</OLI><BRK/>
+<BRK/>
+<OLI>Nominal heat (LHV) [_____] BTU/kWh;</OLI><BRK/>
+<BRK/>
+<OLI>Nominal electrical power [_____] kWh;</OLI><BRK/>
+<BRK/>
+<OLI>Voltage [_____] VAC;</OLI><BRK/>
+<BRK/>
+<OLI>Frequency [_____] Hz;</OLI><BRK/>
+<BRK/>
+<OLI>Service 3 phase, wye, 4 wire;</OLI><BRK/>
+<BRK/>
+<OLI>Grid isolation +- [0.50] percent nominal voltages and +- [0.50] percent nominal frequency;</OLI><BRK/>
+<BRK/>
+<OLI>Transient handling +- [10] percent nominal voltages maximum and +- [5] percent frequency max; and</OLI><BRK/>
+<BRK/>
+<OLI>Meets or exceeds [CARB] emissions standards.</OLI><BRK/>
+<BRK/>
+<OLI>Sound level not to exceed [_____] dB at <MET>[1] meter/</MET><ENG>[3] feet</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum design life of [80,000] hours with overhauls.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>MICROTURBINES</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide microturbine based generator [grid parallel] [dual mode] [grid isolated] system designed for landfill 
+gas fuel. Microturbine must have recuperator and integrated heat recovery.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Electrical efficiency [30] percent LHV;</OLI><BRK/>
+<BRK/>
+<OLI>Nominal heat (HHV) [_____] BTU/kWh;</OLI><BRK/>
+<BRK/>
+<OLI>Nominal heat (LHV) [_____] BTU/kWh;</OLI><BRK/>
+<BRK/>
+<OLI>Nominal electrical power [_____] kWh;</OLI><BRK/>
+<BRK/>
+<OLI>Voltage [_____] VAC;</OLI><BRK/>
+<BRK/>
+<OLI>Frequency [_____] Hz;</OLI><BRK/>
+<BRK/>
+<OLI>Service 3 phase, wye, 4 wire;</OLI><BRK/>
+<BRK/>
+<OLI>Grid isolation +- [0.50] percent nominal voltages and +- [0.50] percent nominal frequency;</OLI><BRK/>
+<BRK/>
+<OLI>Transient handling +- [10] percent nominal voltages maximum and +- [5]percent  frequency max; and</OLI><BRK/>
+<BRK/>
+<OLI>Meets or exceeds [CARB] emissions standards.</OLI><BRK/>
+<BRK/>
+<OLI>Sound level not to exceed <MET>[1] meter/</MET><ENG>[3] feet</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum design life of [80,000] hours with overhauls.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>INTERNAL COMBUSTION ENGINE</TTL><BRK/>
+<BRK/>
+<TXT>Provide a internal combustion engine based [grid parallel] [dual mode] [grid isolated] <SUB>generator</SUB> system designed 
+for landfill gas fuel.<BRK/></TXT>
+<OLG><BRK/>
+<OLI>Electrical efficiency [30] percent LHV;</OLI><BRK/>
+<BRK/>
+<OLI>Nominal heat (HHV) [_____] BTU/kWh;</OLI><BRK/>
+<BRK/>
+<OLI>Nominal heat (LHV) [_____] BTU/kWh;</OLI><BRK/>
+<BRK/>
+<OLI>Nominal electrical power [_____] kWh;</OLI><BRK/>
+<BRK/>
+<OLI>Voltage [_____] VAC;</OLI><BRK/>
+<BRK/>
+<OLI>Frequency [_____] Hz;</OLI><BRK/>
+<BRK/>
+<OLI>Service 3 phase, wye, 4 wire;</OLI><BRK/>
+<BRK/>
+<OLI>Grid isolation +- [0.50] percent nominal voltages and +- [0.50] percent nominal frequency;</OLI><BRK/>
+<BRK/>
+<OLI>Transient handling +- [10] percent nominal voltages maximum and +- [5] percent frequency max; and</OLI><BRK/>
+<BRK/>
+<OLI>Meets or exceeds [CARB] emissions standards.</OLI><BRK/>
+<BRK/>
+<OLI>Sound level not to exceed [_____] dB at <MET>[1] meter/</MET><ENG>[3] feet</ENG>.</OLI><BRK/>
+<BRK/>
+<OLI>Minimum design life of [80,000] hours with overhauls.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL><SUB>FILTRATION SYSTEMS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide filtration system to remove particulates and other contaminants as required to comply with specified 
+generation system specifications.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>LANDFILL GAS ANALYZERS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide continuous gas analyzer for methane, carbon dioxide, [_____] and oxygen.  Provide warning alarm at [2] 
+percent oxygen and shutdown alarm at [4] percent oxygen.  Provide output to main control panel and generator 
+control system to allow automatic system shutdown.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Methane may seep into buiding structures/enclosed spaces.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide methane sensor/alarm within enclosed structures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>CONTROL SYSTEMS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Control systems must have all necessary sensors, interlocks, relays, alarms, and user interfaces to allow for 
+continuous monitoring and [grid parallel ][dual mode ][grid isolated ]operations.  Use gas analyzer output to 
+adjust generator speed and air/fuel ratio set point for <SUB>emissions compliance</SUB> and power output optimization.</TXT><BRK/>
+<BRK/>
+<TXT>Provide critical shutdown alarms for:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Shutdown oxygen level - [4] percent or greater, by volume; </OLI><BRK/>
+<BRK/>
+<OLI>Low methane level - less than [30] percent by volume;</OLI><BRK/>
+<BRK/>
+<OLI>Flare failure;</OLI><BRK/>
+<BRK/>
+<OLI>Blower fault;</OLI><BRK/>
+<BRK/>
+<OLI>Blower inlet and exit bearing temperatures greater than <MET>[100] degrees C/</MET><ENG>[212] degrees F</ENG>;</OLI><BRK/>
+<BRK/>
+<OLI>Emergency stop;</OLI><BRK/>
+<BRK/>
+<OLI>Power loss;</OLI><BRK/>
+<BRK/>
+<OLI>Condensate tank high level; </OLI><BRK/>
+<BRK/>
+<OLI>Gas dryer failure; and</OLI><BRK/>
+<BRK/>
+<OLI>Enclosed structure methane level greater than [4] percent by volume. </OLI><BRK/></OLG>
+<BRK/>
+<TXT>Provide non-critical alarms for: </TXT><BRK/>
+<OLG><BRK/>
+<OLI>High oxygen levels - greater than [2] percent by volume;</OLI><BRK/>
+<BRK/>
+<OLI>Low propane supply pressure;</OLI><BRK/>
+<BRK/>
+<OLI>Low flare temperature;</OLI><BRK/>
+<BRK/>
+<OLI>Landfill gas temperature at wellhead - greater than <MET>[60] degrees C/</MET><ENG>[140] degrees F</ENG>; and</OLI><BRK/>
+<BRK/>
+<OLI>Methane detection within enclosed structures.</OLI><BRK/></OLG>
+<BRK/>
+<TXT>[Provide automated trouble notification system for critical shutdown [and non-critical] alarms.]</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SITE PREPARATION</TTL><BRK/>
+<BRK/>
+<TXT>Evaluate and ensure site is accessible for the size and weight of planning equipment and facilities.  Prepare 
+site and lay down areas in accordance with approved contract documents.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Installation, workmanship, fabrication, assembly, erection, examination, inspection, and testing must be in accordance 
+with <RID>ASME B31.3</RID> and <RID>NFPA 30</RID>,<RID>NFPA 70</RID> except as modified herein.  Safety rules as specified in <RID>NFPA 30</RID> and <RID>NFPA 407</RID>
+ must be strictly observed.  When work is not in progress, securely close open ends of pipe and fittings with 
+expansion plugs so that water, earth, or other substances cannot enter the pipe or fittings.  Comply with <RID>UL 913</RID>
+.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Properly level, align, and secure equipment in place in accordance with manufacturer's instructions.  Provide 
+supports for equipment, appurtenances, and pipe as required.  Provide floor-mounted pumps and other floor mounted 
+equipment with mechanical vibration isolators or a vibration isolation foundation.  Install anchors, bolts, nuts, 
+washers, and screws where required for securing the work in place.  Sizes, types, and spacings of anchors and 
+bolts not indicated or specified must be as required for proper installation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SYSTEM COMMISSIONING</TTL><BRK/>
+<BRK/>
+<TXT>System commissioning must conform to Section <SRF>01 91 00.15</SRF> BUILDING COMMISSIONING.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>DEMONSTRATIONS</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Conduct a training session for designated Government personnel in the operation and maintenance procedures related 
+to the equipment/systems specified herein.  Include pertinent safety operational procedures in the session as 
+well as physical demonstrations of the routine maintenance operations.  Furnish instructors who are familiar 
+with the installation/equipment/systems, both operational and practical theories, and associated routine maintenance 
+procedures.  The training session must consist of a total of 8 hours of normal working time and must start after 
+the system is functionally completed, but prior to final system acceptance.  Submit a letter, at least 14 working 
+days prior to the proposed training date, scheduling a proposed date for conducting the on-site training.</TXT><BRK/>
+<BRK/></SPT>
+</PRT>    <END/><BRK/></SEC>

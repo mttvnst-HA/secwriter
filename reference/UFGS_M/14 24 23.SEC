@@ -1,0 +1,1182 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="393.75"/>
+      <COL AUTOWIDTH="0" WIDTH="393.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-14 24 23 (August 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3><BRK/></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="44.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>NAVFAC</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-14 24 00 (May 2016)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 14 24 23</SCN><BRK/>
+<BRK/>
+<STL>HYDRAULIC PASSENGER ELEVATORS</STL><BRK/>
+<DTE>08/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the <SCP>requirements for hydraulic passenger elevators</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format Standard when editing this guide 
+specification or preparing new project specification sections.  Edit this guide specification for project specific 
+requirements by adding, deleting, or revising text.  For bracketed items, choose applicable item(s) or insert 
+appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are welcome and should be submitted 
+as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  All DoD facility designs which include elevators must comply with UFC 3-490-06, Elevators available at: <URL HREF="https://www.wbdg.org/dod/ufc/ufc-3-490-06">
+https://www.wbdg.org/dod/ufc/ufc-3-490-06</URL></NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For elevators installed in NAVY facilities, any editing of non-bracketed requirements in this specification 
+requires approval through the NAVFAC FEC VTE Program Lead Certifying Official.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of the guide specification.  The publications 
+are referred to in the text by basic designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference Identifier (RID) outside of the Section's 
+Reference Article to automatically place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text will automatically be deleted from this section of the project specification when 
+you choose to reconcile references in the publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are referred to within the text by 
+the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME A17.1/CSA B44</RID><RTL>(2022) Safety Code for Elevators and Escalators</RTL><BRK/><BRK/><RID>ASME A17.2</RID><RTL>(2023) Guide for Inspection of Elevators, Escalators, and Moving Walks</RTL><BRK/><BRK/><RID>ASME B16.9</RID><RTL>(2024) Factory-Made Wrought Buttwelding Fittings</RTL><BRK/><BRK/><RID>ASME B16.11</RID><RTL>(2021) Forged Fittings, Socket-Welding and Threaded</RTL><BRK/><BRK/><RID>ASME BPVC SEC IX</RID><RTL>(2017; Errata 2018) BPVC Section IX-Welding, Brazing and Fusing Qualifications</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM A53/A53M</RID><RTL>(2024) Standard Specification for Pipe, Steel, Black and Hot-Dipped, Zinc-Coated, Welded and Seamless</RTL><BRK/><BRK/><RID>ASTM A106/A106M</RID><RTL>(2019a) Standard Specification for Seamless Carbon Steel Pipe for High-Temperature Service</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE C62.41</RID><RTL>(1991; R 1995) Recommended Practice on Surge Voltages in Low-Voltage AC Power Circuits</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL CODE COUNCIL (ICC)</ORG><BRK/><BRK/><RID>ICC IBC</RID><RTL>(2024) International Building Code</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELEVATOR INDUSTRY, INC. (NEII)</ORG><BRK/><BRK/><RID>NEII-1</RID><RTL>(2000; R thru 2017) Building Transportation Standards and Guidelines, including the Performance Standards Matrix for New Elevator Installation</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 70E</RID><RTL>(2024) Standard for Electrical Safety in the Workplace</RTL><BRK/><BRK/><RID>NFPA 72</RID><RTL>(2025; TIA 25-1; TIA 25-2; TIA 25-3; TIA 25-4; ERTA 25-1; ERTA 25-2) National Fire Alarm and Signaling Code</RTL><BRK/><BRK/><RID>NFPA 101</RID><RTL>(2024) Life Safety Code</RTL><BRK/><BRK/></REF><REF><ORG>U.S. DEPARTMENT OF DEFENSE (DOD)</ORG><BRK/><BRK/><RID>UFC 3-490-06</RID><RTL>(2018; with Change 1, 2021) Elevators</RTL><BRK/><BRK/><RID>UFC 3-560-01</RID><RTL>(2017; with Change 3, 2023) Operation and Maintenance: Electrical Safety</RTL><BRK/><BRK/><RID>UFC 4-010-06</RID><RTL>(2023) Cybersecurity of Facility-Related Control Systems</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>36 CFR 1191</RID><RTL>Americans with Disabilities Act (ADA) Accessibility Guidelines for Buildings and Facilities; Architectural Barriers Act (ABA) Accessibility Guidelines</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Navy and Army projects include the following requirement:</NPR><BRK/>
+<BRK/>
+<NPR>A Pre-submittal elevator design conference must be conducted prior to submitting SD-02 Shop Drawings and SD-03 
+Product Data to review these proposed submittals.  Coordinate the meeting with the Contracting Officer.  Suggested 
+attendees include the Contractor, elevator sub-contractor, FEC VTE LCO (or VTE SME), any involved design engineers, 
+and any trades that are installing systems that interface with the elevator system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES and edit the following 
+list, and corresponding submittal items in the text, to reflect only the submittals required for the project.  
+The Guide Specification technical editors have classified those items that require Government approval, due to 
+their complexity or criticality, with a "G."  Generally, other submittal items can be reviewed by the Contractor's 
+Quality Control System.  Only add a "G" to an item if the submittal is sufficiently important or complex in context 
+of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, with a code of up to three characters 
+to indicate the approving authority.  Codes for Army projects using the Resident Management System (RMS) are:  
+"AE" for Architect-Engineer; "DO" for District Office (Engineering Division or other organization in the District 
+Office); "AO" for Area Office; "RO" for Resident Office; and "PO" for Project Office.  </TAI>Codes following the "G" 
+typically are not used for Navy and Air Force projects.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance for sustainability Guiding Principles 
+Validation or Third Party Certification and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" or "S" classification are for Contractor 
+Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification are for information only.  When used, a code following the "G" classification 
+identifies the office that will review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Elevator</SUB> System; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Elevator Components</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Elevator Drive System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wiring Diagrams</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Army projects, delete the bracketed items.  For Navy projects, keep the bracketed items.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<ITM><SUB>Elevator</SUB> and Accessories[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Elevator Components</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Data Sheets</SUB>[; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB>]</ITM><BRK/>
+<BRK/>
+<ITM><SUB>Elevator Microprocessor Controller</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Emergency Power Systems</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Heat Loads</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Reaction Loads</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Warranty</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Welders' Qualifications</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Elevator Mechanic State License, Certification, or Equivalent</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Elevator Controller Data Package</SUB>, <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Maintenance Control Program (MCP)</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Software and Documentation</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Elevator Certification Certificate, Assessment, or Validation and Compliance Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<SPT><TTL>Shop Drawing Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide assembly and arrangement of elevators, accessories, and elevator components with clearances marked.  Provide floor plan and elevations 
+showing location of all elevator equipment and supporting components including but not limited to:  machine, controller, transformers, power panels, 
+motors, disconnects, governors, oil coolers, Heating and AC units, storage cabinets, and human interface systems in the elevator machine room (MR) 
+or control room (CR) and machinery spaces.  Floor plans and elevations must be fully dimensioned including size of equipment and code required 
+clearances for servicing components.  Provide details for materials and equipment, including but not limited to operating and signal fixtures, 
+doors, door and car frames, car enclosure, controllers, motors, guide rails and brackets, layout of hoistway in plan and elevation, and other layout 
+information and clearance dimensions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Product Data Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide manufacturers' product data for all <SUB>elevator components</SUB>, including but not limited to the following:  elevator controller, hydraulic pump 
+unit, hydraulic pump and motor, hydraulic cylinder, hydraulic piping and fittings, car and hall fixture buttons and switches, cab and machine room 
+or control room communication devices, door operator, door protection system, car roller guides, and buffers.  For <SUB>data sheets</SUB>, provide document 
+identification number or bulletin number, published or copyrighted prior to the date of contract bid opening.  Provide controller manufacturer's 
+published procedures for performance of each and all testing required by <RID>ASME A17.1/CSA B44</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Design Data</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Reaction Loads</TTL><BRK/>
+<BRK/>
+<TXT>Provide calculations by registered professional engineer for <SUB>reaction loads</SUB> imposed on building by elevator system.  Demonstrate calculations complying 
+with <RID>ASME A17.1/CSA B44</RID></TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Heat Loads</TTL><BRK/>
+<BRK/>
+<TXT>Provide calculations from elevator manufacturer, or by registered professional engineer, for total anticipated <SUB>heat loads</SUB> generated by all of the 
+elevator equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Emergency Power Systems</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Where the facility has an emergency power system, confirm the elevators are connected to the emergency power system.  Confirm the complete emergency 
+power system and sequence of operation for all elevators, including operation of the elevator lobby manual selection switch.  Provide wiring diagrams 
+for building emergency power interface with elevator controls.  For elevators not supplied by an emergency power system, provide manufacturers' 
+product data for auxiliary power systems.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Welders' Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Comply with <RID>ASME BPVC SEC IX</RID>.  Include certified copies of field <SUB>welders' qualifications</SUB>.  Minimum qualifications are QW-122.4 Multiple Position 
+6G Pipe.  List welders' names with corresponding code marks to identify each welder's welding work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Maintenance Control Program (MCP)</SUB></TTL><BRK/>
+<BRK/>
+<TXT>For each elevator, prepare and provide a written Maintenance Control Program (MCP) that complies with <RID>ASME A17.1/CSA B44</RID> Section 8.6 in its entirety.  
+Include written documentation that details the test procedures for each and every test that is required to be performed by <RID>ASME A17.1/CSA B44</RID>.  
+Assemble all MCP documentation, and supporting technical attachments, in a single MCP package and provide in both electronic and hard copy.  Assemble 
+entire hard copy MCP in 3-ring binders  and install in each elevator machine room (MR), machinery space (MS), control room (CR), or control space 
+(CS).  For each elevator provided, the MCP must include only documentation and instruction that apply to the elevator specified.</TXT><BRK/>
+<BRK/>
+<TXT>For each elevator, provide an additional, separate binder that includes all maintenance, repair, replacement, call back, and other records required 
+by <RID>ASME A17.1/CSA B44</RID>.  Keep the records binder in the elevator MR, MS, or CR, maintained by elevator maintenance and service personnel, and available 
+at all times to authorized personnel.  Provide detailed information regarding emergency service procedures and elevator installation company personnel 
+contact information.  Provide a listing of all tools to be provided to the Contracting Officer as components of the elevator system.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY ASSURANCE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Qualification</TTL><BRK/>
+<BRK/>
+<TXT>Provide a designed and engineered elevator system by an elevator contractor regularly engaged in the installation of elevator systems.  Provide 
+elevator components manufactured by companies regularly engaged in the manufacture of elevator components.  Utilize elevator personnel who are 
+licensed, certified, or currently enrolled in an accredited elevator training program for adjusting, testing, and servicing of the elevators.  
+Trainees, or helpers, are permitted to perform installation under the direct supervision of an elevator technician.  Each elevator technician is 
+permitted to supervise up to three trainees, or helpers.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Elevator Contractor's Elevator Technicians</TTL><BRK/>
+<BRK/>
+<TXT>For elevator installations in the United States, including United States territories, perform all elevator related work under the direct and continuous 
+daily on-site supervision of an elevator technician with experience in the installation of elevator systems of the type and complexity specified 
+in the contract documents within the preceeding three years.  The elevator technicianmust provide a current <SUB>elevator mechanic state license, certification, 
+or equivalent</SUB>, and have documented completion of training provided by one of the following organizations:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>National Association of Elevator Contractors (NAEC)</OLI><BRK/>
+<BRK/>
+<OLI>National Elevator Industry Education Program (NEIEP)</OLI><BRK/>
+<BRK/>
+<OLI>National Association of Elevator Safety Authorities (NAESA)</OLI><BRK/></OLG>
+<BRK/>
+<TXT>Each elevator technician is permitted to supervise up to six trainees at any one time who are enrolled and actively participating in any of the 
+above listed organization's training programs.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Manufacturers' Technical Support</TTL><BRK/>
+<BRK/>
+<TXT>Provide elevator components from manufacturers that provide factory training and online and live telephone elevator technical support to any elevator 
+installation, service, and maintenance contractor.  Provide elevator components from manufacturers that guarantee accessibility to all replacement 
+and repair parts and components to any elevator installation, service, and maintenance contractor.  Use only elevator component manufacturers that 
+provide current published price lists for all elevator parts and components.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Operation and Maintenance Data</TTL><BRK/>
+<BRK/>
+<TXT>Assemble all shop drawing and product data material into O&amp;M Data Packages in accordance with Article SUBMITTALS.  Provide two complete O&amp;M 
+Data Packages in hard copy and two complete electronic O&amp;M data packages on separate CDs, in PDF format.  Provide all O&amp;M Data Packages 
+to Contracting Officer.  Include controller diagnostic documentation and software as required under Article CONTROL EQUIPMENT.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Wiring Diagrams</TTL><BRK/>
+<BRK/>
+<TXT>Provide complete <SUB>wiring diagrams</SUB> and sequence of operations, which show electrical connections and functions of elevator systems.  Provide one 
+set (<MET>279 mm by 432 mm </MET><ENG>11 inch by 17 inch </ENG>minimum size) of wiring diagrams, with individual sheets laminated in plastic and assembled in binder, 
+to be stored in the machine room or control room cabinet.  Provide one additional hard copy set and one complete electronic set on separate CDs, 
+in PDF format.  Provide all wiring diagram sets to the Contracting Officer.  Coded diagrams are not acceptable unless fully identified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Machine Room/Control Room Cabinet</TTL><BRK/>
+<BRK/>
+<TXT>For storage of O&amp;M Data Packages and Wiring Diagrams, provide metal cabinet capable of being locked with a standard padlock, with a minimum 
+size of<MET> 508 mm W by 305 mm D by 762 mm H</MET><ENG> 20 inch W by 12 inch D by 30 inch H</ENG>.  Size cabinet large enough to accommodate all O&amp;M Data, MCP, 
+and hardware required in paragraphs OPERATION AND MAINTENANCE DATA and WIRING DIAGRAMS.  Secure cabinet to machine room or control room wall.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>NEW INSTALLATION SERVICE</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use Bi-weekly option for Hospitals and other high use facilities.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide elevator <SUB>warranty</SUB> service in accordance with the manufacturer's maintenance plan, warranty requirements and applicable safety codes, for 
+a period of 12 months after the date of acceptance by Contracting Officer.  This work must be performed during regular working hours by a person 
+meeting the requirements of paragraph ELEVATOR CONTRACTOR'S ELEVATOR TECHNICIANS.  Provide supplies and parts to keep elevator system in operation.  
+Perform service only by factory trained personnel.  Provide[ Monthly][ Bi-weekly] services to include repairs, adjustments, greasing, oiling, and 
+cleaning.  Provide service log in elevator machine room or control room and update[ Monthly][ Bi-weekly], throughout the one-year warranty period.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  One hour emergency service below is standard; only use two hour for remote locations.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide 24-hour emergency service, with[ one hour][ two hour] on-site response time, during this period without additional cost to the Government.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Periodic Elevator Certification Inspection and Testing</TTL><BRK/>
+<BRK/>
+<TXT>Provide elevator mechanic to support[ NAVFAC] QEI Certified Elevator Inspector in the periodic six-month and the annual Category 1 elevator certification 
+inspection and testing.  Perform Category 1 inspection and testing no greater than 30 days prior to the end of the warranty period.  Perform all 
+elevator certification testing in the presence of QEI Certified Elevator Inspector.</TXT><BRK/>
+<BRK/>
+<TXT>In conjunction with the testing noted above, test systems for Emergency Power Operation, Earthquake Emergency Operation, and Hospital Emergency 
+Commandeering Service Operation, as applicable.  Schedule so that testing does not interfere with building operations.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIRE PROTECTION SYSTEM</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Confirm that sections listed throughout this article are part of project.  Add or delete sections as needed 
+for project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Coordinate interface between building fire protection system and elevator controls.</TXT><BRK/>
+<BRK/>
+<TXT>Additional fire protection requirements are located in:[ Section <SRF>28 31 60</SRF> INTERIOR FIRE ALARM SYSTEM, NON-ADDRESSABLE,][ Section <SRF>28 31 66</SRF> INTERIOR 
+FIRE ALARM AND MASS NOTIFICATION SYSTEM, NON-ADDRESSABLE,][ Section <SRF>28 31 70</SRF> INTERIOR FIRE ALARM SYSTEM, ADDRESSABLE,][ Section <SRF>28 31 76</SRF> INTERIOR 
+FIRE ALARM AND MASS NOTIFICATION SYSTEM, ADDRESSABLE,][ Section <SRF>28 31 32</SRF> FIRE ALARM REPORTING SYSTEM, DIGITAL COMMUNICATOR TYPE,][ Section 
+<SRF>21 13 13</SRF> WET PIPE SPRINKLER SYSTEMS, FIRE PROTECTION,] [_____] and Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Fire Alarm Initiating Devices</TTL><BRK/>
+<BRK/>
+<TXT>Fire alarm initiating devices are specified in[ Section <SRF>28 31 60</SRF> INTERIOR FIRE ALARM SYSTEM, NON-ADDRESSABLE][ Section <SRF>28 31 66</SRF> INTERIOR FIRE ALARM 
+AND MASS NOTIFICATION SYSTEM, NON-ADDRESSABLE][ Section <SRF>28 31 70</SRF> INTERIOR FIRE ALARM SYSTEM, ADDRESSABLE][ Section <SRF>28 31 76</SRF> INTERIOR FIRE ALARM 
+AND MASS NOTIFICATION SYSTEM, ADDRESSABLE] [_____], including conduit and wiring from each detector to fire protection addressable modules in elevator 
+machine room or control room.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fire Sprinklers</TTL><BRK/>
+<BRK/>
+<TXT>Provide fire sprinklers in accordance with all applicable safety codes and with[ Section <SRF>21 13 13</SRF> WET PIPE SPRINKLER SYSTEMS, FIRE PROTECTION] 
+[_____].  Provide shutoff valve, check valve, and non-adjustable, zero time-delay flow switch, in each sprinkler line immediately outside of each 
+machine room, control room, and hoistway, as applicable.  Provide inspectors' test valve for periodic testing of flow switch and shunt trip disconnect.</TXT><BRK/>
+<BRK/>
+<TXT>Pipe sprinkler piping serving these spaces in a series manner with no laterals.  Locate inspectors' test connection at the end of pipe runs such 
+that operation of the test connection will purge air from system piping.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Shunt Trip Disconnect</TTL><BRK/>
+<BRK/>
+<TXT>Provide flow switches specified in paragraph FIRE SPRINKLERS to comply with <RID>ASME A17.1/CSA B44</RID> and <RID>NFPA 72</RID> for shunt trip of the main line power 
+supply.  For each elevator, provide control wiring connecting the flow switch to a shunt trip equipped circuit breaker located in the elevator 
+machine room or control room.  Upon flow of water, flow switch will instantaneously cause opening of the shunt-trip circuit breaker and remove 
+power from the elevator.  Flow switch must also send a signal to fire alarm control panel to indicate water flow condition.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>ELEVATOR</SUB> DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>Provide elevator system that complies with <RID>ASME A17.1/CSA B44</RID> in its entirety, <RID>UFC 3-490-06</RID> in its entirety, and additional requirements specified 
+herein.  Provide elevator system that meets or exceeds the <RID>NEII-1</RID> Ride Quality Performance Standards Matrix (RQPSM).  Comply with the RQPSM "Intermediate 
+Performance" criteria.</TXT><BRK/>
+<BRK/>
+<TXT>Provide and install elevators in accordance with <RID>36 CFR 1191</RID> - ABAAS, <RID>ICC IBC</RID>, <RID>IEEE C62.41</RID>, <RID>NFPA 70</RID> and <RID>NFPA 101</RID> requirements.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Elevator Design Parameters</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Traffic Analysis and Minimum Cab Size</NPR><BRK/>
+<BRK/>
+<NPR>Perform a traffic analysis and conduct interviews with the facility user to determine number, size, and type of 
+elevators necessary to serve the needs of the facility user.  For Army and Navy projects, utilize UFC 3-490-06, 
+Elevators to determine Design Type and speed.  All others, for minimum elevator speed, specify<MET> 0.64 MPs</MET><ENG> 125 fpm</ENG>
+ for 2 story and<MET> 0.75 MPs</MET><ENG> 150 fpm</ENG> for 3 and 4 story elevators.</NPR><BRK/>
+<BRK/>
+<NPR>Use of a holeless type elevator is limited to a maximum travel distance of<MET> 488 cm</MET><ENG> 16ft</ENG>.</NPR><BRK/>
+<BRK/>
+<NPR>Size and capacity configurations are limited to three basic configurations as listed in the subparagraphs below.  
+In the rare case that the listed configurations do not meet project requirements, more extensive project-specific 
+editing will be required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Elevator No.[_____] - Emergency Medical Service Accessibility (EMSA)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Emergency Medical Service Accessibility (EMSA):  For each building of two stories or greater, provide at 
+least one elevator with a minimum size and arrangement to accommodate an ambulance stretcher<MET> 610 mm by 2134 mm</MET><ENG>
+ 24 inch by 84 inch</ENG>, with not less than<MET> 127 mm</MET><ENG> 5 inch</ENG> radius corners, in the open, horizontal, position.  For 
+buildings with multiple elevators, an EMSA elevator must be accessible from <HL1>all</HL1> locations in the building; otherwise 
+additional EMSA elevator(s) must be provided.</NPR><BRK/>
+<BRK/>
+<NPR>Two size and capacity configurations of elevators will meet this requirement.  For standard passenger applications 
+use the<MET> 1588 kg</MET><ENG> 3500 lb.</ENG> capacity, single speed side slide described in this subparagraph.  The larger elevator 
+sized to accommodate pallet-size light freight loading described in next subparagraph below will also meet EMSA 
+requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For Machine Roomless (MRL) applications,  careful consideration must be given to the specific installation 
+requirements in UFC 3-490-06, Elevators.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide elevator(s) with minimum size and arrangement to accommodate an ambulance stretcher<MET> 610 mm by 2134 mm with not less than 127 mm</MET><ENG> 24-inch 
+by 84-inch with not less than 5-inch</ENG> radius corners, in the open, horizontal position.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Type:  [In-Ground Direct Plunger][Holeless][Machine Roomless]</OLI><BRK/>
+<BRK/>
+<OLI>Rated load: <MET> 1588 kg</MET><ENG> 3500 lb.</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Rated Speed: <MET> [0.64][0.75] MPs</MET><ENG> [125][150] fpm</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Car Door Type:  Single-speed side slide.</OLI><BRK/>
+<BRK/>
+<OLI>Car Door Opening Width: <MET> 107 cm</MET><ENG> 3 ft.-6 in.</ENG> minimum, or [_____].</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Elevator No.[_____] - Larger Capacity (Pallet-Sized) Loading</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Where a larger capacity elevator is required to accommodate light freight, typically pallet-size loading, 
+use this subparagraph.  Elevator is typically<MET> 1814-2040 kg</MET><ENG> 4000-4500 lb.</ENG> capacity (may be upwards of<MET> 2722 kg</MET><ENG> 6000 
+lbs.</ENG> in rare instances), single speed center opening,<MET> 122 cm</MET><ENG> 48 inch</ENG> door opening width, and is typically be deeper 
+than the<MET> 1588 kg</MET><ENG> 3500 lb.</ENG> EMSA elevator above.</NPR><BRK/>
+<BRK/>
+<NPR>This larger elevator meets the EMSA requirements described above.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Type:  [In-Ground Direct Plunger][Holeless][Machine Roomless]</OLI><BRK/>
+<BRK/>
+<OLI>Rated load: <MET> [1814][2040] kg</MET><ENG> [4000][4500][_____] lb.</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Rated Speed: <MET> [0.64][0.75] MPs</MET><ENG> [125][150] fpm</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Car Door Type:  Single-speed center opening, horizontally sliding.</OLI><BRK/>
+<BRK/>
+<OLI>Car Door Opening Width: <MET> [122 cm][137 cm]</MET><ENG> [4 ft.-0 in.][ 4 ft.-6 in.]</ENG></OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Elevator No.[_____] - Non-EMSA Elevator</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For smaller elevators where EMSA is not required (covered by one of the two elevator types above), this 
+subparagraph may be used.  Typical application would be an elevator bank where one elevator meets EMSA requirements.  
+Elevator is 2500 lb. capacity, 42 inch door opening width, and either side slide or center opening, typically 
+to match other elevators in the bank.</NPR><BRK/>
+<BRK/>
+<NPR>This elevator will not meet EMSA requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<OLG><BRK/>
+<OLI>Type:  [In-Ground Direct Plunger][Holeless][Machine Roomless]</OLI><BRK/>
+<BRK/>
+<OLI>Rated load: <MET> 1134 kg</MET><ENG> 2500 lb.</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Rated Speed: <MET> [0.64][0.75] MPs</MET><ENG> [125][150] fpm</ENG></OLI><BRK/>
+<BRK/>
+<OLI>Car Door Type:  Single speed[ side slide][ center opening].</OLI><BRK/>
+<BRK/>
+<OLI>Car Door Opening Width: <MET> 107 cm</MET><ENG> 3 ft.-6 in.</ENG> minimum, or [_____].</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cab Enclosure and Hoistway Entrance Assemblies</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If retaining first option in sentence below, ensure that finishes are indicated, most likely somewhere 
+on the drawings.  In either case, indicate finish colors of elevator materials in finish schedule on drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Specify stainless steel doors, side panels and wall trim in hospital elevator cabs.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide finishes[ as indicated.][ as listed below:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Floor;[ carpet][ vinyl composition tile][ vinyl sheet tile] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Walls;[ prefinished steel][ laminated plastic on plywood][ stainless steel] [_____].  Provide each cab wall with equally spaced and equally 
+sized wall panels.  All wall panel fasteners must be concealed.</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Wall trim;[ prefinished steel][ stainless steel] [_____].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Accessories; Provide hand rails on full length of back wall and side walls of elevator cab.</OLI><BRK/>
+<BRK/>
+<OLI>Car doors, car door returns, and wall reveals;[ prefinished steel panels][ stainless steel] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Ceilings;[ supported][ prefinished steel panels][ anodized aluminum][ eggcrate] [_____].</OLI><BRK/>
+<BRK/>
+<OLI LEVEL="2">Ceiling frame;[ prefinished steel][ stainless steel][ anodized aluminum] [_____].</OLI><BRK/>
+<BRK/>
+<OLI>Hoistway Entrance Assembly Material and Finishes;[ prefinished steel][ stainless steel] [_____].</OLI><BRK/>
+<BRK/>
+]</OLG></SPT></SPT><SPT><TTL>ELEVATOR OPERATION</TTL><BRK/>
+<BRK/>
+<TXT><RID>ASME A17.1/CSA B44</RID>, Introduction, Section 3, Definitions.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose one of the following four types of elevator operation.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Single, Two-Stop, Automatic Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose for single elevator serving two landings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Single Two-Stop Automatic Operation.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Selective Collective Automatic Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose for single elevator serving three or more landings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Selective Collective Automatic Operation.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Duplex Selective Collective Automatic Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose for two adjacent elevators.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Duplex Selective Collective Automatic Operation.  If a car is taken out of service or fails to respond to a landing call within a predetermined 
+adjustable time limit of approximately 40 to 180 seconds, transfer calls to the other car functioning as a single car Selective Collective elevator 
+until the out-of-service car is returned to the system.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Group Automatic Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose for three or more elevators that serve the same elevator lobby.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Group Automatic Operation.  If a car is taken out of service, or fails to respond to a landing call within a predetermined adjustable time 
+limit of approximately 40 to 180 seconds, transfer calls to another car until out-of-service car is returned to the system.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>SPECIAL OPERATION AND CONTROL</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following special operations and control systems.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Keys for Elevator Key Switches</TTL><BRK/>
+<BRK/>
+<TXT>Provide a minimum of three industry standard barrel keys per unique cylinder used on all key switches for a single elevator.  If there is more 
+than one elevator, provide one additional key set for each unit.  Provide keys with plastic, or better, tags marked "PROPERTY OF THE U.S. GOVERNMENT" 
+on one side with function of key on the other side.  Provide two elevator drop keys for each elevator with red plastic tag stating 'Emergency Elevator 
+Key (DANGER)For Use By Authorized Persons Only'.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Elevator Key and Switch Scheme</TTL><BRK/>
+<BRK/>
+<TXT>Fan speed, cab, and work lighting must be non-key operated type switch located behind a locked service panel which is located on the COP.  Follow 
+the elevator key protocol as listed:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>EX511 Key operates the audible alarm reset/Loss of communication and must be located at the fire recall level.</OLI><BRK/>
+<BRK/>
+<OLI>EX512 Key opens the locked service panel door on the Car Operating Panel (COP) and operates the In-Car Stop switch located inside the locked 
+service panel.</OLI><BRK/>
+<BRK/>
+<OLI>EX513 Key operates the independent service switch and is located on the COP accessible to the public (not behind the locked service panel 
+door).</OLI><BRK/>
+<BRK/>
+<OLI>EX514 Key operates the Inspection enable switch, and the Access Enable switches located inside the locked service panel.</OLI><BRK/>
+<BRK/>
+<OLI>EX516 operates the Hospital Commandeering/Car switches, if applicable, and is located accessible to the public on the COP, and at every 
+landing hall call station.</OLI><BRK/>
+<BRK/>
+<OLI>FEOK1 Key operates Fire Service phase 1 switch located at the fire recall level and must open the fire service panel and operate the phase 
+2 switch located inside firefighters service panel (FFS).</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>Firefighters' Emergency Operation (FEO)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate FEO Designated Landing with Fire Protection Designer.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide FEO equipment and signaling devices.  The designated level for the FEO Phase I key operated switch is the [ground][_____] floor.  In the 
+FEO Phase I fixture, provide FEO Operating Instructions.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Firefighters' Emergency Operation (FEO) Key Box</TTL><BRK/>
+<BRK/>
+<TXT>Provide locking, FEO Key Box of a minimum size inside dimensions of<MET> 137 mm W by 229 mm H by 35 mm D</MET><ENG> 5.375 inch W by 9 inch H by 1.375 inch D</ENG>.  
+Install at a height of<MET> 1524 mm</MET><ENG> 5 feet</ENG> above floor level and directly above the FEO Phase I key switch.  Provide box equipped with lock that uses 
+the FEO K1 key and sized large enough to house a set of elevator keys for each unit in the bank, and a standard drop key.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Hoistway Access Operation</TTL><BRK/>
+<BRK/>
+<TXT>Provide hoistway access operation with switches at top and bottom terminal landings.  Locate switch<MET> 183 cm</MET><ENG> 6 feet</ENG> above floor level, within<MET> 305 
+mm</MET><ENG> 12 inches</ENG> of elevator hoistway entrance frame or with the ferrule exposed when located in the elevator entrance frame.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>In-Car Inspection Operation</TTL><BRK/>
+<BRK/>
+<TXT>Provide In-Car Inspection Operation.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Independent Service</TTL><BRK/>
+<BRK/>
+<TXT>Provide key-operated switch on the car operating panel to enable independent service and simultaneously disable in-car signals and landing-call 
+responses.  Provide indicator lights that automatically illuminate during independent service.  For duplex or group operation, if one car is removed 
+from group another car will respond to its hall calls.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Selective Door Operation</TTL><BRK/>
+<BRK/>
+<TXT>For elevator with one or more rear openings at same level as front opening, provide full-selective operation with car and door operating buttons 
+clearly marked for front and rear openings, front and rear car button for each such floor, and front and rear "DOOR OPEN" and "DOOR CLOSE" buttons.  
+Only door for which the button was operated opens or closes.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Elevator Emergency Power Operation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Identify the elevators to be connected to the building emergency power system in the electrical design.  
+Identify and define the complete emergency power system for all elevators.  When using the second bracketed option 
+in either of the next two subparagraphs, edit as required for project-specific requirements.</NPR><BRK/>
+<BRK/>
+<NPR>For any elevator that is not included in the building emergency power operation, utilize paragraph ELEVATOR AUXILIARY 
+POWER OPERATING SYSTEM.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide elevator emergency power operation for[ all elevators][ elevator 1,2,3...].  Coordinate power supply and control wiring to accomplish initiation 
+and operation of elevators on emergency power.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Elevator Auxiliary Power Operating System</TTL><BRK/>
+<BRK/>
+<TXT>Provide elevator auxiliary power operating system for[ all elevators][ elevator 1,2,3...].</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL>Hospital Emergency Commandeering Service (HECS)</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Only keep this HECS paragraph for hospital elevators or for projects in which this operation is specifically 
+requested by the building owner or facility user.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Hospital Emergency Commandeering Service (Code Blue), which when activated from any HECS equipped hall call station or from the car operating 
+panel,cancels all calls for the affected car and dispatches immediately.  All switches must be spring return type.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL><SUB>ELEVATOR DRIVE SYSTEM</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide hydraulic elevator drive system, including pump unit, piping, cylinder/plunger assembly, and associated equipment, which will operate at 
+a maximum working pressure of<MET> 3447 kPag</MET><ENG> 500 psi</ENG> or less.  Provide complete elevator system that meets or exceeds the <RID>NEII-1</RID> Ride Quality Standard, 
+including elevator ride quality and noise levels in car and in elevator machine room and machinery space.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Hydraulic Pump Unit</TTL><BRK/>
+<BRK/>
+<TXT>Provide self-contained pump unit, including oil-hydraulic elevator pump, electric motor, suction-line oil strainer, and structural steel outer 
+base with tank supports and isolation pads.  Provide oil tank capacity for full plunger displacement plus at least<MET> 38 liters</MET><ENG> 10 gallons</ENG>.  Provide 
+means to maintain oil temperature between<MET> 38 and 54 degrees C</MET><ENG> 100 and 130 degrees F</ENG> regardless of ambient temperature.  Limit acoustic output in 
+elevator machine room and machinery space to 80 dbA.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Pump Motor</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  For applications with a rated load over<MET> 2268 kg</MET><ENG> 5000 lbs.</ENG> or rises over<MET> 732 cm</MET><ENG> 24 ft</ENG> specify motors rated 
+at 120 starts/hour.  Consider operational conditions when choosing motor rating and specify 120 starts/hour for 
+heavy usage installations (such as medical facilities).</NPR> <BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide intermittent-duty pump motor rated at[ 80 starts/hour][ 120 starts/hour] and class F insulation.  Provide motor that is sized so that the 
+motor amperage does not exceed the motor nameplate rating in any operating condition, exclusive of acceleration and deceleration.  Provide minimum 
+of one mega ohm insulation resistance between conductors and motor frame.  Provide motor and pump nameplate and data tags permanently mounted on 
+the outside of the pump unit frame, with all data viewable without the use of mirrors or other tools.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Hydraulic Controls and Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide control valve, overspeed safety valve, blowout-proof muffler, and hydraulic pump discharge strainer in the hydraulic oil supply line.  
+Provide two 1/4 turn, ball valve type manual shutoff valves.  Provide one in the elevator hoistway pit and one in the elevator machine room or 
+machinery space.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Hydraulic Control Valve</TTL><BRK/>
+<BRK/>
+<TXT>Provide constant-velocity, down-speed regulated, control valve.  Down-speed regulated control valve allows the car to travel at the same speed 
+in the down direction, regardless of the load on the elevator.  In addition, the hydraulic control valve must have built-in adjustment capability 
+to operate the elevator at 140 percent of rated speed to facilitate periodic testing of the overspeed safety valve.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydraulic Overspeed Safety Valve</TTL><BRK/>
+<BRK/>
+<TXT>Provide overspeed safety valve in hydraulic oil supply line, directly adjacent to the hydraulic cylinder.  Provide threaded pipe connections between 
+the hydraulic cylinder and the overspeed valve.  Provide valve equipped with manufacturer's manual shutoff feature.  Overspeed valve must not be 
+equipped with a manual lowering feature after activation.  Provide adjustable valve with means to seal adjustment after inspection and testing 
+by certified elevator inspector.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Hydraulic Piping and Accessories</TTL><BRK/>
+<BRK/>
+<TXT>Provide <RID>ASTM A53/A53M</RID> or <RID>ASTM A106/A106M</RID>, Schedule 80, carbon steel piping with <RID>ASME B16.9</RID> or <RID>ASME B16.11</RID> fittings for supply piping.  Extend schedule 
+80 piping from the pump control valve body, inside the pump unit, to the hydraulic cylinder in the hoistway.  Provide welded, threaded, forged, 
+or grooved pipe fittings for all fittings and components of the hydraulic oil supply line.  Welding of hydraulic piping and vessels require welders 
+with minimum qualifications complying with <RID>ASME BPVC SEC IX</RID>.  Provide Schedule 80 socket fittings, weld-o-let, and thread-o-let carbon steel fittings 
+for all welded joints.  Provide hangers or supports for all piping and components.  Grooved couplings that are field modified (cut or rolled) are 
+permitted when the installing technician presents proof of OEM training on the piping system being installed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Containment of Hydraulic Oil Supply Line</TTL><BRK/>
+<BRK/>
+<TXT>Protect all portions of hydraulic oil supply line that are installed below ground, including portions encapsulated in concrete or covered by construction, 
+with continuous, Schedule 80, PVC.  Inside diameter of PVC must be<MET> 102 mm</MET><ENG> 4 inches</ENG> larger than the outside diameter of the hydraulic oil supply 
+line pipe and couplings.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Hydraulic Elevator Type</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use of a holeless type elevator with a non-telescoping jack is limited to a maximum travel distance of 
+16 ft.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a[n][ in-ground direct plunger][ holeless] direct plunger type hydraulic elevator.  Elevators with telescopic or inverted cylinder-plungers 
+are not acceptable and may not be used.  Rope hydraulic elevator design is not acceptable and may not be used.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Cylinder-Plunger (Jack) Unit</TTL><BRK/>
+<BRK/>
+<TXT>Provide a single-stage plunger of seamless steel construction.  Provide cylinder with self-stabilizing mount that supports and holds thecylinder 
+plumb without the need for stabilization means at the bottom of the cylinder.  Provide a threaded,<MET> 6 mm</MET><ENG> 1/4 inch</ENG> bleeder valve at the top of the 
+cylinder, just below packing gland.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>Cylinder Well System</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Retain this paragraph and associated subparagraphs for in-ground direct plunger type elevators only.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>For direct plunger, in-ground type hydraulic elevator, provide a dry, sealed cylinder well system.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Well Casing</TTL><BRK/>
+<BRK/>
+<TXT>Locate and drill well for the cylinder well system.  Line well with steel casing, minimum<MET> 6 mm</MET><ENG> 1/4 inch</ENG> wall with welded<MET> 13 mm</MET><ENG> 1/2 inch</ENG> steel bottom.  
+Set casing plumb.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PVC or HDPE Liner</TTL><BRK/>
+<BRK/>
+<TXT>Provide Schedule 80 PVC or HDPE liner with bottom cap and couplings; joints sealed watertight using pipe manufacturer's recommended adhesive or 
+heat welding methods.  Provide liner inside diameter not less than<MET> 76 mm</MET><ENG> 3 inches</ENG> larger than elevator cylinder maximum outside diameter.  Liner 
+may be provided as a cylinder manufacture's applied liner or as a separate component.  For separate liner, set liner plumb in well casing, located 
+for cylinder installation.  Provide dry, salt-free sand below and around the liner  up to a minimum of <MET>61 cm</MET> <ENG>24 inches </ENG>of the PVC liner.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cylinder Installation</TTL><BRK/>
+<BRK/>
+<TXT>Remove all moisture from inside of liner.  Install cylinder plumb, inside liner.  Provide a<MET> 6 mm</MET><ENG> 1/4 inch</ENG> copper, or non-corrosive, evacuation 
+tube inside the liner.  The bottom of the evacuation tube must be within<MET> 152 mm</MET><ENG> 6 inch</ENG> of the bottom of the liner.  Top of evacuation tube must 
+extend at least<MET> 152 mm</MET><ENG> 6 inch</ENG> above pit floor.  Provide top of test tube with removable cap to exclude foreign matter.  Provide air inlet pressure 
+fitting in top of liner and accessible in pit, for performance of air pressure test.  Secure Liner/Cylinder Assembly as recommended by cylinder 
+manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cylinder Liner Fluid Detection System</TTL><BRK/>
+<BRK/>
+<TXT>Provide fluid detection sensors inside the cylinder liner to detect the presence of oil or water at the bottom of the cylinder liner.  Provide 
+sensor monitoring system which actuate audible and visual alarms when water or oil is present, and discriminate between the two.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Seal Top of Well Casing</TTL><BRK/>
+<BRK/>
+<TXT>Upon successful test and certification of Liner/Cylinder assembly, seal gap between steel well casing and liner with foam insert strong enough 
+to retain and support final grouting.  Provide<MET> 21 MPa</MET><ENG> 3000 psi</ENG> grout to a minimum of<MET> 102 mm</MET><ENG> 4 inch</ENG> thickness and level top of final grouting with 
+pit floor.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>]</SPT><SPT><TTL>ELEVATOR CONTROL EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Enclose all elevator control equipment in factory-primed and baked-enamel coated sheet-metal cabinets with ventilation louvers and removable or 
+hinged doors.  Mount cabinets at eye level to the User Interface Tool, with the maximum height of the cabinet top no greater than of<MET> 200 cm</MET><ENG> 78 
+inches</ENG> above the machine room or control room finish floor.  Controllers cannot be mounted on the hydraulic power unit.  For floor mounted controllers, 
+maintain a minimum clearance of<MET> 254 mm</MET><ENG> 10 inches</ENG>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Motor Control Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Provide elevator motor control with electronic, soft-start motor starter.</TXT> <BRK/>
+<BRK/></SPT>
+<SPT><TTL>Elevator Controller</TTL><BRK/>
+<BRK/>
+<TXT>For each individual elevator controller, and for each group controller, provide a <SUB>elevator microprocessor controller</SUB>.  Provide <SUB>elevator controller 
+data package</SUB> that includes all hardware and software required for the installation, maintenance, testing, and service of the elevator, in its entirety.  
+Provide an elevator controller designed to automatically reestablish normal elevator operation following any temporary loss of power, regardless 
+of duration.  Remote Interaction Operation (RIO)is not authorized for installation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Elevator Controller Availability</TTL><BRK/>
+<BRK/>
+<TXT>Identify the elevator controller as available for purchase and installation by any licensed elevator contractor.  All components, parts, diagnostic 
+tools, and software must be available for purchase and installation and use by any licensed elevator contractor; "exchange-only" provisions for 
+the purchase of spare parts are not acceptable.  The elevator controller manufacturer must publish an industry competitive price listing for all 
+controller parts, diagnostic tools, and software.</TXT><BRK/>
+<BRK/>
+<TXT>Provide an elevator controller from a manufacturer that provides comprehensive factory training to include controller installation, adjustment, 
+service, and maintenance.  Identify the training as available to any licensed elevator contractor.  Training schedule, with pricing, for factory 
+training classes that manufacturer provides must made available upon request, and offered for a minimum period of one year prior to contract award 
+date.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Elevator Controller Technical Support</TTL><BRK/>
+<BRK/>
+<TXT>Provide verification of telephone and internet based technical support service that the elevator controller manufacturer provides to any licensed 
+elevator installation, service, and maintenance company at an industry competitive price.  Include in the service live telephone based technical 
+support for installation, adjustment, maintenance, and troubleshooting of the elevator controller and related elevator components.  The service 
+must be available during standard working hours.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Elevator Controller Interface</TTL><BRK/>
+<BRK/>
+<TXT>For each individual elevator microprocessor controller, provide a mounting in, or on, the elevator controller for the human interface system with 
+it's own receptacle.  For group elevator installations, a single cabinet and interface system with full access to each elevator controller may 
+be utilized.  The human controller interface software is supplied by the elevator controller manufacturer and includes a minimum<MET> 254 mm</MET><ENG> 10 inch</ENG>
+ display.  The elevator controller interface cabinet must comply with arc-flash protection requirements of <RID>NFPA 70E</RID> and <RID>UFC 3-560-01</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Elevator Microprocessor Human Interface</TTL><BRK/>
+<BRK/>
+<TXT>The interface system must provide complete elevator controller interface capability and must include the elevator controller manufacturer's comprehensive 
+package of installation and diagnostic software.  The interface cannot utilize wireless communication with the controller.  The microprocessor 
+interface system must provide unrestricted access to all parameters, all levels of adjustment, testing, and all flags necessary for installation, 
+adjustment, maintenance, and troubleshooting of each elevator and for the elevator group.  Store all software programming in non-volatile memory.  
+The elevator controller fault log must provide non-volatile memory fault log storage of all faults, trouble calls, and fault history for a minimum 
+of one hundred events, and have the ability to download or print the fault log.  The controller interface must also provide the capability to display 
+and diagnose trouble calls, faults, and shutdowns.  Expiring software, degrading operation, and "key" access controls are not acceptable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>Software and Documentation</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide two copies of the manufacturer's maintenance and service diagnostic software, with complete software documentation that enables unrestricted 
+access to all parameters and functions of the controller.  Manufacturer's maintenance and service diagnostic software that is available without 
+charge for downloading via vendor portal meets this requirement.  Revisions to software must be available at no additional charge for the life 
+of the controller.  Provide signed certification, from the manufacturer's corporate headquarters, that guarantees that the microprocessor software 
+and access system will not terminate the unlimited and unrestricted access at any future date.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Elevator Controller Cybersecurity</TTL><BRK/>
+<BRK/>
+<TXT>Comply with <RID>UFC 4-010-06</RID>, Cybersecurity for Facility-Related Control Systems (FRCS), and Section <SRF>25 05 11</SRF> CYBERSECURITY FOR FACILITY-RELATED CONTROL 
+SYSTEMS, to ensure the control system is isolated and not accessible remotely.  Controllers that have remote capability are acceptable if proven 
+that their remote capability is permanently disabled.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>OPERATING PANELS, SIGNAL FIXTURES, AND COMMUNICATIONS CABINETS</TTL><BRK/>
+<BRK/>
+<TXT>For all panels and fixtures, provide identical and uniform panel and fixture design, material, finish, and components for all elevators.  For all 
+panels and fixtures, legibly and indelibly identify all buttons, devices, and all operating positions for each device.  Use engraving and backfilling, 
+or raised lettering, for button and device designations.  Do not use attached signs.  Provide industry standard grade barrel keys for all key switches 
+unless otherwise specified.  All illuminating panels and fixture components must utilize LED lighting for energy efficiency.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Car and Hall Buttons</TTL><BRK/>
+<BRK/>
+<TXT>For all cab and landing fixture buttons, provide industry-standard, vandal resistant push buttons with positive-stop assembly design.  Buttons 
+must be minimum<MET> 19 mm</MET><ENG> 3/4 inch</ENG> diameter, satin-finish stainless steel, with illuminating LED halo.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Passenger Car-Operating Panel</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Choose "two" Car Operating Panels for high traffic passenger elevators in hospital buildings and office 
+buildings.  Choose "one" for elevator system where traffic is moderate such as in barracks, warehouses, clinics 
+or shops.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide each car with[ one][ two] car operating panel that contains operation controls and communication devices.  Provide exposed, flush mounted 
+buttons for the controls identified in subparagraph PASSENGER CONTROLS.  Provide a lockable service cabinet for the controls listed in subparagraph 
+SERVICE CONTROLS.  Use engraving and backfilling or photo etching for button and switch designations.  Do not use attached signs.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Passenger Controls</TTL><BRK/>
+<BRK/>
+<TXT>All passenger controls must be exposed and accessible to riders. In addition to <RID>ASME A17.1/CSA B44</RID> requirements, provide the following operating 
+controls, identified as indicated:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Illuminating car-call buttons identified to correspond to landings served by the elevator.</OLI><BRK/>
+<BRK/>
+<OLI>"DOOR OPEN" and "DOOR CLOSE" buttons.  For front and rear openings at the same floor, include the identification "F" and "R" for each opening.</OLI><BRK/>
+<BRK/>
+<OLI>Red, illuminating "ALARM" button.</OLI><BRK/>
+<BRK/>
+<OLI>Key-operated "Independent Service" switch.</OLI><BRK/>
+<BRK/>
+<OLI>"Help" communication device to include intercom function, which when activated communicates between elevator cab and elevator machine room 
+or control room.</OLI><BRK/>
+<BRK/>
+[<OLI>Key-operated "HOSPITAL EMERGENCY COMMANDEERING SERVICE" switch.</OLI><BRK/>
+<BRK/>
+]</OLG></SPT><SPT><TTL>Service Controls</TTL><BRK/>
+<BRK/>
+<TXT>Locate all service controls behind a locked cover and not accessible to riders without a key.  In addition to <RID>ASME A17.1/CSA B44</RID> requirements, 
+provide the following operating controls, identified as indicated:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Provide a key-operated, three-position switch for "In-car Inspection Operation" and "Hoistway Access".  The center switch position  provides 
+normal, automatic operation.</OLI><BRK/>
+<BRK/>
+<OLI>"Car Light" must be a non-key operated switch.</OLI><BRK/>
+<BRK/>
+<OLI>"Car Fan" must be a non-key operated switch with two speed settings identified.</OLI><BRK/>
+<BRK/>
+<OLI>120-volt ac 60 Hz single-phase duplex electrical outlet of ground-fault-circuit-interrupt (GFCI) design.</OLI><BRK/>
+<BRK/>
+<OLI>Provide an In-Car stop switch located in the service cabinet.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Certificate Window</TTL><BRK/>
+<BRK/>
+<TXT>Provide a minimum<MET> 102 mm wide by 152 mm high</MET><ENG> 4 inch wide by 6 inch high</ENG> certificate window for elevator inspection certificate.  Locate window 
+in the Service Controls door of the Car Operating Panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Emergency Signaling Devices</TTL><BRK/>
+<BRK/>
+<TXT>Provide an audible signaling device, operable from the Car Operating Panel button marked "ALARM".  The audible signaling device must have a sound 
+pressure rating between 80 and 90 dBA at<MET> 3 meters</MET><ENG> 10 ft</ENG>.  Provide battery backup power capable of operating the audible signaling device for at 
+least one hour.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Elevator In-Car Position Indicators </TTL><BRK/>
+<BRK/>
+<TXT>For all elevators, provide illuminating position indicator in the Car Operating Panel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Elevator In-Car Direction Indicators</TTL><BRK/>
+<BRK/>
+<TXT>For 2-stop elevator installations, provide visual direction indicators and audible car arrival signal in accordance with <RID>36 CFR 1191</RID>.  Visual indicators 
+must be visible from the hall call fixture.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hall Call Landing Fixtures</TTL><BRK/>
+<BRK/>
+<TXT>Provide a hall call fixture adjacent to each elevator.  Provide a single push-button for terminal landings and dual push-buttons, up and down, 
+at intermediate landings.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Designated Landing Hall Call Fixture</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Location of COMMUNICATION MEANS FAILURE (CMF) Visual Signal</TTL><BRK/>
+<BRK/>
+<TXT>As required by <RID>ASME A17.1/CSA B44</RID>, provide an elevator CMF audible and illuminating signal, and reset switch, in the FEO Designated Landing hall 
+call fixture.  Mount the signal and reset switch at a minimum of<MET> 178 mm</MET><ENG> 7 inches</ENG> above the "UP" hall call button.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>COMMUNICATION MEANS FAILURE (CMF) Visual and Audible Signal Operation</TTL><BRK/>
+<BRK/>
+<TXT>Provide a CMF visual and audible signal system that conforms to <RID>ASME A17.1/CSA B44</RID>.  Provide continuous verification of operability of the telephone 
+line and activation of audible and visual signals within 60 seconds when verification means determines that the telephone line is not functioning.  
+Provide illumination of visual signal at one second intervals.  Provide a minimum of 65 dBA audible signal at 30 second intervals.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Firefighters' Emergency Operation Phase I Switch and Visual Signal</TTL><BRK/>
+<BRK/>
+<TXT>When required by <RID>ASME A17.1/CSA B44</RID>, provide an elevator Firefighters' Emergency Operation Phase I switch and illuminating visual signal in the 
+FEO Designated Landing hall call fixture.  Provide FEO Phase I visual signal that is designed with intermittent, flashing, illumination when actuated 
+by the machine room, control room, or hoistway fire alarm initiating device.  Locate FEO Phase I key switch above the CMF visual signal with a 
+minimum of<MET> 152 mm</MET><ENG> 6 inches</ENG> vertical between the centerlines of the CMF signal and the FEO Phase I key switch.  Locate FEO Phase I visual signal 
+directly above the Phase I switch.  In addition, locate Elevator Corridor Call Station Pictograph at top of hall call fixture.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT><SPT><TTL>Elevator Car Position and Direction Indicators and Car Arrival Signal</TTL><BRK/>
+<BRK/>
+<TXT>For elevator installations with three or more stops, provide a separate hall landing fixture that includes the visual elevator position indicator, 
+visual direction indicators, and audible car arrival signal, in accordance with <RID>36 CFR 1191</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Designated Landing Elevator Identification Fixture</TTL><BRK/>
+<BRK/>
+<TXT>For duplex and group elevator installations, provide and install a separate elevator identification fixture for each elevator on the top center 
+of the hoistway door jamb, with identification engraved and backfilled with a contrasting color.  Number elevators from left to right, as seen 
+during primary approach from building main entrance to elevator lobby. Lettering must be minimum<MET>19 mm</MET><ENG> 3/4 inch</ENG> height.  For multiple elevator groups, 
+begin numbering with group that is closest to the building main entrance.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Emergency or Standby Power</TTL><BRK/>
+<BRK/>
+<TXT>When emergency or standby power is provided for elevator operation, provide an elevator emergency power visual indicator that conforms to <RID>ASME A17.1/CSA B44</RID>
+.  Locate the visual signal in the Firefighters Emergency Operation fixture for each simplex elevator and for each elevator group.  When an emergency 
+power selector switch is required, provide switch in a separate, flush mounted fixture located at the designated level, in view of all elevator 
+entrances.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CAR DOOR EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Car Door Operator</TTL><BRK/>
+<BRK/>
+<TXT>Wireless communication systems are not to be utilized.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PASSENGER ELEVATOR GUIDES, PLATFORM, AND ENCLOSURE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Roller Guides</TTL><BRK/>
+<BRK/>
+<TXT>Provide coil-spring loaded roller guide assemblies in adjustable mountings on each side of car and counterweight frames in accurate alignment at 
+top and bottom of frames.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Car Enclosure Wall Panels, Return Panels, Doors, Entrance Columns, and Transom</TTL><BRK/>
+<BRK/>
+<TXT>Provide 14 Gauge minimum [prefinished steel][stainless steel] cab wall panels and entrance components.  Use same material and finish for all hoistway 
+and car entrance assemblies.  Apply sound-deadening material on exterior of all cab wall panels.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Car Enclosure Top</TTL><BRK/>
+<BRK/>
+<TXT>Provide reinforced, 12 gauge minimum steel car enclosure top.  Provide hinged emergency exit with lock that complies with the appropriate seismic 
+risk design requirements of <RID>ASME A17.1/CSA B44</RID>.  Locate emergency exit hinge towards the rear of the elevator cab.  Design and configure the elevator 
+cab interior ceiling to provide convenient and unobstructed access to, and use of, emergency exit from inside the elevator cab.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Car Door</TTL><BRK/>
+<BRK/>
+<TXT>Provide 16 gauge minimum[ prefinished steel][ stainless steel] car doors of sandwich construction with flush surfaces on car and landing sides.  
+Provide a minimum of two door guide assemblies per door panel, one guide at leading and one at trailing door edge with guides in the sill groove 
+their entire length of travel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Car Entrance Sill</TTL><BRK/>
+<BRK/>
+<TXT>Provide one piece cast nickel silver, stainless steel, or white bronze entrance sill(s).  Set sills level and flush with floor finish.  Use same 
+material for hoistway and car entrance sills.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cab Finish Floor</TTL><BRK/>
+<BRK/>
+<TXT>Provide cab finish floor with top of finish floor flush with the cab sill.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Car Fan</TTL><BRK/>
+<BRK/>
+<TXT>Provide 2-speed fan for car enclosure forced ventilation.  Mount fan in the car enclosure top.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Car Lighting</TTL><BRK/>
+<BRK/>
+<TXT>Utilize LED lighting for elevator car interior illumination.  Provide a minimum of 10 foot-candles, measured at all areas of the car enclosure 
+floor.  Provide automatic car lighting operation that turns off car lights after 3 minutes of inactivity.  Car lights must automatically turn on 
+upon actuation of an elevator car or hall call.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Car Protection Pads and Hooks</TTL><BRK/>
+<BRK/>
+<TXT>Provide fire retardant, hanging car protection pads that provide protection for all car interior wall panels.  Provide permanently installed studs 
+in car that are designed for hanging the car protection pads in the car.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PASSENGER ELEVATOR HOISTWAY DOORS AND ENTRANCES</TTL><BRK/>
+<BRK/>
+<TXT>Provide fire rated hoistway entrance assemblies with rating as required per <RID>ICC IBC</RID>.  Use same material and finish for all hoistway and car entrance 
+assemblies.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Hoistway Entrance Frames</TTL><BRK/>
+<BRK/>
+<TXT>Provide 14 gage minimum[ prefinished carbon sheet steel][ stainless steel] hoistway entrance frames.  Solidly grout uprights of entrance ways to 
+height of 5 feet.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hoistway Entrance Sills</TTL><BRK/>
+<BRK/>
+<TXT>Provide one-piece cast nickel silver, stainless steel, or white bronze entrance sills.  Set top of landing sill flush with top of finish floor.  
+Solidly grout under full length of sill for grouted installations.  All sills must support a minimum of Class A loading without deflection.  Use 
+same material for all hoistway and car entrance sills.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hoistway Entrance Doors</TTL><BRK/>
+<BRK/>
+<TXT>Provide[ hollow metal][ stainless steel] non-vision construction hoistway entrance doors with flush surfaces on car and landing sides.  Provide 
+a minimum of two door guide assemblies per door panel, one guide at leading edge and one at trailing edge with guides in the sill groove the entire 
+length of door travel.  Use same material and finish for all hoistway and car entrance assemblies.  Provide an escutcheon tube that accommodates 
+a standard drop key for each door.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hoistway Entrance Door Track Dust Covers</TTL><BRK/>
+<BRK/>
+<TXT>Provide sheet metal hoistway door track dust covers at each landing.  Dust covers must cover top and hoistway side of door locks and door roller 
+tracks, and extend the full width of the door track and associated hardware.  Dust cover sections will not exceed 3 feet in length.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>HOISTWAY EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Car Guide Rails and Fastenings</TTL><BRK/>
+<BRK/>
+<TXT>Provide T-section type guide rails for car.  Paint rail shanks with one coat of black enamel.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pit Equipment and Support Channels</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Delete bracketed phrase for holeless applications.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide rail-to-rail pit channels to serve as mounting surface for main guide rails[, hydraulic cylinder] and car buffers.  Method of installation 
+of channels, brackets and buffer mounts cannot puncture the pit waterproofing.  Paint all pit channels with rust resilient paint.  Install one 
+set of pipe supports (pokes), and store on brackets, in the pit for each car.  Each car, or bank of cars, must have a set of portable barriers 
+installed in the MR, or CR, for use in accessing any landing safely.  Label barriers to indicate which car, or bank of cars, it is intended to 
+be used for.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pit "STOP" Switch</TTL><BRK/>
+<BRK/>
+<TXT>Provide push-to-stop/pull-to-run type pit "STOP" switch.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Traveling Cables</TTL><BRK/>
+<BRK/>
+<TXT>Suspend traveling cables by means of self-tightening webbed devices or internal suspension members.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hoistway Pit Ladder</TTL><BRK/>
+<BRK/>
+<TXT>Provide continuous horizontal slip resistant rungs for the full height of the pit ladder.  Center opening door systems usually require a retractable 
+ladder to meet the required maximum distance from the hoistway door opening means.  Ladder guarding is not permitted be installed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sump Pump Controls</TTL><BRK/>
+<BRK/>
+<TXT>Provide a sump pump oil sensing control system designed to allow water to be pumped out of the sump without pumping oil/hydraulic fluid from the 
+elevator hoistway pit.  The sump pump control system must include an audible alarm and visual indicators for water and oil.  Install alarm indicators 
+and controls in the elevator MR, CR, or in a convenient location at the designated landing.  The system must alarm with high water level and the 
+presence of oil in the sump.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pit Flooring Preservation</TTL><BRK/>
+<BRK/>
+<TXT>Paint pit floor with minimum two coats of gray industrial grade, high traffic paint, or equivalent.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Install in accordance with DOD design criteria, contract specifications, manufacturer's instructions, <RID>NEII-1</RID> Building Transportation Standards 
+and Guidelines, and all applicable building and safety code requirements.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Structural Members and Finish Materials</TTL><BRK/>
+<BRK/>
+<TXT>Do not cut or alter structural members.  Do not alter finish materials from manufacturer's original design.  Restore any damaged or defaced work 
+to original condition.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Miscellaneous Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Provide recesses, cutouts, slots, holes, patching, grouting, and refinishing to accommodate elevator installation. Use core drilling to drill all 
+new holes in concrete.  Finish work to be straight, level, and plumb.  During installation, protect machinery and equipment from dirt, water, or 
+mechanical damage.  Paint all bare metal with rust resilient paint.  At completion, clean all work and spot paint to match surrounding.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the bracketed item for all Navy Facilities and for all projects managed by NAVFAC FEAD except as otherwise 
+directed by the NAVFAC FEC VTE LCO.  Use the bracketed item for Air Force and Army projects that are not managed 
+by NAVFAC FEAD unless utilizing the installing elevator contractor to perform pre-final inspection and testing. </NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The installing elevator Contractor must conduct elevator pre-acceptance inspection and testing[ utilizing a currently licensed Qualified Elevator 
+Inspector (QEI) not employed by the installing elevator contractor].  The  inspections and testing ensures that the installation conforms to all 
+applicable safety codes and contract requirements, meets all ASME testing requirements, and has passed all Field tests required by this specification.  
+For modernization projects existing equipment must be adjusted to meet performance criteria.</TXT><BRK/>
+<BRK/>
+<TXT>Upon completion submit a written test data report certifying that the elevator is complete and ready for final Acceptance Inspection, Testing, 
+and Commissioning.  Include all findings, measurements, and test results in the report.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ACCEPTANCE INSPECTION, TESTING AND COMMISSIONING</TTL><BRK/>
+<BRK/>
+<TXT>When elevator system installation is complete and ready for final inspection, notify Contracting Officer that elevator system is ready for Acceptance 
+Inspection, Testing, and Commissioning.  Provide QEI certification specified in Article FIELD QUALITY CONTROL.</TXT><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use the first bracketed paragraph for all Navy Facilities and for all projects managed by NAVFAC FEAD.  
+Use the second bracketed paragraph for Air Force and Army projects that are not managed by NAVFAC FEAD.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<TXT>Contracting Officer is responsible to obtain the services of Naval Facilities Engineering Systems Command (NAVFAC) QEI Certified Elevator Inspector.  
+NAVFAC QEI utilizes the applicable NAVFAC Elevator Acceptance Inspection Form to record the results of inspection and testing and to identify safety 
+code and contract deficiencies.  Provide specific values for all tests required by <RID>ASME A17.1/CSA B44</RID>, <RID>ASME A17.2</RID>, and contract documents.  Upon 
+completion of inspection and testing, the NAVFAC QEI will sign a copy of the completed forms and provide the signed copy to the Contracting Officer 
+or representative.  Within 2 weeks of the inspection, the QEI will also submit an <SUB>Elevator Certification Certificate, Assessment, or Validation 
+and Compliance Report</SUB>, including all test results and deficiencies.  Upon successful completion of inspection and testing, NAVFAC Certified Elevator 
+Inspector will complete, sign and post form NAVFACENGCOM 9-11014/23(Rev.9-2009), Elevator Inspection Certificate.</TXT><BRK/>
+<BRK/>
+][<TXT>Contracting Officer is responsible to obtain the services of a third-party QEI Certified Elevator Inspector.  The QEI must utilize an Elevator 
+Acceptance Inspection Form to record the results of inspection and all testing and to identify safety code and contract deficiencies.  Provide 
+specific values for all tests required by <RID>ASME A17.1/CSA B44</RID>, <RID>ASME A17.2</RID>, and contract documents.  Upon completion of inspection and testing, the 
+QEI must sign a copy of the completed forms and provide to the Contracting Officer.  Within 2 weeks of the inspection, the QEI must also submit 
+an <SUB>Elevator Certification Certificate, Assessment, or Validation and Compliance Report</SUB>, including all test results and deficiencies.  Upon successful 
+completion of inspection and testing, the QEI will complete, sign, and provide a certificate of compliance with <RID>ASME A17.1/CSA B44</RID>.</TXT><BRK/>
+<BRK/>
+]<SPT><TTL>Acceptance Inspection Support</TTL><BRK/>
+<BRK/>
+<TXT>Prime and Elevator Contractors must provide inspection support and perform all required tests, in order to demonstrate proper operation of each 
+elevator system and to prove that each system complies with contract requirements and all applicable building and safety codes.  Inspection procedures 
+in <RID>ASME A17.2</RID> form a part of this inspection and acceptance testing.  All inspection and testing must be conducted in the presence of the Qualified 
+Elevator Inspector (QEI).</TXT><BRK/>
+<BRK/>
+<TXT>If the elevator does not comply with all contract and safety code requirements on the initial Acceptance Inspection and Test, the Contractor is 
+responsible for all costs involved with re-inspection and re-testing required as a result of contractor delays and discrepancies discovered during 
+inspection and testing.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Testing Materials and Instruments</TTL><BRK/>
+<BRK/>
+<TXT>Furnish all testing materials and instruments necessary for Acceptance Inspection, Testing and Commissioning.  At a minimum, include calibrated 
+test weights, tachometer, accelerometer, hydraulic pressure gauge, 600-volt mega ohm meter, volt meter and ammeter, infrared temperature gauge, 
+door pressure gage, dynamometer, and<MET> 6 meter</MET><ENG> 20 foot</ENG> tape measure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Tests</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Endurance Tests</TTL><BRK/>
+<BRK/>
+<TXT>Test each elevator for a period of one hour continuous, automatic operation, with specified rated load in the elevator cab.  During the one hour 
+test, stop car at each floor, in both directions of travel, and allow automatic door open and close operation.  The requirements for Automatic 
+Operation, Rated Speed, Leveling, Temperature Rise and Motor Amperes must be met throughout the duration of the Endurance Test.  Restart the one 
+hour test period from the beginning, following any shutdown or failure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Speed Tests</TTL><BRK/>
+<BRK/>
+<TXT>Determine actual speed of each elevator, in both directions of travel, with rated load and with no load in elevator car.  Make Speed tests at the 
+beginning and at the end of the Endurance test.  Determine speed by tachometer reading or accelerometer, excluding accelerating and slow-down zones.  
+Under all conditions, minimum acceptable elevator speed is the Rated speed specified.  Maximum acceptable elevator speed is 110 percent of Rated 
+speed.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Leveling Tests</TTL><BRK/>
+<BRK/>
+<TXT>Test elevator car leveling operation and provide a leveling accuracy equal to or less than<MET> 3 mm</MET><ENG> 1/8 inch</ENG> at each floor with no load in car, and 
+with rated load in car, in both directions of travel.  Determine leveling accuracy at the beginning and at the end of the endurance tests.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Temperature Rise Tests</TTL><BRK/>
+<BRK/>
+<TXT>Determine temperature rise of elevator pump motor and hydraulic fluid during one-hour full-load test run.  Under these conditions, maximum temperature 
+rise must not exceed acceptable temperature rise indicated on manufacturer's data plate.  Start test only when equipment is within 5 degrees C 
+of ambient temperature.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Motor Ampere Tests</TTL><BRK/>
+<BRK/>
+<TXT>At beginning and end of Endurance test, measure and record motor amperage in both directions of travel and in both no-load and rated load conditions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Elevator Performance and Ride Quality Testing</TTL><BRK/>
+<BRK/>
+<TXT>Evaluate elevator performance to ensure compliance with specification requirements related to the <RID>NEII-1</RID> Performance Standards Matrix for New Elevator 
+Installations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydraulic Safety Valve (Automatic Shutoff Valve) Tests</TTL><BRK/>
+<BRK/>
+<TXT>In order to ensure consistent performance, regardless of hydraulic oil temperature, test the Hydraulic Safety Valve twice.  Test once before the 
+one-hour endurance test and once immediately after the one-hour test.  For elevator certification, safety valve must perform to elevator safety 
+code requirements in both tests.</TXT>  <BRK/>
+<BRK/></SPT>
+<SPT><TTL>Hydraulic Pressure Tests</TTL><BRK/>
+<BRK/>
+<TXT>Check the hydraulic static pressure and rated-speed operating pressure at the hydraulic control valve, under both no load and rated load conditions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pressure Test of Liner/Cylinder Assembly</TTL><BRK/>
+<BRK/>
+<TXT>Perform<MET> 138 kPag</MET><ENG> 20 psig</ENG> pressure test of the completed and installed liner/cylinder assembly for a minimum of 15 minutes.  Test liner/cylinder 
+assembly as a sealed unit.  Provide safety relief valve set to relieve at<MET> 138 kPag; 114 mm</MET><ENG> 20 psig; 4.5 inch</ENG> diameter dial pressure gage scaled 
+for<MET> 0 to 175 kPag</MET><ENG> 0 to 50 psig</ENG> and calibrated to 0.5 percent accuracy; and an air pressure admission throttle and shutoff valve.  For safety, perform 
+pressure test only when liner and cylinder are fully inserted and assembled in the well casing.  Perform the test from remote location outside 
+of the elevator pit.  Perform test in the presence of, and witnessed by, a Certified Elevator Inspector who must document all results.  It is recommended 
+that this testing be performed at the same time as the jack installation to prevent major re-work at the project completion.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sump Pump Testing</TTL><NED/><BRK/>
+<BRK/>
+<TXT>Perform OEM required testing of the installed sump pump and control/alarm system in the presence of the QEI.  Minimum testing must include motor 
+amperage, actual flow rate, discharge verification, and alarm operation.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></PRT>    <END/><BRK/></SEC>

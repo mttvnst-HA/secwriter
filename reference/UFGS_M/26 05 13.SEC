@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="27.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-26 05 13 (August 2025)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="6.75">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="6.75">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="42.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-26 05 13.00 10 (May 2023)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 26 05 13</SCN><BRK/>
+<BRK/>
+<STL>MEDIUM-VOLTAGE CABLES</STL><BRK/>
+<DTE>08/25</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for <SCP>medium-voltage cables, 
+including shielded and nonshielded single-and multiple-conductor power cables, 
+portable cables, cable splices and terminations, single- and multiple-conductor 
+potheads, and fireproofing cables in manholes and utility tunnels</SCP>.</NPR><BRK/>
+<BRK/>
+<NPR>Show plan layout of power cable and power-cable terminations on drawings.  Show 
+the size, type, electrical characteristics, and raceway system of power cables 
+and type of cable termination on electrical riser diagrams.</NPR><BRK/>
+<BRK/>
+<NPR>Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.</NPR><BRK/>
+<BRK/>
+<NPR>Remove information and requirements not required in respective project, whether 
+or not brackets are present.</NPR><BRK/>
+<BRK/>
+<NPR>Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<TXT>[Provide the project name, contract name, and a brief description of the work covered.  Provide references to 
+the Basic or General electrical section and any other technical sections that might or should reference this 
+section.  ][Section <SRF>33 71 01</SRF> OVERHEAD TRANSMISSION AND DISTRIBUTION ] [<SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION] 
+applies to work specified in this section.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>Medium-voltage power cables include all cables rated above 2,000 volts up to 35,000 volts.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.</NPR><BRK/>
+<BRK/>
+<NPR>Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.</NPR><BRK/>
+<BRK/>
+<NPR>References not used in the text are automatically deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM B3</RID><RTL>(2013; R 2024) Standard Specification for Soft or Annealed Copper Wire</RTL><BRK/><BRK/><RID>ASTM B8</RID><RTL>(2023) Standard Specification for Concentric-Lay-Stranded Copper Conductors, Hard, Medium-Hard, or Soft</RTL><BRK/><BRK/><RID>ASTM B33</RID><RTL>(2010; R 2020) Standard Specification for Tinned Soft or Annealed Copper Wire for Electrical Purposes</RTL><BRK/><BRK/><RID>ASTM B172</RID><RTL>(2017; R 2024) Standard Specification for Rope-Lay-Stranded Copper Conductors Having Bunch-Stranded Members, for Electrical Conductors</RTL><BRK/><BRK/><RID>ASTM B174</RID><RTL>(2017; R 2024) Standard Specification for Bunch-Stranded Copper Conductors for Electrical Conductors</RTL><BRK/><BRK/><RID>ASTM D746</RID><RTL>(2024) Standard Test Method for Brittleness Temperature of Plastics and Elastomers by Impact</RTL><BRK/><BRK/></REF><REF><ORG>INSTITUTE OF ELECTRICAL AND ELECTRONICS ENGINEERS (IEEE)</ORG><BRK/><BRK/><RID>IEEE 48</RID><RTL>(2020) Test Procedures and Requirements for Alternating-Current Cable Terminations Used on Shielded Cables Having Laminated Insulation Rated 2.5 kV through 765 kV or Extruded Insulation Rated 2.5 kV through 500 kV</RTL><BRK/><BRK/><RID>IEEE 386</RID><RTL>(2016) Separable Insulated Connector Systems for Power Distribution Systems Rated 2.5 kV through 35 kV</RTL><BRK/><BRK/><RID>IEEE 400</RID><RTL>(2023) Guide for Field Testing and Evaluation of the Insulation of Shielded Power Cable Systems Rated 5 kV and Above</RTL><BRK/><BRK/><RID>IEEE 400.2</RID><RTL>(2024) Guide for Field Testing of Shielded Power Cable Systems Using Very Low Frequency (VLF)</RTL><BRK/><BRK/><RID>IEEE 404</RID><RTL>(2012) Standard for Extruded and Laminated Dielectric Shielded Cable Joints Rated 2500 V to 500,000 V</RTL><BRK/><BRK/><RID>IEEE 1202</RID><RTL>(2006; R 2012; CORR 1 2012) Flame-Propagation Testing of Wire and Cable</RTL><BRK/><BRK/><RID>IEEE C2</RID><RTL>(2023) National Electrical Safety Code</RTL><BRK/><BRK/></REF><REF><ORG>INSULATED CABLE ENGINEERS ASSOCIATION (ICEA)</ORG><BRK/><BRK/><RID>ICEA T-29-520</RID><RTL>(1986) Conducting Vertical Cable Tray Flame Tests with Theoretical Heat Input Rate of 210,000 B.T.U./Hour</RTL><BRK/><BRK/></REF><REF><ORG>INTERNATIONAL ELECTRICAL TESTING ASSOCIATION (NETA)</ORG><BRK/><BRK/><RID>NETA ATS</RID><RTL>(2025) Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>ANSI C119.1</RID><RTL>(2023) Electric Connectors - Sealed Insulated Underground Connector Systems Rated 600 Volts</RTL><BRK/><BRK/><RID>ANSI/NEMA WC 71/ICEA S-96-659</RID><RTL>(2014; R 2022) Standard for Nonshielded Cables Rated 2001-5000 Volts for use in the Distribution of Electric Energy</RTL><BRK/><BRK/><RID>NEMA BI 50018</RID><RTL>(2024) Cable Cleats</RTL><BRK/><BRK/><RID>NEMA WC 58/ICEA S-75-381</RID><RTL>(2008) Portable and Power Feeder Cables for Use in Mines and Similar Applications</RTL><BRK/><BRK/><RID>NEMA WC 74/ICEA S-93-639</RID><RTL>(2022) 5-46 kV Shielded Power Cable for Use in the Transmission and Distribution of Electric Energy</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/><RID>NFPA 70E</RID><RTL>(2024) Standard for Electrical Safety in the Workplace</RTL><BRK/><BRK/></REF><REF><ORG>U.S. NATIONAL ARCHIVES AND RECORDS ADMINISTRATION (NARA)</ORG><BRK/><BRK/><RID>30 CFR 7.407</RID><RTL>Test for Flame Resistance of Electric Cables and Cable Splices</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 4</RID><RTL>(2026) UL Standard for Safety Armored Cable</RTL><BRK/><BRK/><RID>UL 1072</RID><RTL>(2006; Reprint Oct 2024) Medium-Voltage Power Cables</RTL><BRK/><BRK/><RID>UL 1581</RID><RTL>(2019; Reprint Nov 2023) UL Standard for Safety Reference Standard for Electrical Wires, Cables, and Flexible Cords</RTL><BRK/><BRK/><RID>UL 1685</RID><RTL>(2015) UL Standard for Safety Vertical-Tray Fire-Propagation and Smoke-Release Test for Electrical and Optical-Fiber Cables</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review Submittal Description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.</NPR><BRK/>
+<BRK/>
+<NPR><TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy,   and Air Force.</NPR><BRK/>
+<BRK/>
+<NPR>The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-01 Preconstruction Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>List of Splices and Terminations to be Installed by Splicer/Terminator</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Pulling Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Multiple-Conductor Shielded Cables</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Multiple-Conductor Nonshielded Cables</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Single-Conductor Shielded Cables</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Single-Conductor Nonshielded Cables</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Ground Conductors</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cable Cleats</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flexible and Portable Cable</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cable Supports and Fittings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cable Grips</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cable Tags</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Fireproof Tape</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Splices</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Terminations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Metal-Clad and Armored Cable</SUB>; <SUB>G, [_____]</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Jumper Cables</SUB>; <SUB>G, [_____]</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cable Identification</SUB>; <SUB>G, [_____]</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-05 Design Data</SUB></LST><BRK/>
+<BRK/>
+<LST>Submit within 90 calendar days of Notice to Proceed.</LST><BRK/>
+<BRK/>
+<ITM><SUB>Cable Pulling Calculations</SUB>; <SUB>G, [_____]</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Cleat Manufacturer's Calculations</SUB>; <SUB>G, [_____]</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Factory Inspection and Tests</SUB>; <SUB>G, [_____]</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Field Acceptance Testing</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Wire And Cable Test Record Form</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Phase Rotation Test Record Form</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Splicer/Terminator Certifications</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-08 Manufacturer's Instructions</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Terminations</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Splices</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>ADMINISTRATIVE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Pre-Installation Meetings</TTL><BRK/>
+<BRK/>
+<TXT>No later than [30][_____] days after Notice to Proceed, coordinate with the Contracting Officer to schedule a 
+pre-installation meeting.  Submit the following for review and approval prior to the meeting:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Pulling Plan.  Do not perform any pull until Government reviews and approves the pulling plan, pulling 
+calculations, and cable factory test certificates.</OLI><BRK/>
+<BRK/>
+<OLI>Splicer/Terminator Certifications</OLI><BRK/>
+<BRK/>
+<OLI><SUB>List of Splices and Terminations to be Installed by Splicer/Terminator</SUB></OLI><BRK/>
+<BRK/>
+<OLI>Manufacturer's catalog data for all cables, cable supports and fittings, cable tags, fireproof tape, 
+splice kits, terminations, and any other product data required to complete the work.</OLI><BRK/></OLG>
+<BRK/></SPT>
+</SPT><SPT><TTL>QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Regulatory Requirements</TTL><BRK/>
+<BRK/>
+<TXT>In each of the publications referred to herein, consider the advisory provisions to be mandatory.  Interpret 
+references in these publications to the "authority having jurisdiction," or words of similar meaning, to mean 
+the Contracting Officer.  Ensure equipment, materials, installation, and workmanship are in accordance with the 
+mandatory and advisory provisions of <RID>NFPA 70</RID>, <RID>IEEE C2</RID> unless more stringent requirements are specified or indicated.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment that are products of manufacturers regularly engaged in the production of such 
+products which are of equal material, design and workmanship.  Provide products which have been in satisfactory 
+commercial or industrial use for 2 years prior to bid opening.  Ensure the 2-year period includes applications 
+of equipment and materials under similar circumstances and of similar size.  Ensure the product has been on sale 
+on the commercial market through advertisements, manufacturers' catalogs, or brochures during the 2-year period.  
+Where two or more items of the same class of equipment are required, these items <BRK/>
+must be products of a single manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Qualifications</TTL><BRK/>
+<BRK/>
+<TXT>Verify personnel performing Medium Voltage (MV) splicing or terminations have [5][_____] years minimum experience 
+in cable splicing and terminations of the type used in this project.  Submit <SUB>splicer/terminator certifications</SUB>
+ issued by the cable splice and termination manufacturer who has examined and tested a test splice or termination 
+of each type required by this contract for each cable splicer.  Ensure the certification identifies which splices 
+and terminations it applies to.[  Require each individual, certified or not, with the required medium voltage 
+splicing and terminating experience, who is to perform cable splicing or terminating, to perform a minimum of 
+one splice or termination of each type in the presence of the manufacturer's[ and Government's] representative.  
+Supply all materials and tools required for the demonstration splices and terminations.][  Submit each splice 
+or termination performed by individuals without manufacturer's certification to the manufacturer for testing 
+and subsequent certification.][  Certification is not required for load break elbows and dead break connectors.]</TXT><BRK/>
+<BRK/>
+<TXT>Once a splice or termination has been started by a splicer, ensure the same splicer completes that particular 
+splice, and that each termination and splice is started and completed in one continuous work period.</TXT><BRK/>
+<BRK/>
+<TXT>Maintain and submit a list of splices and terminations to be installed by splicer/terminator.  Ensure the list 
+includes the following for each splice or termination completed.</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Name of splicer/terminator.</OLI><BRK/>
+<BRK/>
+<OLI>Date splice or termination was performed.</OLI><BRK/>
+<BRK/>
+<OLI>Location of splice or termination.  For terminations at equipment indicate equipment number as required 
+to completely define the location.</OLI><BRK/>
+<BRK/>
+<OLI>Feeder number, as applicable.</OLI></OLG><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL><SUB>FACTORY INSPECTION AND TESTS</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Perform factory inspection and tests of wire and cable by and at the plant of the manufacturer.  Ensure testing 
+complies with Section 7 of <RID>ANSI/NEMA WC 71/ICEA S-96-659</RID> and Section 9 of <RID>NEMA WC 74/ICEA S-93-639</RID> as applicable.  
+Include specific tests required for particular materials, components, and completed cables as specified in the 
+sections of the above standards applicable to those materials, components, and cable types.  Also perform tests 
+in accordance with the additional requirements specified below.  In addition to the manufacturer's routine sample 
+testing, for each reel perform an insulation resistance test, and a shield continuity test as applicable.  Do 
+not ship cable until after the manufacturer's test reports have been submitted and approved.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Flame Tests</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The traditional IEEE 383 Flame Test has been moved to IEEE 1202.  Indication 
+that the wire or cable has passed the IEEE 383 Flame Test is still acceptable, 
+and a variance would not be required.<BRK/>
+<BRK/>
+The Canadian FT4 Flame Test is recognized by UL as being equivalent to the IEEE 
+1202 and UL 1685 Flame Tests and may be accepted as a variance to these specified 
+tests.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide multiple-conductor and single-conductor cable assemblies for cable trays and risers that have passed <RID>
+IEEE 1202</RID> (FT4), <RID>UL 1685</RID>, or <RID>ICEA T-29-520</RID> flame tests.  For all other single-conductor cables and individual 
+conductors of multiple-conductor cables, provide cables that have at least passed <RID>UL 1581</RID> (VW-1 or FT1) flame 
+tests.  If such tests have previously been performed on identical cables of the same design and is indicated 
+in the product data, these tests need not be repeated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<LST>a. Ship cables on reels in a way that protects  the cable from mechanical injury.  Hermetically seal 
+end of each cable length using heat-shrinkable molded cable end caps to exclude moisture and securely 
+attached to the reel.</LST><BRK/>
+<BRK/>
+<LST>b. Store cables on reels with the axis hole parallel to the horizontal plane.  Cables on reels stored 
+laying flat on the side of the reel will not be accepted.  Roll reels in the direction indicated by the 
+manufacturer.</LST> <BRK/>
+<BRK/>
+<LST>c. Make the minimum reel drum diameter a minimum of 14 times the overall diameter of the cable.  Ensure 
+that each cable length is installed with a pulling eye installed by the manufacturer, for installation 
+in ducts, manholes, and utility tunnels.</LST><BRK/>
+<BRK/>
+<LST>d. Unreel or uncoil cables slowly to prevent damage to the sheath by sudden bending.  Stop unreeling 
+or uncoiling if kinks appear and do not proceed until kinks have been removed.  Kinked cable will be 
+rejected.  Improperly handled cable may be rejected.</LST><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>MEDIUM-VOLTAGE CABLE</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Wire and Cable Schedule</TTL><BRK/>
+<BRK/>
+<TXT>Provide cable [in accordance with the requirements of the Conduit and Cable Schedules][, and][ as indicated on 
+the drawings].  Estimated quantities [listed in the Conduit and Cable Schedules][shown on the drawings ]are approximate 
+for bidding purposes and must be verified by the Contractor.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Governing Standards</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials, construction, and tests, unless otherwise specified, conforming to the applicable requirements 
+of <RID>ANSI/NEMA WC 71/ICEA S-96-659</RID> and <RID>NEMA WC 74/ICEA S-93-639</RID> as applicable, for the following:</TXT><BRK/>
+<OLG><BRK/>
+[<OLI><SUB>Multiple-Conductor Shielded Cables</SUB></OLI><BRK/>
+<BRK/>
+][<OLI><SUB>Multiple-Conductor Nonshielded Cables</SUB></OLI><BRK/>
+<BRK/>
+][<OLI><SUB>Single-Conductor Shielded Cables</SUB></OLI><BRK/>
+<BRK/>
+][<OLI><SUB>Single-Conductor Nonshielded Cables</SUB></OLI></OLG><BRK/>
+]<BRK/></SPT>
+</SPT><SPT><TTL>MATERIALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Variations from these specifications may be appropriate in some cases.  
+In addition to increasing rated circuit voltage where large overvoltages could 
+occur, material sizes and strengths should be coordinated to withstand any pulling 
+forces which will be applied.  The lower strength of EPR, even jacketed, may 
+at times preclude the use of this material for long pulls.  If variations are 
+requested by a Contractor, they should only be approved if the safety and integrity 
+of conservatively designed circuits are not compromised.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Submittal Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Submit catalog data sufficient to demonstrate compliance with the specifications requirements for all cable types 
+provided.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Rated Circuit Voltages</TTL><BRK/>
+<BRK/>
+<TXT>Provide cables with minimum rated circuit voltages in accordance with <RID>ANSI/NEMA WC 71/ICEA S-96-659</RID>, and <RID>NEMA WC 74/ICEA S-93-639</RID>
+ as applicable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Conductors</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Material for Conductors</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE: If aluminum is to be specified for any of the wire purchased, revise the 
+paragraphs accordingly.<BRK/>
+<BRK/>
+Conductors for wire and cable may be aluminum or copper.  Aluminum conductors 
+may be considered for use in accordance with NFPA 70, Article 310.106.  When 
+used, aluminum conductor material must be AA-8000 series electrical grade aluminum 
+alloy.  The designer must consider several factors when deciding to use aluminum 
+instead of copper including comparisons of electrical properties, mechanical 
+properties, environmental properties specific to the intended installation, 
+reliability, and cost.  Specifications for wire and cable may be written to 
+permit either aluminum or copper conductors where aluminum is suitable for the 
+application, suitably reliable, and is determined to be more economical than copper.<BRK/>
+<BRK/>
+Aluminum conductors should be permitted only where cost comparisons show an 
+overall savings and after a careful evaluation of the corrosion problems associated 
+with their use.  They should only be allowed where installers are qualified 
+to make reliable connections with them.  Proper wire and cable connectors must 
+be suitably rated for installation with the conductor material to which they 
+are applied.  Wire and cable connectors used with aluminum conductors must be 
+suitably rated, termination must be prepared correctly, and an antioxidant must 
+be applied when the connector is installed.  Costs should be compared to between 
+all pertinent items such as installation, conduit, tray, tunnel and duct banks, 
+lifetime costs of energy losses if significant, and differences in ventilation 
+needs if losses are evaluated.  Conductors should have the required current-carrying 
+capacities, the required short circuit capacities, and should be satisfactory 
+with respect to voltage drop.  Aluminum conductors should be sized to have equal 
+or less resistance than the alternate copper conductors unless the total cost 
+comparison, including losses, shows a net advantage otherwise. In such cases 
+where the engineering costs to properly compare the use of the two materials 
+will exceed any possible savings to be achieved by aluminum, the arbitrary choice 
+of copper may be the best policy.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide conductors that in accordance with Section 2 of <RID>ANSI/NEMA WC 71/ICEA S-96-659</RID>, and <RID>NEMA WC 74/ICEA S-93-639</RID>
+, annealed copper conforming to <RID>ASTM B3</RID> or <RID>ASTM B8</RID> unless specified otherwise.  Copper conductors must be bare, 
+or tin- or lead-alloy-coated, if required by the type of insulation used.  Tin-coated copper conductors must 
+conform to <RID>ASTM B33</RID>.[  Ensure that aluminum conductors, if permitted, are Type AA-8000 aluminum conductors.  
+Do not use Type 1350 aluminum conductors.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Conductor Size</TTL><BRK/>
+<BRK/>
+<TXT>Minimum wire sizes are No. 6 AWG for 5kV cable and and No. 2 AWG for 15kV cable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Stranding</TTL><BRK/>
+<BRK/>
+<TXT>Provide class B stranding as defined in Table G-2 of <RID>ANSI/NEMA WC 71/ICEA S-96-659</RID>, and Table H-2 of <RID>NEMA WC 74/ICEA S-93-639</RID>
+, as applicable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Insulation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The previously-used AEIC CS1 for Paper Insulated Lead-Shethed Cable (PILC) 
+is no longer applicable to modern construction, as most manufacturers have abandoned 
+that market in favor of improvements in Cross-Linked Polyethyene (XLPE) cable.  
+The only modern application for PILC is to replace a section of an existing 
+run of PILC, which is not economicaly feasible.  Transitions to XLPE for replacement 
+segments in PILC has become the norm.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>Insulation Material</TTL><BRK/>
+<BRK/>
+<TXT>Except as otherwise specified, provide cross-linked thermosetting type (XLPE or XLPO) or an ethylene-propylene 
+rubber (EPR) type insulation meeting the requirements of Section 4 of <RID>ANSI/NEMA WC 71/ICEA S-96-659</RID> and <RID>NEMA WC 74/ICEA S-93-639</RID>
+ as applicable.  Polyvinyl Chloride (PVC) insulation will not be accepted.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Insulation Thickness</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The NEC Article 315.10(C) allows a 100 percent insulation level where 
+protection is provided by instantaneous trip relaying at any voltage.  But for 
+ungrounded systems operating at 4160 volts or higher that could experience a 
+ground fault of up to one hour, a 133 percent insulation level is required.  
+For longer than one hour, a 173 percent level is required.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide minimum insulation thickness for each conductor based on its rated voltage and insulation material for 
+[100][133][172] percent insulation levels. For both single-conductor cables and individual conductors of multiconductor 
+cables, provide insulation thickness per Table 4-2 of <RID>ANSI/NEMA WC 71/ICEA S-96-659</RID> and per Table 4-4 of <RID>NEMA WC 74/ICEA S-93-639</RID>
+ as applicable.  Thicknesses shown below are nominal, ranging from -5 mils below nominal to +30 mils above nominal.  
+Acceptable nominal thicknesses are:</TXT><BRK/>
+<TAB HEADERROWS="2">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+      <STY SID="s52">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="19">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="144.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="144.00"/>
+      <COL AUTOWIDTH="0" WIDTH="76.50"/>
+      <COL AUTOWIDTH="0" WIDTH="103.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL MERGEDOWN="1" STYLEID="s51">
+<DTA TYPE="STRING"><BRK/>Voltage Rating (kV)</DTA>
+         </CEL>
+         <CEL MERGEDOWN="1" STYLEID="s51">
+<DTA TYPE="STRING"><BRK/>Insulation Level (percent)</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING">Typical Insulation Thickness</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="18.00">
+         <CEL INDEX="3" STYLEID="s52">
+<DTA TYPE="STRING">mm</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">mils</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="30.00">
+         <CEL MERGEDOWN="1" STYLEID="s51">
+<DTA TYPE="STRING"><BRK/><BRK/>2.4</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING">Depends on conductor size,<BRK/>see Table 4-2, NEMA WC 71</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">133</DTA>
+         </CEL>
+         <CEL MERGEACROSS="1" STYLEID="s52">
+<DTA TYPE="STRING">Depends on conductor size,<BRK/>see Table 4-2, NEMA WC 71</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL MERGEDOWN="2" STYLEID="s51">
+<DTA TYPE="STRING"><BRK/><BRK/>5</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">2.29</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">90</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">133</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">2.92</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">115</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">173</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">3.56</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">140</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL MERGEDOWN="2" STYLEID="s51">
+<DTA TYPE="STRING"><BRK/><BRK/>8<BRK/><BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">2.92</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">115</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">133</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">3.56</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">140</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">173</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">4.45</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">175</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL MERGEDOWN="2" STYLEID="s51">
+<DTA TYPE="STRING"><BRK/><BRK/>15</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">4.45</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">175</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">133</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">5.59</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">220</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">173</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">6.6</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">260</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL MERGEDOWN="2" STYLEID="s51">
+<DTA TYPE="STRING"><BRK/><BRK/>25<BRK/></DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">6.6</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">260</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">133</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">8.13</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">320</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">173</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">10.67</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">420</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL MERGEDOWN="2" STYLEID="s51">
+<DTA TYPE="STRING"><BRK/><BRK/>35</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">100</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">8.76</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">345</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="21.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">133</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">10.67</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">420</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="69.00">
+         <CEL INDEX="2" STYLEID="s51">
+<DTA TYPE="STRING">173</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">14.73</DTA>
+         </CEL>
+         <CEL STYLEID="s52">
+<DTA TYPE="STRING">580</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/></TAB><BRK/></SPT>
+<SPT><TTL>Insulation Shielding</TTL><BRK/>
+<BRK/>
+<TXT>Provide shielding that complies with Sections 5 and 6 of <RID>NEMA WC 74/ICEA S-93-639</RID> for all cables rated 5kV and 
+higher.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL>Concentric Neutral Shield</TTL><BRK/>
+<BRK/>
+<TXT>Provide [copper][aluminum] wires helically applied over the insulation shield, where the minimum total cross 
+sectional area, of the shield wires, is [1/3 of the core][full core] conductor for the cable.  Minimum size of 
+an individual shield wire is<MET> 1.6 millimeter</MET><ENG> No. 14 AWG</ENG>.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Jackets</TTL><BRK/>
+<BRK/>
+<TXT>Provide jackets meeting the requirements of Section 5.1 of <RID>ANSI/NEMA WC 71/ICEA S-96-659</RID> and Section 7.1 of <RID>NEMA WC 74/ICEA S-93-639</RID>
+ as applicable for all cables.  Individual conductors of multiple-conductor cables are required to have jackets 
+only if they are necessary for the conductor to meet other specifications herein.  For single-conductor cables 
+and individual conductors of multiple-conductor cables, except for shielded cables, provide jackets in direct 
+contact and adhered or vulcanized to the conductor insulation.  For multiple-conductor cables and shielded single-conductor 
+cables, provide a common overall jacket, tightly and concentrically formed around the core.  Repaired jacket 
+defects found and corrected during manufacturing are permitted if the cable, including jacket, afterward fully 
+meets these specifications and the requirements of the applicable standards.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Jacket Material</TTL><BRK/>
+<BRK/>
+<TXT>Provide jackets of one of the materials listed below, in accordance with Section 5 of <RID>ANSI/NEMA WC 71/ICEA S-96-659</RID>
+ and Section 7 of <RID>NEMA WC 74/ICEA S-93-639</RID> as applicable.  Polyvinyl chloride compounds will not be permitted.</TXT><BRK/>
+<BRK/>
+<LST>a.  Black neoprene (CR).</LST><BRK/>
+<BRK/>
+<LST>b.  Chlorosulfonated polyethylene (CSPE)</LST><BRK/>
+<BRK/>
+<LST>c.  Chlorinated polyethylene (CPE)</LST><BRK/>
+<BRK/>
+<LST>d.  Low smoke zero halogen (LSZH)</LST><BRK/>
+<BRK/>
+<LST>e.  Crosslinked polyolefin (XLPO)</LST><BRK/>
+<BRK/>
+<LST>f. Medium-density polyethylene (MDPE)</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Jacket Thickness</TTL><BRK/>
+<BRK/>
+<TXT>Ensure the minimum thickness of the jackets at any point is not less than 80 percent of the nominal thicknesses 
+specified in Tables 5-2 and 5-3 of <RID>ANSI/NEMA WC 71/ICEA S-96-659</RID> and  Table 7-4 of <RID>NEMA WC 74/ICEA S-93-639</RID> as 
+applicable.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Cabling</TTL><BRK/>
+<BRK/>
+<TXT>Assemble individual conductors of multiple-conductor cables with flame-and moisture-resistant fillers, binders, 
+and a lay in accordance with Section 8 of <RID>NEMA WC 74/ICEA S-93-639</RID> as applicable.  Provide non-hygroscopic fillers 
+compatible with the cable insulation, jacket, and other components of the cable in the interstices of multiple-conductor 
+round cables, with a common covering where necessary to give the completed cable a substantially circular cross 
+section.  Provide rubber-filled or other approved type of binding tape that is compatible with the other components 
+of the cable and lapped at least 10 percent of its width.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Dimensional Tolerance</TTL><BRK/>
+<BRK/>
+<TXT>Ensure outside diameters of single-conductor cables and of multiple-conductor cables do not vary more than 5 
+percent and 10 percent, respectively, from the manufacturer's published catalog data.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Cable Identification</TTL><BRK/>
+<BRK/>
+<TXT>Provide cables with printing on the outer jacket showing the name of the manufacturer, conductor size and material, 
+type of insulation and nominal thickness, and the year in which the cable was manufactured.  Closely group the 
+information on the tape at<MET> 1.8 meters</MET><ENG> 3.3-foot (1 meter)</ENG> maximum intervals to permit complete identification.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SPECIAL WIRE AND CABLE</TTL><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Ground Conductors</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide ground conductors that are bare, soft-drawn, Class A or B stranded copper cables sized in accordance 
+with <RID>NFPA 70</RID>, or <RID>NEMA WC 74/ICEA S-93-639</RID> Section 8 as applicable.  The ground conductor may be integral to a 
+3-conductor cable assembly where applicable.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Metal-Clad and Armored Cable</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Metal-clad/Armored Cables, and Jumper Cables are optional and should 
+be deleted if not being specified.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Metal-clad and armored cable may used wherever physical protection is 
+required for an exposed cable.  It is also often used in cable tray where different 
+voltage ratings must occupy the same cable tray, to avoid violating the NEC 
+Article 300.3(C) requirement that all cables in a cable tray have insulation 
+rated to the highest voltage in the tray, unless the cables are separated by 
+a barrier.  The metal cladding or armor serves as such a barrier.<BRK/>
+<BRK/>
+Metal-clad cables are designated as Type MC.  Cables designated as Type AC are 
+armored cables built to other less stringent requirements under other sections 
+of ICEA/NEMA standards or under UL 4 Armored Cable than for Type MC.  Type AC 
+is not listed for wet locations and is limited by the standards for wire size 
+and number of conductors.  Type MC does not have these restrictions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [metal-clad Type MC][armored Type AC] cables where indicated to be armored or metal-clad.  Ensure the 
+metallic covering is a continuous sheath of interlocked steel strip, interlocked aluminum alloy strip, or a corrugated 
+aluminum-base alloy tube conforming to the requirements <RID>NEMA WC 74/ICEA S-93-639</RID> Section 7.2, or [<RID>UL 1072</RID>, Section 
+28 for Type MC][<RID>UL 4</RID> Section 7 for Type AC].  Galvanized steel wire armor will not be accepted.  Unless indicated 
+otherwise, ensure [metal-clad Type MC][armored Type AC] cables have insulation as described in paragraph INSULATION, 
+and outer jackets as described in paragraph JACKETS.  Provide individual conductors and cable assemblies that 
+also have passed the flame tests described in paragraph FLAME TESTS.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Flexible and Portable Cable</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Flexible cables have much finer stranding and are designed under different 
+standards for installations where above-average flexibility is required, or 
+for temporary installations where the cable is subject to occasional disturbance 
+or movement.<BRK/>
+<BRK/>
+Cables listed only as "welding cable" are only recognized by the NEC in Article 
+630 as being suitable for connections to portable welders and should not be 
+used for any other purpose.  Welding cable cannot be accepted as a substitute 
+for the specified flexible cable.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide type SH or type SHD cables rated for 5000 volts minimum, conforming to the requirements of <RID>NEMA WC 58/ICEA S-75-381</RID>
+, for cables indicated to be flexible or portable.  Ensure stranding complies with <RID>ASTM B172</RID> or <RID>ASTM B174</RID>.  Provide 
+individual conductors and cables that also have passed the flame tests described in paragraph FLAME TESTS or 
+the MSHA flame test of <RID>30 CFR 7.407</RID>.  Cables listed as Welding Cable will not be accepted.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Jumper Cables</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Jumper cables are only required where connections are being made to surge 
+equipment internal to switchgear.<BRK/>
+<BRK/>
+Cables listed only as "welding cable" are only recognized by the NEC in Article 
+630 as being suitable only for connections to portable welders and should not 
+be used for any other purpose.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Unshielded jumper cables may be used only for internal direct connection of bus to surge protection devices within 
+a circuit breaker enclosure or transformer enclosure.  Cables listed as Jumper Cable with the appropriate voltage 
+rating may be used.  Cables listed as Welding Cable will not be accepted.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>SPLICES, CONNECTIONS, AND TERMINATIONS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Pad-mounted equipment may require plug-in type terminations for connection 
+and disconnection in the field.  Such terminations are called load break and 
+nonload break depending on their ratings.  Use this option if these connections 
+are anticipated.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+[<SPT><TTL>Load Break and Nonload Break Connectors</TTL><BRK/>
+<BRK/>
+<TXT>Provide [load-break][ and ][nonload-break] terminations that comply with <RID>IEEE 386</RID> requirements where the drawings 
+indicate plug-type field connections to equipment terminals, or where otherwise specified.  Provide connector 
+with a steel reinforced hook-stick eye, grounding eye, test point, and arc-quenching contact material.  Ensure 
+connections are compatible with equipment bushings.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>Splices</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Heat shrink splices are slighly less expensive and provide better protection 
+against water, dust, oil, and other contaminants.  But they require skill in 
+applying the proper amount of heat for proper installation without damaging 
+equipment, and they do not expand and contract with environmental temperature 
+the same as most insulation and jacket materials, which may eventually create 
+voids.  They are also less flexible than cold shrink splices.  Cold shrink splices 
+are slightly more expensive but are faster and easier to install without risk 
+of damage to equipment.  They exhibit expansion and contraction similar to most 
+insulation and jacket materials and are more flexible than heat shrink.  Select 
+cold shrink splices indoors, in confined spaces, and outdoors where protected 
+from weather.  Select heat shrink splices outdoors where exposed to weather, 
+or in dusty or oily environments.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [heat][cold] shrink splice kits which are the product of a single manufacturer.  Ensure the power cable 
+splice meets the requirements of <RID>IEEE 404</RID> for a [5][15][_____] kV rating, and are rated by the manufacturer for 
+use on [5][15][_____] kV class cable systems.  Ensure splices are rated for continuous operation at<MET> 105 degrees 
+C</MET><ENG> 221 degrees F</ENG>, with an emergency overload temperature rating of<MET> 140 degrees C</MET><ENG> 284 degrees F</ENG>.  Ensure the kit 
+is capable of splicing cables with copper[ or aluminum] conductors sized as indicated in the contract drawings 
+or accommodate a conductor size transition.  Provide splices specifically designed for the cable and grounding 
+provisions.</TXT><BRK/>
+<BRK/>
+[<TXT>Provide heat shrink splices which include but are not limited to the following: </TXT><BRK/>
+<BRK/>
+<LST>a.  Inner heat shrink stress control tube with external end sealant, additional heat shrink tube over 
+inner tube and inner tube end sealant.</LST><BRK/>
+<BRK/>
+<LST>b.  Heat shrink outer wraparound sleeve with heat sensitive indications on both the tube and rail/channel 
+area to indicate proper torch heating, stress relief material, mastic, sealant, shielding mesh, and silicone 
+grease.</LST><BRK/>
+<BRK/>
+][<TXT>Provide splices of a cold shrink design which does not require any additional heat source for installation.  
+The cold shrink splice body must be of a molded design made of silicone rubber with splice jacketing made of 
+EPDM rubber.</TXT>]<BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Terminations</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  IEEE 48 identifies three classes of MV cable terminations: Class 1, Class 
+2, and Class 3.  Class 1 is further broken down into Class 1A, Class 1B, and 
+Class 1C.<BRK/>
+<BRK/>
+All classes providing electric stress control for the cable insulation shield 
+terminus.  Additionally:<BRK/>
+<BRK/>
+Class 1 terminations also essentially seal the cable materials from the outside 
+world preventing even air from coming into contact with the conductor or insulating 
+medium. In general, Class 1 is an outdoor termination for wet location, or wet 
+locations indoors.<BRK/>
+<BRK/>
+   Class 1A is for solid dielectric insulation<BRK/>
+   Class 1B is for laminated paper insulation<BRK/>
+   Class 1C is exclusively for pressurized cable systems, which immerse laminated 
+paper-insulated cables in an oil or gas medium.<BRK/>
+<BRK/>
+Class 2 can be for indoor use, being less stringent on controlling the environment's 
+access to the conductor and insulating medium at the shield terminus, but also 
+continues to insulate each conductor from ground up to the point of actual mechanical connection.<BRK/>
+<BRK/>
+Class 3 terminations only provide electric stress control for the shield terminus, 
+but are suitable for single-conductor cable being terminated directly to a bus 
+inside a grounded enclosure.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide Class [1A][2][3] terminations per <RID>IEEE 48</RID>.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Cable Cleats</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Cleats are required only where cables are running in open cable tray.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Use this option for three-phase medium-voltage feeder cables installed 
+in open cable tray.<BRK/>
+<BRK/>
+Cables under load expand with heat, and will flex within the cable tray during 
+load cycles.  Large cables that are cleated to cable tray have been know to 
+buckle the cable tray, because the cleat spacing did not accommodate thermal 
+expansion between cleat points where all cleats were affixed to the cable tray.  
+Intermediate restraints not affixed to the cable tray (unattached cleats) are 
+typically located between cleats that are affixed to the cable tray.  The intermediate 
+restraints keep the cables from flailing away from each other and causing physical 
+damage under fault conditions, as do the fixed cleats, but still allow the cable 
+bundle more opportunity to flex within the cable tray.  Cleat and intermediate 
+support spacing is a function of the electromagnetic forces exerted between 
+the three phases during a fault, expressed as Newtons per meter.  Cleat type 
+and spacing is best detrmined by the cleat manufacturer based on cable size, 
+arrangement of cables in the cable tray, and the peak value of short circuit 
+current available.  Cleat spacing calculations are thus required to be submitted 
+for approval.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide cable cleats meeting the requirements of <RID>NEMA BI 50018</RID>, designed specifically to secure cables from the 
+electromagnetic forces of a short circuit.  The peak short circuit current available is [_____]kA.  Submit <SUB>cleat 
+manufacturer's calculations</SUB> showing cleat or grip spacing for short circuit restraint in horizontal runs, and 
+install cleats or grips at spacing no further than the calculated value.  Include provision for intermediate 
+supports or unattached cleats for short circuit forces that will allow thermal flexing of the cable bundle.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>SUPPORTS, TAGS, AND ACCESSORIES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate the following paragraph with Section <SRF>33 71 02</SRF> UNDERGROUND 
+ELECTRICAL DISTRIBUTION if Section <SRF>33 71 02</SRF> UNDERGROUND ELECTRICAL DISTRIBUTION 
+is used in this project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL><SUB>Cable Supports and Fittings</SUB></TTL><BRK/>
+[<BRK/>
+<TXT>Provide cable supports, related fittings, and accessories for use in corrosive underground locations, such as 
+manholes and utility tunnels, with a factory-applied coating of PVC of at least<MET> [0.51][_____] millimeter</MET><ENG> [20][_____] 
+mils</ENG> thick.  Provide PVC coated items that have a uniform thickness and are free of blisters, breaks, and holidays.  
+Provide PVC compound that conforms to <RID>ASTM D746</RID>.</TXT>]<BRK/>
+[<BRK/>
+<TXT>Provide cable racks, cable tray supports and related fittings that are UL-listed [standard][heavy]-duty nonmetallic 
+[glass-reinforced nylon] [polycarbonate].</TXT>]<BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Cable Tags</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide cable identification tags of polyethylene or polypropylene that are non-corrosive.  Ensure tags are resistive 
+to acids, alkalis, organic solvents, salt water, and are distortion resistant to 149 degrees C.  Tags must be 
+suitable for contact with the type of insulation or jacket material used, and be composed of block letters, numbers, 
+and symbols 1 inch high on a yellow background.  Ensure letters, numbers, and symbols do not fall off or change 
+positions regardless of the cable tags orientation.  Markings must have been tested by an independent testing 
+laboratory or by the manufacturer to indicate that the markings will not stain or discolor when subjected to 
+an accelerated aging test while in contact with the cable materials and ultraviolet light exposure.  Provide 
+a one-piece nylon, self-locking tie at each end of the cable tag.  Ensure ties have a minimum loop tensile strength 
+of 175 pounds.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Fireproof Tape</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide fireproof tape approximately<MET> 0.8 millimeter</MET><ENG> 30 mils</ENG> thick by<MET> 76 millimeters</MET><ENG> 3 inches</ENG> wide, consisting 
+of a flexible, unsupported elastomer that expands in fire to provide a thick char buildup between the flame and 
+the cable.  Ensure the tape does not give off a smoke when subjected to flames or support combustion.  Also, 
+ensure tape does not deteriorate when subjected to oil, water, gases, salt water, sewage and fungus.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Install medium-voltage cables in accordance with <RID>NFPA 70</RID>, <RID>NFPA 70E</RID>; and <RID>IEEE C2</RID>.  Refer to contract provisions 
+for safety submittals and requirements associated with working in the vicinity of energized cables and equipment.  
+The use of arc-flash and shock prevention equipment and personal protective equipment is mandatory.  Prior to 
+starting work on a medium-voltage cable system, the Contractor must identify and tag the phasing of equipment 
+with a phase rotation meter, and submitting a <SUB>Phase Rotation Test Record Form</SUB>.  The Contractor is responsible 
+for maintaining the phasing, and matching the existing phase rotation and phasing when installing conductors 
+in existing electrical systems.  Install the cables in the following locations:</TXT><BRK/>
+<BRK/>
+<TXT>Exterior:</TXT><BRK/>
+<BRK/>
+<LST>a.  In underground duct banks</LST><BRK/>
+<BRK/>
+<LST>b.  In conduit above and below grade</LST><BRK/>
+<BRK/>
+<LST>c.  In manholes</LST><BRK/>
+<BRK/>
+<LST>d.  By direct burial</LST><BRK/>
+<BRK/>
+<TXT>Inside Buildings:</TXT><BRK/>
+<BRK/>
+<LST>a.  In conduits, exposed or embedded/concealed</LST><BRK/>
+<BRK/>
+<LST>b.  On insulator hooks</LST><BRK/>
+<BRK/>
+<LST>c.  On racks</LST><BRK/>
+<BRK/>
+<LST>d.  In wall-mounted and ceiling-mounted mounted cable trays</LST><BRK/>
+<BRK/>
+<TXT>Secure cables with heavy-duty cable ties [and][or cleats] in existing or new trays mounted horizontally, where 
+the cable rests on the tray bottom.  Install cable ties at a minimum of<MET> [3000][_____] millimeter</MET><ENG> [10][_____] 
+foot</ENG> intervals.[  Install cleats at intervals as recommended by the cable cleat manufacturer's force calculations.]  
+Secure cables with [PVC-coated][metallic][non-metallic] cable clamps, straps, hangers, or other approved supporting 
+devices to tunnel walls and ceilings, where not installed in cable trays.  Immediately seal cut ends of cables 
+cut in the field to prevent entrance of moisture with heat-shrinkable molded cable end caps.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Cable Pulling Calculations</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Cable pulling calculations must be performed by the cable manufacturer's Field Engineer or by another qualified 
+engineer and approved by the cable manufacturer's Field Engineer.  Provide calculations that show the cable manufacturer's 
+maximum allowed pulling force and maximum allowed sidewall pressure are not exceeded, and that cables do not 
+require splices.  If the calculations show that a splice is required at any point to avoid damage to the cable, 
+immediately bring to the attention of the Government.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pulling Cables in Conduits, Ducts, Manholes and Utility Tunnels</TTL><BRK/>
+<BRK/>
+<TXT>Thoroughly clean ducts before installation of power cables.  Pull a standard flexible mandrel through each duct 
+to loosen particles of earth, sand, or foreign material in the line.  Use a mandrel that is not less than<MET> [300][_____] 
+millimeter</MET><ENG> [12][_____] inches</ENG> long with a diameter<MET> 13 millimeter</MET><ENG> 1/2 inch</ENG> less than the inside diameter of the 
+duct.  Then pull a brush with stiff bristles through each duct to remove the loosened particles.  Use a brush 
+with a diameter that is the same as or slightly larger than the diameter of the duct.  Cable pulling using a 
+vehicle is not be permitted.</TXT><BRK/>
+<BRK/>
+<TXT>Submit a <SUB>Pulling Plan</SUB> including staging provisions, known splice [and][or] termination points, calculations of 
+pulling tension and side wall pressure anticipated, the maximum allowable pulling tension for each pull, and 
+the method of measuring pulling tension throughout the pull.  Do not perform any pull until Government reviews 
+and approves the pulling plan and the cable pulling calculations.  Cables may only be pulled manually, or by 
+use of a tugger designed for cable pulling.  Either method must employ a dynamometer to measure pulling tension 
+throughout the pull.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Staging</TTL><BRK/>
+<BRK/>
+<TXT>Pull medium-voltage cables into ducts and utility tunnels with equipment designed for this purpose, including 
+a power-driven winch, cable-feeding flexible tube guide, cable grips, and lubricants.  Employ a sufficient number 
+of trained personnel and equipment to ensure correct installation of the cable.</TXT><BRK/>
+<BRK/>
+<TXT>Set up the cable reel at the side of the manhole or tunnel hatch opening and above the duct or hatch level, allowing 
+the cable to enter through the opening without reverse bending.  Install a flexible tube guide through the opening 
+in a manner that prevents the cable from rubbing against the edges of structural members.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Allowable Sidewall Pressure</TTL><BRK/>
+<BRK/>
+<TXT>The allowable sidewall pressure is the smaller of<MET> 7300 newtons per meter</MET><ENG>500 pounds per foot</ENG> of bend radius for 
+5-15kV shielded cable, <ENG>300 pounds per foot</ENG> for interlocked armored cable and cable rated above 15kV, or the cable 
+manufacturer's recommended maximum value.  Show in the pulling plan submittal the calculations for allowable 
+tension and sidewall pressure as well as the anticipated tension and sidewall pressure for each pull in the project.</TXT><BRK/>
+<BRK/>
+<TXT>Unreel cable from the top of the reel, carefully controlling payout.  Attach cable to be pulled through a swivel 
+to the main pulling wire by means of a [pulling eye installed by the factory or approved cable splicer] [suitable 
+cable grip permitted only on cables less than<MET> 60 meter</MET><ENG> 200 feet</ENG> long and less than <MET>50 millimeter</MET><ENG>2 inches</ENG> in diameter].  
+Attach pulling eyes to the cable conductors of the 3-1/c circuit to prevent damage to the cable structure.  Pull 
+the entire 3-1/c circuit simultaneously.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Minimum Bending Radius</TTL><BRK/>
+<BRK/>
+<TXT>Minimum bending radius during cable pulling operations is<MET> 760 millimeter</MET><ENG> 30 inches</ENG>.  For permanent cable [bending][racking] 
+the minimum bending radius is 12 times cable diameter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coating of Cables</TTL><BRK/>
+<BRK/>
+<TXT>Liberally coat cables with a suitable cable-pulling lubricant as it enters the tube guide or duct.  Do not use 
+greaser and oil lubricants.  Cover nonmetallic sheathed cables with wire-pulling compounds, when required, which 
+have no deleterious effects on the cable.  Use rollers, sheaves or tube guides, around which the cable is pulled, 
+conforming to the<MET> 760 millimeter</MET><ENG> 30 inches</ENG> minimum bending radius of the cable during the pulling operations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pulling Speed</TTL><BRK/>
+<BRK/>
+<TXT>Pull cables into ducts at a speed not to exceed<MET> [15][_____] meters per minute</MET><ENG> 50 feet per minute </ENG>and not in excess 
+of maximum permissible pulling tension specified by the cable manufacturer.  Stop pulling operations immediately 
+with any indication of binding or obstruction and do not resume until such difficulty is corrected.  Provide 
+sufficient slack for free movement of cable due to expansion or contraction.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Ventilation</TTL><BRK/>
+<BRK/>
+<TXT>Provide a blower to force fresh air into manholes or confined areas where free movement or circulation of air 
+is obstructed.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Moisture Control and Water Intrusion</TTL><BRK/>
+<BRK/>
+<TXT>Have waterproof protective coverings available on the work site to protect against moisture while a splice is 
+being made.  Use pumps to keep manholes dry during splicing operations.  Never make a splice or termination with 
+the interior of a cable exposed to moisture.  Use a manhole ring at least<MET> [150][_____] millimeter</MET><ENG> [6][_____] 
+inches</ENG> above ground around the manhole entrance to keep surface water from entering the manhole.  Before starting 
+the splice, plug unused ducts and stop water seepage through ducts in use.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Installation in Cable Trays</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Cables may be configured in a flat cofiguration with one cable diameter 
+spacing between them, or in trefoil (triangular) configuration.  NEC Art. 392 
+provides guidance on cable ampacity depending on the configuration.  A flat 
+spaced configuration allows slightly higher ampacity than a trefoil configuration, 
+but may require a wider tray than a trefoil configuration.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>General</TTL><BRK/>
+<BRK/>
+<TXT>Use cable pulling sheaves of adequate size where necessary to prevent damage to the cable.  Place cables straight 
+and parallel in the trays in a [flat spaced][trefoil] arrangement with a minimum crossing of cables.  Secure 
+cables to the tray as specified.  Install identification markers at intervals not to exceed<MET> [_____]</MET><ENG> 18 feet</ENG>.  
+After all work in the area containing new cables is complete, clean the trays of all dirt and trash generated 
+by the new cable installation.  If cable is moved in the cleaning process, reposition to the correct final cable 
+positions in the trays.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bends</TTL><BRK/>
+<BRK/>
+<TXT>The minimum radius to which an insulated conductor or a multiconductor cable may be bent, without specific approval, 
+whether permanently or temporarily during installation, is 12 times the overall diameter of the completed cable 
+for tape shielded cables and 10 times the overall diameter for other cables, or as otherwise recommended by the 
+manufacturer.  For multiconductor cable, follow manufacturer's recommendation for type of cable involved.</TXT><BRK/>
+<BRK/></SPT>
+[<SPT><TTL><SUB>Cable Grips</SUB></TTL><BRK/>
+<BRK/>
+<TXT>For cables installed in vertical wireways, provide supports or grips that provide adequate support of the weight 
+of cables as described in <RID>NFPA 70</RID> Table 300.19(A).  Determine the size of each support or grip in accordance 
+with the manufacturer's recommendations for each diameter and weight of cable to be secured or supported.</TXT><BRK/>
+<BRK/></SPT>
+][<SPT><TTL><SUB>Cable Cleats</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Install fixed cleats and unattached cleats at spacing no further than the calculated values as provided by the 
+manufacturer.</TXT><BRK/>
+<BRK/></SPT>
+]</SPT><SPT><TTL>Splices</TTL><BRK/>
+<BRK/>
+<TXT>Make splices in manholes or tunnels except where cable terminations are specifically indicated.  Expedite splicing 
+and terminating of cables in order to minimize exposure and cable deterioration.  If cable splices in the tunnel 
+are not installed in cable trays, install the cable splices on cable racks or by other approved methods that 
+minimize physical stress on the splice connections.  Support splices at approximately the same elevation as the 
+installed cable except where space limitations or existing cable length limitations make this method impractical 
+or impossible.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Materials</TTL><BRK/>
+<BRK/>
+<TXT>Use only equipment and materials recommended by the splice manufacturer including calibrated cutting equipment 
+to ensure consistent cut depths when preparing cable ends for the application of the splice kit.  Use the cable 
+manufacturer's recommended splice kit.  Alternatively, if a kit is not available, connect the cable concentric 
+neutral/shield wires across one side of the splice by split bundling the splice neutral wiring and connecting 
+each bundle set to a continuous No. 4 AWG solid bare copper conductor via two compression conductors.  Ensure 
+the No. 4 AWG conductor extrudes from the cable splice jacket and connects to the manholes grounding system.  
+Make all connections within the splice utilizing long barrel-type compression connectors and appropriate compression 
+tools with proper size dies to ensure a satisfactory mechanical and electrical joint.  Ensure bare connections 
+of concentric neutral/shield wires are either contained within the splice kit or sealed via an additional outer 
+covering,consisting of a heavy wall, heat-shrinkable tubing containing adhesive material (mastic) that melts 
+as heat is applied and the outer tubing shrinks to form a moisture proof environmental seal.  Provide outer tubing 
+conforming to <RID>ANSI C119.1</RID>.  Ensure  splice meets the requirements of <RID>IEEE 404</RID> matching the voltage rating of 
+the cable, and is rated by the manufacturer for use on the same voltage rating as the cable.  Take extra precautions 
+to seal around the exit area of the bare copper jumpers with an additional mastic per the splice manufacturer's 
+recommendations.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Splice Support</TTL><BRK/>
+<BRK/>
+<TXT>Firmly support cable splices made up in manholes on cable racks as indicated.  Do not pull cable splices in ducts.  
+Overlap cable ends at the ends of a section to provide sufficient undamaged cable for splicing.  Overlap cables 
+to be spliced in manholes to the centerline of the proposed joint by not less than<MET> [600][_____] millimeters</MET><ENG> 2 
+feet</ENG>.</TXT><BRK/>
+<BRK/>
+<TXT>Locate cable splices in manholes midway between the cable racks on the walls of the manholes and supported with 
+cable arms at approximately the same elevation as the enclosing duct.  Support each cable end termination using 
+a pair of saddle supports under the cable end termination or cable with a minimum<MET> [300][_____] millimeter</MET><ENG> [12][_____] 
+inches</ENG> and a maximum<MET> [750][_____] millimeter</MET><ENG> [30][_____] inches</ENG> separation between the supports.  Secure the 
+cable end termination and cable to the supports in a manner that prevents movement of termination or cable at 
+the support.  Install saddle supports on a galvanized steel framing channel that is anchored to the wall, securely 
+fastened to the cable tray, or installed by other approved methods.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Terminations</TTL><BRK/>
+<BRK/>
+<TXT>Terminate cables in approved cable termination kits.  Provide terminations with adequate means for making external 
+connections to the cable conductors of single-conductor cables (phase and concentric neutral if applicable), 
+as well as the single cables of multi-conductor cables.  Protect the cable insulation against moisture, oil, 
+or other contaminants.  Take extra precautions in physically protecting and supporting cables, and maintaining 
+the insulation level of the cable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Cable Identification</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide identification of all cables on both ends using the designations shown on the Contract drawings or as 
+otherwise shown on approved shop drawings.  Display the designation by tags conforming to Paragraph 2.5.2 Cable 
+Tags.  Install markers in uniform positions on the cables, and where the legends are visible where conductors 
+are terminated at the equipment.  Fasten the tags or band markers at each termination, junction or pull box, 
+where cables enter or leave cable trays, manholes, and at other points of access.  Install cable tags over the 
+fireproofing as needed.  Position the tags so that they are clearly visible without disturbing any cabling or 
+wiring.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Fireproofing</TTL><BRK/>
+<BRK/>
+<TXT>Provide fireproofing (Arc Proofing) for individual cable conductor in manholes, handholes and vaults which carry 
+current at 2200 volts or more.  Tightly wrap strips of fireproofing tape around each cable spirally in half-lapped 
+wrapping.  Extend the tape<MET> 25 millimeter</MET><ENG> 1 inch</ENG> into the ducts.  To prevent unraveling, random wrap the fireproofing 
+tape the entire length of the fireproofing with pressure-sensitive glass cloth tape.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Grounding</TTL><BRK/>
+<BRK/>
+<TXT>Include a separate ground conductor in all circuits unless the drawings<BRK/>
+indicate equipment grounding at both ends to the embedded grounding grid of<BRK/>
+the facility if available, or unless the ground conductor is an integral<BRK/>
+part of a multiple conductor cable. Support exposed ground cable runs to<BRK/>
+follow conduit, equipment or concrete wall contours using corrosion<BRK/>
+resistant clamps or clips.  Drilling of equipment housings or frames will<BRK/>
+be permitted only when approved.  Use concrete anchors for fastening to<BRK/>
+concrete surfaces.</TXT><BRK/>
+<BRK/></SPT>
+</SPT>[<SPT><TTL>DEMOLITION OR CABLE CUTTING</TTL><BRK/>
+<BRK/>
+<TXT>Notify the Contracting Officer 14 working days prior to an outage for demolition or cable cutting of medium voltage 
+electrical system.  The Government has established a mandatory inspection point prior to Contractor performing 
+any medium voltage cable cuts or demolition.  Notify the Contracting Officer 48 hours in advance of this mandatory 
+inspection point.</TXT><BRK/>
+<BRK/>
+<TXT>As part of the mandatory inspection point, positively identify and label the medium voltage cable to be worked 
+utilizing an electronic cable identifier.  Ensure the process of identifying and labeling the cable to be worked 
+is witnessed by the Government.  Cable cutting and demolition of any medium voltage cable can occur only after 
+approval by the Contracting Officer.  Cut medium voltage cables and conductors by indirect means using cable 
+cutters specifically designed to be operated remotely only. Cutting of medium voltage cables and conductors by 
+direct means is not permitted.</TXT><BRK/>
+<BRK/></SPT>
+]<SPT><TTL><SUB>FIELD ACCEPTANCE TESTING</SUB></TTL><BRK/>
+<BRK/>
+<SPT><TTL>Testing</TTL><BRK/>
+<BRK/>
+<TXT>Test per <RID>IEEE 400</RID> and <RID>NETA ATS</RID> recommended procedures.</TXT><BRK/>
+<BRK/>
+<LST>a.  Submit Test Reports in accordance with referenced standards in this section.</LST><BRK/>
+<BRK/>
+<LST>b.  After completion of the installation and prior to energizing the conductors, perform wire and cable 
+continuity and insulation tests as herein specified.</LST><BRK/>
+<BRK/>
+<LST>c.  Provide all necessary test equipment, labor, and personnel to perform the tests, as herein specified.</LST><BRK/>
+<BRK/>
+<LST>d.  Perform all Field Acceptance Testing and submittals as described herein.</LST><BRK/>
+<BRK/>
+<LST>e.  Isolate completely all wire and cable from all extraneous electrical connections at cable terminations 
+and joints.  Use substation and switchboard feeder breakers, disconnects in combination motor starters, 
+circuit breakers in panel boards, and other disconnecting devices to isolate the circuits under test.</LST><BRK/>
+<BRK/>
+<LST>f.  Retain suitable and complete records indicating the  insulation-resistance tests, high voltage tests, 
+continuity tests, phase rotation tests, high potential tests, and conductor identification markings.  
+Provide a duplicate record of all tests to the Contracting Officer.  Prior to testing, submit the <SUB>wire 
+and cable test record form</SUB> for approval.  Provide room for the Contracting Officer's signature on the 
+test report.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Tests to be Performed</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The Insulation Resistance test is also known as the Megger test.<BRK/>
+<BRK/>
+The High Potential test is also known as the hipot test, withstand test, or 
+high voltage test measures leakage through the cable's insulation with the conductor 
+energized and the metallic shield grounded.  It is not used on 2.4kV rated cables 
+because they are not shielded.  AC testing is recommended over DC testing due 
+to the possibility if insulation damage, especially for XLP insulated cables.<BRK/>
+<BRK/>
+These are field tests for the specifed conductors, to be performed after their 
+installation and before the finished system "commissioning" as usually described 
+in section 26 08 01.00 26.  The tests specified here should not be considered 
+part of the "commissioning".</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>After installation, but just prior to terminal connection, perform as a minimum the following tests:</TXT><BRK/>
+<BRK/>
+<LST>a.  Perform a <TST>Conductor Continuity Test</TST> on each wire and each individual conductor of a multiconductor 
+cable to insure correct connections end-to-end.</LST><BRK/>
+<BRK/>
+<LST>b.  Perform a <TST>Shield Continuity Test</TST> on each cable shield.</LST><BRK/>
+<BRK/>
+<LST>c.  Perform a <TST>Shield Resistance Test</TST> on each cable shield.  Shield resistance must be less than 10 ohms 
+per 1000 feet of cable.</LST><BRK/>
+<BRK/>
+<LST>d.  Perform an <TST>Insulation Resistance Test</TST> on each field-installed conductor with respect to ground and 
+adjacent conductors in a cable assembly.  Perform applied potential test at 2500 volts DC for 5kV and 
+15kV rated cable.  Minimum insulation resistance values must not be less than 1500 Megohms for 5kV rated 
+cable, and 5000 Megohms for 15kV rated cable.</LST><BRK/>
+<BRK/>
+<LST>e.  Perform a <TST>VLF AC High Potential Test</TST> on each shielded cable in accordance with <RID>IEEE 400.2</RID>.  Test 
+each field-installed conductor with respect to ground and adjacent conductors.  If the Contractor believes 
+that VLF AC testing is not feasible or not recommended for any given situation, the Contractor may instead 
+perform DC testing with the explicit approval of both the cable manufacturer and the Contracting Officer 
+on an individual case basis.  If approved, perform the DC test at the voltage recommended by the cable 
+manufacturer.  In lieu of the cable manufacturer's recommendation for a voltage level, perform the test 
+in accordance with <RID>NETA ATS</RID> Table 100.6.1.</LST><BRK/>
+<BRK/>
+<LST>f.  Perform a <TST>Phase Rotation Test</TST> on all three-phase circuits using a phase-rotation indicating instrument.  
+Perform phase rotation of electrical connections to connected equipment to verify matching the phasing 
+at connections to new or existing equipment, and to existing systems.</LST><BRK/>
+<BRK/>
+<LST>g.  Tests must be witnessed by the Contracting Officer, and the wire and cable installation test reports 
+submitted in accordance with Section <SRF>01 33 00</SRF>, SUBMITTAL PROCEDURES.</LST><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Acceptance</TTL><BRK/>
+<BRK/>
+<TXT>Final acceptance will depend upon the successful performance of wire and<BRK/>
+cable under test.  Do not energize any conductors until the final test reports are reviewed and approved by the 
+Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

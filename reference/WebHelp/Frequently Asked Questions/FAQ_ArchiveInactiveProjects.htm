@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+  <meta name="gRootRelPath" content=".."/>
+	<meta name="gCommonRootRelPath" content=".."/>
+  <meta name="gTopicId" content="7.0_2"/>
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Azure_SI5/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/><link rel="stylesheet" type="text/css" href="../assets/css/SIHelpdefault.css"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2022"/>
+  <title>Archive Inactive Projects</title>
+  <meta name="template" content="../assets/masterpages/SpecsIntact_KB_MasterPage.htt"/>
+  <meta name="rh-authors" content="C. Fitz-Simon"/>
+  <meta name="topic-comment" content="FAQ Archive Inactive Projects"/>
+  <meta http-equiv="Content-Language" content="en-US"/>
+  <meta name="topic-status" content="Sent for Review"/>
+  
+  <link rel="stylesheet" type="text/css" href="../assets/css/SIHelpdefault.css"/>
+<meta name="description" content="FAQ Archive Inactive Projects"/></head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="SpecsIntact Help">
+        <span>SpecsIntact Help</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <div>
+    <h1>FAQs, Troubleshooting, and Technical Notes</h1>
+  </div>
+  <div>
+  <h2>How do i archive inactive projects?</h2>
+  <p>To optimize <strong>SpecsIntact&#39;s</strong> performance, especially when connecting to network servers through a VPN connection, it is recommended to archive inactive projects by setting up a dedicated Working Directory.</p>
+  <h3>Advantages of Archiving Inactive Projects</h3>
+  <ul class="Disc">
+    <li>Reduces the number of projects that need to be loaded during startup</li>
+    <li>Reduces the time to locate active projects</li>
+    <li>Allows you to easily show or hide inactive projects when needed</li>
+  </ul>
+  <p>The steps below will help you configure and manage your Working Directories.</p>
+  <h3>Step 1: Creating and connecting a new &#39;Archive&#39; Working directory</h3>
+  <p>In the examples below, the &#39;X:&#39; is a placeholder. This would be replaced by the drive letter associated with your Working Directories.</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer</strong>, <em>select</em> the <strong>Setup</strong> menu, then <em>select</em> <strong>Working Directories</strong></li>
+    <li>In the <strong>Working Directories</strong> window, <em>select</em> the <strong>Add</strong> button</li>
+    <li><em>Browse</em> to <strong>X:\SpecsIntact</strong></li>
+    <li><em>Select</em> <strong>New Folder</strong> to create a new folder named SI Archives</li>
+    <li>Once the folder has been created, make sure it is highlighted, then <i>click</i> <strong>Select Folder</strong></li>
+    <li>In the <strong>Working Directories</strong> window, <em>click</em> <strong>OK</strong></li>
+  </ol>
+  <h3>Step 2: Relocating Inactive Projects</h3>
+  <p class="Subtitle">Option 1: SpecsIntact - Single Job or Master:</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer</strong>, <i>right-click</i> on the Job or Master and <em>select</em> <strong>Properties</strong></li>
+    <li>In the <strong>Properties</strong> window, next to the <strong>Path</strong> field, <em>select </em>the drop-down arrow, then <em>select</em> the <strong>SI Archives</strong> Working Directory </li>
+    <li><em>Click</em> <strong>OK</strong></li>
+  </ol>
+  <p style="margin-left: 40px;"><img alt="Illustration Icon Indicating Important Information To Note" border="0" height="23" src="../assets/images/Help/Icon_ImportantInformation.png" style="border: none; cursor: nesw-resize; padding-top: 10px; margin-right: 12px;" title="Icon Indicating Important Information To Note" width="23"/>Repeat this for each project you wish to move to the <strong>SI Archives</strong> Working Directory.</p>
+  <p class="Subtitle">Option 2: Windows File Explorer - Multiple Jobs:</p>
+  <ol class="LowerAlphaMultiLevel">
+    <li><em>Close</em> <strong>SpecsIntact</strong></li>
+    <li><em>Open</em> <strong></strong>two instances of <strong>Windows File Explorer</strong></li>
+    <li>In the first window, <em>navigate</em> to the <strong></strong><strong>default</strong> Working Directory&#39;s <strong>Jobs</strong> or <strong>Masters</strong> folder (e.g., X:\SpecsIntact\Projects\Jobs)</li>
+    <li>In the second window, <em>navigate</em> to the <strong>SI Archives</strong> Working Directory&#39;s <strong>Jobs</strong> or <strong>Masters</strong> folder (i.e. X:\SpecsIntact\SI Archives\Jobs)</li>
+    <li><em>Highlight</em> and <em>copy</em> the Jobs from the <strong>default</strong> Working Directory&#39;s <strong>Jobs</strong> folder</li>
+    <li><em>Paste</em> the Jobs into the <strong>SI Archives&#39;</strong> <strong>Jobs</strong> or <strong>Masters</strong> folder</li>
+    <li>In the <strong>SpecsIntact Explorer</strong>, perform one of the following:
+      <ol>
+        <li><em>Click</em> the <strong>Working Directory</strong> button on the <strong>Toolbar</strong></li>
+        <li><em>Select</em> the <strong>Setup</strong> menu and <em>select</em> <strong>Working Directories</strong></li>
+      </ol>
+    </li>
+    <li>To hide the Jobs, <em>uncheck</em> the <strong>SI Archives</strong> Working Directory</li>
+    <li><em>Click</em> <strong>OK</strong></li>
+  </ol>
+  <h3>Step 3: Show or Hide Archived Jobs:</h3>
+  <ol class="LowerAlphaMultiLevel">
+    <li>In the <strong>SpecsIntact Explorer</strong>, perform one of the following:
+      <ol>
+        <li><em>Click</em> the <strong>Working Directory</strong> button on the <strong>Toolbar</strong></li>
+        <li><em>Select</em> the <strong>Setup</strong> menu and <em>select</em> <strong>Working Directories</strong></li>
+      </ol>
+    </li>
+    <li><em>Select</em> or <em>deselect</em> to show or hide the <strong>SI Archives</strong> Working Directory </li>
+    <li><em>Click</em> <strong>OK</strong><strong></strong> </li>
+  </ol>
+  <p style="margin-left: 40px;"><img alt="Illustration Icon Indicating Stop" border="0" height="26" src="../assets/images/Help/Icon_Stop.png" style="border: none; margin-right: 8px; margin-bottom: 0px; padding-bottom: 1px; padding-left: 1px;" title="Icon Indicating Stop" width="26"/>After this is complete, each team member will need to connect to the archived Working Directory. From there, they&#39;ll simply follow Step 3 to manage the visibility of the archived projects.</p>
+
+</div>
+  <p> </p>
+  <div style="border-width: 2px;border-style: ridge;border-color: #2d5986">
+    <h2 class="footer" style="padding-left: 5px"><span style="padding-left:5px">Technical Support Information</span></h2>
+    <p style="padding-left: 10px;padding-right: 10px;text-align: left"><span style="padding-right:10px;"><span style="border-color:#000000;border-style:none;border-width:1px">Users are encouraged to visit the SpecsIntact Website&#39;s <a href="https://www.wbdg.org/dod/specsintact/help-center" title="Hyperlink to the SpecsIntact Website&#39;s Support &amp; Help Center Page"><span style="color:#336699;">Support &amp; Help Center</span></a> for access <span style="border-color:#000000;border-style:none;border-width:1px">to all of our User Tools, including Web-Based Help (containing Troubleshooting, Frequently Asked Questions (FAQs), Technical Notes, and Known Problems), <a href="https://SpecsIntact.wbdg.org/elearning" style="color: #336699;font-weight: normal" title="Hyperlink to the SpecsIntact Website&#39;s eLearning Page">eLearning</a> Modules (video tutorials), and printable Guides.</span></span></span></p>
+    <table border="1" cellpadding="1" cellspacing="1" style="border-collapse:collapse;width:100%;border-left-width:1px;border-left-style:none;border-left-color:#2d5986;border-top-width:1px;border-top-style:none;border-top-color:#2d5986;border-right-width:1px;border-right-style:none;border-right-color:#2d5986;border-bottom-width:1px;border-bottom-style:none;border-bottom-color:#2d5986">
+      <colgroup>
+        <col style="width: 16px;"/>
+        <col style="width: 19px;"/>
+        <col style="width: 740px;"/>
+      </colgroup>
+      <tbody>
+        <tr style="padding-left: 5px;color: #2d5986">
+          <td colspan="3" style="border-width: 0px;border-color: transparent"><span style="font-weight:bold;color:#2d5986;padding-left:10px">CONTACT US:</span></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><i class="fa-solid fa-phone fa-sm" style="color: #336699"></i></td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><span style="font-family:Calibri;"><span style="color:#336699">256.895.5505</span></span></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><i class="fa-solid fa-envelope fa-sm" style="color: #336699"></i></td>
+          <td style="border-width: 0px;border-color: transparent"><a href="mailto:SpecsIntact@usace.army.mil?subject=SpecsIntact%20Technical%20Support%20Request" style="padding-left: 10px" title="Send Email to SpecsIntact&#39;s Technical Support">SpecsIntact@usace.army.mil</a></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"><i class="fa-solid fa-globe fa-sm" style="color: #336699"></i></td>
+          <td style="border-width: 0px;border-color: transparent"><a href="https://SpecsIntact.wbdg.org" style="padding-left: 10px" title="Hyperlink to the SpecsIntact Website">SpecsIntact.wbdg.org</a></td>
+        </tr>
+        <tr>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent;padding-left: 10px"> </td>
+          <td style="border-width: 0px;border-color: transparent"> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p> </p>
+  <p> </p>
+
+</body></html>

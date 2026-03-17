@@ -1,0 +1,2769 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <COL AUTOWIDTH="0" WIDTH="281.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL>
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">UFGS-46 30 00 (August 2017)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1"/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL>
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-43 32 69 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 46 30 00</SCN><BRK/>
+<BRK/>
+<STL>WATER AND WASTEWATER CHEMICAL FEED SYSTEMS</STL><BRK/>
+<DTE>08/17</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the requirements for chemicals and controlled 
+volume pumps and appurtenances consider Specification 41 31 11 for CHLORINE 
+GAS FEED. <SCP>THIS SPECIFICATION IS PRIMARILY USED FOR WATER, WASTEWATER AND MECHANICAL 
+PROCESS WATER TREATMENT SYSTEM.</SCP>.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/>
+<REF><ORG>AMERICAN NATIONAL STANDARDS INSTITUTE (ANSI)</ORG><BRK/><BRK/><RID>ANSI Z400.1/Z129.1</RID><RTL>(2010) Hazardous Workplace Chemicals – Hazard Evaluation and Safety Data Sheet and Precautionary Labeling Preparation</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN SOCIETY OF MECHANICAL ENGINEERS (ASME)</ORG><BRK/><BRK/><RID>ASME A13.1</RID><RTL>(2023) Scheme for the Identification of Piping Systems</RTL><BRK/><BRK/><RID>ASME B16.1</RID><RTL>(2020) Gray Iron Pipe Flanges and Flanged Fittings Classes 25, 125, and 250</RTL><BRK/><BRK/><RID>ASME B16.5</RID><RTL>(2020) Pipe Flanges and Flanged Fittings NPS 1/2 Through NPS 24 Metric/Inch Standard</RTL><BRK/><BRK/><RID>ASME B16.11</RID><RTL>(2021) Forged Fittings, Socket-Welding and Threaded</RTL><BRK/><BRK/></REF><REF><ORG>AMERICAN WATER WORKS ASSOCIATION (AWWA)</ORG><BRK/><BRK/><RID>AWWA B201</RID><RTL>(2025) Soda Ash</RTL><BRK/><BRK/><RID>AWWA B300</RID><RTL>(2024) Hypochlorites</RTL><BRK/><BRK/><RID>AWWA B302</RID><RTL>(2023) Ammonium Sulfate</RTL><BRK/><BRK/><RID>AWWA B303</RID><RTL>(2024) Sodium Chlorite</RTL><BRK/><BRK/><RID>AWWA B402</RID><RTL>(2024) Ferrous Sulfate</RTL><BRK/><BRK/><RID>AWWA B403</RID><RTL>(2024) Aluminum Sulfate - Liquid, Ground, or Lump</RTL><BRK/><BRK/><RID>AWWA B404</RID><RTL>(2022) Liquid Sodium Silicate</RTL><BRK/><BRK/><RID>AWWA B405</RID><RTL>(2024) Sodium Aluminate</RTL><BRK/><BRK/><RID>AWWA B406</RID><RTL>(2020; Errata 2020) Ferric Sulfate</RTL><BRK/><BRK/><RID>AWWA B407</RID><RTL>(2024) Liquid Ferric Chloride</RTL><BRK/><BRK/><RID>AWWA B408</RID><RTL>(2025) Liquid Polyaluminum Chloride</RTL><BRK/><BRK/><RID>AWWA B451</RID><RTL>(2023) Poly(Diallyldimethylammonium Chloride)</RTL><BRK/><BRK/><RID>AWWA B452</RID><RTL>(2020) EPI-DMA Polyamines</RTL><BRK/><BRK/><RID>AWWA B453</RID><RTL>(2024) Polyacrylomide</RTL><BRK/><BRK/><RID>AWWA B501</RID><RTL>(2019) Sodium Hydroxide (Caustic Soda)</RTL><BRK/><BRK/><RID>AWWA B502</RID><RTL>(2023) Sodium Polyphosphate, Glassy (Sodium Hexametaphosphate)</RTL><BRK/><BRK/><RID>AWWA B503</RID><RTL>(2023) Sodium Tripolyphosphate</RTL><BRK/><BRK/><RID>AWWA B504</RID><RTL>(2024) Monosodium Phosphate, Anhydrous</RTL><BRK/><BRK/><RID>AWWA B505</RID><RTL>(2024) Disodium Phosphate, Anhydrous</RTL><BRK/><BRK/><RID>AWWA B511</RID><RTL>(2023) Potassium Hydroxide</RTL><BRK/><BRK/><RID>AWWA B550</RID><RTL>(2023) Calcium Chloride</RTL><BRK/><BRK/><RID>AWWA B600</RID><RTL>(2024) Powdered Activated Carbon</RTL><BRK/><BRK/><RID>AWWA B601</RID><RTL>(2025) Sodium Metabisulfite</RTL><BRK/><BRK/><RID>AWWA B602</RID><RTL>(2025) Copper Sulfate</RTL><BRK/><BRK/><RID>AWWA B603</RID><RTL>(2016) Permanganates</RTL><BRK/><BRK/><RID>AWWA B701</RID><RTL>(2024) Sodium Fluoride</RTL><BRK/><BRK/><RID>AWWA B702</RID><RTL>(2024) Sodium Fluorosilicate</RTL><BRK/><BRK/><RID>AWWA B703</RID><RTL>(2024) Fluorosilicic Acid</RTL><BRK/><BRK/></REF><REF><ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/><RID>ASTM D1785</RID><RTL>(2021) Standard Specification for Poly(Vinyl Chloride) (PVC), Plastic Pipe, Schedules 40, 80, and 120</RTL><BRK/><BRK/><RID>ASTM D1998</RID><RTL>(2013) Polyethylene Upright Storage Tanks</RTL><BRK/><BRK/><RID>ASTM D3299</RID><RTL>(2010) Filament-Wound Glass-Fiber-Reinforced Thermoset Resin Corrosion-Resistant Tanks</RTL><BRK/><BRK/><RID>ASTM D5421</RID><RTL>(2015) Contact Molded "Fiberglass" (Glass-Fiber-Reinforced Thermosetting Resin) Flanges</RTL><BRK/><BRK/><RID>ASTM E1067/E1067M</RID><RTL>(2025) Standard Practice for Acoustic Emission Examination of Fiberglass Reinforced Plastic Resin (FRP) Tanks/Vessels</RTL><BRK/><BRK/><RID>ASTM F441/F441M</RID><RTL>(2023) Standard Specification for Chlorinated Poly(Vinyl Chloride) (CPVC) Plastic Pipe, Schedules 40 and 80</RTL><BRK/><BRK/></REF><REF><ORG>HYDRAULIC INSTITUTE (HI)</ORG><BRK/><BRK/><RID>HI 9.1-9.5</RID><RTL>(2021) Pumps General Guidelines for Materials, Sound Testing, and Decontamination - B117</RTL><BRK/><BRK/><RID>HI ANSI/HI 7.1-7.5</RID><RTL>(2023) Controlled-Volume Metering Pumps American National Standard for Nomenclature, Definitions, Application, and Operation - B115</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL ELECTRICAL MANUFACTURERS ASSOCIATION (NEMA)</ORG><BRK/><BRK/><RID>NEMA 250</RID><RTL>(2020) Enclosures for Electrical Equipment (1000 Volts Maximum)</RTL><BRK/><BRK/><RID>NEMA ICS 1</RID><RTL>(2022) Standard for Industrial Control and Systems: General Requirements</RTL><BRK/><BRK/><RID>NEMA ICS 2</RID><RTL>(2000; R 2020) Industrial Control and Systems Controllers, Contactors, and Overload Relays Rated 600 V</RTL><BRK/><BRK/></REF><REF><ORG>NATIONAL FIRE PROTECTION ASSOCIATION (NFPA)</ORG><BRK/><BRK/><RID>NFPA 37</RID><RTL>(2024; TIA 24-1) Standard for the Installation and Use of Stationary Combustion Engines and Gas Turbines</RTL><BRK/><BRK/><RID>NFPA 70</RID><RTL>(2026; TIA 26-1; ERTA 26-1;  TIA 26-2; TIA 26-3; TIA 26-4; TIA 26-5; TIA 26-6; TIA 26-7; ERTA 26-2; ERTA 26-3) National Electrical Code</RTL><BRK/><BRK/></REF><REF><ORG>NSF INTERNATIONAL (NSF)</ORG><BRK/><BRK/><RID>NSF/ANSI 60</RID><RTL>(2022; Addenda 2022) Drinking Water Treatment Chemicals - Health Effects</RTL><BRK/><BRK/></REF><REF><ORG>PLUMBING-HEATING-COOLING CONTRACTORS ASSOCIATION (PHCC)</ORG><BRK/><BRK/><RID>NAPHCC NSPC</RID><RTL>(2015) National Standard Plumbing Code Illustrated</RTL><BRK/><BRK/></REF><REF><ORG>UL SOLUTIONS (UL)</ORG><BRK/><BRK/><RID>UL 50</RID><RTL>(2024) UL Standard for Safety Enclosures for Electrical Equipment, Non-Environmental Considerations</RTL><BRK/><BRK/></REF></SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-02 Shop Drawings</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Detail Drawings</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-03 Product Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Chemical Feed System</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Safety Data Sheets</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Framed Instructions</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Auxiliary Equipment and Spare Parts</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Factory Test Report</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operating Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Tank Testing</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Controlled Volume Pumps - Operational Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Controlled Volume Pumps - Time, Volume And Pumping Pressure Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>System Pressure Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Flow Tests</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Synchronization Tests</SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Supplied Chemical</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Service Organization</SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Certificates</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-10 Operation and Maintenance Data</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Operating Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>Maintenance Instructions</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-11 Closeout Submittals</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Extended Warranty</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>MAINTENANCE MATERIAL SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Designer must specify any additional devices that are required to be 
+provided by the contractor to ensure the system operator is able to accurately 
+measure the desired analytes being distributed by this system.  Delete items 
+below which may not be required for specific project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Concurrent with delivery and installation of the specified equipment, furnish <SUB>auxiliary equipment and spare parts</SUB>
+ as follows:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Spare parts for each different item of material and equipment specified including all of the parts recommended 
+by the manufacturer to be replaced after [1][ and][ 3] [year][years] service.</OLI><BRK/>
+<BRK/>
+<OLI>For each machine: one extra of each part used that is made from glass, hard rubber, or clear plastic; 
+one extra set of solution-hose connections; one extra set of diaphragms, two filler plug seal washers; 
+two ball checks; two seats; two complete sets of all gaskets; one spare diaphragm for each back pressure 
+regulator; one hydraulic plunger assembly for each different size metering pump; one of each type of 
+material back pressure regulator, with three spare springs and fluorocarbon resin diaphragms for each; 
+one spare diaphragm and air valve for pulsation dampener.</OLI><BRK/>
+<BRK/>
+<OLI>For each different size of direct current motor one SCR circuit board with 12 drive motor fuses and 12 
+SCR controller fuses; overload replacement elements for each size and type of motor.</OLI><BRK/>
+<BRK/>
+<OLI>One set of special tools for each type of equipment including calibration devices, and instruments required 
+for adjustment, calibration, disassembly, operation, and maintenance of the equipment.</OLI><BRK/>
+<BRK/>
+<OLI>Two pairs of safety goggles and/or face shields, two chemical resistant aprons, and two pairs of chemical 
+resistant gloves in one or more wall mounted steel cases.</OLI><BRK/>
+<BRK/>
+<OLI>One assembly tool for tubular diaphragm.</OLI><BRK/>
+<BRK/>
+<OLI>One lever type grease gun or other lubricating device for each type of grease required.</OLI><BRK/>
+<BRK/>
+<OLI>One or more steel tool cases mounted on the wall in a convenient location complete with flat key locks, 
+two keys, and clips or hooks to hold each special tool.</OLI>[<BRK/>
+<BRK/>
+<OLI>[_____].</OLI>]<BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>DELIVERY, STORAGE, AND HANDLING</TTL><BRK/>
+<BRK/>
+<TXT>Protect material and equipment delivered and placed in storage from the weather, excessive humidity and excessive 
+temperature variation, dirt, dust, or other contaminants.</TXT><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>SYSTEM DESCRIPTION</TTL><BRK/>
+<BRK/>
+<TXT>Provide a <SUB>chemical feed system</SUB> consisting of a chemical supply storage tank from which the chemical solution 
+is pumped through piping or tubing, as appropriate, to the point of application.  Include with each chemical 
+feed system controlled volume pumps, tanks, mixers, gauges, back pressure regulators, strainers, pressure relief 
+valves, sight glasses and flow metering devices, check valves, and hand valves.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>System Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Select and fabricatee the pumps in accordance with <RID>HI ANSI/HI 7.1-7.5</RID> and <RID>HI 9.1-9.5</RID> except as modified herein.  
+Provide pump stands and platforms adequate to support the pumping system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Performance Requirements</TTL><BRK/>
+<BRK/>
+<TXT>Capacity and features of the chemical feed systems and accessories must be suitable for 24-hour full load service 
+in ambient, non-freezing conditions.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Submittal Data for Chemical Feed System</TTL><BRK/>
+<BRK/>
+<TXT>Submit manufacturer's performance charts, and pump curves.  List of materials, list of equipment, including a 
+complete list of parts and supplies with current unit prices and source of supply.  List of special tools for 
+each type of equipment furnished including special tools necessary for adjustment, operation, maintenance, and 
+disassembly.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Extended Warranty</SUB></TTL><BRK/>
+<BRK/>
+<TXT>provide Manufacturer's Extended Warranty to cover system components for [3][5][_____]  years.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>EQUIPMENT</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Standard Products</TTL><BRK/>
+<BRK/>
+<TXT>Provide materials and equipment which are the standard products of a manufacturer regularly engaged in the manufacture 
+of the products and that essentially duplicate items that have been in satisfactory use for at least [2][5][  
+] years prior to [bid opening][request for proposal].  Equipment must be supported by a <SUB>service organization</SUB> 
+that is, in the opinion of the Contracting Officer, reasonably convenient to the site.  Submit Service Organization 
+Certificates outlining their location and qualifications to the Contracting Office.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Nameplates</TTL><BRK/>
+<BRK/>
+<TXT>Secure a plate to each major item of equipment containing the manufacturer's name, address, type or style, model 
+or serial number, and catalog number.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Controlled Volume Pumps</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  See HI 7.1-7.5 to determine the optimum type of metering pumps with capacities 
+between <MET>0.04 liters per hour</MET><ENG>0.011 gph</ENG> and <MET>10,000 liters per hour</MET><ENG>2500 gph</ENG>.  Materials 
+for each pump must be as recommended in Table 9.3 of HI 9.1-9.5 for the material 
+to be pumped.  If the system backpressure is not at least <MET>5 psi</MET><ENG>0.35 bar</ENG> greater 
+than the suction pressure, a backpressure valve must be installed in the discharge 
+piping to prevent flow through (downhill pumping) which contributes to pump 
+failure and undesired flow at pump shutdown. System backpressure must not exceed 
+the rated discharge pressure of the pump.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide controlled volume pumps as defined by <RID>HI ANSI/HI 7.1-7.5</RID>.  Each pump must be capable of delivering chemical 
+solution at any rate from the minimum flow rate to the maximum flow rate and be capable of continuous operation 
+at rated capacity.  Accuracy must be plus or minus 2 percent over a 100 to 1 range from the required maximum 
+capacity to the minimum pumping rate.  Net positive suction head required cannot exceed 90 percent of the net 
+positive suction head available, as installed.  Provide in a configuration as simple as practicable to provide 
+equipment isolation, bypass and reliable service and to be readily accessible for inspection, cleaning, adjustment, 
+repairs, and replacements.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Acid Feed System</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [hydrochloric][sulfuric][_____] acid solution delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL AUTOWIDTH="0" WIDTH="234.75"/>
+      <COL AUTOWIDTH="0" WIDTH="336.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Concentration of material on suction side of pump:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL>
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="93.00">
+         <CEL>
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][ _____] construction with [fluorocarbon resin][ or ][chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="74.25">
+         <CEL>
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,] [ hypalon][ nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][ hard rubber,][ and _____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Adsorption Agent Feed Systems</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [powdered activated carbon][_____] slurry delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="192.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="264.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration of material on suction side of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="117.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][_____] construction with [fluorocarbon resin][ or ][chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="73.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,] [hypalon][nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][hard rubber,][_____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Base Feed System</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [sodium carbonate (soda ash)][sodium hydroxide (caustic soda)][_____] solution delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="193.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="263.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration of material on suction side of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum  <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="117.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING"> <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at  <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of  construction with  diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="85.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,][ hypalon] [nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][ hard rubber] [, _____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Biocide Feed System</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [copper sulfate][_____] solution delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="189.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="267.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration of material on suction side of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="117.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][_____] construction with [fluorocarbon resin][ or ][chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="85.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,][ hypalon] [nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][ hard rubber][, _____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Coagulant Aid Feed System</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [photoelectron][_____][solution][slurry] delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="202.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="254.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration of material on suction side of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="117.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][_____] construction with [fluorocarbon resin][ or ][chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="85.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,][hypalon] [nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][ hard rubber][, _____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Disinfecting Agent Feed Systems</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [ammonium sulfate][hypochlorite][_____] solution delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="201.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="255.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration of material on suction side of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="117.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][_____] construction with [fluorocarbon resin][ or ][chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="85.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,][ hypalon][ nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][ hard rubber][, _____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Miscellaneous Feed System</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [poly(diallyldimethylammonium chloride)][calcium chloride][sodium aluminate][sodium 
+metabisulfite (sodium pyrosulfite)][sodium chlorite][sodium silicate][monosodium phosphate][disodium phosphate][_____][solution][slurry] 
+delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="198.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="258.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration of material on suction side of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="117.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][_____] construction with [fluorocarbon resin][ or ][chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="85.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,][ hypalon][ nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][hard rubber][, _____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Oxidant Feed System</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [potassium permanganate][hydrogen peroxide][_____] solution delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="192.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="264.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration of material on suction side of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="117.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][_____] construction with [fluorocarbon resin][ or ][chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="73.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,][ hypalon][ nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][ hard rubber][, _____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Precipitant Feed System</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [_____] solution delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="190.50"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="266.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration of material on suction side of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="117.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][_____] construction with [fluorocarbon resin][ or ][ chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="73.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,][ hypalon][ nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][hard rubber][, _____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Primary Coagulant Feed System</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [aluminum sulfate][ferric chloride][ferric sulfate][ferrous sulfate][_____] solution 
+delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="195.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="261.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration of material on suction side of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="117.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][_____] construction with [fluorocarbon resin][ or ][chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="85.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,][ hypalon][ nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,] [hard rubber][, _____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Prophylaxis Feed System</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [hydrofluosilicic acid][sodium fluoride][sodium silicofluoride][_____] solution delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="185.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="271.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration of material on suction side of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="117.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][_____] construction with [fluorocarbon resin][ or ][chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="97.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,][ hypalon][ nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][hard rubber][,_____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Sequestrant Feed Systems</TTL><BRK/>
+<BRK/>
+<TXT>Provide the following for [sodium polyphosphate, glassy (sodium hexametaphosphate)][sodium tripolyphosphate][_____] 
+solution delivery.</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="10">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="188.25"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="268.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Concentration on suction side of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] percent; maximum [_____] percent.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of pumps:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Type of pump:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Packed plunger][Packed piston][Mechanically or hydraulically coupled diaphragm].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Configuration:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Simplex][Duplex][Multiplex].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Controls:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Automatic][Semiautomatic][Manual] rate adjustment.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Feed or flow rate:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum [_____] <MET>L/hour</MET><ENG>gph</ENG>; maximum [_____] <MET>L/hour</MET><ENG>gph</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="93.75">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Back pressure at point of injection:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>kPa</MET><ENG>psig</ENG>.  Install back pressure regulating valve on the pump discharge and factory adjust to crack open at [_____] <MET>kPa</MET><ENG>psig</ENG>.  Regulators must be of [polyvinyl chloride][ or ][_____] construction with [fluorocarbon resin][ or ][chlorosulphonated polyethylene] diaphragms.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Suction valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Discharge valve cartridge:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Single][Double][Slurry type] ball check.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="73.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Materials of construction allowed for wetted parts:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Type [304L][316][316L] stainless steel,][ PVC,][ hypalon][ nylon,][ fluorocarbon resin,][ chlorosulfonated polyethylene,][ hard rubber] [, _____].</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+</SPT><SPT><TTL>Controls</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Proportional control is appropriate for variable flow systems.  Batch 
+systems should have manual, pH, ORP, or timer control.  Constant pumping rate 
+systems should respond to pump operation or a flow switch, if the pumps are 
+remote from the feed system. Designer should delete any paragraphs below that 
+are not necessary for this specific project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide the chemical metering equipment with the appurtenances and accessories, as required, for flow capacity 
+adjustment.  Provide manual range adjustment on all systems.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Automatic Control</TTL><BRK/>
+<BRK/>
+<TXT>Provide automatic control with the capability to vary feed rate based on signals from a [flow], [oxidation-reduction 
+potential (ORP)], [or] [pH] meter or controller.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Flow meter and Controller</TTL><BRK/>
+<BRK/>
+<TXT>Provide flow meter and controller capable of varying the chemical dosage in proportion to the measured flow with 
+the dosage per flow unit manually adjustable.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Oxidation-Reduction Potential Probe</TTL><BRK/>
+<BRK/>
+<TXT>Provide oxidation-reduction potential probe located where indicated.  Supply probe capable of varying the chemical 
+feed rate in response to the deviation from set point.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>pH Probe</TTL><BRK/>
+<BRK/>
+<TXT>Provide pH probe and locate the pH probe where indicated.  Supply probe capable of varying the chemical feed 
+rate in response to the deviation from set point.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Semiautomatic Control</TTL><BRK/>
+<BRK/>
+<TXT>Provide semiautomatic control with the capability to automatically start and stop the chemical metering equipments.  
+The pump start and stop must respond to [flow switch][ or ][pump operation][ or ][timer] status.  Install flow 
+switch for semiautomatic operation in the pipe line upstream of chemical injectors.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manual Control</TTL><BRK/>
+<BRK/>
+<TXT>Provide nonautomatic control with the capability for starting or stopping the chemical metering equipment and 
+adjustment of the solution feed rate by the operator.  </TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Drives for Controlled Volume Pumps</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Alternating current motors are preferred where a reliable power supply 
+is accessible.  Water power drives are feasible only when the take off can be 
+located at a point with significantly higher pressure than the injection pressure. 
+Designer should delete any paragraphs below that are not necessary for this 
+specific project.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide with and drive the metering pumps by [water pressure][alternating current electric motor][direct current 
+electric motor][plant air][gasoline engine] drives.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Water Pressure Drive</TTL><BRK/>
+<BRK/>
+<TXT>Provide appropriate pressure regulation devices for water pressure drives operated off system water pressures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Electric Motor Drive</TTL><BRK/>
+<BRK/>
+<TXT>Electric motor must be of sufficient capacity to operate the chemical metering equipment under all operating 
+conditions without exceeding their rated nameplate current or power, or their specified temperature limits.  
+Provide motors having starting characteristics and ruggedness necessary under the actual conditions of operations 
+or clean-up procedures used in the areas where they are located.  Alternating current motors with power rating 
+of <MET>248.6 W</MET><ENG>1/3 hp</ENG> or less must be 115 volts, single-phase, 60-Hz service; motors with power rating in excess of <MET>
+248.6 W</MET><ENG>1/3 hp</ENG> must be 460 volts, three-phase, 60-Hz service.  Electrical features of direct current motors, including 
+the ratings of the motors, must be compatible with the capabilities and ratings of the rectifier controllers 
+with which they are used.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gasoline Engine Drive</TTL><BRK/>
+<BRK/>
+<TXT>Provide gasoline engines that develop sufficient horsepower to operate the chemical metering equipment continuously 
+under the maximum operation conditions without overheating or overloading when operating at a speed not to exceed 
+[_____] rpm.  Provide 4-cycle, vertical, single cylinder, high tension magneto, air cooled type engines.  Connect 
+the engine to the pump or mechanical device by V-belts that are fully guarded.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Calibration Standpipes</TTL><BRK/>
+<BRK/>
+<TXT>Provide chemical metering equipment with a calibration standpipe for measuring pump output.  The standpipe must 
+allow convenient observation of the change of fluid level for at least 1/2 minute at full stroke and maximum 
+speed settings, and of Schedule 80, clear PVC pipe conforming to <RID>ASTM D1785</RID> with Schedule 80 fittings equipped 
+with a flanged connection to the pump manifold and an end cap fitted with a PVC vacuum breaker and ball valve 
+for air venting.  The standpipe must have a clear, observable length of at least [<MET>300 mm</MET><ENG>12 inches</ENG>][_____] and 
+be permanently calibrated in<MET>liters</MET><ENG>gallons</ENG> and fractions thereof, to allow reading of the fluid contents with 
+an accuracy of [1][_____] percent.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Valves</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Metering Pump Valves</TTL><BRK/>
+<BRK/>
+<TXT>Equip the metering pump with adjustable internal vacuum and pressure relief valve, hydraulic oil refill valve, 
+and automatic air bleed valve.  The relief valve must be adjustable over the full pressure range of the pump 
+and preset at the factory.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Suction and Discharge Valves</TTL><BRK/>
+<BRK/>
+<TXT>Fit suction and discharge valve cartridges with ball checks that open to full pipe diameter.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Back Pressure Valve</TTL><BRK/>
+<BRK/>
+<TXT>Install back pressure regulating valve on the pump discharge and factory adjust to crack open at the indicated 
+pressure.  Provide spring opposed diaphragms with loading pressures adjustable by means of a screw in the top 
+works.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pulsation Dampeners</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The pulsation dampener should always be installed as close to the pumps 
+as possible in order to reduce the length of pipe in which pulsating flow occurs.  
+A pulsation dampener is a pneumatically charged diaphragm within a chamber that 
+stores energy carried in the acceleration of the pumped fluid.  On the discharge 
+side it will protect sensitive equipment from pulsating flow spikes, and will 
+translate pulsating flow to near linear flow by reducing the peak flow and pressure 
+generated by the metering pump.  When a pulsating dampener is used on the suction 
+side of a metering pump, it will improve suction pressure conditions by reducing 
+pressure losses associated with the acceleration of the fluid.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Size pulsation dampeners for the displacement of each pump.  Pulsation dampeners must have a diaphragm separating 
+the upper chamber from the lower chamber.  Charge the upper chamber with compressed air to 50 percent of the 
+expected line pressure.  Provide the diaphragm of molded construction and prevent the air charge from being dissolved 
+in the process fluid.  The lower chamber must be [plastic][ or ][lined with inert plastic material] to prevent 
+corrosion by the process fluid.  Equip the upper chamber with a tire valve type charging valve and air pressure 
+gauge.  Provide an air line and air hose with pressure regulator and hand-operated, lever-type valve suitable 
+for charging the pulsation dampers.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Solution Tanks</TTL><BRK/>
+<BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph lists tank specifications.  If single wall tanks are preferred, 
+designer must ensure secondary containment is provided within the plans and 
+that containment is separated from other tank containment areas to prevent mixing 
+of chemicals during a spill event.  Size dissolving baskets and tank mixers 
+to provide initial mixing and maintain suspensions.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<TXT>Provide tanks that are fully resistant to the effects of the full-strength and fully diluted solution concentrations, 
+and be pressure rated for 1.5 times the weight of solution at full capacity.  Each tank must have the capacity 
+listed in the following table and be equipped with a fill nozzle, vent, discharge, level instrument, drain, and 
+two spare connections.  Reinforce tanks to withstand all forces when full of solution.  Tanks must be completely 
+shop fabricated with no field assembly permitted.  Provide drain connections permitting complete drainage of 
+the tank.  All gaskets must be fluorocarbon elastomer; nuts and bolts Type 316 stainless steel; and steel supports 
+either stainless or epoxy coated.  Furnish each tank with a calibrated side wall strip to indicate volume.  Attach 
+a permanent plastic sign indicating the tank contents to the front of each tank.  Fit tanks smaller than <MET>900 
+mm</MET><ENG>36 inches</ENG> in diameter with removable lids.  Fit tanks larger than <MET>900 mm</MET><ENG>36 inches</ENG> in diameter with <MET>600 mm</MET><ENG>24 
+inch</ENG> manways.  Manufacture polyethylene tanks in accordance with <RID>ASTM D1998</RID>.  Manufacture fiberglass tanks in 
+accordance with <RID>ASTM D3299</RID> with flanged openings in accordance with <RID>ASTM D5421</RID>.  Line steel tanks with [ceramic], 
+[rubber] or [plastic], as indicated herein.  Provide tanks designated to be double walled or provided with secondary 
+containment, as indicated in the tables.  Provide dissolving baskets and tank mixers as indicated.  Provide floating 
+seals as indicated.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Acid Tank</TTL><BRK/>
+<BRK/>
+<TXT>Provide [hydrochloric][sulfuric] acid solution resistant tank and comply with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="150.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="306.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">"DANGER - [HYDROCHLORIC][SULFURIC] ACID SOLUTION."</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Adsorption Agent Tank</TTL><BRK/>
+<BRK/>
+<TXT>Provide [powdered activated carbon][_____] slurry resistant tank and comply with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB>
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="156.00"/>
+      <COL AUTOWIDTH="0" WIDTH="300.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_______]</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Base Tank</TTL><BRK/>
+<BRK/>
+<TXT>Provide [sodium hydroxide (caustic soda)][_____] solution resistant tank tank and comply with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="185.25"/>
+      <COL AUTOWIDTH="0" WIDTH="271.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">"DANGER - ALKALI (SODIUM HYDROXIDE) SOLUTION."</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Biocide Tank</TTL><BRK/>
+<BRK/>
+<TXT>Provide [copper sulfate][Tolcide(R)][Glutaraldehyde][_____] solution resistant tank and comply with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="180.75"/>
+      <COL AUTOWIDTH="0" WIDTH="276.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Sign to read:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Coagulant Aid Tank</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Polyelectrolytes degrade with storage.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [polyelectrolyte][_____] solution resistant tank and comply with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="189.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="267.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">"CAUTION - [POLYELECTROLYTE SOLUTION - SLIP HAZARD] [_____]."</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Disinfecting Agent Tank</TTL><BRK/>
+<BRK/>
+<TXT>Provide [ammonium sulfate][hypochlorite] solution resistant tank and comply with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="189.75"/>
+      <COL AUTOWIDTH="0" WIDTH="267.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Miscellaneous Tanks</TTL><BRK/>
+<BRK/>
+<TXT>Provide [poly(diallyldimethylammonium chloride)][calcium chloride][sodium aluminate][sodium metabisulfite (sodium 
+pyrosulfite)][sodium chlorite] [sodium silicate][monosodium phosphate][disodium phosphate] solution resistant 
+tanks and comply with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="183.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="273.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Oxidant Tank</TTL><BRK/>
+<BRK/>
+<TXT>Provide [hydrogen peroxide][potassium permanganate] solution resistant tank and comply with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="189.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="267.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">["DANGER - STRONG OXIDIZER"] [_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Precipitant Tank</TTL><BRK/>
+<BRK/>
+<TXT>Provide [_____] solution resistant tank  and comply with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="208.50"/>
+      <COL AUTOWIDTH="0" WIDTH="248.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Primary Coagulant Tank</TTL><BRK/>
+<BRK/>
+<TXT>Provide [aluminum sulfate][ferric chloride][ferric sulfate][ferrous sulfate] solution resistant tank and comply 
+with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="180.00"/>
+      <COL AUTOWIDTH="0" WIDTH="276.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Prophylaxis Tank</TTL><BRK/>
+<BRK/>
+<TXT>Provide [hydrofluosilicic acid][sodium fluoride][sodium silicofluoride] solution resistant tank and comply with 
+the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL AUTOWIDTH="0" WIDTH="176.25"/>
+      <COL AUTOWIDTH="0" WIDTH="280.50"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL>
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+<SPT><TTL>Sequestrant Tank</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Polyelectrolytes degrade with storage.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide [sodium polyphosphate, glassy (sodium hexametaphosphate)][sodium tripolyphosphate] solution resistant 
+tank and comply with the following:</TXT><BRK/>
+<BRK/>
+<TXT><TAB HEADERROWS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="7">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="156.75"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="300.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Number of tanks:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Minimum tank capacity:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____] <MET>liters</MET><ENG>gal</ENG>.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="36.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Sign reading:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">"CAUTION - [SODIUM HEXAMETAPHOSPHATE] [SODIUM TRIPOLYPHOSPHATE] SOLUTION - SLIP HAZARD."</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Mixer:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[Constant][Variable] speed [_____] rpm, maximum.</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Dissolving basket:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Floating seal:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">[_____].</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Containment:</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Double wall and secondary containment.</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/></SPT>
+</SPT><SPT><TTL>Pressure Gauges</TTL><BRK/>
+<BRK/>
+<TXT>Provide diaphragm type gauges with Bourdon tube and diaphragm compartments filled completely with oil, and made 
+of materials suitable for the application.  Install diaphragm seals at each gauge connection to isolate gauges 
+from corrosion, sludge or other hazards of the process fluid.  Provide seal material that is compatible with 
+the oil in the gauge and the process fluid.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Injectors</TTL><BRK/>
+<BRK/>
+<TXT>Introduce injectors for chemical solution into the pipeline mains by means of a [hard rubber] [or] [plastic] 
+injection nozzle, or by means of a suitable diffuser tube inserted through a corporation cock.  Construct the 
+device for introducing the solution into a pressure main in such a way that accidental breakage of discharge 
+hose or tubing does not cause water to escape from the pipeline, and allows disassembling of the unit without 
+leakage.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Backflow Preventor</TTL><BRK/>
+<BRK/>
+<TXT>Provide backflow prevention devices or air gaps on tank fill lines in accordance with <RID>NAPHCC NSPC</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Chemical Solution Piping</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Select materials in accordance with EM 1110-1-4008 Liquid Process Piping.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Incorporate provisions to allow solution piping to be conveniently and safely bled of trapped air and minimize 
+infiltration of air bubbles.  Provide chemical solution piping in accordance with Section <SRF>40 05 13</SRF> PIPELINES, 
+LIQUID PROCESS PIPING.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Smaller than <MET>40 mm</MET><ENG>1-1/2 inch</ENG> Diameter</TTL><BRK/>
+<BRK/>
+<TXT>Chemical solution piping smaller than <MET>40 mm</MET><ENG>1-1/2 inch</ENG> diameter must be [PVC pipe conforming to <RID>ASTM D1785</RID> or 
+CPVC pipe conforming to <RID>ASTM F441/F441M</RID>][[_____] tubing][ or ][rubber hose].  Provide plastic fittings for plastic 
+pipe with [flanged][ or ][threaded] joints.  Make joints for rubber hose using a clamp-type mechanical coupling.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Piping <MET>40 mm</MET><ENG>1-1/2 inch</ENG> Diameter or Greater</TTL><BRK/>
+<BRK/>
+<TXT>Chemical solution piping of <MET>40 mm</MET><ENG>1-1/2 inch</ENG> diameter or larger must be [rubber-lined] [or] [plastic-lined] steel 
+pipe.  Steel pipe must have [threads] [or] [flanges integral with the pipe] [or] [forged-steel flanges screwed 
+to the pipe barrel].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Pipe Lining</TTL><BRK/>
+<BRK/>
+<TXT>Linings for steel pipe smaller than <MET>150 mm</MET><ENG>6 inches</ENG> must be not less than <MET>4.8 mm</MET><ENG>3/16 inch</ENG> thick.  Provide continuous 
+linings free of holidays.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe Fittings</TTL><BRK/>
+<BRK/>
+<TXT>For steel pipe provide [flanged conforming to <RID>ASME B16.1 </RID> or <RID>ASME B16.5</RID>][ or ][forged-steel threaded conforming 
+to <RID>ASME B16.11</RID>] pipe fittings.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Plumbing</TTL><BRK/>
+<BRK/>
+<TXT>Provide water piping, drain, waste and vent piping in accordance with Section <SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Electrical Work</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Coordinate hazard areas with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM 
+and the drawings.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide electric motor-driven equipment complete with motor, motor starter, and controls.  Provide electrical 
+equipment and wiring in accordance with Section <SRF>26 20 00</SRF> INTERIOR DISTRIBUTION SYSTEM.  Implement hazard classifications 
+in accordance with <RID>NFPA 70</RID>.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Motor Starters</TTL><BRK/>
+<BRK/>
+<TXT>Provide motor starters complete with thermal overload protection and other appurtenances necessary for the motor 
+control specified.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control and Protective Devices</TTL><BRK/>
+<BRK/>
+<TXT>Provide manual or automatic control and protective or signal devices required for the operation and any control 
+wiring required for controls and devices.  Provide motor controls conforming to <RID>NEMA ICS 1</RID> or <RID>NEMA ICS 2</RID>.  Prewire 
+equipment to the maximum practicable extent.  Control cabinets must conform to the requirements of <RID>UL 50</RID>, <RID>NEMA 250</RID>
+, [Type 4,][Type 7,][ or ][Type 12].</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Equipment Appurtenances</TTL><BRK/>
+<BRK/>
+<TXT>Provide galvanized steel, cadmium plated or Type 316 stainless steel bolts, nuts, anchors, washers and all other 
+types of supports necessary for the installation of the equipment.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Factory Painting</TTL><BRK/>
+<BRK/>
+<TXT>Factory painting must conform to manufacturer's standard factory finish, provided it does not discolor in the 
+presence of hydrogen sulfide fumes, high water vapor atmosphere, alkaline water vapor, and concentrated chlorine 
+(oxidizing) conditions.  Coating must be at least <MET>0.05 mm</MET><ENG>1.75 mils</ENG> thick.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Factory Test Report</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Factory examine fiberglass tanks in accordance with <RID>ASTM E1067/E1067M</RID> prior to shipping.  Furnish a copy of the 
+corresponding test report with each tank.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>MATERIALS</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>Safety Data Sheets</SUB> in conformance with <RID>ANSI Z400.1/Z129.1</RID> for each chemical.  Provide a [30][90][_____] 
+day supply at the maximum pumping rate for each feeder or pair of duplexed feeders.  Submit [two][_____] copies 
+of certification stating that each <SUB>supplied chemical</SUB> meets the following requirements.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Acids</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA B300</RID> Hydrochloric (muratic acid), <RID>AWWA B703</RID> sulphuric (sulfuric acid).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Adsorption Agents</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA B600</RID> powdered activated carbon.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Bases</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA B501</RID> caustic soda, <RID>AWWA B511</RID> potassium hydroxide, <RID>AWWA B201</RID> soda ash (sodium carbonate).</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Biocides</TTL><BRK/>
+<BRK/>
+<TXT>Glutaraldehyde (10 to 50 percent solution); Tolcide(R) (50 percent solution); <RID>AWWA B602</RID> copper sulfate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Coagulant Aids</TTL><BRK/>
+<BRK/>
+<TXT><RID>NSF/ANSI 60</RID> Anionic polyelectrolytes, <RID>NSF/ANSI 60</RID> cationic polyelectrolytes.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Disinfecting Agents</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA B302</RID> ammonium sulfate, <RID>AWWA B300</RID> hypochlorites.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Miscellaneous</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA B451</RID> poly(diallyldimethylammonium chloride), <RID>AWWA B452</RID> EPI-DMA polyamines, <RID>AWWA B453</RID> polyacrylamide, <RID>AWWA B550</RID>
+ calcium chloride, <RID>AWWA B405</RID> sodium aluminate, <RID>AWWA B601</RID> sodium metabisulfite (Sodium Pyrosulfite), <RID>AWWA B303</RID>
+ sodium chlorite, <RID>AWWA B404</RID> liquid sodium silicate, <RID>AWWA B504</RID> monosodium phosphate, anhydrous, <RID>AWWA B408</RID> polyaluminum 
+chloride, <RID>AWWA B505</RID> disodium phosphate, anhydrous.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Oxidants</TTL><BRK/>
+<BRK/>
+<TXT>[50][35][_____] percent <RID>NSF/ANSI 60</RID> hydrogen peroxide solution, <RID>AWWA B603</RID> potassium permanganate [potassium permanganate 
+may be supplied in powder form for onsite preparation] at the discretion of the Contracting Officer.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Precipitants</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA B501</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Primary Coagulants</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA B403</RID> aluminum sulfate, <RID>AWWA B407</RID> liquid ferric chloride, <RID>AWWA B406</RID> ferric sulfate, <RID>AWWA B402</RID> ferrous sulfate.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Prophylaxis</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA B703</RID> hydrofluosilicic acid, <RID>AWWA B701</RID> sodium fluoride, <RID>AWWA B702</RID> sodium silicofluoride.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Sequestrants</TTL><BRK/>
+<BRK/>
+<TXT><RID>AWWA B502</RID> sodium polyphosphate, glassy (sodium hexametaphosphate), <RID>AWWA B503</RID> sodium tripolyphosphate.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT><PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>EXAMINATION</TTL><BRK/>
+<BRK/>
+<TXT>After becoming familiar with details of the work, verify all dimensions in the field, and advise the Contracting 
+Officer of any discrepancy before performing the work.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>INSTALLATION</TTL><BRK/>
+<BRK/>
+<TXT>Submit <SUB>detail drawings</SUB> containing complete piping, wiring, schematic, flow diagrams, and any other details required 
+to demonstrate that the system has been coordinated and properly functions as a unit.  On the drawings show proposed 
+layout and anchorage of equipment and appurtenances, and equipment relationship to other parts of the work including 
+clearances for installation, maintenance and operation.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Chemical Feeding Equipment</TTL><BRK/>
+<BRK/>
+<TXT>Install controlled volume pumps, equipment, and appurtenances to provide a complete and integrated system in 
+accordance with the instruction of the manufacturer and under the direct supervision of the manufacturer's representative.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Gasoline Engines</TTL><BRK/>
+<BRK/>
+<TXT>Install gasoline engines in accordance with <RID>NFPA 37</RID>.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Pipe, Tubing, Hangers and Supports</TTL><BRK/>
+<BRK/>
+<TXT>Install pipes and tubes in accordance with Section <SRF>22 00 00</SRF> PLUMBING, GENERAL PURPOSE.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Field Painting</TTL><BRK/>
+<BRK/>
+<TXT>Thoroughly clean, prime and top-coat factory painted items requiring touching up in the field with the manufacturer's 
+standard factory finish provided it does not discolor in the presence of hydrogen sulfide fumes, high water vapor 
+atmosphere, alkaline water vapor, and concentrated chlorine (oxidizing) conditions.  Paint the equipment which 
+did not receive a factory finish as specified in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS.  Coating must be at least <MET>
+0.05 mm</MET><ENG>1.75 mils</ENG> thick.  Provide piping identification as specified in [<RID>ASME A13.1</RID>][Section <SRF>09 90 00</SRF> PAINTS AND 
+COATINGS.  Mark pipe carrying materials not listed in Section <SRF>09 90 00</SRF> PAINTS AND COATINGS in accordance with <RID>
+ASME A13.1</RID>.]</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Framed Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit framed instructions for approval prior to postings.  Final size must be easy to read by operators 5 feet 
+from instructions.  Limit frame size to 11" x 17" size provide multiple frames if needed. Post framed instructions, 
+containing wiring and control diagrams, where directed.  Post condensed operating instructions as outlined in 
+paragraph 3.4.2 Operating Instructions.  Post the framed instructions before acceptance testing of the systems.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>FIELD QUALITY CONTROL</TTL><BRK/>
+<BRK/>
+<SPT><TTL><TST>Testing</TST></TTL><BRK/>
+<BRK/>
+<TXT>After installation of each controlled volume pump, carry out <SUB>operating tests</SUB>as specified below to assure that 
+the chemical metering installation operates properly.  If any deficiencies are revealed during any tests, correct 
+such deficiencies and reconduct the tests.  Submit reports of all tests in booklet form prior to final acceptance 
+of the installation.  Show all field tests performed to adjust each component and all field tests performed to 
+prove compliance with the specified performance criteria, upon completion and testing of the installed system.  
+Indicate in each test report the final position of controls.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>Tank Testing</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Clean tanks of loose debris and dry prior to testing.  Field test tanks for leaks or damage in shipment.  Hydrostatically 
+test tanks to [_____] <MET>kPa</MET><ENG>psig</ENG> or 1.5 times the system operating pressure, whichever is greater, to detect large 
+leaks and then with the specified chemical to detect small leaks.  Test each tank with its solution for a period 
+of 24 hours at which time no visible leakage is evident.  Supply all pipes, hoses, pumps, water, power and other 
+equipment required to convey the test liquids and to carry out the tests.  Repair damage or leaks in tanks or 
+replace tanks.  Replace damaged ceramic tanks.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Controlled Volume Pumps - Operational Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Test pumps to demonstrate that the pumps are capable of operating without vibration or leakage.  Perform testing 
+at the pump's maximum flow rate and at half the flow rate.  Demonstrate testing while controlled and operated 
+in all feasible modes with the pumps operated singly and in unison.  Plot the response of each pump on curves 
+for the various operating pressures encountered and the results compare to the curves shown on the manufacturer's 
+published pump data.  If control characteristic curves are not available at the time of testing, the pump manufacturer's 
+service engineer must generate such curves for each pump;  graphically depicting the pump displacement at 25, 
+50, 75, and 100 percent of motor speed for SCR equipped pumps, and at 25, 50, 75, and 100 percent of maximum 
+stroke position for all pumps.  Generate curves only for the specified back pressure.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Controlled Volume Pumps - Time, Volume and Pumping Pressure Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Test pumps by filling [the standpipe][a portable calibrated standpipe furnished by the Contractor] with chemical 
+and measuring the outage, with all other equipment valved off.  Record the time, volume and pumping pressures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>System Pressure Tests</SUB></TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  To establish that full service can be provided, fill in the blank with 
+the numerical value of the pressures that can be expected during normal operation 
+of the system.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Carry out tests at [_____] and [_____] <MET>kPa</MET><ENG>psig</ENG>.  Manually control back pressure valves for this testing, and 
+reset as necessary after testing.  The time to deliver a given quantity of chemical at a given stroke and speed 
+setting must be the same at all pressures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Flow Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Test pumps to demonstrate zero <MET>L/second</MET><ENG>gpm</ENG> flow at a zero stroke or speed setting.  Failure to meet this test 
+is cause for rejection.  Test pumps through full range of performance:  min. flow [_____].  Submit test results 
+to prove pump functions within specified system parameters.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Synchronization Tests</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Operate the pumps for a period of 4 hours to demonstrate that the double diaphragm systems do not lose their 
+synchronization.  Loss of synchronization is also cause for rejection; repair or replace the pump as necessary 
+to achieve synchronization.  Fully retest repaired or replaced equipment.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Chemical Waste</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  In selection of chemicals, consider the environmental consequences, including 
+disposal of precipitated solids and other wastes.  Select the most appropriate 
+options and edit to fit the situation for drinking water or waste water treatment 
+systems.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Neutralize chemicals wasted during testing procedures to achieve a pH value between 6.5 and 9.5 and a chlorine 
+concentration of not more than 1 percent (10,000 mg/L).  Route all chemicals wasted during testing procedures 
+[as directed by the Contracting Officer][to the sanitary sewer] [through the treatment process] at a rate that 
+the process can assimilate without upset.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Manufacturer Field Service</TTL><BRK/>
+<BRK/>
+<TXT>Provide the services of a manufacturer's representative who is certified by manufacturer in the installation, 
+adjustment, and operation of the equipment specified.  The representative must supervise the installation, adjustment, 
+and testing of the equipment. Submit <SUB>certificates</SUB> to Contracting Officer for approval.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>CLOSEOUT ACTIVITIES</TTL><BRK/>
+<BRK/>
+<SPT><TTL>FIELD TRAINING</TTL><BRK/>
+<BRK/>
+<TXT>Conduct a field training course for designated operating, maintenance and supervisory staff members.  Provide 
+training for a total period of [_____] hours of normal working time and start after the system is functionally 
+complete but prior to final acceptance tests.  Cover all of the items contained in the Operating and Maintenance 
+Instructions during field training.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Operating Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit complete copies of operating instructions outlining the step-by-step procedures required for system startup, 
+operation and shutdown.  Include in the instructions the manufacturer's name, model number, service manual, parts 
+list, and brief description of all equipment and their basic operating features.  Also include in the instructions 
+as-built drawings of the piping layout, equipment layout, simplified wiring and control diagrams of the system 
+as installed, and flow diagrams.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL><SUB>Maintenance Instructions</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Submit complete copies of maintenance instructions listing routine maintenance procedures, possible breakdowns 
+and repairs, and trouble-shooting guides.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></PRT>    <END/><BRK/></SEC>

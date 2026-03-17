@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="windows-1252"?><SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd"><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR><AST/><TAB BORDERS="0">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="4">
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="225.00"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="15.00">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">USACE / NAVFAC / AFCEC</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">UFGS-25 08 10 (May 2021)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL MERGEDOWN="1" STYLEID="s50"/>
+         <CEL STYLEID="s50"/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="12.00">
+         <CEL INDEX="2" STYLEID="s50">
+<DTA TYPE="STRING"><HL3>------------------------------------</HL3></DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="32.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Preparing Activity:  <PRA>USACE</PRA></DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Superseding<BRK/>UFGS-25 08 10 (April 2006)</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB><BRK/>
+<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>
+<BRK/>
+<HL4>References are in agreement with UMRL dated January 2026</HL4><BRK/>
+<AST/><BRK/></HDR>
+<BRK/>
+<SCN>SECTION 25 08 10</SCN><BRK/>
+<BRK/>
+<STL>UTILITY MONITORING AND CONTROL SYSTEM TESTING</STL><BRK/>
+<DTE>05/21</DTE><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This guide specification covers the<BRK/>
+requirements for testing of UMCS and field control systems.   Requirements for 
+a performance verification test (PVT) which incorporates an endurance test, 
+and optional requirements for a factory test are included.   The factory test 
+is similar to the PVT, but performed at the factory prior to system installation 
+while the PVT is performed on the installed system.<BRK/>
+<BRK/>
+Adhere to <URL HREF="https://www.wbdg.org/dod/ufc/ufc-1-300-02">UFC 1-300-02</URL> Unified Facilities Guide Specifications (UFGS) Format 
+Standard when editing this guide specification or preparing new project specification 
+sections.  Edit this guide specification for project specific requirements by 
+adding, deleting, or revising text.  For bracketed items, choose applicable 
+item(s) or insert appropriate information.<BRK/>
+<BRK/>
+Remove information and requirements not required in respective project, whether 
+or not brackets are present.<BRK/>
+<BRK/>
+Comments, suggestions and recommended changes for this guide specification are 
+welcome and should be submitted as a <URL HREF="https://www.wbdg.org/dod/ufgs">Criteria Change Request (CCR)</URL>.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<PRT><TTL>PART 1   GENERAL</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  The designer will need to edit this specification if only a portion of 
+the testing is required on the project.  The engineer must keep in mind there 
+can be testing of 1) new UMCS, 2) building level controls, and/or 3) combined 
+building level controls and UMCS.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<SPT><TTL>REFERENCES</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  This paragraph is used to list the publications cited in the text of 
+the guide specification.  The publications are referred to in the text by basic 
+designation only and listed in this paragraph by organization, designation, 
+date, and title.<BRK/>
+<BRK/>
+Use the Reference Wizard's Check Reference feature when you add a Reference 
+Identifier (RID) outside of the Section's Reference Article to automatically 
+place the reference in the Reference Article.  Also use the Reference Wizard's 
+Check Reference feature to update the issue dates.<BRK/>
+<BRK/>
+References not used in the text will automatically be deleted from this section 
+of the project specification when you choose to reconcile references in the 
+publish print process.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>The publications listed below form a part of this specification to the extent referenced.  The publications are 
+referred to within the text by the basic designation only.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>DEFINITIONS</TTL><BRK/>
+<BRK/>
+<TXT>In addition to the definitions provided in this Section, <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC and 
+<SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL (UMCS) FRONT END AND INTEGRATION contain definitions related to this 
+Section.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Algorithm</TTL><BRK/>
+<BRK/>
+<TXT>A set of well-defined rules or procedures for solving a problem or providing an output from a specific set of 
+inputs.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Analog</TTL><BRK/>
+<BRK/>
+<TXT>A signal that can take on continuous (as opposed to discrete) values. Sensors (e.g. temperature, pressure, flow) 
+typically provide analog signals as outputs to represent the measured variable.   Within the UMCS, analog signals 
+are generally represented by either 0-10 volt or a 4-20 milliamp signal.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Binary</TTL><BRK/>
+<BRK/>
+<TXT>A two-state system where an "ON" condition is represented by a high signal level and an "OFF" condition is represented 
+by a low signal level.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Change-Of-Value (COV)</TTL><BRK/>
+<BRK/>
+<TXT>A type of data transmission over the network where the point   value is transmitted over the network only when 
+its value changes.   COV is an efficient use of network bandwidth.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Control Wiring</TTL><BRK/>
+<BRK/>
+<TXT>This includes conduit, wire, and wiring devices to install complete HVAC control systems, including motor control 
+circuits, interlocks, sensors, PE and EP switches, and like devices.   This also includes all wiring from node 
+to node, and nodes to all sensors and points defined in the I/O summary shown on drawings or specified herein, 
+and required to execute the sequence of operation.   Does not include line voltage power wiring.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Demand</TTL><BRK/>
+<BRK/>
+<TXT>The maximum rate of use of electrical energy averaged over a specific interval of time, usually expressed in 
+kW.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Graphical User Interface (GUI)</TTL><BRK/>
+<BRK/>
+<TXT>Human-machine interfacing allows the operator to manage, command, monitor, and program the system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Integration</TTL><BRK/>
+<BRK/>
+<TXT>Establishing communication between two or more systems to create a single <BRK/>
+system.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Protocol</TTL><BRK/>
+<BRK/>
+<TXT>In control systems, "protocol" is generally shorthand for "communication protocol"; a defined method by which 
+digital information is exchanged electronically.   Often more than one protocol is used in a BAS, for example, 
+a typical BACnet system will use at a minimum (in addition to BACnet/IP and BACnet MS/TP) IP, UDP, ARP, Ethernet, 
+and RS-485 protocols (and this does not include any protocols used internally in the front end or for communication 
+with front end client workstations).</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>ADMINISTRATIVE REQUIREMENTS</TTL><BRK/>
+<BRK/>
+<SPT><TTL>Sequencing</TTL><BRK/>
+<BRK/>
+<TXT>Performance Verification Testing required by this Section must be proceeded by successful and accepted "contractors 
+field testing" or "start-up and start-up testing" of the control system to be tested.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Scheduling</TTL><BRK/>
+<BRK/>
+<TXT>Coordinate testing schedules with the Government and with work in other Sections performed on the components 
+or systems to be tested.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>SUBMITTALS</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Review submittal description (SD) definitions in Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES and edit the following list, and corresponding submittal items in 
+the text, to reflect only the submittals required for the project.  The Guide 
+Specification technical editors have classified those items that require Government 
+approval, due to their complexity or criticality, with a "G."  Generally, other 
+submittal items can be reviewed by the Contractor's Quality Control System.  
+Only add a “G” to an item, if the submittal is sufficiently important or complex 
+in context of the project.<BRK/>
+<BRK/>
+<TAI OPT="ARMY">For Army projects, fill in the empty brackets following the "G" classification, 
+with a code of up to three characters to indicate the approving authority.  
+Codes for Army projects using the Resident Management System (RMS) are:  "AE" 
+for Architect-Engineer; "DO" for District Office (Engineering Division or other 
+organization in the District Office); "AO" for Area Office; "RO" for Resident 
+Office; and "PO" for Project Office.  </TAI>Codes following the "G" typically are 
+not used for Navy and Air Force projects.<BRK/>
+<BRK/>
+The "S" classification indicates submittals required as proof of compliance 
+for sustainability Guiding Principles Validation or Third Party Certification 
+and as described in Section <SRF>01 33 00</SRF> SUBMITTAL PROCEDURES.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Government approval is required for submittals with a "G" or "S" classification.<TAI OPT="AIR FORCE,NAVY">  Submittals not having a "G" 
+or "S" classification are for Contractor Quality Control approval.</TAI><TAI OPT="ARMY">  Submittals not having a "G" or "S" classification 
+are for information only.  When used, a code following the "G" classification identifies the office that will 
+review the submittal for the Government.</TAI>  Submit the following in accordance with Section <SRF>01 33 00</SRF> SUBMITTAL 
+PROCEDURES:</TXT><BRK/>
+<BRK/>
+<LST><SUB>SD-06 Test Reports</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>PVT Plan</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>PVT Phase I Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<ITM><SUB>PVT Phase II Report</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/>
+<LST><SUB>SD-07 Certificates</SUB></LST><BRK/>
+<BRK/>
+<ITM><SUB>Test Instrumentation Calibration Certificates</SUB>; <SUB>G<TAI OPT="ARMY">, [_____]</TAI></SUB></ITM><BRK/>
+<BRK/></SPT>
+<SPT><TTL>TEST EQUIPMENT</TTL><BRK/>
+<BRK/>
+<TXT>Provide all test equipment unless otherwise noted in the contract documents. Use only test equipment with current 
+calibration traceable to the National Institute of Science and Technology (NIST).  For each test instrument, 
+submit <SUB>Test Instrumentation Calibration Certificates</SUB> demonstrating calibration traceable to NIST.   Use test 
+equipment and test methods such that the overall accuracy of the test method, including all test instrumentation 
+and any errors inherent in the test procedure, is at least 50 percent better than the accuracy specified for 
+the sensor.  For example, if a temperature sensor has an accuracy requirement of plus or minus <MET>0.5 degrees Celsius</MET><ENG>
+1 degree Fahrenheit</ENG> degree overall accuracy of the test method, must be <MET>0.25 Celsius</MET><ENG>0.5 degree Fahrenheit</ENG> or better.<BRK/>
+<BRK/>
+When validating sensor accuracy, the test instrument is treated as if it is perfectly accurate; that is, the 
+measured value from the test instrument must lie within the bounds of the specified accuracy of the sensor.  
+Expressed mathematically:</TXT><BRK/>
+<BRK/>
+<LST>Given:<BRK/>
+   Sensor accuracy: Plus or minus X<BRK/>
+   Sensor reading: Y<BRK/>
+   Test equipment reading: Z<BRK/>
+   Where X, Y and Z are real numbets.<BRK/>
+<BRK/>
+Then<BRK/>
+   Sensor passes if: (Y-X) &lt;= Z &lt;= (Y+X)<BRK/>
+   otherwise, sensor fails   </LST><BRK/>
+<BRK/></SPT>
+</PRT><PRT><TTL>PART 2   PRODUCTS</TTL><BRK/>
+<BRK/>
+<TXT>Not applicable</TXT><BRK/>
+<BRK/></PRT>
+<PRT><TTL>PART 3   EXECUTION</TTL><BRK/>
+<BRK/>
+<SPT><TTL>PERFORMANCE VERIFICATION TEST (PVT)</TTL><BRK/>
+<BRK/>
+<TXT>Perform a Performance Verification Test (PVT) to demonstrate that the installed control system meets all requirements 
+of the project specifications.  Coordinate scheduling of the PVT with the Government, and do not begin the PVT 
+until the PVT Plan submittal is accepted.</TXT><BRK/>
+<BRK/>
+<SPT><TTL><SUB>PVT PLAN</SUB></TTL><BRK/>
+<BRK/>
+<TXT>Provide a PVT Plan including system documentation and PVT Procedures.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>PVT Plan System Documentation</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  If Section 23 09 00 is part of the project,<BRK/>
+keep the bracketed text referencing Section 23 09 00, otherwise remove it.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Include the following system documentation in the PVT Plan:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Copies of the most recent as-built drawings for the system, including but not limited to one-line drawings 
+and Points Schedules [as specified in Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC] showing 
+device address, point descriptions, network point names and types, hardware point types, settings and 
+ranges including units.</OLI><BRK/>
+<BRK/>
+<OLI>Copies of manufacturer's product data sheets when needed to demonstrate compliance with project requirements.  
+In particular, provide data sheets showing that surge protection requirements have been met.</OLI><BRK/>
+<BRK/>
+<OLI>Operation or user manuals for all software and all DDC Hardware to be tested.</OLI><BRK/>
+<BRK/>
+<OLI>List of test equipment.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>PVT Equipment List</TTL><BRK/>
+<BRK/>
+<TXT>Include in the PVT procedures a control system performance verification test equipment list that lists the equipment 
+to be used during performance verification testing.  For each piece of equipment include manufacturer name, model 
+number, equipment function, the date of the latest calibration, and the results of the latest calibration</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PVT Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Develop PVT procedures using the test procedures in this Section, modifying the procedures and adding tests as 
+appropriate to develop procedures that test all requirements of the project specifications.   The test procedures 
+must consist of detailed instructions for test setup, execution, and evaluation of test results.<BRK/>
+<BRK/>
+When developing additional procedures, provide the same information and fields as shown in the Test Template.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>PVT Phases</TTL><BRK/>
+<BRK/>
+<TXT>Conduct PVT testing in two phases:</TXT><BRK/>
+<BRK/>
+<LST INDENT="-0.33">I. Field testing for devices, components, subsystems and the overall system using the approved PVT Procedures.</LST><BRK/>
+<BRK/>
+<LST INDENT="-0.33">II. A one-week endurance test during which the system is operated continuously.</LST><BRK/>
+<BRK/>
+<SPT><TTL>PVT Phase I (Field Tests)</TTL><BRK/>
+<BRK/>
+<TXT>Demonstrate compliance of the control system with the contract documents.  Using test plans and procedures approved 
+by the Government, demonstrate all physical and functional requirements of the project.  Show, step-by-step, 
+the actions and results demonstrating that the control systems fully and correctly implement the sequences of 
+operation.  PVT for surge protection is not required to include introducing a surge to the equipment; surge protection 
+may instead be demonstrated through product documentation.<BRK/>
+<BRK/>
+Do not start the performance verification test until after receipt of written permission by the Government, based 
+on Government approval of the PVT Plan and Draft As-Builts and completion of balancing of the HVAC System.  Do 
+not conduct tests during scheduled seasonal off periods of base heating and cooling systems.  At the completion 
+PVT Phase I and in accordance with the project schedule and project sequencing provide a <SUB>PVT Phase I Report</SUB> documenting 
+all PVT testing including all approved test procedures with test results indicated on the procedures, and a record 
+of all actions taken to address PVT test failures.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>PVT Phase II (Endurance Test)</TTL><BRK/>
+<BRK/>
+<TXT>Complete an endurance test as part of the PVT in which the system is operated continuously for [one-week][_____] 
+without failure.  During the endurance test trend all points shown as requiring a trend on the Points Schedule 
+for the entire duration of the endurance test.  If insufficient buffer or storage capacity exists to trend the 
+entire endurance test, offload trend logs during the course of the endurance test to ensure that no trend data 
+is lost.  If the control system specification includes bandwidth requirements for bandwidth usage on a non-IP 
+network, measure and record the network bandwidth usage on each non-IP channel during the endurance test.<BRK/>
+<BRK/>
+If the system experiences any failures during the endurance test portion of the PVT, repair the system and repeat 
+the endurance test portion of the PVT until the system operates continuously and without failure for the specified 
+endurance test period.  At the completion of PVT Phase II and in accordance with the project schedule and project 
+sequencing provide a <SUB>PVT Phase II Report</SUB> documenting failures and repair actions taken during PVT Phase II.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Temporary Trending Capability</TTL><BRK/>
+<BRK/>
+<TXT>Unless trending capability exists, either within the building control system or through a connected Utility Monitoring 
+and Control System (UMCS) Front End, temporarily install hardware on the building control network to perform 
+trending during the endurance test as indicated.  Remove the temporary hardware at the completion of all testing 
+and commissioning activities.</TXT><BRK/>
+<BRK/></SPT>
+</SPT></SPT></SPT><SPT><TTL>FACTORY TEST</TTL><BRK/>
+<BRK/>
+<TXT>Perform a Factory Test to demonstrate the capability of the proposed control system solution to meet the requirements 
+of project specifications.  Coordinate scheduling of the Factory Test with the Government, and do not begin the 
+Factory Test until the Factory Test Plan submittal is accepted.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Factory Test Setup</TTL><BRK/>
+<BRK/>
+<TXT>Design the Factory Test Setup to represent the system as it will be fielded and to demonstrate the capability 
+of the system to meet the requirements of the project specification.  At a minimum:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>Include at least one of each model of DDC hardware, instrumentation and control device to be used on 
+the project.</OLI><BRK/>
+<BRK/>
+<OLI>Include at least one network of each type to be used on the project.</OLI><BRK/>
+<BRK/>
+<OLI>Include a programmable controller programmed as it will be installed, or, if no programmable controller 
+is to be installed on the project, include a programmable controller with a sample application.</OLI><BRK/>
+<BRK/>
+<OLI>Include sample hardware to provide a mock field control system for the front end to communicate with 
+if the project requires a front end but does not require a field control system.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Factory Test Plan</TTL><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  Factory Test Plan to be submitted in conjunction with submittals and 
+requirements of Section <SRF>25 10 10</SRF> UTILITY MONITORING AND CONTROL SYSTEM (UMCS) 
+FRONT END AND INTEGRATION.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<TXT>Provide a Factory Test Plan documenting the test setup and procedures.</TXT><BRK/>
+<BRK/>
+<SPT><TTL>Factory Test Plan Setup Documentation</TTL><BRK/>
+<BRK/>
+<TXT>Include the following information, at a minimum, to document the factory test setup:</TXT><BRK/>
+<OLG><BRK/>
+<OLI>System one-line block diagram of equipment used in the factory test identifying computers (servers and 
+workstations), network hardware, DDC hardware, and other instrumentation including, but not limited to, 
+sensors, actuators, test signal generators, and meters.  </OLI><BRK/>
+<BRK/>
+<OLI>System hardware description used in the factory test.</OLI><BRK/>
+<BRK/>
+<OLI>System software description used in the factory test.</OLI><BRK/>
+<NTE><BRK/>
+<AST/><BRK/>
+<NPR>NOTE:  It is best to keep the first bracketed text<BRK/>
+to require the use of the Points Schedule format specified in UFGS 23 09 00.   
+If this is not feasible, the second bracketed text may used and edited to address 
+additional specific requirements.</NPR><BRK/>
+<AST/><BRK/></NTE>
+<BRK/>
+<OLI>Points Schedules for each controller showing the configuration to be used during the test.  Points Schedules 
+must [be as specified in Section <SRF>23 09 00</SRF> INSTRUMENTATION AND CONTROL FOR HVAC][include the following 
+information at a minimum: device address, point descriptions, network point names and types, hardware 
+point types, settings and ranges including units].</OLI><BRK/>
+<BRK/>
+<OLI>Required passwords for each operator access level.</OLI><BRK/>
+<BRK/>
+<OLI>List of other test equipment.</OLI><BRK/></OLG>
+<BRK/></SPT>
+<SPT><TTL>Test Procedures</TTL><BRK/>
+<BRK/>
+<TXT>Develop factory test procedures using the Test Procedures in this Section, modifying the procedures and adding 
+tests as appropriate to develop test procedures that test all requirements of the specification.   The test procedures 
+must consist of detailed instructions for test setup, execution, and evaluation of test results.   Factory test 
+procedures must include testing of surge protection by introducing a surge to the equipment and demonstrating 
+that the equipment survives.<BRK/>
+<BRK/>
+When developing additional procedures, provide the same information and fields as shown in the Test Template.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>Factory Test Report</TTL><BRK/>
+<BRK/>
+<TXT>Upon completion of the Factory Test provide a complete test report, consisting of a short summary of the factory 
+test, a copy of the Factory Test Plan, and copies of the executed test procedures separated by test.  For each 
+test, include date performed and identify the Government representative who witnessed and approved the test.<BRK/>
+<BRK/>
+If a portion of any test failed, document the failure and corrective action.</TXT><BRK/>
+<BRK/></SPT>
+<SPT><TTL>Factory Test Execution</TTL><BRK/>
+<BRK/>
+<TXT>Conduct the Factory Test at a location and time approved by the Government. The Government will witness the factory test.<BRK/>
+<BRK/>
+If the system fails a portion of a test, the Government will determine whether the entire test or only the portion 
+that failed must be repeated.</TXT><BRK/>
+<BRK/></SPT>
+</SPT><SPT><TTL>TEST PROCEDURES</TTL><BRK/>
+<BRK/>
+<TXT>Develop test procedures using the template procedure in the Appendix. A test template and sample test procedures 
+in electronic format are available at the Whole Building Design Guide page for this section: <BRK/>
+<URL HREF="https://www.wbdg.org/dod/ufgs/ufgs-25-08-10">https://www.wbdg.org/dod/ufgs/ufgs-25-08-10</URL><BRK/>
+Refer to the Sample Test Procedures Table to view the existing sample tests.<BRK/>
+<TAB HEADERROWS="2" WIDTH="82">
+<WBK>
+   <STS/>
+   <TDA COLUMNCOUNT="2" ROWCOUNT="23">
+      <COL INDEX="2" AUTOWIDTH="0" WIDTH="306.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="24.00">
+         <CEL MERGEACROSS="1">
+<DTA TYPE="STRING">Sample Test Procedures</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">Test No.</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Test Title</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL>
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">System Equipment Verification</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">System Start-up</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Monitoring and Control (M&amp;C) Software Passwords</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Graphic Display of Data</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">5</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Graphic Navigation Scheme</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">6</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Command Functions</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">7</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Command Input Errors</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">8</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Special Functions</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">9</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Software Editing Tools</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">10</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Scheduling</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">11</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Alarm function</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">12</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Trending</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">13</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Demand Limiting</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">14</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Report Generation</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">15</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Uninterruptable Power Supply (UPS) Test</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">16</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Routers and Repeaters</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">17</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Gateways (Building Level)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">18</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Gateways (Device Level)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">19</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Local Display Panel (LDP)</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL>
+<DTA TYPE="STRING">20</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Open Network Point Verification</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="39.75">
+         <CEL>
+<DTA TYPE="STRING">21</DTA>
+         </CEL>
+         <CEL>
+<DTA TYPE="STRING">Custom Test Template</DTA>
+         </CEL>
+      </ROW>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></TXT><BRK/>
+<PGE/><HL3>APPENDIX A</HL3><BRK/>
+  <HL3>TEST NUMBER</HL3>:  &lt;TEST NUMBER&gt;<BRK/>
+  <HL3>TEST TITLE</HL3>:  &lt;TEST TITLE&gt;<BRK/>
+<BRK/>
+  <HL3>OBJECTIVE</HL3>: &lt;STATE TEST OBJECTIVE&gt;<BRK/>
+<BRK/>
+<HL3>INITIAL REQUIREMENTS/CONDITIONS</HL3><BRK/>
+<BRK/>
+   1.  Submittals: &lt;LIST REQUIRED SUBMITTALS&gt;<BRK/>
+<BRK/>
+   2.  Equipment: &lt;LIST EQUIPMENT REQUIRED FOR TEST&gt;<BRK/>
+<BRK/>
+   3.  Reference Documentation: &lt;LIST REQUIRED REFERENCE DOCUMENTATION&gt;<BRK/>
+<BRK/>
+Date of Test:  __________<BRK/>
+Time of Test:  __________<BRK/>
+Contractor's Representative:  ____________________<BRK/>
+Government's Representative:  ____________________<BRK/>
+<BRK/>
+Specification References for this verification:<BRK/>
+&lt;LIST SECTIONS REFERENCED FOR THIS TEST&gt;<BRK/>
+<BRK/>
+<HL3>TEST PROCEDURES</HL3>: &lt;USE THE FOLLOWING FORMAT FOR TEST PROCEDURES, EXPAND AS NECESSARY TO CAPTURE ALL TEST ITEMS&gt;<BRK/>
+<TAB HEADERROWS="1" WIDTH="96">
+<WBK>
+   <STS>
+      <STY SID="s50">
+         <ALN HORIZONTAL="CENTER"/>
+      </STY>
+      <STY SID="s51">
+         <ALN HORIZONTAL="CENTER" VERTICAL="BOTTOM"/>
+      </STY>
+   </STS>
+   <TDA COLUMNCOUNT="4" ROWCOUNT="17">
+      <COL AUTOWIDTH="0" WIDTH="28.50"/>
+      <COL AUTOWIDTH="0" WIDTH="156.00"/>
+      <COL AUTOWIDTH="0" WIDTH="159.00"/>
+      <COL AUTOWIDTH="0" WIDTH="105.75"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="13.50">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Item</DTA>
+         </CEL>
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">Action</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Expected Results</DTA>
+         </CEL>
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">Approved</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="22.50">
+         <CEL STYLEID="s51">
+<DTA TYPE="STRING">1</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">2</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">3</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50">
+<DTA TYPE="STRING">4</DTA>
+         </CEL>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL STYLEID="s50"/>
+         <CEL/>
+         <CEL/>
+         <CEL/>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25">
+         <CEL MERGEACROSS="3" MERGEDOWN="3">
+<DTA TYPE="STRING">Notes:</DTA>
+         </CEL>
+      </ROW>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="23.25"/>
+      <ROW AUTOHEIGHT="0" HEIGHT="33.75"/>
+   </TDA>
+</WBK>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/>
+<BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/><BRL/></TAB></SPT></PRT>   <END/><BRK/></SEC>
