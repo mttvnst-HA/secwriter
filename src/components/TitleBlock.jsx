@@ -99,6 +99,7 @@ function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote
       id={`block-${block.id}`}
       style={style}
       onClick={() => onFocus(block.id)}
+      data-tag="TTL"
     >
       {sectionNum && (
         <span style={{

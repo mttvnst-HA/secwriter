@@ -174,7 +174,7 @@ describe('parseSEC', () => {
 
   // ─── REF blocks ────────────────────────────────────────────────
 
-  it('parses REF blocks with ORG and RID/RTL pairs', () => {
+  it('parses REF blocks as structured ref type with ORG and entries', () => {
     const xml = secPart(`
       <SPT><TTL>REFERENCES</TTL>
         <REF>
@@ -185,17 +185,52 @@ describe('parseSEC', () => {
       </SPT>
     `);
     const blocks = parseSEC(xml);
-    // Title + ORG header + 2 reference entries
-    expect(blocks.length).toBeGreaterThanOrEqual(4);
+    // Title + 1 ref block
+    expect(blocks.length).toBeGreaterThanOrEqual(2);
 
-    const orgBlock = blocks.find(b => b.html.includes('ASTM INTERNATIONAL'));
-    expect(orgBlock).toBeDefined();
-    expect(orgBlock.html).toContain('<b>');
+    const refBlock = blocks.find(b => b.type === 'ref');
+    expect(refBlock).toBeDefined();
+    expect(refBlock.ref.org).toBe('ASTM INTERNATIONAL (ASTM)');
+    expect(refBlock.ref.entries).toHaveLength(2);
+    expect(refBlock.ref.entries[0].rid).toBe('ASTM D2487');
+    expect(refBlock.ref.entries[0].rtl).toBe('(2017) Classification of Soils');
+    expect(refBlock.ref.entries[1].rid).toBe('ASTM D698');
+    expect(refBlock.ref.entries[1].rtl).toBe('(2012) Compaction Test');
+  });
 
-    const refBlocks = blocks.filter(b => b.html.includes('mark-rid'));
-    expect(refBlocks).toHaveLength(2);
-    expect(refBlocks[0].html).toContain('ASTM D2487');
-    expect(refBlocks[0].html).toContain('Classification of Soils');
+  it('parses REF with no RTL as empty rtl string', () => {
+    const xml = secPart(`
+      <SPT><TTL>REFERENCES</TTL>
+        <REF>
+          <ORG>TEST ORG</ORG>
+          <RID>REF-001</RID><BRK/>
+        </REF>
+      </SPT>
+    `);
+    const blocks = parseSEC(xml);
+    const refBlock = blocks.find(b => b.type === 'ref');
+    expect(refBlock).toBeDefined();
+    expect(refBlock.ref.entries).toHaveLength(1);
+    expect(refBlock.ref.entries[0].rid).toBe('REF-001');
+    expect(refBlock.ref.entries[0].rtl).toBe('');
+  });
+
+  it('parses REF with NTE child as separate note block', () => {
+    const xml = secPart(`
+      <SPT><TTL>REFERENCES</TTL>
+        <REF>
+          <ORG>TEST ORG</ORG>
+          <NTE><NPR>A note inside ref</NPR></NTE>
+          <RID>REF-001</RID><RTL>Title</RTL>
+        </REF>
+      </SPT>
+    `);
+    const blocks = parseSEC(xml);
+    const refBlock = blocks.find(b => b.type === 'ref');
+    const noteBlock = blocks.find(b => b.type === 'note');
+    expect(refBlock).toBeDefined();
+    expect(noteBlock).toBeDefined();
+    expect(noteBlock.html).toBe('A note inside ref');
   });
 
   // ─── Skipped tags ──────────────────────────────────────────────

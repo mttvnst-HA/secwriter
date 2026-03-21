@@ -2,12 +2,20 @@ import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import SlashMenu, { SLASH_ITEMS } from "./SlashMenu.jsx";
 import { BLOCK_MARGINS } from "../lib/ini-config.js";
 import { cleanTaiClasses } from "../lib/tailor-profile.js";
+import { annotateDomWithDiff } from "../lib/text-diff.js";
 
-function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision }) {
+function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, comments, onCommentClick }) {
   const ref = useRef(null);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashFilter, setSlashFilter] = useState("");
   const [slashIdx, setSlashIdx] = useState(0);
+  const [delPopup, setDelPopup] = useState(null); // { el, rect } for del click popup
+
+  // Detect if block has inline revision marks (for gutter button display)
+  const hasInlineRevisions = useMemo(() => {
+    if (!block.html) return false;
+    return /<ins\s+class="mark-add"|<del\s+class="mark-del"/.test(block.html);
+  }, [block.html]);
 
   // Ref callback - fires the instant React attaches the DOM node
   const editable = block.type === "txt" || block.type === "note" || block.type === "oli" || block.type === "item" || block.type === "lst" || block.isNew;
@@ -27,6 +35,16 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   useEffect(() => {
     if (!editable && ref.current) {
       ref.current.innerHTML = resolveHtml ? resolveHtml(block.html || "") : (block.html || "");
+    }
+  }, [editable, block.html, resolveHtml]);
+
+  // Sync editable block DOM when block.html changes externally (e.g. Accept All / Reject All)
+  // Only sync if the block is NOT currently focused (avoid disrupting active editing)
+  useEffect(() => {
+    if (editable && ref.current && ref.current.dataset.init) {
+      if (document.activeElement !== ref.current) {
+        ref.current.innerHTML = resolveHtml ? resolveHtml(block.html || "") : (block.html || "");
+      }
     }
   }, [editable, block.html, resolveHtml]);
 
@@ -132,6 +150,10 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   const handleBlur = useCallback(() => {
     if (converting.current) return; // skip blur during slash menu conversion
     if (ref.current) {
+      // Track Changes: annotate diff before saving
+      if (trackChanges && snapshotText != null) {
+        annotateDomWithDiff(ref.current, snapshotText);
+      }
       // Strip TAI resolution classes before saving to state
       const html = cleanTaiClasses(ref.current.innerHTML);
       onUpdate(block.id, html);
@@ -140,7 +162,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
       setSlashOpen(false);
       setSlashFilter("");
     }, 150);
-  }, [block.id, onUpdate]);
+  }, [block.id, onUpdate, trackChanges, snapshotText]);
 
   const handleKeyDown = useCallback((e) => {
     // Slash menu navigation
@@ -217,6 +239,57 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     }
   }, [slashOpen]);
 
+  // Handle clicks on <del> elements and comment spans
+  const handleDelClick = useCallback((e) => {
+    // Check for comment click
+    const commentEl = e.target.closest?.('span.mark-comment');
+    if (commentEl && ref.current?.contains(commentEl) && onCommentClick) {
+      const commentId = commentEl.getAttribute('data-comment-id');
+      if (commentId) {
+        e.stopPropagation();
+        onCommentClick(commentId, commentEl.getBoundingClientRect());
+        return;
+      }
+    }
+    // Check for del click
+    const delEl = e.target.closest?.('del.mark-del');
+    if (delEl && ref.current?.contains(delEl)) {
+      e.stopPropagation();
+      setDelPopup({ el: delEl, rect: delEl.getBoundingClientRect() });
+      return;
+    }
+    setDelPopup(null);
+  }, [onCommentClick]);
+
+  const handleDelAction = useCallback((action) => {
+    if (!delPopup?.el || !ref.current) return;
+    const delEl = delPopup.el;
+    if (action === 'accept') {
+      // Accept DEL: remove del and its content
+      delEl.parentNode.removeChild(delEl);
+    } else {
+      // Reject DEL: restore content (strip del tag, keep text)
+      const text = document.createTextNode(delEl.textContent);
+      delEl.parentNode.replaceChild(text, delEl);
+    }
+    setDelPopup(null);
+    // Save updated HTML and sync snapshot
+    const html = ref.current.innerHTML;
+    if (onRevisionAction) {
+      onRevisionAction(block.id, html);
+    } else {
+      onUpdate(block.id, html);
+    }
+  }, [delPopup, block.id, onRevisionAction, onUpdate]);
+
+  // Dismiss del popup on blur or scroll
+  useEffect(() => {
+    if (!delPopup) return;
+    const dismiss = () => setDelPopup(null);
+    window.addEventListener('scroll', dismiss, true);
+    return () => window.removeEventListener('scroll', dismiss, true);
+  }, [delPopup]);
+
   const isNote = block.type === "note";
   const isTxt = block.type === "txt";
   const isOli = block.type === "oli";
@@ -233,8 +306,6 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     padding: isTxt ? "6px 12px" : isNote ? "6px 12px" : "4px 12px",
     marginLeft: leftMargin,
     marginBottom: 2,
-    fontSize: 14,
-    lineHeight: "1.65",
     outline: "none",
     borderRadius: 3,
     minHeight: 24,
@@ -273,16 +344,19 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     // txt or any new block type not matched above
     Object.assign(baseStyle, {
       color: "#1e293b",
-      backgroundColor: isFocused ? "#f8fafc" : "transparent",
+      backgroundColor: isFocused ? "#fafaf7" : "transparent",
     });
   }
 
-  const revisionClass = block.revision ? `block-revision-${block.revision}` : '';
+  const revisionClass = `${block.revision ? `block-revision-${block.revision}` : ''} ${isNote ? 'block-type-note' : ''}`.trim();
+
+  // Map block type to SGML tag name for tags-visible mode
+  const sgmlTag = { txt: 'TXT', note: 'NTE', oli: 'OLI', item: 'ITM', lst: 'LST' }[block.type] || 'TXT';
 
   return (
-    <div style={{ position: "relative" }} className={revisionClass}>
-      {/* Block-level revision accept/reject gutter buttons */}
-      {block.revision && onAcceptRevision && (
+    <div id={`block-${block.id}`} style={{ position: "relative" }} className={revisionClass} data-tag={sgmlTag}>
+      {/* Block-level and inline revision accept/reject gutter buttons */}
+      {(block.revision || hasInlineRevisions) && onAcceptRevision && (
         <div style={{
           position: "absolute",
           left: -4,
@@ -294,14 +368,14 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
         }}>
           <button
             onClick={() => onAcceptRevision(block.id)}
-            title={`Accept ${block.revision}`}
+            title={block.revision ? `Accept ${block.revision}` : 'Accept inline changes'}
             style={{
               width: 18,
               height: 18,
-              border: "1px solid #16a34a40",
+              border: "1px solid #00800040",
               borderRadius: 3,
               backgroundColor: "#f0fdf4",
-              color: "#16a34a",
+              color: "#008000",
               fontSize: 11,
               cursor: "pointer",
               display: "flex",
@@ -313,14 +387,14 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
           >✓</button>
           <button
             onClick={() => onRejectRevision(block.id)}
-            title={`Reject ${block.revision}`}
+            title={block.revision ? `Reject ${block.revision}` : 'Reject inline changes'}
             style={{
               width: 18,
               height: 18,
-              border: "1px solid #dc262640",
+              border: "1px solid #ff444440",
               borderRadius: 3,
               backgroundColor: "#fef2f2",
-              color: "#dc2626",
+              color: "#ff4444",
               fontSize: 11,
               cursor: "pointer",
               display: "flex",
@@ -348,7 +422,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
           left: MARGINS.oli - 4,
           top: 5,
           color: "#475569",
-          fontSize: 14,
+          fontSize: 15,
           fontWeight: 500,
           userSelect: "none",
           width: 24,
@@ -359,11 +433,12 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
         ref={setRef}
         data-block-id={block.id}
         contentEditable={editable}
+        spellCheck={editable}
         suppressContentEditableWarning
         onKeyDown={editable ? handleKeyDown : undefined}
         onInput={editable ? handleInput : undefined}
         onBlur={editable ? handleBlur : undefined}
-        onClick={() => onFocus(block.id)}
+        onClick={(e) => { handleDelClick(e); onFocus(block.id); }}
         style={{
           ...baseStyle,
           cursor: editable ? "text" : "default",
@@ -371,6 +446,45 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
           boxShadow: isFocused && editable ? "0 0 0 2px rgba(99,132,168,0.15)" : "none",
         }}
       />
+      {/* Del element click popup for individual accept/reject */}
+      {delPopup && (
+        <div style={{
+          position: "fixed",
+          top: delPopup.rect.top - 34,
+          left: delPopup.rect.left + delPopup.rect.width / 2,
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: 2,
+          padding: "3px 6px",
+          backgroundColor: "#1e293b",
+          borderRadius: 6,
+          boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
+          zIndex: 100,
+        }}>
+          <button
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => handleDelAction('accept')}
+            title="Accept deletion (remove text)"
+            style={{
+              width: 22, height: 22, border: "none", borderRadius: 3,
+              backgroundColor: "transparent", color: "#4ade80",
+              fontSize: 13, cursor: "pointer", display: "flex",
+              alignItems: "center", justifyContent: "center", padding: 0,
+            }}
+          >✓</button>
+          <button
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => handleDelAction('reject')}
+            title="Reject deletion (restore text)"
+            style={{
+              width: 22, height: 22, border: "none", borderRadius: 3,
+              backgroundColor: "transparent", color: "#f87171",
+              fontSize: 13, cursor: "pointer", display: "flex",
+              alignItems: "center", justifyContent: "center", padding: 0,
+            }}
+          >✗</button>
+        </div>
+      )}
       {slashOpen && editable && (
         <SlashMenu
           filter={slashFilter}

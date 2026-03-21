@@ -1,47 +1,60 @@
 /* SpecsIntact Modern - Editor Styles */
 /* Inline mark colors derived from section.ini [COLORS] */
 
+/* ─── Design Tokens ─── */
+:root {
+  /* Typography — Finding #7 */
+  --font-body: 'Inter', 'Segoe UI', 'Helvetica Neue', -apple-system, sans-serif;
+  --font-mono: 'SF Mono', Consolas, 'Cascadia Code', monospace;
+  --text-base: 16px;
+  --line-height-body: 1.6;
+
+  /* Surface colors — Finding #8 */
+  --color-surface: #fafaf7;
+  --color-surface-editor: #fafaf7;
+}
+
 .mark-rid {
   background: #fae8ff;
   color: #86198f;
-  padding: 0 3px;
+  padding: 2px 6px;
   border-radius: 2px;
   font-weight: 500;
   font-size: 13px;
-  font-family: 'SF Mono', 'Consolas', monospace;
+  font-family: var(--font-mono);
 }
 
 .mark-srf {
   background: #f5d0fe;
   color: #701a75;
-  padding: 0 4px;
+  padding: 2px 6px;
   border-radius: 2px;
   font-weight: 600;
   font-size: 13px;
-  font-family: 'SF Mono', 'Consolas', monospace;
+  font-family: var(--font-mono);
   border-bottom: 2px solid #c026d3;
 }
 
 .mark-sub {
   background: #dbeafe;
   color: #1e40af;
-  padding: 0 3px;
+  padding: 2px 6px;
   border-radius: 2px;
   font-weight: 500;
 }
 
 .mark-eng {
   background: #dbeafe;
-  color: #1d4ed8;
-  padding: 0 3px;
+  color: #1e3a8a;
+  padding: 2px 6px;
   border-radius: 2px;
   font-size: 13px;
 }
 
 .mark-met {
   background: #fee2e2;
-  color: #b91c1c;
-  padding: 0 3px;
+  color: #991b1b;
+  padding: 2px 6px;
   border-radius: 2px;
   font-size: 13px;
 }
@@ -49,7 +62,7 @@
 .mark-tai {
   background: #cffafe;
   color: #0e7490;
-  padding: 0 3px;
+  padding: 2px 6px;
   border-radius: 2px;
 }
 
@@ -70,14 +83,14 @@
   color: #991b1b;
   opacity: 0.5;
   text-decoration: line-through;
-  padding: 0 3px;
+  padding: 2px 6px;
   border-radius: 2px;
 }
 
 .mark-tst {
   background: #fee2e2;
   color: #991b1b;
-  padding: 0 3px;
+  padding: 2px 6px;
   border-radius: 2px;
   font-weight: 500;
 }
@@ -92,15 +105,17 @@
 
 /* Inline revision marks */
 ins.mark-add {
-  color: #16a34a;
+  color: #008000;
   text-decoration: underline;
-  background: rgba(22,163,74,0.08);
+  background: transparent;
 }
 
 del.mark-del {
-  color: #dc2626;
+  color: #ff4444;
   text-decoration: line-through;
-  background: rgba(220,38,38,0.08);
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
 }
 
 span.mark-chg {
@@ -112,13 +127,13 @@ span.mark-chg {
 
 /* Block-level revision indicators */
 .block-revision-add {
-  border-left: 3px solid #16a34a;
-  background: rgba(22,163,74,0.04);
+  border-left: 3px solid #008000;
+  background: rgba(0,128,0,0.04);
 }
 
 .block-revision-del {
-  border-left: 3px solid #dc2626;
-  background: rgba(220,38,38,0.04);
+  border-left: 3px solid #ff4444;
+  background: rgba(255,68,68,0.04);
   opacity: 0.6;
   text-decoration: line-through;
 }
@@ -155,6 +170,138 @@ span.mark-chg {
   background: transparent;
 }
 
+/* ─── ENG/MET unit display toggle ─── */
+
+.units-eng-only .mark-met {
+  display: none;
+}
+
+.units-met-only .mark-eng {
+  display: none;
+}
+
+/* ─── Notes visibility toggle ─── */
+
+.notes-hidden .block-type-note {
+  display: none;
+}
+
+/* ─── Tags visibility toggle ─── */
+
+/* Default: tags hidden — strip all mark styling */
+.tags-hidden .mark-rid,
+.tags-hidden .mark-srf,
+.tags-hidden .mark-sub,
+.tags-hidden .mark-eng,
+.tags-hidden .mark-met,
+.tags-hidden .mark-tai,
+.tags-hidden .mark-tst,
+.tags-hidden .mark-url {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  border-bottom: none;
+  letter-spacing: inherit;
+}
+
+/* Tags visible: show SGML tag names via pseudo-elements (matches SIEditor) */
+.tags-visible .mark-rid::before { content: '<RID>'; }
+.tags-visible .mark-rid::after  { content: '</RID>'; }
+.tags-visible .mark-srf::before { content: '<SRF>'; }
+.tags-visible .mark-srf::after  { content: '</SRF>'; }
+.tags-visible .mark-sub::before { content: '<SUB>'; }
+.tags-visible .mark-sub::after  { content: '</SUB>'; }
+.tags-visible .mark-eng::before { content: '<ENG>'; }
+.tags-visible .mark-eng::after  { content: '</ENG>'; }
+.tags-visible .mark-met::before { content: '<MET>'; }
+.tags-visible .mark-met::after  { content: '</MET>'; }
+.tags-visible .mark-tst::before { content: '<TST>'; }
+.tags-visible .mark-tst::after  { content: '</TST>'; }
+.tags-visible .mark-url::before { content: '<URL>'; }
+.tags-visible .mark-url::after  { content: '</URL>'; }
+
+/* TAI tags include OPT attribute when present */
+.tags-visible .mark-tai::before { content: '<TAI>'; }
+.tags-visible .mark-tai[data-opt]::before { content: '<TAI OPT=' attr(data-opt) '>'; }
+.tags-visible .mark-tai::after  { content: '</TAI>'; }
+
+/* Tag name styling — monospace, muted color */
+.tags-visible .mark-rid::before, .tags-visible .mark-rid::after,
+.tags-visible .mark-srf::before, .tags-visible .mark-srf::after,
+.tags-visible .mark-sub::before, .tags-visible .mark-sub::after,
+.tags-visible .mark-eng::before, .tags-visible .mark-eng::after,
+.tags-visible .mark-met::before, .tags-visible .mark-met::after,
+.tags-visible .mark-tai::before, .tags-visible .mark-tai::after,
+.tags-visible .mark-tst::before, .tags-visible .mark-tst::after,
+.tags-visible .mark-url::before, .tags-visible .mark-url::after {
+  font-family: 'SF Mono', Consolas, 'Cascadia Code', monospace;
+  font-size: 11px;
+  color: #0ea5e9;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Block-level tags — show tag name before/after block content */
+.tags-visible [data-tag]::before {
+  content: '<' attr(data-tag) '>';
+  font-family: 'SF Mono', Consolas, 'Cascadia Code', monospace;
+  font-size: 11px;
+  color: #0ea5e9;
+  font-weight: 400;
+}
+.tags-visible [data-tag]::after {
+  content: '</' attr(data-tag) '>';
+  font-family: 'SF Mono', Consolas, 'Cascadia Code', monospace;
+  font-size: 11px;
+  color: #0ea5e9;
+  font-weight: 400;
+}
+
+/* ─── Inline comment marks (Google Docs style) ─── */
+
+.mark-comment {
+  background: #fce895;
+  cursor: pointer;
+}
+
+.mark-comment-active {
+  background: #f6c744;
+}
+
+.mark-comment-resolved {
+  background: #e8eaed;
+  cursor: pointer;
+}
+
+/* ─── RefBlock styles ─── */
+
+.ref-entry .ref-rtl,
+.ref-entry .mark-rid,
+.ref-org span {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.ref-block:hover .ref-action-btn,
+.ref-org:hover .ref-action-btn,
+.ref-entry:hover .ref-action-btn {
+  opacity: 1 !important;
+}
+
+.ref-entry:hover {
+  background: #f8fafc;
+}
+
+.ref-add-btn:hover {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
 [contenteditable]:empty:before {
   content: "Type here or press / for block types...";
   color: #94a3b8;
@@ -182,6 +329,202 @@ span.mark-chg {
   background: #94a3b8;
 }
 
+/* ─── Dark Mode ─── */
+
+:root {
+  --sim-bg: #f8f7f4;
+  --sim-surface: #ffffff;
+  --sim-sidebar-bg: #1e293b;
+  --sim-text: #1e293b;
+  --sim-text-secondary: #64748b;
+  --sim-border: #e2e8f0;
+  --sim-toolbar-bg: #ffffff;
+  --sim-editor-bg: #f8f7f4;
+  --sim-input-bg: #ffffff;
+  --sim-hover: #f1f5f9;
+}
+
+/* ─── Compliance checker highlights ─── */
+.compliance-highlight {
+  background: #fbbf24;
+  color: #1e293b;
+  border-radius: 2px;
+  padding: 0 1px;
+  box-shadow: 0 0 0 2px #fbbf2466;
+  animation: compliance-pulse 1.5s ease-in-out 2;
+}
+
+@keyframes compliance-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px #fbbf2466; }
+  50% { box-shadow: 0 0 0 4px #fbbf2488; }
+}
+
+.dark-mode .compliance-highlight {
+  background: #854d0e;
+  color: #fef3c7;
+  box-shadow: 0 0 0 2px #854d0e66;
+}
+
+.dark-mode {
+  color-scheme: dark;
+  --sim-bg: #0f172a;
+  --sim-surface: #1e293b;
+  --sim-sidebar-bg: #0f172a;
+  --sim-text: #e2e8f0;
+  --sim-text-secondary: #94a3b8;
+  --sim-border: #334155;
+  --sim-toolbar-bg: #1e293b;
+  --sim-editor-bg: #0f172a;
+  --sim-input-bg: #1e293b;
+  --sim-hover: #334155;
+}
+
+.dark-mode body {
+  background: var(--sim-bg);
+  color: var(--sim-text);
+}
+
+/* Inline marks in dark mode — preserve hue, darken backgrounds */
+.dark-mode .mark-rid { background: #3b0764; color: #d8b4fe; }
+.dark-mode .mark-srf { background: #4a044e; color: #e879f9; }
+.dark-mode .mark-sub { background: #1e3a5f; color: #93c5fd; }
+.dark-mode .mark-eng { background: #1e3a5f; color: #93c5fd; }
+.dark-mode .mark-met { background: #450a0a; color: #fca5a5; }
+.dark-mode .mark-tai { background: #083344; color: #67e8f9; }
+.dark-mode .mark-tst { background: #450a0a; color: #fca5a5; }
+
+/* Revision marks in dark mode */
+.dark-mode ins.mark-add { color: #4ade80; }
+.dark-mode del.mark-del { color: #f87171; }
+.dark-mode span.mark-chg { background: #422006; border-bottom-color: #ca8a04; }
+
+/* Comment highlights in dark mode */
+.dark-mode .mark-comment { background: #854d0e; }
+.dark-mode .mark-comment-active { background: #a16207; }
+.dark-mode .mark-comment-resolved { background: #374151; }
+
+/* Search highlight in dark mode */
+.dark-mode mark.search-highlight { background: #a16207; color: #fef3c7; }
+
+/* Block backgrounds in dark mode */
+.dark-mode [contenteditable="true"] { color: #e2e8f0; }
+.dark-mode [contenteditable="true"]:focus { background: #1e293b !important; border-color: #475569 !important; }
+
+/* Note blocks in dark mode */
+.dark-mode .block-type-note [contenteditable="true"] {
+  background: #422006 !important;
+  border-left-color: #d97706 !important;
+  color: #fbbf24 !important;
+}
+
+/* Table cells in dark mode */
+.dark-mode table { border-color: #475569; }
+.dark-mode td, .dark-mode th { border-color: #475569 !important; color: #e2e8f0; }
+.dark-mode th { background: #1e293b !important; color: #cbd5e1 !important; }
+
+/* Title blocks in dark mode */
+.dark-mode [contenteditable="false"] { color: #e2e8f0; }
+
+/* Editor pane and content area in dark mode */
+.dark-mode div[style*="backgroundColor"] {
+  /* Override hardcoded white/light backgrounds on structural containers */
+}
+
+/* Section banner bar */
+.dark-mode > div > div > div:first-child > div:nth-child(2) {
+  background-color: var(--sim-surface) !important;
+  border-bottom-color: var(--sim-border) !important;
+}
+.dark-mode > div > div > div:first-child > div:nth-child(2) span {
+  color: var(--sim-text) !important;
+}
+
+/* All toolbar buttons in dark mode */
+.dark-mode button {
+  background-color: var(--sim-hover) !important;
+  color: var(--sim-text) !important;
+  border-color: var(--sim-border) !important;
+}
+.dark-mode button:hover {
+  background-color: #475569 !important;
+}
+
+/* Active/special state buttons keep their semantic colors */
+.dark-mode button[style*="background-color: rgb(16, 163"] { /* green accept */
+  background-color: #166534 !important;
+  color: #4ade80 !important;
+}
+
+/* Toolbar row containers */
+.dark-mode > div > div > div:first-child {
+  background-color: var(--sim-surface) !important;
+}
+
+/* General text inside dark mode */
+.dark-mode span, .dark-mode div, .dark-mode p {
+  color: inherit;
+}
+
+/* Editor content wrapper — override hardcoded white */
+.dark-mode [style*="max-width: 800px"] {
+  color: var(--sim-text);
+}
+
+/* UFGS header/banner inside editor */
+.dark-mode [style*="text-align: center"][style*="border-bottom"] {
+  border-bottom-color: var(--sim-border) !important;
+}
+.dark-mode [style*="text-align: center"][style*="border-bottom"] span {
+  color: var(--sim-text-secondary) !important;
+}
+
+/* Section heading titles */
+.dark-mode [style*="fontWeight: 700"][style*="fontFamily"] {
+  color: var(--sim-text) !important;
+}
+
+/* Table cells background */
+.dark-mode td {
+  background-color: var(--sim-surface) !important;
+}
+
+/* Status bar */
+.dark-mode > div > div:last-child {
+  background-color: var(--sim-surface) !important;
+  color: var(--sim-text-secondary) !important;
+  border-top-color: var(--sim-border) !important;
+}
+
+/* Sidebar in dark mode */
+.dark-mode > div > div:first-child {
+  background-color: var(--sim-sidebar-bg) !important;
+  border-right-color: var(--sim-border) !important;
+}
+.dark-mode > div > div:first-child span {
+  color: var(--sim-text) !important;
+}
+.dark-mode > div > div:first-child input {
+  background-color: var(--sim-input-bg) !important;
+  color: var(--sim-text) !important;
+  border-color: var(--sim-border) !important;
+}
+
+/* Dropdown/select in dark mode */
+.dark-mode select {
+  background-color: var(--sim-input-bg) !important;
+  color: var(--sim-text) !important;
+  border-color: var(--sim-border) !important;
+}
+
+/* Cross-ref panel, validation panel backgrounds */
+.dark-mode [style*="borderLeft"][style*="padding"] {
+  background-color: var(--sim-surface) !important;
+}
+
+/* Scrollbar in dark mode */
+.dark-mode ::-webkit-scrollbar-thumb { background: #475569; }
+.dark-mode ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
 /* Reset */
 * {
   margin: 0;
@@ -190,6 +533,22 @@ span.mark-chg {
 }
 
 body {
-  font-family: 'Segoe UI', 'Helvetica Neue', -apple-system, sans-serif;
-  background: #f8fafc;
+  font-family: var(--font-body);
+  background: var(--color-surface);
+}
+
+/* ─── Editor body text — Finding #1 ─── */
+[contenteditable="true"] {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
+}
+
+/* ─── Print: preserve SpecsIntact formatting ─── */
+@media print {
+  [contenteditable="true"] {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
 }

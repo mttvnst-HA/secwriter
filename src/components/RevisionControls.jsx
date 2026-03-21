@@ -13,6 +13,10 @@ export default function RevisionControls({
   onTrackChangesChange,
   showRevisions,
   onShowRevisionsChange,
+  showNotes,
+  onShowNotesChange,
+  unitDisplay,
+  onUnitDisplayChange,
   blocks,
   onAcceptAll,
   onRejectAll,
@@ -95,6 +99,47 @@ export default function RevisionControls({
         Revisions
       </button>
 
+      {/* Show/Hide Notes toggle */}
+      <button
+        onClick={() => onShowNotesChange(!showNotes)}
+        style={{
+          ...btnStyle(showNotes, "#d97706"),
+          backgroundColor: showNotes ? "#d97706" : "#94a3b8",
+        }}
+        title={showNotes ? "Hide specification notes" : "Show specification notes"}
+      >
+        <span style={{ fontSize: 12 }}>📝</span>
+        Notes
+      </button>
+
+      {/* Units display toggle */}
+      {onUnitDisplayChange && (
+        <button
+          onClick={() => {
+            const next = unitDisplay === 'both' ? 'eng' : unitDisplay === 'eng' ? 'met' : 'both';
+            onUnitDisplayChange(next);
+          }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 4,
+            padding: "3px 8px",
+            backgroundColor: unitDisplay === 'both' ? "#94a3b8" : unitDisplay === 'eng' ? "#1d4ed8" : "#b91c1c",
+            color: "#ffffff",
+            border: "none",
+            borderRadius: 4,
+            cursor: "pointer",
+            fontSize: 10,
+            fontWeight: 700,
+            letterSpacing: "0.04em",
+            transition: "background 0.2s ease",
+          }}
+          title={`Units: ${unitDisplay === 'both' ? 'Both' : unitDisplay === 'eng' ? 'English only' : 'Metric only'} (click to cycle)`}
+        >
+          {unitDisplay === 'both' ? 'ENG+MET' : unitDisplay === 'eng' ? 'ENG' : 'MET'}
+        </button>
+      )}
+
       {/* Separator */}
       {totalRevisions > 0 && (
         <div style={{ width: 1, height: 18, backgroundColor: "#e2e8f0" }} />
@@ -105,14 +150,14 @@ export default function RevisionControls({
         <>
           <button
             onClick={onAcceptAll}
-            style={actionBtn("#16a34a", "#f0fdf4")}
+            style={actionBtn("#008000", "#f0fdf4")}
             title="Accept all revisions"
           >
             ✓ Accept All
           </button>
           <button
             onClick={onRejectAll}
-            style={actionBtn("#dc2626", "#fef2f2")}
+            style={actionBtn("#ff4444", "#fef2f2")}
             title="Reject all revisions"
           >
             ✗ Reject All
@@ -131,13 +176,13 @@ export default function RevisionControls({
           color: "#475569",
         }}>
           {stats.adds > 0 && (
-            <span style={{ color: "#16a34a", fontWeight: 600 }}>
+            <span style={{ color: "#008000", fontWeight: 600 }}>
               {stats.adds} addition{stats.adds !== 1 ? "s" : ""}
             </span>
           )}
           {stats.adds > 0 && (stats.dels > 0 || stats.chgs > 0) && ", "}
           {stats.dels > 0 && (
-            <span style={{ color: "#dc2626", fontWeight: 600 }}>
+            <span style={{ color: "#ff4444", fontWeight: 600 }}>
               {stats.dels} deletion{stats.dels !== 1 ? "s" : ""}
             </span>
           )}

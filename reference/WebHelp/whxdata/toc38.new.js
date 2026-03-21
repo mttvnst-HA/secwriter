@@ -1,1 +1,0 @@
-(function() {    var toc =  [{"name":"Adobe PDF Issues","type":"book","tilePath":"","key":"toc39"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

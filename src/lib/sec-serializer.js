@@ -27,7 +27,10 @@ function walkNodeToSgml(node) {
         const match = cls.match(/\bmark-(\w+)\b/);
         if (match) {
           const secTag = match[1].toUpperCase();
-          if (secTag === 'TAI') {
+          // Comments are editor-only, strip on export
+          if (secTag === 'COMMENT' || secTag === 'COMMENT-RESOLVED') {
+            parts.push(inner);
+          } else if (secTag === 'TAI') {
             const opt = child.getAttribute('data-opt');
             parts.push(opt ? `<TAI OPT="${opt}">${inner}</TAI>` : `<TAI>${inner}</TAI>`);
           } else {
@@ -86,7 +89,7 @@ function htmlToSgml(html) {
 function serializeTable(table) {
   if (!table || !table.rows || table.rows.length === 0) return '';
 
-  const cols = table.columns || table.rows[0].reduce((sum, c) => sum + (c.colspan || 1), 0);
+  const cols = table.columns || (table.rows[0] || []).reduce((sum, c) => sum + (c?.colspan || 1), 0);
   const lines = [];
   lines.push('<TAB BORDERS="0">');
   lines.push('<WBK>');
@@ -123,7 +126,29 @@ function serializeTable(table) {
   lines.push('   </TDA>');
   lines.push('</WBK>');
   lines.push('</TAB>');
-  return lines.join('\n');
+  return lines.join('\r\n');
+}
+
+/**
+ * Serialize a ref block back to SEC REF XML.
+ */
+function serializeRef(block) {
+  const { org, entries } = block.ref || { org: '', entries: [] };
+  const refLines = [];
+  refLines.push('<REF>');
+  if (org) {
+    refLines.push(`<ORG>${htmlToSgml(org)}</ORG>`);
+  }
+  refLines.push('<BRK/><BRK/>');
+  for (const { rid, rtl } of entries) {
+    if (rid) {
+      refLines.push(`<RID>${htmlToSgml(rid)}</RID>`);
+      if (rtl) refLines.push(`<RTL>${htmlToSgml(rtl)}</RTL>`);
+      refLines.push('<BRK/><BRK/>');
+    }
+  }
+  refLines.push('</REF>');
+  return refLines.join('\r\n');
 }
 
 /**
@@ -198,6 +223,27 @@ export function serializeSEC(blocks, metadata = {}) {
         }
         lines.push(serializeTable(block.table));
         lines.push('<BRK/>');
+      } else if (block.type === 'ref' && block.ref) {
+        if (noteGroupOpen) {
+          lines.push('<AST/><BRK/></NTE>');
+          lines.push('<BRK/>');
+          noteGroupOpen = false;
+        }
+        const refXml = serializeRef(block);
+        if (block.revision) {
+          const tag = block.revision.toUpperCase();
+          lines.push(`<${tag}>${refXml}</${tag}>`);
+        } else {
+          lines.push(refXml);
+        }
+        lines.push('<BRK/>');
+      } else if (block.type === 'pagebreak') {
+        if (noteGroupOpen) {
+          lines.push('<AST/><BRK/></NTE>');
+          lines.push('<BRK/>');
+          noteGroupOpen = false;
+        }
+        lines.push('<NPG/><BRK/>');
       } else if (block.type === 'txt') {
         if (noteGroupOpen) {
           lines.push('<AST/><BRK/></NTE>');
@@ -218,7 +264,7 @@ export function serializeSEC(blocks, metadata = {}) {
   const partBlocks = blocks.filter(b => b.part > 0);
   if (partBlocks.length === 0) {
     lines.push('</SEC>');
-    return lines.join('\n');
+    return lines.join('\r\n');
   }
 
   // Group into parts
@@ -359,6 +405,21 @@ export function serializeSEC(blocks, metadata = {}) {
         continue;
       }
 
+      // Reference blocks
+      if (block.type === 'ref' && block.ref) {
+        closeNoteGroup();
+        adjustDepthForContent(block);
+        const refXml = serializeRef(block);
+        if (block.revision) {
+          const tag = block.revision.toUpperCase();
+          lines.push(`<${tag}>${refXml}</${tag}>`);
+        } else {
+          lines.push(refXml);
+        }
+        lines.push('<BRK/>');
+        continue;
+      }
+
       // Tables
       if (block.type === 'table' && block.table) {
         closeNoteGroup();
@@ -385,5 +446,5 @@ export function serializeSEC(blocks, metadata = {}) {
   }
 
   lines.push('</SEC>');
-  return lines.join('\n');
+  return lines.join('\r\n');
 }

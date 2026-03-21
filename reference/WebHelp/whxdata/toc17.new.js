@@ -1,1 +1,0 @@
-(function() {    var toc =  [{"name":"Overview","type":"item","tilePath":"","description":"","url":"SIEditor/Editor_ReferenceWizard_Overview.htm"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

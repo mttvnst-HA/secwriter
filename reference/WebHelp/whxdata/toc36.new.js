@@ -1,1 +1,0 @@
-(function() {    var toc =  [{"name":"SpecsIntact Appears To Be Unresponsive","type":"item","tilePath":"","description":"SpecsIntact appears to be unresponsive","url":"Troubleshooting/Explorer_Issues/TS_SpecsIntact_Appears_To_Freeze.htm"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

@@ -188,6 +188,32 @@ describe('serializeSEC', () => {
     expect(xml).toContain('<TAI OPT="NAVY">Navy content</TAI>');
   });
 
+  // ─── CRLF line endings ──────────────────────────────────────────
+
+  it('uses CRLF line endings for legacy SpecsIntact compatibility', () => {
+    const xml = serializeSEC([], META);
+    expect(xml).toContain('\r\n');
+    expect(xml).not.toMatch(/[^\r]\n/); // no bare LF without preceding CR
+  });
+
+  it('uses CRLF in table serialization', () => {
+    const blocks = [{
+      id: '1', type: 'table', part: 1, depth: 0,
+      table: { columns: 1, rows: [[{ text: 'A', colspan: 1 }]] },
+    }];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).not.toMatch(/[^\r]\n/);
+  });
+
+  it('uses CRLF in ref block serialization', () => {
+    const blocks = [{
+      id: '1', type: 'ref', part: 1, depth: 1,
+      ref: { org: 'TEST', entries: [{ rid: 'R1', rtl: 'T1' }] },
+    }];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).not.toMatch(/[^\r]\n/);
+  });
+
   // ─── Edge cases ────────────────────────────────────────────────
 
   it('handles empty blocks array', () => {
@@ -273,5 +299,59 @@ describe('serializeSEC', () => {
     ];
     const xml = serializeSEC(blocks, META);
     expect(xml).toContain('<CHG><TXT>Changed</TXT></CHG>');
+  });
+
+  // ─── REF block serialization ──────────────────────────────────
+
+  it('serializes ref block with ORG and RID/RTL pairs', () => {
+    const blocks = [
+      {
+        id: '1', type: 'ref', part: 1, depth: 1,
+        ref: {
+          org: 'ASTM INTERNATIONAL (ASTM)',
+          entries: [
+            { rid: 'ASTM D2487', rtl: '(2017) Classification of Soils' },
+            { rid: 'ASTM D698', rtl: '(2012) Compaction Test' },
+          ],
+        },
+      },
+    ];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).toContain('<REF>');
+    expect(xml).toContain('<ORG>ASTM INTERNATIONAL (ASTM)</ORG>');
+    expect(xml).toContain('<RID>ASTM D2487</RID>');
+    expect(xml).toContain('<RTL>(2017) Classification of Soils</RTL>');
+    expect(xml).toContain('<RID>ASTM D698</RID>');
+    expect(xml).toContain('<RTL>(2012) Compaction Test</RTL>');
+    expect(xml).toContain('</REF>');
+  });
+
+  it('serializes ref block with revision wrapping', () => {
+    const blocks = [
+      {
+        id: '1', type: 'ref', part: 1, depth: 1,
+        revision: 'add',
+        ref: {
+          org: 'TEST ORG',
+          entries: [{ rid: 'REF-001', rtl: 'Title' }],
+        },
+      },
+    ];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).toContain('<ADD><REF>');
+    expect(xml).toContain('</REF></ADD>');
+  });
+
+  it('serializes ref block with empty entries', () => {
+    const blocks = [
+      {
+        id: '1', type: 'ref', part: 1, depth: 1,
+        ref: { org: 'EMPTY ORG', entries: [] },
+      },
+    ];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).toContain('<REF>');
+    expect(xml).toContain('<ORG>EMPTY ORG</ORG>');
+    expect(xml).toContain('</REF>');
   });
 });

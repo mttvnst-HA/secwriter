@@ -22,7 +22,7 @@ export function acceptInlineAdd(html) {
  */
 export function acceptInlineDel(html) {
   if (!html) return html;
-  return html.replace(/<del\s+class="mark-del">[\s\S]*?<\/del>/g, '');
+  return html.replace(/<del\s+class="mark-del"[^>]*>[\s\S]*?<\/del>/g, '').replace(/ {2,}/g, ' ');
 }
 
 /**
@@ -30,7 +30,7 @@ export function acceptInlineDel(html) {
  */
 export function rejectInlineAdd(html) {
   if (!html) return html;
-  return html.replace(/<ins\s+class="mark-add">[\s\S]*?<\/ins>/g, '');
+  return html.replace(/<ins\s+class="mark-add">[\s\S]*?<\/ins>/g, '').replace(/ {2,}/g, ' ');
 }
 
 /**
@@ -39,7 +39,7 @@ export function rejectInlineAdd(html) {
 export function rejectInlineDel(html) {
   if (!html) return html;
   return html
-    .replace(/<del\s+class="mark-del">/g, '')
+    .replace(/<del\s+class="mark-del"[^>]*>/g, '')
     .replace(/<\/del>/g, '');
 }
 
@@ -160,8 +160,8 @@ export function countRevisions(blocks) {
 
     // Inline
     if (b.html) {
-      const addMatches = b.html.match(/<ins\s+class="mark-add">/g);
-      const delMatches = b.html.match(/<del\s+class="mark-del">/g);
+      const addMatches = b.html.match(/<ins\s+class="mark-add"[^>]*>/g);
+      const delMatches = b.html.match(/<del\s+class="mark-del"[^>]*>/g);
       const chgMatches = b.html.match(/<span\s+class="mark-chg">/g);
       if (addMatches) adds += addMatches.length;
       if (delMatches) dels += delMatches.length;

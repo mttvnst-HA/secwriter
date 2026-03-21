@@ -7,6 +7,9 @@ export const SLASH_ITEMS = [
   { type: "oli", label: "Ordered List", desc: "Lettered list item (a. b. c.)", icon: "a." },
   { type: "item", label: "List Item", desc: "Bulleted list item", icon: "\u2022" },
   { type: "lst", label: "List Header", desc: "Submittal group header (e.g. SD-01)", icon: "\u2630" },
+  { type: "ref", label: "Reference", desc: "Standards reference group (ORG + RID/RTL)", icon: "\uD83D\uDCDA" },
+  { type: "table", label: "Table", desc: "Data table with editable cells", icon: "\u25A6" },
+  { type: "pagebreak", label: "Page Break", desc: "Insert a page break for printing", icon: "\u2504" },
 ];
 
 export default function SlashMenu({ filter, selectedIdx, onSelect, position }) {

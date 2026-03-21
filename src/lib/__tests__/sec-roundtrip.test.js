@@ -152,4 +152,43 @@ describe('SEC roundtrip (parse → serialize → re-parse)', () => {
     expect(blocks2[2].revision).toBe('del');
     expect(blocks2[3].revision).toBe('chg');
   });
+
+  it('REF blocks survive roundtrip', () => {
+    const xml = `<?xml version="1.0" encoding="windows-1252"?>
+<SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<MTA NAME="SUBFORMAT" CONTENT="NEW"/>
+<SCN>SECTION 00 00 00</SCN>
+<STL>REF ROUNDTRIP TEST</STL>
+<PRT>
+<SPT><TTL>REFERENCES</TTL>
+<REF>
+<ORG>ASTM INTERNATIONAL (ASTM)</ORG><BRK/><BRK/>
+<RID>ASTM D2487</RID><RTL>(2017) Classification of Soils</RTL><BRK/><BRK/>
+<RID>ASTM D698</RID><RTL>(2012) Compaction Test</RTL><BRK/><BRK/>
+</REF>
+</SPT>
+</PRT>
+</SEC>`;
+
+    const blocks1 = parseSEC(xml);
+    const refBlock1 = blocks1.find(b => b.type === 'ref');
+    expect(refBlock1).toBeDefined();
+    expect(refBlock1.ref.org).toBe('ASTM INTERNATIONAL (ASTM)');
+    expect(refBlock1.ref.entries).toHaveLength(2);
+
+    const serialized = serializeSEC(blocks1, { sectionNumber: '00 00 00', sectionTitle: 'REF ROUNDTRIP TEST' });
+    expect(serialized).toContain('<REF>');
+    expect(serialized).toContain('<ORG>ASTM INTERNATIONAL (ASTM)</ORG>');
+    expect(serialized).toContain('<RID>ASTM D2487</RID>');
+
+    const blocks2 = parseSEC(serialized);
+    const refBlock2 = blocks2.find(b => b.type === 'ref');
+    expect(refBlock2).toBeDefined();
+    expect(refBlock2.ref.org).toBe(refBlock1.ref.org);
+    expect(refBlock2.ref.entries).toHaveLength(refBlock1.ref.entries.length);
+    expect(refBlock2.ref.entries[0].rid).toBe(refBlock1.ref.entries[0].rid);
+    expect(refBlock2.ref.entries[0].rtl).toBe(refBlock1.ref.entries[0].rtl);
+    expect(refBlock2.ref.entries[1].rid).toBe(refBlock1.ref.entries[1].rid);
+    expect(refBlock2.ref.entries[1].rtl).toBe(refBlock1.ref.entries[1].rtl);
+  });
 });

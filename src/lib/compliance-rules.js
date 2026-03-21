@@ -1,0 +1,454 @@
+/**
+ * compliance-rules.js
+ *
+ * Static rule engine for UFS 1-300-02 compliance checking.
+ * Rules are auto-generated from src/data/ufs-1-300-02-rules.json at startup.
+ * Only the 4 FMT formatting rules are hardcoded (mechanical text transforms).
+ */
+
+import rulesData from '../data/ufs-1-300-02-rules.json';
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
+ * Binary search: is match inside or adjacent (±1 char) to any bracket range?
+ * Requires bracketRanges sorted by start position.
+ */
+function isInOrNearBracket(bracketRanges, matchStart, matchEnd) {
+  let lo = 0, hi = bracketRanges.length - 1;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    const r = bracketRanges[mid];
+    if (matchEnd < r.start - 1) {
+      hi = mid - 1;
+    } else if (matchStart > r.end + 1) {
+      lo = mid + 1;
+    } else {
+      return true; // overlap or adjacent
+    }
+  }
+  return false;
+}
+
+/**
+ * Build a fix function for a prohibited term entry.
+ * Returns null for complex cases that need AI rewriting.
+ */
+function buildFixFunction(entry) {
+  const { term, replacement } = entry;
+  if (!replacement) return null;
+
+  // Simple word-for-word replacements
+  const simpleReplacements = {
+    'per': (text) => text.replace(/\bper\b(?!\s*(cent|annum|capita|diem|se\b|hour|min|second|day|week|month|year|cubic|sq|linear|foot|feet|inch|yard|mile|meter|metre|liter|litre|gal|pound|ton|acre|hectare|km|mph|psf|psi|pcf|plf|ksf|ksi|kcf|klf|mil))/gi, 'in accordance with'),
+    'etc.': null, // needs manual enumeration — can't auto-fix
+    'any': null, // needs context to determine specificity
+    'and/or': (text) => text.replace(/\band\/or\b/gi, 'or'),
+    'furnish': (text) => text.replace(/\bfurnish\b/gi, 'provide'),
+    'Contractor must provide': (text) => text.replace(/\bContractor must provide\b/g, 'Provide'),
+    'Officer in Charge of Construction': (text) => text.replace(/\bOfficer in Charge of Construction\b/g, 'Contracting Officer'),
+    'Contracting Officer Representative': (text) => text.replace(/\bContracting Officer Representative\b/g, 'Contracting Officer'),
+    'Government Representative': (text) => text.replace(/\bGovernment Representative\b/g, 'Contracting Officer'),
+    'hereinbefore': null, // needs specific paragraph reference
+    'hereinafter': null, // needs specific paragraph reference
+    'conforming to': (text) => text.replace(/\bconforming to\b/gi, ''),
+    'in this specification': (text) => text.replace(/\bin this specification\b/gi, ''),
+    'Brand Name or Equal': null, // needs J&A — can't auto-fix
+    'per cent': (text) => text.replace(/\bper cent\b/gi, 'percent'),
+  };
+
+  if (simpleReplacements.hasOwnProperty(term)) {
+    return simpleReplacements[term];
+  }
+
+  // "shall" — the most common violation, with structured fix patterns
+  if (term === 'shall') {
+    return (text) => {
+      // "The Contractor shall [verb]" → "[Verb]"
+      let result = text.replace(
+        /\bThe Contractor shall\s+(\w)/gi,
+        (_, firstChar) => firstChar.toUpperCase()
+      );
+      // "shall be [verb]ed" → simple cases only
+      // More complex restructuring returns null (deferred to AI)
+      if (/\bshall\b/i.test(result)) {
+        return null; // still has "shall" — too complex for regex
+      }
+      return result;
+    };
+  }
+
+  // "should" — flag only, no auto-fix (may be intentional in notes)
+  if (term === 'should') return null;
+
+  // "to be" — too ambiguous for auto-fix
+  if (term === 'to be') return null;
+
+  // "proposed" — context-dependent
+  if (term === 'proposed') return null;
+
+  // "install" — only when "provide" is meant
+  if (term === 'install') return null;
+
+  // Vague/subjective terms — all need AI rewriting
+  const vagueTerms = [
+    'securely', 'thoroughly', 'suitable', 'properly', 'neatly', 'carefully',
+    'good working order', 'first class workmanship',
+    'installed in a neat and workmanlike manner',
+    'as shown on the drawings', 'as may be required', 'as necessary',
+    'an approved type', 'as approved by the Contracting Officer',
+    'as directed by the Contracting Officer', 'as determined by the Contracting Officer',
+  ];
+  if (vagueTerms.includes(term)) return null;
+
+  // Default: no auto-fix available
+  return null;
+}
+
+/**
+ * Build regex pattern for a prohibited symbol.
+ * Some symbols need special handling to avoid false positives.
+ */
+function buildSymbolPattern(entry) {
+  const { symbol } = entry;
+
+  // These symbols are too common as normal characters — need context patterns
+  const contextPatterns = {
+    // Match % only when preceded by a number: "50%" → "50 percent"
+    '%': /(\d)\s*%/g,
+    // Match # only when used as "pound" or "number": "#10" or "10#"
+    '#': /(?:\b(\d+)\s*#|#\s*(\d+)\b)/g,
+    // Match ° only when preceded by a number: "90°" → "90 degrees"
+    '°': /(\d)\s*°/g,
+    // Match & only between words: "sand & gravel"
+    '&': /\b(\w+)\s*&\s*(\w+)\b/g,
+    // Match @ only between number and unit: "3 @ $10"
+    '@': /(\d+)\s*@\s*/g,
+  };
+
+  if (contextPatterns[symbol]) {
+    return contextPatterns[symbol];
+  }
+
+  // Skip these — too many false positives with simple regex:
+  // ' (foot), " (inch), + (plus), - (minus), +/- (plus or minus),
+  // • (by), x (by), / (per)
+  // These are flagged only via the JSON data for reference, not as active patterns
+  return null; // disabled — will be filtered out in buildRules()
+}
+
+// ── Rule Builder ─────────────────────────────────────────────────────────────
+
+/**
+ * Build all compliance rules from the JSON data source.
+ * Returns an array of rule objects ready for matching.
+ */
+export function buildRules() {
+  const rules = [];
+  const seenTerms = new Set(); // dedup: some terms appear in both prohibitedTerms and vagueTerms
+
+  // ── Prohibited Terms (high severity) ──
+  rulesData.prohibitedTerms.forEach((entry, i) => {
+    const term = entry.term;
+    seenTerms.add(term.toLowerCase());
+
+    // Skip terms that would produce too many false positives without AI context
+    const skipTerms = ['to be', 'proposed', 'install'];
+    if (skipTerms.includes(term)) {
+      // Still add as a rule but with very specific patterns
+      if (term === 'to be') {
+        rules.push({
+          id: `TERM-${String(i + 1).padStart(3, '0')}`,
+          category: 'prohibited-term',
+          severity: 'medium', // downgrade — too many legitimate uses
+          pattern: /\bis to be\b|\bare to be\b/gi,
+          message: entry.context,
+          replacement: entry.replacement,
+          ufsRef: `UFS 1-300-02 §${entry.section}`,
+          fix: null,
+        });
+        return;
+      }
+      // Skip "proposed" and "install" entirely — too many false positives
+      return;
+    }
+
+    // "per" needs special handling to avoid matching "per cent", "per annum", etc.
+    let pattern;
+    if (term === 'per') {
+      // Exclude "per" in unit expressions (per hour, per cubic foot, per square meter, etc.)
+      // and standard phrases (per cent, per annum, per capita, per diem, per se)
+      pattern = /\bper\b(?!\s*(cent|annum|capita|diem|se\b|hour|min|second|day|week|month|year|cubic|sq|linear|foot|feet|inch|yard|mile|meter|metre|liter|litre|gal|pound|ton|acre|hectare|km|mph|psf|psi|pcf|plf|ksf|ksi|kcf|klf|mil))/gi;
+    } else if (term === 'any') {
+      // "any" at start of a requirement clause — not in "any of the following"
+      pattern = /\bany\b(?!\s*(of the following|one of|other))/gi;
+    } else {
+      // For terms ending with non-word chars (e.g., "etc."), don't use trailing \b
+      const escaped = escapeRegex(term);
+      const endsWithWord = /\w$/.test(term);
+      pattern = new RegExp(`\\b${escaped}${endsWithWord ? '\\b' : ''}`, 'gi');
+    }
+
+    rules.push({
+      id: `TERM-${String(i + 1).padStart(3, '0')}`,
+      category: 'prohibited-term',
+      severity: 'high',
+      pattern,
+      message: entry.context,
+      replacement: entry.replacement,
+      ufsRef: `UFS 1-300-02 §${entry.section}`,
+      fix: buildFixFunction(entry),
+    });
+  });
+
+  // ── Prohibited Symbols (medium severity) ──
+  rulesData.prohibitedSymbols.forEach((entry, i) => {
+    const pattern = buildSymbolPattern(entry);
+    if (!pattern) return; // skip symbols that can't be reliably detected
+
+    rules.push({
+      id: `SYM-${String(i + 1).padStart(3, '0')}`,
+      category: 'prohibited-symbol',
+      severity: 'medium',
+      pattern,
+      message: `Replace "${entry.symbol}" (${entry.meaning}) with "${entry.replacement}"`,
+      replacement: entry.replacement,
+      exception: entry.exception,
+      ufsRef: 'UFS 1-300-02 §2-4.4',
+      fix: buildSymbolFix(entry),
+    });
+  });
+
+  // ── Vague Terms (medium severity, fix: null → AI) ──
+  // Only add if not already covered by prohibitedTerms
+  rulesData.vagueTerms.forEach((term, i) => {
+    if (seenTerms.has(term.toLowerCase())) return; // dedup
+
+    rules.push({
+      id: `VAGUE-${String(i + 1).padStart(3, '0')}`,
+      category: 'vague-language',
+      severity: 'medium',
+      pattern: new RegExp(`\\b${escapeRegex(term)}\\b`, 'gi'),
+      message: `"${term}" is vague per UFS 1-300-02 §2-4.4. Use specific, measurable language.`,
+      ufsRef: 'UFS 1-300-02 §2-4.4',
+      fix: null,
+    });
+  });
+
+  // ── Required Capitalization (low severity) ──
+  rulesData.requiredCapitalization.forEach((entry) => {
+    const lower = entry.term.toLowerCase();
+    // Only match when NOT already capitalized correctly
+    // Use negative lookahead to avoid matching the correct form
+    rules.push({
+      id: `CAP-${entry.term.replace(/\s+/g, '')}`,
+      category: 'capitalization',
+      severity: 'low',
+      // Match lowercase "contractor" but not "Contractor", "subcontractor", etc.
+      pattern: new RegExp(
+        `(?<![A-Za-z])${escapeRegex(lower)}(?![A-Za-z])`,
+        'g'
+      ),
+      message: `${entry.rule}: "${entry.term}" per UFS 1-300-02 §${entry.section}`,
+      ufsRef: `UFS 1-300-02 §${entry.section}`,
+      fix: (text) => {
+        // Replace only standalone lowercase occurrences
+        return text.replace(
+          new RegExp(`(?<![A-Za-z])${escapeRegex(lower)}(?![A-Za-z])`, 'g'),
+          entry.term
+        );
+      },
+    });
+  });
+
+  // ── Colloquial Terms (medium severity) ──
+  rulesData.colloquialTerms.forEach((entry) => {
+    const pattern = new RegExp(`\\b${escapeRegex(entry.term)}\\b`, 'gi');
+    rules.push({
+      id: `COLLOQ-${entry.term}`,
+      category: 'terminology',
+      severity: 'medium',
+      pattern,
+      message: `Colloquial: use "${entry.correctTerm}" instead of "${entry.term}" per UFS 1-300-02 §${entry.section}`,
+      ufsRef: `UFS 1-300-02 §${entry.section}`,
+      fix: (text) => text.replace(pattern, entry.correctTerm),
+    });
+  });
+
+  // ── Redundant Wording (low severity, fix: null) ──
+  rulesData.redundantWording.forEach((entry) => {
+    // Skip "conforming to" — already in prohibitedTerms
+    if (seenTerms.has(entry.term.toLowerCase())) return;
+
+    // "all" and "type" are too common for word-boundary matching
+    if (entry.term === 'all' || entry.term === 'type') return;
+
+    rules.push({
+      id: `REDUND-${entry.term.replace(/\s+/g, '-')}`,
+      category: 'redundant-wording',
+      severity: 'low',
+      pattern: new RegExp(`\\b${escapeRegex(entry.term)}\\b`, 'gi'),
+      message: `${entry.note} — consider removing "${entry.term}" per UFS 1-300-02 §${entry.section}`,
+      ufsRef: `UFS 1-300-02 §${entry.section}`,
+      fix: null,
+    });
+  });
+
+  // ── Formatting Rules (low severity, hardcoded) ──
+  // NOTE: FMT-001 (double spaces) was removed — UFS 1-300-02 does NOT prohibit
+  // double spaces, and USACE .SEC files conventionally use them after periods.
+  rules.push(
+    {
+      id: 'FMT-002', category: 'formatting', severity: 'low',
+      pattern: /[\u2013\u2014]/g,
+      message: 'Em-dash or en-dash should be hyphen',
+      ufsRef: 'UFS 1-300-02 §2-3',
+      fix: (text) => text.replace(/[\u2013\u2014]/g, '-'),
+    },
+    {
+      id: 'FMT-003', category: 'formatting', severity: 'low',
+      pattern: /[\u201C\u201D\u2018\u2019]/g,
+      message: 'Smart quotes should be straight quotes',
+      ufsRef: 'UFS 1-300-02 §2-3',
+      fix: (text) => text.replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'"),
+    },
+    {
+      id: 'FMT-004', category: 'formatting', severity: 'low',
+      pattern: /\bper cent\b/gi,
+      message: '"per cent" should be "percent"',
+      ufsRef: 'UFS 1-300-02 §2-3',
+      fix: (text) => text.replace(/\bper cent\b/gi, 'percent'),
+    }
+  );
+
+  return rules;
+}
+
+/**
+ * Build a fix function for a prohibited symbol.
+ */
+function buildSymbolFix(entry) {
+  const { symbol, replacement } = entry;
+
+  const fixes = {
+    '%': (text) => text.replace(/(\d)\s*%/g, `$1 ${replacement}`),
+    '#': (text) => text.replace(/(?:\b(\d+)\s*#|#\s*(\d+)\b)/g, (m, pre, post) => {
+      return pre ? `${pre} ${replacement}` : `${replacement} ${post}`;
+    }),
+    '°': (text) => text.replace(/(\d)\s*°/g, `$1 ${replacement}`),
+    '&': (text) => text.replace(/\b(\w+)\s*&\s*(\w+)\b/g, `$1 ${replacement} $2`),
+    '@': (text) => text.replace(/(\d+)\s*@\s*/g, `$1 ${replacement} `),
+  };
+
+  return fixes[symbol] || null;
+}
+
+// ── Rule Runner ──────────────────────────────────────────────────────────────
+
+/**
+ * Run all static rules against plain text content.
+ *
+ * @param {string} plainText - Block text with HTML stripped
+ * @param {string} blockId - Block identifier
+ * @param {Array} rules - Array of rule objects from buildRules()
+ * @param {Object} options - { skipBrackets: true, isNoteBlock: false }
+ * @returns {Array} violations - [{ ruleId, blockId, match, index, sentence, fix, message, severity, category, ufsRef, replacement }]
+ */
+export function runStaticRules(plainText, blockId, rules, options = {}) {
+  const { skipBrackets = true, isNoteBlock = false } = options;
+  const violations = [];
+
+  if (!plainText || !plainText.trim()) return violations;
+
+  // Notes are completely exempt from UFS 1-300-02 compliance checking
+  if (isNoteBlock) return violations;
+
+  // Pre-process: identify bracket ranges to exclude (sorted by start for binary search)
+  let bracketRanges = [];
+  if (skipBrackets) {
+    const bracketPattern = /\[[^\]]*\]/g;
+    let m;
+    while ((m = bracketPattern.exec(plainText)) !== null) {
+      bracketRanges.push({ start: m.index, end: m.index + m[0].length });
+    }
+    // Already sorted by start from left-to-right exec, but enforce for safety
+    bracketRanges.sort((a, b) => a.start - b.start);
+  }
+
+  for (const rule of rules) {
+    if (!rule.pattern) continue;
+
+    // Skip imperative mood rules for note blocks (notes use advisory language)
+    if (isNoteBlock && rule.category === 'prohibited-term') {
+      const imperativeTerms = ['shall', 'should', 'to be'];
+      if (imperativeTerms.some(t => rule.message?.toLowerCase().includes(t))) {
+        continue;
+      }
+    }
+
+    // Reset regex lastIndex for global patterns
+    rule.pattern.lastIndex = 0;
+
+    let match;
+    while ((match = rule.pattern.exec(plainText)) !== null) {
+      const matchStart = match.index;
+      const matchEnd = matchStart + match[0].length;
+
+      // Skip matches inside or immediately adjacent to brackets (binary search)
+      if (skipBrackets && isInOrNearBracket(bracketRanges, matchStart, matchEnd)) {
+        continue;
+      }
+
+      // Skip "bridge deck", "deck plate" etc. — legitimate civil engineering terms
+      if (rule.id === 'COLLOQ-deck') {
+        const before = plainText.slice(Math.max(0, matchStart - 10), matchStart).toLowerCase();
+        const after = plainText.slice(matchEnd, matchEnd + 10).toLowerCase();
+        if (before.includes('bridge') || after.match(/^\s*(plate|drain|coating|slab)/)) continue;
+      }
+
+      // Extract surrounding sentence context (±60 chars)
+      const contextStart = Math.max(0, matchStart - 60);
+      const contextEnd = Math.min(plainText.length, matchEnd + 60);
+      const sentence = (contextStart > 0 ? '...' : '') +
+        plainText.slice(contextStart, contextEnd) +
+        (contextEnd < plainText.length ? '...' : '');
+
+      violations.push({
+        ruleId: rule.id,
+        blockId,
+        match: match[0],
+        index: matchStart,
+        sentence,
+        fixFn: rule.fix || null, // Fix computed lazily on demand, not eagerly during scan
+        message: rule.message,
+        severity: rule.severity,
+        category: rule.category,
+        ufsRef: rule.ufsRef,
+        replacement: rule.replacement || null,
+      });
+
+      // For non-global patterns, break after first match
+      if (!rule.pattern.global) break;
+    }
+  }
+
+  return violations;
+}
+
+// ── Cached Rules Instance ────────────────────────────────────────────────────
+
+let _cachedRules = null;
+
+/**
+ * Get the cached rules array (built once on first call).
+ */
+export function getRules() {
+  if (!_cachedRules) {
+    _cachedRules = buildRules();
+  }
+  return _cachedRules;
+}

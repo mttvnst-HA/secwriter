@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "parse": "node tools/parse-sec.js",
     "test": "vitest run",
+    "test:compliance": "node --test src/lib/__tests__/compliance-rules.node-test.mjs",
     "test:watch": "vitest",
     "test:e2e": "playwright test"
   },

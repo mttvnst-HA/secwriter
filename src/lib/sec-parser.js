@@ -245,6 +245,17 @@ export function parseSEC(xmlString) {
       return;
     }
 
+    if (tag === 'NPG') {
+      blocks.push({
+        id: nextId(),
+        type: 'pagebreak',
+        part: state.partNum,
+        depth: state.sptDepth,
+        section: state.currentSection,
+      });
+      return;
+    }
+
     if (tag === 'NTE' || tag === 'OLG' || tag === 'SBM') {
       for (const child of elem.children) processElement(child);
       return;
@@ -314,57 +325,43 @@ export function parseSEC(xmlString) {
     }
 
     if (tag === 'REF') {
-      // Parse structured reference block: ORG + RID/RTL pairs
+      // Parse structured reference block: ORG + RID/RTL entries
       const orgElem = elem.querySelector('ORG');
-      const orgText = orgElem ? elemToHtml(orgElem) : '';
-
-      if (orgText) {
-        // Organization header block
-        blocks.push({
-          id: nextId(),
-          type: 'txt',
-          part: state.partNum,
-          depth: state.sptDepth,
-          section: state.currentSection,
-          html: `<b>${orgText}</b>`,
-        });
-      }
+      const orgText = orgElem ? elemToHtmlNoTab(orgElem) : '';
+      const entries = [];
 
       // Extract RID/RTL pairs from direct children
       const children = Array.from(elem.children);
       for (let ci = 0; ci < children.length; ci++) {
         const child = children[ci];
         if (child.tagName === 'RID') {
-          const rid = elemToHtml(child);
+          const rid = elemToHtmlNoTab(child);
           // Look for the following RTL sibling
           let rtl = '';
           for (let ri = ci + 1; ri < children.length; ri++) {
             if (children[ri].tagName === 'RTL') {
-              rtl = elemToHtml(children[ri]);
+              rtl = elemToHtmlNoTab(children[ri]);
               ci = ri; // skip past the RTL
               break;
             }
             if (children[ri].tagName === 'RID') break; // next RID without RTL
           }
-          if (rid) {
-            const html = rtl
-              ? `<span class="mark-rid">${rid}</span> ${rtl}`
-              : `<span class="mark-rid">${rid}</span>`;
-            blocks.push({
-              id: nextId(),
-              type: 'txt',
-              part: state.partNum,
-              depth: state.sptDepth,
-              section: state.currentSection,
-              html,
-            });
-          }
+          if (rid) entries.push({ rid, rtl });
         }
-        // Skip NTE children inside REF — process them normally
+        // NTE children inside REF — process them normally as separate blocks
         if (child.tagName === 'NTE') {
           for (const sub of child.children) processElement(sub);
         }
       }
+
+      blocks.push({
+        id: nextId(),
+        type: 'ref',
+        part: state.partNum,
+        depth: state.sptDepth,
+        section: state.currentSection,
+        ref: { org: orgText, entries },
+      });
       return;
     }
 

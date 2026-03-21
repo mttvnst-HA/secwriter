@@ -4,6 +4,10 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 
 **Terminology:** "specsintact-modern" / "SIM" / "SI Modern" = this web app. "SpecsIntact" / "SIEditor" = the legacy Windows desktop application.
 
+## Development Workflow
+
+When fixing bugs, verify the fix doesn't introduce regressions by running the full test suite before reporting completion. Never report a fix as done until tests pass.
+
 ## Project Context
 
 **What this is:** A rich text editor that reads and writes SpecsIntact .SEC files (XML-based SGML format with windows-1252 encoding, used by the U.S. military for construction specifications). The editor makes spec authoring feel like Google Docs or Notion while preserving the underlying SGML structure.
@@ -16,44 +20,86 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 
 ```
 src/
-  App.jsx                  # Main editor layout (sidebar, toolbar, editor pane) ~628 lines
-  main.jsx                 # Entry point
+  App.jsx                  # Main editor layout, state management, toolbar, sidebar ~1860 lines
+  main.jsx                 # Entry point + ErrorBoundary wrapper ~50 lines
   components/
-    EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) ~323 lines
+    EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup ~500 lines
     TitleBlock.jsx         # Section heading with inline editing, Tab/Shift+Tab depth ~145 lines
-    TableBlock.jsx         # Read-only table rendering ~93 lines
-    TreeNode.jsx           # Sidebar navigation tree node (recursive) ~62 lines
-    SlashMenu.jsx          # / command dropdown menu ~94 lines
-    FloatingToolbar.jsx    # Selection-based toolbar for inline marks + B/I/U + revision marks ~400 lines
-    MarkSuggestions.jsx    # Auto-detect pattern suggestions (RID/SRF pills) ~153 lines
-    MarkLegend.jsx         # Data element color key bar ~20 lines
-    TailoringProfile.jsx   # TAI profile selector (branch/region/delivery dropdowns) ~150 lines
-    RevisionControls.jsx   # Track Changes toggle, Show Revisions, Accept/Reject All ~130 lines
+    TableBlock.jsx         # Table editing: cell edit, add/delete rows/columns, merge/split ~260 lines
+    RefBlock.jsx           # Structured REF editing (ORG + RID/RTL) + comment support ~320 lines
+    RefWizard.jsx          # UMRL-powered reference search + insertion wizard ~280 lines
+    TreeNode.jsx           # Sidebar navigation tree node (recursive, draggable) ~115 lines
+    SlashMenu.jsx          # / command dropdown menu (incl. /pagebreak) ~96 lines
+    FloatingToolbar.jsx    # Selection toolbar: B/I/U + Aa + marks + ADD/DEL + accept/reject + comment ~605 lines
+    SearchBar.jsx          # Ctrl+F/Ctrl+H find & replace with debounced search ~365 lines
+    BracketReplace.jsx     # [Bracketed text] placeholder replacement panel ~155 lines
+    ValidationPanel.jsx    # Document validation panel with severity filters ~100 lines
+    CommentPopup.jsx       # Comment thread popup with resolve/reopen/reply/delete ~265 lines
+    MarkSuggestions.jsx    # Auto-detect pattern suggestions (RID/SRF pills) ~155 lines
+    MarkLegend.jsx         # Data element color key (preserved for user manual, removed from UI) ~20 lines
+    TailoringProfile.jsx   # TAI profile selector (branch/region/delivery dropdowns) ~160 lines
+    RevisionControls.jsx   # Track Changes, Revisions, Notes, ENG/MET toggles + Accept/Reject All ~200 lines
+    CrossRefPanel.jsx      # RID/SRF validation + orphaned reference removal buttons ~120 lines
+    CompliancePanel.jsx    # UFS 1-300-02 compliance checker: progressive UX, grouped findings, inline highlighting ~920 lines
+    ComplianceSettings.jsx # Anthropic API key management for AI compliance rewrites ~185 lines
   lib/
-    numbering.js           # Section numbering (1.1, 1.2.1, etc.) and OLI labels (a. b. c.) ~101 lines
-    tree-builder.js        # Builds hierarchical tree from flat block array ~20 lines
-    ini-config.js          # Formatting rules from SpecsIntact .ini files (margins, colors, nesting) ~80 lines
-    sec-parser.js          # .SEC file parser (XML -> block array) ~377 lines
-    sec-serializer.js      # Block array -> .SEC XML serializer ~378 lines
-    encoding.js            # Windows-1252 encoder for .SEC export ~66 lines
-    mark-patterns.js       # Auto-detect RID/SRF patterns in text ~96 lines
-    tailor-profile.js      # TAI OPT matching, resolution, cleanup ~150 lines
-    revisions.js           # Accept/reject logic for tracked changes, stats ~174 lines
-    __tests__/
+    numbering.js           # Section numbering (1.1, 1.2.1, etc.) and OLI labels (a. b. c.) ~100 lines
+    tree-builder.js        # Builds hierarchical tree from flat block array ~19 lines
+    ini-config.js          # Formatting rules from SpecsIntact .ini files (margins, colors, nesting) ~79 lines
+    sec-parser.js          # .SEC file parser (XML -> block array, incl. NPG page breaks) ~396 lines
+    sec-serializer.js      # Block array -> .SEC XML serializer (CRLF, NPG, comment stripping) ~450 lines
+    encoding.js            # Windows-1252 encoder for .SEC export ~65 lines
+    mark-patterns.js       # Auto-detect RID/SRF patterns in text ~95 lines
+    tailor-profile.js      # TAI OPT matching, resolution, cleanup ~165 lines
+    revisions.js           # Accept/reject logic for tracked changes, stats ~175 lines
+    text-diff.js           # Word-level LCS diff + character-level sub-diff + DOM annotation ~450 lines
+    cross-ref-validation.js # RID + SRF cross-reference extraction + validation ~120 lines
+    useUndoableBlocks.js   # Undo/redo hook wrapping blocks + tcSnapshots with history ~120 lines
+    table-ops.js           # Table row/column/cell operations + merge/split ~135 lines
+    block-reorder.js       # Section reordering: getSectionRange, reorderSection ~80 lines
+    comment-report.js      # Printable HTML comment resolution report generator ~70 lines
+    doc-export.js          # Word (.docx) and Print/PDF export generation ~245 lines
+    auto-save.js           # localStorage auto-save + File System Access API save ~105 lines
+    doc-validation.js      # Document structural validation (PARTs, titles, submittals) ~165 lines
+    bracket-replace.js     # Find [bracketed text] placeholders, grouped replacement ~45 lines
+    submittal-register.js  # SUB mark extraction, SD grouping, register compilation + HTML report ~195 lines
+    compliance-rules.js    # UFS 1-300-02 static rule engine — loads rules JSON, generates ~81 regex patterns, binary search bracket exclusion ~470 lines
+    compliance-checker.js  # Compliance orchestrator: scope selection, rule execution, grouping, stats, violation budget ~220 lines
+    compliance-diff.js     # Word-level diff for compliance fix previews (wraps diffWords) ~25 lines
+    compliance-ai.js       # AI rewrite module: Anthropic API, chunking, token estimation, HTML preservation ~280 lines
+    __tests__/             # 381 Vitest unit tests + 40 Node compliance tests = 421 total
       setup.js             # Vitest DOMParser polyfill (linkedom)
-      numbering.test.js    # 30 tests
-      tree-builder.test.js # 10 tests
-      encoding.test.js     # 11 tests
-      sec-parser.test.js   # 27 tests
-      sec-serializer.test.js # 23 tests
-      sec-roundtrip.test.js  # 8 tests
-      revisions.test.js    # 22 tests
-      mark-patterns.test.js  # 18 tests
-      tailor-profile.test.js # 31 tests
+      sec-parser.test.js   # 36 tests (Vitest)
+      tailor-profile.test.js # 36 tests (Vitest)
+      sec-serializer.test.js # 32 tests (Vitest)
+      revisions.test.js    # 29 tests (Vitest)
+      cross-ref-validation.test.js # 21 tests (Vitest)
+      compliance-checker.test.js # 23 tests (Vitest)
+      text-diff.test.js    # 20 tests (Vitest)
+      mark-patterns.test.js  # 18 tests (Vitest)
+      table-ops.test.js    # 17 tests (Vitest)
+      numbering.test.js    # 16 tests (Vitest)
+      search.test.js       # 14 tests (Vitest)
+      compliance-ai.test.js # 13 tests (Vitest)
+      undo-redo.test.js    # 12 tests (Vitest)
+      doc-export.test.js   # 12 tests (Vitest)
+      submittal-register.test.js # 11 tests (Vitest)
+      encoding.test.js     # 11 tests (Vitest)
+      doc-validation.test.js # 11 tests (Vitest)
+      block-reorder.test.js # 10 tests (Vitest)
+      bracket-replace.test.js # 9 tests (Vitest)
+      sec-roundtrip.test.js  # 9 tests (Vitest)
+      tree-builder.test.js # 8 tests (Vitest)
+      auto-save.test.js    # 7 tests (Vitest)
+      comments.test.js     # 6 tests (Vitest)
+      compliance-rules.node-test.mjs # 40 tests (Node built-in runner — NOT Vitest, regex-heavy rules OOM Vitest workers)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
+    umrl.json              # UMRL reference database (302 orgs, 4,973 references, 587KB)
+    umsl.json              # UMSL submittal database (13,203 submittals, 1,097KB)
+    ufs-1-300-02-rules.json # UFS 1-300-02 compliance rules (122 rules, 35 prohibited terms, 65KB)
   styles/
-    editor.css             # Inline mark styles, scrollbar, placeholder text
+    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance highlights ~385 lines
 reference/
   section.ini              # SpecsIntact formatting rules (AUTHORITATIVE - always check this)
   document.ini             # Document-level formatting variant
@@ -61,9 +107,15 @@ reference/
   UFGS.tpl                 # UFGS section template
   31_00_00.SEC             # Sample spec file (EARTHWORK)
   UFGS_M/01_42_00.sec      # Additional sample
+  ufs_1_300_02.pdf         # UFS 1-300-02 Format Standard (authoritative source for compliance rules)
+  ufs_1_300_02_text.txt    # Raw text extraction from UFS PDF (for re-extraction)
   WebHelp/                 # Legacy SpecsIntact help system
 tests/
+  e2e/
+    editor.spec.js         # 140 Playwright E2E tests ~2800 lines
   interop-test-procedure.md # 6 manual round-trip interop test scenarios
+  tc-browser-test-prompt.md # 15 autonomous browser test cases for Track Changes
+  ux-ergonomic-review-prompt.md # UX review prompt with parallel agents + verification workflow
 tools/
   parse-sec.js             # Node CLI: parse .SEC -> JSON
   roundtrip-test.js        # Test parse -> serialize -> re-parse
@@ -76,13 +128,41 @@ tools/
 ```bash
 npm install
 npm run dev          # Vite dev server at localhost:5173
-npm test             # Run all 143 unit tests (Vitest)
+npm test             # Run 381 Vitest unit tests
 npm run test:watch   # Watch mode
-npm run test:e2e     # Run 57 Playwright E2E tests
+npm run test:compliance  # Run 40 compliance rule tests (Node built-in runner — NOT Vitest)
+npm run test:e2e     # Run 140 Playwright E2E tests
+# Full suite: 381 + 40 + 140 = 561 automated tests
 npm run parse -- input.sec output.json  # CLI: parse SEC to JSON
 ```
 
+**Environment:** Windows (Git Bash). `jq` is not available — use `node -e` for JSON processing in scripts/hooks. File paths use `/c/working_claude/` format in Git Bash.
+
 ## Critical Rules
+
+### Thinking mode
+
+**Always use extended thinking before:**
+- Making architectural decisions or choosing between approaches
+- Debugging failures (reason through root causes before attempting fixes)
+- Writing regex patterns or complex logic (trace through edge cases mentally first)
+- Deciding whether to retry a failing approach vs. switch tools
+- Answering "why" questions about past behavior
+
+Do not rush to action. Think first, act second. If you catch yourself in a retry loop, stop and think about whether the tool or approach is wrong.
+
+### Testing rules
+
+This project uses Vitest for testing. When tests fail with OOM errors, search online for known Vitest memory solutions (e.g., --pool forks, --no-threads, NODE_OPTIONS=--max-old-space-size) before debugging manually.
+
+Test DOM-dependent code in both browser and Node/linkedom environments. linkedom has known limitations compared to browser DOM — always verify parser/serializer code works in the test environment, not just conceptually.
+
+1. **Never use `replace_all` on indented code** — it matches across different indentation contexts and corrupts file structure silently (syntactically valid but semantically broken).
+2. **If a test/tool fails twice with the same error, web search the cause** before retrying. Known issues (like Vitest OOM) have known fixes.
+3. **Test files should have ≤30 tests.** Use `it.each()` or batch assertions in a single `it()` for data-driven tests, not individual `it()` blocks.
+4. **Always verify existing tests pass BEFORE adding new ones.** Run `npm test` first, then add.
+5. **Compliance rule tests use Node's built-in test runner** (`node --test`), not Vitest. The regex-heavy rule engine exhausts Vitest's worker memory. Run via `npm run test:compliance`.
+6. **Proactive testing:** Use data-driven assertions or simple scripts, not massive test files. 19 false positive checks in a single `it()` is better than 19 separate tests.
 
 ### Always check the .ini files for formatting
 
@@ -94,7 +174,7 @@ The `reference/section.ini` file is the authoritative source for:
 - **[CODES]** - Tag names, descriptions, and whether they're TRANSPARENT (inline) or block-level.
 - **[FONTS]** - Font styling per tag.
 
-**When adding or modifying any formatting, read the .ini file first.** Do not guess at margins or colors.
+**When adding or modifying any formatting, read the .ini file first.** Do not guess at margins, colors, or font styles. This applies to ALL changes — including revision marks (ADD/DEL/CHG), inline data elements, and block styling. Always cross-reference `[COLORS]`, `[FONTS]`, and `[CODES]` sections before choosing CSS values.
 
 ### Tag categories (from .ini analysis)
 
@@ -107,7 +187,7 @@ The `reference/section.ini` file is the authoritative source for:
 - TAI (302) - Tailoring options by service branch/region/delivery method
 - ENG/MET (~500 each) - Dual unit display pairs
 
-**Block elements hierarchy:** SEC > PRT > SPT > {TXT, OLG, OLI, LST, ITM, NTE, NPR, SBM, TAB, TBL, TTL, REF}
+**Block elements hierarchy:** SEC > PRT > SPT > {TXT, OLG, OLI, LST, ITM, NTE, NPR, NPG, SBM, TAB, TBL, TTL, REF}
 
 ### contentEditable focus management
 
@@ -130,6 +210,67 @@ When the slash menu converts a block type, `handleConvertBlock` creates a block 
 - **Import:** `FileReader.readAsArrayBuffer()` + `TextDecoder('windows-1252')` — NOT `readAsText()` (which defaults to UTF-8)
 - **Export:** `encodeWindows1252(xml)` from `src/lib/encoding.js` returns `Uint8Array` with proper byte mapping for characters 0x80–0x9F (curly quotes, em-dash, euro, trademark, bullet, etc.)
 
+### Track Changes architecture
+
+TC uses a **snapshot-based diff** approach. Key design decisions:
+
+1. **`tcSnapshots`** (`Map<blockId, plainText>`) stores the "baseline" text of every block at the moment TC was enabled. When a block is blurred, its current visible text is diffed against the snapshot.
+2. **Snapshot syncing is critical.** Every mutation path that changes block content must also update `tcSnapshots` to prevent stale baselines from re-creating phantom revisions. This includes: inline accept/reject (FloatingToolbar), gutter accept/reject, Accept All, Reject All, and del popup accept/reject.
+3. **`onRevisionAction`** is a dedicated callback (separate from `onUpdate`) that updates both block HTML and tcSnapshots in one pass. Used by FloatingToolbar and EditableBlock's del popup.
+4. **Diff pipeline:** `diffWords()` → `refineWordDiff()` → `diffChars()`. The refinement step applies character-level sub-diff to consecutive del→add pairs that share >=50% common characters, producing fine-grained `<del>`/`<ins>` marks instead of replacing entire words.
+5. **Del elements** have `contentEditable="false"` to prevent caret entry, and `cursor: pointer` to support click-to-show popup for accept/reject.
+6. **Gutter buttons** appear for blocks with either block-level revision (`block.revision`) OR inline-only revisions (detected via regex on `block.html`).
+
+### Comments architecture
+
+Comments use a **DOM-based highlight + separate metadata store** approach:
+
+1. **In the DOM:** `<span class="mark-comment" data-comment-id="comment-123">text</span>` wraps the commented text with yellow highlight.
+2. **In state:** `comments` Map stores metadata (id, blockId, status, highlightText, entries thread). Comment data is NOT in `block.html` — it's a parallel store.
+3. **For editable blocks:** comment spans are persisted in `block.html`. For **ref blocks and table cells:** spans are injected into the rendered DOM only (data stays in `block.ref`/`block.table`).
+4. **FloatingToolbar** detects ref/table block selections via fallback `[id^="block-"]` selector and shows only the comment button.
+5. **Export:** serializer strips `mark-comment` spans. A sidecar `.comments.json` file is saved alongside the `.SEC` file.
+6. **File import clears comments.** `loadSECContent()` calls `setComments(new Map())` so comments from a previous file don't leak into the new document.
+
+### Tag visibility toggle architecture
+
+The `</>` toolbar button toggles between `tags-hidden` (default) and `tags-visible` CSS classes on the editor container:
+
+1. **Inline marks** use CSS `::before`/`::after` pseudo-elements to inject tag names (e.g., `<RID>...</RID>`). TAI marks use `attr(data-opt)` to show the OPT attribute value. Tag text is styled in cyan monospace (`font-family: 'SF Mono', Consolas; font-size: 11px; color: #0ea5e9`).
+2. **Block-level tags** use `data-tag` attributes on block wrapper `<div>` elements. EditableBlock maps block types to SGML names (`txt→TXT`, `note→NTE`, `oli→OLI`, `item→ITM`, `lst→LST`). TitleBlock uses `data-tag="TTL"`.
+3. **No JavaScript rendering needed** — pure CSS approach avoids re-renders when toggling. The pseudo-elements are invisible when the `tags-visible` class is absent.
+
+### Compliance checker architecture
+
+The compliance checker uses a **data-driven rule engine** with two tiers:
+
+1. **`ufs-1-300-02-rules.json`** (65KB) — authoritative rule data extracted from `reference/ufs_1_300_02.pdf`. Contains 122 rules, 35 prohibited terms, 13 symbols, 20 vague terms, 4 required capitalizations, and more. **Rules are NOT hardcoded in source code.**
+2. **`compliance-rules.js`** reads the JSON at startup and generates ~81 rule objects via `buildRules()`. Each rule has: id, category, severity, regex pattern, message, UFS reference, and an optional `fix()` function. Rules where `fix` is null are deferred to AI tier. Uses **binary search** for bracket exclusion (O(log n) per match instead of O(n)).
+3. **`compliance-checker.js`** runs rules against a scoped set of blocks, groups violations by rule ID, and computes severity stats. Excludes note blocks, bracket content, and hidden ENG/MET content. Enforces a **violation budget** (`MAX_VIOLATIONS = 2000`) to prevent OOM on large documents; returns `truncated: true` when capped.
+4. **`compliance-ai.js`** handles Tier 2: builds a system prompt dynamically from the JSON (injects all prohibited + vague terms), chunks large requests (20 blocks max per API call), estimates token cost, and supports abort via AbortController.
+5. **`CompliancePanel.jsx`** renders the right-side panel with progressive UX: summary bar → grouped findings → batch accept/reject → AI batch section → settings. Clicking a group highlights all matching text in the editor with yellow `.compliance-highlight` spans. Shows truncation warning when violation cap is reached.
+6. **Updating rules:** When USACE publishes a new edition of UFS 1-300-02, re-extract the JSON from the PDF. No code changes needed — the rule engine automatically picks up new data.
+
+**Performance design decisions:**
+- **Lazy fix computation:** Violations store `fixFn` (function reference) but do NOT eagerly compute fix text during scanning. Fix text is computed on-demand when the user accepts a fix. This prevents thousands of redundant string allocations.
+- **Binary search bracket exclusion:** `isInOrNearBracket()` uses sorted bracket ranges with binary search instead of `.some()` linear scan, reducing O(n×m) to O(n×log m).
+- **Violation budget:** `MAX_VIOLATIONS = 2000` caps the violations array. Panel shows "Narrow the scope" warning when truncated.
+
+### Reference data sources
+
+SIM uses two USACE-maintained databases parsed from the legacy SpecsIntact installation:
+
+1. **UMRL** (`src/data/umrl.json`) — Unified Master Reference List. 302 standards organizations, 4,973 reference entries (RID + RTL). Source: `C:\Program Files (x86)\SpecsIntact 5\UMRL\umrl.ref`. Used by the Reference Wizard for searchable reference insertion.
+2. **UMSL** (`src/data/umsl.json`) — Unified Master Submittal List. 13,203 submittal entries with section, SD number, classification, and item name. Source: `C:\Program Files (x86)\SpecsIntact 5\UMRL\umsl.lst`. Available for future submittal wizard.
+
+These files are regularly updated by USACE. To refresh: re-run the parser scripts that generated the JSON files.
+
+### Compliance rule development
+
+When implementing compliance checks or validation logic, always reference the actual specification document (`reference/ufs_1_300_02.pdf`) rather than relying on learned/general knowledge. Ask the user to provide the spec if not already available.
+
+**Key lesson (FMT-001 removal):** A "multiple spaces should be single space" rule was fabricated without UFS basis and generated 75+ false positives per spec — USACE .SEC files conventionally use double spaces after periods. Every rule must trace to a specific UFS 1-300-02 section. The raw text extraction is at `reference/ufs_1_300_02_text.txt`.
+
 ## Data Model
 
 Each document is a flat array of blocks:
@@ -137,111 +278,77 @@ Each document is a flat array of blocks:
 ```json
 {
   "id": "n42",
-  "type": "txt",        // title | txt | note | oli | item | lst | table
+  "type": "txt",        // title | txt | note | oli | item | lst | table | ref | pagebreak
   "part": 1,            // PART number (1, 2, 3)
   "depth": 2,           // SPT nesting depth (0 = PART level, 1 = first subpart, etc.)
   "section": "n41",     // ID of the parent title block
   "level": 1,           // OLI only: list level (1 = a.b.c., 2 = 1.2.3.)
   "html": "...",         // Rich text content with <span class="mark-rid"> etc.
   "table": { ... },     // table blocks only: { columns, rows: [[{text, colspan}]] }
+  "ref": { ... },        // ref blocks only: { org: string, entries: [{ rid, rtl }] }
+  "revision": "add",    // Block-level revision: "add" | "del" | "chg" | undefined
   "isNew": true          // Transient flag for newly created blocks (controls editability + focus)
 }
 ```
 
 ## Development Status
 
-### Completed ✅
+**All planned features are implemented.** The app covers: rich text editing (contentEditable blocks), track changes (snapshot-based diff with inline ADD/DEL/CHG), comments (Google Docs-style threads), SEC import/export with Windows-1252 encoding, Word/PDF export, compliance checking (static + AI tiers), reference wizard (UMRL), submittal register, cross-ref validation, tailoring profiles, find & replace, bracket replacement, tag visibility toggle, dark mode, undo/redo, and auto-save.
 
-**Core Editor**
-- [x] Tree navigation with auto-numbering (6 levels deep)
-- [x] Rich text editing for TXT blocks via contentEditable
-- [x] Enter/Backspace/Arrow key block management
-- [x] Heading editing with Tab/Shift+Tab promote/demote
-- [x] Slash command menu (/ to insert any block type)
-- [x] List continuation (Enter on OLI/ITM creates next item; Enter on empty exits)
-- [x] Table rendering with colspan support (read-only)
-- [x] Inline data marks (RID, SRF, SUB, ENG, MET, TAI, TST, URL, HLS) color-coded
-- [x] Pattern recognition for RID/SRF marks (auto-detect + suggestion pills + Mark all)
-- [x] Formatting margins from section.ini
-- [x] Section numbering (1.1, 1.2.1, hierarchical) with PART resets
-- [x] OLI labels (a/b/c level-1, 1/2/3 level-2+, overflow aa/ab/ac)
-- [x] Note (NTE/NPR) grouping with proper styling
-- [x] TAI tailoring resolution (set branch/region/delivery → hide/show conditional content)
-- [x] Tracked changes (ADD/DEL/CHG) — inline and block-level revision marks with accept/reject
+### Known Limitations
 
-**File I/O**
-- [x] SEC file import (drag-and-drop + Import button)
-- [x] SEC file export (serialize blocks back to valid SGML)
-- [x] Windows-1252 encoding/decoding (import and export)
-- [x] REF block parsing (ORG headers, RID/RTL pairs)
-- [x] Metadata extraction (section number, title, date)
-- [x] Nested SPT hierarchy resolution
-- [x] TAI OPT attribute preservation (round-trip fidelity)
-
-**UI**
-- [x] Sidebar navigation tree (collapsible, with numbering)
-- [x] Toolbar (Import/Export, section number/title, status badge)
-- [x] Mark legend (color key for inline marks)
-- [x] Status bar (block count, section count, table count, keyboard hints)
-- [x] Section banner (UFGS header with agency, section number, title, date)
-
-**Testing & Quality**
-- [x] 179 automated unit tests across 9 test files (Vitest)
-- [x] 81 Playwright E2E tests (keyboard, navigation, slash menu, toolbar, marks, track changes)
-- [x] Parse → serialize → re-parse roundtrip verified (including TAI OPT)
-- [x] Bug audit completed (18 bugs identified, 13 fixed)
-- [x] Interoperability test procedure documented (6 manual test scenarios)
-
-### Known Limitations ⚠️
-
-- **All text-bearing block types are now editable** (txt, note, oli, item, lst). Tables remain read-only.
-- **Tables are read-only.** Table editing would be a significant feature addition.
-- **No undo/redo.** Would require action history architecture.
-- **Serializer differences from legacy SpecsIntact:** LF line endings (not CRLF), minimal header (not table-based), whitespace normalization, hardcoded MTA metadata. These are cosmetic — SIEditor should tolerate them, but interop testing will confirm.
+- **Serializer differences from legacy SpecsIntact:** Minimal header (not table-based), whitespace normalization, hardcoded MTA metadata. These are cosmetic — SIEditor should tolerate them, but interop testing will confirm.
 - **Parser tested only with 31_00_00.SEC and synthetic data.** Not yet validated against full UFGS master set.
 
-### Next Priorities 🔜
+### Development Roadmap
 
-1. ~~Make all parsed blocks editable~~ ✅ Done — note, oli, item, lst are now editable
-2. ~~Contextual floating toolbar~~ ✅ Done — select text → floating popup with B/I/U formatting + RID/SRF/SUB/ENG/MET/TAI marks; toggle on/off supported
-3. ~~Pattern recognition for inline marks~~ ✅ Done — auto-detect RID/SRF patterns, suggestion pills below focused block, individual + "Mark all" apply
-4. ~~TAI tailoring resolution~~ ✅ Done — set branch/region/delivery method, auto-hide excluded TAI content, "Show excluded" toggle dims instead of hiding
-5. ~~Tracked changes~~ ✅ Done — ADD/DEL/CHG parsing/serialization, inline + block-level marks, Track Changes toggle, Show Revisions, Accept/Reject individual + all
-6. **Reference section structured editing** — edit REF/ORG/RID/RTL in structured UI
-7. **Cross-reference validation** — SRF links resolve against project package
+**All planned features are implemented.** The next steps focus on validation and deployment:
 
-### Future Roadmap 📋
+**Next Steps (Quality & Deployment):**
+1. **Real-world .SEC file testing** — import several different UFGS .SEC files beyond the 31 00 00 sample to validate parser coverage across the full UFGS master set
+2. **Interop testing** — export from SIM, re-import into legacy SpecsIntact, verify round-trip fidelity
+3. **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
+4. **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
+5. **Production deployment** — `npm run build` and host (static site, no server needed)
 
-- [ ] Drag-and-drop tree reordering — reorder sections/subsections by dragging nodes in the sidebar
-- [ ] Monospace preview mode — toggle to a SpecsIntact-style monospace view showing how the spec will render in legacy SIEditor (read-only, faithful to print output)
-- [ ] Undo/redo (action history store)
-- [ ] Search/find in document (sidebar search field is currently a non-functional stub)
-- [ ] Table editing (cell editor, add/remove rows/columns)
-- [ ] Comment threading on blocks
-- [ ] Submittal register compilation (SUB items → checklist)
-- [ ] Batch operations (find/replace, multi-block style)
-- [ ] Print/PDF export (UFGS print-ready format)
-- [ ] Advanced REF section management (validate standards, check currency)
-- [ ] CRLF line endings for full byte-level legacy parity
+**Deferred / Not Applicable:**
+- Multi-file project management — SIM is a single-section editor by design
+- Monospace preview mode — low value relative to other gaps
+- User manual / help system — incorporate MarkLegend color key, keyboard shortcuts, feature docs (MarkLegend component preserved in src/components/ for this purpose)
 
-### Test Coverage 🧪
+### Test Coverage
 
-| Test File | Tests | Coverage |
-|-----------|-------|----------|
-| numbering.test.js | 30 | Section numbering, OLI labels, counter resets, overflow |
-| sec-parser.test.js | 27 | Tag extraction, inline marks, tables, SPT depth, TAI OPT, ADD/DEL/CHG |
-| sec-serializer.test.js | 23 | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG |
-| encoding.test.js | 11 | Windows-1252 byte mapping, special characters |
-| tree-builder.test.js | 10 | Flat→tree conversion, multi-level nesting |
-| sec-roundtrip.test.js | 8 | Parse → serialize → re-parse cycle, TAI OPT roundtrip, ADD/DEL/CHG roundtrip |
-| revisions.test.js | 22 | Accept/reject inline + block revisions, batch operations, stats |
-| mark-patterns.test.js | 18 | RID/SRF detection, already-marked skip, overlap handling |
-| tailor-profile.test.js | 31 | Branch/region/delivery matching, resolution, cleanup |
-| editor.spec.js (E2E) | 81 | Keyboard, navigation, slash menu, toolbar, marks, layout, track changes |
+| Test File | Tests | Runner | Coverage |
+|-----------|-------|--------|----------|
+| sec-parser.test.js | 36 | Vitest | Tag extraction, inline marks, tables, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks |
+| tailor-profile.test.js | 36 | Vitest | Branch/region/delivery matching, resolution, cleanup |
+| sec-serializer.test.js | 32 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, CRLF |
+| revisions.test.js | 29 | Vitest | Accept/reject inline + block revisions, batch operations, stats, whitespace collapse |
+| cross-ref-validation.test.js | 21 | Vitest | RID extraction from body/ref blocks, unlinked/orphaned detection, SRF extraction |
+| compliance-checker.test.js | 23 | Vitest | Scope selection, violation grouping, stats, context extraction, bracket/note exclusion, violation budget/truncation |
+| text-diff.test.js | 20 | Vitest | Word-level LCS diff, character-level sub-diff, refinement, HTML stripping |
+| mark-patterns.test.js | 18 | Vitest | RID/SRF detection, already-marked skip, overlap handling |
+| table-ops.test.js | 17 | Vitest | Add/delete rows/columns, cell update, colspan, merge/split, immutability |
+| numbering.test.js | 16 | Vitest | Section numbering, OLI labels, counter resets, overflow |
+| search.test.js | 14 | Vitest | Block text search, case-insensitive, multi-match, HTML tag handling, replaceMatchInHtml |
+| compliance-ai.test.js | 13 | Vitest | System prompt generation, chunking logic, token estimation, cost calculation |
+| undo-redo.test.js | 12 | Vitest | History push/pop, undo/redo, max cap, pause/resume, tcSnapshot capture |
+| doc-export.test.js | 12 | Vitest | Word/PDF export generation, UFGS formatting, section structure |
+| submittal-register.test.js | 11 | Vitest | SUB mark extraction, SD grouping, classification parsing, paragraph numbers |
+| encoding.test.js | 11 | Vitest | Windows-1252 byte mapping, special characters |
+| doc-validation.test.js | 11 | Vitest | Structure checks (missing PARTs, ordering), title length, empty blocks |
+| block-reorder.test.js | 10 | Vitest | getSectionRange, reorderSection, nested subsection moves |
+| bracket-replace.test.js | 9 | Vitest | Bracket detection, grouping, nested brackets, inline marks |
+| sec-roundtrip.test.js | 9 | Vitest | Parse -> serialize -> re-parse cycle, TAI OPT/ADD/DEL/CHG/REF roundtrip |
+| tree-builder.test.js | 8 | Vitest | Flat->tree conversion, multi-level nesting |
+| auto-save.test.js | 7 | Vitest | localStorage save/load/clear, timestamp, comments serialization |
+| comments.test.js | 6 | Vitest | Comment report generation, HTML escaping, block ordering |
+| compliance-rules.node-test.mjs | 40 | Node | Rule generation, pattern matching, fix functions, false positive regression (19 cases), bracket/note/unit exclusion, FMT-001 removal regression |
+| editor.spec.js (E2E) | 140 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 179 unit tests + 81 E2E tests = 260 automated tests**
+**Total: 381 Vitest + 40 Node + 140 Playwright = 561 automated tests**
 
-**Not yet tested:** Error recovery on malformed SEC input.
+**Current branch:** `feature/compliance-checker`
 
 ## Dependencies
 

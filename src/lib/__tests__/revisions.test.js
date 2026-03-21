@@ -31,26 +31,34 @@ describe('acceptInlineAdd', () => {
 });
 
 describe('acceptInlineDel', () => {
-  it('removes del tags AND content', () => {
+  it('removes del tags AND content, collapses whitespace', () => {
     expect(acceptInlineDel('Keep <del class="mark-del">remove this</del> text'))
-      .toBe('Keep  text');
+      .toBe('Keep text');
   });
   it('handles nested content in del', () => {
     expect(acceptInlineDel('<del class="mark-del"><b>bold deleted</b></del>'))
       .toBe('');
   });
+  it('handles del tags with contenteditable attribute', () => {
+    expect(acceptInlineDel('Keep <del class="mark-del" contenteditable="false">remove</del> text'))
+      .toBe('Keep text');
+  });
 });
 
 describe('rejectInlineAdd', () => {
-  it('removes ins tags AND content', () => {
+  it('removes ins tags AND content, collapses whitespace', () => {
     expect(rejectInlineAdd('Keep <ins class="mark-add">reject this</ins> text'))
-      .toBe('Keep  text');
+      .toBe('Keep text');
   });
 });
 
 describe('rejectInlineDel', () => {
   it('strips del tags, keeps content (restore)', () => {
     expect(rejectInlineDel('Hello <del class="mark-del">restored</del> text'))
+      .toBe('Hello restored text');
+  });
+  it('handles del tags with contenteditable attribute', () => {
+    expect(rejectInlineDel('Hello <del class="mark-del" contenteditable="false">restored</del> text'))
       .toBe('Hello restored text');
   });
 });
@@ -60,11 +68,19 @@ describe('acceptAllInline', () => {
     const html = '<ins class="mark-add">new</ins> text <del class="mark-del">old</del>';
     expect(acceptAllInline(html)).toBe('new text ');
   });
+  it('handles del tags with extra attributes', () => {
+    const html = '<ins class="mark-add">new</ins> text <del class="mark-del" contenteditable="false">old</del>';
+    expect(acceptAllInline(html)).toBe('new text ');
+  });
 });
 
 describe('rejectAllInline', () => {
   it('rejects all inline revisions (ADD removed, DEL restored)', () => {
     const html = '<ins class="mark-add">new</ins> text <del class="mark-del">old</del>';
+    expect(rejectAllInline(html)).toBe(' text old');
+  });
+  it('handles del tags with extra attributes', () => {
+    const html = '<ins class="mark-add">new</ins> text <del class="mark-del" contenteditable="false">old</del>';
     expect(rejectAllInline(html)).toBe(' text old');
   });
 });
@@ -155,7 +171,15 @@ describe('acceptAllRevisions', () => {
     // Block 'd' (chg) should have revision cleared and del content removed
     const blockD = result.find(b => b.id === 'd');
     expect(blockD.revision).toBeUndefined();
-    expect(blockD.html).toBe('text  rest');
+    expect(blockD.html).toBe('text rest');
+  });
+
+  it('handles del tags with contenteditable attribute', () => {
+    const blocks = [
+      { id: 'a', type: 'txt', html: 'text <del class="mark-del" contenteditable="false">removed</del> rest', revision: 'chg' },
+    ];
+    const result = acceptAllRevisions(blocks);
+    expect(result[0].html).toBe('text rest');
   });
 });
 
@@ -177,6 +201,14 @@ describe('rejectAllRevisions', () => {
     // Block 'd' should have del content restored
     const blockD = result.find(b => b.id === 'd');
     expect(blockD.html).toBe('text restored rest');
+  });
+
+  it('handles del tags with contenteditable attribute', () => {
+    const blocks = [
+      { id: 'a', type: 'txt', html: 'text <del class="mark-del" contenteditable="false">restored</del> rest' },
+    ];
+    const result = rejectAllRevisions(blocks);
+    expect(result[0].html).toBe('text restored rest');
   });
 });
 
@@ -213,5 +245,12 @@ describe('countRevisions', () => {
       { id: 'a', type: 'txt', html: 'normal text' },
     ];
     expect(countRevisions(blocks)).toEqual({ adds: 0, dels: 0, chgs: 0 });
+  });
+
+  it('counts inline del marks with extra attributes', () => {
+    const blocks = [
+      { id: 'a', type: 'txt', html: '<del class="mark-del" contenteditable="false">A</del> <del class="mark-del">B</del>' },
+    ];
+    expect(countRevisions(blocks)).toEqual({ adds: 0, dels: 2, chgs: 0 });
   });
 });

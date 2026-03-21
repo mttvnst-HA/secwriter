@@ -9,9 +9,6 @@ const MARK_TYPES = [
   { tag: "RID", cls: "mark-rid", label: "RID", title: "Reference Standard (ASTM, AASHTO)", color: "#86198f", bg: "#fae8ff" },
   { tag: "SRF", cls: "mark-srf", label: "SRF", title: "Section Cross-Reference", color: "#701a75", bg: "#f5d0fe" },
   { tag: "SUB", cls: "mark-sub", label: "SUB", title: "Submittal Item", color: "#1e40af", bg: "#dbeafe" },
-  { tag: "ENG", cls: "mark-eng", label: "ENG", title: "English Units", color: "#1d4ed8", bg: "#dbeafe" },
-  { tag: "MET", cls: "mark-met", label: "MET", title: "Metric Units", color: "#b91c1c", bg: "#fee2e2" },
-  { tag: "TAI", cls: "mark-tai", label: "TAI", title: "Tailoring Option", color: "#0e7490", bg: "#cffafe" },
 ];
 
 const FORMAT_TYPES = [
@@ -29,14 +26,15 @@ const FORMAT_TYPES = [
  * selected text in a <span class="mark-xxx"> element.
  */
 const REVISION_TYPES = [
-  { tag: "ADD", cls: "mark-add", label: "ADD", title: "Mark as Addition", color: "#16a34a", bg: "#f0fdf4", htmlTag: "ins" },
-  { tag: "DEL", cls: "mark-del", label: "DEL", title: "Mark as Deletion", color: "#dc2626", bg: "#fef2f2", htmlTag: "del" },
+  { tag: "ADD", cls: "mark-add", label: "ADD", title: "Mark as Addition", color: "#008000", bg: "#f0fdf4", htmlTag: "ins" },
+  { tag: "DEL", cls: "mark-del", label: "DEL", title: "Mark as Deletion", color: "#ff4444", bg: "#fef2f2", htmlTag: "del" },
 ];
 
-export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges }) {
+export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAction, trackChanges, onCommentCreate }) {
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [insideRevision, setInsideRevision] = useState(null); // "add" | "del" | null
+  const [isRefBlock, setIsRefBlock] = useState(false);
   const toolbarRef = useRef(null);
   const selectionRef = useRef(null);
 
@@ -58,7 +56,27 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
     let node = range.commonAncestorContainer;
     if (node.nodeType === 3) node = node.parentElement;
 
-    const blockEl = node?.closest?.("[data-block-id][contenteditable='true']");
+    let blockEl = node?.closest?.("[data-block-id][contenteditable='true']");
+    let refBlock = false;
+
+    // Fallback: check for ref block or table block (non-contentEditable)
+    if (!blockEl) {
+      blockEl = node?.closest?.("[data-block-id]");
+      if (blockEl?.querySelector?.(".ref-block")) {
+        refBlock = true;
+      } else {
+        blockEl = null;
+      }
+    }
+    // Fallback: table cells (no data-block-id, but inside div[id^="block-"])
+    if (!blockEl) {
+      const tableWrapper = node?.closest?.('[id^="block-"]');
+      if (tableWrapper?.querySelector?.('table')) {
+        blockEl = tableWrapper;
+        refBlock = true; // treat like ref block — show only comment button, no format/mark buttons
+      }
+    }
+
     if (!blockEl) {
       setVisible(false);
       return;
@@ -70,24 +88,30 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
       return;
     }
 
+    setIsRefBlock(refBlock);
+
     // Save the range so we can restore it after toolbar click
+    // Extract blockId: from data-block-id attribute or from id="block-xxx"
+    const blockId = blockEl.dataset.blockId || blockEl.id?.replace(/^block-/, '') || null;
+
     selectionRef.current = {
       range: range.cloneRange(),
-      blockId: blockEl.dataset.blockId,
+      blockId,
       blockEl,
+      isRefBlock: refBlock,
     };
 
     // Position above the selection
-    // getBoundingClientRect() gives viewport coords; we need coords relative
-    // to the editor's scrollable container (position:relative parent)
+    // getBoundingClientRect() gives viewport coords in zoomed pixels; we need
+    // pre-zoom coords for position:absolute inside the zoomed editor container.
     const rect = range.getBoundingClientRect();
     const editorEl = editorRef?.current;
     const editorRect = editorEl?.getBoundingClientRect() || { top: 0, left: 0 };
-    const scrollTop = editorEl?.scrollTop || 0;
+    const zoom = parseFloat(editorEl?.style?.zoom) || 1;
 
     setPosition({
-      top: rect.top - editorRect.top + scrollTop - 44,
-      left: rect.left - editorRect.left + rect.width / 2,
+      top: (rect.top - editorRect.top) / zoom - 44,
+      left: (rect.left - editorRect.left + rect.width / 2) / zoom,
     });
 
     // Detect if selection is inside a revision mark
@@ -227,6 +251,34 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
     setVisible(false);
   }, [onBlockUpdate]);
 
+  // Change case: cycles UPPER → lower → Title
+  const changeCase = useCallback(() => {
+    const saved = selectionRef.current;
+    if (!saved || saved.isRefBlock) return;
+    const { range, blockId, blockEl } = saved;
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    const text = range.toString();
+    if (!text) return;
+    let newText;
+    if (text === text.toUpperCase()) {
+      newText = text.toLowerCase();
+    } else if (text === text.toLowerCase()) {
+      newText = text.replace(/\b\w/g, c => c.toUpperCase());
+    } else {
+      newText = text.toUpperCase();
+    }
+    // Replace selected text
+    range.deleteContents();
+    range.insertNode(document.createTextNode(newText));
+    sel.removeAllRanges();
+    if (onBlockUpdate && blockEl) {
+      onBlockUpdate(blockId, blockEl.innerHTML);
+    }
+    setVisible(false);
+  }, [onBlockUpdate]);
+
   /**
    * Accept or reject an inline revision mark.
    * action: "accept" or "reject"
@@ -268,12 +320,14 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
 
     sel.removeAllRanges();
 
-    if (onBlockUpdate && blockEl) {
-      onBlockUpdate(blockId, blockEl.innerHTML);
+    // Use onRevisionAction (snapshot-synced) for inline accept/reject, fall back to onBlockUpdate
+    const updateFn = onRevisionAction || onBlockUpdate;
+    if (updateFn && blockEl) {
+      updateFn(blockId, blockEl.innerHTML);
     }
 
     setVisible(false);
-  }, [onBlockUpdate]);
+  }, [onBlockUpdate, onRevisionAction]);
 
   const applyFormat = useCallback((formatType) => {
     const saved = selectionRef.current;
@@ -328,8 +382,8 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
         zIndex: 100,
         display: "flex",
         alignItems: "center",
-        gap: 2,
-        padding: "4px 6px",
+        gap: 3,
+        padding: "5px 8px",
         backgroundColor: "#1e293b",
         borderRadius: 8,
         boxShadow: "0 4px 16px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1)",
@@ -337,26 +391,26 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
         whiteSpace: "nowrap",
       }}
     >
-      {/* Format buttons */}
-      {FORMAT_TYPES.map(fmt => (
+      {/* Format buttons (not shown for ref blocks) */}
+      {!isRefBlock && FORMAT_TYPES.map(fmt => (
         <button
           key={fmt.tag}
           title={fmt.title}
           onMouseDown={(e) => e.preventDefault()}
           onClick={() => applyFormat(fmt)}
           style={{
-            padding: "3px 8px",
-            fontSize: 12,
+            padding: "4px 10px",
+            fontSize: 14,
             fontWeight: fmt.tag === "BLD" ? 700 : 400,
             fontStyle: fmt.tag === "ITA" ? "italic" : "normal",
             textDecoration: fmt.tag === "UND" ? "underline" : "none",
-            color: "#e2e8f0",
+            color: "#f1f5f9",
             backgroundColor: "transparent",
             border: "none",
             borderRadius: 4,
             cursor: "pointer",
-            lineHeight: "20px",
-            minWidth: 26,
+            lineHeight: "22px",
+            minWidth: 30,
           }}
           onMouseEnter={(e) => e.target.style.backgroundColor = "#334155"}
           onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
@@ -365,26 +419,48 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
         </button>
       ))}
 
-      {/* Divider */}
-      <div style={{ width: 1, height: 20, backgroundColor: "#475569", margin: "0 4px" }} />
+      {/* Change Case button (not shown for ref blocks) */}
+      {!isRefBlock && (
+        <button
+          title="Change Case (UPPER → lower → Title)"
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={changeCase}
+          style={{
+            padding: "3px 8px",
+            fontSize: 12,
+            fontWeight: 600,
+            color: "#f1f5f9",
+            backgroundColor: "transparent",
+            border: "none",
+            borderRadius: 4,
+            cursor: "pointer",
+            lineHeight: "22px",
+            fontVariant: "small-caps",
+          }}
+          onMouseEnter={(e) => e.target.style.backgroundColor = "#334155"}
+          onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
+        >Aa</button>
+      )}
 
-      {/* Mark buttons */}
-      {MARK_TYPES.map(mark => (
+      {/* Divider + Mark buttons (not shown for ref blocks) */}
+      {!isRefBlock && <div style={{ width: 1, height: 24, backgroundColor: "#475569", margin: "0 5px" }} />}
+
+      {!isRefBlock && MARK_TYPES.map(mark => (
         <button
           key={mark.tag}
           title={mark.title}
           onMouseDown={(e) => e.preventDefault()}
           onClick={() => applyMark(mark)}
           style={{
-            padding: "2px 7px",
-            fontSize: 11,
+            padding: "3px 9px",
+            fontSize: 12,
             fontWeight: 600,
             color: mark.color,
             backgroundColor: mark.bg,
             border: "none",
             borderRadius: 4,
             cursor: "pointer",
-            lineHeight: "18px",
+            lineHeight: "20px",
             letterSpacing: "0.02em",
           }}
           onMouseEnter={(e) => e.target.style.opacity = "0.8"}
@@ -394,10 +470,10 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
         </button>
       ))}
 
-      {/* Revision mark buttons (only when Track Changes is on) */}
-      {trackChanges && (
+      {/* Revision mark buttons (only when Track Changes is on, not for ref blocks) */}
+      {!isRefBlock && trackChanges && (
         <>
-          <div style={{ width: 1, height: 20, backgroundColor: "#475569", margin: "0 4px" }} />
+          <div style={{ width: 1, height: 24, backgroundColor: "#475569", margin: "0 5px" }} />
           {REVISION_TYPES.map(rev => (
             <button
               key={rev.tag}
@@ -405,15 +481,15 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => applyRevision(rev)}
               style={{
-                padding: "2px 7px",
-                fontSize: 11,
+                padding: "3px 9px",
+                fontSize: 12,
                 fontWeight: 600,
                 color: rev.color,
                 backgroundColor: rev.bg,
                 border: `1px solid ${rev.color}40`,
                 borderRadius: 4,
                 cursor: "pointer",
-                lineHeight: "18px",
+                lineHeight: "20px",
                 letterSpacing: "0.02em",
               }}
               onMouseEnter={(e) => e.target.style.opacity = "0.8"}
@@ -425,23 +501,23 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
         </>
       )}
 
-      {/* Inline accept/reject (when cursor is inside a revision mark) */}
-      {insideRevision && (
+      {/* Inline accept/reject (when cursor is inside a revision mark, not for ref blocks) */}
+      {!isRefBlock && insideRevision && (
         <>
-          <div style={{ width: 1, height: 20, backgroundColor: "#475569", margin: "0 4px" }} />
+          <div style={{ width: 1, height: 24, backgroundColor: "#475569", margin: "0 5px" }} />
           <button
             title={`Accept ${insideRevision === "add" ? "addition" : "deletion"}`}
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => handleInlineRevisionAction("accept")}
             style={{
-              padding: "2px 6px",
-              fontSize: 12,
-              color: "#16a34a",
+              padding: "3px 8px",
+              fontSize: 14,
+              color: "#008000",
               backgroundColor: "#f0fdf4",
-              border: "1px solid #16a34a40",
+              border: "1px solid #00800040",
               borderRadius: 4,
               cursor: "pointer",
-              lineHeight: "18px",
+              lineHeight: "20px",
             }}
           >
             ✓
@@ -451,17 +527,60 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, trackChanges
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => handleInlineRevisionAction("reject")}
             style={{
-              padding: "2px 6px",
-              fontSize: 12,
-              color: "#dc2626",
+              padding: "3px 8px",
+              fontSize: 14,
+              color: "#ff4444",
               backgroundColor: "#fef2f2",
-              border: "1px solid #dc262640",
+              border: "1px solid #ff444440",
               borderRadius: 4,
               cursor: "pointer",
-              lineHeight: "18px",
+              lineHeight: "20px",
             }}
           >
             ✗
+          </button>
+        </>
+      )}
+
+      {/* Comment button */}
+      {onCommentCreate && selectionRef.current?.blockId && (
+        <>
+          {!isRefBlock && <div style={{ width: 1, height: 24, backgroundColor: "#475569", margin: "0 5px" }} />}
+          <button
+            title="Add Comment"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => {
+              const { range, blockId, blockEl, isRefBlock: refBlock } = selectionRef.current || {};
+              if (!range || !blockEl) return;
+              const sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(range);
+              const commentId = `comment-${Date.now()}`;
+              const span = document.createElement("span");
+              span.className = "mark-comment";
+              span.setAttribute("data-comment-id", commentId);
+              try { range.surroundContents(span); } catch {
+                const fragment = range.extractContents();
+                span.appendChild(fragment);
+                range.insertNode(span);
+              }
+              // For ref blocks, pass null html (don't overwrite block.html — ref data is in block.ref)
+              const html = refBlock ? null : blockEl.innerHTML;
+              onCommentCreate(blockId, html, commentId, span.textContent);
+              setVisible(false);
+            }}
+            style={{
+              padding: "3px 9px",
+              fontSize: 14,
+              color: "#854d0e",
+              backgroundColor: "#fef9c3",
+              border: "1px solid #eab30860",
+              borderRadius: 4,
+              cursor: "pointer",
+              lineHeight: "20px",
+            }}
+          >
+            &#x1F4AC;
           </button>
         </>
       )}
