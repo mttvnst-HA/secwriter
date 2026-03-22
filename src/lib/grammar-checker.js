@@ -12,6 +12,8 @@
  *   getVersion() — current request version (for stale result detection)
  */
 
+import { replaceAtOffset } from './fix-utils.js';
+
 // Construction/engineering terms to add to Harper's dictionary
 const ENGINEERING_TERMS = [
   // Standards organizations
@@ -148,8 +150,8 @@ export async function checkGrammar(plainText, blockId) {
             replacement = candidateReplacement;
           }
 
-          fixFn = (html) => {
-            return html.replace(problemText, replacement);
+          fixFn = (html, _match, _repl, targetOffset) => {
+            return replaceAtOffset(html, problemText, replacement, targetOffset);
           };
         }
         // Bad suggestions: violation is still shown (highlighted) but with no Fix

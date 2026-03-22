@@ -5,6 +5,8 @@
  * Returns violations in the same shape as runStaticRules() for unified handling.
  */
 
+import { replaceAtOffset } from './fix-utils.js';
+
 let nlp = null;
 let loadPromise = null;
 
@@ -190,8 +192,8 @@ function toImperative(verb) {
  */
 function createIndicativeFix(matchText, imperative) {
   const capitalizedImperative = imperative.charAt(0).toUpperCase() + imperative.slice(1);
-  return (html, _match, _replacement) => {
-    return html.replace(matchText, capitalizedImperative);
+  return (html, _match, _replacement, targetOffset) => {
+    return replaceAtOffset(html, matchText, capitalizedImperative, targetOffset);
   };
 }
 

@@ -102,7 +102,7 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
 
     try {
       const currentHtml = blockEl.innerHTML;
-      const fixedHtml = violation.fixFn(currentHtml, violation.match, violation.replacement);
+      const fixedHtml = violation.fixFn(currentHtml, violation.match, violation.replacement, violation.index);
       if (fixedHtml && fixedHtml !== currentHtml) {
         onFix(blockId, fixedHtml);
       }
@@ -122,7 +122,7 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
   if (!displayReplacement && hasFix && blockEl) {
     try {
       const currentHtml = blockEl.innerHTML;
-      const fixedHtml = violation.fixFn(currentHtml, violation.match, violation.replacement);
+      const fixedHtml = violation.fixFn(currentHtml, violation.match, violation.replacement, violation.index);
       if (fixedHtml && fixedHtml !== currentHtml) {
         // Extract what changed: find the difference around the match
         const matchIdx = currentHtml.indexOf(violation.match);
