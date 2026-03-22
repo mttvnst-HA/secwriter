@@ -1,23 +1,35 @@
 /**
- * Inline Linter — Real-time compliance highlighting for editable blocks.
+ * Inline Linter — Real-time compliance + grammar highlighting for editable blocks.
  *
  * Uses the CSS Custom Highlight API to overlay colored highlights on text
- * that violates UFS 1-300-02 rules, without mutating the DOM tree.
+ * that violates UFS 1-300-02 rules or has grammar errors, without mutating the DOM tree.
  *
  * Highlights persist across blur/focus — they remain until the violation is
  * fixed or the user dismisses it. Findings are stored per-block so linting
  * one block doesn't clear another's highlights.
+ *
+ * Two highlight groups:
+ *   compliance-error — yellow background (static UFS rules)
+ *   grammar-error    — blue background (Harper.js grammar/spelling)
  */
 
 import { runStaticRules } from './compliance-rules.js';
+import { checkGrammar, isGrammarReady, initGrammarChecker, getVersion } from './grammar-checker.js';
 
 // NodeFilter.SHOW_TEXT = 4 (constant, avoids runtime lookup in Node/test environments)
 const SHOW_TEXT = 4;
 
-// ── Active findings storage (per-block) ─────────────────────────────────────
+// ── Active findings storage (per-block, per-type) ───────────────────────────
 
 // Map<blockId, Array<{ range, violation }>>
-const findingsByBlock = new Map();
+const complianceFindingsByBlock = new Map();
+const grammarFindingsByBlock = new Map();
+
+// Track the text that was sent for grammar checking per block, for stale detection
+const grammarTextByBlock = new Map();
+
+// Whether grammar was ready when linting started (prevents pop-in)
+let grammarWasReadyAtLintStart = false;
 
 /**
  * Get all active findings across all blocks (flat array for tooltip hit-testing).
@@ -25,29 +37,45 @@ const findingsByBlock = new Map();
  */
 export function getActiveFindings() {
   const all = [];
-  for (const findings of findingsByBlock.values()) {
+  for (const findings of complianceFindingsByBlock.values()) {
+    all.push(...findings);
+  }
+  for (const findings of grammarFindingsByBlock.values()) {
     all.push(...findings);
   }
   return all;
 }
 
 /**
- * Rebuild the CSS highlight from all blocks' ranges.
+ * Rebuild CSS highlights from all blocks' ranges.
  */
-function rebuildHighlight() {
+function rebuildHighlights() {
   if (typeof CSS === 'undefined' || !CSS.highlights) return;
 
-  const allRanges = [];
-  for (const findings of findingsByBlock.values()) {
+  // Compliance highlights
+  const complianceRanges = [];
+  for (const findings of complianceFindingsByBlock.values()) {
     for (const f of findings) {
-      if (f.range) allRanges.push(f.range);
+      if (f.range) complianceRanges.push(f.range);
     }
   }
-
-  if (allRanges.length > 0) {
-    CSS.highlights.set('compliance-error', new Highlight(...allRanges));
+  if (complianceRanges.length > 0) {
+    CSS.highlights.set('compliance-error', new Highlight(...complianceRanges));
   } else {
     CSS.highlights.delete('compliance-error');
+  }
+
+  // Grammar highlights
+  const grammarRanges = [];
+  for (const findings of grammarFindingsByBlock.values()) {
+    for (const f of findings) {
+      if (f.range) grammarRanges.push(f.range);
+    }
+  }
+  if (grammarRanges.length > 0) {
+    CSS.highlights.set('grammar-error', new Highlight(...grammarRanges));
+  } else {
+    CSS.highlights.delete('grammar-error');
   }
 }
 
@@ -90,8 +118,7 @@ export function extractPlainText(blockEl) {
 
 /**
  * Find a violation's matched text within the block's text nodes and create
- * a DOM Range targeting it. Uses the same TreeWalker string-search approach
- * as CompliancePanel.jsx's applyHighlights().
+ * a DOM Range targeting it.
  *
  * @param {Element} blockEl - The contentEditable DOM element
  * @param {string} matchText - The text to find (violation.match)
@@ -142,8 +169,7 @@ function createRangeForMatch(blockEl, matchText) {
 
 /**
  * Run static compliance rules on a block and apply CSS Custom Highlight API
- * highlights for any violations found. Only clears/replaces findings for
- * the specified block — other blocks' highlights are preserved.
+ * highlights. Then asynchronously run grammar checking if Harper is ready.
  *
  * @param {Element} blockEl - The contentEditable DOM element
  * @param {string} blockId - Block identifier
@@ -151,15 +177,18 @@ function createRangeForMatch(blockEl, matchText) {
  * @param {Array} rules - Rules from getRules()
  */
 export function initInlineLinting(blockEl, blockId, plainText, rules) {
-  // Clear previous findings for THIS block only
-  findingsByBlock.delete(blockId);
+  // Clear previous compliance findings for THIS block only
+  complianceFindingsByBlock.delete(blockId);
 
   if (!blockEl || !plainText || !rules) {
-    rebuildHighlight();
+    rebuildHighlights();
     return;
   }
 
-  // Run static rules
+  // Snapshot grammar readiness at lint start (prevents pop-in)
+  grammarWasReadyAtLintStart = isGrammarReady();
+
+  // Run static rules (synchronous)
   const violations = runStaticRules(plainText, blockId, rules, {
     skipBrackets: true,
     isNoteBlock: false,
@@ -167,29 +196,71 @@ export function initInlineLinting(blockEl, blockId, plainText, rules) {
 
   if (violations.length > 0) {
     const blockFindings = [];
-
     for (const v of violations) {
       const range = createRangeForMatch(blockEl, v.match);
       if (range) {
         blockFindings.push({ range, violation: v });
       }
     }
-
     if (blockFindings.length > 0) {
-      findingsByBlock.set(blockId, blockFindings);
+      complianceFindingsByBlock.set(blockId, blockFindings);
     }
   }
 
-  rebuildHighlight();
+  rebuildHighlights();
+
+  // Kick off async grammar check if ready
+  if (grammarWasReadyAtLintStart) {
+    runGrammarCheck(blockEl, blockId, plainText);
+  } else {
+    // Start lazy-loading Harper in the background (don't await)
+    // Grammar will be available on the next lint cycle
+    grammarFindingsByBlock.delete(blockId);
+    initGrammarChecker().catch(() => {});
+  }
 }
 
 /**
- * Clear findings for a specific block.
+ * Run grammar checking asynchronously and merge results.
+ */
+async function runGrammarCheck(blockEl, blockId, plainText) {
+  // Store the text we're checking for stale detection
+  grammarTextByBlock.set(blockId, plainText);
+  const versionBefore = getVersion();
+
+  const grammarViolations = await checkGrammar(plainText, blockId);
+
+  // Stale check: if the text changed while we were waiting, discard
+  if (grammarTextByBlock.get(blockId) !== plainText) return;
+
+  // Clear previous grammar findings for this block
+  grammarFindingsByBlock.delete(blockId);
+
+  if (grammarViolations.length > 0) {
+    const grammarFindings = [];
+    for (const v of grammarViolations) {
+      const range = createRangeForMatch(blockEl, v.match);
+      if (range) {
+        grammarFindings.push({ range, violation: v });
+      }
+    }
+    if (grammarFindings.length > 0) {
+      grammarFindingsByBlock.set(blockId, grammarFindings);
+    }
+  }
+
+  rebuildHighlights();
+}
+
+/**
+ * Clear findings for a specific block (both compliance and grammar).
  * @param {string} blockId - Block to clear
  */
 export function clearBlockLinting(blockId) {
-  findingsByBlock.delete(blockId);
-  rebuildHighlight();
+  complianceFindingsByBlock.delete(blockId);
+  grammarFindingsByBlock.delete(blockId);
+  grammarTextByBlock.delete(blockId);
+  rebuildHighlights();
 }
 
 /**
@@ -198,15 +269,17 @@ export function clearBlockLinting(blockId) {
 export function clearInlineLinting() {
   if (typeof CSS !== 'undefined' && CSS.highlights) {
     CSS.highlights.delete('compliance-error');
+    CSS.highlights.delete('grammar-error');
   }
-  findingsByBlock.clear();
+  complianceFindingsByBlock.clear();
+  grammarFindingsByBlock.clear();
+  grammarTextByBlock.clear();
 }
 
 // ── Cursor Hit-Testing ──────────────────────────────────────────────────────
 
 /**
  * Check if a cursor position (node + offset) falls within a finding's Range.
- * Compares the cursor against each active finding's start/end container+offset.
  *
  * @param {Node} cursorNode - The text node containing the cursor
  * @param {number} cursorOffset - The offset within that text node
@@ -224,14 +297,34 @@ export function findFindingAtCursor(cursorNode, cursorOffset) {
     const range = finding.range;
     if (!range) continue;
 
-    // Check if cursor is within this range
-    if (range.startContainer === cursorNode && range.endContainer === cursorNode) {
-      if (cursorOffset >= range.startOffset && cursorOffset <= range.endOffset) {
+    try {
+      let isInside = false;
+
+      // Fast path: cursor is in same text node as range
+      if (range.startContainer === cursorNode && range.endContainer === cursorNode) {
+        isInside = cursorOffset >= range.startOffset && cursorOffset <= range.endOffset;
+      } else {
+        // Cross-node: use Range.compareBoundaryPoints if available
+        try {
+          const cursorRange = document.createRange();
+          cursorRange.setStart(cursorNode, cursorOffset);
+          cursorRange.collapse(true);
+          const afterStart = range.compareBoundaryPoints(Range.START_TO_START, cursorRange) <= 0;
+          const beforeEnd = range.compareBoundaryPoints(Range.END_TO_END, cursorRange) >= 0;
+          isInside = afterStart && beforeEnd;
+        } catch {
+          // compareBoundaryPoints not available (linkedom) — skip cross-node check
+        }
+      }
+
+      if (isInside) {
         if (!bestMatch ||
           (severityOrder[finding.violation.severity] || 2) < (severityOrder[bestMatch.violation.severity] || 2)) {
           bestMatch = finding;
         }
       }
+    } catch {
+      continue;
     }
   }
 

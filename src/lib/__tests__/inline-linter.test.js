@@ -1,6 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { parseHTML } from 'linkedom';
 
+// Mock grammar-checker to avoid WASM loading in Node
+vi.mock('../grammar-checker.js', () => ({
+  checkGrammar: vi.fn(async () => []),
+  isGrammarReady: vi.fn(() => false),
+  initGrammarChecker: vi.fn(async () => {}),
+  getVersion: vi.fn(() => 0),
+}));
+
 // Create a linkedom document for DOM operations
 const { document, NodeFilter } = parseHTML('<!DOCTYPE html><html><body></body></html>');
 globalThis.document = document;

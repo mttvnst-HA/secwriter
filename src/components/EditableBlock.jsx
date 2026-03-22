@@ -336,7 +336,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   useEffect(() => {
     if (!editable) return;
 
-    const onSelectionChange = () => {
+    const checkCursorForTooltip = () => {
       if (selTimerRef.current) clearTimeout(selTimerRef.current);
       selTimerRef.current = setTimeout(() => {
         const sel = document.getSelection();
@@ -354,9 +354,20 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
       }, 100);
     };
 
-    document.addEventListener('selectionchange', onSelectionChange);
+    // Arrow keys may not always fire selectionchange, so also listen for keyup
+    const onKeyUp = (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' ||
+          e.key === 'ArrowUp' || e.key === 'ArrowDown' ||
+          e.key === 'Home' || e.key === 'End') {
+        checkCursorForTooltip();
+      }
+    };
+
+    document.addEventListener('selectionchange', checkCursorForTooltip);
+    document.addEventListener('keyup', onKeyUp);
     return () => {
-      document.removeEventListener('selectionchange', onSelectionChange);
+      document.removeEventListener('selectionchange', checkCursorForTooltip);
+      document.removeEventListener('keyup', onKeyUp);
       if (selTimerRef.current) clearTimeout(selTimerRef.current);
     };
   }, [editable]);
@@ -378,13 +389,17 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
 
   const dismissTooltip = useCallback(() => setTooltipFinding(null), []);
 
-  // On blur: dismiss tooltip but keep highlights persistent
+  // On blur: dismiss tooltip, keep highlights persistent.
+  // Re-lint after a short delay because blur → onUpdate → React re-render
+  // replaces DOM text nodes, which invalidates existing Range objects.
   const origHandleBlur = handleBlur;
   const handleBlurWithLinting = useCallback(() => {
     setTooltipFinding(null);
     if (lintTimerRef.current) clearTimeout(lintTimerRef.current);
     origHandleBlur();
-  }, [origHandleBlur]);
+    // Re-create Ranges on the updated DOM after React re-renders
+    setTimeout(lintBlock, 50);
+  }, [origHandleBlur, lintBlock]);
 
   const isNote = block.type === "note";
   const isTxt = block.type === "txt";

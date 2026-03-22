@@ -354,6 +354,12 @@ span.mark-chg {
   text-decoration-skip-ink: none;
 }
 
+::highlight(grammar-error) {
+  background-color: rgba(59, 130, 246, 0.15);
+  text-decoration: underline wavy #3b82f6;
+  text-decoration-skip-ink: none;
+}
+
 /* ─── Compliance checker highlights ─── */
 .compliance-highlight {
   background: #fbbf24;

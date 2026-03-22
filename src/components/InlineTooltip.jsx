@@ -16,9 +16,9 @@ import { useState, useEffect, useRef, useCallback } from "react";
 export default function InlineTooltip({ finding, blockId, onFix, onDismiss, blockEl }) {
   const [showWhy, setShowWhy] = useState(false);
   const tooltipRef = useRef(null);
-  const [pos, setPos] = useState(null);
+  const [pos, setPos] = useState(null);  // { top, left, below }
 
-  // Position the tooltip near the cursor
+  // Position the tooltip near the cursor, measuring actual height to avoid off-screen
   useEffect(() => {
     if (!finding?.range) {
       setPos(null);
@@ -32,24 +32,29 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
         return;
       }
 
-      // Position above the highlighted text
-      let top = rect.top - 8;
-      let left = rect.left + rect.width / 2;
-
-      // Viewport bounds checking
+      // Measure actual tooltip height if rendered, else estimate
+      const tooltipHeight = tooltipRef.current?.offsetHeight || 120;
       const tooltipWidth = 320;
-      const tooltipHeight = 100;
+
+      let left = rect.left + rect.width / 2;
 
       // Keep within horizontal bounds
       if (left - tooltipWidth / 2 < 8) left = tooltipWidth / 2 + 8;
       if (left + tooltipWidth / 2 > window.innerWidth - 8) left = window.innerWidth - tooltipWidth / 2 - 8;
 
-      // If not enough room above, show below
-      if (top - tooltipHeight < 8) {
+      // Position above the highlight; flip below if not enough room
+      let top;
+      let below = false;
+      if (rect.top - tooltipHeight - 8 > 8) {
+        // Above: top is the bottom edge of tooltip (transform -100% pulls it up)
+        top = rect.top - 8;
+      } else {
+        // Below: top is the top edge of tooltip
         top = rect.bottom + 8;
+        below = true;
       }
 
-      setPos({ top, left });
+      setPos({ top, left, below });
     } catch {
       setPos(null);
     }
@@ -128,7 +133,7 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
         position: 'fixed',
         top: pos.top,
         left: pos.left,
-        transform: 'translate(-50%, -100%)',
+        transform: pos.below ? 'translate(-50%, 0)' : 'translate(-50%, -100%)',
         maxWidth: 320,
         minWidth: 200,
         padding: '8px 12px',
@@ -172,7 +177,7 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
           borderRadius: 3,
           fontFamily: "'SF Mono', Consolas, monospace",
           fontSize: 11,
-        }}>"{violation.match}"</code>
+        }}>"{violation.match.length > 40 ? violation.match.slice(0, 37) + '...' : violation.match}"</code>
       </div>
 
       {/* Why? expandable */}
@@ -210,25 +215,49 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
       )}
 
       {/* Action buttons */}
-      <div style={{ marginTop: 8, marginLeft: 14, display: 'flex', gap: 6, alignItems: 'center' }}>
+      <div style={{ marginTop: 8, marginLeft: 14, display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
         {hasFix ? (
-          <button
-            onClick={handleFix}
-            onMouseDown={(e) => e.preventDefault()}
-            style={{
-              padding: '3px 10px',
-              fontSize: 12,
-              fontWeight: 600,
-              backgroundColor: '#10b981',
-              color: '#fff',
-              border: 'none',
-              borderRadius: 4,
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-            }}
-          >
-            Fix
-          </button>
+          <>
+            <button
+              onClick={handleFix}
+              onMouseDown={(e) => e.preventDefault()}
+              style={{
+                padding: '3px 10px',
+                fontSize: 12,
+                fontWeight: 600,
+                backgroundColor: '#10b981',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 4,
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+              }}
+            >
+              Fix
+            </button>
+            {violation.replacement && (
+              <span style={{ fontSize: 12, color: '#475569' }}>
+                <code style={{
+                  backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                  padding: '1px 4px',
+                  borderRadius: 3,
+                  fontFamily: "'SF Mono', Consolas, monospace",
+                  fontSize: 11,
+                  color: '#059669',
+                }}>{violation.match}</code>
+                {' \u2192 '}
+                <code style={{
+                  backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                  padding: '1px 4px',
+                  borderRadius: 3,
+                  fontFamily: "'SF Mono', Consolas, monospace",
+                  fontSize: 11,
+                  color: '#047857',
+                  fontWeight: 600,
+                }}>{violation.replacement}</code>
+              </span>
+            )}
+          </>
         ) : (
           <span style={{ fontSize: 11, color: '#94a3b8', fontStyle: 'italic' }}>
             Use Compliance Panel for AI fix
