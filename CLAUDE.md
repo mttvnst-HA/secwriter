@@ -32,7 +32,7 @@ src/
   main.jsx                 # Entry point + ErrorBoundary wrapper ~50 lines
   components/
     EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~660 lines
-    InlineTooltip.jsx      # Floating tooltip for inline linting findings: severity, fix preview, Why? ~290 lines
+    InlineTooltip.jsx      # Floating tooltip for inline linting findings: severity, fix preview, Why? ~292 lines
     TitleBlock.jsx         # Section heading with inline editing, Tab/Shift+Tab depth ~145 lines
     TableBlock.jsx         # Table editing: cell edit, add/delete rows/columns, merge/split ~260 lines
     RefBlock.jsx           # Structured REF editing (ORG + RID/RTL) + comment support ~320 lines
@@ -77,39 +77,10 @@ src/
     compliance-diff.js     # Word-level diff for compliance fix previews (wraps diffWords) ~25 lines
     compliance-ai.js       # AI rewrite module: Anthropic API, chunking, token estimation, HTML preservation ~280 lines
     inline-linter.js       # Real-time linting orchestrator: CSS Custom Highlight API, 3 engines, per-block findings ~400 lines
-    grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~170 lines
-    nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~170 lines
+    grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~195 lines
+    nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~205 lines
     fix-utils.js           # Offset-aware string replacement in HTML: replaceAtOffset() for disambiguating duplicate violations ~65 lines
-    __tests__/             # 457 Vitest unit tests + 40 Node compliance tests = 497 total
-      setup.js             # Vitest DOMParser polyfill (linkedom)
-      sec-parser.test.js   # 36 tests (Vitest)
-      tailor-profile.test.js # 36 tests (Vitest)
-      sec-serializer.test.js # 32 tests (Vitest)
-      revisions.test.js    # 29 tests (Vitest)
-      cross-ref-validation.test.js # 21 tests (Vitest)
-      compliance-checker.test.js # 23 tests (Vitest)
-      text-diff.test.js    # 20 tests (Vitest)
-      mark-patterns.test.js  # 18 tests (Vitest)
-      table-ops.test.js    # 17 tests (Vitest)
-      numbering.test.js    # 16 tests (Vitest)
-      search.test.js       # 14 tests (Vitest)
-      compliance-ai.test.js # 13 tests (Vitest)
-      undo-redo.test.js    # 12 tests (Vitest)
-      doc-export.test.js   # 12 tests (Vitest)
-      submittal-register.test.js # 11 tests (Vitest)
-      encoding.test.js     # 11 tests (Vitest)
-      doc-validation.test.js # 11 tests (Vitest)
-      block-reorder.test.js # 10 tests (Vitest)
-      bracket-replace.test.js # 9 tests (Vitest)
-      sec-roundtrip.test.js  # 9 tests (Vitest)
-      tree-builder.test.js # 8 tests (Vitest)
-      auto-save.test.js    # 7 tests (Vitest)
-      comments.test.js     # 6 tests (Vitest)
-      inline-linter.test.js  # 19 tests (Vitest)
-      grammar-checker.test.js # 10 tests (Vitest)
-      nlp-rules.test.js    # 37 tests (Vitest)
-      fix-utils.test.js    # 11 tests (Vitest)
-      compliance-rules.node-test.mjs # 40 tests (Node built-in runner — NOT Vitest, regex-heavy rules OOM Vitest workers)
+    __tests__/             # 457 Vitest + 40 Node tests (see Test Coverage table for per-file breakdown)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
     umrl.json              # UMRL reference database (302 orgs, 4,973 references, 587KB)
@@ -337,7 +308,7 @@ Each document is a flat array of blocks:
 
 ## Development Status
 
-**All planned features are implemented.** The app covers: rich text editing (contentEditable blocks), track changes (snapshot-based diff with inline ADD/DEL/CHG), comments (Google Docs-style threads), SEC import/export with Windows-1252 encoding, Word/PDF export, compliance checking (static + AI tiers), real-time inline linting (CSS Custom Highlight API with 3 engines: UFS compliance, Harper.js grammar, compromise.js NLP), reference wizard (UMRL), submittal register, cross-ref validation, tailoring profiles, find & replace, bracket replacement, tag visibility toggle, dark mode, undo/redo, and auto-save.
+Core editing features are implemented: rich text editing (contentEditable blocks), track changes (snapshot-based diff), comments (Google Docs-style threads), SEC import/export with Windows-1252 encoding, Word/PDF export, compliance checking (static + AI tiers), real-time inline linting (3 engines: UFS, Harper.js grammar, compromise.js NLP), reference wizard (UMRL), submittal register, cross-ref validation, tailoring profiles, find & replace, bracket replacement, tag visibility toggle, dark mode, undo/redo, and auto-save.
 
 ### Known Limitations
 
@@ -346,9 +317,7 @@ Each document is a flat array of blocks:
 
 ### Development Roadmap
 
-**All planned features are implemented.** The next steps focus on validation and deployment:
-
-**Next Steps (Quality & Deployment):**
+**Validation & Deployment:**
 1. **Real-world .SEC file testing** — import several different UFGS .SEC files beyond the 31 00 00 sample to validate parser coverage across the full UFGS master set
 2. **Interop testing** — export from SIM, re-import into legacy SpecsIntact, verify round-trip fidelity
 3. **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
@@ -356,9 +325,9 @@ Each document is a flat array of blocks:
 5. **Production deployment** — `npm run build` and host (static site, no server needed)
 6. **Browser data exfiltration prevention** — prevent spec text from being sent to Google or Microsoft via browser features like Chrome's "Help me write," Edge's Copilot, or enhanced spellcheck. These features transmit selected/typed text to external servers for processing, which is unacceptable for controlled unclassified military construction specifications. Investigate: disabling via `contentEditable` attributes, CSP headers, enterprise browser policies, and `writingsuggestions="false"` / `spellcheck="false"` HTML attributes.
 
-**Deferred / Not Applicable:**
-- Multi-file project management — SIM is a single-section editor by design
-- Monospace preview mode — low value relative to other gaps
+**Future Features:**
+- Multi-file project management — SIM is currently a single-section editor by design
+- Monospace preview mode
 - User manual / help system — incorporate MarkLegend color key, keyboard shortcuts, feature docs (MarkLegend component preserved in src/components/ for this purpose)
 
 ### Test Coverage
@@ -396,8 +365,6 @@ Each document is a flat array of blocks:
 | editor.spec.js (E2E) | 140 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
 **Total: 457 Vitest + 40 Node + 140 Playwright = 637 automated tests**
-
-**Current branch:** `master`
 
 ## Dependencies
 
