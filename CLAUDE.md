@@ -79,7 +79,8 @@ src/
     inline-linter.js       # Real-time linting orchestrator: CSS Custom Highlight API, 3 engines, per-block findings ~400 lines
     grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~170 lines
     nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~170 lines
-    __tests__/             # 446 Vitest unit tests + 40 Node compliance tests = 486 total
+    fix-utils.js           # Offset-aware string replacement in HTML: replaceAtOffset() for disambiguating duplicate violations ~65 lines
+    __tests__/             # 457 Vitest unit tests + 40 Node compliance tests = 497 total
       setup.js             # Vitest DOMParser polyfill (linkedom)
       sec-parser.test.js   # 36 tests (Vitest)
       tailor-profile.test.js # 36 tests (Vitest)
@@ -107,6 +108,7 @@ src/
       inline-linter.test.js  # 19 tests (Vitest)
       grammar-checker.test.js # 10 tests (Vitest)
       nlp-rules.test.js    # 37 tests (Vitest)
+      fix-utils.test.js    # 11 tests (Vitest)
       compliance-rules.node-test.mjs # 40 tests (Node built-in runner — NOT Vitest, regex-heavy rules OOM Vitest workers)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
@@ -143,11 +145,11 @@ tools/
 ```bash
 npm install
 npm run dev          # Vite dev server at localhost:5173
-npm test             # Run 446 Vitest unit tests
+npm test             # Run 457 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 40 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 140 Playwright E2E tests
-# Full suite: 446 + 40 + 140 = 626 automated tests
+# Full suite: 457 + 40 + 140 = 637 automated tests
 npm run parse -- input.sec output.json  # CLI: parse SEC to JSON
 ```
 
@@ -289,12 +291,12 @@ Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with
 - **Note block exemption:** Note blocks skip compliance and NLP rules (notes use advisory language). Grammar/spelling from Harper still runs.
 - **Tooltip:** `InlineTooltip.jsx` shows on collapsed cursor via `selectionchange` + `keyup` listeners. Dismisses on Escape, click outside, or any input keystroke (so it doesn't block editing). Computes fix preview text dynamically for rules without explicit `replacement`.
 - **Toggle:** "Lint ●/○" toolbar button with localStorage persistence (`sim-inline-linting`). When re-enabled, the currently focused block is linted immediately (not deferred to next focus event).
+- **Offset-aware fixes:** `replaceAtOffset()` in `fix-utils.js` disambiguates duplicate violations when applying fixes. It walks the HTML tracking plain-text offsets (skipping `<...>` tag syntax), collects all candidate matches, and picks the one closest to the violation's `index`. Called by grammar-checker.js, nlp-rules.js fix functions, and InlineTooltip.jsx passes `violation.index` as the fourth argument to `fixFn()`. Falls back to first-match replacement when offset is undefined (backward compat).
 
 ### Known inline linting limitations
 
 These are known issues identified during QA testing that have not yet been fixed:
 
-- **Grammar/NLP fix functions use naive `html.replace()`** (`grammar-checker.js:151`, `nlp-rules.js:194`): Replaces the first occurrence of the matched text in innerHTML. If the same word appears twice in one block, clicking Fix on the second instance fixes the first instead. The offset-aware `createRangeForMatch()` correctly highlights the right occurrence, but the fix path doesn't pass the offset to `fixFn`. Low frequency in practice but architecturally wrong.
 - **`shall` fix returns null on partial success** (`compliance-rules.js:78`): If "The Contractor shall [verb]" is successfully rewritten but a separate bare "shall" remains in the block, the fix returns `null` (discards the partial fix). This is by design (defer complex cases to AI), but the user sees no change despite a valid partial fix being possible.
 - **Gutter dot lags grammar results** (`EditableBlock.jsx:312`): `setLintSeverity` fires 200ms after lint, but Harper WASM may take longer on first load. The gutter dot won't reflect grammar findings until the next lint cycle.
 
@@ -390,11 +392,12 @@ Each document is a flat array of blocks:
 | inline-linter.test.js | 19 | Vitest | Text extraction, range creation, highlight management, cursor hit-testing, fix computation, per-block findings |
 | grammar-checker.test.js | 10 | Vitest | Harper initialization, violation mapping, dictionary filtering, stale detection |
 | nlp-rules.test.js | 37 | Vitest | Passive voice corpus (21 sentences via it.each), FP rate assertion, indicative mood detection, verb conjugation, bracket/note exclusion |
+| fix-utils.test.js | 11 | Vitest | Offset-aware replacement: second occurrence targeting, HTML tag skipping, backward compat (undefined offset), edge cases |
 | editor.spec.js (E2E) | 140 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 446 Vitest + 40 Node + 140 Playwright = 626 automated tests**
+**Total: 457 Vitest + 40 Node + 140 Playwright = 637 automated tests**
 
-**Current branch:** `fix/inline-linting-qa`
+**Current branch:** `master`
 
 ## Dependencies
 
