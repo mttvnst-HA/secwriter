@@ -117,6 +117,29 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
   const { violation } = finding;
   const hasFix = !!violation.fixFn;
 
+  // Compute replacement text for display if not explicitly set
+  let displayReplacement = violation.replacement || null;
+  if (!displayReplacement && hasFix && blockEl) {
+    try {
+      const currentHtml = blockEl.innerHTML;
+      const fixedHtml = violation.fixFn(currentHtml, violation.match, violation.replacement);
+      if (fixedHtml && fixedHtml !== currentHtml) {
+        // Extract what changed: find the difference around the match
+        const matchIdx = currentHtml.indexOf(violation.match);
+        if (matchIdx >= 0) {
+          // The fix replaced violation.match with something — extract it
+          const before = currentHtml.slice(0, matchIdx);
+          const after = currentHtml.slice(matchIdx + violation.match.length);
+          if (fixedHtml.startsWith(before) && fixedHtml.endsWith(after)) {
+            displayReplacement = fixedHtml.slice(before.length, fixedHtml.length - after.length);
+          }
+        }
+      }
+    } catch {
+      // Computation failed, no preview
+    }
+  }
+
   // Severity colors
   const severityColors = {
     high: { dot: '#ef4444', bg: '#fef2f2', border: '#fecaca' },
@@ -235,7 +258,7 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
             >
               Fix
             </button>
-            {violation.replacement && (
+            {displayReplacement && (
               <span style={{ fontSize: 12, color: '#475569' }}>
                 <code style={{
                   backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -254,7 +277,7 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
                   fontSize: 11,
                   color: '#047857',
                   fontWeight: 600,
-                }}>{violation.replacement}</code>
+                }}>{displayReplacement}</code>
               </span>
             )}
           </>

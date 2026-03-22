@@ -1,20 +1,23 @@
 /**
- * Inline Linter — Real-time compliance + grammar highlighting for editable blocks.
+ * Inline Linter — Real-time compliance + grammar + NLP highlighting for editable blocks.
  *
  * Uses the CSS Custom Highlight API to overlay colored highlights on text
- * that violates UFS 1-300-02 rules or has grammar errors, without mutating the DOM tree.
+ * that violates UFS 1-300-02 rules, has grammar errors, or uses passive voice,
+ * without mutating the DOM tree.
  *
  * Highlights persist across blur/focus — they remain until the violation is
  * fixed or the user dismisses it. Findings are stored per-block so linting
  * one block doesn't clear another's highlights.
  *
- * Two highlight groups:
+ * Three highlight groups:
  *   compliance-error — yellow background (static UFS rules)
  *   grammar-error    — blue background (Harper.js grammar/spelling)
+ *   passive-voice    — orange background (compromise.js NLP)
  */
 
 import { runStaticRules } from './compliance-rules.js';
 import { checkGrammar, isGrammarReady, initGrammarChecker, getVersion } from './grammar-checker.js';
+import { detectNlpIssues, isNlpReady, preloadNlp } from './nlp-rules.js';
 
 // NodeFilter.SHOW_TEXT = 4 (constant, avoids runtime lookup in Node/test environments)
 const SHOW_TEXT = 4;
@@ -24,6 +27,7 @@ const SHOW_TEXT = 4;
 // Map<blockId, Array<{ range, violation }>>
 const complianceFindingsByBlock = new Map();
 const grammarFindingsByBlock = new Map();
+const nlpFindingsByBlock = new Map();
 
 // Track the text that was sent for grammar checking per block, for stale detection
 const grammarTextByBlock = new Map();
@@ -41,6 +45,9 @@ export function getActiveFindings() {
     all.push(...findings);
   }
   for (const findings of grammarFindingsByBlock.values()) {
+    all.push(...findings);
+  }
+  for (const findings of nlpFindingsByBlock.values()) {
     all.push(...findings);
   }
   return all;
@@ -76,6 +83,19 @@ function rebuildHighlights() {
     CSS.highlights.set('grammar-error', new Highlight(...grammarRanges));
   } else {
     CSS.highlights.delete('grammar-error');
+  }
+
+  // NLP / passive-voice highlights
+  const nlpRanges = [];
+  for (const findings of nlpFindingsByBlock.values()) {
+    for (const f of findings) {
+      if (f.range) nlpRanges.push(f.range);
+    }
+  }
+  if (nlpRanges.length > 0) {
+    CSS.highlights.set('passive-voice', new Highlight(...nlpRanges));
+  } else {
+    CSS.highlights.delete('passive-voice');
   }
 }
 
@@ -122,15 +142,23 @@ export function extractPlainText(blockEl) {
  *
  * @param {Element} blockEl - The contentEditable DOM element
  * @param {string} matchText - The text to find (violation.match)
+ * @param {number} [targetOffset=-1] - Optional character offset hint from the
+ *   violation engine. When provided, the function finds the occurrence closest
+ *   to this offset in the block's plain text, avoiding wrong-match on common
+ *   short words like "the", "a", "is".
  * @returns {Range|null} A Range object, or null if not found
  */
-function createRangeForMatch(blockEl, matchText) {
+function createRangeForMatch(blockEl, matchText, targetOffset) {
   if (!matchText || !blockEl) return null;
 
   const walker = document.createTreeWalker(blockEl, SHOW_TEXT, null);
   const matchLower = matchText.toLowerCase();
 
+  // Collect all candidate matches with their DOM position and text offset
+  const candidates = [];
+  let cumulativeOffset = 0;
   let node;
+
   while ((node = walker.nextNode())) {
     // Skip text inside <del> elements
     if (node.parentElement?.closest?.('del')) continue;
@@ -149,20 +177,36 @@ function createRangeForMatch(blockEl, matchText) {
       const isWordBoundaryAfter = !charAfter || !/[a-z]/i.test(charAfter);
 
       if (isWordBoundaryBefore && isWordBoundaryAfter) {
-        try {
-          const range = document.createRange();
-          range.setStart(node, idx);
-          range.setEnd(node, idx + matchText.length);
-          return range;
-        } catch {
-          // Range creation failed (node may have changed), skip
-        }
+        candidates.push({ node, idx, textOffset: cumulativeOffset + idx });
       }
       searchFrom = idx + 1;
     }
+    cumulativeOffset += node.textContent.length;
   }
 
-  return null;
+  if (candidates.length === 0) return null;
+
+  // Pick the best candidate: if we have a target offset, choose the closest match
+  let best = candidates[0];
+  if (typeof targetOffset === 'number' && targetOffset >= 0 && candidates.length > 1) {
+    let bestDist = Math.abs(best.textOffset - targetOffset);
+    for (let i = 1; i < candidates.length; i++) {
+      const dist = Math.abs(candidates[i].textOffset - targetOffset);
+      if (dist < bestDist) {
+        best = candidates[i];
+        bestDist = dist;
+      }
+    }
+  }
+
+  try {
+    const range = document.createRange();
+    range.setStart(best.node, best.idx);
+    range.setEnd(best.node, best.idx + matchText.length);
+    return range;
+  } catch {
+    return null;
+  }
 }
 
 // ── Main API ────────────────────────────────────────────────────────────────
@@ -176,28 +220,33 @@ function createRangeForMatch(blockEl, matchText) {
  * @param {string} plainText - Plain text extracted via extractPlainText()
  * @param {Array} rules - Rules from getRules()
  */
-export function initInlineLinting(blockEl, blockId, plainText, rules) {
-  // Clear previous compliance findings for THIS block only
+export function initInlineLinting(blockEl, blockId, plainText, rules, options = {}) {
+  const { isNoteBlock = false } = options;
+
+  // Clear previous findings for THIS block (stale Range objects from prior
+  // lint cycles may reference DOM nodes replaced by React re-render)
   complianceFindingsByBlock.delete(blockId);
+  nlpFindingsByBlock.delete(blockId);
+  grammarFindingsByBlock.delete(blockId);
 
   if (!blockEl || !plainText || !rules) {
     rebuildHighlights();
     return;
   }
 
-  // Snapshot grammar readiness at lint start (prevents pop-in)
+  // Check if grammar is ready for this lint cycle
   grammarWasReadyAtLintStart = isGrammarReady();
 
   // Run static rules (synchronous)
   const violations = runStaticRules(plainText, blockId, rules, {
     skipBrackets: true,
-    isNoteBlock: false,
+    isNoteBlock,
   });
 
   if (violations.length > 0) {
     const blockFindings = [];
     for (const v of violations) {
-      const range = createRangeForMatch(blockEl, v.match);
+      const range = createRangeForMatch(blockEl, v.match, v.index);
       if (range) {
         blockFindings.push({ range, violation: v });
       }
@@ -207,16 +256,55 @@ export function initInlineLinting(blockEl, blockId, plainText, rules) {
     }
   }
 
+  // Run NLP rules (synchronous if compromise is loaded)
+  // Suppress NLP findings that overlap with compliance findings (static rules take priority)
+  if (isNlpReady()) {
+    const nlpViolations = detectNlpIssues(plainText, blockId, isNoteBlock);
+    if (nlpViolations.length > 0) {
+      const nlpFindings = [];
+      const complianceMatches = violations.map(v => ({
+        start: v.index,
+        end: v.index + v.match.length,
+      }));
+
+      for (const v of nlpViolations) {
+        // Skip NLP findings that overlap with any compliance finding
+        const nlpStart = v.index;
+        const nlpEnd = v.index + v.match.length;
+        const overlapsCompliance = complianceMatches.some(c =>
+          nlpStart < c.end && nlpEnd > c.start
+        );
+        if (overlapsCompliance) continue;
+
+        const range = createRangeForMatch(blockEl, v.match, v.index);
+        if (range) {
+          nlpFindings.push({ range, violation: v });
+        }
+      }
+      if (nlpFindings.length > 0) {
+        nlpFindingsByBlock.set(blockId, nlpFindings);
+      }
+    }
+  } else {
+    // Start lazy-loading compromise in the background
+    preloadNlp();
+  }
+
   rebuildHighlights();
 
-  // Kick off async grammar check if ready
-  if (grammarWasReadyAtLintStart) {
+  // Kick off async grammar check — always try if Harper is ready
+  if (isGrammarReady()) {
     runGrammarCheck(blockEl, blockId, plainText);
   } else {
     // Start lazy-loading Harper in the background (don't await)
-    // Grammar will be available on the next lint cycle
     grammarFindingsByBlock.delete(blockId);
-    initGrammarChecker().catch(() => {});
+    // Once Harper loads, re-lint this block if it's still focused
+    initGrammarChecker().then(() => {
+      if (blockEl && blockEl.isConnected && document.activeElement === blockEl) {
+        runGrammarCheck(blockEl, blockId, plainText);
+        rebuildHighlights();
+      }
+    }).catch(() => {});
   }
 }
 
@@ -239,7 +327,7 @@ async function runGrammarCheck(blockEl, blockId, plainText) {
   if (grammarViolations.length > 0) {
     const grammarFindings = [];
     for (const v of grammarViolations) {
-      const range = createRangeForMatch(blockEl, v.match);
+      const range = createRangeForMatch(blockEl, v.match, v.index);
       if (range) {
         grammarFindings.push({ range, violation: v });
       }
@@ -259,6 +347,7 @@ async function runGrammarCheck(blockEl, blockId, plainText) {
 export function clearBlockLinting(blockId) {
   complianceFindingsByBlock.delete(blockId);
   grammarFindingsByBlock.delete(blockId);
+  nlpFindingsByBlock.delete(blockId);
   grammarTextByBlock.delete(blockId);
   rebuildHighlights();
 }
@@ -270,9 +359,11 @@ export function clearInlineLinting() {
   if (typeof CSS !== 'undefined' && CSS.highlights) {
     CSS.highlights.delete('compliance-error');
     CSS.highlights.delete('grammar-error');
+    CSS.highlights.delete('passive-voice');
   }
   complianceFindingsByBlock.clear();
   grammarFindingsByBlock.clear();
+  nlpFindingsByBlock.clear();
   grammarTextByBlock.clear();
 }
 

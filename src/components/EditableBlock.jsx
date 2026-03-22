@@ -300,11 +300,13 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     try {
       const cachedRules = getRules();
       const plainText = extractPlainText(ref.current);
-      initInlineLinting(ref.current, block.id, plainText, cachedRules);
+      initInlineLinting(ref.current, block.id, plainText, cachedRules, {
+        isNoteBlock: block.type === 'note',
+      });
     } catch {
       // Linting failed (element not ready), ignore
     }
-  }, [block.id]);
+  }, [block.id, block.type]);
 
   useEffect(() => {
     const el = ref.current;
@@ -363,11 +365,19 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
       }
     };
 
+    // Dismiss tooltip immediately when user starts typing so it doesn't block editing
+    const onInput = () => {
+      setTooltipFinding(null);
+    };
+
     document.addEventListener('selectionchange', checkCursorForTooltip);
     document.addEventListener('keyup', onKeyUp);
+    if (ref.current) ref.current.addEventListener('input', onInput);
+    const el = ref.current;
     return () => {
       document.removeEventListener('selectionchange', checkCursorForTooltip);
       document.removeEventListener('keyup', onKeyUp);
+      if (el) el.removeEventListener('input', onInput);
       if (selTimerRef.current) clearTimeout(selTimerRef.current);
     };
   }, [editable]);

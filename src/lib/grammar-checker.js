@@ -129,10 +129,30 @@ export async function checkGrammar(plainText, blockId) {
       let fixFn = null;
       let replacement = null;
       if (hasSuggestion) {
-        replacement = suggestions[0].get_replacement_text();
-        fixFn = (html) => {
-          return html.replace(problemText, replacement);
-        };
+        const candidateReplacement = suggestions[0].get_replacement_text();
+        // Filter out bad suggestions: suppress fix but still show the error
+        const isBadSuggestion = (
+          (!problemText.includes(' ') && candidateReplacement.includes(' ')) ||
+          candidateReplacement.length > problemText.length * 2
+        );
+        if (!isBadSuggestion) {
+          // Detect "add punctuation" suggestions: if the replacement is only
+          // punctuation and the problem text is a word, append rather than replace.
+          // e.g., Oxford comma: problemText="obstructions", replacement="," → "obstructions,"
+          const isPunctuationOnly = /^[,;:.!?]+$/.test(candidateReplacement);
+          const problemIsWord = /\w/.test(problemText);
+
+          if (isPunctuationOnly && problemIsWord) {
+            replacement = problemText + candidateReplacement;
+          } else {
+            replacement = candidateReplacement;
+          }
+
+          fixFn = (html) => {
+            return html.replace(problemText, replacement);
+          };
+        }
+        // Bad suggestions: violation is still shown (highlighted) but with no Fix
       }
 
       violations.push({

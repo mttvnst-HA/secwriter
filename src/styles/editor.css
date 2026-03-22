@@ -360,6 +360,12 @@ span.mark-chg {
   text-decoration-skip-ink: none;
 }
 
+::highlight(passive-voice) {
+  background-color: rgba(249, 115, 22, 0.2);
+  text-decoration: underline wavy #ea580c;
+  text-decoration-skip-ink: none;
+}
+
 /* ─── Compliance checker highlights ─── */
 .compliance-highlight {
   background: #fbbf24;
