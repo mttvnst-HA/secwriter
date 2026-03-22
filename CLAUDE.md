@@ -31,7 +31,7 @@ src/
   App.jsx                  # Main editor layout, state management, toolbar, sidebar ~1860 lines
   main.jsx                 # Entry point + ErrorBoundary wrapper ~50 lines
   components/
-    EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~650 lines
+    EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~660 lines
     InlineTooltip.jsx      # Floating tooltip for inline linting findings: severity, fix preview, Why? ~290 lines
     TitleBlock.jsx         # Section heading with inline editing, Tab/Shift+Tab depth ~145 lines
     TableBlock.jsx         # Table editing: cell edit, add/delete rows/columns, merge/split ~260 lines
@@ -288,7 +288,15 @@ Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with
 - **Bad suggestion filtering:** Harper suggestions that introduce spaces into single words (e.g., "taht" → "ta ht") are suppressed. Oxford comma fixes append punctuation instead of replacing the word.
 - **Note block exemption:** Note blocks skip compliance and NLP rules (notes use advisory language). Grammar/spelling from Harper still runs.
 - **Tooltip:** `InlineTooltip.jsx` shows on collapsed cursor via `selectionchange` + `keyup` listeners. Dismisses on Escape, click outside, or any input keystroke (so it doesn't block editing). Computes fix preview text dynamically for rules without explicit `replacement`.
-- **Toggle:** "Lint ●/○" toolbar button with localStorage persistence (`sim-inline-linting`).
+- **Toggle:** "Lint ●/○" toolbar button with localStorage persistence (`sim-inline-linting`). When re-enabled, the currently focused block is linted immediately (not deferred to next focus event).
+
+### Known inline linting limitations
+
+These are known issues identified during QA testing that have not yet been fixed:
+
+- **Grammar/NLP fix functions use naive `html.replace()`** (`grammar-checker.js:151`, `nlp-rules.js:194`): Replaces the first occurrence of the matched text in innerHTML. If the same word appears twice in one block, clicking Fix on the second instance fixes the first instead. The offset-aware `createRangeForMatch()` correctly highlights the right occurrence, but the fix path doesn't pass the offset to `fixFn`. Low frequency in practice but architecturally wrong.
+- **`shall` fix returns null on partial success** (`compliance-rules.js:78`): If "The Contractor shall [verb]" is successfully rewritten but a separate bare "shall" remains in the block, the fix returns `null` (discards the partial fix). This is by design (defer complex cases to AI), but the user sees no change despite a valid partial fix being possible.
+- **Gutter dot lags grammar results** (`EditableBlock.jsx:312`): `setLintSeverity` fires 200ms after lint, but Harper WASM may take longer on first load. The gutter dot won't reflect grammar findings until the next lint cycle.
 
 ### Reference data sources
 
@@ -386,7 +394,7 @@ Each document is a flat array of blocks:
 
 **Total: 446 Vitest + 40 Node + 140 Playwright = 626 automated tests**
 
-**Current branch:** `feature/inline-linting`
+**Current branch:** `fix/inline-linting-qa`
 
 ## Dependencies
 

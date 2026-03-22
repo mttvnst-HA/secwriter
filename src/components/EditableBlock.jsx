@@ -336,6 +336,11 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     el.addEventListener('input', onNativeInput);
     el.addEventListener('focus', onFocusLint);
 
+    // If this block is already focused when linting is (re-)enabled, lint immediately
+    if (document.activeElement === el) {
+      lintBlock();
+    }
+
     return () => {
       el.removeEventListener('input', onNativeInput);
       el.removeEventListener('focus', onFocusLint);
