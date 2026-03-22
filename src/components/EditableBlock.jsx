@@ -3,11 +3,11 @@ import SlashMenu, { SLASH_ITEMS } from "./SlashMenu.jsx";
 import { BLOCK_MARGINS } from "../lib/ini-config.js";
 import { cleanTaiClasses } from "../lib/tailor-profile.js";
 import { annotateDomWithDiff } from "../lib/text-diff.js";
-import { initInlineLinting, clearBlockLinting, extractPlainText, findFindingAtCursor, DEBOUNCE_MS } from "../lib/inline-linter.js";
+import { initInlineLinting, clearBlockLinting, extractPlainText, findFindingAtCursor, getBlockFindingSeverity, DEBOUNCE_MS } from "../lib/inline-linter.js";
 import { getRules } from "../lib/compliance-rules.js";
 import InlineTooltip from "./InlineTooltip.jsx";
 
-function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, comments, onCommentClick, onInlineFix }) {
+function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, comments, onCommentClick, onInlineFix, inlineLintingEnabled = true, compliancePanelActive = false }) {
   const ref = useRef(null);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashFilter, setSlashFilter] = useState("");
@@ -295,22 +295,35 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
 
   // ── Inline linting: debounced input + lint on focus ──
   const lintTimerRef = useRef(null);
+  const [lintSeverity, setLintSeverity] = useState(null); // 'high' | 'medium' | 'low' | null
   const lintBlock = useCallback(() => {
-    if (!ref.current) return;
+    if (!ref.current || !inlineLintingEnabled || compliancePanelActive) {
+      clearBlockLinting(block.id);
+      setLintSeverity(null);
+      return;
+    }
     try {
       const cachedRules = getRules();
       const plainText = extractPlainText(ref.current);
       initInlineLinting(ref.current, block.id, plainText, cachedRules, {
         isNoteBlock: block.type === 'note',
       });
+      // Update gutter dot after a short delay (grammar is async)
+      setTimeout(() => setLintSeverity(getBlockFindingSeverity(block.id)), 200);
     } catch {
       // Linting failed (element not ready), ignore
     }
-  }, [block.id, block.type]);
+  }, [block.id, block.type, inlineLintingEnabled, compliancePanelActive]);
 
   useEffect(() => {
     const el = ref.current;
     if (!el || !editable) return;
+
+    // If linting is disabled or compliance panel is active, clear and skip
+    if (!inlineLintingEnabled || compliancePanelActive) {
+      clearBlockLinting(block.id);
+      return;
+    }
 
     const onNativeInput = () => {
       if (lintTimerRef.current) clearTimeout(lintTimerRef.current);
@@ -318,18 +331,18 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     };
 
     // Lint on focus (re-lint when clicking back into a block with violations)
-    const onFocus = () => lintBlock();
+    const onFocusLint = () => lintBlock();
 
     el.addEventListener('input', onNativeInput);
-    el.addEventListener('focus', onFocus);
+    el.addEventListener('focus', onFocusLint);
 
     return () => {
       el.removeEventListener('input', onNativeInput);
-      el.removeEventListener('focus', onFocus);
+      el.removeEventListener('focus', onFocusLint);
       if (lintTimerRef.current) clearTimeout(lintTimerRef.current);
       clearBlockLinting(block.id);
     };
-  }, [block.id, editable, lintBlock]);
+  }, [block.id, editable, lintBlock, inlineLintingEnabled, compliancePanelActive]);
 
   // ── Inline tooltip: selectionchange listener ──
   const [tooltipFinding, setTooltipFinding] = useState(null);
@@ -549,6 +562,21 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
           width: 24,
           textAlign: "right",
         }}>{oliLabel}</span>
+      )}
+      {lintSeverity && inlineLintingEnabled && !compliancePanelActive && (
+        <span
+          title={`${lintSeverity} severity finding`}
+          style={{
+            position: "absolute",
+            left: 2,
+            top: 8,
+            width: 6,
+            height: 6,
+            borderRadius: "50%",
+            backgroundColor: lintSeverity === 'high' ? '#ef4444' : lintSeverity === 'medium' ? '#f59e0b' : '#3b82f6',
+            pointerEvents: "none",
+          }}
+        />
       )}
       <div
         ref={setRef}

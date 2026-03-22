@@ -31,6 +31,7 @@ import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
 import { getVisibleTextFromHtml } from "./lib/text-diff.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
+import { clearInlineLinting } from "./lib/inline-linter.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 
 export default function SpecEditor() {
@@ -63,6 +64,9 @@ export default function SpecEditor() {
   const [commentRect, setCommentRect] = useState(null);
   const [showComments, setShowComments] = useState(false);
   const [complianceOpen, setComplianceOpen] = useState(false);
+  const [inlineLintingEnabled, setInlineLintingEnabled] = useState(() => {
+    try { return localStorage.getItem('sim-inline-linting') !== 'false'; } catch { return true; }
+  });
   const [sectionMeta, setSectionMeta] = useState({
     sectionNumber: "31 00 00",
     sectionTitle: "EARTHWORK",
@@ -846,6 +850,11 @@ export default function SpecEditor() {
     try { localStorage.setItem('sim-editor-zoom', String(editorZoom)); } catch {}
   }, [editorZoom]);
 
+  // Persist inline linting preference
+  useEffect(() => {
+    try { localStorage.setItem('sim-inline-linting', String(inlineLintingEnabled)); } catch {}
+  }, [inlineLintingEnabled]);
+
   const zoomIn = useCallback(() => setEditorZoom(z => Math.min(2, Math.round((z + 0.1) * 10) / 10)), []);
   const zoomOut = useCallback(() => setEditorZoom(z => Math.max(0.5, Math.round((z - 0.1) * 10) / 10)), []);
   const zoomReset = useCallback(() => setEditorZoom(1), []);
@@ -1348,6 +1357,23 @@ export default function SpecEditor() {
                 color: complianceOpen ? "#7c3aed" : "#475569", minHeight: 32,
               }}
             >Compliance</button>
+            {/* Inline linting toggle */}
+            <button
+              onClick={() => {
+                setInlineLintingEnabled(prev => {
+                  if (prev) clearInlineLinting();
+                  return !prev;
+                });
+              }}
+              title={inlineLintingEnabled ? "Disable inline linting" : "Enable inline linting"}
+              style={{
+                padding: "4px 10px",
+                backgroundColor: inlineLintingEnabled ? "#ecfdf5" : "#f1f5f9",
+                border: inlineLintingEnabled ? "1px solid #10b981" : "1px solid #e2e8f0",
+                borderRadius: 6, cursor: "pointer", fontSize: 13, fontWeight: 600,
+                color: inlineLintingEnabled ? "#059669" : "#94a3b8", minHeight: 32,
+              }}
+            >Lint {inlineLintingEnabled ? "●" : "○"}</button>
             {/* Tags visibility toggle */}
             <button
               onClick={() => setShowTags(prev => !prev)}
@@ -1748,6 +1774,8 @@ export default function SpecEditor() {
                   comments={comments}
                   onCommentClick={handleCommentClick}
                   onInlineFix={handleComplianceAcceptFix}
+                  inlineLintingEnabled={inlineLintingEnabled}
+                  compliancePanelActive={complianceOpen}
                 />
                 {focusedBlockId === block.id && (
                   <MarkSuggestions

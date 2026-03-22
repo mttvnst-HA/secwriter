@@ -39,6 +39,29 @@ let grammarWasReadyAtLintStart = false;
  * Get all active findings across all blocks (flat array for tooltip hit-testing).
  * @returns {Array<{ range: Range|null, violation: Object }>}
  */
+/**
+ * Get the highest severity level for a specific block's findings.
+ * Returns 'high', 'medium', 'low', or null if no findings.
+ * @param {string} blockId
+ * @returns {string|null}
+ */
+export function getBlockFindingSeverity(blockId) {
+  const severityOrder = { high: 0, medium: 1, low: 2 };
+  let best = null;
+  const allMaps = [complianceFindingsByBlock, nlpFindingsByBlock, grammarFindingsByBlock];
+  for (const map of allMaps) {
+    const findings = map.get(blockId);
+    if (!findings) continue;
+    for (const f of findings) {
+      const s = f.violation.severity;
+      if (!best || (severityOrder[s] ?? 2) < (severityOrder[best] ?? 2)) {
+        best = s;
+      }
+    }
+  }
+  return best;
+}
+
 export function getActiveFindings() {
   const all = [];
   for (const findings of complianceFindingsByBlock.values()) {
@@ -325,8 +348,29 @@ async function runGrammarCheck(blockEl, blockId, plainText) {
   grammarFindingsByBlock.delete(blockId);
 
   if (grammarViolations.length > 0) {
+    // De-duplicate: skip grammar findings that overlap >50% with compliance or NLP findings
+    const existingFindings = [
+      ...(complianceFindingsByBlock.get(blockId) || []),
+      ...(nlpFindingsByBlock.get(blockId) || []),
+    ];
+
     const grammarFindings = [];
     for (const v of grammarViolations) {
+      // Check overlap with existing findings
+      const gStart = v.index;
+      const gEnd = v.index + v.match.length;
+      const gLen = v.match.length;
+
+      const overlaps = existingFindings.some(f => {
+        const fStart = f.violation.index;
+        const fEnd = fStart + f.violation.match.length;
+        const overlapStart = Math.max(gStart, fStart);
+        const overlapEnd = Math.min(gEnd, fEnd);
+        const overlapLen = Math.max(0, overlapEnd - overlapStart);
+        return overlapLen > gLen * 0.5;
+      });
+      if (overlaps) continue;
+
       const range = createRangeForMatch(blockEl, v.match, v.index);
       if (range) {
         grammarFindings.push({ range, violation: v });
