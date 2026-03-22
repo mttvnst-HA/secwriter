@@ -8,6 +8,14 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 
 When fixing bugs, verify the fix doesn't introduce regressions by running the full test suite before reporting completion. Never report a fix as done until tests pass.
 
+## Git Conventions
+
+- Use conventional commits: feat:, fix:, docs:, refactor:
+- Keep subject lines under 72 characters
+- Always run tests before committing
+- Create feature branches for new work
+- Branch naming: type/short-description (e.g., feat/slash-commands)
+
 ## Project Context
 
 **What this is:** A rich text editor that reads and writes SpecsIntact .SEC files (XML-based SGML format with windows-1252 encoding, used by the U.S. military for construction specifications). The editor makes spec authoring feel like Google Docs or Notion while preserving the underlying SGML structure.
@@ -23,7 +31,8 @@ src/
   App.jsx                  # Main editor layout, state management, toolbar, sidebar ~1860 lines
   main.jsx                 # Entry point + ErrorBoundary wrapper ~50 lines
   components/
-    EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup ~500 lines
+    EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~650 lines
+    InlineTooltip.jsx      # Floating tooltip for inline linting findings: severity, fix preview, Why? ~290 lines
     TitleBlock.jsx         # Section heading with inline editing, Tab/Shift+Tab depth ~145 lines
     TableBlock.jsx         # Table editing: cell edit, add/delete rows/columns, merge/split ~260 lines
     RefBlock.jsx           # Structured REF editing (ORG + RID/RTL) + comment support ~320 lines
@@ -67,7 +76,10 @@ src/
     compliance-checker.js  # Compliance orchestrator: scope selection, rule execution, grouping, stats, violation budget ~220 lines
     compliance-diff.js     # Word-level diff for compliance fix previews (wraps diffWords) ~25 lines
     compliance-ai.js       # AI rewrite module: Anthropic API, chunking, token estimation, HTML preservation ~280 lines
-    __tests__/             # 381 Vitest unit tests + 40 Node compliance tests = 421 total
+    inline-linter.js       # Real-time linting orchestrator: CSS Custom Highlight API, 3 engines, per-block findings ~400 lines
+    grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~170 lines
+    nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~170 lines
+    __tests__/             # 446 Vitest unit tests + 40 Node compliance tests = 486 total
       setup.js             # Vitest DOMParser polyfill (linkedom)
       sec-parser.test.js   # 36 tests (Vitest)
       tailor-profile.test.js # 36 tests (Vitest)
@@ -92,6 +104,9 @@ src/
       tree-builder.test.js # 8 tests (Vitest)
       auto-save.test.js    # 7 tests (Vitest)
       comments.test.js     # 6 tests (Vitest)
+      inline-linter.test.js  # 19 tests (Vitest)
+      grammar-checker.test.js # 10 tests (Vitest)
+      nlp-rules.test.js    # 37 tests (Vitest)
       compliance-rules.node-test.mjs # 40 tests (Node built-in runner — NOT Vitest, regex-heavy rules OOM Vitest workers)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
@@ -99,7 +114,7 @@ src/
     umsl.json              # UMSL submittal database (13,203 submittals, 1,097KB)
     ufs-1-300-02-rules.json # UFS 1-300-02 compliance rules (122 rules, 35 prohibited terms, 65KB)
   styles/
-    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance highlights ~385 lines
+    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance + inline linting highlights ~400 lines
 reference/
   section.ini              # SpecsIntact formatting rules (AUTHORITATIVE - always check this)
   document.ini             # Document-level formatting variant
@@ -128,11 +143,11 @@ tools/
 ```bash
 npm install
 npm run dev          # Vite dev server at localhost:5173
-npm test             # Run 381 Vitest unit tests
+npm test             # Run 446 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 40 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 140 Playwright E2E tests
-# Full suite: 381 + 40 + 140 = 561 automated tests
+# Full suite: 446 + 40 + 140 = 626 automated tests
 npm run parse -- input.sec output.json  # CLI: parse SEC to JSON
 ```
 
@@ -256,6 +271,25 @@ The compliance checker uses a **data-driven rule engine** with two tiers:
 - **Binary search bracket exclusion:** `isInOrNearBracket()` uses sorted bracket ranges with binary search instead of `.some()` linear scan, reducing O(n×m) to O(n×log m).
 - **Violation budget:** `MAX_VIOLATIONS = 2000` caps the violations array. Panel shows "Narrow the scope" warning when truncated.
 
+### Inline linting architecture
+
+Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with three detection engines:
+
+1. **Static UFS rules** (`compliance-rules.js`): Synchronous, <5ms. Reuses the same rules as the compliance panel. Yellow highlights (`::highlight(compliance-error)`).
+2. **Harper.js grammar** (`grammar-checker.js`): Async via Web Worker (WASM). Lazy-loaded (~2-4MB). Blue highlights (`::highlight(grammar-error)`). Custom dictionary for engineering terms.
+3. **compromise.js NLP** (`nlp-rules.js`): Synchronous, lazy-loaded (~210KB). Passive voice via `(be + #PastTense)` patterns, indicative mood via regex. Orange highlights (`::highlight(passive-voice)`).
+
+**Key design decisions:**
+- **Only the focused block is linted** — avoids scanning 300+ blocks on every edit. Findings persist across blur/focus.
+- **Offset-aware range creation:** `createRangeForMatch()` accepts a `targetOffset` hint from violation engines to disambiguate repeated words (e.g., "the" appearing 5 times — highlights the correct one).
+- **De-duplication:** Grammar findings overlapping >50% with compliance/NLP findings are suppressed (static rules win — they have UFS citations).
+- **Compliance panel collision:** When `CompliancePanel` is open, inline linting is suppressed entirely to avoid double-highlighting.
+- **Stale result handling:** Grammar results tagged with text version; discarded if text changed while Worker was processing.
+- **Bad suggestion filtering:** Harper suggestions that introduce spaces into single words (e.g., "taht" → "ta ht") are suppressed. Oxford comma fixes append punctuation instead of replacing the word.
+- **Note block exemption:** Note blocks skip compliance and NLP rules (notes use advisory language). Grammar/spelling from Harper still runs.
+- **Tooltip:** `InlineTooltip.jsx` shows on collapsed cursor via `selectionchange` + `keyup` listeners. Dismisses on Escape, click outside, or any input keystroke (so it doesn't block editing). Computes fix preview text dynamically for rules without explicit `replacement`.
+- **Toggle:** "Lint ●/○" toolbar button with localStorage persistence (`sim-inline-linting`).
+
 ### Reference data sources
 
 SIM uses two USACE-maintained databases parsed from the legacy SpecsIntact installation:
@@ -293,7 +327,7 @@ Each document is a flat array of blocks:
 
 ## Development Status
 
-**All planned features are implemented.** The app covers: rich text editing (contentEditable blocks), track changes (snapshot-based diff with inline ADD/DEL/CHG), comments (Google Docs-style threads), SEC import/export with Windows-1252 encoding, Word/PDF export, compliance checking (static + AI tiers), reference wizard (UMRL), submittal register, cross-ref validation, tailoring profiles, find & replace, bracket replacement, tag visibility toggle, dark mode, undo/redo, and auto-save.
+**All planned features are implemented.** The app covers: rich text editing (contentEditable blocks), track changes (snapshot-based diff with inline ADD/DEL/CHG), comments (Google Docs-style threads), SEC import/export with Windows-1252 encoding, Word/PDF export, compliance checking (static + AI tiers), real-time inline linting (CSS Custom Highlight API with 3 engines: UFS compliance, Harper.js grammar, compromise.js NLP), reference wizard (UMRL), submittal register, cross-ref validation, tailoring profiles, find & replace, bracket replacement, tag visibility toggle, dark mode, undo/redo, and auto-save.
 
 ### Known Limitations
 
@@ -310,6 +344,7 @@ Each document is a flat array of blocks:
 3. **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
 4. **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
 5. **Production deployment** — `npm run build` and host (static site, no server needed)
+6. **Browser data exfiltration prevention** — prevent spec text from being sent to Google or Microsoft via browser features like Chrome's "Help me write," Edge's Copilot, or enhanced spellcheck. These features transmit selected/typed text to external servers for processing, which is unacceptable for controlled unclassified military construction specifications. Investigate: disabling via `contentEditable` attributes, CSP headers, enterprise browser policies, and `writingsuggestions="false"` / `spellcheck="false"` HTML attributes.
 
 **Deferred / Not Applicable:**
 - Multi-file project management — SIM is a single-section editor by design
@@ -344,13 +379,16 @@ Each document is a flat array of blocks:
 | auto-save.test.js | 7 | Vitest | localStorage save/load/clear, timestamp, comments serialization |
 | comments.test.js | 6 | Vitest | Comment report generation, HTML escaping, block ordering |
 | compliance-rules.node-test.mjs | 40 | Node | Rule generation, pattern matching, fix functions, false positive regression (19 cases), bracket/note/unit exclusion, FMT-001 removal regression |
+| inline-linter.test.js | 19 | Vitest | Text extraction, range creation, highlight management, cursor hit-testing, fix computation, per-block findings |
+| grammar-checker.test.js | 10 | Vitest | Harper initialization, violation mapping, dictionary filtering, stale detection |
+| nlp-rules.test.js | 37 | Vitest | Passive voice corpus (21 sentences via it.each), FP rate assertion, indicative mood detection, verb conjugation, bracket/note exclusion |
 | editor.spec.js (E2E) | 140 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 381 Vitest + 40 Node + 140 Playwright = 561 automated tests**
+**Total: 446 Vitest + 40 Node + 140 Playwright = 626 automated tests**
 
-**Current branch:** `feature/compliance-checker`
+**Current branch:** `feature/inline-linting`
 
 ## Dependencies
 
-**Production:** React 18.3, react-dom 18.3, lucide-react 0.383
+**Production:** React 18.3, react-dom 18.3, lucide-react 0.383, harper.js (WASM grammar checker), compromise (NLP)
 **Dev:** Vite 8.0, @vitejs/plugin-react 6.0.1, Vitest 4.1, linkedom 0.18 (test DOM polyfill), Playwright (E2E)
