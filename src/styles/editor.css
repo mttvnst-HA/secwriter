@@ -344,6 +344,16 @@ span.mark-chg {
   --sim-hover: #f1f5f9;
 }
 
+/* ─── Inline linting highlights (CSS Custom Highlight API) ─── */
+/* Background is always the primary indicator. ::highlight() has limited
+   CSS property support — text-decoration may not render in all browsers
+   even when @supports passes for it in general contexts. */
+::highlight(compliance-error) {
+  background-color: rgba(234, 179, 8, 0.25);
+  text-decoration: underline wavy #d97706;
+  text-decoration-skip-ink: none;
+}
+
 /* ─── Compliance checker highlights ─── */
 .compliance-highlight {
   background: #fbbf24;

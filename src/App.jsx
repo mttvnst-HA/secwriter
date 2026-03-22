@@ -1747,6 +1747,7 @@ export default function SpecEditor() {
                   onRevisionAction={handleRevisionAction}
                   comments={comments}
                   onCommentClick={handleCommentClick}
+                  onInlineFix={handleComplianceAcceptFix}
                 />
                 {focusedBlockId === block.id && (
                   <MarkSuggestions

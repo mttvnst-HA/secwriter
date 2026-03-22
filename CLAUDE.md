@@ -8,6 +8,14 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 
 When fixing bugs, verify the fix doesn't introduce regressions by running the full test suite before reporting completion. Never report a fix as done until tests pass.
 
+## Git Conventions
+
+- Use conventional commits: feat:, fix:, docs:, refactor:
+- Keep subject lines under 72 characters
+- Always run tests before committing
+- Create feature branches for new work
+- Branch naming: type/short-description (e.g., feat/slash-commands)
+
 ## Project Context
 
 **What this is:** A rich text editor that reads and writes SpecsIntact .SEC files (XML-based SGML format with windows-1252 encoding, used by the U.S. military for construction specifications). The editor makes spec authoring feel like Google Docs or Notion while preserving the underlying SGML structure.
@@ -310,6 +318,7 @@ Each document is a flat array of blocks:
 3. **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
 4. **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
 5. **Production deployment** — `npm run build` and host (static site, no server needed)
+6. **Browser data exfiltration prevention** — prevent spec text from being sent to Google or Microsoft via browser features like Chrome's "Help me write," Edge's Copilot, or enhanced spellcheck. These features transmit selected/typed text to external servers for processing, which is unacceptable for controlled unclassified military construction specifications. Investigate: disabling via `contentEditable` attributes, CSP headers, enterprise browser policies, and `writingsuggestions="false"` / `spellcheck="false"` HTML attributes.
 
 **Deferred / Not Applicable:**
 - Multi-file project management — SIM is a single-section editor by design
