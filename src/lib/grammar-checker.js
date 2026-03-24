@@ -14,28 +14,69 @@
 
 import { replaceAtOffset } from './fix-utils.js';
 
-// Construction/engineering terms to add to Harper's dictionary
+// Construction/engineering terms to add to Harper's dictionary.
+// Mined from corpus of 2,583 UFGS blocks — includes all terms with 2+ FPs
+// plus domain-specific terms likely to appear across sections.
 const ENGINEERING_TERMS = [
   // Standards organizations
   'ASTM', 'AASHTO', 'NAVFAC', 'USACE', 'AFCEC', 'UFGS', 'UFC', 'UFS',
   'ANSI', 'IEEE', 'ASHRAE', 'NFPA', 'OSHA', 'SMACNA', 'SSPC', 'NICET',
+  'NEMA', 'UL', 'ASME', 'AWS', 'IEC', 'ICC',
   // Units and abbreviations
   'psi', 'pcf', 'ksf', 'ksi', 'psf', 'plf', 'klf', 'kPa', 'MPa', 'GPa',
-  'mm', 'cm', 'kN', 'MN',
-  // Construction terms
+  'mm', 'cm', 'kN', 'MN', 'kv', 'kva', 'btu', 'btuh', 'cfm', 'rms',
+  'gpm', 'kcmil', 'ka',
+  // Plumbing / mechanical
+  'cleanout', 'cleanouts', 'backflow', 'waterstops', 'preventer', 'preventers',
+  'flushometer', 'showerhead', 'showerheads', 'diverter', 'weepholes',
+  'hypochlorite', 'hypochlorites', 'hypochlorinator', 'chlorinator',
+  'aftercoolers', 'bedplates', 'bubblers', 'nonclogging', 'prepiped', 'bibb',
+  'dampproofing', 'weldments', 'gasketed', 'gasketing', 'upstands',
+  'polytetrafluoroethylene', 'acrylonitrile', 'polyolefin', 'polyetherimide',
+  'polyethersulfone', 'chloroprene', 'propylene', 'styrene', 'butadiene',
+  'butyl', 'phenolic', 'elastomer', 'elastomeric', 'thermoset', 'thermosetting',
+  // Electrical
+  'panelboard', 'panelboards', 'busbar', 'busbars', 'busway', 'busways',
+  'wireways', 'fuseholders', 'coverplates', 'faceplates', 'faceplate',
+  'solderless', 'locknuts', 'modbus', 'subfeed', 'milliamperes', 'ampacity',
+  'commutated', 'commutates', 'intumescent', 'fillister',
+  // Construction / concrete
   'submittal', 'submittals', 'punchlist', 'rebar', 'rebars',
   'geotextile', 'geomembrane', 'geogrid', 'geosynthetic', 'geosynthetics',
   'backfill', 'subgrade', 'subbase', 'embankment', 'riprap', 'rip-rap',
   'borrow', 'grubbing', 'dewatering', 'shoring', 'sheeting',
   'compaction', 'gradation', 'proctor', 'Proctor',
-  'preconstruction', 'jobsite', 'punchlist', 'earthwork', 'groundwater',
+  'preconstruction', 'jobsite', 'earthwork', 'groundwater',
   'subcontractor', 'subcontractors', 'workmanship',
-  'geotechnical', 'topsoil', 'bedrock', 'overburden',
+  'geotechnical', 'geostatic', 'topsoil', 'bedrock', 'overburden',
   'subdrain', 'underdrain', 'wellpoint', 'wellpoints',
   'demobilization', 'mobilization', 'remobilization',
-  // Specification terms
+  'cementitious', 'pozzolan', 'pozzolans', 'laitance', 'alkalis',
+  'premolded', 'nonprestressed', 'prestressing', 'tensioning',
+  'densified', 'densifies', 'flexural', 'trueness', 'permeance',
+  'reshoring', 'reshores', 'backshoring', 'backshores',
+  'profilograph', 'sublots', 'handholes', 'handhole',
+  'dunnage', 'spandrel', 'scabbling', 'sawcut',
+  // Paving / asphalt
+  'superpave', 'gyratory', 'antistrip', 'footcandles',
+  'uncompacted', 'noncrushed', 'smoothwall',
+  // Materials / chemistry
+  'coliform', 'aramid', 'borides', 'cathodically', 'phosphatizing',
+  'inhibitive', 'pervious', 'nonasphaltic', 'biobased',
+  // Specification / general
   'UMRL', 'UMSL', 'RID', 'SRF', 'CCR',
   'designator', 'designators',
+  'watersense', 'WaterSense', 'paver',
+  'firestop', 'aboveground', 'submetering',
+  'verminproof', 'nonremovable', 'noncurrent', 'nonoverloading',
+  'semirecessed', 'unventilated', 'unplated',
+  'belleville', 'Belleville', 'lexan', 'Lexan', 'portland', 'Portland',
+  // Additional frequent FPs from corpus mining
+  'flanged', 'arresters', 'arrester', 'gage',
+  'workability', 'diabase', 'windings',
+  'tricalcium', 'aluminate', 'debonded', 'rebending',
+  'presoak', 'presaturate', 'topsoiling', 'sprigging',
+  'predrilled', 'predrilling', 'sleeving', 'reweld',
 ];
 
 // Harper rules to disable for construction specification text
@@ -124,6 +165,9 @@ export async function checkGrammar(plainText, blockId) {
       // Skip alphanumeric reference designators (ASTM D4829, AASHTO T99, etc.)
       // Pattern: optional letters followed by digits (and more alphanumeric/hyphens)
       if (/^[A-Z]{0,4}\d[\w-]*$/i.test(problemText)) continue;
+
+      // Skip single-character matches (list labels like "a.", "s", ordinal fragments)
+      if (problemText.length <= 1) continue;
 
       const suggestions = lint.suggestions();
       const hasSuggestion = suggestions.length > 0;
