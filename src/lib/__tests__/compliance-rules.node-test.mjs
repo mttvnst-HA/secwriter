@@ -41,7 +41,7 @@ function buildRules() {
       pattern = new RegExp(`\\b${escaped}${endsWithWord ? '\\b' : ''}`, 'gi');
     }
     rules.push({
-      id: `TERM-${String(i + 1).padStart(3, '0')}`,
+      id: entry.ruleId || `TERM-${String(i + 1).padStart(3, '0')}`,
       category: 'prohibited-term',
       severity: 'high',
       pattern,
@@ -77,7 +77,7 @@ function buildRules() {
   rulesData.prohibitedSymbols.forEach((entry, i) => {
     if (['-', '/', 'x', '+', "'", '"'].includes(entry.symbol)) return; // too many false positives
     rules.push({
-      id: `SYM-${String(i + 1).padStart(3, '0')}`,
+      id: entry.ruleId || `SYM-${String(i + 1).padStart(3, '0')}`,
       category: 'prohibited-symbol',
       severity: 'medium',
       pattern: new RegExp(escapeRegex(entry.symbol), 'g'),
@@ -240,16 +240,16 @@ describe('note block exclusion', () => {
 
 describe('false positive regression', () => {
   const cases = [
-    ['Perform the installation.', 'TERM-004', 'per inside Perform'],
-    ['The property owner agrees.', 'TERM-004', 'per inside property'],
-    ['Temperature not exceed 100 F.', 'TERM-004', 'per inside Temperature'],
-    ['50 parts per million.', 'TERM-004', 'per million'],
-    ['120 pounds per cubic foot.', 'TERM-004', 'per cubic foot'],
+    ['Perform the installation.', 'TERM-per', 'per inside Perform'],
+    ['The property owner agrees.', 'TERM-per', 'per inside property'],
+    ['Temperature not exceed 100 F.', 'TERM-per', 'per inside Temperature'],
+    ['50 parts per million.', 'TERM-per', 'per million'],
+    ['120 pounds per cubic foot.', 'TERM-per', 'per cubic foot'],
     ['The Contractor is responsible.', 'CAP-Contract', 'Contractor ≠ Contract'],
     ['Notify the Contracting Officer.', 'CAP-Contract', 'Contracting ≠ Contract'],
     ['Each subcontractor must comply.', 'CAP-Contract', 'subcontractor ≠ contract'],
     ['Per the Contract requirements.', 'CAP-Contract', 'Contract capitalized'],
-    ['The company provides materials.', 'TERM-006', 'any inside company'],
+    ['The company provides materials.', 'TERM-any', 'any inside company'],
     ['The bridge deck is thick.', 'COLLOQ-deck', 'bridge deck legit'],
     ['Government-furnished equipment.', 'CAP-Government', 'Government capitalized'],
     ['Provide [any suitable material].', 'TERM-', 'brackets exclude'],

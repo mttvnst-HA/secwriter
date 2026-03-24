@@ -44,7 +44,7 @@ function buildFixFunction(entry) {
 
   // Simple word-for-word replacements
   const simpleReplacements = {
-    'per': (text) => text.replace(/\bper\b(?!\s*(cent|annum|capita|diem|se\b|hour|min|second|day|week|month|year|cubic|sq|linear|foot|feet|inch|yard|mile|meter|metre|liter|litre|gal|pound|ton|acre|hectare|km|mph|psf|psi|pcf|plf|ksf|ksi|kcf|klf|mil))/gi, 'in accordance with'),
+    'per': (text) => text.replace(/\bper\b(?!\s*(cent|annum|capita|diem|se\b|hour|min|second|day|week|month|year|cubic|sq|square|linear|foot|feet|inch|yard|mile|meter|metre|liter|litre|gal|pound|ton|acre|hectare|km|mph|psf|psi|pcf|plf|ksf|ksi|kcf|klf|mil|floor|person|channel|lamp|luminaire|fixture|unit|circuit|phase|zone|room|cell|bay|sack|kit|interval|\d))/gi, 'in accordance with'),
     'etc.': null, // needs manual enumeration — can't auto-fix
     'any': null, // needs context to determine specificity
     'and/or': (text) => text.replace(/\band\/or\b/gi, 'or'),
@@ -118,10 +118,10 @@ function buildSymbolPattern(entry) {
 
   // These symbols are too common as normal characters — need context patterns
   const contextPatterns = {
-    // Match % only when preceded by a number: "50%" → "50 percent"
-    '%': /(\d)\s*%/g,
-    // Match # only when used as "pound" or "number": "#10" or "10#"
-    '#': /(?:\b(\d+)\s*#|#\s*(\d+)\b)/g,
+    // Match % when preceded by a number ("50%") OR used as a standalone word-adjacent symbol ("% of")
+    '%': /(\d)\s*%|%\s*(?=\w)/g,
+    // Match # when adjacent to digits ("#10", "10#") OR used as abbreviation ("model #", "item #", "# of")
+    '#': /(?:\b(\d+)\s*#|#\s*(\d+)\b|\b\w+\s+#(?:\s|,|$)|#\s*(?=\w))/g,
     // Match ° only when preceded by a number: "90°" → "90 degrees"
     '°': /(\d)\s*°/g,
     // Match & only between words: "sand & gravel"
@@ -162,7 +162,7 @@ export function buildRules() {
       // Still add as a rule but with very specific patterns
       if (term === 'to be') {
         rules.push({
-          id: `TERM-${String(i + 1).padStart(3, '0')}`,
+          id: entry.ruleId || `TERM-${String(i + 1).padStart(3, '0')}`,
           category: 'prohibited-term',
           severity: 'medium', // downgrade — too many legitimate uses
           pattern: /\bis to be\b|\bare to be\b/gi,
@@ -182,10 +182,10 @@ export function buildRules() {
     if (term === 'per') {
       // Exclude "per" in unit expressions (per hour, per cubic foot, per square meter, etc.)
       // and standard phrases (per cent, per annum, per capita, per diem, per se)
-      pattern = /\bper\b(?!\s*(cent|annum|capita|diem|se\b|hour|min|second|day|week|month|year|cubic|sq|linear|foot|feet|inch|yard|mile|meter|metre|liter|litre|gal|pound|ton|acre|hectare|km|mph|psf|psi|pcf|plf|ksf|ksi|kcf|klf|mil))/gi;
+      pattern = /\bper\b(?!\s*(cent|annum|capita|diem|se\b|hour|min|second|day|week|month|year|cubic|sq|square|linear|foot|feet|inch|yard|mile|meter|metre|liter|litre|gal|pound|ton|acre|hectare|km|mph|psf|psi|pcf|plf|ksf|ksi|kcf|klf|mil|floor|person|channel|lamp|luminaire|fixture|unit|circuit|phase|zone|room|cell|bay|sack|kit|interval|\d))/gi;
     } else if (term === 'any') {
-      // "any" at start of a requirement clause — not in "any of the following"
-      pattern = /\bany\b(?!\s*(of the following|one of|other))/gi;
+      // "any" as indefinite — not as standard determiner (any portion, any point, any three, any control)
+      pattern = /\bany\b(?!\s*(of the following|of these|one of|other|portion|point|time|three|four|two|\d|control|additional|remaining|existing|adjacent|individual|particular|single|given))/gi;
     } else {
       // For terms ending with non-word chars (e.g., "etc."), don't use trailing \b
       const escaped = escapeRegex(term);
@@ -194,7 +194,7 @@ export function buildRules() {
     }
 
     rules.push({
-      id: `TERM-${String(i + 1).padStart(3, '0')}`,
+      id: entry.ruleId || `TERM-${String(i + 1).padStart(3, '0')}`,
       category: 'prohibited-term',
       severity: 'high',
       pattern,
@@ -211,7 +211,7 @@ export function buildRules() {
     if (!pattern) return; // skip symbols that can't be reliably detected
 
     rules.push({
-      id: `SYM-${String(i + 1).padStart(3, '0')}`,
+      id: entry.ruleId || `SYM-${String(i + 1).padStart(3, '0')}`,
       category: 'prohibited-symbol',
       severity: 'medium',
       pattern,
@@ -225,11 +225,14 @@ export function buildRules() {
 
   // ── Vague Terms (medium severity, fix: null → AI) ──
   // Only add if not already covered by prohibitedTerms
-  rulesData.vagueTerms.forEach((term, i) => {
+  // Supports both string format ("term") and object format ({term, ruleId})
+  rulesData.vagueTerms.forEach((entry, i) => {
+    const term = typeof entry === 'string' ? entry : entry.term;
+    const ruleId = (typeof entry === 'object' && entry.ruleId) || `VAGUE-${String(i + 1).padStart(3, '0')}`;
     if (seenTerms.has(term.toLowerCase())) return; // dedup
 
     rules.push({
-      id: `VAGUE-${String(i + 1).padStart(3, '0')}`,
+      id: ruleId,
       category: 'vague-language',
       severity: 'medium',
       pattern: new RegExp(`\\b${escapeRegex(term)}\\b`, 'gi'),
@@ -403,11 +406,59 @@ export function runStaticRules(plainText, blockId, rules, options = {}) {
         continue;
       }
 
-      // Skip "bridge deck", "deck plate" etc. — legitimate civil engineering terms
+      // Skip "bridge deck", "deck plate", "concrete deck", "roof deck" etc. — legitimate civil engineering terms
       if (rule.id === 'COLLOQ-deck') {
-        const before = plainText.slice(Math.max(0, matchStart - 10), matchStart).toLowerCase();
+        const before = plainText.slice(Math.max(0, matchStart - 15), matchStart).toLowerCase();
         const after = plainText.slice(matchEnd, matchEnd + 10).toLowerCase();
-        if (before.includes('bridge') || after.match(/^\s*(plate|drain|coating|slab)/)) continue;
+        if (before.match(/bridge|concrete|roof|steel/) || after.match(/^\s*(plate|drain|coating|slab)/)) continue;
+      }
+
+      // Skip engineering uses of "head": bolt head, shower head, cutting head, etc.
+      // Only flag standalone "head" meaning "toilet" (naval colloquial)
+      if (rule.id === 'COLLOQ-head') {
+        const before = plainText.slice(Math.max(0, matchStart - 20), matchStart).toLowerCase();
+        const after = plainText.slice(matchEnd, matchEnd + 15).toLowerCase();
+        if (before.match(/bolt|shower|screw|cutting|spanner|washer|square|finished-?|cast-?brass|static|pile|dead|pressure|pump|suction|discharge|net positive|total dynamic|friction/) ||
+            after.match(/^\s*(screw|bolt|nut|cap|face|plate|anchor|mount|room|loss|pressure|wall|space|pin|rail)/)) continue;
+        // Also skip "head in feet" (hydraulic head measurement)
+        if (after.match(/^\s*in\s*(feet|meters|metres|inches|mm|m\b)/)) continue;
+      }
+
+      // Skip "should" when it appears inside quotes (meta-text discussing the word itself)
+      // e.g., 'interpret the word "should" as "must"'
+      if (rule.id === 'TERM-should') {
+        const before = plainText.slice(Math.max(0, matchStart - 5), matchStart);
+        const after = plainText.slice(matchEnd, matchEnd + 5);
+        // Check if surrounded by quotes (straight or curly)
+        if (/[""\u201c]\s*$/.test(before) && /^\s*[""\u201d]/.test(after)) continue;
+      }
+
+      // Skip "suitable for [specific criteria]" and ALL CAPS "SUITABLE" (nameplate markings)
+      if (rule.id === 'TERM-suitable') {
+        const after = plainText.slice(matchEnd, matchEnd + 30).toLowerCase();
+        // "suitable for a 3/4 inch", "suitable for the pressure", "suitable for type of"
+        if (after.match(/^\s*for\s+(a |the |type |non-|use )/)) continue;
+        // "UL listed as suitable for" — specific listing context
+        const before = plainText.slice(Math.max(0, matchStart - 20), matchStart).toLowerCase();
+        if (before.match(/listed as\s*$/)) continue;
+        // ALL CAPS context (nameplate marking: "SUITABLE FOR NON-LINEAR LOADS")
+        if (match[0] === match[0].toUpperCase()) continue;
+      }
+
+      // Skip "&" in standard abbreviations (P & T, NEMA TC 6 & 8) and organization names
+      // The match includes surrounding words (e.g., "P & T"), so check the match itself
+      if (rule.id === 'SYM-and') {
+        const m = match[0];
+        const parts = m.split(/\s*&\s*/);
+        // Skip if both sides of & start with uppercase/digit: "P & T", "6 & 8", "Control & Hydraulic"
+        if (parts.length === 2 && /^[A-Z0-9]/.test(parts[0]) && /^[A-Z0-9]/.test(parts[1])) continue;
+      }
+
+      // Skip "contract documents", "contract price", "subcontract" etc. — lowercase "contract" as common noun/adjective
+      if (rule.id === 'CAP-Contract') {
+        const before = plainText.slice(Math.max(0, matchStart - 15), matchStart).toLowerCase();
+        const after = plainText.slice(matchEnd, matchEnd + 20).toLowerCase();
+        if (before.match(/sub/) || after.match(/^\s*(document|price|specification|amount|sum|period|time|item|clause|requirement|completion|award|work|administration|file|number|drawing|plan)/)) continue;
       }
 
       // Extract surrounding sentence context (±60 chars)
