@@ -1,0 +1,75 @@
+{
+  "summary": {
+    "correct": 146,
+    "total": 150,
+    "accuracy": 0.9733333333333334
+  },
+  "byCategory": {
+    "false-positive-trap": {
+      "correct": 54,
+      "total": 54
+    },
+    "true-positive": {
+      "correct": 42,
+      "total": 43
+    },
+    "borderline-compliance": {
+      "correct": 12,
+      "total": 13
+    },
+    "nlp-ambiguity": {
+      "correct": 28,
+      "total": 30
+    },
+    "domain-jargon-trap": {
+      "correct": 10,
+      "total": 10
+    }
+  },
+  "failures": [
+    {
+      "id": "ADV-029",
+      "category": "nlp-ambiguity",
+      "text": "The pipe is installed by the Contractor in accessible locations.",
+      "ruleId": "NLP-PASSIVE-001",
+      "shouldFlag": true,
+      "actuallyFlagged": false,
+      "reason": "'is installed by' — clear passive voice with agent ('by the Contractor'). 'installed' is NOT in ENGINEERING_ADJECTIVES. Should flag.",
+      "findings": []
+    },
+    {
+      "id": "ADV-038",
+      "category": "nlp-ambiguity",
+      "text": "The laminated beam is manufactured off-site and delivered to the project.",
+      "ruleId": "NLP-PASSIVE-001",
+      "shouldFlag": true,
+      "actuallyFlagged": false,
+      "reason": "'is manufactured' — passive voice. 'manufactured' is NOT in ENGINEERING_ADJECTIVES. Engine should flag the passive.",
+      "findings": []
+    },
+    {
+      "id": "ADV-066",
+      "category": "borderline-compliance",
+      "text": "Properly aligned as verified by transit survey to within 3 mm tolerance.",
+      "ruleId": "TERM-adequate",
+      "shouldFlag": true,
+      "actuallyFlagged": false,
+      "reason": "'properly' — TERM-adequate/VAGUE matches. Even though specific verification method and tolerance are stated, 'properly' itself triggers the rule.",
+      "findings": [
+        "TERM-properly"
+      ]
+    },
+    {
+      "id": "ADV-122",
+      "category": "true-positive",
+      "text": "Test each interval per the inspection schedule.",
+      "ruleId": "TERM-per",
+      "shouldFlag": false,
+      "actuallyFlagged": true,
+      "reason": "'per the' is NOT in the exclusion list — but wait, 'the' is not a unit. This is 'per' meaning 'in accordance with'. Let me check: the exclusion is a lookahead, 'the' is not in it. This WILL flag.",
+      "findings": [
+        "TERM-per"
+      ]
+    }
+  ]
+}

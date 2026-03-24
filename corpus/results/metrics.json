@@ -1,0 +1,232 @@
+{
+  "generated": "2026-03-24T03:05:10.962Z",
+  "corpusSize": {
+    "calibration": 2583,
+    "clean": 2583,
+    "dirty": 644
+  },
+  "calibration": {},
+  "precision": {
+    "NLP-PASSIVE-001": {
+      "tested": 2583,
+      "falsePositives": 331,
+      "precision": 0.8718544328300426
+    },
+    "VAGUE-applicable": {
+      "tested": 2583,
+      "falsePositives": 3,
+      "precision": 0.9988385598141696
+    },
+    "TERM-adequate": {
+      "tested": 2583,
+      "falsePositives": 2,
+      "precision": 0.9992257065427798
+    },
+    "TERM-oicc": {
+      "tested": 2583,
+      "falsePositives": 1,
+      "precision": 0.9996128532713898
+    },
+    "TERM-conforming-to": {
+      "tested": 2583,
+      "falsePositives": 1,
+      "precision": 0.9996128532713898
+    },
+    "TERM-per": {
+      "tested": 2583,
+      "falsePositives": 1,
+      "precision": 0.9996128532713898
+    }
+  },
+  "recall": {
+    "CAP-Contract": {
+      "actualId": "CAP-Contract",
+      "injected": 1,
+      "detected": 1,
+      "recall": 1
+    },
+    "CAP-Contractor": {
+      "actualId": "CAP-Contractor",
+      "injected": 8,
+      "detected": 7,
+      "recall": 0.875
+    },
+    "CAP-Government": {
+      "actualId": "CAP-Government",
+      "injected": 8,
+      "detected": 8,
+      "recall": 1
+    },
+    "COLLOQ-furnish": {
+      "actualId": "TERM-furnish",
+      "injected": 21,
+      "detected": 19,
+      "recall": 0.9047619047619048
+    },
+    "FMT-002": {
+      "actualId": "FMT-002",
+      "injected": 21,
+      "detected": 21,
+      "recall": 1
+    },
+    "GRAMMAR-Agreement": {
+      "actualId": "GRAMMAR-Agreement",
+      "injected": 50,
+      "detected": 28,
+      "recall": 0.56
+    },
+    "GRAMMAR-Spelling": {
+      "actualId": "GRAMMAR-Spelling",
+      "injected": 75,
+      "detected": 70,
+      "recall": 0.9333333333333333
+    },
+    "NLP-INDICATIVE-001": {
+      "actualId": "NLP-INDICATIVE-001",
+      "injected": 41,
+      "detected": 23,
+      "recall": 0.5609756097560976
+    },
+    "NLP-PASSIVE-001": {
+      "actualId": "NLP-PASSIVE-001",
+      "injected": 82,
+      "detected": 60,
+      "recall": 0.7317073170731707
+    },
+    "SYM-001": {
+      "actualId": "SYM-percent",
+      "injected": 3,
+      "detected": 3,
+      "recall": 1
+    },
+    "SYM-002": {
+      "actualId": "SYM-pound",
+      "injected": 6,
+      "detected": 6,
+      "recall": 1
+    },
+    "SYM-013": {
+      "actualId": "SYM-and",
+      "injected": 30,
+      "detected": 20,
+      "recall": 0.6666666666666666
+    },
+    "TERM-001": {
+      "actualId": "TERM-shall",
+      "injected": 74,
+      "detected": 72,
+      "recall": 0.972972972972973
+    },
+    "TERM-002": {
+      "actualId": "TERM-should",
+      "injected": 28,
+      "detected": 28,
+      "recall": 1
+    },
+    "TERM-004": {
+      "actualId": "TERM-per",
+      "injected": 6,
+      "detected": 6,
+      "recall": 1
+    },
+    "TERM-006": {
+      "actualId": "TERM-any",
+      "injected": 36,
+      "detected": 33,
+      "recall": 0.9166666666666666
+    },
+    "TERM-010": {
+      "actualId": "TERM-and-or",
+      "injected": 38,
+      "detected": 38,
+      "recall": 1
+    },
+    "TERM-013": {
+      "actualId": "TERM-to-be",
+      "injected": 26,
+      "detected": 21,
+      "recall": 0.8076923076923077
+    },
+    "TERM-017": {
+      "actualId": "TERM-as-necessary",
+      "injected": 16,
+      "detected": 6,
+      "recall": 0.375
+    },
+    "TERM-023": {
+      "actualId": "TERM-securely",
+      "injected": 5,
+      "detected": 5,
+      "recall": 1
+    },
+    "TERM-024": {
+      "actualId": "TERM-thoroughly",
+      "injected": 4,
+      "detected": 4,
+      "recall": 1
+    },
+    "TERM-025": {
+      "actualId": "TERM-carefully",
+      "injected": 3,
+      "detected": 3,
+      "recall": 1
+    },
+    "TERM-028": {
+      "actualId": "TERM-etc",
+      "injected": 31,
+      "detected": 25,
+      "recall": 0.8064516129032258
+    },
+    "TERM-032": {
+      "actualId": "TERM-conforming-to",
+      "injected": 6,
+      "detected": 3,
+      "recall": 0.5
+    },
+    "VAGUE-001": {
+      "actualId": "TERM-suitable",
+      "injected": 12,
+      "detected": 12,
+      "recall": 1
+    },
+    "VAGUE-002": {
+      "actualId": "TERM-adequate",
+      "injected": 9,
+      "detected": 9,
+      "recall": 1
+    },
+    "VAGUE-003": {
+      "actualId": "TERM-properly",
+      "injected": 13,
+      "detected": 2,
+      "recall": 0.15384615384615385
+    }
+  },
+  "adversarial": {
+    "false-positive-trap": {
+      "total": 54,
+      "correct": 54,
+      "accuracy": 1
+    },
+    "true-positive": {
+      "total": 43,
+      "correct": 42,
+      "accuracy": 0.9767441860465116
+    },
+    "borderline-compliance": {
+      "total": 13,
+      "correct": 12,
+      "accuracy": 0.9230769230769231
+    },
+    "nlp-ambiguity": {
+      "total": 30,
+      "correct": 28,
+      "accuracy": 0.9333333333333333
+    },
+    "domain-jargon-trap": {
+      "total": 10,
+      "correct": 10,
+      "accuracy": 1
+    }
+  }
+}

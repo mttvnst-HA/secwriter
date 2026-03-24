@@ -6,5 +6,20 @@ dist/
 test-results/
 playwright-report/
 
-# Corpus test data (large, generated)
-corpus/
+# Corpus intermediate/transient files (regenerable)
+corpus/clean/responses/
+corpus/clean/*_progress.json
+corpus/clean/*_clean.json
+!corpus/clean/all_clean.json
+corpus/dirty/responses/
+corpus/dirty/*_inject_progress.json
+corpus/dirty/*_dirty_validated.json
+corpus/dirty/*_dirty.json
+!corpus/dirty/all_dirty.json
+corpus/dirty/*_batch*_debug.txt
+corpus/calibration/[0-9]*
+!corpus/calibration/all_calibration.json
+corpus/prompts/
+corpus/results/fp-blocks-for-audit.json
+corpus/results/fp-audit-results.json
+corpus/results/injection-failures.json

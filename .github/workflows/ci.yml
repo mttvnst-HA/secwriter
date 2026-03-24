@@ -26,7 +26,6 @@ jobs:
 
       - name: Corpus tests (17 tests, Node runner)
         run: npm run test:corpus
-        continue-on-error: true  # Corpus data not committed to git
 
   e2e-tests:
     name: Playwright E2E Tests

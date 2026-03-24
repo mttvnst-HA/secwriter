@@ -1,0 +1,1667 @@
+{
+  "metadata": {
+    "description": "Adversarial corpus for SIM compliance/grammar testing (Phase 3.5)",
+    "version": "2.0.0",
+    "generated": "2026-03-23",
+    "totalEntries": 150,
+    "categories": {
+      "false-positive-trap": 54,
+      "borderline-compliance": 13,
+      "nlp-ambiguity": 30,
+      "true-positive": 43,
+      "domain-jargon-trap": 10
+    }
+  },
+  "entries": [
+    {
+      "id": "ADV-001",
+      "text": "The contract documents specify the required concrete strength.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract documents' — compound noun phrase is legitimate lowercase usage."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-002",
+      "text": "Submit contract specifications to the Contracting Officer for review.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract specification(s)' — compound noun phrase is legitimate lowercase usage."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-003",
+      "text": "The subcontract requirements are defined in Division 01.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract exclusion: 'sub' precedes 'contract' — before-text check catches 'subcontract'."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-004",
+      "text": "Install P & T relief valves on all water heaters.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "SYM-and",
+        "reason": "SYM-and matches & between words. 'P & T' is a standard abbreviation (Pressure & Temperature) — real FP found 5x in clean corpus."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-005",
+      "text": "The Instrumentation & Control system conforms to ASHRAE standards.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "SYM-and",
+        "reason": "SYM-and has no proper-name exclusion for & in organization names. Real FP from clean corpus."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-006",
+      "text": "Install head pressure gauges at each pump discharge.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "COLLOQ-head",
+        "reason": "COLLOQ-head has NO compound-term exclusion for 'head pressure'. Simple \\bhead\\b matches. Real FP (17 in clean corpus)."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-007",
+      "text": "Provide shower head assemblies conforming to the flow rate requirements.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "COLLOQ-head",
+        "reason": "COLLOQ-head has no exclusion for 'shower head'. Will flag despite being standard plumbing terminology."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-008",
+      "text": "Maintain minimum headroom of 2100 mm in all corridors.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "COLLOQ-head",
+        "reason": "'headroom' is a single word — \\bhead\\b won't match inside it because 'r' follows 'head' without a word boundary."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-009",
+      "text": "Calculate head loss through the piping system per ASHRAE Fundamentals.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "COLLOQ-head",
+        "reason": "COLLOQ-head will match 'head' even though 'head loss' is standard hydraulic engineering terminology. No context exclusion exists."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-010",
+      "text": "Spray heads must be UL listed and FM approved.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "COLLOQ-head",
+        "reason": "'heads' (plural) — \\bhead\\b will NOT match 'heads' because 's' follows without a word boundary."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-011",
+      "text": "Perform testing per ASTM C150 requirements.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-per",
+        "reason": "'per ASTM' — not in the exclusion list. UFS requires 'in accordance with'. This IS a true positive."
+      },
+      "difficulty": "borderline",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-012",
+      "text": "Apply coating at a rate of 3 liters per square meter.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per square' — the exclusion now covers 'square' in addition to 'sq'. This should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-013",
+      "text": "The flow rate is 5 gallons per minute.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per min' is in the exclusion list — this should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-014",
+      "text": "Concrete strength must reach 4000 psi per the approved mix design.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-per",
+        "reason": "'per the' is NOT in the exclusion list. 'per the [noun]' means 'in accordance with' — this IS a valid TERM-per violation."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-015",
+      "text": "Install one unit per floor in buildings over three stories.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per floor' — 'floor' is now in the exclusion list. Valid rate expression should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-016",
+      "text": "The capacity is 500 watts per channel.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per channel' — 'channel' is now in the exclusion list. Valid rate expression should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-017",
+      "text": "Ventilation rate of 15 CFM per person is required.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per person' — 'person' is now in the exclusion list. Valid rate expression should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-018",
+      "text": "Install expansion joints at intervals per the manufacturer recommendations.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-per",
+        "reason": "'per the manufacturer' = 'in accordance with the manufacturer'. This IS a valid TERM-per violation per UFS."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-019",
+      "text": "Any of the following adhesives may be used for this application.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-any",
+        "reason": "'any of the following' is in the exclusion list — should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-020",
+      "text": "Any one of the listed manufacturers is acceptable.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-any",
+        "reason": "'any one of' is in the exclusion list — should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-021",
+      "text": "Do not use any solvent-based coatings in occupied spaces.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-any",
+        "reason": "'any solvent-based' — 'solvent-based' doesn't match exclusion patterns (of the following|one of|other). This WILL flag."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-022",
+      "text": "Remove any debris from the excavation before placing concrete.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-any",
+        "reason": "'any debris' does not match exclusion. Will flag despite 'any' being a normal determiner here."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-023",
+      "text": "Provide any other submittals required by the referenced standards.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-any",
+        "reason": "'any other' IS in the exclusion list — should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-024",
+      "text": "Use galvanized steel fasteners for all exterior connections.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'galvanized' is a past participle used as adjective modifying 'steel'. No 'be' auxiliary — should NOT trigger passive voice."
+      },
+      "difficulty": "easy",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-025",
+      "text": "The steel is galvanized to ASTM A123 requirements.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is galvanized' — now excluded by ENGINEERING_ADJECTIVES set. 'galvanized' is recognized as a state description, not passive voice."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-026",
+      "text": "The reinforced concrete foundation extends 1200 mm below grade.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'reinforced' is an adjective modifying 'concrete'. No 'be' verb — should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-027",
+      "text": "The concrete is reinforced with Grade 60 rebar.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is reinforced' — now excluded by ENGINEERING_ADJECTIVES set. 'reinforced' describes a material state, not passive action."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-028",
+      "text": "The pipe is insulated with 25 mm thick fiberglass.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is insulated' — now excluded by ENGINEERING_ADJECTIVES set. 'insulated' describes a material state."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-029",
+      "text": "The pipe is installed by the Contractor in accessible locations.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is installed by' — clear passive voice with agent ('by the Contractor'). 'installed' is NOT in ENGINEERING_ADJECTIVES. Should flag."
+      },
+      "difficulty": "easy",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-030",
+      "text": "Preformed joint filler conforms to ASTM D1751.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'Preformed' is an adjective, not a passive construction. No 'be' verb present."
+      },
+      "difficulty": "easy",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-031",
+      "text": "Use tempered glass for all exterior glazing above 600 mm.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'tempered' is an attributive adjective. No 'be' auxiliary — should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-032",
+      "text": "The ductwork is connected to the air handling unit.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is connected' — now excluded by ENGINEERING_ADJECTIVES set. 'connected' describes a state of the ductwork."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-033",
+      "text": "Welded connections are preferred for high-pressure systems.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'are preferred' — passive voice. 'preferred' is NOT in ENGINEERING_ADJECTIVES. Engine should flag."
+      },
+      "difficulty": "medium",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-034",
+      "text": "The embedded anchor bolts extend 300 mm into the concrete.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'embedded' is an attributive adjective modifying 'anchor bolts'. No 'be' verb."
+      },
+      "difficulty": "easy",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-035",
+      "text": "The bolts are embedded 300 mm into the concrete foundation.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'are embedded' — now excluded by ENGINEERING_ADJECTIVES set. 'embedded' describes a physical state of the bolts."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-036",
+      "text": "Coated rebar is required for all bridge deck applications.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is required' — now excluded by ENGINEERING_ADJECTIVES set. 'required' is in the set as an engineering state adjective."
+      },
+      "difficulty": "medium",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-037",
+      "text": "The painted surface is inspected visually for defects.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is inspected' — passive voice. 'inspected' is NOT in ENGINEERING_ADJECTIVES. Engine should flag. 'painted' is just an adjective."
+      },
+      "difficulty": "medium",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-038",
+      "text": "The laminated beam is manufactured off-site and delivered to the project.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is manufactured' — passive voice. 'manufactured' is NOT in ENGINEERING_ADJECTIVES. Engine should flag the passive."
+      },
+      "difficulty": "medium",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-039",
+      "text": "The Contractor shall submit shop drawings within 30 days.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-shall",
+        "reason": "Clear 'shall' violation. Must be caught."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-040",
+      "text": "Materials shall conform to ASTM C150 and be stored in a dry location.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-shall",
+        "reason": "'shall' in mid-sentence — must be caught. Fix should attempt 'The Contractor shall' rewrite but this pattern won't match."
+      },
+      "difficulty": "medium",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-041",
+      "text": "Sand & gravel aggregates conform to ASTM C33.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "SYM-and",
+        "reason": "'&' between words — SYM-and pattern \\b(\\w+)\\s*&\\s*(\\w+)\\b matches. Must be caught."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-042",
+      "text": "The compressive strength is 4000 psi at 28 days, etc.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-etc",
+        "reason": "'etc.' — TERM-etc matches \\betc\\.\\b pattern. Must be caught."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-043",
+      "text": "The Contractor and/or subcontractor is responsible for testing.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-and-or",
+        "reason": "'and/or' — TERM-007 must catch. Replace with 'or'."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-044",
+      "text": "Furnish and install all HVAC equipment in accordance with the drawings.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-furnish",
+        "reason": "'Furnish' (case-insensitive \\bfurnish\\b) — must be caught. Replace with 'provide'."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-045",
+      "text": "The concrete should reach design strength before form removal.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-should",
+        "reason": "'should' in a non-note block — TERM-002 must catch."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-046",
+      "text": "Apply waterproofing per manufacturer instructions.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-per",
+        "reason": "'per manufacturer' — 'manufacturer' not in exclusion list. Must flag."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-047",
+      "text": "The test result is 50% of the design capacity.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "SYM-percent",
+        "reason": "'50%' — SYM-percent pattern (\\d)\\s*% matches. Replace with 'percent'."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-048",
+      "text": "Torque bolts to 150 ft–lbs minimum.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "FMT-002",
+        "reason": "En-dash (\\u2013) in 'ft–lbs' — FMT-002 catches [\\u2013\\u2014]. Replace with hyphen."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-049",
+      "text": "The Contractor must provide all temporary utilities.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-contractor-must-provide",
+        "reason": "'Contractor must provide' — TERM-003 exact match. Replace with 'Provide'."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-050",
+      "text": "Install expansion joints as necessary along the building perimeter.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-as-necessary",
+        "reason": "'as necessary' — TERM-017 exact match."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-051",
+      "text": "Fasten all components securely to the structural frame.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-securely",
+        "reason": "'securely' — TERM-023 vague term. Must flag."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-052",
+      "text": "Clean all surfaces thoroughly before applying primer.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-thoroughly",
+        "reason": "'thoroughly' — TERM-024 vague term. Must flag."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-053",
+      "text": "Select a finish suitable for exterior exposure.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-suitable",
+        "reason": "'suitable' — TERM-suitable vague term. Must flag."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-054",
+      "text": "The temperature is 90°F at time of placement.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "SYM-degree",
+        "reason": "'90°' — SYM-005 pattern (\\d)\\s*° matches. Replace with 'degrees'."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-055",
+      "text": "Provide #4 rebar at 300 mm spacing.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "SYM-pound",
+        "reason": "'#4' — SYM-pound pattern matches # adjacent to digits. Replace with 'number'."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-056",
+      "text": "Use per cent as the unit for all mix proportions.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "FMT-004",
+        "reason": "'per cent' — both FMT-004 and TERM-per exclusion (per cent) apply. FMT-004 catches it. TERM-per should NOT also flag."
+      },
+      "difficulty": "medium",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-057",
+      "text": "“Type A” adhesive conforming to ASTM standards.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "FMT-003",
+        "reason": "Smart quotes \\u201C and \\u201D — FMT-003 catches. Replace with straight quotes."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-058",
+      "text": "Government-furnished equipment is delivered to the site by others.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Government",
+        "reason": "'Government' IS capitalized correctly — CAP-Government only matches lowercase 'government'. This should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-059",
+      "text": "Contractor-provided materials conform to the specifications.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contractor",
+        "reason": "'Contractor' IS capitalized correctly — CAP-Contractor only matches lowercase 'contractor'. Should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-060",
+      "text": "The general contractor coordinates with all subcontractors.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contractor",
+        "reason": "lowercase 'contractor' in 'general contractor' — CAP-Contractor regex (?<![A-Za-z])contractor(?![A-Za-z]) matches because space precedes 'contractor'. Real FP: 'general contractor' is a common noun phrase."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-061",
+      "text": "The concrete deck surface is finished to a tolerance of 3 mm in 3 m.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "COLLOQ-deck",
+        "reason": "COLLOQ-deck now excludes 'concrete deck' — before-text check catches 'concrete' preceding 'deck'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-062",
+      "text": "The bridge deck overlay is applied after surface preparation.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "COLLOQ-deck",
+        "reason": "COLLOQ-deck exclusion checks 10 chars before match for 'bridge'. 'bridge ' precedes 'deck' — should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-063",
+      "text": "Install deck plate covers over all floor openings.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "COLLOQ-deck",
+        "reason": "COLLOQ-deck exclusion checks 10 chars after match for 'plate|drain|coating|slab'. 'plate' follows 'deck' — should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-064",
+      "text": "The roof deck system provides a minimum R-30 insulation value.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "COLLOQ-deck",
+        "reason": "COLLOQ-deck now excludes 'roof deck' — before-text check catches 'roof' preceding 'deck'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-065",
+      "text": "Suitable for the intended application as defined in ASTM D4263.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-suitable",
+        "reason": "'suitable' — TERM-suitable has no context exclusion. Even with a specific ASTM reference making it arguably precise, the engine flags the word itself."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-066",
+      "text": "Properly aligned as verified by transit survey to within 3 mm tolerance.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-adequate",
+        "reason": "'properly' — TERM-adequate/VAGUE matches. Even though specific verification method and tolerance are stated, 'properly' itself triggers the rule."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-067",
+      "text": "The applicable codes and standards listed in Section 01 42 00 govern.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "VAGUE-applicable",
+        "reason": "'applicable' — VAGUE-applicable matches. Common in specs but technically vague per UFS. Real FP found 3x in clean corpus."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-068",
+      "text": "Coordinate with other trades as necessary to avoid conflicts.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-as-necessary",
+        "reason": "'as necessary' — TERM-017 exact match. Technically a violation even though it's a standard coordination clause."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-069",
+      "text": "Handle materials carefully to prevent damage to finishes.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-carefully",
+        "reason": "'carefully' — TERM-029 matches. Real FP found in clean corpus."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-070",
+      "text": "The system is to be tested before final acceptance.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-to-be",
+        "reason": "'is to be' — TERM-to-be pattern matches. Real finding from clean corpus."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-071",
+      "text": "All connections are to be welded in accordance with AWS D1.1.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-to-be",
+        "reason": "'are to be' — TERM-to-be pattern matches. Common construction spec phrasing."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-072",
+      "text": "As approved by the Contracting Officer, alternative materials may be substituted.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-as-approved-by-co",
+        "reason": "'as approved by the Contracting Officer' — TERM-019 exact match. Real FP from clean corpus."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-073",
+      "text": "Materials conforming to ASTM C33 are acceptable.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-conforming-to",
+        "reason": "'conforming to' — TERM-032 redundant wording. Engine flags despite being standard specs language."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-074",
+      "text": "As directed by the Contracting Officer, modify the work schedule.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-as-directed-by-co",
+        "reason": "'as directed by the Contracting Officer' — TERM-020 exact match. Real FP from clean corpus."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-075",
+      "text": "Use an approved type of waterproofing membrane.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-an-approved-type",
+        "reason": "'an approved type' — TERM-018 exact match. Real FP from clean corpus."
+      },
+      "difficulty": "borderline",
+      "category": "borderline-compliance"
+    },
+    {
+      "id": "ADV-076",
+      "text": "Provide dead head anchors at each end of the tensioning strand.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "COLLOQ-head",
+        "reason": "'head' in 'dead head' — COLLOQ-head has no exclusion for this post-tensioning term. Will flag."
+      },
+      "difficulty": "trap",
+      "category": "domain-jargon-trap"
+    },
+    {
+      "id": "ADV-077",
+      "text": "Maintain minimum static head of 3 meters at the pump suction.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "COLLOQ-head",
+        "reason": "'head' in 'static head' — standard hydraulics term but COLLOQ-head has no exclusion. Will flag."
+      },
+      "difficulty": "trap",
+      "category": "domain-jargon-trap"
+    },
+    {
+      "id": "ADV-078",
+      "text": "The fire sprinkler head spacing conforms to NFPA 13.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "COLLOQ-head",
+        "reason": "'head' in 'sprinkler head' — standard fire protection term but no COLLOQ-head exclusion. Will flag."
+      },
+      "difficulty": "trap",
+      "category": "domain-jargon-trap"
+    },
+    {
+      "id": "ADV-079",
+      "text": "Measure the velocity head and total dynamic head at the pump discharge.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "COLLOQ-head",
+        "reason": "Two 'head' occurrences — 'velocity head' and 'dynamic head'. COLLOQ-head flags both. Standard hydraulic engineering terms."
+      },
+      "difficulty": "trap",
+      "category": "domain-jargon-trap"
+    },
+    {
+      "id": "ADV-080",
+      "text": "The overhead clearance is 2400 mm.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "COLLOQ-head",
+        "reason": "'overhead' — \\bhead\\b won't match inside 'overhead' because there's no word boundary between 'over' and 'head'."
+      },
+      "difficulty": "easy",
+      "category": "domain-jargon-trap"
+    },
+    {
+      "id": "ADV-081",
+      "text": "Furnish and install equipment in accordance with manufacturer instructions.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-furnish",
+        "reason": "'Furnish' — TERM-furnish matches. UFS says use 'provide'. This is the most debated rule because 'furnish and install' is extremely common."
+      },
+      "difficulty": "medium",
+      "category": "domain-jargon-trap"
+    },
+    {
+      "id": "ADV-082",
+      "text": "The moisture content is 12 percent, tested per ASTM D4442.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-per",
+        "reason": "'per ASTM' — not in exclusion list. UFS requires 'in accordance with' even before standard references."
+      },
+      "difficulty": "medium",
+      "category": "domain-jargon-trap"
+    },
+    {
+      "id": "ADV-083",
+      "text": "The bearing capacity is 3000 pounds per square foot.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per square' — the exclusion now covers 'square' in addition to 'sq'. Valid unit expression should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-084",
+      "text": "Apply 2 coats per coat manufacturer recommended thickness.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-per",
+        "reason": "'per coat' — 'coat' not in exclusion list. But this is ambiguous: does 'per' mean 'according to' or 'for each'? UFS says replace regardless."
+      },
+      "difficulty": "borderline",
+      "category": "domain-jargon-trap"
+    },
+    {
+      "id": "ADV-085",
+      "text": "Install bollards at 1500 mm on center.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "No 'per' in this text. Control entry — should produce zero TERM-per violations."
+      },
+      "difficulty": "easy",
+      "category": "domain-jargon-trap"
+    },
+    {
+      "id": "ADV-086",
+      "text": "Design wind load is 100 pounds per square foot at 50-year return interval.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per square' — the exclusion now covers 'square'. Valid engineering unit expression should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-087",
+      "text": "Concrete shall achieve a minimum compressive strength of [27.6 MPa] [4000 psi].",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-shall",
+        "reason": "'shall' OUTSIDE brackets — must flag. The bracketed values should be excluded by bracket exclusion but 'shall' is before the brackets."
+      },
+      "difficulty": "medium",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-088",
+      "text": "Provide [suitable] material for backfill.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-suitable",
+        "reason": "'suitable' is INSIDE brackets — bracket exclusion should skip it."
+      },
+      "difficulty": "medium",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-089",
+      "text": "Use aggregate [per ASTM C33] for concrete mix.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per' is INSIDE brackets — bracket exclusion should skip it."
+      },
+      "difficulty": "medium",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-090",
+      "text": "Provide any fittings [as necessary] for the installation.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-any",
+        "reason": "'any fittings' — 'any' is OUTSIDE brackets and 'fittings' doesn't match exclusions. Will flag. '[as necessary]' is inside brackets and should NOT flag for TERM-017."
+      },
+      "difficulty": "medium",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-091",
+      "text": "The Officer in Charge of Construction approves all submittals.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-oicc",
+        "reason": "'Officer in Charge of Construction' — TERM-010 exact match. Replace with 'Contracting Officer'. Real FP from clean corpus."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-092",
+      "text": "The Contracting Officer Representative reviews the test results.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-cor",
+        "reason": "'Contracting Officer Representative' — TERM-011 exact match. Replace with 'Contracting Officer'."
+      },
+      "difficulty": "easy",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-093",
+      "text": "The per diem rate for inspectors is established by the Contracting Officer.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per diem' is in the exclusion list — should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-094",
+      "text": "The head of the pile is trimmed to the specified elevation.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "COLLOQ-head",
+        "reason": "'head' in 'head of the pile' — standard geotechnical term (pile head) but COLLOQ-head has no exclusion. Will flag."
+      },
+      "difficulty": "trap",
+      "category": "domain-jargon-trap"
+    },
+    {
+      "id": "ADV-095",
+      "text": "The contract price includes all labor, materials, and equipment.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract price' — compound noun phrase is legitimate lowercase usage."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-096",
+      "text": "Review the contract documents before commencing work.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract documents' — legitimate compound noun phrase."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-097",
+      "text": "The total contract amount does not include change orders.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract amount' — legitimate compound noun phrase."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-098",
+      "text": "Submit the subcontract work schedule for approval.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract exclusion: 'sub' precedes 'contract' in 'subcontract work'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-099",
+      "text": "The contract period is 365 calendar days from the notice to proceed.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract period' — after-text check catches 'period'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-100",
+      "text": "Notify the Contracting Officer upon contract award.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract award' — after-text check catches 'award'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-101",
+      "text": "The contract administration office reviews all submittals.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract administration' — after-text check catches 'administration'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-102",
+      "text": "All contract drawings are incorporated by reference.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract drawing(s)' — after-text check catches 'drawing'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-103",
+      "text": "Each contract item is listed in the schedule of prices.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract item' — after-text check catches 'item'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-104",
+      "text": "Include the contract plans in the submittal package.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract plan(s)' — after-text check catches 'plan'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-105",
+      "text": "The contract completion date is established by the notice to proceed.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "CAP-Contract",
+        "reason": "CAP-Contract now excludes 'contract completion' — after-text check catches 'completion'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-106",
+      "text": "Ensure the contract is executed before mobilizing to the site.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contract",
+        "reason": "Bare 'contract' followed by 'is' — not in the compound-noun exclusion list. Engine flags lowercase 'contract'."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-107",
+      "text": "The contract requires a performance bond equal to 100 percent of the contract sum.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contract",
+        "reason": "Two 'contract' occurrences: 'contract requires' — 'requires' not in exclusion list, so first one flags. 'contract sum' — 'sum' IS in exclusion list, so second one should NOT flag."
+      },
+      "difficulty": "edge",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-108",
+      "text": "Reference the contract for applicable liquidated damages provisions.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contract",
+        "reason": "'contract for' — 'for' is not in the exclusion list. Engine flags bare lowercase 'contract'."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-109",
+      "text": "If the contract is modified, resubmit all affected shop drawings.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contract",
+        "reason": "'contract is' — 'is' is not in the compound-noun exclusion. Refers to THE Contract; should be capitalized."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-110",
+      "text": "The contract states that all work is warranted for one year.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contract",
+        "reason": "'contract states' — 'states' not in exclusion list. Refers to THE Contract; should be capitalized."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-111",
+      "text": "Under the contract, the Contractor provides all materials.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contract",
+        "reason": "'the contract,' — no following compound noun. Refers to THE Contract; should be capitalized."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-112",
+      "text": "Amend the contract to reflect the revised scope of work.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contract",
+        "reason": "'the contract to' — 'to' is not in the exclusion list. Refers to THE Contract; should be capitalized."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-113",
+      "text": "Obligations under this contract are binding on all parties.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contract",
+        "reason": "'this contract are' — 'are' not in exclusion list. Refers to THE Contract; should be capitalized."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-114",
+      "text": "No changes to the contract may be made without written authorization.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contract",
+        "reason": "'the contract may' — 'may' not in the exclusion list. Refers to THE Contract; should be capitalized."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-115",
+      "text": "This contract supersedes all prior agreements.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "CAP-Contract",
+        "reason": "'contract supersedes' — not in the exclusion list. Refers to THE Contract; should be capitalized."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-116",
+      "text": "Provide 100 square feet per sack of cement for coverage calculations.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per sack' — 'sack' is now in the exclusion list. Valid rate expression should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-117",
+      "text": "Apply primer at 200 square feet per kit.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per kit' — 'kit' is now in the exclusion list. Valid rate expression should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-118",
+      "text": "The flow rate is 3 gallons per minute at 40 psi.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per minute' — 'min' is in exclusion and 'minute' matches via 'min' prefix. Should NOT flag."
+      },
+      "difficulty": "easy",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-119",
+      "text": "Provide per 100 square feet of floor area as scheduled.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per 100' — 'per + digit' is in the exclusion list (\\d lookahead). Should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-120",
+      "text": "Install one luminaire per 50 square feet of floor area.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per 50' — 'per + digit' exclusion. Should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-121",
+      "text": "The bearing capacity is 2000 pounds per linear foot.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per linear' — 'linear' is in the exclusion list. Valid engineering unit should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-122",
+      "text": "Test each interval per the inspection schedule.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per the' is NOT in the exclusion list — but wait, 'the' is not a unit. This is 'per' meaning 'in accordance with'. Let me check: the exclusion is a lookahead, 'the' is not in it. This WILL flag."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-123",
+      "text": "Mix ratios are established per industry practice.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-per",
+        "reason": "'per industry' — 'industry' is not in the exclusion list. 'per' means 'in accordance with'. Must flag."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-124",
+      "text": "Compact backfill per the geotechnical report recommendations.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-per",
+        "reason": "'per the geotechnical' — 'the' is not in exclusion. 'per' means 'in accordance with'. Must flag."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-125",
+      "text": "Cure concrete per ACI 308 guidelines.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-per",
+        "reason": "'per ACI' — standard org name not in exclusion. 'per' means 'in accordance with'. Must flag."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-126",
+      "text": "Install fasteners per the engineer of record requirements.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "TERM-per",
+        "reason": "'per the engineer' — 'the' is not in the exclusion list. 'per' = 'in accordance with'. Must flag."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-127",
+      "text": "Maintain one fire extinguisher per interval along the corridor.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per interval' — 'interval' is now in the exclusion list. Valid rate expression should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-128",
+      "text": "Provide ventilation at 20 CFM per person in occupied zones.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per person' — 'person' is now in exclusion. Valid rate expression should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-129",
+      "text": "Allocate 2 receptacles per unit in each dwelling.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "TERM-per",
+        "reason": "'per unit' — 'unit' is now in exclusion. Valid rate expression should NOT flag."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-130",
+      "text": "The ceiling is suspended from the structural slab above.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is suspended' — now excluded by ENGINEERING_ADJECTIVES set. 'suspended' describes a physical state (suspended ceiling is standard construction terminology)."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-131",
+      "text": "The beam is cantilevered 3 meters beyond the column line.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is cantilevered' — now excluded by ENGINEERING_ADJECTIVES set. 'cantilevered' describes a structural configuration."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-132",
+      "text": "The coating is anodized to a minimum thickness of 25 microns.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is anodized' — now excluded by ENGINEERING_ADJECTIVES set. 'anodized' describes a surface treatment state."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-133",
+      "text": "The cable is rated for 600 volts.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is rated' — now excluded by ENGINEERING_ADJECTIVES set. 'rated' describes a specification state."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-134",
+      "text": "The panel is listed by UL for the intended application.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is listed' — now excluded by ENGINEERING_ADJECTIVES set. 'listed' describes a certification state."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-135",
+      "text": "The surface is sealed with a penetrating sealer.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is sealed' — now excluded by ENGINEERING_ADJECTIVES set. 'sealed' describes a treatment state."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-136",
+      "text": "The equipment is enclosed in a weatherproof housing.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is enclosed' — now excluded by ENGINEERING_ADJECTIVES set. 'enclosed' describes a physical configuration."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-137",
+      "text": "Each conductor is labeled at both ends.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is labeled' — now excluded by ENGINEERING_ADJECTIVES set. 'labeled' describes an identification state."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-138",
+      "text": "The rebar is coupled using mechanical splices at lap locations.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is coupled' — now excluded by ENGINEERING_ADJECTIVES set. 'coupled' describes a connection state."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-139",
+      "text": "The joint is grouted with non-shrink cementitious grout.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is grouted' — now excluded by ENGINEERING_ADJECTIVES set. 'grouted' describes a fill state."
+      },
+      "difficulty": "hard",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-140",
+      "text": "The test is performed weekly by a certified technician.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is performed' — passive voice with agent ('by a certified technician'). 'performed' is NOT in ENGINEERING_ADJECTIVES. Must flag."
+      },
+      "difficulty": "easy",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-141",
+      "text": "The work is supervised by a licensed professional engineer.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is supervised' — passive voice with agent. 'supervised' is NOT in ENGINEERING_ADJECTIVES. Must flag."
+      },
+      "difficulty": "easy",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-142",
+      "text": "All samples are reviewed and approved by the Contracting Officer.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'are reviewed' — passive voice with agent ('by the Contracting Officer'). 'reviewed' is NOT in ENGINEERING_ADJECTIVES. Must flag."
+      },
+      "difficulty": "easy",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-143",
+      "text": "The excavation is monitored continuously during dewatering operations.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'is monitored' — passive voice. 'monitored' is NOT in ENGINEERING_ADJECTIVES. Must flag."
+      },
+      "difficulty": "medium",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-144",
+      "text": "Load tests are conducted at each pile location.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "NLP-PASSIVE-001",
+        "reason": "'are conducted' — passive voice. 'conducted' is NOT in ENGINEERING_ADJECTIVES. Must flag."
+      },
+      "difficulty": "medium",
+      "category": "nlp-ambiguity"
+    },
+    {
+      "id": "ADV-145",
+      "text": "Install the concrete deck slab in accordance with the structural drawings.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "COLLOQ-deck",
+        "reason": "COLLOQ-deck now excludes 'concrete deck' — before-text check catches 'concrete' preceding 'deck'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-146",
+      "text": "The roof deck is galvanized steel, 22 gauge minimum.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "COLLOQ-deck",
+        "reason": "COLLOQ-deck now excludes 'roof deck' — before-text check catches 'roof' preceding 'deck'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-147",
+      "text": "Provide steel deck with composite concrete fill.",
+      "expected": {
+        "shouldFlag": false,
+        "ruleId": "COLLOQ-deck",
+        "reason": "COLLOQ-deck now excludes 'steel deck' — before-text check catches 'steel' preceding 'deck'."
+      },
+      "difficulty": "trap",
+      "category": "false-positive-trap"
+    },
+    {
+      "id": "ADV-148",
+      "text": "The observation deck provides an unobstructed view of the facility.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "COLLOQ-deck",
+        "reason": "'observation deck' — 'observation' is NOT in the before-text exclusion (bridge|concrete|roof|steel). Colloquial use of 'deck' for a platform. Must flag."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-149",
+      "text": "Level the deck surface to a tolerance of 3 mm per 3 meters.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "COLLOQ-deck",
+        "reason": "Bare 'deck' with no recognized qualifier before or after. Not a technical compound noun — engine flags it."
+      },
+      "difficulty": "standard",
+      "category": "true-positive"
+    },
+    {
+      "id": "ADV-150",
+      "text": "Specify model # for all major equipment items.",
+      "expected": {
+        "shouldFlag": true,
+        "ruleId": "SYM-pound",
+        "reason": "'model #' — SYM-pound now catches bare '#' in contexts like 'model #' and 'item #'. Replace with 'number'."
+      },
+      "difficulty": "edge",
+      "category": "true-positive"
+    }
+  ]
+}
