@@ -268,6 +268,7 @@ Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with
 - **Offset-aware range creation:** `createRangeForMatch()` accepts a `targetOffset` hint from violation engines to disambiguate repeated words (e.g., "the" appearing 5 times — highlights the correct one).
 - **De-duplication:** Grammar findings overlapping >50% with compliance/NLP findings are suppressed (static rules win — they have UFS citations).
 - **Compliance panel collision:** When `CompliancePanel` is open, inline linting is suppressed entirely to avoid double-highlighting.
+- **Context-dependent rule deferral:** Rules that produce false positives requiring sentence-level context (TERM-suitable, TERM-any, TERM-should, VAGUE-applicable) are filtered out of inline linting via `DEFERRED_TO_PANEL` set. They still run in the Compliance Panel where users explicitly request a full scan.
 - **Stale result handling:** Grammar results tagged with text version; discarded if text changed while Worker was processing.
 - **Bad suggestion filtering:** Harper suggestions that introduce spaces into single words (e.g., "taht" → "ta ht") are suppressed. Oxford comma fixes append punctuation instead of replacing the word.
 - **Note block exemption:** Note blocks skip compliance and NLP rules (notes use advisory language). Grammar/spelling from Harper still runs.
@@ -369,6 +370,7 @@ All items from the initial corpus testing report have been implemented and verif
 | 16 | TERM-should context exclusion | ✅ Done — exclude quoted meta-text ("should" as "must") |
 | 17 | SYM-and context exclusion | ✅ Done — exclude uppercase abbreviations (P & T, NEMA TC 6 & 8) |
 | 18 | Harper.js dictionary expansion | ✅ Done — 40→160+ terms, 86% spelling FP reduction |
+| 19 | Context-aware inline lint deferral | ✅ Done — TERM-suitable, TERM-any, TERM-should, VAGUE-applicable suppressed from inline linter, still run in compliance panel |
 
 **Baseline → Current metrics:** Static FP rate 3.68% → 0.31%. Adversarial accuracy 89.5% → 97.3%. 9/9 success criteria met.
 
@@ -378,11 +380,8 @@ All items from the initial corpus testing report have been implemented and verif
 |---|-------|----------|-------|
 | 1 | **COLLOQ-head remaining 16 FPs** — compound noun patterns: "shower head", "bolt head", "square head", "cutting head", "spanner head", "finished-head" | High | Pattern-based exclusion needed for `head` preceded by hardware/fastener terms |
 | 2 | **SYM-and remaining 7 FPs** — "&" in standard abbreviations (P & T, NEMA TC 6 & 8) | High | Exclude `&` between uppercase letters/numbers |
-| 3 | **TERM-suitable 6 FPs** — "suitable for [specific criteria]" and UL listing context | Medium | Context-dependent; may need AI tier deferral |
-| 4 | **TERM-any 5 FPs** — standard determiner uses ("any portion", "at any point") | Medium | Context-dependent; regex exclusion has diminishing returns |
-| 5 | **TERM-should 4 FPs** — quoted meta-text boilerplate across sections | Medium | Boilerplate detection or sentence-level context |
-| 6 | **Context-aware linting** — remaining FPs need sentence-level analysis | Low | Defer to AI compliance tier (Tier 2) rather than regex |
-| 7 | **Harper.js remaining 166 FPs** — hyphenated compounds, edge cases | Low | Diminishing returns; current 86% reduction is sufficient |
+| 3 | **Harper.js broader dictionary** — sample 10-15 UFGS sections across all CSI divisions to capture discipline-specific terms (mechanical, structural, fire protection, HVAC, communications) | Medium | 707 .SEC files in `reference/UFGS_M/` available |
+| 4 | **Harper.js remaining 166 FPs** — hyphenated compounds, edge cases | Low | Diminishing returns; current 86% reduction is sufficient |
 
 **Validation & Deployment:**
 16. **Real-world .SEC file testing** — import several different UFGS .SEC files beyond the 31 00 00 sample to validate parser coverage across the full UFGS master set
