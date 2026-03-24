@@ -91,6 +91,25 @@ export function detectNlpIssues(plainText, blockId, isNoteBlock = false) {
       '(is|are|was|were|be|been|being) #PastTense',
     ];
 
+    // Engineering past participles commonly used as adjectives (not passive voice).
+    // "The beam is galvanized" describes a state, not an action being done to the beam.
+    // Only exclude when preceded by is/are (present tense = state description).
+    const ENGINEERING_ADJECTIVES = new Set([
+      'galvanized', 'reinforced', 'precast', 'prestressed', 'corrugated',
+      'laminated', 'insulated', 'coated', 'bonded', 'welded', 'grouted',
+      'perforated', 'compacted', 'graded', 'treated', 'cured', 'tempered',
+      'annealed', 'extruded', 'fabricated', 'molded', 'threaded',
+      'recessed', 'beveled', 'tapered', 'fluted', 'notched',
+      'embedded', 'anchored', 'braced', 'stiffened', 'sealed',
+      'primed', 'finished', 'polished', 'textured', 'exposed',
+      'concealed', 'enclosed', 'suspended', 'cantilevered', 'reclaimed',
+      'recycled', 'certified', 'approved', 'specified', 'required',
+      'assembled', 'connected', 'coupled', 'rated', 'listed',
+      'labeled', 'marked', 'identified', 'designated', 'indicated',
+      'equipped', 'furnished', 'painted', 'coated', 'plated',
+      'hardened', 'anodized', 'galvanised', 'plasticized',
+    ]);
+
     for (const pattern of patterns) {
       const matches = doc.match(pattern);
       matches.forEach(m => {
@@ -106,6 +125,13 @@ export function detectNlpIssues(plainText, blockId, isNoteBlock = false) {
         // Skip if inside brackets
         if (isInBrackets(startIdx, matchText.length, bracketRanges)) return;
 
+        // Skip engineering adjectives with is/are (state description, not passive action)
+        const words = matchText.toLowerCase().split(/\s+/);
+        if (words.length >= 2 && (words[0] === 'is' || words[0] === 'are')) {
+          const participle = words[words.length - 1];
+          if (ENGINEERING_ADJECTIVES.has(participle)) return;
+        }
+
         // De-duplicate: skip if we already have a passive finding overlapping this range
         const endIdx = startIdx + matchText.length;
         const isDupe = violations.some(v =>
@@ -120,7 +146,7 @@ export function detectNlpIssues(plainText, blockId, isNoteBlock = false) {
           match: matchText,
           index: startIdx,
           sentence: plainText.slice(Math.max(0, startIdx - 20), startIdx + matchText.length + 20),
-          severity: 'medium',
+          severity: 'low',
           message: 'Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1',
           fixFn: null, // Passive voice rewrites need sentence restructuring — defer to AI
           category: 'NLP',

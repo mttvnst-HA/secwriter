@@ -116,15 +116,26 @@ tools/
 ```bash
 npm install
 npm run dev          # Vite dev server at localhost:5173
+npm run build        # Production build to dist/
 npm test             # Run 457 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 40 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 140 Playwright E2E tests
-# Full suite: 457 + 40 + 140 = 637 automated tests
-npm run parse -- input.sec output.json  # CLI: parse SEC to JSON
+npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node runner)
+# Full suite: 457 + 57 + 140 = 654 automated tests
+npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
+npm run corpus:extract                       # Extract .SEC files to calibration JSON
+npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
+npm run corpus:report                        # Generate REPORT.md + metrics.json
 ```
 
 **Environment:** Windows (Git Bash). `jq` is not available — use `node -e` for JSON processing in scripts/hooks. File paths use `/c/working_claude/` format in Git Bash.
+
+**Quick Reference — Common Tasks:**
+- **Add a compliance rule:** Edit `src/data/ufs-1-300-02-rules.json` (add to `prohibitedTerms`, `vagueTerms`, or `prohibitedSymbols`). The rule engine auto-generates regex via `buildRules()`. Run `npm run test:compliance` then `npm run test:corpus` to validate.
+- **Debug a false positive:** Run `npm run corpus:test -- --corpus clean`, check `corpus/results/clean-results.json` for the rule ID, then inspect the pattern in `compliance-rules.js`.
+- **Measure engine after a change:** `npm run corpus:test -- --corpus clean && npm run corpus:test -- --corpus dirty && npm run corpus:report` — compare metrics.json to previous baseline.
+- **Add an adversarial edge case:** Edit `corpus/adversarial/adversarial.json`, add entry with `shouldFlag`/`ruleId`/`reason`, then re-run adversarial scoring and `npm run test:corpus:adversarial`.
 
 ## Critical Rules
 
@@ -257,12 +268,30 @@ Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with
 - **Offset-aware range creation:** `createRangeForMatch()` accepts a `targetOffset` hint from violation engines to disambiguate repeated words (e.g., "the" appearing 5 times — highlights the correct one).
 - **De-duplication:** Grammar findings overlapping >50% with compliance/NLP findings are suppressed (static rules win — they have UFS citations).
 - **Compliance panel collision:** When `CompliancePanel` is open, inline linting is suppressed entirely to avoid double-highlighting.
+- **Context-dependent rule deferral:** Rules that produce false positives requiring sentence-level context (TERM-suitable, TERM-any, TERM-should, VAGUE-applicable) are filtered out of inline linting via `DEFERRED_TO_PANEL` set. They still run in the Compliance Panel where users explicitly request a full scan.
 - **Stale result handling:** Grammar results tagged with text version; discarded if text changed while Worker was processing.
 - **Bad suggestion filtering:** Harper suggestions that introduce spaces into single words (e.g., "taht" → "ta ht") are suppressed. Oxford comma fixes append punctuation instead of replacing the word.
 - **Note block exemption:** Note blocks skip compliance and NLP rules (notes use advisory language). Grammar/spelling from Harper still runs.
 - **Tooltip:** `InlineTooltip.jsx` shows on collapsed cursor via `selectionchange` + `keyup` listeners. Dismisses on Escape, click outside, or any input keystroke (so it doesn't block editing). Computes fix preview text dynamically for rules without explicit `replacement`.
 - **Toggle:** "Lint ●/○" toolbar button with localStorage persistence (`sim-inline-linting`). When re-enabled, the currently focused block is linted immediately (not deferred to next focus event).
 - **Offset-aware fixes:** `replaceAtOffset()` in `fix-utils.js` disambiguates duplicate violations when applying fixes. It walks the HTML tracking plain-text offsets (skipping `<...>` tag syntax), collects all candidate matches, and picks the one closest to the violation's `index`. Called by grammar-checker.js, nlp-rules.js fix functions, and InlineTooltip.jsx passes `violation.index` as the fourth argument to `fixFn()`. Falls back to first-match replacement when offset is undefined (backward compat).
+
+### Corpus testing infrastructure
+
+SIM's three text-analysis engines are measured against real UFGS specification text using a 4-corpus test suite:
+
+1. **Calibration corpus** (`corpus/calibration/`) — 2,583 raw UFGS blocks from 5 sections (03 30 00, 22 00 00, 26 20 00, 32 12 16.16, 33 71 02). Validates that primary rules (shall, should) produce zero hits on unmodified master text.
+2. **Clean corpus** (`corpus/clean/`) — same blocks rewritten by Claude Opus to full UFS 1-300-02 compliance. Every finding is a false positive. Measures precision.
+3. **Dirty corpus** (`corpus/dirty/`) — 644 validated blocks with 1,438 labeled violations injected. Measures recall per rule.
+4. **Adversarial corpus** (`corpus/adversarial/`) — 95 edge cases (FP traps, NLP ambiguity, domain jargon). Measures robustness.
+
+**Running:** `npm run test:corpus` (17 tests, <300ms). Individual suites: `npm run test:corpus:calibration`, `:precision`, `:recall`, `:adversarial`.
+
+**Regenerating results:** `node --import ./tools/json-loader.mjs tools/run-corpus-test.mjs --corpus clean` (or `--corpus dirty`, `--corpus calibration`). Then `node tools/generate-report.mjs` for REPORT.md + metrics.json.
+
+**Key baseline metrics (March 2026):** Static recall 84.2%, NLP recall 67.5%, Grammar recall 78.4%. Static FP rate 3.68%. Adversarial accuracy 89.5%. Full report at `corpus/results/REPORT.md`.
+
+**Rule ID mapping:** The injection plan used semantic IDs (e.g., COLLOQ-furnish) that don't match sequential IDs from `buildRules()` (e.g., TERM-034). The mapping at `corpus/results/rule-id-mapping.json` corrects this. Any future recall analysis must use this mapping.
 
 ### Known inline linting limitations
 
@@ -317,13 +346,50 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 ### Development Roadmap
 
+**Compliance Engine Tuning — Completed (March 2026):**
+
+All items from the initial corpus testing report have been implemented and verified. See `corpus/results/REPORT.md` for full metrics.
+
+| # | Issue | Result |
+|---|-------|--------|
+| 1 | TERM-004 "per" exclusion gaps | ✅ Done — added per+digit, per floor/person/channel/sack/kit |
+| 2 | CAP-Contract false positives | ✅ Done — exclude contract documents/price/plans/specifications |
+| 3 | COLLOQ-head false positives | ✅ Done — exclude shower/bolt/cutting/square/pump head compounds |
+| 4 | SYM-pound "#" pattern gap | ✅ Done — detect bare # (model #, item #) |
+| 5 | SYM-percent "%" pattern gap | ✅ Done — detect bare % when word-adjacent |
+| 6 | COLLOQ-deck exclusion | ✅ Done — exclude concrete/roof/steel deck |
+| 7 | Add "adequate" to rule JSON | ✅ Done — added to prohibitedTerms |
+| 8 | TERM-suitable context exclusion | ✅ Done — exclude "suitable for [specific]" and ALL CAPS |
+| 9 | TERM-any context exclusion | ✅ Done — exclude determiner uses (any portion/point/three) |
+| 10 | Rule ID stability | ✅ Done — semantic IDs (TERM-shall, SYM-pound, etc.) |
+| 11 | NLP passive voice severity | ✅ Done — severity medium→low + 50-term engineering exclusion set |
+| 12 | Corpus tests in CI | ✅ Done — `.github/workflows/ci.yml` |
+| 13 | Re-run corpus pipeline | ✅ Done — v2 report with improved baselines |
+| 14 | Expand adversarial corpus | ✅ Done — 150 entries (was 95) |
+| 15 | Clean corpus FP audit | ✅ Done — Opus verified 72 FPs, 27 reclassified as Opus misses |
+| 16 | TERM-should context exclusion | ✅ Done — exclude quoted meta-text ("should" as "must") |
+| 17 | SYM-and context exclusion | ✅ Done — exclude uppercase abbreviations (P & T, NEMA TC 6 & 8) |
+| 18 | Harper.js dictionary expansion | ✅ Done — 40→160+ terms, 86% spelling FP reduction |
+| 19 | Context-aware inline lint deferral | ✅ Done — TERM-suitable, TERM-any, TERM-should, VAGUE-applicable suppressed from inline linter, still run in compliance panel |
+
+**Baseline → Current metrics:** Static FP rate 3.68% → 0.31%. Adversarial accuracy 89.5% → 97.3%. 9/9 success criteria met.
+
+**Remaining Engine Improvements (prioritized):**
+
+| # | Issue | Priority | Notes |
+|---|-------|----------|-------|
+| 1 | **COLLOQ-head remaining 16 FPs** — compound noun patterns: "shower head", "bolt head", "square head", "cutting head", "spanner head", "finished-head" | High | Pattern-based exclusion needed for `head` preceded by hardware/fastener terms |
+| 2 | **SYM-and remaining 7 FPs** — "&" in standard abbreviations (P & T, NEMA TC 6 & 8) | High | Exclude `&` between uppercase letters/numbers |
+| 3 | **Harper.js broader dictionary** — sample 10-15 UFGS sections across all CSI divisions to capture discipline-specific terms (mechanical, structural, fire protection, HVAC, communications) | Medium | 707 .SEC files in `reference/UFGS_M/` available |
+| 4 | **Harper.js remaining 166 FPs** — hyphenated compounds, edge cases | Low | Diminishing returns; current 86% reduction is sufficient |
+
 **Validation & Deployment:**
-1. **Real-world .SEC file testing** — import several different UFGS .SEC files beyond the 31 00 00 sample to validate parser coverage across the full UFGS master set
-2. **Interop testing** — export from SIM, re-import into legacy SpecsIntact, verify round-trip fidelity
-3. **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
-4. **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
-5. **Production deployment** — `npm run build` and host (static site, no server needed)
-6. **Browser data exfiltration prevention** — prevent spec text from being sent to Google or Microsoft via browser features like Chrome's "Help me write," Edge's Copilot, or enhanced spellcheck. These features transmit selected/typed text to external servers for processing, which is unacceptable for controlled unclassified military construction specifications. Investigate: disabling via `contentEditable` attributes, CSP headers, enterprise browser policies, and `writingsuggestions="false"` / `spellcheck="false"` HTML attributes.
+16. **Real-world .SEC file testing** — import several different UFGS .SEC files beyond the 31 00 00 sample to validate parser coverage across the full UFGS master set
+17. **Interop testing** — export from SIM, re-import into legacy SpecsIntact, verify round-trip fidelity
+18. **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
+19. **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
+20. **Production deployment** — `npm run build` and host (static site, no server needed)
+21. **Browser data exfiltration prevention** — prevent spec text from being sent to Google or Microsoft via browser features like Chrome's "Help me write," Edge's Copilot, or enhanced spellcheck. These features transmit selected/typed text to external servers for processing, which is unacceptable for controlled unclassified military construction specifications. Investigate: disabling via `contentEditable` attributes, CSP headers, enterprise browser policies, and `writingsuggestions="false"` / `spellcheck="false"` HTML attributes.
 
 **Future Features:**
 - Multi-file project management — SIM is currently a single-section editor by design
@@ -362,9 +428,13 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | grammar-checker.test.js | 10 | Vitest | Harper initialization, violation mapping, dictionary filtering, stale detection |
 | nlp-rules.test.js | 37 | Vitest | Passive voice corpus (21 sentences via it.each), FP rate assertion, indicative mood detection, verb conjugation, bracket/note exclusion |
 | fix-utils.test.js | 11 | Vitest | Offset-aware replacement: second occurrence targeting, HTML tag skipping, backward compat (undefined offset), edge cases |
+| corpus-calibration.node-test.mjs | 5 | Node | Primary rules zero on UFGS, secondary rules >0, FMT-001 absent, note block exemption |
+| corpus-precision.node-test.mjs | 3 | Node | Static FP rate <5%, NLP FP rate <20%, note block exemption on clean corpus |
+| corpus-recall.node-test.mjs | 3 | Node | Static recall ≥80%, NLP recall ≥60%, grammar recall ≥70% with ID mapping |
+| corpus-adversarial.node-test.mjs | 6 | Node | Overall ≥80%, FP traps, true positives, NLP ambiguity, domain jargon, failure documentation |
 | editor.spec.js (E2E) | 140 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 457 Vitest + 40 Node + 140 Playwright = 637 automated tests**
+**Total: 457 Vitest + 57 Node + 140 Playwright = 654 automated tests**
 
 ## Dependencies
 

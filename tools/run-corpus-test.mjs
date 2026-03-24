@@ -1,0 +1,318 @@
+#!/usr/bin/env node
+/**
+ * Corpus Test Harness (Phase 1.3)
+ *
+ * Runs SIM's three text-analysis engines against corpus JSON files in batch.
+ * Engines: static UFS rules, NLP (compromise.js), grammar (Harper.js LocalLinter).
+ *
+ * Harper.js approach: Option A — LocalLinter (no Web Worker). Harper.js exposes
+ * LocalLinter + binaryInlined which runs WASM synchronously in-process. Confirmed
+ * working in Node.js. Results accessed via to_json() on each lint item.
+ *
+ * Usage:
+ *   node tools/run-corpus-test.mjs                          # Run calibration corpus
+ *   node tools/run-corpus-test.mjs --corpus clean           # Run clean corpus
+ *   node tools/run-corpus-test.mjs --corpus dirty           # Run dirty corpus
+ *   node tools/run-corpus-test.mjs --no-grammar             # Skip Harper (faster)
+ *   node tools/run-corpus-test.mjs --section 03_30_00       # Single section only
+ */
+
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const PROJECT_ROOT = join(__dirname, '..');
+
+// --- Parse CLI args ---
+const args = process.argv.slice(2);
+const corpusType = args.includes('--corpus') ? args[args.indexOf('--corpus') + 1] : 'calibration';
+const skipGrammar = args.includes('--no-grammar');
+const singleSection = args.includes('--section') ? args[args.indexOf('--section') + 1] : null;
+
+// --- Load engines ---
+console.log('Loading engines...');
+
+// Static UFS rules
+const { getRules, runStaticRules } = await import('../src/lib/compliance-rules.js');
+const rules = getRules();
+console.log(`  Static rules: ${rules.length} rules loaded`);
+
+// NLP rules (compromise.js)
+const { detectNlpIssues, preloadNlp } = await import('../src/lib/nlp-rules.js');
+await preloadNlp();
+console.log('  NLP: compromise.js loaded');
+
+// Harper.js grammar (optional)
+let harperLinter = null;
+if (!skipGrammar) {
+  try {
+    const { LocalLinter, binaryInlined } = await import('harper.js');
+    harperLinter = new LocalLinter({ binary: binaryInlined });
+    // Warm up WASM
+    const warmup = await harperLinter.lint('Test sentence.');
+    console.log(`  Grammar: Harper.js LocalLinter ready (warmup: ${warmup.length} findings)`);
+  } catch (err) {
+    console.warn(`  Grammar: Harper.js failed to init: ${err.message}`);
+    console.warn('  Continuing without grammar checks (use --no-grammar to suppress)');
+  }
+}
+
+// --- Custom dictionary for Harper (engineering terms) ---
+const ENGINEERING_TERMS = new Set([
+  'ASTM', 'AASHTO', 'ACI', 'ANSI', 'ASME', 'NFPA', 'IEEE', 'ASHRAE',
+  'USACE', 'UFGS', 'UFS', 'UFC', 'NAVFAC', 'WBDG',
+  'cementitious', 'geotechnical', 'rebar', 'formwork', 'subgrade',
+  'backfill', 'compaction', 'embedment', 'dowels', 'waterstop',
+  'admixture', 'admixtures', 'pozzolan', 'pozzolanic', 'superplasticizer',
+  'slump', 'entrained', 'entraining', 'grout', 'grouting',
+  'submittal', 'submittals', 'millwork', 'conduit', 'raceway',
+]);
+
+/**
+ * Filter Harper results: remove false positives from engineering jargon
+ * and bad suggestions (spaces in single words).
+ */
+function filterHarperResults(results, text) {
+  const filtered = [];
+  for (const item of results) {
+    try {
+      const json = item.to_json();
+      const parsed = typeof json === 'string' ? JSON.parse(json) : json;
+      const problemText = parsed.problem_text || text.substring(parsed.span.start, parsed.span.end);
+
+      // Skip engineering terms
+      if (ENGINEERING_TERMS.has(problemText) || ENGINEERING_TERMS.has(problemText.toUpperCase())) continue;
+
+      // Skip all-caps abbreviations (likely standards orgs)
+      if (/^[A-Z]{2,}$/.test(problemText)) continue;
+
+      // Skip suggestions that introduce spaces into single words
+      const suggestions = parsed.inner?.suggestions || [];
+      const hasBadSuggestion = suggestions.some(s => {
+        if (s.ReplaceWith) {
+          const replacement = s.ReplaceWith.join('');
+          return replacement.includes(' ') && !problemText.includes(' ');
+        }
+        return false;
+      });
+      if (hasBadSuggestion && suggestions.length === 1) continue;
+
+      filtered.push({
+        ruleId: `GRAMMAR-${parsed.inner?.lint_kind || 'Unknown'}`,
+        match: problemText,
+        index: parsed.span.start,
+        message: parsed.inner?.message || parsed.message || '',
+        severity: 'info',
+        engine: 'grammar',
+        category: parsed.inner?.lint_kind || 'Unknown',
+      });
+    } catch (e) {
+      // Skip malformed results
+    }
+  }
+  return filtered;
+}
+
+// --- Load corpus ---
+const corpusDir = join(PROJECT_ROOT, 'corpus', corpusType);
+if (!existsSync(corpusDir)) {
+  console.error(`\nCorpus directory not found: ${corpusDir}`);
+  console.error(`Run extraction first: node tools/extract-corpus.mjs`);
+  process.exit(1);
+}
+
+let corpusFile;
+if (singleSection) {
+  corpusFile = join(corpusDir, `${singleSection}.json`);
+} else {
+  corpusFile = join(corpusDir, `all_${corpusType}.json`);
+}
+
+if (!existsSync(corpusFile)) {
+  console.error(`\nCorpus file not found: ${corpusFile}`);
+  process.exit(1);
+}
+
+console.log(`\nLoading corpus: ${corpusFile}`);
+const rawCorpus = JSON.parse(readFileSync(corpusFile, 'utf-8'));
+
+// Normalize field names: dirty corpus uses 'dirty' field, others use 'text'
+const corpus = rawCorpus.map(block => {
+  if (block.dirty && !block.text) {
+    return { ...block, text: block.dirty };
+  }
+  return block;
+});
+console.log(`Corpus: ${corpus.length} blocks\n`);
+
+// --- Run engines ---
+const allFindings = [];
+const stats = {
+  blocksProcessed: 0,
+  noteBlocksSkipped: { compliance: 0, nlp: 0 },
+  findingsByEngine: { static: 0, nlp: 0, grammar: 0 },
+  findingsByRule: {},
+  findingsBySection: {},
+  noteBlockFindings: { static: 0, nlp: 0, grammar: 0 },
+};
+
+const startTime = Date.now();
+let lastProgress = 0;
+
+for (let i = 0; i < corpus.length; i++) {
+  const block = corpus[i];
+  stats.blocksProcessed++;
+
+  // Progress reporting (every 10%)
+  const progress = Math.floor((i / corpus.length) * 10) * 10;
+  if (progress > lastProgress) {
+    lastProgress = progress;
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+    console.log(`  ${progress}% (${i}/${corpus.length} blocks, ${elapsed}s elapsed)`);
+  }
+
+  // --- Static rules ---
+  const staticViolations = runStaticRules(block.text, block.id, rules, {
+    isNoteBlock: block.isNote,
+    skipBrackets: true,
+  });
+
+  for (const v of staticViolations) {
+    const finding = {
+      blockId: block.id,
+      section: block.section,
+      ruleId: v.ruleId || v.id,
+      match: v.match || '',
+      index: v.index ?? -1,
+      severity: v.severity || 'warning',
+      engine: 'static',
+      category: v.category || '',
+      message: v.message || '',
+      isNoteBlock: block.isNote,
+    };
+    allFindings.push(finding);
+    stats.findingsByEngine.static++;
+    if (block.isNote) stats.noteBlockFindings.static++;
+    const ruleKey = finding.ruleId;
+    stats.findingsByRule[ruleKey] = (stats.findingsByRule[ruleKey] || 0) + 1;
+    stats.findingsBySection[block.section] = (stats.findingsBySection[block.section] || 0) + 1;
+  }
+
+  // --- NLP rules ---
+  const nlpViolations = detectNlpIssues(block.text, block.id, block.isNote);
+  // detectNlpIssues returns [] for note blocks internally, but let's track it
+  if (block.isNote && nlpViolations.length > 0) {
+    stats.noteBlockFindings.nlp += nlpViolations.length;
+  }
+
+  for (const v of nlpViolations) {
+    const finding = {
+      blockId: block.id,
+      section: block.section,
+      ruleId: v.ruleId || v.id,
+      match: v.match || '',
+      index: v.index ?? -1,
+      severity: v.severity || 'warning',
+      engine: 'nlp',
+      category: v.category || '',
+      message: v.message || '',
+      isNoteBlock: block.isNote,
+    };
+    allFindings.push(finding);
+    stats.findingsByEngine.nlp++;
+    const ruleKey = finding.ruleId;
+    stats.findingsByRule[ruleKey] = (stats.findingsByRule[ruleKey] || 0) + 1;
+    stats.findingsBySection[block.section] = (stats.findingsBySection[block.section] || 0) + 1;
+  }
+
+  // --- Grammar (Harper.js) ---
+  if (harperLinter) {
+    try {
+      const grammarResults = await harperLinter.lint(block.text);
+      const grammarFindings = filterHarperResults(grammarResults, block.text);
+
+      for (const f of grammarFindings) {
+        allFindings.push({
+          ...f,
+          blockId: block.id,
+          section: block.section,
+          isNoteBlock: block.isNote,
+        });
+        stats.findingsByEngine.grammar++;
+        if (block.isNote) stats.noteBlockFindings.grammar++;
+        stats.findingsByRule[f.ruleId] = (stats.findingsByRule[f.ruleId] || 0) + 1;
+        stats.findingsBySection[block.section] = (stats.findingsBySection[block.section] || 0) + 1;
+      }
+    } catch (e) {
+      // Skip blocks that crash Harper
+    }
+  }
+}
+
+const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+console.log(`  100% complete in ${elapsed}s\n`);
+
+// --- Output results ---
+const resultsDir = join(PROJECT_ROOT, 'corpus', 'results');
+mkdirSync(resultsDir, { recursive: true });
+
+const outputFile = join(resultsDir, `${corpusType}-results.json`);
+writeFileSync(outputFile, JSON.stringify({
+  metadata: {
+    corpusType,
+    corpusFile,
+    blocksProcessed: stats.blocksProcessed,
+    timestamp: new Date().toISOString(),
+    elapsedSeconds: parseFloat(elapsed),
+    grammarEnabled: !!harperLinter,
+  },
+  stats,
+  findings: allFindings,
+}, null, 2));
+
+console.log(`Results saved: ${outputFile}`);
+
+// --- Print summary ---
+console.log('\n' + '='.repeat(70));
+console.log(`${corpusType.toUpperCase()} CORPUS RESULTS`);
+console.log('='.repeat(70));
+console.log(`Blocks processed: ${stats.blocksProcessed}`);
+console.log(`Total findings: ${allFindings.length}`);
+console.log(`  Static rules: ${stats.findingsByEngine.static}`);
+console.log(`  NLP rules: ${stats.findingsByEngine.nlp}`);
+console.log(`  Grammar: ${stats.findingsByEngine.grammar}`);
+
+// Note block findings (should be zero for static/NLP — engine exemption test)
+console.log(`\nNote block findings (exemption test):`);
+console.log(`  Static on note blocks: ${stats.noteBlockFindings.static} (expect 0)`);
+console.log(`  NLP on note blocks: ${stats.noteBlockFindings.nlp} (expect 0)`);
+console.log(`  Grammar on note blocks: ${stats.noteBlockFindings.grammar} (acceptable)`);
+
+// Per-rule breakdown
+console.log('\nFindings by rule:');
+const ruleEntries = Object.entries(stats.findingsByRule).sort((a, b) => b[1] - a[1]);
+for (const [rule, count] of ruleEntries) {
+  // Separate note-block findings from non-note
+  const noteCount = allFindings.filter(f => f.ruleId === rule && f.isNoteBlock).length;
+  const nonNoteCount = count - noteCount;
+  const noteStr = noteCount > 0 ? ` (${noteCount} on notes)` : '';
+  console.log(`  ${rule}: ${count}${noteStr}`);
+}
+
+// Per-section breakdown
+console.log('\nFindings by section:');
+for (const [section, count] of Object.entries(stats.findingsBySection)) {
+  console.log(`  ${section}: ${count}`);
+}
+
+// FMT-001 regression check
+const fmt001 = rules.find(r => r.id === 'FMT-001');
+console.log(`\nFMT-001 regression check: ${fmt001 ? 'FAIL (rule exists!)' : 'PASS (rule absent)'}`);
+
+// Cleanup
+if (harperLinter?.dispose) {
+  try { harperLinter.dispose(); } catch(e) {}
+}
+
+console.log(`\nDone in ${elapsed}s`);

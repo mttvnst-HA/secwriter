@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  unit-tests:
+    name: Unit & Compliance Tests
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      - name: Vitest unit tests (457 tests)
+        run: npm test
+
+      - name: Compliance rule tests (40 tests, Node runner)
+        run: npm run test:compliance
+
+      - name: Corpus tests (17 tests, Node runner)
+        run: npm run test:corpus
+
+  e2e-tests:
+    name: Playwright E2E Tests
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: E2E tests (140 tests)
+        run: npm run test:e2e
