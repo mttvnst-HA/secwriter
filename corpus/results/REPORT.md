@@ -190,3 +190,51 @@ Identified through corpus testing:
 | 9 | All 17 corpus tests pass (npm run test:corpus) | ✅ PASS |
 
 **9/9 criteria met.**
+
+## 7. Change Log
+
+Metrics progression from initial baseline through engine tuning:
+
+### Static Engine
+
+| Metric | Initial (Mar 23) | Post-Tuning (Mar 24) | Change |
+|--------|:-----------------:|:--------------------:|:------:|
+| FP rate (clean corpus) | 3.68% (95 FPs) | 0.31% (8 FPs) | -91.6% |
+| Recall (dirty corpus) | 84.2% | 86.9% | +2.7pp |
+| Adversarial accuracy | 89.5% | 97.3% | +7.8pp |
+| Rule count | ~50 (sequential IDs) | 50 (semantic IDs) | Stable IDs |
+
+### NLP Engine
+
+| Metric | Initial | Post-Tuning | Change |
+|--------|:-------:|:-----------:|:------:|
+| FP rate (passive voice) | 15.6% | 12.8% | -2.8pp |
+| Recall | 67.5% | 67.5% | — |
+| Severity | medium (warning) | low (info) | Reduced noise |
+| Engineering exclusions | 0 terms | 50 terms | New |
+
+### Grammar Engine (Harper.js)
+
+| Metric | Initial | Post-Tuning | Change |
+|--------|:-------:|:-----------:|:------:|
+| Dictionary size | 40 terms | 160+ terms | +300% |
+| Spelling FPs (est.) | ~1,181 | ~166 | -86% |
+| Recall | 78.4% | 78.4% | — |
+
+### Key Fixes Applied
+
+1. **Semantic rule IDs** — TERM-001→TERM-shall, SYM-003→SYM-pound, etc. Adding/removing rules no longer shifts downstream IDs.
+2. **TERM-per exclusions** — per+digit, per floor/person/channel/sack/kit. Eliminated 14 calibration FPs.
+3. **CAP-Contract exclusions** — contract documents/price/plans/specifications. Eliminated 17 FPs.
+4. **COLLOQ-head exclusions** — shower/bolt/cutting/square/pump head compounds. Reduced 17→1 FPs.
+5. **COLLOQ-deck exclusions** — concrete/roof/steel deck. Eliminated adversarial failure.
+6. **SYM-pound/percent relaxed** — bare # and % now detected without adjacent digits.
+7. **"adequate" added** — new prohibited term, was completely missing.
+8. **TERM-suitable context** — exclude "suitable for [specific]" and ALL CAPS markings.
+9. **TERM-any context** — exclude determiner uses (any portion/point/three/control).
+10. **TERM-should context** — exclude quoted meta-text boilerplate.
+11. **SYM-and context** — exclude uppercase abbreviations (P & T, NEMA TC 6 & 8).
+12. **NLP passive severity** — medium→low + 50 engineering adjective exclusions (galvanized, reinforced, insulated, etc.).
+13. **Harper dictionary** — 40→160+ terms covering plumbing, electrical, concrete, paving, chemical vocabulary.
+14. **Adversarial corpus expanded** — 95→150 entries with additional CAP-Contract, TERM-per, COLLOQ edge cases.
+15. **FP audit** — Opus verified 72 static FPs; 27 reclassified as Opus rewriting misses, 45 confirmed true FPs.
