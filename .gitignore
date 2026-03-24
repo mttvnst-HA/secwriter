@@ -6,6 +6,14 @@ dist/
 test-results/
 playwright-report/
 
+# IDE / Claude Code session files
+.claude/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
 # Corpus intermediate/transient files (regenerable)
 corpus/clean/responses/
 corpus/clean/*_progress.json
