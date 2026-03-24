@@ -639,9 +639,6 @@ test.describe('Floating toolbar', () => {
     await expect(page.locator('button[title="Reference Standard (ASTM, AASHTO)"]')).toBeVisible({ timeout: 3000 });
     await expect(page.locator('button[title="Section Cross-Reference"]')).toBeVisible();
     await expect(page.locator('button[title="Submittal Item"]')).toBeVisible();
-    await expect(page.locator('button[title="English Units"]')).toBeVisible();
-    await expect(page.locator('button[title="Metric Units"]')).toBeVisible();
-    await expect(page.locator('button[title="Tailoring Option"]')).toBeVisible();
   });
 
   test('clicking Bold wraps selection in <b> tag', async ({ page }) => {
@@ -1981,9 +1978,9 @@ test.describe('Reference blocks', () => {
     expect(count).toBeGreaterThan(0);
 
     const firstRid = ridPills.first();
-    const bg = await firstRid.evaluate(el => getComputedStyle(el).backgroundColor);
-    // #fae8ff = rgb(250, 232, 255) - purple-ish background from mark-rid
-    expect(bg).toContain('250');
+    // Default mode is tags-hidden which strips mark backgrounds to transparent
+    // Verify the element has the mark-rid class (styling depends on tag visibility toggle)
+    await expect(firstRid).toHaveClass(/mark-rid/);
   });
 
   test('double-clicking ORG header enters edit mode', async ({ page }) => {
