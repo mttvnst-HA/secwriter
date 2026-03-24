@@ -12,7 +12,7 @@
     "test:compliance": "node --test src/lib/__tests__/compliance-rules.node-test.mjs",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "test:corpus": "node --import ./tools/json-loader.mjs --test src/lib/__tests__/corpus-*.node-test.mjs",
+    "test:corpus": "node --import ./tools/json-loader.mjs --test src/lib/__tests__/corpus-calibration.node-test.mjs src/lib/__tests__/corpus-precision.node-test.mjs src/lib/__tests__/corpus-recall.node-test.mjs src/lib/__tests__/corpus-adversarial.node-test.mjs",
     "test:corpus:calibration": "node --test src/lib/__tests__/corpus-calibration.node-test.mjs",
     "test:corpus:precision": "node --test src/lib/__tests__/corpus-precision.node-test.mjs",
     "test:corpus:recall": "node --test src/lib/__tests__/corpus-recall.node-test.mjs",
