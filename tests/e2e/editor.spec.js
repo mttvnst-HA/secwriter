@@ -1044,7 +1044,17 @@ test.describe('Revision controls UI', () => {
 
     // The editor area background color should change to indicate active state
     // The RevisionControls bar should have blue background when active
+    // Wait for React re-render + CSS transition (200ms) to complete
     const controlsBar = page.locator('button:has-text("Track Changes")').locator('..');
+    await controlsBar.evaluate(el =>
+      new Promise(resolve => {
+        const check = () => {
+          if (getComputedStyle(el).backgroundColor !== 'rgb(250, 250, 250)') resolve();
+          else requestAnimationFrame(check);
+        };
+        check();
+      })
+    );
     const bg = await controlsBar.evaluate(el => getComputedStyle(el).backgroundColor);
     // eff6ff = blue tint when trackChanges is on
     expect(bg).not.toBe('rgb(250, 250, 250)'); // not the inactive #fafafa
