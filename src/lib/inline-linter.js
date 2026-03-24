@@ -261,10 +261,21 @@ export function initInlineLinting(blockEl, blockId, plainText, rules, options = 
   grammarWasReadyAtLintStart = isGrammarReady();
 
   // Run static rules (synchronous)
-  const violations = runStaticRules(plainText, blockId, rules, {
+  const allViolations = runStaticRules(plainText, blockId, rules, {
     skipBrackets: true,
     isNoteBlock,
   });
+
+  // Filter out context-dependent rules that produce too many false positives
+  // in real-time inline linting. These rules still run in the compliance panel
+  // where the user explicitly requests a full scan and can review findings.
+  const DEFERRED_TO_PANEL = new Set([
+    'TERM-suitable',   // "suitable for [specific]" — needs sentence context
+    'TERM-any',        // determiner vs. indefinite — needs clause context
+    'TERM-should',     // quoted meta-text boilerplate — needs quote detection
+    'VAGUE-applicable', // "applicable codes/standards" — legitimate in many contexts
+  ]);
+  const violations = allViolations.filter(v => !DEFERRED_TO_PANEL.has(v.ruleId));
 
   if (violations.length > 0) {
     const blockFindings = [];
