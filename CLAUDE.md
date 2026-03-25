@@ -55,8 +55,8 @@ src/
     numbering.js           # Section numbering (1.1, 1.2.1, etc.) and OLI labels (a. b. c.) ~100 lines
     tree-builder.js        # Builds hierarchical tree from flat block array ~19 lines
     ini-config.js          # Formatting rules from SpecsIntact .ini files (margins, colors, nesting) ~79 lines
-    sec-parser.js          # .SEC file parser (XML -> block array, incl. NPG page breaks) ~396 lines
-    sec-serializer.js      # Block array -> .SEC XML serializer (CRLF, NPG, comment stripping) ~450 lines
+    sec-parser.js          # .SEC file parser (XML -> block array, incl. NPG page breaks, TBL/ATT) ~475 lines
+    sec-serializer.js      # Block array -> .SEC XML serializer (CRLF, NPG, TBL, comment stripping) ~537 lines
     encoding.js            # Windows-1252 encoder for .SEC export ~65 lines
     mark-patterns.js       # Auto-detect RID/SRF patterns in text ~95 lines
     tailor-profile.js      # TAI OPT matching, resolution, cleanup ~165 lines
@@ -80,21 +80,21 @@ src/
     grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~195 lines
     nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~205 lines
     fix-utils.js           # Offset-aware string replacement in HTML: replaceAtOffset() for disambiguating duplicate violations ~65 lines
-    __tests__/             # 457 Vitest + 40 Node tests (see Test Coverage table for per-file breakdown)
+    __tests__/             # 466 Vitest + 40 Node tests (see Test Coverage table for per-file breakdown)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
     umrl.json              # UMRL reference database (302 orgs, 4,973 references, 587KB)
     umsl.json              # UMSL submittal database (13,203 submittals, 1,097KB)
     ufs-1-300-02-rules.json # UFS 1-300-02 compliance rules (122 rules, 35 prohibited terms, 65KB)
   styles/
-    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance + inline linting highlights ~400 lines
+    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance + inline linting highlights ~600 lines
 reference/
   section.ini              # SpecsIntact formatting rules (AUTHORITATIVE - always check this)
   document.ini             # Document-level formatting variant
   other.ini                # Other formatting variant
   UFGS.tpl                 # UFGS section template
   31_00_00.SEC             # Sample spec file (EARTHWORK)
-  UFGS_M/01_42_00.sec      # Additional sample
+  UFGS_M/                 # Full UFGS master set (690 .SEC files) for parser validation
   ufs_1_300_02.pdf         # UFS 1-300-02 Format Standard (authoritative source for compliance rules)
   ufs_1_300_02_text.txt    # Raw text extraction from UFS PDF (for re-extraction)
   WebHelp/                 # Legacy SpecsIntact help system
@@ -104,6 +104,8 @@ tests/
   interop-test-procedure.md # 6 manual round-trip interop test scenarios
   tc-browser-test-prompt.md # 15 autonomous browser test cases for Track Changes
   ux-ergonomic-review-prompt.md # UX review prompt with parallel agents + verification workflow
+  ufgs-tag-coverage.node-test.mjs  # Tag coverage regression: all 60 SGML tags accounted for across 690 files ~85 lines
+  ufgs-structural.node-test.mjs    # Structural validation: block types, depth, tables, refs across 690 files ~130 lines
 tools/
   parse-sec.js             # Node CLI: parse .SEC -> JSON
   roundtrip-test.js        # Test parse -> serialize -> re-parse
@@ -117,12 +119,13 @@ tools/
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 457 Vitest unit tests
+npm test             # Run 466 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 40 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 140 Playwright E2E tests
 npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node runner)
-# Full suite: 457 + 57 + 140 = 654 automated tests
+npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
+# Full suite: 466 + 69 + 140 = 675 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -177,7 +180,7 @@ The `reference/section.ini` file is the authoritative source for:
 
 ### Tag categories (from .ini analysis)
 
-**TRANSPARENT tags** (inline wrappers - 20 tags): ADD, BLD, CHG, CTR, DEL, ENG, HL1, HL2, HL3, HL4, HLS, INC, ITA, MET, SBS, SPS, TAI, TST, UND, URL
+**TRANSPARENT tags** (inline wrappers - 20 tags): ADD, ATT, BLD, CHG, CTR, DEL, ENG, HL1, HL2, HL3, HL4, HLS, INC, ITA, MET, SBS, SPS, TAI, TST, UND, URL
 
 **Data-driven inline tags** (need structured treatment):
 - SUB (323 occurrences) - Submittal items -> compiled into submittal register
@@ -186,7 +189,7 @@ The `reference/section.ini` file is the authoritative source for:
 - TAI (302) - Tailoring options by service branch/region/delivery method
 - ENG/MET (~500 each) - Dual unit display pairs
 
-**Block elements hierarchy:** SEC > PRT > SPT > {TXT, OLG, OLI, LST, ITM, NTE, NPR, NPG, SBM, TAB, TBL, TTL, REF}
+**Block elements hierarchy:** SEC > PRT > SPT > {TXT, OLG, OLI, LST, ITM, NTE, NPR, NPG, SBM, TAB, TBL (preformatted), TTL, REF}
 
 ### contentEditable focus management
 
@@ -322,7 +325,7 @@ Each document is a flat array of blocks:
 ```json
 {
   "id": "n42",
-  "type": "txt",        // title | txt | note | oli | item | lst | table | ref | pagebreak
+  "type": "txt",        // title | txt | note | oli | item | lst | table | ref | pagebreak | tbl
   "part": 1,            // PART number (1, 2, 3)
   "depth": 2,           // SPT nesting depth (0 = PART level, 1 = first subpart, etc.)
   "section": "n41",     // ID of the parent title block
@@ -342,7 +345,8 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 ### Known Limitations
 
 - **Serializer differences from legacy SpecsIntact:** Minimal header (not table-based), whitespace normalization, hardcoded MTA metadata. These are cosmetic — SIEditor should tolerate them, but interop testing will confirm.
-- **Parser tested only with 31_00_00.SEC and synthetic data.** Not yet validated against full UFGS master set.
+- **Parser validated against full UFGS master set** (690 files, 60 tags). Two known roundtrip edge cases: `32 12 36.26.SEC` and `32 13 13.43.SEC` have `<THD><HL3>text</HL3></THD>` where nested bold boundaries shift (content preserved).
+- **TBL blocks are read-only.** Preformatted table editing (contentEditable for whitespace-significant blocks) is a future feature.
 
 ### Development Roadmap
 
@@ -384,7 +388,7 @@ All items from the initial corpus testing report have been implemented and verif
 | 1 | **Harper.js remaining grammar FPs** — current 1,466 in clean corpus (static runner; not browser-measured). Dictionary expanded from 160+ to 260+ terms; live-editor reduction expected but requires browser-based measurement | Low | Diminishing returns; 86% spelling FP reduction already achieved in v2 |
 
 **Validation & Deployment:**
-16. **Real-world .SEC file testing** — import several different UFGS .SEC files beyond the 31 00 00 sample to validate parser coverage across the full UFGS master set
+16. ~~**Real-world .SEC file testing**~~ — ✅ Done. Parser validated against all 690 UFGS .SEC files. Added TBL (preformatted tables), ATT (attachment marks), THD (table headers), INT (cell fill styles). 12-test UFGS regression suite (`npm run test:ufgs`).
 17. **Interop testing** — export from SIM, re-import into legacy SpecsIntact, verify round-trip fidelity
 18. **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
 19. **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
@@ -392,6 +396,9 @@ All items from the initial corpus testing report have been implemented and verif
 21. **Browser data exfiltration prevention** — prevent spec text from being sent to Google or Microsoft via browser features like Chrome's "Help me write," Edge's Copilot, or enhanced spellcheck. These features transmit selected/typed text to external servers for processing, which is unacceptable for controlled unclassified military construction specifications. Investigate: disabling via `contentEditable` attributes, CSP headers, enterprise browser policies, and `writingsuggestions="false"` / `spellcheck="false"` HTML attributes.
 
 **Future Features:**
+- TBL preformatted table editing — contentEditable for whitespace-significant blocks (currently read-only)
+- Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
+- INT cell background rendering — data extracted but not yet applied to TableBlock.jsx cells
 - Multi-file project management — SIM is currently a single-section editor by design
 - Monospace preview mode
 - User manual / help system — incorporate MarkLegend color key, keyboard shortcuts, feature docs (MarkLegend component preserved in src/components/ for this purpose)
@@ -400,9 +407,9 @@ All items from the initial corpus testing report have been implemented and verif
 
 | Test File | Tests | Runner | Coverage |
 |-----------|-------|--------|----------|
-| sec-parser.test.js | 36 | Vitest | Tag extraction, inline marks, tables, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks |
+| sec-parser.test.js | 43 | Vitest | Tag extraction, inline marks (incl. ATT), tables, TBL/THD, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks, INT styles |
 | tailor-profile.test.js | 36 | Vitest | Branch/region/delivery matching, resolution, cleanup |
-| sec-serializer.test.js | 32 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, CRLF |
+| sec-serializer.test.js | 34 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, TBL/ATT roundtrip, CRLF |
 | revisions.test.js | 29 | Vitest | Accept/reject inline + block revisions, batch operations, stats, whitespace collapse |
 | cross-ref-validation.test.js | 21 | Vitest | RID extraction from body/ref blocks, unlinked/orphaned detection, SRF extraction |
 | compliance-checker.test.js | 23 | Vitest | Scope selection, violation grouping, stats, context extraction, bracket/note exclusion, violation budget/truncation |
@@ -432,9 +439,11 @@ All items from the initial corpus testing report have been implemented and verif
 | corpus-precision.node-test.mjs | 3 | Node | Static FP rate <5%, NLP FP rate <20%, note block exemption on clean corpus |
 | corpus-recall.node-test.mjs | 3 | Node | Static recall ≥80%, NLP recall ≥60%, grammar recall ≥70% with ID mapping |
 | corpus-adversarial.node-test.mjs | 6 | Node | Overall ≥80%, FP traps, true positives, NLP ambiguity, domain jargon, failure documentation |
+| ufgs-tag-coverage.node-test.mjs | 4 | Node | All 60 SGML tags accounted for, no parse errors, TBL→tbl blocks, ATT→mark-att spans |
+| ufgs-structural.node-test.mjs | 8 | Node | Block count, title presence, valid types, depth ≤10, table structure, ref org, monotonic parts |
 | editor.spec.js (E2E) | 140 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 457 Vitest + 57 Node + 140 Playwright = 654 automated tests**
+**Total: 466 Vitest + 69 Node + 140 Playwright = 675 automated tests**
 
 ## Dependencies
 
