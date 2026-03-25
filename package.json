@@ -19,7 +19,8 @@
     "test:corpus:adversarial": "node --test src/lib/__tests__/corpus-adversarial.node-test.mjs",
     "corpus:extract": "node tools/extract-corpus.mjs",
     "corpus:test": "node --import ./tools/json-loader.mjs tools/run-corpus-test.mjs",
-    "corpus:report": "node tools/generate-report.mjs"
+    "corpus:report": "node tools/generate-report.mjs",
+    "test:ufgs": "node --import ./tools/json-loader.mjs --test tests/ufgs-tag-coverage.node-test.mjs tests/ufgs-structural.node-test.mjs"
   },
   "dependencies": {
     "compromise": "^14.15.0",
