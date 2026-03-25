@@ -399,4 +399,16 @@ describe('parseSEC', () => {
     const blocks = parseSEC(xml);
     expect(blocks[0].html).toBe('text <span class="mark-rid">ASTM C150</span> more text');
   });
+
+  // ─── INT cell fill styles ──────────────────────────────────────
+
+  it('extracts INT cell fill styles from TAB', () => {
+    const xml = secPart('<TAB><WBK><STS><STY SID="s51"><INT COLOR="#f2f2f2" PATTERN="SOLID"/></STY></STS><TDA COLUMNCOUNT="2" ROWCOUNT="1"><COL STYLEID="s50" WIDTH="100"/><COL STYLEID="s51" WIDTH="100"/><ROW><CEL STYLEID="s50"><DTA TYPE="STRING">A</DTA></CEL><CEL STYLEID="s51"><DTA TYPE="STRING">B</DTA></CEL></ROW></TDA></WBK></TAB>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].type).toBe('table');
+    expect(blocks[0].table.styles).toBeDefined();
+    expect(blocks[0].table.styles.s51).toEqual({ backgroundColor: '#f2f2f2' });
+    expect(blocks[0].table.rows[0][1].styleId).toBe('s51');
+  });
 });

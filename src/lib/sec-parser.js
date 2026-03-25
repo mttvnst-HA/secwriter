@@ -171,20 +171,41 @@ function extractTable(tabElem) {
   const cols = parseInt(tda.getAttribute('COLUMNCOUNT') || '0');
   const rows = [];
 
+  // Extract cell fill styles from STS > STY > INT
+  const styles = {};
+  const stsElem = tabElem.querySelector('STS');
+  if (stsElem) {
+    for (const styElem of stsElem.querySelectorAll('STY')) {
+      const sid = styElem.getAttribute('SID');
+      const intElem = styElem.querySelector('INT');
+      if (sid && intElem) {
+        const color = intElem.getAttribute('COLOR');
+        const pattern = intElem.getAttribute('PATTERN');
+        if (color && pattern === 'SOLID') {
+          styles[sid] = { backgroundColor: color };
+        }
+      }
+    }
+  }
+
   for (const rowElem of tda.querySelectorAll('ROW')) {
     const cells = [];
     for (const cel of rowElem.querySelectorAll(':scope > CEL')) {
       const mergeAcross = cel.getAttribute('MERGEACROSS');
       const dta = cel.querySelector('DTA');
+      const styleId = cel.getAttribute('STYLEID') || undefined;
       cells.push({
         text: dta ? elemToHtml(dta) : '',
         colspan: mergeAcross ? parseInt(mergeAcross) + 1 : 1,
+        styleId,
       });
     }
     rows.push(cells);
   }
 
-  return { columns: cols, rows };
+  const result = { columns: cols, rows };
+  if (Object.keys(styles).length > 0) result.styles = styles;
+  return result;
 }
 
 /**
