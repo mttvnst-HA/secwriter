@@ -15,6 +15,7 @@ When fixing bugs, verify the fix doesn't introduce regressions by running the fu
 - Always run tests before committing
 - Create feature branches for new work
 - Branch naming: type/short-description (e.g., feat/slash-commands)
+- `test-results/` and `tools/harper-candidates.*` are intentionally untracked — do not commit generated audit output or dictionary candidates
 
 ## Project Context
 
@@ -28,7 +29,7 @@ When fixing bugs, verify the fix doesn't introduce regressions by running the fu
 
 ```
 src/
-  App.jsx                  # Main editor layout, state management, toolbar, sidebar ~1860 lines
+  App.jsx                  # Main editor layout, state management, toolbar, sidebar ~1920 lines
   main.jsx                 # Entry point + ErrorBoundary wrapper ~50 lines
   components/
     EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~660 lines
@@ -39,7 +40,7 @@ src/
     RefWizard.jsx          # UMRL-powered reference search + insertion wizard ~280 lines
     TreeNode.jsx           # Sidebar navigation tree node (recursive, draggable) ~115 lines
     SlashMenu.jsx          # / command dropdown menu (incl. /pagebreak) ~96 lines
-    FloatingToolbar.jsx    # Selection toolbar: B/I/U + Aa + marks + ADD/DEL + accept/reject + comment ~605 lines
+    FloatingToolbar.jsx    # Selection toolbar: B/I/U + Aa + marks + ADD/DEL + accept/reject + comment ~610 lines
     SearchBar.jsx          # Ctrl+F/Ctrl+H find & replace with debounced search ~365 lines
     BracketReplace.jsx     # [Bracketed text] placeholder replacement panel ~155 lines
     ValidationPanel.jsx    # Document validation panel with severity filters ~100 lines
@@ -49,7 +50,7 @@ src/
     TailoringProfile.jsx   # TAI profile selector (branch/region/delivery dropdowns) ~160 lines
     RevisionControls.jsx   # Track Changes, Revisions, Notes, ENG/MET toggles + Accept/Reject All ~200 lines
     CrossRefPanel.jsx      # RID/SRF validation + orphaned reference removal buttons ~120 lines
-    CompliancePanel.jsx    # UFS 1-300-02 compliance checker: progressive UX, grouped findings, inline highlighting ~920 lines
+    CompliancePanel.jsx    # UFS 1-300-02 compliance checker: progressive UX, grouped findings, inline highlighting ~950 lines
     ComplianceSettings.jsx # Anthropic API key management for AI compliance rewrites ~185 lines
   lib/
     numbering.js           # Section numbering (1.1, 1.2.1, etc.) and OLI labels (a. b. c.) ~100 lines
@@ -60,10 +61,10 @@ src/
     encoding.js            # Windows-1252 encoder for .SEC export ~65 lines
     mark-patterns.js       # Auto-detect RID/SRF patterns in text ~95 lines
     tailor-profile.js      # TAI OPT matching, resolution, cleanup ~165 lines
-    revisions.js           # Accept/reject logic for tracked changes, stats ~175 lines
+    revisions.js           # Accept/reject logic for tracked changes, stats ~190 lines
     text-diff.js           # Word-level LCS diff + character-level sub-diff + DOM annotation ~450 lines
     cross-ref-validation.js # RID + SRF cross-reference extraction + validation ~120 lines
-    useUndoableBlocks.js   # Undo/redo hook wrapping blocks + tcSnapshots with history ~120 lines
+    useUndoableBlocks.js   # Undo/redo hook wrapping blocks + tcSnapshots with history ~150 lines
     table-ops.js           # Table row/column/cell operations + merge/split ~135 lines
     block-reorder.js       # Section reordering: getSectionRange, reorderSection ~80 lines
     comment-report.js      # Printable HTML comment resolution report generator ~70 lines
@@ -72,13 +73,13 @@ src/
     doc-validation.js      # Document structural validation (PARTs, titles, submittals) ~165 lines
     bracket-replace.js     # Find [bracketed text] placeholders, grouped replacement ~45 lines
     submittal-register.js  # SUB mark extraction, SD grouping, register compilation + HTML report ~195 lines
-    compliance-rules.js    # UFS 1-300-02 static rule engine — loads rules JSON, generates ~81 regex patterns, binary search bracket exclusion ~470 lines
-    compliance-checker.js  # Compliance orchestrator: scope selection, rule execution, grouping, stats, violation budget ~220 lines
+    compliance-rules.js    # UFS 1-300-02 static rule engine — loads rules JSON, generates ~81 regex patterns, binary search bracket exclusion ~505 lines
+    compliance-checker.js  # Compliance orchestrator: scope selection, rule execution, grouping, stats, violation budget ~235 lines
     compliance-diff.js     # Word-level diff for compliance fix previews (wraps diffWords) ~25 lines
     compliance-ai.js       # AI rewrite module: Anthropic API, chunking, token estimation, HTML preservation ~280 lines
-    inline-linter.js       # Real-time linting orchestrator: CSS Custom Highlight API, 3 engines, per-block findings ~400 lines
-    grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~195 lines
-    nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~205 lines
+    inline-linter.js       # Real-time linting orchestrator: CSS Custom Highlight API, 3 engines, per-block findings ~500 lines
+    grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~280 lines
+    nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~230 lines
     fix-utils.js           # Offset-aware string replacement in HTML: replaceAtOffset() for disambiguating duplicate violations ~65 lines
     __tests__/             # 466 Vitest + 40 Node tests (see Test Coverage table for per-file breakdown)
   data/
@@ -87,7 +88,7 @@ src/
     umsl.json              # UMSL submittal database (13,203 submittals, 1,097KB)
     ufs-1-300-02-rules.json # UFS 1-300-02 compliance rules (122 rules, 35 prohibited terms, 65KB)
   styles/
-    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance + inline linting highlights ~600 lines
+    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance + inline linting highlights ~610 lines
 reference/
   section.ini              # SpecsIntact formatting rules (AUTHORITATIVE - always check this)
   document.ini             # Document-level formatting variant
@@ -299,7 +300,7 @@ SIM's three text-analysis engines are measured against real UFGS specification t
 1. **Calibration corpus** (`corpus/calibration/`) — 2,583 raw UFGS blocks from 5 sections (03 30 00, 22 00 00, 26 20 00, 32 12 16.16, 33 71 02). Validates that primary rules (shall, should) produce zero hits on unmodified master text.
 2. **Clean corpus** (`corpus/clean/`) — same blocks rewritten by Claude Opus to full UFS 1-300-02 compliance. Every finding is a false positive. Measures precision.
 3. **Dirty corpus** (`corpus/dirty/`) — 644 validated blocks with 1,438 labeled violations injected. Measures recall per rule.
-4. **Adversarial corpus** (`corpus/adversarial/`) — 95 edge cases (FP traps, NLP ambiguity, domain jargon). Measures robustness.
+4. **Adversarial corpus** (`corpus/adversarial/`) — 150 edge cases (FP traps, NLP ambiguity, domain jargon). Measures robustness.
 
 **Running:** `npm run test:corpus` (17 tests, <300ms). Individual suites: `npm run test:corpus:calibration`, `:precision`, `:recall`, `:adversarial`.
 
@@ -363,36 +364,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 ### Development Roadmap
 
-**Compliance Engine Tuning — Completed (March 2026):**
-
-All items from the initial corpus testing report have been implemented and verified. See `corpus/results/REPORT.md` for full metrics.
-
-| # | Issue | Result |
-|---|-------|--------|
-| 1 | TERM-004 "per" exclusion gaps | ✅ Done — added per+digit, per floor/person/channel/sack/kit |
-| 2 | CAP-Contract false positives | ✅ Done — exclude contract documents/price/plans/specifications |
-| 3 | COLLOQ-head false positives | ✅ Done — exclude shower/bolt/cutting/square/pump head compounds |
-| 4 | SYM-pound "#" pattern gap | ✅ Done — detect bare # (model #, item #) |
-| 5 | SYM-percent "%" pattern gap | ✅ Done — detect bare % when word-adjacent |
-| 6 | COLLOQ-deck exclusion | ✅ Done — exclude concrete/roof/steel deck |
-| 7 | Add "adequate" to rule JSON | ✅ Done — added to prohibitedTerms |
-| 8 | TERM-suitable context exclusion | ✅ Done — exclude "suitable for [specific]" and ALL CAPS |
-| 9 | TERM-any context exclusion | ✅ Done — exclude determiner uses (any portion/point/three) |
-| 10 | Rule ID stability | ✅ Done — semantic IDs (TERM-shall, SYM-pound, etc.) |
-| 11 | NLP passive voice severity | ✅ Done — severity medium→low + 50-term engineering exclusion set |
-| 12 | Corpus tests in CI | ✅ Done — `.github/workflows/ci.yml` |
-| 13 | Re-run corpus pipeline | ✅ Done — v2 report with improved baselines |
-| 14 | Expand adversarial corpus | ✅ Done — 150 entries (was 95) |
-| 15 | Clean corpus FP audit | ✅ Done — Opus verified 72 FPs, 27 reclassified as Opus misses |
-| 16 | TERM-should context exclusion | ✅ Done — exclude quoted meta-text ("should" as "must") |
-| 17 | SYM-and context exclusion | ✅ Done — exclude uppercase abbreviations (P & T, NEMA TC 6 & 8) |
-| 18 | Harper.js dictionary expansion | ✅ Done — 40→160+ terms, 86% spelling FP reduction |
-| 19 | Context-aware inline lint deferral | ✅ Done — TERM-suitable, TERM-any, TERM-should, VAGUE-applicable suppressed from inline linter, still run in compliance panel |
-| 20 | COLLOQ-head remaining FPs — total head (hydraulic), large-head (fastener) | ✅ Done — added `total` and `large` to before-context exclusion |
-| 21 | SYM-and FP roadmap cleanup — was already fixed, stale entry removed | ✅ Done — confirmed 0 calibration FPs |
-| 22 | Harper.js broader dictionary — mined 11 UFGS sections (div 09-33) | ✅ Done — 100+ terms added, dictionary 160+ → 260+ |
-
-**Baseline → Current metrics:** Static FP rate 3.68% → 0.31%. Adversarial accuracy 89.5% → 97.3%. 9/9 success criteria met.
+**Compliance Engine Tuning — Completed (March 2026):** All 22 items implemented and verified. Static FP rate 3.68% → 0.31%, adversarial accuracy 89.5% → 97.3%, 9/9 success criteria met. Full details in `corpus/results/REPORT.md`.
 
 **Remaining Engine Improvements (prioritized):**
 
