@@ -154,54 +154,66 @@ function serializeRef(block) {
 /**
  * Serialize a tbl (unformatted table) block back to SEC TBL XML.
  * Converts \n back to <BRK/>, and <b>...</b> at the start to <THD>...</THD>.
+ *
+ * Strategy: extract leading <b>...</b> (which represents <THD>) first, handling
+ * nested <b> tags, then process the remainder. Each segment is split on \n and
+ * converted via htmlToSgml, then joined with <BRK/>.
  */
 function serializeTbl(block) {
   const html = block.html || '';
   const lines = [];
   lines.push('<TBL>');
 
-  const parser = new DOMParser();
-  const safeHtml = html.replace(/&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[\da-fA-F]+;)/g, '&amp;');
-  const withPlaceholders = safeHtml.replace(/\n/g, '&#10;');
-  const doc = parser.parseFromString(`<root>${withPlaceholders}</root>`, 'text/xml');
-  const parseError = doc.querySelector('parsererror');
+  let thdHtml = '';
+  let bodyHtml = html;
 
-  if (parseError) {
-    const textLines = html.split('\n');
-    lines.push(textLines.join('<BRK/>\r\n'));
-    lines.push('</TBL>');
-    return lines.join('\r\n');
+  // Extract leading <b>...</b> as THD, handling nested <b> tags.
+  // Match the outermost <b> that starts at the beginning of the content.
+  const leadingBold = /^(<b>)/i.exec(html);
+  if (leadingBold) {
+    // Find the matching closing </b> by counting nesting depth
+    let depth = 0;
+    let i = 0;
+    let endIdx = -1;
+    const lowerHtml = html.toLowerCase();
+    while (i < html.length) {
+      if (lowerHtml.startsWith('<b>', i)) {
+        depth++;
+        i += 3;
+      } else if (lowerHtml.startsWith('<b ', i)) {
+        depth++;
+        i = html.indexOf('>', i) + 1;
+      } else if (lowerHtml.startsWith('</b>', i)) {
+        depth--;
+        if (depth === 0) {
+          endIdx = i + 4;
+          break;
+        }
+        i += 4;
+      } else {
+        i++;
+      }
+    }
+    if (endIdx > 0) {
+      // Extract the inner content of the outer <b>...</b>
+      thdHtml = html.slice(3, endIdx - 4); // strip <b> and </b>
+      bodyHtml = html.slice(endIdx);
+    }
   }
 
-  // Walk DOM: bold-at-start → THD, rest → TBL content with BRK line breaks.
-  // THD detection: first non-whitespace element that is <b>/<strong>.
-  let foundFirstContent = false;
-  for (const child of doc.documentElement.childNodes) {
-    if (child.nodeType === 3) {
-      const text = child.textContent.replace(/\u200B/g, '');
-      if (!foundFirstContent && !text.trim()) continue;
-      foundFirstContent = true;
-      const segs = text.split('\n');
-      for (let si = 0; si < segs.length; si++) {
-        if (si > 0) lines.push('<BRK/>');
-        if (segs[si]) lines.push(segs[si]);
-      }
-    } else if (child.nodeType === 1) {
-      const tag = child.tagName.toLowerCase();
-      const inner = walkNodeToSgml(child);
-      if ((tag === 'b' || tag === 'strong') && !foundFirstContent) {
-        foundFirstContent = true;
-        const thdContent = inner.replace(/\n/g, '<BRK/>\r\n');
-        lines.push(`<THD>${thdContent}</THD>`);
-      } else {
-        foundFirstContent = true;
-        const sgml = walkNodeToSgml(child);
-        const sgmlLines = sgml.split('\n');
-        for (let si = 0; si < sgmlLines.length; si++) {
-          if (si > 0) lines.push('<BRK/>');
-          if (sgmlLines[si]) lines.push(sgmlLines[si]);
-        }
-      }
+  // Convert THD content: split on \n, convert each line, join with <BRK/>
+  if (thdHtml) {
+    const thdLines = thdHtml.split('\n').map(line => htmlToSgml(line));
+    lines.push(`<THD>${thdLines.join('<BRK/>\r\n')}</THD>`);
+  }
+
+  // Convert body content: split on \n, convert each line, join with <BRK/>
+  if (bodyHtml) {
+    // If THD was present, body starts after THD — may start with \n
+    const bodyLines = bodyHtml.split('\n').map(line => htmlToSgml(line));
+    for (let i = 0; i < bodyLines.length; i++) {
+      if (i > 0 || thdHtml) lines.push('<BRK/>');
+      if (bodyLines[i]) lines.push(bodyLines[i]);
     }
   }
 
