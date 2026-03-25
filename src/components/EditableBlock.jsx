@@ -464,25 +464,21 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   } else if (isLst) {
     Object.assign(baseStyle, {
       fontWeight: 600,
-      color: "#334155",
       marginTop: 8,
       paddingLeft: 0,  // Align list header text at margin, left of OLI labels
     });
   } else if (isItem) {
     Object.assign(baseStyle, {
-      color: "#334155",
       paddingLeft: 20,
       position: "relative",
     });
   } else if (isOli) {
     Object.assign(baseStyle, {
-      color: "#334155",
       paddingLeft: 28,  // room for the a. b. c. label
     });
   } else {
     // txt or any new block type not matched above
     Object.assign(baseStyle, {
-      color: "#1e293b",
       backgroundColor: isFocused ? "#fafaf7" : "transparent",
     });
   }
