@@ -77,6 +77,48 @@ const ENGINEERING_TERMS = [
   'tricalcium', 'aluminate', 'debonded', 'rebending',
   'presoak', 'presaturate', 'topsoiling', 'sprigging',
   'predrilled', 'predrilling', 'sleeving', 'reweld',
+  // Fire protection / suppression (from dictionary mining)
+  'annunciated', 'annunciate', 'sprinklered', 'firestopping',
+  'storz', 'gridded', 'occupancies',
+  // HVAC / controls (from dictionary mining)
+  'commandable', 'setpoints', 'positioner', 'positioners',
+  'psychrometers', 'retransmit', 'retransmitting', 'retransmits',
+  'noncondensing', 'overridable', 'multidrop', 'waveforms',
+  // Electrical (from dictionary mining)
+  'derated', 'multipole', 'polyphase', 'pushbutton',
+  'watthour', 'milliohms', 'impedances', 'compartmented',
+  'subintervals', 'thermoweld',
+  // Communications / low-voltage (from dictionary mining)
+  'connectorized', 'intrabuilding', 'interbuilding', 'innerduct',
+  'multimode', 'couplers', 'splitters', 'reflectometer',
+  'reflectance', 'topologies', 'cutovers',
+  // Fire alarm / electronic safety (from dictionary mining)
+  'telecommunicator', 'waterflow',
+  // Finishes / coatings (from dictionary mining)
+  'predecorated', 'soffits', 'soffit', 'bullnose',
+  'cornerbeads', 'shaftwall', 'specular', 'unglazed',
+  'strippable', 'aluminized', 'batts', 'biocides',
+  'delamination', 'viscoelastic',
+  // Earthwork / geotechnical (from dictionary mining)
+  'cohesionless', 'sheepsfoot', 'surficial', 'piezometers',
+  'borings', 'brooming', 'topsoiled', 'siltation', 'rammer',
+  'ignitability', 'flowable', 'subgrades', 'recompact',
+  'recompacting', 'unburned',
+  // Exterior improvements / paving (from dictionary mining)
+  'coverages', 'pozzolanic', 'spacings',
+  // Special construction (from dictionary mining)
+  'purlins', 'purlin', 'cullet', 'flashings',
+  'polyisocyanurate', 'polyvinylidene',
+  // Utilities (from dictionary mining)
+  'blowoff', 'chloramine', 'chloramines', 'electrofusion',
+  'helically', 'trenchless', 'submergible', 'nutating',
+  'nonreinforced', 'anodic', 'handwheels', 'molecularly', 'wye',
+  // Automation / BAS (from dictionary mining)
+  'programmability',
+  // General / multi-division (from dictionary mining)
+  'prestressed', 'loadings', 'resubmittal', 'screwheads',
+  'hydrological', 'hydrostatic', 'hydrostatically', 'centerlines',
+  'locatable', 'bibbs',
 ];
 
 // Harper rules to disable for construction specification text
