@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["timestamp", "appUrl", "areas"],
+  "properties": {
+    "timestamp": { "type": "string", "format": "date-time" },
+    "appUrl": { "type": "string" },
+    "areas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "status", "findings"],
+        "properties": {
+          "id": { "type": "string", "description": "e.g. 01-app-load" },
+          "name": { "type": "string", "description": "Human-readable area name" },
+          "status": { "enum": ["pass", "fail", "partial", "skipped"] },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "severity", "title", "description", "steps"],
+              "properties": {
+                "id": { "type": "string", "description": "e.g. 01-app-load-F001" },
+                "severity": { "enum": ["critical", "high", "medium", "low", "info"] },
+                "title": { "type": "string", "maxLength": 120 },
+                "description": { "type": "string" },
+                "expected": { "type": "string" },
+                "actual": { "type": "string" },
+                "steps": { "type": "array", "items": { "type": "string" } },
+                "screenshot": { "type": "string", "description": "Relative path to screenshot" },
+                "consoleErrors": { "type": "array", "items": { "type": "string" } },
+                "component": { "type": "string", "description": "Source file, e.g. App.jsx" },
+                "promoted": { "type": "boolean", "default": false },
+                "githubIssue": { "type": "string", "description": "Issue URL if promoted" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "totalAreas": { "type": "integer" },
+        "totalFindings": { "type": "integer" },
+        "bySeverity": {
+          "type": "object",
+          "properties": {
+            "critical": { "type": "integer" },
+            "high": { "type": "integer" },
+            "medium": { "type": "integer" },
+            "low": { "type": "integer" },
+            "info": { "type": "integer" }
+          }
+        }
+      }
+    }
+  }
+}
