@@ -20,7 +20,11 @@
     "corpus:extract": "node tools/extract-corpus.mjs",
     "corpus:test": "node --import ./tools/json-loader.mjs tools/run-corpus-test.mjs",
     "corpus:report": "node tools/generate-report.mjs",
-    "test:ufgs": "node --import ./tools/json-loader.mjs --test tests/ufgs-tag-coverage.node-test.mjs tests/ufgs-structural.node-test.mjs"
+    "test:ufgs": "node --import ./tools/json-loader.mjs --test tests/ufgs-tag-coverage.node-test.mjs tests/ufgs-structural.node-test.mjs",
+    "audit:init": "node tools/ui-audit/run-audit.mjs",
+    "audit:list": "node tools/ui-audit/run-audit.mjs --list",
+    "audit:report": "node tools/ui-audit/collect-findings.mjs test-results/findings.json",
+    "audit:promote": "node tools/ui-audit/promote-to-github.mjs test-results/findings.json"
   },
   "dependencies": {
     "compromise": "^14.15.0",
