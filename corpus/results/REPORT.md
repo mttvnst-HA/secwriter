@@ -1,12 +1,12 @@
 # SIM Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-03-24T03:05:10.963Z
+Generated: 2026-03-25T02:48:06.944Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
 - **Blocks processed:** 2583
-- **Total findings:** 3594
-- **Static:** 391 | **NLP:** 952 | **Grammar:** 2251
+- **Total findings:** 3482
+- **Static:** 329 | **NLP:** 902 | **Grammar:** 2251
 
 ### Note Block Exemption
 
@@ -23,22 +23,21 @@ Generated: 2026-03-24T03:05:10.963Z
 | Rule | Total | On Notes |
 |------|:-----:|:--------:|
 | GRAMMAR-Spelling | 1478 | 285 |
-| NLP-PASSIVE-001 | 952 | 0 |
+| NLP-PASSIVE-001 | 902 | 0 |
 | GRAMMAR-Formatting | 313 | 26 |
 | GRAMMAR-Readability | 153 | 41 |
-| TERM-any | 106 | 0 |
 | GRAMMAR-Punctuation | 90 | 10 |
+| TERM-any | 86 | 0 |
 | GRAMMAR-Style | 85 | 20 |
-| TERM-suitable | 46 | 0 |
 | GRAMMAR-WordChoice | 38 | 7 |
 | TERM-conforming-to | 35 | 0 |
+| TERM-suitable | 32 | 0 |
 | VAGUE-applicable | 28 | 0 |
 | GRAMMAR-Capitalization | 28 | 16 |
 | TERM-per | 27 | 0 |
 | TERM-adequate | 22 | 0 |
 | GRAMMAR-Grammar | 18 | 2 |
 | TERM-to-be | 17 | 0 |
-| COLLOQ-head | 17 | 0 |
 | GRAMMAR-Miscellaneous | 15 | 8 |
 | TERM-furnish | 14 | 0 |
 | TERM-securely | 13 | 0 |
@@ -46,13 +45,12 @@ Generated: 2026-03-24T03:05:10.963Z
 | TERM-thoroughly | 10 | 0 |
 | GRAMMAR-Typo | 10 | 3 |
 | CAP-Contract | 9 | 0 |
-| TERM-should | 8 | 0 |
 | GRAMMAR-Agreement | 8 | 3 |
-| SYM-and | 7 | 0 |
 | GRAMMAR-Repetition | 6 | 6 |
 | TERM-carefully | 5 | 0 |
 | GRAMMAR-Redundancy | 4 | 3 |
 | GRAMMAR-Usage | 4 | 1 |
+| TERM-should | 4 | 0 |
 | TERM-as-necessary | 3 | 0 |
 | TERM-contractor-must-provide | 3 | 0 |
 | CAP-ContractingOfficer | 2 | 0 |
@@ -190,51 +188,3 @@ Identified through corpus testing:
 | 9 | All 17 corpus tests pass (npm run test:corpus) | ✅ PASS |
 
 **9/9 criteria met.**
-
-## 7. Change Log
-
-Metrics progression from initial baseline through engine tuning:
-
-### Static Engine
-
-| Metric | Initial (Mar 23) | Post-Tuning (Mar 24) | Change |
-|--------|:-----------------:|:--------------------:|:------:|
-| FP rate (clean corpus) | 3.68% (95 FPs) | 0.31% (8 FPs) | -91.6% |
-| Recall (dirty corpus) | 84.2% | 86.9% | +2.7pp |
-| Adversarial accuracy | 89.5% | 97.3% | +7.8pp |
-| Rule count | ~50 (sequential IDs) | 50 (semantic IDs) | Stable IDs |
-
-### NLP Engine
-
-| Metric | Initial | Post-Tuning | Change |
-|--------|:-------:|:-----------:|:------:|
-| FP rate (passive voice) | 15.6% | 12.8% | -2.8pp |
-| Recall | 67.5% | 67.5% | — |
-| Severity | medium (warning) | low (info) | Reduced noise |
-| Engineering exclusions | 0 terms | 50 terms | New |
-
-### Grammar Engine (Harper.js)
-
-| Metric | Initial | Post-Tuning | Change |
-|--------|:-------:|:-----------:|:------:|
-| Dictionary size | 40 terms | 160+ terms | +300% |
-| Spelling FPs (est.) | ~1,181 | ~166 | -86% |
-| Recall | 78.4% | 78.4% | — |
-
-### Key Fixes Applied
-
-1. **Semantic rule IDs** — TERM-001→TERM-shall, SYM-003→SYM-pound, etc. Adding/removing rules no longer shifts downstream IDs.
-2. **TERM-per exclusions** — per+digit, per floor/person/channel/sack/kit. Eliminated 14 calibration FPs.
-3. **CAP-Contract exclusions** — contract documents/price/plans/specifications. Eliminated 17 FPs.
-4. **COLLOQ-head exclusions** — shower/bolt/cutting/square/pump head compounds. Reduced 17→1 FPs.
-5. **COLLOQ-deck exclusions** — concrete/roof/steel deck. Eliminated adversarial failure.
-6. **SYM-pound/percent relaxed** — bare # and % now detected without adjacent digits.
-7. **"adequate" added** — new prohibited term, was completely missing.
-8. **TERM-suitable context** — exclude "suitable for [specific]" and ALL CAPS markings.
-9. **TERM-any context** — exclude determiner uses (any portion/point/three/control).
-10. **TERM-should context** — exclude quoted meta-text boilerplate.
-11. **SYM-and context** — exclude uppercase abbreviations (P & T, NEMA TC 6 & 8).
-12. **NLP passive severity** — medium→low + 50 engineering adjective exclusions (galvanized, reinforced, insulated, etc.).
-13. **Harper dictionary** — 40→160+ terms covering plumbing, electrical, concrete, paving, chemical vocabulary.
-14. **Adversarial corpus expanded** — 95→150 entries with additional CAP-Contract, TERM-per, COLLOQ edge cases.
-15. **FP audit** — Opus verified 72 static FPs; 27 reclassified as Opus rewriting misses, 45 confirmed true FPs.
