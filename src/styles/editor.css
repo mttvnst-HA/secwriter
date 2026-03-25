@@ -150,6 +150,18 @@ span.mark-chg {
   background: rgba(234,179,8,0.04);
 }
 
+/* TBL block — preformatted monospace table text */
+.block-tbl {
+  white-space: pre;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  background: #fafaf8;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
 /* Revisions-hidden mode */
 .revisions-hidden ins.mark-add {
   color: inherit;

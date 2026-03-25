@@ -1654,6 +1654,25 @@ export default function SpecEditor() {
                 </div>
               );
             }
+            if (block.type === "tbl") {
+              return (
+                <div
+                  key={block.id}
+                  id={`block-${block.id}`}
+                  className="block-tbl"
+                  data-block-id={block.id}
+                  data-tag="TBL"
+                  contentEditable={false}
+                  onClick={() => handleClickFocus(block.id)}
+                  dangerouslySetInnerHTML={{ __html: block.html }}
+                  style={{
+                    padding: "12px 16px",
+                    margin: "4px 0",
+                    outline: focusedBlockId === block.id ? "2px solid #3b82f6" : "none",
+                  }}
+                />
+              );
+            }
             if (block.type === "table") {
               return (
                 <TableBlock
