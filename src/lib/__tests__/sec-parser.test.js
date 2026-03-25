@@ -349,4 +349,13 @@ describe('parseSEC', () => {
     expect(blocks[0].html).toContain('<del class="mark-del">old</del>');
     expect(blocks[0].html).toContain('<span class="mark-chg">modified</span>');
   });
+
+  // ─── ATT inline mark ───────────────────────────────────────────
+
+  it('parses ATT inline mark', () => {
+    const xml = secPart('<TXT>Use the <ATT>ENG Form 4025-R</ATT> transmittal form.</TXT>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].html).toContain('<span class="mark-att">ENG Form 4025-R</span>');
+  });
 });

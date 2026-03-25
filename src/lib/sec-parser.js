@@ -13,7 +13,7 @@
  */
 
 // Inline tags that carry semantic meaning (data-driven)
-const INLINE_MARK_TAGS = new Set(['RID', 'SRF', 'SUB', 'ENG', 'MET', 'TAI', 'TST', 'URL', 'HLS']);
+const INLINE_MARK_TAGS = new Set(['RID', 'SRF', 'SUB', 'ENG', 'MET', 'TAI', 'TST', 'URL', 'HLS', 'ATT']);
 
 // Inline tags that are pure formatting
 const INLINE_FORMAT_TAGS = new Set([

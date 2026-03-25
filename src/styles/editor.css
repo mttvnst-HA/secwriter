@@ -101,6 +101,13 @@
   cursor: pointer;
 }
 
+.mark-att {
+  /* No color in section.ini [COLORS] — use subtle neutral style */
+  background: rgba(100, 116, 139, 0.08);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
 /* ─── Revision (tracked changes) marks ─── */
 
 /* Inline revision marks */
@@ -196,7 +203,8 @@ span.mark-chg {
 .tags-hidden .mark-met,
 .tags-hidden .mark-tai,
 .tags-hidden .mark-tst,
-.tags-hidden .mark-url {
+.tags-hidden .mark-url,
+.tags-hidden .mark-att {
   background: transparent;
   color: inherit;
   padding: 0;
@@ -224,6 +232,8 @@ span.mark-chg {
 .tags-visible .mark-tst::after  { content: '</TST>'; }
 .tags-visible .mark-url::before { content: '<URL>'; }
 .tags-visible .mark-url::after  { content: '</URL>'; }
+.tags-visible .mark-att::before { content: '<ATT>'; }
+.tags-visible .mark-att::after  { content: '</ATT>'; }
 
 /* TAI tags include OPT attribute when present */
 .tags-visible .mark-tai::before { content: '<TAI>'; }
@@ -238,7 +248,8 @@ span.mark-chg {
 .tags-visible .mark-met::before, .tags-visible .mark-met::after,
 .tags-visible .mark-tai::before, .tags-visible .mark-tai::after,
 .tags-visible .mark-tst::before, .tags-visible .mark-tst::after,
-.tags-visible .mark-url::before, .tags-visible .mark-url::after {
+.tags-visible .mark-url::before, .tags-visible .mark-url::after,
+.tags-visible .mark-att::before, .tags-visible .mark-att::after {
   font-family: 'SF Mono', Consolas, 'Cascadia Code', monospace;
   font-size: 11px;
   color: #0ea5e9;
@@ -414,6 +425,7 @@ span.mark-chg {
 .dark-mode .mark-met { background: #450a0a; color: #fca5a5; }
 .dark-mode .mark-tai { background: #083344; color: #67e8f9; }
 .dark-mode .mark-tst { background: #450a0a; color: #fca5a5; }
+.dark-mode .mark-att { background: rgba(100, 116, 139, 0.15); color: #cbd5e1; }
 
 /* Revision marks in dark mode */
 .dark-mode ins.mark-add { color: #4ade80; }

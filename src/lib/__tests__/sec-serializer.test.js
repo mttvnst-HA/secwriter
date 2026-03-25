@@ -354,4 +354,14 @@ describe('serializeSEC', () => {
     expect(xml).toContain('<ORG>EMPTY ORG</ORG>');
     expect(xml).toContain('</REF>');
   });
+
+  // ─── ATT inline mark ──────────────────────────────────────────
+
+  it('serializes ATT inline marks', () => {
+    const blocks = [
+      { id: '1', type: 'txt', part: 1, depth: 0, html: 'Use the <span class="mark-att">ENG Form 4025-R</span> form.' },
+    ];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).toContain('<ATT>ENG Form 4025-R</ATT>');
+  });
 });
