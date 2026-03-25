@@ -452,6 +452,9 @@ span.mark-chg {
 /* Search highlight in dark mode */
 .dark-mode mark.search-highlight { background: #a16207; color: #fef3c7; }
 
+/* Light-mode base text color for contenteditable blocks (inline colors removed from JSX) */
+[contenteditable="true"] { color: #1e293b; }
+
 /* Block backgrounds in dark mode */
 .dark-mode [contenteditable="true"] { color: #e2e8f0; }
 .dark-mode [contenteditable="true"]:focus { background: #1e293b !important; border-color: #475569 !important; }
@@ -468,8 +471,13 @@ span.mark-chg {
 .dark-mode td, .dark-mode th { border-color: #475569 !important; color: #e2e8f0; }
 .dark-mode th { background: #1e293b !important; color: #cbd5e1 !important; }
 
-/* Title blocks in dark mode */
+/* Title blocks and ref block headers in dark mode */
 .dark-mode [contenteditable="false"] { color: #e2e8f0; }
+.dark-mode [data-tag="TTL"] [contenteditable] { color: #e2e8f0 !important; }
+.dark-mode .ref-block { color: #e2e8f0 !important; }
+.dark-mode .ref-block span,
+.dark-mode .ref-block div,
+.dark-mode .ref-block input { color: #e2e8f0 !important; }
 
 /* Editor pane and content area in dark mode */
 .dark-mode div[style*="backgroundColor"] {

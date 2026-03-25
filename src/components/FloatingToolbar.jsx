@@ -137,6 +137,13 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAc
     };
 
     const handleKeyUp = (e) => {
+      // Escape dismisses the toolbar and collapses the selection
+      if (e.key === "Escape") {
+        setVisible(false);
+        const sel = window.getSelection();
+        if (sel && !sel.isCollapsed) sel.collapseToEnd();
+        return;
+      }
       // Check selection on shift+arrow key (text selection via keyboard)
       if (e.shiftKey && (e.key.startsWith("Arrow") || e.key === "Home" || e.key === "End")) {
         setTimeout(checkSelection, 10);

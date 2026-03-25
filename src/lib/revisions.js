@@ -19,18 +19,33 @@ export function acceptInlineAdd(html) {
 
 /**
  * Accept inline DEL: remove <del class="mark-del"> tags AND their content.
+ * Preserves word boundaries to prevent word concatenation.
  */
 export function acceptInlineDel(html) {
   if (!html) return html;
-  return html.replace(/<del\s+class="mark-del"[^>]*>[\s\S]*?<\/del>/g, '').replace(/ {2,}/g, ' ');
+  return html.replace(/<del\s+class="mark-del"[^>]*>[\s\S]*?<\/del>/g, (match, offset, str) => {
+    const before = str[offset - 1];
+    const after = str[offset + match.length];
+    if (before && after && /\w/.test(before) && /\w/.test(after)) return ' ';
+    return '';
+  }).replace(/ {2,}/g, ' ');
 }
 
 /**
  * Reject inline ADD: remove <ins class="mark-add"> tags AND their content.
+ * Preserves word boundaries — if removing the ins tag would concatenate two
+ * word characters (e.g., "The<ins>...</ins>Contractor" → "TheContractor"),
+ * inserts a space to prevent word concatenation.
  */
 export function rejectInlineAdd(html) {
   if (!html) return html;
-  return html.replace(/<ins\s+class="mark-add">[\s\S]*?<\/ins>/g, '').replace(/ {2,}/g, ' ');
+  return html.replace(/<ins\s+class="mark-add">[\s\S]*?<\/ins>/g, (match, offset, str) => {
+    const before = str[offset - 1];
+    const after = str[offset + match.length];
+    // If both adjacent characters are word characters, insert a space
+    if (before && after && /\w/.test(before) && /\w/.test(after)) return ' ';
+    return '';
+  }).replace(/ {2,}/g, ' ');
 }
 
 /**

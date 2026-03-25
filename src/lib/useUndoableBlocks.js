@@ -18,6 +18,7 @@ export function useUndoableBlocks(initialBlocks) {
 
   const historyRef = useRef({ past: [], future: [] });
   const pausedRef = useRef(false);
+  const undoingRef = useRef(false); // true during undo/redo to suppress blur-triggered setBlocks
   const currentRef = useRef({ blocks: initialBlocks, tcSnapshots: new Map() });
 
   // Keep currentRef in sync
@@ -25,6 +26,10 @@ export function useUndoableBlocks(initialBlocks) {
   currentRef.current.tcSnapshots = tcSnapshots;
 
   const setBlocks = useCallback((updater) => {
+    // During undo/redo, blur-triggered setBlocks calls must be suppressed
+    // to prevent them from racing with the undo/redo _setBlocks call.
+    if (undoingRef.current) return;
+
     _setBlocks(prev => {
       const next = typeof updater === 'function' ? updater(prev) : updater;
 
@@ -66,26 +71,50 @@ export function useUndoableBlocks(initialBlocks) {
     const h = historyRef.current;
     if (h.past.length === 0) return;
 
-    // Blur active element to force DOM sync
-    if (document.activeElement && document.activeElement.blur) {
-      document.activeElement.blur();
+    // Suppress blur-triggered setBlocks during undo
+    undoingRef.current = true;
+
+    // Capture the active block's current DOM content before blurring.
+    // Typing that hasn't been synced to React state must be captured here
+    // so redo can restore it accurately.
+    const activeEl = document.activeElement;
+    let dirtyBlockId = null;
+    let dirtyHtml = null;
+    if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
+      dirtyBlockId = activeEl.dataset.blockId;
+      dirtyHtml = activeEl.innerHTML;
+    }
+
+    // Blur to dismiss focus-dependent UI (floating toolbar, etc.)
+    if (activeEl && activeEl.blur) {
+      activeEl.blur();
+    }
+
+    // Build the "current" snapshot for redo, patching in the dirty block's HTML
+    let currentBlocks = currentRef.current.blocks;
+    if (dirtyBlockId && dirtyHtml) {
+      currentBlocks = currentBlocks.map(b =>
+        b.id === dirtyBlockId ? { ...b, html: dirtyHtml } : b
+      );
     }
 
     const snapshot = h.past.pop();
     h.future.push({
-      blocks: currentRef.current.blocks,
+      blocks: currentBlocks,
       tcSnapshots: new Map(currentRef.current.tcSnapshots),
     });
 
     _setBlocks(snapshot.blocks);
     _setTcSnapshots(new Map(snapshot.tcSnapshots));
     pausedRef.current = false;
+    undoingRef.current = false;
   }, []);
 
   const redo = useCallback(() => {
     const h = historyRef.current;
     if (h.future.length === 0) return;
 
+    undoingRef.current = true;
     if (document.activeElement && document.activeElement.blur) {
       document.activeElement.blur();
     }
@@ -99,6 +128,7 @@ export function useUndoableBlocks(initialBlocks) {
     _setBlocks(snapshot.blocks);
     _setTcSnapshots(new Map(snapshot.tcSnapshots));
     pausedRef.current = false;
+    undoingRef.current = false;
   }, []);
 
   const canUndo = historyRef.current.past.length > 0;
