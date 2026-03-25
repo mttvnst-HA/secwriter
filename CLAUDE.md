@@ -111,6 +111,14 @@ tools/
   roundtrip-test.js        # Test parse -> serialize -> re-parse
   diagnose-depth.js        # Debug SPT nesting
   diagnose-html.js         # Debug HTML extraction
+  ui-audit/
+    run-audit.mjs          # Audit runner orchestrator — launches 15 test areas sequentially
+    collect-findings.mjs   # Generates timestamped Markdown report from findings.json
+    promote-to-github.mjs  # Interactive GitHub issue promoter for audit findings
+    findings-schema.json   # JSON schema for findings data
+    test-procedure.md      # Master test procedure (15 areas)
+    test-areas/            # 15 test area definitions (01-app-load.md through 15-dark-mode-zoom.md)
+test-results/              # UI audit output: findings.json + timestamped Markdown reports
 ```
 
 ## Running
@@ -130,6 +138,10 @@ npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
 npm run corpus:report                        # Generate REPORT.md + metrics.json
+npm run audit:init                           # Run autonomous UI audit (15 test areas, uses Claude in Chrome MCP)
+npm run audit:list                           # List available test areas
+npm run audit:report                         # Generate Markdown report from findings.json
+npm run audit:promote                        # Promote findings to GitHub issues (interactive)
 ```
 
 **Environment:** Windows (Git Bash). `jq` is not available — use `node -e` for JSON processing in scripts/hooks. File paths use `/c/working_claude/` format in Git Bash.
@@ -138,6 +150,7 @@ npm run corpus:report                        # Generate REPORT.md + metrics.json
 - **Add a compliance rule:** Edit `src/data/ufs-1-300-02-rules.json` (add to `prohibitedTerms`, `vagueTerms`, or `prohibitedSymbols`). The rule engine auto-generates regex via `buildRules()`. Run `npm run test:compliance` then `npm run test:corpus` to validate.
 - **Debug a false positive:** Run `npm run corpus:test -- --corpus clean`, check `corpus/results/clean-results.json` for the rule ID, then inspect the pattern in `compliance-rules.js`.
 - **Measure engine after a change:** `npm run corpus:test -- --corpus clean && npm run corpus:test -- --corpus dirty && npm run corpus:report` — compare metrics.json to previous baseline.
+- **Run a UI audit:** `npm run audit:init` launches all 15 test areas via Claude in Chrome MCP. Results go to `test-results/findings.json`. Generate a report with `npm run audit:report`, then optionally promote findings to GitHub issues with `npm run audit:promote`.
 - **Add an adversarial edge case:** Edit `corpus/adversarial/adversarial.json`, add entry with `shouldFlag`/`ruleId`/`reason`, then re-run adversarial scoring and `npm run test:corpus:adversarial`.
 
 ## Critical Rules
