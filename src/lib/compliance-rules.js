@@ -418,7 +418,7 @@ export function runStaticRules(plainText, blockId, rules, options = {}) {
       if (rule.id === 'COLLOQ-head') {
         const before = plainText.slice(Math.max(0, matchStart - 20), matchStart).toLowerCase();
         const after = plainText.slice(matchEnd, matchEnd + 15).toLowerCase();
-        if (before.match(/bolt|shower|screw|cutting|spanner|washer|square|finished-?|cast-?brass|static|pile|dead|pressure|pump|suction|discharge|net positive|total dynamic|friction/) ||
+        if (before.match(/bolt|shower|screw|cutting|spanner|washer|square|finished-?|cast-?brass|static|pile|dead|pressure|pump|suction|discharge|net positive|total|friction|large/) ||
             after.match(/^\s*(screw|bolt|nut|cap|face|plate|anchor|mount|room|loss|pressure|wall|space|pin|rail)/)) continue;
         // Also skip "head in feet" (hydraulic head measurement)
         if (after.match(/^\s*in\s*(feet|meters|metres|inches|mm|m\b)/)) continue;

@@ -126,8 +126,16 @@ function runStaticRules(plainText, blockId, rules, options = {}) {
       const ms = match.index, me = ms + match[0].length;
       if (skipBrackets && bracketRanges.some(r => (ms >= r.start && me <= r.end) || (me >= r.start - 1 && ms <= r.end + 1))) continue;
       if (rule.id === 'COLLOQ-deck') {
-        const before = plainText.slice(Math.max(0, ms - 10), ms).toLowerCase();
-        if (before.includes('bridge')) continue;
+        const before = plainText.slice(Math.max(0, ms - 15), ms).toLowerCase();
+        const after = plainText.slice(me, me + 10).toLowerCase();
+        if (before.match(/bridge|concrete|roof|steel/) || after.match(/^\s*(plate|drain|coating|slab)/)) continue;
+      }
+      if (rule.id === 'COLLOQ-head') {
+        const before = plainText.slice(Math.max(0, ms - 20), ms).toLowerCase();
+        const after = plainText.slice(me, me + 15).toLowerCase();
+        if (before.match(/bolt|shower|screw|cutting|spanner|washer|square|finished-?|cast-?brass|static|pile|dead|pressure|pump|suction|discharge|net positive|total|friction|large/) ||
+            after.match(/^\s*(screw|bolt|nut|cap|face|plate|anchor|mount|room|loss|pressure|wall|space|pin|rail)/)) continue;
+        if (after.match(/^\s*in\s*(feet|meters|metres|inches|mm|m\b)/)) continue;
       }
       violations.push({ ruleId: rule.id, blockId, match: match[0], index: ms, fixFn: rule.fix || null, severity: rule.severity, category: rule.category });
     }
@@ -254,6 +262,8 @@ describe('false positive regression', () => {
     ['Government-furnished equipment.', 'CAP-Government', 'Government capitalized'],
     ['Provide [any suitable material].', 'TERM-', 'brackets exclude'],
     ['95 percent of maximum density.', 'FMT-004', 'percent not per cent'],
+    ['The total head is at least 20 feet greater than 25 gpm.', 'COLLOQ-head', 'total head = hydraulic'],
+    ['Nails must be galvanized large-head roofing nails.', 'COLLOQ-head', 'large-head = fastener type'],
   ];
   for (const [text, prefix, desc] of cases) {
     it(`no FP: ${desc}`, () => {
