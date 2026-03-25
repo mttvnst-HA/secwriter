@@ -152,6 +152,64 @@ function serializeRef(block) {
 }
 
 /**
+ * Serialize a tbl (unformatted table) block back to SEC TBL XML.
+ * Converts \n back to <BRK/>, and <b>...</b> at the start to <THD>...</THD>.
+ */
+function serializeTbl(block) {
+  const html = block.html || '';
+  const lines = [];
+  lines.push('<TBL>');
+
+  const parser = new DOMParser();
+  const safeHtml = html.replace(/&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[\da-fA-F]+;)/g, '&amp;');
+  const withPlaceholders = safeHtml.replace(/\n/g, '&#10;');
+  const doc = parser.parseFromString(`<root>${withPlaceholders}</root>`, 'text/xml');
+  const parseError = doc.querySelector('parsererror');
+
+  if (parseError) {
+    const textLines = html.split('\n');
+    lines.push(textLines.join('<BRK/>\r\n'));
+    lines.push('</TBL>');
+    return lines.join('\r\n');
+  }
+
+  // Walk DOM: bold-at-start → THD, rest → TBL content with BRK line breaks.
+  // THD detection: first non-whitespace element that is <b>/<strong>.
+  let foundFirstContent = false;
+  for (const child of doc.documentElement.childNodes) {
+    if (child.nodeType === 3) {
+      const text = child.textContent.replace(/\u200B/g, '');
+      if (!foundFirstContent && !text.trim()) continue;
+      foundFirstContent = true;
+      const segs = text.split('\n');
+      for (let si = 0; si < segs.length; si++) {
+        if (si > 0) lines.push('<BRK/>');
+        if (segs[si]) lines.push(segs[si]);
+      }
+    } else if (child.nodeType === 1) {
+      const tag = child.tagName.toLowerCase();
+      const inner = walkNodeToSgml(child);
+      if ((tag === 'b' || tag === 'strong') && !foundFirstContent) {
+        foundFirstContent = true;
+        const thdContent = inner.replace(/\n/g, '<BRK/>\r\n');
+        lines.push(`<THD>${thdContent}</THD>`);
+      } else {
+        foundFirstContent = true;
+        const sgml = walkNodeToSgml(child);
+        const sgmlLines = sgml.split('\n');
+        for (let si = 0; si < sgmlLines.length; si++) {
+          if (si > 0) lines.push('<BRK/>');
+          if (sgmlLines[si]) lines.push(sgmlLines[si]);
+        }
+      }
+    }
+  }
+
+  lines.push('</TBL>');
+  return lines.join('\r\n');
+}
+
+/**
  * Group blocks by structural hierarchy and serialize to SEC XML.
  *
  * @param {Array} blocks - Flat array of editor blocks
@@ -251,6 +309,14 @@ export function serializeSEC(blocks, metadata = {}) {
           noteGroupOpen = false;
         }
         lines.push(`<TXT>${htmlToSgml(block.html)}</TXT><BRK/>`);
+        lines.push('<BRK/>');
+      } else if (block.type === 'tbl') {
+        if (noteGroupOpen) {
+          lines.push('<AST/><BRK/></NTE>');
+          lines.push('<BRK/>');
+          noteGroupOpen = false;
+        }
+        lines.push(serializeTbl(block));
         lines.push('<BRK/>');
       }
     }
@@ -425,6 +491,15 @@ export function serializeSEC(blocks, metadata = {}) {
         closeNoteGroup();
         adjustDepthForContent(block);
         lines.push(serializeTable(block.table));
+        lines.push('<BRK/>');
+        continue;
+      }
+
+      // Unformatted tables (TBL)
+      if (block.type === 'tbl') {
+        closeNoteGroup();
+        adjustDepthForContent(block);
+        lines.push(revWrap(serializeTbl(block), block));
         lines.push('<BRK/>');
         continue;
       }

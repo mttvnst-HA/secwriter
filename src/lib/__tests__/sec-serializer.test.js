@@ -355,6 +355,20 @@ describe('serializeSEC', () => {
     expect(xml).toContain('</REF>');
   });
 
+  // ─── TBL (unformatted table) serialization ────────────────────
+
+  it('serializes tbl blocks as TBL with BRK line breaks', () => {
+    const blocks = [
+      { id: '1', type: 'tbl', part: 1, depth: 1, html: '<b>HEADER</b>\nLine 1\nLine 2' },
+    ];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).toContain('<TBL>');
+    expect(xml).toContain('<THD>HEADER</THD>');
+    expect(xml).toContain('<BRK/>');
+    expect(xml).toContain('Line 1');
+    expect(xml).toContain('</TBL>');
+  });
+
   // ─── ATT inline mark ──────────────────────────────────────────
 
   it('serializes ATT inline marks', () => {
