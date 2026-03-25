@@ -289,7 +289,7 @@ SIM's three text-analysis engines are measured against real UFGS specification t
 
 **Regenerating results:** `node --import ./tools/json-loader.mjs tools/run-corpus-test.mjs --corpus clean` (or `--corpus dirty`, `--corpus calibration`). Then `node tools/generate-report.mjs` for REPORT.md + metrics.json.
 
-**Key baseline metrics (March 2026):** Static recall 84.2%, NLP recall 67.5%, Grammar recall 78.4%. Static FP rate 3.68%. Adversarial accuracy 89.5%. Full report at `corpus/results/REPORT.md`.
+**Key baseline metrics (March 2026):** Static recall 86.9%, NLP recall 67.5%, Grammar recall 78.4%. Static FP rate 0.31%. Adversarial accuracy 97.3%. Full report at `corpus/results/REPORT.md`.
 
 **Rule ID mapping:** The injection plan used semantic IDs (e.g., COLLOQ-furnish) that don't match sequential IDs from `buildRules()` (e.g., TERM-034). The mapping at `corpus/results/rule-id-mapping.json` corrects this. Any future recall analysis must use this mapping.
 
@@ -371,6 +371,9 @@ All items from the initial corpus testing report have been implemented and verif
 | 17 | SYM-and context exclusion | ✅ Done — exclude uppercase abbreviations (P & T, NEMA TC 6 & 8) |
 | 18 | Harper.js dictionary expansion | ✅ Done — 40→160+ terms, 86% spelling FP reduction |
 | 19 | Context-aware inline lint deferral | ✅ Done — TERM-suitable, TERM-any, TERM-should, VAGUE-applicable suppressed from inline linter, still run in compliance panel |
+| 20 | COLLOQ-head remaining FPs — total head (hydraulic), large-head (fastener) | ✅ Done — added `total` and `large` to before-context exclusion |
+| 21 | SYM-and FP roadmap cleanup — was already fixed, stale entry removed | ✅ Done — confirmed 0 calibration FPs |
+| 22 | Harper.js broader dictionary — mined 11 UFGS sections (div 09-33) | ✅ Done — 100+ terms added, dictionary 160+ → 260+ |
 
 **Baseline → Current metrics:** Static FP rate 3.68% → 0.31%. Adversarial accuracy 89.5% → 97.3%. 9/9 success criteria met.
 
@@ -378,10 +381,7 @@ All items from the initial corpus testing report have been implemented and verif
 
 | # | Issue | Priority | Notes |
 |---|-------|----------|-------|
-| 1 | **COLLOQ-head remaining 16 FPs** — compound noun patterns: "shower head", "bolt head", "square head", "cutting head", "spanner head", "finished-head" | High | Pattern-based exclusion needed for `head` preceded by hardware/fastener terms |
-| 2 | **SYM-and remaining 7 FPs** — "&" in standard abbreviations (P & T, NEMA TC 6 & 8) | High | Exclude `&` between uppercase letters/numbers |
-| 3 | **Harper.js broader dictionary** — sample 10-15 UFGS sections across all CSI divisions to capture discipline-specific terms (mechanical, structural, fire protection, HVAC, communications) | Medium | 707 .SEC files in `reference/UFGS_M/` available |
-| 4 | **Harper.js remaining 166 FPs** — hyphenated compounds, edge cases | Low | Diminishing returns; current 86% reduction is sufficient |
+| 1 | **Harper.js remaining grammar FPs** — current 1,466 in clean corpus (static runner; not browser-measured). Dictionary expanded from 160+ to 260+ terms; live-editor reduction expected but requires browser-based measurement | Low | Diminishing returns; 86% spelling FP reduction already achieved in v2 |
 
 **Validation & Deployment:**
 16. **Real-world .SEC file testing** — import several different UFGS .SEC files beyond the 31 00 00 sample to validate parser coverage across the full UFGS master set
