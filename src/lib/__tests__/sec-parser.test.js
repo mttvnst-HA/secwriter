@@ -358,4 +358,45 @@ describe('parseSEC', () => {
     expect(blocks).toHaveLength(1);
     expect(blocks[0].html).toContain('<span class="mark-att">ENG Form 4025-R</span>');
   });
+
+  // ─── TBL (preformatted table) ──────────────────────────────────
+
+  it('parses TBL (unformatted table) blocks', () => {
+    const xml = secPart('<TBL>LINE 1<BRK/>LINE 2<BRK/>LINE 3</TBL>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].type).toBe('tbl');
+    expect(blocks[0].html).toBe('LINE 1\nLINE 2\nLINE 3');
+  });
+
+  it('parses TBL with THD header as bold', () => {
+    const xml = secPart('<TBL><THD>HEADER TEXT</THD><BRK/>Body line 1<BRK/>Body line 2</TBL>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].type).toBe('tbl');
+    expect(blocks[0].html).toContain('<b>HEADER TEXT</b>');
+    expect(blocks[0].html).toContain('Body line 1');
+  });
+
+  it('parses TBL with inline marks (RID, HL4)', () => {
+    const xml = secPart('<TBL>See <RID>ASTM C150</RID><BRK/><HL4>IMPORTANT</HL4></TBL>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].html).toContain('<span class="mark-rid">ASTM C150</span>');
+    expect(blocks[0].html).toContain('<b>IMPORTANT</b>');
+  });
+
+  it('parses TBL nested inside NTE as sibling blocks', () => {
+    const xml = secPart('<NTE><NPR>Some note text</NPR><TBL>Preformatted<BRK/>Content</TBL></NTE>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(2);
+    expect(blocks[0].type).toBe('note');
+    expect(blocks[1].type).toBe('tbl');
+  });
+
+  it('preserves spaces around inline marks in TBL', () => {
+    const xml = secPart('<TBL>text <RID>ASTM C150</RID> more text</TBL>');
+    const blocks = parseSEC(xml);
+    expect(blocks[0].html).toBe('text <span class="mark-rid">ASTM C150</span> more text');
+  });
 });

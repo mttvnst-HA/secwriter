@@ -119,6 +119,49 @@ function elemToHtmlNoTab(elem) {
 }
 
 /**
+ * Convert a TBL element to HTML, preserving whitespace and converting BRK to newlines.
+ * Unlike elemToHtml, this does NOT collapse whitespace — TBL content is preformatted.
+ */
+function elemToTblHtml(elem) {
+  const parts = [];
+  for (const node of elem.childNodes) {
+    if (node.nodeType === 3) { // Text node — preserve whitespace (only strip leading/trailing newlines)
+      parts.push(node.textContent.replace(/^\n|\n$/g, ''));
+    } else if (node.nodeType === 1) {
+      const tag = node.tagName;
+      if (tag === 'BRK' || tag === 'BRL') {
+        parts.push('\n');
+      } else if (tag === 'THD') {
+        // THD rendered as bold header
+        parts.push(`<b>${elemToTblHtml(node)}</b>`);
+      } else if (tag === 'PGE' || tag === 'AST' || tag === 'NED') {
+        // Skip print-only tags
+      } else if (INLINE_MARK_TAGS.has(tag)) {
+        const cls = `mark-${tag.toLowerCase()}`;
+        const opt = (tag === 'TAI') ? node.getAttribute('OPT') : null;
+        const optAttr = opt ? ` data-opt="${opt}"` : '';
+        parts.push(`<span class="${cls}"${optAttr}>${elemToTblHtml(node)}</span>`);
+      } else if (INLINE_FORMAT_TAGS.has(tag)) {
+        if (tag === 'BLD' || tag === 'HL3') {
+          parts.push(`<b>${elemToTblHtml(node)}</b>`);
+        } else if (tag === 'ITA' || tag === 'HL2') {
+          parts.push(`<em>${elemToTblHtml(node)}</em>`);
+        } else if (tag === 'UND' || tag === 'HL1') {
+          parts.push(`<u>${elemToTblHtml(node)}</u>`);
+        } else if (tag === 'HL4') {
+          parts.push(`<b>${elemToTblHtml(node)}</b>`);
+        } else {
+          parts.push(elemToTblHtml(node));
+        }
+      } else {
+        parts.push(elemToTblHtml(node));
+      }
+    }
+  }
+  return parts.join('');
+}
+
+/**
  * Extract a TAB element into a table data structure.
  */
 function extractTable(tabElem) {
@@ -319,6 +362,21 @@ export function parseSEC(xmlString) {
           depth: state.sptDepth,
           section: state.currentSection,
           table: tdata,
+        });
+      }
+      return;
+    }
+
+    if (tag === 'TBL') {
+      const html = elemToTblHtml(elem);
+      if (html) {
+        blocks.push({
+          id: nextId(),
+          type: 'tbl',
+          part: state.partNum,
+          depth: state.sptDepth,
+          section: state.currentSection,
+          html,
         });
       }
       return;
