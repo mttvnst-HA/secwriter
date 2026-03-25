@@ -152,6 +152,76 @@ function serializeRef(block) {
 }
 
 /**
+ * Serialize a tbl (unformatted table) block back to SEC TBL XML.
+ * Converts \n back to <BRK/>, and <b>...</b> at the start to <THD>...</THD>.
+ *
+ * Strategy: extract leading <b>...</b> (which represents <THD>) first, handling
+ * nested <b> tags, then process the remainder. Each segment is split on \n and
+ * converted via htmlToSgml, then joined with <BRK/>.
+ */
+function serializeTbl(block) {
+  const html = block.html || '';
+  const lines = [];
+  lines.push('<TBL>');
+
+  let thdHtml = '';
+  let bodyHtml = html;
+
+  // Extract leading <b>...</b> as THD, handling nested <b> tags.
+  // Match the outermost <b> that starts at the beginning of the content.
+  const leadingBold = /^(<b>)/i.exec(html);
+  if (leadingBold) {
+    // Find the matching closing </b> by counting nesting depth
+    let depth = 0;
+    let i = 0;
+    let endIdx = -1;
+    const lowerHtml = html.toLowerCase();
+    while (i < html.length) {
+      if (lowerHtml.startsWith('<b>', i)) {
+        depth++;
+        i += 3;
+      } else if (lowerHtml.startsWith('<b ', i)) {
+        depth++;
+        i = html.indexOf('>', i) + 1;
+      } else if (lowerHtml.startsWith('</b>', i)) {
+        depth--;
+        if (depth === 0) {
+          endIdx = i + 4;
+          break;
+        }
+        i += 4;
+      } else {
+        i++;
+      }
+    }
+    if (endIdx > 0) {
+      // Extract the inner content of the outer <b>...</b>
+      thdHtml = html.slice(3, endIdx - 4); // strip <b> and </b>
+      bodyHtml = html.slice(endIdx);
+    }
+  }
+
+  // Convert THD content: split on \n, convert each line, join with <BRK/>
+  if (thdHtml) {
+    const thdLines = thdHtml.split('\n').map(line => htmlToSgml(line));
+    lines.push(`<THD>${thdLines.join('<BRK/>\r\n')}</THD>`);
+  }
+
+  // Convert body content: split on \n, convert each line, join with <BRK/>
+  if (bodyHtml) {
+    // If THD was present, body starts after THD — may start with \n
+    const bodyLines = bodyHtml.split('\n').map(line => htmlToSgml(line));
+    for (let i = 0; i < bodyLines.length; i++) {
+      if (i > 0 || thdHtml) lines.push('<BRK/>');
+      if (bodyLines[i]) lines.push(bodyLines[i]);
+    }
+  }
+
+  lines.push('</TBL>');
+  return lines.join('\r\n');
+}
+
+/**
  * Group blocks by structural hierarchy and serialize to SEC XML.
  *
  * @param {Array} blocks - Flat array of editor blocks
@@ -251,6 +321,14 @@ export function serializeSEC(blocks, metadata = {}) {
           noteGroupOpen = false;
         }
         lines.push(`<TXT>${htmlToSgml(block.html)}</TXT><BRK/>`);
+        lines.push('<BRK/>');
+      } else if (block.type === 'tbl') {
+        if (noteGroupOpen) {
+          lines.push('<AST/><BRK/></NTE>');
+          lines.push('<BRK/>');
+          noteGroupOpen = false;
+        }
+        lines.push(serializeTbl(block));
         lines.push('<BRK/>');
       }
     }
@@ -425,6 +503,15 @@ export function serializeSEC(blocks, metadata = {}) {
         closeNoteGroup();
         adjustDepthForContent(block);
         lines.push(serializeTable(block.table));
+        lines.push('<BRK/>');
+        continue;
+      }
+
+      // Unformatted tables (TBL)
+      if (block.type === 'tbl') {
+        closeNoteGroup();
+        adjustDepthForContent(block);
+        lines.push(revWrap(serializeTbl(block), block));
         lines.push('<BRK/>');
         continue;
       }

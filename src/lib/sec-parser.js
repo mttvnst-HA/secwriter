@@ -13,7 +13,7 @@
  */
 
 // Inline tags that carry semantic meaning (data-driven)
-const INLINE_MARK_TAGS = new Set(['RID', 'SRF', 'SUB', 'ENG', 'MET', 'TAI', 'TST', 'URL', 'HLS']);
+const INLINE_MARK_TAGS = new Set(['RID', 'SRF', 'SUB', 'ENG', 'MET', 'TAI', 'TST', 'URL', 'HLS', 'ATT']);
 
 // Inline tags that are pure formatting
 const INLINE_FORMAT_TAGS = new Set([
@@ -119,6 +119,49 @@ function elemToHtmlNoTab(elem) {
 }
 
 /**
+ * Convert a TBL element to HTML, preserving whitespace and converting BRK to newlines.
+ * Unlike elemToHtml, this does NOT collapse whitespace — TBL content is preformatted.
+ */
+function elemToTblHtml(elem) {
+  const parts = [];
+  for (const node of elem.childNodes) {
+    if (node.nodeType === 3) { // Text node — preserve whitespace (only strip leading/trailing newlines)
+      parts.push(node.textContent.replace(/^\n|\n$/g, ''));
+    } else if (node.nodeType === 1) {
+      const tag = node.tagName;
+      if (tag === 'BRK' || tag === 'BRL') {
+        parts.push('\n');
+      } else if (tag === 'THD') {
+        // THD rendered as bold header
+        parts.push(`<b>${elemToTblHtml(node)}</b>`);
+      } else if (tag === 'PGE' || tag === 'AST' || tag === 'NED') {
+        // Skip print-only tags
+      } else if (INLINE_MARK_TAGS.has(tag)) {
+        const cls = `mark-${tag.toLowerCase()}`;
+        const opt = (tag === 'TAI') ? node.getAttribute('OPT') : null;
+        const optAttr = opt ? ` data-opt="${opt}"` : '';
+        parts.push(`<span class="${cls}"${optAttr}>${elemToTblHtml(node)}</span>`);
+      } else if (INLINE_FORMAT_TAGS.has(tag)) {
+        if (tag === 'BLD' || tag === 'HL3') {
+          parts.push(`<b>${elemToTblHtml(node)}</b>`);
+        } else if (tag === 'ITA' || tag === 'HL2') {
+          parts.push(`<em>${elemToTblHtml(node)}</em>`);
+        } else if (tag === 'UND' || tag === 'HL1') {
+          parts.push(`<u>${elemToTblHtml(node)}</u>`);
+        } else if (tag === 'HL4') {
+          parts.push(`<b>${elemToTblHtml(node)}</b>`);
+        } else {
+          parts.push(elemToTblHtml(node));
+        }
+      } else {
+        parts.push(elemToTblHtml(node));
+      }
+    }
+  }
+  return parts.join('');
+}
+
+/**
  * Extract a TAB element into a table data structure.
  */
 function extractTable(tabElem) {
@@ -128,20 +171,41 @@ function extractTable(tabElem) {
   const cols = parseInt(tda.getAttribute('COLUMNCOUNT') || '0');
   const rows = [];
 
+  // Extract cell fill styles from STS > STY > INT
+  const styles = {};
+  const stsElem = tabElem.querySelector('STS');
+  if (stsElem) {
+    for (const styElem of stsElem.querySelectorAll('STY')) {
+      const sid = styElem.getAttribute('SID');
+      const intElem = styElem.querySelector('INT');
+      if (sid && intElem) {
+        const color = intElem.getAttribute('COLOR');
+        const pattern = intElem.getAttribute('PATTERN');
+        if (color && pattern === 'SOLID') {
+          styles[sid] = { backgroundColor: color };
+        }
+      }
+    }
+  }
+
   for (const rowElem of tda.querySelectorAll('ROW')) {
     const cells = [];
     for (const cel of rowElem.querySelectorAll(':scope > CEL')) {
       const mergeAcross = cel.getAttribute('MERGEACROSS');
       const dta = cel.querySelector('DTA');
+      const styleId = cel.getAttribute('STYLEID') || undefined;
       cells.push({
         text: dta ? elemToHtml(dta) : '',
         colspan: mergeAcross ? parseInt(mergeAcross) + 1 : 1,
+        styleId,
       });
     }
     rows.push(cells);
   }
 
-  return { columns: cols, rows };
+  const result = { columns: cols, rows };
+  if (Object.keys(styles).length > 0) result.styles = styles;
+  return result;
 }
 
 /**
@@ -319,6 +383,21 @@ export function parseSEC(xmlString) {
           depth: state.sptDepth,
           section: state.currentSection,
           table: tdata,
+        });
+      }
+      return;
+    }
+
+    if (tag === 'TBL') {
+      const html = elemToTblHtml(elem);
+      if (html) {
+        blocks.push({
+          id: nextId(),
+          type: 'tbl',
+          part: state.partNum,
+          depth: state.sptDepth,
+          section: state.currentSection,
+          html,
         });
       }
       return;

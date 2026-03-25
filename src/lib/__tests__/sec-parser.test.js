@@ -349,4 +349,66 @@ describe('parseSEC', () => {
     expect(blocks[0].html).toContain('<del class="mark-del">old</del>');
     expect(blocks[0].html).toContain('<span class="mark-chg">modified</span>');
   });
+
+  // ─── ATT inline mark ───────────────────────────────────────────
+
+  it('parses ATT inline mark', () => {
+    const xml = secPart('<TXT>Use the <ATT>ENG Form 4025-R</ATT> transmittal form.</TXT>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].html).toContain('<span class="mark-att">ENG Form 4025-R</span>');
+  });
+
+  // ─── TBL (preformatted table) ──────────────────────────────────
+
+  it('parses TBL (unformatted table) blocks', () => {
+    const xml = secPart('<TBL>LINE 1<BRK/>LINE 2<BRK/>LINE 3</TBL>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].type).toBe('tbl');
+    expect(blocks[0].html).toBe('LINE 1\nLINE 2\nLINE 3');
+  });
+
+  it('parses TBL with THD header as bold', () => {
+    const xml = secPart('<TBL><THD>HEADER TEXT</THD><BRK/>Body line 1<BRK/>Body line 2</TBL>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].type).toBe('tbl');
+    expect(blocks[0].html).toContain('<b>HEADER TEXT</b>');
+    expect(blocks[0].html).toContain('Body line 1');
+  });
+
+  it('parses TBL with inline marks (RID, HL4)', () => {
+    const xml = secPart('<TBL>See <RID>ASTM C150</RID><BRK/><HL4>IMPORTANT</HL4></TBL>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].html).toContain('<span class="mark-rid">ASTM C150</span>');
+    expect(blocks[0].html).toContain('<b>IMPORTANT</b>');
+  });
+
+  it('parses TBL nested inside NTE as sibling blocks', () => {
+    const xml = secPart('<NTE><NPR>Some note text</NPR><TBL>Preformatted<BRK/>Content</TBL></NTE>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(2);
+    expect(blocks[0].type).toBe('note');
+    expect(blocks[1].type).toBe('tbl');
+  });
+
+  it('preserves spaces around inline marks in TBL', () => {
+    const xml = secPart('<TBL>text <RID>ASTM C150</RID> more text</TBL>');
+    const blocks = parseSEC(xml);
+    expect(blocks[0].html).toBe('text <span class="mark-rid">ASTM C150</span> more text');
+  });
+
+  // ─── INT cell fill styles ──────────────────────────────────────
+
+  it('extracts INT cell fill styles from TAB', () => {
+    const xml = secPart('<TAB><WBK><STS><STY SID="s51"><INT COLOR="#f2f2f2" PATTERN="SOLID"/></STY></STS><TDA COLUMNCOUNT="2" ROWCOUNT="1"><COL STYLEID="s50" WIDTH="100"/><COL STYLEID="s51" WIDTH="100"/><ROW><CEL STYLEID="s50"><DTA TYPE="STRING">A</DTA></CEL><CEL STYLEID="s51"><DTA TYPE="STRING">B</DTA></CEL></ROW></TDA></WBK></TAB>');
+    const blocks = parseSEC(xml);
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].type).toBe('table');
+    expect(blocks[0].table.styles).toBeDefined();
+    expect(blocks[0].table.styles.s51).toEqual({ backgroundColor: '#f2f2f2' });
+    expect(blocks[0].table.rows[0][1].styleId).toBe('s51');
+  });
 });
