@@ -14,21 +14,10 @@ import { parseHTML } from 'linkedom';
 const { DOMParser } = parseHTML('');
 globalThis.DOMParser = DOMParser;
 
-import { parseSEC } from '../src/lib/sec-parser.js';
+import { parseSEC, extractMetadata } from '../src/lib/sec-parser.js';
 import { serializeSEC } from '../src/lib/sec-serializer.js';
 import fs from 'fs';
 import path from 'path';
-
-function extractMeta(xml) {
-  const meta = { sectionNumber: '00 00 00', sectionTitle: 'UNTITLED', date: '' };
-  const scn = xml.match(/<SCN[^>]*>SECTION\s+([\d\s.]+)<\/SCN>/i);
-  if (scn) meta.sectionNumber = scn[1].trim();
-  const stl = xml.match(/<STL[^>]*>(.*?)<\/STL>/i);
-  if (stl) meta.sectionTitle = stl[1].trim();
-  const dte = xml.match(/<DTE[^>]*>(.*?)<\/DTE>/i);
-  if (dte) meta.date = dte[1].trim();
-  return meta;
-}
 
 function compareBlocks(original, roundtripped, label) {
   const issues = [];
@@ -102,7 +91,7 @@ function testFile(filePath) {
   // Step 2: Serialize
   let serialized;
   try {
-    const meta = extractMeta(xml);
+    const meta = extractMetadata(xml);
     serialized = serializeSEC(blocks1, meta);
   } catch (e) {
     return { name, status: 'SERIALIZE_ERROR', error: e.message };

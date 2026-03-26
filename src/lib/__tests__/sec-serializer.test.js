@@ -378,4 +378,28 @@ describe('serializeSEC', () => {
     const xml = serializeSEC(blocks, META);
     expect(xml).toContain('<ATT>ENG Form 4025-R</ATT>');
   });
+
+  // ─── MTA preservation ─────────────────────────────────────────
+
+  it('preserves additional MTA tags from metadata', () => {
+    const blocks = [
+      { id: '1', type: 'title', part: 1, depth: 1, html: 'GENERAL' },
+    ];
+    const metadata = {
+      sectionNumber: '99 99 99',
+      sectionTitle: 'MTA TEST',
+      mta: { STATUS: 'CHG', EDIT: 'TRUE', SPECTYPE: 'UFGS', SPECCLASS: '31 00 00', SUBFORMAT: 'NEW', AUTONUMBER: 'TRUE' }
+    };
+    const xml = serializeSEC(blocks, metadata);
+    // Should have all MTA tags
+    expect(xml).toContain('<MTA NAME="STATUS" CONTENT="CHG"/>');
+    expect(xml).toContain('<MTA NAME="EDIT" CONTENT="TRUE"/>');
+    expect(xml).toContain('<MTA NAME="SPECTYPE" CONTENT="UFGS"/>');
+    expect(xml).toContain('<MTA NAME="SPECCLASS" CONTENT="31 00 00"/>');
+    // Should NOT duplicate SUBFORMAT or AUTONUMBER
+    const subformatMatches = xml.match(/<MTA NAME="SUBFORMAT"/g);
+    expect(subformatMatches).toHaveLength(1);
+    const autonumberMatches = xml.match(/<MTA NAME="AUTONUMBER"/g);
+    expect(autonumberMatches).toHaveLength(1);
+  });
 });

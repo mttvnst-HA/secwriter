@@ -243,6 +243,14 @@ export function serializeSEC(blocks, metadata = {}) {
   lines.push('<SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd">');
   lines.push('<MTA NAME="SUBFORMAT" CONTENT="NEW"/>');
   lines.push('<MTA NAME="AUTONUMBER" CONTENT="TRUE"/>');
+  // Emit any additional MTA tags from original file metadata
+  if (metadata.mta) {
+    for (const [name, content] of Object.entries(metadata.mta)) {
+      if (name !== 'SUBFORMAT' && name !== 'AUTONUMBER') {
+        lines.push(`<MTA NAME="${name}" CONTENT="${content}"/>`);
+      }
+    }
+  }
 
   // Minimal header
   lines.push('<HDR><AST/>');

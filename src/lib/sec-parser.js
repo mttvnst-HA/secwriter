@@ -473,3 +473,26 @@ export function parseSEC(xmlString) {
 
   return blocks;
 }
+
+/**
+ * Extract metadata from a .SEC XML string for roundtrip serialization.
+ * Separate from parseSEC() — callers use both independently.
+ */
+export function extractMetadata(xml) {
+  const meta = { sectionNumber: '00 00 00', sectionTitle: 'UNTITLED', date: '' };
+  const scn = xml.match(/<SCN[^>]*>SECTION\s+([\d\s.]+)<\/SCN>/i);
+  if (scn) meta.sectionNumber = scn[1].trim();
+  const stl = xml.match(/<STL[^>]*>(.*?)<\/STL>/i);
+  if (stl) meta.sectionTitle = stl[1].trim();
+  const dte = xml.match(/<DTE[^>]*>(.*?)<\/DTE>/i);
+  if (dte) meta.date = dte[1].trim();
+
+  const mta = {};
+  const mtaRegex = /<MTA\s+NAME="([^"]+)"\s+CONTENT="([^"]*)"\/>/g;
+  let m;
+  while ((m = mtaRegex.exec(xml)) !== null) {
+    mta[m[1]] = m[2];
+  }
+  meta.mta = mta;
+  return meta;
+}
