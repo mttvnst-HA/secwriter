@@ -188,7 +188,19 @@ function extractTable(tabElem) {
     }
   }
 
+  // Extract column widths from COL elements
+  const colElems = tda.querySelectorAll('COL');
+  const colWidths = [];
+  for (const col of colElems) {
+    const w = col.getAttribute('WIDTH');
+    if (w) colWidths.push(parseFloat(w));
+  }
+
+  // Extract row heights and cell data from ROW elements
+  const rowHeights = [];
   for (const rowElem of tda.querySelectorAll('ROW')) {
+    const h = rowElem.getAttribute('HEIGHT');
+    rowHeights.push(h ? parseFloat(h) : null);
     const cells = [];
     for (const cel of rowElem.querySelectorAll(':scope > CEL')) {
       const mergeAcross = cel.getAttribute('MERGEACROSS');
@@ -205,6 +217,8 @@ function extractTable(tabElem) {
 
   const result = { columns: cols, rows };
   if (Object.keys(styles).length > 0) result.styles = styles;
+  if (colWidths.length > 0) result.colWidths = colWidths;
+  if (rowHeights.some(h => h !== null)) result.rowHeights = rowHeights;
   return result;
 }
 

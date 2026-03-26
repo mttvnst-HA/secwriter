@@ -101,14 +101,20 @@ function serializeTable(table) {
   lines.push(`   <TDA COLUMNCOUNT="${cols}" ROWCOUNT="${table.rows.length}">`);
 
   // Column definitions
-  const colWidth = Math.round(450 / cols * 100) / 100;
   for (let i = 0; i < cols; i++) {
-    lines.push(`      <COL STYLEID="s50" WIDTH="${colWidth}"/>`);
+    const w = table.colWidths?.[i] ?? Math.round(450 / cols * 100) / 100;
+    lines.push(`      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="${w}"/>`);
   }
 
   // Rows
-  for (const row of table.rows) {
-    lines.push('      <ROW>');
+  for (let rowIdx = 0; rowIdx < table.rows.length; rowIdx++) {
+    const row = table.rows[rowIdx];
+    const h = table.rowHeights?.[rowIdx];
+    if (h != null) {
+      lines.push(`      <ROW AUTOHEIGHT="0" HEIGHT="${h.toFixed(2)}">`);
+    } else {
+      lines.push('      <ROW>');
+    }
     for (const cell of row) {
       const mergeAttr = cell.colspan > 1 ? ` MERGEACROSS="${cell.colspan - 1}"` : '';
       const cellContent = htmlToSgml(cell.text || '');

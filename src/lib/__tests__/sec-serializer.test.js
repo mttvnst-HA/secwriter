@@ -429,4 +429,39 @@ describe('serializeSEC', () => {
     const autonumberMatches = xml.match(/<MTA NAME="AUTONUMBER"/g);
     expect(autonumberMatches).toHaveLength(1);
   });
+
+  // ─── Table column widths and row heights ──────────────────────
+
+  it('preserves table column widths and row heights when provided', () => {
+    const blocks = [{
+      id: '1', type: 'table', part: 1, depth: 1,
+      table: {
+        columns: 2,
+        rows: [[{ text: 'A', colspan: 1 }, { text: 'B', colspan: 1 }]],
+        colWidths: [225.75, 224.25],
+        rowHeights: [15.00],
+      }
+    }];
+    const xml = serializeSEC(blocks, { sectionNumber: '99 99 99', sectionTitle: 'TABLE TEST' });
+    expect(xml).toContain('WIDTH="225.75"');
+    expect(xml).toContain('WIDTH="224.25"');
+    expect(xml).toContain('AUTOWIDTH="0"');
+    expect(xml).toContain('HEIGHT="15.00"');
+    expect(xml).toContain('AUTOHEIGHT="0"');
+  });
+
+  it('falls back to computed widths when colWidths not provided', () => {
+    const blocks = [{
+      id: '1', type: 'table', part: 1, depth: 1,
+      table: {
+        columns: 2,
+        rows: [[{ text: 'A', colspan: 1 }, { text: 'B', colspan: 1 }]],
+      }
+    }];
+    const xml = serializeSEC(blocks, { sectionNumber: '99 99 99', sectionTitle: 'TABLE TEST' });
+    expect(xml).toContain('WIDTH="225"');  // 450/2 = 225
+    expect(xml).toContain('AUTOWIDTH="0"');
+    expect(xml).not.toContain('HEIGHT=');
+    expect(xml).not.toContain('AUTOHEIGHT=');
+  });
 });
