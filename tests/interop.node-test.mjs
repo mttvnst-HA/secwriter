@@ -156,7 +156,7 @@ describe('SEC serializer interop', () => {
   it('TAB blocks include COLUMNCOUNT, ROWCOUNT, ROW, and CEL elements', () => {
     assert.ok(mainOut.includes('COLUMNCOUNT='), 'TAB must have COLUMNCOUNT attribute');
     assert.ok(mainOut.includes('ROWCOUNT='), 'TAB must have ROWCOUNT attribute');
-    assert.ok(mainOut.includes('<ROW>'), 'TAB must contain ROW elements');
+    assert.ok(mainOut.includes('<ROW>') || mainOut.includes('<ROW '), 'TAB must contain ROW elements');
     assert.ok(mainOut.includes('<CEL'), 'TAB must contain CEL elements');
   });
 
