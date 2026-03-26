@@ -252,10 +252,14 @@ export function serializeSEC(blocks, metadata = {}) {
     }
   }
 
-  // Minimal header
-  lines.push('<HDR><AST/>');
-  lines.push(`<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>`);
-  lines.push('<AST/><BRK/></HDR>');
+  // Header: use original if available, otherwise minimal
+  if (metadata.rawHeader) {
+    lines.push(metadata.rawHeader);
+  } else {
+    lines.push('<HDR><AST/>');
+    lines.push(`<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>`);
+    lines.push('<AST/><BRK/></HDR>');
+  }
   lines.push('<BRK/>');
   lines.push(`<SCN>SECTION ${sectionNumber}</SCN><BRK/>`);
   lines.push('<BRK/>');

@@ -381,6 +381,33 @@ describe('serializeSEC', () => {
 
   // ─── MTA preservation ─────────────────────────────────────────
 
+  it('uses rawHeader when provided in metadata', () => {
+    const blocks = [
+      { id: '1', type: 'title', part: 1, depth: 1, html: 'GENERAL' },
+    ];
+    const rawHeader = '<HDR><AST/><TAB BORDERS="0"><WBK><TDA COLUMNCOUNT="2" ROWCOUNT="1"><COL WIDTH="225"/><COL WIDTH="225"/><ROW><CEL><DTA TYPE="STRING">USACE / NAVFAC</DTA></CEL><CEL><DTA TYPE="STRING">UFGS-31 00 00</DTA></CEL></ROW></TDA></WBK></TAB><BRK/><HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/><AST/><BRK/></HDR>';
+    const metadata = {
+      sectionNumber: '31 00 00',
+      sectionTitle: 'EARTHWORK',
+      rawHeader,
+    };
+    const xml = serializeSEC(blocks, metadata);
+    // Should contain the raw header verbatim
+    expect(xml).toContain(rawHeader);
+    // Should NOT contain the minimal header pattern
+    expect(xml).not.toMatch(/<HDR><AST\/>\r\n<HL4>/);
+  });
+
+  it('falls back to minimal header when no rawHeader', () => {
+    const blocks = [
+      { id: '1', type: 'title', part: 1, depth: 1, html: 'GENERAL' },
+    ];
+    const metadata = { sectionNumber: '99 99 99', sectionTitle: 'NEW DOC' };
+    const xml = serializeSEC(blocks, metadata);
+    expect(xml).toContain('<HDR><AST/>');
+    expect(xml).toContain('<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4>');
+  });
+
   it('preserves additional MTA tags from metadata', () => {
     const blocks = [
       { id: '1', type: 'title', part: 1, depth: 1, html: 'GENERAL' },

@@ -494,5 +494,10 @@ export function extractMetadata(xml) {
     mta[m[1]] = m[2];
   }
   meta.mta = mta;
+
+  // Capture raw HDR block for verbatim roundtrip
+  const hdrMatch = xml.match(/<HDR>[\s\S]*?<\/HDR>/);
+  if (hdrMatch) meta.rawHeader = hdrMatch[0];
+
   return meta;
 }
