@@ -431,10 +431,12 @@ test.describe('Arrow key navigation', () => {
 
     // Now cursor is at end of "short". Press ArrowDown.
     await page.keyboard.press('End');
+    await page.waitForTimeout(200);
     await page.keyboard.press('ArrowDown');
 
     const focused = page.locator('[data-block-id]:focus');
     await expect(focused).toBeVisible({ timeout: 3000 });
+    await page.waitForTimeout(200);
     const downId = await focused.getAttribute('data-block-id');
     expect(downId).not.toBe(newId);
   });
