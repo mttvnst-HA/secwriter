@@ -21,23 +21,10 @@ import { parseHTML } from 'linkedom';
 const { DOMParser } = parseHTML('');
 globalThis.DOMParser = DOMParser;
 
-import { parseSEC } from '../src/lib/sec-parser.js';
+import { parseSEC, extractMetadata } from '../src/lib/sec-parser.js';
 import { serializeSEC } from '../src/lib/sec-serializer.js';
 import fs from 'fs';
 import path from 'path';
-
-// ── helpers ──────────────────────────────────────────────────────────────────
-
-function extractMeta(xml) {
-  const meta = { sectionNumber: '00 00 00', sectionTitle: 'UNTITLED', date: '' };
-  const scn = xml.match(/<SCN[^>]*>SECTION\s+([\d\s.]+)<\/SCN>/i);
-  if (scn) meta.sectionNumber = scn[1].trim();
-  const stl = xml.match(/<STL[^>]*>(.*?)<\/STL>/i);
-  if (stl) meta.sectionTitle = stl[1].trim();
-  const dte = xml.match(/<DTE[^>]*>(.*?)<\/DTE>/i);
-  if (dte) meta.date = dte[1].trim();
-  return meta;
-}
 
 /**
  * Normalise a line: collapse interior whitespace, trim edges.
@@ -316,7 +303,7 @@ function scanFile(filePath) {
 
   let serialized;
   try {
-    const meta = extractMeta(orig);
+    const meta = extractMetadata(orig);
     serialized = serializeSEC(blocks, meta);
   } catch (e) {
     return { name, filePath, status: 'SERIALIZE_ERROR', error: e.message };
