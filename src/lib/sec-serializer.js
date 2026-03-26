@@ -101,14 +101,20 @@ function serializeTable(table) {
   lines.push(`   <TDA COLUMNCOUNT="${cols}" ROWCOUNT="${table.rows.length}">`);
 
   // Column definitions
-  const colWidth = Math.round(450 / cols * 100) / 100;
   for (let i = 0; i < cols; i++) {
-    lines.push(`      <COL STYLEID="s50" WIDTH="${colWidth}"/>`);
+    const w = table.colWidths?.[i] ?? Math.round(450 / cols * 100) / 100;
+    lines.push(`      <COL STYLEID="s50" AUTOWIDTH="0" WIDTH="${w}"/>`);
   }
 
   // Rows
-  for (const row of table.rows) {
-    lines.push('      <ROW>');
+  for (let rowIdx = 0; rowIdx < table.rows.length; rowIdx++) {
+    const row = table.rows[rowIdx];
+    const h = table.rowHeights?.[rowIdx];
+    if (h != null) {
+      lines.push(`      <ROW AUTOHEIGHT="0" HEIGHT="${h.toFixed(2)}">`);
+    } else {
+      lines.push('      <ROW>');
+    }
     for (const cell of row) {
       const mergeAttr = cell.colspan > 1 ? ` MERGEACROSS="${cell.colspan - 1}"` : '';
       const cellContent = htmlToSgml(cell.text || '');
@@ -243,11 +249,23 @@ export function serializeSEC(blocks, metadata = {}) {
   lines.push('<SEC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://si.ksc.nasa.gov/sidownloads/xml/specsintactSEC.xsd">');
   lines.push('<MTA NAME="SUBFORMAT" CONTENT="NEW"/>');
   lines.push('<MTA NAME="AUTONUMBER" CONTENT="TRUE"/>');
+  // Emit any additional MTA tags from original file metadata
+  if (metadata.mta) {
+    for (const [name, content] of Object.entries(metadata.mta)) {
+      if (name !== 'SUBFORMAT' && name !== 'AUTONUMBER') {
+        lines.push(`<MTA NAME="${name}" CONTENT="${content}"/>`);
+      }
+    }
+  }
 
-  // Minimal header
-  lines.push('<HDR><AST/>');
-  lines.push(`<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>`);
-  lines.push('<AST/><BRK/></HDR>');
+  // Header: use original if available, otherwise minimal
+  if (metadata.rawHeader) {
+    lines.push(metadata.rawHeader);
+  } else {
+    lines.push('<HDR><AST/>');
+    lines.push(`<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/>`);
+    lines.push('<AST/><BRK/></HDR>');
+  }
   lines.push('<BRK/>');
   lines.push(`<SCN>SECTION ${sectionNumber}</SCN><BRK/>`);
   lines.push('<BRK/>');

@@ -378,4 +378,90 @@ describe('serializeSEC', () => {
     const xml = serializeSEC(blocks, META);
     expect(xml).toContain('<ATT>ENG Form 4025-R</ATT>');
   });
+
+  // ─── MTA preservation ─────────────────────────────────────────
+
+  it('uses rawHeader when provided in metadata', () => {
+    const blocks = [
+      { id: '1', type: 'title', part: 1, depth: 1, html: 'GENERAL' },
+    ];
+    const rawHeader = '<HDR><AST/><TAB BORDERS="0"><WBK><TDA COLUMNCOUNT="2" ROWCOUNT="1"><COL WIDTH="225"/><COL WIDTH="225"/><ROW><CEL><DTA TYPE="STRING">USACE / NAVFAC</DTA></CEL><CEL><DTA TYPE="STRING">UFGS-31 00 00</DTA></CEL></ROW></TDA></WBK></TAB><BRK/><HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4><BRK/><AST/><BRK/></HDR>';
+    const metadata = {
+      sectionNumber: '31 00 00',
+      sectionTitle: 'EARTHWORK',
+      rawHeader,
+    };
+    const xml = serializeSEC(blocks, metadata);
+    // Should contain the raw header verbatim
+    expect(xml).toContain(rawHeader);
+    // Should NOT contain the minimal header pattern
+    expect(xml).not.toMatch(/<HDR><AST\/>\r\n<HL4>/);
+  });
+
+  it('falls back to minimal header when no rawHeader', () => {
+    const blocks = [
+      { id: '1', type: 'title', part: 1, depth: 1, html: 'GENERAL' },
+    ];
+    const metadata = { sectionNumber: '99 99 99', sectionTitle: 'NEW DOC' };
+    const xml = serializeSEC(blocks, metadata);
+    expect(xml).toContain('<HDR><AST/>');
+    expect(xml).toContain('<HL4>UNIFIED FACILITIES GUIDE SPECIFICATIONS</HL4>');
+  });
+
+  it('preserves additional MTA tags from metadata', () => {
+    const blocks = [
+      { id: '1', type: 'title', part: 1, depth: 1, html: 'GENERAL' },
+    ];
+    const metadata = {
+      sectionNumber: '99 99 99',
+      sectionTitle: 'MTA TEST',
+      mta: { STATUS: 'CHG', EDIT: 'TRUE', SPECTYPE: 'UFGS', SPECCLASS: '31 00 00', SUBFORMAT: 'NEW', AUTONUMBER: 'TRUE' }
+    };
+    const xml = serializeSEC(blocks, metadata);
+    // Should have all MTA tags
+    expect(xml).toContain('<MTA NAME="STATUS" CONTENT="CHG"/>');
+    expect(xml).toContain('<MTA NAME="EDIT" CONTENT="TRUE"/>');
+    expect(xml).toContain('<MTA NAME="SPECTYPE" CONTENT="UFGS"/>');
+    expect(xml).toContain('<MTA NAME="SPECCLASS" CONTENT="31 00 00"/>');
+    // Should NOT duplicate SUBFORMAT or AUTONUMBER
+    const subformatMatches = xml.match(/<MTA NAME="SUBFORMAT"/g);
+    expect(subformatMatches).toHaveLength(1);
+    const autonumberMatches = xml.match(/<MTA NAME="AUTONUMBER"/g);
+    expect(autonumberMatches).toHaveLength(1);
+  });
+
+  // ─── Table column widths and row heights ──────────────────────
+
+  it('preserves table column widths and row heights when provided', () => {
+    const blocks = [{
+      id: '1', type: 'table', part: 1, depth: 1,
+      table: {
+        columns: 2,
+        rows: [[{ text: 'A', colspan: 1 }, { text: 'B', colspan: 1 }]],
+        colWidths: [225.75, 224.25],
+        rowHeights: [15.00],
+      }
+    }];
+    const xml = serializeSEC(blocks, { sectionNumber: '99 99 99', sectionTitle: 'TABLE TEST' });
+    expect(xml).toContain('WIDTH="225.75"');
+    expect(xml).toContain('WIDTH="224.25"');
+    expect(xml).toContain('AUTOWIDTH="0"');
+    expect(xml).toContain('HEIGHT="15.00"');
+    expect(xml).toContain('AUTOHEIGHT="0"');
+  });
+
+  it('falls back to computed widths when colWidths not provided', () => {
+    const blocks = [{
+      id: '1', type: 'table', part: 1, depth: 1,
+      table: {
+        columns: 2,
+        rows: [[{ text: 'A', colspan: 1 }, { text: 'B', colspan: 1 }]],
+      }
+    }];
+    const xml = serializeSEC(blocks, { sectionNumber: '99 99 99', sectionTitle: 'TABLE TEST' });
+    expect(xml).toContain('WIDTH="225"');  // 450/2 = 225
+    expect(xml).toContain('AUTOWIDTH="0"');
+    expect(xml).not.toContain('HEIGHT=');
+    expect(xml).not.toContain('AUTOHEIGHT=');
+  });
 });

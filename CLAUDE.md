@@ -107,11 +107,15 @@ tests/
   ux-ergonomic-review-prompt.md # UX review prompt with parallel agents + verification workflow
   ufgs-tag-coverage.node-test.mjs  # Tag coverage regression: all 60 SGML tags accounted for across 690 files ~85 lines
   ufgs-structural.node-test.mjs    # Structural validation: block types, depth, tables, refs across 690 files ~130 lines
+  interop.node-test.mjs            # 17 structural interop tests: parse→serialize→validate XML structure ~200 lines
+  interop-encoding.node-test.mjs   # 11 reverse import + encoding fidelity tests ~150 lines
 tools/
   parse-sec.js             # Node CLI: parse .SEC -> JSON
   roundtrip-test.js        # Test parse -> serialize -> re-parse
   diagnose-depth.js        # Debug SPT nesting
   diagnose-html.js         # Debug HTML extraction
+  interop-scan.mjs         # Binary-level diff scanner: SIM-serialized vs legacy .SEC files
+  interop-export.mjs       # Generates SIM-exported .SEC files for 10 representative sections
   ui-audit/
     run-audit.mjs          # Audit runner orchestrator — launches 15 test areas sequentially
     collect-findings.mjs   # Generates timestamped Markdown report from findings.json
@@ -128,13 +132,15 @@ test-results/              # UI audit output: findings.json + timestamped Markdo
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 466 Vitest unit tests
+npm test             # Run 471 Vitest unit tests
 npm run test:watch   # Watch mode
-npm run test:compliance  # Run 40 compliance rule tests (Node built-in runner — NOT Vitest)
+npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 140 Playwright E2E tests
 npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node runner)
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
-# Full suite: 466 + 69 + 140 = 675 automated tests
+npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
+npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
+# Full suite: 471 + 99 + 140 = 710 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -374,7 +380,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 **Validation & Deployment:**
 16. ~~**Real-world .SEC file testing**~~ — ✅ Done. Parser validated against all 690 UFGS .SEC files. Added TBL (preformatted tables), ATT (attachment marks), THD (table headers), INT (cell fill styles). 12-test UFGS regression suite (`npm run test:ufgs`).
-17. **Interop testing** — export from SIM, re-import into legacy SpecsIntact, verify round-trip fidelity
+17. ~~**Interop testing**~~ — ✅ Done. SIM-exported .SEC files open in legacy SIEditor (10/10 pass). 17 structural interop tests + 11 reverse import/encoding tests. Serializer enhanced: MTA preservation, verbatim HDR passthrough, table COL WIDTH/ROW HEIGHT fidelity. Binary diff scanner at `tools/interop-scan.mjs`.
 18. **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
 19. **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
 20. **Production deployment** — `npm run build` and host (static site, no server needed)
@@ -394,7 +400,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 |-----------|-------|--------|----------|
 | sec-parser.test.js | 43 | Vitest | Tag extraction, inline marks (incl. ATT), tables, TBL/THD, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks, INT styles |
 | tailor-profile.test.js | 36 | Vitest | Branch/region/delivery matching, resolution, cleanup |
-| sec-serializer.test.js | 34 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, TBL/ATT roundtrip, CRLF |
+| sec-serializer.test.js | 39 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, TBL/ATT roundtrip, CRLF, MTA preservation, HDR passthrough, table widths/heights |
 | revisions.test.js | 29 | Vitest | Accept/reject inline + block revisions, batch operations, stats, whitespace collapse |
 | cross-ref-validation.test.js | 21 | Vitest | RID extraction from body/ref blocks, unlinked/orphaned detection, SRF extraction |
 | compliance-checker.test.js | 23 | Vitest | Scope selection, violation grouping, stats, context extraction, bracket/note exclusion, violation budget/truncation |
@@ -415,7 +421,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | tree-builder.test.js | 8 | Vitest | Flat->tree conversion, multi-level nesting |
 | auto-save.test.js | 7 | Vitest | localStorage save/load/clear, timestamp, comments serialization |
 | comments.test.js | 6 | Vitest | Comment report generation, HTML escaping, block ordering |
-| compliance-rules.node-test.mjs | 40 | Node | Rule generation, pattern matching, fix functions, false positive regression (19 cases), bracket/note/unit exclusion, FMT-001 removal regression |
+| compliance-rules.node-test.mjs | 42 | Node | Rule generation, pattern matching, fix functions, false positive regression (19 cases), bracket/note/unit exclusion, FMT-001 removal regression |
 | inline-linter.test.js | 19 | Vitest | Text extraction, range creation, highlight management, cursor hit-testing, fix computation, per-block findings |
 | grammar-checker.test.js | 10 | Vitest | Harper initialization, violation mapping, dictionary filtering, stale detection |
 | nlp-rules.test.js | 37 | Vitest | Passive voice corpus (21 sentences via it.each), FP rate assertion, indicative mood detection, verb conjugation, bracket/note exclusion |
@@ -426,9 +432,11 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | corpus-adversarial.node-test.mjs | 6 | Node | Overall ≥80%, FP traps, true positives, NLP ambiguity, domain jargon, failure documentation |
 | ufgs-tag-coverage.node-test.mjs | 4 | Node | All 60 SGML tags accounted for, no parse errors, TBL→tbl blocks, ATT→mark-att spans |
 | ufgs-structural.node-test.mjs | 8 | Node | Block count, title presence, valid types, depth ≤10, table structure, ref org, monotonic parts |
+| interop.node-test.mjs | 17 | Node | XML declaration, root element, MTA, HDR, SCN/STL/DTE, PRT count, SPT nesting, NTE/OLG grouping, REF structure, TAB structure, TBL roundtrip, inline marks, revisions, encoding, CRLF |
+| interop-encoding.node-test.mjs | 11 | Node | Reverse import roundtrip (block count, types), encoding fidelity (windows-1252, CRLF, no BOM), special character preservation |
 | editor.spec.js (E2E) | 140 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 466 Vitest + 69 Node + 140 Playwright = 675 automated tests**
+**Total: 471 Vitest + 99 Node + 140 Playwright = 710 automated tests**
 
 ## Dependencies
 

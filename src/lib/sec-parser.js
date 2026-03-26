@@ -188,7 +188,19 @@ function extractTable(tabElem) {
     }
   }
 
+  // Extract column widths from COL elements
+  const colElems = tda.querySelectorAll('COL');
+  const colWidths = [];
+  for (const col of colElems) {
+    const w = col.getAttribute('WIDTH');
+    if (w) colWidths.push(parseFloat(w));
+  }
+
+  // Extract row heights and cell data from ROW elements
+  const rowHeights = [];
   for (const rowElem of tda.querySelectorAll('ROW')) {
+    const h = rowElem.getAttribute('HEIGHT');
+    rowHeights.push(h ? parseFloat(h) : null);
     const cells = [];
     for (const cel of rowElem.querySelectorAll(':scope > CEL')) {
       const mergeAcross = cel.getAttribute('MERGEACROSS');
@@ -205,6 +217,8 @@ function extractTable(tabElem) {
 
   const result = { columns: cols, rows };
   if (Object.keys(styles).length > 0) result.styles = styles;
+  if (colWidths.length > 0) result.colWidths = colWidths;
+  if (rowHeights.some(h => h !== null)) result.rowHeights = rowHeights;
   return result;
 }
 
@@ -472,4 +486,32 @@ export function parseSEC(xmlString) {
   }
 
   return blocks;
+}
+
+/**
+ * Extract metadata from a .SEC XML string for roundtrip serialization.
+ * Separate from parseSEC() — callers use both independently.
+ */
+export function extractMetadata(xml) {
+  const meta = { sectionNumber: '00 00 00', sectionTitle: 'UNTITLED', date: '' };
+  const scn = xml.match(/<SCN[^>]*>SECTION\s+([\d\s.]+)<\/SCN>/i);
+  if (scn) meta.sectionNumber = scn[1].trim();
+  const stl = xml.match(/<STL[^>]*>(.*?)<\/STL>/i);
+  if (stl) meta.sectionTitle = stl[1].trim();
+  const dte = xml.match(/<DTE[^>]*>(.*?)<\/DTE>/i);
+  if (dte) meta.date = dte[1].trim();
+
+  const mta = {};
+  const mtaRegex = /<MTA\s+NAME="([^"]+)"\s+CONTENT="([^"]*)"\/>/g;
+  let m;
+  while ((m = mtaRegex.exec(xml)) !== null) {
+    mta[m[1]] = m[2];
+  }
+  meta.mta = mta;
+
+  // Capture raw HDR block for verbatim roundtrip
+  const hdrMatch = xml.match(/<HDR>[\s\S]*?<\/HDR>/);
+  if (hdrMatch) meta.rawHeader = hdrMatch[0];
+
+  return meta;
 }
