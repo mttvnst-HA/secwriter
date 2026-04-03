@@ -1795,6 +1795,7 @@ export default function SpecEditor() {
                   onInlineFix={handleComplianceAcceptFix}
                   inlineLintingEnabled={inlineLintingEnabled}
                   compliancePanelActive={complianceOpen}
+                  showTags={showTags}
                 />
                 {focusedBlockId === block.id && (
                   <MarkSuggestions

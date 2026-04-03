@@ -32,7 +32,7 @@ src/
   App.jsx                  # Main editor layout, state management, toolbar, sidebar ~1920 lines
   main.jsx                 # Entry point + ErrorBoundary wrapper ~50 lines
   components/
-    EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~660 lines
+    EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~710 lines
     InlineTooltip.jsx      # Floating tooltip for inline linting findings: severity, fix preview, Why? ~292 lines
     TitleBlock.jsx         # Section heading with inline editing, Tab/Shift+Tab depth ~145 lines
     TableBlock.jsx         # Table editing: cell edit, add/delete rows/columns, merge/split ~260 lines
@@ -88,7 +88,7 @@ src/
     umsl.json              # UMSL submittal database (13,203 submittals, 1,097KB)
     ufs-1-300-02-rules.json # UFS 1-300-02 compliance rules (122 rules, 35 prohibited terms, 65KB)
   styles/
-    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance + inline linting highlights ~610 lines
+    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance + inline linting highlights ~580 lines
 reference/
   section.ini              # SpecsIntact formatting rules (AUTHORITATIVE - always check this)
   document.ini             # Document-level formatting variant
@@ -258,9 +258,9 @@ Comments use a **DOM-based highlight + separate metadata store** approach:
 
 The `</>` toolbar button toggles between `tags-hidden` (default) and `tags-visible` CSS classes on the editor container:
 
-1. **Inline marks** use CSS `::before`/`::after` pseudo-elements to inject tag names (e.g., `<RID>...</RID>`). TAI marks use `attr(data-opt)` to show the OPT attribute value. Tag text is styled in cyan monospace (`font-family: 'SF Mono', Consolas; font-size: 11px; color: #0ea5e9`).
-2. **Block-level tags** use `data-tag` attributes on block wrapper `<div>` elements. EditableBlock maps block types to SGML names (`txt→TXT`, `note→NTE`, `oli→OLI`, `item→ITM`, `lst→LST`). TitleBlock uses `data-tag="TTL"`.
-3. **No JavaScript rendering needed** — pure CSS approach avoids re-renders when toggling. The pseudo-elements are invisible when the `tags-visible` class is absent.
+1. **Inline marks** use real `<span contentEditable="false" class="tag-label">` DOM nodes injected by `syncTagLabels()` in EditableBlock. The `MARK_TAG_MAP` maps mark classes to SGML tag names (e.g., `mark-rid`→`RID`). TAI marks include `data-opt` attribute in the open tag. Tag text is styled in cyan monospace (`.tag-label` class in editor.css). Tag labels are stripped from innerHTML via `stripTagLabels()` before saving to state.
+2. **Block-level tags** use CSS `::before`/`::after` pseudo-elements with `data-tag` attributes on block wrapper `<div>` elements (outside contentEditable, so no caret issues). EditableBlock maps block types to SGML names (`txt→TXT`, `note→NTE`, `oli→OLI`, `item→ITM`, `lst→LST`). TitleBlock uses `data-tag="TTL"`.
+3. **Why real DOM nodes for inline marks:** CSS pseudo-elements don't create caret positions in contentEditable — the browser can't place the cursor between a `::before` and the first text character. `contentEditable="false"` spans provide proper DOM boundaries for caret positioning.
 
 ### Compliance checker architecture
 

@@ -7,7 +7,45 @@ import { initInlineLinting, clearBlockLinting, extractPlainText, findFindingAtCu
 import { getRules } from "../lib/compliance-rules.js";
 import InlineTooltip from "./InlineTooltip.jsx";
 
-function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, comments, onCommentClick, onInlineFix, inlineLintingEnabled = true, compliancePanelActive = false }) {
+// Mark class → SGML tag name mapping for inline tag labels
+const MARK_TAG_MAP = {
+  'mark-rid': 'RID', 'mark-srf': 'SRF', 'mark-sub': 'SUB',
+  'mark-eng': 'ENG', 'mark-met': 'MET', 'mark-tst': 'TST',
+  'mark-url': 'URL', 'mark-att': 'ATT', 'mark-tai': 'TAI',
+};
+
+/** Inject or remove contentEditable=false tag label spans inside a DOM container */
+function syncTagLabels(container, visible) {
+  if (!container) return;
+  // Remove existing tag labels first
+  container.querySelectorAll('.tag-label').forEach(el => el.remove());
+  if (!visible) return;
+  // Inject tag labels before/after each mark span
+  for (const [cls, tag] of Object.entries(MARK_TAG_MAP)) {
+    container.querySelectorAll(`.${cls}`).forEach(span => {
+      const openTag = tag === 'TAI' && span.dataset.opt
+        ? `<TAI OPT=${span.dataset.opt}>`
+        : `<${tag}>`;
+      const open = document.createElement('span');
+      open.className = 'tag-label';
+      open.contentEditable = 'false';
+      open.textContent = openTag;
+      const close = document.createElement('span');
+      close.className = 'tag-label';
+      close.contentEditable = 'false';
+      close.textContent = `</${tag}>`;
+      span.prepend(open);
+      span.append(close);
+    });
+  }
+}
+
+/** Strip tag-label spans from innerHTML before saving to state */
+function stripTagLabels(html) {
+  return html.replace(/<span[^>]*class="tag-label"[^>]*>[^<]*<\/span>/g, '');
+}
+
+function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, comments, onCommentClick, onInlineFix, inlineLintingEnabled = true, compliancePanelActive = false, showTags = false }) {
   const ref = useRef(null);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashFilter, setSlashFilter] = useState("");
@@ -32,14 +70,16 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     } else if (!editable) {
       node.innerHTML = resolveHtml ? resolveHtml(block.html || "") : (block.html || "");
     }
-  }, [editable, block.html, resolveHtml]);
+    syncTagLabels(node, showTags);
+  }, [editable, block.html, resolveHtml, showTags]);
 
   // Keep non-editable blocks synced when html changes after mount
   useEffect(() => {
     if (!editable && ref.current) {
       ref.current.innerHTML = resolveHtml ? resolveHtml(block.html || "") : (block.html || "");
+      syncTagLabels(ref.current, showTags);
     }
-  }, [editable, block.html, resolveHtml]);
+  }, [editable, block.html, resolveHtml, showTags]);
 
   // Sync editable block DOM when block.html changes externally (e.g. Accept All / Reject All)
   // Only sync if the block is NOT currently focused (avoid disrupting active editing)
@@ -47,9 +87,10 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     if (editable && ref.current && ref.current.dataset.init) {
       if (document.activeElement !== ref.current) {
         ref.current.innerHTML = resolveHtml ? resolveHtml(block.html || "") : (block.html || "");
+        syncTagLabels(ref.current, showTags);
       }
     }
-  }, [editable, block.html, resolveHtml]);
+  }, [editable, block.html, resolveHtml, showTags]);
 
   // Re-apply TAI resolution when tailoring profile changes
   useEffect(() => {
@@ -57,7 +98,13 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     // Re-resolve from clean block.html (not DOM innerHTML which may have stale classes)
     const resolved = resolveHtml(block.html || "");
     ref.current.innerHTML = resolved;
-  }, [tailorKey]);
+    syncTagLabels(ref.current, showTags);
+  }, [tailorKey, showTags]);
+
+  // Inject/remove inline tag labels when showTags toggles
+  useEffect(() => {
+    syncTagLabels(ref.current, showTags);
+  }, [showTags]);
 
   // For new/converted blocks: place caret after mount + paint
   const needsFocus = block.isNew && editable;
@@ -157,8 +204,8 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
       if (trackChanges && snapshotText != null) {
         annotateDomWithDiff(ref.current, snapshotText);
       }
-      // Strip TAI resolution classes before saving to state
-      const html = cleanTaiClasses(ref.current.innerHTML);
+      // Strip tag labels and TAI resolution classes before saving to state
+      const html = stripTagLabels(cleanTaiClasses(ref.current.innerHTML));
       onUpdate(block.id, html);
     }
     setTimeout(() => {
@@ -198,7 +245,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
 
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      if (ref.current) onUpdate(block.id, ref.current.innerHTML);
+      if (ref.current) onUpdate(block.id, stripTagLabels(ref.current.innerHTML));
       onEnterKey(block.id);
       return;
     }
@@ -211,14 +258,14 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
 
     if (e.key === "ArrowUp" && isCursorAtStart()) {
       e.preventDefault();
-      if (ref.current) onUpdate(block.id, ref.current.innerHTML);
+      if (ref.current) onUpdate(block.id, stripTagLabels(ref.current.innerHTML));
       onFocusPrev(block.id);
       return;
     }
 
     if (e.key === "ArrowDown" && isCursorAtEnd()) {
       e.preventDefault();
-      if (ref.current) onUpdate(block.id, ref.current.innerHTML);
+      if (ref.current) onUpdate(block.id, stripTagLabels(ref.current.innerHTML));
       onFocusNext(block.id);
       return;
     }
@@ -277,7 +324,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     }
     setDelPopup(null);
     // Save updated HTML and sync snapshot
-    const html = ref.current.innerHTML;
+    const html = stripTagLabels(ref.current.innerHTML);
     if (onRevisionAction) {
       onRevisionAction(block.id, html);
     } else {
@@ -407,6 +454,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     // Update DOM directly since block is focused (React sync skips focused blocks)
     if (ref.current) {
       ref.current.innerHTML = fixedHtml;
+      syncTagLabels(ref.current, showTags);
     }
     if (onInlineFix) {
       onInlineFix(blockId, fixedHtml);
