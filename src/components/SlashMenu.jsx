@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 
 export const SLASH_ITEMS = [
   { type: "title", label: "Heading", desc: "Section heading (Tab/Shift+Tab to change level)", icon: "H" },
@@ -14,12 +14,24 @@ export const SLASH_ITEMS = [
 
 export default function SlashMenu({ filter, selectedIdx, onSelect, position }) {
   const [hoverIdx, setHoverIdx] = useState(-1);
+  const [flipped, setFlipped] = useState(false);
+  const menuRef = useRef(null);
 
   const filtered = useMemo(() => SLASH_ITEMS.filter(item => {
     if (!filter) return true;
     const q = filter.toLowerCase();
     return item.label.toLowerCase().startsWith(q);
   }), [filter]);
+
+  // Check if menu overflows viewport and flip above if needed
+  useLayoutEffect(() => {
+    const el = menuRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const margin = 8;
+    setFlipped(rect.bottom > viewportHeight - margin);
+  }, [filtered.length]);
 
   if (filtered.length === 0) return null;
 
@@ -29,10 +41,13 @@ export default function SlashMenu({ filter, selectedIdx, onSelect, position }) {
 
   return (
     <div
+      ref={menuRef}
       style={{
         position: "absolute",
         left: position.left || 15,
-        top: position.top || 28,
+        ...(flipped
+          ? { bottom: position.top || 28 }
+          : { top: position.top || 28 }),
         zIndex: 1000,
         backgroundColor: "#ffffff",
         border: "1px solid #e2e8f0",
