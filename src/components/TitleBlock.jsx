@@ -1,4 +1,5 @@
 import { useRef, useCallback, useEffect } from "react";
+import { sanitizePasteText } from "./EditableBlock.jsx";
 
 function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote, onDemote, onEnterKey, onDelete, onFocusPrev, onFocusNext }) {
   const ref = useRef(null);
@@ -75,6 +76,14 @@ function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote
     }
   }, [block.id, onUpdate, isPart]);
 
+  const handlePaste = useCallback((e) => {
+    e.preventDefault();
+    const text = sanitizePasteText(e.clipboardData.getData('text/plain'));
+    if (text) {
+      document.execCommand('insertText', false, text);
+    }
+  }, []);
+
   const style = {
     fontFamily: "'Georgia', 'Cambria', serif",
     fontWeight: isPart ? 800 : depth === 1 ? 700 : 600,
@@ -123,6 +132,7 @@ function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote
           contentEditable
           suppressContentEditableWarning
           onKeyDown={handleKeyDown}
+          onPaste={handlePaste}
           onBlur={handleBlur}
           style={{ outline: "none", flex: 1, minWidth: 20 }}
         />
