@@ -2801,3 +2801,34 @@ test.describe('Compliance checker', () => {
     await expect(tooltip).not.toBeVisible();
   });
 });
+
+test.describe('Paste formatting', () => {
+  test('strips HTML formatting from pasted content', async ({ page }) => {
+    // Click into the first TXT block
+    const block = page.locator('[contenteditable="true"]').first();
+    await block.click();
+
+    // Simulate pasting rich HTML via clipboard API
+    await page.evaluate(() => {
+      const block = document.querySelector('[contenteditable="true"]');
+      block.focus();
+      // Select all existing content
+      document.execCommand('selectAll');
+      // Create a paste event with rich HTML
+      const dt = new DataTransfer();
+      dt.setData('text/html', '<b style="font-family: Comic Sans MS; color: red;">Bold Red Text</b>');
+      dt.setData('text/plain', 'Bold Red Text');
+      const pasteEvent = new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true });
+      block.dispatchEvent(pasteEvent);
+    });
+
+    // Verify plain text was inserted and no formatting leaked through
+    const textContent = await block.evaluate(el => el.textContent);
+    expect(textContent).toContain('Bold Red Text');
+
+    const innerHTML = await block.evaluate(el => el.innerHTML);
+    expect(innerHTML).not.toContain('style=');
+    expect(innerHTML).not.toContain('<b');
+    expect(innerHTML).not.toContain('Comic Sans');
+  });
+});
