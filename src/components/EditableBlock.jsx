@@ -7,9 +7,9 @@ import { initInlineLinting, clearBlockLinting, extractPlainText, findFindingAtCu
 import { getRules } from "../lib/compliance-rules.js";
 import InlineTooltip from "./InlineTooltip.jsx";
 
-/** Sanitize pasted text: collapse newlines to spaces, strip zero-width spaces, trim */
+/** Sanitize pasted text: collapse newlines to single space, strip zero-width spaces, trim */
 export function sanitizePasteText(text) {
-  return text.replace(/\r?\n/g, ' ').replace(/\u200B/g, '').trimEnd();
+  return text.replace(/[\r\n]+/g, ' ').replace(/\u200B/g, '').trimEnd();
 }
 
 // Mark class → SGML tag name mapping for inline tag labels
@@ -294,7 +294,9 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     }
   }, [slashOpen]);
 
-  // Strip formatting from pasted content — insert plain text only
+  // Strip formatting from pasted content — insert plain text only.
+  // execCommand('insertText') is deprecated but remains the only reliable way to
+  // insert text into contentEditable while preserving the browser's native undo stack.
   const handlePaste = useCallback((e) => {
     e.preventDefault();
     const text = sanitizePasteText(e.clipboardData.getData('text/plain'));
