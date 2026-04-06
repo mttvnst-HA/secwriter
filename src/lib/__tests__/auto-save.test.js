@@ -67,6 +67,21 @@ describe('loadAutoSave', () => {
     store['sim-autosave'] = JSON.stringify({ blocks: [], fileName: 'x.SEC' });
     expect(loadAutoSave()).toBeNull();
   });
+
+  it('migrates stray whitespace between closing inline marks and punctuation', () => {
+    store['sim-autosave'] = JSON.stringify({
+      blocks: [
+        { id: 'b1', type: 'txt', html: 'Section <span class="mark-srf">01 57 19</span> , TEMPORARY' },
+        { id: 'b2', type: 'txt', html: 'see <span class="mark-srf">31 23</span>  ; ok and <ins class="mark-add">x</ins> . end' },
+        { id: 'b3', type: 'txt', html: 'unchanged <span class="mark-srf">A</span> word' },
+      ],
+      fileName: 'x.SEC',
+    });
+    const data = loadAutoSave();
+    expect(data.blocks[0].html).toBe('Section <span class="mark-srf">01 57 19</span>, TEMPORARY');
+    expect(data.blocks[1].html).toBe('see <span class="mark-srf">31 23</span>; ok and <ins class="mark-add">x</ins>. end');
+    expect(data.blocks[2].html).toBe('unchanged <span class="mark-srf">A</span> word');
+  });
 });
 
 describe('clearAutoSave', () => {
