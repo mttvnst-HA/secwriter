@@ -42,16 +42,18 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
       if (left - tooltipWidth / 2 < 8) left = tooltipWidth / 2 + 8;
       if (left + tooltipWidth / 2 > window.innerWidth - 8) left = window.innerWidth - tooltipWidth / 2 - 8;
 
-      // Position above the highlight; flip below if not enough room
+      // Prefer positioning below the highlight so the flagged word stays visible.
+      // Flip above only if there isn't enough room below.
       let top;
-      let below = false;
-      if (rect.top - tooltipHeight - 8 > 8) {
-        // Above: top is the bottom edge of tooltip (transform -100% pulls it up)
-        top = rect.top - 8;
-      } else {
-        // Below: top is the top edge of tooltip
+      let below = true;
+      if (rect.bottom + tooltipHeight + 8 < window.innerHeight - 8) {
         top = rect.bottom + 8;
-        below = true;
+      } else if (rect.top - tooltipHeight - 8 > 8) {
+        top = rect.top - 8;
+        below = false;
+      } else {
+        // Neither fits fully — fall back to below and let it clip
+        top = rect.bottom + 8;
       }
 
       setPos({ top, left, below });

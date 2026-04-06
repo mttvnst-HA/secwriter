@@ -679,7 +679,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
           ref={setRef}
           data-block-id={block.id}
           contentEditable={editable}
-          spellCheck={editable}
+          spellCheck={false}
           suppressContentEditableWarning
           onKeyDown={editable ? handleKeyDown : undefined}
           onInput={editable ? handleInput : undefined}

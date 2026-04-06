@@ -130,6 +130,7 @@ function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote
           ref={ref}
           data-block-id={block.id}
           contentEditable
+          spellCheck={false}
           suppressContentEditableWarning
           onKeyDown={handleKeyDown}
           onPaste={handlePaste}
