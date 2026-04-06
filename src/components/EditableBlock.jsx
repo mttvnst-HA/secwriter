@@ -4,6 +4,7 @@ import { BLOCK_MARGINS } from "../lib/ini-config.js";
 import { cleanTaiClasses } from "../lib/tailor-profile.js";
 import { annotateDomWithDiff } from "../lib/text-diff.js";
 import { initInlineLinting, clearBlockLinting, extractPlainText, findFindingAtCursor, getBlockFindingSeverity, DEBOUNCE_MS } from "../lib/inline-linter.js";
+import { addUserWord } from "../lib/grammar-checker.js";
 import { getRules } from "../lib/compliance-rules.js";
 import InlineTooltip from "./InlineTooltip.jsx";
 
@@ -489,6 +490,18 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
 
   const dismissTooltip = useCallback(() => setTooltipFinding(null), []);
 
+  // Add a word to the user's custom dictionary and re-lint this block
+  const handleAddToDictionary = useCallback(async (word) => {
+    setTooltipFinding(null);
+    try {
+      await addUserWord(word);
+    } catch {
+      // ignore
+    }
+    // Re-lint so the highlight disappears
+    setTimeout(lintBlock, 50);
+  }, [lintBlock]);
+
   // On blur: dismiss tooltip, keep highlights persistent.
   // Re-lint after a short delay because blur → onUpdate → React re-render
   // replaces DOM text nodes, which invalidates existing Range objects.
@@ -726,6 +739,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
           blockId={block.id}
           onFix={handleInlineFix}
           onDismiss={dismissTooltip}
+          onAddToDictionary={handleAddToDictionary}
           blockEl={ref.current}
         />
       )}

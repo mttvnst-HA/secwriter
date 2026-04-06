@@ -44,7 +44,7 @@ const ENGINEERING_TERMS = [
   'submittal', 'submittals', 'punchlist', 'rebar', 'rebars',
   'geotextile', 'geomembrane', 'geogrid', 'geosynthetic', 'geosynthetics',
   'backfill', 'subgrade', 'subbase', 'embankment', 'riprap', 'rip-rap',
-  'borrow', 'grubbing', 'dewatering', 'shoring', 'sheeting',
+  'borrow', 'grubbing', 'dewatering', 'unwatering', 'shoring', 'sheeting',
   'compaction', 'gradation', 'proctor', 'Proctor',
   'preconstruction', 'jobsite', 'earthwork', 'groundwater',
   'subcontractor', 'subcontractors', 'workmanship',
@@ -121,6 +121,70 @@ const ENGINEERING_TERMS = [
   'locatable', 'bibbs',
 ];
 
+// User-editable custom dictionary (persisted in localStorage)
+const USER_DICT_KEY = 'sim-user-dictionary';
+
+function loadUserDict() {
+  try {
+    if (typeof localStorage === 'undefined') return [];
+    const raw = localStorage.getItem(USER_DICT_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .filter((w) => typeof w === 'string')
+      .map((w) => w.trim())
+      .filter((w) => w.length > 0);
+  } catch {
+    return [];
+  }
+}
+
+function saveUserDict(words) {
+  try {
+    if (typeof localStorage === 'undefined') return;
+    localStorage.setItem(USER_DICT_KEY, JSON.stringify(words));
+  } catch {
+    // Quota or privacy mode — ignore
+  }
+}
+
+/**
+ * Get the current user-added dictionary words.
+ * @returns {string[]}
+ */
+export function getUserDict() {
+  return loadUserDict();
+}
+
+/**
+ * Add a word to the user dictionary. Persists to localStorage and imports
+ * into Harper immediately if the linter is ready.
+ *
+ * @param {string} word
+ * @returns {string[]} updated dictionary
+ */
+export async function addUserWord(word) {
+  const trimmed = (word || '').trim();
+  if (!trimmed) return loadUserDict();
+
+  const current = loadUserDict();
+  // De-dupe case-sensitively (Harper treats "PSNS" and "psns" differently)
+  if (current.includes(trimmed)) return current;
+
+  const updated = [...current, trimmed];
+  saveUserDict(updated);
+
+  if (ready && linter) {
+    try {
+      await linter.importWords([trimmed]);
+    } catch {
+      // Import failed — word is still persisted and will load on next init
+    }
+  }
+  return updated;
+}
+
 // Harper rules to disable for construction specification text
 const DISABLED_RULES = {
   LongSentences: false,     // Specs routinely have 40+ word sentences
@@ -148,6 +212,10 @@ export async function initGrammarChecker() {
       linter = new WorkerLinter({ binary, dialect: Dialect.American });
       await linter.setup();
       await linter.importWords(ENGINEERING_TERMS);
+      const userWords = loadUserDict();
+      if (userWords.length > 0) {
+        await linter.importWords(userWords);
+      }
       // Disable rules that conflict with UFGS conventions
       const config = await linter.getLintConfig();
       Object.assign(config, DISABLED_RULES);
@@ -191,6 +259,7 @@ export async function checkGrammar(plainText, blockId) {
 
   version++;
   const requestVersion = version;
+  const userDictLower = new Set(loadUserDict().map((w) => w.toLowerCase()));
 
   try {
     const lints = await linter.lint(plainText, { language: 'plaintext' });
@@ -210,6 +279,12 @@ export async function checkGrammar(plainText, blockId) {
 
       // Skip single-character matches (list labels like "a.", "s", ordinal fragments)
       if (problemText.length <= 1) continue;
+
+      // Skip words the user has added to their custom dictionary. Harper's
+      // importWords only suppresses unknown-word (spelling) findings; grammar
+      // rules (plural/singular, conjugation, etc.) still fire. This filter
+      // honors the user's intent that "this word is fine, leave it alone."
+      if (userDictLower.has(problemText.toLowerCase())) continue;
 
       const suggestions = lint.suggestions();
       const hasSuggestion = suggestions.length > 0;

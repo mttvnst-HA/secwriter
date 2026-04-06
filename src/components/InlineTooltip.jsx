@@ -13,7 +13,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
  *   onDismiss  - () callback to hide tooltip
  *   blockEl    - the contentEditable DOM element (for computing fix text)
  */
-export default function InlineTooltip({ finding, blockId, onFix, onDismiss, blockEl }) {
+export default function InlineTooltip({ finding, blockId, onFix, onDismiss, blockEl, onAddToDictionary }) {
   const [showWhy, setShowWhy] = useState(false);
   const tooltipRef = useRef(null);
   const [pos, setPos] = useState(null);  // { top, left, below }
@@ -116,6 +116,21 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
 
   const { violation } = finding;
   const hasFix = !!violation.fixFn;
+
+  // Show "Add to dictionary" for any Harper grammar/spelling finding on a single word.
+  const isGrammar = typeof violation.ruleId === 'string' && violation.ruleId.startsWith('GRAMMAR-');
+  const isSingleWord = isGrammar && /^[A-Za-z][A-Za-z'-]*$/.test(violation.match || '');
+  const canAddToDict = isSingleWord && typeof onAddToDictionary === 'function';
+
+  const handleAddToDict = () => {
+    if (!canAddToDict) return;
+    try {
+      onAddToDictionary(violation.match);
+    } catch {
+      // ignore
+    }
+    onDismiss();
+  };
 
   // Compute replacement text for display if not explicitly set
   let displayReplacement = violation.replacement || null;
@@ -281,10 +296,30 @@ export default function InlineTooltip({ finding, blockId, onFix, onDismiss, bloc
               </span>
             )}
           </>
-        ) : (
+        ) : !canAddToDict ? (
           <span style={{ fontSize: 11, color: '#94a3b8', fontStyle: 'italic' }}>
             Use Compliance Panel for AI fix
           </span>
+        ) : null}
+        {canAddToDict && (
+          <button
+            onClick={handleAddToDict}
+            onMouseDown={(e) => e.preventDefault()}
+            title="Add this word to your custom dictionary"
+            style={{
+              padding: '3px 10px',
+              fontSize: 12,
+              fontWeight: 500,
+              backgroundColor: '#fff',
+              color: '#2563eb',
+              border: '1px solid #bfdbfe',
+              borderRadius: 4,
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+          >
+            + Add "{violation.match.length > 20 ? violation.match.slice(0, 17) + '...' : violation.match}" to dictionary
+          </button>
         )}
       </div>
     </div>
