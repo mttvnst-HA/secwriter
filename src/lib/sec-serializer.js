@@ -12,6 +12,20 @@
 import { computeOliItems } from './numbering.js';
 
 /**
+ * Escape XML-significant characters in text content. Required so that
+ * literal `&`, `<`, `>` from user text don't break the resulting SGML
+ * (e.g. "P&ID" must serialize as "P&amp;ID", otherwise re-parsing the
+ * file with the browser's strict XML DOMParser fails at the bare `&`
+ * and silently truncates the document).
+ */
+function escapeXmlText(s) {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+/**
  * Walk a DOM node tree and convert HTML back to SEC SGML inline tags.
  * This is the reverse of elemToHtml() from sec-parser.js.
  */
@@ -19,7 +33,7 @@ function walkNodeToSgml(node) {
   const parts = [];
   for (const child of node.childNodes) {
     if (child.nodeType === 3) { // Text node
-      parts.push(child.textContent.replace(/\u200B/g, ''));
+      parts.push(escapeXmlText(child.textContent.replace(/\u200B/g, '')));
     } else if (child.nodeType === 1) { // Element node
       const tag = child.tagName.toLowerCase();
       const inner = walkNodeToSgml(child);

@@ -229,8 +229,25 @@ function extractTable(tabElem) {
  * @returns {Array} Array of block objects
  */
 export function parseSEC(xmlString) {
+  // Legacy USACE .SEC files (and older SIM saves) can contain bare `&`
+  // characters in text content — e.g. "Concrete & Commentary" in an RTL.
+  // The browser's strict XML DOMParser treats any `&` not followed by a
+  // valid entity as a fatal error and silently truncates the document at
+  // that point. Escape bare ampersands up front so the parse succeeds.
+  const safeXml = xmlString.replace(
+    /&(?!amp;|lt;|gt;|quot;|apos;|#\d+;|#x[\da-fA-F]+;)/g,
+    '&amp;'
+  );
   const parser = new DOMParser();
-  const doc = parser.parseFromString(xmlString, 'text/xml');
+  const doc = parser.parseFromString(safeXml, 'text/xml');
+  // Even after escaping, some other malformation (unclosed tag, etc.)
+  // can still produce a parsererror. Refuse to load rather than silently
+  // returning a truncated tree that would later overwrite the file on disk.
+  const parseError = doc.querySelector('parsererror');
+  if (parseError) {
+    const detail = (parseError.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 300);
+    throw new Error(`XML parse error — file may be malformed: ${detail}`);
+  }
   const root = doc.documentElement;
 
   const blocks = [];
