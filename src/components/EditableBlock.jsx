@@ -620,13 +620,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
           >✗</button>
         </div>
       )}
-      {/* Inner relative wrapper so the OLI/ITM label and lint dot anchor
-          to the editable content, not the outer block wrapper. In
-          tags-visible mode the outer wrapper gets a ::before pseudo
-          element ('<OLI>') that would otherwise push the text down while
-          the absolutely-positioned label stayed pinned at the top. */}
-      <div style={{ position: "relative" }}>
-        {isItem && (
+      {isItem && (
           <span style={{
             position: "absolute",
             left: MARGINS.item + 4,
@@ -686,7 +680,6 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
             boxShadow: isFocused && editable ? "0 0 0 2px rgba(99,132,168,0.15)" : "none",
           }}
         />
-      </div>
       {/* Del element click popup for individual accept/reject */}
       {delPopup && (
         <div style={{

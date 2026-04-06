@@ -240,13 +240,23 @@ span.mark-chg {
   pointer-events: none;
 }
 
-/* Block-level tags — show tag name before/after block content */
+/* Block-level tags — show tag name before/after block content.
+   Positioned absolutely so they don't push the editable flow content
+   down (which would misalign absolutely-positioned OLI/ITM labels). */
+.tags-visible [data-tag] {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
 .tags-visible [data-tag]::before {
   content: '<' attr(data-tag) '>';
   font-family: 'SF Mono', Consolas, 'Cascadia Code', monospace;
   font-size: 11px;
   color: #0ea5e9;
   font-weight: 400;
+  position: absolute;
+  top: -14px;
+  left: 0;
+  pointer-events: none;
 }
 .tags-visible [data-tag]::after {
   content: '</' attr(data-tag) '>';
@@ -254,6 +264,10 @@ span.mark-chg {
   font-size: 11px;
   color: #0ea5e9;
   font-weight: 400;
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+  pointer-events: none;
 }
 
 /* ─── Inline comment marks (Google Docs style) ─── */
@@ -577,3 +591,6 @@ body {
     line-height: inherit;
   }
 }
+
+@keyframes sim-spin { to { transform: rotate(360deg); } }
+.spin { animation: sim-spin 1s linear infinite; }
