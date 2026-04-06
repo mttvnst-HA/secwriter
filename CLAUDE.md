@@ -132,15 +132,15 @@ test-results/              # UI audit output: findings.json + timestamped Markdo
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 471 Vitest unit tests
+npm test             # Run 480 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
-npm run test:e2e     # Run 140 Playwright E2E tests
+npm run test:e2e     # Run 141 Playwright E2E tests
 npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node runner)
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
-# Full suite: 471 + 99 + 140 = 710 automated tests
+# Full suite: 480 + 99 + 141 = 720 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -287,6 +287,7 @@ Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with
 3. **compromise.js NLP** (`nlp-rules.js`): Synchronous, lazy-loaded (~210KB). Passive voice via `(be + #PastTense)` patterns, indicative mood via regex. Orange highlights (`::highlight(passive-voice)`).
 
 **Key design decisions:**
+- **Browser spellcheck disabled:** All contentEditable blocks set `spellCheck={false}` (EditableBlock.jsx, TitleBlock.jsx). Native red squiggles would duplicate Harper findings and risk leaking spec text to browser-integrated services (Chrome/Edge Copilot). SIM owns all grammar/spelling feedback — do not re-enable.
 - **Only the focused block is linted** — avoids scanning 300+ blocks on every edit. Findings persist across blur/focus.
 - **Offset-aware range creation:** `createRangeForMatch()` accepts a `targetOffset` hint from violation engines to disambiguate repeated words (e.g., "the" appearing 5 times — highlights the correct one).
 - **De-duplication:** Grammar findings overlapping >50% with compliance/NLP findings are suppressed (static rules win — they have UFS citations).
@@ -434,9 +435,9 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | ufgs-structural.node-test.mjs | 8 | Node | Block count, title presence, valid types, depth ≤10, table structure, ref org, monotonic parts |
 | interop.node-test.mjs | 17 | Node | XML declaration, root element, MTA, HDR, SCN/STL/DTE, PRT count, SPT nesting, NTE/OLG grouping, REF structure, TAB structure, TBL roundtrip, inline marks, revisions, encoding, CRLF |
 | interop-encoding.node-test.mjs | 11 | Node | Reverse import roundtrip (block count, types), encoding fidelity (windows-1252, CRLF, no BOM), special character preservation |
-| editor.spec.js (E2E) | 140 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
+| editor.spec.js (E2E) | 141 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 471 Vitest + 99 Node + 140 Playwright = 710 automated tests**
+**Total: 480 Vitest + 99 Node + 141 Playwright = 720 automated tests**
 
 ## Dependencies
 
