@@ -70,7 +70,7 @@ function elemToHtml(elem) {
       }
     }
   }
-  return parts.join(' ').replace(/\s+/g, ' ').trim();
+  return parts.join('').replace(/\s+/g, ' ').trim();
 }
 
 /**
@@ -115,7 +115,7 @@ function elemToHtmlNoTab(elem) {
       }
     }
   }
-  return parts.join(' ').replace(/\s+/g, ' ').trim();
+  return parts.join('').replace(/\s+/g, ' ').trim();
 }
 
 /**

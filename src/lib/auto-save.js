@@ -39,6 +39,17 @@ export function loadAutoSave() {
     if (!raw) return null;
     const data = JSON.parse(raw);
     if (!data.blocks || !Array.isArray(data.blocks) || data.blocks.length === 0) return null;
+    // Migration: strip stray whitespace between a closing inline mark tag and a
+    // following comma/semicolon. The legacy parser injected an extra space here
+    // (sec-parser.js used parts.join(' ')), and corrupted documents persist in
+    // older auto-saves. There is no legitimate reason to have whitespace before
+    // punctuation, so this normalization is safe.
+    const STRAY_PUNCT_RE = /(<\/(?:span|ins|del)>)\s+([,;:.!?])/g;
+    for (const b of data.blocks) {
+      if (b && typeof b.html === 'string' && STRAY_PUNCT_RE.test(b.html)) {
+        b.html = b.html.replace(STRAY_PUNCT_RE, '$1$2');
+      }
+    }
     return data;
   } catch {
     return null;
