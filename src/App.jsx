@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
-import { FileText, Search, Upload, Download } from "lucide-react";
+import { FileText, Search, Upload, Download, Check, Loader } from "lucide-react";
 import TreeNode from "./components/TreeNode.jsx";
 // MarkLegend component preserved for future user manual documentation (removed from toolbar UI)
 import EditableBlock from "./components/EditableBlock.jsx";
@@ -1160,17 +1160,19 @@ export default function SpecEditor() {
                 alignItems: "center",
                 gap: 4,
                 padding: "4px 10px",
-                backgroundColor: "#f1f5f9",
-                border: "1px solid #e2e8f0",
+                backgroundColor: saveStatus === 'saved' ? "#d1fae5" : saveStatus === 'saving' ? "#e0f2fe" : "#f1f5f9",
+                border: `1px solid ${saveStatus === 'saved' ? "#10b981" : saveStatus === 'saving' ? "#38bdf8" : "#e2e8f0"}`,
                 borderRadius: 6,
                 cursor: "pointer",
                 fontSize: 13,
                 fontWeight: 600,
-                color: "#475569",
+                color: saveStatus === 'saved' ? "#047857" : saveStatus === 'saving' ? "#0369a1" : "#475569",
                 minHeight: 32,
+                transition: "background-color 150ms, border-color 150ms, color 150ms",
               }}
             >
-              <Download size={14} /> Save
+              {saveStatus === 'saved' ? <Check size={14} /> : saveStatus === 'saving' ? <Loader size={14} className="spin" /> : <Download size={14} />}
+              {saveStatus === 'saved' ? 'Saved' : saveStatus === 'saving' ? 'Saving...' : 'Save'}
             </button>
             <button
               onClick={handleSaveAs}
