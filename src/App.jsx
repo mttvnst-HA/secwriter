@@ -22,7 +22,7 @@ import CompliancePanel from "./components/CompliancePanel.jsx";
 import { acceptAllRevisions, rejectAllRevisions, acceptAllInline, rejectAllInline } from "./lib/revisions.js";
 import { compileRegister, generateRegisterReport } from "./lib/submittal-register.js";
 import { generateExportHtml } from "./lib/doc-export.js";
-import { autoSave, loadAutoSave, supportsFileSystemAccess, saveToFileHandle, saveCommentsToFile } from "./lib/auto-save.js";
+import { autoSave, loadAutoSave, clearAutoSave, getAutoSaveTimestamp, supportsFileSystemAccess, saveToFileHandle } from "./lib/auto-save.js";
 import { buildTree } from "./lib/tree-builder.js";
 import { reorderSection } from "./lib/block-reorder.js";
 import { generateCommentReport } from "./lib/comment-report.js";
@@ -147,6 +147,14 @@ export default function SpecEditor() {
       setSelectedTreeId(null);
       setFocusedBlockId(null);
       setComments(new Map());
+      // Prevent cross-file data loss: a stale handle from a previous file
+      // would otherwise cause Ctrl+S to silently overwrite that file with
+      // the newly-loaded content.
+      fileHandleRef.current = null;
+      commentsHandleRef.current = null;
+      // Drop any localStorage auto-save from the previous file so a future
+      // mount-time restore cannot resurrect it over a freshly-loaded file.
+      clearAutoSave();
     } catch (err) {
       alert(`Failed to parse SEC file: ${err.message}`);
     }
@@ -912,19 +920,33 @@ export default function SpecEditor() {
     setIsDirty(true);
   }, [blocks, comments]);
 
-  // On mount: silently restore auto-saved state if available
+  // On mount: offer to restore auto-saved state if available. Previously
+  // this was silent, which let a stale auto-save from a different file
+  // quietly overwrite the initial document (and then, combined with a
+  // leftover file handle, get written back to disk on the next Ctrl+S).
   useEffect(() => {
     const saved = loadAutoSave();
-    if (saved && saved.blocks.length > 0 && saved.fileName) {
+    if (!saved || !saved.blocks || saved.blocks.length === 0 || !saved.fileName) return;
+    const ts = getAutoSaveTimestamp();
+    const when = ts ? new Date(ts).toLocaleString() : 'unknown time';
+    const msg = `Restore unsaved changes to "${saved.fileName}" from ${when}?\n\n`
+      + `${saved.blocks.length} block(s). Click Cancel to discard and start fresh.`;
+    if (window.confirm(msg)) {
       setBlocks(saved.blocks);
       if (saved.sectionMeta) setSectionMeta(saved.sectionMeta);
-      if (saved.fileName) setFileName(saved.fileName);
+      setFileName(saved.fileName);
       if (saved.comments && Array.isArray(saved.comments)) {
         const m = new Map();
         for (const c of saved.comments) m.set(c.id, c);
         setComments(m);
       }
       setIsDirty(false);
+      // Restored state has no attached file handle — force a prompt on
+      // the next Ctrl+S so it cannot land on an unrelated file.
+      fileHandleRef.current = null;
+      commentsHandleRef.current = null;
+    } else {
+      clearAutoSave();
     }
   }, []);
 
@@ -1395,7 +1417,26 @@ export default function SpecEditor() {
             >Lint {inlineLintingEnabled ? "●" : "○"}</button>
             {/* Tags visibility toggle */}
             <button
-              onClick={() => setShowTags(prev => !prev)}
+              onClick={() => {
+                // Preserve scroll position across layout shift caused by tag labels
+                const scroller = document.querySelector('.editor-scroll') || document.scrollingElement;
+                const focused = focusedBlockId ? document.querySelector(`[data-block-id="${focusedBlockId}"]`) : null;
+                let anchor = focused;
+                if (!anchor || anchor.getBoundingClientRect().top < 0 || anchor.getBoundingClientRect().top > window.innerHeight) {
+                  const blocks = document.querySelectorAll('[data-block-id]');
+                  for (const b of blocks) {
+                    const r = b.getBoundingClientRect();
+                    if (r.bottom > 0) { anchor = b; break; }
+                  }
+                }
+                const beforeTop = anchor ? anchor.getBoundingClientRect().top : 0;
+                setShowTags(prev => !prev);
+                requestAnimationFrame(() => {
+                  if (!anchor || !scroller) return;
+                  const afterTop = anchor.getBoundingClientRect().top;
+                  scroller.scrollTop += (afterTop - beforeTop);
+                });
+              }}
               title={showTags ? "Hide inline tags" : "Show inline tags"}
               style={{
                 padding: "4px 10px",
@@ -1548,6 +1589,7 @@ export default function SpecEditor() {
         <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         {/* Editor Scroll Area — full width so scrolling works in white space */}
         <div
+          className="editor-scroll"
           style={{
             flex: 1,
             overflowY: "auto",

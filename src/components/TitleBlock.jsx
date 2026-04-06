@@ -3,16 +3,18 @@ import { sanitizePasteText } from "./EditableBlock.jsx";
 
 function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote, onDemote, onEnterKey, onDelete, onFocusPrev, onFocusNext }) {
   const ref = useRef(null);
-  const initialized = useRef(false);
   const isPart = block.html.startsWith("PART ");
   const depth = block.depth;
 
+  // Sync block.html -> DOM whenever the external value changes and we aren't
+  // the active editor (avoids stomping the caret while the user is typing).
   useEffect(() => {
-    if (ref.current && !initialized.current && !isPart) {
+    if (!ref.current || isPart) return;
+    if (document.activeElement === ref.current) return;
+    if (ref.current.innerHTML !== block.html) {
       ref.current.innerHTML = block.html;
-      initialized.current = true;
     }
-  }, []);
+  }, [block.html, isPart]);
 
   const handleKeyDown = useCallback((e) => {
     if (e.key === "Tab") {
