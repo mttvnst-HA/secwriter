@@ -22,7 +22,7 @@ import CompliancePanel from "./components/CompliancePanel.jsx";
 import { acceptAllRevisions, rejectAllRevisions, acceptAllInline, rejectAllInline } from "./lib/revisions.js";
 import { compileRegister, generateRegisterReport } from "./lib/submittal-register.js";
 import { generateExportHtml } from "./lib/doc-export.js";
-import { autoSave, loadAutoSave, clearAutoSave, getAutoSaveTimestamp, supportsFileSystemAccess, saveToFileHandle, saveCommentsToFile } from "./lib/auto-save.js";
+import { autoSave, loadAutoSave, clearAutoSave, getAutoSaveTimestamp, supportsFileSystemAccess, saveToFileHandle } from "./lib/auto-save.js";
 import { buildTree } from "./lib/tree-builder.js";
 import { reorderSection } from "./lib/block-reorder.js";
 import { generateCommentReport } from "./lib/comment-report.js";
