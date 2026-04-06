@@ -9,6 +9,8 @@
  *   const xml = serializeSEC(blocks, metadata)
  */
 
+import { computeOliItems } from './numbering.js';
+
 /**
  * Walk a DOM node tree and convert HTML back to SEC SGML inline tags.
  * This is the reverse of elemToHtml() from sec-parser.js.
@@ -235,6 +237,10 @@ function serializeTbl(block) {
  * @returns {string} Valid SEC XML string
  */
 export function serializeSEC(blocks, metadata = {}) {
+  // Precompute OLI ITEM attribute paths across the whole document so each
+  // OLI line can emit its cumulative label (e.g. "a.(1)(a)1.") per UFS
+  // 1-300-02 Figure A-1.
+  const oliItems = computeOliItems(blocks);
   const {
     sectionNumber = '00 00 00',
     sectionTitle = 'UNTITLED',
@@ -474,7 +480,11 @@ export function serializeSEC(blocks, metadata = {}) {
           lines.push('<OLG>');
         }
         const levelAttr = block.level && block.level > 1 ? ` LEVEL="${block.level}"` : '';
-        lines.push(revWrap(`<OLI${levelAttr}>${htmlToSgml(block.html)}</OLI>`, block) + '<BRK/>');
+        const itemPath = oliItems[block.id];
+        const itemAttr = itemPath ? ` ITEM="${itemPath}"` : '';
+        // UFS 1-300-02 Figure A-1: LEVEL precedes ITEM when both present
+        const openTag = `<OLI${levelAttr}${itemAttr}>`;
+        lines.push(revWrap(`${openTag}${htmlToSgml(block.html)}</OLI>`, block) + '<BRK/>');
         // Close OLG if next block is not an OLI
         if (!nextBlock || nextBlock.type !== 'oli') {
           lines.push('</OLG>');

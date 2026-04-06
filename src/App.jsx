@@ -643,6 +643,23 @@ export default function SpecEditor() {
     setFocusedBlockId(newId);
   }, [trackChanges]);
 
+  // Tab/Shift+Tab on an OLI item: demote/promote list level (1..4, UFS Figure A-1).
+  const handleChangeOliLevel = useCallback((blockId, delta) => {
+    resumeHistory();
+    setBlocks(prev => {
+      const idx = prev.findIndex(b => b.id === blockId);
+      if (idx < 0) return prev;
+      const current = prev[idx];
+      if (current.type !== "oli") return prev;
+      const currentLevel = current.level || 1;
+      const nextLevel = Math.max(1, Math.min(currentLevel + delta, 4));
+      if (nextLevel === currentLevel) return prev;
+      const next = [...prev];
+      next[idx] = { ...current, level: nextLevel };
+      return next;
+    });
+  }, []);
+
   // Delete a block and focus the previous one
   const handleDelete = useCallback((blockId) => {
     resumeHistory();
@@ -1741,6 +1758,7 @@ export default function SpecEditor() {
                   onFocusPrev={handleFocusPrev}
                   onFocusNext={handleFocusNext}
                   onConvertBlock={handleConvertBlock}
+                  onChangeOliLevel={handleChangeOliLevel}
                   resolveHtml={resolveHtml}
                   tailorKey={tailorKey}
                   trackChanges={trackChanges}

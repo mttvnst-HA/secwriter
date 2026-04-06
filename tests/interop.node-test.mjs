@@ -136,7 +136,7 @@ describe('SEC serializer interop', () => {
   // 9. OLG grouping: OLI elements appear inside OLG wrappers
   it('OLI elements are wrapped in OLG groups', () => {
     const olgCount = (mainOut.match(/<OLG>/g) || []).length;
-    const oliCount = (mainOut.match(/<OLI>/g) || []).length;
+    const oliCount = (mainOut.match(/<OLI[\s>]/g) || []).length;
     assert.ok(olgCount > 0, 'Must have at least one OLG wrapper');
     assert.ok(oliCount > 0, 'Must have at least one OLI element');
     // OLG must be balanced

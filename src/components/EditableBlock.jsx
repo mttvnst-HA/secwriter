@@ -50,7 +50,7 @@ function stripTagLabels(html) {
   return html.replace(/<span[^>]*class="tag-label"[^>]*>[^<]*<\/span>/g, '');
 }
 
-function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, comments, onCommentClick, onInlineFix, inlineLintingEnabled = true, compliancePanelActive = false, showTags = false }) {
+function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, comments, onCommentClick, onInlineFix, inlineLintingEnabled = true, compliancePanelActive = false, showTags = false }) {
   const ref = useRef(null);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashFilter, setSlashFilter] = useState("");
@@ -255,6 +255,14 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
       return;
     }
 
+    // Tab / Shift+Tab: demote/promote OLI list level (capped 1..4 per UFS Figure A-1)
+    if (e.key === "Tab" && block.type === "oli" && onChangeOliLevel) {
+      e.preventDefault();
+      if (ref.current) onUpdate(block.id, stripTagLabels(ref.current.innerHTML));
+      onChangeOliLevel(block.id, e.shiftKey ? -1 : 1);
+      return;
+    }
+
     if (e.key === "Backspace" && isEmpty()) {
       e.preventDefault();
       onDelete(block.id);
@@ -274,7 +282,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
       onFocusNext(block.id);
       return;
     }
-  }, [block.id, onEnterKey, onUpdate, onDelete, onFocusPrev, onFocusNext, slashOpen, slashFiltered, slashIdx]);
+  }, [block.id, block.type, onEnterKey, onUpdate, onDelete, onFocusPrev, onFocusNext, onChangeOliLevel, slashOpen, slashFiltered, slashIdx]);
 
   // Detect slash commands via input monitoring
   const handleInput = useCallback(() => {
@@ -501,9 +509,16 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   const isNew = block.isNew;
 
   // Margins from section.ini (inches converted to px at ~96 DPI)
-  // These are absolute per block type, not cumulative with depth
+  // These are absolute per block type, not cumulative with depth.
+  // Exception: OLI adds per-level indentation (UFS 1-300-02 Figure A-1
+  // shows 4 progressively indented levels a. / (1) / (a) / 1.).
   const MARGINS = BLOCK_MARGINS;
-  const leftMargin = MARGINS[block.type] || 15;
+  const OLI_LEVEL_STEP = 24; // px per additional level (~0.25")
+  let leftMargin = MARGINS[block.type] || 15;
+  if (isOli) {
+    const lvl = Math.max(1, Math.min(block.level || 1, 4));
+    leftMargin = MARGINS.oli + (lvl - 1) * OLI_LEVEL_STEP;
+  }
 
   const baseStyle = {
     padding: isTxt ? "6px 12px" : isNote ? "6px 12px" : "4px 12px",
@@ -618,13 +633,13 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
       {isOli && oliLabel && (
         <span style={{
           position: "absolute",
-          left: MARGINS.oli - 4,
+          left: leftMargin - 4,
           top: 5,
           color: "#475569",
           fontSize: 15,
           fontWeight: 500,
           userSelect: "none",
-          width: 24,
+          width: 28,
           textAlign: "right",
         }}>{oliLabel}</span>
       )}

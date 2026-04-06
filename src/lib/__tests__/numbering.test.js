@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { computeNumbering, computeOliLabels } from '../numbering.js';
+import { computeNumbering, computeOliLabels, computeOliItems } from '../numbering.js';
 
 // ─── Section Numbering ───────────────────────────────────────────────
 
@@ -107,10 +107,38 @@ describe('computeOliLabels', () => {
     expect(labels['o27']).toBe('ab.');
   });
 
-  it('generates 1. 2. 3. for level-2 items', () => {
+  it('generates (1) (2) for level-2 items (UFS Figure A-1)', () => {
     const blocks = [
       { id: 'a', type: 'oli', level: 2 },
       { id: 'b', type: 'oli', level: 2 },
+    ];
+    const labels = computeOliLabels(blocks);
+    expect(labels['a']).toBe('(1)');
+    expect(labels['b']).toBe('(2)');
+  });
+
+  it('generates (a) (b) for level-3 and 1. 2. for level-4 (UFS Figure A-1)', () => {
+    const blocks = [
+      { id: 'l1', type: 'oli', level: 1 }, // a.
+      { id: 'l2', type: 'oli', level: 2 }, // (1)
+      { id: 'l3', type: 'oli', level: 3 }, // (a)
+      { id: 'l3b', type: 'oli', level: 3 }, // (b)
+      { id: 'l4', type: 'oli', level: 4 }, // 1.
+      { id: 'l4b', type: 'oli', level: 4 }, // 2.
+    ];
+    const labels = computeOliLabels(blocks);
+    expect(labels['l1']).toBe('a.');
+    expect(labels['l2']).toBe('(1)');
+    expect(labels['l3']).toBe('(a)');
+    expect(labels['l3b']).toBe('(b)');
+    expect(labels['l4']).toBe('1.');
+    expect(labels['l4b']).toBe('2.');
+  });
+
+  it('clamps levels beyond 4 to level 4', () => {
+    const blocks = [
+      { id: 'a', type: 'oli', level: 5 },
+      { id: 'b', type: 'oli', level: 99 },
     ];
     const labels = computeOliLabels(blocks);
     expect(labels['a']).toBe('1.');
@@ -121,15 +149,15 @@ describe('computeOliLabels', () => {
     const blocks = [
       { id: 'a', type: 'oli', level: 1 },  // a.
       { id: 'b', type: 'oli', level: 1 },  // b.
-      { id: 'c', type: 'oli', level: 2 },  // 1.
-      { id: 'd', type: 'oli', level: 2 },  // 2.
+      { id: 'c', type: 'oli', level: 2 },  // (1)
+      { id: 'd', type: 'oli', level: 2 },  // (2)
       { id: 'e', type: 'oli', level: 1 },  // c. (continues, not e.)
     ];
     const labels = computeOliLabels(blocks);
     expect(labels['a']).toBe('a.');
     expect(labels['b']).toBe('b.');
-    expect(labels['c']).toBe('1.');
-    expect(labels['d']).toBe('2.');
+    expect(labels['c']).toBe('(1)');
+    expect(labels['d']).toBe('(2)');
     expect(labels['e']).toBe('c.');
   });
 
@@ -175,12 +203,26 @@ describe('computeOliLabels', () => {
       { id: 'x', type: 'oli', level: 2 },
       { id: 'y', type: 'oli', level: 2 },
       { id: 'b', type: 'oli', level: 1 },
-      { id: 'z', type: 'oli', level: 2 },  // should restart at 1.
+      { id: 'z', type: 'oli', level: 2 },  // should restart at (1)
     ];
     const labels = computeOliLabels(blocks);
-    expect(labels['x']).toBe('1.');
-    expect(labels['y']).toBe('2.');
-    expect(labels['z']).toBe('1.'); // reset when went back to level 1 then back to 2
+    expect(labels['x']).toBe('(1)');
+    expect(labels['y']).toBe('(2)');
+    expect(labels['z']).toBe('(1)'); // reset when went back to level 1 then back to 2
+  });
+
+  it('computeOliItems produces cumulative ITEM paths (UFS Figure A-1)', () => {
+    const blocks = [
+      { id: 'l1', type: 'oli', level: 1 },
+      { id: 'l2', type: 'oli', level: 2 },
+      { id: 'l3', type: 'oli', level: 3 },
+      { id: 'l4', type: 'oli', level: 4 },
+    ];
+    const items = computeOliItems(blocks);
+    expect(items['l1']).toBe('a.');
+    expect(items['l2']).toBe('a.(1)');
+    expect(items['l3']).toBe('a.(1)(a)');
+    expect(items['l4']).toBe('a.(1)(a)1.');
   });
 
   it('returns empty map for no blocks', () => {

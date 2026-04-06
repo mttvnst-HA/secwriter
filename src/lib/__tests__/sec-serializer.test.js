@@ -92,8 +92,8 @@ describe('serializeSEC', () => {
     const xml = serializeSEC(blocks, META);
     const olgCount = (xml.match(/<OLG>/g) || []).length;
     expect(olgCount).toBe(1);
-    expect(xml).toContain('<OLI>First</OLI>');
-    expect(xml).toContain('<OLI>Second</OLI>');
+    expect(xml).toContain('<OLI ITEM="a.">First</OLI>');
+    expect(xml).toContain('<OLI ITEM="b.">Second</OLI>');
     expect(xml).toContain('</OLG>');
   });
 
