@@ -620,62 +620,73 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
           >✗</button>
         </div>
       )}
-      {isItem && (
-        <span style={{
-          position: "absolute",
-          left: MARGINS.item + 4,
-          top: 6,
-          color: "#94a3b8",
-          fontSize: 10,
-          userSelect: "none",
-        }}>&#9679;</span>
-      )}
-      {isOli && oliLabel && (
-        <span style={{
-          position: "absolute",
-          left: leftMargin - 4,
-          top: 5,
-          color: "#475569",
-          fontSize: 15,
-          fontWeight: 500,
-          userSelect: "none",
-          width: 28,
-          textAlign: "right",
-        }}>{oliLabel}</span>
-      )}
-      {lintSeverity && inlineLintingEnabled && !compliancePanelActive && (
-        <span
-          title={`${lintSeverity} severity finding`}
-          style={{
+      {/* Inner relative wrapper so the OLI/ITM label and lint dot anchor
+          to the editable content, not the outer block wrapper. In
+          tags-visible mode the outer wrapper gets a ::before pseudo
+          element ('<OLI>') that would otherwise push the text down while
+          the absolutely-positioned label stayed pinned at the top. */}
+      <div style={{ position: "relative" }}>
+        {isItem && (
+          <span style={{
             position: "absolute",
-            left: 2,
-            top: 8,
-            width: 6,
-            height: 6,
-            borderRadius: "50%",
-            backgroundColor: lintSeverity === 'high' ? '#ef4444' : lintSeverity === 'medium' ? '#f59e0b' : '#3b82f6',
-            pointerEvents: "none",
+            left: MARGINS.item + 4,
+            top: 6,
+            color: "#94a3b8",
+            fontSize: 10,
+            userSelect: "none",
+          }}>&#9679;</span>
+        )}
+        {isOli && oliLabel && (
+          <span style={{
+            position: "absolute",
+            left: leftMargin - 4,
+            top: 4,               // match editable div paddingTop
+            height: "1.5em",      // span the first text line
+            display: "flex",
+            alignItems: "flex-end", // bottom-align with first line baseline
+            justifyContent: "flex-end",
+            color: "#475569",
+            fontSize: 15,
+            lineHeight: 1,
+            fontWeight: 500,
+            userSelect: "none",
+            width: 28,
+          }}>{oliLabel}</span>
+        )}
+        {lintSeverity && inlineLintingEnabled && !compliancePanelActive && (
+          <span
+            title={`${lintSeverity} severity finding`}
+            style={{
+              position: "absolute",
+              left: 2,
+              top: 8,
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              backgroundColor: lintSeverity === 'high' ? '#ef4444' : lintSeverity === 'medium' ? '#f59e0b' : '#3b82f6',
+              pointerEvents: "none",
+            }}
+          />
+        )}
+        <div
+          ref={setRef}
+          data-block-id={block.id}
+          contentEditable={editable}
+          spellCheck={editable}
+          suppressContentEditableWarning
+          onKeyDown={editable ? handleKeyDown : undefined}
+          onInput={editable ? handleInput : undefined}
+          onPaste={editable ? handlePaste : undefined}
+          onBlur={editable ? handleBlurWithLinting : undefined}
+          onClick={(e) => { handleDelClick(e); onFocus(block.id); }}
+          style={{
+            ...baseStyle,
+            cursor: editable ? "text" : "default",
+            border: isFocused && editable ? "1px solid #cbd5e1" : "1px solid transparent",
+            boxShadow: isFocused && editable ? "0 0 0 2px rgba(99,132,168,0.15)" : "none",
           }}
         />
-      )}
-      <div
-        ref={setRef}
-        data-block-id={block.id}
-        contentEditable={editable}
-        spellCheck={editable}
-        suppressContentEditableWarning
-        onKeyDown={editable ? handleKeyDown : undefined}
-        onInput={editable ? handleInput : undefined}
-        onPaste={editable ? handlePaste : undefined}
-        onBlur={editable ? handleBlurWithLinting : undefined}
-        onClick={(e) => { handleDelClick(e); onFocus(block.id); }}
-        style={{
-          ...baseStyle,
-          cursor: editable ? "text" : "default",
-          border: isFocused && editable ? "1px solid #cbd5e1" : "1px solid transparent",
-          boxShadow: isFocused && editable ? "0 0 0 2px rgba(99,132,168,0.15)" : "none",
-        }}
-      />
+      </div>
       {/* Del element click popup for individual accept/reject */}
       {delPopup && (
         <div style={{
