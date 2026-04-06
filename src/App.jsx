@@ -1395,7 +1395,26 @@ export default function SpecEditor() {
             >Lint {inlineLintingEnabled ? "●" : "○"}</button>
             {/* Tags visibility toggle */}
             <button
-              onClick={() => setShowTags(prev => !prev)}
+              onClick={() => {
+                // Preserve scroll position across layout shift caused by tag labels
+                const scroller = document.querySelector('.editor-scroll') || document.scrollingElement;
+                const focused = focusedBlockId ? document.querySelector(`[data-block-id="${focusedBlockId}"]`) : null;
+                let anchor = focused;
+                if (!anchor || anchor.getBoundingClientRect().top < 0 || anchor.getBoundingClientRect().top > window.innerHeight) {
+                  const blocks = document.querySelectorAll('[data-block-id]');
+                  for (const b of blocks) {
+                    const r = b.getBoundingClientRect();
+                    if (r.bottom > 0) { anchor = b; break; }
+                  }
+                }
+                const beforeTop = anchor ? anchor.getBoundingClientRect().top : 0;
+                setShowTags(prev => !prev);
+                requestAnimationFrame(() => {
+                  if (!anchor || !scroller) return;
+                  const afterTop = anchor.getBoundingClientRect().top;
+                  scroller.scrollTop += (afterTop - beforeTop);
+                });
+              }}
               title={showTags ? "Hide inline tags" : "Show inline tags"}
               style={{
                 padding: "4px 10px",
@@ -1548,6 +1567,7 @@ export default function SpecEditor() {
         <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         {/* Editor Scroll Area — full width so scrolling works in white space */}
         <div
+          className="editor-scroll"
           style={{
             flex: 1,
             overflowY: "auto",
