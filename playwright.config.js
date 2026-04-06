@@ -3,7 +3,12 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests/e2e',
   timeout: 30000,
-  retries: 0,
+  retries: process.env.CI ? 1 : 0,
+  // Run tests within each file in parallel and shard across workers.
+  // Each worker gets an isolated browser context, so localStorage
+  // auto-save state does not leak between tests.
+  fullyParallel: true,
+  workers: process.env.CI ? 4 : undefined,
   use: {
     baseURL: 'http://localhost:5173',
     headless: true,

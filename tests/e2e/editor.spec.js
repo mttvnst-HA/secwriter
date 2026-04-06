@@ -2803,6 +2803,10 @@ test.describe('Compliance checker', () => {
 });
 
 test.describe('Paste formatting', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
   test('strips HTML formatting from pasted content', async ({ page }) => {
     // Click into the first TXT block
     const block = page.locator('[contenteditable="true"]').first();

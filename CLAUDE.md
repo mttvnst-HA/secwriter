@@ -349,7 +349,7 @@ Each document is a flat array of blocks:
   "part": 1,            // PART number (1, 2, 3)
   "depth": 2,           // SPT nesting depth (0 = PART level, 1 = first subpart, etc.)
   "section": "n41",     // ID of the parent title block
-  "level": 1,           // OLI only: list level (1 = a.b.c., 2 = 1.2.3.)
+  "level": 1,           // OLI only: list level 1..4 per UFS Figure A-1 (a. / (1) / (a) / 1.)
   "html": "...",         // Rich text content with <span class="mark-rid"> etc.
   "table": { ... },     // table blocks only: { columns, rows: [[{text, colspan}]] }
   "ref": { ... },        // ref blocks only: { org: string, entries: [{ rid, rtl }] }

@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
-import { FileText, Search, Upload, Download } from "lucide-react";
+import { FileText, Search, Upload, Download, Check, Loader } from "lucide-react";
 import TreeNode from "./components/TreeNode.jsx";
 // MarkLegend component preserved for future user manual documentation (removed from toolbar UI)
 import EditableBlock from "./components/EditableBlock.jsx";
@@ -643,6 +643,23 @@ export default function SpecEditor() {
     setFocusedBlockId(newId);
   }, [trackChanges]);
 
+  // Tab/Shift+Tab on an OLI item: demote/promote list level (1..4, UFS Figure A-1).
+  const handleChangeOliLevel = useCallback((blockId, delta) => {
+    resumeHistory();
+    setBlocks(prev => {
+      const idx = prev.findIndex(b => b.id === blockId);
+      if (idx < 0) return prev;
+      const current = prev[idx];
+      if (current.type !== "oli") return prev;
+      const currentLevel = current.level || 1;
+      const nextLevel = Math.max(1, Math.min(currentLevel + delta, 4));
+      if (nextLevel === currentLevel) return prev;
+      const next = [...prev];
+      next[idx] = { ...current, level: nextLevel };
+      return next;
+    });
+  }, []);
+
   // Delete a block and focus the previous one
   const handleDelete = useCallback((blockId) => {
     resumeHistory();
@@ -1143,17 +1160,19 @@ export default function SpecEditor() {
                 alignItems: "center",
                 gap: 4,
                 padding: "4px 10px",
-                backgroundColor: "#f1f5f9",
-                border: "1px solid #e2e8f0",
+                backgroundColor: saveStatus === 'saved' ? "#d1fae5" : saveStatus === 'saving' ? "#e0f2fe" : "#f1f5f9",
+                border: `1px solid ${saveStatus === 'saved' ? "#10b981" : saveStatus === 'saving' ? "#38bdf8" : "#e2e8f0"}`,
                 borderRadius: 6,
                 cursor: "pointer",
                 fontSize: 13,
                 fontWeight: 600,
-                color: "#475569",
+                color: saveStatus === 'saved' ? "#047857" : saveStatus === 'saving' ? "#0369a1" : "#475569",
                 minHeight: 32,
+                transition: "background-color 150ms, border-color 150ms, color 150ms",
               }}
             >
-              <Download size={14} /> Save
+              {saveStatus === 'saved' ? <Check size={14} /> : saveStatus === 'saving' ? <Loader size={14} className="spin" /> : <Download size={14} />}
+              {saveStatus === 'saved' ? 'Saved' : saveStatus === 'saving' ? 'Saving...' : 'Save'}
             </button>
             <button
               onClick={handleSaveAs}
@@ -1741,6 +1760,7 @@ export default function SpecEditor() {
                   onFocusPrev={handleFocusPrev}
                   onFocusNext={handleFocusNext}
                   onConvertBlock={handleConvertBlock}
+                  onChangeOliLevel={handleChangeOliLevel}
                   resolveHtml={resolveHtml}
                   tailorKey={tailorKey}
                   trackChanges={trackChanges}
