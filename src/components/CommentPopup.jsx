@@ -225,7 +225,7 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
                           style={{ border: "none", background: "transparent", color: "#1a73e8", cursor: "pointer", fontSize: 16, padding: 2 }}>&#x2713;</button>
                       )}
                       <button onClick={() => onDelete(comment.id)} title="Delete"
-                        style={{ border: "none", background: "transparent", color: "#5f6368", cursor: "pointer", fontSize: 14, padding: 2 }}>&#x22EE;</button>
+                        style={{ border: "none", background: "transparent", color: "#d93025", cursor: "pointer", fontSize: 16, padding: 2, fontWeight: 600 }}>&#x2715;</button>
                     </div>
                   )}
                 </div>
