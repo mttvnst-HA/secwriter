@@ -927,27 +927,19 @@ export default function SpecEditor() {
   useEffect(() => {
     const saved = loadAutoSave();
     if (!saved || !saved.blocks || saved.blocks.length === 0 || !saved.fileName) return;
-    const ts = getAutoSaveTimestamp();
-    const when = ts ? new Date(ts).toLocaleString() : 'unknown time';
-    const msg = `Restore unsaved changes to "${saved.fileName}" from ${when}?\n\n`
-      + `${saved.blocks.length} block(s). Click Cancel to discard and start fresh.`;
-    if (window.confirm(msg)) {
-      setBlocks(saved.blocks);
-      if (saved.sectionMeta) setSectionMeta(saved.sectionMeta);
-      setFileName(saved.fileName);
-      if (saved.comments && Array.isArray(saved.comments)) {
-        const m = new Map();
-        for (const c of saved.comments) m.set(c.id, c);
-        setComments(m);
-      }
-      setIsDirty(false);
-      // Restored state has no attached file handle — force a prompt on
-      // the next Ctrl+S so it cannot land on an unrelated file.
-      fileHandleRef.current = null;
-      commentsHandleRef.current = null;
-    } else {
-      clearAutoSave();
+    setBlocks(saved.blocks);
+    if (saved.sectionMeta) setSectionMeta(saved.sectionMeta);
+    setFileName(saved.fileName);
+    if (saved.comments && Array.isArray(saved.comments)) {
+      const m = new Map();
+      for (const c of saved.comments) m.set(c.id, c);
+      setComments(m);
     }
+    setIsDirty(false);
+    // Restored state has no attached file handle — force a prompt on
+    // the next Ctrl+S so it cannot land on an unrelated file.
+    fileHandleRef.current = null;
+    commentsHandleRef.current = null;
   }, []);
 
   // Keyboard listener for undo/redo and search
