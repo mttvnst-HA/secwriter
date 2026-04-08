@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { BLOCK_MARGINS } from "../lib/ini-config.js";
+import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
 function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRejectRevision, onCommentClick }) {
   const ref = block.ref || { org: '', entries: [] };
@@ -175,6 +176,7 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
               onKeyDown={handleOrgKeyDown}
               onBlur={saveOrg}
               placeholder="Organization name (e.g. ASTM INTERNATIONAL)"
+              {...NO_EXFIL_PROPS}
               style={{
                 width: "100%", fontSize: 14, fontWeight: 700,
                 border: "1px solid #cbd5e1", borderRadius: 3,
@@ -221,6 +223,7 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
                 onChange={e => setRidDraft(e.target.value)}
                 onKeyDown={handleEntryKeyDown}
                 placeholder="RID (e.g. ASTM C33)"
+                {...NO_EXFIL_PROPS}
                 style={{
                   width: 180, fontSize: 13,
                   border: "1px solid #cbd5e1", borderRadius: 3,
@@ -235,6 +238,7 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
                 onKeyDown={handleEntryKeyDown}
                 onBlur={saveEntry}
                 placeholder="Title/description"
+                {...NO_EXFIL_PROPS}
                 style={{
                   flex: 1, fontSize: 13,
                   border: "1px solid #cbd5e1", borderRadius: 3,

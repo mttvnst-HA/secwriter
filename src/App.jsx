@@ -11,6 +11,7 @@ import FloatingToolbar from "./components/FloatingToolbar.jsx";
 import MarkSuggestions from "./components/MarkSuggestions.jsx";
 import TailoringProfile from "./components/TailoringProfile.jsx";
 import { computeNumbering, computeOliLabels } from "./lib/numbering.js";
+import { NO_EXFIL_PROPS } from "./lib/no-exfil.js";
 import { resolveTaiInHtml, cleanTaiClasses } from "./lib/tailor-profile.js";
 import RevisionControls from "./components/RevisionControls.jsx";
 import CrossRefPanel from "./components/CrossRefPanel.jsx";
@@ -1037,6 +1038,7 @@ export default function SpecEditor() {
               placeholder="Search sections..."
               value={sidebarSearch}
               onChange={(e) => setSidebarSearch(e.target.value)}
+              {...NO_EXFIL_PROPS}
               style={{
                 background: "none",
                 border: "none",

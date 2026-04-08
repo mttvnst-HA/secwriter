@@ -1,5 +1,6 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import { findBrackets, groupBrackets } from "../lib/bracket-replace.js";
+import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
 export default function BracketReplace({ blocks, onReplace, onClose }) {
   const [replacements, setReplacements] = useState({}); // { innerText: replacementValue }
@@ -133,6 +134,7 @@ export default function BracketReplace({ blocks, onReplace, onClose }) {
               value={replacements[group.innerText] || ''}
               onChange={(e) => setReplacements(prev => ({ ...prev, [group.innerText]: e.target.value }))}
               placeholder="Replacement value..."
+              {...NO_EXFIL_PROPS}
               style={{
                 flex: 1, maxWidth: 200, border: "1px solid #cbd5e1",
                 borderRadius: 4, padding: "3px 8px", fontSize: 12, outline: "none",

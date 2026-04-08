@@ -1,4 +1,5 @@
 import { useRef, useCallback, useEffect } from "react";
+import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
 /**
  * PreformattedBlock — editable wrapper for `tbl` (preformatted/monospace) blocks.
@@ -66,7 +67,7 @@ function PreformattedBlock({ block, isFocused, onFocus, onUpdate, showTags = fal
       data-tag="TBL"
       contentEditable={true}
       suppressContentEditableWarning={true}
-      spellCheck={false}
+      {...NO_EXFIL_PROPS}
       onClick={handleClick}
       onBlur={handleBlur}
       style={{

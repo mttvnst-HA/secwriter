@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { getVisibleTextFromHtml } from "../lib/text-diff.js";
+import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
 /**
  * Search all blocks for a text query. Returns array of { blockId, offset }
@@ -309,6 +310,7 @@ export default function SearchBar({ blocks, editorRef, onClose, onReplace, initi
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Find..."
+          {...NO_EXFIL_PROPS}
           style={{
             flex: 1, maxWidth: 260,
             border: "1px solid #cbd5e1", borderRadius: 4,
@@ -342,6 +344,7 @@ export default function SearchBar({ blocks, editorRef, onClose, onReplace, initi
             onChange={(e) => setReplaceText(e.target.value)}
             onKeyDown={handleReplaceKeyDown}
             placeholder="Replace with..."
+            {...NO_EXFIL_PROPS}
             style={{
               flex: 1, maxWidth: 260,
               border: "1px solid #cbd5e1", borderRadius: 4,

@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import { addRow, deleteRow, addColumn, deleteColumn, updateCell, mergeCellRight, splitCell } from "../lib/table-ops.js";
+import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
 function TableBlock({ block, onUpdate, isFocused, onFocus }) {
   const tbl = block.table;
@@ -123,6 +124,7 @@ function TableBlock({ block, onUpdate, isFocused, onFocus }) {
             onChange={(e) => setCellDraft(e.target.value)}
             onKeyDown={handleCellKeyDown}
             onBlur={saveCell}
+            {...NO_EXFIL_PROPS}
             style={{
               width: "100%",
               border: "1px solid #3b82f6",

@@ -7,6 +7,7 @@ import { initInlineLinting, clearBlockLinting, extractPlainText, findFindingAtCu
 import { addUserWord } from "../lib/grammar-checker.js";
 import { getRules } from "../lib/compliance-rules.js";
 import InlineTooltip from "./InlineTooltip.jsx";
+import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
 /** Sanitize pasted text: collapse newlines to single space, strip zero-width spaces, trim */
 export function sanitizePasteText(text) {
@@ -679,7 +680,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
           ref={setRef}
           data-block-id={block.id}
           contentEditable={editable}
-          spellCheck={false}
+          {...NO_EXFIL_PROPS}
           suppressContentEditableWarning
           onKeyDown={editable ? handleKeyDown : undefined}
           onInput={editable ? handleInput : undefined}
