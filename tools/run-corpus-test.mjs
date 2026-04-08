@@ -43,6 +43,14 @@ const { detectNlpIssues, preloadNlp } = await import('../src/lib/nlp-rules.js');
 await preloadNlp();
 console.log('  NLP: compromise.js loaded');
 
+// --- Shared production filters (single source of truth) ---
+const {
+  ENGINEERING_TERMS,
+  DISABLED_RULES,
+  shouldSuppressGrammarFinding,
+} = await import('../src/lib/grammar-checker.js');
+const EMPTY_USER_DICT = new Set();
+
 // Harper.js grammar (optional)
 let harperLinter = null;
 if (!skipGrammar) {
@@ -51,27 +59,21 @@ if (!skipGrammar) {
     harperLinter = new LocalLinter({ binary: binaryInlined });
     // Warm up WASM
     const warmup = await harperLinter.lint('Test sentence.');
-    console.log(`  Grammar: Harper.js LocalLinter ready (warmup: ${warmup.length} findings)`);
+    // Mirror production init: import engineering dictionary + disable noisy rules
+    await harperLinter.importWords(ENGINEERING_TERMS);
+    const cfg = await harperLinter.getLintConfig();
+    Object.assign(cfg, DISABLED_RULES);
+    await harperLinter.setLintConfig(cfg);
+    console.log(`  Grammar: Harper.js LocalLinter ready (warmup: ${warmup.length} findings, dict: ${ENGINEERING_TERMS.length} terms)`);
   } catch (err) {
     console.warn(`  Grammar: Harper.js failed to init: ${err.message}`);
     console.warn('  Continuing without grammar checks (use --no-grammar to suppress)');
   }
 }
 
-// --- Custom dictionary for Harper (engineering terms) ---
-const ENGINEERING_TERMS = new Set([
-  'ASTM', 'AASHTO', 'ACI', 'ANSI', 'ASME', 'NFPA', 'IEEE', 'ASHRAE',
-  'USACE', 'UFGS', 'UFS', 'UFC', 'NAVFAC', 'WBDG',
-  'cementitious', 'geotechnical', 'rebar', 'formwork', 'subgrade',
-  'backfill', 'compaction', 'embedment', 'dowels', 'waterstop',
-  'admixture', 'admixtures', 'pozzolan', 'pozzolanic', 'superplasticizer',
-  'slump', 'entrained', 'entraining', 'grout', 'grouting',
-  'submittal', 'submittals', 'millwork', 'conduit', 'raceway',
-]);
-
 /**
- * Filter Harper results: remove false positives from engineering jargon
- * and bad suggestions (spaces in single words).
+ * Filter Harper results using the same logic as the production checkGrammar()
+ * pipeline. Source of truth lives in src/lib/grammar-checker.js.
  */
 function filterHarperResults(results, text) {
   const filtered = [];
@@ -81,11 +83,7 @@ function filterHarperResults(results, text) {
       const parsed = typeof json === 'string' ? JSON.parse(json) : json;
       const problemText = parsed.problem_text || text.substring(parsed.span.start, parsed.span.end);
 
-      // Skip engineering terms
-      if (ENGINEERING_TERMS.has(problemText) || ENGINEERING_TERMS.has(problemText.toUpperCase())) continue;
-
-      // Skip all-caps abbreviations (likely standards orgs)
-      if (/^[A-Z]{2,}$/.test(problemText)) continue;
+      if (shouldSuppressGrammarFinding(problemText, EMPTY_USER_DICT)) continue;
 
       // Skip suggestions that introduce spaces into single words
       const suggestions = parsed.inner?.suggestions || [];

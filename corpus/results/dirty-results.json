@@ -1,10 +1,10 @@
 {
   "metadata": {
     "corpusType": "dirty",
-    "corpusFile": "C:\\working_claude\\specsintact-modern\\corpus\\dirty\\all_dirty.json",
+    "corpusFile": "C:\\github\\specsintact-modern\\corpus\\dirty\\all_dirty.json",
     "blocksProcessed": 644,
-    "timestamp": "2026-03-25T02:44:56.121Z",
-    "elapsedSeconds": 11.9,
+    "timestamp": "2026-04-08T04:39:56.190Z",
+    "elapsedSeconds": 5.2,
     "grammarEnabled": true
   },
   "stats": {
@@ -16,16 +16,14 @@
     "findingsByEngine": {
       "static": 480,
       "nlp": 262,
-      "grammar": 616
+      "grammar": 158
     },
     "findingsByRule": {
       "TERM-shall": 157,
       "NLP-PASSIVE-001": 237,
-      "GRAMMAR-Spelling": 467,
-      "GRAMMAR-Punctuation": 17,
-      "GRAMMAR-Formatting": 31,
       "TERM-should": 28,
-      "GRAMMAR-WordChoice": 27,
+      "GRAMMAR-WordChoice": 31,
+      "GRAMMAR-Typo": 9,
       "TERM-per": 7,
       "TERM-any": 33,
       "TERM-and-or": 38,
@@ -35,21 +33,19 @@
       "TERM-adequate": 9,
       "TERM-as-necessary": 6,
       "TERM-furnish": 20,
-      "GRAMMAR-Grammar": 9,
       "FMT-002": 39,
       "SYM-percent": 3,
       "SYM-and": 28,
       "NLP-INDICATIVE-001": 25,
+      "GRAMMAR-Spelling": 104,
       "CAP-Contract": 1,
       "GRAMMAR-Style": 5,
       "TERM-as-approved-by-co": 5,
-      "GRAMMAR-Miscellaneous": 8,
-      "GRAMMAR-Readability": 26,
+      "GRAMMAR-Miscellaneous": 1,
       "TERM-conforming-to": 3,
       "CAP-Contractor": 7,
       "GRAMMAR-Capitalization": 1,
       "SYM-pound": 7,
-      "GRAMMAR-Typo": 18,
       "GRAMMAR-Regionalism": 2,
       "TERM-securely": 12,
       "TERM-properly": 2,
@@ -59,7 +55,7 @@
       "GRAMMAR-Agreement": 5
     },
     "findingsBySection": {
-      "undefined": 1358
+      "undefined": 900
     },
     "noteBlockFindings": {
       "static": 0,
@@ -139,36 +135,6 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Pozzolan",
-      "index": 55,
-      "message": "Did you mean `Poznan`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B253"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C618",
-      "index": 94,
-      "message": "Did you mean to spell `C618` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B253"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 98,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "03_30_00-P2-B253"
-    },
-    {
       "blockId": "03_30_00-P2-B285",
       "ruleId": "TERM-shall",
       "match": "Shall",
@@ -177,36 +143,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C494",
-      "index": 58,
-      "message": "Did you mean to spell `C494` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B285"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C494M",
-      "index": 63,
-      "message": "Did you mean to spell `C494M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B285"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 68,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "03_30_00-P2-B285"
     },
     {
       "blockId": "03_30_00-P2-B308",
@@ -229,16 +165,6 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "gage",
-      "index": 72,
-      "message": "Did you mean to spell `gage` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B330"
-    },
-    {
       "blockId": "03_30_00-P2-B376",
       "ruleId": "TERM-shall",
       "match": "shall",
@@ -257,36 +183,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C94",
-      "index": 207,
-      "message": "Did you mean to spell `C94` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B396"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C94M",
-      "index": 211,
-      "message": "Did you mean to spell `C94M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B396"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 215,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "03_30_00-P2-B396"
     },
     {
       "blockId": "03_30_00-P3-B483",
@@ -409,6 +305,16 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
+      "ruleId": "GRAMMAR-Typo",
+      "match": "waterstop",
+      "index": 43,
+      "message": "`waterstop` has a missing space between words.",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Typo",
+      "blockId": "03_30_00-P2-B198"
+    },
+    {
       "blockId": "03_30_00-P2-B295",
       "ruleId": "TERM-should",
       "match": "should",
@@ -427,86 +333,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use the word \"should\" in the specification text for mandatory requirements as \"should\" implies a recommendation."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150",
-      "index": 54,
-      "message": "Did you mean `V10`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150M",
-      "index": 59,
-      "message": "Did you mean to spell `C150M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595",
-      "index": 71,
-      "message": "Did you mean to spell `C595` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595M",
-      "index": 76,
-      "message": "Did you mean to spell `C595M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845",
-      "index": 88,
-      "message": "Did you mean `RJ45`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845M",
-      "index": 93,
-      "message": "Did you mean to spell `C845M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157",
-      "index": 109,
-      "message": "Did you mean `A11n`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157M",
-      "index": 115,
-      "message": "Did you mean to spell `C1157M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
     },
     {
       "blockId": "03_30_00-P2-B434",
@@ -539,36 +365,6 @@
       "message": "Do not use the word \"should\" in the specification text for mandatory requirements as \"should\" implies a recommendation."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A934",
-      "index": 38,
-      "message": "Did you mean to spell `A934` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A934M",
-      "index": 43,
-      "message": "Did you mean to spell `A934M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "X2",
-      "index": 68,
-      "message": "Did you mean to spell `X2` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
-    },
-    {
       "blockId": "03_30_00-P3-B616",
       "ruleId": "TERM-should",
       "match": "Should",
@@ -589,26 +385,6 @@
       "message": "Do not use the word \"per\", use \"in accordance with\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A1022",
-      "index": 59,
-      "message": "Did you mean `A12s`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B451"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A1022M",
-      "index": 65,
-      "message": "Did you mean `A12s`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B451"
-    },
-    {
       "blockId": "03_30_00-P3-B531",
       "ruleId": "TERM-per",
       "match": "per",
@@ -617,26 +393,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use the word \"per\", use \"in accordance with\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C803",
-      "index": 32,
-      "message": "Did you mean to spell `C803` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B531"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C803M",
-      "index": 37,
-      "message": "Did you mean to spell `C803M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B531"
     },
     {
       "blockId": "03_30_00-P3-B568",
@@ -709,26 +465,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C803",
-      "index": 51,
-      "message": "Did you mean to spell `C803` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B531"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C803M",
-      "index": 56,
-      "message": "Did you mean to spell `C803M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B531"
-    },
-    {
       "blockId": "03_30_00-P3-B568",
       "ruleId": "TERM-any",
       "match": "any",
@@ -779,16 +515,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "post-industrial",
-      "index": 42,
-      "message": "This looks like a prefix that can be joined with the rest of the word.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P1-B154"
-    },
-    {
       "blockId": "03_30_00-P2-B251",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -807,46 +533,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1240",
-      "index": 44,
-      "message": "Did you mean to spell `C1240` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B251"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 49,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "03_30_00-P2-B251"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "alkalis",
-      "index": 108,
-      "message": "Did you mean to spell `alkalis` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B251"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "densified",
-      "index": 155,
-      "message": "Did you mean to spell `densified` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B251"
     },
     {
       "blockId": "03_30_00-P2-B436",
@@ -959,6 +645,16 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
+      "ruleId": "GRAMMAR-Typo",
+      "match": "waterstop",
+      "index": 29,
+      "message": "`waterstop` has a missing space between words.",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Typo",
+      "blockId": "03_30_00-P2-B198"
+    },
+    {
       "blockId": "03_30_00-P2-B434",
       "ruleId": "TERM-to-be",
       "match": "is to be",
@@ -1017,36 +713,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A934",
-      "index": 26,
-      "message": "Did you mean to spell `A934` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A934M",
-      "index": 31,
-      "message": "Did you mean to spell `A934M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "X2",
-      "index": 56,
-      "message": "Did you mean to spell `X2` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
     },
     {
       "blockId": "03_30_00-P3-B616",
@@ -1139,6 +805,16 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
+      "ruleId": "GRAMMAR-Typo",
+      "match": "waterstop",
+      "index": 36,
+      "message": "`waterstop` has a missing space between words.",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Typo",
+      "blockId": "03_30_00-P2-B198"
+    },
+    {
       "blockId": "03_30_00-P2-B368",
       "ruleId": "TERM-etc",
       "match": "etc.",
@@ -1147,86 +823,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150",
-      "index": 48,
-      "message": "Did you mean `V10`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150M",
-      "index": 53,
-      "message": "Did you mean to spell `C150M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595",
-      "index": 65,
-      "message": "Did you mean to spell `C595` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595M",
-      "index": 70,
-      "message": "Did you mean to spell `C595M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845",
-      "index": 82,
-      "message": "Did you mean `RJ45`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845M",
-      "index": 87,
-      "message": "Did you mean to spell `C845M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157",
-      "index": 103,
-      "message": "Did you mean `A11n`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157M",
-      "index": 109,
-      "message": "Did you mean to spell `C1157M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
     },
     {
       "blockId": "03_30_00-P2-B434",
@@ -1259,36 +855,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A934",
-      "index": 31,
-      "message": "Did you mean to spell `A934` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A934M",
-      "index": 36,
-      "message": "Did you mean to spell `A934M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "X2",
-      "index": 61,
-      "message": "Did you mean to spell `X2` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
-    },
-    {
       "blockId": "03_30_00-P3-B616",
       "ruleId": "TERM-etc",
       "match": "etc.",
@@ -1319,6 +885,16 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
+      "ruleId": "GRAMMAR-Typo",
+      "match": "waterstop",
+      "index": 45,
+      "message": "`waterstop` has a missing space between words.",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Typo",
+      "blockId": "03_30_00-P2-B198"
+    },
+    {
       "blockId": "03_30_00-P2-B198",
       "ruleId": "TERM-adequate",
       "match": "adequate",
@@ -1339,94 +915,14 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150",
-      "index": 48,
-      "message": "Did you mean `V10`?",
+      "ruleId": "GRAMMAR-Typo",
+      "match": "waterstop",
+      "index": 45,
+      "message": "`waterstop` has a missing space between words.",
       "severity": "info",
       "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150M",
-      "index": 53,
-      "message": "Did you mean to spell `C150M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595",
-      "index": 65,
-      "message": "Did you mean to spell `C595` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595M",
-      "index": 70,
-      "message": "Did you mean to spell `C595M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845",
-      "index": 82,
-      "message": "Did you mean `RJ45`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845M",
-      "index": 87,
-      "message": "Did you mean to spell `C845M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157",
-      "index": 103,
-      "message": "Did you mean `A11n`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157M",
-      "index": 109,
-      "message": "Did you mean to spell `C1157M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "post-industrial",
-      "index": 42,
-      "message": "This looks like a prefix that can be joined with the rest of the word.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P1-B154"
+      "category": "Typo",
+      "blockId": "03_30_00-P2-B198"
     },
     {
       "blockId": "03_30_00-P3-B514",
@@ -1487,16 +983,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use the term \"furnish\" unless only delivery of material to the site is required."
-    },
-    {
-      "ruleId": "GRAMMAR-Grammar",
-      "match": " ",
-      "index": 6,
-      "message": "Add a determiner before this noun phrase.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Grammar",
-      "blockId": "03_30_00-P2-B406"
     },
     {
       "blockId": "03_30_00-P1-B139",
@@ -1579,86 +1065,6 @@
       "message": "Replace \"%\" (percent) with \"percent\""
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150",
-      "index": 48,
-      "message": "Did you mean `V10`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150M",
-      "index": 53,
-      "message": "Did you mean to spell `C150M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595",
-      "index": 65,
-      "message": "Did you mean to spell `C595` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595M",
-      "index": 70,
-      "message": "Did you mean to spell `C595M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845",
-      "index": 82,
-      "message": "Did you mean `RJ45`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845M",
-      "index": 87,
-      "message": "Did you mean to spell `C845M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157",
-      "index": 103,
-      "message": "Did you mean `A11n`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157M",
-      "index": 109,
-      "message": "Did you mean to spell `C1157M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
       "blockId": "03_30_00-P1-B139",
       "ruleId": "SYM-and",
       "match": "written & performance",
@@ -1689,6 +1095,16 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
+      "ruleId": "GRAMMAR-Typo",
+      "match": "waterstop",
+      "index": 36,
+      "message": "`waterstop` has a missing space between words.",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Typo",
+      "blockId": "03_30_00-P2-B198"
+    },
+    {
       "blockId": "03_30_00-P2-B295",
       "ruleId": "SYM-and",
       "match": "freezing & from",
@@ -1697,86 +1113,6 @@
       "engine": "static",
       "category": "prohibited-symbol",
       "message": "Replace \"&\" (and) with \"and\""
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150",
-      "index": 48,
-      "message": "Did you mean `V10`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150M",
-      "index": 53,
-      "message": "Did you mean to spell `C150M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595",
-      "index": 65,
-      "message": "Did you mean to spell `C595` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595M",
-      "index": 70,
-      "message": "Did you mean to spell `C595M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845",
-      "index": 82,
-      "message": "Did you mean `RJ45`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845M",
-      "index": 87,
-      "message": "Did you mean to spell `C845M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157",
-      "index": 101,
-      "message": "Did you mean `A11n`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157M",
-      "index": 107,
-      "message": "Did you mean to spell `C1157M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
     },
     {
       "blockId": "03_30_00-P3-B496",
@@ -1929,36 +1265,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Pozzolan",
-      "index": 41,
-      "message": "Did you mean `Poznan`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B253"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C618",
-      "index": 98,
-      "message": "Did you mean to spell `C618` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B253"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 102,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "03_30_00-P2-B253"
-    },
-    {
       "blockId": "03_30_00-P2-B285",
       "ruleId": "TERM-shall",
       "match": "shall",
@@ -1977,36 +1283,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C494",
-      "index": 62,
-      "message": "Did you mean to spell `C494` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B285"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C494M",
-      "index": 67,
-      "message": "Did you mean to spell `C494M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B285"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 72,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "03_30_00-P2-B285"
     },
     {
       "blockId": "03_30_00-P2-B308",
@@ -2069,16 +1345,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "gage",
-      "index": 72,
-      "message": "Did you mean to spell `gage` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B330"
-    },
-    {
       "blockId": "03_30_00-P2-B396",
       "ruleId": "TERM-shall",
       "match": "shall",
@@ -2117,36 +1383,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C94",
-      "index": 221,
-      "message": "Did you mean to spell `C94` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B396"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C94M",
-      "index": 225,
-      "message": "Did you mean to spell `C94M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B396"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 229,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "03_30_00-P2-B396"
     },
     {
       "blockId": "03_30_00-P3-B483",
@@ -2369,36 +1605,6 @@
       "message": "Indicative mood — use imperative: \"provide\" not \"The Contractor provides\""
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1602",
-      "index": 81,
-      "message": "Did you mean to spell `C1602` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B257"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1602M",
-      "index": 87,
-      "message": "Did you mean to spell `C1602M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B257"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 93,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "03_30_00-P2-B257"
-    },
-    {
       "blockId": "03_30_00-P2-B366",
       "ruleId": "NLP-INDICATIVE-001",
       "match": "The Contractor submits",
@@ -2429,26 +1635,6 @@
       "message": "Indicative mood — use imperative: \"provide\" not \"The Contractor provides\""
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A1022",
-      "index": 90,
-      "message": "Did you mean `A12s`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B451"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A1022M",
-      "index": 96,
-      "message": "Did you mean `A12s`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B451"
-    },
-    {
       "blockId": "03_30_00-P3-B493",
       "ruleId": "NLP-PASSIVE-001",
       "match": "is placed",
@@ -2467,26 +1653,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Indicative mood — use imperative: \"ensure\" not \"The Contractor ensures\""
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C803",
-      "index": 73,
-      "message": "Did you mean to spell `C803` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B531"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C803M",
-      "index": 78,
-      "message": "Did you mean to spell `C803M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B531"
     },
     {
       "blockId": "03_30_00-P3-B568",
@@ -2559,36 +1725,6 @@
       "blockId": "03_30_00-P2-B257"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1602",
-      "index": 64,
-      "message": "Did you mean to spell `C1602` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B257"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1602M",
-      "index": 70,
-      "message": "Did you mean to spell `C1602M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B257"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 76,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "03_30_00-P2-B257"
-    },
-    {
       "blockId": "03_30_00-P2-B314",
       "ruleId": "NLP-PASSIVE-001",
       "match": "is packaged",
@@ -2629,16 +1765,6 @@
       "message": "Always capitalize: \"Contract\" per UFS 1-300-02 §2-4.7"
     },
     {
-      "ruleId": "GRAMMAR-Grammar",
-      "match": " ",
-      "index": 6,
-      "message": "Add a determiner before this noun phrase.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Grammar",
-      "blockId": "03_30_00-P2-B406"
-    },
-    {
       "ruleId": "GRAMMAR-Spelling",
       "match": "documments",
       "index": 79,
@@ -2647,26 +1773,6 @@
       "engine": "grammar",
       "category": "Spelling",
       "blockId": "03_30_00-P2-B406"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A1022",
-      "index": 74,
-      "message": "Did you mean `A12s`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B451"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A1022M",
-      "index": 80,
-      "message": "Did you mean `A12s`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B451"
     },
     {
       "blockId": "03_30_00-P3-B493",
@@ -2693,26 +1799,6 @@
       "match": "resitance",
       "index": 12,
       "message": "Did you mean to spell `resitance` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B531"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C803",
-      "index": 46,
-      "message": "Did you mean to spell `C803` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B531"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C803M",
-      "index": 51,
-      "message": "Did you mean to spell `C803M` this way?",
       "severity": "info",
       "engine": "grammar",
       "category": "Spelling",
@@ -2799,114 +1885,14 @@
       "blockId": "03_30_00-P2-B198"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150",
-      "index": 48,
-      "message": "Did you mean `V10`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C150M",
-      "index": 53,
-      "message": "Did you mean to spell `C150M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595",
-      "index": 65,
-      "message": "Did you mean to spell `C595` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C595M",
-      "index": 70,
-      "message": "Did you mean to spell `C595M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845",
-      "index": 82,
-      "message": "Did you mean `RJ45`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C845M",
-      "index": 87,
-      "message": "Did you mean to spell `C845M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157",
-      "index": 103,
-      "message": "Did you mean `A11n`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C1157M",
-      "index": 109,
-      "message": "Did you mean to spell `C1157M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P2-B368"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A934",
-      "index": 31,
-      "message": "Did you mean to spell `A934` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A934M",
+      "ruleId": "GRAMMAR-Typo",
+      "match": "waterstop",
       "index": 36,
-      "message": "Did you mean to spell `A934M` this way?",
+      "message": "`waterstop` has a missing space between words.",
       "severity": "info",
       "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "X2",
-      "index": 61,
-      "message": "Did you mean to spell `X2` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "03_30_00-P3-B554"
+      "category": "Typo",
+      "blockId": "03_30_00-P2-B198"
     },
     {
       "blockId": "22_00_00-P1-B18",
@@ -2970,26 +1956,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 66,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 71,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "BCuP",
       "index": 78,
       "message": "Did you mean to spell `BCuP` this way?",
@@ -3049,16 +2015,6 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "phenolic",
-      "index": 108,
-      "message": "Did you mean to spell `phenolic` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B332"
-    },
-    {
       "blockId": "22_00_00-P3-B423",
       "ruleId": "TERM-shall",
       "match": "Shall",
@@ -3069,16 +2025,6 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "F2389",
-      "index": 142,
-      "message": "Did you mean to spell `F2389` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B423"
-    },
-    {
       "blockId": "22_00_00-P3-B455",
       "ruleId": "TERM-shall",
       "match": "Shall",
@@ -3087,16 +2033,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "locknuts",
-      "index": 83,
-      "message": "Did you mean to spell `locknuts` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B455"
     },
     {
       "blockId": "22_00_00-P3-B468",
@@ -3170,26 +2106,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 67,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 72,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "BCuP",
       "index": 79,
       "message": "Did you mean to spell `BCuP` this way?",
@@ -3227,16 +2143,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use the word \"should\" in the specification text for mandatory requirements as \"should\" implies a recommendation."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "locknuts",
-      "index": 84,
-      "message": "Did you mean to spell `locknuts` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B455"
     },
     {
       "blockId": "22_00_00-P3-B503",
@@ -3289,16 +2195,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "F493",
-      "index": 55,
-      "message": "Did you mean to spell `F493` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B129"
-    },
-    {
       "blockId": "22_00_00-P2-B173",
       "ruleId": "TERM-any",
       "match": "any",
@@ -3319,26 +2215,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A112",
-      "index": 13,
-      "message": "Did you mean to spell `A112` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B247"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B45",
-      "index": 27,
-      "message": "Did you mean to spell `B45` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B247"
-    },
-    {
       "blockId": "22_00_00-P2-B278",
       "ruleId": "TERM-any",
       "match": "any",
@@ -3357,16 +2233,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "phenolic",
-      "index": 106,
-      "message": "Did you mean to spell `phenolic` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B332"
     },
     {
       "blockId": "22_00_00-P3-B503",
@@ -3397,66 +2263,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C651",
-      "index": 61,
-      "message": "Did you mean to spell `C651` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C652",
-      "index": 75,
-      "message": "Did you mean `B-52`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "hypochlorites",
-      "index": 136,
-      "message": "Did you mean `hypocrites`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "hypochlorite",
-      "index": 346,
-      "message": "Did you mean to spell `hypochlorite` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "hypochlorinator",
-      "index": 438,
-      "message": "Did you mean to spell `hypochlorinator` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "chlorinator",
-      "index": 521,
-      "message": "Did you mean to spell `chlorinator` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
     },
     {
       "blockId": "22_00_00-P1-B18",
@@ -3499,16 +2305,6 @@
       "blockId": "22_00_00-P2-B126"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D3138",
-      "index": 96,
-      "message": "Did you mean to spell `D3138` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B126"
-    },
-    {
       "blockId": "22_00_00-P2-B199",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -3527,106 +2323,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A112",
-      "index": 5,
-      "message": "Did you mean to spell `A112` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B199"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B45",
-      "index": 19,
-      "message": "Did you mean to spell `B45` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B199"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A112",
-      "index": 63,
-      "message": "Did you mean to spell `A112` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B199"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B45",
-      "index": 77,
-      "message": "Did you mean to spell `B45` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B199"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A112",
-      "index": 258,
-      "message": "Did you mean to spell `A112` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B199"
-    },
-    {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Provide large diaphragm (not less than 2.625 inches upper chamber inside diameter at the point where the diaphragm is sealed between the upper and/or lower chambers), nonhold-open flush valve of chrome plated cast brass in accordance with ASTM B584, including vacuum breaker and angle (control-stop) valve with back check.",
-      "index": 274,
-      "message": "This sentence is 51 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "22_00_00-P2-B199"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 751,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B199"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 805,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B199"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 883,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B199"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 1005,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B199"
     },
     {
       "blockId": "22_00_00-P2-B268",
@@ -3689,56 +2385,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Acrylonitrile",
-      "index": 5,
-      "message": "Did you mean to spell `Acrylonitrile` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B420"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Butadiene",
-      "index": 19,
-      "message": "Did you mean to spell `Butadiene` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B420"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Styrene",
-      "index": 29,
-      "message": "Did you mean to spell `Styrene` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B420"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomeric",
-      "index": 129,
-      "message": "Did you mean to spell `elastomeric` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B420"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "flanged",
-      "index": 305,
-      "message": "Did you mean to spell `flanged` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B420"
-    },
-    {
       "blockId": "22_00_00-P3-B475",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -3789,86 +2435,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "cleanouts",
-      "index": 10,
-      "message": "Did you mean `cleanups`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B475"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "cleanouts",
-      "index": 415,
-      "message": "Did you mean `cleanups`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B475"
-    },
-    {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Install cleanout tee branches with screw plug at the foot of soil and/or waste stacks, at the foot of interior downspouts, on each connection to building storm drain where interior downspouts are indicated, and on each building drain outside the building.",
-      "index": 661,
-      "message": "This sentence is 42 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "22_00_00-P3-B475"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Cleanout",
-      "index": 917,
-      "message": "Did you mean to spell `Cleanout` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B475"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "cleanouts",
-      "index": 1103,
-      "message": "Did you mean `cleanups`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B475"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "cleanouts",
-      "index": 1451,
-      "message": "Did you mean `cleanups`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B475"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "cleanouts",
-      "index": 1517,
-      "message": "Did you mean `cleanups`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B475"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "cleanouts",
-      "index": 1805,
-      "message": "Did you mean `cleanups`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B475"
-    },
-    {
       "blockId": "22_00_00-P3-B544",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -3877,16 +2443,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Grammar",
-      "match": " ",
-      "index": 6,
-      "message": "Add a determiner before this noun phrase.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Grammar",
-      "blockId": "22_00_00-P3-B544"
     },
     {
       "blockId": "22_00_00-P2-B116",
@@ -3907,26 +2463,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 70,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 75,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -4040,26 +2576,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 60,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 65,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "BCuP",
       "index": 72,
       "message": "Did you mean to spell `BCuP` this way?",
@@ -4119,16 +2635,6 @@
       "blockId": "22_00_00-P2-B126"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D3138",
-      "index": 107,
-      "message": "Did you mean to spell `D3138` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B126"
-    },
-    {
       "blockId": "22_00_00-P2-B116",
       "ruleId": "TERM-suitable",
       "match": "suitable",
@@ -4137,26 +2643,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use vague words and phrases or escape clauses."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 69,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 74,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -4190,26 +2676,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 69,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 74,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "BCuP",
       "index": 81,
       "message": "Did you mean to spell `BCuP` this way?",
@@ -4227,26 +2693,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use vague words and phrases or escape clauses."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 67,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 72,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -4279,16 +2725,6 @@
       "blockId": "22_00_00-P2-B126"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D3138",
-      "index": 93,
-      "message": "Did you mean to spell `D3138` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B126"
-    },
-    {
       "blockId": "22_00_00-P2-B229",
       "ruleId": "TERM-furnish",
       "match": "Furnish",
@@ -4307,66 +2743,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 55,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 121,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 149,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 180,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 209,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 331,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
     },
     {
       "blockId": "22_00_00-P2-B348",
@@ -4439,16 +2815,6 @@
       "message": "Do not use the term \"furnish\" unless only delivery of material to the site is required."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "locknuts",
-      "index": 77,
-      "message": "Did you mean to spell `locknuts` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B455"
-    },
-    {
       "blockId": "22_00_00-P3-B503",
       "ruleId": "TERM-furnish",
       "match": "furnish",
@@ -4519,16 +2885,6 @@
       "blockId": "22_00_00-P3-B561"
     },
     {
-      "ruleId": "GRAMMAR-Miscellaneous",
-      "match": " ",
-      "index": 1170,
-      "message": "Use a hyphen in `14-day` when forming an adjectival compound.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Miscellaneous",
-      "blockId": "22_00_00-P3-B561"
-    },
-    {
       "blockId": "22_00_00-P3-B561",
       "ruleId": "CAP-Contractor",
       "match": "contractor",
@@ -4589,16 +2945,6 @@
       "blockId": "22_00_00-P3-B561"
     },
     {
-      "ruleId": "GRAMMAR-Miscellaneous",
-      "match": " ",
-      "index": 1170,
-      "message": "Use a hyphen in `14-day` when forming an adjectival compound.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Miscellaneous",
-      "blockId": "22_00_00-P3-B561"
-    },
-    {
       "blockId": "22_00_00-P2-B116",
       "ruleId": "FMT-002",
       "match": "—",
@@ -4607,26 +2953,6 @@
       "engine": "static",
       "category": "formatting",
       "message": "Em-dash or en-dash should be hyphen"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 60,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 65,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -4677,66 +3003,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 55,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 121,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 149,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 180,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 209,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 331,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
     },
     {
       "blockId": "22_00_00-P3-B409",
@@ -4839,16 +3105,6 @@
       "message": "Em-dash or en-dash should be hyphen"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "locknuts",
-      "index": 77,
-      "message": "Did you mean to spell `locknuts` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B455"
-    },
-    {
       "blockId": "22_00_00-P3-B503",
       "ruleId": "FMT-002",
       "match": "—",
@@ -4929,16 +3185,6 @@
       "blockId": "22_00_00-P3-B561"
     },
     {
-      "ruleId": "GRAMMAR-Miscellaneous",
-      "match": " ",
-      "index": 1165,
-      "message": "Use a hyphen in `14-day` when forming an adjectival compound.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Miscellaneous",
-      "blockId": "22_00_00-P3-B561"
-    },
-    {
       "blockId": "22_00_00-P2-B348",
       "ruleId": "SYM-and",
       "match": "pump & to",
@@ -4977,16 +3223,6 @@
       "engine": "static",
       "category": "prohibited-symbol",
       "message": "Replace \"&\" (and) with \"and\""
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "locknuts",
-      "index": 73,
-      "message": "Did you mean to spell `locknuts` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B455"
     },
     {
       "blockId": "22_00_00-P3-B561",
@@ -5079,16 +3315,6 @@
       "blockId": "22_00_00-P3-B561"
     },
     {
-      "ruleId": "GRAMMAR-Miscellaneous",
-      "match": " ",
-      "index": 1160,
-      "message": "Use a hyphen in `14-day` when forming an adjectival compound.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Miscellaneous",
-      "blockId": "22_00_00-P3-B561"
-    },
-    {
       "blockId": "22_00_00-P1-B89",
       "ruleId": "TERM-shall",
       "match": "shall",
@@ -5160,26 +3386,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 56,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 61,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "BCuP",
       "index": 68,
       "message": "Did you mean to spell `BCuP` this way?",
@@ -5247,16 +3453,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "phenolic",
-      "index": 113,
-      "message": "Did you mean to spell `phenolic` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B332"
     },
     {
       "blockId": "22_00_00-P3-B386",
@@ -5349,16 +3545,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "The supply line to each item of equipment or fixture, except faucets, flush valves, or other control valves which are supplied with integral stops, shall be equipped with a shutoff valve to enable isolation of the item for repair and maintenance without interfering with operation of other equipment or fixtures.",
-      "index": 161,
-      "message": "This sentence is 50 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "22_00_00-P3-B386"
-    },
-    {
       "blockId": "22_00_00-P3-B423",
       "ruleId": "TERM-shall",
       "match": "shall",
@@ -5377,16 +3563,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "F2389",
-      "index": 145,
-      "message": "Did you mean to spell `F2389` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B423"
     },
     {
       "blockId": "22_00_00-P3-B455",
@@ -5427,16 +3603,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "locknuts",
-      "index": 79,
-      "message": "Did you mean to spell `locknuts` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B455"
     },
     {
       "blockId": "22_00_00-P3-B468",
@@ -5549,16 +3715,6 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Storage capacity more than 55 gallons and less than or equal to 120 gallons with a draw pattern (DP) of: very small shall have a uniform energy factor (UEF) of 1.9236 - (0.0011 x V), low shall have a uniform energy factor (UEF) of 2.0440 - (0.0011 x V), medium shall have a uniform energy factor (UEF) of 2.1171 - (0.0011 x V), high shall have a uniform energy factor (UEF) of 2.418 - (0.0011 x V) in accordance with 10 CFR 430.",
-      "index": 0,
-      "message": "This sentence is 67 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "22_00_00-P3-B596"
-    },
-    {
       "blockId": "22_00_00-P1-B18",
       "ruleId": "NLP-PASSIVE-001",
       "match": "are referred",
@@ -5577,16 +3733,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use vague words and phrases or escape clauses such as \"as approved/directed/determined by the Contracting Officer\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "phenolic",
-      "index": 118,
-      "message": "Did you mean to spell `phenolic` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B332"
     },
     {
       "blockId": "22_00_00-P3-B503",
@@ -5670,16 +3816,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "F493",
-      "index": 52,
-      "message": "Did you mean to spell `F493` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B129"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "vavles",
       "index": 82,
       "message": "Did you mean to spell `vavles` this way?",
@@ -5710,26 +3846,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "A112",
-      "index": 13,
-      "message": "Did you mean to spell `A112` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B247"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B45",
-      "index": 27,
-      "message": "Did you mean to spell `B45` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B247"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "instalation",
       "index": 211,
       "message": "Did you mean to spell `instalation` this way?",
@@ -5747,26 +3863,6 @@
       "engine": "grammar",
       "category": "Spelling",
       "blockId": "22_00_00-P2-B278"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "phenolic",
-      "index": 102,
-      "message": "Did you mean to spell `phenolic` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B332"
-    },
-    {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "In addition to the requirements of Section 26 20 00 INTERIOR DISTRIBUTION SYSTEM, provide polyphase, squirrel-cage medium induction motors with continuous ratings, including motors that are part of a system, that meet the efficiency ratings for premium efficiency motors in accordance with NEMA MG 00001 .",
-      "index": 483,
-      "message": "This sentence is 42 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "22_00_00-P2-B372"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -5829,13 +3925,13 @@
       "blockId": "22_00_00-P3-B409"
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "If cast-iron water closet floor flanges are used, seal the space between the pipe sleeve and drainpipe with sealant and upturn the flashing guard approximatley 1-1/2 inches to fit the outside diameter of the drainpipe and the inside diameter of the water closet floor flange.",
-      "index": 660,
-      "message": "This sentence is 45 words long.",
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "approximatley",
+      "index": 806,
+      "message": "Did you mean to spell `approximatley` this way?",
       "severity": "info",
       "engine": "grammar",
-      "category": "Readability",
+      "category": "Spelling",
       "blockId": "22_00_00-P3-B439"
     },
     {
@@ -5879,74 +3975,14 @@
       "message": "Do not use the word \"per\", use \"in accordance with\"."
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Temperatures Less Than 120 Degrees F : Immediately after cleaning, apply to metal surfaces subject to temperatures less than 120 degrees F one coat of pretreatment primer to a minimum dry film thickness of 0.3 mil, one coat of primer to a minimum dry film thikness of one mil; and two coats of enamel to a minimum dry film thickness of one mil per coat.",
-      "index": 0,
-      "message": "This sentence is 61 words long.",
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "thikness",
+      "index": 256,
+      "message": "Did you mean to spell `thikness` this way?",
       "severity": "info",
       "engine": "grammar",
-      "category": "Readability",
+      "category": "Spelling",
       "blockId": "22_00_00-P3-B540"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C651",
-      "index": 61,
-      "message": "Did you mean to spell `C651` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C652",
-      "index": 75,
-      "message": "Did you mean `B-52`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "hypochlorites",
-      "index": 136,
-      "message": "Did you mean `hypocrites`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "hypochlorite",
-      "index": 344,
-      "message": "Did you mean to spell `hypochlorite` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "hypochlorinator",
-      "index": 436,
-      "message": "Did you mean to spell `hypochlorinator` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "chlorinator",
-      "index": 519,
-      "message": "Did you mean to spell `chlorinator` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B578"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -5970,26 +4006,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 59,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "A5",
-      "index": 64,
-      "message": "Did you mean to spell `A5` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B116"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "BCuP",
       "index": 71,
       "message": "Did you mean to spell `BCuP` this way?",
@@ -6007,66 +4023,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 55,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 121,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 149,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 180,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 210,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "WaterSense",
-      "index": 332,
-      "message": "Did you mean to spell `WaterSense` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P2-B229"
     },
     {
       "blockId": "22_00_00-P3-B409",
@@ -6107,16 +4063,6 @@
       "engine": "grammar",
       "category": "WordChoice",
       "blockId": "22_00_00-P3-B409"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "locknuts",
-      "index": 77,
-      "message": "Did you mean to spell `locknuts` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "22_00_00-P3-B455"
     },
     {
       "blockId": "22_00_00-P3-B503",
@@ -6166,16 +4112,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "WordChoice",
-      "blockId": "22_00_00-P3-B561"
-    },
-    {
-      "ruleId": "GRAMMAR-Miscellaneous",
-      "match": " ",
-      "index": 1169,
-      "message": "Use a hyphen in `14-day` when forming an adjectival compound.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Miscellaneous",
       "blockId": "22_00_00-P3-B561"
     },
     {
@@ -6237,16 +4173,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 85,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B117"
     },
     {
       "blockId": "26_20_00-P2-B137",
@@ -6319,16 +4245,6 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
-      "ruleId": "GRAMMAR-Miscellaneous",
-      "match": "A",
-      "index": 172,
-      "message": "Incorrect indefinite article.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Miscellaneous",
-      "blockId": "26_20_00-P2-B221"
-    },
-    {
       "ruleId": "GRAMMAR-Regionalism",
       "match": "spanner",
       "index": 241,
@@ -6399,16 +4315,6 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "RLCs",
-      "index": 40,
-      "message": "Did you mean to spell `RLCs` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B339"
-    },
-    {
       "blockId": "26_20_00-P2-B362",
       "ruleId": "TERM-shall",
       "match": "shall",
@@ -6427,16 +4333,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "kVA",
-      "index": 60,
-      "message": "Did you mean to spell `kVA` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B384"
     },
     {
       "blockId": "26_20_00-P2-B401",
@@ -6479,16 +4375,6 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "windings",
-      "index": 63,
-      "message": "Did you mean to spell `windings` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B434"
-    },
-    {
       "blockId": "26_20_00-P2-B452",
       "ruleId": "TERM-shall",
       "match": "Shall",
@@ -6517,16 +4403,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "rms",
-      "index": 142,
-      "message": "Did you mean to spell `rms` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B479"
     },
     {
       "blockId": "26_20_00-P2-B527",
@@ -6639,56 +4515,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "busways",
-      "index": 49,
-      "message": "Did you mean to spell `busways` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 85,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 101,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 147,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 259,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
       "blockId": "26_20_00-P2-B268",
       "ruleId": "TERM-should",
       "match": "Should",
@@ -6707,16 +4533,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use the word \"should\" in the specification text for mandatory requirements as \"should\" implies a recommendation."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 20,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
     },
     {
       "blockId": "26_20_00-P2-B441",
@@ -6809,16 +4625,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 242,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "26_20_00-P2-B98"
-    },
-    {
       "blockId": "26_20_00-P2-B140",
       "ruleId": "NLP-PASSIVE-001",
       "match": "be provided",
@@ -6889,16 +4695,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "fuseholders",
-      "index": 157,
-      "message": "Did you mean to spell `fuseholders` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B234"
-    },
-    {
       "blockId": "26_20_00-P2-B313",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -6907,16 +4703,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Provide with auto-monitoring (self-test) and/or lockout features, \"push-to-test\" button, visible indication of tripped condition, and ability to detect and trip when current imbalance is 6 milliamperes or higher in accordance with requirements of UL 943 for Class A ground-fault circuit interrupter devices.",
-      "index": 81,
-      "message": "This sentence is 46 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "26_20_00-P2-B313"
     },
     {
       "blockId": "26_20_00-P2-B393",
@@ -7049,56 +4835,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "busways",
-      "index": 42,
-      "message": "Did you mean to spell `busways` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 78,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 94,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 140,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 263,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
       "blockId": "26_20_00-P2-B268",
       "ruleId": "TERM-to-be",
       "match": "is to be",
@@ -7137,16 +4873,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 5,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
     },
     {
       "blockId": "26_20_00-P2-B441",
@@ -7249,56 +4975,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "busways",
-      "index": 42,
-      "message": "Did you mean to spell `busways` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 78,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 94,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 140,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 257,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
       "blockId": "26_20_00-P2-B268",
       "ruleId": "TERM-etc",
       "match": "etc.",
@@ -7317,16 +4993,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 13,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
     },
     {
       "blockId": "26_20_00-P2-B441",
@@ -7359,16 +5025,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "fuseholders",
-      "index": 157,
-      "message": "Did you mean to spell `fuseholders` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B234"
-    },
-    {
       "blockId": "26_20_00-P2-B325",
       "ruleId": "TERM-suitable",
       "match": "suitable",
@@ -7377,16 +5033,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use vague words and phrases or escape clauses."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 13,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
     },
     {
       "blockId": "26_20_00-P2-B441",
@@ -7419,16 +5065,6 @@
       "message": "Do not use vague words and phrases or escape clauses."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 13,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
-    },
-    {
       "blockId": "26_20_00-P2-B441",
       "ruleId": "TERM-adequate",
       "match": "adequate",
@@ -7447,16 +5083,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use vague words and phrases or escape clauses."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 13,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
     },
     {
       "blockId": "26_20_00-P2-B517",
@@ -7529,56 +5155,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "busways",
-      "index": 42,
-      "message": "Did you mean to spell `busways` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 78,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 94,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 140,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 252,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
       "blockId": "26_20_00-P2-B192",
       "ruleId": "TERM-furnish",
       "match": "furnish",
@@ -7589,13 +5165,13 @@
       "message": "Do not use the term \"furnish\" unless only delivery of material to the site is required."
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Unless specified or indicated otherwise or required by NFPA 70 , furnish power and lighting wires rated for 600-volts,[ Type THWN/THHN in accordance with UL 83 ][ or][ Type[ XHHW][ or][ RHW] in accordance with UL 44 ], except that grounding wire may be type TW in accordance with UL 83 ; remote-control and signal circuits: Type TW or TF, in accordance with UL 83 .",
-      "index": 0,
-      "message": "This sentence is 58 words long.",
+      "ruleId": "GRAMMAR-WordChoice",
+      "match": "TW in",
+      "index": 258,
+      "message": "It seems these words would go better together.",
       "severity": "info",
       "engine": "grammar",
-      "category": "Readability",
+      "category": "WordChoice",
       "blockId": "26_20_00-P2-B192"
     },
     {
@@ -7617,16 +5193,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use the term \"furnish\" unless only delivery of material to the site is required."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 13,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
     },
     {
       "blockId": "26_20_00-P2-B517",
@@ -7749,56 +5315,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "busways",
-      "index": 42,
-      "message": "Did you mean to spell `busways` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 78,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 94,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 140,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 252,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
       "blockId": "26_20_00-P2-B268",
       "ruleId": "CAP-Government",
       "match": "government",
@@ -7817,16 +5333,6 @@
       "engine": "static",
       "category": "capitalization",
       "message": "Always capitalize: \"Government\" per UFS 1-300-02 §2-4.7"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 13,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
     },
     {
       "blockId": "26_20_00-P2-B517",
@@ -7889,56 +5395,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "busways",
-      "index": 42,
-      "message": "Did you mean to spell `busways` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 78,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 94,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 140,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 252,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
       "blockId": "26_20_00-P2-B192",
       "ruleId": "FMT-002",
       "match": "—",
@@ -7979,13 +5435,13 @@
       "message": "Em-dash or en-dash should be hyphen"
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Unless specified or indicated otherwise or required by NFPA 70 , provide power and lighting wires rated for 600—volts,[ Type THWN/THHN in accordance with UL 83 ][ or][ Type[ XHHW][ or][ RHW] in accordance with UL 44 ], except that grounding wire may be type TW in accordance with UL 83 ; remote—control and signal circuits: Type TW or TF, in accordance with UL 83 .",
-      "index": 0,
-      "message": "This sentence is 58 words long.",
+      "ruleId": "GRAMMAR-WordChoice",
+      "match": "TW in",
+      "index": 258,
+      "message": "It seems these words would go better together.",
       "severity": "info",
       "engine": "grammar",
-      "category": "Readability",
+      "category": "WordChoice",
       "blockId": "26_20_00-P2-B192"
     },
     {
@@ -7997,16 +5453,6 @@
       "engine": "static",
       "category": "formatting",
       "message": "Em-dash or en-dash should be hyphen"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 13,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
     },
     {
       "blockId": "26_20_00-P3-B682",
@@ -8089,24 +5535,14 @@
       "message": "Replace \"&\" (and) with \"and\""
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Unless specified or indicated otherwise or required by NFPA 70 , provide power & lighting wires rated for 600-volts,[ Type THWN/THHN in accordance with UL 83 ][ or][ Type[ XHHW][ or][ RHW] in accordance with UL 44 ], except that grounding wire may be type TW in accordance with UL 83 ; remote-control and signal circuits: Type TW or TF, in accordance with UL 83 .",
-      "index": 0,
-      "message": "This sentence is 57 words long.",
+      "ruleId": "GRAMMAR-WordChoice",
+      "match": "TW in",
+      "index": 256,
+      "message": "It seems these words would go better together.",
       "severity": "info",
       "engine": "grammar",
-      "category": "Readability",
+      "category": "WordChoice",
       "blockId": "26_20_00-P2-B192"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 13,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
     },
     {
       "blockId": "26_20_00-P2-B390",
@@ -8117,16 +5553,6 @@
       "engine": "static",
       "category": "prohibited-symbol",
       "message": "Replace \"&\" (and) with \"and\""
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "kVA",
-      "index": 104,
-      "message": "Did you mean to spell `kVA` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B390"
     },
     {
       "blockId": "26_20_00-P2-B517",
@@ -8187,16 +5613,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 89,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B117"
     },
     {
       "blockId": "26_20_00-P2-B137",
@@ -8289,16 +5705,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Miscellaneous",
-      "match": "A",
-      "index": 177,
-      "message": "Incorrect indefinite article.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Miscellaneous",
-      "blockId": "26_20_00-P2-B221"
-    },
-    {
       "ruleId": "GRAMMAR-Regionalism",
       "match": "spanner",
       "index": 251,
@@ -8389,16 +5795,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "RLCs",
-      "index": 26,
-      "message": "Did you mean to spell `RLCs` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B339"
-    },
-    {
       "blockId": "26_20_00-P2-B362",
       "ruleId": "TERM-shall",
       "match": "shall",
@@ -8417,16 +5813,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "kVA",
-      "index": 51,
-      "message": "Did you mean to spell `kVA` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B384"
     },
     {
       "blockId": "26_20_00-P2-B401",
@@ -8469,16 +5855,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "windings",
-      "index": 49,
-      "message": "Did you mean to spell `windings` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B434"
-    },
-    {
       "blockId": "26_20_00-P2-B452",
       "ruleId": "TERM-shall",
       "match": "shall",
@@ -8507,16 +5883,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "rms",
-      "index": 133,
-      "message": "Did you mean to spell `rms` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B479"
     },
     {
       "blockId": "26_20_00-P3-B619",
@@ -8589,16 +5955,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 258,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "26_20_00-P2-B98"
-    },
-    {
       "blockId": "26_20_00-P2-B140",
       "ruleId": "NLP-INDICATIVE-001",
       "match": "the Contractor provides",
@@ -8607,46 +5963,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Indicative mood — use imperative: \"provide\" not \"the Contractor provides\""
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B1",
-      "index": 5,
-      "message": "Did you mean to spell `B1` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B193"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 7,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "26_20_00-P2-B193"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B8",
-      "index": 80,
-      "message": "Did you mean to spell `B8` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B193"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 82,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "26_20_00-P2-B193"
     },
     {
       "blockId": "26_20_00-P2-B327",
@@ -8709,16 +6025,6 @@
       "message": "Indicative mood — use imperative: \"provide\" not \"The Contractor provides\""
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 13,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B545"
-    },
-    {
       "blockId": "26_20_00-P2-B614",
       "ruleId": "NLP-INDICATIVE-001",
       "match": "The Contractor prepares",
@@ -8769,16 +6075,6 @@
       "blockId": "26_20_00-P2-B98"
     },
     {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 242,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "26_20_00-P2-B98"
-    },
-    {
       "blockId": "26_20_00-P2-B140",
       "ruleId": "NLP-PASSIVE-001",
       "match": "be provided",
@@ -8800,52 +6096,12 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "B1",
-      "index": 5,
-      "message": "Did you mean to spell `B1` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B193"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 7,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "26_20_00-P2-B193"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "diamater",
       "index": 65,
       "message": "Did you mean to spell `diamater` this way?",
       "severity": "info",
       "engine": "grammar",
       "category": "Spelling",
-      "blockId": "26_20_00-P2-B193"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B8",
-      "index": 80,
-      "message": "Did you mean to spell `B8` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B193"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 82,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
       "blockId": "26_20_00-P2-B193"
     },
     {
@@ -8920,16 +6176,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 13,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B545"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "Contarcting",
       "index": 239,
       "message": "Did you mean to spell `Contarcting` this way?",
@@ -8943,6 +6189,16 @@
       "match": "analyses",
       "index": 8,
       "message": "Did you mean to spell `analyses` this way?",
+      "severity": "info",
+      "engine": "grammar",
+      "category": "Spelling",
+      "blockId": "26_20_00-P2-B614"
+    },
+    {
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "STUIDES",
+      "index": 63,
+      "message": "Did you mean to spell `STUIDES` this way?",
       "severity": "info",
       "engine": "grammar",
       "category": "Spelling",
@@ -8990,36 +6246,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "flanged",
-      "index": 591,
-      "message": "Did you mean to spell `flanged` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P3-B708"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "flanged",
-      "index": 672,
-      "message": "Did you mean to spell `flanged` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P3-B708"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 997,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "26_20_00-P3-B708"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "operaiton",
       "index": 1556,
       "message": "Did you mean to spell `operaiton` this way?",
@@ -9049,84 +6275,14 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "busways",
-      "index": 42,
-      "message": "Did you mean to spell `busways` this way?",
+      "ruleId": "GRAMMAR-WordChoice",
+      "match": "TW in",
+      "index": 258,
+      "message": "It seems these words would go better together.",
       "severity": "info",
       "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 77,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "unventilated",
-      "index": 93,
-      "message": "Did you mean `ventilated`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 139,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Typo",
-      "match": "busway",
-      "index": 251,
-      "message": "`busway` has a missing space between words.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Typo",
-      "blockId": "26_20_00-P2-B118"
-    },
-    {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Unless specified or indicated otherwise or required by NFPA 70 , provide power and lighting wires rated for 600-volts,[ Type THWN/THHN in accordance with UL 83 ][ or][ Type[ XHHW][ or][ RHW] in accordance with UL 44 ], except that grounding wire may be type TW in accordance with UL 83 ; remote-control and signal circuits: Type TW or TF, in accordance with UL 83 .",
-      "index": 0,
-      "message": "This sentence is 58 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
+      "category": "WordChoice",
       "blockId": "26_20_00-P2-B192"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C12",
-      "index": 14,
-      "message": "Did you mean to spell `C12` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B325"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "kVA",
-      "index": 106,
-      "message": "Did you mean to spell `kVA` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "26_20_00-P2-B390"
     },
     {
       "blockId": "26_20_00-P2-B517",
@@ -9249,16 +6405,6 @@
       "blockId": "32_12_16_16-P2-B152"
     },
     {
-      "ruleId": "GRAMMAR-Grammar",
-      "match": " ",
-      "index": 188,
-      "message": "Add a determiner before this noun phrase.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Grammar",
-      "blockId": "32_12_16_16-P2-B152"
-    },
-    {
       "blockId": "32_12_16_16-P1-B21",
       "ruleId": "TERM-any",
       "match": "any",
@@ -9297,16 +6443,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "profilograph",
-      "index": 127,
-      "message": "Did you mean to spell `profilograph` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B87"
     },
     {
       "blockId": "32_12_16_16-P1-B99",
@@ -9399,16 +6535,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "When work on a lot is required to be terminated before all four sublots are completed, analyze the results from the completed sublots to determine the percent payment for the lot following the same procedures and/or requirements for full lots but with fewer or more test results as determined in paragraph PAVEMENT LOTS.",
-      "index": 758,
-      "message": "This sentence is 54 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "32_12_16_16-P1-B12"
-    },
-    {
       "blockId": "32_12_16_16-P1-B28",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -9429,36 +6555,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D979",
-      "index": 64,
-      "message": "Did you mean to spell `D979` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B73"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D979M",
-      "index": 69,
-      "message": "Did you mean to spell `D979M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B73"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D3665",
-      "index": 367,
-      "message": "Did you mean `H.265`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B73"
-    },
-    {
       "blockId": "32_12_16_16-P1-B90",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -9467,46 +6563,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "profilograph",
-      "index": 8,
-      "message": "Did you mean to spell `profilograph` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B90"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "profilograph",
-      "index": 58,
-      "message": "Did you mean to spell `profilograph` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B90"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "E1274",
-      "index": 104,
-      "message": "Did you mean to spell `E1274` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B90"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "profilograph",
-      "index": 403,
-      "message": "Did you mean to spell `profilograph` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B90"
     },
     {
       "blockId": "32_12_16_16-P2-B111",
@@ -9519,16 +6575,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 8,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B111"
-    },
-    {
       "blockId": "32_12_16_16-P2-B131",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -9537,26 +6583,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142",
-      "index": 110,
-      "message": "Did you mean to spell `C142` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142M",
-      "index": 115,
-      "message": "Did you mean to spell `C142M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
     },
     {
       "blockId": "32_12_16_16-P2-B161",
@@ -9599,16 +6625,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D2419",
-      "index": 125,
-      "message": "Did you mean to spell `D2419` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B129"
-    },
-    {
       "ruleId": "GRAMMAR-WordChoice",
       "match": "AI MS",
       "index": 165,
@@ -9617,26 +6633,6 @@
       "engine": "grammar",
       "category": "WordChoice",
       "blockId": "32_12_16_16-P2-B152"
-    },
-    {
-      "ruleId": "GRAMMAR-Grammar",
-      "match": " ",
-      "index": 181,
-      "message": "Add a determiner before this noun phrase.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Grammar",
-      "blockId": "32_12_16_16-P2-B152"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D2419",
-      "index": 125,
-      "message": "Did you mean to spell `D2419` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B129"
     },
     {
       "blockId": "32_12_16_16-P1-B12",
@@ -9659,16 +6655,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "When work on a lot is required to be terminated before all four sublots are completed, analyze the results from the completed sublots to determine the percent payment for the lot following the same procedures and requirements for full lots but with fewer or more test results as determined in paragraph PAVEMENT LOTS.",
-      "index": 758,
-      "message": "This sentence is 53 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "32_12_16_16-P1-B12"
-    },
-    {
       "blockId": "32_12_16_16-P2-B131",
       "ruleId": "TERM-conforming-to",
       "match": "conforming to",
@@ -9677,26 +6663,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Eliminate redundant wording such as \"conforming to\", \"all\", and \"type\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142",
-      "index": 102,
-      "message": "Did you mean to spell `C142` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142M",
-      "index": 107,
-      "message": "Did you mean to spell `C142M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
     },
     {
       "blockId": "32_12_16_16-P3-B190",
@@ -9736,16 +6702,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "WordChoice",
-      "blockId": "32_12_16_16-P2-B152"
-    },
-    {
-      "ruleId": "GRAMMAR-Grammar",
-      "match": " ",
-      "index": 181,
-      "message": "Add a determiner before this noun phrase.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Grammar",
       "blockId": "32_12_16_16-P2-B152"
     },
     {
@@ -9799,46 +6755,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "profilograph",
-      "index": 8,
-      "message": "Did you mean to spell `profilograph` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B90"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "profilograph",
-      "index": 58,
-      "message": "Did you mean to spell `profilograph` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B90"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "E1274",
-      "index": 104,
-      "message": "Did you mean to spell `E1274` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B90"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "profilograph",
-      "index": 400,
-      "message": "Did you mean to spell `profilograph` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B90"
-    },
-    {
       "blockId": "32_12_16_16-P2-B131",
       "ruleId": "TERM-as-necessary",
       "match": "as necessary",
@@ -9847,26 +6763,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use vague words and phrases or escape clauses."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142",
-      "index": 107,
-      "message": "Did you mean to spell `C142` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142M",
-      "index": 112,
-      "message": "Did you mean to spell `C142M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
     },
     {
       "blockId": "32_12_16_16-P3-B190",
@@ -9889,26 +6785,6 @@
       "message": "Do not use vague words and phrases or escape clauses."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142",
-      "index": 116,
-      "message": "Did you mean to spell `C142` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142M",
-      "index": 121,
-      "message": "Did you mean to spell `C142M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
-    },
-    {
       "blockId": "32_12_16_16-P2-B161",
       "ruleId": "TERM-securely",
       "match": "securely",
@@ -9929,36 +6805,6 @@
       "message": "Do not use vague words and phrases or escape clauses."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D979",
-      "index": 64,
-      "message": "Did you mean to spell `D979` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B73"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D979M",
-      "index": 69,
-      "message": "Did you mean to spell `D979M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B73"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D3665",
-      "index": 367,
-      "message": "Did you mean `H.265`?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B73"
-    },
-    {
       "blockId": "32_12_16_16-P2-B131",
       "ruleId": "TERM-thoroughly",
       "match": "thoroughly",
@@ -9967,26 +6813,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use vague words and phrases or escape clauses."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142",
-      "index": 118,
-      "message": "Did you mean to spell `C142` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142M",
-      "index": 123,
-      "message": "Did you mean to spell `C142M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
     },
     {
       "blockId": "32_12_16_16-P2-B161",
@@ -10007,26 +6833,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use vague words and phrases or escape clauses."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142",
-      "index": 117,
-      "message": "Did you mean to spell `C142` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142M",
-      "index": 122,
-      "message": "Did you mean to spell `C142M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
     },
     {
       "blockId": "32_12_16_16-P2-B161",
@@ -10059,26 +6865,6 @@
       "message": "Do not use the term \"furnish\" unless only delivery of material to the site is required."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 10,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B113"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 768,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B113"
-    },
-    {
       "ruleId": "GRAMMAR-Agreement",
       "match": "an existing",
       "index": 783,
@@ -10097,56 +6883,6 @@
       "engine": "static",
       "category": "capitalization",
       "message": "Always capitalize: \"Contractor\" per UFS 1-300-02 §2-4.7"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 62,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Submittals",
-      "index": 81,
-      "message": "Did you mean to spell `Submittals` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 113,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Submittals",
-      "index": 176,
-      "message": "Did you mean to spell `Submittals` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 208,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
     },
     {
       "blockId": "32_12_16_16-P3-B195",
@@ -10219,16 +6955,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "When work on a lot is required to be terminated before all four sublots are completed, analyze the results from the completed sublots to determine the percent payment for the lot following the same procedures and requirements for full lots but with fewer or more test results as determined in paragraph PAVEMENT LOTS.",
-      "index": 758,
-      "message": "This sentence is 53 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "32_12_16_16-P1-B12"
-    },
-    {
       "blockId": "32_12_16_16-P2-B113",
       "ruleId": "FMT-002",
       "match": "—",
@@ -10237,26 +6963,6 @@
       "engine": "static",
       "category": "formatting",
       "message": "Em-dash or en-dash should be hyphen"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 10,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B113"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 768,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B113"
     },
     {
       "ruleId": "GRAMMAR-Agreement",
@@ -10289,16 +6995,6 @@
       "blockId": "32_12_16_16-P2-B152"
     },
     {
-      "ruleId": "GRAMMAR-Grammar",
-      "match": " ",
-      "index": 181,
-      "message": "Add a determiner before this noun phrase.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Grammar",
-      "blockId": "32_12_16_16-P2-B152"
-    },
-    {
       "blockId": "32_12_16_16-P2-B113",
       "ruleId": "SYM-percent",
       "match": "1 %",
@@ -10307,26 +7003,6 @@
       "engine": "static",
       "category": "prohibited-symbol",
       "message": "Replace \"%\" (percent) with \"percent\""
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 10,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B113"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 762,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B113"
     },
     {
       "ruleId": "GRAMMAR-Agreement",
@@ -10389,16 +7065,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "When work on a lot is required to be terminated before all four sublots are completed, analyze the results from the completed sublots to determine the percent payment for the lot following the same procedures & requirements for full lots but with fewer or more test results as determined in paragraph PAVEMENT LOTS.",
-      "index": 754,
-      "message": "This sentence is 52 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "32_12_16_16-P1-B12"
-    },
-    {
       "blockId": "32_12_16_16-P1-B25",
       "ruleId": "SYM-and",
       "match": "density & on",
@@ -10417,26 +7083,6 @@
       "engine": "static",
       "category": "prohibited-symbol",
       "message": "Replace \"&\" (and) with \"and\""
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 10,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B113"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 766,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B113"
     },
     {
       "ruleId": "GRAMMAR-Agreement",
@@ -10469,16 +7115,6 @@
       "blockId": "32_12_16_16-P2-B152"
     },
     {
-      "ruleId": "GRAMMAR-Grammar",
-      "match": " ",
-      "index": 179,
-      "message": "Add a determiner before this noun phrase.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Grammar",
-      "blockId": "32_12_16_16-P2-B152"
-    },
-    {
       "blockId": "32_12_16_16-P3-B175",
       "ruleId": "SYM-and",
       "match": "Management & procedures",
@@ -10497,36 +7133,6 @@
       "engine": "static",
       "category": "prohibited-symbol",
       "message": "Replace \"&\" (and) with \"and\""
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D5821",
-      "index": 125,
-      "message": "Did you mean to spell `D5821` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B122"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142",
-      "index": 107,
-      "message": "Did you mean to spell `C142` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C142M",
-      "index": 112,
-      "message": "Did you mean to spell `C142M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B131"
     },
     {
       "blockId": "32_12_16_16-P3-B190",
@@ -10589,56 +7195,6 @@
       "message": "Indicative mood — use imperative: \"submit\" not \"The Contractor submits\""
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 62,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Submittals",
-      "index": 81,
-      "message": "Did you mean to spell `Submittals` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 113,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Submittals",
-      "index": 176,
-      "message": "Did you mean to spell `Submittals` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 208,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
       "blockId": "32_12_16_16-P1-B99",
       "ruleId": "NLP-INDICATIVE-001",
       "match": "The Contractor provides",
@@ -10659,16 +7215,6 @@
       "message": "Indicative mood — use imperative: \"provide\" not \"The Contractor provides\""
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D5821",
-      "index": 149,
-      "message": "Did you mean to spell `D5821` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B122"
-    },
-    {
       "blockId": "32_12_16_16-P2-B132",
       "ruleId": "NLP-INDICATIVE-001",
       "match": "The Contractor provides",
@@ -10677,26 +7223,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Indicative mood — use imperative: \"provide\" not \"The Contractor provides\""
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D242",
-      "index": 108,
-      "message": "Did you mean to spell `D242` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B132"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D242M",
-      "index": 113,
-      "message": "Did you mean to spell `D242M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B132"
     },
     {
       "blockId": "32_12_16_16-P2-B151",
@@ -10729,13 +7255,13 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "When work on a lot is required to be terminated before all four sublots are completed, analyze the results from the completed sublots to determine the percent payment for the lot following the same procedures and requirments for full lots but with fewer or more test results as determined in paragraph PAVEMENT LOTS.",
-      "index": 758,
-      "message": "This sentence is 53 words long.",
+      "ruleId": "GRAMMAR-Spelling",
+      "match": "requirments",
+      "index": 971,
+      "message": "Did you mean to spell `requirments` this way?",
       "severity": "info",
       "engine": "grammar",
-      "category": "Readability",
+      "category": "Spelling",
       "blockId": "32_12_16_16-P1-B12"
     },
     {
@@ -10770,56 +7296,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 62,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Submittals",
-      "index": 81,
-      "message": "Did you mean to spell `Submittals` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 113,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Submittals",
-      "index": 176,
-      "message": "Did you mean to spell `Submittals` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 208,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "Goverment",
       "index": 364,
       "message": "Did you mean to spell `Goverment` this way?",
@@ -10827,16 +7303,6 @@
       "engine": "grammar",
       "category": "Spelling",
       "blockId": "32_12_16_16-P1-B51"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "profilograph",
-      "index": 127,
-      "message": "Did you mean to spell `profilograph` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P1-B87"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -10860,26 +7326,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 82,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B110"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 193,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B110"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "tempreature",
       "index": 317,
       "message": "Did you mean to spell `tempreature` this way?",
@@ -10890,26 +7336,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 400,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B110"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D5821",
-      "index": 125,
-      "message": "Did you mean to spell `D5821` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B122"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "crusihng",
       "index": 164,
       "message": "Did you mean to spell `crusihng` this way?",
@@ -10917,26 +7343,6 @@
       "engine": "grammar",
       "category": "Spelling",
       "blockId": "32_12_16_16-P2-B122"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D242",
-      "index": 92,
-      "message": "Did you mean to spell `D242` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B132"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D242M",
-      "index": 97,
-      "message": "Did you mean to spell `D242M` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B132"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -10989,16 +7395,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "When work on a lot is required to be terminated before all four sublots are completed, analyze the results from the completed sublots to determine the percent payment for the lot following the same procedures and requirements for full lots but with fewer or more test results as determined in paragraph PAVEMENT LOTS.",
-      "index": 757,
-      "message": "This sentence is 53 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "32_12_16_16-P1-B12"
-    },
-    {
       "blockId": "32_12_16_16-P1-B49",
       "ruleId": "NLP-PASSIVE-001",
       "match": "are referred",
@@ -11009,16 +7405,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 10,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B113"
-    },
-    {
       "ruleId": "GRAMMAR-WordChoice",
       "match": "to provides",
       "index": 706,
@@ -11026,16 +7412,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "WordChoice",
-      "blockId": "32_12_16_16-P2-B113"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "paver",
-      "index": 769,
-      "message": "Did you mean to spell `paver` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
       "blockId": "32_12_16_16-P2-B113"
     },
     {
@@ -11049,16 +7425,6 @@
       "blockId": "32_12_16_16-P2-B113"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "D2419",
-      "index": 125,
-      "message": "Did you mean to spell `D2419` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "32_12_16_16-P2-B129"
-    },
-    {
       "ruleId": "GRAMMAR-WordChoice",
       "match": "AI MS",
       "index": 165,
@@ -11066,16 +7432,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "WordChoice",
-      "blockId": "32_12_16_16-P2-B152"
-    },
-    {
-      "ruleId": "GRAMMAR-Grammar",
-      "match": " ",
-      "index": 181,
-      "message": "Add a determiner before this noun phrase.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Grammar",
       "blockId": "32_12_16_16-P2-B152"
     },
     {
@@ -11099,56 +7455,6 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 62,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B43"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Submittals",
-      "index": 81,
-      "message": "Did you mean to spell `Submittals` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B43"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 113,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B43"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Submittals",
-      "index": 176,
-      "message": "Did you mean to spell `Submittals` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B43"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 208,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B43"
-    },
-    {
       "blockId": "33_71_02-P1-B89",
       "ruleId": "TERM-shall",
       "match": "Shall",
@@ -11169,26 +7475,6 @@
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "gasketed",
-      "index": 147,
-      "message": "Did you mean to spell `gasketed` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B105"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 192,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B105"
-    },
-    {
       "blockId": "33_71_02-P2-B116",
       "ruleId": "TERM-shall",
       "match": "Shall",
@@ -11207,16 +7493,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 46,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B131"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -11277,26 +7553,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "The use of \"shall\" is prohibited. \"Shall\" imposes an obligation to act but may be confused with prediction of future action."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C32",
-      "index": 62,
-      "message": "Did you mean to spell `C32` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B217"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 65,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "33_71_02-P2-B217"
     },
     {
       "blockId": "33_71_02-P3-B295",
@@ -11439,26 +7695,6 @@
       "message": "Do not use the word \"per\", use \"in accordance with\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C32",
-      "index": 41,
-      "message": "Did you mean to spell `C32` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B217"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 44,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "33_71_02-P2-B217"
-    },
-    {
       "blockId": "33_71_02-P1-B18",
       "ruleId": "TERM-any",
       "match": "any",
@@ -11489,16 +7725,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Handholes",
-      "index": 25,
-      "message": "Did you mean to spell `Handholes` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B60"
-    },
-    {
       "blockId": "33_71_02-P2-B172",
       "ruleId": "TERM-any",
       "match": "any",
@@ -11517,16 +7743,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Obtain from the manufacturer any installation manual or set of instructions addressing cable construction, insulation type, cable diameter, bending radius, cable temperature limits for installation, lubricants, coefficient of friction, conduit cleaning, storage procedures, moisture seals, testing for and purging moisture, maximum allowable pulling tension, and maximum allowable sidewall bearing pressure.",
-      "index": 0,
-      "message": "This sentence is 50 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "33_71_02-P3-B241"
     },
     {
       "blockId": "33_71_02-P3-B264",
@@ -11579,26 +7795,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "kV",
-      "index": 185,
-      "message": "Did you mean to spell `kV` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B81"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "kV",
-      "index": 194,
-      "message": "Did you mean to spell `kV` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B81"
-    },
-    {
       "blockId": "33_71_02-P2-B131",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -11607,16 +7803,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 46,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B131"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -11649,36 +7835,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B8",
-      "index": 64,
-      "message": "Did you mean to spell `B8` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B184"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 66,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "33_71_02-P2-B184"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B1",
-      "index": 178,
-      "message": "Did you mean to spell `B1` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B184"
-    },
-    {
       "blockId": "33_71_02-P2-B225",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -11689,36 +7845,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "non-corrosive",
-      "index": 137,
-      "message": "This looks like a prefix that can be joined with the rest of the word.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B225"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "alkalis",
-      "index": 187,
-      "message": "Did you mean to spell `alkalis` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B225"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 271,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B225"
-    },
-    {
       "blockId": "33_71_02-P3-B271",
       "ruleId": "TERM-and-or",
       "match": "and/or",
@@ -11727,36 +7853,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C2",
-      "index": 240,
-      "message": "Did you mean to spell `C2` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P3-B271"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 242,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P3-B271"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 410,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P3-B271"
     },
     {
       "blockId": "33_71_02-P3-B307",
@@ -11889,16 +7985,6 @@
       "message": "Do not use indefinite items such as \"etc.\", \"any\", and \"and/or\"."
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "AWG and larger, the Contractor must: increase the conductor size to have the same ampacity as the copper size indicated; increase the conduit and pull box sizes to accommodate the larger size aluminum conductors in accordance with NFPA 70 ; ensure that the pulling tension rating of the aluminum conductor is sufficient; relocate equipment, modify equipment terminations, resize equipment, and resolve to the satisfaction of the Contracting Officer problems that are direct results of the use of aluminum conductors in lieu of copper, etc.][ All conductors must be copper.",
-      "index": 513,
-      "message": "This sentence is 87 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "33_71_02-P2-B109"
-    },
-    {
       "blockId": "33_71_02-P2-B192",
       "ruleId": "TERM-etc",
       "match": "etc.",
@@ -11999,16 +8085,6 @@
       "message": "Do not use vague words and phrases or escape clauses."
     },
     {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 46,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B131"
-    },
-    {
       "ruleId": "GRAMMAR-Spelling",
       "match": "circumferentially",
       "index": 110,
@@ -12039,36 +8115,6 @@
       "message": "Do not use vague words and phrases or escape clauses."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B8",
-      "index": 64,
-      "message": "Did you mean to spell `B8` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B184"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 66,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "33_71_02-P2-B184"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B1",
-      "index": 178,
-      "message": "Did you mean to spell `B1` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B184"
-    },
-    {
       "blockId": "33_71_02-P2-B225",
       "ruleId": "TERM-securely",
       "match": "securely",
@@ -12079,36 +8125,6 @@
       "message": "Do not use vague words and phrases or escape clauses."
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "non-corrosive",
-      "index": 137,
-      "message": "This looks like a prefix that can be joined with the rest of the word.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B225"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "alkalis",
-      "index": 187,
-      "message": "Did you mean to spell `alkalis` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B225"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 271,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B225"
-    },
-    {
       "blockId": "33_71_02-P2-B109",
       "ruleId": "TERM-furnish",
       "match": "Furnish",
@@ -12117,16 +8133,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use the term \"furnish\" unless only delivery of material to the site is required."
-    },
-    {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "AWG and larger, the Contractor must: increase the conductor size to have the same ampacity as the copper size indicated; increase the conduit and pull box sizes to accommodate the larger size aluminum conductors in accordance with NFPA 70 ; ensure that the pulling tension rating of the aluminum conductor is sufficient; relocate equipment, modify equipment terminations, resize equipment, and resolve to the satisfaction of the Contracting Officer problems that are direct results of the use of aluminum conductors in lieu of copper.",
-      "index": 513,
-      "message": "This sentence is 81 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "33_71_02-P2-B109"
     },
     {
       "blockId": "33_71_02-P2-B158",
@@ -12160,69 +8166,9 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 31,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "prestretched",
       "index": 42,
       "message": "Did you mean to spell `prestretched` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 55,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 85,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 160,
-      "message": "Did you mean to spell `propylene` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 198,
-      "message": "Did you mean to spell `propylene` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 227,
-      "message": "Did you mean to spell `propylene` this way?",
       "severity": "info",
       "engine": "grammar",
       "category": "Spelling",
@@ -12267,16 +8213,6 @@
       "engine": "static",
       "category": "prohibited-term",
       "message": "Do not use the term \"furnish\" unless only delivery of material to the site is required."
-    },
-    {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "AWG and larger, the contractor must: increase the conductor size to have the same ampacity as the copper size indicated; increase the conduit and pull box sizes to accommodate the larger size aluminum conductors in accordance with NFPA 70 ; ensure that the pulling tension rating of the aluminum conductor is sufficient; relocate equipment, modify equipment terminations, resize equipment, and resolve to the satisfaction of the Contracting Officer problems that are direct results of the use of aluminum conductors in lieu of copper.",
-      "index": 513,
-      "message": "This sentence is 81 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "33_71_02-P2-B109"
     },
     {
       "blockId": "33_71_02-P2-B158",
@@ -12330,69 +8266,9 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 31,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "prestretched",
       "index": 42,
       "message": "Did you mean to spell `prestretched` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 55,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 85,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 160,
-      "message": "Did you mean to spell `propylene` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 198,
-      "message": "Did you mean to spell `propylene` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 227,
-      "message": "Did you mean to spell `propylene` this way?",
       "severity": "info",
       "engine": "grammar",
       "category": "Spelling",
@@ -12509,16 +8385,6 @@
       "message": "Replace \"#\" (pound) with \"pound\""
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "When the Contractor chooses to use aluminum for conductors # 4 AWG and larger, the Contractor must: increase the conductor size to have the same ampacity as the copper size indicated; increase the conduit and pull box sizes to accommodate the larger size aluminum conductors in accordance with NFPA 70 ; ensure that the pulling tension rating of the aluminum conductor is sufficient; relocate equipment, modify equipment terminations, resize equipment, and resolve to the satisfaction of the Contracting Officer problems that are direct results of the use of aluminum conductors in lieu of copper.",
-      "index": 440,
-      "message": "This sentence is 90 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "33_71_02-P2-B109"
-    },
-    {
       "blockId": "33_71_02-P2-B109",
       "ruleId": "SYM-and",
       "match": "Cable & duct",
@@ -12527,16 +8393,6 @@
       "engine": "static",
       "category": "prohibited-symbol",
       "message": "Replace \"&\" (and) with \"and\""
-    },
-    {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "AWG and larger, the Contractor must: increase the conductor size to have the same ampacity as the copper size indicated; increase the conduit and pull box sizes to accommodate the larger size aluminum conductors in accordance with NFPA 70 ; ensure that the pulling tension rating of the aluminum conductor is sufficient; relocate equipment, modify equipment terminations, resize equipment, and resolve to the satisfaction of the Contracting Officer problems that are direct results of the use of aluminum conductors in lieu of copper.",
-      "index": 511,
-      "message": "This sentence is 81 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "33_71_02-P2-B109"
     },
     {
       "blockId": "33_71_02-P2-B158",
@@ -12560,69 +8416,9 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 31,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "prestretched",
       "index": 42,
       "message": "Did you mean to spell `prestretched` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 55,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 85,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 160,
-      "message": "Did you mean to spell `propylene` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 198,
-      "message": "Did you mean to spell `propylene` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 227,
-      "message": "Did you mean to spell `propylene` this way?",
       "severity": "info",
       "engine": "grammar",
       "category": "Spelling",
@@ -12647,16 +8443,6 @@
       "engine": "static",
       "category": "prohibited-symbol",
       "message": "Replace \"&\" (and) with \"and\""
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 415,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "33_71_02-P3-B288"
     },
     {
       "ruleId": "GRAMMAR-Style",
@@ -12699,56 +8485,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 62,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B43"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Submittals",
-      "index": 81,
-      "message": "Did you mean to spell `Submittals` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B43"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 113,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B43"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Submittals",
-      "index": 176,
-      "message": "Did you mean to spell `Submittals` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B43"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "S",
-      "index": 208,
-      "message": "Did you mean to spell `S` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B43"
-    },
-    {
       "blockId": "33_71_02-P1-B89",
       "ruleId": "TERM-shall",
       "match": "shall",
@@ -12777,26 +8513,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "gasketed",
-      "index": 133,
-      "message": "Did you mean to spell `gasketed` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B105"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 196,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B105"
     },
     {
       "blockId": "33_71_02-P2-B116",
@@ -12837,16 +8553,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 46,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B131"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -12947,26 +8653,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C32",
-      "index": 66,
-      "message": "Did you mean to spell `C32` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B217"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 69,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "33_71_02-P2-B217"
     },
     {
       "blockId": "33_71_02-P3-B295",
@@ -13119,26 +8805,6 @@
       "message": "Indicative mood — use imperative: \"provide\" not \"The Contractor provides\""
     },
     {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Handholes",
-      "index": 45,
-      "message": "Did you mean to spell `Handholes` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B60"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 8,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B194"
-    },
-    {
       "blockId": "33_71_02-P2-B217",
       "ruleId": "NLP-INDICATIVE-001",
       "match": "The Contractor provides",
@@ -13147,26 +8813,6 @@
       "engine": "nlp",
       "category": "NLP",
       "message": "Indicative mood — use imperative: \"provide\" not \"The Contractor provides\""
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C32",
-      "index": 72,
-      "message": "Did you mean to spell `C32` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B217"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 75,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "33_71_02-P2-B217"
     },
     {
       "blockId": "33_71_02-P3-B359",
@@ -13210,16 +8856,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "Handholes",
-      "index": 21,
-      "message": "Did you mean to spell `Handholes` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P1-B60"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "experiance",
       "index": 105,
       "message": "Did you mean to spell `experiance` this way?",
@@ -13237,86 +8873,6 @@
       "engine": "grammar",
       "category": "Style",
       "blockId": "33_71_02-P1-B83"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B3",
-      "index": 288,
-      "message": "Did you mean to spell `B3` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B111"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B8",
-      "index": 300,
-      "message": "Did you mean to spell `B8` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B111"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 302,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B111"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B800",
-      "index": 387,
-      "message": "Did you mean to spell `B800` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B111"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "B801",
-      "index": 401,
-      "message": "Did you mean to spell `B801` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B111"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 405,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "33_71_02-P2-B111"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": "\"",
-      "index": 468,
-      "message": "This quote has no termination.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B111"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "Kcmil",
-      "index": 96,
-      "message": "Did you mean to spell `Kcmil` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B136"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -13339,16 +8895,6 @@
       "blockId": "33_71_02-P2-B172"
     },
     {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 8,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P2-B194"
-    },
-    {
       "ruleId": "GRAMMAR-Spelling",
       "match": "infomration",
       "index": 51,
@@ -13367,36 +8913,6 @@
       "engine": "grammar",
       "category": "Spelling",
       "blockId": "33_71_02-P2-B217"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "C32",
-      "index": 56,
-      "message": "Did you mean to spell `C32` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B217"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 59,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
-      "blockId": "33_71_02-P2-B217"
-    },
-    {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "Obtain from the manufacturer an installation manual or set of instructions addressing cable construction, insulation type, cable diameter, bending radius, cable temperature limits for installation, lubricants, coefficient of friction, conduit cleaning, storage procedures, moisture seals, testing for and purging moisture, maximum allowable pulling tension, and maximum allowable sidewall bearing pressure.",
-      "index": 0,
-      "message": "This sentence is 50 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "33_71_02-P3-B241"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -13440,16 +8956,6 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "handholes",
-      "index": 134,
-      "message": "Did you mean to spell `handholes` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P3-B321"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "manufacutrer",
       "index": 236,
       "message": "Did you mean to spell `manufacutrer` this way?",
@@ -13457,16 +8963,6 @@
       "engine": "grammar",
       "category": "Spelling",
       "blockId": "33_71_02-P3-B321"
-    },
-    {
-      "ruleId": "GRAMMAR-Formatting",
-      "match": " ",
-      "index": 190,
-      "message": "Unnecessary space at the end of the sentence.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Formatting",
-      "blockId": "33_71_02-P3-B339"
     },
     {
       "ruleId": "GRAMMAR-Spelling",
@@ -13499,16 +8995,6 @@
       "message": "Passive voice — consider rewriting in imperative mood per UFS 1-300-02 Section 2-4.1"
     },
     {
-      "ruleId": "GRAMMAR-Readability",
-      "match": "AWG and larger, the Contractor must: increase the conductor size to have the same ampacity as the copper size indicated; increase the conduit and pull box sizes to accommodate the larger size aluminum conductors in accordance with NFPA 70 ; ensure that the pulling tension rating of the aluminum conductor is sufficient; relocate equipment, modify equipment terminations, resize equipment, and resolve to the satisfaction of the Contracting Officer problems that are direct results of the use of aluminum conductors in lieu of copper.",
-      "index": 512,
-      "message": "This sentence is 81 words long.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Readability",
-      "blockId": "33_71_02-P2-B109"
-    },
-    {
       "blockId": "33_71_02-P2-B158",
       "ruleId": "NLP-PASSIVE-001",
       "match": "be used",
@@ -13530,69 +9016,9 @@
     },
     {
       "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 31,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
       "match": "prestretched",
       "index": 42,
       "message": "Did you mean to spell `prestretched` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 55,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "elastomer",
-      "index": 85,
-      "message": "Did you mean to spell `elastomer` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 160,
-      "message": "Did you mean to spell `propylene` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 198,
-      "message": "Did you mean to spell `propylene` this way?",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Spelling",
-      "blockId": "33_71_02-P2-B158"
-    },
-    {
-      "ruleId": "GRAMMAR-Spelling",
-      "match": "propylene",
-      "index": 227,
-      "message": "Did you mean to spell `propylene` this way?",
       "severity": "info",
       "engine": "grammar",
       "category": "Spelling",
@@ -13626,16 +9052,6 @@
       "severity": "info",
       "engine": "grammar",
       "category": "Style",
-      "blockId": "33_71_02-P3-B288"
-    },
-    {
-      "ruleId": "GRAMMAR-Punctuation",
-      "match": " ",
-      "index": 417,
-      "message": "Don't use a space before a comma.",
-      "severity": "info",
-      "engine": "grammar",
-      "category": "Punctuation",
       "blockId": "33_71_02-P3-B288"
     },
     {

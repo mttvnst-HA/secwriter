@@ -373,11 +373,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 **Compliance Engine Tuning — Completed (March 2026):** All 22 items implemented and verified. Static FP rate 3.68% → 0.31%, adversarial accuracy 89.5% → 97.3%, 9/9 success criteria met. Full details in `corpus/results/REPORT.md`.
 
-**Remaining Engine Improvements (prioritized):**
-
-| # | Issue | Priority | Notes |
-|---|-------|----------|-------|
-| 1 | **Harper.js remaining grammar FPs** — current 1,466 in clean corpus (static runner; not browser-measured). Dictionary expanded from 160+ to 260+ terms; live-editor reduction expected but requires browser-based measurement | Low | Diminishing returns; 86% spelling FP reduction already achieved in v2 |
+**Harper.js Grammar FP Reduction — Completed (April 2026):** Unified the corpus runner with the production grammar pipeline (`shouldSuppressGrammarFinding`, shared `ENGINEERING_TERMS`, shared `DISABLED_RULES`). Added filters for all-caps acronyms (2–6 letters), single-letter list labels (`A.`, `F.`), engineering formula notation (`f'c`), prefixed compounds (`non-conforming`, `post-industrial`), and case-insensitive dictionary matching. Disabled the noisy `Formatting` and `Readability` Harper rules (whitespace + long-sentence noise on UFGS text). Result on the clean corpus: spelling FPs 1,466 → 103 (-93%), total grammar findings 2,040 → 297 (-85%), per-block grammar FP rate 56.8% → 6.93%. Spelling recall on the dirty corpus held at 88% (66/75).
 
 **Validation & Deployment:**
 16. ~~**Real-world .SEC file testing**~~ — ✅ Done. Parser validated against all 690 UFGS .SEC files. Added TBL (preformatted tables), ATT (attachment marks), THD (table headers), INT (cell fill styles). 12-test UFGS regression suite (`npm run test:ufgs`).

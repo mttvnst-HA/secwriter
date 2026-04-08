@@ -17,7 +17,7 @@ import { replaceAtOffset } from './fix-utils.js';
 // Construction/engineering terms to add to Harper's dictionary.
 // Mined from corpus of 2,583 UFGS blocks — includes all terms with 2+ FPs
 // plus domain-specific terms likely to appear across sections.
-const ENGINEERING_TERMS = [
+export const ENGINEERING_TERMS = [
   // Standards organizations
   'ASTM', 'AASHTO', 'NAVFAC', 'USACE', 'AFCEC', 'UFGS', 'UFC', 'UFS',
   'ANSI', 'IEEE', 'ASHRAE', 'NFPA', 'OSHA', 'SMACNA', 'SSPC', 'NICET',
@@ -119,6 +119,11 @@ const ENGINEERING_TERMS = [
   'prestressed', 'loadings', 'resubmittal', 'screwheads',
   'hydrological', 'hydrostatic', 'hydrostatically', 'centerlines',
   'locatable', 'bibbs',
+  // Additional FPs from clean corpus measurement (April 2026)
+  'gph', 'gpd', 'mgd', 'cfh', 'mph', 'rpm', 'fps',
+  'PTFE', 'CPVC', 'EPDM', 'HDPE', 'LLDPE', 'XLPE',
+  'THWN', 'THHN', 'XHHW',
+  'jobsite', 'jobsites', 'standoff', 'standoffs',
 ];
 
 // User-editable custom dictionary (persisted in localStorage)
@@ -186,12 +191,60 @@ export async function addUserWord(word) {
 }
 
 // Harper rules to disable for construction specification text
-const DISABLED_RULES = {
+export const DISABLED_RULES = {
   LongSentences: false,     // Specs routinely have 40+ word sentences
   Spaces: false,            // UFGS uses double spaces after periods
   SpelledNumbers: false,    // "24 inches", "600 mm" are standard
   BoringWords: false,       // "provide", "install" are correct spec verbs
+  // Noise rules — produce thousands of trailing-whitespace and long-sentence
+  // findings on UFGS text without offering actionable fixes for spec authors.
+  Formatting: false,        // "Unnecessary space at end of sentence" — UFGS-tolerated
+  Readability: false,       // Long-sentence variant; specs are inherently long
+  // NOTE: Repetition stays enabled — disabling it regressed GRAMMAR-Agreement
+  // recall from 56% → 38% on the dirty corpus.
 };
+
+// Pre-compute lowercase set for case-insensitive dictionary lookup. Harper's
+// importWords is case-sensitive (so "cementitious" doesn't cover "Cementitious"
+// at the start of a sentence). We also check this set to suppress spelling
+// findings regardless of capitalization.
+const ENGINEERING_TERMS_LOWER = new Set(
+  ENGINEERING_TERMS.map((w) => w.toLowerCase())
+);
+
+/**
+ * Pure helper: should this Harper finding be suppressed as a known false
+ * positive? Shared between the production checkGrammar() pipeline and the
+ * offline corpus runner so both measure identical filter behavior.
+ *
+ * @param {string} problemText - The token Harper flagged
+ * @param {Set<string>} userDictLower - User dictionary in lowercase
+ * @returns {boolean} true if the finding should be discarded
+ */
+export function shouldSuppressGrammarFinding(problemText, userDictLower) {
+  if (!problemText) return true;
+  // Skip alphanumeric reference designators (ASTM D4829, AASHTO T99, M-43)
+  if (/^[A-Z]{0,4}\d[\w-]*$/i.test(problemText)) return true;
+  // Skip single-character matches (list labels, ordinal fragments)
+  if (problemText.length <= 1) return true;
+  // Skip single-letter list labels with trailing period: "A.", "F.", "i."
+  if (/^[A-Za-z]\.$/.test(problemText)) return true;
+  // Skip engineering formula notation: f'c, t'p, K'a (apostrophe-tagged vars)
+  if (/^[A-Za-z]'[A-Za-z]$/.test(problemText)) return true;
+  // Skip 2-6 letter all-caps acronyms with optional trailing 's' for plurals
+  // (ACI, CSA, AWG, ASSE, AWWA, IAPMO, CFR, SPDs, etc.). Spec text is dense
+  // with standards organizations and discipline acronyms — Harper has no
+  // hope of recognizing them all.
+  if (/^[A-Z]{2,6}s?$/.test(problemText)) return true;
+  // Skip lowercase hyphenated compounds with standard English prefixes:
+  // "non-conforming", "post-industrial", "pre-cast", "sub-base", "semi-annual"
+  if (/^(non|pre|post|sub|semi|multi|anti|re|un|over|under|inter|intra|cross)-[a-z]+$/i.test(problemText)) return true;
+  // Skip terms in the production engineering dictionary (case-insensitive)
+  if (ENGINEERING_TERMS_LOWER.has(problemText.toLowerCase())) return true;
+  // Skip terms in the user's custom dictionary
+  if (userDictLower && userDictLower.has(problemText.toLowerCase())) return true;
+  return false;
+}
 
 let linter = null;
 let ready = false;
@@ -273,18 +326,12 @@ export async function checkGrammar(plainText, blockId) {
       const span = lint.span();
       const problemText = lint.get_problem_text();
 
-      // Skip alphanumeric reference designators (ASTM D4829, AASHTO T99, etc.)
-      // Pattern: optional letters followed by digits (and more alphanumeric/hyphens)
-      if (/^[A-Z]{0,4}\d[\w-]*$/i.test(problemText)) continue;
-
-      // Skip single-character matches (list labels like "a.", "s", ordinal fragments)
-      if (problemText.length <= 1) continue;
-
-      // Skip words the user has added to their custom dictionary. Harper's
-      // importWords only suppresses unknown-word (spelling) findings; grammar
-      // rules (plural/singular, conjugation, etc.) still fire. This filter
-      // honors the user's intent that "this word is fine, leave it alone."
-      if (userDictLower.has(problemText.toLowerCase())) continue;
+      // Apply shared FP filter (alphanumeric refs, single chars, formula
+      // notation, engineering dict, user dict). Harper's importWords is
+      // case-sensitive and only suppresses unknown-word findings, so this
+      // catch-all also handles capitalized variants and grammar/style rules
+      // firing on words the dictionary already covers.
+      if (shouldSuppressGrammarFinding(problemText, userDictLower)) continue;
 
       const suggestions = lint.suggestions();
       const hasSuggestion = suggestions.length > 0;

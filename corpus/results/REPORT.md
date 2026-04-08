@@ -1,6 +1,6 @@
 # SIM Text Analysis Engine — Corpus Test Report
 
-Generated: 2026-03-25T02:48:06.944Z
+Generated: 2026-04-08T04:40:11.559Z
 
 ## 1. Calibration Results (Raw UFGS Master Text)
 
@@ -72,7 +72,7 @@ Generated: 2026-03-25T02:48:06.944Z
 |--------|:-----------:|:-------:|:--------------------:|
 | Static | 8 | 0.31% | <5% |
 | NLP | 331 | 12.81% | <20% |
-| Grammar | 2040 | (informational) | N/A |
+| Grammar | 297 | (informational) | N/A |
 
 ### False Positives by Rule
 
@@ -98,8 +98,8 @@ Generated: 2026-03-25T02:48:06.944Z
 | CAP-Government | CAP-Government | 8 | 8 | 100.0% | 80% | ✅ |
 | COLLOQ-furnish | TERM-furnish | 21 | 19 | 90.5% | 80% | ✅ |
 | FMT-002 | FMT-002 | 21 | 21 | 100.0% | 80% | ✅ |
-| GRAMMAR-Agreement | GRAMMAR-Agreement | 50 | 28 | 56.0% | 70% | ❌ |
-| GRAMMAR-Spelling | GRAMMAR-Spelling | 75 | 70 | 93.3% | 70% | ✅ |
+| GRAMMAR-Agreement | GRAMMAR-Agreement | 50 | 19 | 38.0% | 70% | ❌ |
+| GRAMMAR-Spelling | GRAMMAR-Spelling | 75 | 66 | 88.0% | 70% | ✅ |
 | NLP-INDICATIVE-001 | NLP-INDICATIVE-001 | 41 | 23 | 56.1% | 60% | ❌ |
 | NLP-PASSIVE-001 | NLP-PASSIVE-001 | 82 | 60 | 73.2% | 60% | ✅ |
 | SYM-001 | SYM-percent | 3 | 3 | 100.0% | 80% | ✅ |
@@ -127,7 +127,7 @@ Generated: 2026-03-25T02:48:06.944Z
 |--------|:--------:|:--------:|:------:|:------:|
 | Static | 352 | 405 | 86.9% | ≥80% |
 | NLP | 83 | 123 | 67.5% | ≥60% |
-| Grammar | 98 | 125 | 78.4% | ≥70% |
+| Grammar | 85 | 125 | 68.0% | ≥70% |
 
 ### Note on ID Mapping
 
