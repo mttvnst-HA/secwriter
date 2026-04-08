@@ -5,6 +5,7 @@ import TreeNode from "./components/TreeNode.jsx";
 import EditableBlock from "./components/EditableBlock.jsx";
 import TitleBlock from "./components/TitleBlock.jsx";
 import TableBlock from "./components/TableBlock.jsx";
+import PreformattedBlock from "./components/PreformattedBlock.jsx";
 import RefBlock from "./components/RefBlock.jsx";
 import FloatingToolbar from "./components/FloatingToolbar.jsx";
 import MarkSuggestions from "./components/MarkSuggestions.jsx";
@@ -1709,19 +1710,14 @@ export default function SpecEditor() {
             }
             if (block.type === "tbl") {
               return (
-                <div
+                <PreformattedBlock
                   key={block.id}
-                  id={`block-${block.id}`}
-                  className="block-tbl"
-                  data-block-id={block.id}
-                  data-tag="TBL"
-                  contentEditable={false}
-                  onClick={() => handleClickFocus(block.id)}
-                  dangerouslySetInnerHTML={{ __html: block.html }}
-                  style={{
-                    padding: "12px 16px",
-                    margin: "4px 0",
-                    outline: focusedBlockId === block.id ? "2px solid #3b82f6" : "none",
+                  block={block}
+                  isFocused={focusedBlockId === block.id}
+                  onFocus={handleClickFocus}
+                  onUpdate={(id, data) => {
+                    resumeHistory();
+                    setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
                   }}
                 />
               );

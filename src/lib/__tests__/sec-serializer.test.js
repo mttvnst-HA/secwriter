@@ -369,6 +369,25 @@ describe('serializeSEC', () => {
     expect(xml).toContain('</TBL>');
   });
 
+  it('serializes tbl blocks containing inline RID marks', () => {
+    const blocks = [
+      { id: '1', type: 'tbl', part: 1, depth: 1, html: 'See <span class="mark-rid">ASTM C33</span> for details' },
+    ];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).toContain('<RID>ASTM C33</RID>');
+    expect(xml).toContain('<TBL>');
+  });
+
+  it('serializes tbl blocks with revision wrapper', () => {
+    const blocks = [
+      { id: '1', type: 'tbl', part: 1, depth: 1, html: 'Edited line', revision: 'add' },
+    ];
+    const xml = serializeSEC(blocks, META);
+    expect(xml).toContain('<ADD>');
+    expect(xml).toContain('<TBL>');
+    expect(xml).toContain('</ADD>');
+  });
+
   // ─── ATT inline mark ──────────────────────────────────────────
 
   it('serializes ATT inline marks', () => {

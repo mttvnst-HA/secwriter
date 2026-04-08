@@ -191,4 +191,33 @@ describe('SEC roundtrip (parse → serialize → re-parse)', () => {
     expect(refBlock2.ref.entries[1].rid).toBe(refBlock1.ref.entries[1].rid);
     expect(refBlock2.ref.entries[1].rtl).toBe(refBlock1.ref.entries[1].rtl);
   });
+
+  it('TBL edit roundtrip: added line + inline mark survives', () => {
+    const xml = `<?xml version="1.0" encoding="windows-1252"?><SEC>
+      <PRT>
+        <TBL><THD>FORM HEADER</THD><BRK/>Original line one<BRK/>Original line two</TBL>
+      </PRT>
+    </SEC>`;
+    const blocks1 = parseSEC(xml);
+    const tbl1 = blocks1.find(b => b.type === 'tbl');
+    expect(tbl1).toBeDefined();
+    expect(tbl1.html).toContain('Original line one');
+
+    // Simulate user edit: add a third line containing an RID mark
+    tbl1.html = tbl1.html + '\nNew line per <span class="mark-rid">ASTM D2487</span>';
+
+    const serialized = serializeSEC(blocks1, { sectionNumber: '00 00 00', sectionTitle: 'TBL EDIT' });
+    expect(serialized).toContain('<TBL>');
+    expect(serialized).toContain('<THD>FORM HEADER</THD>');
+    expect(serialized).toContain('New line per');
+    expect(serialized).toContain('<RID>ASTM D2487</RID>');
+
+    const blocks2 = parseSEC(serialized);
+    const tbl2 = blocks2.find(b => b.type === 'tbl');
+    expect(tbl2).toBeDefined();
+    expect(tbl2.html).toContain('Original line one');
+    expect(tbl2.html).toContain('New line per');
+    expect(tbl2.html).toContain('mark-rid');
+    expect(tbl2.html).toContain('ASTM D2487');
+  });
 });
