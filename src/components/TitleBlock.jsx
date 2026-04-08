@@ -1,5 +1,6 @@
 import { useRef, useCallback, useEffect } from "react";
 import { sanitizePasteText } from "./EditableBlock.jsx";
+import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
 function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote, onDemote, onEnterKey, onDelete, onFocusPrev, onFocusNext }) {
   const ref = useRef(null);
@@ -132,7 +133,7 @@ function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote
           ref={ref}
           data-block-id={block.id}
           contentEditable
-          spellCheck={false}
+          {...NO_EXFIL_PROPS}
           suppressContentEditableWarning
           onKeyDown={handleKeyDown}
           onPaste={handlePaste}

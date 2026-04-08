@@ -287,7 +287,7 @@ Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with
 3. **compromise.js NLP** (`nlp-rules.js`): Synchronous, lazy-loaded (~210KB). Passive voice via `(be + #PastTense)` patterns, indicative mood via regex. Orange highlights (`::highlight(passive-voice)`).
 
 **Key design decisions:**
-- **Browser spellcheck disabled:** All contentEditable blocks set `spellCheck={false}` (EditableBlock.jsx, TitleBlock.jsx). Native red squiggles would duplicate Harper findings and risk leaking spec text to browser-integrated services (Chrome/Edge Copilot). SIM owns all grammar/spelling feedback — do not re-enable.
+- **Browser exfiltration prevention:** All typing surfaces (contentEditable blocks + every spec/comment input/textarea) spread `{...NO_EXFIL_PROPS}` from `src/lib/no-exfil.js`. This disables `spellCheck`, `writingsuggestions` (Chrome "Help me write" / Edge Copilot), `autoComplete`, `autoCorrect`, `autoCapitalize`, and Grammarly's `data-gramm*` attributes. CSP + `referrer="no-referrer"` + `notranslate` meta tags in `index.html` provide a second layer. Regression test at `src/lib/__tests__/no-exfil.test.js` enforces both. Do not add a new contentEditable, input, or textarea that accepts spec text without spreading these props and updating the test surface list.
 - **Only the focused block is linted** — avoids scanning 300+ blocks on every edit. Findings persist across blur/focus.
 - **Offset-aware range creation:** `createRangeForMatch()` accepts a `targetOffset` hint from violation engines to disambiguate repeated words (e.g., "the" appearing 5 times — highlights the correct one).
 - **De-duplication:** Grammar findings overlapping >50% with compliance/NLP findings are suppressed (static rules win — they have UFS citations).
@@ -376,7 +376,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 18. **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
 19. **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
 20. **Production deployment** — `npm run build` and host (static site, no server needed)
-21. **Browser data exfiltration prevention** — prevent spec text from being sent to Google or Microsoft via browser features like Chrome's "Help me write," Edge's Copilot, or enhanced spellcheck. These features transmit selected/typed text to external servers for processing, which is unacceptable for controlled unclassified military construction specifications. Investigate: disabling via `contentEditable` attributes, CSP headers, enterprise browser policies, and `writingsuggestions="false"` / `spellcheck="false"` HTML attributes.
+21. ~~**Browser data exfiltration prevention**~~ — ✅ Done. Centralized `NO_EXFIL_PROPS` (`src/lib/no-exfil.js`) spread on every contentEditable + spec/comment input/textarea: disables spellcheck, `writingsuggestions`, autoComplete, autoCorrect, autoCapitalize, and Grammarly's `data-gramm*`. `index.html` has a strict CSP (only `'self'` + `api.anthropic.com` for compliance AI + Google Fonts), `referrer="no-referrer"`, `notranslate`, and `noindex` meta tags. Regression test at `src/lib/__tests__/no-exfil.test.js`.
 
 **Future Features:**
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks

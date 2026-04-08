@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
 /**
  * Get the current author name from localStorage, or null if not set.
@@ -128,6 +129,7 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
             onChange={(e) => setAuthorLocal(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleSaveAuthor(); } }}
             placeholder="Your name..."
+            {...NO_EXFIL_PROPS}
             style={{
               flex: 1, padding: "6px 8px", border: "1px solid #dadce0",
               borderRadius: 4, fontSize: 13, outline: "none",
@@ -158,6 +160,7 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
           onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleCreateSubmit(); } }}
           placeholder="Add a comment..."
           rows={2}
+          {...NO_EXFIL_PROPS}
           style={{
             width: "100%", padding: "8px", border: "none", outline: "none",
             fontSize: 13, resize: "none", fontFamily: "inherit", boxSizing: "border-box",
@@ -245,6 +248,7 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
             onChange={(e) => setReplyText(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleReply(); } }}
             placeholder="Reply..."
+            {...NO_EXFIL_PROPS}
             style={{
               flex: 1, padding: "6px 8px", border: "1px solid #dadce0",
               borderRadius: 20, fontSize: 12, outline: "none",

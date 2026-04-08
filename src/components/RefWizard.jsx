@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import umrlData from "../data/umrl.json";
+import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
 /**
  * Reference Wizard — search the UMRL database to insert references.
@@ -108,6 +109,7 @@ export default function RefWizard({ onAdd, onClose, existingOrgs }) {
               onChange={(e) => setOrgSearch(e.target.value)}
               placeholder="Type organization name or abbreviation (e.g., ASTM, AASHTO)..."
               style={{ ...inputStyle, marginBottom: 8 }}
+              {...NO_EXFIL_PROPS}
             />
             <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>
               {filteredOrgs.length} organization{filteredOrgs.length !== 1 ? 's' : ''}
@@ -167,6 +169,7 @@ export default function RefWizard({ onAdd, onClose, existingOrgs }) {
               onChange={(e) => setRefSearch(e.target.value)}
               placeholder="Type designation or title (e.g., D2487, compaction)..."
               style={{ ...inputStyle, marginBottom: 4 }}
+              {...NO_EXFIL_PROPS}
             />
             <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>
               {filteredRefs.length} reference{filteredRefs.length !== 1 ? 's' : ''}
@@ -255,12 +258,14 @@ function CustomRefEntry({ abbr, onAdd }) {
           type="text" value={rid} onChange={(e) => setRid(e.target.value)}
           placeholder="Designation" autoFocus
           style={{ width: 120, border: '1px solid #cbd5e1', borderRadius: 4, padding: '4px 8px', fontSize: 12, outline: 'none' }}
+          {...NO_EXFIL_PROPS}
         />
         <input
           type="text" value={rtl} onChange={(e) => setRtl(e.target.value)}
           placeholder="(Year) Title..."
           onKeyDown={(e) => { if (e.key === 'Enter' && rid) onAdd(`${abbr} ${rid}`, rtl); }}
           style={{ flex: 1, border: '1px solid #cbd5e1', borderRadius: 4, padding: '4px 8px', fontSize: 12, outline: 'none' }}
+          {...NO_EXFIL_PROPS}
         />
         <button
           onClick={() => { if (rid) onAdd(`${abbr} ${rid}`, rtl); }}
