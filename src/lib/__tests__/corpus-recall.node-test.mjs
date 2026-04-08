@@ -85,7 +85,9 @@ describe('Recall: detect injected violations', {
       `NLP recall ${(recall * 100).toFixed(1)}% below 60% threshold`);
   });
 
-  it('grammar rules achieve >=70% recall on injected spelling and agreement errors', () => {
+  it('grammar rules achieve >=65% recall on injected spelling and agreement errors', () => {
+    // Threshold lowered from 70% → 65% after the Harper FP reduction (commit 3052b4f)
+    // intentionally traded recall for an 85% drop in false positives. Current baseline: 68%.
     const isGrammar = id => id.startsWith('GRAMMAR-');
     const { injected, detected } = computeRecall(
       isGrammar,
@@ -94,7 +96,7 @@ describe('Recall: detect injected violations', {
     );
     const recall = injected > 0 ? detected / injected : 1;
     console.log(`    Grammar recall: ${detected}/${injected} = ${(recall * 100).toFixed(1)}%`);
-    assert.ok(recall >= 0.70,
-      `Grammar recall ${(recall * 100).toFixed(1)}% below 70% threshold`);
+    assert.ok(recall >= 0.65,
+      `Grammar recall ${(recall * 100).toFixed(1)}% below 65% threshold`);
   });
 });

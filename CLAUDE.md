@@ -101,7 +101,7 @@ reference/
   WebHelp/                 # Legacy SpecsIntact help system
 tests/
   e2e/
-    editor.spec.js         # 140 Playwright E2E tests ~2800 lines
+    editor.spec.js         # 141 Playwright E2E tests ~2800 lines
   interop-test-procedure.md # 6 manual round-trip interop test scenarios
   tc-browser-test-prompt.md # 15 autonomous browser test cases for Track Changes
   ux-ergonomic-review-prompt.md # UX review prompt with parallel agents + verification workflow
@@ -367,13 +367,8 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 - **Serializer differences from legacy SpecsIntact:** Minimal header (not table-based), whitespace normalization, hardcoded MTA metadata. These are cosmetic — SIEditor should tolerate them, but interop testing will confirm.
 - **Parser validated against full UFGS master set** (690 files, 60 tags). Two known roundtrip edge cases: `32 12 36.26.SEC` and `32 13 13.43.SEC` have `<THD><HL3>text</HL3></THD>` where nested bold boundaries shift (content preserved).
-- **TBL blocks are read-only.** Preformatted table editing (contentEditable for whitespace-significant blocks) is a future feature.
 
 ### Development Roadmap
-
-**Compliance Engine Tuning — Completed (March 2026):** All 22 items implemented and verified. Static FP rate 3.68% → 0.31%, adversarial accuracy 89.5% → 97.3%, 9/9 success criteria met. Full details in `corpus/results/REPORT.md`.
-
-**Harper.js Grammar FP Reduction — Completed (April 2026):** Unified the corpus runner with the production grammar pipeline (`shouldSuppressGrammarFinding`, shared `ENGINEERING_TERMS`, shared `DISABLED_RULES`). Added filters for all-caps acronyms (2–6 letters), single-letter list labels (`A.`, `F.`), engineering formula notation (`f'c`), prefixed compounds (`non-conforming`, `post-industrial`), and case-insensitive dictionary matching. Disabled the noisy `Formatting` and `Readability` Harper rules (whitespace + long-sentence noise on UFGS text). Result on the clean corpus: spelling FPs 1,466 → 103 (-93%), total grammar findings 2,040 → 297 (-85%), per-block grammar FP rate 56.8% → 6.93%. Spelling recall on the dirty corpus held at 88% (66/75).
 
 **Validation & Deployment:**
 16. ~~**Real-world .SEC file testing**~~ — ✅ Done. Parser validated against all 690 UFGS .SEC files. Added TBL (preformatted tables), ATT (attachment marks), THD (table headers), INT (cell fill styles). 12-test UFGS regression suite (`npm run test:ufgs`).
@@ -384,7 +379,6 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 21. **Browser data exfiltration prevention** — prevent spec text from being sent to Google or Microsoft via browser features like Chrome's "Help me write," Edge's Copilot, or enhanced spellcheck. These features transmit selected/typed text to external servers for processing, which is unacceptable for controlled unclassified military construction specifications. Investigate: disabling via `contentEditable` attributes, CSP headers, enterprise browser policies, and `writingsuggestions="false"` / `spellcheck="false"` HTML attributes.
 
 **Future Features:**
-- TBL preformatted table editing — contentEditable for whitespace-significant blocks (currently read-only)
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
 - INT cell background rendering — data extracted but not yet applied to TableBlock.jsx cells
 - Multi-file project management — SIM is currently a single-section editor by design
