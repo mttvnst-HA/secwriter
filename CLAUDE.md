@@ -29,7 +29,7 @@ When fixing bugs, verify the fix doesn't introduce regressions by running the fu
 
 ```
 src/
-  App.jsx                  # Main editor layout, state management, toolbar, sidebar ~1920 lines
+  App.jsx                  # Main editor layout, state management, toolbar, sidebar ~2420 lines
   main.jsx                 # Entry point + ErrorBoundary wrapper ~50 lines
   components/
     EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~710 lines
@@ -81,7 +81,7 @@ src/
     grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~280 lines
     nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~230 lines
     fix-utils.js           # Offset-aware string replacement in HTML: replaceAtOffset() for disambiguating duplicate violations ~65 lines
-    __tests__/             # 466 Vitest + 40 Node tests (see Test Coverage table for per-file breakdown)
+    __tests__/             # 557 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
     umrl.json              # UMRL reference database (302 orgs, 4,973 references, 587KB)
@@ -132,7 +132,7 @@ test-results/              # UI audit output: findings.json + timestamped Markdo
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 539 Vitest unit tests
+npm test             # Run 557 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 141 Playwright E2E tests
@@ -140,7 +140,7 @@ npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node ru
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
-# Full suite: 539 + 99 + 141 = 779 automated tests
+# Full suite: 557 + 99 + 141 = 797 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -447,7 +447,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 21. ~~**Browser data exfiltration prevention**~~ — ✅ Done. Centralized `NO_EXFIL_PROPS` (`src/lib/no-exfil.js`) spread on every contentEditable + spec/comment input/textarea: disables spellcheck, `writingsuggestions`, autoComplete, autoCorrect, autoCapitalize, and Grammarly's `data-gramm*`. `index.html` has a strict CSP (only `'self'` + `api.anthropic.com` for compliance AI + Google Fonts), `referrer="no-referrer"`, `notranslate`, and `noindex` meta tags. Regression test at `src/lib/__tests__/no-exfil.test.js`.
 
 **Future Features:**
-- **Multi-user collaboration — prototype landed** (branch `multi-user`). Yjs + y-websocket relay, presence, live cursors, stub identity, synced section metadata (yMeta), client-side doc size guard, toast notifications. Next steps to harden: (1) shared Track Changes, (2) shared Comments, (3) proper HTML diff so intra-block concurrent typing merges character-by-character, (4) fine-grained table/REF sync, (5) real auth + TLS + hosted relay, (6) reconnect/offline UX. See "Multi-user collaboration (prototype)" section above.
+- **Multi-user collaboration — prototype landed** (branch `multi-user`). Yjs + y-websocket relay, presence, live cursors, stub identity, synced section metadata (yMeta), client-side doc size guard, toast notifications, **shared Track Changes with per-author inline mark attribution**, **shared Comments (create/reply/resolve/reopen/delete) with identity-based author chips**. Next steps to harden: (1) proper HTML diff so intra-block concurrent typing merges character-by-character, (2) fine-grained table/REF sync, (3) real auth + TLS + hosted relay, (4) reconnect/offline UX, (5) server-owned `.SEC` + sidecar persistence (see spec `docs/superpowers/specs/2026-04-09-shared-tc-comments-design.md` "Deployment implications"). See "Multi-user collaboration (prototype)" section above.
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
 - INT cell background rendering — data extracted but not yet applied to TableBlock.jsx cells
 - Multi-file project management — SIM is currently a single-section editor by design
