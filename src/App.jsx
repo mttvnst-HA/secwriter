@@ -188,6 +188,8 @@ export default function SpecEditor() {
   blocksRef.current = blocks;
   const sectionMetaRef = useRef(sectionMeta);
   sectionMetaRef.current = sectionMeta;
+  const commentsRef = useRef(new Map());
+  commentsRef.current = comments;
   const tree = useMemo(() => buildTree(blocks), [blocks]);
   const numberMap = useMemo(() => computeNumbering(blocks), [blocks]);
   const oliLabels = useMemo(() => computeOliLabels(blocks), [blocks]);
@@ -251,7 +253,9 @@ export default function SpecEditor() {
       setSectionMeta(extractMetadata(content));
       setSelectedTreeId(null);
       setFocusedBlockId(null);
-      setComments(new Map());
+      // In a room, yComments is the authoritative source — do not wipe shared
+      // comment state on a local file import.
+      if (!inRoom) setComments(new Map());
       // Prevent cross-file data loss: a stale handle from a previous file
       // would otherwise cause Ctrl+S to silently overwrite that file with
       // the newly-loaded content.
@@ -480,6 +484,9 @@ export default function SpecEditor() {
     if (html !== null) {
       setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html } : b));
     }
+    const author = identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' };
+    const createdAt = Date.now();
+    const ts = new Date(createdAt).toISOString();
     setComments(prev => {
       const next = new Map(prev);
       next.set(commentId, {
@@ -487,17 +494,35 @@ export default function SpecEditor() {
         blockId,
         status: "open",
         highlightText: highlightText || "",
-        entries: [{ type: "create", text: "", author: "User", timestamp: new Date().toISOString() }],
+        createdAt,
+        authorId: author.id,
+        authorName: author.name,
+        authorColor: author.color,
+        entries: [{
+          id: `e-${createdAt}`,
+          type: "create",
+          text: "",
+          // New shape fields (used by collab + future Task 7 UI):
+          authorId: author.id,
+          authorName: author.name,
+          authorColor: author.color,
+          ts: createdAt,
+          // Legacy shape fields (keep until Task 7 updates CommentPopup):
+          author: author.name,
+          timestamp: ts,
+        }],
       });
       return next;
     });
+    // NOTE: we do NOT publishComment here — defer to handleCommentUpdateCreate
+    // so the Y.Doc never holds a pending empty-text comment entry.
     // Open the popup immediately so user can type the comment
     setOpenCommentId(commentId);
     setTimeout(() => {
       const el = document.querySelector(`[data-comment-id="${commentId}"]`);
       if (el) setCommentRect(el.getBoundingClientRect());
     }, 50);
-  }, []);
+  }, [inRoom, identity]);
 
   // Update the initial "create" entry with actual comment text and author
   const handleCommentUpdateCreate = useCallback((commentId, text, author) => {
@@ -507,27 +532,78 @@ export default function SpecEditor() {
       if (!c) return prev;
       const entries = [...c.entries];
       if (entries[0]?.type === "create") {
-        entries[0] = { ...entries[0], text, author };
+        // Update both legacy `author` field and new `authorName` field
+        entries[0] = { ...entries[0], text, author, authorName: author };
       }
       next.set(commentId, { ...c, entries });
       return next;
     });
-  }, []);
+    if (inRoom && collabSessionRef.current) {
+      // Publish the full comment now that we have the user's submitted text.
+      // Deferred from handleCommentCreate so the Y.Doc never holds a
+      // pending empty-text comment entry.
+      const effectiveAuthor = identity || { id: 'local', name: author || 'User', color: '#888' };
+      const current = commentsRef.current?.get(commentId);
+      if (current) {
+        try {
+          collabSessionRef.current.publishComment(commentId, {
+            blockId: current.blockId,
+            status: current.status,
+            highlightText: current.highlightText,
+            createdAt: current.createdAt,
+            author: effectiveAuthor,
+            initialText: text,
+          });
+        } catch (err) {
+          console.error('[collab] publishComment (update-create) failed:', err);
+        }
+      }
+    }
+  }, [inRoom, identity]);
 
   const handleCommentReply = useCallback((commentId, text, author) => {
+    const effectiveAuthor = identity || { id: 'local', name: author || 'User', color: '#888' };
+    const ts = Date.now();
+    const timestamp = new Date(ts).toISOString();
     setComments(prev => {
       const next = new Map(prev);
       const c = next.get(commentId);
       if (!c) return prev;
       next.set(commentId, {
         ...c,
-        entries: [...c.entries, { type: "reply", text, author, timestamp: new Date().toISOString() }],
+        entries: [...c.entries, {
+          id: `e-${ts}`,
+          type: "reply",
+          text,
+          // New shape fields:
+          authorId: effectiveAuthor.id,
+          authorName: effectiveAuthor.name,
+          authorColor: effectiveAuthor.color,
+          ts,
+          // Legacy shape fields:
+          author: effectiveAuthor.name,
+          timestamp,
+        }],
       });
       return next;
     });
-  }, []);
+    if (inRoom && collabSessionRef.current) {
+      try {
+        collabSessionRef.current.publishCommentReply(commentId, {
+          author: effectiveAuthor,
+          text,
+          ts,
+        });
+      } catch (err) {
+        console.error('[collab] publishCommentReply failed:', err);
+      }
+    }
+  }, [inRoom, identity]);
 
   const handleCommentResolve = useCallback((commentId) => {
+    const effectiveAuthor = identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' };
+    const ts = Date.now();
+    const timestamp = new Date(ts).toISOString();
     setComments(prev => {
       const next = new Map(prev);
       const c = next.get(commentId);
@@ -535,10 +611,31 @@ export default function SpecEditor() {
       next.set(commentId, {
         ...c,
         status: "resolved",
-        entries: [...c.entries, { type: "resolve", author: getAuthorName() || "User", timestamp: new Date().toISOString() }],
+        entries: [...c.entries, {
+          id: `e-${ts}`,
+          type: "resolve",
+          // New shape fields:
+          authorId: effectiveAuthor.id,
+          authorName: effectiveAuthor.name,
+          authorColor: effectiveAuthor.color,
+          ts,
+          // Legacy shape fields:
+          author: effectiveAuthor.name,
+          timestamp,
+        }],
       });
       return next;
     });
+    if (inRoom && collabSessionRef.current) {
+      try {
+        collabSessionRef.current.publishCommentStatus(commentId, 'resolved', {
+          author: effectiveAuthor,
+          ts,
+        });
+      } catch (err) {
+        console.error('[collab] publishCommentStatus failed:', err);
+      }
+    }
     // Update the span class in the DOM
     const el = document.querySelector(`[data-comment-id="${commentId}"]`);
     if (el) {
@@ -549,9 +646,12 @@ export default function SpecEditor() {
         setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: blockEl.innerHTML } : b));
       }
     }
-  }, []);
+  }, [inRoom, identity]);
 
   const handleCommentReopen = useCallback((commentId) => {
+    const effectiveAuthor = identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' };
+    const ts = Date.now();
+    const timestamp = new Date(ts).toISOString();
     setComments(prev => {
       const next = new Map(prev);
       const c = next.get(commentId);
@@ -559,10 +659,31 @@ export default function SpecEditor() {
       next.set(commentId, {
         ...c,
         status: "open",
-        entries: [...c.entries, { type: "reopen", author: getAuthorName() || "User", timestamp: new Date().toISOString() }],
+        entries: [...c.entries, {
+          id: `e-${ts}`,
+          type: "reopen",
+          // New shape fields:
+          authorId: effectiveAuthor.id,
+          authorName: effectiveAuthor.name,
+          authorColor: effectiveAuthor.color,
+          ts,
+          // Legacy shape fields:
+          author: effectiveAuthor.name,
+          timestamp,
+        }],
       });
       return next;
     });
+    if (inRoom && collabSessionRef.current) {
+      try {
+        collabSessionRef.current.publishCommentStatus(commentId, 'open', {
+          author: effectiveAuthor,
+          ts,
+        });
+      } catch (err) {
+        console.error('[collab] publishCommentStatus failed:', err);
+      }
+    }
     const el = document.querySelector(`[data-comment-id="${commentId}"]`);
     if (el) {
       el.className = "mark-comment";
@@ -572,7 +693,7 @@ export default function SpecEditor() {
         setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: blockEl.innerHTML } : b));
       }
     }
-  }, []);
+  }, [inRoom, identity]);
 
   const handleCommentDelete = useCallback((commentId) => {
     setComments(prev => {
@@ -580,6 +701,13 @@ export default function SpecEditor() {
       next.delete(commentId);
       return next;
     });
+    if (inRoom && collabSessionRef.current) {
+      try {
+        collabSessionRef.current.deleteComment(commentId);
+      } catch (err) {
+        console.error('[collab] deleteComment failed:', err);
+      }
+    }
     // Remove span from DOM, keep text
     const el = document.querySelector(`[data-comment-id="${commentId}"]`);
     if (el) {
@@ -593,7 +721,7 @@ export default function SpecEditor() {
       }
     }
     setOpenCommentId(null);
-  }, []);
+  }, [inRoom]);
 
   const handleCommentClick = useCallback((commentId, rect) => {
     setOpenCommentId(commentId);
