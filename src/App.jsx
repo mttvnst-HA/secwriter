@@ -55,25 +55,50 @@ function getPlainTextOffset(root, node, offset) {
   return total;
 }
 
-// Restore a caret at plain-text offset `index` inside `root`.
-function restorePlainTextOffset(root, index) {
+// Walk text nodes in `root` and resolve a plain-text offset to a
+// (textNode, offsetInNode) pair. Returns null if the walker is empty.
+// Offsets past the end clamp to the last text node's end.
+function resolveOffsetInRoot(root, index) {
   let remaining = index;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
   let current;
+  let last = null;
   while ((current = walker.nextNode())) {
+    last = current;
     const len = current.nodeValue.length;
-    if (remaining <= len) {
-      const range = document.createRange();
-      range.setStart(current, remaining);
-      range.collapse(true);
-      const sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-      try { root.focus(); } catch { /* ignore */ }
-      return;
-    }
+    if (remaining <= len) return { node: current, offset: remaining };
     remaining -= len;
   }
+  if (last) return { node: last, offset: last.nodeValue.length };
+  return null;
+}
+
+// Restore a caret or selection inside `root` from plain-text offsets.
+//
+// If `endIndex` is undefined or equal to `startIndex`, a collapsed caret
+// is restored at `startIndex` (unchanged legacy behavior).
+//
+// If `endIndex > startIndex`, a non-collapsed selection is restored
+// spanning both offsets. This preserves text highlighted by the user
+// before a remote update arrived — previously the selection was
+// silently collapsed, which was a UX surprise during long replacements
+// (user thinks text is still selected, types to replace, instead
+// appends).
+function restorePlainTextOffset(root, startIndex, endIndex) {
+  const start = resolveOffsetInRoot(root, startIndex);
+  if (!start) { try { root.focus(); } catch { /* ignore */ } return; }
+  const range = document.createRange();
+  range.setStart(start.node, start.offset);
+  if (endIndex === undefined || endIndex <= startIndex) {
+    range.collapse(true);
+  } else {
+    const end = resolveOffsetInRoot(root, endIndex);
+    if (end) range.setEnd(end.node, end.offset);
+    else range.collapse(true);
+  }
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
   try { root.focus(); } catch { /* ignore */ }
 }
 
@@ -1034,7 +1059,15 @@ export default function SpecEditor() {
           sessionReadyRef.current = true;
         }
 
-        // Preserve caret across remote-triggered DOM rewrites.
+        // Preserve caret — and any non-collapsed selection — across a
+        // remote-triggered DOM rewrite. Capturing both endpoints lets a
+        // user who was mid-replacement (e.g., highlighted a phrase and
+        // was about to retype it) keep their selection when a remote
+        // peer's edit lands in the middle of their action. If the
+        // selection spans into a different block we fall back to a
+        // collapsed caret at the start — cross-block selection restore
+        // would require resolving two block IDs and is out of scope for
+        // the prototype.
         const activeEl = document.activeElement;
         let caret = null;
         if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
@@ -1042,7 +1075,12 @@ export default function SpecEditor() {
           if (sel && sel.rangeCount > 0) {
             const range = sel.getRangeAt(0);
             if (activeEl.contains(range.startContainer)) {
-              caret = { blockId: activeEl.dataset.blockId, offset: getPlainTextOffset(activeEl, range.startContainer, range.startOffset) };
+              const startOffset = getPlainTextOffset(activeEl, range.startContainer, range.startOffset);
+              let endOffset;
+              if (!range.collapsed && activeEl.contains(range.endContainer)) {
+                endOffset = getPlainTextOffset(activeEl, range.endContainer, range.endOffset);
+              }
+              caret = { blockId: activeEl.dataset.blockId, startOffset, endOffset };
             }
           }
         }
@@ -1050,7 +1088,7 @@ export default function SpecEditor() {
         if (caret) {
           requestAnimationFrame(() => {
             const el = document.querySelector(`[data-block-id="${caret.blockId}"]`);
-            if (el) restorePlainTextOffset(el, caret.offset);
+            if (el) restorePlainTextOffset(el, caret.startOffset, caret.endOffset);
           });
         }
       },

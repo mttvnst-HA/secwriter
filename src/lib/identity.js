@@ -2,8 +2,17 @@
  * User identity for the collab prototype.
  *
  * No real authentication yet — this is a stub that stores a display name in
- * sessionStorage. When real auth lands, the login flow should write to the
+ * localStorage. When real auth lands, the login flow should write to the
  * same key (`sim-identity`) and the IdentityModal will no longer prompt.
+ *
+ * Why localStorage (not sessionStorage):
+ *   sessionStorage is per-tab. If the user opens the same room in two tabs
+ *   of the same browser, sessionStorage gives each tab a fresh identity
+ *   with a different random `id` — the presence bar dedupes by `id` and
+ *   shows the user twice, and RemoteCursors renders a remote cursor
+ *   pointing at the user's own caret. localStorage is shared across tabs
+ *   so the same browser = same identity. Real auth will replace this
+ *   entirely; until then, localStorage is the less confusing default.
  */
 
 const KEY = 'sim-identity';
@@ -27,10 +36,25 @@ function genId() {
   return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-/** Read identity from sessionStorage, or null if not set. */
+/**
+ * Read identity from localStorage, or null if not set.
+ *
+ * For back-compat with prototype builds that wrote to sessionStorage, we
+ * check there too on miss and migrate the value up to localStorage. This
+ * keeps any open tabs from suddenly re-prompting for a name after the
+ * upgrade.
+ */
 export function loadIdentity() {
   try {
-    const raw = sessionStorage.getItem(KEY);
+    let raw = localStorage.getItem(KEY);
+    if (!raw) {
+      // Migration: earlier prototype builds stored identity in sessionStorage.
+      raw = sessionStorage.getItem(KEY);
+      if (raw) {
+        try { localStorage.setItem(KEY, raw); } catch { /* ignore */ }
+        try { sessionStorage.removeItem(KEY); } catch { /* ignore */ }
+      }
+    }
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     if (!parsed || typeof parsed.name !== 'string' || !parsed.name.trim()) return null;
@@ -40,7 +64,7 @@ export function loadIdentity() {
   }
 }
 
-/** Persist identity to sessionStorage. Fills in missing id/color. */
+/** Persist identity to localStorage. Fills in missing id/color. */
 export function saveIdentity(identity) {
   const full = {
     id: identity.id || genId(),
@@ -48,7 +72,7 @@ export function saveIdentity(identity) {
     color: identity.color || colorForName(identity.name.trim()),
   };
   try {
-    sessionStorage.setItem(KEY, JSON.stringify(full));
+    localStorage.setItem(KEY, JSON.stringify(full));
   } catch {
     /* ignore quota errors in prototype */
   }
