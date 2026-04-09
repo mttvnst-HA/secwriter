@@ -132,6 +132,27 @@ span.mark-chg {
   border-radius: 2px;
 }
 
+/*
+ * Shared Track Changes — per-author color overrides.
+ *
+ * annotateDomWithDiff emits data-author-color + style="--author-color:<hex>"
+ * on every <ins>/<del> it creates in a room. When the attribute is present,
+ * we replace the default green/red with the author's color. When absent
+ * (single-user, or pre-identity), the default styles above still apply.
+ *
+ * `currentColor` + the CSS variable make both the text and the decoration
+ * pick up the author color in one declaration.
+ */
+ins.mark-add[data-author-color] {
+  color: var(--author-color, #008000);
+  text-decoration-color: var(--author-color, #008000);
+}
+
+del.mark-del[data-author-color] {
+  color: var(--author-color, #ff4444);
+  text-decoration-color: var(--author-color, #ff4444);
+}
+
 /* Block-level revision indicators */
 .block-revision-add {
   border-left: 3px solid #008000;
