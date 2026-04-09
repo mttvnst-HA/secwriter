@@ -130,7 +130,16 @@ export default function SpecEditor() {
   const [peers, setPeers] = useState([]);
   const [collabStatus, setCollabStatus] = useState(inRoom ? 'connecting' : null);
   const collabSessionRef = useRef(null);
-  const remoteApplyingRef = useRef(false); // true while applying remote change so effect won't echo it
+  // Reference-equality guard: whenever onRemoteBlocks runs, we stash the new
+  // array here and the publish effect compares `blocks === lastRemoteBlocksRef.current`
+  // to decide whether the change was local (publish) or remote (skip).
+  // The previous synchronous `remoteApplyingRef` guard was ineffective because
+  // React's effect runs after commit — by then the flag was already cleared,
+  // so every remote change got re-published as a local transaction, which
+  // (a) corrupted initial persistence on join and (b) caused Y.UndoManager
+  // to track remote edits, making Ctrl+Z undo everyone's work.
+  const lastRemoteBlocksRef = useRef(null);
+  const sessionReadyRef = useRef(false);
 
   const fileHandleRef = useRef(null); // File System Access API handle for SEC file
   const commentsHandleRef = useRef(null); // File System Access API handle for comments sidecar
@@ -1012,31 +1021,37 @@ export default function SpecEditor() {
       room: roomId,
       identity,
       initialBlocks: blocksRef.current,
-      onRemoteBlocks: (nextBlocks /*, meta */) => {
-        remoteApplyingRef.current = true;
-        try {
-          // Preserve caret across remote-triggered DOM rewrites: capture
-          // selection inside the focused block, apply state, restore.
-          const activeEl = document.activeElement;
-          let caret = null;
-          if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
-            const sel = window.getSelection();
-            if (sel && sel.rangeCount > 0) {
-              const range = sel.getRangeAt(0);
-              if (activeEl.contains(range.startContainer)) {
-                caret = { blockId: activeEl.dataset.blockId, offset: getPlainTextOffset(activeEl, range.startContainer, range.startOffset) };
-              }
+      onRemoteBlocks: (nextBlocks, meta) => {
+        // Stash the remote snapshot so the publish effect can detect this
+        // update was not a local edit and skip publishing it back.
+        lastRemoteBlocksRef.current = nextBlocks;
+
+        // The first call (initial sync from the server) is what unblocks
+        // local publishing. Before this fires we must NOT push blocks to
+        // Y.Doc — doing so would race the server's persisted state and
+        // duplicate the document on reload.
+        if (meta?.initial) {
+          sessionReadyRef.current = true;
+        }
+
+        // Preserve caret across remote-triggered DOM rewrites.
+        const activeEl = document.activeElement;
+        let caret = null;
+        if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
+          const sel = window.getSelection();
+          if (sel && sel.rangeCount > 0) {
+            const range = sel.getRangeAt(0);
+            if (activeEl.contains(range.startContainer)) {
+              caret = { blockId: activeEl.dataset.blockId, offset: getPlainTextOffset(activeEl, range.startContainer, range.startOffset) };
             }
           }
-          setBlocks(nextBlocks);
-          if (caret) {
-            requestAnimationFrame(() => {
-              const el = document.querySelector(`[data-block-id="${caret.blockId}"]`);
-              if (el) restorePlainTextOffset(el, caret.offset);
-            });
-          }
-        } finally {
-          remoteApplyingRef.current = false;
+        }
+        setBlocks(nextBlocks);
+        if (caret) {
+          requestAnimationFrame(() => {
+            const el = document.querySelector(`[data-block-id="${caret.blockId}"]`);
+            if (el) restorePlainTextOffset(el, caret.offset);
+          });
         }
       },
       onPresenceChange: (states) => setPeers(states),
@@ -1047,6 +1062,8 @@ export default function SpecEditor() {
     return () => {
       session.destroy();
       collabSessionRef.current = null;
+      sessionReadyRef.current = false;
+      lastRemoteBlocksRef.current = null;
     };
     // Intentionally depend only on roomId + identity so the session is stable
     // across blocks updates. initialBlocks is read via blocksRef.
@@ -1054,11 +1071,22 @@ export default function SpecEditor() {
   }, [inRoom, roomId, identity]);
 
   // Publish local `blocks` updates to the collab session.
+  //
+  // Two guards:
+  //   1. sessionReadyRef — suppress publishing until the initial server sync
+  //      is complete. Otherwise the first render would push INITIAL_BLOCKS
+  //      into Y.Doc before the server's persisted state arrives, duplicating
+  //      the document on rejoin.
+  //   2. lastRemoteBlocksRef identity check — if the new `blocks` reference
+  //      is literally the same array we just received from a remote update,
+  //      don't echo it back. This also prevents Y.UndoManager from tracking
+  //      remote edits (fix for cross-user undo).
   useEffect(() => {
     if (!inRoom) return;
     const session = collabSessionRef.current;
     if (!session) return;
-    if (remoteApplyingRef.current) return;
+    if (!sessionReadyRef.current) return;
+    if (blocks === lastRemoteBlocksRef.current) return;
     session.publishBlocks(blocks);
   }, [blocks, inRoom]);
 

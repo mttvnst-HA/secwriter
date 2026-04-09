@@ -1,21 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * Absolute-positioned overlay rendering a thin colored caret + name label
  * for every remote user whose cursor falls inside a block currently in the
  * DOM. Best-effort: if the block isn't mounted, the cursor is hidden.
  *
- * Approach:
- *   - Each remote peer broadcasts { blockId, index } via awareness.
- *   - We measure the position of character `index` inside
- *     [data-block-id="<blockId>"] using a transient Range + getClientRects().
- *   - Re-measure on window scroll/resize and whenever peers change.
+ * Coordinate space:
+ *   The overlay sits as `position: absolute; inset: 0` inside the editor's
+ *   `position: relative` wrapper. All cursor coordinates must therefore be
+ *   expressed *relative to the overlay's own bounding rect*, NOT to the
+ *   document. An earlier version added window.scrollY which rendered the
+ *   carets hundreds of pixels offscreen.
  */
-export default function RemoteCursors({ peers, selfId, editorRef }) {
+export default function RemoteCursors({ peers, selfId }) {
+  const overlayRef = useRef(null);
   const [positions, setPositions] = useState([]);
 
   useEffect(() => {
     function measure() {
+      const overlay = overlayRef.current;
+      if (!overlay) return;
+      const ox = overlay.getBoundingClientRect();
+
       const next = [];
       for (const p of peers) {
         if (!p?.user || p.user.id === selfId) continue;
@@ -29,8 +35,8 @@ export default function RemoteCursors({ peers, selfId, editorRef }) {
           id: p.user.id,
           name: p.user.name,
           color: p.user.color || '#64748b',
-          top: rect.top + window.scrollY,
-          left: rect.left + window.scrollX,
+          top: rect.top - ox.top,
+          left: rect.left - ox.left,
           height: rect.height || 18,
         });
       }
@@ -48,10 +54,10 @@ export default function RemoteCursors({ peers, selfId, editorRef }) {
       window.removeEventListener('resize', measure);
       clearInterval(interval);
     };
-  }, [peers, selfId, editorRef]);
+  }, [peers, selfId]);
 
   return (
-    <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 500 }}>
+    <div ref={overlayRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 500 }}>
       {positions.map((p) => (
         <div key={p.id}>
           <div style={{
@@ -93,11 +99,9 @@ function caretRectAt(el, index) {
       range.setEnd(node, remaining);
       const rects = range.getClientRects();
       if (rects.length > 0) return rects[0];
-      // Fall back to the block's own rect if the range had no rects (rare).
       return el.getBoundingClientRect();
     }
     remaining -= len;
   }
-  // Index past end — clamp to end of block.
   return el.getBoundingClientRect();
 }
