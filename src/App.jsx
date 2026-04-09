@@ -46,6 +46,7 @@ import ToastStack, { useToasts } from "./components/Toast.jsx";
 // (node, offset). Used to transport a caret position across a DOM rewrite
 // caused by a remote collab update.
 function getPlainTextOffset(root, node, offset) {
+  if (!root || !node) return -1;
   let total = 0;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
   let current;
@@ -53,7 +54,7 @@ function getPlainTextOffset(root, node, offset) {
     if (current === node) return total + offset;
     total += current.nodeValue.length;
   }
-  return total;
+  return -1; // M-6: node not found — caller must bail rather than jump caret to end
 }
 
 // Walk text nodes in `root` and resolve a plain-text offset to a
@@ -1088,11 +1089,14 @@ export default function SpecEditor() {
             const range = sel.getRangeAt(0);
             if (activeEl.contains(range.startContainer)) {
               const startOffset = getPlainTextOffset(activeEl, range.startContainer, range.startOffset);
-              let endOffset;
-              if (!range.collapsed && activeEl.contains(range.endContainer)) {
-                endOffset = getPlainTextOffset(activeEl, range.endContainer, range.endOffset);
+              if (startOffset >= 0) {
+                let endOffset;
+                if (!range.collapsed && activeEl.contains(range.endContainer)) {
+                  endOffset = getPlainTextOffset(activeEl, range.endContainer, range.endOffset);
+                  if (endOffset < 0) endOffset = undefined;
+                }
+                caret = { blockId: activeEl.dataset.blockId, startOffset, endOffset };
               }
-              caret = { blockId: activeEl.dataset.blockId, startOffset, endOffset };
             }
           }
         }
@@ -1247,9 +1251,11 @@ export default function SpecEditor() {
         session.setCursor(null);
         return;
       }
+      const idx = getPlainTextOffset(active, range.startContainer, range.startOffset);
+      if (idx < 0) { session.setCursor(null); return; }
       session.setCursor({
         blockId: active.dataset.blockId,
-        index: getPlainTextOffset(active, range.startContainer, range.startOffset),
+        index: idx,
       });
     };
     document.addEventListener('selectionchange', handler);
