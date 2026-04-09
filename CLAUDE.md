@@ -132,7 +132,7 @@ test-results/              # UI audit output: findings.json + timestamped Markdo
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 517 Vitest unit tests
+npm test             # Run 539 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 141 Playwright E2E tests
@@ -140,7 +140,7 @@ npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node ru
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
-# Full suite: 517 + 99 + 141 = 757 automated tests
+# Full suite: 539 + 99 + 141 = 779 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -448,7 +448,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | Test File | Tests | Runner | Coverage |
 |-----------|-------|--------|----------|
 | sec-parser.test.js | 43 | Vitest | Tag extraction, inline marks (incl. ATT), tables, TBL/THD, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks, INT styles |
-| collab.test.js | 26 | Vitest | Y.Doc ↔ blocks conversion (yOrder+yStore model), seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge, **Y.Text identity preservation across insert/delete/reorder** including concurrent remote edit across a local reorder, **Y.UndoManager scoped to local origin does not revert remote edits**, **no-op publishes don't grow undo stack (I2)**, **same-tx delete+reinsert in-place (N6)**, **doc size guard (M7)**, **yMeta CRDT merge (M3)** |
+| collab.test.js | 33 | Vitest | Y.Doc ↔ blocks conversion (yOrder+yStore model), seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge, **Y.Text identity preservation across insert/delete/reorder** including concurrent remote edit across a local reorder, **Y.UndoManager scoped to local origin does not revert remote edits**, **no-op publishes don't grow undo stack (I2)**, **same-tx delete+reinsert in-place (N6)**, **doc size guard (M7)**, **yMeta CRDT merge (M3)** |
 | no-exfil.test.js | 19 | Vitest | NO_EXFIL_PROPS spread on every contentEditable + spec/comment input/textarea; Grammarly/Copilot/writingsuggestions disabled |
 | tailor-profile.test.js | 36 | Vitest | Branch/region/delivery matching, resolution, cleanup |
 | sec-serializer.test.js | 39 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, TBL/ATT roundtrip, CRLF, MTA preservation, HDR passthrough, table widths/heights |
@@ -487,7 +487,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | interop-encoding.node-test.mjs | 11 | Node | Reverse import roundtrip (block count, types), encoding fidelity (windows-1252, CRLF, no BOM), special character preservation |
 | editor.spec.js (E2E) | 141 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 532 Vitest + 99 Node + 141 Playwright = 772 automated tests**
+**Total: 539 Vitest + 99 Node + 141 Playwright = 779 automated tests**
 
 ## Dependencies
 
