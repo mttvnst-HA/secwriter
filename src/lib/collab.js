@@ -6,13 +6,40 @@
  * React `blocks` state becomes a derived view.
  *
  * Data layout (one Y.Doc per room):
- *   yOrder: Y.Array<string>        ordered block IDs (the document outline)
- *   yStore: Y.Map<string, Y.Map>   block data, keyed by block ID
- *                                  each value Y.Map has { id, type, part,
- *                                  depth, section, level?, html: Y.Text,
- *                                  table?, ref?, revision? }
- *   yMeta:  Y.Map                  { sectionNumber, sectionTitle, date, fileName }
+ *   yOrder:    Y.Array<string>        ordered block IDs (the document outline)
+ *   yStore:    Y.Map<string, Y.Map>   block data, keyed by block ID
+ *                                     each value Y.Map has { id, type, part,
+ *                                     depth, section, level?, html: Y.Text,
+ *                                     table?, ref?, revision? }
+ *   yMeta:     Y.Map                  { sectionNumber, sectionTitle, date, fileName }
+ *   yTc:       Y.Map                  { enabled: boolean,
+ *                                       snapshots: Y.Map<blockId, string> }
+ *                                     Room-wide Track Changes state. When
+ *                                     `enabled` flips on, `snapshots` is
+ *                                     populated with the plaintext of every
+ *                                     block at that moment (the baseline
+ *                                     everyone diffs against). Flipping off
+ *                                     clears `snapshots` in the same
+ *                                     transaction.
+ *   yComments: Y.Map<id, Y.Map>       Shared comment metadata. Each comment
+ *                                     Y.Map has { blockId, status,
+ *                                     highlightText, createdAt, authorId,
+ *                                     authorName, authorColor,
+ *                                     entries: Y.Array<Y.Map> } where each
+ *                                     entry is { id, type, authorId,
+ *                                     authorName, authorColor, text, ts }.
+ *                                     Using Y.Array for entries lets
+ *                                     concurrent replies from different
+ *                                     clients merge without loss.
  *   awareness: { user: {id,name,color}, cursor: {blockId, index} }
+ *
+ * Transaction origins used by this module (all must begin with 'local-' so
+ * handleAfterTx's prefix filter suppresses local echo):
+ *   'local-publish'   — block structure + html changes (yOrder + yStore)
+ *   'local-meta'      — section metadata (yMeta)
+ *   'local-tc'        — Track Changes toggle + snapshot updates (yTc)
+ *   'local-comments'  — comment create/reply/status/delete (yComments)
+ *   'seed'            — initial room seeding (not a local edit)
  *
  * Why split ordering from storage:
  *   Yjs shared types (Y.Map/Y.Text) cannot be moved between positions in a
@@ -27,7 +54,8 @@
  * Prototype limitations (see CLAUDE.md roadmap):
  *   - html sync uses whole-text replacement (no per-character CRDT merge)
  *   - table/ref blocks sync as whole-value replacements (coarse)
- *   - no shared Track Changes or shared Comments yet
+ *   - no server-side .SEC persistence — Y.Doc on relay is in-memory CRDT;
+ *     .SEC + sidecar .comments.json live on each user's local disk
  */
 
 import * as Y from 'yjs';
@@ -340,6 +368,8 @@ export function createCollabSession({
   const yOrder = ydoc.getArray('order');
   const yStore = ydoc.getMap('store');
   const yMeta = ydoc.getMap('meta');
+  const yTc = ydoc.getMap('tc');
+  const yComments = ydoc.getMap('comments');
 
   const provider = new WebsocketProvider(wsUrl, room, ydoc);
   const awareness = provider.awareness;
@@ -378,6 +408,16 @@ export function createCollabSession({
           for (const [k, v] of Object.entries(initialMeta)) {
             if (v !== undefined) yMeta.set(k, v);
           }
+        }, 'seed');
+      }
+      // Seed yTc on first join if empty. Use a nested Y.Map for snapshots so
+      // individual snapshot updates can happen without rewriting the whole
+      // tc state. yComments is just an empty Y.Map — no seeding needed; it
+      // gets populated when someone creates a comment.
+      if (yTc.size === 0) {
+        ydoc.transact(() => {
+          yTc.set('enabled', false);
+          yTc.set('snapshots', new Y.Map());
         }, 'seed');
       }
       // Emit the current (possibly remote) state once to initialize React.
@@ -457,6 +497,8 @@ export function createCollabSession({
     yOrder,
     yStore,
     yMeta,
+    yTc,
+    yComments,
     awareness,
     provider,
     undoManager,
