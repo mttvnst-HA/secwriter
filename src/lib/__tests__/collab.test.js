@@ -568,6 +568,47 @@ describe('collab — yMeta (M3)', () => {
   });
 });
 
+// I-1 — KNOWN LIMITATION (roadmap): whole-text replacement wipes
+// concurrent remote Y.Text edits on every local publish. Unskip this
+// test when per-block character-level merge lands. See CLAUDE.md
+// "Multi-user collaboration (prototype)" known limitations.
+describe('collab — I-1 roadmap', () => {
+  it.skip('same-block concurrent typing merges character-by-character (I-1 roadmap)', () => {
+    const docA = new Y.Doc();
+    const orderA = docA.getArray('order');
+    const storeA = docA.getMap('store');
+
+    const docB = new Y.Doc();
+    const orderB = docB.getArray('order');
+    const storeB = docB.getMap('store');
+
+    seedYBlocks(docA, orderA, storeA, [{ id: 'n1', type: 'txt', html: 'hello' }]);
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+
+    // Alice types " world" at end of n1.
+    const aliceText = storeA.get('n1').get('html');
+    aliceText.insert(aliceText.length, ' world');
+
+    // Concurrently, Bob types "HI " at start of n1 (in docB, not yet synced).
+    const bobText = storeB.get('n1').get('html');
+    bobText.insert(0, 'HI ');
+
+    // Bidirectional sync.
+    Y.applyUpdate(docA, Y.encodeStateAsUpdate(docB));
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+
+    // Both should see both edits merged.
+    expect(storeA.get('n1').get('html').toString()).toBe('HI hello world');
+    expect(storeB.get('n1').get('html').toString()).toBe('HI hello world');
+
+    // NOTE: this passes at the raw Yjs layer. The failure mode is in
+    // App.jsx's publish effect calling applyBlocksToYDoc on every
+    // keystroke, whose updateYMapFromBlock does yText.delete(0, length)
+    // + insert. When unskipping, the test must also simulate the App
+    // publish path, not just raw Y.Text operations.
+  });
+});
+
 describe('collab — URL helpers', () => {
   it('generateRoomId produces an 8-char alphanumeric ID', () => {
     for (let i = 0; i < 10; i++) {
