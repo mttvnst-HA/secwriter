@@ -250,6 +250,27 @@ export function getVisibleText(container) {
 }
 
 /**
+ * Apply author attribution attributes and a --author-color CSS variable to a
+ * revision mark element (ins or del). No-op when author is falsy.
+ *
+ * @param {Element} el - The ins or del element to annotate
+ * @param {{ id?: string, name?: string, color?: string }} [author]
+ */
+function applyAuthorToElement(el, author) {
+  if (!el || !author) return;
+  if (author.id) el.setAttribute('data-author-id', String(author.id));
+  if (author.name) el.setAttribute('data-author-name', String(author.name));
+  if (author.color) {
+    el.setAttribute('data-author-color', String(author.color));
+    // Use setAttribute('style', ...) rather than .style.setProperty because
+    // linkedom's style object doesn't support setProperty cleanly.
+    const prev = el.getAttribute('style') || '';
+    const varDecl = `--author-color: ${author.color}`;
+    el.setAttribute('style', prev ? `${prev}; ${varDecl}` : varDecl);
+  }
+}
+
+/**
  * Apply diff annotations to a DOM container.
  *
  * Algorithm:
@@ -262,9 +283,13 @@ export function getVisibleText(container) {
  *
  * @param {HTMLElement} container - The contentEditable DOM element
  * @param {string} snapshotText - Original plain text (from when TC was enabled)
+ * @param {{ id?: string, name?: string, color?: string }} [author] -
+ *   Optional author identity. When provided, every created <ins> and <del>
+ *   element receives data-author-id/name/color attributes and a
+ *   --author-color inline CSS variable for per-author coloring.
  * @returns {boolean} Whether any changes were annotated
  */
-export function annotateDomWithDiff(container, snapshotText) {
+export function annotateDomWithDiff(container, snapshotText, author) {
   // Step 1: Get visible text BEFORE modifying the DOM
   const visibleText = getVisibleText(container);
   if (visibleText === snapshotText) {
@@ -380,7 +405,7 @@ export function annotateDomWithDiff(container, snapshotText) {
   // Step 5: Apply add annotations (reverse order to preserve positions)
   for (let r = addRanges.length - 1; r >= 0; r--) {
     const range = addRanges[r];
-    wrapRangeInElement(container, nodeMap, range.start, range.end, 'ins', 'mark-add');
+    wrapRangeInElement(container, nodeMap, range.start, range.end, 'ins', 'mark-add', author);
   }
 
   // Step 6: Insert del elements (non-editable to prevent caret entry)
@@ -394,6 +419,7 @@ export function annotateDomWithDiff(container, snapshotText) {
     // Without this, the browser places the caret inside the del node,
     // causing new typed text to inherit red strikethrough styling.
     delNode.contentEditable = 'false';
+    applyAuthorToElement(delNode, author);
 
     const textNodesNow = [];
     collectTextNodes(container, textNodesNow);
@@ -464,8 +490,18 @@ function collectTextNodes(node, result) {
 
 /**
  * Wrap a character range across text nodes in an element.
+ *
+ * @param {HTMLElement} container
+ * @param {Array} nodeMap
+ * @param {number} start
+ * @param {number} end
+ * @param {string} tagName
+ * @param {string} className
+ * @param {{ id?: string, name?: string, color?: string }} [author] -
+ *   When provided, author attribution attributes are applied to every
+ *   created wrapper element via applyAuthorToElement.
  */
-function wrapRangeInElement(container, nodeMap, start, end, tagName, className) {
+function wrapRangeInElement(container, nodeMap, start, end, tagName, className, author) {
   const doc = container.ownerDocument;
 
   for (const nm of nodeMap) {
@@ -487,6 +523,7 @@ function wrapRangeInElement(container, nodeMap, start, end, tagName, className) 
     if (localStart === 0 && localEnd === textContent.length) {
       const wrapper = doc.createElement(tagName);
       wrapper.className = className;
+      applyAuthorToElement(wrapper, author);
       node.parentNode.insertBefore(wrapper, node);
       wrapper.appendChild(node);
     } else {
@@ -499,6 +536,7 @@ function wrapRangeInElement(container, nodeMap, start, end, tagName, className) 
       }
       const wrapper = doc.createElement(tagName);
       wrapper.className = className;
+      applyAuthorToElement(wrapper, author);
       targetNode.parentNode.insertBefore(wrapper, targetNode);
       wrapper.appendChild(targetNode);
     }
