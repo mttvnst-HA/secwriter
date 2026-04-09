@@ -333,6 +333,11 @@ Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`).
 **Data model:** one `Y.Doc` per room with **split ordering + storage**:
 - `yOrder: Y.Array<string>` — ordered block IDs (the document outline)
 - `yStore: Y.Map<string, Y.Map>` — block data keyed by ID; each value Y.Map holds scalar block fields + `html: Y.Text`
+- `yMeta: Y.Map` — section metadata (sectionNumber, sectionTitle, date, fileName)
+- `yTc: Y.Map` — room-wide Track Changes: `{ enabled: boolean, snapshots: Y.Map<blockId, string> }`. When `enabled` flips on, every block's current plaintext is captured into `snapshots` in the same transaction (the baseline everyone diffs against). Flipping off clears `snapshots` in the same transaction. Accept/Reject operations publish a new snapshot for the affected block alongside the html update so remote clients' diffs re-collapse to empty and no phantom marks reappear. **CRDT gotcha:** neither `enabled` nor the `snapshots` sub-map is seeded — if two clients each created their own `new Y.Map()` under the same key, Y.Map LWW would orphan one instance's data on merge. `publishTcToDoc` is the sole creator, so there's only ever one `snapshots` Y.Map instance across all docs.
+- `yComments: Y.Map<id, Y.Map>` — shared comment metadata. Each comment Y.Map holds scalar fields (`blockId`, `status`, `highlightText`, `createdAt`, `authorId/Name/Color`) plus `entries: Y.Array<Y.Map>` for the thread. Concurrent replies from different clients merge via Y.Array insert semantics — no reply is lost. The `mark-comment` highlight spans still live in block html (synced via `yStore`); `yComments` is the parallel metadata store.
+
+**Transaction origins:** `local-publish` (blocks), `local-meta` (section metadata), `local-tc` (Track Changes toggle + snapshots), `local-comments` (comment operations), `seed` (initial room population). `handleAfterTx` uses a `startsWith('local-')` prefix check so every local origin is suppressed without an explicit per-origin allowlist. Any new local write path MUST use a `local-*` origin string.
 
 **Why split ordering from storage:** Yjs shared types (Y.Map/Y.Text) **cannot be moved** between positions in a Y.Array — a "move" requires delete+reinsert, which creates a fresh instance and DESTROYS any concurrent edit another client is making to the original Y.Text. Storing blocks keyed by ID in `yStore` and keeping only string IDs in `yOrder` makes reorders cheap (reorder strings, no shared-type churn) and **preserves Y.Map/Y.Text identity across every structural change — insert, delete, AND reorder.** Tables and REFs are stored as JSON-encoded strings for prototype simplicity — concurrent edits to the same table will last-write-wins.
 
@@ -365,9 +370,13 @@ Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`).
 
 **CSP:** `index.html` adds `ws://127.0.0.1:1234 ws://localhost:1234` to `connect-src`. Broaden this when deploying the server elsewhere.
 
+**Shared Track Changes (in-room behavior):** TC toggle, snapshots, and every inline `<ins>`/`<del>` mark are shared across all clients. The toggle writes `yTc.enabled` + a full snapshots map in a single `local-tc` transaction. Author attribution on marks flows from `identity.js` → `EditableBlock` (as the `identity` prop) → `annotateDomWithDiff(container, snapshotText, author)` in `src/lib/text-diff.js`. That function + its internal `wrapRangeInElement` helper apply `data-author-id`/`name`/`color` attributes and a `style="--author-color:<hex>"` inline declaration to every `<ins>` wrapper and `<del>` node. `editor.css` reads the CSS variable via `ins.mark-add[data-author-color]` / `del.mark-del[data-author-color]` selectors so per-author coloring only engages when the attribute is present (single-user keeps the green/red defaults). **Accept/Reject in a room** uses `handleRevisionAction` in `App.jsx`, which sets `tcDirtyRef.current = true` before `setTcSnapshots`, so the block html publish AND the snapshot publish land in the same React tick — remote clients re-diff to empty without phantom marks.
+
+**Shared Comments (in-room behavior):** Comment create/reply/resolve/reopen/delete all publish through the `CollabSession` methods (`publishComment` / `publishCommentReply` / `publishCommentStatus` / `deleteComment`) inside the App.jsx comment handlers. Publishing is imperative (not effect-based), because comments are discrete operations with no continuous-value semantics. `handleCommentCreate` deliberately does NOT publish eagerly — it defers until `handleCommentUpdateCreate` runs with the user's submitted text, so the Y.Doc never holds a pending empty-text comment entry. `commentsRef` mirrors the local comments Map so `handleCommentUpdateCreate` can read `blockId`/`highlightText`/`createdAt` from the freshly-created comment without racing the next render. Every comment entry carries BOTH the new identity fields (`authorId`/`authorName`/`authorColor`/`ts`) AND the legacy fields (`author`/`timestamp`) so `CommentPopup.jsx` renders legacy single-user comments without regression. File-import `setComments(new Map())` is gated on `!inRoom` so `yComments` (authoritative in a room) is not wiped by a local import.
+
+**Persistence & sidecar limitations:** The relay server persists each room's `Y.Doc` as a binary CRDT snapshot (8 MB cap). `.SEC` and `.comments.json` still live on each user's local disk, written only when that user hits Ctrl+S. This means two clients who both save get their own point-in-time sidecars that can drift — if Alice saves while Bob is still typing a reply, Alice's sidecar won't include it. For a hosted Azure deployment this is not good enough; the follow-up spec at `docs/superpowers/specs/2026-04-09-shared-tc-comments-design.md` (Deployment implications section) points at server-owned `.SEC` + sidecar in Blob Storage as the next increment. Known, accepted for the localhost prototype.
+
 **Known prototype limitations (roadmap):**
-- Shared Track Changes — deferred
-- Shared Comments — deferred
 - Shared tables/REFs — currently coarse (JSON-encoded whole-value sync)
 - Intra-block character-level merge — whole-text replacement for now
 - No auth — stub identity in localStorage (migrates from legacy sessionStorage)
@@ -448,14 +457,14 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | Test File | Tests | Runner | Coverage |
 |-----------|-------|--------|----------|
 | sec-parser.test.js | 43 | Vitest | Tag extraction, inline marks (incl. ATT), tables, TBL/THD, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks, INT styles |
-| collab.test.js | 33 | Vitest | Y.Doc ↔ blocks conversion (yOrder+yStore model), seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge, **Y.Text identity preservation across insert/delete/reorder** including concurrent remote edit across a local reorder, **Y.UndoManager scoped to local origin does not revert remote edits**, **no-op publishes don't grow undo stack (I2)**, **same-tx delete+reinsert in-place (N6)**, **doc size guard (M7)**, **yMeta CRDT merge (M3)** |
+| collab.test.js | 48 | Vitest | Y.Doc ↔ blocks conversion (yOrder+yStore model), seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge, **Y.Text identity preservation across insert/delete/reorder** including concurrent remote edit across a local reorder, **Y.UndoManager scoped to local origin does not revert remote edits**, **no-op publishes don't grow undo stack (I2)**, **same-tx delete+reinsert in-place (N6)**, **doc size guard (M7)**, **yMeta CRDT merge (M3)**, **shared TC publish/read/two-doc merge (5 tests)**, **shared TC afterTransaction routing isolated from blocks/meta/comments**, **shared Comments create/reply/status/delete + two-doc merge (concurrent replies, resolve+reply interleave, delete propagation) (10 tests)** |
 | no-exfil.test.js | 19 | Vitest | NO_EXFIL_PROPS spread on every contentEditable + spec/comment input/textarea; Grammarly/Copilot/writingsuggestions disabled |
 | tailor-profile.test.js | 36 | Vitest | Branch/region/delivery matching, resolution, cleanup |
 | sec-serializer.test.js | 39 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, TBL/ATT roundtrip, CRLF, MTA preservation, HDR passthrough, table widths/heights |
 | revisions.test.js | 29 | Vitest | Accept/reject inline + block revisions, batch operations, stats, whitespace collapse |
 | cross-ref-validation.test.js | 21 | Vitest | RID extraction from body/ref blocks, unlinked/orphaned detection, SRF extraction |
 | compliance-checker.test.js | 23 | Vitest | Scope selection, violation grouping, stats, context extraction, bracket/note exclusion, violation budget/truncation |
-| text-diff.test.js | 20 | Vitest | Word-level LCS diff, character-level sub-diff, refinement, HTML stripping |
+| text-diff.test.js | 23 | Vitest | Word-level LCS diff, character-level sub-diff, refinement, HTML stripping, **annotateDomWithDiff author attribution on `<ins>`/`<del>` (data-author-* + `--author-color` style) with back-compat when author is absent** |
 | mark-patterns.test.js | 18 | Vitest | RID/SRF detection, already-marked skip, overlap handling |
 | table-ops.test.js | 17 | Vitest | Add/delete rows/columns, cell update, colspan, merge/split, immutability |
 | numbering.test.js | 16 | Vitest | Section numbering, OLI labels, counter resets, overflow |
@@ -487,7 +496,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | interop-encoding.node-test.mjs | 11 | Node | Reverse import roundtrip (block count, types), encoding fidelity (windows-1252, CRLF, no BOM), special character preservation |
 | editor.spec.js (E2E) | 141 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 539 Vitest + 99 Node + 141 Playwright = 779 automated tests**
+**Total: 557 Vitest + 99 Node + 141 Playwright = 797 automated tests**
 
 ## Dependencies
 
