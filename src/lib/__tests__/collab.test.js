@@ -16,6 +16,7 @@ import {
   DocSizeLimitError,
   MAX_PUBLISH_BYTES,
   readYMeta,
+  createCollabSession,
 } from '../collab.js';
 
 function makeDoc() {
@@ -606,6 +607,61 @@ describe('collab — I-1 roadmap', () => {
     // keystroke, whose updateYMapFromBlock does yText.delete(0, length)
     // + insert. When unskipping, the test must also simulate the App
     // publish path, not just raw Y.Text operations.
+  });
+});
+
+describe('collab — createCollabSession origin guards', () => {
+  it('handleAfterTx treats any "local-" origin as local (M-1)', async () => {
+    const events = [];
+    const session = createCollabSession({
+      room: 'test-m1',
+      wsUrl: 'ws://127.0.0.1:9', // unreachable; we test synchronously via ydoc
+      identity: { id: 'u', name: 'U', color: '#000' },
+      initialBlocks: [{ id: 'n1', type: 'txt', html: 'x' }],
+      onRemoteBlocks: () => events.push('blocks'),
+      onRemoteMeta: () => events.push('meta'),
+    });
+
+    // Seed the block manually via a local-custom-path origin transaction.
+    session.ydoc.transact(() => {
+      session.yStore.set('n1', (() => {
+        const m = new Y.Map();
+        m.set('id', 'n1');
+        m.set('type', 'txt');
+        const t = new Y.Text();
+        t.insert(0, 'x');
+        m.set('html', t);
+        return m;
+      })());
+      session.yOrder.push(['n1']);
+    }, 'local-custom-path');
+
+    // Now mutate with same local- prefix
+    session.ydoc.transact(() => {
+      const t = session.yStore.get('n1').get('html');
+      t.delete(0, t.length);
+      t.insert(0, 'y');
+    }, 'local-custom-path');
+
+    expect(events).not.toContain('blocks');
+    session.destroy();
+  });
+
+  it('publishMeta does not echo through onRemoteMeta (M-8)', () => {
+    let metaCalls = 0;
+    const session = createCollabSession({
+      room: 'test-m8',
+      wsUrl: 'ws://127.0.0.1:9',
+      identity: { id: 'u', name: 'U', color: '#000' },
+      initialBlocks: [],
+      initialMeta: { sectionNumber: '01 00 00' },
+      onRemoteBlocks: () => {},
+      onRemoteMeta: (_m, meta) => { if (!meta?.initial) metaCalls++; },
+    });
+    session.publishMeta({ sectionNumber: '02 00 00' });
+    expect(metaCalls).toBe(0);
+    expect(session.yMeta.get('sectionNumber')).toBe('02 00 00');
+    session.destroy();
   });
 });
 

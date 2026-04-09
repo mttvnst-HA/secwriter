@@ -395,10 +395,14 @@ export function createCollabSession({
   // transaction regardless of whether yOrder, yStore, or a nested Y.Text
   // was the thing that changed.
   const handleAfterTx = (transaction) => {
-    // Don't echo our own local publishBlocks / publishMeta calls.
-    if (transaction.origin === 'local-publish') return;
-    if (transaction.origin === 'local-meta') return;
-    if (transaction.origin === 'seed') return; // initial emit handled in handleSync
+    // M-1: treat any origin beginning with 'local-' as a local transaction.
+    // Any future publish path that introduces a new origin string MUST
+    // prefix it with 'local-' (e.g. 'local-publish', 'local-meta',
+    // 'local-autosave'). This guards against a nested `ydoc.transact(...,
+    // 'outer')` accidentally dropping the inner local origin.
+    const origin = transaction.origin;
+    if (typeof origin === 'string' && origin.startsWith('local-')) return;
+    if (origin === 'seed') return; // initial emit handled in handleSync
     // Only fire if yOrder / yStore / yMeta / a nested Y.Map or Y.Text
     // actually changed.
     if (transaction.changed.size === 0 && transaction.changedParentTypes.size === 0) return;
