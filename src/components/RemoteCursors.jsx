@@ -118,7 +118,21 @@ export default function RemoteCursors({ peers, selfId, editorRef }) {
       resizeObs.observe(container);
     }
     if (container && typeof MutationObserver !== 'undefined') {
-      mutationObs = new MutationObserver(scheduleMeasure);
+      // M-4: debounce measurement via requestIdleCallback (50ms fallback)
+      // so sustained local typing does not trigger O(peers × measure) on
+      // every keystroke. Leading-edge measurement still happens via the
+      // selectionchange handler; this observer only backs it up.
+      let idleScheduled = false;
+      const idleSchedule = () => {
+        if (idleScheduled) return;
+        idleScheduled = true;
+        const ric = window.requestIdleCallback || ((cb) => setTimeout(cb, 50));
+        ric(() => {
+          idleScheduled = false;
+          scheduleMeasure();
+        });
+      };
+      mutationObs = new MutationObserver(idleSchedule);
       mutationObs.observe(container, {
         childList: true,
         characterData: true,
