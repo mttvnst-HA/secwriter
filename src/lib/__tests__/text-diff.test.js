@@ -145,6 +145,37 @@ describe('refineWordDiff', () => {
   });
 });
 
+describe('author attribution on ins/del marks', () => {
+  const ALICE = { id: 'u-alice', name: 'Alice', color: '#7a3' };
+
+  it('emits data-author-* attributes on <ins> when author is provided', () => {
+    const html = refineWordDiff('the quick fox', 'the slow fox', { author: ALICE });
+    expect(html).toContain('<ins');
+    expect(html).toContain('data-author-id="u-alice"');
+    expect(html).toContain('data-author-name="Alice"');
+    expect(html).toContain('data-author-color="#7a3"');
+  });
+
+  it('emits data-author-* attributes on <del> when author is provided', () => {
+    const html = refineWordDiff('the quick fox', 'the fox', { author: ALICE });
+    expect(html).toContain('<del');
+    expect(html).toContain('data-author-id="u-alice"');
+  });
+
+  it('omits data-author-* attributes when no author is provided (back-compat)', () => {
+    const html = refineWordDiff('the quick fox', 'the slow fox');
+    expect(html).toContain('<ins');
+    expect(html).not.toContain('data-author-id');
+    expect(html).not.toContain('data-author-name');
+    expect(html).not.toContain('data-author-color');
+  });
+
+  it('emits --author-color CSS variable in inline style', () => {
+    const html = refineWordDiff('the quick fox', 'the slow fox', { author: ALICE });
+    expect(html).toContain('style="--author-color:#7a3"');
+  });
+});
+
 describe('stripHtml', () => {
   it('strips HTML tags', () => {
     expect(stripHtml('<b>hello</b> <span class="mark-rid">world</span>'))
