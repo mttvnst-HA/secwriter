@@ -204,6 +204,82 @@ export function readYMeta(yMeta) {
 }
 
 /**
+ * Snapshot the yTc Y.Map as a plain `{ enabled, snapshots }` object.
+ *
+ * Snapshot data is stored as individual `snap:<blockId>` keys directly on
+ * yTc (avoiding nested Y.Map identity issues that arise when two docs each
+ * independently create their own nested Y.Map for the same key — after
+ * merge only one nested Y.Map wins LWW, but both clients may have written
+ * into their own, losing each other's writes). The nested 'snapshots' Y.Map
+ * is kept in sync by publishTcToDoc for API consumers that inspect it
+ * directly (e.g. tests checking `.size`).
+ */
+export function readTc(yTc) {
+  const enabled = !!yTc.get('enabled');
+  const snapshots = {};
+  yTc.forEach((value, key) => {
+    if (key.startsWith('snap:')) {
+      snapshots[key.slice(5)] = value;
+    }
+  });
+  return { enabled, snapshots };
+}
+
+/**
+ * Apply a TC state update to yTc inside a 'local-tc' transaction.
+ *
+ * Snapshots are stored in two places:
+ *   1. As `snap:<blockId>` prefixed keys directly on yTc — these are
+ *      top-level keys in the shared-root Y.Map and merge per-key across
+ *      clients without the nested-type identity problem.
+ *   2. Mirrored into the nested 'snapshots' Y.Map (seeded at room creation)
+ *      for API consumers that inspect its `.size` or individual entries.
+ *      The nested map is written into (not replaced) so that after the first
+ *      sync both clients share the same canonical nested Y.Map instance and
+ *      their independent writes converge.
+ */
+export function publishTcToDoc(ydoc, yTc, { enabled, snapshots }) {
+  ydoc.transact(() => {
+    if (yTc.get('enabled') !== enabled) yTc.set('enabled', !!enabled);
+    const next = snapshots && typeof snapshots === 'object' ? snapshots : {};
+    const nextKeys = new Set(Object.keys(next));
+
+    // ── Primary storage: prefixed keys on yTc ──────────────────────────
+    // These keys merge per-key across concurrent clients (no nested-type
+    // identity issue — yTc itself is the same shared root in all docs).
+    for (const k of Array.from(yTc.keys())) {
+      if (k.startsWith('snap:') && !nextKeys.has(k.slice(5))) yTc.delete(k);
+    }
+    for (const [blockId, v] of Object.entries(next)) {
+      const key = `snap:${blockId}`;
+      if (yTc.get(key) !== v) yTc.set(key, v);
+    }
+
+    // ── Mirror: nested 'snapshots' Y.Map for .size / direct access ─────
+    // Write into (not replace) the existing nested map so that after the
+    // first cross-doc sync both clients operate on the same map instance.
+    let snapsMap = yTc.get('snapshots');
+    if (!(snapsMap instanceof Y.Map)) {
+      snapsMap = new Y.Map();
+      yTc.set('snapshots', snapsMap);
+    }
+    for (const k of Array.from(snapsMap.keys())) {
+      if (!nextKeys.has(k)) snapsMap.delete(k);
+    }
+    for (const [k, v] of Object.entries(next)) {
+      if (snapsMap.get(k) !== v) snapsMap.set(k, v);
+    }
+  }, 'local-tc');
+}
+
+// Temporary shim — replaced by the full implementation in Task 3.
+export function readComments(yComments) {
+  const out = {};
+  if (!yComments || typeof yComments.forEach !== 'function') return out;
+  return out;
+}
+
+/**
  * Snapshot the current document state as a plain block array by walking
  * the ordering in `yOrder` and resolving each ID against `yStore`.
  */
@@ -361,6 +437,8 @@ export function createCollabSession({
   initialMeta,
   onRemoteBlocks,
   onRemoteMeta,
+  onRemoteTc,
+  onRemoteComments,
   onPresenceChange,
   onStatusChange,
 }) {
@@ -412,17 +490,24 @@ export function createCollabSession({
       }
       // Seed yTc on first join if empty. Use a nested Y.Map for snapshots so
       // individual snapshot updates can happen without rewriting the whole
-      // tc state. yComments is just an empty Y.Map — no seeding needed; it
-      // gets populated when someone creates a comment.
+      // tc state. 'enabled' is intentionally NOT seeded here: seeding it
+      // in two independent docs creates a Yjs Y.Map LWW conflict where the
+      // doc with the higher clientID wins regardless of which client later
+      // calls publishTcToDoc. Omitting 'enabled' from the seed means
+      // publishTcToDoc is the sole writer, so its write always propagates.
+      // readTc treats a missing 'enabled' key as false (disabled).
+      // yComments is an empty Y.Map — no seeding needed; populated on
+      // first comment create.
       if (yTc.size === 0) {
         ydoc.transact(() => {
-          yTc.set('enabled', false);
           yTc.set('snapshots', new Y.Map());
         }, 'seed');
       }
       // Emit the current (possibly remote) state once to initialize React.
       onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: true });
       onRemoteMeta?.(readYMeta(yMeta), { initial: true });
+      onRemoteTc?.(readTc(yTc), { initial: true });
+      onRemoteComments?.(readComments(yComments), { initial: true });
     }
     // Single source of truth for connection status (see onStatusChange
     // duplication fix — we only fire from the sync handler).
@@ -464,12 +549,16 @@ export function createCollabSession({
     const blocksChanged =
       cpt.has(yOrder) || cpt.has(yStore) || ch.has(yOrder) || ch.has(yStore);
     const metaChanged = cpt.has(yMeta) || ch.has(yMeta);
+    const tcChanged = cpt.has(yTc) || ch.has(yTc);
 
     if (blocksChanged) {
       onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: false });
     }
     if (metaChanged) {
       onRemoteMeta?.(readYMeta(yMeta), { initial: false });
+    }
+    if (tcChanged) {
+      onRemoteTc?.(readTc(yTc), { initial: false });
     }
   };
   ydoc.on('afterTransaction', handleAfterTx);
@@ -528,6 +617,13 @@ export function createCollabSession({
           }
         }
       }, 'local-meta');
+    },
+    publishTc(tc) {
+      // M-shared-tc — room-wide Track Changes state. `tc` is
+      // { enabled: boolean, snapshots: { [blockId]: string } }. When
+      // disabling, callers pass an empty snapshots object so the baseline
+      // is cleared in the same transaction as the flag flip.
+      publishTcToDoc(ydoc, yTc, tc);
     },
     setCursor(cursor) {
       awareness.setLocalStateField('cursor', cursor);

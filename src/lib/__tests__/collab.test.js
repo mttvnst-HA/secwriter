@@ -17,6 +17,8 @@ import {
   MAX_PUBLISH_BYTES,
   readYMeta,
   createCollabSession,
+  publishTcToDoc,
+  readTc,
 } from '../collab.js';
 
 function makeDoc() {
@@ -699,5 +701,119 @@ describe('collab — URL helpers', () => {
   it('buildRoomUrl appends the room param', () => {
     const url = buildRoomUrl('abc123');
     expect(url).toContain('room=abc123');
+  });
+});
+
+describe('shared Track Changes (M-shared-tc)', () => {
+  function makeDocWithTc() {
+    const ydoc = new Y.Doc();
+    const yOrder = ydoc.getArray('order');
+    const yStore = ydoc.getMap('store');
+    const yTc = ydoc.getMap('tc');
+    // Mirror the seed that createCollabSession performs.
+    // NOTE: 'enabled' is intentionally NOT seeded — only 'snapshots' is.
+    // Seeding 'enabled' in two independent docs would create a LWW conflict
+    // where the doc with the higher Yjs clientID wins regardless of which
+    // doc later calls publishTcToDoc. Omitting it means publishTcToDoc is
+    // the only writer of 'enabled', so its write always propagates cleanly.
+    ydoc.transact(() => {
+      yTc.set('snapshots', new Y.Map());
+    }, 'seed');
+    return { ydoc, yOrder, yStore, yTc };
+  }
+
+  it('publishTc writes enabled + snapshots under local-tc origin', () => {
+    const { ydoc, yTc } = makeDocWithTc();
+    const origins = [];
+    ydoc.on('afterTransaction', (tx) => { origins.push(tx.origin); });
+
+    publishTcToDoc(ydoc, yTc, { enabled: true, snapshots: { n1: 'Hello', n2: 'World' } });
+
+    expect(yTc.get('enabled')).toBe(true);
+    const snaps = yTc.get('snapshots');
+    expect(snaps.get('n1')).toBe('Hello');
+    expect(snaps.get('n2')).toBe('World');
+    expect(origins).toContain('local-tc');
+  });
+
+  it('publishTc with enabled=false clears snapshots in the same transaction', () => {
+    const { ydoc, yTc } = makeDocWithTc();
+    publishTcToDoc(ydoc, yTc, { enabled: true, snapshots: { n1: 'Hello' } });
+    expect(yTc.get('snapshots').size).toBe(1);
+    publishTcToDoc(ydoc, yTc, { enabled: false, snapshots: {} });
+    expect(yTc.get('enabled')).toBe(false);
+    expect(yTc.get('snapshots').size).toBe(0);
+  });
+
+  it('readTc returns enabled + snapshots as a plain object', () => {
+    const { ydoc, yTc } = makeDocWithTc();
+    publishTcToDoc(ydoc, yTc, { enabled: true, snapshots: { n1: 'Hello', n2: 'World' } });
+    const out = readTc(yTc);
+    expect(out).toEqual({ enabled: true, snapshots: { n1: 'Hello', n2: 'World' } });
+  });
+
+  it('two-doc merge: publishTc on A propagates enabled+snapshots to B', () => {
+    const { ydoc: docA, yTc: tcA } = makeDocWithTc();
+    const { ydoc: docB, yTc: tcB } = makeDocWithTc();
+    publishTcToDoc(docA, tcA, { enabled: true, snapshots: { n1: 'Hello', n2: 'World' } });
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    Y.applyUpdate(docA, Y.encodeStateAsUpdate(docB));
+    expect(readTc(tcB)).toEqual({ enabled: true, snapshots: { n1: 'Hello', n2: 'World' } });
+  });
+
+  it('two-doc merge: concurrent snapshot updates on different blocks both converge', () => {
+    const { ydoc: docA, yTc: tcA } = makeDocWithTc();
+    const { ydoc: docB, yTc: tcB } = makeDocWithTc();
+    publishTcToDoc(docA, tcA, { enabled: true, snapshots: { n1: 'A0', n2: 'B0' } });
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    publishTcToDoc(docA, tcA, { enabled: true, snapshots: { n1: 'A1', n2: 'B0' } });
+    publishTcToDoc(docB, tcB, { enabled: true, snapshots: { n1: 'A0', n2: 'B1' } });
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    Y.applyUpdate(docA, Y.encodeStateAsUpdate(docB));
+    const a = readTc(tcA);
+    const b = readTc(tcB);
+    expect(a).toEqual(b);
+    expect(a.snapshots.n1).toBe('A1');
+    expect(a.snapshots.n2).toBe('B1');
+  });
+
+  it('handleAfterTx routes pure-TC transactions through onRemoteTc (not onRemoteBlocks)', async () => {
+    const ydoc = new Y.Doc();
+    const yOrder = ydoc.getArray('order');
+    const yStore = ydoc.getMap('store');
+    const yMeta = ydoc.getMap('meta');
+    const yTc = ydoc.getMap('tc');
+    const yComments = ydoc.getMap('comments');
+    ydoc.transact(() => {
+      yTc.set('enabled', false);
+      yTc.set('snapshots', new Y.Map());
+    }, 'seed');
+
+    const calls = { blocks: 0, meta: 0, tc: 0, comments: 0 };
+    ydoc.on('afterTransaction', (tx) => {
+      const origin = tx.origin;
+      if (typeof origin === 'string' && origin.startsWith('local-')) return;
+      if (origin === 'seed') return;
+      if (tx.changed.size === 0 && tx.changedParentTypes.size === 0) return;
+      const cpt = tx.changedParentTypes;
+      const ch = tx.changed;
+      if (cpt.has(yOrder) || cpt.has(yStore) || ch.has(yOrder) || ch.has(yStore)) calls.blocks++;
+      if (cpt.has(yMeta) || ch.has(yMeta)) calls.meta++;
+      if (cpt.has(yTc) || ch.has(yTc)) calls.tc++;
+      if (cpt.has(yComments) || ch.has(yComments)) calls.comments++;
+    });
+
+    const peer = new Y.Doc();
+    const peerTc = peer.getMap('tc');
+    peer.transact(() => {
+      peerTc.set('enabled', true);
+      peerTc.set('snapshots', new Y.Map());
+    }, 'seed');
+    Y.applyUpdate(ydoc, Y.encodeStateAsUpdate(peer));
+
+    expect(calls.tc).toBeGreaterThan(0);
+    expect(calls.blocks).toBe(0);
+    expect(calls.meta).toBe(0);
+    expect(calls.comments).toBe(0);
   });
 });
