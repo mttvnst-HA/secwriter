@@ -174,6 +174,7 @@ export default function SpecEditor() {
   // to track remote edits, making Ctrl+Z undo everyone's work.
   const lastRemoteBlocksRef = useRef(null);
   const sessionReadyRef = useRef(false);
+  const metaReadyRef = useRef(false);
 
   const fileHandleRef = useRef(null); // File System Access API handle for SEC file
   const commentsHandleRef = useRef(null); // File System Access API handle for comments sidecar
@@ -1105,6 +1106,10 @@ export default function SpecEditor() {
       },
       initialMeta: { ...sectionMetaRef.current, fileName },
       onRemoteMeta: (remote) => {
+        // I-3: flip ready flag on first remote meta observation so the
+        // publishMeta effect doesn't clobber server-side state with stale
+        // local values on first join.
+        metaReadyRef.current = true;
         // M3 — apply remote section metadata updates. No local echo
         // guard needed; publishMeta's per-key diff + 'local-meta'
         // origin filter already prevent round-trip.
@@ -1126,6 +1131,7 @@ export default function SpecEditor() {
       session.destroy();
       collabSessionRef.current = null;
       sessionReadyRef.current = false;
+      metaReadyRef.current = false;
       lastRemoteBlocksRef.current = null;
       if (EXPOSE_DEBUG && typeof window !== 'undefined') delete window.__collab;
     };
@@ -1217,6 +1223,7 @@ export default function SpecEditor() {
     const session = collabSessionRef.current;
     if (!session) return;
     if (!sessionReadyRef.current) return;
+    if (!metaReadyRef.current) return; // I-3: wait for first onRemoteMeta
     session.publishMeta({ ...sectionMeta, fileName });
   }, [sectionMeta, fileName, inRoom]);
 

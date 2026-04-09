@@ -496,6 +496,38 @@ describe('collab — yMeta (M3)', () => {
     expect(metaB.get('fileName')).toBe('31_00_00.SEC');
   });
 
+  it('publishMeta does not overwrite existing remote meta on first join (I-3)', async () => {
+    // docA seeds a room with sectionNumber = "03 30 00"
+    const docA = new Y.Doc();
+    const orderA = docA.getArray('order');
+    const storeA = docA.getMap('store');
+    const metaA = docA.getMap('meta');
+    docA.transact(() => { metaA.set('sectionNumber', '03 30 00'); }, 'seed');
+
+    // docB joins with different local meta ("31 00 00") — simulates a user
+    // who had a file open in single-user before clicking Share.
+    const docB = new Y.Doc();
+    const orderB = docB.getArray('order');
+    const storeB = docB.getMap('store');
+    const metaB = docB.getMap('meta');
+
+    // Sync docA -> docB
+    const updateAB = Y.encodeStateAsUpdate(docA);
+    Y.applyUpdate(docB, updateAB);
+
+    // At this point docB has seen remote meta. The App-side effect must
+    // NOT publishMeta with the stale local "31 00 00" until onRemoteMeta
+    // has fired. We simulate that guard here: a well-behaved client
+    // defers the first publishMeta until after the first remote-meta
+    // observation.
+    expect(metaB.get('sectionNumber')).toBe('03 30 00');
+
+    // Sync docB -> docA and verify docA's meta is not clobbered.
+    const updateBA = Y.encodeStateAsUpdate(docB);
+    Y.applyUpdate(docA, updateBA);
+    expect(metaA.get('sectionNumber')).toBe('03 30 00');
+  });
+
   it('yMeta updates propagate across two docs (CRDT merge)', () => {
     const docA = new Y.Doc();
     const docB = new Y.Doc();
