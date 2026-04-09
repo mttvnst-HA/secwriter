@@ -1151,14 +1151,13 @@ export default function SpecEditor() {
   //      is literally the same array we just received from a remote update,
   //      skip the publish effect as a fast path.
   //
-  // Safety backstop: if an intermediate handler ever clones `blocks` into a
-  // new-reference-but-content-equal array between remote arrival and the
-  // publish effect flush, the ref-equality fast path misses BUT
-  // applyBlocksToYDoc diffs the content and produces a zero-change
-  // transaction. Empty transactions do not create Y.UndoManager stack
-  // items (see the `no-op applyBlocksToYDoc does not grow Y.UndoManager
-  // stack (I2)` regression test in collab.test.js), so even a worst-case
-  // echo is harmless — it cannot reintroduce cross-user undo corruption.
+  // I-2 backstop: ref-equality is the fast path; if an upstream layer
+  // ever clones `blocks` into a new-reference-but-content-equal array,
+  // applyBlocksToYDoc produces a zero-change transaction (pinned by the
+  // `zero-change publish after a remote-applied clone does not grow
+  // undo stack (I-2)` regression test in collab.test.js). Both layers
+  // must hold — a worst-case echo is harmless because zero-change
+  // transactions do not create Y.UndoManager stack items.
   // A4 — publishDisabled latch: once the document exceeds MAX_PUBLISH_BYTES
   // we stop calling publishBlocks on every keystroke (which would re-walk
   // every block through estimatePublishBytes and re-push a toast) until

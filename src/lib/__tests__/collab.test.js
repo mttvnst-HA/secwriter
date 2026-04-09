@@ -352,6 +352,30 @@ describe('collab — two-doc sync (CRDT merge)', () => {
     expect(undoManager.undoStack.length).toBe(1);
   });
 
+  it('zero-change publish after a remote-applied clone does not grow undo stack (I-2)', () => {
+    const doc = new Y.Doc();
+    const yOrder = doc.getArray('order');
+    const yStore = doc.getMap('store');
+    const undoMgr = new Y.UndoManager([yOrder, yStore], {
+      trackedOrigins: new Set(['local-publish']),
+    });
+
+    const initial = [{ id: 'n1', type: 'txt', html: 'hello' }];
+    seedYBlocks(doc, yOrder, yStore, initial);
+
+    // Simulate remote update landing in state.
+    const remoteClone = yBlocksToArray(yOrder, yStore).map((b) => ({ ...b }));
+
+    // Simulate publish effect running with a content-equal clone
+    // (reference guard would miss this).
+    doc.transact(() => {
+      applyBlocksToYDoc(doc, yOrder, yStore, remoteClone);
+    }, 'local-publish');
+
+    // A zero-change transaction must NOT push an undo entry.
+    expect(undoMgr.undoStack.length).toBe(0);
+  });
+
   it('Y.UndoManager scoped to local origin does not revert remote edits (M2)', () => {
     // The invariant: Alice's Ctrl+Z must never touch Bob's edits.
     const docA = makeDoc();
