@@ -1085,8 +1085,16 @@ export default function SpecEditor() {
   //      the document on rejoin.
   //   2. lastRemoteBlocksRef identity check — if the new `blocks` reference
   //      is literally the same array we just received from a remote update,
-  //      don't echo it back. This also prevents Y.UndoManager from tracking
-  //      remote edits (fix for cross-user undo).
+  //      skip the publish effect as a fast path.
+  //
+  // Safety backstop: if an intermediate handler ever clones `blocks` into a
+  // new-reference-but-content-equal array between remote arrival and the
+  // publish effect flush, the ref-equality fast path misses BUT
+  // applyBlocksToYDoc diffs the content and produces a zero-change
+  // transaction. Empty transactions do not create Y.UndoManager stack
+  // items (see the `no-op applyBlocksToYDoc does not grow Y.UndoManager
+  // stack (I2)` regression test in collab.test.js), so even a worst-case
+  // echo is harmless — it cannot reintroduce cross-user undo corruption.
   useEffect(() => {
     if (!inRoom) return;
     const session = collabSessionRef.current;

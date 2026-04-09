@@ -281,6 +281,51 @@ describe('collab — two-doc sync (CRDT merge)', () => {
     expect(finalA[2].html).toBe('B edited item.');
   });
 
+  it('no-op applyBlocksToYDoc does not grow Y.UndoManager stack (I2)', () => {
+    // The App.jsx publish effect uses `blocks === lastRemoteBlocksRef.current`
+    // reference equality to skip echoing remote updates. Reviewer flagged
+    // that any intermediate setBlocks cloning the array bypasses the guard
+    // and re-publishes the remote content under 'local-publish' origin —
+    // which would make Y.UndoManager track the echo and reintroduce the
+    // cross-user-undo corruption.
+    //
+    // This test pins the invariant that makes that scenario safe:
+    // applyBlocksToYDoc with no actual diff produces no UndoManager stack
+    // items, so even a worst-case echo is a harmless no-op transaction.
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
+
+    const undoManager = new Y.UndoManager([yOrder, yStore], {
+      trackedOrigins: new Set(['local-publish']),
+    });
+
+    // Baseline: no local edits yet.
+    expect(undoManager.undoStack.length).toBe(0);
+
+    // Simulate the echo: apply a brand-new-array-but-content-equal block
+    // set inside a 'local-publish' transaction (what publishBlocks does).
+    const clonedContentEqual = sampleBlocks.map((b) => ({ ...b }));
+    ydoc.transact(() => {
+      applyBlocksToYDoc(ydoc, yOrder, yStore, clonedContentEqual);
+    }, 'local-publish');
+
+    // No-op → no undo stack growth. If this fails, the ref-equality guard
+    // in App.jsx is the only thing preventing echo-driven undo corruption
+    // and needs a content-based fallback (e.g. content hash).
+    expect(undoManager.undoStack.length).toBe(0);
+
+    // Sanity: a genuine local edit DOES grow the stack.
+    ydoc.transact(() => {
+      applyBlocksToYDoc(
+        ydoc,
+        yOrder,
+        yStore,
+        sampleBlocks.map((b, i) => i === 0 ? { ...b, html: 'CHANGED' } : b),
+      );
+    }, 'local-publish');
+    expect(undoManager.undoStack.length).toBe(1);
+  });
+
   it('Y.UndoManager scoped to local origin does not revert remote edits (M2)', () => {
     // The invariant: Alice's Ctrl+Z must never touch Bob's edits.
     const docA = makeDoc();
