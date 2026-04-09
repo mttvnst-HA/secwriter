@@ -2,10 +2,16 @@ import { describe, it, expect } from 'vitest';
 import { parseHTML } from 'linkedom';
 import { diffWords, stripHtml, diffChars, refineWordDiff, annotateDomWithDiff } from '../text-diff.js';
 
-// Shared linkedom document for DOM-based tests
+// Shared linkedom document for DOM-based tests.
+//
+// We only attach to globalThis.document when nothing has claimed it yet —
+// defensive against a future Vitest config change (jsdom environment, single
+// worker pool, etc.) that would otherwise let this overwrite a real document
+// or leak into sibling test files.
 const { document: linkedomDoc } = parseHTML('<!DOCTYPE html><html><body></body></html>');
-// Make it available globally so ownerDocument lookups inside text-diff.js work
-globalThis.document = linkedomDoc;
+if (typeof globalThis.document === 'undefined') {
+  globalThis.document = linkedomDoc;
+}
 
 // linkedom Text nodes lack splitText — polyfill it on the prototype
 {
