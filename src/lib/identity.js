@@ -51,8 +51,16 @@ export function loadIdentity() {
       // Migration: earlier prototype builds stored identity in sessionStorage.
       raw = sessionStorage.getItem(KEY);
       if (raw) {
-        try { localStorage.setItem(KEY, raw); } catch { /* ignore */ }
-        try { sessionStorage.removeItem(KEY); } catch { /* ignore */ }
+        // M-5: only clear the sessionStorage fallback if the localStorage
+        // write actually succeeded. Otherwise we'd re-migrate every load.
+        try {
+          localStorage.setItem(KEY, raw);
+          sessionStorage.removeItem(KEY);
+        } catch {
+          // localStorage unavailable (quota, private mode). Leave
+          // sessionStorage in place so the identity is still usable for
+          // this session.
+        }
       }
     }
     if (!raw) return null;
