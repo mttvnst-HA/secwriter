@@ -132,7 +132,7 @@ test-results/              # UI audit output: findings.json + timestamped Markdo
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 480 Vitest unit tests
+npm test             # Run 517 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 141 Playwright E2E tests
@@ -140,7 +140,7 @@ npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node ru
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
-# Full suite: 480 + 99 + 141 = 720 automated tests
+# Full suite: 517 + 99 + 141 = 757 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -334,10 +334,13 @@ Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`).
 
 **Client layer (`src/lib/collab.js`):**
 - `createCollabSession({ room, identity, initialBlocks, onRemoteBlocks, onPresenceChange, onStatusChange })` spins up a `WebsocketProvider`, seeds the room on first join if empty, observes remote changes, and exposes `publishBlocks(blocks)` + `undo()`/`redo()` backed by `Y.UndoManager` scoped to the client's own edits via `trackedOrigins: Set(['local-publish'])`.
-- `applyBlocksToYDoc` is a crude update-in-place diff: same-length + same-id arrays get per-field updates (html Y.Text replaced whole on change); structural mismatches rebuild. This trades intra-block CRDT finesse for simplicity.
+- `applyBlocksToYDoc` is an incremental two-pass diff: pass 1 deletes Y.Maps whose IDs no longer exist (walking from the end to keep indices valid), pass 2 walks the target blocks with a cursor into yBlocks, updating in place when IDs match, reordering via delete+insert when an ID exists further down, or inserting a fresh Y.Map for new blocks. Html sync uses whole-text replacement for simplicity (no character-level CRDT merge within a block yet — roadmap item).
+- **Critical invariant:** `applyBlocksToYDoc` MUST preserve `Y.Map` / `Y.Text` identity for blocks that exist in both the before and after state. An earlier rebuild-everything fallback silently corrupted CRDT semantics three ways at once: structural changes destroyed concurrent remote Y.Text edits, `Y.UndoManager` captured the rebuild so Ctrl+Z reverted the other user's work, and the DOM ended up with duplicate `data-block-id` elements that broke remote cursor lookup. The current two-pass diff enforces this invariant — `src/lib/__tests__/collab.test.js` has regression tests (`preserves Y.Text identity for existing blocks across an insert`, `preserves Y.Text identity for unchanged blocks across a delete`).
 - React `blocks` is a derived view when in a room. `useEffect` on `[blocks, inRoom]` calls `publishBlocks`; `onRemoteBlocks` calls `setBlocks` via a `remoteApplyingRef` guard to prevent echo. Local-publish transactions are filtered inside `observeDeep` by `transaction.origin === 'local-publish'`.
 
 **Caret preservation:** when a remote update rewrites a block you're editing, `App.jsx` captures plain-text offset before `setBlocks` and restores it in a `requestAnimationFrame`. Helpers `getPlainTextOffset` / `restorePlainTextOffset` live at the top of `App.jsx`.
+
+**Debug hook:** while in a room, the active `CollabSession` is exposed on `window.__collab` for prototype QA. Useful probes: `window.__collab.undoManager.undoStack.length`, `window.__collab.undo()`, `yBlocksToArray(window.__collab.yBlocks)`. Cleared on session destroy. Intentional for the prototype — remove when auth lands.
 
 **Identity (stub):** `src/lib/identity.js` stores `{ id, name, color }` in `sessionStorage['sim-identity']`. First-load `IdentityModal` prompts for a display name; color is a deterministic HSL hash of the name. Placeholder — when real auth lands, the login flow should write to the same key and the modal will no longer appear.
 
@@ -433,6 +436,8 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | Test File | Tests | Runner | Coverage |
 |-----------|-------|--------|----------|
 | sec-parser.test.js | 43 | Vitest | Tag extraction, inline marks (incl. ATT), tables, TBL/THD, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks, INT styles |
+| collab.test.js | 14 | Vitest | Y.Doc ↔ blocks conversion, seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge, **Y.Text identity preservation across insert/delete** (the invariant that prevents cross-user undo corruption) |
+| no-exfil.test.js | 19 | Vitest | NO_EXFIL_PROPS spread on every contentEditable + spec/comment input/textarea; Grammarly/Copilot/writingsuggestions disabled |
 | tailor-profile.test.js | 36 | Vitest | Branch/region/delivery matching, resolution, cleanup |
 | sec-serializer.test.js | 39 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, TBL/ATT roundtrip, CRLF, MTA preservation, HDR passthrough, table widths/heights |
 | revisions.test.js | 29 | Vitest | Accept/reject inline + block revisions, batch operations, stats, whitespace collapse |
@@ -470,7 +475,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | interop-encoding.node-test.mjs | 11 | Node | Reverse import roundtrip (block count, types), encoding fidelity (windows-1252, CRLF, no BOM), special character preservation |
 | editor.spec.js (E2E) | 141 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 492 Vitest + 99 Node + 141 Playwright = 732 automated tests** (includes 12 new `collab.test.js` tests covering Y.Doc ↔ blocks conversion, structural changes, and two-doc CRDT merge)
+**Total: 517 Vitest + 99 Node + 141 Playwright = 757 automated tests**
 
 ## Dependencies
 
