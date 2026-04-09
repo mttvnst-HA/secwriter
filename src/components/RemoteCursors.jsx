@@ -11,23 +11,50 @@ import { useEffect, useRef, useState } from 'react';
  *   expressed *relative to the overlay's own bounding rect*, NOT to the
  *   document. An earlier version added window.scrollY which rendered the
  *   carets hundreds of pixels offscreen.
+ *
+ * Layout-drift tracking:
+ *   Caret positions shift whenever the editor content changes (typing,
+ *   block insertion, image load) or its box changes (window resize, font
+ *   size toggle). Rather than polling on an interval — which burns CPU
+ *   and battery continuously — we observe the actual causes:
+ *     - scroll:             capture: true on window so nested scrollers bubble up
+ *     - ResizeObserver:     editor container geometry changes
+ *     - MutationObserver:   childList + characterData + subtree (typing, inserts)
+ *   All three funnel into a rAF-throttled measure() so rapid typing coalesces
+ *   into at most one measurement per frame.
+ *
+ *   Observers are fully torn down when there are no remote peers — no
+ *   background work when the user is alone in the room.
  */
-export default function RemoteCursors({ peers, selfId }) {
+export default function RemoteCursors({ peers, selfId, editorRef }) {
   const overlayRef = useRef(null);
   const [positions, setPositions] = useState([]);
 
   useEffect(() => {
-    function measure() {
+    // Nothing to draw and nothing to observe when we're alone.
+    const remotePeers = peers.filter((p) => p?.user && p.user.id !== selfId);
+    if (remotePeers.length === 0) {
+      setPositions([]);
+      return undefined;
+    }
+
+    const container = editorRef?.current || null;
+
+    function measureNow() {
       const overlay = overlayRef.current;
       if (!overlay) return;
       const ox = overlay.getBoundingClientRect();
 
       const next = [];
-      for (const p of peers) {
-        if (!p?.user || p.user.id === selfId) continue;
+      for (const p of remotePeers) {
         const cursor = p.cursor;
         if (!cursor || !cursor.blockId) continue;
-        const blockEl = document.querySelector(`[data-block-id="${cursor.blockId}"]`);
+        // Scope the query to the editor container when we have one, so
+        // multiple editor instances (e.g. test harnesses) don't cross-
+        // contaminate and so stray elements outside the editor can't
+        // shadow a real block id.
+        const root = container || document;
+        const blockEl = root.querySelector(`[data-block-id="${cursor.blockId}"]`);
         if (!blockEl) continue;
         const rect = caretRectAt(blockEl, cursor.index || 0);
         if (!rect) continue;
@@ -43,18 +70,49 @@ export default function RemoteCursors({ peers, selfId }) {
       setPositions(next);
     }
 
-    measure();
-    const raf = requestAnimationFrame(measure);
-    window.addEventListener('scroll', measure, true);
-    window.addEventListener('resize', measure);
-    const interval = setInterval(measure, 1000); // cheap fallback for layout drift
+    // rAF-throttled scheduler: many events per frame collapse into one
+    // measurement. Critical during rapid typing where MutationObserver
+    // may fire hundreds of times per second.
+    let rafPending = false;
+    function scheduleMeasure() {
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        rafPending = false;
+        measureNow();
+      });
+    }
+
+    // Initial measure on the next frame so layout is settled.
+    scheduleMeasure();
+
+    // Global events.
+    window.addEventListener('scroll', scheduleMeasure, true);
+    window.addEventListener('resize', scheduleMeasure);
+
+    // Geometry + DOM observers scoped to the editor container.
+    let resizeObs = null;
+    let mutationObs = null;
+    if (container && typeof ResizeObserver !== 'undefined') {
+      resizeObs = new ResizeObserver(scheduleMeasure);
+      resizeObs.observe(container);
+    }
+    if (container && typeof MutationObserver !== 'undefined') {
+      mutationObs = new MutationObserver(scheduleMeasure);
+      mutationObs.observe(container, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+    }
+
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('scroll', measure, true);
-      window.removeEventListener('resize', measure);
-      clearInterval(interval);
+      window.removeEventListener('scroll', scheduleMeasure, true);
+      window.removeEventListener('resize', scheduleMeasure);
+      if (resizeObs) resizeObs.disconnect();
+      if (mutationObs) mutationObs.disconnect();
     };
-  }, [peers, selfId]);
+  }, [peers, selfId, editorRef]);
 
   return (
     <div ref={overlayRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 500 }}>
