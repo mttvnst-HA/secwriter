@@ -118,70 +118,11 @@ export function diffChars(oldStr, newStr) {
 }
 
 /**
- * Escape a string for use in an HTML attribute value (double-quoted).
- */
-function escapeHtmlAttr(s) {
-  return String(s || '')
-    .replace(/&/g, '&amp;')
-    .replace(/"/g, '&quot;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-}
-
-/**
  * Refine word-level diff by applying character-level sub-diff
  * to consecutive del→add pairs where words share ≥50% common characters.
- *
- * Overloaded signature:
- *   refineWordDiff(ops)                        → refined ops array (existing behavior)
- *   refineWordDiff(oldText, newText, options)  → HTML string with <ins>/<del> marks
- *
- * When called with string arguments, `options.author` may be
- * `{ id, name, color }` to attach data-author-* and style attributes to every
- * emitted <ins> and <del> tag (Task 4 author attribution).
- *
- * @param {Array|string} opsOrOldText
- * @param {string} [newText]
- * @param {{ author?: { id: string, name: string, color: string } }} [options]
+ * Returns enhanced ops array with 'charDiff' entries.
  */
-export function refineWordDiff(opsOrOldText, newText, options = {}) {
-  // --- String overload: (oldText, newText, options?) → HTML ---
-  if (typeof opsOrOldText === 'string') {
-    const oldText = opsOrOldText;
-    const { author } = options;
-
-    const authorAttrs = author
-      ? ` data-author-id="${escapeHtmlAttr(author.id)}" data-author-name="${escapeHtmlAttr(author.name)}" data-author-color="${escapeHtmlAttr(author.color)}" style="--author-color:${escapeHtmlAttr(author.color)}"`
-      : '';
-
-    const rawOps = diffWords(oldText, newText);
-    const refinedOps = refineWordDiff(rawOps); // recurse with array form
-
-    const parts = [];
-    for (const op of refinedOps) {
-      if (op.type === 'keep') {
-        parts.push(op.words.join(' '));
-      } else if (op.type === 'add') {
-        parts.push(`<ins${authorAttrs}>${op.words.join(' ')}</ins>`);
-      } else if (op.type === 'del') {
-        parts.push(`<del${authorAttrs}>${op.words.join(' ')}</del>`);
-      } else if (op.type === 'charDiff') {
-        for (const cd of op.ops) {
-          if (cd.type === 'keep') {
-            parts.push(cd.text);
-          } else if (cd.type === 'add') {
-            parts.push(`<ins${authorAttrs}>${cd.text}</ins>`);
-          } else if (cd.type === 'del') {
-            parts.push(`<del${authorAttrs}>${cd.text}</del>`);
-          }
-        }
-      }
-    }
-    return parts.join(' ');
-  }
-
-  // --- Array overload: (ops) → refined ops array (original behavior) ---
-  const ops = opsOrOldText;
+export function refineWordDiff(ops) {
   const refined = [];
   for (let i = 0; i < ops.length; i++) {
     if (ops[i].type === 'del' && i + 1 < ops.length && ops[i + 1].type === 'add') {
