@@ -26,6 +26,21 @@ import { useEffect, useRef, useState } from 'react';
  *   Observers are fully torn down when there are no remote peers — no
  *   background work when the user is alone in the room.
  */
+/**
+ * @param peers       Array of `{ clientId, user, cursor }` from
+ *                    `awareness.getStates()`. `user` carries the persistent
+ *                    identity ({ id, name, color }).
+ * @param selfId      The LOCAL user's PERSISTENT id (identity.id hex string),
+ *                    NOT the Yjs `awareness.clientID` (an integer that
+ *                    changes per connection). Both the presence bar and the
+ *                    filter below use the persistent identity id so all
+ *                    tabs/reconnects of the same user collapse into one
+ *                    presence entry. If you ever confuse namespaces here
+ *                    you'll either render a self-cursor (when selfId is a
+ *                    clientID and user.id is identity.id) or dedupe wrong.
+ * @param editorRef   Ref to the editor container div, used to scope the
+ *                    block query and attach observers.
+ */
 export default function RemoteCursors({ peers, selfId, editorRef }) {
   const overlayRef = useRef(null);
   const [positions, setPositions] = useState([]);
@@ -67,7 +82,12 @@ export default function RemoteCursors({ peers, selfId, editorRef }) {
           height: rect.height || 18,
         });
       }
-      setPositions(next);
+      // N2 — MutationObserver fires on every keystroke in every block.
+      // Without this guard we'd call setPositions (and therefore rerender
+      // the overlay) 60x/sec during sustained typing even when no remote
+      // cursor actually moved. Shallow-compare against the last computed
+      // positions and bail out when nothing changed.
+      setPositions((prev) => (cursorListsEqual(prev, next) ? prev : next));
     }
 
     // rAF-throttled scheduler: many events per frame collapse into one
@@ -139,6 +159,20 @@ export default function RemoteCursors({ peers, selfId, editorRef }) {
       ))}
     </div>
   );
+}
+
+/** Shallow-compare two cursor position lists by id+coords+height. */
+function cursorListsEqual(a, b) {
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) {
+    const x = a[i];
+    const y = b[i];
+    if (x.id !== y.id || x.top !== y.top || x.left !== y.left || x.height !== y.height || x.name !== y.name || x.color !== y.color) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**

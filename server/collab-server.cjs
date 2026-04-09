@@ -39,6 +39,22 @@ const MAX_DOC_BYTES = 8 * 1024 * 1024;
 
 fs.mkdirSync(DATA_DIR, { recursive: true });
 
+// N4 — Orphan .tmp sweep at startup.
+// Atomic writes stage to `<room>.ydoc.tmp` then rename. On Windows a rename
+// over an open file can throw EPERM and leave an orphaned `.tmp` on disk.
+// A crash between stage and rename has the same effect. Clean these up
+// before any room binds so they can't confuse forensics or waste space.
+try {
+  for (const name of fs.readdirSync(DATA_DIR)) {
+    if (name.endsWith('.tmp')) {
+      try { fs.unlinkSync(path.join(DATA_DIR, name)); }
+      catch (err) { console.warn(`[collab] could not remove orphan ${name}:`, err.message); }
+    }
+  }
+} catch (err) {
+  console.warn('[collab] startup tmp sweep failed:', err.message);
+}
+
 // Loud warning if the operator has flipped off loopback. The prototype has
 // no auth; binding to anything else is a data-exfiltration vector.
 if (HOST !== '127.0.0.1' && HOST !== 'localhost' && HOST !== '::1') {
@@ -111,17 +127,28 @@ setPersistence({
           console.log(`[collab] new room "${docName}"`);
         } else {
           const bytes = fs.readFileSync(file);
+          // N1 — Decode into a scratch Y.Doc first so a throw halfway
+          // through cannot leave the real `ydoc` in a partially-mutated
+          // state that the next joining client would see as garbage.
+          // If decode succeeds we re-emit a clean state update into the
+          // real ydoc. If it throws, we quarantine and leave ydoc empty.
+          let restored = false;
+          const scratch = new Y.Doc();
           try {
-            Y.applyUpdate(ydoc, new Uint8Array(bytes));
-            console.log(`[collab] restored room "${docName}" (${bytes.length} bytes)`);
+            Y.applyUpdate(scratch, new Uint8Array(bytes));
+            restored = true;
           } catch (err) {
-            // Corrupt or not-a-Yjs-update file. Quarantine and start fresh
-            // so a broken snapshot can't permanently lock a room into an
-            // unloadable state (and so forensics are possible).
             const quarantine = `${file}.corrupt.${Date.now()}`;
             try { fs.renameSync(file, quarantine); } catch { /* ignore */ }
             console.warn(`[collab] failed to restore "${docName}": ${err.message}; moved to ${quarantine}`);
           }
+          if (restored) {
+            Y.applyUpdate(ydoc, Y.encodeStateAsUpdate(scratch));
+            console.log(`[collab] restored room "${docName}" (${bytes.length} bytes)`);
+          } else {
+            console.log(`[collab] new room "${docName}"`);
+          }
+          scratch.destroy();
         }
       } catch (err) {
         console.warn(`[collab] could not read "${docName}":`, err.message);

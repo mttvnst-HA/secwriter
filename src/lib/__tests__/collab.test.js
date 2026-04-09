@@ -163,6 +163,28 @@ describe('collab — applyBlocksToYDoc (structural changes)', () => {
     expect(yBlocksToArray(yOrder, yStore).map((b) => b.id)).toEqual(['b1', 'b3']);
   });
 
+  it('same-transaction delete+reinsert of same ID updates in place (N6)', () => {
+    // Pathological case: a publish where an ID is absent-then-present in
+    // the same diff is semantically "just present with new content" and
+    // must take the in-place update path, not churn Y.Map instances.
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
+
+    const b2MapBefore = getYMap(yStore, 'b2');
+    const b2TextBefore = getYText(yStore, 'b2');
+
+    // Publish a block list where b2 is present but with completely new content.
+    const next = sampleBlocks.map((b, i) =>
+      i === 1 ? { ...b, html: 'Brand new body for b2.' } : b,
+    );
+    applyBlocksToYDoc(ydoc, yOrder, yStore, next);
+
+    // Y.Map identity preserved — same instance, not delete+reinsert.
+    expect(getYMap(yStore, 'b2')).toBe(b2MapBefore);
+    expect(getYText(yStore, 'b2')).toBe(b2TextBefore);
+    expect(getYText(yStore, 'b2').toString()).toBe('Brand new body for b2.');
+  });
+
   it('handles block reordering', () => {
     const { ydoc, yOrder, yStore } = makeDoc();
     seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);

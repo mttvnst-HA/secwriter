@@ -294,7 +294,18 @@ export function createCollabSession({
   const handleSync = (isSynced) => {
     if (isSynced && !seeded) {
       seeded = true;
-      // Only seed if the room is empty. Otherwise the existing remote state wins.
+      // Only seed if the room is empty. Otherwise the existing remote
+      // state wins.
+      //
+      // N5 — TOCTOU note: there is a technical window between the
+      // `empty` check and the `seedYBlocks` transaction where a remote
+      // sync-step-2 could arrive and populate the doc. In practice
+      // y-websocket serializes sync messages on a single WebSocket
+      // connection so this cannot interleave — the 'sync' event fires
+      // only after the initial sync round-trip is complete. If a future
+      // transport (e.g. WebTransport, multiple connections) breaks that
+      // ordering assumption, move the empty check inside the transact
+      // block and have seedYBlocks itself re-check before mutating.
       const empty = yOrder.length === 0 && yStore.size === 0;
       if (empty && Array.isArray(initialBlocks) && initialBlocks.length > 0) {
         seedYBlocks(ydoc, yOrder, yStore, initialBlocks);

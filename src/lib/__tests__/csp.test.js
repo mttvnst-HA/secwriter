@@ -29,10 +29,14 @@ const INDEX_HTML = resolve(__dirname, '../../../index.html');
 const LOOPBACK_HOSTS = new Set(['127.0.0.1', 'localhost', '[::1]', '::1']);
 
 function extractCspContent(html) {
+  // The attribute value is quoted by either `"` or `'`. We capture the
+  // opening delimiter in group 1 and use a backref to terminate the
+  // value, so CSP content containing the other quote character (e.g.
+  // `'self'`) is not truncated.
   const match = html.match(
-    /<meta\s+http-equiv=["']Content-Security-Policy["']\s+content=["']([^"']+)["']/i,
+    /<meta\s+http-equiv=(["'])Content-Security-Policy\1\s+content=(["'])([\s\S]*?)\2/i,
   );
-  return match ? match[1] : null;
+  return match ? match[3] : null;
 }
 
 function extractWsOrigins(csp) {
@@ -83,7 +87,11 @@ describe('CSP guardrail', () => {
   it('CSP disallows plain http:// (non-loopback) origins in connect-src', () => {
     // Match connect-src directive and extract its sources.
     const match = csp.match(/connect-src\s+([^;]+)/i);
-    if (!match) return; // no connect-src → nothing to check
+    // N3 — fail loudly if connect-src is missing. Without it, browsers
+    // fall back to default-src 'self' which is strictly safer, but the
+    // absence of an explicit directive means this test is no longer
+    // guarding what it claims to guard and should be updated.
+    expect(match, 'CSP must have an explicit connect-src directive').toBeTruthy();
     const sources = match[1].trim().split(/\s+/);
     const badHttp = sources.filter((s) => {
       if (!/^http:\/\//i.test(s)) return false;
