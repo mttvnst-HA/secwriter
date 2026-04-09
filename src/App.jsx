@@ -1058,12 +1058,15 @@ export default function SpecEditor() {
       onStatusChange: (status) => setCollabStatus(status),
     });
     collabSessionRef.current = session;
+    // Debug hook: expose for devtools inspection during prototype QA.
+    if (typeof window !== 'undefined') window.__collab = session;
 
     return () => {
       session.destroy();
       collabSessionRef.current = null;
       sessionReadyRef.current = false;
       lastRemoteBlocksRef.current = null;
+      if (typeof window !== 'undefined') delete window.__collab;
     };
     // Intentionally depend only on roomId + identity so the session is stable
     // across blocks updates. initialBlocks is read via blocksRef.

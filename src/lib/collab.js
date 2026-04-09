@@ -123,88 +123,115 @@ export function seedYBlocks(ydoc, yBlocks, blocks) {
 }
 
 /**
- * Apply a plain block array to the Y.Doc, reconciling by index.
+ * Update an existing Y.Map in place from a plain block object. Preserves
+ * the Y.Text instance so CRDT identity / history / concurrent edits on
+ * unchanged blocks are not disturbed.
+ */
+function updateYMapFromBlock(ymap, block) {
+  for (const k of SCALAR_KEYS) {
+    const cur = ymap.get(k);
+    if (cur !== block[k]) {
+      if (block[k] === undefined) ymap.delete(k);
+      else ymap.set(k, block[k]);
+    }
+  }
+  for (const k of JSON_KEYS) {
+    const cur = ymap.get(k);
+    const nextEnc = block[k] !== undefined ? JSON.stringify(block[k]) : undefined;
+    if (cur !== nextEnc) {
+      if (nextEnc === undefined) ymap.delete(k);
+      else ymap.set(k, nextEnc);
+    }
+  }
+  const yText = ymap.get('html');
+  const curText = yText instanceof Y.Text ? yText.toString() : '';
+  const nextText = typeof block.html === 'string' ? block.html : '';
+  if (curText !== nextText) {
+    if (yText instanceof Y.Text) {
+      yText.delete(0, yText.length);
+      if (nextText.length > 0) yText.insert(0, nextText);
+    } else {
+      const t = new Y.Text();
+      if (nextText.length > 0) t.insert(0, nextText);
+      ymap.set('html', t);
+    }
+  }
+}
+
+/**
+ * Apply a plain block array to the Y.Doc with an incremental diff that
+ * PRESERVES Y.Map / Y.Text identity for blocks that exist in both states.
  *
- * Strategy (prototype):
- *   1. Remove/append blocks so lengths match (by ID, preserving positions).
- *   2. For each block: update scalar keys that changed; replace html Y.Text
- *      content when the string representation differs.
+ * Preserving identity is critical:
+ *   - Remote clients editing an unchanged block must not lose their Y.Text
+ *     edits when another client publishes a structural change.
+ *   - Y.UndoManager's inverse of a structural change must not drag
+ *     unrelated blocks with it. If structural updates replace every
+ *     Y.Text, a later Ctrl+Z will recreate the OLD Y.Texts and orphan
+ *     everything that was typed into the new ones. That's the bug that
+ *     caused Alice's Ctrl+Z to wipe out Bob's subsequent edits.
  *
- * This is NOT a true diff — it trades CRDT finesse for simplicity. Two users
- * typing in the same block will race (last write in that millisecond wins
- * that Y.Text). Two users editing DIFFERENT blocks always merge cleanly.
+ * Algorithm (two passes):
+ *   1. Delete any Y.Map whose ID is not in the next block array, walking
+ *      from the end so indices stay valid.
+ *   2. Walk the next blocks in order with a cursor into yBlocks. For each
+ *      target block:
+ *        a. If the cursor already points at the matching ID → update its
+ *           fields in place, advance.
+ *        b. Else, check if the target ID exists further down in yBlocks.
+ *           If yes, that's a reorder: delete it from its current spot and
+ *           insert a fresh Y.Map at the cursor position. (Y.Map instances
+ *           can't be moved between positions in a Y.Array, so a move
+ *           always means delete+insert.)
+ *        c. Else this is a newly-created block → insert a fresh Y.Map at
+ *           the cursor position.
+ *
+ * This guarantees that insert/delete operations only create the minimal
+ * number of new Y.Map / Y.Text instances. Pure text edits to existing
+ * blocks go through the in-place path in step 2a.
  */
 export function applyBlocksToYDoc(ydoc, yBlocks, blocks) {
   ydoc.transact(() => {
-    // Fast path: if sizes or IDs mismatch, rebuild.
-    const sameLength = yBlocks.length === blocks.length;
-    let sameIds = sameLength;
-    if (sameIds) {
-      for (let i = 0; i < blocks.length; i++) {
-        if (yBlocks.get(i).get('id') !== blocks[i].id) { sameIds = false; break; }
+    // ─── Pass 1: delete IDs that no longer exist ────────────────────────
+    const nextIdSet = new Set();
+    for (const b of blocks) nextIdSet.add(b.id);
+    for (let i = yBlocks.length - 1; i >= 0; i--) {
+      const id = yBlocks.get(i).get('id');
+      if (!nextIdSet.has(id)) {
+        yBlocks.delete(i, 1);
       }
     }
 
-    if (!sameIds) {
-      // Rebuild. Preserve scalars + html content by ID where possible so we
-      // don't blow up references for untouched blocks (best-effort).
-      const existing = new Map();
-      for (let i = 0; i < yBlocks.length; i++) {
-        const ymap = yBlocks.get(i);
-        existing.set(ymap.get('id'), ymap);
-      }
-      yBlocks.delete(0, yBlocks.length);
-      for (const b of blocks) {
-        const prev = existing.get(b.id);
-        if (prev) {
-          // Reuse block's existing Y.Map by cloning its structure but updating scalars + text.
-          // Y.Map cannot be moved across parents once attached, so we make a new one.
-          const ymap = blockToYMap(b);
-          yBlocks.push([ymap]);
-        } else {
-          yBlocks.push([blockToYMap(b)]);
-        }
-      }
-      return;
-    }
-
-    // Same IDs in same order — update in place.
+    // ─── Pass 2: walk `blocks` in order, inserting or updating ──────────
+    let cursor = 0;
     for (let i = 0; i < blocks.length; i++) {
-      const next = blocks[i];
-      const ymap = yBlocks.get(i);
+      const target = blocks[i];
 
-      // Scalar keys
-      for (const k of SCALAR_KEYS) {
-        const cur = ymap.get(k);
-        if (cur !== next[k]) {
-          if (next[k] === undefined) ymap.delete(k);
-          else ymap.set(k, next[k]);
-        }
+      if (cursor < yBlocks.length && yBlocks.get(cursor).get('id') === target.id) {
+        // In-place update — this is the hot path for text edits.
+        updateYMapFromBlock(yBlocks.get(cursor), target);
+        cursor++;
+        continue;
       }
 
-      // JSON-encoded keys (table, ref)
-      for (const k of JSON_KEYS) {
-        const cur = ymap.get(k);
-        const nextEnc = next[k] !== undefined ? JSON.stringify(next[k]) : undefined;
-        if (cur !== nextEnc) {
-          if (nextEnc === undefined) ymap.delete(k);
-          else ymap.set(k, nextEnc);
-        }
+      // Does this ID exist further down in yBlocks? If so, it's a reorder.
+      let foundAt = -1;
+      for (let j = cursor + 1; j < yBlocks.length; j++) {
+        if (yBlocks.get(j).get('id') === target.id) { foundAt = j; break; }
       }
 
-      // html Y.Text
-      const yText = ymap.get('html');
-      const curText = yText instanceof Y.Text ? yText.toString() : '';
-      const nextText = typeof next.html === 'string' ? next.html : '';
-      if (curText !== nextText) {
-        if (yText instanceof Y.Text) {
-          yText.delete(0, yText.length);
-          if (nextText.length > 0) yText.insert(0, nextText);
-        } else {
-          const t = new Y.Text();
-          if (nextText.length > 0) t.insert(0, nextText);
-          ymap.set('html', t);
-        }
+      if (foundAt >= 0) {
+        // Reorder: Y.Map instances can't be moved within a Y.Array, so we
+        // delete the old position and insert a fresh Y.Map at the cursor.
+        // This loses Y.Text history for moved blocks — acceptable for the
+        // prototype, and drag-and-drop reorder is not a hot path.
+        yBlocks.delete(foundAt, 1);
+        yBlocks.insert(cursor, [blockToYMap(target)]);
+        cursor++;
+      } else {
+        // Newly-created block (e.g. Enter key).
+        yBlocks.insert(cursor, [blockToYMap(target)]);
+        cursor++;
       }
     }
   }, 'apply');

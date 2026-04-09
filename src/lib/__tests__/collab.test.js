@@ -105,6 +105,47 @@ describe('collab — applyBlocksToYDoc (structural changes)', () => {
     expect(yBlocksToArray(yBlocks).map((b) => b.id)).toEqual(['b1', 'b-new', 'b2', 'b3']);
   });
 
+  it('preserves Y.Text identity for existing blocks across an insert', () => {
+    // This is the critical invariant that prevents the
+    // "Ctrl+Z wipes out the other user's edits" bug: inserting a new block
+    // must not recreate the Y.Text of unchanged blocks.
+    const { ydoc, yBlocks } = makeDoc();
+    seedYBlocks(ydoc, yBlocks, sampleBlocks);
+
+    const yText0Before = yBlocks.get(0).get('html');
+    const yText1Before = yBlocks.get(1).get('html');
+    const yText2Before = yBlocks.get(2).get('html');
+
+    const next = [
+      sampleBlocks[0],
+      { id: 'b-new', type: 'txt', part: 1, depth: 1, section: 'b1', html: 'Inserted' },
+      sampleBlocks[1],
+      sampleBlocks[2],
+    ];
+    applyBlocksToYDoc(ydoc, yBlocks, next);
+
+    // b1 was at index 0 and stays at index 0 → identity preserved
+    expect(yBlocks.get(0).get('html')).toBe(yText0Before);
+    // b2 moved from index 1 to index 2 → still the same Y.Text instance
+    expect(yBlocks.get(2).get('html')).toBe(yText1Before);
+    // b3 moved from index 2 to index 3 → identity preserved
+    expect(yBlocks.get(3).get('html')).toBe(yText2Before);
+  });
+
+  it('preserves Y.Text identity for unchanged blocks across a delete', () => {
+    const { ydoc, yBlocks } = makeDoc();
+    seedYBlocks(ydoc, yBlocks, sampleBlocks);
+
+    const yText0Before = yBlocks.get(0).get('html');
+    const yText2Before = yBlocks.get(2).get('html');
+
+    applyBlocksToYDoc(ydoc, yBlocks, [sampleBlocks[0], sampleBlocks[2]]);
+
+    expect(yBlocks.length).toBe(2);
+    expect(yBlocks.get(0).get('html')).toBe(yText0Before);
+    expect(yBlocks.get(1).get('html')).toBe(yText2Before);
+  });
+
   it('handles block deletion', () => {
     const { ydoc, yBlocks } = makeDoc();
     seedYBlocks(ydoc, yBlocks, sampleBlocks);
