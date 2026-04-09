@@ -35,11 +35,12 @@ import { getVisibleTextFromHtml } from "./lib/text-diff.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import { clearInlineLinting } from "./lib/inline-linter.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
-import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId } from "./lib/collab.js";
+import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES } from "./lib/collab.js";
 import { loadIdentity } from "./lib/identity.js";
 import IdentityModal from "./components/IdentityModal.jsx";
 import PresenceBar from "./components/PresenceBar.jsx";
 import RemoteCursors from "./components/RemoteCursors.jsx";
+import ToastStack, { useToasts } from "./components/Toast.jsx";
 
 // Walk text nodes under `root` to compute the plain-text offset of
 // (node, offset). Used to transport a caret position across a DOM rewrite
@@ -154,6 +155,7 @@ export default function SpecEditor() {
   const [identity, setIdentity] = useState(() => (inRoom ? loadIdentity() : null));
   const [peers, setPeers] = useState([]);
   const [collabStatus, setCollabStatus] = useState(inRoom ? 'connecting' : null);
+  const toasts = useToasts();
   const collabSessionRef = useRef(null);
   // Reference-equality guard: whenever onRemoteBlocks runs, we stash the new
   // array here and the publish effect compares `blocks === lastRemoteBlocksRef.current`
@@ -164,6 +166,8 @@ export default function SpecEditor() {
   // (a) corrupted initial persistence on join and (b) caused Y.UndoManager
   // to track remote edits, making Ctrl+Z undo everyone's work.
   const lastRemoteBlocksRef = useRef(null);
+  // M3 — same echo-prevention pattern for section metadata.
+  const lastRemoteMetaRef = useRef(null);
   const sessionReadyRef = useRef(false);
 
   const fileHandleRef = useRef(null); // File System Access API handle for SEC file
@@ -172,6 +176,8 @@ export default function SpecEditor() {
   const fileInputRef = useRef(null);
   const blocksRef = useRef(blocks);
   blocksRef.current = blocks;
+  const sectionMetaRef = useRef(sectionMeta);
+  sectionMetaRef.current = sectionMeta;
   const tree = useMemo(() => buildTree(blocks), [blocks]);
   const numberMap = useMemo(() => computeNumbering(blocks), [blocks]);
   const oliLabels = useMemo(() => computeOliLabels(blocks), [blocks]);
@@ -1092,6 +1098,15 @@ export default function SpecEditor() {
           });
         }
       },
+      initialMeta: { ...sectionMetaRef.current, fileName },
+      onRemoteMeta: (remote, meta) => {
+        // M3 — apply remote section metadata updates. Guarded against echo
+        // by lastRemoteMetaRef (same pattern as blocks).
+        if (!remote || typeof remote !== 'object') return;
+        lastRemoteMetaRef.current = remote;
+        setSectionMeta((prev) => ({ ...prev, ...remote }));
+        if (remote.fileName) setFileName(remote.fileName);
+      },
       onPresenceChange: (states) => setPeers(states),
       onStatusChange: (status) => setCollabStatus(status),
     });
@@ -1139,8 +1154,44 @@ export default function SpecEditor() {
     if (!session) return;
     if (!sessionReadyRef.current) return;
     if (blocks === lastRemoteBlocksRef.current) return;
-    session.publishBlocks(blocks);
-  }, [blocks, inRoom]);
+    try {
+      session.publishBlocks(blocks);
+    } catch (err) {
+      // M7 — client-side doc size guard. The session throws rather than
+      // silently truncating so we can surface the limit to the user and
+      // let them cut the document before continuing. The local React
+      // state still holds the oversized blocks; subsequent edits will
+      // retry the publish (and fail again) until the user shrinks it.
+      if (err instanceof DocSizeLimitError) {
+        toasts.push({
+          kind: 'error',
+          title: 'Document too large to sync',
+          body: `This document is ${(err.actualBytes / (1024 * 1024)).toFixed(1)} MB, ` +
+                `over the ${(err.maxBytes / (1024 * 1024)).toFixed(0)} MB collab limit. ` +
+                `Your edits are not being shared with other users. ` +
+                `Remove some content and try again.`,
+          ttl: 15000,
+        });
+      } else {
+        console.error('[collab] publishBlocks failed:', err);
+      }
+    }
+  }, [blocks, inRoom, toasts]);
+
+  // M3 — publish local section metadata updates.
+  useEffect(() => {
+    if (!inRoom) return;
+    const session = collabSessionRef.current;
+    if (!session) return;
+    if (!sessionReadyRef.current) return;
+    const combined = { ...sectionMeta, fileName };
+    if (lastRemoteMetaRef.current &&
+        Object.keys(combined).every((k) => lastRemoteMetaRef.current[k] === combined[k])) {
+      // Echo from a remote meta update — skip.
+      return;
+    }
+    session.publishMeta(combined);
+  }, [sectionMeta, fileName, inRoom]);
 
   // Broadcast our caret position so other users see a live cursor.
   useEffect(() => {
@@ -1210,8 +1261,22 @@ export default function SpecEditor() {
   // Share button handler: generate a room and reload into it, or copy the current room URL.
   const handleShare = useCallback(() => {
     if (inRoom) {
-      navigator.clipboard?.writeText(window.location.href).catch(() => {});
-      alert(`Room link copied to clipboard:\n\n${window.location.href}`);
+      // M6 — toast instead of alert(). alert() blocks the event loop and
+      // steals focus from the editor, which is a regression from the
+      // otherwise keyboard-driven UX. The toast includes a Copy action
+      // so the user can manually retry if the implicit clipboard write
+      // was blocked by the browser.
+      const url = window.location.href;
+      navigator.clipboard?.writeText(url).catch(() => {});
+      toasts.push({
+        kind: 'success',
+        title: 'Room link copied',
+        body: url,
+        actions: [
+          { label: 'Copy again', onClick: () => navigator.clipboard?.writeText(url).catch(() => {}) },
+        ],
+        ttl: 8000,
+      });
       return;
     }
     const newRoom = generateRoomId();
@@ -1220,7 +1285,7 @@ export default function SpecEditor() {
     // doc becomes the source of truth cleanly.
     try { clearAutoSave(); } catch { /* ignore */ }
     window.location.href = url;
-  }, [inRoom]);
+  }, [inRoom, toasts]);
 
   const sectionNumber = sectionMeta.sectionNumber;
   const sectionTitle = sectionMeta.sectionTitle;
@@ -1235,6 +1300,7 @@ export default function SpecEditor() {
       color: "var(--sim-text, #1e293b)",
       overflow: "hidden",
     }}>
+      <ToastStack toasts={toasts.items} onDismiss={toasts.dismiss} />
 
       {/* LEFT SIDEBAR - Navigation Tree */}
       <div style={{

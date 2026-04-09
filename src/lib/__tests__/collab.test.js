@@ -12,6 +12,10 @@ import {
   seedYBlocks,
   generateRoomId,
   buildRoomUrl,
+  estimatePublishBytes,
+  DocSizeLimitError,
+  MAX_PUBLISH_BYTES,
+  readYMeta,
 } from '../collab.js';
 
 function makeDoc() {
@@ -393,6 +397,72 @@ describe('collab — two-doc sync (CRDT merge)', () => {
     expect(afterUndo.find((b) => b.id === 'b1').html).toBe('GENERAL');
     // Bob's edit is PRESERVED — this is the invariant.
     expect(afterUndo.find((b) => b.id === 'b2').html).toBe('Bob edit.');
+  });
+});
+
+describe('collab — document size guard (M7)', () => {
+  it('estimatePublishBytes counts ids, types, html, and serialized table/ref', () => {
+    const blocks = [
+      { id: 'b1', type: 'txt', html: 'hello world' },
+      { id: 'b2', type: 'table', html: '', table: { rows: [['a', 'b'], ['c', 'd']] } },
+    ];
+    const bytes = estimatePublishBytes(blocks);
+    // >0 and <1KB for this tiny sample.
+    expect(bytes).toBeGreaterThan(0);
+    expect(bytes).toBeLessThan(1024);
+  });
+
+  it('estimatePublishBytes returns 0 for non-array input', () => {
+    expect(estimatePublishBytes(null)).toBe(0);
+    expect(estimatePublishBytes(undefined)).toBe(0);
+    expect(estimatePublishBytes({})).toBe(0);
+  });
+
+  it('DocSizeLimitError carries the actual and max byte counts', () => {
+    const err = new DocSizeLimitError(12345, 8 * 1024 * 1024);
+    expect(err).toBeInstanceOf(Error);
+    expect(err.name).toBe('DocSizeLimitError');
+    expect(err.actualBytes).toBe(12345);
+    expect(err.maxBytes).toBe(8 * 1024 * 1024);
+  });
+
+  it('MAX_PUBLISH_BYTES is exported and matches server cap', () => {
+    expect(MAX_PUBLISH_BYTES).toBe(8 * 1024 * 1024);
+  });
+});
+
+describe('collab — yMeta (M3)', () => {
+  it('readYMeta returns an empty object for an empty Y.Map', () => {
+    const ydoc = new Y.Doc();
+    expect(readYMeta(ydoc.getMap('meta'))).toEqual({});
+  });
+
+  it('readYMeta snapshots scalar keys', () => {
+    const ydoc = new Y.Doc();
+    const yMeta = ydoc.getMap('meta');
+    yMeta.set('sectionNumber', '31 00 00');
+    yMeta.set('sectionTitle', 'EARTHWORK');
+    yMeta.set('date', '08/23');
+    expect(readYMeta(yMeta)).toEqual({
+      sectionNumber: '31 00 00',
+      sectionTitle: 'EARTHWORK',
+      date: '08/23',
+    });
+  });
+
+  it('yMeta updates propagate across two docs (CRDT merge)', () => {
+    const docA = new Y.Doc();
+    const docB = new Y.Doc();
+    const metaA = docA.getMap('meta');
+    const metaB = docB.getMap('meta');
+
+    metaA.set('sectionTitle', 'EARTHWORK');
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    expect(readYMeta(metaB)).toEqual({ sectionTitle: 'EARTHWORK' });
+
+    metaB.set('sectionTitle', 'STRUCTURAL STEEL');
+    Y.applyUpdate(docA, Y.encodeStateAsUpdate(docB, Y.encodeStateVector(docA)));
+    expect(readYMeta(metaA)).toEqual({ sectionTitle: 'STRUCTURAL STEEL' });
   });
 });
 

@@ -370,7 +370,7 @@ Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`).
 - Shared Comments — deferred
 - Shared tables/REFs — currently coarse (JSON-encoded whole-value sync)
 - Intra-block character-level merge — whole-text replacement for now
-- No auth — stub identity in sessionStorage
+- No auth — stub identity in localStorage (migrates from legacy sessionStorage)
 - No TLS / production deployment — localhost-only
 
 **Running the prototype:**
@@ -436,7 +436,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 21. ~~**Browser data exfiltration prevention**~~ — ✅ Done. Centralized `NO_EXFIL_PROPS` (`src/lib/no-exfil.js`) spread on every contentEditable + spec/comment input/textarea: disables spellcheck, `writingsuggestions`, autoComplete, autoCorrect, autoCapitalize, and Grammarly's `data-gramm*`. `index.html` has a strict CSP (only `'self'` + `api.anthropic.com` for compliance AI + Google Fonts), `referrer="no-referrer"`, `notranslate`, and `noindex` meta tags. Regression test at `src/lib/__tests__/no-exfil.test.js`.
 
 **Future Features:**
-- **Multi-user collaboration — prototype landed** (branch `multi-user`). Yjs + y-websocket relay, presence, live cursors, stub identity. Next steps to harden: (1) shared Track Changes, (2) shared Comments, (3) proper HTML diff so intra-block concurrent typing merges character-by-character, (4) fine-grained table/REF sync, (5) real auth + TLS + hosted relay, (6) reconnect/offline UX. See "Multi-user collaboration (prototype)" section above.
+- **Multi-user collaboration — prototype landed** (branch `multi-user`). Yjs + y-websocket relay, presence, live cursors, stub identity, synced section metadata (yMeta), client-side doc size guard, toast notifications. Next steps to harden: (1) shared Track Changes, (2) shared Comments, (3) proper HTML diff so intra-block concurrent typing merges character-by-character, (4) fine-grained table/REF sync, (5) real auth + TLS + hosted relay, (6) reconnect/offline UX. See "Multi-user collaboration (prototype)" section above.
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
 - INT cell background rendering — data extracted but not yet applied to TableBlock.jsx cells
 - Multi-file project management — SIM is currently a single-section editor by design
@@ -448,7 +448,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | Test File | Tests | Runner | Coverage |
 |-----------|-------|--------|----------|
 | sec-parser.test.js | 43 | Vitest | Tag extraction, inline marks (incl. ATT), tables, TBL/THD, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks, INT styles |
-| collab.test.js | 17 | Vitest | Y.Doc ↔ blocks conversion (yOrder+yStore model), seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge, **Y.Text identity preservation across insert/delete/reorder** including concurrent remote edit across a local reorder, **Y.UndoManager scoped to local origin does not revert remote edits** (the invariants that prevent cross-user undo corruption) |
+| collab.test.js | 26 | Vitest | Y.Doc ↔ blocks conversion (yOrder+yStore model), seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge, **Y.Text identity preservation across insert/delete/reorder** including concurrent remote edit across a local reorder, **Y.UndoManager scoped to local origin does not revert remote edits**, **no-op publishes don't grow undo stack (I2)**, **same-tx delete+reinsert in-place (N6)**, **doc size guard (M7)**, **yMeta CRDT merge (M3)** |
 | no-exfil.test.js | 19 | Vitest | NO_EXFIL_PROPS spread on every contentEditable + spec/comment input/textarea; Grammarly/Copilot/writingsuggestions disabled |
 | tailor-profile.test.js | 36 | Vitest | Branch/region/delivery matching, resolution, cleanup |
 | sec-serializer.test.js | 39 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, TBL/ATT roundtrip, CRLF, MTA preservation, HDR passthrough, table widths/heights |
@@ -487,7 +487,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | interop-encoding.node-test.mjs | 11 | Node | Reverse import roundtrip (block count, types), encoding fidelity (windows-1252, CRLF, no BOM), special character preservation |
 | editor.spec.js (E2E) | 141 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 520 Vitest + 99 Node + 141 Playwright = 760 automated tests**
+**Total: 532 Vitest + 99 Node + 141 Playwright = 772 automated tests**
 
 ## Dependencies
 

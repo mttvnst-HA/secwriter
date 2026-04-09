@@ -82,6 +82,44 @@ export function generateRoomId() {
 const SCALAR_KEYS = ['id', 'type', 'part', 'depth', 'section', 'level', 'revision'];
 const JSON_KEYS = ['table', 'ref']; // stored as JSON strings for prototype simplicity
 
+// M7 — client-side doc size guard. Mirror of the server's MAX_DOC_BYTES so
+// a runaway paste can't quietly seed a 100MB document into the Y.Doc before
+// the server rejects the persistence. The cap applies to the combined plain
+// text + HTML of all blocks in a publish. Publishes exceeding this cap are
+// rejected with a thrown DocSizeLimitError — callers should catch and
+// surface the error to the user.
+export const MAX_PUBLISH_BYTES = 8 * 1024 * 1024;
+
+export class DocSizeLimitError extends Error {
+  constructor(actualBytes, maxBytes) {
+    super(`Document exceeds size limit: ${actualBytes} > ${maxBytes} bytes`);
+    this.name = 'DocSizeLimitError';
+    this.actualBytes = actualBytes;
+    this.maxBytes = maxBytes;
+  }
+}
+
+/**
+ * Estimate the byte footprint of a block array. Uses UTF-8 byte counts of
+ * id, type, html, and the serialized table/ref JSON — an overestimate vs
+ * the Yjs wire format, which is fine: we want this guard to fire BEFORE
+ * the server-side cap, not after.
+ */
+export function estimatePublishBytes(blocks) {
+  if (!Array.isArray(blocks)) return 0;
+  let total = 0;
+  const enc = (s) => (typeof s === 'string' ? new TextEncoder().encode(s).length : 0);
+  for (const b of blocks) {
+    if (!b) continue;
+    total += enc(b.id) + enc(b.type) + enc(b.html || '');
+    if (b.table) total += enc(JSON.stringify(b.table));
+    if (b.ref) total += enc(JSON.stringify(b.ref));
+    // Rough per-block scalar overhead.
+    total += 32;
+  }
+  return total;
+}
+
 /** Build a Y.Map from a plain block object. */
 function blockToYMap(block) {
   const yMap = new Y.Map();
@@ -116,6 +154,13 @@ function yMapToBlock(yMap) {
     }
   }
   return block;
+}
+
+/** Snapshot a Y.Map<string, scalar> as a plain object. */
+export function readYMeta(yMeta) {
+  const out = {};
+  yMeta.forEach((value, key) => { out[key] = value; });
+  return out;
 }
 
 /**
@@ -273,7 +318,9 @@ export function createCollabSession({
   wsUrl = DEFAULT_WS_URL,
   identity,
   initialBlocks,
+  initialMeta,
   onRemoteBlocks,
+  onRemoteMeta,
   onPresenceChange,
   onStatusChange,
 }) {
@@ -310,8 +357,20 @@ export function createCollabSession({
       if (empty && Array.isArray(initialBlocks) && initialBlocks.length > 0) {
         seedYBlocks(ydoc, yOrder, yStore, initialBlocks);
       }
+      // M3 — seed meta only if the room's yMeta is empty AND we have a
+      // local initialMeta. The first client to join writes the initial
+      // section number / title / date; subsequent joiners see what's
+      // already there.
+      if (yMeta.size === 0 && initialMeta && typeof initialMeta === 'object') {
+        ydoc.transact(() => {
+          for (const [k, v] of Object.entries(initialMeta)) {
+            if (v !== undefined) yMeta.set(k, v);
+          }
+        }, 'seed');
+      }
       // Emit the current (possibly remote) state once to initialize React.
       onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: true });
+      onRemoteMeta?.(readYMeta(yMeta), { initial: true });
     }
     // Single source of truth for connection status (see onStatusChange
     // duplication fix — we only fire from the sync handler).
@@ -324,12 +383,37 @@ export function createCollabSession({
   // transaction regardless of whether yOrder, yStore, or a nested Y.Text
   // was the thing that changed.
   const handleAfterTx = (transaction) => {
-    // Don't echo our own local publishBlocks calls.
+    // Don't echo our own local publishBlocks / publishMeta calls.
     if (transaction.origin === 'local-publish') return;
+    if (transaction.origin === 'local-meta') return;
     if (transaction.origin === 'seed') return; // initial emit handled in handleSync
-    // Only fire if yOrder / yStore / a nested Y.Map or Y.Text actually changed.
+    // Only fire if yOrder / yStore / yMeta / a nested Y.Map or Y.Text
+    // actually changed.
     if (transaction.changed.size === 0 && transaction.changedParentTypes.size === 0) return;
-    onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: false });
+
+    // Detect whether this transaction touched blocks, meta, or both. We
+    // check `transaction.changed` keys — each key is a top-level shared
+    // type and each value is the set of keys mutated on it.
+    let blocksChanged = false;
+    let metaChanged = false;
+    for (const type of transaction.changed.keys()) {
+      if (type === yOrder || type === yStore) blocksChanged = true;
+      else if (type === yMeta) metaChanged = true;
+      else blocksChanged = true; // nested Y.Text inside yStore
+    }
+    // Nested types (Y.Text within a block's Y.Map) surface via
+    // changedParentTypes rather than changed.
+    for (const type of transaction.changedParentTypes.keys()) {
+      if (type === yMeta) metaChanged = true;
+      else blocksChanged = true;
+    }
+
+    if (blocksChanged) {
+      onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: false });
+    }
+    if (metaChanged) {
+      onRemoteMeta?.(readYMeta(yMeta), { initial: false });
+    }
   };
   ydoc.on('afterTransaction', handleAfterTx);
 
@@ -360,9 +444,31 @@ export function createCollabSession({
     provider,
     undoManager,
     publishBlocks(blocks) {
+      // M7 — guard against runaway publishes. Throw rather than silently
+      // truncating so the caller can surface the error.
+      const bytes = estimatePublishBytes(blocks);
+      if (bytes > MAX_PUBLISH_BYTES) {
+        throw new DocSizeLimitError(bytes, MAX_PUBLISH_BYTES);
+      }
       ydoc.transact(() => {
         applyBlocksToYDoc(ydoc, yOrder, yStore, blocks);
       }, 'local-publish');
+    },
+    publishMeta(meta) {
+      // M3 — publish section metadata changes (sectionNumber, sectionTitle,
+      // date, fileName). Only writes keys whose value actually changed to
+      // avoid noisy empty transactions.
+      if (!meta || typeof meta !== 'object') return;
+      ydoc.transact(() => {
+        for (const [k, v] of Object.entries(meta)) {
+          const cur = yMeta.get(k);
+          if (v === undefined) {
+            if (cur !== undefined) yMeta.delete(k);
+          } else if (cur !== v) {
+            yMeta.set(k, v);
+          }
+        }
+      }, 'local-meta');
     },
     setCursor(cursor) {
       awareness.setLocalStateField('cursor', cursor);
