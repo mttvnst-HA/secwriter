@@ -1,0 +1,315 @@
+/**
+ * Collaborative editing layer (prototype).
+ *
+ * Uses Yjs CRDT + y-websocket to sync the block array across clients in a
+ * shared room. The Y.Doc is the source of truth when `inRoom` is true; the
+ * React `blocks` state becomes a derived view.
+ *
+ * Data layout (one Y.Doc per room):
+ *   yBlocks: Y.Array<Y.Map>   each Y.Map has { id, type, part, depth,
+ *                             section, level?, html: Y.Text, table?, ref?,
+ *                             revision? }
+ *   yMeta:   Y.Map            { sectionNumber, sectionTitle, date, fileName }
+ *   awareness: { user: {id,name,color}, cursor: {blockId, index} }
+ *
+ * Prototype limitations (see CLAUDE.md roadmap):
+ *   - html sync uses whole-text replacement (no per-character CRDT merge)
+ *   - table/ref blocks sync as whole-value replacements (coarse)
+ *   - no shared Track Changes or shared Comments yet
+ */
+
+import * as Y from 'yjs';
+import { WebsocketProvider } from 'y-websocket';
+
+const DEFAULT_WS_URL = 'ws://127.0.0.1:1234';
+
+/**
+ * Read `?room=...` from the current URL. Returns null if not in a room.
+ */
+export function getRoomFromUrl() {
+  if (typeof window === 'undefined') return null;
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const room = params.get('room');
+    if (!room) return null;
+    // Mirror server-side sanitization.
+    return room.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Build a shareable URL for a given room ID.
+ */
+export function buildRoomUrl(roomId) {
+  if (typeof window === 'undefined') return `?room=${roomId}`;
+  const url = new URL(window.location.href);
+  url.searchParams.set('room', roomId);
+  return url.toString();
+}
+
+/**
+ * Generate a short random room ID.
+ */
+export function generateRoomId() {
+  const bytes = new Uint8Array(6);
+  (globalThis.crypto || window.crypto).getRandomValues(bytes);
+  return Array.from(bytes, (b) => b.toString(36).padStart(2, '0')).join('').slice(0, 8);
+}
+
+// ── Block ↔ Y.Doc conversion ────────────────────────────────────────────────
+//
+// Plain block:  { id, type, html: string, ... }
+// Y block:      Y.Map where html is a Y.Text and all other scalars are plain
+
+const SCALAR_KEYS = ['id', 'type', 'part', 'depth', 'section', 'level', 'revision'];
+const JSON_KEYS = ['table', 'ref']; // stored as JSON strings for prototype simplicity
+
+/** Build a Y.Map from a plain block object. */
+function blockToYMap(block) {
+  const yMap = new Y.Map();
+  for (const k of SCALAR_KEYS) {
+    if (block[k] !== undefined) yMap.set(k, block[k]);
+  }
+  const yText = new Y.Text();
+  if (typeof block.html === 'string' && block.html.length > 0) {
+    yText.insert(0, block.html);
+  }
+  yMap.set('html', yText);
+  for (const k of JSON_KEYS) {
+    if (block[k] !== undefined) yMap.set(k, JSON.stringify(block[k]));
+  }
+  return yMap;
+}
+
+/** Build a plain block object from a Y.Map. */
+function yMapToBlock(yMap) {
+  const block = {};
+  for (const k of SCALAR_KEYS) {
+    const v = yMap.get(k);
+    if (v !== undefined) block[k] = v;
+  }
+  const yText = yMap.get('html');
+  block.html = yText instanceof Y.Text ? yText.toString() : (yText || '');
+  for (const k of JSON_KEYS) {
+    const raw = yMap.get(k);
+    if (raw !== undefined) {
+      try { block[k] = typeof raw === 'string' ? JSON.parse(raw) : raw; }
+      catch { /* ignore */ }
+    }
+  }
+  return block;
+}
+
+/** Snapshot the entire Y.Array<Y.Map> as a plain block array. */
+export function yBlocksToArray(yBlocks) {
+  const out = new Array(yBlocks.length);
+  for (let i = 0; i < yBlocks.length; i++) {
+    out[i] = yMapToBlock(yBlocks.get(i));
+  }
+  return out;
+}
+
+/**
+ * Initial seed: push a plain block array into an empty Y.Array<Y.Map>.
+ * Called when a client opens a fresh (empty) room.
+ */
+export function seedYBlocks(ydoc, yBlocks, blocks) {
+  ydoc.transact(() => {
+    yBlocks.delete(0, yBlocks.length);
+    for (const b of blocks) yBlocks.push([blockToYMap(b)]);
+  }, 'seed');
+}
+
+/**
+ * Apply a plain block array to the Y.Doc, reconciling by index.
+ *
+ * Strategy (prototype):
+ *   1. Remove/append blocks so lengths match (by ID, preserving positions).
+ *   2. For each block: update scalar keys that changed; replace html Y.Text
+ *      content when the string representation differs.
+ *
+ * This is NOT a true diff — it trades CRDT finesse for simplicity. Two users
+ * typing in the same block will race (last write in that millisecond wins
+ * that Y.Text). Two users editing DIFFERENT blocks always merge cleanly.
+ */
+export function applyBlocksToYDoc(ydoc, yBlocks, blocks) {
+  ydoc.transact(() => {
+    // Fast path: if sizes or IDs mismatch, rebuild.
+    const sameLength = yBlocks.length === blocks.length;
+    let sameIds = sameLength;
+    if (sameIds) {
+      for (let i = 0; i < blocks.length; i++) {
+        if (yBlocks.get(i).get('id') !== blocks[i].id) { sameIds = false; break; }
+      }
+    }
+
+    if (!sameIds) {
+      // Rebuild. Preserve scalars + html content by ID where possible so we
+      // don't blow up references for untouched blocks (best-effort).
+      const existing = new Map();
+      for (let i = 0; i < yBlocks.length; i++) {
+        const ymap = yBlocks.get(i);
+        existing.set(ymap.get('id'), ymap);
+      }
+      yBlocks.delete(0, yBlocks.length);
+      for (const b of blocks) {
+        const prev = existing.get(b.id);
+        if (prev) {
+          // Reuse block's existing Y.Map by cloning its structure but updating scalars + text.
+          // Y.Map cannot be moved across parents once attached, so we make a new one.
+          const ymap = blockToYMap(b);
+          yBlocks.push([ymap]);
+        } else {
+          yBlocks.push([blockToYMap(b)]);
+        }
+      }
+      return;
+    }
+
+    // Same IDs in same order — update in place.
+    for (let i = 0; i < blocks.length; i++) {
+      const next = blocks[i];
+      const ymap = yBlocks.get(i);
+
+      // Scalar keys
+      for (const k of SCALAR_KEYS) {
+        const cur = ymap.get(k);
+        if (cur !== next[k]) {
+          if (next[k] === undefined) ymap.delete(k);
+          else ymap.set(k, next[k]);
+        }
+      }
+
+      // JSON-encoded keys (table, ref)
+      for (const k of JSON_KEYS) {
+        const cur = ymap.get(k);
+        const nextEnc = next[k] !== undefined ? JSON.stringify(next[k]) : undefined;
+        if (cur !== nextEnc) {
+          if (nextEnc === undefined) ymap.delete(k);
+          else ymap.set(k, nextEnc);
+        }
+      }
+
+      // html Y.Text
+      const yText = ymap.get('html');
+      const curText = yText instanceof Y.Text ? yText.toString() : '';
+      const nextText = typeof next.html === 'string' ? next.html : '';
+      if (curText !== nextText) {
+        if (yText instanceof Y.Text) {
+          yText.delete(0, yText.length);
+          if (nextText.length > 0) yText.insert(0, nextText);
+        } else {
+          const t = new Y.Text();
+          if (nextText.length > 0) t.insert(0, nextText);
+          ymap.set('html', t);
+        }
+      }
+    }
+  }, 'apply');
+}
+
+/**
+ * Create a CollabSession for a given room. Returns handles React code uses
+ * to observe remote changes, publish local changes, and manage presence.
+ *
+ * Usage (inside App.jsx when inRoom === true):
+ *   const session = createCollabSession({ room, identity, initialBlocks, onRemoteBlocks, onPresenceChange });
+ *   // on local edit:
+ *   session.publishBlocks(newBlocks)
+ *   // on teardown:
+ *   session.destroy()
+ */
+export function createCollabSession({
+  room,
+  wsUrl = DEFAULT_WS_URL,
+  identity,
+  initialBlocks,
+  onRemoteBlocks,
+  onPresenceChange,
+  onStatusChange,
+}) {
+  const ydoc = new Y.Doc();
+  const yBlocks = ydoc.getArray('blocks');
+  const yMeta = ydoc.getMap('meta');
+
+  const provider = new WebsocketProvider(wsUrl, room, ydoc);
+  const awareness = provider.awareness;
+
+  // Publish our identity + empty cursor
+  awareness.setLocalStateField('user', identity);
+  awareness.setLocalStateField('cursor', null);
+
+  let suppressNext = false;
+  let seeded = false;
+
+  const handleSync = (isSynced) => {
+    onStatusChange?.(isSynced ? 'connected' : 'syncing');
+    if (isSynced && !seeded) {
+      seeded = true;
+      // Only seed if the room is empty. Otherwise the existing remote state wins.
+      if (yBlocks.length === 0 && Array.isArray(initialBlocks) && initialBlocks.length > 0) {
+        seedYBlocks(ydoc, yBlocks, initialBlocks);
+      }
+      // Emit the current (possibly remote) state once to initialize React.
+      onRemoteBlocks?.(yBlocksToArray(yBlocks), { initial: true });
+    }
+  };
+
+  provider.on('sync', handleSync);
+  provider.on('status', (evt) => onStatusChange?.(evt.status));
+
+  // Observe all deep changes to yBlocks and publish to React.
+  const handleDeep = (events, transaction) => {
+    // Don't echo our own local publishBlocks calls.
+    if (transaction.origin === 'local-publish') return;
+    onRemoteBlocks?.(yBlocksToArray(yBlocks), { initial: false });
+  };
+  yBlocks.observeDeep(handleDeep);
+
+  // Awareness changes → presence bar
+  const handleAwareness = () => {
+    const states = [];
+    awareness.getStates().forEach((state, clientId) => {
+      if (state.user) states.push({ clientId, ...state });
+    });
+    onPresenceChange?.(states);
+  };
+  awareness.on('change', handleAwareness);
+
+  // Undo manager scoped to our own edits (Yjs tracks by client ID via transact origin)
+  const undoManager = new Y.UndoManager(yBlocks, {
+    trackedOrigins: new Set(['local-publish']),
+  });
+
+  return {
+    ydoc,
+    yBlocks,
+    yMeta,
+    awareness,
+    provider,
+    undoManager,
+    publishBlocks(blocks) {
+      suppressNext = true;
+      ydoc.transact(() => {
+        applyBlocksToYDoc(ydoc, yBlocks, blocks);
+      }, 'local-publish');
+      suppressNext = false;
+    },
+    setCursor(cursor) {
+      awareness.setLocalStateField('cursor', cursor);
+    },
+    undo() { undoManager.undo(); },
+    redo() { undoManager.redo(); },
+    canUndo() { return undoManager.undoStack.length > 0; },
+    canRedo() { return undoManager.redoStack.length > 0; },
+    destroy() {
+      yBlocks.unobserveDeep(handleDeep);
+      awareness.off('change', handleAwareness);
+      provider.off('sync', handleSync);
+      try { provider.destroy(); } catch { /* ignore */ }
+      try { ydoc.destroy(); } catch { /* ignore */ }
+    },
+  };
+}

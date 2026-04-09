@@ -35,6 +35,47 @@ import { getVisibleTextFromHtml } from "./lib/text-diff.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import { clearInlineLinting } from "./lib/inline-linter.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
+import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId } from "./lib/collab.js";
+import { loadIdentity } from "./lib/identity.js";
+import IdentityModal from "./components/IdentityModal.jsx";
+import PresenceBar from "./components/PresenceBar.jsx";
+import RemoteCursors from "./components/RemoteCursors.jsx";
+
+// Walk text nodes under `root` to compute the plain-text offset of
+// (node, offset). Used to transport a caret position across a DOM rewrite
+// caused by a remote collab update.
+function getPlainTextOffset(root, node, offset) {
+  let total = 0;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+  let current;
+  while ((current = walker.nextNode())) {
+    if (current === node) return total + offset;
+    total += current.nodeValue.length;
+  }
+  return total;
+}
+
+// Restore a caret at plain-text offset `index` inside `root`.
+function restorePlainTextOffset(root, index) {
+  let remaining = index;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+  let current;
+  while ((current = walker.nextNode())) {
+    const len = current.nodeValue.length;
+    if (remaining <= len) {
+      const range = document.createRange();
+      range.setStart(current, remaining);
+      range.collapse(true);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      try { root.focus(); } catch { /* ignore */ }
+      return;
+    }
+    remaining -= len;
+  }
+  try { root.focus(); } catch { /* ignore */ }
+}
 
 export default function SpecEditor() {
   const {
@@ -79,6 +120,18 @@ export default function SpecEditor() {
   const [editorZoom, setEditorZoom] = useState(() => {
     try { return parseFloat(localStorage.getItem('sim-editor-zoom')) || 1; } catch { return 1; }
   });
+  // ── Collaborative editing (prototype) ──────────────────────────────────
+  // When ?room=... is present the app joins a Yjs room. The collab session
+  // becomes the source of truth for `blocks`; localStorage auto-save and
+  // auto-restore are suppressed, and undo/redo is handled by Y.UndoManager.
+  const [roomId] = useState(() => getRoomFromUrl());
+  const inRoom = !!roomId;
+  const [identity, setIdentity] = useState(() => (inRoom ? loadIdentity() : null));
+  const [peers, setPeers] = useState([]);
+  const [collabStatus, setCollabStatus] = useState(inRoom ? 'connecting' : null);
+  const collabSessionRef = useRef(null);
+  const remoteApplyingRef = useRef(false); // true while applying remote change so effect won't echo it
+
   const fileHandleRef = useRef(null); // File System Access API handle for SEC file
   const commentsHandleRef = useRef(null); // File System Access API handle for comments sidecar
   const editorRef = useRef(null);
@@ -909,13 +962,15 @@ export default function SpecEditor() {
     }
   }, []);
 
-  // Auto-save to localStorage every 3 seconds (silent, no UI)
+  // Auto-save to localStorage every 3 seconds (silent, no UI).
+  // Suppressed in a collab room — the server-persisted Yjs doc is the source of truth.
   useEffect(() => {
+    if (inRoom) return;
     const timer = setTimeout(() => {
       autoSave(blocks, sectionMeta, comments, fileName);
     }, 3000);
     return () => clearTimeout(timer);
-  }, [blocks, sectionMeta, comments, fileName]);
+  }, [blocks, sectionMeta, comments, fileName, inRoom]);
 
   // Track dirty state — any block/comment change marks dirty
   useEffect(() => {
@@ -926,7 +981,9 @@ export default function SpecEditor() {
   // this was silent, which let a stale auto-save from a different file
   // quietly overwrite the initial document (and then, combined with a
   // leftover file handle, get written back to disk on the next Ctrl+S).
+  // Suppressed in a collab room — the server Yjs doc wins.
   useEffect(() => {
+    if (inRoom) return;
     const saved = loadAutoSave();
     if (!saved || !saved.blocks || saved.blocks.length === 0 || !saved.fileName) return;
     setBlocks(saved.blocks);
@@ -942,17 +999,110 @@ export default function SpecEditor() {
     // the next Ctrl+S so it cannot land on an unrelated file.
     fileHandleRef.current = null;
     commentsHandleRef.current = null;
-  }, []);
+  }, [inRoom]);
+
+  // ── Collab session lifecycle ──
+  // Creates the Yjs session once we have both a room ID and an identity.
+  // Remote updates are pushed into React state via setBlocks; local edits
+  // are published by the next effect.
+  useEffect(() => {
+    if (!inRoom || !identity) return;
+
+    const session = createCollabSession({
+      room: roomId,
+      identity,
+      initialBlocks: blocksRef.current,
+      onRemoteBlocks: (nextBlocks /*, meta */) => {
+        remoteApplyingRef.current = true;
+        try {
+          // Preserve caret across remote-triggered DOM rewrites: capture
+          // selection inside the focused block, apply state, restore.
+          const activeEl = document.activeElement;
+          let caret = null;
+          if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
+            const sel = window.getSelection();
+            if (sel && sel.rangeCount > 0) {
+              const range = sel.getRangeAt(0);
+              if (activeEl.contains(range.startContainer)) {
+                caret = { blockId: activeEl.dataset.blockId, offset: getPlainTextOffset(activeEl, range.startContainer, range.startOffset) };
+              }
+            }
+          }
+          setBlocks(nextBlocks);
+          if (caret) {
+            requestAnimationFrame(() => {
+              const el = document.querySelector(`[data-block-id="${caret.blockId}"]`);
+              if (el) restorePlainTextOffset(el, caret.offset);
+            });
+          }
+        } finally {
+          remoteApplyingRef.current = false;
+        }
+      },
+      onPresenceChange: (states) => setPeers(states),
+      onStatusChange: (status) => setCollabStatus(status),
+    });
+    collabSessionRef.current = session;
+
+    return () => {
+      session.destroy();
+      collabSessionRef.current = null;
+    };
+    // Intentionally depend only on roomId + identity so the session is stable
+    // across blocks updates. initialBlocks is read via blocksRef.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inRoom, roomId, identity]);
+
+  // Publish local `blocks` updates to the collab session.
+  useEffect(() => {
+    if (!inRoom) return;
+    const session = collabSessionRef.current;
+    if (!session) return;
+    if (remoteApplyingRef.current) return;
+    session.publishBlocks(blocks);
+  }, [blocks, inRoom]);
+
+  // Broadcast our caret position so other users see a live cursor.
+  useEffect(() => {
+    if (!inRoom) return;
+    const handler = () => {
+      const session = collabSessionRef.current;
+      if (!session) return;
+      const active = document.activeElement;
+      if (!active?.dataset?.blockId || active.contentEditable !== 'true') {
+        session.setCursor(null);
+        return;
+      }
+      const sel = window.getSelection();
+      if (!sel || sel.rangeCount === 0) {
+        session.setCursor(null);
+        return;
+      }
+      const range = sel.getRangeAt(0);
+      if (!active.contains(range.startContainer)) {
+        session.setCursor(null);
+        return;
+      }
+      session.setCursor({
+        blockId: active.dataset.blockId,
+        index: getPlainTextOffset(active, range.startContainer, range.startOffset),
+      });
+    };
+    document.addEventListener('selectionchange', handler);
+    return () => document.removeEventListener('selectionchange', handler);
+  }, [inRoom]);
 
   // Keyboard listener for undo/redo and search
   useEffect(() => {
     const handler = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
         e.preventDefault();
-        undo();
+        if (inRoom && collabSessionRef.current) collabSessionRef.current.undo();
+        else undo();
       } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
         e.preventDefault();
-        redo();
+        if (inRoom && collabSessionRef.current) collabSessionRef.current.redo();
+        else redo();
       } else if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
         setSearchOpen(true);
@@ -975,7 +1125,22 @@ export default function SpecEditor() {
     };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
-  }, [undo, redo, handleSave, zoomIn, zoomOut, zoomReset]);
+  }, [undo, redo, handleSave, zoomIn, zoomOut, zoomReset, inRoom]);
+
+  // Share button handler: generate a room and reload into it, or copy the current room URL.
+  const handleShare = useCallback(() => {
+    if (inRoom) {
+      navigator.clipboard?.writeText(window.location.href).catch(() => {});
+      alert(`Room link copied to clipboard:\n\n${window.location.href}`);
+      return;
+    }
+    const newRoom = generateRoomId();
+    const url = buildRoomUrl(newRoom);
+    // Starting a room clears our localStorage auto-save so the server-persisted
+    // doc becomes the source of truth cleanly.
+    try { clearAutoSave(); } catch { /* ignore */ }
+    window.location.href = url;
+  }, [inRoom]);
 
   const sectionNumber = sectionMeta.sectionNumber;
   const sectionTitle = sectionMeta.sectionTitle;
@@ -1191,6 +1356,34 @@ export default function SpecEditor() {
               {saveStatus === 'saved' ? <Check size={14} /> : saveStatus === 'saving' ? <Loader size={14} className="spin" /> : <Download size={14} />}
               {saveStatus === 'saved' ? 'Saved' : saveStatus === 'saving' ? 'Saving...' : 'Save'}
             </button>
+            <button
+              onClick={handleShare}
+              title={inRoom ? "Copy room link to clipboard" : "Start a collaborative room"}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+                padding: "4px 10px",
+                backgroundColor: inRoom ? "#dbeafe" : "#f1f5f9",
+                border: inRoom ? "1px solid #2563eb" : "1px solid #e2e8f0",
+                borderRadius: 6,
+                cursor: "pointer",
+                fontSize: 13,
+                fontWeight: 600,
+                color: inRoom ? "#1d4ed8" : "#475569",
+                minHeight: 32,
+              }}
+            >
+              {inRoom ? `Room ${roomId}` : "Share"}
+            </button>
+            {inRoom && (
+              <PresenceBar peers={peers} self={identity} />
+            )}
+            {inRoom && collabStatus && collabStatus !== 'connected' && (
+              <span style={{ fontSize: 11, color: "#d97706" }}>
+                {collabStatus === 'syncing' ? 'Syncing…' : collabStatus === 'connecting' ? 'Connecting…' : collabStatus}
+              </span>
+            )}
             <button
               onClick={handleSaveAs}
               title="Save As... (choose new location)"
@@ -1614,6 +1807,10 @@ export default function SpecEditor() {
         >
           <FloatingToolbar editorRef={editorRef} onBlockUpdate={handleBlockUpdate} onRevisionAction={handleRevisionAction} trackChanges={trackChanges} onCommentCreate={handleCommentCreate} />
 
+          {inRoom && identity && (
+            <RemoteCursors peers={peers} selfId={identity.id} editorRef={editorRef} />
+          )}
+
           {/* Comment Popup */}
           {openCommentId && comments.get(openCommentId) && commentRect && (
             <CommentPopup
@@ -1967,6 +2164,11 @@ export default function SpecEditor() {
           onClose={() => setRefWizardOpen(false)}
           existingOrgs={blocks.filter(b => b.type === 'ref' && b.ref?.org).map(b => b.ref.org)}
         />
+      )}
+
+      {/* Collab identity prompt — appears on first load when ?room=... is present */}
+      {inRoom && !identity && (
+        <IdentityModal roomId={roomId} onIdentity={setIdentity} />
       )}
     </div>
   );

@@ -324,6 +324,48 @@ These are known issues identified during QA testing that have not yet been fixed
 - **`shall` fix returns null on partial success** (`compliance-rules.js:78`): If "The Contractor shall [verb]" is successfully rewritten but a separate bare "shall" remains in the block, the fix returns `null` (discards the partial fix). This is by design (defer complex cases to AI), but the user sees no change despite a valid partial fix being possible.
 - **Gutter dot lags grammar results** (`EditableBlock.jsx:312`): `setLintSeverity` fires 200ms after lint, but Harper WASM may take longer on first load. The gutter dot won't reflect grammar findings until the next lint cycle.
 
+### Multi-user collaboration (prototype)
+
+Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`). Without a room parameter, SIM behaves exactly like the single-user app — no regression risk.
+
+**Stack:** Yjs CRDT + `y-websocket@1.5.4` server (pinned — v3 dropped the server utils). Server is a ~80-line CJS file at `server/collab-server.cjs`, persists each room to `server/collab-db/<room>.ydoc` as a binary Yjs state snapshot (debounced 500ms). Start with `npm run collab` (listens on `ws://127.0.0.1:1234`). CJS on purpose: mixing ESM + CJS loads two copies of Yjs and breaks instanceof checks (yjs#438).
+
+**Data model:** one `Y.Doc` per room with `yBlocks: Y.Array<Y.Map>` where each Y.Map holds scalar block fields + `html: Y.Text`. Tables and REFs are stored as JSON-encoded strings for prototype simplicity — concurrent edits to the same table will last-write-wins.
+
+**Client layer (`src/lib/collab.js`):**
+- `createCollabSession({ room, identity, initialBlocks, onRemoteBlocks, onPresenceChange, onStatusChange })` spins up a `WebsocketProvider`, seeds the room on first join if empty, observes remote changes, and exposes `publishBlocks(blocks)` + `undo()`/`redo()` backed by `Y.UndoManager` scoped to the client's own edits via `trackedOrigins: Set(['local-publish'])`.
+- `applyBlocksToYDoc` is a crude update-in-place diff: same-length + same-id arrays get per-field updates (html Y.Text replaced whole on change); structural mismatches rebuild. This trades intra-block CRDT finesse for simplicity.
+- React `blocks` is a derived view when in a room. `useEffect` on `[blocks, inRoom]` calls `publishBlocks`; `onRemoteBlocks` calls `setBlocks` via a `remoteApplyingRef` guard to prevent echo. Local-publish transactions are filtered inside `observeDeep` by `transaction.origin === 'local-publish'`.
+
+**Caret preservation:** when a remote update rewrites a block you're editing, `App.jsx` captures plain-text offset before `setBlocks` and restores it in a `requestAnimationFrame`. Helpers `getPlainTextOffset` / `restorePlainTextOffset` live at the top of `App.jsx`.
+
+**Identity (stub):** `src/lib/identity.js` stores `{ id, name, color }` in `sessionStorage['sim-identity']`. First-load `IdentityModal` prompts for a display name; color is a deterministic HSL hash of the name. Placeholder — when real auth lands, the login flow should write to the same key and the modal will no longer appear.
+
+**Presence / cursors:** `PresenceBar` renders colored user initials in the toolbar. `RemoteCursors` is an absolute-positioned overlay inside the editor scroll area that measures `caretRectAt(blockEl, index)` per peer and renders a thin colored caret + name label. Cursor broadcast uses awareness + a `selectionchange` listener that computes plain-text offset inside the active block.
+
+**Single-user feature behavior when in a room (Option D):**
+- Ctrl+S (export) still works — explicit snapshot to your own disk.
+- `localStorage` auto-save and mount-time auto-restore are skipped — server Yjs doc is the source of truth.
+- Undo/redo is redirected to `Y.UndoManager` so Ctrl+Z only affects your own edits.
+
+**CSP:** `index.html` adds `ws://127.0.0.1:1234 ws://localhost:1234` to `connect-src`. Broaden this when deploying the server elsewhere.
+
+**Known prototype limitations (roadmap):**
+- Shared Track Changes — deferred
+- Shared Comments — deferred
+- Shared tables/REFs — currently coarse (JSON-encoded whole-value sync)
+- Intra-block character-level merge — whole-text replacement for now
+- No auth — stub identity in sessionStorage
+- No TLS / production deployment — localhost-only
+
+**Running the prototype:**
+```bash
+npm run collab          # terminal 1: Yjs relay on ws://127.0.0.1:1234
+npm run dev             # terminal 2: Vite dev server on localhost:5173
+# then open http://localhost:5173/?room=demo in two browsers/tabs
+```
+The first load prompts for a display name. Click "Share" in an existing single-user session to generate a new room and reload into it.
+
 ### Reference data sources
 
 SIM uses two USACE-maintained databases parsed from the legacy SpecsIntact installation:
@@ -379,6 +421,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 21. ~~**Browser data exfiltration prevention**~~ — ✅ Done. Centralized `NO_EXFIL_PROPS` (`src/lib/no-exfil.js`) spread on every contentEditable + spec/comment input/textarea: disables spellcheck, `writingsuggestions`, autoComplete, autoCorrect, autoCapitalize, and Grammarly's `data-gramm*`. `index.html` has a strict CSP (only `'self'` + `api.anthropic.com` for compliance AI + Google Fonts), `referrer="no-referrer"`, `notranslate`, and `noindex` meta tags. Regression test at `src/lib/__tests__/no-exfil.test.js`.
 
 **Future Features:**
+- **Multi-user collaboration — prototype landed** (branch `multi-user`). Yjs + y-websocket relay, presence, live cursors, stub identity. Next steps to harden: (1) shared Track Changes, (2) shared Comments, (3) proper HTML diff so intra-block concurrent typing merges character-by-character, (4) fine-grained table/REF sync, (5) real auth + TLS + hosted relay, (6) reconnect/offline UX. See "Multi-user collaboration (prototype)" section above.
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
 - INT cell background rendering — data extracted but not yet applied to TableBlock.jsx cells
 - Multi-file project management — SIM is currently a single-section editor by design
@@ -427,9 +470,9 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | interop-encoding.node-test.mjs | 11 | Node | Reverse import roundtrip (block count, types), encoding fidelity (windows-1252, CRLF, no BOM), special character preservation |
 | editor.spec.js (E2E) | 141 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 480 Vitest + 99 Node + 141 Playwright = 720 automated tests**
+**Total: 492 Vitest + 99 Node + 141 Playwright = 732 automated tests** (includes 12 new `collab.test.js` tests covering Y.Doc ↔ blocks conversion, structural changes, and two-doc CRDT merge)
 
 ## Dependencies
 
-**Production:** React 18.3, react-dom 18.3, lucide-react 0.383, harper.js (WASM grammar checker), compromise (NLP)
+**Production:** React 18.3, react-dom 18.3, lucide-react 0.383, harper.js (WASM grammar checker), compromise (NLP), yjs 13.6, y-websocket 1.5.4 (client + server), y-protocols 1.0
 **Dev:** Vite 8.0, @vitejs/plugin-react 6.0.1, Vitest 4.1, linkedom 0.18 (test DOM polyfill), Playwright (E2E)
