@@ -710,15 +710,12 @@ describe('shared Track Changes (M-shared-tc)', () => {
     const yOrder = ydoc.getArray('order');
     const yStore = ydoc.getMap('store');
     const yTc = ydoc.getMap('tc');
-    // Mirror the seed that createCollabSession performs.
-    // NOTE: 'enabled' is intentionally NOT seeded — only 'snapshots' is.
-    // Seeding 'enabled' in two independent docs would create a LWW conflict
-    // where the doc with the higher Yjs clientID wins regardless of which
-    // doc later calls publishTcToDoc. Omitting it means publishTcToDoc is
-    // the only writer of 'enabled', so its write always propagates cleanly.
-    ydoc.transact(() => {
-      yTc.set('snapshots', new Y.Map());
-    }, 'seed');
+    // No seeding of yTc at all — mirrors createCollabSession's approach.
+    // Seeding 'enabled' OR 'snapshots' in two independent docs creates Yjs
+    // Y.Map LWW conflicts: the doc with the higher random clientID wins each
+    // key after sync, which can silently discard data written by the other
+    // doc. publishTcToDoc is the sole creator of both keys, so its writes
+    // always propagate cleanly. readTc coerces absent 'enabled' → false.
     return { ydoc, yOrder, yStore, yTc };
   }
 
@@ -784,10 +781,7 @@ describe('shared Track Changes (M-shared-tc)', () => {
     const yMeta = ydoc.getMap('meta');
     const yTc = ydoc.getMap('tc');
     const yComments = ydoc.getMap('comments');
-    ydoc.transact(() => {
-      yTc.set('enabled', false);
-      yTc.set('snapshots', new Y.Map());
-    }, 'seed');
+    // No yTc seed — mirrors createCollabSession. See makeDocWithTc for why.
 
     const calls = { blocks: 0, meta: 0, tc: 0, comments: 0 };
     ydoc.on('afterTransaction', (tx) => {
@@ -803,12 +797,14 @@ describe('shared Track Changes (M-shared-tc)', () => {
       if (cpt.has(yComments) || ch.has(yComments)) calls.comments++;
     });
 
+    // Peer publishes a real TC state change (no seed). When applyUpdate is
+    // called on ydoc the arriving transaction has no origin on the receiving
+    // side, so handleAfterTx's local-origin filter does not suppress it.
     const peer = new Y.Doc();
     const peerTc = peer.getMap('tc');
     peer.transact(() => {
       peerTc.set('enabled', true);
-      peerTc.set('snapshots', new Y.Map());
-    }, 'seed');
+    }, 'local-tc');
     Y.applyUpdate(ydoc, Y.encodeStateAsUpdate(peer));
 
     expect(calls.tc).toBeGreaterThan(0);

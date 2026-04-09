@@ -206,63 +206,36 @@ export function readYMeta(yMeta) {
 /**
  * Snapshot the yTc Y.Map as a plain `{ enabled, snapshots }` object.
  *
- * Snapshot data is stored as individual `snap:<blockId>` keys directly on
- * yTc (avoiding nested Y.Map identity issues that arise when two docs each
- * independently create their own nested Y.Map for the same key — after
- * merge only one nested Y.Map wins LWW, but both clients may have written
- * into their own, losing each other's writes). The nested 'snapshots' Y.Map
- * is kept in sync by publishTcToDoc for API consumers that inspect it
- * directly (e.g. tests checking `.size`).
+ * `enabled` is read directly from yTc; absent key coerces to false via `!!`.
+ * Snapshot data lives in the nested 'snapshots' Y.Map keyed by block ID.
  */
 export function readTc(yTc) {
   const enabled = !!yTc.get('enabled');
+  const snapsMap = yTc.get('snapshots');
   const snapshots = {};
-  yTc.forEach((value, key) => {
-    if (key.startsWith('snap:')) {
-      snapshots[key.slice(5)] = value;
-    }
-  });
+  if (snapsMap && typeof snapsMap.forEach === 'function') {
+    snapsMap.forEach((value, key) => { snapshots[key] = value; });
+  }
   return { enabled, snapshots };
 }
 
 /**
- * Apply a TC state update to yTc inside a 'local-tc' transaction.
- *
- * Snapshots are stored in two places:
- *   1. As `snap:<blockId>` prefixed keys directly on yTc — these are
- *      top-level keys in the shared-root Y.Map and merge per-key across
- *      clients without the nested-type identity problem.
- *   2. Mirrored into the nested 'snapshots' Y.Map (seeded at room creation)
- *      for API consumers that inspect its `.size` or individual entries.
- *      The nested map is written into (not replaced) so that after the first
- *      sync both clients share the same canonical nested Y.Map instance and
- *      their independent writes converge.
+ * Apply a TC state update to yTc inside a 'local-tc' transaction. Writes
+ * `enabled` and rewrites the `snapshots` Y.Map to match `snapshots` exactly
+ * (deletes entries missing from the input). When enabled is false, callers
+ * are expected to pass an empty snapshots object — this function does NOT
+ * auto-clear snapshots, so the invariant lives in the caller.
  */
 export function publishTcToDoc(ydoc, yTc, { enabled, snapshots }) {
   ydoc.transact(() => {
     if (yTc.get('enabled') !== enabled) yTc.set('enabled', !!enabled);
-    const next = snapshots && typeof snapshots === 'object' ? snapshots : {};
-    const nextKeys = new Set(Object.keys(next));
-
-    // ── Primary storage: prefixed keys on yTc ──────────────────────────
-    // These keys merge per-key across concurrent clients (no nested-type
-    // identity issue — yTc itself is the same shared root in all docs).
-    for (const k of Array.from(yTc.keys())) {
-      if (k.startsWith('snap:') && !nextKeys.has(k.slice(5))) yTc.delete(k);
-    }
-    for (const [blockId, v] of Object.entries(next)) {
-      const key = `snap:${blockId}`;
-      if (yTc.get(key) !== v) yTc.set(key, v);
-    }
-
-    // ── Mirror: nested 'snapshots' Y.Map for .size / direct access ─────
-    // Write into (not replace) the existing nested map so that after the
-    // first cross-doc sync both clients operate on the same map instance.
     let snapsMap = yTc.get('snapshots');
     if (!(snapsMap instanceof Y.Map)) {
       snapsMap = new Y.Map();
       yTc.set('snapshots', snapsMap);
     }
+    const next = snapshots && typeof snapshots === 'object' ? snapshots : {};
+    const nextKeys = new Set(Object.keys(next));
     for (const k of Array.from(snapsMap.keys())) {
       if (!nextKeys.has(k)) snapsMap.delete(k);
     }
@@ -488,21 +461,26 @@ export function createCollabSession({
           }
         }, 'seed');
       }
-      // Seed yTc on first join if empty. Use a nested Y.Map for snapshots so
-      // individual snapshot updates can happen without rewriting the whole
-      // tc state. 'enabled' is intentionally NOT seeded here: seeding it
-      // in two independent docs creates a Yjs Y.Map LWW conflict where the
-      // doc with the higher clientID wins regardless of which client later
-      // calls publishTcToDoc. Omitting 'enabled' from the seed means
-      // publishTcToDoc is the sole writer, so its write always propagates.
-      // readTc treats a missing 'enabled' key as false (disabled).
+      // yTc requires NO seeding.
+      //
+      // Seeding 'enabled' OR 'snapshots' in two independent docs creates a
+      // Yjs Y.Map LWW conflict: after cross-doc sync, whichever doc has the
+      // higher random clientID wins each key, regardless of which client
+      // actually called publishTcToDoc. This means:
+      //   - A seed of `enabled: false` can clobber a subsequent
+      //     `publishTc({ enabled: true })` from the other client.
+      //   - A seed of `snapshots: new Y.Map()` creates two independent
+      //     Y.Map instances for the same key; after merge only one wins
+      //     LWW — any data written into the losing instance is silently
+      //     discarded.
+      //
+      // The fix: leave BOTH keys absent until publishTcToDoc first writes
+      // them. publishTcToDoc creates the 'snapshots' Y.Map if absent, making
+      // it the sole creator of the instance — no LWW conflict is possible.
+      // readTc coerces an absent 'enabled' key to false via `!!`.
+      //
       // yComments is an empty Y.Map — no seeding needed; populated on
       // first comment create.
-      if (yTc.size === 0) {
-        ydoc.transact(() => {
-          yTc.set('snapshots', new Y.Map());
-        }, 'seed');
-      }
       // Emit the current (possibly remote) state once to initialize React.
       onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: true });
       onRemoteMeta?.(readYMeta(yMeta), { initial: true });
