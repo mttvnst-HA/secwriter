@@ -293,9 +293,20 @@ export function readComments(yComments) {
  * Y.Array. Scalar fields only — no nested shared types, so replies merge
  * by position (Y.Array concurrent-insert semantics).
  */
+// Collision-resistant entry id. Prefers crypto.randomUUID() when
+// available (all modern browsers + Node 19+); falls back to a
+// time-prefixed random suffix for exotic environments. Used when the
+// caller doesn't supply an `id` on buildEntryYMap.
+function generateEntryId() {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return `e-${crypto.randomUUID()}`;
+  }
+  return `e-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
 function buildEntryYMap({ type, author, text, ts, id }) {
   const m = new Y.Map();
-  m.set('id', id || `e-${Math.random().toString(36).slice(2, 10)}`);
+  m.set('id', id || generateEntryId());
   m.set('type', type);
   m.set('authorId', author?.id || '');
   m.set('authorName', author?.name || '');

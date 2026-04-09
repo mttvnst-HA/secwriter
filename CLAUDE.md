@@ -81,7 +81,7 @@ src/
     grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~280 lines
     nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~230 lines
     fix-utils.js           # Offset-aware string replacement in HTML: replaceAtOffset() for disambiguating duplicate violations ~65 lines
-    __tests__/             # 557 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
+    __tests__/             # 565 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
     umrl.json              # UMRL reference database (302 orgs, 4,973 references, 587KB)
@@ -132,7 +132,7 @@ test-results/              # UI audit output: findings.json + timestamped Markdo
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 557 Vitest unit tests
+npm test             # Run 565 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 141 Playwright E2E tests
@@ -140,7 +140,7 @@ npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node ru
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
-# Full suite: 557 + 99 + 141 = 797 automated tests
+# Full suite: 565 + 99 + 141 = 805 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -376,7 +376,7 @@ Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`).
 
 **Persistence & sidecar limitations:** The relay server persists each room's `Y.Doc` as a binary CRDT snapshot (8 MB cap). `.SEC` and `.comments.json` still live on each user's local disk, written only when that user hits Ctrl+S. This means two clients who both save get their own point-in-time sidecars that can drift — if Alice saves while Bob is still typing a reply, Alice's sidecar won't include it. For a hosted Azure deployment this is not good enough; the follow-up spec at `docs/superpowers/specs/2026-04-09-shared-tc-comments-design.md` (Deployment implications section) points at server-owned `.SEC` + sidecar in Blob Storage as the next increment. Known, accepted for the localhost prototype.
 
-**Known limitations (shared comments ghost-span):** `handleCommentCreate` in `App.jsx` eagerly injects a `mark-comment` highlight span into `block.html` for immediate visual feedback, but defers publishing to `yComments` until the user submits text via `handleCommentUpdateCreate`. In a room, the span reaches peers through the normal `yStore` block-html sync before the metadata does. If the user then abandons the popup via the dismissal handler (`CommentPopup`'s click-outside / escape) it calls `onDelete` which strips the span — works correctly. But if the user **closes the tab or refreshes** before the dismissal handler fires, the span persists in the shared doc with no corresponding `yComments` entry, leaving a dead yellow highlight peers can't open (clicking it hits `handleCommentClick` → `setOpenCommentId` but `comments.get(id)` is undefined so no popup renders). Not a crash; not data loss; but a small UX wart. Fix would be to delay the block.html mutation until `handleCommentUpdateCreate` also publishes, or to add a cleanup pass that strips orphan `mark-comment` spans on room join.
+**Ghost-span recovery (shared comments):** `handleCommentCreate` eagerly injects a `mark-comment` highlight span into `block.html` for immediate visual feedback, but defers publishing to `yComments` until the user submits text via `handleCommentUpdateCreate`. In a room, the span reaches peers through the normal `yStore` block-html sync before the metadata does. Normal dismissal (click-outside / escape) strips the span. The tab-close / refresh case used to leave a dead yellow highlight peers couldn't open; it's now recovered by a cleanup pass in `onRemoteComments` on room-join initial sync: `stripOrphanCommentSpans` (`src/lib/orphan-comment-spans.js`) walks the just-synced blocks, unwraps any `mark-comment` span whose `data-comment-id` is absent from `yComments`, and publishes the cleaned blocks back through the normal blocks→yStore pathway so all peers converge. Initial blocks are stashed in `initialBlocksForCleanupRef` during `onRemoteBlocks` initial, then consumed by `onRemoteComments` initial. 7 regression tests at `src/lib/__tests__/orphan-comment-spans.test.js`.
 
 **Known prototype limitations (roadmap):**
 - Shared tables/REFs — currently coarse (JSON-encoded whole-value sync)
@@ -498,7 +498,9 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | interop-encoding.node-test.mjs | 11 | Node | Reverse import roundtrip (block count, types), encoding fidelity (windows-1252, CRLF, no BOM), special character preservation |
 | editor.spec.js (E2E) | 141 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 557 Vitest + 99 Node + 141 Playwright = 797 automated tests**
+| orphan-comment-spans.test.js | 8 | Vitest | Ghost-span cleanup: no-op, single orphan, mixed valid+orphan, mark-comment-resolved class, reference preservation, nested orphans, non-comment data spans |
+
+**Total: 565 Vitest + 99 Node + 141 Playwright = 804 automated tests**
 
 ## Dependencies
 

@@ -36,6 +36,7 @@ import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import { clearInlineLinting } from "./lib/inline-linter.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES } from "./lib/collab.js";
+import { stripOrphanCommentSpans } from "./lib/orphan-comment-spans.js";
 import { loadIdentity } from "./lib/identity.js";
 import IdentityModal from "./components/IdentityModal.jsx";
 import PresenceBar from "./components/PresenceBar.jsx";
@@ -176,9 +177,12 @@ export default function SpecEditor() {
   const lastRemoteBlocksRef = useRef(null);
   const sessionReadyRef = useRef(false);
   const metaReadyRef = useRef(false);
-  const remoteTcRef = useRef(null);
-  const remoteCommentsRef = useRef(null);
   const tcDirtyRef = useRef(false);
+  // Stash the nextBlocks from the initial onRemoteBlocks call so the
+  // subsequent initial onRemoteComments can strip orphan mark-comment
+  // spans against the authoritative remote blocks (blocksRef is not
+  // yet updated — setBlocks is async).
+  const initialBlocksForCleanupRef = useRef(null);
 
   const fileHandleRef = useRef(null); // File System Access API handle for SEC file
   const commentsHandleRef = useRef(null); // File System Access API handle for comments sidecar
@@ -543,6 +547,11 @@ export default function SpecEditor() {
       // Deferred from handleCommentCreate so the Y.Doc never holds a
       // pending empty-text comment entry.
       const effectiveAuthor = identity || { id: 'local', name: author || 'User', color: '#888' };
+      // commentsRef is assigned on every render (`commentsRef.current = comments`),
+      // so it reflects the last *rendered* comments Map. This is safe here
+      // because handleCommentCreate ran on a prior render tick (the user had
+      // to type submission text between create and update-create), so the
+      // freshly-created comment is already present in commentsRef.current.
       const current = commentsRef.current?.get(commentId);
       if (current) {
         try {
@@ -721,7 +730,10 @@ export default function SpecEditor() {
       }
     }
     setOpenCommentId(null);
-  }, [inRoom]);
+    // `identity` is not read in this handler, but we include it in the
+    // dep array for symmetry with the other comment handlers. Keeps
+    // the hook identity stable across the same renders as its siblings.
+  }, [inRoom, identity]);
 
   const handleCommentClick = useCallback((commentId, rect) => {
     setOpenCommentId(commentId);
@@ -1206,6 +1218,9 @@ export default function SpecEditor() {
         // duplicate the document on reload.
         if (meta?.initial) {
           sessionReadyRef.current = true;
+          // Stash for the ghost-span cleanup pass that runs in the
+          // subsequent initial onRemoteComments call.
+          initialBlocksForCleanupRef.current = nextBlocks;
         }
 
         // Preserve caret — and any non-collapsed selection — across a
@@ -1258,20 +1273,38 @@ export default function SpecEditor() {
         if (remote.fileName) setFileName(remote.fileName);
       },
       onRemoteTc: (tc) => {
-        // M-shared-tc — apply remote Track Changes state. Stash the
-        // snapshot so React updates don't round-trip through the publish
-        // effect below (gated by tcDirtyRef, which only user actions set).
-        remoteTcRef.current = tc;
+        // M-shared-tc — apply remote Track Changes state. Round-tripping
+        // is prevented by the publish effect's tcDirtyRef gate — only
+        // user actions flip that bit, so these remote setters don't echo.
         setTrackChanges(!!tc.enabled);
         setTcSnapshots(new Map(Object.entries(tc.snapshots || {})));
       },
-      onRemoteComments: (commentsObj) => {
+      onRemoteComments: (commentsObj, commentsMeta) => {
         // M-shared-comments — apply remote comment state. The
         // mark-comment DOM spans are synced via the existing
         // blocks → yStore pathway, so we only update the metadata Map
-        // here. Task 6 adds the publish side.
-        remoteCommentsRef.current = commentsObj;
+        // here. Publishes are imperative (no effect watching `comments`),
+        // so there is no echo to guard against.
         setComments(new Map(Object.entries(commentsObj || {})));
+        // Ghost-span cleanup: on initial sync, strip mark-comment
+        // highlight spans whose data-comment-id has no matching entry
+        // in yComments. This recovers from the tab-close abandon case
+        // where the eager span injection got published but the
+        // deferred metadata publish never fired. Runs once per join.
+        if (commentsMeta?.initial && initialBlocksForCleanupRef.current) {
+          const initialBlocks = initialBlocksForCleanupRef.current;
+          initialBlocksForCleanupRef.current = null;
+          const validIds = new Set(Object.keys(commentsObj || {}));
+          const cleaned = stripOrphanCommentSpans(initialBlocks, validIds);
+          if (cleaned !== initialBlocks) {
+            // setBlocks with a new reference — this is NOT equal to
+            // lastRemoteBlocksRef.current, so the publish effect will
+            // fire and push the cleaned version back to the Y.Doc for
+            // all peers. That's intentional: the ghosts should be
+            // removed globally, not just locally.
+            setBlocks(cleaned);
+          }
+        }
       },
       onPresenceChange: (states) => setPeers(states),
       onStatusChange: (status) => setCollabStatus(status),
@@ -2075,6 +2108,12 @@ export default function SpecEditor() {
           onTrackChangesChange={(val) => {
             tcDirtyRef.current = true;
             setTrackChanges(val);
+            // When disabling TC we intentionally leave local tcSnapshots
+            // state as-is. The publish effect at the top of the file
+            // computes `snapshots = {}` whenever trackChanges is false
+            // (regardless of tcSnapshots), so the Y.Doc gets cleared
+            // correctly, and annotateDomWithDiff is not called with TC
+            // off — stale local state is harmless.
             if (val) {
               // Snapshot the "visible" text of each block when TC turns on.
               // Uses getVisibleTextFromHtml which excludes <del> content

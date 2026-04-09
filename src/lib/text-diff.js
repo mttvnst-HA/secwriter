@@ -205,7 +205,16 @@ function applyAuthorToElement(el, author) {
     el.setAttribute('data-author-color', String(author.color));
     // Use setAttribute('style', ...) rather than .style.setProperty because
     // linkedom's style object doesn't support setProperty cleanly.
-    const prev = el.getAttribute('style') || '';
+    // Defensive: strip any prior `--author-color` declaration before
+    // appending the new one. In the current flow annotateDomWithDiff
+    // is only called once per blur on a freshly-rebuilt container, so
+    // duplicates wouldn't normally accumulate — but this keeps the
+    // helper safe if it's ever reused on an already-annotated element.
+    const prev = (el.getAttribute('style') || '')
+      .split(';')
+      .map((d) => d.trim())
+      .filter((d) => d && !d.startsWith('--author-color'))
+      .join('; ');
     const varDecl = `--author-color: ${author.color}`;
     el.setAttribute('style', prev ? `${prev}; ${varDecl}` : varDecl);
   }

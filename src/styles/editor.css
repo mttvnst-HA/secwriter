@@ -142,6 +142,12 @@ span.mark-chg {
  *
  * `currentColor` + the CSS variable make both the text and the decoration
  * pick up the author color in one declaration.
+ *
+ * DEPENDENCY: these selectors override `color` and `text-decoration-color`
+ * only — they rely on the base `ins.mark-add` / `del.mark-del` rules
+ * above to set `text-decoration` (underline / line-through). If those
+ * base rules are ever removed, the per-author coloring will still apply
+ * to the glyphs but the underline/strikethrough will disappear.
  */
 ins.mark-add[data-author-color] {
   color: var(--author-color, #008000);
