@@ -647,6 +647,27 @@ describe('collab — createCollabSession origin guards', () => {
     session.destroy();
   });
 
+  it('publishBlocks throws DocSizeLimitError once and recovers after shrink (M-7)', () => {
+    const session = createCollabSession({
+      room: 'test-m7',
+      wsUrl: 'ws://127.0.0.1:9',
+      identity: { id: 'u', name: 'U', color: '#000' },
+      initialBlocks: [],
+      onRemoteBlocks: () => {},
+      onRemoteMeta: () => {},
+    });
+    // Build a block array just over the 4 MB cap.
+    const big = 'x'.repeat(MAX_PUBLISH_BYTES + 1024);
+    const over = [{ id: 'n1', type: 'txt', html: big }];
+    expect(() => session.publishBlocks(over)).toThrow(DocSizeLimitError);
+
+    // Shrink under the cap → publishes normally again.
+    const under = [{ id: 'n1', type: 'txt', html: 'small' }];
+    expect(() => session.publishBlocks(under)).not.toThrow();
+    expect(session.yStore.get('n1').get('html').toString()).toBe('small');
+    session.destroy();
+  });
+
   it('publishMeta does not echo through onRemoteMeta (M-8)', () => {
     let metaCalls = 0;
     const session = createCollabSession({
