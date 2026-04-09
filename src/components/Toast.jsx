@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 /**
  * Lightweight toast primitive — no dependencies, no portal.
@@ -56,7 +56,11 @@ export function useToasts() {
     };
   }, []);
 
-  return { items, push, dismiss };
+  // A2 — stable return object so consumers can depend on `toasts.push`
+  // via a ref without re-running effects every render. `push` and
+  // `dismiss` are already useCallback with stable deps; `items` is the
+  // only member that changes per render.
+  return useMemo(() => ({ items, push, dismiss }), [items, push, dismiss]);
 }
 
 export default function ToastStack({ toasts, onDismiss }) {

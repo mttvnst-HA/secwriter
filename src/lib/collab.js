@@ -82,13 +82,25 @@ export function generateRoomId() {
 const SCALAR_KEYS = ['id', 'type', 'part', 'depth', 'section', 'level', 'revision'];
 const JSON_KEYS = ['table', 'ref']; // stored as JSON strings for prototype simplicity
 
-// M7 — client-side doc size guard. Mirror of the server's MAX_DOC_BYTES so
-// a runaway paste can't quietly seed a 100MB document into the Y.Doc before
-// the server rejects the persistence. The cap applies to the combined plain
-// text + HTML of all blocks in a publish. Publishes exceeding this cap are
-// rejected with a thrown DocSizeLimitError — callers should catch and
-// surface the error to the user.
-export const MAX_PUBLISH_BYTES = 8 * 1024 * 1024;
+// M7 — client-side doc size guard.
+//
+// The server persists each room as a Yjs state snapshot, capped at 8 MB
+// (server/collab-server.cjs MAX_DOC_BYTES). Yjs wire overhead — item
+// IDs, clocks, client IDs, CRDT metadata per inserted fragment — runs
+// roughly 1.5–2× the plain text for a steady-state document, and higher
+// for docs with lots of edit history.
+//
+// A naive 8 MB *plain-text* cap on the client would let a document pass
+// the client check and then fail the server's 8 MB *snapshot* cap. We
+// bake a 2× safety factor into the client guard so the effective client
+// cap is 4 MB plain text — the client rejects *before* the server does,
+// which is the only way to surface a useful error to the user.
+//
+// Publishes exceeding the cap are rejected with a thrown
+// DocSizeLimitError; callers should catch and surface it.
+const SERVER_SNAPSHOT_CAP_BYTES = 8 * 1024 * 1024;
+const WIRE_OVERHEAD_FACTOR = 2;
+export const MAX_PUBLISH_BYTES = Math.floor(SERVER_SNAPSHOT_CAP_BYTES / WIRE_OVERHEAD_FACTOR);
 
 export class DocSizeLimitError extends Error {
   constructor(actualBytes, maxBytes) {
@@ -391,22 +403,23 @@ export function createCollabSession({
     // actually changed.
     if (transaction.changed.size === 0 && transaction.changedParentTypes.size === 0) return;
 
-    // Detect whether this transaction touched blocks, meta, or both. We
-    // check `transaction.changed` keys — each key is a top-level shared
-    // type and each value is the set of keys mutated on it.
-    let blocksChanged = false;
-    let metaChanged = false;
-    for (const type of transaction.changed.keys()) {
-      if (type === yOrder || type === yStore) blocksChanged = true;
-      else if (type === yMeta) metaChanged = true;
-      else blocksChanged = true; // nested Y.Text inside yStore
-    }
-    // Nested types (Y.Text within a block's Y.Map) surface via
-    // changedParentTypes rather than changed.
-    for (const type of transaction.changedParentTypes.keys()) {
-      if (type === yMeta) metaChanged = true;
-      else blocksChanged = true;
-    }
+    // Detect whether this transaction touched blocks, meta, or both.
+    //
+    // `transaction.changedParentTypes` is a Map<AbstractType, YEvent[]>
+    // populated with EVERY ancestor of every modified type, up to the
+    // Y.Doc root. That makes it the authoritative signal for "did the
+    // blocks subtree change" or "did the meta subtree change" — we
+    // don't have to fall back to a "default-to-blocks" guess based on
+    // the shape of `transaction.changed`.
+    //
+    // `transaction.changed` is used as a fallback so a mutation that
+    // only touches a top-level shared type's key set (without affecting
+    // any nested type's parent chain) still classifies correctly.
+    const cpt = transaction.changedParentTypes;
+    const ch = transaction.changed;
+    const blocksChanged =
+      cpt.has(yOrder) || cpt.has(yStore) || ch.has(yOrder) || ch.has(yStore);
+    const metaChanged = cpt.has(yMeta) || ch.has(yMeta);
 
     if (blocksChanged) {
       onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: false });

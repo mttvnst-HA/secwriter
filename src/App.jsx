@@ -156,6 +156,13 @@ export default function SpecEditor() {
   const [peers, setPeers] = useState([]);
   const [collabStatus, setCollabStatus] = useState(inRoom ? 'connecting' : null);
   const toasts = useToasts();
+  // A2 — stable ref to toasts.push so effects can fire toasts without
+  // needing `toasts` in their dep array. Without this, the publish effect
+  // would re-run on every render because `toasts.items` changes whenever
+  // a toast is added or dismissed, which in turn would wastefully re-run
+  // estimatePublishBytes + ref-equality check on every keystroke.
+  const toastPushRef = useRef(toasts.push);
+  toastPushRef.current = toasts.push;
   const collabSessionRef = useRef(null);
   // Reference-equality guard: whenever onRemoteBlocks runs, we stash the new
   // array here and the publish effect compares `blocks === lastRemoteBlocksRef.current`
@@ -166,8 +173,6 @@ export default function SpecEditor() {
   // (a) corrupted initial persistence on join and (b) caused Y.UndoManager
   // to track remote edits, making Ctrl+Z undo everyone's work.
   const lastRemoteBlocksRef = useRef(null);
-  // M3 — same echo-prevention pattern for section metadata.
-  const lastRemoteMetaRef = useRef(null);
   const sessionReadyRef = useRef(false);
 
   const fileHandleRef = useRef(null); // File System Access API handle for SEC file
@@ -1099,11 +1104,11 @@ export default function SpecEditor() {
         }
       },
       initialMeta: { ...sectionMetaRef.current, fileName },
-      onRemoteMeta: (remote, meta) => {
-        // M3 — apply remote section metadata updates. Guarded against echo
-        // by lastRemoteMetaRef (same pattern as blocks).
+      onRemoteMeta: (remote) => {
+        // M3 — apply remote section metadata updates. No local echo
+        // guard needed; publishMeta's per-key diff + 'local-meta'
+        // origin filter already prevent round-trip.
         if (!remote || typeof remote !== 'object') return;
-        lastRemoteMetaRef.current = remote;
         setSectionMeta((prev) => ({ ...prev, ...remote }));
         if (remote.fileName) setFileName(remote.fileName);
       },
@@ -1148,6 +1153,12 @@ export default function SpecEditor() {
   // items (see the `no-op applyBlocksToYDoc does not grow Y.UndoManager
   // stack (I2)` regression test in collab.test.js), so even a worst-case
   // echo is harmless — it cannot reintroduce cross-user undo corruption.
+  // A4 — publishDisabled latch: once the document exceeds MAX_PUBLISH_BYTES
+  // we stop calling publishBlocks on every keystroke (which would re-walk
+  // every block through estimatePublishBytes and re-push a toast) until
+  // the user shrinks the document back under the cap. The latch clears
+  // automatically on the next render where the estimate is safe again.
+  const publishDisabledRef = useRef(false);
   useEffect(() => {
     if (!inRoom) return;
     const session = collabSessionRef.current;
@@ -1156,41 +1167,57 @@ export default function SpecEditor() {
     if (blocks === lastRemoteBlocksRef.current) return;
     try {
       session.publishBlocks(blocks);
-    } catch (err) {
-      // M7 — client-side doc size guard. The session throws rather than
-      // silently truncating so we can surface the limit to the user and
-      // let them cut the document before continuing. The local React
-      // state still holds the oversized blocks; subsequent edits will
-      // retry the publish (and fail again) until the user shrinks it.
-      if (err instanceof DocSizeLimitError) {
-        toasts.push({
-          kind: 'error',
-          title: 'Document too large to sync',
-          body: `This document is ${(err.actualBytes / (1024 * 1024)).toFixed(1)} MB, ` +
-                `over the ${(err.maxBytes / (1024 * 1024)).toFixed(0)} MB collab limit. ` +
-                `Your edits are not being shared with other users. ` +
-                `Remove some content and try again.`,
-          ttl: 15000,
+      // Success — clear any previous over-cap latch.
+      if (publishDisabledRef.current) {
+        publishDisabledRef.current = false;
+        toastPushRef.current?.({
+          kind: 'success',
+          title: 'Sync resumed',
+          body: 'Document is back under the collab size limit.',
+          ttl: 5000,
         });
+      }
+    } catch (err) {
+      if (err instanceof DocSizeLimitError) {
+        // M7 — client-side doc size guard. Only push the error toast
+        // the first time we hit the limit to avoid spamming the user
+        // on every keystroke while the document is oversized.
+        if (!publishDisabledRef.current) {
+          publishDisabledRef.current = true;
+          toastPushRef.current?.({
+            kind: 'error',
+            title: 'Document too large to sync',
+            body: `This document is ${(err.actualBytes / (1024 * 1024)).toFixed(1)} MB, ` +
+                  `over the ${(err.maxBytes / (1024 * 1024)).toFixed(0)} MB collab limit. ` +
+                  `Your edits are not being shared with other users. ` +
+                  `Remove some content and try again.`,
+            ttl: 0, // sticky — the user has to dismiss it manually
+          });
+        }
       } else {
         console.error('[collab] publishBlocks failed:', err);
       }
     }
-  }, [blocks, inRoom, toasts]);
+    // Intentionally NOT depending on `toasts` — A2. Toast dispatch goes
+    // through toastPushRef which is refreshed every render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blocks, inRoom]);
 
   // M3 — publish local section metadata updates.
+  //
+  // No explicit echo guard here: publishMeta's per-key diff (compare
+  // `cur !== v` before writing) produces a zero-change transaction when
+  // the local state already matches the remote, and the `'local-meta'`
+  // origin is filtered inside handleAfterTx so even a fired transaction
+  // wouldn't round-trip through onRemoteMeta. An earlier version added
+  // an Object.keys().every() guard here but it was both unnecessary and
+  // subtly broken (asymmetric key sets could drop legitimate edits).
   useEffect(() => {
     if (!inRoom) return;
     const session = collabSessionRef.current;
     if (!session) return;
     if (!sessionReadyRef.current) return;
-    const combined = { ...sectionMeta, fileName };
-    if (lastRemoteMetaRef.current &&
-        Object.keys(combined).every((k) => lastRemoteMetaRef.current[k] === combined[k])) {
-      // Echo from a remote meta update — skip.
-      return;
-    }
-    session.publishMeta(combined);
+    session.publishMeta({ ...sectionMeta, fileName });
   }, [sectionMeta, fileName, inRoom]);
 
   // Broadcast our caret position so other users see a live cursor.
@@ -1268,7 +1295,7 @@ export default function SpecEditor() {
       // was blocked by the browser.
       const url = window.location.href;
       navigator.clipboard?.writeText(url).catch(() => {});
-      toasts.push({
+      toastPushRef.current?.({
         kind: 'success',
         title: 'Room link copied',
         body: url,
@@ -1285,7 +1312,9 @@ export default function SpecEditor() {
     // doc becomes the source of truth cleanly.
     try { clearAutoSave(); } catch { /* ignore */ }
     window.location.href = url;
-  }, [inRoom, toasts]);
+    // toasts accessed via toastPushRef; intentionally omitted from deps.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inRoom]);
 
   const sectionNumber = sectionMeta.sectionNumber;
   const sectionTitle = sectionMeta.sectionTitle;

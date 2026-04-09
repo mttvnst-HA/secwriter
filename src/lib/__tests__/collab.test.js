@@ -426,8 +426,12 @@ describe('collab — document size guard (M7)', () => {
     expect(err.maxBytes).toBe(8 * 1024 * 1024);
   });
 
-  it('MAX_PUBLISH_BYTES is exported and matches server cap', () => {
-    expect(MAX_PUBLISH_BYTES).toBe(8 * 1024 * 1024);
+  it('MAX_PUBLISH_BYTES is half of the server snapshot cap (A6 wire overhead)', () => {
+    // Yjs wire overhead runs ~2x plain text for steady-state docs, so
+    // the client cap must fire before the server's 8 MB snapshot cap
+    // to surface a useful error. 4 MB plain text = ~8 MB Yjs snapshot.
+    const SERVER_CAP = 8 * 1024 * 1024;
+    expect(MAX_PUBLISH_BYTES).toBe(SERVER_CAP / 2);
   });
 });
 
@@ -448,6 +452,48 @@ describe('collab — yMeta (M3)', () => {
       sectionTitle: 'EARTHWORK',
       date: '08/23',
     });
+  });
+
+  it('local meta edit after remote meta update still propagates (A1 regression)', () => {
+    // Reviewer caught a broken echo guard that could drop legitimate
+    // local meta edits whenever the last remote snapshot had MORE keys
+    // than the local edit, or happened to share every key the local
+    // combined object carried. The guard was deleted — publishMeta's
+    // per-key diff + the 'local-meta' origin filter handle echo. This
+    // test pins the scenario the guard was incorrectly blocking.
+    const docA = new Y.Doc();
+    const docB = new Y.Doc();
+    const metaA = docA.getMap('meta');
+    const metaB = docB.getMap('meta');
+
+    // B publishes a full metadata snapshot with multiple keys.
+    docB.transact(() => {
+      metaB.set('sectionNumber', '31 00 00');
+      metaB.set('sectionTitle', 'EARTHWORK');
+      metaB.set('date', '08/23');
+      metaB.set('fileName', '31_00_00.SEC');
+    });
+
+    // A receives B's snapshot.
+    Y.applyUpdate(docA, Y.encodeStateAsUpdate(docB));
+    expect(readYMeta(metaA)).toEqual({
+      sectionNumber: '31 00 00',
+      sectionTitle: 'EARTHWORK',
+      date: '08/23',
+      fileName: '31_00_00.SEC',
+    });
+
+    // Now A makes a local edit changing ONLY the section title.
+    docA.transact(() => { metaA.set('sectionTitle', 'STRUCTURAL STEEL'); }, 'local-meta');
+
+    // B receives A's update.
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA, Y.encodeStateVector(docB)));
+
+    // The edit must have propagated — this is exactly what the broken
+    // echo guard would have dropped.
+    expect(metaB.get('sectionTitle')).toBe('STRUCTURAL STEEL');
+    expect(metaB.get('sectionNumber')).toBe('31 00 00'); // other keys intact
+    expect(metaB.get('fileName')).toBe('31_00_00.SEC');
   });
 
   it('yMeta updates propagate across two docs (CRDT merge)', () => {
