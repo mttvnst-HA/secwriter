@@ -76,6 +76,17 @@ const writeTimers = new Map();
 // Track the per-room Y.Doc so the shutdown handler can flush every room
 // even if its timer hasn't fired.
 const boundDocs = new Map();
+// M-2: per-room persist health tracking.
+// roomHealth.get(docName) = { persistFailures: number, lastPersistSuccess: number|null }
+const roomHealth = new Map();
+function getHealth(docName) {
+  let h = roomHealth.get(docName);
+  if (!h) {
+    h = { persistFailures: 0, lastPersistSuccess: null };
+    roomHealth.set(docName, h);
+  }
+  return h;
+}
 const DEBOUNCE_MS = 500;
 
 function roomFile(name) {
@@ -99,6 +110,7 @@ function flushRoom(docName) {
   }
   const ydoc = boundDocs.get(docName);
   if (!ydoc) return;
+  const health = getHealth(docName);
   try {
     const snapshot = Y.encodeStateAsUpdate(ydoc);
     if (snapshot.byteLength > MAX_DOC_BYTES) {
@@ -106,8 +118,25 @@ function flushRoom(docName) {
       return;
     }
     writeSnapshotAtomic(roomFile(docName), Buffer.from(snapshot));
+    // M-2: success → reset failure counter + stamp last-good time.
+    health.persistFailures = 0;
+    health.lastPersistSuccess = Date.now();
   } catch (err) {
-    console.warn(`[collab] persist failed for "${docName}":`, err.message);
+    // M-2: track persist failures and escalate after 3 in a row.
+    health.persistFailures = (health.persistFailures || 0) + 1;
+    const staleFor = health.lastPersistSuccess
+      ? `${Math.round((Date.now() - health.lastPersistSuccess) / 1000)}s`
+      : 'never succeeded';
+    console.warn(
+      `[collab] persist failed for room=${docName} ` +
+      `failures=${health.persistFailures} stale=${staleFor} err=${err.message}`
+    );
+    if (health.persistFailures >= 3) {
+      console.error(
+        `[collab] ALERT room=${docName} has failed to persist ${health.persistFailures} ` +
+        `times in a row; in-memory state is diverging from disk snapshot`
+      );
+    }
   }
 }
 
