@@ -176,6 +176,9 @@ export default function SpecEditor() {
   const lastRemoteBlocksRef = useRef(null);
   const sessionReadyRef = useRef(false);
   const metaReadyRef = useRef(false);
+  const remoteTcRef = useRef(null);
+  const remoteCommentsRef = useRef(null);
+  const tcDirtyRef = useRef(false);
 
   const fileHandleRef = useRef(null); // File System Access API handle for SEC file
   const commentsHandleRef = useRef(null); // File System Access API handle for comments sidecar
@@ -606,6 +609,7 @@ export default function SpecEditor() {
     resumeHistory();
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
     if (trackChanges) {
+      tcDirtyRef.current = true;
       setTcSnapshots(prev => {
         const next = new Map(prev);
         next.set(id, getVisibleTextFromHtml(html));
@@ -744,6 +748,7 @@ export default function SpecEditor() {
     });
     // Track Changes: add empty snapshot so all typed text is marked as additions on blur
     if (trackChanges) {
+      tcDirtyRef.current = true;
       setTcSnapshots(prev => {
         const next = new Map(prev);
         next.set(newId, "");
@@ -903,6 +908,7 @@ export default function SpecEditor() {
     });
     // Track Changes: add empty snapshot so all typed text is marked as additions on blur
     if (trackChanges) {
+      tcDirtyRef.current = true;
       setTcSnapshots(prev => {
         const next = new Map(prev);
         next.set(newId, "");
@@ -945,6 +951,7 @@ export default function SpecEditor() {
         for (const b of next) {
           if (b.html) snap.set(b.id, getVisibleTextFromHtml(b.html));
         }
+        tcDirtyRef.current = true;
         setTcSnapshots(snap);
       }
       return next;
@@ -960,6 +967,7 @@ export default function SpecEditor() {
         for (const b of next) {
           if (b.html) snap.set(b.id, getVisibleTextFromHtml(b.html));
         }
+        tcDirtyRef.current = true;
         setTcSnapshots(snap);
       }
       return next;
@@ -1121,6 +1129,22 @@ export default function SpecEditor() {
         setSectionMeta((prev) => ({ ...prev, ...remote }));
         if (remote.fileName) setFileName(remote.fileName);
       },
+      onRemoteTc: (tc) => {
+        // M-shared-tc — apply remote Track Changes state. Stash the
+        // snapshot so React updates don't round-trip through the publish
+        // effect below (gated by tcDirtyRef, which only user actions set).
+        remoteTcRef.current = tc;
+        setTrackChanges(!!tc.enabled);
+        setTcSnapshots(new Map(Object.entries(tc.snapshots || {})));
+      },
+      onRemoteComments: (commentsObj) => {
+        // M-shared-comments — apply remote comment state. The
+        // mark-comment DOM spans are synced via the existing
+        // blocks → yStore pathway, so we only update the metadata Map
+        // here. Task 6 adds the publish side.
+        remoteCommentsRef.current = commentsObj;
+        setComments(new Map(Object.entries(commentsObj || {})));
+      },
       onPresenceChange: (states) => setPeers(states),
       onStatusChange: (status) => setCollabStatus(status),
     });
@@ -1229,6 +1253,34 @@ export default function SpecEditor() {
     if (!metaReadyRef.current) return; // I-3: wait for first onRemoteMeta
     session.publishMeta({ ...sectionMeta, fileName });
   }, [sectionMeta, fileName, inRoom]);
+
+  // M-shared-tc — publish local TC state changes to the Y.Doc.
+  //
+  // Gating: only publish when `tcDirtyRef` is set (meaning the change
+  // came from a user action). Remote updates land via onRemoteTc WITHOUT
+  // setting tcDirtyRef, so round-tripping is suppressed.
+  //
+  // When disabled, we publish an empty snapshots object so the baseline
+  // is cleared in the same Y.Doc transaction as the flag flip — otherwise
+  // remote clients would re-diff against a stale baseline and flag
+  // phantom changes.
+  useEffect(() => {
+    if (!inRoom) return;
+    const session = collabSessionRef.current;
+    if (!session) return;
+    if (!sessionReadyRef.current) return;
+    if (!tcDirtyRef.current) return;
+    tcDirtyRef.current = false;
+    const snapshots = {};
+    if (trackChanges) {
+      for (const [id, txt] of tcSnapshots.entries()) snapshots[id] = txt;
+    }
+    try {
+      session.publishTc({ enabled: trackChanges, snapshots });
+    } catch (err) {
+      console.error('[collab] publishTc failed:', err);
+    }
+  }, [trackChanges, tcSnapshots, inRoom]);
 
   // Broadcast our caret position so other users see a live cursor.
   useEffect(() => {
@@ -1893,6 +1945,7 @@ export default function SpecEditor() {
         <RevisionControls
           trackChanges={trackChanges}
           onTrackChangesChange={(val) => {
+            tcDirtyRef.current = true;
             setTrackChanges(val);
             if (val) {
               // Snapshot the "visible" text of each block when TC turns on.
@@ -2181,6 +2234,7 @@ export default function SpecEditor() {
                   tailorKey={tailorKey}
                   trackChanges={trackChanges}
                   snapshotText={tcSnapshots.get(block.id)}
+                  identity={identity}
                   onAcceptRevision={(id) => {
                     resumeHistory();
                     setBlocks(prev => {
@@ -2194,6 +2248,7 @@ export default function SpecEditor() {
                       return next;
                     });
                     if (trackChanges) {
+                      tcDirtyRef.current = true;
                       setTcSnapshots(prev => {
                         const s = new Map(prev);
                         const b = blocksRef.current.find(bl => bl.id === id);
@@ -2216,6 +2271,7 @@ export default function SpecEditor() {
                       return next;
                     });
                     if (trackChanges) {
+                      tcDirtyRef.current = true;
                       setTcSnapshots(prev => {
                         const s = new Map(prev);
                         const b = blocksRef.current.find(bl => bl.id === id);

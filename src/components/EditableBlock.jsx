@@ -52,7 +52,7 @@ function stripTagLabels(html) {
   return html.replace(/<span[^>]*class="tag-label"[^>]*>[^<]*<\/span>/g, '');
 }
 
-function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, comments, onCommentClick, onInlineFix, inlineLintingEnabled = true, compliancePanelActive = false, showTags = false }) {
+function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, identity, comments, onCommentClick, onInlineFix, inlineLintingEnabled = true, compliancePanelActive = false, showTags = false }) {
   const ref = useRef(null);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashFilter, setSlashFilter] = useState("");
@@ -209,7 +209,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     if (ref.current) {
       // Track Changes: annotate diff before saving
       if (trackChanges && snapshotText != null) {
-        annotateDomWithDiff(ref.current, snapshotText);
+        annotateDomWithDiff(ref.current, snapshotText, identity || null);
       }
       // Strip tag labels and TAI resolution classes before saving to state
       const html = stripTagLabels(cleanTaiClasses(ref.current.innerHTML));
