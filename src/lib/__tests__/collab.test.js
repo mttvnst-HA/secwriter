@@ -16,8 +16,20 @@ import {
 
 function makeDoc() {
   const ydoc = new Y.Doc();
-  const yBlocks = ydoc.getArray('blocks');
-  return { ydoc, yBlocks };
+  const yOrder = ydoc.getArray('order');
+  const yStore = ydoc.getMap('store');
+  return { ydoc, yOrder, yStore };
+}
+
+/** Get the Y.Map backing a given block id. */
+function getYMap(yStore, id) {
+  return yStore.get(id);
+}
+
+/** Get the Y.Text backing a given block id's html. */
+function getYText(yStore, id) {
+  const ymap = yStore.get(id);
+  return ymap ? ymap.get('html') : undefined;
 }
 
 const sampleBlocks = [
@@ -27,11 +39,12 @@ const sampleBlocks = [
 ];
 
 describe('collab — seeding & snapshot', () => {
-  it('seeds an empty Y.Array from a block array', () => {
-    const { ydoc, yBlocks } = makeDoc();
-    seedYBlocks(ydoc, yBlocks, sampleBlocks);
-    expect(yBlocks.length).toBe(3);
-    const out = yBlocksToArray(yBlocks);
+  it('seeds an empty Y.Doc from a block array', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
+    expect(yOrder.length).toBe(3);
+    expect(yStore.size).toBe(3);
+    const out = yBlocksToArray(yOrder, yStore);
     expect(out).toHaveLength(3);
     expect(out[0].id).toBe('b1');
     expect(out[0].html).toBe('GENERAL');
@@ -39,9 +52,9 @@ describe('collab — seeding & snapshot', () => {
   });
 
   it('roundtrips scalar + html fields', () => {
-    const { ydoc, yBlocks } = makeDoc();
-    seedYBlocks(ydoc, yBlocks, sampleBlocks);
-    const out = yBlocksToArray(yBlocks);
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
+    const out = yBlocksToArray(yOrder, yStore);
     for (let i = 0; i < sampleBlocks.length; i++) {
       expect(out[i]).toMatchObject({
         id: sampleBlocks[i].id,
@@ -54,37 +67,35 @@ describe('collab — seeding & snapshot', () => {
 
 describe('collab — applyBlocksToYDoc (update-in-place)', () => {
   it('updates a changed html field without rebuilding', () => {
-    const { ydoc, yBlocks } = makeDoc();
-    seedYBlocks(ydoc, yBlocks, sampleBlocks);
-    const yTextBefore = yBlocks.get(1).get('html');
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
+    const yTextBefore = getYText(yStore, 'b2');
 
     const next = [...sampleBlocks];
     next[1] = { ...next[1], html: 'This section covers grading.' };
-    applyBlocksToYDoc(ydoc, yBlocks, next);
+    applyBlocksToYDoc(ydoc, yOrder, yStore, next);
 
-    const yTextAfter = yBlocks.get(1).get('html');
+    const yTextAfter = getYText(yStore, 'b2');
     expect(yTextAfter.toString()).toBe('This section covers grading.');
     // Same Y.Text instance preserved (update-in-place path)
     expect(yTextAfter).toBe(yTextBefore);
   });
 
   it('updates a changed scalar field in place', () => {
-    const { ydoc, yBlocks } = makeDoc();
-    seedYBlocks(ydoc, yBlocks, sampleBlocks);
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
     const next = sampleBlocks.map((b, i) => i === 2 ? { ...b, level: 2 } : b);
-    applyBlocksToYDoc(ydoc, yBlocks, next);
-    expect(yBlocks.get(2).get('level')).toBe(2);
+    applyBlocksToYDoc(ydoc, yOrder, yStore, next);
+    expect(getYMap(yStore, 'b3').get('level')).toBe(2);
   });
 
   it('is a no-op when the block array is unchanged', () => {
-    const { ydoc, yBlocks } = makeDoc();
-    seedYBlocks(ydoc, yBlocks, sampleBlocks);
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
     const before = Y.encodeStateAsUpdate(ydoc);
-    applyBlocksToYDoc(ydoc, yBlocks, sampleBlocks);
+    applyBlocksToYDoc(ydoc, yOrder, yStore, sampleBlocks);
     const after = Y.encodeStateAsUpdate(ydoc);
-    // No real change should have been pushed through the Yjs update pipeline,
-    // but Yjs may still capture a transact boundary. What matters: state is identical.
-    expect(yBlocksToArray(yBlocks)).toEqual(sampleBlocks);
+    expect(yBlocksToArray(yOrder, yStore)).toEqual(sampleBlocks);
     expect(before.length).toBeGreaterThan(0);
     expect(after.length).toBeGreaterThan(0);
   });
@@ -92,29 +103,29 @@ describe('collab — applyBlocksToYDoc (update-in-place)', () => {
 
 describe('collab — applyBlocksToYDoc (structural changes)', () => {
   it('handles block insertion', () => {
-    const { ydoc, yBlocks } = makeDoc();
-    seedYBlocks(ydoc, yBlocks, sampleBlocks);
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
     const next = [
       sampleBlocks[0],
       { id: 'b-new', type: 'txt', part: 1, depth: 1, section: 'b1', html: 'Inserted' },
       sampleBlocks[1],
       sampleBlocks[2],
     ];
-    applyBlocksToYDoc(ydoc, yBlocks, next);
-    expect(yBlocks.length).toBe(4);
-    expect(yBlocksToArray(yBlocks).map((b) => b.id)).toEqual(['b1', 'b-new', 'b2', 'b3']);
+    applyBlocksToYDoc(ydoc, yOrder, yStore, next);
+    expect(yOrder.length).toBe(4);
+    expect(yBlocksToArray(yOrder, yStore).map((b) => b.id)).toEqual(['b1', 'b-new', 'b2', 'b3']);
   });
 
   it('preserves Y.Text identity for existing blocks across an insert', () => {
     // This is the critical invariant that prevents the
     // "Ctrl+Z wipes out the other user's edits" bug: inserting a new block
     // must not recreate the Y.Text of unchanged blocks.
-    const { ydoc, yBlocks } = makeDoc();
-    seedYBlocks(ydoc, yBlocks, sampleBlocks);
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
 
-    const yText0Before = yBlocks.get(0).get('html');
-    const yText1Before = yBlocks.get(1).get('html');
-    const yText2Before = yBlocks.get(2).get('html');
+    const b1Before = getYText(yStore, 'b1');
+    const b2Before = getYText(yStore, 'b2');
+    const b3Before = getYText(yStore, 'b3');
 
     const next = [
       sampleBlocks[0],
@@ -122,44 +133,108 @@ describe('collab — applyBlocksToYDoc (structural changes)', () => {
       sampleBlocks[1],
       sampleBlocks[2],
     ];
-    applyBlocksToYDoc(ydoc, yBlocks, next);
+    applyBlocksToYDoc(ydoc, yOrder, yStore, next);
 
-    // b1 was at index 0 and stays at index 0 → identity preserved
-    expect(yBlocks.get(0).get('html')).toBe(yText0Before);
-    // b2 moved from index 1 to index 2 → still the same Y.Text instance
-    expect(yBlocks.get(2).get('html')).toBe(yText1Before);
-    // b3 moved from index 2 to index 3 → identity preserved
-    expect(yBlocks.get(3).get('html')).toBe(yText2Before);
+    expect(getYText(yStore, 'b1')).toBe(b1Before);
+    expect(getYText(yStore, 'b2')).toBe(b2Before);
+    expect(getYText(yStore, 'b3')).toBe(b3Before);
   });
 
   it('preserves Y.Text identity for unchanged blocks across a delete', () => {
-    const { ydoc, yBlocks } = makeDoc();
-    seedYBlocks(ydoc, yBlocks, sampleBlocks);
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
 
-    const yText0Before = yBlocks.get(0).get('html');
-    const yText2Before = yBlocks.get(2).get('html');
+    const b1Before = getYText(yStore, 'b1');
+    const b3Before = getYText(yStore, 'b3');
 
-    applyBlocksToYDoc(ydoc, yBlocks, [sampleBlocks[0], sampleBlocks[2]]);
+    applyBlocksToYDoc(ydoc, yOrder, yStore, [sampleBlocks[0], sampleBlocks[2]]);
 
-    expect(yBlocks.length).toBe(2);
-    expect(yBlocks.get(0).get('html')).toBe(yText0Before);
-    expect(yBlocks.get(1).get('html')).toBe(yText2Before);
+    expect(yOrder.length).toBe(2);
+    expect(getYText(yStore, 'b1')).toBe(b1Before);
+    expect(getYText(yStore, 'b3')).toBe(b3Before);
+    expect(yStore.has('b2')).toBe(false);
   });
 
   it('handles block deletion', () => {
-    const { ydoc, yBlocks } = makeDoc();
-    seedYBlocks(ydoc, yBlocks, sampleBlocks);
-    applyBlocksToYDoc(ydoc, yBlocks, [sampleBlocks[0], sampleBlocks[2]]);
-    expect(yBlocks.length).toBe(2);
-    expect(yBlocksToArray(yBlocks).map((b) => b.id)).toEqual(['b1', 'b3']);
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
+    applyBlocksToYDoc(ydoc, yOrder, yStore, [sampleBlocks[0], sampleBlocks[2]]);
+    expect(yOrder.length).toBe(2);
+    expect(yBlocksToArray(yOrder, yStore).map((b) => b.id)).toEqual(['b1', 'b3']);
   });
 
   it('handles block reordering', () => {
-    const { ydoc, yBlocks } = makeDoc();
-    seedYBlocks(ydoc, yBlocks, sampleBlocks);
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
     const reordered = [sampleBlocks[2], sampleBlocks[0], sampleBlocks[1]];
-    applyBlocksToYDoc(ydoc, yBlocks, reordered);
-    expect(yBlocksToArray(yBlocks).map((b) => b.id)).toEqual(['b3', 'b1', 'b2']);
+    applyBlocksToYDoc(ydoc, yOrder, yStore, reordered);
+    expect(yBlocksToArray(yOrder, yStore).map((b) => b.id)).toEqual(['b3', 'b1', 'b2']);
+  });
+
+  it('preserves Y.Text identity for ALL blocks across a reorder (C1 regression)', () => {
+    // Critical invariant: reordering must not destroy any Y.Text.
+    // The old Y.Array<Y.Map> model lost identity here because Yjs shared
+    // types cannot be moved — delete+reinsert created fresh instances.
+    // The yOrder + yStore split keeps Y.Map/Y.Text identity stable because
+    // reorder only touches string IDs in yOrder.
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
+
+    const b1Before = getYText(yStore, 'b1');
+    const b2Before = getYText(yStore, 'b2');
+    const b3Before = getYText(yStore, 'b3');
+    const b1MapBefore = getYMap(yStore, 'b1');
+    const b2MapBefore = getYMap(yStore, 'b2');
+    const b3MapBefore = getYMap(yStore, 'b3');
+
+    // Full shuffle.
+    applyBlocksToYDoc(ydoc, yOrder, yStore, [sampleBlocks[2], sampleBlocks[0], sampleBlocks[1]]);
+
+    // Y.Text identity preserved for every block.
+    expect(getYText(yStore, 'b1')).toBe(b1Before);
+    expect(getYText(yStore, 'b2')).toBe(b2Before);
+    expect(getYText(yStore, 'b3')).toBe(b3Before);
+    // Y.Map identity preserved too.
+    expect(getYMap(yStore, 'b1')).toBe(b1MapBefore);
+    expect(getYMap(yStore, 'b2')).toBe(b2MapBefore);
+    expect(getYMap(yStore, 'b3')).toBe(b3MapBefore);
+    // Order reflects the reorder.
+    expect(yBlocksToArray(yOrder, yStore).map((b) => b.id)).toEqual(['b3', 'b1', 'b2']);
+  });
+
+  it('preserves a concurrent remote Y.Text edit across a local reorder', () => {
+    // Two-doc simulation of the exact scenario C1 was flagged for:
+    // Client B is typing in b2. Client A drags b3 above b1 (reorder).
+    // After sync, B's typing in b2 must still be present.
+    const docA = makeDoc();
+    const docB = makeDoc();
+    seedYBlocks(docA.ydoc, docA.yOrder, docA.yStore, sampleBlocks);
+    Y.applyUpdate(docB.ydoc, Y.encodeStateAsUpdate(docA.ydoc));
+
+    // B types directly into the Y.Text for b2 (simulates live editing).
+    const bText = getYText(docB.yStore, 'b2');
+    docB.ydoc.transact(() => {
+      bText.delete(0, bText.length);
+      bText.insert(0, 'B typed new body content.');
+    }, 'local-publish');
+
+    // Concurrently, A reorders without touching b2's content.
+    applyBlocksToYDoc(docA.ydoc, docA.yOrder, docA.yStore, [
+      sampleBlocks[2], sampleBlocks[0], sampleBlocks[1],
+    ]);
+
+    // Cross-sync.
+    Y.applyUpdate(docB.ydoc, Y.encodeStateAsUpdate(docA.ydoc, Y.encodeStateVector(docB.ydoc)));
+    Y.applyUpdate(docA.ydoc, Y.encodeStateAsUpdate(docB.ydoc, Y.encodeStateVector(docA.ydoc)));
+
+    const finalA = yBlocksToArray(docA.yOrder, docA.yStore);
+    const finalB = yBlocksToArray(docB.yOrder, docB.yStore);
+    expect(finalA).toEqual(finalB);
+    // Order from A wins.
+    expect(finalA.map((b) => b.id)).toEqual(['b3', 'b1', 'b2']);
+    // B's concurrent edit to b2 survived the reorder.
+    const b2 = finalA.find((b) => b.id === 'b2');
+    expect(b2.html).toBe('B typed new body content.');
   });
 });
 
@@ -168,20 +243,17 @@ describe('collab — two-doc sync (CRDT merge)', () => {
     const docA = makeDoc();
     const docB = makeDoc();
 
-    // Seed both from the same blocks
-    seedYBlocks(docA.ydoc, docA.yBlocks, sampleBlocks);
+    seedYBlocks(docA.ydoc, docA.yOrder, docA.yStore, sampleBlocks);
     const updateSeed = Y.encodeStateAsUpdate(docA.ydoc);
     Y.applyUpdate(docB.ydoc, updateSeed);
 
-    // A edits block 2
     const nextA = sampleBlocks.map((b, i) => i === 1 ? { ...b, html: 'A typed this.' } : b);
-    applyBlocksToYDoc(docA.ydoc, docA.yBlocks, nextA);
+    applyBlocksToYDoc(docA.ydoc, docA.yOrder, docA.yStore, nextA);
 
-    // Sync A→B
     const update = Y.encodeStateAsUpdate(docA.ydoc, Y.encodeStateVector(docB.ydoc));
     Y.applyUpdate(docB.ydoc, update);
 
-    const mirrorB = yBlocksToArray(docB.yBlocks);
+    const mirrorB = yBlocksToArray(docB.yOrder, docB.yStore);
     expect(mirrorB[1].html).toBe('A typed this.');
     expect(mirrorB.map((b) => b.id)).toEqual(['b1', 'b2', 'b3']);
   });
@@ -190,25 +262,70 @@ describe('collab — two-doc sync (CRDT merge)', () => {
     const docA = makeDoc();
     const docB = makeDoc();
 
-    seedYBlocks(docA.ydoc, docA.yBlocks, sampleBlocks);
+    seedYBlocks(docA.ydoc, docA.yOrder, docA.yStore, sampleBlocks);
     Y.applyUpdate(docB.ydoc, Y.encodeStateAsUpdate(docA.ydoc));
 
-    // Concurrent edits: A edits block 1, B edits block 2
     const nextA = sampleBlocks.map((b, i) => i === 0 ? { ...b, html: 'EARTHWORK' } : b);
-    applyBlocksToYDoc(docA.ydoc, docA.yBlocks, nextA);
+    applyBlocksToYDoc(docA.ydoc, docA.yOrder, docA.yStore, nextA);
 
     const nextB = sampleBlocks.map((b, i) => i === 2 ? { ...b, html: 'B edited item.' } : b);
-    applyBlocksToYDoc(docB.ydoc, docB.yBlocks, nextB);
+    applyBlocksToYDoc(docB.ydoc, docB.yOrder, docB.yStore, nextB);
 
-    // Cross-sync
     Y.applyUpdate(docB.ydoc, Y.encodeStateAsUpdate(docA.ydoc, Y.encodeStateVector(docB.ydoc)));
     Y.applyUpdate(docA.ydoc, Y.encodeStateAsUpdate(docB.ydoc, Y.encodeStateVector(docA.ydoc)));
 
-    const finalA = yBlocksToArray(docA.yBlocks);
-    const finalB = yBlocksToArray(docB.yBlocks);
+    const finalA = yBlocksToArray(docA.yOrder, docA.yStore);
+    const finalB = yBlocksToArray(docB.yOrder, docB.yStore);
     expect(finalA).toEqual(finalB);
     expect(finalA[0].html).toBe('EARTHWORK');
     expect(finalA[2].html).toBe('B edited item.');
+  });
+
+  it('Y.UndoManager scoped to local origin does not revert remote edits (M2)', () => {
+    // The invariant: Alice's Ctrl+Z must never touch Bob's edits.
+    const docA = makeDoc();
+    const docB = makeDoc();
+    seedYBlocks(docA.ydoc, docA.yOrder, docA.yStore, sampleBlocks);
+    Y.applyUpdate(docB.ydoc, Y.encodeStateAsUpdate(docA.ydoc));
+
+    const undoA = new Y.UndoManager([docA.yOrder, docA.yStore], {
+      trackedOrigins: new Set(['local-publish']),
+    });
+
+    // A publishes a local edit on b1 (tracked by undoA).
+    docA.ydoc.transact(() => {
+      applyBlocksToYDoc(
+        docA.ydoc,
+        docA.yOrder,
+        docA.yStore,
+        sampleBlocks.map((b, i) => i === 0 ? { ...b, html: 'Alice edit.' } : b),
+      );
+    }, 'local-publish');
+
+    // B edits b2 locally and sync A←B. From A's perspective this is a
+    // remote transaction (origin is not 'local-publish') so undoA must
+    // NOT track it.
+    applyBlocksToYDoc(
+      docB.ydoc,
+      docB.yOrder,
+      docB.yStore,
+      sampleBlocks.map((b, i) => i === 1 ? { ...b, html: 'Bob edit.' } : b),
+    );
+    Y.applyUpdate(docA.ydoc, Y.encodeStateAsUpdate(docB.ydoc, Y.encodeStateVector(docA.ydoc)));
+
+    // Snapshot the doc state and Bob's b2 text before undo.
+    const beforeUndo = yBlocksToArray(docA.yOrder, docA.yStore);
+    expect(beforeUndo.find((b) => b.id === 'b1').html).toBe('Alice edit.');
+    expect(beforeUndo.find((b) => b.id === 'b2').html).toBe('Bob edit.');
+
+    // Alice hits Ctrl+Z.
+    undoA.undo();
+
+    const afterUndo = yBlocksToArray(docA.yOrder, docA.yStore);
+    // Alice's edit is reverted.
+    expect(afterUndo.find((b) => b.id === 'b1').html).toBe('GENERAL');
+    // Bob's edit is PRESERVED — this is the invariant.
+    expect(afterUndo.find((b) => b.id === 'b2').html).toBe('Bob edit.');
   });
 });
 
@@ -223,7 +340,6 @@ describe('collab — URL helpers', () => {
   });
 
   it('buildRoomUrl appends the room param', () => {
-    // jsdom has a window in vitest test env
     const url = buildRoomUrl('abc123');
     expect(url).toContain('room=abc123');
   });

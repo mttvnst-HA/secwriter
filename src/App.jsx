@@ -1059,14 +1059,17 @@ export default function SpecEditor() {
     });
     collabSessionRef.current = session;
     // Debug hook: expose for devtools inspection during prototype QA.
-    if (typeof window !== 'undefined') window.__collab = session;
+    // Gated on DEV so a production build does not ship a global that exposes
+    // ydoc + awareness state to any page script that gets past the CSP.
+    const EXPOSE_DEBUG = typeof import.meta !== 'undefined' && import.meta.env?.DEV;
+    if (EXPOSE_DEBUG && typeof window !== 'undefined') window.__collab = session;
 
     return () => {
       session.destroy();
       collabSessionRef.current = null;
       sessionReadyRef.current = false;
       lastRemoteBlocksRef.current = null;
-      if (typeof window !== 'undefined') delete window.__collab;
+      if (EXPOSE_DEBUG && typeof window !== 'undefined') delete window.__collab;
     };
     // Intentionally depend only on roomId + identity so the session is stable
     // across blocks updates. initialBlocks is read via blocksRef.

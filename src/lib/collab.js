@@ -6,11 +6,23 @@
  * React `blocks` state becomes a derived view.
  *
  * Data layout (one Y.Doc per room):
- *   yBlocks: Y.Array<Y.Map>   each Y.Map has { id, type, part, depth,
- *                             section, level?, html: Y.Text, table?, ref?,
- *                             revision? }
- *   yMeta:   Y.Map            { sectionNumber, sectionTitle, date, fileName }
+ *   yOrder: Y.Array<string>        ordered block IDs (the document outline)
+ *   yStore: Y.Map<string, Y.Map>   block data, keyed by block ID
+ *                                  each value Y.Map has { id, type, part,
+ *                                  depth, section, level?, html: Y.Text,
+ *                                  table?, ref?, revision? }
+ *   yMeta:  Y.Map                  { sectionNumber, sectionTitle, date, fileName }
  *   awareness: { user: {id,name,color}, cursor: {blockId, index} }
+ *
+ * Why split ordering from storage:
+ *   Yjs shared types (Y.Map/Y.Text) cannot be moved between positions in a
+ *   Y.Array — a "move" requires delete+reinsert, which creates a fresh
+ *   instance and DESTROYS any concurrent edits another client is making to
+ *   the original Y.Text. See the "CRDT identity invariant" note in
+ *   CLAUDE.md. By storing blocks in a keyed Y.Map and keeping only string
+ *   IDs in the ordering Y.Array, reorders become cheap (reorder strings)
+ *   and Y.Text identity is preserved across any structural change —
+ *   insert, delete, or reorder.
  *
  * Prototype limitations (see CLAUDE.md roadmap):
  *   - html sync uses whole-text replacement (no per-character CRDT merge)
@@ -51,6 +63,10 @@ export function buildRoomUrl(roomId) {
 
 /**
  * Generate a short random room ID.
+ *
+ * Note: the room ID is NOT a secret. Anyone who can guess an 8-char
+ * base-36 ID can join the room with full read/write. Auth + TLS is a
+ * roadmap item — see CLAUDE.md "Multi-user collaboration (prototype)".
  */
 export function generateRoomId() {
   const bytes = new Uint8Array(6);
@@ -102,23 +118,33 @@ function yMapToBlock(yMap) {
   return block;
 }
 
-/** Snapshot the entire Y.Array<Y.Map> as a plain block array. */
-export function yBlocksToArray(yBlocks) {
-  const out = new Array(yBlocks.length);
-  for (let i = 0; i < yBlocks.length; i++) {
-    out[i] = yMapToBlock(yBlocks.get(i));
+/**
+ * Snapshot the current document state as a plain block array by walking
+ * the ordering in `yOrder` and resolving each ID against `yStore`.
+ */
+export function yBlocksToArray(yOrder, yStore) {
+  const out = [];
+  for (let i = 0; i < yOrder.length; i++) {
+    const id = yOrder.get(i);
+    const ymap = yStore.get(id);
+    if (ymap) out.push(yMapToBlock(ymap));
   }
   return out;
 }
 
 /**
- * Initial seed: push a plain block array into an empty Y.Array<Y.Map>.
- * Called when a client opens a fresh (empty) room.
+ * Initial seed: push a plain block array into an empty room. Called when
+ * a client opens a fresh (empty) room.
  */
-export function seedYBlocks(ydoc, yBlocks, blocks) {
+export function seedYBlocks(ydoc, yOrder, yStore, blocks) {
   ydoc.transact(() => {
-    yBlocks.delete(0, yBlocks.length);
-    for (const b of blocks) yBlocks.push([blockToYMap(b)]);
+    // Clear anything that may be there (paranoid — callers gate on empty).
+    yOrder.delete(0, yOrder.length);
+    for (const id of Array.from(yStore.keys())) yStore.delete(id);
+    for (const b of blocks) {
+      yStore.set(b.id, blockToYMap(b));
+      yOrder.push([b.id]);
+    }
   }, 'seed');
 }
 
@@ -160,7 +186,8 @@ function updateYMapFromBlock(ymap, block) {
 
 /**
  * Apply a plain block array to the Y.Doc with an incremental diff that
- * PRESERVES Y.Map / Y.Text identity for blocks that exist in both states.
+ * PRESERVES Y.Map / Y.Text identity for every block that exists in both
+ * the before and after state — including blocks that were reordered.
  *
  * Preserving identity is critical:
  *   - Remote clients editing an unchanged block must not lose their Y.Text
@@ -171,68 +198,61 @@ function updateYMapFromBlock(ymap, block) {
  *     everything that was typed into the new ones. That's the bug that
  *     caused Alice's Ctrl+Z to wipe out Bob's subsequent edits.
  *
- * Algorithm (two passes):
- *   1. Delete any Y.Map whose ID is not in the next block array, walking
- *      from the end so indices stay valid.
- *   2. Walk the next blocks in order with a cursor into yBlocks. For each
- *      target block:
- *        a. If the cursor already points at the matching ID → update its
- *           fields in place, advance.
- *        b. Else, check if the target ID exists further down in yBlocks.
- *           If yes, that's a reorder: delete it from its current spot and
- *           insert a fresh Y.Map at the cursor position. (Y.Map instances
- *           can't be moved between positions in a Y.Array, so a move
- *           always means delete+insert.)
- *        c. Else this is a newly-created block → insert a fresh Y.Map at
- *           the cursor position.
- *
- * This guarantees that insert/delete operations only create the minimal
- * number of new Y.Map / Y.Text instances. Pure text edits to existing
- * blocks go through the in-place path in step 2a.
+ * Algorithm:
+ *   1. Compute the set of target IDs. Delete any ID present in yStore but
+ *      not in the target (also removed from yOrder below). This tears
+ *      down Y.Maps for genuinely deleted blocks only.
+ *   2. For each target block in order, update its yStore entry in place
+ *      (creating a new Y.Map only if the ID is brand new). Reorders and
+ *      moves do NOT touch yStore.
+ *   3. Reconcile yOrder against the target sequence with a minimal
+ *      delete/insert diff on string IDs. Strings have no identity, so
+ *      reorder churn in yOrder is harmless — no Y.Text is ever destroyed.
  */
-export function applyBlocksToYDoc(ydoc, yBlocks, blocks) {
+export function applyBlocksToYDoc(ydoc, yOrder, yStore, blocks) {
   ydoc.transact(() => {
-    // ─── Pass 1: delete IDs that no longer exist ────────────────────────
-    const nextIdSet = new Set();
-    for (const b of blocks) nextIdSet.add(b.id);
-    for (let i = yBlocks.length - 1; i >= 0; i--) {
-      const id = yBlocks.get(i).get('id');
-      if (!nextIdSet.has(id)) {
-        yBlocks.delete(i, 1);
+    const nextIds = blocks.map((b) => b.id);
+    const nextIdSet = new Set(nextIds);
+
+    // ─── Pass 1: remove Y.Maps for blocks that no longer exist ─────────
+    for (const id of Array.from(yStore.keys())) {
+      if (!nextIdSet.has(id)) yStore.delete(id);
+    }
+
+    // ─── Pass 2: in-place update or create Y.Map per target ────────────
+    for (const block of blocks) {
+      const existing = yStore.get(block.id);
+      if (existing) {
+        updateYMapFromBlock(existing, block);
+      } else {
+        yStore.set(block.id, blockToYMap(block));
       }
     }
 
-    // ─── Pass 2: walk `blocks` in order, inserting or updating ──────────
+    // ─── Pass 3: reconcile yOrder to match nextIds ─────────────────────
+    // First drop any IDs from yOrder that aren't in the target.
+    for (let i = yOrder.length - 1; i >= 0; i--) {
+      if (!nextIdSet.has(yOrder.get(i))) yOrder.delete(i, 1);
+    }
+    // Then walk nextIds with a cursor into yOrder, deleting+inserting as
+    // needed to realign. This only touches string IDs — no shared types
+    // are created or destroyed, so Y.Text identity is fully preserved.
     let cursor = 0;
-    for (let i = 0; i < blocks.length; i++) {
-      const target = blocks[i];
-
-      if (cursor < yBlocks.length && yBlocks.get(cursor).get('id') === target.id) {
-        // In-place update — this is the hot path for text edits.
-        updateYMapFromBlock(yBlocks.get(cursor), target);
+    for (const id of nextIds) {
+      if (cursor < yOrder.length && yOrder.get(cursor) === id) {
         cursor++;
         continue;
       }
-
-      // Does this ID exist further down in yBlocks? If so, it's a reorder.
+      // Is this ID already further down? If so, delete it from there.
       let foundAt = -1;
-      for (let j = cursor + 1; j < yBlocks.length; j++) {
-        if (yBlocks.get(j).get('id') === target.id) { foundAt = j; break; }
+      for (let j = cursor + 1; j < yOrder.length; j++) {
+        if (yOrder.get(j) === id) { foundAt = j; break; }
       }
-
       if (foundAt >= 0) {
-        // Reorder: Y.Map instances can't be moved within a Y.Array, so we
-        // delete the old position and insert a fresh Y.Map at the cursor.
-        // This loses Y.Text history for moved blocks — acceptable for the
-        // prototype, and drag-and-drop reorder is not a hot path.
-        yBlocks.delete(foundAt, 1);
-        yBlocks.insert(cursor, [blockToYMap(target)]);
-        cursor++;
-      } else {
-        // Newly-created block (e.g. Enter key).
-        yBlocks.insert(cursor, [blockToYMap(target)]);
-        cursor++;
+        yOrder.delete(foundAt, 1);
       }
+      yOrder.insert(cursor, [id]);
+      cursor++;
     }
   }, 'apply');
 }
@@ -258,7 +278,8 @@ export function createCollabSession({
   onStatusChange,
 }) {
   const ydoc = new Y.Doc();
-  const yBlocks = ydoc.getArray('blocks');
+  const yOrder = ydoc.getArray('order');
+  const yStore = ydoc.getMap('store');
   const yMeta = ydoc.getMap('meta');
 
   const provider = new WebsocketProvider(wsUrl, room, ydoc);
@@ -268,32 +289,38 @@ export function createCollabSession({
   awareness.setLocalStateField('user', identity);
   awareness.setLocalStateField('cursor', null);
 
-  let suppressNext = false;
   let seeded = false;
 
   const handleSync = (isSynced) => {
-    onStatusChange?.(isSynced ? 'connected' : 'syncing');
     if (isSynced && !seeded) {
       seeded = true;
       // Only seed if the room is empty. Otherwise the existing remote state wins.
-      if (yBlocks.length === 0 && Array.isArray(initialBlocks) && initialBlocks.length > 0) {
-        seedYBlocks(ydoc, yBlocks, initialBlocks);
+      const empty = yOrder.length === 0 && yStore.size === 0;
+      if (empty && Array.isArray(initialBlocks) && initialBlocks.length > 0) {
+        seedYBlocks(ydoc, yOrder, yStore, initialBlocks);
       }
       // Emit the current (possibly remote) state once to initialize React.
-      onRemoteBlocks?.(yBlocksToArray(yBlocks), { initial: true });
+      onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: true });
     }
+    // Single source of truth for connection status (see onStatusChange
+    // duplication fix — we only fire from the sync handler).
+    onStatusChange?.(isSynced ? 'connected' : 'syncing');
   };
 
   provider.on('sync', handleSync);
-  provider.on('status', (evt) => onStatusChange?.(evt.status));
 
-  // Observe all deep changes to yBlocks and publish to React.
-  const handleDeep = (events, transaction) => {
+  // Observe ydoc-level afterTransaction so we get one notification per
+  // transaction regardless of whether yOrder, yStore, or a nested Y.Text
+  // was the thing that changed.
+  const handleAfterTx = (transaction) => {
     // Don't echo our own local publishBlocks calls.
     if (transaction.origin === 'local-publish') return;
-    onRemoteBlocks?.(yBlocksToArray(yBlocks), { initial: false });
+    if (transaction.origin === 'seed') return; // initial emit handled in handleSync
+    // Only fire if yOrder / yStore / a nested Y.Map or Y.Text actually changed.
+    if (transaction.changed.size === 0 && transaction.changedParentTypes.size === 0) return;
+    onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: false });
   };
-  yBlocks.observeDeep(handleDeep);
+  ydoc.on('afterTransaction', handleAfterTx);
 
   // Awareness changes → presence bar
   const handleAwareness = () => {
@@ -305,24 +332,26 @@ export function createCollabSession({
   };
   awareness.on('change', handleAwareness);
 
-  // Undo manager scoped to our own edits (Yjs tracks by client ID via transact origin)
-  const undoManager = new Y.UndoManager(yBlocks, {
+  // Undo manager scoped to our own edits. Track both yOrder and yStore so
+  // structural changes (insert/delete/reorder) and field changes are both
+  // undoable, and both are scoped to the local-publish origin so Ctrl+Z
+  // never reverts a remote user's edits.
+  const undoManager = new Y.UndoManager([yOrder, yStore], {
     trackedOrigins: new Set(['local-publish']),
   });
 
   return {
     ydoc,
-    yBlocks,
+    yOrder,
+    yStore,
     yMeta,
     awareness,
     provider,
     undoManager,
     publishBlocks(blocks) {
-      suppressNext = true;
       ydoc.transact(() => {
-        applyBlocksToYDoc(ydoc, yBlocks, blocks);
+        applyBlocksToYDoc(ydoc, yOrder, yStore, blocks);
       }, 'local-publish');
-      suppressNext = false;
     },
     setCursor(cursor) {
       awareness.setLocalStateField('cursor', cursor);
@@ -332,7 +361,7 @@ export function createCollabSession({
     canUndo() { return undoManager.undoStack.length > 0; },
     canRedo() { return undoManager.redoStack.length > 0; },
     destroy() {
-      yBlocks.unobserveDeep(handleDeep);
+      ydoc.off('afterTransaction', handleAfterTx);
       awareness.off('change', handleAwareness);
       provider.off('sync', handleSync);
       try { provider.destroy(); } catch { /* ignore */ }

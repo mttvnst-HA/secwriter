@@ -330,13 +330,25 @@ Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`).
 
 **Stack:** Yjs CRDT + `y-websocket@1.5.4` server (pinned — v3 dropped the server utils). Server is a ~80-line CJS file at `server/collab-server.cjs`, persists each room to `server/collab-db/<room>.ydoc` as a binary Yjs state snapshot (debounced 500ms). Start with `npm run collab` (listens on `ws://127.0.0.1:1234`). CJS on purpose: mixing ESM + CJS loads two copies of Yjs and breaks instanceof checks (yjs#438).
 
-**Data model:** one `Y.Doc` per room with `yBlocks: Y.Array<Y.Map>` where each Y.Map holds scalar block fields + `html: Y.Text`. Tables and REFs are stored as JSON-encoded strings for prototype simplicity — concurrent edits to the same table will last-write-wins.
+**Data model:** one `Y.Doc` per room with **split ordering + storage**:
+- `yOrder: Y.Array<string>` — ordered block IDs (the document outline)
+- `yStore: Y.Map<string, Y.Map>` — block data keyed by ID; each value Y.Map holds scalar block fields + `html: Y.Text`
+
+**Why split ordering from storage:** Yjs shared types (Y.Map/Y.Text) **cannot be moved** between positions in a Y.Array — a "move" requires delete+reinsert, which creates a fresh instance and DESTROYS any concurrent edit another client is making to the original Y.Text. Storing blocks keyed by ID in `yStore` and keeping only string IDs in `yOrder` makes reorders cheap (reorder strings, no shared-type churn) and **preserves Y.Map/Y.Text identity across every structural change — insert, delete, AND reorder.** Tables and REFs are stored as JSON-encoded strings for prototype simplicity — concurrent edits to the same table will last-write-wins.
 
 **Client layer (`src/lib/collab.js`):**
-- `createCollabSession({ room, identity, initialBlocks, onRemoteBlocks, onPresenceChange, onStatusChange })` spins up a `WebsocketProvider`, seeds the room on first join if empty, observes remote changes, and exposes `publishBlocks(blocks)` + `undo()`/`redo()` backed by `Y.UndoManager` scoped to the client's own edits via `trackedOrigins: Set(['local-publish'])`.
-- `applyBlocksToYDoc` is an incremental two-pass diff: pass 1 deletes Y.Maps whose IDs no longer exist (walking from the end to keep indices valid), pass 2 walks the target blocks with a cursor into yBlocks, updating in place when IDs match, reordering via delete+insert when an ID exists further down, or inserting a fresh Y.Map for new blocks. Html sync uses whole-text replacement for simplicity (no character-level CRDT merge within a block yet — roadmap item).
-- **Critical invariant:** `applyBlocksToYDoc` MUST preserve `Y.Map` / `Y.Text` identity for blocks that exist in both the before and after state. An earlier rebuild-everything fallback silently corrupted CRDT semantics three ways at once: structural changes destroyed concurrent remote Y.Text edits, `Y.UndoManager` captured the rebuild so Ctrl+Z reverted the other user's work, and the DOM ended up with duplicate `data-block-id` elements that broke remote cursor lookup. The current two-pass diff enforces this invariant — `src/lib/__tests__/collab.test.js` has regression tests (`preserves Y.Text identity for existing blocks across an insert`, `preserves Y.Text identity for unchanged blocks across a delete`).
-- React `blocks` is a derived view when in a room. `useEffect` on `[blocks, inRoom]` calls `publishBlocks`; `onRemoteBlocks` calls `setBlocks` via a `remoteApplyingRef` guard to prevent echo. Local-publish transactions are filtered inside `observeDeep` by `transaction.origin === 'local-publish'`.
+- `createCollabSession({ room, identity, initialBlocks, onRemoteBlocks, onPresenceChange, onStatusChange })` spins up a `WebsocketProvider`, seeds the room on first join if empty, observes remote changes via `ydoc.on('afterTransaction', ...)` (single notification per transaction regardless of which shared type changed), and exposes `publishBlocks(blocks)` + `undo()`/`redo()` backed by `Y.UndoManager([yOrder, yStore], { trackedOrigins: Set(['local-publish']) })`.
+- `applyBlocksToYDoc(ydoc, yOrder, yStore, blocks)` is a three-pass diff: pass 1 deletes Y.Maps from `yStore` for IDs that no longer exist, pass 2 updates remaining Y.Maps in place (creating new ones only for brand-new IDs), pass 3 reconciles `yOrder` with a minimal delete/insert diff on string IDs. Html sync uses whole-text replacement for simplicity (no character-level CRDT merge within a block yet — roadmap item).
+- **Critical invariant:** `applyBlocksToYDoc` MUST preserve `Y.Map` / `Y.Text` identity for every block that exists in both the before and after state — **including reorders**. An earlier Y.Array<Y.Map>-only model silently corrupted CRDT semantics three ways at once: structural changes destroyed concurrent remote Y.Text edits, `Y.UndoManager` captured the rebuild so Ctrl+Z reverted the other user's work, and the DOM ended up with duplicate `data-block-id` elements that broke remote cursor lookup. The current `yOrder` + `yStore` split enforces this invariant structurally — reorders only touch string IDs in `yOrder`, so Y.Text instances in `yStore` are never destroyed. Regression tests in `src/lib/__tests__/collab.test.js`: `preserves Y.Text identity for existing blocks across an insert`, `preserves Y.Text identity for unchanged blocks across a delete`, `preserves Y.Text identity for ALL blocks across a reorder (C1 regression)`, `preserves a concurrent remote Y.Text edit across a local reorder`, and `Y.UndoManager scoped to local origin does not revert remote edits (M2)`.
+- React `blocks` is a derived view when in a room. `useEffect` on `[blocks, inRoom]` calls `publishBlocks`; `onRemoteBlocks` sets `lastRemoteBlocksRef.current = blocks` and calls `setBlocks`, and the publish effect skips publishing when `blocks === lastRemoteBlocksRef.current` (reference equality) to prevent echo. `afterTransaction` additionally filters by `transaction.origin === 'local-publish'` so locally-published transactions never round-trip through `onRemoteBlocks`.
+
+**Server hardening (`server/collab-server.cjs`):**
+- `MAX_DOC_BYTES = 8 MB` enforced on both read (quarantines oversized files to `.oversize.<timestamp>`) and write (refuses to persist).
+- Atomic writes: snapshots staged to `<room>.ydoc.tmp` then renamed, so a crash mid-write never leaves a half-written file.
+- Corrupt-file quarantine: if `Y.applyUpdate` throws during bindState, the broken file is renamed to `<room>.ydoc.corrupt.<timestamp>` instead of silently being lost.
+- Shutdown flush: SIGINT / SIGTERM / beforeExit handlers synchronously flush every room's pending snapshot, so the debounced 500ms window cannot lose the last edits on Ctrl+C.
+- Loud startup warning if `COLLAB_HOST` is not a loopback address.
+- **Still prototype only — no auth, no TLS, no rate limiting, no origin check.** Do not expose to a network.
 
 **Caret preservation:** when a remote update rewrites a block you're editing, `App.jsx` captures plain-text offset before `setBlocks` and restores it in a `requestAnimationFrame`. Helpers `getPlainTextOffset` / `restorePlainTextOffset` live at the top of `App.jsx`.
 
@@ -436,7 +448,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | Test File | Tests | Runner | Coverage |
 |-----------|-------|--------|----------|
 | sec-parser.test.js | 43 | Vitest | Tag extraction, inline marks (incl. ATT), tables, TBL/THD, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks, INT styles |
-| collab.test.js | 14 | Vitest | Y.Doc ↔ blocks conversion, seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge, **Y.Text identity preservation across insert/delete** (the invariant that prevents cross-user undo corruption) |
+| collab.test.js | 17 | Vitest | Y.Doc ↔ blocks conversion (yOrder+yStore model), seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge, **Y.Text identity preservation across insert/delete/reorder** including concurrent remote edit across a local reorder, **Y.UndoManager scoped to local origin does not revert remote edits** (the invariants that prevent cross-user undo corruption) |
 | no-exfil.test.js | 19 | Vitest | NO_EXFIL_PROPS spread on every contentEditable + spec/comment input/textarea; Grammarly/Copilot/writingsuggestions disabled |
 | tailor-profile.test.js | 36 | Vitest | Branch/region/delivery matching, resolution, cleanup |
 | sec-serializer.test.js | 39 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, TBL/ATT roundtrip, CRLF, MTA preservation, HDR passthrough, table widths/heights |
@@ -475,7 +487,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | interop-encoding.node-test.mjs | 11 | Node | Reverse import roundtrip (block count, types), encoding fidelity (windows-1252, CRLF, no BOM), special character preservation |
 | editor.spec.js (E2E) | 141 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
-**Total: 517 Vitest + 99 Node + 141 Playwright = 757 automated tests**
+**Total: 520 Vitest + 99 Node + 141 Playwright = 760 automated tests**
 
 ## Dependencies
 
