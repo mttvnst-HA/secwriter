@@ -114,7 +114,16 @@ function flushRoom(docName) {
   try {
     const snapshot = Y.encodeStateAsUpdate(ydoc);
     if (snapshot.byteLength > MAX_DOC_BYTES) {
-      console.warn(`[collab] REFUSING to persist "${docName}": ${snapshot.byteLength} bytes > MAX_DOC_BYTES (${MAX_DOC_BYTES})`);
+      // M-3: loud shutdown warn — flushRoom is called both on debounce
+      // AND on shutdown, so if we're here during a shutdown flush the
+      // in-memory state is about to be lost. Emit the last-good
+      // timestamp so operators can see how stale the on-disk snapshot is.
+      console.warn(
+        `[collab] shutdown flush REFUSED for room=${docName}: ` +
+        `in-memory size ${snapshot.byteLength} > cap ${MAX_DOC_BYTES}. ` +
+        `In-memory state discarded. Last on-disk snapshot is stale ` +
+        `(last success: ${health.lastPersistSuccess ? new Date(health.lastPersistSuccess).toISOString() : 'never'})`
+      );
       return;
     }
     writeSnapshotAtomic(roomFile(docName), Buffer.from(snapshot));
