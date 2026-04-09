@@ -245,11 +245,138 @@ export function publishTcToDoc(ydoc, yTc, { enabled, snapshots }) {
   }, 'local-tc');
 }
 
-// Temporary shim — replaced by the full implementation in Task 3.
+/**
+ * Snapshot yComments as a plain object keyed by comment ID. Each comment
+ * is a plain object with scalar fields + `entries: Array<plainEntry>`.
+ *
+ * The shape matches the React `comments` Map value used elsewhere in the
+ * app, so callers can do `new Map(Object.entries(readComments(yComments)))`.
+ */
 export function readComments(yComments) {
   const out = {};
   if (!yComments || typeof yComments.forEach !== 'function') return out;
+  yComments.forEach((cMap, id) => {
+    if (!cMap || typeof cMap.get !== 'function') return;
+    const entry = {
+      id,
+      blockId: cMap.get('blockId'),
+      status: cMap.get('status') || 'open',
+      highlightText: cMap.get('highlightText') || '',
+      createdAt: cMap.get('createdAt') || 0,
+      authorId: cMap.get('authorId') || '',
+      authorName: cMap.get('authorName') || '',
+      authorColor: cMap.get('authorColor') || '',
+      entries: [],
+    };
+    const entries = cMap.get('entries');
+    if (entries && typeof entries.forEach === 'function') {
+      entries.forEach((eMap) => {
+        if (!eMap || typeof eMap.get !== 'function') return;
+        entry.entries.push({
+          id: eMap.get('id') || '',
+          type: eMap.get('type') || 'reply',
+          authorId: eMap.get('authorId') || '',
+          authorName: eMap.get('authorName') || '',
+          authorColor: eMap.get('authorColor') || '',
+          text: eMap.get('text') || '',
+          ts: eMap.get('ts') || 0,
+        });
+      });
+    }
+    out[id] = entry;
+  });
   return out;
+}
+
+/**
+ * Build a Y.Map entry suitable for insertion into a comment's `entries`
+ * Y.Array. Scalar fields only — no nested shared types, so replies merge
+ * by position (Y.Array concurrent-insert semantics).
+ */
+function buildEntryYMap({ type, author, text, ts, id }) {
+  const m = new Y.Map();
+  m.set('id', id || `e-${Math.random().toString(36).slice(2, 10)}`);
+  m.set('type', type);
+  m.set('authorId', author?.id || '');
+  m.set('authorName', author?.name || '');
+  m.set('authorColor', author?.color || '');
+  m.set('text', text || '');
+  m.set('ts', typeof ts === 'number' ? ts : Date.now());
+  return m;
+}
+
+/**
+ * Create a new shared comment in yComments. `payload` is:
+ *   { blockId, status, highlightText, createdAt, author, initialText }
+ * The initial 'create' entry is added to the entries Y.Array in the same
+ * transaction.
+ */
+export function publishCommentToDoc(ydoc, yComments, id, payload) {
+  ydoc.transact(() => {
+    const cMap = new Y.Map();
+    cMap.set('blockId', payload.blockId);
+    cMap.set('status', payload.status || 'open');
+    cMap.set('highlightText', payload.highlightText || '');
+    cMap.set('createdAt', payload.createdAt || Date.now());
+    cMap.set('authorId', payload.author?.id || '');
+    cMap.set('authorName', payload.author?.name || '');
+    cMap.set('authorColor', payload.author?.color || '');
+    const entries = new Y.Array();
+    entries.push([buildEntryYMap({
+      type: 'create',
+      author: payload.author,
+      text: payload.initialText || '',
+      ts: payload.createdAt || Date.now(),
+    })]);
+    cMap.set('entries', entries);
+    yComments.set(id, cMap);
+  }, 'local-comments');
+}
+
+/**
+ * Append a reply entry to an existing comment's entries Y.Array. No-op if
+ * the comment does not exist (could happen if a concurrent delete beat us).
+ */
+export function publishCommentReplyToDoc(ydoc, yComments, id, { author, text, ts }) {
+  ydoc.transact(() => {
+    const cMap = yComments.get(id);
+    if (!cMap) return;
+    const entries = cMap.get('entries');
+    if (!(entries instanceof Y.Array)) return;
+    entries.push([buildEntryYMap({ type: 'reply', author, text, ts })]);
+  }, 'local-comments');
+}
+
+/**
+ * Change a comment's status ('open' | 'resolved') and append a status-event
+ * entry to its entries Y.Array.
+ */
+export function publishCommentStatusToDoc(ydoc, yComments, id, status, { author, ts } = {}) {
+  ydoc.transact(() => {
+    const cMap = yComments.get(id);
+    if (!cMap) return;
+    cMap.set('status', status);
+    const entries = cMap.get('entries');
+    if (entries instanceof Y.Array) {
+      entries.push([buildEntryYMap({
+        type: status === 'resolved' ? 'resolve' : 'reopen',
+        author,
+        text: '',
+        ts,
+      })]);
+    }
+  }, 'local-comments');
+}
+
+/**
+ * Remove a comment entirely. Local UI is responsible for stripping the
+ * `mark-comment` span from the block HTML (that change flows through the
+ * existing blocks → yStore pathway).
+ */
+export function deleteCommentFromDoc(ydoc, yComments, id) {
+  ydoc.transact(() => {
+    if (yComments.has(id)) yComments.delete(id);
+  }, 'local-comments');
 }
 
 /**
@@ -528,6 +655,7 @@ export function createCollabSession({
       cpt.has(yOrder) || cpt.has(yStore) || ch.has(yOrder) || ch.has(yStore);
     const metaChanged = cpt.has(yMeta) || ch.has(yMeta);
     const tcChanged = cpt.has(yTc) || ch.has(yTc);
+    const commentsChanged = cpt.has(yComments) || ch.has(yComments);
 
     if (blocksChanged) {
       onRemoteBlocks?.(yBlocksToArray(yOrder, yStore), { initial: false });
@@ -537,6 +665,9 @@ export function createCollabSession({
     }
     if (tcChanged) {
       onRemoteTc?.(readTc(yTc), { initial: false });
+    }
+    if (commentsChanged) {
+      onRemoteComments?.(readComments(yComments), { initial: false });
     }
   };
   ydoc.on('afterTransaction', handleAfterTx);
@@ -602,6 +733,18 @@ export function createCollabSession({
       // disabling, callers pass an empty snapshots object so the baseline
       // is cleared in the same transaction as the flag flip.
       publishTcToDoc(ydoc, yTc, tc);
+    },
+    publishComment(id, payload) {
+      publishCommentToDoc(ydoc, yComments, id, payload);
+    },
+    publishCommentReply(id, reply) {
+      publishCommentReplyToDoc(ydoc, yComments, id, reply);
+    },
+    publishCommentStatus(id, status, meta) {
+      publishCommentStatusToDoc(ydoc, yComments, id, status, meta);
+    },
+    deleteComment(id) {
+      deleteCommentFromDoc(ydoc, yComments, id);
     },
     setCursor(cursor) {
       awareness.setLocalStateField('cursor', cursor);

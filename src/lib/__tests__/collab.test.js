@@ -19,6 +19,11 @@ import {
   createCollabSession,
   publishTcToDoc,
   readTc,
+  publishCommentToDoc,
+  publishCommentReplyToDoc,
+  publishCommentStatusToDoc,
+  deleteCommentFromDoc,
+  readComments,
 } from '../collab.js';
 
 function makeDoc() {
@@ -811,5 +816,165 @@ describe('shared Track Changes (M-shared-tc)', () => {
     expect(calls.blocks).toBe(0);
     expect(calls.meta).toBe(0);
     expect(calls.comments).toBe(0);
+  });
+});
+
+describe('shared Comments (M-shared-comments)', () => {
+  function makeDocWithComments() {
+    const ydoc = new Y.Doc();
+    const yComments = ydoc.getMap('comments');
+    return { ydoc, yComments };
+  }
+
+  const ALICE = { id: 'u-alice', name: 'Alice', color: '#7a3' };
+  const BOB = { id: 'u-bob', name: 'Bob', color: '#37a' };
+
+  function sampleCommentPayload(overrides = {}) {
+    return {
+      blockId: 'n1',
+      status: 'open',
+      highlightText: 'the quick fox',
+      createdAt: 1712600000000,
+      author: ALICE,
+      initialText: 'Please rewrite',
+      ...overrides,
+    };
+  }
+
+  it('publishCommentToDoc stores full metadata + initial create entry', () => {
+    const { ydoc, yComments } = makeDocWithComments();
+    publishCommentToDoc(ydoc, yComments, 'c-1', sampleCommentPayload());
+    const cMap = yComments.get('c-1');
+    expect(cMap.get('blockId')).toBe('n1');
+    expect(cMap.get('status')).toBe('open');
+    expect(cMap.get('highlightText')).toBe('the quick fox');
+    expect(cMap.get('authorId')).toBe('u-alice');
+    expect(cMap.get('authorName')).toBe('Alice');
+    expect(cMap.get('authorColor')).toBe('#7a3');
+    const entries = cMap.get('entries');
+    expect(entries.length).toBe(1);
+    expect(entries.get(0).get('type')).toBe('create');
+    expect(entries.get(0).get('text')).toBe('Please rewrite');
+    expect(entries.get(0).get('authorId')).toBe('u-alice');
+  });
+
+  it('publishCommentReplyToDoc appends to the entries Y.Array', () => {
+    const { ydoc, yComments } = makeDocWithComments();
+    publishCommentToDoc(ydoc, yComments, 'c-1', sampleCommentPayload());
+    publishCommentReplyToDoc(ydoc, yComments, 'c-1', {
+      author: BOB,
+      text: 'Agreed',
+      ts: 1712600001000,
+    });
+    const entries = yComments.get('c-1').get('entries');
+    expect(entries.length).toBe(2);
+    expect(entries.get(1).get('type')).toBe('reply');
+    expect(entries.get(1).get('text')).toBe('Agreed');
+    expect(entries.get(1).get('authorName')).toBe('Bob');
+  });
+
+  it('publishCommentStatusToDoc toggles status + appends an event entry', () => {
+    const { ydoc, yComments } = makeDocWithComments();
+    publishCommentToDoc(ydoc, yComments, 'c-1', sampleCommentPayload());
+    publishCommentStatusToDoc(ydoc, yComments, 'c-1', 'resolved', { author: BOB, ts: 100 });
+    const cMap = yComments.get('c-1');
+    expect(cMap.get('status')).toBe('resolved');
+    const entries = cMap.get('entries');
+    expect(entries.get(entries.length - 1).get('type')).toBe('resolve');
+    expect(entries.get(entries.length - 1).get('authorName')).toBe('Bob');
+  });
+
+  it('deleteCommentFromDoc removes the entry entirely', () => {
+    const { ydoc, yComments } = makeDocWithComments();
+    publishCommentToDoc(ydoc, yComments, 'c-1', sampleCommentPayload());
+    expect(yComments.has('c-1')).toBe(true);
+    deleteCommentFromDoc(ydoc, yComments, 'c-1');
+    expect(yComments.has('c-1')).toBe(false);
+  });
+
+  it('readComments returns plain { [id]: commentObject } with entries array', () => {
+    const { ydoc, yComments } = makeDocWithComments();
+    publishCommentToDoc(ydoc, yComments, 'c-1', sampleCommentPayload());
+    publishCommentReplyToDoc(ydoc, yComments, 'c-1', {
+      author: BOB, text: 'Agreed', ts: 1,
+    });
+    const out = readComments(yComments);
+    expect(out['c-1']).toMatchObject({
+      blockId: 'n1',
+      status: 'open',
+      authorName: 'Alice',
+    });
+    expect(Array.isArray(out['c-1'].entries)).toBe(true);
+    expect(out['c-1'].entries.length).toBe(2);
+    expect(out['c-1'].entries[1].text).toBe('Agreed');
+  });
+
+  it('two-doc merge: reply from B appears in A after sync', () => {
+    const { ydoc: docA, yComments: cA } = makeDocWithComments();
+    const { ydoc: docB, yComments: cB } = makeDocWithComments();
+    publishCommentToDoc(docA, cA, 'c-1', sampleCommentPayload());
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    publishCommentReplyToDoc(docB, cB, 'c-1', {
+      author: BOB, text: 'From Bob', ts: 100,
+    });
+    Y.applyUpdate(docA, Y.encodeStateAsUpdate(docB));
+    const readA = readComments(cA);
+    expect(readA['c-1'].entries.length).toBe(2);
+    expect(readA['c-1'].entries[1].text).toBe('From Bob');
+  });
+
+  it('two-doc merge: concurrent replies from A and B both land', () => {
+    const { ydoc: docA, yComments: cA } = makeDocWithComments();
+    const { ydoc: docB, yComments: cB } = makeDocWithComments();
+    publishCommentToDoc(docA, cA, 'c-1', sampleCommentPayload());
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    // Concurrent replies — neither doc has seen the other yet.
+    publishCommentReplyToDoc(docA, cA, 'c-1', { author: ALICE, text: 'From Alice', ts: 1 });
+    publishCommentReplyToDoc(docB, cB, 'c-1', { author: BOB, text: 'From Bob', ts: 2 });
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    Y.applyUpdate(docA, Y.encodeStateAsUpdate(docB));
+    const a = readComments(cA);
+    const b = readComments(cB);
+    // Both replies present on both sides, plus the original create.
+    expect(a['c-1'].entries.length).toBe(3);
+    expect(b['c-1'].entries.length).toBe(3);
+    const textsA = a['c-1'].entries.map((e) => e.text).sort();
+    expect(textsA).toContain('From Alice');
+    expect(textsA).toContain('From Bob');
+  });
+
+  it('two-doc merge: A resolves while B replies — both effects survive', () => {
+    const { ydoc: docA, yComments: cA } = makeDocWithComments();
+    const { ydoc: docB, yComments: cB } = makeDocWithComments();
+    publishCommentToDoc(docA, cA, 'c-1', sampleCommentPayload());
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    publishCommentStatusToDoc(docA, cA, 'c-1', 'resolved', { author: ALICE, ts: 1 });
+    publishCommentReplyToDoc(docB, cB, 'c-1', { author: BOB, text: 'Wait', ts: 2 });
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    Y.applyUpdate(docA, Y.encodeStateAsUpdate(docB));
+    const a = readComments(cA);
+    expect(a['c-1'].status).toBe('resolved');
+    const texts = a['c-1'].entries.map((e) => e.text);
+    expect(texts).toContain('Wait');
+  });
+
+  it('two-doc merge: deleteComment on A removes entry on B after sync', () => {
+    const { ydoc: docA, yComments: cA } = makeDocWithComments();
+    const { ydoc: docB, yComments: cB } = makeDocWithComments();
+    publishCommentToDoc(docA, cA, 'c-1', sampleCommentPayload());
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    expect(cB.has('c-1')).toBe(true);
+    deleteCommentFromDoc(docA, cA, 'c-1');
+    Y.applyUpdate(docB, Y.encodeStateAsUpdate(docA));
+    expect(cB.has('c-1')).toBe(false);
+  });
+
+  it('publishCommentReplyToDoc uses local-comments origin', () => {
+    const { ydoc, yComments } = makeDocWithComments();
+    publishCommentToDoc(ydoc, yComments, 'c-1', sampleCommentPayload());
+    const origins = [];
+    ydoc.on('afterTransaction', (tx) => { origins.push(tx.origin); });
+    publishCommentReplyToDoc(ydoc, yComments, 'c-1', { author: BOB, text: 'hi', ts: 1 });
+    expect(origins).toContain('local-comments');
   });
 });
