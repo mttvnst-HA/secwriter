@@ -18,6 +18,7 @@
  *   npm run collab
  */
 
+require('./dom-polyfill.cjs');
 const WS = require('ws');
 // y-websocket v1.5.4 pins ws@6, which exports the server as `Server` (not
 // `WebSocketServer`). Support both so a future ws upgrade doesn't break us.
@@ -30,6 +31,8 @@ const path = require('node:path');
 const PORT = Number(process.env.COLLAB_PORT || 1234);
 const HOST = process.env.COLLAB_HOST || '127.0.0.1';
 const DATA_DIR = path.resolve(process.cwd(), 'server/collab-db');
+const { LocalStorageBackend } = require('./storage-local.cjs');
+const storage = new LocalStorageBackend(DATA_DIR);
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
 // headroom for Y.Doc overhead + revision history without letting a runaway
@@ -89,20 +92,25 @@ function getHealth(docName) {
 }
 const DEBOUNCE_MS = 500;
 
+// Lazy-loaded room serializer — avoids pulling in sec-parser + sec-serializer
+// at startup (heavy modules with large data files) when the server may only
+// need basic Y.Doc persistence for the first few hundred milliseconds.
+let _serializeRoom = null;
+async function getSerializeRoom() {
+  if (!_serializeRoom) {
+    const mod = require('./room-serializer.cjs');
+    _serializeRoom = mod.serializeRoom;
+  }
+  return _serializeRoom;
+}
+
 function roomFile(name) {
   const safe = String(name).replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 64) || 'default';
   return path.join(DATA_DIR, `${safe}.ydoc`);
 }
 
-/** Atomic write: stage to .tmp, then rename. */
-function writeSnapshotAtomic(file, bytes) {
-  const tmp = `${file}.tmp`;
-  fs.writeFileSync(tmp, bytes);
-  fs.renameSync(tmp, file);
-}
-
-/** Flush a single room's pending snapshot synchronously. */
-function flushRoom(docName) {
+/** Flush a single room to disk: .ydoc + .SEC + .comments.json via storage backend. */
+async function flushRoom(docName) {
   const timer = writeTimers.get(docName);
   if (timer) {
     clearTimeout(timer);
@@ -112,21 +120,21 @@ function flushRoom(docName) {
   if (!ydoc) return;
   const health = getHealth(docName);
   try {
+    // Quick size check before expensive serialization
     const snapshot = Y.encodeStateAsUpdate(ydoc);
     if (snapshot.byteLength > MAX_DOC_BYTES) {
-      // M-3: loud shutdown warn — flushRoom is called both on debounce
-      // AND on shutdown, so if we're here during a shutdown flush the
-      // in-memory state is about to be lost. Emit the last-good
-      // timestamp so operators can see how stale the on-disk snapshot is.
       console.warn(
-        `[collab] shutdown flush REFUSED for room=${docName}: ` +
-        `in-memory size ${snapshot.byteLength} > cap ${MAX_DOC_BYTES}. ` +
-        `In-memory state discarded. Last on-disk snapshot is stale ` +
-        `(last success: ${health.lastPersistSuccess ? new Date(health.lastPersistSuccess).toISOString() : 'never'})`
+        `[collab] flush REFUSED for room=${docName}: ` +
+        `size ${snapshot.byteLength} > cap ${MAX_DOC_BYTES}. ` +
+        `Last success: ${health.lastPersistSuccess ? new Date(health.lastPersistSuccess).toISOString() : 'never'}`
       );
       return;
     }
-    writeSnapshotAtomic(roomFile(docName), Buffer.from(snapshot));
+
+    const serializeRoom = await getSerializeRoom();
+    const artifacts = await serializeRoom(ydoc);
+    await storage.writeRoom(docName, artifacts);
+
     // M-2: success → reset failure counter + stamp last-good time.
     health.persistFailures = 0;
     health.lastPersistSuccess = Date.now();
@@ -143,7 +151,7 @@ function flushRoom(docName) {
     if (health.persistFailures >= 3) {
       console.error(
         `[collab] ALERT room=${docName} has failed to persist ${health.persistFailures} ` +
-        `times in a row; in-memory state is diverging from disk snapshot`
+        `times in a row; in-memory state is diverging from disk`
       );
     }
   }
@@ -223,6 +231,148 @@ wss.on('error', (err) => {
   console.error('[collab] server error:', err);
 });
 
+// ── HTTP endpoints for document download/upload ──────────────────────────
+const http = require('node:http');
+
+const httpServer = http.createServer(async (req, res) => {
+  // CORS for dev
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
+
+  const url = new URL(req.url, `http://${req.headers.host}`);
+
+  // POST /rooms/:roomId/upload
+  const uploadMatch = url.pathname.match(/^\/rooms\/([^/]+)\/upload$/);
+  if (uploadMatch && req.method === 'POST') {
+    const roomId = uploadMatch[1];
+    const chunks = [];
+    let totalSize = 0;
+    let aborted = false;
+    req.on('data', (chunk) => {
+      totalSize += chunk.length;
+      if (totalSize > MAX_DOC_BYTES) {
+        aborted = true;
+        res.writeHead(413, { 'Content-Type': 'text/plain' });
+        res.end(`File exceeds ${MAX_DOC_BYTES} byte limit`);
+        req.destroy();
+        return;
+      }
+      chunks.push(chunk);
+    });
+    req.on('end', async () => {
+      if (aborted) return;
+      try {
+        const body = Buffer.concat(chunks);
+        const secContent = body.toString('latin1');
+
+        const { parseSEC } = await import('../src/lib/sec-parser.js');
+        const blocks = parseSEC(secContent);
+        if (!blocks || blocks.length === 0) {
+          res.writeHead(400, { 'Content-Type': 'text/plain' });
+          res.end('Failed to parse SEC file — no blocks extracted');
+          return;
+        }
+
+        // If room has a live Y.Doc, apply blocks to it
+        const ydoc = boundDocs.get(roomId);
+        if (ydoc) {
+          const { applyBlocksToYDoc } = await import('../src/lib/collab.js');
+          const yOrder = ydoc.getArray('order');
+          const yStore = ydoc.getMap('store');
+          ydoc.transact(() => {
+            applyBlocksToYDoc(ydoc, yOrder, yStore, blocks);
+          }, 'upload');
+          // Trigger persist
+          flushRoom(roomId);
+        }
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: true, blocks: blocks.length }));
+      } catch (err) {
+        console.error(`[collab] upload failed for room=${roomId}:`, err.message);
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end(`Upload failed: ${err.message}`);
+      }
+    });
+    return;
+  }
+
+  // GET /rooms/:roomId/sec  or  GET /rooms/:roomId/comments
+  const dlMatch = url.pathname.match(/^\/rooms\/([^/]+)\/(sec|comments)$/);
+  if (dlMatch && req.method === 'GET') {
+    const [, roomId, artifact] = dlMatch;
+    try {
+      const data = await storage.readRoom(roomId);
+      if (!data) {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end(`Room "${roomId}" not found`);
+        return;
+      }
+
+      if (artifact === 'sec') {
+        if (!data.secBytes) {
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('SEC file not yet generated for this room');
+          return;
+        }
+        // Try to get a meaningful filename from yMeta
+        let fileName = `${roomId}.SEC`;
+        const ydoc = boundDocs.get(roomId);
+        if (ydoc) {
+          try {
+            const yMeta = ydoc.getMap('meta');
+            const sn = yMeta.get('sectionNumber');
+            if (sn) fileName = `${sn.replace(/\s+/g, '_')}.SEC`;
+          } catch { /* use default */ }
+        }
+        res.writeHead(200, {
+          'Content-Type': 'application/xml; charset=windows-1252',
+          'Content-Disposition': `attachment; filename="${fileName}"`,
+        });
+        res.end(Buffer.from(data.secBytes));
+      } else {
+        // comments
+        if (!data.commentsJson) {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ version: 1, comments: [] }));
+          return;
+        }
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(data.commentsJson);
+      }
+    } catch (err) {
+      console.error(`[collab] download failed for room=${roomId}/${artifact}:`, err.message);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end(`Download failed: ${err.message}`);
+    }
+    return;
+  }
+
+  // GET /rooms — list all rooms
+  const listMatch = url.pathname === '/rooms' && req.method === 'GET';
+  if (listMatch) {
+    try {
+      const rooms = await storage.listRooms();
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ rooms }));
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end(`List rooms failed: ${err.message}`);
+    }
+    return;
+  }
+
+  res.writeHead(404, { 'Content-Type': 'text/plain' });
+  res.end('Not found');
+});
+
+const HTTP_PORT = Number(process.env.COLLAB_HTTP_PORT || 1235);
+httpServer.listen(HTTP_PORT, HOST, () => {
+  console.log(`[collab] HTTP endpoints at http://${HOST}:${HTTP_PORT}/rooms/:roomId/{sec,comments,upload}`);
+});
+
 // ── Graceful shutdown ────────────────────────────────────────────────────
 //
 // SIGINT (Ctrl+C) / SIGTERM: flush every room synchronously so edits made
@@ -231,15 +381,16 @@ wss.on('error', (err) => {
 // the last edits — potentially the entire initial seed of a fresh room —
 // vanish silently.
 let shuttingDown = false;
-function flushAllRooms() {
-  for (const docName of boundDocs.keys()) flushRoom(docName);
+async function flushAllRooms() {
+  for (const docName of boundDocs.keys()) await flushRoom(docName);
 }
-function shutdown(signal) {
+async function shutdown(signal) {
   if (shuttingDown) return;
   shuttingDown = true;
   console.log(`[collab] ${signal} received; flushing ${boundDocs.size} room(s)...`);
-  flushAllRooms();
+  await flushAllRooms();
   try { wss.close(); } catch { /* ignore */ }
+  try { httpServer.close(); } catch { /* ignore */ }
   // Give wss.close() one tick then exit. This keeps the server responsive
   // to a second Ctrl+C if the first one hangs.
   setTimeout(() => process.exit(0), 50);
