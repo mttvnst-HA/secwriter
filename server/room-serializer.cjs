@@ -51,10 +51,12 @@ async function serializeRoom(ydoc) {
   // 2. .SEC file
   const blocks = _yBlocksToArray(yOrder, yStore);
   // Dual-package hazard: CJS require('yjs') and ESM import('yjs') may load
-  // separate copies, making `instanceof Y.Text` fail in yMapToBlock. Coerce
-  // any non-string html to string so the serializer gets plain strings.
+  // separate copies. The ESM yBlocksToArray now calls yTextToHtml() which
+  // handles formatting attributes. The coercion below is a fallback for any
+  // edge case where html is still a Y.Text object (e.g., toString() loses
+  // attribute info, but this path should rarely fire now).
   for (const b of blocks) {
-    if (b.html && typeof b.html !== 'string') b.html = b.html.toString();
+    if (b.html && typeof b.html !== 'string') b.html = String(b.html);
   }
   const meta = _readYMeta(yMeta);
   const secXml = _serializeSEC(blocks, meta);
@@ -99,6 +101,11 @@ function blockToYMap(block) {
 /**
  * Seed a Y.Doc with parsed blocks, using CJS Yjs to avoid dual-package hazard.
  * Clears existing content and replaces with the provided blocks.
+ *
+ * NOTE: Seeds with plain text Y.Text (no formatting attributes) and JSON strings
+ * for table/ref. The ESM client's updateYMapFromBlock() will upgrade these to
+ * attribute-based Y.Text and nested CRDT structures on first publish. This is
+ * acceptable because seeding is a one-time operation with no concurrent edits.
  */
 function seedRoomFromBlocks(ydoc, blocks) {
   const yOrder = ydoc.getArray('order');
