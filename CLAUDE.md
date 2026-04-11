@@ -133,7 +133,7 @@ tools/
 server/
   collab-server.cjs        # Yjs WebSocket + HTTP relay: room persistence, .SEC/.comments.json generation, download/upload endpoints ~400 lines
   dom-polyfill.cjs         # DOMParser polyfill via linkedom for Node.js ~15 lines
-  room-serializer.cjs      # Y.Doc → .SEC + .comments.json orchestrator ~65 lines
+  room-serializer.cjs      # Y.Doc → .SEC + .comments.json orchestrator + CJS block seeding ~110 lines
   storage-local.cjs        # Local filesystem storage backend with atomic multi-artifact writes ~170 lines
   http-handler.cjs         # Extracted HTTP request handler factory (download/upload routes) ~170 lines
   __tests__/               # 22 server-side tests (Node runner)
@@ -343,7 +343,7 @@ These are known issues identified during QA testing that have not yet been fixed
 
 Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`). Without a room parameter, SIM behaves exactly like the single-user app — no regression risk.
 
-**Stack:** Yjs CRDT + `y-websocket@1.5.4` (pinned — v3 dropped the server utils). Server at `server/collab-server.cjs` (CJS on purpose: mixing ESM + CJS loads two Yjs copies and breaks instanceof checks, yjs#438). Persists rooms to `server/collab-db/` as `.ydoc` (binary CRDT) + `.SEC` (Windows-1252 XML) + `.comments.json` on every debounced flush. HTTP endpoints at port 1235 for download/upload. **Prototype only — no auth, no TLS, no rate limiting.**
+**Stack:** Yjs CRDT + `y-websocket@1.5.4` (pinned — v3 dropped the server utils). Server at `server/collab-server.cjs` (CJS on purpose: mixing ESM + CJS loads two Yjs copies and breaks instanceof checks, yjs#438). Persists rooms to `server/collab-db/` as `.ydoc` (binary CRDT) + `.SEC` (Windows-1252 XML) + `.comments.json` on every debounced flush. HTTP endpoints at port 1235 for download/upload (routing in `http-handler.cjs` factory for testability). **Prototype only — no auth, no TLS, no rate limiting.**
 
 **Data model:** one `Y.Doc` per room with **split ordering + storage**:
 - `yOrder: Y.Array<string>` — ordered block IDs (document outline)
@@ -354,6 +354,7 @@ Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`).
 
 **Critical invariants (do NOT violate):**
 - **Y.Text identity preservation:** `applyBlocksToYDoc` MUST preserve `Y.Map`/`Y.Text` identity for blocks that exist before and after — including across reorders. The `yOrder`+`yStore` split enforces this structurally. Regression tests in `collab.test.js`.
+- **Yjs dual-package hazard (CJS↔ESM):** Server code (CJS) MUST NOT call ESM functions that create `Y.Map`/`Y.Text` (e.g., `applyBlocksToYDoc`, `seedYBlocks` from `collab.js`) — the ESM Yjs creates types that fail `instanceof` against CJS Y.Docs. Use `seedRoomFromBlocks()` from `room-serializer.cjs` for server-side block seeding. The serialize direction handles this via `.toString()` coercion on `Y.Text`.
 - **Transaction origins:** All local write paths MUST use a `local-*` origin string (`local-publish`, `local-meta`, `local-tc`, `local-comments`, `seed`). `handleAfterTx` suppresses via `startsWith('local-')` prefix check.
 - **Echo prevention:** Publish effect skips when `blocks === lastRemoteBlocksRef.current` (reference equality). `afterTransaction` also filters by `transaction.origin === 'local-publish'`.
 - **TC snapshot syncing:** Accept/Reject must update both block html AND tcSnapshots in the same React tick (via `tcDirtyRef.current = true`) so remote clients re-diff to empty without phantom marks.
