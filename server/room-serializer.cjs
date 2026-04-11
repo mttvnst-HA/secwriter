@@ -50,6 +50,12 @@ async function serializeRoom(ydoc) {
 
   // 2. .SEC file
   const blocks = _yBlocksToArray(yOrder, yStore);
+  // Dual-package hazard: CJS require('yjs') and ESM import('yjs') may load
+  // separate copies, making `instanceof Y.Text` fail in yMapToBlock. Coerce
+  // any non-string html to string so the serializer gets plain strings.
+  for (const b of blocks) {
+    if (b.html && typeof b.html !== 'string') b.html = b.html.toString();
+  }
   const meta = _readYMeta(yMeta);
   const secXml = _serializeSEC(blocks, meta);
   const secBytes = _encodeWindows1252(secXml);
