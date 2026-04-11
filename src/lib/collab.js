@@ -674,10 +674,31 @@ export function createCollabSession({
     }
     // Single source of truth for connection status (see onStatusChange
     // duplication fix — we only fire from the sync handler).
-    onStatusChange?.(isSynced ? 'connected' : 'syncing');
+    onStatusChange?.(isSynced ? 'connected' : 'syncing', { reconnectIn: 0 });
+  };
+
+  // Map y-websocket status events to SIM's four-state model.
+  // y-websocket fires 'status' with { status: 'connecting'|'disconnected' }
+  // on WebSocket open/close. The 'sync' handler above fires 'connected'|
+  // 'syncing' once the Yjs sync handshake completes.
+  const handleStatus = ({ status }) => {
+    if (status === 'connecting') {
+      // Compute reconnect countdown from exponential backoff.
+      // y-websocket uses: baseDelay * 2^attempts, capped at 30s.
+      const attempts = provider.wsUnsuccessfulReconnects || 0;
+      const reconnectIn = attempts > 0
+        ? Math.min(Math.pow(2, attempts) * 1, 30)  // base delay ~1s
+        : 0;
+      onStatusChange?.('connecting', { reconnectIn });
+    } else if (status === 'disconnected') {
+      const attempts = provider.wsUnsuccessfulReconnects || 0;
+      const reconnectIn = Math.min(Math.pow(2, attempts) * 1, 30);
+      onStatusChange?.('disconnected', { reconnectIn });
+    }
   };
 
   provider.on('sync', handleSync);
+  provider.on('status', handleStatus);
 
   // Observe ydoc-level afterTransaction so we get one notification per
   // transaction regardless of whether yOrder, yStore, or a nested Y.Text
@@ -815,6 +836,7 @@ export function createCollabSession({
       ydoc.off('afterTransaction', handleAfterTx);
       awareness.off('change', handleAwareness);
       provider.off('sync', handleSync);
+      provider.off('status', handleStatus);
       try { provider.destroy(); } catch { /* ignore */ }
       try { ydoc.destroy(); } catch { /* ignore */ }
     },
