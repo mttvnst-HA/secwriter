@@ -90,6 +90,13 @@ describe('yTextToHtml', () => {
     expect(yTextToHtml(yText)).toBe('<ins class="mark-add" style="--author-color:#ff6b6b">added</ins>');
   });
 
+  it('converts chg revision with author color to style attribute', () => {
+    const yText = makeYText([
+      { insert: 'changed', attributes: { revision: 'chg', revisionAuthorColor: '#aabbcc' } },
+    ]);
+    expect(yTextToHtml(yText)).toBe('<span class="mark-chg" style="--author-color:#aabbcc">changed</span>');
+  });
+
   it('converts comment attribute to <span class="mark-comment">', () => {
     const yText = makeYText([
       { insert: 'commented', attributes: { comment: 'comment-123' } },

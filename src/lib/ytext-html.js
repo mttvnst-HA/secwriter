@@ -19,20 +19,30 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;');
 }
 
+// All attribute keys that affect tag generation, in nesting order
+const NESTING_KEYS = ['comment', 'revision', 'mark', 'bold', 'italic', 'underline'];
+// Auxiliary keys that modify how a primary key renders
+const AUX_KEYS = ['markOption', 'revisionAuthor', 'revisionAuthorColor', 'commentResolved'];
+
 /**
- * Check if two attribute objects are deeply equal (shallow comparison is
- * sufficient since attribute values are primitives).
+ * Check if two attribute objects produce the same HTML tags.
+ * Normalizes falsy values to null so that `false`, `undefined`, and absent
+ * keys are treated as equivalent (Yjs may use any of these to represent
+ * "attribute removed").
  * @param {object} a
  * @param {object} b
  * @returns {boolean}
  */
 function attrsEqual(a, b) {
   if (a === b) return true;
-  if (!a || !b) return false;
-  const keysA = Object.keys(a);
-  const keysB = Object.keys(b);
-  if (keysA.length !== keysB.length) return false;
-  return keysA.every(k => a[k] === b[k]);
+  if (!a || !b) return (!a || Object.keys(a).length === 0) && (!b || Object.keys(b).length === 0);
+  for (const key of NESTING_KEYS) {
+    if ((a[key] || null) !== (b[key] || null)) return false;
+  }
+  for (const key of AUX_KEYS) {
+    if ((a[key] || null) !== (b[key] || null)) return false;
+  }
+  return true;
 }
 
 /**
@@ -80,7 +90,7 @@ function buildTags(attrs) {
   // Layer 3: mark
   if (attrs.mark) {
     const markClass = `mark-${attrs.mark}`;
-    const dataOpt = attrs.markOption ? ` data-opt="${attrs.markOption}"` : '';
+    const dataOpt = (attrs.mark === 'tai' && attrs.markOption) ? ` data-opt="${attrs.markOption}"` : '';
     openParts.push(`<span class="${markClass}"${dataOpt}>`);
     closeParts.unshift('</span>');
   }
