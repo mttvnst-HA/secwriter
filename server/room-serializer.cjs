@@ -68,4 +68,49 @@ async function serializeRoom(ydoc) {
   return { ydocBytes, secBytes, commentsJson };
 }
 
-module.exports = { serializeRoom };
+// ── Server-side block seeding (CJS Yjs) ──────────────────────────────────
+// Using ESM collab.js's applyBlocksToYDoc/seedYBlocks from CJS creates
+// Y.Map/Y.Text via the ESM Yjs copy, which fails instanceof checks against
+// the CJS Y.Doc. This CJS implementation uses the same require('yjs') copy
+// as the server's Y.Docs.
+
+// Mirrors SCALAR_KEYS / JSON_KEYS in src/lib/collab.js — duplicated here
+// because importing from the ESM module would trigger the dual-package hazard.
+// `isNew` is intentionally excluded: it's a transient UI flag, never persisted.
+const SCALAR_KEYS = ['id', 'type', 'part', 'depth', 'section', 'level', 'revision'];
+const JSON_KEYS = ['table', 'ref'];
+
+function blockToYMap(block) {
+  const yMap = new Y.Map();
+  for (const k of SCALAR_KEYS) {
+    if (block[k] !== undefined) yMap.set(k, block[k]);
+  }
+  const yText = new Y.Text();
+  if (typeof block.html === 'string' && block.html.length > 0) {
+    yText.insert(0, block.html);
+  }
+  yMap.set('html', yText);
+  for (const k of JSON_KEYS) {
+    if (block[k] !== undefined) yMap.set(k, JSON.stringify(block[k]));
+  }
+  return yMap;
+}
+
+/**
+ * Seed a Y.Doc with parsed blocks, using CJS Yjs to avoid dual-package hazard.
+ * Clears existing content and replaces with the provided blocks.
+ */
+function seedRoomFromBlocks(ydoc, blocks) {
+  const yOrder = ydoc.getArray('order');
+  const yStore = ydoc.getMap('store');
+  ydoc.transact(() => {
+    yOrder.delete(0, yOrder.length);
+    for (const id of Array.from(yStore.keys())) yStore.delete(id);
+    for (const b of blocks) {
+      yStore.set(b.id, blockToYMap(b));
+      yOrder.push([b.id]);
+    }
+  }, 'seed');
+}
+
+module.exports = { serializeRoom, seedRoomFromBlocks };

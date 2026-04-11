@@ -1,10 +1,10 @@
 /**
  * HTTP endpoint tests for collab-server download/upload routes.
  *
- * Spins up a minimal HTTP server using the same routing logic as the real
- * collab-server, backed by a real LocalStorageBackend in a temp directory.
- * Tests cover GET /rooms/:roomId/sec, GET /rooms/:roomId/comments,
- * GET /rooms (list), and 404 for unknown rooms.
+ * Uses the real createHttpHandler from http-handler.cjs backed by a real
+ * LocalStorageBackend in a temp directory. Tests cover GET /rooms/:roomId/sec,
+ * GET /rooms/:roomId/comments, GET /rooms (list), POST /rooms/:roomId/upload,
+ * and 404 for unknown rooms.
  *
  * Run: node --test server/__tests__/http-endpoints.test.mjs
  */
@@ -31,13 +31,33 @@ function httpGet(url) {
   });
 }
 
+function httpPost(url, body) {
+  return new Promise((resolve, reject) => {
+    const u = new URL(url);
+    const req = http.request({
+      hostname: u.hostname,
+      port: u.port,
+      path: u.pathname,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/octet-stream' },
+    }, (res) => {
+      const chunks = [];
+      res.on('data', c => chunks.push(c));
+      res.on('end', () => resolve({ status: res.statusCode, headers: res.headers, body: Buffer.concat(chunks) }));
+    });
+    req.on('error', reject);
+    req.end(body);
+  });
+}
+
 describe('HTTP endpoints', () => {
-  let tmpDir, server, baseUrl;
+  let tmpDir, server, baseUrl, storage, boundDocs;
 
   before(async () => {
     tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sim-http-'));
     const { LocalStorageBackend } = require('../storage-local.cjs');
-    const storage = new LocalStorageBackend(tmpDir);
+    storage = new LocalStorageBackend(tmpDir);
+    boundDocs = new Map();
 
     // Seed test data
     await storage.writeRoom('test-room', {
@@ -53,97 +73,15 @@ describe('HTTP endpoints', () => {
       commentsJson: null,
     });
 
-    // Create a minimal HTTP handler using the same logic as collab-server
-    const MAX_DOC_BYTES = 8 * 1024 * 1024;
-    server = http.createServer(async (req, res) => {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-      if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
-
-      const url = new URL(req.url, `http://${req.headers.host}`);
-
-      // POST /rooms/:roomId/upload — size-limited echo for test purposes
-      const uploadMatch = url.pathname.match(/^\/rooms\/([^/]+)\/upload$/);
-      if (uploadMatch && req.method === 'POST') {
-        const roomId = uploadMatch[1];
-        const chunks = [];
-        let totalSize = 0;
-        let aborted = false;
-        req.on('data', (chunk) => {
-          totalSize += chunk.length;
-          if (totalSize > MAX_DOC_BYTES) {
-            aborted = true;
-            res.writeHead(413, { 'Content-Type': 'text/plain' });
-            res.end(`File exceeds ${MAX_DOC_BYTES} byte limit`);
-            req.destroy();
-            return;
-          }
-          chunks.push(chunk);
-        });
-        req.on('end', () => {
-          if (aborted) return;
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ ok: true, roomId, size: totalSize }));
-        });
-        return;
-      }
-
-      // GET /rooms/:roomId/sec  or  GET /rooms/:roomId/comments
-      const dlMatch = url.pathname.match(/^\/rooms\/([^/]+)\/(sec|comments)$/);
-      if (dlMatch && req.method === 'GET') {
-        const [, roomId, artifact] = dlMatch;
-        try {
-          const data = await storage.readRoom(roomId);
-          if (!data) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end(`Room "${roomId}" not found`);
-            return;
-          }
-          if (artifact === 'sec') {
-            if (!data.secBytes) {
-              res.writeHead(404, { 'Content-Type': 'text/plain' });
-              res.end('SEC file not yet generated for this room');
-              return;
-            }
-            res.writeHead(200, {
-              'Content-Type': 'application/xml; charset=windows-1252',
-              'Content-Disposition': `attachment; filename="${roomId}.SEC"`,
-            });
-            res.end(Buffer.from(data.secBytes));
-          } else {
-            // comments
-            if (!data.commentsJson) {
-              res.writeHead(200, { 'Content-Type': 'application/json' });
-              res.end(JSON.stringify({ version: 1, comments: [] }));
-              return;
-            }
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(data.commentsJson);
-          }
-        } catch (err) {
-          res.writeHead(500, { 'Content-Type': 'text/plain' });
-          res.end(`Download failed: ${err.message}`);
-        }
-        return;
-      }
-
-      // GET /rooms — list all rooms
-      if (url.pathname === '/rooms' && req.method === 'GET') {
-        try {
-          const rooms = await storage.listRooms();
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ rooms }));
-        } catch (err) {
-          res.writeHead(500, { 'Content-Type': 'text/plain' });
-          res.end(`List rooms failed: ${err.message}`);
-        }
-        return;
-      }
-
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('Not found');
+    // Use the real HTTP handler from http-handler.cjs
+    const { createHttpHandler } = require('../http-handler.cjs');
+    const handler = createHttpHandler({
+      storage,
+      boundDocs,
+      flushRoom: async () => {},  // no-op for download/list tests
+      maxDocBytes: 8 * 1024 * 1024,
     });
+    server = http.createServer(handler);
 
     await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
     const addr = server.address();
@@ -206,5 +144,51 @@ describe('HTTP endpoints', () => {
   it('GET /unknown returns 404', async () => {
     const resp = await httpGet(`${baseUrl}/unknown`);
     assert.strictEqual(resp.status, 404);
+  });
+
+  it('POST /rooms/:roomId/upload returns 409 when room has no active Y.Doc', async () => {
+    // Generate valid SEC content via the serializer
+    const { serializeSEC } = await import('../../src/lib/sec-serializer.js');
+    const blocks = [
+      { id: 'b1', type: 'title', part: 1, depth: 0, html: 'GENERAL' },
+      { id: 'b2', type: 'txt', part: 1, depth: 0, section: 'b1', html: 'Hello.' },
+    ];
+    const secXml = serializeSEC(blocks, { sectionNumber: '01 00 00', sectionTitle: 'TEST' });
+
+    const resp = await httpPost(`${baseUrl}/rooms/inactive-room/upload`, Buffer.from(secXml));
+    assert.strictEqual(resp.status, 409);
+    assert.ok(resp.body.toString().includes('no active session'));
+  });
+
+  it('POST /rooms/:roomId/upload with active Y.Doc seeds blocks and returns count', async () => {
+    // Generate valid SEC content via the serializer
+    const { serializeSEC } = await import('../../src/lib/sec-serializer.js');
+    const blocks = [
+      { id: 'b1', type: 'title', part: 1, depth: 0, html: 'GENERAL' },
+      { id: 'b2', type: 'txt', part: 1, depth: 0, section: 'b1', html: 'Test paragraph.' },
+    ];
+    const secXml = serializeSEC(blocks, { sectionNumber: '01 00 00', sectionTitle: 'TEST' });
+
+    // Create a Y.Doc and register it in boundDocs
+    const Y = require('yjs');
+    const ydoc = new Y.Doc();
+    ydoc.getArray('order');
+    ydoc.getMap('store');
+    boundDocs.set('upload-room', ydoc);
+
+    try {
+      const resp = await httpPost(`${baseUrl}/rooms/upload-room/upload`, Buffer.from(secXml));
+      assert.strictEqual(resp.status, 200);
+      const data = JSON.parse(resp.body.toString());
+      assert.strictEqual(data.ok, true);
+      assert.ok(data.blocks >= 2, `expected ≥2 blocks, got ${data.blocks}`);
+
+      // Verify Y.Doc was actually seeded
+      const yOrder = ydoc.getArray('order');
+      assert.ok(yOrder.length >= 2, `yOrder should have ≥2 entries, got ${yOrder.length}`);
+    } finally {
+      ydoc.destroy();
+      boundDocs.delete('upload-room');
+    }
   });
 });

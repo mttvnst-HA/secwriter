@@ -35,7 +35,7 @@ import { getVisibleTextFromHtml } from "./lib/text-diff.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import { clearInlineLinting } from "./lib/inline-linter.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
-import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES } from "./lib/collab.js";
+import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES, DEFAULT_HTTP_URL } from "./lib/collab.js";
 import { stripOrphanCommentSpans } from "./lib/orphan-comment-spans.js";
 import { loadIdentity } from "./lib/identity.js";
 import IdentityModal from "./components/IdentityModal.jsx";
@@ -43,7 +43,7 @@ import PresenceBar from "./components/PresenceBar.jsx";
 import RemoteCursors from "./components/RemoteCursors.jsx";
 import ToastStack, { useToasts } from "./components/Toast.jsx";
 
-const COLLAB_HTTP_URL = 'http://127.0.0.1:1235';
+const COLLAB_HTTP_URL = DEFAULT_HTTP_URL;
 
 // Walk text nodes under `root` to compute the plain-text offset of
 // (node, offset). Used to transport a caret position across a DOM rewrite

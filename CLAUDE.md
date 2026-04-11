@@ -135,7 +135,8 @@ server/
   dom-polyfill.cjs         # DOMParser polyfill via linkedom for Node.js ~15 lines
   room-serializer.cjs      # Y.Doc → .SEC + .comments.json orchestrator ~65 lines
   storage-local.cjs        # Local filesystem storage backend with atomic multi-artifact writes ~170 lines
-  __tests__/               # 20 server-side tests (Node runner)
+  http-handler.cjs         # Extracted HTTP request handler factory (download/upload routes) ~170 lines
+  __tests__/               # 22 server-side tests (Node runner)
 test-results/              # UI audit output: findings.json + timestamped Markdown reports
 ```
 
@@ -153,8 +154,8 @@ npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node ru
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
-npm run test:server   # Run 20 server persistence + HTTP endpoint tests (Node runner)
-# Full suite: 566 + 99 + 20 + 141 = 826 automated tests
+npm run test:server   # Run 22 server persistence + HTTP endpoint tests (Node runner)
+# Full suite: 566 + 99 + 22 + 141 = 828 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -485,7 +486,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 | orphan-comment-spans.test.js | 8 | Vitest | Ghost-span cleanup: no-op, single orphan, mixed valid+orphan, mark-comment-resolved class, reference preservation, nested orphans, non-comment data spans |
 
-**Total: 566 Vitest + 99 Node + 20 Server + 141 Playwright = 826 automated tests**
+**Total: 566 Vitest + 99 Node + 22 Server + 141 Playwright = 828 automated tests**
 
 ## Dependencies
 

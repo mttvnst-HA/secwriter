@@ -61,7 +61,10 @@
 import * as Y from 'yjs';
 import { WebsocketProvider } from 'y-websocket';
 
+// Collab server URLs — App.jsx imports DEFAULT_HTTP_URL from here.
+// Port defaults must match server/collab-server.cjs (PORT / HTTP_PORT).
 const DEFAULT_WS_URL = 'ws://127.0.0.1:1234';
+export const DEFAULT_HTTP_URL = 'http://127.0.0.1:1235';
 
 /**
  * Read `?room=...` from the current URL. Returns null if not in a room.

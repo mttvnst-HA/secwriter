@@ -1,0 +1,162 @@
+/**
+ * HTTP request handler for collab-server download/upload endpoints.
+ *
+ * Extracted as a factory so the same routing logic can be exercised by both
+ * the real collab-server and the test suite.
+ *
+ * Usage:
+ *   const handler = createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes });
+ *   http.createServer(handler);
+ */
+
+// CJS seedRoomFromBlocks avoids the Yjs dual-package hazard — ESM collab.js
+// creates Y.Map/Y.Text from the ESM Yjs copy, which fails instanceof checks
+// against CJS Y.Docs. room-serializer uses the same CJS Yjs as the server.
+const { seedRoomFromBlocks } = require('./room-serializer.cjs');
+
+/**
+ * @param {Object} deps
+ * @param {import('./storage-local.cjs').LocalStorageBackend} deps.storage
+ * @param {Map<string, import('yjs').Doc>} deps.boundDocs
+ * @param {(roomId: string) => Promise<void>} deps.flushRoom
+ * @param {number} deps.maxDocBytes
+ */
+function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes }) {
+  return async (req, res) => {
+    // CORS for dev
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
+
+    const url = new URL(req.url, `http://${req.headers.host}`);
+
+    // POST /rooms/:roomId/upload
+    const uploadMatch = url.pathname.match(/^\/rooms\/([^/]+)\/upload$/);
+    if (uploadMatch && req.method === 'POST') {
+      const roomId = uploadMatch[1];
+      const chunks = [];
+      let totalSize = 0;
+      let aborted = false;
+      req.on('data', (chunk) => {
+        totalSize += chunk.length;
+        if (totalSize > maxDocBytes) {
+          aborted = true;
+          res.writeHead(413, { 'Content-Type': 'text/plain' });
+          res.end(`File exceeds ${maxDocBytes} byte limit`);
+          req.destroy();
+          return;
+        }
+        chunks.push(chunk);
+      });
+      req.on('end', async () => {
+        if (aborted) return;
+        try {
+          const body = Buffer.concat(chunks);
+          // latin1 (ISO 8859-1) is a byte-transparent superset of windows-1252
+          // that preserves all 256 byte values — the SEC parser handles the
+          // actual character interpretation.
+          const secContent = body.toString('latin1');
+
+          const { parseSEC } = await import('../src/lib/sec-parser.js');
+          const blocks = parseSEC(secContent);
+          if (!blocks || blocks.length === 0) {
+            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            res.end('Failed to parse SEC file — no blocks extracted');
+            return;
+          }
+
+          // Room must have a live Y.Doc (at least one client connected via WS).
+          // Without an active doc, there's nowhere to apply the parsed blocks.
+          const ydoc = boundDocs.get(roomId);
+          if (!ydoc) {
+            res.writeHead(409, { 'Content-Type': 'text/plain' });
+            res.end(`Room "${roomId}" has no active session — join via WebSocket first`);
+            return;
+          }
+
+          seedRoomFromBlocks(ydoc, blocks);
+          // Await persist so the 200 response guarantees durability.
+          await flushRoom(roomId);
+
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ ok: true, blocks: blocks.length }));
+        } catch (err) {
+          console.error(`[collab] upload failed for room=${roomId}:`, err.message);
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          res.end(`Upload failed: ${err.message}`);
+        }
+      });
+      return;
+    }
+
+    // GET /rooms/:roomId/sec  or  GET /rooms/:roomId/comments
+    const dlMatch = url.pathname.match(/^\/rooms\/([^/]+)\/(sec|comments)$/);
+    if (dlMatch && req.method === 'GET') {
+      const [, roomId, artifact] = dlMatch;
+      try {
+        const data = await storage.readRoom(roomId);
+        if (!data) {
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end(`Room "${roomId}" not found`);
+          return;
+        }
+
+        if (artifact === 'sec') {
+          if (!data.secBytes) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.end('SEC file not yet generated for this room');
+            return;
+          }
+          // Try to get a meaningful filename from yMeta
+          let fileName = `${roomId}.SEC`;
+          const ydoc = boundDocs.get(roomId);
+          if (ydoc) {
+            try {
+              const yMeta = ydoc.getMap('meta');
+              const sn = yMeta.get('sectionNumber');
+              if (sn) fileName = `${sn.replace(/\s+/g, '_')}.SEC`;
+            } catch { /* use default */ }
+          }
+          res.writeHead(200, {
+            'Content-Type': 'application/xml; charset=windows-1252',
+            'Content-Disposition': `attachment; filename="${fileName}"`,
+          });
+          res.end(Buffer.from(data.secBytes));
+        } else {
+          // comments
+          if (!data.commentsJson) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ version: 1, comments: [] }));
+            return;
+          }
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(data.commentsJson);
+        }
+      } catch (err) {
+        console.error(`[collab] download failed for room=${roomId}/${artifact}:`, err.message);
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end(`Download failed: ${err.message}`);
+      }
+      return;
+    }
+
+    // GET /rooms — list all rooms
+    if (url.pathname === '/rooms' && req.method === 'GET') {
+      try {
+        const rooms = await storage.listRooms();
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ rooms }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end(`List rooms failed: ${err.message}`);
+      }
+      return;
+    }
+
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not found');
+  };
+}
+
+module.exports = { createHttpHandler };

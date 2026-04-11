@@ -92,9 +92,9 @@ function getHealth(docName) {
 }
 const DEBOUNCE_MS = 500;
 
-// Lazy-loaded room serializer — avoids pulling in sec-parser + sec-serializer
-// at startup (heavy modules with large data files) when the server may only
-// need basic Y.Doc persistence for the first few hundred milliseconds.
+// Deferred room serializer — the CJS require is synchronous but the heavy
+// ESM modules (sec-parser, sec-serializer) inside it are loaded via dynamic
+// import() on first use, not at require-time.
 let _serializeRoom = null;
 async function getSerializeRoom() {
   if (!_serializeRoom) {
@@ -224,140 +224,11 @@ wss.on('error', (err) => {
 
 // ── HTTP endpoints for document download/upload ──────────────────────────
 const http = require('node:http');
+const { createHttpHandler } = require('./http-handler.cjs');
 
-const httpServer = http.createServer(async (req, res) => {
-  // CORS for dev
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
-
-  const url = new URL(req.url, `http://${req.headers.host}`);
-
-  // POST /rooms/:roomId/upload
-  const uploadMatch = url.pathname.match(/^\/rooms\/([^/]+)\/upload$/);
-  if (uploadMatch && req.method === 'POST') {
-    const roomId = uploadMatch[1];
-    const chunks = [];
-    let totalSize = 0;
-    let aborted = false;
-    req.on('data', (chunk) => {
-      totalSize += chunk.length;
-      if (totalSize > MAX_DOC_BYTES) {
-        aborted = true;
-        res.writeHead(413, { 'Content-Type': 'text/plain' });
-        res.end(`File exceeds ${MAX_DOC_BYTES} byte limit`);
-        req.destroy();
-        return;
-      }
-      chunks.push(chunk);
-    });
-    req.on('end', async () => {
-      if (aborted) return;
-      try {
-        const body = Buffer.concat(chunks);
-        const secContent = body.toString('latin1');
-
-        const { parseSEC } = await import('../src/lib/sec-parser.js');
-        const blocks = parseSEC(secContent);
-        if (!blocks || blocks.length === 0) {
-          res.writeHead(400, { 'Content-Type': 'text/plain' });
-          res.end('Failed to parse SEC file — no blocks extracted');
-          return;
-        }
-
-        // If room has a live Y.Doc, apply blocks to it
-        const ydoc = boundDocs.get(roomId);
-        if (ydoc) {
-          const { applyBlocksToYDoc } = await import('../src/lib/collab.js');
-          const yOrder = ydoc.getArray('order');
-          const yStore = ydoc.getMap('store');
-          ydoc.transact(() => {
-            applyBlocksToYDoc(ydoc, yOrder, yStore, blocks);
-          }, 'upload');
-          // Trigger persist
-          flushRoom(roomId);
-        }
-
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ ok: true, blocks: blocks.length }));
-      } catch (err) {
-        console.error(`[collab] upload failed for room=${roomId}:`, err.message);
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end(`Upload failed: ${err.message}`);
-      }
-    });
-    return;
-  }
-
-  // GET /rooms/:roomId/sec  or  GET /rooms/:roomId/comments
-  const dlMatch = url.pathname.match(/^\/rooms\/([^/]+)\/(sec|comments)$/);
-  if (dlMatch && req.method === 'GET') {
-    const [, roomId, artifact] = dlMatch;
-    try {
-      const data = await storage.readRoom(roomId);
-      if (!data) {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end(`Room "${roomId}" not found`);
-        return;
-      }
-
-      if (artifact === 'sec') {
-        if (!data.secBytes) {
-          res.writeHead(404, { 'Content-Type': 'text/plain' });
-          res.end('SEC file not yet generated for this room');
-          return;
-        }
-        // Try to get a meaningful filename from yMeta
-        let fileName = `${roomId}.SEC`;
-        const ydoc = boundDocs.get(roomId);
-        if (ydoc) {
-          try {
-            const yMeta = ydoc.getMap('meta');
-            const sn = yMeta.get('sectionNumber');
-            if (sn) fileName = `${sn.replace(/\s+/g, '_')}.SEC`;
-          } catch { /* use default */ }
-        }
-        res.writeHead(200, {
-          'Content-Type': 'application/xml; charset=windows-1252',
-          'Content-Disposition': `attachment; filename="${fileName}"`,
-        });
-        res.end(Buffer.from(data.secBytes));
-      } else {
-        // comments
-        if (!data.commentsJson) {
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ version: 1, comments: [] }));
-          return;
-        }
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(data.commentsJson);
-      }
-    } catch (err) {
-      console.error(`[collab] download failed for room=${roomId}/${artifact}:`, err.message);
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end(`Download failed: ${err.message}`);
-    }
-    return;
-  }
-
-  // GET /rooms — list all rooms
-  const listMatch = url.pathname === '/rooms' && req.method === 'GET';
-  if (listMatch) {
-    try {
-      const rooms = await storage.listRooms();
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ rooms }));
-    } catch (err) {
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end(`List rooms failed: ${err.message}`);
-    }
-    return;
-  }
-
-  res.writeHead(404, { 'Content-Type': 'text/plain' });
-  res.end('Not found');
-});
+const httpServer = http.createServer(
+  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES })
+);
 
 const HTTP_PORT = Number(process.env.COLLAB_HTTP_PORT || 1235);
 httpServer.listen(HTTP_PORT, HOST, () => {
