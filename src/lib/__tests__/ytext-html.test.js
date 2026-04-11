@@ -369,3 +369,74 @@ describe('applyHtmlToYText', () => {
     expect(yTextToHtml(yText)).toBe(readBack);
   });
 });
+
+describe('two-doc CRDT merge', () => {
+  function syncDocs(doc1, doc2) {
+    const sv1 = Y.encodeStateVector(doc1);
+    const sv2 = Y.encodeStateVector(doc2);
+    const update1 = Y.encodeStateAsUpdate(doc1, sv2);
+    const update2 = Y.encodeStateAsUpdate(doc2, sv1);
+    Y.applyUpdate(doc1, update2);
+    Y.applyUpdate(doc2, update1);
+  }
+
+  it('merges concurrent text insertions at different positions', () => {
+    const doc1 = new Y.Doc(); const doc2 = new Y.Doc();
+    const yt1 = doc1.getText('t'); const yt2 = doc2.getText('t');
+
+    applyHtmlToYText(yt1, 'Hello world');
+    syncDocs(doc1, doc2);
+
+    applyHtmlToYText(yt1, 'Hello beautiful world');
+    applyHtmlToYText(yt2, 'Hello cruel world');
+
+    syncDocs(doc1, doc2);
+
+    const result = yTextToHtml(yt1);
+    expect(result).toContain('beautiful');
+    expect(result).toContain('cruel');
+    expect(yTextToHtml(yt1)).toBe(yTextToHtml(yt2));
+  });
+
+  it('merges concurrent formatting on non-overlapping ranges', () => {
+    const doc1 = new Y.Doc(); const doc2 = new Y.Doc();
+    const yt1 = doc1.getText('t'); const yt2 = doc2.getText('t');
+
+    applyHtmlToYText(yt1, 'Hello world');
+    syncDocs(doc1, doc2);
+
+    applyHtmlToYText(yt1, '<b>Hello</b> world');
+    applyHtmlToYText(yt2, 'Hello <span class="mark-rid">world</span>');
+
+    syncDocs(doc1, doc2);
+
+    const result = yTextToHtml(yt1);
+    expect(result).toContain('<b>Hello</b>');
+    expect(result).toContain('<span class="mark-rid">world</span>');
+    expect(yTextToHtml(yt1)).toBe(yTextToHtml(yt2));
+  });
+
+  it('merges concurrent text edit + formatting on same word', () => {
+    const doc1 = new Y.Doc(); const doc2 = new Y.Doc();
+    const yt1 = doc1.getText('t'); const yt2 = doc2.getText('t');
+
+    applyHtmlToYText(yt1, 'Hello world');
+    syncDocs(doc1, doc2);
+
+    applyHtmlToYText(yt1, 'Hello <b>world</b>');
+    applyHtmlToYText(yt2, 'Hello world!');
+
+    syncDocs(doc1, doc2);
+
+    const r1 = yTextToHtml(yt1);
+    const r2 = yTextToHtml(yt2);
+    expect(r1).toBe(r2);
+    // Yjs CRDT: the '!' appended after 'world' inherits bold because the
+    // insertion point falls inside the bold run. The exact merge result is
+    // deterministic but attribute-inheriting, so we check for both words and
+    // the presence of bold markup rather than an exact substring.
+    expect(r1).toContain('world');
+    expect(r1).toContain('!');
+    expect(r1).toContain('<b>');
+  });
+});
