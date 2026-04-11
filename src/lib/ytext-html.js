@@ -323,28 +323,8 @@ function lcsOps(oldChars, newChars) {
   const m = oldChars.length;
   const n = newChars.length;
 
-  // Build LCS table — only need two rows at a time
-  // Use Uint16Array for memory efficiency (capped at 65535 chars — sufficient)
-  let prev = new Uint16Array(n + 1);
-  let curr = new Uint16Array(n + 1);
-
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      if (oldChars[i - 1] === newChars[j - 1]) {
-        curr[j] = prev[j - 1] + 1;
-      } else {
-        curr[j] = prev[j] > curr[j - 1] ? prev[j] : curr[j - 1];
-      }
-    }
-    // Swap rows
-    const tmp = prev;
-    prev = curr;
-    curr = tmp;
-    curr.fill(0);
-  }
-
-  // Backtrack to get the LCS indices — need full table for backtracking
-  // Rebuild with full table (using regular arrays for backtracking)
+  // Build full LCS table for backtracking.
+  // Uint16Array for memory efficiency (capped at 65535 chars — sufficient for any block).
   const table = [];
   for (let i = 0; i <= m; i++) {
     table[i] = new Uint16Array(n + 1);
