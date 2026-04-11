@@ -131,7 +131,11 @@ tools/
     test-procedure.md      # Master test procedure (15 areas)
     test-areas/            # 15 test area definitions (01-app-load.md through 15-dark-mode-zoom.md)
 server/
-  collab-server.cjs        # Yjs WebSocket relay: room persistence, atomic writes, shutdown flush ~250 lines
+  collab-server.cjs        # Yjs WebSocket + HTTP relay: room persistence, .SEC/.comments.json generation, download/upload endpoints ~400 lines
+  dom-polyfill.cjs         # DOMParser polyfill via linkedom for Node.js ~15 lines
+  room-serializer.cjs      # Y.Doc → .SEC + .comments.json orchestrator ~65 lines
+  storage-local.cjs        # Local filesystem storage backend with atomic multi-artifact writes ~170 lines
+  __tests__/               # 20 server-side tests (Node runner)
 test-results/              # UI audit output: findings.json + timestamped Markdown reports
 ```
 
@@ -149,7 +153,8 @@ npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node ru
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
-# Full suite: 566 + 99 + 141 = 806 automated tests
+npm run test:server   # Run 20 server persistence + HTTP endpoint tests (Node runner)
+# Full suite: 566 + 99 + 20 + 141 = 826 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -337,7 +342,7 @@ These are known issues identified during QA testing that have not yet been fixed
 
 Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`). Without a room parameter, SIM behaves exactly like the single-user app — no regression risk.
 
-**Stack:** Yjs CRDT + `y-websocket@1.5.4` (pinned — v3 dropped the server utils). Server at `server/collab-server.cjs` (CJS on purpose: mixing ESM + CJS loads two Yjs copies and breaks instanceof checks, yjs#438). Persists rooms to `server/collab-db/<room>.ydoc`. **Prototype only — no auth, no TLS, no rate limiting.**
+**Stack:** Yjs CRDT + `y-websocket@1.5.4` (pinned — v3 dropped the server utils). Server at `server/collab-server.cjs` (CJS on purpose: mixing ESM + CJS loads two Yjs copies and breaks instanceof checks, yjs#438). Persists rooms to `server/collab-db/` as `.ydoc` (binary CRDT) + `.SEC` (Windows-1252 XML) + `.comments.json` on every debounced flush. HTTP endpoints at port 1235 for download/upload. **Prototype only — no auth, no TLS, no rate limiting.**
 
 **Data model:** one `Y.Doc` per room with **split ordering + storage**:
 - `yOrder: Y.Array<string>` — ordered block IDs (document outline)
@@ -357,7 +362,8 @@ Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`).
 **In-room behavior changes:**
 - `localStorage` auto-save skipped — Yjs doc is source of truth
 - Undo/redo redirected to `Y.UndoManager` (only your own edits)
-- Ctrl+S still exports to local disk
+- Ctrl+S shows "Saved" indicator (server already persists) — no file picker prompt
+- "Download .SEC" / "Download Comments" toolbar buttons fetch from `GET /rooms/:roomId/{sec,comments}`
 - `setComments(new Map())` on file import gated on `!inRoom`
 
 **Running the prototype:**
@@ -372,6 +378,7 @@ npm run dev             # terminal 2: Vite dev server on localhost:5173
 - No intra-block character-level merge (whole-text replacement)
 - Stub identity in localStorage — no real auth
 - Localhost-only — no TLS / production deployment
+- Azure Blob Storage backend designed but deferred (`storage-local.cjs` interface ready for drop-in `storage-azure.cjs`)
 
 ### Reference data sources
 
@@ -425,7 +432,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 - **Production deployment** — `npm run build` and host (static site, no server needed)
 
 **Future Features:**
-- **Multi-user collaboration** — prototype on `multi-user` branch. See "Multi-user collaboration (prototype)" section above. Next to harden: (1) intra-block character-level CRDT merge, (2) fine-grained table/REF sync, (3) real auth + TLS, (4) reconnect/offline UX, (5) server-owned `.SEC` + sidecar persistence.
+- **Multi-user collaboration** — prototype on `multi-user` branch. See "Multi-user collaboration (prototype)" section above. Server-owned documents landed (`.SEC` + `.comments.json` generated on persist, HTTP download/upload endpoints). Next to harden: (1) intra-block character-level CRDT merge, (2) fine-grained table/REF sync, (3) real auth + TLS, (4) reconnect/offline UX, (5) Azure Blob Storage backend.
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
 - INT cell background rendering — data extracted but not yet applied to TableBlock.jsx cells
 - Multi-file project management — SIM is currently a single-section editor by design
@@ -478,7 +485,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 | orphan-comment-spans.test.js | 8 | Vitest | Ghost-span cleanup: no-op, single orphan, mixed valid+orphan, mark-comment-resolved class, reference preservation, nested orphans, non-comment data spans |
 
-**Total: 566 Vitest + 99 Node + 141 Playwright = 806 automated tests**
+**Total: 566 Vitest + 99 Node + 20 Server + 141 Playwright = 826 automated tests**
 
 ## Dependencies
 

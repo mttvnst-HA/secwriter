@@ -27,7 +27,8 @@
     "audit:list": "node tools/ui-audit/run-audit.mjs --list",
     "audit:report": "node tools/ui-audit/collect-findings.mjs test-results/findings.json",
     "audit:promote": "node tools/ui-audit/promote-to-github.mjs test-results/findings.json",
-    "collab": "node server/collab-server.cjs"
+    "collab": "node server/collab-server.cjs",
+    "test:server": "node --test server/__tests__/dom-polyfill.test.mjs server/__tests__/storage-local.test.mjs server/__tests__/room-serializer.test.mjs server/__tests__/http-endpoints.test.mjs"
   },
   "dependencies": {
     "compromise": "^14.15.0",
