@@ -1048,3 +1048,87 @@ describe('character-level CRDT merge (attribute-aware)', () => {
     expect(result1[0].html).toContain('mark-srf');
   });
 });
+
+// ── Fine-grained table/REF CRDT sync ──────────────────────────────────────
+describe('fine-grained table/REF sync', () => {
+  it('concurrent cell edits on same table block merge', () => {
+    const { ydoc: doc1, yOrder: o1, yStore: s1 } = makeDoc();
+    const { ydoc: doc2, yOrder: o2, yStore: s2 } = makeDoc();
+
+    const table = {
+      columns: 2,
+      rows: [
+        [{ text: 'A1', colspan: 1 }, { text: 'B1', colspan: 1 }],
+        [{ text: 'A2', colspan: 1 }, { text: 'B2', colspan: 1 }],
+      ],
+    };
+    const blocks = [{ id: 't1', type: 'table', part: 1, depth: 1, section: 's1', html: '', table }];
+
+    seedYBlocks(doc1, o1, s1, blocks);
+    Y.applyUpdate(doc2, Y.encodeStateAsUpdate(doc1, Y.encodeStateVector(doc2)));
+
+    const t1 = { ...table, rows: [[{ text: 'Doc1', colspan: 1 }, { text: 'B1', colspan: 1 }], table.rows[1]] };
+    applyBlocksToYDoc(doc1, o1, s1, [{ ...blocks[0], table: t1 }]);
+
+    const t2 = { ...table, rows: [table.rows[0], [{ text: 'A2', colspan: 1 }, { text: 'Doc2', colspan: 1 }]] };
+    applyBlocksToYDoc(doc2, o2, s2, [{ ...blocks[0], table: t2 }]);
+
+    const u1 = Y.encodeStateAsUpdate(doc1, Y.encodeStateVector(doc2));
+    const u2 = Y.encodeStateAsUpdate(doc2, Y.encodeStateVector(doc1));
+    Y.applyUpdate(doc1, u2);
+    Y.applyUpdate(doc2, u1);
+
+    const r1 = yBlocksToArray(o1, s1);
+    const r2 = yBlocksToArray(o2, s2);
+    expect(r1[0].table.rows[0][0].text).toBe('Doc1');
+    expect(r1[0].table.rows[1][1].text).toBe('Doc2');
+    expect(JSON.stringify(r1[0].table)).toBe(JSON.stringify(r2[0].table));
+  });
+
+  it('concurrent ref entry additions merge', () => {
+    const { ydoc: doc1, yOrder: o1, yStore: s1 } = makeDoc();
+    const { ydoc: doc2, yOrder: o2, yStore: s2 } = makeDoc();
+
+    const ref = { org: 'ASTM', entries: [{ rid: 'C33', rtl: 'Aggregates' }] };
+    const blocks = [{ id: 'r1', type: 'ref', part: 1, depth: 1, section: 's1', html: '', ref }];
+
+    seedYBlocks(doc1, o1, s1, blocks);
+    Y.applyUpdate(doc2, Y.encodeStateAsUpdate(doc1, Y.encodeStateVector(doc2)));
+
+    const ref1 = { ...ref, entries: [...ref.entries, { rid: 'D698', rtl: 'Compaction' }] };
+    applyBlocksToYDoc(doc1, o1, s1, [{ ...blocks[0], ref: ref1 }]);
+
+    const ref2 = { ...ref, entries: [...ref.entries, { rid: 'D2487', rtl: 'Soils' }] };
+    applyBlocksToYDoc(doc2, o2, s2, [{ ...blocks[0], ref: ref2 }]);
+
+    const u1 = Y.encodeStateAsUpdate(doc1, Y.encodeStateVector(doc2));
+    const u2 = Y.encodeStateAsUpdate(doc2, Y.encodeStateVector(doc1));
+    Y.applyUpdate(doc1, u2);
+    Y.applyUpdate(doc2, u1);
+
+    const r1 = yBlocksToArray(o1, s1);
+    const r2 = yBlocksToArray(o2, s2);
+    expect(r1[0].ref.entries.length).toBe(3);
+    expect(r1[0].ref.entries.length).toBe(r2[0].ref.entries.length);
+  });
+
+  it('backward compat: reads legacy JSON-string table as plain data', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    const table = { columns: 1, rows: [[{ text: 'cell', colspan: 1 }]] };
+
+    ydoc.transact(() => {
+      const yMap = new Y.Map();
+      yMap.set('id', 'legacy');
+      yMap.set('type', 'table');
+      yMap.set('table', JSON.stringify(table));
+      const yText = new Y.Text();
+      yText.insert(0, '');
+      yMap.set('html', yText);
+      yStore.set('legacy', yMap);
+      yOrder.push(['legacy']);
+    });
+
+    const blocks = yBlocksToArray(yOrder, yStore);
+    expect(blocks[0].table).toEqual(table);
+  });
+});

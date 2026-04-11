@@ -53,7 +53,7 @@
  *
  * Prototype limitations (see CLAUDE.md roadmap):
  *   - html sync uses whole-text replacement (no per-character CRDT merge)
- *   - table/ref blocks sync as whole-value replacements (coarse)
+ *   - table/ref blocks use nested CRDT structures for cell-level merge
  *   - no server-side .SEC persistence — Y.Doc on relay is in-memory CRDT;
  *     .SEC + sidecar .comments.json live on each user's local disk
  */
@@ -61,6 +61,8 @@
 import * as Y from 'yjs';
 import { WebsocketProvider } from 'y-websocket';
 import { applyHtmlToYText, yTextToHtml, htmlToAttrList } from './ytext-html.js';
+import { tableToYStructure, yStructureToTable, diffTableForPublish, applyTableCellEdits } from './ytable-crdt.js';
+import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js';
 
 // Collab server URLs — App.jsx imports DEFAULT_HTTP_URL from here.
 // Port defaults must match server/collab-server.cjs (PORT / HTTP_PORT).
@@ -112,7 +114,8 @@ export function generateRoomId() {
 // Y block:      Y.Map where html is a Y.Text and all other scalars are plain
 
 const SCALAR_KEYS = ['id', 'type', 'part', 'depth', 'section', 'level', 'revision'];
-const JSON_KEYS = ['table', 'ref']; // stored as JSON strings for prototype simplicity
+// Table/REF blocks now use nested CRDT structures (ytable-crdt.js / yref-crdt.js)
+// instead of the former JSON_KEYS JSON-stringify approach.
 
 // M7 — client-side doc size guard.
 //
@@ -202,8 +205,16 @@ function blockToYMap(block) {
   const yText = new Y.Text();
   seedYTextFromHtml(yText, block.html || '');
   yMap.set('html', yText);
-  for (const k of JSON_KEYS) {
-    if (block[k] !== undefined) yMap.set(k, JSON.stringify(block[k]));
+  // Table/REF: nested CRDT structures
+  if (block.table) {
+    const yTable = new Y.Map();
+    tableToYStructure(yTable, block.table);
+    yMap.set('table', yTable);
+  }
+  if (block.ref) {
+    const yRef = new Y.Map();
+    refToYStructure(yRef, block.ref);
+    yMap.set('ref', yRef);
   }
   return yMap;
 }
@@ -217,11 +228,22 @@ function yMapToBlock(yMap) {
   }
   const yText = yMap.get('html');
   block.html = yText instanceof Y.Text ? yTextToHtml(yText) : (yText || '');
-  for (const k of JSON_KEYS) {
-    const raw = yMap.get(k);
-    if (raw !== undefined) {
-      try { block[k] = typeof raw === 'string' ? JSON.parse(raw) : raw; }
-      catch { /* ignore */ }
+  // Table: nested CRDT or legacy JSON string
+  const rawTable = yMap.get('table');
+  if (rawTable) {
+    if (typeof rawTable === 'string') {
+      try { block.table = JSON.parse(rawTable); } catch { /* ignore */ }
+    } else if (typeof rawTable.get === 'function') {
+      block.table = yStructureToTable(rawTable);
+    }
+  }
+  // REF: nested CRDT or legacy JSON string
+  const rawRef = yMap.get('ref');
+  if (rawRef) {
+    if (typeof rawRef === 'string') {
+      try { block.ref = JSON.parse(rawRef); } catch { /* ignore */ }
+    } else if (typeof rawRef.get === 'function') {
+      block.ref = yStructureToRef(rawRef);
     }
   }
   return block;
@@ -464,14 +486,43 @@ function updateYMapFromBlock(ymap, block) {
       else ymap.set(k, block[k]);
     }
   }
-  for (const k of JSON_KEYS) {
-    const cur = ymap.get(k);
-    const nextEnc = block[k] !== undefined ? JSON.stringify(block[k]) : undefined;
-    if (cur !== nextEnc) {
-      if (nextEnc === undefined) ymap.delete(k);
-      else ymap.set(k, nextEnc);
+  // Table CRDT update
+  const curTableYMap = ymap.get('table');
+  if (block.table) {
+    if (!curTableYMap || typeof curTableYMap === 'string') {
+      // Legacy or new: create fresh CRDT structure
+      const yTable = new Y.Map();
+      tableToYStructure(yTable, block.table);
+      ymap.set('table', yTable);
+    } else {
+      // Existing CRDT structure: diff for cell-only vs structural
+      const prevTable = yStructureToTable(curTableYMap);
+      const diff = diffTableForPublish(prevTable, block.table);
+      if (diff.type === 'structural') {
+        tableToYStructure(curTableYMap, block.table);
+      } else if (diff.changes.length > 0) {
+        applyTableCellEdits(curTableYMap, diff.changes);
+      }
     }
+  } else if (curTableYMap) {
+    ymap.delete('table');
   }
+
+  // REF CRDT update
+  const curRefYMap = ymap.get('ref');
+  if (block.ref) {
+    if (!curRefYMap || typeof curRefYMap === 'string') {
+      const yRef = new Y.Map();
+      refToYStructure(yRef, block.ref);
+      ymap.set('ref', yRef);
+    } else {
+      const prevRef = yStructureToRef(curRefYMap);
+      applyRefEdits(curRefYMap, prevRef, block.ref);
+    }
+  } else if (curRefYMap) {
+    ymap.delete('ref');
+  }
+
   const yText = ymap.get('html');
   if (yText instanceof Y.Text) {
     applyHtmlToYText(yText, typeof block.html === 'string' ? block.html : '');
