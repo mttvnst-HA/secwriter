@@ -678,22 +678,25 @@ export function createCollabSession({
   };
 
   // Map y-websocket status events to SIM's four-state model.
-  // y-websocket fires 'status' with { status: 'connecting'|'disconnected' }
-  // on WebSocket open/close. The 'sync' handler above fires 'connected'|
-  // 'syncing' once the Yjs sync handshake completes.
+  // y-websocket fires 'status' with { status: 'connecting'|'disconnected'|'connected' }
+  // on WebSocket lifecycle events. We deliberately ignore 'connected' here because
+  // it fires when the WebSocket opens (before Yjs sync completes); the 'sync'
+  // handler above already transitions to 'connected'/'syncing' after the handshake.
+  //
+  // Reconnect delay mirrors y-websocket's actual formula:
+  //   Math.pow(2, wsUnsuccessfulReconnects) * 100  (ms, capped at maxBackoffTime)
+  const computeReconnectIn = () => {
+    const attempts = provider.wsUnsuccessfulReconnects || 0;
+    if (attempts === 0) return 0;
+    const maxMs = provider.maxBackoffTime || 2500;
+    return Math.ceil(Math.min(Math.pow(2, attempts) * 100, maxMs) / 1000);
+  };
+
   const handleStatus = ({ status }) => {
     if (status === 'connecting') {
-      // Compute reconnect countdown from exponential backoff.
-      // y-websocket uses: baseDelay * 2^attempts, capped at 30s.
-      const attempts = provider.wsUnsuccessfulReconnects || 0;
-      const reconnectIn = attempts > 0
-        ? Math.min(Math.pow(2, attempts) * 1, 30)  // base delay ~1s
-        : 0;
-      onStatusChange?.('connecting', { reconnectIn });
+      onStatusChange?.('connecting', { reconnectIn: computeReconnectIn() });
     } else if (status === 'disconnected') {
-      const attempts = provider.wsUnsuccessfulReconnects || 0;
-      const reconnectIn = Math.min(Math.pow(2, attempts) * 1, 30);
-      onStatusChange?.('disconnected', { reconnectIn });
+      onStatusChange?.('disconnected', { reconnectIn: computeReconnectIn() });
     }
   };
 
