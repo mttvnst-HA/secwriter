@@ -63,7 +63,7 @@ if (HOST !== '127.0.0.1' && HOST !== 'localhost' && HOST !== '::1') {
   console.warn('║  WARNING: collab-server bound to a non-loopback host.     ║');
   console.warn(`║  HOST=${HOST.padEnd(52)}║`);
   console.warn('║  This prototype has NO auth, NO TLS, NO rate limiting.   ║');
-  console.warn('║  Spec content is CUI. Do NOT expose this to a network.   ║');
+  console.warn('║  Do NOT expose this to a network without hardening.      ║');
   console.warn('╚════════════════════════════════════════════════════════════╝');
   console.warn('');
 }
