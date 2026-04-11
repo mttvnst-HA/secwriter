@@ -29,10 +29,10 @@ When fixing bugs, verify the fix doesn't introduce regressions by running the fu
 
 ```
 src/
-  App.jsx                  # Main editor layout, state management, toolbar, sidebar ~2420 lines
+  App.jsx                  # Main editor layout, state management, toolbar, sidebar ~2585 lines
   main.jsx                 # Entry point + ErrorBoundary wrapper ~50 lines
   components/
-    EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~710 lines
+    EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~760 lines
     InlineTooltip.jsx      # Floating tooltip for inline linting findings: severity, fix preview, Why? ~292 lines
     TitleBlock.jsx         # Section heading with inline editing, Tab/Shift+Tab depth ~145 lines
     TableBlock.jsx         # Table editing: cell edit, add/delete rows/columns, merge/split ~260 lines
@@ -52,17 +52,20 @@ src/
     CrossRefPanel.jsx      # RID/SRF validation + orphaned reference removal buttons ~120 lines
     CompliancePanel.jsx    # UFS 1-300-02 compliance checker: progressive UX, grouped findings, inline highlighting ~950 lines
     ComplianceSettings.jsx # Anthropic API key management for AI compliance rewrites ~185 lines
+    PresenceBar.jsx        # Collab: colored user initials in toolbar ~50 lines
+    RemoteCursors.jsx      # Collab: absolute-positioned remote caret overlay ~215 lines
+    IdentityModal.jsx      # Collab: first-load display name prompt ~85 lines
   lib/
     numbering.js           # Section numbering (1.1, 1.2.1, etc.) and OLI labels (a. b. c.) ~100 lines
     tree-builder.js        # Builds hierarchical tree from flat block array ~19 lines
     ini-config.js          # Formatting rules from SpecsIntact .ini files (margins, colors, nesting) ~79 lines
-    sec-parser.js          # .SEC file parser (XML -> block array, incl. NPG page breaks, TBL/ATT) ~475 lines
-    sec-serializer.js      # Block array -> .SEC XML serializer (CRLF, NPG, TBL, comment stripping) ~537 lines
+    sec-parser.js          # .SEC file parser (XML -> block array, incl. NPG page breaks, TBL/ATT) ~535 lines
+    sec-serializer.js      # Block array -> .SEC XML serializer (CRLF, NPG, TBL, comment stripping) ~580 lines
     encoding.js            # Windows-1252 encoder for .SEC export ~65 lines
     mark-patterns.js       # Auto-detect RID/SRF patterns in text ~95 lines
     tailor-profile.js      # TAI OPT matching, resolution, cleanup ~165 lines
     revisions.js           # Accept/reject logic for tracked changes, stats ~190 lines
-    text-diff.js           # Word-level LCS diff + character-level sub-diff + DOM annotation ~450 lines
+    text-diff.js           # Word-level LCS diff + character-level sub-diff + DOM annotation ~495 lines
     cross-ref-validation.js # RID + SRF cross-reference extraction + validation ~120 lines
     useUndoableBlocks.js   # Undo/redo hook wrapping blocks + tcSnapshots with history ~150 lines
     table-ops.js           # Table row/column/cell operations + merge/split ~135 lines
@@ -81,14 +84,18 @@ src/
     grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~280 lines
     nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~230 lines
     fix-utils.js           # Offset-aware string replacement in HTML: replaceAtOffset() for disambiguating duplicate violations ~65 lines
-    __tests__/             # 565 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
+    collab.js              # Yjs CRDT client: createCollabSession, applyBlocksToYDoc, publishBlocks ~775 lines
+    identity.js            # Stub user identity: id/name/color in localStorage, HSL hash ~95 lines
+    orphan-comment-spans.js # Ghost-span cleanup: stripOrphanCommentSpans for mark-comment spans without metadata ~40 lines
+    no-exfil.js            # Browser exfiltration prevention props for all typing surfaces ~25 lines
+    __tests__/             # 566 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
     umrl.json              # UMRL reference database (302 orgs, 4,973 references, 587KB)
     umsl.json              # UMSL submittal database (13,203 submittals, 1,097KB)
     ufs-1-300-02-rules.json # UFS 1-300-02 compliance rules (122 rules, 35 prohibited terms, 65KB)
   styles/
-    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance + inline linting highlights ~580 lines
+    editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance + inline linting highlights ~630 lines
 reference/
   section.ini              # SpecsIntact formatting rules (AUTHORITATIVE - always check this)
   document.ini             # Document-level formatting variant
@@ -123,6 +130,8 @@ tools/
     findings-schema.json   # JSON schema for findings data
     test-procedure.md      # Master test procedure (15 areas)
     test-areas/            # 15 test area definitions (01-app-load.md through 15-dark-mode-zoom.md)
+server/
+  collab-server.cjs        # Yjs WebSocket relay: room persistence, atomic writes, shutdown flush ~250 lines
 test-results/              # UI audit output: findings.json + timestamped Markdown reports
 ```
 
@@ -132,7 +141,7 @@ test-results/              # UI audit output: findings.json + timestamped Markdo
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 565 Vitest unit tests
+npm test             # Run 566 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 141 Playwright E2E tests
@@ -140,7 +149,7 @@ npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node ru
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
-# Full suite: 565 + 99 + 141 = 805 automated tests
+# Full suite: 566 + 99 + 141 = 806 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -328,61 +337,28 @@ These are known issues identified during QA testing that have not yet been fixed
 
 Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`). Without a room parameter, SIM behaves exactly like the single-user app — no regression risk.
 
-**Stack:** Yjs CRDT + `y-websocket@1.5.4` server (pinned — v3 dropped the server utils). Server is a ~80-line CJS file at `server/collab-server.cjs`, persists each room to `server/collab-db/<room>.ydoc` as a binary Yjs state snapshot (debounced 500ms). Start with `npm run collab` (listens on `ws://127.0.0.1:1234`). CJS on purpose: mixing ESM + CJS loads two copies of Yjs and breaks instanceof checks (yjs#438).
+**Stack:** Yjs CRDT + `y-websocket@1.5.4` (pinned — v3 dropped the server utils). Server at `server/collab-server.cjs` (CJS on purpose: mixing ESM + CJS loads two Yjs copies and breaks instanceof checks, yjs#438). Persists rooms to `server/collab-db/<room>.ydoc`. **Prototype only — no auth, no TLS, no rate limiting.**
 
 **Data model:** one `Y.Doc` per room with **split ordering + storage**:
-- `yOrder: Y.Array<string>` — ordered block IDs (the document outline)
-- `yStore: Y.Map<string, Y.Map>` — block data keyed by ID; each value Y.Map holds scalar block fields + `html: Y.Text`
+- `yOrder: Y.Array<string>` — ordered block IDs (document outline)
+- `yStore: Y.Map<string, Y.Map>` — block data keyed by ID; each value Y.Map holds scalar fields + `html: Y.Text`
 - `yMeta: Y.Map` — section metadata (sectionNumber, sectionTitle, date, fileName)
-- `yTc: Y.Map` — room-wide Track Changes: `{ enabled: boolean, snapshots: Y.Map<blockId, string> }`. When `enabled` flips on, every block's current plaintext is captured into `snapshots` in the same transaction (the baseline everyone diffs against). Flipping off clears `snapshots` in the same transaction. Accept/Reject operations publish a new snapshot for the affected block alongside the html update so remote clients' diffs re-collapse to empty and no phantom marks reappear. **CRDT gotcha:** neither `enabled` nor the `snapshots` sub-map is seeded — if two clients each created their own `new Y.Map()` under the same key, Y.Map LWW would orphan one instance's data on merge. `publishTcToDoc` is the sole creator, so there's only ever one `snapshots` Y.Map instance across all docs.
-- `yComments: Y.Map<id, Y.Map>` — shared comment metadata. Each comment Y.Map holds scalar fields (`blockId`, `status`, `highlightText`, `createdAt`, `authorId/Name/Color`) plus `entries: Y.Array<Y.Map>` for the thread. Concurrent replies from different clients merge via Y.Array insert semantics — no reply is lost. The `mark-comment` highlight spans still live in block html (synced via `yStore`); `yComments` is the parallel metadata store.
+- `yTc: Y.Map` — room-wide Track Changes (`enabled` boolean + `snapshots: Y.Map<blockId, string>`)
+- `yComments: Y.Map<id, Y.Map>` — shared comment metadata with `entries: Y.Array<Y.Map>` thread
 
-**Transaction origins:** `local-publish` (blocks), `local-meta` (section metadata), `local-tc` (Track Changes toggle + snapshots), `local-comments` (comment operations), `seed` (initial room population). `handleAfterTx` uses a `startsWith('local-')` prefix check so every local origin is suppressed without an explicit per-origin allowlist. Any new local write path MUST use a `local-*` origin string.
+**Critical invariants (do NOT violate):**
+- **Y.Text identity preservation:** `applyBlocksToYDoc` MUST preserve `Y.Map`/`Y.Text` identity for blocks that exist before and after — including across reorders. The `yOrder`+`yStore` split enforces this structurally. Regression tests in `collab.test.js`.
+- **Transaction origins:** All local write paths MUST use a `local-*` origin string (`local-publish`, `local-meta`, `local-tc`, `local-comments`, `seed`). `handleAfterTx` suppresses via `startsWith('local-')` prefix check.
+- **Echo prevention:** Publish effect skips when `blocks === lastRemoteBlocksRef.current` (reference equality). `afterTransaction` also filters by `transaction.origin === 'local-publish'`.
+- **TC snapshot syncing:** Accept/Reject must update both block html AND tcSnapshots in the same React tick (via `tcDirtyRef.current = true`) so remote clients re-diff to empty without phantom marks.
+- **Comment deferred publish:** `handleCommentCreate` does NOT publish to `yComments` eagerly — defers until user submits text via `handleCommentUpdateCreate`.
+- **Ghost-span recovery:** `stripOrphanCommentSpans` (`orphan-comment-spans.js`) cleans dead `mark-comment` spans on room-join initial sync.
 
-**Why split ordering from storage:** Yjs shared types (Y.Map/Y.Text) **cannot be moved** between positions in a Y.Array — a "move" requires delete+reinsert, which creates a fresh instance and DESTROYS any concurrent edit another client is making to the original Y.Text. Storing blocks keyed by ID in `yStore` and keeping only string IDs in `yOrder` makes reorders cheap (reorder strings, no shared-type churn) and **preserves Y.Map/Y.Text identity across every structural change — insert, delete, AND reorder.** Tables and REFs are stored as JSON-encoded strings for prototype simplicity — concurrent edits to the same table will last-write-wins.
-
-**Client layer (`src/lib/collab.js`):**
-- `createCollabSession({ room, identity, initialBlocks, onRemoteBlocks, onPresenceChange, onStatusChange })` spins up a `WebsocketProvider`, seeds the room on first join if empty, observes remote changes via `ydoc.on('afterTransaction', ...)` (single notification per transaction regardless of which shared type changed), and exposes `publishBlocks(blocks)` + `undo()`/`redo()` backed by `Y.UndoManager([yOrder, yStore], { trackedOrigins: Set(['local-publish']) })`.
-- `applyBlocksToYDoc(ydoc, yOrder, yStore, blocks)` is a three-pass diff: pass 1 deletes Y.Maps from `yStore` for IDs that no longer exist, pass 2 updates remaining Y.Maps in place (creating new ones only for brand-new IDs), pass 3 reconciles `yOrder` with a minimal delete/insert diff on string IDs. Html sync uses whole-text replacement for simplicity (no character-level CRDT merge within a block yet — roadmap item).
-- **Critical invariant:** `applyBlocksToYDoc` MUST preserve `Y.Map` / `Y.Text` identity for every block that exists in both the before and after state — **including reorders**. An earlier Y.Array<Y.Map>-only model silently corrupted CRDT semantics three ways at once: structural changes destroyed concurrent remote Y.Text edits, `Y.UndoManager` captured the rebuild so Ctrl+Z reverted the other user's work, and the DOM ended up with duplicate `data-block-id` elements that broke remote cursor lookup. The current `yOrder` + `yStore` split enforces this invariant structurally — reorders only touch string IDs in `yOrder`, so Y.Text instances in `yStore` are never destroyed. Regression tests in `src/lib/__tests__/collab.test.js`: `preserves Y.Text identity for existing blocks across an insert`, `preserves Y.Text identity for unchanged blocks across a delete`, `preserves Y.Text identity for ALL blocks across a reorder (C1 regression)`, `preserves a concurrent remote Y.Text edit across a local reorder`, and `Y.UndoManager scoped to local origin does not revert remote edits (M2)`.
-- React `blocks` is a derived view when in a room. `useEffect` on `[blocks, inRoom]` calls `publishBlocks`; `onRemoteBlocks` sets `lastRemoteBlocksRef.current = blocks` and calls `setBlocks`, and the publish effect skips publishing when `blocks === lastRemoteBlocksRef.current` (reference equality) to prevent echo. `afterTransaction` additionally filters by `transaction.origin === 'local-publish'` so locally-published transactions never round-trip through `onRemoteBlocks`.
-
-**Server hardening (`server/collab-server.cjs`):**
-- `MAX_DOC_BYTES = 8 MB` enforced on both read (quarantines oversized files to `.oversize.<timestamp>`) and write (refuses to persist).
-- Atomic writes: snapshots staged to `<room>.ydoc.tmp` then renamed, so a crash mid-write never leaves a half-written file.
-- Corrupt-file quarantine: if `Y.applyUpdate` throws during bindState, the broken file is renamed to `<room>.ydoc.corrupt.<timestamp>` instead of silently being lost.
-- Shutdown flush: SIGINT / SIGTERM / beforeExit handlers synchronously flush every room's pending snapshot, so the debounced 500ms window cannot lose the last edits on Ctrl+C.
-- Loud startup warning if `COLLAB_HOST` is not a loopback address.
-- **Still prototype only — no auth, no TLS, no rate limiting, no origin check.** Do not expose to a network.
-
-**Caret preservation:** when a remote update rewrites a block you're editing, `App.jsx` captures plain-text offset before `setBlocks` and restores it in a `requestAnimationFrame`. Helpers `getPlainTextOffset` / `restorePlainTextOffset` live at the top of `App.jsx`.
-
-**Debug hook:** while in a room, the active `CollabSession` is exposed on `window.__collab` for prototype QA. Useful probes: `window.__collab.undoManager.undoStack.length`, `window.__collab.undo()`, `yBlocksToArray(window.__collab.yBlocks)`. Cleared on session destroy. Intentional for the prototype — remove when auth lands.
-
-**Identity (stub):** `src/lib/identity.js` stores `{ id, name, color }` in `sessionStorage['sim-identity']`. First-load `IdentityModal` prompts for a display name; color is a deterministic HSL hash of the name. Placeholder — when real auth lands, the login flow should write to the same key and the modal will no longer appear.
-
-**Presence / cursors:** `PresenceBar` renders colored user initials in the toolbar. `RemoteCursors` is an absolute-positioned overlay inside the editor scroll area that measures `caretRectAt(blockEl, index)` per peer and renders a thin colored caret + name label. Cursor broadcast uses awareness + a `selectionchange` listener that computes plain-text offset inside the active block.
-
-**Single-user feature behavior when in a room (Option D):**
-- Ctrl+S (export) still works — explicit snapshot to your own disk.
-- `localStorage` auto-save and mount-time auto-restore are skipped — server Yjs doc is the source of truth.
-- Undo/redo is redirected to `Y.UndoManager` so Ctrl+Z only affects your own edits.
-
-**CSP:** `index.html` adds `ws://127.0.0.1:1234 ws://localhost:1234` to `connect-src`. Broaden this when deploying the server elsewhere.
-
-**Shared Track Changes (in-room behavior):** TC toggle, snapshots, and every inline `<ins>`/`<del>` mark are shared across all clients. The toggle writes `yTc.enabled` + a full snapshots map in a single `local-tc` transaction. Author attribution on marks flows from `identity.js` → `EditableBlock` (as the `identity` prop) → `annotateDomWithDiff(container, snapshotText, author)` in `src/lib/text-diff.js`. That function + its internal `wrapRangeInElement` helper apply `data-author-id`/`name`/`color` attributes and a `style="--author-color:<hex>"` inline declaration to every `<ins>` wrapper and `<del>` node. `editor.css` reads the CSS variable via `ins.mark-add[data-author-color]` / `del.mark-del[data-author-color]` selectors so per-author coloring only engages when the attribute is present (single-user keeps the green/red defaults). **Accept/Reject in a room** uses `handleRevisionAction` in `App.jsx`, which sets `tcDirtyRef.current = true` before `setTcSnapshots`, so the block html publish AND the snapshot publish land in the same React tick — remote clients re-diff to empty without phantom marks.
-
-**Shared Comments (in-room behavior):** Comment create/reply/resolve/reopen/delete all publish through the `CollabSession` methods (`publishComment` / `publishCommentReply` / `publishCommentStatus` / `deleteComment`) inside the App.jsx comment handlers. Publishing is imperative (not effect-based), because comments are discrete operations with no continuous-value semantics. `handleCommentCreate` deliberately does NOT publish eagerly — it defers until `handleCommentUpdateCreate` runs with the user's submitted text, so the Y.Doc never holds a pending empty-text comment entry. `commentsRef` mirrors the local comments Map so `handleCommentUpdateCreate` can read `blockId`/`highlightText`/`createdAt` from the freshly-created comment without racing the next render. Every comment entry carries BOTH the new identity fields (`authorId`/`authorName`/`authorColor`/`ts`) AND the legacy fields (`author`/`timestamp`) so `CommentPopup.jsx` renders legacy single-user comments without regression. File-import `setComments(new Map())` is gated on `!inRoom` so `yComments` (authoritative in a room) is not wiped by a local import.
-
-**Persistence & sidecar limitations:** The relay server persists each room's `Y.Doc` as a binary CRDT snapshot (8 MB cap). `.SEC` and `.comments.json` still live on each user's local disk, written only when that user hits Ctrl+S. This means two clients who both save get their own point-in-time sidecars that can drift — if Alice saves while Bob is still typing a reply, Alice's sidecar won't include it. For a hosted Azure deployment this is not good enough; the follow-up spec at `docs/superpowers/specs/2026-04-09-shared-tc-comments-design.md` (Deployment implications section) points at server-owned `.SEC` + sidecar in Blob Storage as the next increment. Known, accepted for the localhost prototype.
-
-**Ghost-span recovery (shared comments):** `handleCommentCreate` eagerly injects a `mark-comment` highlight span into `block.html` for immediate visual feedback, but defers publishing to `yComments` until the user submits text via `handleCommentUpdateCreate`. In a room, the span reaches peers through the normal `yStore` block-html sync before the metadata does. Normal dismissal (click-outside / escape) strips the span. The tab-close / refresh case used to leave a dead yellow highlight peers couldn't open; it's now recovered by a cleanup pass in `onRemoteComments` on room-join initial sync: `stripOrphanCommentSpans` (`src/lib/orphan-comment-spans.js`) walks the just-synced blocks, unwraps any `mark-comment` span whose `data-comment-id` is absent from `yComments`, and publishes the cleaned blocks back through the normal blocks→yStore pathway so all peers converge. Initial blocks are stashed in `initialBlocksForCleanupRef` during `onRemoteBlocks` initial, then consumed by `onRemoteComments` initial. 7 regression tests at `src/lib/__tests__/orphan-comment-spans.test.js`.
-
-**Known prototype limitations (roadmap):**
-- Shared tables/REFs — currently coarse (JSON-encoded whole-value sync)
-- Intra-block character-level merge — whole-text replacement for now
-- No auth — stub identity in localStorage (migrates from legacy sessionStorage)
-- No TLS / production deployment — localhost-only
+**In-room behavior changes:**
+- `localStorage` auto-save skipped — Yjs doc is source of truth
+- Undo/redo redirected to `Y.UndoManager` (only your own edits)
+- Ctrl+S still exports to local disk
+- `setComments(new Map())` on file import gated on `!inRoom`
 
 **Running the prototype:**
 ```bash
@@ -390,7 +366,12 @@ npm run collab          # terminal 1: Yjs relay on ws://127.0.0.1:1234
 npm run dev             # terminal 2: Vite dev server on localhost:5173
 # then open http://localhost:5173/?room=demo in two browsers/tabs
 ```
-The first load prompts for a display name. Click "Share" in an existing single-user session to generate a new room and reload into it.
+
+**Known prototype limitations:**
+- Tables/REFs: coarse JSON-encoded whole-value sync (last-write-wins)
+- No intra-block character-level merge (whole-text replacement)
+- Stub identity in localStorage — no real auth
+- Localhost-only — no TLS / production deployment
 
 ### Reference data sources
 
@@ -439,15 +420,12 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 ### Development Roadmap
 
 **Validation & Deployment:**
-16. ~~**Real-world .SEC file testing**~~ — ✅ Done. Parser validated against all 690 UFGS .SEC files. Added TBL (preformatted tables), ATT (attachment marks), THD (table headers), INT (cell fill styles). 12-test UFGS regression suite (`npm run test:ufgs`).
-17. ~~**Interop testing**~~ — ✅ Done. SIM-exported .SEC files open in legacy SIEditor (10/10 pass). 17 structural interop tests + 11 reverse import/encoding tests. Serializer enhanced: MTA preservation, verbatim HDR passthrough, table COL WIDTH/ROW HEIGHT fidelity. Binary diff scanner at `tools/interop-scan.mjs`.
-18. **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
-19. **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
-20. **Production deployment** — `npm run build` and host (static site, no server needed)
-21. ~~**Browser data exfiltration prevention**~~ — ✅ Done. Centralized `NO_EXFIL_PROPS` (`src/lib/no-exfil.js`) spread on every contentEditable + spec/comment input/textarea: disables spellcheck, `writingsuggestions`, autoComplete, autoCorrect, autoCapitalize, and Grammarly's `data-gramm*`. `index.html` has a strict CSP (only `'self'` + `api.anthropic.com` for compliance AI + Google Fonts), `referrer="no-referrer"`, `notranslate`, and `noindex` meta tags. Regression test at `src/lib/__tests__/no-exfil.test.js`.
+- **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
+- **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
+- **Production deployment** — `npm run build` and host (static site, no server needed)
 
 **Future Features:**
-- **Multi-user collaboration — prototype landed** (branch `multi-user`). Yjs + y-websocket relay, presence, live cursors, stub identity, synced section metadata (yMeta), client-side doc size guard, toast notifications, **shared Track Changes with per-author inline mark attribution**, **shared Comments (create/reply/resolve/reopen/delete) with identity-based author chips**. Next steps to harden: (1) proper HTML diff so intra-block concurrent typing merges character-by-character, (2) fine-grained table/REF sync, (3) real auth + TLS + hosted relay, (4) reconnect/offline UX, (5) server-owned `.SEC` + sidecar persistence (see spec `docs/superpowers/specs/2026-04-09-shared-tc-comments-design.md` "Deployment implications"). See "Multi-user collaboration (prototype)" section above.
+- **Multi-user collaboration** — prototype on `multi-user` branch. See "Multi-user collaboration (prototype)" section above. Next to harden: (1) intra-block character-level CRDT merge, (2) fine-grained table/REF sync, (3) real auth + TLS, (4) reconnect/offline UX, (5) server-owned `.SEC` + sidecar persistence.
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
 - INT cell background rendering — data extracted but not yet applied to TableBlock.jsx cells
 - Multi-file project management — SIM is currently a single-section editor by design
@@ -500,7 +478,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 | orphan-comment-spans.test.js | 8 | Vitest | Ghost-span cleanup: no-op, single orphan, mixed valid+orphan, mark-comment-resolved class, reference preservation, nested orphans, non-comment data spans |
 
-**Total: 565 Vitest + 99 Node + 141 Playwright = 804 automated tests**
+**Total: 566 Vitest + 99 Node + 141 Playwright = 806 automated tests**
 
 ## Dependencies
 
