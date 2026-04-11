@@ -74,15 +74,18 @@ function buildTags(attrs) {
     const styleAttr = attrs.revisionAuthorColor
       ? ` style="--author-color:${attrs.revisionAuthorColor}"`
       : '';
+    const authorIdAttr = attrs.revisionAuthor
+      ? ` data-author-id="${attrs.revisionAuthor}"`
+      : '';
 
     if (rev === 'add') {
-      openParts.push(`<ins class="mark-add"${styleAttr}>`);
+      openParts.push(`<ins class="mark-add"${authorIdAttr}${styleAttr}>`);
       closeParts.unshift('</ins>');
     } else if (rev === 'del') {
-      openParts.push(`<del class="mark-del"${styleAttr}>`);
+      openParts.push(`<del class="mark-del"${authorIdAttr}${styleAttr}>`);
       closeParts.unshift('</del>');
     } else if (rev === 'chg') {
-      openParts.push(`<span class="mark-chg"${styleAttr}>`);
+      openParts.push(`<span class="mark-chg"${authorIdAttr}${styleAttr}>`);
       closeParts.unshift('</span>');
     }
   }
@@ -164,14 +167,20 @@ function attrsFromElement(el) {
   // Revision tags
   if (tag === 'ins' && cls.includes('mark-add')) {
     attrs.revision = 'add';
+    const authorId = el.getAttribute('data-author-id');
+    if (authorId) attrs.revisionAuthor = authorId;
     const color = extractAuthorColor(el.getAttribute('style') || '');
     if (color) attrs.revisionAuthorColor = color;
   } else if (tag === 'del' && cls.includes('mark-del')) {
     attrs.revision = 'del';
+    const authorId = el.getAttribute('data-author-id');
+    if (authorId) attrs.revisionAuthor = authorId;
     const color = extractAuthorColor(el.getAttribute('style') || '');
     if (color) attrs.revisionAuthorColor = color;
   } else if (cls.includes('mark-chg')) {
     attrs.revision = 'chg';
+    const authorId = el.getAttribute('data-author-id');
+    if (authorId) attrs.revisionAuthor = authorId;
     const color = extractAuthorColor(el.getAttribute('style') || '');
     if (color) attrs.revisionAuthorColor = color;
   }
@@ -261,9 +270,17 @@ export function htmlToAttrList(html) {
   // Wrap in a root element and parse as text/xml — this is the established
   // pattern in this codebase (see sec-serializer.js). linkedom's DOMParser
   // supports text/xml reliably across both browser and Node test environments.
-  // Escape any bare ampersands that aren't already part of an entity reference
-  // so the XML parser doesn't choke.
-  const safeHtml = html.replace(/&(?![a-zA-Z#][a-zA-Z0-9]*;)/g, '&amp;');
+  //
+  // Pre-processing: replace HTML-only entities (&nbsp;, &mdash;, etc.) with
+  // their numeric equivalents, since XML only defines 5 entities (amp, lt, gt,
+  // apos, quot). Also escape bare ampersands that aren't entity references.
+  const HTML_ENTITIES = { nbsp: 160, mdash: 8212, ndash: 8211, trade: 8482, copy: 169, reg: 174, laquo: 171, raquo: 187, bull: 8226, hellip: 8230, euro: 8364 };
+  let safeHtml = html.replace(/&([a-zA-Z]+);/g, (match, name) => {
+    if (['amp', 'lt', 'gt', 'apos', 'quot'].includes(name)) return match; // XML built-ins
+    const code = HTML_ENTITIES[name];
+    return code ? `&#${code};` : match;
+  });
+  safeHtml = safeHtml.replace(/&(?![a-zA-Z#][a-zA-Z0-9]*;)/g, '&amp;');
   const parser = new DOMParser();
   const doc = parser.parseFromString(`<root>${safeHtml}</root>`, 'text/xml');
 

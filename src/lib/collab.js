@@ -528,7 +528,7 @@ function updateYMapFromBlock(ymap, block) {
     applyHtmlToYText(yText, typeof block.html === 'string' ? block.html : '');
   } else {
     const t = new Y.Text();
-    applyHtmlToYText(t, typeof block.html === 'string' ? block.html : '');
+    seedYTextFromHtml(t, typeof block.html === 'string' ? block.html : '');
     ymap.set('html', t);
   }
 }
