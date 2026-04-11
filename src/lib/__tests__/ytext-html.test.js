@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as Y from 'yjs';
-import { yTextToHtml } from '../ytext-html.js';
+import { yTextToHtml, htmlToAttrList } from '../ytext-html.js';
 
 /** Helper: build a Y.Text from a delta array. */
 function makeYText(deltas) {
@@ -144,5 +144,131 @@ describe('yTextToHtml', () => {
   it('escapes HTML entities in text content', () => {
     const yText = makeYText([{ insert: '3 < 5 & 5 > 3' }]);
     expect(yTextToHtml(yText)).toBe('3 &lt; 5 &amp; 5 &gt; 3');
+  });
+});
+
+describe('htmlToAttrList', () => {
+  it('parses plain text into char tuples with empty attrs', () => {
+    const result = htmlToAttrList('Hello');
+    expect(result).toEqual([
+      { char: 'H', attrs: {} },
+      { char: 'e', attrs: {} },
+      { char: 'l', attrs: {} },
+      { char: 'l', attrs: {} },
+      { char: 'o', attrs: {} },
+    ]);
+  });
+
+  it('parses <b> as bold attribute', () => {
+    const result = htmlToAttrList('a<b>B</b>c');
+    expect(result).toEqual([
+      { char: 'a', attrs: {} },
+      { char: 'B', attrs: { bold: true } },
+      { char: 'c', attrs: {} },
+    ]);
+  });
+
+  it('parses <i> and <em> as italic attribute', () => {
+    const r1 = htmlToAttrList('<i>x</i>');
+    const r2 = htmlToAttrList('<em>x</em>');
+    expect(r1).toEqual([{ char: 'x', attrs: { italic: true } }]);
+    expect(r2).toEqual([{ char: 'x', attrs: { italic: true } }]);
+  });
+
+  it('parses <u> as underline attribute', () => {
+    const result = htmlToAttrList('<u>x</u>');
+    expect(result).toEqual([{ char: 'x', attrs: { underline: true } }]);
+  });
+
+  it('parses <span class="mark-rid"> as mark attribute', () => {
+    const result = htmlToAttrList('<span class="mark-rid">ASTM</span>');
+    expect(result).toEqual([
+      { char: 'A', attrs: { mark: 'rid' } },
+      { char: 'S', attrs: { mark: 'rid' } },
+      { char: 'T', attrs: { mark: 'rid' } },
+      { char: 'M', attrs: { mark: 'rid' } },
+    ]);
+  });
+
+  it('parses mark-tai with data-opt', () => {
+    const result = htmlToAttrList('<span class="mark-tai" data-opt="OPT_A">x</span>');
+    expect(result).toEqual([{ char: 'x', attrs: { mark: 'tai', markOption: 'OPT_A' } }]);
+  });
+
+  it('parses <ins class="mark-add"> as revision add', () => {
+    const result = htmlToAttrList('<ins class="mark-add">x</ins>');
+    expect(result).toEqual([{ char: 'x', attrs: { revision: 'add' } }]);
+  });
+
+  it('parses <del class="mark-del"> as revision del', () => {
+    const result = htmlToAttrList('<del class="mark-del">x</del>');
+    expect(result).toEqual([{ char: 'x', attrs: { revision: 'del' } }]);
+  });
+
+  it('parses <span class="mark-chg"> as revision chg', () => {
+    const result = htmlToAttrList('<span class="mark-chg">x</span>');
+    expect(result).toEqual([{ char: 'x', attrs: { revision: 'chg' } }]);
+  });
+
+  it('parses ins with --author-color style', () => {
+    const result = htmlToAttrList('<ins class="mark-add" style="--author-color:#ff6b6b">x</ins>');
+    expect(result).toEqual([{ char: 'x', attrs: { revision: 'add', revisionAuthorColor: '#ff6b6b' } }]);
+  });
+
+  it('parses <span class="mark-comment" data-comment-id="c1">', () => {
+    const result = htmlToAttrList('<span class="mark-comment" data-comment-id="c1">x</span>');
+    expect(result).toEqual([{ char: 'x', attrs: { comment: 'c1' } }]);
+  });
+
+  it('parses mark-comment-resolved', () => {
+    const result = htmlToAttrList('<span class="mark-comment-resolved" data-comment-id="c1">x</span>');
+    expect(result).toEqual([{ char: 'x', attrs: { comment: 'c1', commentResolved: true } }]);
+  });
+
+  it('parses nested: <span class="mark-rid"><b>X</b></span>', () => {
+    const result = htmlToAttrList('<span class="mark-rid"><b>X</b></span>');
+    expect(result).toEqual([{ char: 'X', attrs: { mark: 'rid', bold: true } }]);
+  });
+
+  it('strips tag-label spans (contentEditable=false)', () => {
+    const result = htmlToAttrList('<span class="tag-label" contenteditable="false">[RID]</span>ASTM');
+    expect(result).toEqual([
+      { char: 'A', attrs: {} },
+      { char: 'S', attrs: {} },
+      { char: 'T', attrs: {} },
+      { char: 'M', attrs: {} },
+    ]);
+  });
+
+  it('strips zero-width spaces', () => {
+    const result = htmlToAttrList('\u200Bhello');
+    expect(result).toEqual([
+      { char: 'h', attrs: {} },
+      { char: 'e', attrs: {} },
+      { char: 'l', attrs: {} },
+      { char: 'l', attrs: {} },
+      { char: 'o', attrs: {} },
+    ]);
+  });
+
+  it('returns empty array for empty string', () => {
+    expect(htmlToAttrList('')).toEqual([]);
+  });
+
+  it('roundtrips: yTextToHtml(yText) → htmlToAttrList → same chars+attrs', () => {
+    const ydoc = new Y.Doc();
+    const yText = ydoc.getText('test');
+    ydoc.transact(() => {
+      yText.insert(0, 'Hello ', {});
+      yText.insert(6, 'bold', { bold: true });
+      yText.insert(10, ' ', {});
+      yText.insert(11, 'ref', { mark: 'rid' });
+    });
+    const html = yTextToHtml(yText);
+    const tuples = htmlToAttrList(html);
+    const text = tuples.map(t => t.char).join('');
+    expect(text).toBe('Hello bold ref');
+    expect(tuples[6].attrs).toEqual({ bold: true });
+    expect(tuples[11].attrs).toEqual({ mark: 'rid' });
   });
 });

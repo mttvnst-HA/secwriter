@@ -115,6 +115,168 @@ function buildTags(attrs) {
   };
 }
 
+// Mark class names that map to the `mark` attribute (e.g. mark-rid → 'rid')
+const MARK_CLASSES = new Set(['rid', 'srf', 'sub', 'eng', 'met', 'tai', 'tst', 'url', 'att', 'hls']);
+
+/**
+ * Extract the `--author-color` CSS custom property value from an inline style string.
+ * @param {string} style  e.g. "--author-color:#ff6b6b"
+ * @returns {string|null}
+ */
+function extractAuthorColor(style) {
+  if (!style) return null;
+  const match = style.match(/--author-color:\s*([^;]+)/);
+  return match ? match[1].trim() : null;
+}
+
+/**
+ * Merge child formatting context into parent context.
+ * Child values override parent values on same key.
+ * @param {object} parent
+ * @param {object} child
+ * @returns {object}
+ */
+function mergeAttrs(parent, child) {
+  if (!child || Object.keys(child).length === 0) return parent;
+  return { ...parent, ...child };
+}
+
+/**
+ * Derive formatting attributes contributed by a single DOM element.
+ * Returns only the attrs added at this level (not inherited from parent).
+ * @param {Element} el
+ * @returns {object}
+ */
+function attrsFromElement(el) {
+  const tag = el.tagName ? el.tagName.toLowerCase() : '';
+  const cls = el.className || '';
+
+  // Skip tag-label spans — they are editor UI injected by syncTagLabels(), not content
+  if (cls.includes('tag-label')) return null; // null = skip entire subtree
+
+  const attrs = {};
+
+  // Format tags
+  if (tag === 'b' || tag === 'strong') attrs.bold = true;
+  if (tag === 'i' || tag === 'em') attrs.italic = true;
+  if (tag === 'u') attrs.underline = true;
+
+  // Revision tags
+  if (tag === 'ins' && cls.includes('mark-add')) {
+    attrs.revision = 'add';
+    const color = extractAuthorColor(el.getAttribute('style') || '');
+    if (color) attrs.revisionAuthorColor = color;
+  } else if (tag === 'del' && cls.includes('mark-del')) {
+    attrs.revision = 'del';
+    const color = extractAuthorColor(el.getAttribute('style') || '');
+    if (color) attrs.revisionAuthorColor = color;
+  } else if (cls.includes('mark-chg')) {
+    attrs.revision = 'chg';
+    const color = extractAuthorColor(el.getAttribute('style') || '');
+    if (color) attrs.revisionAuthorColor = color;
+  }
+
+  // Comment spans
+  if (cls.includes('mark-comment-resolved')) {
+    const commentId = el.getAttribute('data-comment-id');
+    if (commentId) {
+      attrs.comment = commentId;
+      attrs.commentResolved = true;
+    }
+  } else if (cls.includes('mark-comment')) {
+    const commentId = el.getAttribute('data-comment-id');
+    if (commentId) attrs.comment = commentId;
+  }
+
+  // Mark spans: mark-rid, mark-srf, mark-sub, etc.
+  if (tag === 'span' && !attrs.revision && !attrs.comment) {
+    for (const markType of MARK_CLASSES) {
+      if (cls.includes(`mark-${markType}`)) {
+        attrs.mark = markType;
+        if (markType === 'tai') {
+          const opt = el.getAttribute('data-opt');
+          if (opt) attrs.markOption = opt;
+        }
+        break;
+      }
+    }
+  }
+
+  return attrs;
+}
+
+/**
+ * Walk a DOM subtree recursively, emitting {char, attrs} tuples for every
+ * character in text nodes (excluding zero-width spaces \u200B).
+ *
+ * @param {Node} node         — current DOM node
+ * @param {object} parentAttrs — accumulated attrs from ancestor elements
+ * @param {Array} result       — output array to push into
+ */
+function walkNode(node, parentAttrs, result) {
+  const TEXT_NODE = 3;
+  const ELEMENT_NODE = 1;
+
+  if (node.nodeType === TEXT_NODE) {
+    const text = node.nodeValue || '';
+    for (const char of text) {
+      if (char === '\u200B') continue; // strip zero-width spaces
+      result.push({ char, attrs: parentAttrs });
+    }
+    return;
+  }
+
+  if (node.nodeType === ELEMENT_NODE) {
+    const delta = attrsFromElement(node);
+    if (delta === null) return; // skip entire subtree (tag-label)
+
+    const childAttrs = mergeAttrs(parentAttrs, delta);
+    for (const child of node.childNodes) {
+      walkNode(child, childAttrs, result);
+    }
+    return;
+  }
+
+  // Other node types (comments, etc.) — recurse if they have children
+  if (node.childNodes && node.childNodes.length > 0) {
+    for (const child of node.childNodes) {
+      walkNode(child, parentAttrs, result);
+    }
+  }
+}
+
+/**
+ * Parse an HTML string into a flat list of {char, attrs} tuples.
+ *
+ * Each tuple represents one character from the visible text content, with the
+ * merged formatting attributes that apply to it. Used by applyHtmlToYText to
+ * diff block HTML against Y.Text state in the publish direction.
+ *
+ * @param {string} html
+ * @returns {Array<{char: string, attrs: object}>}
+ */
+export function htmlToAttrList(html) {
+  if (!html) return [];
+
+  // Wrap in a root element and parse as text/xml — this is the established
+  // pattern in this codebase (see sec-serializer.js). linkedom's DOMParser
+  // supports text/xml reliably across both browser and Node test environments.
+  // Escape any bare ampersands that aren't already part of an entity reference
+  // so the XML parser doesn't choke.
+  const safeHtml = html.replace(/&(?![a-zA-Z#][a-zA-Z0-9]*;)/g, '&amp;');
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(`<root>${safeHtml}</root>`, 'text/xml');
+
+  // The root element is the <root> wrapper we added
+  const root = doc.documentElement;
+
+  const result = [];
+  for (const child of root.childNodes) {
+    walkNode(child, {}, result);
+  }
+  return result;
+}
+
 /**
  * Convert a Y.Text instance into an HTML string.
  *
