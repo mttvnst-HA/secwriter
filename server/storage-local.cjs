@@ -133,6 +133,23 @@ class LocalStorageBackend {
   }
 
   /**
+   * Quarantine a room's artifacts by renaming them with a reason + timestamp suffix.
+   * Used for oversized or corrupt snapshots that should be preserved for inspection.
+   * @param {string} roomId
+   * @param {'oversize'|'corrupt'} reason
+   */
+  async quarantineRoom(roomId, reason) {
+    const base = this._base(roomId);
+    const suffix = `.${reason}.${Date.now()}`;
+    for (const ext of ['.ydoc', '.SEC', '.comments.json']) {
+      const src = `${base}${ext}`;
+      if (fs.existsSync(src)) {
+        try { fs.renameSync(src, `${src}${suffix}`); } catch { /* ignore */ }
+      }
+    }
+  }
+
+  /**
    * Delete all artifacts for a room.
    * @param {string} roomId
    */

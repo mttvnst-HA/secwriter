@@ -13,7 +13,7 @@
  * ⚠️  PROTOTYPE ONLY — localhost. No auth, no TLS, no rate limiting. Do NOT
  *     expose this to a network without first adding: TLS, origin check, auth,
  *     per-IP rate limit, and confirming the MAX_DOC_BYTES guard below is
- *     tight enough for your deployment. Spec content handled by SIM is CUI.
+ *     tight enough for your deployment.
  *
  *   npm run collab
  */
@@ -104,11 +104,6 @@ async function getSerializeRoom() {
   return _serializeRoom;
 }
 
-function roomFile(name) {
-  const safe = String(name).replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 64) || 'default';
-  return path.join(DATA_DIR, `${safe}.ydoc`);
-}
-
 /** Flush a single room to disk: .ydoc + .SEC + .comments.json via storage backend. */
 async function flushRoom(docName) {
   const timer = writeTimers.get(docName);
@@ -160,33 +155,27 @@ async function flushRoom(docName) {
 setPersistence({
   bindState: async (docName, ydoc) => {
     boundDocs.set(docName, ydoc);
-    const file = roomFile(docName);
-    if (fs.existsSync(file)) {
-      try {
-        const stat = fs.statSync(file);
-        if (stat.size > MAX_DOC_BYTES) {
-          // Preserve the oversized file instead of silently loading or
-          // wiping it. An operator can inspect and recover.
-          const quarantine = `${file}.oversize.${Date.now()}`;
-          fs.renameSync(file, quarantine);
-          console.warn(`[collab] room "${docName}" snapshot (${stat.size} bytes) exceeds MAX_DOC_BYTES; moved to ${quarantine}`);
+    try {
+      const roomData = await storage.readRoom(docName);
+      if (roomData && roomData.ydocBytes) {
+        const bytes = roomData.ydocBytes;
+        if (bytes.length > MAX_DOC_BYTES) {
+          // Oversized — quarantine via storage backend rename and start fresh.
+          await storage.quarantineRoom(docName, 'oversize');
+          console.warn(`[collab] room "${docName}" snapshot (${bytes.length} bytes) exceeds MAX_DOC_BYTES; quarantined`);
           console.log(`[collab] new room "${docName}"`);
         } else {
-          const bytes = fs.readFileSync(file);
           // N1 — Decode into a scratch Y.Doc first so a throw halfway
           // through cannot leave the real `ydoc` in a partially-mutated
           // state that the next joining client would see as garbage.
-          // If decode succeeds we re-emit a clean state update into the
-          // real ydoc. If it throws, we quarantine and leave ydoc empty.
           let restored = false;
           const scratch = new Y.Doc();
           try {
             Y.applyUpdate(scratch, new Uint8Array(bytes));
             restored = true;
           } catch (err) {
-            const quarantine = `${file}.corrupt.${Date.now()}`;
-            try { fs.renameSync(file, quarantine); } catch { /* ignore */ }
-            console.warn(`[collab] failed to restore "${docName}": ${err.message}; moved to ${quarantine}`);
+            await storage.quarantineRoom(docName, 'corrupt');
+            console.warn(`[collab] failed to restore "${docName}": ${err.message}; quarantined`);
           }
           if (restored) {
             Y.applyUpdate(ydoc, Y.encodeStateAsUpdate(scratch));
@@ -196,17 +185,19 @@ setPersistence({
           }
           scratch.destroy();
         }
-      } catch (err) {
-        console.warn(`[collab] could not read "${docName}":`, err.message);
+      } else {
+        console.log(`[collab] new room "${docName}"`);
       }
-    } else {
-      console.log(`[collab] new room "${docName}"`);
+    } catch (err) {
+      console.warn(`[collab] could not read "${docName}":`, err.message);
     }
 
     ydoc.on('update', () => {
       const prev = writeTimers.get(docName);
       if (prev) clearTimeout(prev);
-      writeTimers.set(docName, setTimeout(() => flushRoom(docName), DEBOUNCE_MS));
+      writeTimers.set(docName, setTimeout(() => flushRoom(docName).catch(err => {
+        console.error(`[collab] uncaught flush error room=${docName}:`, err.message);
+      }), DEBOUNCE_MS));
     });
   },
   writeState: async () => {
@@ -397,4 +388,5 @@ async function shutdown(signal) {
 }
 process.on('SIGINT', () => shutdown('SIGINT'));
 process.on('SIGTERM', () => shutdown('SIGTERM'));
-process.on('beforeExit', () => { if (!shuttingDown) flushAllRooms(); });
+// No beforeExit handler — flushAllRooms() is async and beforeExit does not
+// await promises. SIGINT/SIGTERM handlers already cover graceful shutdown.
