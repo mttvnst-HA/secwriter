@@ -85,10 +85,13 @@ src/
     nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~230 lines
     fix-utils.js           # Offset-aware string replacement in HTML: replaceAtOffset() for disambiguating duplicate violations ~65 lines
     collab.js              # Yjs CRDT client: createCollabSession, applyBlocksToYDoc, publishBlocks ~775 lines
+    ytext-html.js          # HTML ↔ Y.Text+attributes bidirectional converter: yTextToHtml, htmlToAttrList, applyHtmlToYText ~490 lines
+    ytable-crdt.js         # Table CRDT converter: plain TableData ↔ nested Y.Array/Y.Map/Y.Text for cell-level merges ~230 lines
+    yref-crdt.js           # REF CRDT converter: plain RefData ↔ nested Y.Map (org: Y.Text, entries: Y.Array) ~200 lines
     identity.js            # Stub user identity: id/name/color in localStorage, HSL hash ~95 lines
     orphan-comment-spans.js # Ghost-span cleanup: stripOrphanCommentSpans for mark-comment spans without metadata ~40 lines
     no-exfil.js            # Browser exfiltration prevention props for all typing surfaces ~25 lines
-    __tests__/             # 566 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
+    __tests__/             # 638 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
     umrl.json              # UMRL reference database (302 orgs, 4,973 references, 587KB)
@@ -146,7 +149,7 @@ test-results/              # UI audit output: findings.json + timestamped Markdo
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 566 Vitest unit tests
+npm test             # Run 638 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 141 Playwright E2E tests
@@ -155,7 +158,7 @@ npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 fi
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
 npm run test:server   # Run 22 server persistence + HTTP endpoint tests (Node runner)
-# Full suite: 566 + 99 + 22 + 141 = 828 automated tests
+# Full suite: 638 + 99 + 22 + 141 = 900 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -347,7 +350,7 @@ Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`).
 
 **Data model:** one `Y.Doc` per room with **split ordering + storage**:
 - `yOrder: Y.Array<string>` — ordered block IDs (document outline)
-- `yStore: Y.Map<string, Y.Map>` — block data keyed by ID; each value Y.Map holds scalar fields + `html: Y.Text`
+- `yStore: Y.Map<string, Y.Map>` — block data keyed by ID; each value Y.Map holds scalar fields + `html: Y.Text` (with formatting attributes: bold/italic/underline/marks/revisions via `ytext-html.js` converters) + `table: Y.Map` (nested CRDT via `ytable-crdt.js`) or `ref: Y.Map` (nested CRDT via `yref-crdt.js`)
 - `yMeta: Y.Map` — section metadata (sectionNumber, sectionTitle, date, fileName)
 - `yTc: Y.Map` — room-wide Track Changes (`enabled` boolean + `snapshots: Y.Map<blockId, string>`)
 - `yComments: Y.Map<id, Y.Map>` — shared comment metadata with `entries: Y.Array<Y.Map>` thread
@@ -376,10 +379,9 @@ npm run dev             # terminal 2: Vite dev server on localhost:5173
 ```
 
 **Known prototype limitations:**
-- Tables/REFs: coarse JSON-encoded whole-value sync (last-write-wins)
-- No intra-block character-level merge (whole-text replacement)
 - Stub identity in localStorage — no real auth
 - Localhost-only — no TLS / production deployment
+- No reconnect/offline UX — edits paused on disconnect, no status indicator
 - Azure Blob Storage backend designed but deferred (`storage-local.cjs` interface ready for drop-in `storage-azure.cjs`)
 
 ### Reference data sources
@@ -434,7 +436,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 - **Production deployment** — `npm run build` and host (static site, no server needed)
 
 **Future Features:**
-- **Multi-user collaboration** — prototype on `multi-user` branch. See "Multi-user collaboration (prototype)" section above. Server-owned documents landed (`.SEC` + `.comments.json` generated on persist, HTTP download/upload endpoints). Next to harden: (1) intra-block character-level CRDT merge, (2) fine-grained table/REF sync, (3) real auth + TLS, (4) reconnect/offline UX, (5) Azure Blob Storage backend.
+- **Multi-user collaboration** — prototype on `multi-user` branch. See "Multi-user collaboration (prototype)" section above. **Completed:** server-owned documents, character-level CRDT merge with formatting attributes (`ytext-html.js`), fine-grained table/REF sync (`ytable-crdt.js`, `yref-crdt.js`). **Remaining:** (1) reconnect/offline UX, (2) room management panel, (3) real auth + TLS, (4) Azure Blob Storage backend. Design spec at `docs/superpowers/specs/2026-04-11-collab-hardening-design.md`.
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
 - INT cell background rendering — data extracted but not yet applied to TableBlock.jsx cells
 - Multi-file project management — SIM is currently a single-section editor by design
@@ -446,7 +448,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | Test File | Tests | Runner | Coverage |
 |-----------|-------|--------|----------|
 | sec-parser.test.js | 43 | Vitest | Tag extraction, inline marks (incl. ATT), tables, TBL/THD, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks, INT styles |
-| collab.test.js | 48 | Vitest | Y.Doc ↔ blocks conversion (yOrder+yStore model), seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge, **Y.Text identity preservation across insert/delete/reorder** including concurrent remote edit across a local reorder, **Y.UndoManager scoped to local origin does not revert remote edits**, **no-op publishes don't grow undo stack (I2)**, **same-tx delete+reinsert in-place (N6)**, **doc size guard (M7)**, **yMeta CRDT merge (M3)**, **shared TC publish/read/two-doc merge (5 tests)**, **shared TC afterTransaction routing isolated from blocks/meta/comments**, **shared Comments create/reply/status/delete + two-doc merge (concurrent replies, resolve+reply interleave, delete propagation) (10 tests)** |
+| collab.test.js | 53 | Vitest | Y.Doc ↔ blocks conversion (yOrder+yStore model), seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge with Y.Text formatting attributes, **Y.Text identity preservation across insert/delete/reorder**, concurrent remote edit across reorder, **Y.UndoManager scoped to local origin**, **no-op publishes (I2)**, **same-tx delete+reinsert (N6)**, **doc size guard (M7)**, **yMeta CRDT merge (M3)**, **shared TC (5 tests)**, **shared Comments (10 tests)**, **character-level CRDT merge (concurrent bold+text, concurrent mark-rid+mark-srf)**, **fine-grained table/REF sync (concurrent cell edits, concurrent ref entries, legacy JSON compat)** |
 | no-exfil.test.js | 19 | Vitest | NO_EXFIL_PROPS spread on every contentEditable + spec/comment input/textarea; Grammarly/Copilot/writingsuggestions disabled |
 | tailor-profile.test.js | 36 | Vitest | Branch/region/delivery matching, resolution, cleanup |
 | sec-serializer.test.js | 39 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, TBL/ATT roundtrip, CRLF, MTA preservation, HDR passthrough, table widths/heights |
@@ -486,8 +488,11 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | editor.spec.js (E2E) | 141 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
 
 | orphan-comment-spans.test.js | 8 | Vitest | Ghost-span cleanup: no-op, single orphan, mixed valid+orphan, mark-comment-resolved class, reference preservation, nested orphans, non-comment data spans |
+| ytext-html.test.js | 50 | Vitest | HTML↔Y.Text bidirectional: yTextToHtml (deltas→HTML, formatting attributes, nested marks), htmlToAttrList (parse→attr tuples), applyHtmlToYText (LCS diff + CRDT ops), two-doc concurrent merge (text+formatting) |
+| ytable-crdt.test.js | 11 | Vitest | Table CRDT: plain↔nested roundtrip, colspan preservation, colWidths/rowHeights, cell HTML with marks, diff classification (cell-only vs structural), cell Y.Text identity preservation, two-doc concurrent cell merge |
+| yref-crdt.test.js | 7 | Vitest | REF CRDT: plain↔nested roundtrip, empty entries, org update, entry rid update, append entry, remove entry, two-doc concurrent entry additions merge |
 
-**Total: 566 Vitest + 99 Node + 22 Server + 141 Playwright = 828 automated tests**
+**Total: 638 Vitest + 99 Node + 22 Server + 141 Playwright = 900 automated tests**
 
 ## Dependencies
 
