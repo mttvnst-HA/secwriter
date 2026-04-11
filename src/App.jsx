@@ -43,6 +43,8 @@ import PresenceBar from "./components/PresenceBar.jsx";
 import RemoteCursors from "./components/RemoteCursors.jsx";
 import ToastStack, { useToasts } from "./components/Toast.jsx";
 
+const COLLAB_HTTP_URL = 'http://127.0.0.1:1235';
+
 // Walk text nodes under `root` to compute the plain-text offset of
 // (node, offset). Used to transport a caret position across a DOM rewrite
 // caused by a remote collab update.
@@ -412,6 +414,12 @@ export default function SpecEditor() {
 
   // Save (Ctrl+S) — save to current location, or prompt if first save
   const handleSave = useCallback(async () => {
+    if (inRoom && roomId) {
+      // Server already persists — just show confirmation
+      setSaveStatus('saved');
+      setTimeout(() => setSaveStatus(null), 2000);
+      return;
+    }
     setSaveStatus('saving');
     const xml = serializeSEC(blocks, sectionMeta);
     const encoded = encodeWindows1252(xml);
@@ -424,7 +432,7 @@ export default function SpecEditor() {
     } else {
       setSaveStatus(null);
     }
-  }, [blocks, sectionMeta, doFileSave, saveCommentsSidecar]);
+  }, [blocks, sectionMeta, doFileSave, saveCommentsSidecar, inRoom, roomId]);
 
   // Save As — always prompt for new location
   const handleSaveAs = useCallback(async () => {
@@ -441,6 +449,44 @@ export default function SpecEditor() {
       setSaveStatus(null);
     }
   }, [blocks, sectionMeta, doFileSave]);
+
+  // Download .SEC from collab server (in-room only)
+  const handleDownloadSec = useCallback(async () => {
+    if (!roomId) return;
+    try {
+      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/sec`);
+      if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${sectionMeta.sectionNumber?.replace(/\s+/g, '_') || roomId}.SEC`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Download SEC failed:', err);
+      setSaveStatus('error');
+      setTimeout(() => setSaveStatus(null), 2000);
+    }
+  }, [roomId, sectionMeta.sectionNumber]);
+
+  // Download comments JSON from collab server (in-room only)
+  const handleDownloadComments = useCallback(async () => {
+    if (!roomId) return;
+    try {
+      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/comments`);
+      if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${sectionMeta.sectionNumber?.replace(/\s+/g, '_') || roomId}.comments.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Download comments failed:', err);
+    }
+  }, [roomId, sectionMeta.sectionNumber]);
 
   // Programmatic focus for EXISTING elements (arrow nav, tree select, delete-focus-prev)
   // New blocks focus themselves via the ref callback in EditableBlock
@@ -1783,6 +1829,50 @@ export default function SpecEditor() {
               <span style={{ fontSize: 11, color: "#d97706" }}>
                 {collabStatus === 'syncing' ? 'Syncing…' : collabStatus === 'connecting' ? 'Connecting…' : collabStatus}
               </span>
+            )}
+            {inRoom && (
+              <>
+                <button
+                  onClick={handleDownloadSec}
+                  title="Download .SEC file from server"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 4,
+                    padding: "4px 10px",
+                    backgroundColor: "#f1f5f9",
+                    border: "1px solid #e2e8f0",
+                    borderRadius: 6,
+                    cursor: "pointer",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: "#475569",
+                    minHeight: 32,
+                  }}
+                >
+                  <Download size={14} /> .SEC
+                </button>
+                <button
+                  onClick={handleDownloadComments}
+                  title="Download comments JSON from server"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 4,
+                    padding: "4px 10px",
+                    backgroundColor: "#f1f5f9",
+                    border: "1px solid #e2e8f0",
+                    borderRadius: 6,
+                    cursor: "pointer",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: "#475569",
+                    minHeight: 32,
+                  }}
+                >
+                  <Download size={14} /> Comments
+                </button>
+              </>
             )}
             <button
               onClick={handleSaveAs}
