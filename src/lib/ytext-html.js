@@ -278,6 +278,198 @@ export function htmlToAttrList(html) {
 }
 
 /**
+ * Read Y.Text delta state into per-character {char, attrs} tuples.
+ * Cleans attrs the same way attrsEqual normalizes: only NESTING_KEYS + AUX_KEYS
+ * are kept, and falsy values are omitted.
+ *
+ * @param {import('yjs').Text} yText
+ * @returns {Array<{char: string, attrs: object}>}
+ */
+function yTextToAttrList(yText) {
+  const deltas = yText.toDelta();
+  const result = [];
+  for (const delta of deltas) {
+    const raw = delta.attributes || {};
+    // Clean: only keep known keys with truthy values
+    const cleaned = {};
+    for (const key of NESTING_KEYS) {
+      if (raw[key]) cleaned[key] = raw[key];
+    }
+    for (const key of AUX_KEYS) {
+      if (raw[key]) cleaned[key] = raw[key];
+    }
+    const text = delta.insert;
+    for (const char of text) {
+      result.push({ char, attrs: cleaned });
+    }
+  }
+  return result;
+}
+
+/**
+ * Compute LCS (Longest Common Subsequence) diff operations between two
+ * character arrays. Returns an array of operations:
+ *   { type: 'keep', oldIdx, newIdx }
+ *   { type: 'delete', oldIdx }
+ *   { type: 'insert', newIdx }
+ *
+ * Uses standard DP with Uint16Array rows for memory efficiency.
+ *
+ * @param {string[]} oldChars
+ * @param {string[]} newChars
+ * @returns {Array<{type: string, oldIdx?: number, newIdx?: number}>}
+ */
+function lcsOps(oldChars, newChars) {
+  const m = oldChars.length;
+  const n = newChars.length;
+
+  // Build LCS table — only need two rows at a time
+  // Use Uint16Array for memory efficiency (capped at 65535 chars — sufficient)
+  let prev = new Uint16Array(n + 1);
+  let curr = new Uint16Array(n + 1);
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (oldChars[i - 1] === newChars[j - 1]) {
+        curr[j] = prev[j - 1] + 1;
+      } else {
+        curr[j] = prev[j] > curr[j - 1] ? prev[j] : curr[j - 1];
+      }
+    }
+    // Swap rows
+    const tmp = prev;
+    prev = curr;
+    curr = tmp;
+    curr.fill(0);
+  }
+
+  // Backtrack to get the LCS indices — need full table for backtracking
+  // Rebuild with full table (using regular arrays for backtracking)
+  const table = [];
+  for (let i = 0; i <= m; i++) {
+    table[i] = new Uint16Array(n + 1);
+  }
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (oldChars[i - 1] === newChars[j - 1]) {
+        table[i][j] = table[i - 1][j - 1] + 1;
+      } else {
+        table[i][j] = table[i - 1][j] > table[i][j - 1] ? table[i - 1][j] : table[i][j - 1];
+      }
+    }
+  }
+
+  // Backtrack from table[m][n]
+  const ops = [];
+  let i = m;
+  let j = n;
+  while (i > 0 || j > 0) {
+    if (i > 0 && j > 0 && oldChars[i - 1] === newChars[j - 1]) {
+      ops.push({ type: 'keep', oldIdx: i - 1, newIdx: j - 1 });
+      i--;
+      j--;
+    } else if (j > 0 && (i === 0 || table[i][j - 1] >= table[i - 1][j])) {
+      ops.push({ type: 'insert', newIdx: j - 1 });
+      j--;
+    } else {
+      ops.push({ type: 'delete', oldIdx: i - 1 });
+      i--;
+    }
+  }
+
+  ops.reverse();
+  return ops;
+}
+
+/**
+ * Compute the attribute delta between old and new attrs.
+ * Only includes keys that changed. Removed attrs are set to null (Yjs convention).
+ * Returns null if no changes.
+ *
+ * @param {object} oldAttrs
+ * @param {object} newAttrs
+ * @returns {object|null}
+ */
+function attrsDelta(oldAttrs, newAttrs) {
+  const delta = {};
+  let hasChange = false;
+  const allKeys = [...NESTING_KEYS, ...AUX_KEYS];
+  for (const key of allKeys) {
+    const oldVal = oldAttrs[key] || null;
+    const newVal = newAttrs[key] || null;
+    if (oldVal !== newVal) {
+      delta[key] = newVal; // null removes the attribute in Yjs
+      hasChange = true;
+    }
+  }
+  return hasChange ? delta : null;
+}
+
+/**
+ * Apply an HTML string to a Y.Text instance using minimal CRDT operations.
+ *
+ * Diffs the new HTML against the current Y.Text state and emits only the
+ * necessary insert/delete/format operations, preserving Y.Text identity
+ * and minimizing CRDT overhead.
+ *
+ * @param {import('yjs').Text} yText
+ * @param {string} newHtml
+ */
+export function applyHtmlToYText(yText, newHtml) {
+  // Guard: detached Y.Text (no doc) — return silently
+  if (!yText.doc) return;
+
+  const newTuples = htmlToAttrList(newHtml || '');
+  const oldTuples = yTextToAttrList(yText);
+
+  // Quick equality check — if both text and attrs match, skip entirely
+  if (oldTuples.length === newTuples.length) {
+    let identical = true;
+    for (let i = 0; i < oldTuples.length; i++) {
+      if (oldTuples[i].char !== newTuples[i].char || !attrsEqual(oldTuples[i].attrs, newTuples[i].attrs)) {
+        identical = false;
+        break;
+      }
+    }
+    if (identical) return;
+  }
+
+  // Extract plain chars for LCS
+  const oldChars = oldTuples.map(t => t.char);
+  const newChars = newTuples.map(t => t.char);
+
+  const ops = lcsOps(oldChars, newChars);
+
+  // Apply ops inside a transaction for atomicity
+  yText.doc.transact(() => {
+    // pos tracks current position in the Y.Text as we apply mutations
+    let pos = 0;
+
+    for (const op of ops) {
+      if (op.type === 'keep') {
+        // Check if formatting changed
+        const oldAttrs = oldTuples[op.oldIdx].attrs;
+        const newAttrs = newTuples[op.newIdx].attrs;
+        const delta = attrsDelta(oldAttrs, newAttrs);
+        if (delta) {
+          yText.format(pos, 1, delta);
+        }
+        pos++;
+      } else if (op.type === 'delete') {
+        yText.delete(pos, 1);
+        // pos stays same — next char shifts down
+      } else if (op.type === 'insert') {
+        const attrs = newTuples[op.newIdx].attrs;
+        // Only pass attrs if non-empty
+        const hasAttrs = Object.keys(attrs).length > 0;
+        yText.insert(pos, newTuples[op.newIdx].char, hasAttrs ? attrs : undefined);
+        pos++;
+      }
+    }
+  });
+}
+
+/**
  * Convert a Y.Text instance into an HTML string.
  *
  * Adjacent deltas with identical attributes are merged into a single tag span.

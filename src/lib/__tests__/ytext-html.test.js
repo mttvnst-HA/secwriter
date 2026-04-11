@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as Y from 'yjs';
-import { yTextToHtml, htmlToAttrList } from '../ytext-html.js';
+import { yTextToHtml, htmlToAttrList, applyHtmlToYText } from '../ytext-html.js';
 
 /** Helper: build a Y.Text from a delta array. */
 function makeYText(deltas) {
@@ -270,5 +270,102 @@ describe('htmlToAttrList', () => {
     expect(text).toBe('Hello bold ref');
     expect(tuples[6].attrs).toEqual({ bold: true });
     expect(tuples[11].attrs).toEqual({ mark: 'rid' });
+  });
+});
+
+describe('applyHtmlToYText', () => {
+  function makeEmptyYText() {
+    const ydoc = new Y.Doc();
+    return ydoc.getText('test');
+  }
+
+  it('seeds empty Y.Text from HTML', () => {
+    const yText = makeEmptyYText();
+    applyHtmlToYText(yText, 'Hello <b>world</b>');
+    expect(yTextToHtml(yText)).toBe('Hello <b>world</b>');
+  });
+
+  it('appends text to existing Y.Text', () => {
+    const yText = makeEmptyYText();
+    applyHtmlToYText(yText, 'Hello');
+    applyHtmlToYText(yText, 'Hello world');
+    expect(yTextToHtml(yText)).toBe('Hello world');
+  });
+
+  it('deletes text from Y.Text', () => {
+    const yText = makeEmptyYText();
+    applyHtmlToYText(yText, 'Hello world');
+    applyHtmlToYText(yText, 'Hello');
+    expect(yTextToHtml(yText)).toBe('Hello');
+  });
+
+  it('replaces text in middle', () => {
+    const yText = makeEmptyYText();
+    applyHtmlToYText(yText, 'Hello world');
+    applyHtmlToYText(yText, 'Hello earth');
+    expect(yTextToHtml(yText)).toBe('Hello earth');
+  });
+
+  it('adds formatting to existing text', () => {
+    const yText = makeEmptyYText();
+    applyHtmlToYText(yText, 'Hello world');
+    applyHtmlToYText(yText, 'Hello <b>world</b>');
+    expect(yTextToHtml(yText)).toBe('Hello <b>world</b>');
+  });
+
+  it('removes formatting from existing text', () => {
+    const yText = makeEmptyYText();
+    applyHtmlToYText(yText, 'Hello <b>world</b>');
+    applyHtmlToYText(yText, 'Hello world');
+    expect(yTextToHtml(yText)).toBe('Hello world');
+  });
+
+  it('adds mark to existing text', () => {
+    const yText = makeEmptyYText();
+    applyHtmlToYText(yText, 'See ASTM C33');
+    applyHtmlToYText(yText, 'See <span class="mark-rid">ASTM C33</span>');
+    expect(yTextToHtml(yText)).toBe('See <span class="mark-rid">ASTM C33</span>');
+  });
+
+  it('handles simultaneous text change + format change', () => {
+    const yText = makeEmptyYText();
+    applyHtmlToYText(yText, 'old text');
+    applyHtmlToYText(yText, '<b>new text</b>');
+    expect(yTextToHtml(yText)).toBe('<b>new text</b>');
+  });
+
+  it('preserves Y.Text identity (does not create new Y.Text)', () => {
+    const ydoc = new Y.Doc();
+    const yText = ydoc.getText('test');
+    applyHtmlToYText(yText, 'Hello');
+    const ref1 = ydoc.getText('test');
+    applyHtmlToYText(yText, 'Hello world');
+    const ref2 = ydoc.getText('test');
+    expect(ref1).toBe(ref2); // Same object
+  });
+
+  it('no-ops when HTML has not changed', () => {
+    const yText = makeEmptyYText();
+    applyHtmlToYText(yText, 'Hello <b>world</b>');
+    const beforeLength = yText.toDelta().length;
+    applyHtmlToYText(yText, 'Hello <b>world</b>');
+    const afterLength = yText.toDelta().length;
+    expect(afterLength).toBe(beforeLength);
+    expect(yTextToHtml(yText)).toBe('Hello <b>world</b>');
+  });
+
+  it('handles empty to empty (no-op)', () => {
+    const yText = makeEmptyYText();
+    applyHtmlToYText(yText, '');
+    expect(yTextToHtml(yText)).toBe('');
+  });
+
+  it('roundtrip: apply → read → apply again preserves content', () => {
+    const yText = makeEmptyYText();
+    const html = 'See <span class="mark-rid"><b>ASTM C33</b></span> and <span class="mark-srf">01 33 00</span>';
+    applyHtmlToYText(yText, html);
+    const readBack = yTextToHtml(yText);
+    applyHtmlToYText(yText, readBack); // Should be a no-op
+    expect(yTextToHtml(yText)).toBe(readBack);
   });
 });
