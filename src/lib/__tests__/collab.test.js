@@ -978,3 +978,73 @@ describe('shared Comments (M-shared-comments)', () => {
     expect(origins).toContain('local-comments');
   });
 });
+
+describe('character-level CRDT merge (attribute-aware)', () => {
+  it('concurrent text edits on same block merge via Y.Text attributes', () => {
+    const { ydoc: doc1, yOrder: o1, yStore: s1 } = makeDoc();
+    const { ydoc: doc2, yOrder: o2, yStore: s2 } = makeDoc();
+
+    const blocks = [
+      { id: 'b1', type: 'txt', part: 1, depth: 1, section: 's1', html: 'Hello world' },
+    ];
+
+    seedYBlocks(doc1, o1, s1, blocks);
+    Y.applyUpdate(doc2, Y.encodeStateAsUpdate(doc1, Y.encodeStateVector(doc2)));
+
+    applyBlocksToYDoc(doc1, o1, s1, [
+      { id: 'b1', type: 'txt', part: 1, depth: 1, section: 's1', html: 'Hello <b>world</b>' },
+    ]);
+
+    applyBlocksToYDoc(doc2, o2, s2, [
+      { id: 'b1', type: 'txt', part: 1, depth: 1, section: 's1', html: 'Hello world today' },
+    ]);
+
+    const update1 = Y.encodeStateAsUpdate(doc1, Y.encodeStateVector(doc2));
+    const update2 = Y.encodeStateAsUpdate(doc2, Y.encodeStateVector(doc1));
+    Y.applyUpdate(doc1, update2);
+    Y.applyUpdate(doc2, update1);
+
+    const result1 = yBlocksToArray(o1, s1);
+    const result2 = yBlocksToArray(o2, s2);
+    expect(result1[0].html).toBe(result2[0].html);
+    // Yjs attribute inheritance: 'today' is inserted adjacent to the bold run
+    // and the inserted characters may inherit bold formatting, causing the word
+    // to split across tag boundaries. Verify both texts are present and bold
+    // markup exists, stripping tags for the plain-text check.
+    const plainText = result1[0].html.replace(/<[^>]+>/g, '');
+    expect(result1[0].html).toContain('<b>');
+    expect(plainText).toContain('world');
+    expect(plainText).toContain('today');
+  });
+
+  it('concurrent mark addition on different words merges', () => {
+    const { ydoc: doc1, yOrder: o1, yStore: s1 } = makeDoc();
+    const { ydoc: doc2, yOrder: o2, yStore: s2 } = makeDoc();
+
+    const blocks = [
+      { id: 'b1', type: 'txt', part: 1, depth: 1, section: 's1', html: 'See ASTM C33 and 01 33 00' },
+    ];
+
+    seedYBlocks(doc1, o1, s1, blocks);
+    Y.applyUpdate(doc2, Y.encodeStateAsUpdate(doc1, Y.encodeStateVector(doc2)));
+
+    applyBlocksToYDoc(doc1, o1, s1, [
+      { id: 'b1', type: 'txt', part: 1, depth: 1, section: 's1', html: 'See <span class="mark-rid">ASTM C33</span> and 01 33 00' },
+    ]);
+
+    applyBlocksToYDoc(doc2, o2, s2, [
+      { id: 'b1', type: 'txt', part: 1, depth: 1, section: 's1', html: 'See ASTM C33 and <span class="mark-srf">01 33 00</span>' },
+    ]);
+
+    const update1 = Y.encodeStateAsUpdate(doc1, Y.encodeStateVector(doc2));
+    const update2 = Y.encodeStateAsUpdate(doc2, Y.encodeStateVector(doc1));
+    Y.applyUpdate(doc1, update2);
+    Y.applyUpdate(doc2, update1);
+
+    const result1 = yBlocksToArray(o1, s1);
+    const result2 = yBlocksToArray(o2, s2);
+    expect(result1[0].html).toBe(result2[0].html);
+    expect(result1[0].html).toContain('mark-rid');
+    expect(result1[0].html).toContain('mark-srf');
+  });
+});

@@ -60,6 +60,7 @@
 
 import * as Y from 'yjs';
 import { WebsocketProvider } from 'y-websocket';
+import { applyHtmlToYText, yTextToHtml, htmlToAttrList } from './ytext-html.js';
 
 // Collab server URLs — App.jsx imports DEFAULT_HTTP_URL from here.
 // Port defaults must match server/collab-server.cjs (PORT / HTTP_PORT).
@@ -163,6 +164,35 @@ export function estimatePublishBytes(blocks) {
   return total;
 }
 
+/**
+ * Seed a detached Y.Text from HTML without requiring a Y.Doc transaction.
+ * Used by blockToYMap which builds Y.Maps before they are attached to a doc.
+ * Parses HTML into {char, attrs} tuples and inserts each run with attributes.
+ */
+function seedYTextFromHtml(yText, html) {
+  const tuples = htmlToAttrList(html || '');
+  if (tuples.length === 0) return;
+  // Group consecutive tuples with identical attrs into runs for efficiency.
+  // Track position manually — yText.length returns 0 on detached Y.Text instances.
+  let pos = 0;
+  let runStart = 0;
+  while (runStart < tuples.length) {
+    const baseAttrs = tuples[runStart].attrs;
+    let runEnd = runStart + 1;
+    while (runEnd < tuples.length) {
+      const a = tuples[runEnd].attrs;
+      // Compare by value using JSON — only called once per block at seed time
+      if (JSON.stringify(a) === JSON.stringify(baseAttrs)) runEnd++;
+      else break;
+    }
+    const text = tuples.slice(runStart, runEnd).map(t => t.char).join('');
+    const hasAttrs = baseAttrs && Object.keys(baseAttrs).length > 0;
+    yText.insert(pos, text, hasAttrs ? baseAttrs : undefined);
+    pos += text.length;
+    runStart = runEnd;
+  }
+}
+
 /** Build a Y.Map from a plain block object. */
 function blockToYMap(block) {
   const yMap = new Y.Map();
@@ -170,9 +200,7 @@ function blockToYMap(block) {
     if (block[k] !== undefined) yMap.set(k, block[k]);
   }
   const yText = new Y.Text();
-  if (typeof block.html === 'string' && block.html.length > 0) {
-    yText.insert(0, block.html);
-  }
+  seedYTextFromHtml(yText, block.html || '');
   yMap.set('html', yText);
   for (const k of JSON_KEYS) {
     if (block[k] !== undefined) yMap.set(k, JSON.stringify(block[k]));
@@ -188,7 +216,7 @@ function yMapToBlock(yMap) {
     if (v !== undefined) block[k] = v;
   }
   const yText = yMap.get('html');
-  block.html = yText instanceof Y.Text ? yText.toString() : (yText || '');
+  block.html = yText instanceof Y.Text ? yTextToHtml(yText) : (yText || '');
   for (const k of JSON_KEYS) {
     const raw = yMap.get(k);
     if (raw !== undefined) {
@@ -445,17 +473,12 @@ function updateYMapFromBlock(ymap, block) {
     }
   }
   const yText = ymap.get('html');
-  const curText = yText instanceof Y.Text ? yText.toString() : '';
-  const nextText = typeof block.html === 'string' ? block.html : '';
-  if (curText !== nextText) {
-    if (yText instanceof Y.Text) {
-      yText.delete(0, yText.length);
-      if (nextText.length > 0) yText.insert(0, nextText);
-    } else {
-      const t = new Y.Text();
-      if (nextText.length > 0) t.insert(0, nextText);
-      ymap.set('html', t);
-    }
+  if (yText instanceof Y.Text) {
+    applyHtmlToYText(yText, typeof block.html === 'string' ? block.html : '');
+  } else {
+    const t = new Y.Text();
+    applyHtmlToYText(t, typeof block.html === 'string' ? block.html : '');
+    ymap.set('html', t);
   }
 }
 
