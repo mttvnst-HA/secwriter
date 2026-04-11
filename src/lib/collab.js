@@ -52,15 +52,13 @@
  *   insert, delete, or reorder.
  *
  * Prototype limitations (see CLAUDE.md roadmap):
- *   - html sync uses whole-text replacement (no per-character CRDT merge)
- *   - table/ref blocks use nested CRDT structures for cell-level merge
  *   - no server-side .SEC persistence — Y.Doc on relay is in-memory CRDT;
  *     .SEC + sidecar .comments.json live on each user's local disk
  */
 
 import * as Y from 'yjs';
 import { WebsocketProvider } from 'y-websocket';
-import { applyHtmlToYText, yTextToHtml, htmlToAttrList } from './ytext-html.js';
+import { applyHtmlToYText, yTextToHtml, htmlToAttrList, seedYTextFromHtml } from './ytext-html.js';
 import { tableToYStructure, yStructureToTable, diffTableForPublish, applyTableCellEdits } from './ytable-crdt.js';
 import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js';
 
@@ -167,34 +165,6 @@ export function estimatePublishBytes(blocks) {
   return total;
 }
 
-/**
- * Seed a detached Y.Text from HTML without requiring a Y.Doc transaction.
- * Used by blockToYMap which builds Y.Maps before they are attached to a doc.
- * Parses HTML into {char, attrs} tuples and inserts each run with attributes.
- */
-function seedYTextFromHtml(yText, html) {
-  const tuples = htmlToAttrList(html || '');
-  if (tuples.length === 0) return;
-  // Group consecutive tuples with identical attrs into runs for efficiency.
-  // Track position manually — yText.length returns 0 on detached Y.Text instances.
-  let pos = 0;
-  let runStart = 0;
-  while (runStart < tuples.length) {
-    const baseAttrs = tuples[runStart].attrs;
-    let runEnd = runStart + 1;
-    while (runEnd < tuples.length) {
-      const a = tuples[runEnd].attrs;
-      // Compare by value using JSON — only called once per block at seed time
-      if (JSON.stringify(a) === JSON.stringify(baseAttrs)) runEnd++;
-      else break;
-    }
-    const text = tuples.slice(runStart, runEnd).map(t => t.char).join('');
-    const hasAttrs = baseAttrs && Object.keys(baseAttrs).length > 0;
-    yText.insert(pos, text, hasAttrs ? baseAttrs : undefined);
-    pos += text.length;
-    runStart = runEnd;
-  }
-}
 
 /** Build a Y.Map from a plain block object. */
 function blockToYMap(block) {
@@ -603,7 +573,7 @@ export function applyBlocksToYDoc(ydoc, yOrder, yStore, blocks) {
       yOrder.insert(cursor, [id]);
       cursor++;
     }
-  }, 'apply');
+  }, 'local-apply');
 }
 
 /**

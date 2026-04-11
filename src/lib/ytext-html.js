@@ -340,8 +340,17 @@ function lcsOps(oldChars, newChars) {
   const m = oldChars.length;
   const n = newChars.length;
 
+  // Guard: Uint16Array overflows at 65535.  Fall back to a simple
+  // "delete all old, insert all new" edit script for oversized blocks.
+  if (m > 65535 || n > 65535) {
+    const ops = [];
+    for (let i = 0; i < m; i++) ops.push({ type: 'delete', oldIdx: i });
+    for (let j = 0; j < n; j++) ops.push({ type: 'insert', newIdx: j });
+    return ops;
+  }
+
   // Build full LCS table for backtracking.
-  // Uint16Array for memory efficiency (capped at 65535 chars — sufficient for any block).
+  // Uint16Array for memory efficiency (capped at 65535 chars).
   const table = [];
   for (let i = 0; i <= m; i++) {
     table[i] = new Uint16Array(n + 1);
@@ -500,4 +509,34 @@ export function yTextToHtml(yText) {
     html += open + escapeHtml(delta.insert) + close;
   }
   return html;
+}
+
+/**
+ * Seed a detached Y.Text from HTML without requiring a Y.Doc transaction.
+ * Used by blockToYMap / tableToYStructure where Y.Text has no doc yet.
+ * Parses HTML into {char, attrs} tuples and inserts each run with attributes.
+ *
+ * @param {import('yjs').Text} yText
+ * @param {string} html
+ */
+export function seedYTextFromHtml(yText, html) {
+  const tuples = htmlToAttrList(html || '');
+  if (tuples.length === 0) return;
+  // Group consecutive tuples with identical attrs into runs for efficiency.
+  // Track position manually — yText.length returns 0 on detached Y.Text instances.
+  let pos = 0;
+  let runStart = 0;
+  while (runStart < tuples.length) {
+    const baseAttrs = tuples[runStart].attrs;
+    let runEnd = runStart + 1;
+    while (runEnd < tuples.length) {
+      if (attrsEqual(tuples[runEnd].attrs, baseAttrs)) runEnd++;
+      else break;
+    }
+    const text = tuples.slice(runStart, runEnd).map(t => t.char).join('');
+    const hasAttrs = baseAttrs && Object.keys(baseAttrs).length > 0;
+    yText.insert(pos, text, hasAttrs ? baseAttrs : undefined);
+    pos += text.length;
+    runStart = runEnd;
+  }
 }

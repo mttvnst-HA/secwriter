@@ -15,37 +15,7 @@
  */
 
 import * as Y from 'yjs';
-import { htmlToAttrList, applyHtmlToYText, yTextToHtml } from './ytext-html.js';
-
-/**
- * Seed a detached Y.Text with HTML content.
- * Called inside tableToYStructure where the Y.Text has no doc yet.
- * Mirrors seedYTextFromHtml in collab.js.
- *
- * @param {import('yjs').Text} yText
- * @param {string} html
- */
-function seedYTextFromHtml(yText, html) {
-  const tuples = htmlToAttrList(html || '');
-  if (tuples.length === 0) return;
-
-  let pos = 0;
-  let runStart = 0;
-  while (runStart < tuples.length) {
-    const baseAttrs = tuples[runStart].attrs;
-    let runEnd = runStart + 1;
-    while (runEnd < tuples.length) {
-      const a = tuples[runEnd].attrs;
-      if (JSON.stringify(a) === JSON.stringify(baseAttrs)) runEnd++;
-      else break;
-    }
-    const text = tuples.slice(runStart, runEnd).map(t => t.char).join('');
-    const hasAttrs = baseAttrs && Object.keys(baseAttrs).length > 0;
-    yText.insert(pos, text, hasAttrs ? baseAttrs : undefined);
-    pos += text.length;
-    runStart = runEnd;
-  }
-}
+import { applyHtmlToYText, yTextToHtml, seedYTextFromHtml } from './ytext-html.js';
 
 /**
  * Build a cell Y.Map from a plain cell object.
@@ -126,13 +96,18 @@ export function yStructureToTable(yMap) {
   if (stylesStr !== undefined) result.styles = JSON.parse(stylesStr);
 
   const yRows = yMap.get('rows');
-  if (!yRows) return result;
+  if (!yRows || typeof yRows.length !== 'number') return result;
 
   for (let r = 0; r < yRows.length; r++) {
     const yRow = yRows.get(r);
+    if (!yRow || typeof yRow.length !== 'number') continue;
     const row = [];
     for (let c = 0; c < yRow.length; c++) {
       const yCell = yRow.get(c);
+      if (!yCell || typeof yCell.get !== 'function') {
+        row.push({ text: '', colspan: 1 });
+        continue;
+      }
       const yText = yCell.get('text');
       const cell = {
         text: yText ? yTextToHtml(yText) : '',

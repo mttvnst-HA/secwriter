@@ -255,6 +255,18 @@ describe('htmlToAttrList', () => {
     expect(htmlToAttrList('')).toEqual([]);
   });
 
+  it('converts HTML-only entities (&nbsp;, &mdash;, etc.) to their characters', () => {
+    const nbspResult = htmlToAttrList('a&nbsp;b');
+    expect(nbspResult.map(t => t.char).join('')).toBe('a\u00A0b');
+
+    const mdashResult = htmlToAttrList('x&mdash;y');
+    expect(mdashResult.map(t => t.char).join('')).toBe('x\u2014y');
+
+    // XML built-in entities remain unchanged
+    const ampResult = htmlToAttrList('a&amp;b');
+    expect(ampResult.map(t => t.char).join('')).toBe('a&b');
+  });
+
   it('roundtrips: yTextToHtml(yText) → htmlToAttrList → same chars+attrs', () => {
     const ydoc = new Y.Doc();
     const yText = ydoc.getText('test');

@@ -159,7 +159,11 @@ export function applyRefEdits(yMap, prevRef, nextRef) {
     const prevLen = prevEntries.length;
     const nextLen = nextEntries.length;
 
-    // Update/create entries in-place up to min(prevLen, nextLen)
+    // Update entries in-place using positional matching: entry at index i in
+    // prev maps to entry at index i in next.  This means entry *reordering*
+    // (e.g. drag entry 2 above entry 1) is treated as text edits on both
+    // entries, not a structural reorder.  True reorder support would require
+    // a stable entry ID or content-similarity heuristic — deferred for now.
     const sharedLen = Math.min(prevLen, nextLen);
     for (let i = 0; i < sharedLen; i++) {
       const entryMap = yEntries.get(i);
