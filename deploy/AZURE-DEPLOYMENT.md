@@ -130,6 +130,72 @@ If using Azure App Service for the collab server, enable **WebSockets** in Confi
 
 ---
 
+## How Persistent Storage Works
+
+### Overview
+
+Each collaborative editing room persists three artifacts to storage:
+
+| Artifact | Format | Purpose |
+|----------|--------|---------|
+| `<roomId>.ydoc` | Binary (Yjs CRDT snapshot) | Source of truth. Full document state for recovery. |
+| `<roomId>.SEC` | Windows-1252 XML | Human-readable spec file, ready for SpecsIntact. |
+| `<roomId>.comments.json` | UTF-8 JSON | Comment thread metadata (author, status, replies). |
+
+### When Writes Happen
+
+Persistence is debounced at 500ms. Every time a user makes an edit via WebSocket, a timer resets. When 500ms pass with no new edits, the server serializes the Y.Doc into all three artifacts and writes them atomically. This batches rapid keystrokes into a single persist operation.
+
+Additionally:
+- **File uploads** (`POST /rooms/:id/upload`) flush synchronously before returning 200 -- the response guarantees durability.
+- **Graceful shutdown** (SIGINT/SIGTERM) flushes all dirty rooms before the process exits, so up to 500ms of final edits are not lost.
+- An **8MB hard cap** prevents runaway documents from consuming storage. Oversized docs are quarantined for forensic inspection.
+
+### Server Restart Recovery
+
+When a WebSocket client connects to a room:
+1. The server reads the `.ydoc` from storage
+2. Decodes it into a scratch Y.Doc (isolated from the live doc in case of corruption)
+3. If valid, merges the state into the live Y.Doc -- the client receives the restored content via Yjs sync
+4. If corrupt, quarantines the file and starts a fresh room
+
+The `.SEC` and `.comments.json` files are regenerated from the `.ydoc` on every flush, so they do not need to be read on restart. They exist so the spec file can be downloaded or processed externally without running the server.
+
+### Local Storage Backend
+
+Used when `SIM_STORAGE_BACKEND=local` (the default). Stores files in `server/collab-db/` on the filesystem. Uses atomic multi-file writes:
+1. All artifacts are written to `.tmp` files first
+2. Renamed to final names in sequence, with `.ydoc` last (since it is the recovery source)
+3. If any rename fails, already-renamed files are rolled back from backup
+
+On startup, orphaned `.tmp` files from a mid-write crash are cleaned up.
+
+### Azure Blob Storage Backend
+
+Used when `SIM_STORAGE_BACKEND=azure`. Drop-in replacement with the same interface. Blobs are stored under a configurable container (default: `sim-collab-rooms`):
+
+```
+<roomId>/room.ydoc
+<roomId>/room.sec
+<roomId>/room.comments.json
+```
+
+Multi-instance safety: before writing `.ydoc`, the backend acquires a 30-second blob lease. If two server instances try to write the same room simultaneously, the lease prevents data corruption. The lease is released after the write completes.
+
+Archived rooms move under an `archive/` prefix and are permanently deleted after a configurable TTL (default: 90 days).
+
+### Room Lifecycle
+
+| Phase | Trigger | Action |
+|-------|---------|--------|
+| Active | User edits | Debounced 500ms flush to storage |
+| Idle | No edits for 30 days (configurable via `SIM_ROOM_ARCHIVE_DAYS`) | Moved to archive |
+| Archived | In archive for 90 days (configurable via `SIM_ROOM_DELETE_DAYS`) | Permanently deleted |
+
+A sweep runs every 24 hours to process archival and deletion.
+
+---
+
 ## Remaining Roadmap Items
 
 These items are NOT blockers for initial deployment but should be addressed for production readiness.
