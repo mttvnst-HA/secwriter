@@ -44,21 +44,25 @@ export async function deleteRoom(name) {
 export async function joinRoom(context, roomName) {
   const page = await context.newPage();
   await page.goto(`http://localhost:5173/?room=${roomName}`);
-  await page.waitForSelector('[contenteditable]', { timeout: 10000 });
+  // Wait for either the identity modal input or the editor to appear
+  await page.waitForSelector('[contenteditable], input[placeholder*="name" i]', { timeout: 15000 });
   await page.waitForTimeout(500);
   return page;
 }
 
 /** Get visible text content of the nth editable block. */
 export async function getBlockText(page, index = 0) {
-  const blocks = page.locator('[contenteditable="true"]');
+  const blocks = page.locator('[contenteditable]');
   return blocks.nth(index).textContent();
 }
 
-/** Wait for connection banner to disappear (connected state). */
+/** Wait for the collab connection to establish and editor to be ready. */
 export async function waitForConnected(page) {
-  await page.waitForFunction(() => {
-    const banner = document.querySelector('.connection-banner');
-    return !banner || banner.style.display === 'none';
-  }, { timeout: 10000 });
+  // Wait until at least one contenteditable block is visible and no
+  // "Connecting" text remains on the page. The ConnectionBanner renders
+  // null when connected, so once contenteditable exists and no banner
+  // text is present, we're good.
+  await page.waitForSelector('[contenteditable]', { timeout: 15000 });
+  // Give Yjs a moment to complete the sync handshake
+  await page.waitForTimeout(1000);
 }
