@@ -112,6 +112,60 @@ describe('LocalStorageBackend', () => {
     assert.ok(!rooms[0].includes('..'), 'room name must not contain ..');
   });
 
+  it('archiveRoom moves files to archive subdirectory', async () => {
+    const dir = freshDir();
+    const backend = new LocalStorageBackend(dir);
+    await backend.writeRoom('arch-test', {
+      ydocBytes: Buffer.from([1, 2, 3]),
+      secBytes: Buffer.from('sec'),
+      commentsJson: '{}',
+    });
+
+    await backend.archiveRoom('arch-test');
+
+    const original = await backend.readRoom('arch-test');
+    assert.equal(original, null);
+
+    const archiveDir = path.join(dir, 'archive');
+    assert.ok(fs.existsSync(archiveDir));
+    assert.ok(fs.existsSync(path.join(archiveDir, 'arch-test.ydoc')));
+
+    const archived = await backend.listArchivedRooms();
+    assert.ok(archived.some(r => r.id === 'arch-test'));
+    assert.ok(archived[0].archivedAt);
+  });
+
+  it('restoreRoom moves files back from archive', async () => {
+    const dir = freshDir();
+    const backend = new LocalStorageBackend(dir);
+    await backend.writeRoom('restore-test', {
+      ydocBytes: Buffer.from([4, 5, 6]),
+      secBytes: null,
+      commentsJson: null,
+    });
+    await backend.archiveRoom('restore-test');
+    await backend.restoreRoom('restore-test');
+
+    const data = await backend.readRoom('restore-test');
+    assert.ok(data);
+    assert.deepStrictEqual(data.ydocBytes, Buffer.from([4, 5, 6]));
+  });
+
+  it('deleteArchivedRoom removes archived files', async () => {
+    const dir = freshDir();
+    const backend = new LocalStorageBackend(dir);
+    await backend.writeRoom('del-arch', {
+      ydocBytes: Buffer.from([7]),
+      secBytes: null,
+      commentsJson: null,
+    });
+    await backend.archiveRoom('del-arch');
+    await backend.deleteArchivedRoom('del-arch');
+
+    const archived = await backend.listArchivedRooms();
+    assert.ok(!archived.some(r => r.id === 'del-arch'));
+  });
+
   it('writeRoom is atomic — no partial artifacts on write failure', async () => {
     const dir = freshDir();
     const backend = new LocalStorageBackend(dir);

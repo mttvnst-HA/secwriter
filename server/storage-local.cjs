@@ -198,6 +198,90 @@ class LocalStorageBackend {
     }
     return rooms;
   }
+
+  /**
+   * Archive a room by moving its files to <dir>/archive/.
+   * A <roomId>.archivedAt file is written with the ISO timestamp.
+   * @param {string} roomId
+   */
+  async archiveRoom(roomId) {
+    const safe = sanitize(roomId);
+    const archiveDir = path.join(this._dir, 'archive');
+    fs.mkdirSync(archiveDir, { recursive: true });
+
+    for (const ext of ['.ydoc', '.SEC', '.comments.json']) {
+      const src = path.join(this._dir, `${safe}${ext}`);
+      if (fs.existsSync(src)) {
+        fs.renameSync(src, path.join(archiveDir, `${safe}${ext}`));
+      }
+    }
+
+    // Write timestamp marker
+    fs.writeFileSync(
+      path.join(archiveDir, `${safe}.archivedAt`),
+      new Date().toISOString(),
+      'utf-8'
+    );
+  }
+
+  /**
+   * Restore an archived room by moving its files back to the active dir.
+   * @param {string} roomId
+   */
+  async restoreRoom(roomId) {
+    const safe = sanitize(roomId);
+    const archiveDir = path.join(this._dir, 'archive');
+
+    for (const ext of ['.ydoc', '.SEC', '.comments.json']) {
+      const src = path.join(archiveDir, `${safe}${ext}`);
+      if (fs.existsSync(src)) {
+        fs.renameSync(src, path.join(this._dir, `${safe}${ext}`));
+      }
+    }
+
+    // Remove timestamp marker
+    const markerPath = path.join(archiveDir, `${safe}.archivedAt`);
+    try { fs.unlinkSync(markerPath); } catch (_) { /* may not exist */ }
+  }
+
+  /**
+   * List archived rooms by scanning <dir>/archive/ for .ydoc files.
+   * @returns {{ id: string, archivedAt: string|null }[]}
+   */
+  async listArchivedRooms() {
+    const archiveDir = path.join(this._dir, 'archive');
+    if (!fs.existsSync(archiveDir)) return [];
+
+    const entries = fs.readdirSync(archiveDir);
+    const rooms = [];
+    for (const entry of entries) {
+      if (entry.endsWith('.ydoc') && !entry.includes('.ydoc.')) {
+        const id = entry.slice(0, -5);
+        if (id.length > 0) {
+          const markerPath = path.join(archiveDir, `${id}.archivedAt`);
+          const archivedAt = fs.existsSync(markerPath)
+            ? fs.readFileSync(markerPath, 'utf-8').trim()
+            : null;
+          rooms.push({ id, archivedAt });
+        }
+      }
+    }
+    return rooms;
+  }
+
+  /**
+   * Permanently delete all archived files for a room.
+   * @param {string} roomId
+   */
+  async deleteArchivedRoom(roomId) {
+    const safe = sanitize(roomId);
+    const archiveDir = path.join(this._dir, 'archive');
+
+    for (const ext of ['.ydoc', '.SEC', '.comments.json', '.archivedAt']) {
+      const p = path.join(archiveDir, `${safe}${ext}`);
+      try { fs.unlinkSync(p); } catch (_) { /* may not exist */ }
+    }
+  }
 }
 
 module.exports = { LocalStorageBackend, sanitize };
