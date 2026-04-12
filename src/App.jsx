@@ -2462,6 +2462,7 @@ export default function SpecEditor() {
                   onDelete={handleDelete}
                   onFocusPrev={handleFocusPrev}
                   onFocusNext={handleFocusNext}
+                  readOnly={collabReadOnly}
                 />
               );
             }
@@ -2527,6 +2528,7 @@ export default function SpecEditor() {
                     resumeHistory();
                     setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
                   }}
+                  readOnly={collabReadOnly}
                 />
               );
             }
@@ -2540,6 +2542,7 @@ export default function SpecEditor() {
                   ))}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
+                  readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
                     resumeHistory();
                     setBlocks(prev => {

@@ -2,7 +2,7 @@ import { useRef, useCallback, useEffect } from "react";
 import { sanitizePasteText } from "./EditableBlock.jsx";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
-function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote, onDemote, onEnterKey, onDelete, onFocusPrev, onFocusNext }) {
+function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote, onDemote, onEnterKey, onDelete, onFocusPrev, onFocusNext, readOnly }) {
   const ref = useRef(null);
   const isPart = block.html.startsWith("PART ");
   const depth = block.depth;
@@ -132,13 +132,13 @@ function TitleBlock({ block, onFocus, isFocused, sectionNum, onUpdate, onPromote
         <span
           ref={ref}
           data-block-id={block.id}
-          contentEditable
+          contentEditable={!readOnly}
           {...NO_EXFIL_PROPS}
           suppressContentEditableWarning
-          onKeyDown={handleKeyDown}
-          onPaste={handlePaste}
-          onBlur={handleBlur}
-          style={{ outline: "none", flex: 1, minWidth: 20 }}
+          onKeyDown={readOnly ? undefined : handleKeyDown}
+          onPaste={readOnly ? undefined : handlePaste}
+          onBlur={readOnly ? undefined : handleBlur}
+          style={{ outline: "none", flex: 1, minWidth: 20, cursor: readOnly ? "not-allowed" : undefined }}
         />
       )}
       {isFocused && !isPart && (

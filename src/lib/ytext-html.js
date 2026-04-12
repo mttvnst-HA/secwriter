@@ -19,6 +19,23 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;');
 }
 
+/**
+ * Escape a string for safe interpolation into an HTML attribute value.
+ * Prevents attribute injection from untrusted Y.Doc data (e.g. remote peers).
+ * @param {string} str
+ * @returns {string}
+ */
+function escapeAttr(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+// Known mark types — used as allowlist for class name interpolation (defense-in-depth)
+const VALID_MARKS = new Set(['rid', 'srf', 'sub', 'eng', 'met', 'tai', 'tst', 'url', 'att', 'comment']);
+
 // All attribute keys that affect tag generation, in nesting order
 const NESTING_KEYS = ['comment', 'revision', 'mark', 'bold', 'italic', 'underline'];
 // Auxiliary keys that modify how a primary key renders
@@ -64,7 +81,7 @@ function buildTags(attrs) {
   // Layer 1 (outermost): comment
   if (attrs.comment) {
     const cls = attrs.commentResolved ? 'mark-comment-resolved' : 'mark-comment';
-    openParts.push(`<span class="${cls}" data-comment-id="${attrs.comment}">`);
+    openParts.push(`<span class="${cls}" data-comment-id="${escapeAttr(attrs.comment)}">`);
     closeParts.unshift('</span>');
   }
 
@@ -72,10 +89,10 @@ function buildTags(attrs) {
   if (attrs.revision) {
     const rev = attrs.revision;
     const styleAttr = attrs.revisionAuthorColor
-      ? ` style="--author-color:${attrs.revisionAuthorColor}"`
+      ? ` style="--author-color:${escapeAttr(attrs.revisionAuthorColor)}"`
       : '';
     const authorIdAttr = attrs.revisionAuthor
-      ? ` data-author-id="${attrs.revisionAuthor}"`
+      ? ` data-author-id="${escapeAttr(attrs.revisionAuthor)}"`
       : '';
 
     if (rev === 'add') {
@@ -90,10 +107,10 @@ function buildTags(attrs) {
     }
   }
 
-  // Layer 3: mark
-  if (attrs.mark) {
+  // Layer 3: mark (allowlist prevents class-name injection from malicious peers)
+  if (attrs.mark && VALID_MARKS.has(attrs.mark)) {
     const markClass = `mark-${attrs.mark}`;
-    const dataOpt = (attrs.mark === 'tai' && attrs.markOption) ? ` data-opt="${attrs.markOption}"` : '';
+    const dataOpt = (attrs.mark === 'tai' && attrs.markOption) ? ` data-opt="${escapeAttr(attrs.markOption)}"` : '';
     openParts.push(`<span class="${markClass}"${dataOpt}>`);
     closeParts.unshift('</span>');
   }

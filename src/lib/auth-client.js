@@ -32,6 +32,31 @@ function _reset() {
 // ── Public API ──────────────────────────────────────────────────────
 
 /**
+ * Synchronous fast-path auth initialisation for stub and external-token modes.
+ * Returns the result immediately or null if MSAL (async) is needed.
+ * Used by LoginGate to avoid a blank-screen flash on first render.
+ */
+export function initAuthSync() {
+  if (_initResult) return _initResult;
+
+  const externalToken = sessionStorage.getItem(TOKEN_KEY);
+  if (externalToken) {
+    _mode = 'external';
+    _identity = identityFromToken(externalToken);
+    _initResult = { mode: _mode, isAuthenticated: true, identity: _identity };
+    return _initResult;
+  }
+
+  const clientId = import.meta.env?.VITE_AZURE_AD_CLIENT_ID;
+  if (clientId) return null; // MSAL requires async — caller must use initAuth()
+
+  _mode = 'stub';
+  _identity = loadIdentity() || null;
+  _initResult = { mode: _mode, isAuthenticated: false, identity: _identity };
+  return _initResult;
+}
+
+/**
  * Initialise auth — detect mode, extract identity.
  * Safe to call multiple times (idempotent after first).
  * @returns {{ mode: string, isAuthenticated: boolean, identity: object|null }}

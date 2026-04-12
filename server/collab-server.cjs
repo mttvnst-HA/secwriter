@@ -269,8 +269,9 @@ wss.on('error', (err) => {
 const http = require('node:http');
 const { createHttpHandler } = require('./http-handler.cjs');
 
+const allowedOrigin = process.env.SIM_COLLAB_ORIGIN || '*';
 const httpServer = http.createServer(
-  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES, authProvider })
+  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES, authProvider, allowedOrigin })
 );
 
 const HTTP_PORT = Number(process.env.COLLAB_HTTP_PORT || 1235);

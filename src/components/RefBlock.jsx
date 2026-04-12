@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { BLOCK_MARGINS } from "../lib/ini-config.js";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
-function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRejectRevision, onCommentClick }) {
+function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRejectRevision, onCommentClick, readOnly }) {
   const ref = block.ref || { org: '', entries: [] };
   const [editingOrg, setEditingOrg] = useState(false);
   const [editingIdx, setEditingIdx] = useState(-1);
@@ -167,7 +167,7 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
         padding: "4px 0",
       }}>
         {/* ORG Header */}
-        {editingOrg ? (
+        {editingOrg && !readOnly ? (
           <div style={{ padding: "6px 12px" }}>
             <input
               autoFocus
@@ -193,10 +193,10 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
               padding: "6px 12px", cursor: "pointer",
               display: "flex", alignItems: "center", gap: 8,
             }}
-            onDoubleClick={startEditOrg}
+            onDoubleClick={readOnly ? undefined : startEditOrg}
           >
             <span style={{ flex: 1 }}>{ref.org || <span style={{ color: "#94a3b8", fontStyle: "italic", fontWeight: 400 }}>Double-click to set organization</span>}</span>
-            <button
+            {!readOnly && <button
               onClick={(e) => { e.stopPropagation(); startEditOrg(); }}
               className="ref-action-btn"
               title="Edit organization"
@@ -206,13 +206,13 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
                 cursor: "pointer", fontSize: 16, color: "#64748b",
                 padding: "4px 6px", minWidth: 32, minHeight: 32,
               }}
-            >✏️</button>
+            >✏️</button>}
           </div>
         )}
 
         {/* RID/RTL Entries */}
         {ref.entries.map((entry, idx) => (
-          editingIdx === idx ? (
+          editingIdx === idx && !readOnly ? (
             <div key={idx} className="ref-entry" style={{
               display: "flex", gap: 8, padding: "4px 12px",
               alignItems: "center",
@@ -268,7 +268,7 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
               display: "flex", gap: 12, padding: "4px 12px",
               alignItems: "baseline", cursor: "pointer",
             }}
-              onDoubleClick={() => startEditEntry(idx)}
+              onDoubleClick={readOnly ? undefined : () => startEditEntry(idx)}
             >
               <span className="mark-rid" style={{ flexShrink: 0 }}>
                 {entry.rid || '???'}
@@ -278,7 +278,7 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
               }}>
                 {entry.rtl}
               </span>
-              <button
+              {!readOnly && <button
                 onClick={(e) => { e.stopPropagation(); startEditEntry(idx); }}
                 className="ref-action-btn"
                 title="Edit reference"
@@ -288,8 +288,8 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
                   cursor: "pointer", fontSize: 16, color: "#64748b",
                   padding: "4px 6px", minWidth: 32, minHeight: 32,
                 }}
-              >✏️</button>
-              <button
+              >✏️</button>}
+              {!readOnly && <button
                 onClick={(e) => { e.stopPropagation(); deleteEntry(idx); }}
                 className="ref-action-btn"
                 title="Delete reference"
@@ -299,13 +299,13 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
                   cursor: "pointer", fontSize: 16, color: "#ef4444",
                   padding: "4px 6px", minWidth: 32, minHeight: 32,
                 }}
-              >🗑</button>
+              >🗑</button>}
             </div>
           )
         ))}
 
         {/* Add Reference button */}
-        <div
+        {!readOnly && <div
           className="ref-add-btn"
           onClick={addEntry}
           style={{
@@ -314,7 +314,7 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
           }}
         >
           ＋ Add Reference
-        </div>
+        </div>}
       </div>
     </div>
   );

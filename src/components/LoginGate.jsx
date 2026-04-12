@@ -1,27 +1,34 @@
 import { useState, useEffect, useRef } from 'react';
-import { initAuth, onTokenRefresh, signIn } from '../lib/auth-client.js';
+import { initAuth, initAuthSync, onTokenRefresh, signIn } from '../lib/auth-client.js';
 
 export default function LoginGate({ children }) {
-  const [authState, setAuthState] = useState({
-    mode: null, isAuthenticated: false, identity: null, loading: true,
+  const [authState, setAuthState] = useState(() => {
+    // Synchronous fast path: stub and external-token modes resolve immediately,
+    // avoiding a blank-screen flash for single-user / no-auth users.
+    const sync = initAuthSync();
+    if (sync) return { ...sync, loading: false };
+    return { mode: null, isAuthenticated: false, identity: null, loading: true };
   });
   const wasAuthenticatedRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
-    initAuth().then((result) => {
-      if (!cancelled) {
-        if (result.isAuthenticated) wasAuthenticatedRef.current = true;
-        setAuthState({ ...result, loading: false });
-      }
-    });
+    // Only run async init if synchronous fast path didn't resolve
+    if (authState.loading) {
+      initAuth().then((result) => {
+        if (!cancelled) {
+          if (result.isAuthenticated) wasAuthenticatedRef.current = true;
+          setAuthState({ ...result, loading: false });
+        }
+      });
+    }
     const unsub = onTokenRefresh((token) => {
       if (token === null) {
         setAuthState((prev) => ({ ...prev, isAuthenticated: false }));
       }
     });
     return () => { cancelled = true; unsub(); };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps — authState.loading is initial-only
 
   if (authState.loading) return null;
 

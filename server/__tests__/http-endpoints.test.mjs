@@ -335,6 +335,28 @@ describe('HTTP endpoints', () => {
     }
   });
 
+  it('CORS: defaults to wildcard, reflects custom allowedOrigin', async () => {
+    // Default handler (already running) should return *
+    const resp = await httpGet(`${baseUrl}/rooms`);
+    assert.strictEqual(resp.headers['access-control-allow-origin'], '*');
+
+    // Custom origin via allowedOrigin option
+    const { createHttpHandler } = require('../http-handler.cjs');
+    const customHandler = createHttpHandler({
+      storage, boundDocs: new Map(), flushRoom: async () => {},
+      maxDocBytes: 8 * 1024 * 1024, allowedOrigin: 'https://example.com',
+    });
+    const srv = http.createServer(customHandler);
+    await new Promise(r => srv.listen(0, '127.0.0.1', r));
+    const port = srv.address().port;
+    try {
+      const r2 = await httpGet(`http://127.0.0.1:${port}/rooms`);
+      assert.strictEqual(r2.headers['access-control-allow-origin'], 'https://example.com');
+    } finally {
+      srv.close();
+    }
+  });
+
   it('POST /rooms/:roomId/upload with active Y.Doc seeds blocks and returns count', async () => {
     // Generate valid SEC content via the serializer
     const { serializeSEC } = await import('../../src/lib/sec-serializer.js');

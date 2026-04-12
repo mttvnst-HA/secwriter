@@ -616,6 +616,9 @@ export function createCollabSession({
 
   // y-websocket builds the URL as `${wsUrl}/${roomName}`.
   // Append token as query param by encoding it into the room name.
+  // DEPLOYMENT NOTE: Tokens appear in server access logs and reverse proxy logs.
+  // This is a y-websocket v1 limitation (no custom header support). Production
+  // deployments behind reverse proxies must sanitize access logs to strip tokens.
   let currentToken = token;  // mutable — updated on reconnect via getTokenFn
   const effectiveRoom = currentToken ? `${room}?token=${encodeURIComponent(currentToken)}` : room;
   const provider = new WebsocketProvider(wsUrl, effectiveRoom, ydoc);

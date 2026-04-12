@@ -94,6 +94,24 @@ describe('auth-client', () => {
     await expect(signIn()).resolves.toBeUndefined();
   });
 
+  it('initAuthSync resolves stub mode synchronously (no loading flash)', async () => {
+    const { initAuthSync } = await import('../auth-client.js');
+    const result = initAuthSync();
+    expect(result).not.toBeNull();
+    expect(result.mode).toBe('stub');
+    expect(result.isAuthenticated).toBe(false);
+  });
+
+  it('initAuthSync resolves external token synchronously', async () => {
+    mockSession.setItem('sim-auth-token', MOCK_JWT);
+    const { initAuthSync } = await import('../auth-client.js');
+    const result = initAuthSync();
+    expect(result).not.toBeNull();
+    expect(result.mode).toBe('external');
+    expect(result.isAuthenticated).toBe(true);
+    expect(result.identity.id).toBe('user-1');
+  });
+
   it('signOut clears identity in external mode', async () => {
     mockSession.setItem('sim-auth-token', MOCK_JWT);
     const { initAuth, signOut, getIdentity } = await import('../auth-client.js');

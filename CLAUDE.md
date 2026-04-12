@@ -92,15 +92,15 @@ src/
     ytable-crdt.js         # Table CRDT converter: plain TableData ↔ nested Y.Array/Y.Map/Y.Text for cell-level merges ~230 lines
     yref-crdt.js           # REF CRDT converter: plain RefData ↔ nested Y.Map (org: Y.Text, entries: Y.Array) ~200 lines
     identity.js            # User identity: JWT claim extraction + localStorage fallback, HSL hash ~110 lines
-    auth-client.js         # Client auth orchestrator: mode detection (external/MSAL/stub), token management ~180 lines
+    auth-client.js         # Client auth orchestrator: mode detection (external/MSAL/stub), token management, initAuthSync() for zero-flash loading ~220 lines
     orphan-comment-spans.js # Ghost-span cleanup: stripOrphanCommentSpans for mark-comment spans without metadata ~40 lines
     no-exfil.js            # Browser exfiltration prevention props for all typing surfaces ~25 lines
-    __tests__/             # 665 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
+    __tests__/             # 630 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
     umrl.json              # UMRL reference database (302 orgs, 4,973 references, 587KB)
     umsl.json              # UMSL submittal database (13,203 submittals, 1,097KB)
-    ufs-1-300-02-rules.json # UFS 1-300-02 compliance rules (122 rules, 35 prohibited terms, 65KB)
+    ufs-1-300-02-rules.json # UFS 1-300-02 compliance rules (122 rules, 35 prohibited terms, 77KB)
   styles/
     editor.css             # Marks, revisions, comments, dark mode, unit toggles, compliance + inline linting highlights ~630 lines
 reference/
@@ -158,7 +158,7 @@ test-results/              # UI audit output: findings.json + timestamped Markdo
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 665 Vitest unit tests
+npm test             # Run 630 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 141 Playwright E2E tests
@@ -167,7 +167,7 @@ npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 fi
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
 npm run test:server   # Run 45 server persistence + HTTP + auth + storage tests (Node runner)
-# Full suite: 665 + 99 + 45 + 141 = 950 automated tests
+# Full suite: 630 + 99 + 45 + 141 = 915 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -187,6 +187,7 @@ SIM_AUTH_JWT_SECRET=<secret>        # JWT HS256 shared secret
 SIM_AUTH_JWT_PUBLIC_KEY=<path>      # JWT RS256 public key PEM file path
 SIM_AUTH_JWT_ISSUER=<issuer>        # Expected JWT issuer (optional)
 SIM_AUTH_JWT_AUDIENCE=<audience>    # Expected JWT audience (optional)
+SIM_COLLAB_ORIGIN=<origin>         # CORS allowed origin (default: * for dev)
 SIM_STORAGE_BACKEND=local|azure    # Storage backend (default: local)
 SIM_AZURE_STORAGE_CONNECTION_STRING=<conn-string>  # Azure connection string
 SIM_AZURE_STORAGE_ACCOUNT_URL=<url>  # Azure account URL (for Managed Identity)
@@ -306,7 +307,7 @@ The `</>` toolbar button toggles between `tags-hidden` (default) and `tags-visib
 
 The compliance checker uses a **data-driven rule engine** with two tiers:
 
-1. **`ufs-1-300-02-rules.json`** (65KB) — authoritative rule data extracted from `reference/ufs_1_300_02.pdf`. Contains 122 rules, 35 prohibited terms, 13 symbols, 20 vague terms, 4 required capitalizations, and more. **Rules are NOT hardcoded in source code.**
+1. **`ufs-1-300-02-rules.json`** (77KB) — authoritative rule data extracted from `reference/ufs_1_300_02.pdf`. Contains 122 rules, 35 prohibited terms, 13 symbols, 20 vague terms, 4 required capitalizations, and more. **Rules are NOT hardcoded in source code.**
 2. **`compliance-rules.js`** reads the JSON at startup and generates ~81 rule objects via `buildRules()`. Each rule has: id, category, severity, regex pattern, message, UFS reference, and an optional `fix()` function. Rules where `fix` is null are deferred to AI tier. Uses **binary search** for bracket exclusion (O(log n) per match instead of O(n)).
 3. **`compliance-checker.js`** runs rules against a scoped set of blocks, groups violations by rule ID, and computes severity stats. Excludes note blocks, bracket content, and hidden ENG/MET content. Enforces a **violation budget** (`MAX_VIOLATIONS = 2000`) to prevent OOM on large documents; returns `truncated: true` when capped.
 4. **`compliance-ai.js`** handles Tier 2: builds a system prompt dynamically from the JSON (injects all prohibited + vague terms), chunks large requests (20 blocks max per API call), estimates token cost, and supports abort via AbortController.
@@ -400,7 +401,7 @@ npm run dev             # terminal 2: Vite dev server on localhost:5173
 - **Room management:** `RoomPanel.jsx` sidebar with room browsing, creation, deletion. Server CRUD endpoints (`POST`/`DELETE`/`PATCH /rooms`). Collab server auto-detection.
 - **Auth:** Pluggable auth providers via `SIM_AUTH_PROVIDER` env var. `auth-none.cjs` (dev default, no validation) and `auth-jwt.cjs` (HS256/RS256 JWT validation). WebSocket + HTTP middleware. Client reads token from `sessionStorage['sim-auth-token']`.
 - **Azure Blob Storage:** Drop-in cloud storage backend via `SIM_STORAGE_BACKEND=azure`. Same interface as `storage-local.cjs`.
-- **Remaining gaps:** No rate limiting on WebSocket/HTTP endpoints.
+- **Remaining gaps:** No rate limiting on WebSocket/HTTP endpoints. JWT tokens are passed as WebSocket URL query parameters (y-websocket v1 limitation) — production deployments behind reverse proxies must sanitize access logs.
 
 ### Reference data sources
 
@@ -471,12 +472,12 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 | Runner | Tests | Key areas |
 |--------|-------|-----------|
-| Vitest (`npm test`) | 665 | Parser/serializer (82), collab CRDT (53+50+11+7+8=129), compliance (42+23+13=78), inline linting (19+10+37+11=77), revisions/diff (29+23=52), encoding/roundtrip (11+9=20), UI components (9), auth/identity (17), everything else (211) |
+| Vitest (`npm test`) | 630 | Parser/serializer (82), collab CRDT (53+50+11+7+8=129), compliance (42+23+13=78), inline linting (19+10+37+11=77), revisions/diff (29+23=52), encoding/roundtrip (11+9=20), UI components (9), auth/identity (19), everything else (164) |
 | Node (`npm run test:compliance`, `test:corpus`, `test:ufgs`, `test:interop`) | 99 | Compliance rules (42), corpus precision/recall/adversarial (17), UFGS tag coverage + structural (12), interop roundtrip (28) |
 | Node (`npm run test:server`) | 45 | HTTP endpoints (30), storage backends (7), auth JWT (8) |
 | Playwright (`npm run test:e2e`) | 141 | Full UI: keyboard, navigation, slash menu, toolbar, marks, tables, track changes, comments, find & replace, export, compliance |
 
-**Total: 665 + 99 + 45 + 141 = 950 automated tests**
+**Total: 630 + 99 + 45 + 141 = 915 automated tests**
 
 ## Dependencies
 

@@ -43,6 +43,38 @@ describe('yTextToHtml', () => {
     expect(yTextToHtml(yText)).toBe(expected);
   });
 
+  it('escapes Y.Doc attributes to prevent XSS from malicious peers', () => {
+    // revisionAuthorColor injection — quotes are escaped so attribute can't break out
+    const xssColor = makeYText([
+      { insert: 'text', attributes: { revision: 'add', revisionAuthorColor: 'hsl(0,0%,0%)" onmouseover="alert(1)' } },
+    ]);
+    const colorHtml = yTextToHtml(xssColor);
+    // The " chars in the injected value are escaped to &quot; — attribute can't break out
+    expect(colorHtml).toContain('--author-color:hsl(0,0%,0%)&quot; onmouseover=&quot;alert(1)');
+    expect(colorHtml).not.toMatch(/style="[^"]*"[^"]*onmouseover/);
+
+    // revisionAuthor injection
+    const xssAuthor = makeYText([
+      { insert: 'text', attributes: { revision: 'del', revisionAuthor: 'user" onclick="alert(2)' } },
+    ]);
+    const authorHtml = yTextToHtml(xssAuthor);
+    expect(authorHtml).toContain('data-author-id="user&quot; onclick=&quot;alert(2)"');
+
+    // comment id injection
+    const xssComment = makeYText([
+      { insert: 'text', attributes: { comment: 'c1" onload="alert(3)' } },
+    ]);
+    const commentHtml = yTextToHtml(xssComment);
+    expect(commentHtml).toContain('data-comment-id="c1&quot; onload=&quot;alert(3)"');
+
+    // markOption injection
+    const xssOpt = makeYText([
+      { insert: 'text', attributes: { mark: 'tai', markOption: 'OPT" onfocus="alert(4)' } },
+    ]);
+    const optHtml = yTextToHtml(xssOpt);
+    expect(optHtml).toContain('data-opt="OPT&quot; onfocus=&quot;alert(4)"');
+  });
+
   it('handles stacked attributes, adjacent merging, empty text, and HTML entities', () => {
     // Stacked: bold + mark-rid
     const stacked1 = makeYText([
