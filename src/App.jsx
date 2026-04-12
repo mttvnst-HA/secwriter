@@ -41,6 +41,7 @@ import { loadIdentity } from "./lib/identity.js";
 import IdentityModal from "./components/IdentityModal.jsx";
 import PresenceBar from "./components/PresenceBar.jsx";
 import RemoteCursors from "./components/RemoteCursors.jsx";
+import ConnectionBanner from "./components/ConnectionBanner.jsx";
 import ToastStack, { useToasts } from "./components/Toast.jsx";
 
 const COLLAB_HTTP_URL = DEFAULT_HTTP_URL;
@@ -159,6 +160,8 @@ export default function SpecEditor() {
   const [identity, setIdentity] = useState(() => (inRoom ? loadIdentity() : null));
   const [peers, setPeers] = useState([]);
   const [collabStatus, setCollabStatus] = useState(inRoom ? 'connecting' : null);
+  const [reconnectIn, setReconnectIn] = useState(0);
+  const collabReadOnly = inRoom && collabStatus !== null && collabStatus !== 'connected';
   const toasts = useToasts();
   // A2 — stable ref to toasts.push so effects can fire toasts without
   // needing `toasts` in their dep array. Without this, the publish effect
@@ -1353,7 +1356,10 @@ export default function SpecEditor() {
         }
       },
       onPresenceChange: (states) => setPeers(states),
-      onStatusChange: (status) => setCollabStatus(status),
+      onStatusChange: (status, meta) => {
+        setCollabStatus(status);
+        setReconnectIn(meta?.reconnectIn ?? 0);
+      },
     });
     collabSessionRef.current = session;
     // Debug hook: expose for devtools inspection during prototype QA.
@@ -1826,9 +1832,7 @@ export default function SpecEditor() {
               <PresenceBar peers={peers} self={identity} />
             )}
             {inRoom && collabStatus && collabStatus !== 'connected' && (
-              <span style={{ fontSize: 11, color: "#d97706" }}>
-                {collabStatus === 'syncing' ? 'Syncing…' : collabStatus === 'connecting' ? 'Connecting…' : collabStatus}
-              </span>
+              <ConnectionBanner state={collabStatus} reconnectIn={reconnectIn} />
             )}
             {inRoom && (
               <>
@@ -2492,6 +2496,7 @@ export default function SpecEditor() {
                   trackChanges={trackChanges}
                   snapshotText={tcSnapshots.get(block.id)}
                   identity={identity}
+                  readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
                     resumeHistory();
                     setBlocks(prev => {

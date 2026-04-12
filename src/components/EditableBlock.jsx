@@ -52,7 +52,7 @@ function stripTagLabels(html) {
   return html.replace(/<span[^>]*class="tag-label"[^>]*>[^<]*<\/span>/g, '');
 }
 
-function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, identity, comments, onCommentClick, onInlineFix, inlineLintingEnabled = true, compliancePanelActive = false, showTags = false }) {
+function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, identity, comments, onCommentClick, onInlineFix, inlineLintingEnabled = true, compliancePanelActive = false, showTags = false, readOnly = false }) {
   const ref = useRef(null);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashFilter, setSlashFilter] = useState("");
@@ -66,7 +66,8 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   }, [block.html]);
 
   // Ref callback - fires the instant React attaches the DOM node
-  const editable = block.type === "txt" || block.type === "note" || block.type === "oli" || block.type === "item" || block.type === "lst" || block.isNew;
+  const typeEditable = block.type === "txt" || block.type === "note" || block.type === "oli" || block.type === "item" || block.type === "lst" || block.isNew;
+  const editable = typeEditable && !readOnly;
   const setRef = useCallback((node) => {
     ref.current = node;
     if (!node) return;
@@ -689,7 +690,8 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
           onClick={(e) => { handleDelClick(e); onFocus(block.id); }}
           style={{
             ...baseStyle,
-            cursor: editable ? "text" : "default",
+            cursor: editable ? "text" : readOnly ? "not-allowed" : "default",
+            opacity: readOnly ? 0.8 : 1,
             border: isFocused && editable ? "1px solid #cbd5e1" : "1px solid transparent",
             boxShadow: isFocused && editable ? "0 0 0 2px rgba(99,132,168,0.15)" : "none",
           }}
