@@ -1,9 +1,15 @@
 /**
- * User identity for the collab prototype.
+ * User identity for collaborative editing.
  *
- * No real authentication yet — this is a stub that stores a display name in
- * localStorage. When real auth lands, the login flow should write to the
- * same key (`sim-identity`) and the IdentityModal will no longer prompt.
+ * Supports two identity sources:
+ * - Token-based: `identityFromToken(jwt)` extracts claims from a JWT
+ *   (Azure AD / Entra ID / external token). Used when auth is configured.
+ * - Manual: `saveIdentity({ name })` stores a display name in localStorage.
+ *   Used in stub mode (no auth configured) via IdentityModal prompt.
+ *
+ * Both paths write to localStorage['sim-identity']. Downstream consumers
+ * (PresenceBar, RemoteCursors, awareness) read from localStorage and don't
+ * care which source produced the identity.
  *
  * Why localStorage (not sessionStorage):
  *   sessionStorage is per-tab. If the user opens the same room in two tabs
@@ -11,8 +17,7 @@
  *   with a different random `id` — the presence bar dedupes by `id` and
  *   shows the user twice, and RemoteCursors renders a remote cursor
  *   pointing at the user's own caret. localStorage is shared across tabs
- *   so the same browser = same identity. Real auth will replace this
- *   entirely; until then, localStorage is the less confusing default.
+ *   so the same browser = same identity.
  */
 
 const KEY = 'sim-identity';

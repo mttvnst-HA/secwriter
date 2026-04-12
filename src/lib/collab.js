@@ -699,7 +699,10 @@ export function createCollabSession({
   };
 
   const handleStatus = ({ status }) => {
-    // Refresh token on reconnect attempt (MSAL silent refresh)
+    // Token refresh on reconnect. Note: this updates provider.url for the NEXT
+    // reconnect attempt — the current attempt already opened a WebSocket with the
+    // old URL. If the stale token is rejected, the server closes with 4401 and
+    // y-websocket retries with the now-updated URL. One-attempt lag is acceptable.
     if (status === 'connecting' && getTokenFn) {
       getTokenFn().then(freshToken => {
         if (freshToken && freshToken !== currentToken) {

@@ -16,6 +16,8 @@ let _mode = null;          // 'external' | 'msal' | 'stub' | null
 let _identity = null;      // { id, name, email, color } | null
 let _msalInstance = null;   // MSAL PublicClientApplication | null
 let _msalAccount = null;    // MSAL account info | null
+let _initResult = null;     // cached initAuth() result (idempotent under StrictMode)
+let _lastNotifiedToken = null; // dedup token refresh notifications
 const _listeners = new Set(); // token refresh callbacks
 
 // ── Helpers ─────────────────────────────────────────────────────────
@@ -35,12 +37,15 @@ function _reset() {
  * @returns {{ mode: string, isAuthenticated: boolean, identity: object|null }}
  */
 export async function initAuth() {
+  if (_initResult) return _initResult;
+
   // 1. External token in sessionStorage?
   const externalToken = sessionStorage.getItem(TOKEN_KEY);
   if (externalToken) {
     _mode = 'external';
     _identity = identityFromToken(externalToken);
-    return { mode: _mode, isAuthenticated: true, identity: _identity };
+    _initResult = { mode: _mode, isAuthenticated: true, identity: _identity };
+    return _initResult;
   }
 
   // 2. MSAL configured via env var?
@@ -51,7 +56,7 @@ export async function initAuth() {
       _msalInstance = new msal.PublicClientApplication({
         auth: {
           clientId,
-          authority: import.meta.env.VITE_AZURE_AD_AUTHORITY || 'https://login.microsoftonline.com/common',
+          authority: `https://login.microsoftonline.com/${import.meta.env.VITE_AZURE_AD_TENANT_ID || 'common'}`,
           redirectUri: window.location.origin,
         },
         cache: { cacheLocation: 'sessionStorage' },
@@ -82,12 +87,14 @@ export async function initAuth() {
             color: `hsl(${Math.abs(_msalAccount.username?.length * 31 || 0) % 360}, 70%, 45%)`,
           };
         }
-        return { mode: _mode, isAuthenticated: true, identity: _identity };
+        _initResult = { mode: _mode, isAuthenticated: true, identity: _identity };
+        return _initResult;
       }
 
       // MSAL configured but no account — user not signed in yet
       _mode = 'msal';
-      return { mode: _mode, isAuthenticated: false, identity: null };
+      _initResult = { mode: _mode, isAuthenticated: false, identity: null };
+      return _initResult;
     } catch {
       // MSAL import or init failed — fall through to stub
     }
@@ -96,7 +103,8 @@ export async function initAuth() {
   // 3. Stub mode — no auth
   _mode = 'stub';
   _identity = loadIdentity() || null;
-  return { mode: _mode, isAuthenticated: false, identity: _identity };
+  _initResult = { mode: _mode, isAuthenticated: false, identity: _identity };
+  return _initResult;
 }
 
 /**
@@ -151,6 +159,8 @@ export async function signOut() {
   sessionStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem('sim-identity');
   _reset();
+  _initResult = null;
+  _lastNotifiedToken = null;
 }
 
 // ── Test helper ─────────────────────────────────────────────────────
@@ -170,11 +180,18 @@ async function _acquireMsalTokenSilent() {
       account: _msalAccount,
     });
     if (result?.accessToken) {
-      _notifyTokenRefresh(result.accessToken);
+      // I3: Only notify when the token actually changed
+      if (result.accessToken !== _lastNotifiedToken) {
+        _lastNotifiedToken = result.accessToken;
+        _notifyTokenRefresh(result.accessToken);
+      }
       return result.accessToken;
     }
     return null;
   } catch {
+    // I5: Silent refresh failed — session expired
+    _identity = null;
+    _notifyTokenRefresh(null);
     return null;
   }
 }
