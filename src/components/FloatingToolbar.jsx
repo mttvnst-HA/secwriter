@@ -30,7 +30,7 @@ const REVISION_TYPES = [
   { tag: "DEL", cls: "mark-del", label: "DEL", title: "Mark as Deletion", color: "#ff4444", bg: "#fef2f2", htmlTag: "del" },
 ];
 
-export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAction, trackChanges, onCommentCreate }) {
+export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAction, trackChanges, onCommentCreate, readOnly = false }) {
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [insideRevision, setInsideRevision] = useState(null); // "add" | "del" | null
@@ -376,7 +376,7 @@ export default function FloatingToolbar({ editorRef, onBlockUpdate, onRevisionAc
     setVisible(false);
   }, [onBlockUpdate]);
 
-  if (!visible) return null;
+  if (!visible || readOnly) return null;
 
   return (
     <div

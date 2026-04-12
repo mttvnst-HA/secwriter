@@ -12,7 +12,8 @@ export const SLASH_ITEMS = [
   { type: "pagebreak", label: "Page Break", desc: "Insert a page break for printing", icon: "\u2504" },
 ];
 
-export default function SlashMenu({ filter, selectedIdx, onSelect, position }) {
+export default function SlashMenu({ filter, selectedIdx, onSelect, position, readOnly = false }) {
+  if (readOnly) return null;
   const [hoverIdx, setHoverIdx] = useState(-1);
   const [flipped, setFlipped] = useState(false);
   const menuRef = useRef(null);

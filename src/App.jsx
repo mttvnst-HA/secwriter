@@ -2306,7 +2306,7 @@ export default function SpecEditor() {
             zoom: editorZoom,
           }}
         >
-          <FloatingToolbar editorRef={editorRef} onBlockUpdate={handleBlockUpdate} onRevisionAction={handleRevisionAction} trackChanges={trackChanges} onCommentCreate={handleCommentCreate} />
+          <FloatingToolbar editorRef={editorRef} onBlockUpdate={handleBlockUpdate} onRevisionAction={handleRevisionAction} trackChanges={trackChanges} onCommentCreate={handleCommentCreate} readOnly={collabReadOnly} />
 
           {inRoom && identity && (
             <RemoteCursors peers={peers} selfId={identity.id} editorRef={editorRef} />
