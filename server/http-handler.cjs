@@ -13,6 +13,7 @@
 // creates Y.Map/Y.Text from the ESM Yjs copy, which fails instanceof checks
 // against CJS Y.Docs. room-serializer uses the same CJS Yjs as the server.
 const { seedRoomFromBlocks } = require('./room-serializer.cjs');
+const { log } = require('./logger.cjs');
 
 /**
  * @param {Object} deps
@@ -106,7 +107,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ ok: true, blocks: blocks.length }));
         } catch (err) {
-          console.error(`[collab] upload failed for room=${roomId}:`, err.message);
+          log.error('upload.failed', { roomId, err: err.message });
           res.writeHead(500, { 'Content-Type': 'text/plain' });
           res.end(`Upload failed: ${err.message}`);
         }
@@ -158,7 +159,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
           res.end(data.commentsJson);
         }
       } catch (err) {
-        console.error(`[collab] download failed for room=${roomId}/${artifact}:`, err.message);
+        log.error('download.failed', { roomId, artifact, err: err.message });
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end(`Download failed: ${err.message}`);
       }

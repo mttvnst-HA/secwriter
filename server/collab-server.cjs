@@ -30,6 +30,7 @@ const path = require('node:path');
 
 const { createAuthProvider } = require('./auth/auth-provider.cjs');
 const authProvider = createAuthProvider();
+const { log } = require('./logger.cjs');
 
 const PORT = Number(process.env.COLLAB_PORT || 1234);
 const HOST = process.env.COLLAB_HOST || '127.0.0.1';
@@ -50,11 +51,11 @@ if (process.env.SIM_STORAGE_BACKEND === 'azure') {
   }
   const { AzureStorageBackend } = require('./storage-azure.cjs');
   storage = new AzureStorageBackend({ containerClient: blobServiceClient.getContainerClient(containerName) });
-  console.log(`[collab] Storage backend: Azure Blob (container=${containerName})`);
+  log.info('storage.backend', { backend: 'azure', container: containerName });
 } else {
   const { LocalStorageBackend } = require('./storage-local.cjs');
   storage = new LocalStorageBackend(DATA_DIR);
-  console.log(`[collab] Storage backend: local (${DATA_DIR})`);
+  log.info('storage.backend', { backend: 'local', dir: DATA_DIR });
 }
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
@@ -75,11 +76,11 @@ if (process.env.SIM_STORAGE_BACKEND !== 'azure') {
     for (const name of fs.readdirSync(DATA_DIR)) {
       if (name.endsWith('.tmp')) {
         try { fs.unlinkSync(path.join(DATA_DIR, name)); }
-        catch (err) { console.warn(`[collab] could not remove orphan ${name}:`, err.message); }
+        catch (err) { log.warn('startup.orphan-remove-failed', { file: name, err: err.message }); }
       }
     }
   } catch (err) {
-    console.warn('[collab] startup tmp sweep failed:', err.message);
+    log.warn('startup.tmp-sweep-failed', { err: err.message });
   }
 }
 
@@ -143,11 +144,12 @@ async function flushRoom(docName) {
     // Quick size check before expensive serialization
     const snapshot = Y.encodeStateAsUpdate(ydoc);
     if (snapshot.byteLength > MAX_DOC_BYTES) {
-      console.warn(
-        `[collab] flush REFUSED for room=${docName}: ` +
-        `size ${snapshot.byteLength} > cap ${MAX_DOC_BYTES}. ` +
-        `Last success: ${health.lastPersistSuccess ? new Date(health.lastPersistSuccess).toISOString() : 'never'}`
-      );
+      log.warn('flush.refused', {
+        roomId: docName,
+        bytes: snapshot.byteLength,
+        cap: MAX_DOC_BYTES,
+        lastSuccess: health.lastPersistSuccess ? new Date(health.lastPersistSuccess).toISOString() : 'never',
+      });
       return;
     }
 
@@ -164,15 +166,9 @@ async function flushRoom(docName) {
     const staleFor = health.lastPersistSuccess
       ? `${Math.round((Date.now() - health.lastPersistSuccess) / 1000)}s`
       : 'never succeeded';
-    console.warn(
-      `[collab] persist failed for room=${docName} ` +
-      `failures=${health.persistFailures} stale=${staleFor} err=${err.message}`
-    );
+    log.warn('persist.failed', { roomId: docName, failures: health.persistFailures, stale: staleFor, err: err.message });
     if (health.persistFailures >= 3) {
-      console.error(
-        `[collab] ALERT room=${docName} has failed to persist ${health.persistFailures} ` +
-        `times in a row; in-memory state is diverging from disk`
-      );
+      log.error('persist.alert', { roomId: docName, failures: health.persistFailures });
     }
   }
 }
@@ -187,8 +183,8 @@ setPersistence({
         if (bytes.length > MAX_DOC_BYTES) {
           // Oversized — quarantine via storage backend rename and start fresh.
           await storage.quarantineRoom(docName, 'oversize');
-          console.warn(`[collab] room "${docName}" snapshot (${bytes.length} bytes) exceeds MAX_DOC_BYTES; quarantined`);
-          console.log(`[collab] new room "${docName}"`);
+          log.warn('room.quarantined', { roomId: docName, bytes: bytes.length, reason: 'oversize' });
+          log.info('room.new', { roomId: docName });
         } else {
           // N1 — Decode into a scratch Y.Doc first so a throw halfway
           // through cannot leave the real `ydoc` in a partially-mutated
@@ -200,28 +196,28 @@ setPersistence({
             restored = true;
           } catch (err) {
             await storage.quarantineRoom(docName, 'corrupt');
-            console.warn(`[collab] failed to restore "${docName}": ${err.message}; quarantined`);
+            log.warn('room.quarantined', { roomId: docName, reason: 'corrupt', err: err.message });
           }
           if (restored) {
             Y.applyUpdate(ydoc, Y.encodeStateAsUpdate(scratch));
-            console.log(`[collab] restored room "${docName}" (${bytes.length} bytes)`);
+            log.info('room.restored', { roomId: docName, bytes: bytes.length });
           } else {
-            console.log(`[collab] new room "${docName}"`);
+            log.info('room.new', { roomId: docName });
           }
           scratch.destroy();
         }
       } else {
-        console.log(`[collab] new room "${docName}"`);
+        log.info('room.new', { roomId: docName });
       }
     } catch (err) {
-      console.warn(`[collab] could not read "${docName}":`, err.message);
+      log.warn('room.read-failed', { roomId: docName, err: err.message });
     }
 
     ydoc.on('update', () => {
       const prev = writeTimers.get(docName);
       if (prev) clearTimeout(prev);
       writeTimers.set(docName, setTimeout(() => flushRoom(docName).catch(err => {
-        console.error(`[collab] uncaught flush error room=${docName}:`, err.message);
+        log.error('flush.uncaught', { roomId: docName, err: err.message });
       }), DEBOUNCE_MS));
     });
   },
@@ -256,13 +252,13 @@ wss.on('connection', async (conn, req) => {
 });
 
 wss.on('listening', () => {
-  console.log(`[collab] y-websocket listening on ws://${HOST}:${PORT}`);
-  console.log(`[collab] persisting rooms to ${DATA_DIR}`);
-  console.log(`[collab] MAX_DOC_BYTES = ${MAX_DOC_BYTES}`);
+  log.info('server.listening', { transport: 'ws', host: HOST, port: PORT });
+  log.info('server.storage', { dir: DATA_DIR });
+  log.info('server.config', { maxDocBytes: MAX_DOC_BYTES });
 });
 
 wss.on('error', (err) => {
-  console.error('[collab] server error:', err);
+  log.error('server.error', { err: err.message });
 });
 
 // ── HTTP endpoints for document download/upload ──────────────────────────
@@ -276,7 +272,7 @@ const httpServer = http.createServer(
 
 const HTTP_PORT = Number(process.env.COLLAB_HTTP_PORT || 1235);
 httpServer.listen(HTTP_PORT, HOST, () => {
-  console.log(`[collab] HTTP endpoints at http://${HOST}:${HTTP_PORT}/rooms/:roomId/{sec,comments,upload}`);
+  log.info('server.listening', { transport: 'http', host: HOST, port: HTTP_PORT });
 });
 
 // ── Graceful shutdown ────────────────────────────────────────────────────
@@ -293,7 +289,7 @@ async function flushAllRooms() {
 async function shutdown(signal) {
   if (shuttingDown) return;
   shuttingDown = true;
-  console.log(`[collab] ${signal} received; flushing ${boundDocs.size} room(s)...`);
+  log.info('server.shutdown', { signal, rooms: boundDocs.size });
   await flushAllRooms();
   try { wss.close(); } catch { /* ignore */ }
   try { httpServer.close(); } catch { /* ignore */ }
