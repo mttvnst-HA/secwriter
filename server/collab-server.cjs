@@ -34,8 +34,28 @@ const authProvider = createAuthProvider();
 const PORT = Number(process.env.COLLAB_PORT || 1234);
 const HOST = process.env.COLLAB_HOST || '127.0.0.1';
 const DATA_DIR = path.resolve(process.cwd(), 'server/collab-db');
-const { LocalStorageBackend } = require('./storage-local.cjs');
-const storage = new LocalStorageBackend(DATA_DIR);
+let storage;
+if (process.env.SIM_STORAGE_BACKEND === 'azure') {
+  const { BlobServiceClient } = require('@azure/storage-blob');
+  const { DefaultAzureCredential } = require('@azure/identity');
+  const connectionString = process.env.SIM_AZURE_STORAGE_CONNECTION_STRING;
+  const containerName = process.env.SIM_AZURE_STORAGE_CONTAINER || 'sim-collab-rooms';
+  let blobServiceClient;
+  if (connectionString) {
+    blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
+  } else {
+    const accountUrl = process.env.SIM_AZURE_STORAGE_ACCOUNT_URL;
+    if (!accountUrl) throw new Error('Azure storage requires SIM_AZURE_STORAGE_CONNECTION_STRING or SIM_AZURE_STORAGE_ACCOUNT_URL');
+    blobServiceClient = new BlobServiceClient(accountUrl, new DefaultAzureCredential());
+  }
+  const { AzureStorageBackend } = require('./storage-azure.cjs');
+  storage = new AzureStorageBackend({ containerClient: blobServiceClient.getContainerClient(containerName) });
+  console.log(`[collab] Storage backend: Azure Blob (container=${containerName})`);
+} else {
+  const { LocalStorageBackend } = require('./storage-local.cjs');
+  storage = new LocalStorageBackend(DATA_DIR);
+  console.log(`[collab] Storage backend: local (${DATA_DIR})`);
+}
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
 // headroom for Y.Doc overhead + revision history without letting a runaway
