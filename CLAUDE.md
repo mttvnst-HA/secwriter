@@ -55,6 +55,8 @@ src/
     PresenceBar.jsx        # Collab: colored user initials in toolbar ~50 lines
     RemoteCursors.jsx      # Collab: absolute-positioned remote caret overlay ~215 lines
     IdentityModal.jsx      # Collab: first-load display name prompt ~85 lines
+    ConnectionBanner.jsx   # Collab: connection state banner (connecting/disconnected/syncing) ~80 lines
+    RoomPanel.jsx          # Collab: room management sidebar (browse/create/delete rooms) ~200 lines
   lib/
     numbering.js           # Section numbering (1.1, 1.2.1, etc.) and OLI labels (a. b. c.) ~100 lines
     tree-builder.js        # Builds hierarchical tree from flat block array ~19 lines
@@ -91,7 +93,7 @@ src/
     identity.js            # Stub user identity: id/name/color in localStorage, HSL hash ~95 lines
     orphan-comment-spans.js # Ghost-span cleanup: stripOrphanCommentSpans for mark-comment spans without metadata ~40 lines
     no-exfil.js            # Browser exfiltration prevention props for all typing surfaces ~25 lines
-    __tests__/             # 638 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
+    __tests__/             # 648 Vitest + 99 Node tests (see Test Coverage table for per-file breakdown)
   data/
     sample-31-00-00.json   # Pre-parsed sample data (UFGS 31 00 00 EARTHWORK)
     umrl.json              # UMRL reference database (302 orgs, 4,973 references, 587KB)
@@ -138,8 +140,13 @@ server/
   dom-polyfill.cjs         # DOMParser polyfill via linkedom for Node.js ~15 lines
   room-serializer.cjs      # Y.Doc → .SEC + .comments.json orchestrator + CJS block seeding ~110 lines
   storage-local.cjs        # Local filesystem storage backend with atomic multi-artifact writes ~170 lines
-  http-handler.cjs         # Extracted HTTP request handler factory (download/upload routes) ~170 lines
-  __tests__/               # 22 server-side tests (Node runner)
+  storage-azure.cjs        # Azure Blob Storage backend (drop-in replacement for storage-local) ~200 lines
+  http-handler.cjs         # Extracted HTTP request handler factory (download/upload/room CRUD routes) ~250 lines
+  auth/
+    auth-none.cjs          # Stub auth provider (no validation, dev default)
+    auth-jwt.cjs           # JWT validation (HS256/RS256)
+    auth-provider.cjs      # Factory: env var → provider selection
+  __tests__/               # 45 server-side tests (Node runner)
 test-results/              # UI audit output: findings.json + timestamped Markdown reports
 ```
 
@@ -149,7 +156,7 @@ test-results/              # UI audit output: findings.json + timestamped Markdo
 npm install
 npm run dev          # Vite dev server at localhost:5173
 npm run build        # Production build to dist/
-npm test             # Run 638 Vitest unit tests
+npm test             # Run 648 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
 npm run test:e2e     # Run 141 Playwright E2E tests
@@ -157,8 +164,8 @@ npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node ru
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
-npm run test:server   # Run 22 server persistence + HTTP endpoint tests (Node runner)
-# Full suite: 638 + 99 + 22 + 141 = 900 automated tests
+npm run test:server   # Run 45 server persistence + HTTP + auth + storage tests (Node runner)
+# Full suite: 648 + 99 + 45 + 141 = 933 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -170,6 +177,19 @@ npm run audit:promote                        # Promote findings to GitHub issues
 ```
 
 **Environment:** Windows (Git Bash). `jq` is not available — use `node -e` for JSON processing in scripts/hooks. File paths use `/c/working_claude/` format in Git Bash.
+
+**Collab server environment variables:**
+```
+SIM_AUTH_PROVIDER=none|jwt          # Auth provider (default: none)
+SIM_AUTH_JWT_SECRET=<secret>        # JWT HS256 shared secret
+SIM_AUTH_JWT_PUBLIC_KEY=<path>      # JWT RS256 public key PEM file path
+SIM_AUTH_JWT_ISSUER=<issuer>        # Expected JWT issuer (optional)
+SIM_AUTH_JWT_AUDIENCE=<audience>    # Expected JWT audience (optional)
+SIM_STORAGE_BACKEND=local|azure    # Storage backend (default: local)
+SIM_AZURE_STORAGE_CONNECTION_STRING=<conn-string>  # Azure connection string
+SIM_AZURE_STORAGE_ACCOUNT_URL=<url>  # Azure account URL (for Managed Identity)
+SIM_AZURE_STORAGE_CONTAINER=<name>   # Azure container name (default: sim-collab-rooms)
+```
 
 **Quick Reference — Common Tasks:**
 - **Add a compliance rule:** Edit `src/data/ufs-1-300-02-rules.json` (add to `prohibitedTerms`, `vagueTerms`, or `prohibitedSymbols`). The rule engine auto-generates regex via `buildRules()`. Run `npm run test:compliance` then `npm run test:corpus` to validate.
@@ -342,11 +362,11 @@ These are known issues identified during QA testing that have not yet been fixed
 - **`shall` fix returns null on partial success** (`compliance-rules.js:78`): If "The Contractor shall [verb]" is successfully rewritten but a separate bare "shall" remains in the block, the fix returns `null` (discards the partial fix). This is by design (defer complex cases to AI), but the user sees no change despite a valid partial fix being possible.
 - **Gutter dot lags grammar results** (`EditableBlock.jsx:312`): `setLintSeverity` fires 200ms after lint, but Harper WASM may take longer on first load. The gutter dot won't reflect grammar findings until the next lint cycle.
 
-### Multi-user collaboration (prototype)
+### Multi-user collaboration
 
 Real-time collaborative editing is gated on a room ID in the URL (`?room=<id>`). Without a room parameter, SIM behaves exactly like the single-user app — no regression risk.
 
-**Stack:** Yjs CRDT + `y-websocket@1.5.4` (pinned — v3 dropped the server utils). Server at `server/collab-server.cjs` (CJS on purpose: mixing ESM + CJS loads two Yjs copies and breaks instanceof checks, yjs#438). Persists rooms to `server/collab-db/` as `.ydoc` (binary CRDT) + `.SEC` (Windows-1252 XML) + `.comments.json` on every debounced flush. HTTP endpoints at port 1235 for download/upload (routing in `http-handler.cjs` factory for testability). **Prototype only — no auth, no TLS, no rate limiting.**
+**Stack:** Yjs CRDT + `y-websocket@1.5.4` (pinned — v3 dropped the server utils). Server at `server/collab-server.cjs` (CJS on purpose: mixing ESM + CJS loads two Yjs copies and breaks instanceof checks, yjs#438). Persists rooms to `server/collab-db/` as `.ydoc` (binary CRDT) + `.SEC` (Windows-1252 XML) + `.comments.json` on every debounced flush. HTTP endpoints at port 1235 for download/upload + room CRUD (routing in `http-handler.cjs` factory for testability). Auth and TLS are available but optional (see env vars below). Default config runs without auth for local development.
 
 **Data model:** one `Y.Doc` per room with **split ordering + storage**:
 - `yOrder: Y.Array<string>` — ordered block IDs (document outline)
@@ -378,11 +398,15 @@ npm run dev             # terminal 2: Vite dev server on localhost:5173
 # then open http://localhost:5173/?room=demo in two browsers/tabs
 ```
 
+**Collab features:**
+- **Reconnect/offline UX:** `ConnectionBanner.jsx` shows connection state (connecting/disconnected/syncing). Editor is read-only when disconnected to prevent divergence.
+- **Room management:** `RoomPanel.jsx` sidebar with room browsing, creation, deletion. Server CRUD endpoints (`POST`/`DELETE`/`PATCH /rooms`). Collab server auto-detection.
+- **Auth:** Pluggable auth providers via `SIM_AUTH_PROVIDER` env var. `auth-none.cjs` (dev default, no validation) and `auth-jwt.cjs` (HS256/RS256 JWT validation). WebSocket + HTTP middleware. Client reads token from `sessionStorage`.
+- **Azure Blob Storage:** Drop-in cloud storage backend via `SIM_STORAGE_BACKEND=azure`. Same interface as `storage-local.cjs`.
+
 **Known prototype limitations:**
-- Stub identity in localStorage — no real auth
-- Localhost-only — no TLS / production deployment
-- No reconnect/offline UX — edits paused on disconnect, no status indicator
-- Azure Blob Storage backend designed but deferred (`storage-local.cjs` interface ready for drop-in `storage-azure.cjs`)
+- Stub identity in localStorage — display name only, no user accounts
+- No rate limiting on WebSocket or HTTP endpoints
 
 ### Reference data sources
 
@@ -436,7 +460,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 - **Production deployment** — `npm run build` and host (static site, no server needed)
 
 **Future Features:**
-- **Multi-user collaboration** — prototype on `multi-user` branch. See "Multi-user collaboration (prototype)" section above. **Completed:** server-owned documents, character-level CRDT merge with formatting attributes (`ytext-html.js`), fine-grained table/REF sync (`ytable-crdt.js`, `yref-crdt.js`). **Remaining:** (1) reconnect/offline UX, (2) room management panel, (3) real auth + TLS, (4) Azure Blob Storage backend. Design spec at `docs/superpowers/specs/2026-04-11-collab-hardening-design.md`.
+- **Multi-user collaboration** — on `multi-user` branch. See "Multi-user collaboration" section above. **Completed:** server-owned documents, character-level CRDT merge with formatting attributes (`ytext-html.js`), fine-grained table/REF sync (`ytable-crdt.js`, `yref-crdt.js`), reconnect/offline UX (`ConnectionBanner.jsx`), room management panel (`RoomPanel.jsx`), pluggable auth (`auth-jwt.cjs`), Azure Blob Storage (`storage-azure.cjs`). Design spec at `docs/superpowers/specs/2026-04-11-collab-hardening-design.md`.
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
 - INT cell background rendering — data extracted but not yet applied to TableBlock.jsx cells
 - Multi-file project management — SIM is currently a single-section editor by design
@@ -491,8 +515,12 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 | ytext-html.test.js | 50 | Vitest | HTML↔Y.Text bidirectional: yTextToHtml (deltas→HTML, formatting attributes, nested marks), htmlToAttrList (parse→attr tuples), applyHtmlToYText (LCS diff + CRDT ops), two-doc concurrent merge (text+formatting) |
 | ytable-crdt.test.js | 11 | Vitest | Table CRDT: plain↔nested roundtrip, colspan preservation, colWidths/rowHeights, cell HTML with marks, diff classification (cell-only vs structural), cell Y.Text identity preservation, two-doc concurrent cell merge |
 | yref-crdt.test.js | 7 | Vitest | REF CRDT: plain↔nested roundtrip, empty entries, org update, entry rid update, append entry, remove entry, two-doc concurrent entry additions merge |
+| ConnectionBanner.test.jsx | 5 | Vitest | Connection state rendering, read-only lock, reconnect banner, syncing indicator |
+| RoomPanel.test.jsx | 4 | Vitest | Room list rendering, room creation, room deletion, server auto-detection |
+| auth-jwt.test.mjs | 8 | Node (server) | HS256/RS256 validation, expired token, missing claims, issuer/audience checks |
+| storage-azure.test.mjs | 7 | Node (server) | Blob read/write, list rooms, delete room, container creation, connection string/managed identity |
 
-**Total: 638 Vitest + 99 Node + 22 Server + 141 Playwright = 900 automated tests**
+**Total: 648 Vitest + 99 Node + 45 Server + 141 Playwright = 933 automated tests**
 
 ## Dependencies
 
