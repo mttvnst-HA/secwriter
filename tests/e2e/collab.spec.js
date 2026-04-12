@@ -11,12 +11,21 @@ function uniqueRoom() {
 
 /** Dismiss the IdentityModal if it appears, by entering a name and submitting. */
 async function dismissIdentityModal(page, name = 'Test User') {
-  const modal = page.locator('input[placeholder*="name" i]');
-  const visible = await modal.isVisible({ timeout: 1500 }).catch(() => false);
+  // The IdentityModal's input has placeholder="e.g. Jordan Rivera" and
+  // a "Join room" submit button. Try matching either the placeholder or
+  // the button text to detect the modal.
+  const modal = page.locator('input[placeholder*="Jordan"], input[placeholder*="name" i]').first();
+  const visible = await modal.isVisible({ timeout: 2000 }).catch(() => false);
   if (visible) {
     await modal.fill(name);
-    await page.keyboard.press('Enter');
-    await page.waitForTimeout(300);
+    // Click the "Join room" button to submit the form
+    const joinBtn = page.locator('button:has-text("Join room")');
+    if (await joinBtn.isVisible({ timeout: 1000 }).catch(() => false)) {
+      await joinBtn.click();
+    } else {
+      await page.keyboard.press('Enter');
+    }
+    await page.waitForTimeout(500);
   }
 }
 
@@ -135,9 +144,10 @@ test.describe('Collab', () => {
       await page.goto(`http://localhost:5173/?room=${room}`);
 
       // Either the IdentityModal input or a contenteditable must appear
-      const modalInput = page.locator('input[placeholder*="name" i]');
+      const modalInput = page.locator('input[placeholder*="Jordan"]');
       const editable = page.locator('[contenteditable]').first();
-      await expect(modalInput.or(editable)).toBeVisible({ timeout: 10000 });
+      // Wait for either one to appear
+      await page.waitForSelector('input[placeholder*="Jordan"], [contenteditable]', { timeout: 10000 });
 
       // If modal appeared, submitting it should reveal the editor
       const modalVisible = await modalInput.isVisible().catch(() => false);
@@ -154,9 +164,10 @@ test.describe('Collab', () => {
   });
 
   // ── 6. Two-tab text sync ──────────────────────────────────────────────────────
-  // FIXME: blocks remain contenteditable="false" in two-tab scenario —
-  // collabStatus never reaches 'connected' when two contexts join simultaneously.
-  // Needs investigation into Y.Doc sync timing for fresh/empty rooms.
+  // FIXME: Two-tab typing tests require server-seeded room content.
+  // When both tabs join an empty room, each loads sample data from localStorage
+  // and publishes it — the initial sync race causes typed edits to be overwritten.
+  // Fix: use POST /rooms/:id/upload to seed content server-side before joining.
   test.fixme('two-tab text sync: text typed by user A is visible to user B', { timeout: 60000 }, async ({ browser }) => {
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
@@ -174,17 +185,29 @@ test.describe('Collab', () => {
 
       // Wait for blocks to become editable (collabReadOnly clears when connected)
       await pageA.waitForSelector('[contenteditable="true"]', { timeout: 15000 });
-      const blockA = pageA.locator('[contenteditable="true"]').first();
-      await blockA.click();
-      await pageA.keyboard.type('Hello from User A');
+      await pageB.waitForSelector('[contenteditable="true"]', { timeout: 15000 });
+
+      // Let both tabs fully sync their initial state before editing
+      await pageA.waitForTimeout(2000);
+      await pageB.waitForTimeout(1000);
+
+      // User A clicks the LAST editable block (less likely to conflict with sample data)
+      const editableBlocks = pageA.locator('[contenteditable="true"]');
+      const lastBlock = editableBlocks.last();
+      await lastBlock.click();
+      await pageA.keyboard.press('End');
+      const marker = `SYNC-${Date.now()}`;
+      await pageA.keyboard.type(marker);
 
       // Wait for Yjs sync
-      await pageA.waitForTimeout(2000);
+      await pageA.waitForTimeout(3000);
 
-      // User B's matching block should contain the text
-      const blocksB = pageB.locator('[contenteditable="true"]');
-      const textB = await blocksB.first().textContent({ timeout: 5000 });
-      expect(textB).toContain('Hello from User A');
+      // User B's page should contain the marker text somewhere in any block
+      const allTextB = await pageB.evaluate(() =>
+        [...document.querySelectorAll('[contenteditable="true"]')]
+          .map(el => el.textContent).join('|||')
+      );
+      expect(allTextB).toContain(marker);
     } finally {
       await deleteRoom(room);
       await ctxA.close();
@@ -193,7 +216,7 @@ test.describe('Collab', () => {
   });
 
   // ── 7. Two-tab block operations ───────────────────────────────────────────────
-  // FIXME: same issue as two-tab text sync — blocks stay contenteditable="false"
+  // FIXME: Same initial-sync race as two-tab text sync — needs server-seeded content.
   test.fixme('two-tab block ops: new blocks created by A sync to B', { timeout: 60000 }, async ({ browser }) => {
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
@@ -209,24 +232,36 @@ test.describe('Collab', () => {
       await dismissIdentityModal(pageB, 'User B');
       await waitForConnected(pageB);
 
-      // Wait for blocks to become editable (collabReadOnly clears when connected)
+      // Wait for blocks to become editable and let initial sync settle
       await pageA.waitForSelector('[contenteditable="true"]', { timeout: 15000 });
-      const blockA = pageA.locator('[contenteditable="true"]').first();
-      await blockA.click();
-      await pageA.keyboard.type('Block one');
-      await pageA.keyboard.press('Enter');
-      await pageA.keyboard.type('Block two');
-
-      // Wait for sync
+      await pageB.waitForSelector('[contenteditable="true"]', { timeout: 15000 });
       await pageA.waitForTimeout(2000);
 
-      // User B should see at least 2 editable blocks
-      const countB = await pageB.locator('[contenteditable]').count();
-      expect(countB).toBeGreaterThanOrEqual(2);
+      // Count initial blocks on B
+      const initialCountB = await pageB.locator('[contenteditable]').count();
 
-      // Second block's text should be visible on B's page
-      const secondBlockTextB = await getBlockText(pageB, 1);
-      expect(secondBlockTextB).toContain('Block two');
+      // User A clicks the last editable block and presses Enter to create a new block
+      const editableBlocks = pageA.locator('[contenteditable="true"]');
+      const lastBlock = editableBlocks.last();
+      await lastBlock.click();
+      await pageA.keyboard.press('End');
+      await pageA.keyboard.press('Enter');
+      const marker = `NEWBLOCK-${Date.now()}`;
+      await pageA.keyboard.type(marker);
+
+      // Wait for sync
+      await pageA.waitForTimeout(3000);
+
+      // User B should see more blocks than before
+      const finalCountB = await pageB.locator('[contenteditable]').count();
+      expect(finalCountB).toBeGreaterThan(initialCountB);
+
+      // The marker text should appear somewhere on B's page
+      const allTextB = await pageB.evaluate(() =>
+        [...document.querySelectorAll('[contenteditable]')]
+          .map(el => el.textContent).join('|||')
+      );
+      expect(allTextB).toContain(marker);
     } finally {
       await deleteRoom(room);
       await ctxA.close();
