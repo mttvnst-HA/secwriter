@@ -22,7 +22,7 @@ const { log } = require('./logger.cjs');
  * @param {(roomId: string) => Promise<void>} deps.flushRoom
  * @param {number} deps.maxDocBytes
  */
-function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter }) {
+function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth }) {
   return async (req, res) => {
     // CORS — default wildcard for dev; restrict via SIM_COLLAB_ORIGIN in production
     res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
@@ -48,6 +48,34 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
       }
     }
 
+    const url = new URL(req.url, `http://${req.headers.host}`);
+
+    // GET /health — unauthenticated health probe
+    if (url.pathname === '/health' && req.method === 'GET') {
+      const unhealthyRooms = [];
+      if (roomHealth) {
+        for (const [name, h] of roomHealth) {
+          if (h.persistFailures >= 3) unhealthyRooms.push(name);
+        }
+      }
+      const status = unhealthyRooms.length === 0 ? 'ok' : 'degraded';
+
+      let activeConnections = 0;
+      try {
+        if (boundDocs) activeConnections = boundDocs.size;
+      } catch { /* ignore */ }
+
+      const body = JSON.stringify({
+        status,
+        uptime: process.uptime(),
+        rooms: { active: boundDocs ? boundDocs.size : 0, connections: activeConnections },
+        unhealthyRooms,
+      });
+      res.writeHead(status === 'ok' ? 200 : 503, { 'Content-Type': 'application/json' });
+      res.end(body);
+      return;
+    }
+
     // Auth check — enforce when provider requires auth (e.g., auth-jwt)
     if (authProvider?.requiresAuth) {
       const token = authProvider.extractToken(req);
@@ -71,8 +99,6 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         if (user) req.user = user;
       }
     }
-
-    const url = new URL(req.url, `http://${req.headers.host}`);
 
     // POST /rooms/:roomId/upload
     const uploadMatch = url.pathname.match(/^\/rooms\/([^/]+)\/upload$/);

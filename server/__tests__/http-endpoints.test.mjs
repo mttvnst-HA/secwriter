@@ -357,6 +357,16 @@ describe('HTTP endpoints', () => {
     }
   });
 
+  it('GET /health returns status ok', async () => {
+    const res = await httpGet(`${baseUrl}/health`);
+    assert.equal(res.status, 200);
+    const data = JSON.parse(res.body.toString());
+    assert.equal(data.status, 'ok');
+    assert.ok('uptime' in data);
+    assert.ok('rooms' in data);
+    assert.deepStrictEqual(data.unhealthyRooms, []);
+  });
+
   it('POST /rooms/:roomId/upload with active Y.Doc seeds blocks and returns count', async () => {
     // Generate valid SEC content via the serializer
     const { serializeSEC } = await import('../../src/lib/sec-serializer.js');
