@@ -31,6 +31,9 @@ const path = require('node:path');
 const { createAuthProvider } = require('./auth/auth-provider.cjs');
 const authProvider = createAuthProvider();
 const { log } = require('./logger.cjs');
+const { createRateLimiter } = require('./rate-limiter.cjs');
+const rateLimiter = createRateLimiter();
+const WS_RATE_PER_MIN = Number(process.env.SIM_RATE_LIMIT_WS_PER_MIN || 10);
 
 const PORT = Number(process.env.COLLAB_PORT || 1234);
 const HOST = process.env.COLLAB_HOST || '127.0.0.1';
@@ -253,6 +256,14 @@ const wss = new WebSocketServer({ host: HOST, port: PORT });
 // If a future auth provider uses async validation (e.g., remote JWKS),
 // this must be restructured to buffer the connection until auth resolves.
 wss.on('connection', async (conn, req) => {
+  const ip = req.socket.remoteAddress || 'unknown';
+  const wsCheck = rateLimiter.checkLimit(ip, 'ws', WS_RATE_PER_MIN);
+  if (!wsCheck.allowed) {
+    log.warn('ws.rate-limited', { ip, retryAfter: wsCheck.retryAfter });
+    conn.close(4429, 'Too Many Requests');
+    return;
+  }
+
   const url = new URL(req.url, `http://${HOST}:${PORT}`);
   const token = url.searchParams.get('token');
 
@@ -286,7 +297,7 @@ const { createHttpHandler } = require('./http-handler.cjs');
 
 const allowedOrigin = process.env.SIM_COLLAB_ORIGIN || '*';
 const httpServer = http.createServer(
-  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES, authProvider, allowedOrigin, getActiveUsers })
+  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES, authProvider, allowedOrigin, getActiveUsers, rateLimiter })
 );
 
 const HTTP_PORT = Number(process.env.COLLAB_HTTP_PORT || 1235);

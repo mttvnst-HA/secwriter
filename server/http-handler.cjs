@@ -22,13 +22,31 @@ const { log } = require('./logger.cjs');
  * @param {(roomId: string) => Promise<void>} deps.flushRoom
  * @param {number} deps.maxDocBytes
  */
-function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers }) {
+function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter }) {
   return async (req, res) => {
     // CORS — default wildcard for dev; restrict via SIM_COLLAB_ORIGIN in production
     res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
+
+    if (rateLimiter) {
+      const ip = req.socket?.remoteAddress || 'unknown';
+      const isWrite = req.method === 'POST' || req.method === 'PATCH' || req.method === 'DELETE';
+      const bucket = isWrite ? 'http-write' : 'http-read';
+      const limit = isWrite
+        ? Number(process.env.SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN || 20)
+        : Number(process.env.SIM_RATE_LIMIT_HTTP_READ_PER_MIN || 60);
+      const check = rateLimiter.checkLimit(ip, bucket, limit);
+      if (!check.allowed) {
+        res.writeHead(429, {
+          'Content-Type': 'application/json',
+          'Retry-After': String(check.retryAfter),
+        });
+        res.end(JSON.stringify({ error: 'Too Many Requests', retryAfter: check.retryAfter }));
+        return;
+      }
+    }
 
     // Auth check — enforce when provider requires auth (e.g., auth-jwt)
     if (authProvider?.requiresAuth) {
