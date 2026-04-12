@@ -180,6 +180,115 @@ class AzureStorageBackend {
   }
 
   /**
+   * Archive a room: copy all artifacts to archive/<roomId>/room.* with
+   * archivedAt metadata, then delete the originals.
+   * @param {string} roomId
+   */
+  async archiveRoom(roomId) {
+    await this._initPromise;
+    const names = this._blobNames(roomId);
+    const id = sanitize(roomId);
+    const archivedAt = String(Date.now());
+
+    const archiveMap = {
+      [names.ydoc]: `archive/${id}/room.ydoc`,
+      [names.sec]: `archive/${id}/room.sec`,
+      [names.comments]: `archive/${id}/room.comments.json`,
+    };
+
+    for (const [srcName, dstName] of Object.entries(archiveMap)) {
+      const srcBlob = this._container.getBlockBlobClient(srcName);
+      const exists = await srcBlob.exists();
+      if (!exists) continue;
+
+      const content = await srcBlob.downloadToBuffer();
+      const dstBlob = this._container.getBlockBlobClient(dstName);
+      await dstBlob.upload(content, content.length, {
+        metadata: { archivedAt },
+      });
+      await srcBlob.deleteIfExists();
+    }
+  }
+
+  /**
+   * Restore a room from archive: copy archive/<roomId>/room.* back to
+   * <roomId>/room.*, then delete the archive blobs.
+   * @param {string} roomId
+   */
+  async restoreRoom(roomId) {
+    await this._initPromise;
+    const names = this._blobNames(roomId);
+    const id = sanitize(roomId);
+
+    const restoreMap = {
+      [`archive/${id}/room.ydoc`]: names.ydoc,
+      [`archive/${id}/room.sec`]: names.sec,
+      [`archive/${id}/room.comments.json`]: names.comments,
+    };
+
+    for (const [srcName, dstName] of Object.entries(restoreMap)) {
+      const srcBlob = this._container.getBlockBlobClient(srcName);
+      const exists = await srcBlob.exists();
+      if (!exists) continue;
+
+      const content = await srcBlob.downloadToBuffer();
+      const dstBlob = this._container.getBlockBlobClient(dstName);
+      await dstBlob.upload(content, content.length, {
+        metadata: { generation: String(Date.now()) },
+      });
+      await srcBlob.deleteIfExists();
+    }
+  }
+
+  /**
+   * List archived rooms by scanning for archive/<roomId>/room.ydoc blobs.
+   * Reads archivedAt from blob metadata.
+   * @returns {{ id: string, archivedAt: string }[]}
+   */
+  async listArchivedRooms() {
+    await this._initPromise;
+    const results = [];
+    const iter = this._container.listBlobsFlat({ prefix: 'archive/' });
+    for await (const item of iter) {
+      // Pattern: archive/<roomId>/room.ydoc
+      if (item.name.endsWith('/room.ydoc')) {
+        const withoutPrefix = item.name.slice('archive/'.length);
+        const id = withoutPrefix.slice(0, -'/room.ydoc'.length);
+        if (!id) continue;
+
+        let archivedAt = '';
+        try {
+          const blob = this._container.getBlockBlobClient(item.name);
+          const props = await blob.getProperties();
+          archivedAt = (props.metadata && props.metadata.archivedAt) || '';
+        } catch {
+          /* best effort */
+        }
+        results.push({ id, archivedAt });
+      }
+    }
+    return results;
+  }
+
+  /**
+   * Permanently delete all archive blobs for a room.
+   * @param {string} roomId
+   */
+  async deleteArchivedRoom(roomId) {
+    await this._initPromise;
+    const id = sanitize(roomId);
+    const archiveBlobs = [
+      `archive/${id}/room.ydoc`,
+      `archive/${id}/room.sec`,
+      `archive/${id}/room.comments.json`,
+    ];
+    for (const blobName of archiveBlobs) {
+      const blob = this._container.getBlockBlobClient(blobName);
+      await blob.deleteIfExists();
+    }
+  }
+
+  /**
    * Return stats for a room (lastModified). Returns null if .ydoc doesn't exist.
    * @param {string} roomId
    * @returns {{ lastModified: string } | null}

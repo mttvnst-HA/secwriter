@@ -195,6 +195,100 @@ describe('AzureStorageBackend', () => {
     assert.ok(info.lastModified, 'should have lastModified');
   });
 
+  it('archiveRoom moves blobs to archive/ prefix with archivedAt metadata', async () => {
+    await backend.writeRoom('arch-test', {
+      ydocBytes: Buffer.from([0xAA, 0xBB]),
+      secBytes: Buffer.from('sec-content'),
+      commentsJson: '{"c":"v"}',
+    });
+
+    await backend.archiveRoom('arch-test');
+
+    // Originals should be gone
+    assert.ok(!container._blobs.has('arch-test/room.ydoc'), '.ydoc original should be gone');
+    assert.ok(!container._blobs.has('arch-test/room.sec'), '.sec original should be gone');
+    assert.ok(!container._blobs.has('arch-test/room.comments.json'), '.comments original should be gone');
+
+    // Archive blobs should exist with correct content
+    assert.ok(container._blobs.has('archive/arch-test/room.ydoc'), 'archive .ydoc should exist');
+    assert.ok(container._blobs.has('archive/arch-test/room.sec'), 'archive .sec should exist');
+    assert.ok(container._blobs.has('archive/arch-test/room.comments.json'), 'archive .comments should exist');
+
+    const ydocEntry = container._blobs.get('archive/arch-test/room.ydoc');
+    assert.deepStrictEqual(ydocEntry.content, Buffer.from([0xAA, 0xBB]), 'ydoc content preserved');
+    assert.ok(ydocEntry.metadata.archivedAt, 'archivedAt metadata set');
+  });
+
+  it('restoreRoom moves archive blobs back to original names', async () => {
+    await backend.writeRoom('restore-test', {
+      ydocBytes: Buffer.from([0xCC]),
+      secBytes: Buffer.from('sec-data'),
+      commentsJson: '{}',
+    });
+    await backend.archiveRoom('restore-test');
+
+    // Sanity check: originals are gone
+    assert.ok(!container._blobs.has('restore-test/room.ydoc'));
+
+    await backend.restoreRoom('restore-test');
+
+    // Originals restored
+    assert.ok(container._blobs.has('restore-test/room.ydoc'), 'ydoc restored');
+    assert.ok(container._blobs.has('restore-test/room.sec'), 'sec restored');
+    assert.ok(container._blobs.has('restore-test/room.comments.json'), 'comments restored');
+
+    // Archive blobs should be gone
+    assert.ok(!container._blobs.has('archive/restore-test/room.ydoc'), 'archive .ydoc removed');
+    assert.ok(!container._blobs.has('archive/restore-test/room.sec'), 'archive .sec removed');
+
+    // readRoom should work again
+    const result = await backend.readRoom('restore-test');
+    assert.ok(result, 'readRoom returns data after restore');
+    assert.deepStrictEqual(result.ydocBytes, Buffer.from([0xCC]));
+  });
+
+  it('listArchivedRooms returns archived room IDs and archivedAt', async () => {
+    await backend.writeRoom('room-x', { ydocBytes: Buffer.from([1]), secBytes: null, commentsJson: null });
+    await backend.writeRoom('room-y', { ydocBytes: Buffer.from([2]), secBytes: null, commentsJson: null });
+    await backend.archiveRoom('room-x');
+    await backend.archiveRoom('room-y');
+
+    const archived = await backend.listArchivedRooms();
+    archived.sort((a, b) => a.id.localeCompare(b.id));
+
+    assert.strictEqual(archived.length, 2);
+    assert.strictEqual(archived[0].id, 'room-x');
+    assert.strictEqual(archived[1].id, 'room-y');
+    assert.ok(archived[0].archivedAt, 'archivedAt present for room-x');
+    assert.ok(archived[1].archivedAt, 'archivedAt present for room-y');
+
+    // listRooms should not include archived rooms
+    const live = await backend.listRooms();
+    assert.ok(!live.includes('room-x'), 'archived room not in listRooms');
+    assert.ok(!live.includes('room-y'), 'archived room not in listRooms');
+  });
+
+  it('deleteArchivedRoom removes all archive blobs', async () => {
+    await backend.writeRoom('del-arch', {
+      ydocBytes: Buffer.from([5]),
+      secBytes: Buffer.from('s'),
+      commentsJson: '{}',
+    });
+    await backend.archiveRoom('del-arch');
+
+    assert.ok(container._blobs.has('archive/del-arch/room.ydoc'), 'archive exists before delete');
+
+    await backend.deleteArchivedRoom('del-arch');
+
+    assert.ok(!container._blobs.has('archive/del-arch/room.ydoc'), 'archive .ydoc deleted');
+    assert.ok(!container._blobs.has('archive/del-arch/room.sec'), 'archive .sec deleted');
+    assert.ok(!container._blobs.has('archive/del-arch/room.comments.json'), 'archive .comments deleted');
+
+    // Archived list should now be empty
+    const archived = await backend.listArchivedRooms();
+    assert.strictEqual(archived.length, 0);
+  });
+
   it('writeRoom with null secBytes and commentsJson only writes ydoc', async () => {
     await backend.writeRoom('minimal', {
       ydocBytes: Buffer.from([0x42]),
