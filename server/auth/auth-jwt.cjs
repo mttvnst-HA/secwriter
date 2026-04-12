@@ -14,6 +14,7 @@ function createAuthJwt({ secret, publicKey, issuer, audience } = {}) {
   if (audience) verifyOpts.audience = audience;
 
   return {
+    requiresAuth: true,
     async validateToken(token) {
       if (!token) return null;
       try {

@@ -231,18 +231,25 @@ setPersistence({
 
 const wss = new WebSocketServer({ host: HOST, port: PORT });
 
+// Note: This handler is async but EventEmitter.on() does not await it.
+// This is safe because jwt.verify() is synchronous (even for RS256).
+// If a future auth provider uses async validation (e.g., remote JWKS),
+// this must be restructured to buffer the connection until auth resolves.
 wss.on('connection', async (conn, req) => {
-  // Auth: extract token from query parameter
   const url = new URL(req.url, `http://${HOST}:${PORT}`);
   const token = url.searchParams.get('token');
-  if (token) {
+
+  if (authProvider.requiresAuth) {
+    if (!token) { conn.close(4401, 'Unauthorized'); return; }
     const user = await authProvider.validateToken(token);
-    if (!user) {
-      conn.close(4401, 'Unauthorized');
-      return;
-    }
+    if (!user) { conn.close(4401, 'Unauthorized'); return; }
     conn.user = user;
+  } else if (token) {
+    // Optional auth: validate if token present, but don't require it
+    const user = await authProvider.validateToken(token);
+    if (user) conn.user = user;
   }
+
   setupWSConnection(conn, req, { gc: true });
 });
 

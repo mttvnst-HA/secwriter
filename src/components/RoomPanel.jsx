@@ -9,13 +9,12 @@ export default function RoomPanel({
   onClose,
   onCreateRoom,
   onDeleteRoom,
-  onLockRoom,
 }) {
   const [showCreate, setShowCreate] = useState(false);
   const [newName, setNewName] = useState('');
 
   const handleCreate = () => {
-    const sanitized = newName.trim().replace(/[^a-zA-Z0-9 _\-().]/g, '');
+    const sanitized = newName.trim().replace(/[^a-zA-Z0-9_-]/g, '-');
     if (!sanitized) return;
     onCreateRoom(sanitized);
     setNewName('');

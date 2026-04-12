@@ -2724,6 +2724,7 @@ export default function SpecEditor() {
               } catch { /* ignore */ }
             }}
             onDeleteRoom={async (id) => {
+              if (!window.confirm(`Delete room "${id}"? This cannot be undone.`)) return;
               try {
                 await fetch(`${COLLAB_HTTP_URL}/rooms/${id}`, { method: 'DELETE', headers: authHeaders });
                 setRoomList(prev => prev.filter(r => r.id !== id));

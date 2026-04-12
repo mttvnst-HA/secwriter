@@ -4,6 +4,7 @@
  */
 function createAuthNone() {
   return {
+    requiresAuth: false,
     async validateToken(token) {
       return { id: 'anonymous', name: 'Anonymous', email: null };
     },

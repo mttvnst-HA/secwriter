@@ -29,17 +29,27 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
 
-    // Auth check — only enforce when provider is auth-jwt (not auth-none)
-    if (authProvider) {
+    // Auth check — enforce when provider requires auth (e.g., auth-jwt)
+    if (authProvider?.requiresAuth) {
+      const token = authProvider.extractToken(req);
+      if (!token) {
+        res.writeHead(401, { 'Content-Type': 'text/plain' });
+        res.end('Unauthorized');
+        return;
+      }
+      const user = await authProvider.validateToken(token);
+      if (!user) {
+        res.writeHead(401, { 'Content-Type': 'text/plain' });
+        res.end('Unauthorized');
+        return;
+      }
+      req.user = user;
+    } else if (authProvider) {
+      // Optional auth: validate if token present, but don't require it
       const token = authProvider.extractToken(req);
       if (token) {
         const user = await authProvider.validateToken(token);
-        if (!user) {
-          res.writeHead(401, { 'Content-Type': 'text/plain' });
-          res.end('Unauthorized');
-          return;
-        }
-        req.user = user;
+        if (user) req.user = user;
       }
     }
 
@@ -289,7 +299,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
         const rooms = [];
 
         for (const id of roomIds) {
-          const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: 0, locked: false, sizeBytes: 0 };
+          const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: [], locked: false, sizeBytes: 0 };
 
           // Try live doc first (has awareness for active users)
           const liveDoc = boundDocs.get(id);

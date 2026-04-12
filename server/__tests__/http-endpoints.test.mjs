@@ -182,7 +182,7 @@ describe('HTTP endpoints', () => {
     const testRoom = data.rooms.find(r => r.id === 'test-room');
     assert.ok(testRoom.lastModified, 'should have lastModified');
     assert.ok(testRoom.sizeBytes > 0, 'should have sizeBytes');
-    assert.strictEqual(testRoom.activeUsers, 0);
+    assert.deepStrictEqual(testRoom.activeUsers, []);
     assert.strictEqual(testRoom.locked, false);
   });
 
@@ -303,6 +303,7 @@ describe('HTTP endpoints', () => {
   it('HTTP returns 401 when auth rejects token', async () => {
     const { createHttpHandler } = require('../http-handler.cjs');
     const rejectAuth = {
+      requiresAuth: true,
       async validateToken() { return null; },
       extractToken(req) { return req.headers?.authorization?.slice(7) || null; },
     };
