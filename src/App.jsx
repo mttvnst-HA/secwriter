@@ -177,7 +177,8 @@ export default function SpecEditor() {
   useEffect(() => {
     let cancelled = false;
     getToken().then(t => { if (!cancelled && t) setAuthToken(t); });
-    return onTokenRefresh((t) => { if (!cancelled) setAuthToken(t); });
+    const unsub = onTokenRefresh(t => { if (!cancelled) setAuthToken(t); });
+    return () => { cancelled = true; unsub(); };
   }, []);
   const toasts = useToasts();
   // A2 — stable ref to toasts.push so effects can fire toasts without

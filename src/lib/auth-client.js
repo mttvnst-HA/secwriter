@@ -148,6 +148,7 @@ export async function signIn() {
 
 /** Clear auth state, sign out. */
 export async function signOut() {
+  if (_mode === 'stub') return;
   if (_mode === 'msal' && _msalInstance) {
     try {
       await _msalInstance.logoutRedirect();

@@ -44,4 +44,14 @@ describe('identityFromToken', () => {
     expect(identity.id).toBe('unknown');
     expect(identity.name).toBe('Unknown');
   });
+
+  it('handles non-ASCII UTF-8 names correctly', () => {
+    // Encode payload as UTF-8 base64 (not just btoa which is Latin-1)
+    const payload = { oid: 'u-intl', name: 'José García', email: 'jose@example.com' };
+    const b64 = btoa(String.fromCharCode(...new TextEncoder().encode(JSON.stringify(payload))));
+    const jwt = `${btoa('{}')}.${b64}.sig`;
+    const identity = identityFromToken(jwt);
+    expect(identity.name).toBe('José García');
+    expect(identity.email).toBe('jose@example.com');
+  });
 });

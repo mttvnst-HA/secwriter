@@ -103,7 +103,12 @@ export function saveIdentity(identity) {
 export function identityFromToken(jwt) {
   const parts = jwt.split('.');
   if (parts.length < 2) return { ...saveIdentity({ name: 'Unknown' }), email: null };
-  const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
+  // Decode base64url → UTF-8 (atob alone only handles Latin-1)
+  const b64 = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+  const binary = atob(b64);
+  const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+  const json = new TextDecoder().decode(bytes);
+  const payload = JSON.parse(json);
   const name = payload.name || payload.preferred_username || payload.email || payload.upn || 'Unknown';
   const email = payload.email || payload.upn || null;
   const saved = saveIdentity({
