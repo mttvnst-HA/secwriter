@@ -94,11 +94,11 @@ Use a process manager (PM2, systemd, or Azure App Service) to keep it running.
 
 Route these paths (strip prefixes before forwarding):
 
-| External Path | Backend | Protocol | Notes |
-|---------------|---------|----------|-------|
-| `/ws/*` | `127.0.0.1:1234` | WebSocket | Strip `/ws` prefix. Set read timeout to 24h+ for long-lived connections. |
-| `/api/*` | `127.0.0.1:1235` | HTTP | Strip `/api` prefix. Allow 10MB body for file uploads. |
-| `/*` | `dist/` static | HTTP | SPA fallback: serve `/index.html` for unmatched routes. |
+| External Path | External Protocol | Backend | Notes |
+|---------------|-------------------|---------|-------|
+| `/ws/*` | WSS (WebSocket over TLS) | `127.0.0.1:1234` | Strip `/ws` prefix. Set read timeout to 24h+ for long-lived connections. |
+| `/api/*` | HTTPS | `127.0.0.1:1235` | Strip `/api` prefix. Allow 10MB body for file uploads. |
+| `/*` | HTTPS | `dist/` static files | SPA fallback: serve `/index.html` for unmatched routes. |
 
 **Critical: Log sanitization.** WebSocket URLs contain JWT tokens as query parameters (`?token=eyJ...`). Configure the proxy to strip or redact `?token=...` from access logs. See `deploy/nginx.conf` lines 13-22 for the regex pattern.
 
