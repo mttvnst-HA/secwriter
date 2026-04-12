@@ -14,12 +14,20 @@ export default defineConfig({
     headless: true,
     viewport: { width: 1280, height: 800 },
   },
-  webServer: {
-    command: 'npm run dev',
-    port: 5173,
-    reuseExistingServer: true,
-    timeout: 15000,
-  },
+  webServer: [
+    {
+      command: 'npm run dev',
+      port: 5173,
+      reuseExistingServer: true,
+      timeout: 15000,
+    },
+    {
+      command: 'node server/collab-server.cjs',
+      port: 1234,
+      reuseExistingServer: true,
+      timeout: 10000,
+    },
+  ],
   projects: [
     { name: 'chromium', use: { browserName: 'chromium' } },
   ],
