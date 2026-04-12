@@ -163,6 +163,23 @@ class LocalStorageBackend {
   }
 
   /**
+   * Return filesystem stats for a room (lastModified, sizeBytes).
+   * Returns null if .ydoc doesn't exist.
+   * @param {string} roomId
+   * @returns {{ lastModified: string, sizeBytes: number } | null}
+   */
+  async statRoom(roomId) {
+    const base = this._base(roomId);
+    const ydocPath = `${base}.ydoc`;
+    try {
+      const stat = fs.statSync(ydocPath);
+      return { lastModified: stat.mtime.toISOString(), sizeBytes: stat.size };
+    } catch {
+      return null;
+    }
+  }
+
+  /**
    * List room names by scanning for .ydoc files.
    * Excludes .tmp, .corrupt, .oversize variants.
    * @returns {string[]}

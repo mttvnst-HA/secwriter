@@ -132,13 +132,42 @@ describe('HTTP endpoints', () => {
     assert.deepStrictEqual(data.comments, []);
   });
 
-  it('GET /rooms lists all seeded rooms', async () => {
+  it('GET /rooms lists all seeded rooms as metadata objects', async () => {
     const resp = await httpGet(`${baseUrl}/rooms`);
     assert.strictEqual(resp.status, 200);
     const data = JSON.parse(resp.body.toString());
     assert.ok(Array.isArray(data.rooms));
-    assert.ok(data.rooms.includes('test-room'));
-    assert.ok(data.rooms.includes('legacy-room'));
+    const ids = data.rooms.map(r => r.id);
+    assert.ok(ids.includes('test-room'), 'test-room should be in list');
+    assert.ok(ids.includes('legacy-room'), 'legacy-room should be in list');
+    // Each room should have metadata fields
+    const testRoom = data.rooms.find(r => r.id === 'test-room');
+    assert.ok(testRoom.lastModified, 'should have lastModified');
+    assert.ok(testRoom.sizeBytes > 0, 'should have sizeBytes');
+    assert.strictEqual(testRoom.activeUsers, 0);
+    assert.strictEqual(testRoom.locked, false);
+  });
+
+  it('GET /rooms returns room metadata from persisted Y.Doc', async () => {
+    const Y = require('yjs');
+    const ydoc = new Y.Doc();
+    const yMeta = ydoc.getMap('meta');
+    ydoc.transact(() => {
+      yMeta.set('sectionNumber', '31 00 00');
+      yMeta.set('sectionTitle', 'EARTHWORK');
+    });
+    const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
+    await storage.writeRoom('test-meta', { ydocBytes, secBytes: null, commentsJson: null });
+    ydoc.destroy();
+
+    const resp = await httpGet(`${baseUrl}/rooms`);
+    assert.strictEqual(resp.status, 200);
+    const body = JSON.parse(resp.body.toString());
+    assert.ok(Array.isArray(body.rooms));
+    const room = body.rooms.find(r => r.id === 'test-meta');
+    assert.ok(room, 'room should be in list');
+    assert.strictEqual(room.sectionNumber, '31 00 00');
+    assert.strictEqual(room.displayName, '31 00 00 EARTHWORK');
   });
 
   it('GET /unknown returns 404', async () => {

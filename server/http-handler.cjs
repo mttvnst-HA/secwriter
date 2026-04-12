@@ -141,10 +141,61 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes }) {
       return;
     }
 
-    // GET /rooms — list all rooms
+    // GET /rooms — list all rooms with metadata
     if (url.pathname === '/rooms' && req.method === 'GET') {
       try {
-        const rooms = await storage.listRooms();
+        const roomIds = await storage.listRooms();
+        const Y = require('yjs');
+        const rooms = [];
+
+        for (const id of roomIds) {
+          const entry = { id, displayName: id, sectionNumber: null, sectionTitle: null, lastModified: null, activeUsers: 0, locked: false, sizeBytes: 0 };
+
+          // Try live doc first (has awareness for active users)
+          const liveDoc = boundDocs.get(id);
+          if (liveDoc) {
+            try {
+              const yMeta = liveDoc.getMap('meta');
+              entry.sectionNumber = yMeta.get('sectionNumber') || null;
+              entry.sectionTitle = yMeta.get('sectionTitle') || null;
+            } catch { /* ignore */ }
+          } else {
+            // Fall back to reading persisted .ydoc to extract yMeta
+            try {
+              const data = await storage.readRoom(id);
+              if (data && data.ydocBytes) {
+                const tempDoc = new Y.Doc();
+                try {
+                  Y.applyUpdate(tempDoc, data.ydocBytes);
+                  const yMeta = tempDoc.getMap('meta');
+                  entry.sectionNumber = yMeta.get('sectionNumber') || null;
+                  entry.sectionTitle = yMeta.get('sectionTitle') || null;
+                } finally {
+                  tempDoc.destroy();
+                }
+              }
+            } catch { /* ignore — metadata is best-effort */ }
+          }
+
+          // Build displayName from metadata
+          if (entry.sectionNumber && entry.sectionTitle) {
+            entry.displayName = `${entry.sectionNumber} ${entry.sectionTitle}`;
+          } else if (entry.sectionNumber) {
+            entry.displayName = entry.sectionNumber;
+          }
+
+          // Get filesystem stats
+          try {
+            const stat = await storage.statRoom(id);
+            if (stat) {
+              entry.lastModified = stat.lastModified;
+              entry.sizeBytes = stat.sizeBytes;
+            }
+          } catch { /* ignore */ }
+
+          rooms.push(entry);
+        }
+
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ rooms }));
       } catch (err) {
