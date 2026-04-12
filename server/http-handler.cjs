@@ -22,7 +22,7 @@ const { log } = require('./logger.cjs');
  * @param {(roomId: string) => Promise<void>} deps.flushRoom
  * @param {number} deps.maxDocBytes
  */
-function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authProvider, allowedOrigin = '*' }) {
+function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers }) {
   return async (req, res) => {
     // CORS — default wildcard for dev; restrict via SIM_COLLAB_ORIGIN in production
     res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
@@ -309,7 +309,11 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
               const yMeta = liveDoc.getMap('meta');
               entry.sectionNumber = yMeta.get('sectionNumber') || null;
               entry.sectionTitle = yMeta.get('sectionTitle') || null;
+              entry.locked = !!yMeta.get('locked');
             } catch { /* ignore */ }
+            if (typeof getActiveUsers === 'function') {
+              entry.activeUsers = getActiveUsers(id);
+            }
           } else {
             // Fall back to reading persisted .ydoc to extract yMeta
             try {
@@ -321,6 +325,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
                   const yMeta = tempDoc.getMap('meta');
                   entry.sectionNumber = yMeta.get('sectionNumber') || null;
                   entry.sectionTitle = yMeta.get('sectionTitle') || null;
+                  entry.locked = !!yMeta.get('locked');
                 } finally {
                   tempDoc.destroy();
                 }

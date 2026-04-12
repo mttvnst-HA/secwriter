@@ -118,6 +118,25 @@ function getHealth(docName) {
 }
 const DEBOUNCE_MS = 500;
 
+function getActiveUsers(docName) {
+  const ydoc = boundDocs.get(docName);
+  if (!ydoc) return [];
+  try {
+    const { docs } = require('y-websocket/bin/utils');
+    const wsDoc = docs.get(docName);
+    if (!wsDoc || !wsDoc.awareness) return [];
+    const users = [];
+    wsDoc.awareness.getStates().forEach((state) => {
+      if (state.user && state.user.id && state.user.name) {
+        users.push({ id: state.user.id, name: state.user.name, color: state.user.color || '#888' });
+      }
+    });
+    return users;
+  } catch {
+    return [];
+  }
+}
+
 // Deferred room serializer — the CJS require is synchronous but the heavy
 // ESM modules (sec-parser, sec-serializer) inside it are loaded via dynamic
 // import() on first use, not at require-time.
@@ -267,7 +286,7 @@ const { createHttpHandler } = require('./http-handler.cjs');
 
 const allowedOrigin = process.env.SIM_COLLAB_ORIGIN || '*';
 const httpServer = http.createServer(
-  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES, authProvider, allowedOrigin })
+  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES, authProvider, allowedOrigin, getActiveUsers })
 );
 
 const HTTP_PORT = Number(process.env.COLLAB_HTTP_PORT || 1235);
