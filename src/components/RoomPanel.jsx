@@ -9,6 +9,8 @@ export default function RoomPanel({
   onClose,
   onCreateRoom,
   onDeleteRoom,
+  onLockRoom,
+  currentUserId,
 }) {
   const [showCreate, setShowCreate] = useState(false);
   const [newName, setNewName] = useState('');
@@ -176,11 +178,22 @@ export default function RoomPanel({
                   {room.displayName}
                 </span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginLeft: 4, flexShrink: 0 }}>
-                  {room.locked && (
-                    <span title="Locked">
-                      <Lock size={12} style={{ color: '#94a3b8' }} />
-                    </span>
-                  )}
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onLockRoom(room.id, !room.locked); }}
+                    title={room.locked ? `Locked by ${room.lockedByName || 'unknown'} — click to unlock` : 'Lock room'}
+                    style={{
+                      border: 'none',
+                      background: 'none',
+                      cursor: 'pointer',
+                      padding: 2,
+                      display: 'flex',
+                      alignItems: 'center',
+                      color: room.locked ? '#f59e0b' : '#94a3b8',
+                      opacity: room.locked ? 1 : 0.6,
+                    }}
+                  >
+                    <Lock size={12} />
+                  </button>
                   {!isCurrent && (
                     <button
                       onClick={(e) => { e.stopPropagation(); onDeleteRoom(room.id); }}

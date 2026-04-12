@@ -174,7 +174,10 @@ export default function SpecEditor() {
   const [peers, setPeers] = useState([]);
   const [collabStatus, setCollabStatus] = useState(inRoom ? 'connecting' : null);
   const [reconnectIn, setReconnectIn] = useState(0);
-  const collabReadOnly = inRoom && collabStatus !== null && collabStatus !== 'connected';
+  const [roomLocked, setRoomLocked] = useState(false);
+  const [roomLockedBy, setRoomLockedBy] = useState(null);
+  const isLockedByOther = roomLocked && roomLockedBy !== identity?.id;
+  const collabReadOnly = (inRoom && collabStatus !== null && collabStatus !== 'connected') || isLockedByOther;
   // Reactive auth token — refreshed by MSAL silent renewal or external host
   const [authToken, setAuthToken] = useState(null);
   const authHeaders = useMemo(
@@ -1377,6 +1380,8 @@ export default function SpecEditor() {
         if (!remote || typeof remote !== 'object') return;
         setSectionMeta((prev) => ({ ...prev, ...remote }));
         if (remote.fileName) setFileName(remote.fileName);
+        if ('locked' in remote) setRoomLocked(!!remote.locked);
+        if ('lockedBy' in remote) setRoomLockedBy(remote.lockedBy || null);
       },
       onRemoteTc: (tc) => {
         // M-shared-tc — apply remote Track Changes state. Round-tripping
@@ -1927,6 +1932,11 @@ export default function SpecEditor() {
             )}
             {inRoom && collabStatus && collabStatus !== 'connected' && (
               <ConnectionBanner state={collabStatus} reconnectIn={reconnectIn} />
+            )}
+            {inRoom && isLockedByOther && (
+              <div className="locked-banner">
+                Locked by {roomLockedBy || 'another user'} — editing disabled
+              </div>
             )}
             {inRoom && (
               <>
@@ -2769,6 +2779,21 @@ export default function SpecEditor() {
                 setRoomList(prev => prev.filter(r => r.id !== id));
               } catch { /* ignore */ }
             }}
+            onLockRoom={async (roomId, locked) => {
+              try {
+                const token = sessionStorage.getItem('sim-auth-token');
+                const headers = { 'Content-Type': 'application/json', ...authHeaders };
+                if (token && !headers['Authorization']) headers['Authorization'] = `Bearer ${token}`;
+                await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}`, {
+                  method: 'PATCH',
+                  headers,
+                  body: JSON.stringify({ locked, lockedBy: locked ? identity?.id : null }),
+                });
+              } catch (err) {
+                console.warn('Lock room failed:', err.message);
+              }
+            }}
+            currentUserId={identity?.id}
           />
         )}
         </div>
