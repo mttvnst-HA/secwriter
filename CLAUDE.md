@@ -57,7 +57,7 @@ src/
     IdentityModal.jsx      # Collab: first-load display name prompt ~85 lines
     LoginGate.jsx          # Auth gate: login card (MSAL), session expiry banner, passthrough (stub) ~70 lines
     ConnectionBanner.jsx   # Collab: connection state banner (connecting/disconnected/syncing) ~70 lines
-    RoomPanel.jsx          # Collab: room management sidebar (browse/create/delete rooms) ~190 lines
+    RoomPanel.jsx          # Collab: room management sidebar (browse/create/delete/lock/rename rooms) ~260 lines
   lib/
     numbering.js           # Section numbering (1.1, 1.2.1, etc.) and OLI labels (a. b. c.) ~100 lines
     tree-builder.js        # Builds hierarchical tree from flat block array ~19 lines
@@ -116,6 +116,8 @@ reference/
 tests/
   e2e/
     editor.spec.js         # 141 Playwright E2E tests ~2800 lines
+    collab.spec.js         # 10 Playwright collab E2E tests ~365 lines
+    collab-helpers.js      # Collab E2E test utilities (room create/join/delete) ~65 lines
   interop-test-procedure.md # 6 manual round-trip interop test scenarios
   tc-browser-test-prompt.md # 15 autonomous browser test cases for Track Changes
   ux-ergonomic-review-prompt.md # UX review prompt with parallel agents + verification workflow
@@ -138,17 +140,19 @@ tools/
     test-procedure.md      # Master test procedure (15 areas)
     test-areas/            # 15 test area definitions (01-app-load.md through 15-dark-mode-zoom.md)
 server/
-  collab-server.cjs        # Yjs WebSocket + HTTP relay: room persistence, .SEC/.comments.json generation, auth middleware ~300 lines
+  collab-server.cjs        # Yjs WebSocket + HTTP relay: room persistence, .SEC/.comments.json generation, auth middleware, rate limiting, room sweep ~350 lines
   dom-polyfill.cjs         # DOMParser polyfill via linkedom for Node.js ~15 lines
   room-serializer.cjs      # Y.Doc → .SEC + .comments.json orchestrator + CJS block seeding ~110 lines
-  storage-local.cjs        # Local filesystem storage backend with atomic multi-artifact writes ~170 lines
-  storage-azure.cjs        # Azure Blob Storage backend (drop-in replacement for storage-local) ~200 lines
-  http-handler.cjs         # Extracted HTTP request handler factory (download/upload/room CRUD routes) ~360 lines
+  storage-local.cjs        # Local filesystem storage backend with atomic multi-artifact writes + archive lifecycle ~250 lines
+  storage-azure.cjs        # Azure Blob Storage backend with blob leases + archive lifecycle ~300 lines
+  http-handler.cjs         # HTTP request handler factory (download/upload/room CRUD/health routes) + rate limiting ~400 lines
+  logger.cjs               # Structured JSON/plain-text logger (SIM_LOG_FORMAT env var) ~35 lines
+  rate-limiter.cjs         # In-memory sliding-window rate limiter (pluggable interface) ~50 lines
   auth/
     auth-none.cjs          # Stub auth provider (no validation, dev default)
     auth-jwt.cjs           # JWT validation (HS256/RS256)
     auth-provider.cjs      # Factory: env var → provider selection
-  __tests__/               # 45 server-side tests (Node runner)
+  __tests__/               # 55 server-side tests (Node runner)
 test-results/              # UI audit output: findings.json + timestamped Markdown reports
 ```
 
@@ -161,13 +165,13 @@ npm run build        # Production build to dist/
 npm test             # Run 630 Vitest unit tests
 npm run test:watch   # Watch mode
 npm run test:compliance  # Run 42 compliance rule tests (Node built-in runner — NOT Vitest)
-npm run test:e2e     # Run 141 Playwright E2E tests
+npm run test:e2e     # Run 151 Playwright E2E tests (141 editor + 10 collab)
 npm run test:corpus  # Run 17 corpus precision/recall/adversarial tests (Node runner)
 npm run test:ufgs    # Run 12 UFGS tag coverage + structural tests across 690 files (Node runner)
 npm run test:interop # Run 17 interop structural tests (Node runner — parse/serialize/roundtrip)
 npm run test:interop:encoding  # Run 11 reverse import + encoding fidelity tests (Node runner)
-npm run test:server   # Run 45 server persistence + HTTP + auth + storage tests (Node runner)
-# Full suite: 630 + 99 + 45 + 141 = 915 automated tests
+npm run test:server   # Run 55 server persistence + HTTP + auth + storage + rate-limiter + logger tests (Node runner)
+# Full suite: 630 + 99 + 55 + 151 = 935 automated tests
 npm run parse -- input.sec output.json       # CLI: parse SEC to JSON
 npm run corpus:extract                       # Extract .SEC files to calibration JSON
 npm run corpus:test -- --corpus clean        # Run engines against clean/dirty/calibration corpus
@@ -192,6 +196,12 @@ SIM_STORAGE_BACKEND=local|azure    # Storage backend (default: local)
 SIM_AZURE_STORAGE_CONNECTION_STRING=<conn-string>  # Azure connection string
 SIM_AZURE_STORAGE_ACCOUNT_URL=<url>  # Azure account URL (for Managed Identity)
 SIM_AZURE_STORAGE_CONTAINER=<name>   # Azure container name (default: sim-collab-rooms)
+SIM_RATE_LIMIT_WS_PER_MIN=10        # WebSocket connections per IP per minute (default: 10)
+SIM_RATE_LIMIT_HTTP_READ_PER_MIN=60  # HTTP GET requests per IP per minute (default: 60)
+SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN=20 # HTTP POST/PATCH/DELETE per IP per minute (default: 20)
+SIM_ROOM_ARCHIVE_DAYS=30             # Days idle before archiving a room (default: 30)
+SIM_ROOM_DELETE_DAYS=90              # Days in archive before permanent deletion (default: 90)
+SIM_LOG_FORMAT=json|text             # Structured logging output format (default: text)
 ```
 
 **Quick Reference — Common Tasks:**
@@ -398,10 +408,11 @@ npm run dev             # terminal 2: Vite dev server on localhost:5173
 
 **Collab features:**
 - **Reconnect/offline UX:** `ConnectionBanner.jsx` shows connection state (connecting/disconnected/syncing). Editor is read-only when disconnected to prevent divergence.
-- **Room management:** `RoomPanel.jsx` sidebar with room browsing, creation, deletion. Server CRUD endpoints (`POST`/`DELETE`/`PATCH /rooms`). Collab server auto-detection.
+- **Room management:** `RoomPanel.jsx` sidebar with room browsing, creation, deletion, lock/unlock toggle, inline rename. Server CRUD endpoints (`POST`/`DELETE`/`PATCH /rooms`). Active users shown via awareness state piped to HTTP. Room TTL: archive after 30 days idle, delete after 90 days archived (configurable via env vars).
 - **Auth:** Pluggable auth providers via `SIM_AUTH_PROVIDER` env var. `auth-none.cjs` (dev default, no validation) and `auth-jwt.cjs` (HS256/RS256 JWT validation). WebSocket + HTTP middleware. Client reads token from `sessionStorage['sim-auth-token']`.
-- **Azure Blob Storage:** Drop-in cloud storage backend via `SIM_STORAGE_BACKEND=azure`. Same interface as `storage-local.cjs`.
-- **Remaining gaps:** No rate limiting on WebSocket/HTTP endpoints. JWT tokens are passed as WebSocket URL query parameters (y-websocket v1 limitation) — production deployments behind reverse proxies must sanitize access logs.
+- **Azure Blob Storage:** Drop-in cloud storage backend via `SIM_STORAGE_BACKEND=azure`. Same interface as `storage-local.cjs`. Blob leases on `.ydoc` writes for multi-instance safety.
+- **Operational:** Per-IP rate limiting (WebSocket + HTTP read/write), `GET /health` endpoint (room health status, connection count), structured JSON logging (`SIM_LOG_FORMAT=json`).
+- **Remaining gaps:** JWT tokens are passed as WebSocket URL query parameters (y-websocket v1 limitation) — production deployments behind reverse proxies must sanitize access logs.
 
 ### Reference data sources
 
@@ -456,10 +467,10 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 **Collab: Production Readiness** (in recommended order):
 1. ~~**Real Identity**~~ — DONE. JWT claims → identity via `auth-client.js`, MSAL.js for Azure AD/Entra ID SSO, `LoginGate.jsx` for auth gating. Room-level authorization deferred.
-2. **Room Management UX** — lock/unlock toggle UI, rename UI, active users in room list (pipe awareness to HTTP), room TTL/expiry
-3. **Operational Hardening** — per-IP/per-user rate limiting on WebSocket + HTTP, health monitoring/alerting hooks, multi-instance blob leases
+2. ~~**Room Management UX**~~ — DONE. Lock/unlock toggle, inline rename, active users in room list (awareness → HTTP), room TTL/expiry (archive after 30d, delete after 90d).
+3. ~~**Operational Hardening**~~ — DONE. Per-IP rate limiting (WS + HTTP), GET /health endpoint, structured JSON logging, Azure blob leases for multi-instance safety.
 4. **Deployment** — TLS termination example configs (nginx/Caddy), Azure integration testing (real SDK, not mocks), CI/CD for collab server
-5. **Collab E2E Tests** — Playwright tests for ConnectionBanner, RoomPanel, multi-tab editing, WebSocket auth flow
+5. ~~**Collab E2E Tests**~~ — DONE. 10 Playwright tests covering room CRUD, connection lifecycle, two-tab sync, presence, lock/unlock, auth flow.
 
 **Future Features:**
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
@@ -474,10 +485,10 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 |--------|-------|-----------|
 | Vitest (`npm test`) | 630 | Parser/serializer (82), collab CRDT (53+50+11+7+8=129), compliance (42+23+13=78), inline linting (19+10+37+11=77), revisions/diff (29+23=52), encoding/roundtrip (11+9=20), UI components (9), auth/identity (19), everything else (164) |
 | Node (`npm run test:compliance`, `test:corpus`, `test:ufgs`, `test:interop`) | 99 | Compliance rules (42), corpus precision/recall/adversarial (17), UFGS tag coverage + structural (12), interop roundtrip (28) |
-| Node (`npm run test:server`) | 45 | HTTP endpoints (30), storage backends (7), auth JWT (8) |
-| Playwright (`npm run test:e2e`) | 141 | Full UI: keyboard, navigation, slash menu, toolbar, marks, tables, track changes, comments, find & replace, export, compliance |
+| Node (`npm run test:server`) | 55 | HTTP endpoints (32), storage backends (14), auth JWT (8), logger (3), rate limiter (4) |
+| Playwright (`npm run test:e2e`) | 151 | Full UI (141): keyboard, navigation, slash menu, toolbar, marks, tables, track changes, comments, find & replace, export, compliance. Collab (10): room CRUD, connection, two-tab sync, presence, lock/unlock, auth |
 
-**Total: 630 + 99 + 45 + 141 = 915 automated tests**
+**Total: 630 + 99 + 55 + 151 = 935 automated tests**
 
 ## Dependencies
 

@@ -10,10 +10,9 @@
  * yjs via `require`. Mixing ESM and CJS loads two copies of Yjs, which breaks
  * instanceof checks (see https://github.com/yjs/yjs/issues/438).
  *
- * ⚠️  PROTOTYPE ONLY — localhost. No auth, no TLS, no rate limiting. Do NOT
- *     expose this to a network without first adding: TLS, origin check, auth,
- *     per-IP rate limit, and confirming the MAX_DOC_BYTES guard below is
- *     tight enough for your deployment.
+ * Auth (JWT), rate limiting, structured logging, and room TTL are available
+ * via env vars. TLS must be terminated upstream (reverse proxy). See CLAUDE.md
+ * for full env var documentation.
  *
  *   npm run collab
  */
@@ -94,8 +93,8 @@ if (HOST !== '127.0.0.1' && HOST !== 'localhost' && HOST !== '::1') {
   console.warn('╔════════════════════════════════════════════════════════════╗');
   console.warn('║  WARNING: collab-server bound to a non-loopback host.     ║');
   console.warn(`║  HOST=${HOST.padEnd(52)}║`);
-  console.warn('║  This prototype has NO auth, NO TLS, NO rate limiting.   ║');
-  console.warn('║  Do NOT expose this to a network without hardening.      ║');
+  console.warn('║  Ensure TLS is terminated upstream (reverse proxy).       ║');
+  console.warn('║  Auth + rate limiting available — see env var docs.      ║');
   console.warn('╚════════════════════════════════════════════════════════════╝');
   console.warn('');
 }
