@@ -87,6 +87,28 @@ export function saveIdentity(identity) {
   return full;
 }
 
+/**
+ * Extract identity from a JWT access token and persist to localStorage.
+ * Decodes the payload (base64url) without cryptographic verification —
+ * the server validates the token; the client just reads claims for display.
+ *
+ * @param {string} jwt — raw JWT string (header.payload.signature)
+ * @returns {{ id: string, name: string, email: string|null, color: string }}
+ */
+export function identityFromToken(jwt) {
+  const parts = jwt.split('.');
+  if (parts.length < 2) return { ...saveIdentity({ name: 'Unknown' }), email: null };
+  const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
+  const name = payload.name || payload.preferred_username || payload.email || payload.upn || 'Unknown';
+  const email = payload.email || payload.upn || null;
+  const saved = saveIdentity({
+    id: payload.oid || payload.sub || 'unknown',
+    name,
+    color: colorForName(name),
+  });
+  return { ...saved, email };
+}
+
 /** Initials helper for the presence bar. */
 export function initialsFor(name) {
   if (!name) return '?';
