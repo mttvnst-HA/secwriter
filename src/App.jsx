@@ -2793,6 +2793,23 @@ export default function SpecEditor() {
                 console.warn('Lock room failed:', err.message);
               }
             }}
+            onRenameRoom={async (roomId, displayName) => {
+              try {
+                const token = sessionStorage.getItem('sim-auth-token');
+                const headers = { 'Content-Type': 'application/json', ...authHeaders };
+                if (token && !headers['Authorization']) headers['Authorization'] = `Bearer ${token}`;
+                const res = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}`, {
+                  method: 'PATCH',
+                  headers,
+                  body: JSON.stringify({ displayName }),
+                });
+                if (res.ok) {
+                  setRoomList(prev => prev.map(r => r.id === roomId ? { ...r, displayName } : r));
+                }
+              } catch (err) {
+                console.warn('Rename room failed:', err.message);
+              }
+            }}
             currentUserId={identity?.id}
           />
         )}

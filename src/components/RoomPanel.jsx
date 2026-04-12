@@ -10,10 +10,13 @@ export default function RoomPanel({
   onCreateRoom,
   onDeleteRoom,
   onLockRoom,
+  onRenameRoom,
   currentUserId,
 }) {
   const [showCreate, setShowCreate] = useState(false);
   const [newName, setNewName] = useState('');
+  const [editingRoomId, setEditingRoomId] = useState(null);
+  const [editName, setEditName] = useState('');
 
   const handleCreate = () => {
     const sanitized = newName.trim().replace(/[^a-zA-Z0-9_-]/g, '-');
@@ -166,17 +169,65 @@ export default function RoomPanel({
             >
               {/* Top row: name + lock/delete */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{
-                  fontSize: 12,
-                  fontWeight: 600,
-                  color: '#1e293b',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  flex: 1,
-                }}>
-                  {room.displayName}
-                </span>
+                {editingRoomId === room.id ? (
+                  <input
+                    type="text"
+                    value={editName}
+                    autoFocus
+                    onChange={(e) => setEditName(e.target.value)}
+                    onClick={(e) => e.stopPropagation()}
+                    onKeyDown={(e) => {
+                      e.stopPropagation();
+                      if (e.key === 'Enter') {
+                        const trimmed = editName.trim();
+                        if (trimmed && trimmed !== room.displayName) {
+                          onRenameRoom(room.id, trimmed);
+                        }
+                        setEditingRoomId(null);
+                      } else if (e.key === 'Escape') {
+                        setEditingRoomId(null);
+                      }
+                    }}
+                    onBlur={() => {
+                      const trimmed = editName.trim();
+                      if (trimmed && trimmed !== room.displayName) {
+                        onRenameRoom(room.id, trimmed);
+                      }
+                      setEditingRoomId(null);
+                    }}
+                    style={{
+                      flex: 1,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      border: '1px solid #3b82f6',
+                      borderRadius: 3,
+                      padding: '1px 4px',
+                      outline: 'none',
+                      color: '#1e293b',
+                      minWidth: 0,
+                    }}
+                  />
+                ) : (
+                  <span
+                    onDoubleClick={(e) => {
+                      e.stopPropagation();
+                      setEditingRoomId(room.id);
+                      setEditName(room.displayName);
+                    }}
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 600,
+                      color: '#1e293b',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      flex: 1,
+                      cursor: 'text',
+                    }}
+                  >
+                    {room.displayName}
+                  </span>
+                )}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginLeft: 4, flexShrink: 0 }}>
                   <button
                     onClick={(e) => { e.stopPropagation(); onLockRoom(room.id, !room.locked); }}
