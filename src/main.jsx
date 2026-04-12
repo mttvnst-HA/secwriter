@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import SpecEditor from './App.jsx'
+import LoginGate from './components/LoginGate.jsx'
 import './styles/editor.css'
 
 class ErrorBoundary extends React.Component {
@@ -44,7 +45,9 @@ class ErrorBoundary extends React.Component {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <SpecEditor />
+      <LoginGate>
+        <SpecEditor />
+      </LoginGate>
     </ErrorBoundary>
   </React.StrictMode>,
 )
