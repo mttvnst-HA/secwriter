@@ -28,6 +28,9 @@ const { setupWSConnection, setPersistence } = require('y-websocket/bin/utils');
 const fs = require('node:fs');
 const path = require('node:path');
 
+const { createAuthProvider } = require('./auth/auth-provider.cjs');
+const authProvider = createAuthProvider();
+
 const PORT = Number(process.env.COLLAB_PORT || 1234);
 const HOST = process.env.COLLAB_HOST || '127.0.0.1';
 const DATA_DIR = path.resolve(process.cwd(), 'server/collab-db');
@@ -208,7 +211,18 @@ setPersistence({
 
 const wss = new WebSocketServer({ host: HOST, port: PORT });
 
-wss.on('connection', (conn, req) => {
+wss.on('connection', async (conn, req) => {
+  // Auth: extract token from query parameter
+  const url = new URL(req.url, `http://${HOST}:${PORT}`);
+  const token = url.searchParams.get('token');
+  if (token) {
+    const user = await authProvider.validateToken(token);
+    if (!user) {
+      conn.close(4401, 'Unauthorized');
+      return;
+    }
+    conn.user = user;
+  }
   setupWSConnection(conn, req, { gc: true });
 });
 
@@ -227,7 +241,7 @@ const http = require('node:http');
 const { createHttpHandler } = require('./http-handler.cjs');
 
 const httpServer = http.createServer(
-  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES })
+  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES, authProvider })
 );
 
 const HTTP_PORT = Number(process.env.COLLAB_HTTP_PORT || 1235);

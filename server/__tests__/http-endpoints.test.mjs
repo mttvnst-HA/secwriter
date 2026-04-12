@@ -300,6 +300,40 @@ describe('HTTP endpoints', () => {
     assert.ok(resp.body.toString().includes('no active session'));
   });
 
+  it('HTTP returns 401 when auth rejects token', async () => {
+    const { createHttpHandler } = require('../http-handler.cjs');
+    const rejectAuth = {
+      async validateToken() { return null; },
+      extractToken(req) { return req.headers?.authorization?.slice(7) || null; },
+    };
+    const handler = createHttpHandler({
+      storage, boundDocs: new Map(), flushRoom: async () => {},
+      maxDocBytes: 8 * 1024 * 1024, authProvider: rejectAuth,
+    });
+    const srv = http.createServer(handler);
+    await new Promise(r => srv.listen(0, '127.0.0.1', r));
+    const port = srv.address().port;
+    try {
+      const resp = await new Promise((resolve, reject) => {
+        const req = http.request({
+          hostname: '127.0.0.1', port, path: '/rooms',
+          method: 'GET',
+          headers: { Authorization: 'Bearer bad-token' },
+        }, (res) => {
+          const chunks = [];
+          res.on('data', c => chunks.push(c));
+          res.on('end', () => resolve({ status: res.statusCode, body: Buffer.concat(chunks) }));
+        });
+        req.on('error', reject);
+        req.end();
+      });
+      assert.strictEqual(resp.status, 401);
+      assert.ok(resp.body.toString().includes('Unauthorized'));
+    } finally {
+      srv.close();
+    }
+  });
+
   it('POST /rooms/:roomId/upload with active Y.Doc seeds blocks and returns count', async () => {
     // Generate valid SEC content via the serializer
     const { serializeSEC } = await import('../../src/lib/sec-serializer.js');
