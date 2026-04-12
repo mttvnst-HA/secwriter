@@ -449,10 +449,16 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 **Validation & Deployment:**
 - **User acceptance testing** — have an engineer use SIM for an actual spec editing task to find workflow gaps
 - **Performance profiling** — test with a large spec (1000+ blocks) to identify rendering bottlenecks
-- **Production deployment** — `npm run build` and host (static site, no server needed)
+- **Production deployment** — `npm run build` and host (static site, no server needed for single-user; collab server needed for multi-user)
+
+**Collab: Production Readiness** (in recommended order):
+1. **Real Identity** — wire JWT claims → identity, replace IdentityModal with token-based identity, room-level authorization (`authorizeRoom(user, roomId, action)`)
+2. **Room Management UX** — lock/unlock toggle UI, rename UI, active users in room list (pipe awareness to HTTP), room TTL/expiry
+3. **Operational Hardening** — per-IP/per-user rate limiting on WebSocket + HTTP, health monitoring/alerting hooks, multi-instance blob leases
+4. **Deployment** — TLS termination example configs (nginx/Caddy), Azure integration testing (real SDK, not mocks), CI/CD for collab server
+5. **Collab E2E Tests** — Playwright tests for ConnectionBanner, RoomPanel, multi-tab editing, WebSocket auth flow
 
 **Future Features:**
-- **Multi-user collaboration** — on `multi-user` branch. See "Multi-user collaboration" section above. **Completed:** server-owned documents, character-level CRDT merge with formatting attributes (`ytext-html.js`), fine-grained table/REF sync (`ytable-crdt.js`, `yref-crdt.js`), reconnect/offline UX (`ConnectionBanner.jsx`), room management panel (`RoomPanel.jsx`), pluggable auth (`auth-jwt.cjs`), Azure Blob Storage (`storage-azure.cjs`). Design spec at `docs/superpowers/specs/2026-04-11-collab-hardening-design.md`.
 - Attachment wizard — ATT mark insertion/validation, similar to Reference Wizard for RID marks
 - INT cell background rendering — data extracted but not yet applied to TableBlock.jsx cells
 - Multi-file project management — SIM is currently a single-section editor by design
