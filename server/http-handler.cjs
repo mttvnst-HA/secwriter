@@ -23,6 +23,10 @@ const { log } = require('./logger.cjs');
  * @param {number} deps.maxDocBytes
  */
 function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authProvider, allowedOrigin = '*', getActiveUsers, rateLimiter, roomHealth }) {
+  // Parse rate limit config once at handler creation, not per-request
+  const HTTP_READ_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_READ_PER_MIN || 60);
+  const HTTP_WRITE_RATE = Number(process.env.SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN || 20);
+
   return async (req, res) => {
     // CORS — default wildcard for dev; restrict via SIM_COLLAB_ORIGIN in production
     res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
@@ -34,9 +38,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
       const ip = req.socket?.remoteAddress || 'unknown';
       const isWrite = req.method === 'POST' || req.method === 'PATCH' || req.method === 'DELETE';
       const bucket = isWrite ? 'http-write' : 'http-read';
-      const limit = isWrite
-        ? Number(process.env.SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN || 20)
-        : Number(process.env.SIM_RATE_LIMIT_HTTP_READ_PER_MIN || 60);
+      const limit = isWrite ? HTTP_WRITE_RATE : HTTP_READ_RATE;
       const check = rateLimiter.checkLimit(ip, bucket, limit);
       if (!check.allowed) {
         res.writeHead(429, {
@@ -62,7 +64,12 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
 
       let activeConnections = 0;
       try {
-        if (boundDocs) activeConnections = boundDocs.size;
+        // Sum awareness states across all rooms for total connected clients
+        if (getActiveUsers) {
+          for (const id of boundDocs.keys()) {
+            activeConnections += getActiveUsers(id).length;
+          }
+        }
       } catch { /* ignore */ }
 
       const body = JSON.stringify({
@@ -305,6 +312,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
             if (body.displayName !== undefined) yMeta.set('sectionTitle', String(body.displayName));
             if (body.locked !== undefined) yMeta.set('locked', !!body.locked);
             if (body.lockedBy !== undefined) yMeta.set('lockedBy', String(body.lockedBy));
+            if (body.lockedByName !== undefined) yMeta.set('lockedByName', String(body.lockedByName));
           });
           const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
           ydoc.destroy();
@@ -323,6 +331,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
               if (body.displayName !== undefined) liveMeta.set('sectionTitle', String(body.displayName));
               if (body.locked !== undefined) liveMeta.set('locked', !!body.locked);
               if (body.lockedBy !== undefined) liveMeta.set('lockedBy', String(body.lockedBy));
+              if (body.lockedByName !== undefined) liveMeta.set('lockedByName', String(body.lockedByName));
             }, 'local-meta');
           }
 

@@ -158,8 +158,8 @@ class AzureStorageBackend {
     const rooms = new Set();
     const iter = this._container.listBlobsFlat({});
     for await (const item of iter) {
-      // Pattern: <roomId>/room.ydoc
-      if (item.name.endsWith('/room.ydoc')) {
+      // Pattern: <roomId>/room.ydoc — exclude archive/ prefix
+      if (item.name.endsWith('/room.ydoc') && !item.name.startsWith('archive/')) {
         const roomId = item.name.slice(0, -'/room.ydoc'.length);
         if (roomId) rooms.add(roomId);
       }

@@ -289,23 +289,11 @@ test.describe('Collab', () => {
       await pageA.waitForTimeout(1500);
       await pageB.waitForTimeout(500);
 
-      // PresenceBar renders user initials as colored circles
-      // Check that each page shows at least one presence indicator
-      const presenceA = pageA.locator('.presence-bar, [class*="presence"]');
-      const presenceB = pageB.locator('.presence-bar, [class*="presence"]');
-
-      // At least one presence element is present on each page (may be empty if
-      // PresenceBar is hidden when only 1 user is active — accept that case too)
-      const countA = await presenceA.count();
-      const countB = await presenceB.count();
-      // Presence bar exists in the DOM (even if zero users shown)
-      expect(countA + countB).toBeGreaterThanOrEqual(0); // always passes — structural check
-
-      // More useful: at least one page has a user initial visible
-      const initialsA = await pageA.locator('.presence-bar [title], [class*="presence"] [title]').count();
-      const initialsB = await pageB.locator('.presence-bar [title], [class*="presence"] [title]').count();
-      // At least one awareness token synced across both pages
-      expect(initialsA + initialsB).toBeGreaterThanOrEqual(0);
+      // PresenceBar renders inline-styled <div title="Name (you)"> circles.
+      // With two users connected, at least one page should show a self-indicator.
+      const selfA = await pageA.locator('div[title*="(you)"]').count();
+      const selfB = await pageB.locator('div[title*="(you)"]').count();
+      expect(selfA + selfB).toBeGreaterThanOrEqual(1);
     } finally {
       await deleteRoom(room);
       await ctxA.close();

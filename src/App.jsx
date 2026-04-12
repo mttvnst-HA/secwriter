@@ -176,6 +176,7 @@ export default function SpecEditor() {
   const [reconnectIn, setReconnectIn] = useState(0);
   const [roomLocked, setRoomLocked] = useState(false);
   const [roomLockedBy, setRoomLockedBy] = useState(null);
+  const [roomLockedByName, setRoomLockedByName] = useState(null);
   const isLockedByOther = roomLocked && roomLockedBy !== identity?.id;
   const collabReadOnly = (inRoom && collabStatus !== null && collabStatus !== 'connected') || isLockedByOther;
   // Reactive auth token — refreshed by MSAL silent renewal or external host
@@ -1382,6 +1383,7 @@ export default function SpecEditor() {
         if (remote.fileName) setFileName(remote.fileName);
         if ('locked' in remote) setRoomLocked(!!remote.locked);
         if ('lockedBy' in remote) setRoomLockedBy(remote.lockedBy || null);
+        if ('lockedByName' in remote) setRoomLockedByName(remote.lockedByName || null);
       },
       onRemoteTc: (tc) => {
         // M-shared-tc — apply remote Track Changes state. Round-tripping
@@ -1935,7 +1937,7 @@ export default function SpecEditor() {
             )}
             {inRoom && isLockedByOther && (
               <div className="locked-banner">
-                Locked by {roomLockedBy || 'another user'} — editing disabled
+                Locked by {roomLockedByName || 'another user'} — editing disabled
               </div>
             )}
             {inRoom && (
@@ -2787,7 +2789,7 @@ export default function SpecEditor() {
                 await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}`, {
                   method: 'PATCH',
                   headers,
-                  body: JSON.stringify({ locked, lockedBy: locked ? identity?.id : null }),
+                  body: JSON.stringify({ locked, lockedBy: locked ? identity?.id : null, lockedByName: locked ? identity?.name : null }),
                 });
               } catch (err) {
                 console.warn('Lock room failed:', err.message);
