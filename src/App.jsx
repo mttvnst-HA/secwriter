@@ -166,6 +166,9 @@ export default function SpecEditor() {
   const [collabStatus, setCollabStatus] = useState(inRoom ? 'connecting' : null);
   const [reconnectIn, setReconnectIn] = useState(0);
   const collabReadOnly = inRoom && collabStatus !== null && collabStatus !== 'connected';
+  // Auth token for collab server (placed in sessionStorage by external login/SSO)
+  const authToken = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('sim-auth-token') : null;
+  const authHeaders = authToken ? { 'Authorization': `Bearer ${authToken}` } : {};
   const toasts = useToasts();
   // A2 — stable ref to toasts.push so effects can fire toasts without
   // needing `toasts` in their dep array. Without this, the publish effect
@@ -461,7 +464,7 @@ export default function SpecEditor() {
   const handleDownloadSec = useCallback(async () => {
     if (!roomId) return;
     try {
-      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/sec`);
+      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/sec`, { headers: authHeaders });
       if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
       const blob = await resp.blob();
       const url = URL.createObjectURL(blob);
@@ -481,7 +484,7 @@ export default function SpecEditor() {
   const handleDownloadComments = useCallback(async () => {
     if (!roomId) return;
     try {
-      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/comments`);
+      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/comments`, { headers: authHeaders });
       if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
       const blob = await resp.blob();
       const url = URL.createObjectURL(blob);
@@ -1188,7 +1191,7 @@ export default function SpecEditor() {
     let cancelled = false;
     const checkCollab = async () => {
       try {
-        const res = await fetch(`${COLLAB_HTTP_URL}/rooms`, { signal: AbortSignal.timeout(3000) });
+        const res = await fetch(`${COLLAB_HTTP_URL}/rooms`, { signal: AbortSignal.timeout(3000), headers: authHeaders });
         if (!cancelled && res.ok) {
           setCollabReachable(true);
           const data = await res.json();
@@ -1285,6 +1288,7 @@ export default function SpecEditor() {
 
     const session = createCollabSession({
       room: roomId,
+      token: authToken,
       identity,
       initialBlocks: blocksRef.current,
       onRemoteBlocks: (nextBlocks, meta) => {
@@ -1864,7 +1868,7 @@ export default function SpecEditor() {
                 onClick={() => {
                   setShowRoomPanel(!showRoomPanel);
                   if (!showRoomPanel) {
-                    fetch(`${COLLAB_HTTP_URL}/rooms`)
+                    fetch(`${COLLAB_HTTP_URL}/rooms`, { headers: authHeaders })
                       .then(r => r.json())
                       .then(d => setRoomList(d.rooms || []))
                       .catch(() => {});
@@ -2709,11 +2713,11 @@ export default function SpecEditor() {
               try {
                 const res = await fetch(`${COLLAB_HTTP_URL}/rooms`, {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                  headers: { 'Content-Type': 'application/json', ...authHeaders },
                   body: JSON.stringify({ id: name }),
                 });
                 if (res.ok) {
-                  const listRes = await fetch(`${COLLAB_HTTP_URL}/rooms`);
+                  const listRes = await fetch(`${COLLAB_HTTP_URL}/rooms`, { headers: authHeaders });
                   const data = await listRes.json();
                   setRoomList(data.rooms || []);
                 }
@@ -2721,7 +2725,7 @@ export default function SpecEditor() {
             }}
             onDeleteRoom={async (id) => {
               try {
-                await fetch(`${COLLAB_HTTP_URL}/rooms/${id}`, { method: 'DELETE' });
+                await fetch(`${COLLAB_HTTP_URL}/rooms/${id}`, { method: 'DELETE', headers: authHeaders });
                 setRoomList(prev => prev.filter(r => r.id !== id));
               } catch { /* ignore */ }
             }}

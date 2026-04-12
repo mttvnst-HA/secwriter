@@ -590,6 +590,7 @@ export function applyBlocksToYDoc(ydoc, yOrder, yStore, blocks) {
 export function createCollabSession({
   room,
   wsUrl = DEFAULT_WS_URL,
+  token = null,
   identity,
   initialBlocks,
   initialMeta,
@@ -607,7 +608,10 @@ export function createCollabSession({
   const yTc = ydoc.getMap('tc');
   const yComments = ydoc.getMap('comments');
 
-  const provider = new WebsocketProvider(wsUrl, room, ydoc);
+  // y-websocket builds the URL as `${wsUrl}/${roomName}`.
+  // Append token as query param by encoding it into the room name.
+  const effectiveRoom = token ? `${room}?token=${encodeURIComponent(token)}` : room;
+  const provider = new WebsocketProvider(wsUrl, effectiveRoom, ydoc);
   const awareness = provider.awareness;
 
   // Publish our identity + empty cursor
