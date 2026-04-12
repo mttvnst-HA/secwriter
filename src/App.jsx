@@ -1299,6 +1299,7 @@ export default function SpecEditor() {
     const session = createCollabSession({
       room: roomId,
       token: authToken,
+      getTokenFn: getToken,
       identity,
       initialBlocks: blocksRef.current,
       onRemoteBlocks: (nextBlocks, meta) => {

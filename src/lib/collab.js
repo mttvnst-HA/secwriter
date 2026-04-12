@@ -591,6 +591,7 @@ export function createCollabSession({
   room,
   wsUrl = DEFAULT_WS_URL,
   token = null,
+  getTokenFn = null,  // async () => string|null — called on reconnect for fresh token
   identity,
   initialBlocks,
   initialMeta,
@@ -610,7 +611,8 @@ export function createCollabSession({
 
   // y-websocket builds the URL as `${wsUrl}/${roomName}`.
   // Append token as query param by encoding it into the room name.
-  const effectiveRoom = token ? `${room}?token=${encodeURIComponent(token)}` : room;
+  let currentToken = token;  // mutable — updated on reconnect via getTokenFn
+  const effectiveRoom = currentToken ? `${room}?token=${encodeURIComponent(currentToken)}` : room;
   const provider = new WebsocketProvider(wsUrl, effectiveRoom, ydoc);
   const awareness = provider.awareness;
 
@@ -697,6 +699,15 @@ export function createCollabSession({
   };
 
   const handleStatus = ({ status }) => {
+    // Refresh token on reconnect attempt (MSAL silent refresh)
+    if (status === 'connecting' && getTokenFn) {
+      getTokenFn().then(freshToken => {
+        if (freshToken && freshToken !== currentToken) {
+          currentToken = freshToken;
+          provider.url = `${wsUrl}/${room}?token=${encodeURIComponent(freshToken)}`;
+        }
+      }).catch(() => { /* token refresh failed — reconnect with existing token */ });
+    }
     if (status === 'connecting') {
       onStatusChange?.('connecting', { reconnectIn: computeReconnectIn() });
     } else if (status === 'disconnected') {
