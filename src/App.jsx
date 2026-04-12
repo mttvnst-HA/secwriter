@@ -38,7 +38,7 @@ import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES, DEFAULT_HTTP_URL } from "./lib/collab.js";
 import { stripOrphanCommentSpans } from "./lib/orphan-comment-spans.js";
 import { loadIdentity } from "./lib/identity.js";
-import { getToken, onTokenRefresh, getAuthMode, signOut as authSignOut } from './lib/auth-client.js';
+import { getToken, onTokenRefresh, getAuthMode, signOut as authSignOut, getIdentity } from './lib/auth-client.js';
 import IdentityModal from "./components/IdentityModal.jsx";
 import RoomPanel from "./components/RoomPanel.jsx";
 import PresenceBar from "./components/PresenceBar.jsx";
@@ -163,6 +163,14 @@ export default function SpecEditor() {
   const [roomId] = useState(() => getRoomFromUrl());
   const inRoom = !!roomId;
   const [identity, setIdentity] = useState(() => (inRoom ? loadIdentity() : null));
+  // Safety net: if auth-client extracted identity from JWT but localStorage
+  // wasn't written in time for the useState initializer, sync it here.
+  useEffect(() => {
+    if (inRoom && !identity) {
+      const authIdentity = getIdentity();  // from auth-client
+      if (authIdentity) setIdentity(authIdentity);
+    }
+  }, [inRoom, identity]);
   const [peers, setPeers] = useState([]);
   const [collabStatus, setCollabStatus] = useState(inRoom ? 'connecting' : null);
   const [reconnectIn, setReconnectIn] = useState(0);

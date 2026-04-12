@@ -40,6 +40,8 @@
  *   'local-tc'        — Track Changes toggle + snapshot updates (yTc)
  *   'local-comments'  — comment create/reply/status/delete (yComments)
  *   'seed'            — initial room seeding (not a local edit)
+ *   'local-apply'     — internal: applyBlocksToYDoc inner transaction (always
+ *                        nested inside 'local-publish'; outer origin wins)
  *
  * Why split ordering from storage:
  *   Yjs shared types (Y.Map/Y.Text) cannot be moved between positions in a
@@ -197,7 +199,9 @@ function yMapToBlock(yMap) {
     if (v !== undefined) block[k] = v;
   }
   const yText = yMap.get('html');
-  block.html = yText instanceof Y.Text ? yTextToHtml(yText) : (yText || '');
+  // Duck-type check instead of instanceof to handle CJS/ESM dual-package hazard.
+  // Y.Text has toDelta(), plain strings don't.
+  block.html = (yText && typeof yText.toDelta === 'function') ? yTextToHtml(yText) : (yText || '');
   // Table: nested CRDT or legacy JSON string
   const rawTable = yMap.get('table');
   if (rawTable) {
@@ -494,7 +498,8 @@ function updateYMapFromBlock(ymap, block) {
   }
 
   const yText = ymap.get('html');
-  if (yText instanceof Y.Text) {
+  // Duck-type check: see yMapToBlock comment above.
+  if (yText && typeof yText.toDelta === 'function') {
     applyHtmlToYText(yText, typeof block.html === 'string' ? block.html : '');
   } else {
     const t = new Y.Text();

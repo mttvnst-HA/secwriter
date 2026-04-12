@@ -51,10 +51,10 @@ async function serializeRoom(ydoc) {
   // 2. .SEC file
   const blocks = _yBlocksToArray(yOrder, yStore);
   // Dual-package hazard: CJS require('yjs') and ESM import('yjs') may load
-  // separate copies. The ESM yBlocksToArray now calls yTextToHtml() which
-  // handles formatting attributes. The coercion below is a fallback for any
-  // edge case where html is still a Y.Text object (e.g., toString() loses
-  // attribute info, but this path should rarely fire now).
+  // separate copies. yMapToBlock now uses duck-type checks (toDelta) instead
+  // of instanceof Y.Text, so formatting attributes are preserved even when
+  // called from CJS context. The coercion below is a safety net for any
+  // unexpected edge case where html is still an object (rarely needed now).
   for (const b of blocks) {
     if (b.html && typeof b.html !== 'string') b.html = String(b.html);
   }
