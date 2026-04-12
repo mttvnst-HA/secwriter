@@ -38,6 +38,7 @@ import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES, DEFAULT_HTTP_URL } from "./lib/collab.js";
 import { stripOrphanCommentSpans } from "./lib/orphan-comment-spans.js";
 import { loadIdentity } from "./lib/identity.js";
+import { getToken, onTokenRefresh, getAuthMode, signOut as authSignOut } from './lib/auth-client.js';
 import IdentityModal from "./components/IdentityModal.jsx";
 import RoomPanel from "./components/RoomPanel.jsx";
 import PresenceBar from "./components/PresenceBar.jsx";
@@ -166,9 +167,18 @@ export default function SpecEditor() {
   const [collabStatus, setCollabStatus] = useState(inRoom ? 'connecting' : null);
   const [reconnectIn, setReconnectIn] = useState(0);
   const collabReadOnly = inRoom && collabStatus !== null && collabStatus !== 'connected';
-  // Auth token for collab server (placed in sessionStorage by external login/SSO)
-  const authToken = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('sim-auth-token') : null;
-  const authHeaders = authToken ? { 'Authorization': `Bearer ${authToken}` } : {};
+  // Reactive auth token — refreshed by MSAL silent renewal or external host
+  const [authToken, setAuthToken] = useState(null);
+  const authHeaders = useMemo(
+    () => authToken ? { 'Authorization': `Bearer ${authToken}` } : {},
+    [authToken]
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    getToken().then(t => { if (!cancelled && t) setAuthToken(t); });
+    return onTokenRefresh((t) => { if (!cancelled) setAuthToken(t); });
+  }, []);
   const toasts = useToasts();
   // A2 — stable ref to toasts.push so effects can fire toasts without
   // needing `toasts` in their dep array. Without this, the publish effect
@@ -1889,6 +1899,20 @@ export default function SpecEditor() {
             {inRoom && (
               <PresenceBar peers={peers} self={identity} />
             )}
+            {getAuthMode() !== 'stub' && identity && (
+              <span style={{ fontSize: 12, color: '#6b7280', display: 'flex', alignItems: 'center', gap: 4 }}>
+                {identity.name}
+                <span style={{ color: '#d1d5db' }}>·</span>
+                <button
+                  onClick={() => authSignOut().then(() => window.location.reload())}
+                  style={{
+                    background: 'none', border: 'none', color: '#6b7280',
+                    cursor: 'pointer', fontSize: 12, textDecoration: 'underline',
+                    padding: 0,
+                  }}
+                >Sign out</button>
+              </span>
+            )}
             {inRoom && collabStatus && collabStatus !== 'connected' && (
               <ConnectionBanner state={collabStatus} reconnectIn={reconnectIn} />
             )}
@@ -2761,7 +2785,7 @@ export default function SpecEditor() {
       )}
 
       {/* Collab identity prompt — appears on first load when ?room=... is present */}
-      {inRoom && !identity && (
+      {inRoom && !identity && getAuthMode() === 'stub' && (
         <IdentityModal roomId={roomId} onIdentity={setIdentity} />
       )}
     </div>
