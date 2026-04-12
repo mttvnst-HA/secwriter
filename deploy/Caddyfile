@@ -1,0 +1,46 @@
+# SpecsIntact Modern — Caddy reverse proxy
+#
+# Terminates TLS (auto-provisioned via Let's Encrypt) for the collab
+# server and serves the static frontend build. Caddy handles WebSocket
+# upgrade headers automatically.
+#
+# Usage: caddy run --config Caddyfile
+
+collab.example.com {    # <-- change to your domain
+
+    # ── Log sanitization ────────────────────────────────────────────────
+    # y-websocket v1 passes JWT tokens as ?token=<JWT> in WebSocket URLs.
+    # The filter below strips the token query parameter from logged URIs.
+    log {
+        output file /var/log/caddy/collab.log
+        format filter {
+            wrap console
+            fields {
+                request>uri query {
+                    delete token
+                }
+            }
+        }
+    }
+
+    # ── WebSocket (Yjs CRDT sync) ───────────────────────────────────────
+    # Client connects to: wss://collab.example.com/ws/<roomName>
+    # handle_path strips /ws prefix → backend sees /<roomName>
+    handle_path /ws/* {
+        reverse_proxy 127.0.0.1:1234
+    }
+
+    # ── HTTP REST API (room CRUD, file upload/download) ─────────────────
+    # Client calls: https://collab.example.com/api/rooms, /api/health, etc.
+    # handle_path strips /api prefix → backend sees /rooms, /health, etc.
+    handle_path /api/* {
+        reverse_proxy 127.0.0.1:1235
+    }
+
+    # ── Static frontend (Vite build output) ─────────────────────────────
+    handle {
+        root * /var/www/specsintact-modern/dist    # <-- path to npm run build output
+        try_files {path} /index.html
+        file_server
+    }
+}

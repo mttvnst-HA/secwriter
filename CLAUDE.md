@@ -412,7 +412,8 @@ npm run dev             # terminal 2: Vite dev server on localhost:5173
 - **Auth:** Pluggable auth providers via `SIM_AUTH_PROVIDER` env var. `auth-none.cjs` (dev default, no validation) and `auth-jwt.cjs` (HS256/RS256 JWT validation). WebSocket + HTTP middleware. Client reads token from `sessionStorage['sim-auth-token']`.
 - **Azure Blob Storage:** Drop-in cloud storage backend via `SIM_STORAGE_BACKEND=azure`. Same interface as `storage-local.cjs`. Blob leases on `.ydoc` writes for multi-instance safety.
 - **Operational:** Per-IP rate limiting (WebSocket + HTTP read/write), `GET /health` endpoint (room health status, connection count), structured JSON logging (`SIM_LOG_FORMAT=json`).
-- **Remaining gaps:** JWT tokens are passed as WebSocket URL query parameters (y-websocket v1 limitation) — production deployments behind reverse proxies must sanitize access logs.
+- **Remaining gaps:** JWT tokens are passed as WebSocket URL query parameters (y-websocket v1 limitation) — production deployments behind reverse proxies must sanitize access logs. See `deploy/nginx.conf` and `deploy/Caddyfile` for reference configs with log sanitization.
+- **Client URL config:** `VITE_COLLAB_WS_URL` and `VITE_COLLAB_HTTP_URL` env vars override the default localhost URLs at build time. Set before `npm run build` for production (e.g. `wss://collab.example.com/ws`).
 
 ### Collab E2E test gotchas
 
@@ -420,7 +421,8 @@ npm run dev             # terminal 2: Vite dev server on localhost:5173
 - **PresenceBar:** No CSS class — inline styled divs. Self-indicator: `div[title*="(you)"]`
 - **ConnectionBanner:** Returns `null` when connected (no DOM to query). Uses `role="status"` when visible.
 - **GET /rooms response:** Returns `{ rooms: [...] }` wrapper, not a bare array
-- **Two-tab editing tests:** Both tabs load sample data from localStorage and race on initial publish. Server-seed content via `POST /rooms/:id/upload` before joining to avoid this.
+- **Two-tab editing tests:** Server-seed content via `POST /rooms/:id/upload` before the second client joins. The upload endpoint requires a live Y.Doc (returns 409 otherwise), so connect one client first, seed, then connect the second. Use `waitForEditable()` (checks `[contenteditable="true"]`) not `waitForConnected()` (matches any contenteditable value) to confirm blocks are interactive.
+- **Blur required for sync:** `EditableBlock.handleInput` only detects slash commands — block content is saved to React state on **blur** (`handleBlur → onUpdate → setBlocks → publish effect`). In E2E tests, press Tab or click elsewhere after typing to trigger the publish pipeline. Without blur, typed text stays in the DOM but never reaches Y.Doc.
 - **Lock state:** Store `lockedByName` (display name) alongside `lockedBy` (user ID) — can't resolve names from IDs without live awareness.
 
 ### Reference data sources
@@ -478,7 +480,7 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 1. ~~**Real Identity**~~ — DONE. JWT claims → identity via `auth-client.js`, MSAL.js for Azure AD/Entra ID SSO, `LoginGate.jsx` for auth gating. Room-level authorization deferred.
 2. ~~**Room Management UX**~~ — DONE. Lock/unlock toggle, inline rename, active users in room list (awareness → HTTP), room TTL/expiry (archive after 30d, delete after 90d).
 3. ~~**Operational Hardening**~~ — DONE. Per-IP rate limiting (WS + HTTP), GET /health endpoint, structured JSON logging, Azure blob leases for multi-instance safety.
-4. **Deployment** — TLS termination example configs (nginx/Caddy), Azure integration testing (real SDK, not mocks), CI/CD for collab server
+4. **Deployment** — ~~TLS termination example configs (nginx/Caddy)~~ DONE (`deploy/`). Remaining: Azure integration testing (real SDK, not mocks), CI/CD for collab server
 5. ~~**Collab E2E Tests**~~ — DONE. 10 Playwright tests covering room CRUD, connection lifecycle, two-tab sync, presence, lock/unlock, auth flow.
 
 **Future Features:**
