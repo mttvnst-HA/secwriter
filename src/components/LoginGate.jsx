@@ -1,15 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { initAuth, onTokenRefresh, signIn } from '../lib/auth-client.js';
 
 export default function LoginGate({ children }) {
   const [authState, setAuthState] = useState({
     mode: null, isAuthenticated: false, identity: null, loading: true,
   });
+  const wasAuthenticatedRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
     initAuth().then((result) => {
-      if (!cancelled) setAuthState({ ...result, loading: false });
+      if (!cancelled) {
+        if (result.isAuthenticated) wasAuthenticatedRef.current = true;
+        setAuthState({ ...result, loading: false });
+      }
     });
     const unsub = onTokenRefresh((token) => {
       if (token === null) {
@@ -21,32 +25,36 @@ export default function LoginGate({ children }) {
 
   if (authState.loading) return null;
 
-  // Stub or authenticated: render app
-  if (authState.mode === 'stub' || authState.mode === 'external' || authState.isAuthenticated) {
-    // MSAL expired mid-session: banner + children read-only
-    if (authState.mode === 'msal' && !authState.isAuthenticated) {
-      return (
-        <>
-          <div style={{
-            position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10000,
-            padding: '8px 16px', backgroundColor: '#fef2f2',
-            borderBottom: '2px solid #dc2626', display: 'flex',
-            alignItems: 'center', gap: 12, fontSize: 13, fontWeight: 500,
-          }}>
-            <span>Session expired — please sign in again.</span>
-            <button onClick={() => signIn()} style={{
-              padding: '4px 12px', backgroundColor: '#2563eb', color: '#fff',
-              border: 'none', borderRadius: 4, fontSize: 13, cursor: 'pointer',
-            }}>Sign in</button>
-          </div>
-          <div style={{ marginTop: 40 }}>{children}</div>
-        </>
-      );
-    }
+  // Stub mode: always render (IdentityModal handles name prompt inside App)
+  if (authState.mode === 'stub') return <>{children}</>;
+
+  // Authenticated (external or MSAL): render app
+  if (authState.isAuthenticated) {
     return <>{children}</>;
   }
 
-  // MSAL not authenticated: login card
+  // MSAL mode, was authenticated but session expired: show banner + children (read-only)
+  if (authState.mode === 'msal' && wasAuthenticatedRef.current) {
+    return (
+      <>
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10000,
+          padding: '8px 16px', backgroundColor: '#fef2f2',
+          borderBottom: '2px solid #dc2626', display: 'flex',
+          alignItems: 'center', gap: 12, fontSize: 13, fontWeight: 500,
+        }}>
+          <span>Session expired — please sign in again.</span>
+          <button onClick={() => signIn()} style={{
+            padding: '4px 12px', backgroundColor: '#2563eb', color: '#fff',
+            border: 'none', borderRadius: 4, fontSize: 13, cursor: 'pointer',
+          }}>Sign in</button>
+        </div>
+        <div style={{ marginTop: 40 }}>{children}</div>
+      </>
+    );
+  }
+
+  // Not authenticated (MSAL first visit, or external with no token): login card
   return (
     <div style={{
       display: 'flex', alignItems: 'center', justifyContent: 'center',

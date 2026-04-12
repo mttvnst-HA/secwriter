@@ -188,6 +188,8 @@ export default function SpecEditor() {
   // estimatePublishBytes + ref-equality check on every keystroke.
   const toastPushRef = useRef(toasts.push);
   toastPushRef.current = toasts.push;
+  const authHeadersRef = useRef(authHeaders);
+  authHeadersRef.current = authHeaders;
   const collabSessionRef = useRef(null);
   // Reference-equality guard: whenever onRemoteBlocks runs, we stash the new
   // array here and the publish effect compares `blocks === lastRemoteBlocksRef.current`
@@ -489,7 +491,7 @@ export default function SpecEditor() {
       setSaveStatus('error');
       setTimeout(() => setSaveStatus(null), 2000);
     }
-  }, [roomId, sectionMeta.sectionNumber]);
+  }, [roomId, sectionMeta.sectionNumber, authHeaders]);
 
   // Download comments JSON from collab server (in-room only)
   const handleDownloadComments = useCallback(async () => {
@@ -507,7 +509,7 @@ export default function SpecEditor() {
     } catch (err) {
       console.error('Download comments failed:', err);
     }
-  }, [roomId, sectionMeta.sectionNumber]);
+  }, [roomId, sectionMeta.sectionNumber, authHeaders]);
 
   // Programmatic focus for EXISTING elements (arrow nav, tree select, delete-focus-prev)
   // New blocks focus themselves via the ref callback in EditableBlock
@@ -1202,7 +1204,7 @@ export default function SpecEditor() {
     let cancelled = false;
     const checkCollab = async () => {
       try {
-        const res = await fetch(`${COLLAB_HTTP_URL}/rooms`, { signal: AbortSignal.timeout(3000), headers: authHeaders });
+        const res = await fetch(`${COLLAB_HTTP_URL}/rooms`, { signal: AbortSignal.timeout(3000), headers: authHeadersRef.current });
         if (!cancelled && res.ok) {
           setCollabReachable(true);
           const data = await res.json();

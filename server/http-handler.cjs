@@ -278,7 +278,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes, authPro
               if (body.displayName !== undefined) liveMeta.set('sectionTitle', String(body.displayName));
               if (body.locked !== undefined) liveMeta.set('locked', !!body.locked);
               if (body.lockedBy !== undefined) liveMeta.set('lockedBy', String(body.lockedBy));
-            });
+            }, 'local-meta');
           }
 
           res.writeHead(200, { 'Content-Type': 'application/json' });

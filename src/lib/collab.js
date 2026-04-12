@@ -52,8 +52,8 @@
  *   insert, delete, or reorder.
  *
  * Prototype limitations (see CLAUDE.md roadmap):
- *   - no server-side .SEC persistence — Y.Doc on relay is in-memory CRDT;
- *     .SEC + sidecar .comments.json live on each user's local disk
+ *   - Server persists .ydoc + .SEC + .comments.json to disk (or Azure Blob Storage)
+ *     via debounced flush. See server/collab-server.cjs.
  */
 
 import * as Y from 'yjs';

@@ -63,22 +63,24 @@ if (process.env.SIM_STORAGE_BACKEND === 'azure') {
 // write if it exceeds this.
 const MAX_DOC_BYTES = 8 * 1024 * 1024;
 
-fs.mkdirSync(DATA_DIR, { recursive: true });
+if (process.env.SIM_STORAGE_BACKEND !== 'azure') {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
 
-// N4 — Orphan .tmp sweep at startup.
-// Atomic writes stage to `<room>.ydoc.tmp` then rename. On Windows a rename
-// over an open file can throw EPERM and leave an orphaned `.tmp` on disk.
-// A crash between stage and rename has the same effect. Clean these up
-// before any room binds so they can't confuse forensics or waste space.
-try {
-  for (const name of fs.readdirSync(DATA_DIR)) {
-    if (name.endsWith('.tmp')) {
-      try { fs.unlinkSync(path.join(DATA_DIR, name)); }
-      catch (err) { console.warn(`[collab] could not remove orphan ${name}:`, err.message); }
+  // N4 — Orphan .tmp sweep at startup.
+  // Atomic writes stage to `<room>.ydoc.tmp` then rename. On Windows a rename
+  // over an open file can throw EPERM and leave an orphaned `.tmp` on disk.
+  // A crash between stage and rename has the same effect. Clean these up
+  // before any room binds so they can't confuse forensics or waste space.
+  try {
+    for (const name of fs.readdirSync(DATA_DIR)) {
+      if (name.endsWith('.tmp')) {
+        try { fs.unlinkSync(path.join(DATA_DIR, name)); }
+        catch (err) { console.warn(`[collab] could not remove orphan ${name}:`, err.message); }
+      }
     }
+  } catch (err) {
+    console.warn('[collab] startup tmp sweep failed:', err.message);
   }
-} catch (err) {
-  console.warn('[collab] startup tmp sweep failed:', err.message);
 }
 
 // Loud warning if the operator has flipped off loopback. The prototype has
