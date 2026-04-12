@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
-import { FileText, Search, Upload, Download, Check, Loader } from "lucide-react";
+import { FileText, Search, Upload, Download, Check, Loader, Users } from "lucide-react";
 import TreeNode from "./components/TreeNode.jsx";
 // MarkLegend component preserved for future user manual documentation (removed from toolbar UI)
 import EditableBlock from "./components/EditableBlock.jsx";
@@ -39,6 +39,7 @@ import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocS
 import { stripOrphanCommentSpans } from "./lib/orphan-comment-spans.js";
 import { loadIdentity } from "./lib/identity.js";
 import IdentityModal from "./components/IdentityModal.jsx";
+import RoomPanel from "./components/RoomPanel.jsx";
 import PresenceBar from "./components/PresenceBar.jsx";
 import RemoteCursors from "./components/RemoteCursors.jsx";
 import ConnectionBanner from "./components/ConnectionBanner.jsx";
@@ -138,6 +139,9 @@ export default function SpecEditor() {
   const [commentRect, setCommentRect] = useState(null);
   const [showComments, setShowComments] = useState(false);
   const [complianceOpen, setComplianceOpen] = useState(false);
+  const [collabReachable, setCollabReachable] = useState(false);
+  const [showRoomPanel, setShowRoomPanel] = useState(false);
+  const [roomList, setRoomList] = useState([]);
   const [inlineLintingEnabled, setInlineLintingEnabled] = useState(() => {
     try { return localStorage.getItem('sim-inline-linting') !== 'false'; } catch { return true; }
   });
@@ -1179,6 +1183,33 @@ export default function SpecEditor() {
     try { localStorage.setItem('sim-inline-linting', String(inlineLintingEnabled)); } catch {}
   }, [inlineLintingEnabled]);
 
+  // Collab server reachability detection — ping GET /rooms on mount and tab focus (30s cooldown)
+  useEffect(() => {
+    let cancelled = false;
+    const checkCollab = async () => {
+      try {
+        const res = await fetch(`${COLLAB_HTTP_URL}/rooms`, { signal: AbortSignal.timeout(3000) });
+        if (!cancelled && res.ok) {
+          setCollabReachable(true);
+          const data = await res.json();
+          setRoomList(data.rooms || []);
+        }
+      } catch {
+        if (!cancelled) setCollabReachable(false);
+      }
+    };
+    checkCollab();
+    let lastCheck = Date.now();
+    const handleFocus = () => {
+      if (Date.now() - lastCheck > 30000) {
+        lastCheck = Date.now();
+        checkCollab();
+      }
+    };
+    window.addEventListener('focus', handleFocus);
+    return () => { cancelled = true; window.removeEventListener('focus', handleFocus); };
+  }, []);
+
   const zoomIn = useCallback(() => setEditorZoom(z => Math.min(2, Math.round((z + 0.1) * 10) / 10)), []);
   const zoomOut = useCallback(() => setEditorZoom(z => Math.max(0.5, Math.round((z - 0.1) * 10) / 10)), []);
   const zoomReset = useCallback(() => setEditorZoom(1), []);
@@ -1828,6 +1859,29 @@ export default function SpecEditor() {
             >
               {inRoom ? `Room ${roomId}` : "Share"}
             </button>
+            {collabReachable && (
+              <button
+                onClick={() => {
+                  setShowRoomPanel(!showRoomPanel);
+                  if (!showRoomPanel) {
+                    fetch(`${COLLAB_HTTP_URL}/rooms`)
+                      .then(r => r.json())
+                      .then(d => setRoomList(d.rooms || []))
+                      .catch(() => {});
+                  }
+                }}
+                title="Manage rooms"
+                style={{
+                  display: "flex", alignItems: "center", gap: 4, padding: "4px 10px",
+                  backgroundColor: showRoomPanel ? "#dbeafe" : "#f1f5f9",
+                  border: showRoomPanel ? "1px solid #2563eb" : "1px solid #e2e8f0",
+                  borderRadius: 6, cursor: "pointer", fontSize: 13, fontWeight: 600,
+                  color: showRoomPanel ? "#1d4ed8" : "#475569", minHeight: 32,
+                }}
+              >
+                <Users size={14} /> Rooms
+              </button>
+            )}
             {inRoom && (
               <PresenceBar peers={peers} self={identity} />
             )}
@@ -2641,6 +2695,36 @@ export default function SpecEditor() {
             onScrollToBlock={handleComplianceScrollTo}
             trackChanges={trackChanges}
             unitDisplay={unitDisplay}
+          />
+        )}
+
+        {/* Room Management Panel (right side) */}
+        {showRoomPanel && (
+          <RoomPanel
+            rooms={roomList}
+            currentRoom={roomId}
+            onJoin={(id) => { window.location.href = buildRoomUrl(id); }}
+            onClose={() => setShowRoomPanel(false)}
+            onCreateRoom={async (name) => {
+              try {
+                const res = await fetch(`${COLLAB_HTTP_URL}/rooms`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ id: name }),
+                });
+                if (res.ok) {
+                  const listRes = await fetch(`${COLLAB_HTTP_URL}/rooms`);
+                  const data = await listRes.json();
+                  setRoomList(data.rooms || []);
+                }
+              } catch { /* ignore */ }
+            }}
+            onDeleteRoom={async (id) => {
+              try {
+                await fetch(`${COLLAB_HTTP_URL}/rooms/${id}`, { method: 'DELETE' });
+                setRoomList(prev => prev.filter(r => r.id !== id));
+              } catch { /* ignore */ }
+            }}
           />
         )}
         </div>
