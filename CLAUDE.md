@@ -29,7 +29,7 @@ When fixing bugs, verify the fix doesn't introduce regressions by running the fu
 
 ```
 src/
-  App.jsx                  # Main editor layout, state management, toolbar, sidebar ~2585 lines
+  App.jsx                  # Main editor layout, state management, toolbar, sidebar ~2700 lines
   main.jsx                 # Entry point + ErrorBoundary wrapper ~50 lines
   components/
     EditableBlock.jsx      # contentEditable block (txt, note, oli, item, lst) + del popup + inline linting ~760 lines
@@ -55,8 +55,8 @@ src/
     PresenceBar.jsx        # Collab: colored user initials in toolbar ~50 lines
     RemoteCursors.jsx      # Collab: absolute-positioned remote caret overlay ~215 lines
     IdentityModal.jsx      # Collab: first-load display name prompt ~85 lines
-    ConnectionBanner.jsx   # Collab: connection state banner (connecting/disconnected/syncing) ~80 lines
-    RoomPanel.jsx          # Collab: room management sidebar (browse/create/delete rooms) ~200 lines
+    ConnectionBanner.jsx   # Collab: connection state banner (connecting/disconnected/syncing) ~70 lines
+    RoomPanel.jsx          # Collab: room management sidebar (browse/create/delete rooms) ~190 lines
   lib/
     numbering.js           # Section numbering (1.1, 1.2.1, etc.) and OLI labels (a. b. c.) ~100 lines
     tree-builder.js        # Builds hierarchical tree from flat block array ~19 lines
@@ -86,7 +86,7 @@ src/
     grammar-checker.js     # Harper.js WASM Web Worker wrapper: lazy init, custom dictionary, fix filtering ~280 lines
     nlp-rules.js           # compromise.js passive voice + indicative mood detection, lazy loading ~230 lines
     fix-utils.js           # Offset-aware string replacement in HTML: replaceAtOffset() for disambiguating duplicate violations ~65 lines
-    collab.js              # Yjs CRDT client: createCollabSession, applyBlocksToYDoc, publishBlocks ~775 lines
+    collab.js              # Yjs CRDT client: createCollabSession, applyBlocksToYDoc, publishBlocks ~830 lines
     ytext-html.js          # HTML ↔ Y.Text+attributes bidirectional converter: yTextToHtml, htmlToAttrList, applyHtmlToYText ~490 lines
     ytable-crdt.js         # Table CRDT converter: plain TableData ↔ nested Y.Array/Y.Map/Y.Text for cell-level merges ~230 lines
     yref-crdt.js           # REF CRDT converter: plain RefData ↔ nested Y.Map (org: Y.Text, entries: Y.Array) ~200 lines
@@ -136,12 +136,12 @@ tools/
     test-procedure.md      # Master test procedure (15 areas)
     test-areas/            # 15 test area definitions (01-app-load.md through 15-dark-mode-zoom.md)
 server/
-  collab-server.cjs        # Yjs WebSocket + HTTP relay: room persistence, .SEC/.comments.json generation, download/upload endpoints ~400 lines
+  collab-server.cjs        # Yjs WebSocket + HTTP relay: room persistence, .SEC/.comments.json generation, auth middleware ~300 lines
   dom-polyfill.cjs         # DOMParser polyfill via linkedom for Node.js ~15 lines
   room-serializer.cjs      # Y.Doc → .SEC + .comments.json orchestrator + CJS block seeding ~110 lines
   storage-local.cjs        # Local filesystem storage backend with atomic multi-artifact writes ~170 lines
   storage-azure.cjs        # Azure Blob Storage backend (drop-in replacement for storage-local) ~200 lines
-  http-handler.cjs         # Extracted HTTP request handler factory (download/upload/room CRUD routes) ~250 lines
+  http-handler.cjs         # Extracted HTTP request handler factory (download/upload/room CRUD routes) ~360 lines
   auth/
     auth-none.cjs          # Stub auth provider (no validation, dev default)
     auth-jwt.cjs           # JWT validation (HS256/RS256)
@@ -325,18 +325,13 @@ Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with
 3. **compromise.js NLP** (`nlp-rules.js`): Synchronous, lazy-loaded (~210KB). Passive voice via `(be + #PastTense)` patterns, indicative mood via regex. Orange highlights (`::highlight(passive-voice)`).
 
 **Key design decisions:**
-- **Browser exfiltration prevention:** All typing surfaces (contentEditable blocks + every spec/comment input/textarea) spread `{...NO_EXFIL_PROPS}` from `src/lib/no-exfil.js`. This disables `spellCheck`, `writingsuggestions` (Chrome "Help me write" / Edge Copilot), `autoComplete`, `autoCorrect`, `autoCapitalize`, and Grammarly's `data-gramm*` attributes. CSP + `referrer="no-referrer"` + `notranslate` meta tags in `index.html` provide a second layer. Regression test at `src/lib/__tests__/no-exfil.test.js` enforces both. Do not add a new contentEditable, input, or textarea that accepts spec text without spreading these props and updating the test surface list.
+- **Browser exfiltration prevention:** All typing surfaces spread `{...NO_EXFIL_PROPS}` from `src/lib/no-exfil.js` (disables spellCheck, writingsuggestions, Grammarly, etc.). Do not add a new contentEditable, input, or textarea that accepts spec text without spreading these props and updating the test surface list in `no-exfil.test.js`.
 - **Only the focused block is linted** — avoids scanning 300+ blocks on every edit. Findings persist across blur/focus.
-- **Offset-aware range creation:** `createRangeForMatch()` accepts a `targetOffset` hint from violation engines to disambiguate repeated words (e.g., "the" appearing 5 times — highlights the correct one).
 - **De-duplication:** Grammar findings overlapping >50% with compliance/NLP findings are suppressed (static rules win — they have UFS citations).
 - **Compliance panel collision:** When `CompliancePanel` is open, inline linting is suppressed entirely to avoid double-highlighting.
-- **Context-dependent rule deferral:** Rules that produce false positives requiring sentence-level context (TERM-suitable, TERM-any, TERM-should, VAGUE-applicable) are filtered out of inline linting via `DEFERRED_TO_PANEL` set. They still run in the Compliance Panel where users explicitly request a full scan.
-- **Stale result handling:** Grammar results tagged with text version; discarded if text changed while Worker was processing.
-- **Bad suggestion filtering:** Harper suggestions that introduce spaces into single words (e.g., "taht" → "ta ht") are suppressed. Oxford comma fixes append punctuation instead of replacing the word.
+- **Context-dependent rule deferral:** Rules producing FPs requiring sentence context (TERM-suitable, TERM-any, TERM-should, VAGUE-applicable) are filtered from inline linting via `DEFERRED_TO_PANEL` set. They still run in the Compliance Panel.
 - **Note block exemption:** Note blocks skip compliance and NLP rules (notes use advisory language). Grammar/spelling from Harper still runs.
-- **Tooltip:** `InlineTooltip.jsx` shows on collapsed cursor via `selectionchange` + `keyup` listeners. Dismisses on Escape, click outside, or any input keystroke (so it doesn't block editing). Computes fix preview text dynamically for rules without explicit `replacement`.
-- **Toggle:** "Lint ●/○" toolbar button with localStorage persistence (`sim-inline-linting`). When re-enabled, the currently focused block is linted immediately (not deferred to next focus event).
-- **Offset-aware fixes:** `replaceAtOffset()` in `fix-utils.js` disambiguates duplicate violations when applying fixes. It walks the HTML tracking plain-text offsets (skipping `<...>` tag syntax), collects all candidate matches, and picks the one closest to the violation's `index`. Called by grammar-checker.js, nlp-rules.js fix functions, and InlineTooltip.jsx passes `violation.index` as the fourth argument to `fixFn()`. Falls back to first-match replacement when offset is undefined (backward compat).
+- **Offset-aware fixes:** `replaceAtOffset()` in `fix-utils.js` disambiguates duplicate violations by tracking plain-text offsets through HTML. All fix functions receive `violation.index` as the fourth argument.
 
 ### Corpus testing infrastructure
 
@@ -401,12 +396,9 @@ npm run dev             # terminal 2: Vite dev server on localhost:5173
 **Collab features:**
 - **Reconnect/offline UX:** `ConnectionBanner.jsx` shows connection state (connecting/disconnected/syncing). Editor is read-only when disconnected to prevent divergence.
 - **Room management:** `RoomPanel.jsx` sidebar with room browsing, creation, deletion. Server CRUD endpoints (`POST`/`DELETE`/`PATCH /rooms`). Collab server auto-detection.
-- **Auth:** Pluggable auth providers via `SIM_AUTH_PROVIDER` env var. `auth-none.cjs` (dev default, no validation) and `auth-jwt.cjs` (HS256/RS256 JWT validation). WebSocket + HTTP middleware. Client reads token from `sessionStorage`.
+- **Auth:** Pluggable auth providers via `SIM_AUTH_PROVIDER` env var. `auth-none.cjs` (dev default, no validation) and `auth-jwt.cjs` (HS256/RS256 JWT validation). WebSocket + HTTP middleware. Client reads token from `sessionStorage['sim-auth-token']`.
 - **Azure Blob Storage:** Drop-in cloud storage backend via `SIM_STORAGE_BACKEND=azure`. Same interface as `storage-local.cjs`.
-
-**Known prototype limitations:**
-- Stub identity in localStorage — display name only, no user accounts
-- No rate limiting on WebSocket or HTTP endpoints
+- **Remaining gaps:** Stub identity (display name only, no user accounts), no rate limiting on WebSocket/HTTP endpoints.
 
 ### Reference data sources
 
@@ -469,60 +461,17 @@ Core editing features are implemented: rich text editing (contentEditable blocks
 
 ### Test Coverage
 
-| Test File | Tests | Runner | Coverage |
-|-----------|-------|--------|----------|
-| sec-parser.test.js | 43 | Vitest | Tag extraction, inline marks (incl. ATT), tables, TBL/THD, SPT depth, TAI OPT, ADD/DEL/CHG, NPG, REF blocks, INT styles |
-| collab.test.js | 53 | Vitest | Y.Doc ↔ blocks conversion (yOrder+yStore model), seeding, in-place updates, structural changes (insert/delete/reorder), two-doc CRDT merge with Y.Text formatting attributes, **Y.Text identity preservation across insert/delete/reorder**, concurrent remote edit across reorder, **Y.UndoManager scoped to local origin**, **no-op publishes (I2)**, **same-tx delete+reinsert (N6)**, **doc size guard (M7)**, **yMeta CRDT merge (M3)**, **shared TC (5 tests)**, **shared Comments (10 tests)**, **character-level CRDT merge (concurrent bold+text, concurrent mark-rid+mark-srf)**, **fine-grained table/REF sync (concurrent cell edits, concurrent ref entries, legacy JSON compat)** |
-| no-exfil.test.js | 19 | Vitest | NO_EXFIL_PROPS spread on every contentEditable + spec/comment input/textarea; Grammarly/Copilot/writingsuggestions disabled |
-| tailor-profile.test.js | 36 | Vitest | Branch/region/delivery matching, resolution, cleanup |
-| sec-serializer.test.js | 39 | Vitest | XML output, SPT wrapping, NTE/OLG grouping, TAI OPT, ADD/DEL/CHG, REF blocks, TBL/ATT roundtrip, CRLF, MTA preservation, HDR passthrough, table widths/heights |
-| revisions.test.js | 29 | Vitest | Accept/reject inline + block revisions, batch operations, stats, whitespace collapse |
-| cross-ref-validation.test.js | 21 | Vitest | RID extraction from body/ref blocks, unlinked/orphaned detection, SRF extraction |
-| compliance-checker.test.js | 23 | Vitest | Scope selection, violation grouping, stats, context extraction, bracket/note exclusion, violation budget/truncation |
-| text-diff.test.js | 23 | Vitest | Word-level LCS diff, character-level sub-diff, refinement, HTML stripping, **annotateDomWithDiff author attribution on `<ins>`/`<del>` (data-author-* + `--author-color` style) with back-compat when author is absent** |
-| mark-patterns.test.js | 18 | Vitest | RID/SRF detection, already-marked skip, overlap handling |
-| table-ops.test.js | 17 | Vitest | Add/delete rows/columns, cell update, colspan, merge/split, immutability |
-| numbering.test.js | 16 | Vitest | Section numbering, OLI labels, counter resets, overflow |
-| search.test.js | 14 | Vitest | Block text search, case-insensitive, multi-match, HTML tag handling, replaceMatchInHtml |
-| compliance-ai.test.js | 13 | Vitest | System prompt generation, chunking logic, token estimation, cost calculation |
-| undo-redo.test.js | 12 | Vitest | History push/pop, undo/redo, max cap, pause/resume, tcSnapshot capture |
-| doc-export.test.js | 12 | Vitest | Word/PDF export generation, UFGS formatting, section structure |
-| submittal-register.test.js | 11 | Vitest | SUB mark extraction, SD grouping, classification parsing, paragraph numbers |
-| encoding.test.js | 11 | Vitest | Windows-1252 byte mapping, special characters |
-| doc-validation.test.js | 11 | Vitest | Structure checks (missing PARTs, ordering), title length, empty blocks |
-| block-reorder.test.js | 10 | Vitest | getSectionRange, reorderSection, nested subsection moves |
-| bracket-replace.test.js | 9 | Vitest | Bracket detection, grouping, nested brackets, inline marks |
-| sec-roundtrip.test.js | 9 | Vitest | Parse -> serialize -> re-parse cycle, TAI OPT/ADD/DEL/CHG/REF roundtrip |
-| tree-builder.test.js | 8 | Vitest | Flat->tree conversion, multi-level nesting |
-| auto-save.test.js | 7 | Vitest | localStorage save/load/clear, timestamp, comments serialization |
-| comments.test.js | 6 | Vitest | Comment report generation, HTML escaping, block ordering |
-| compliance-rules.node-test.mjs | 42 | Node | Rule generation, pattern matching, fix functions, false positive regression (19 cases), bracket/note/unit exclusion, FMT-001 removal regression |
-| inline-linter.test.js | 19 | Vitest | Text extraction, range creation, highlight management, cursor hit-testing, fix computation, per-block findings |
-| grammar-checker.test.js | 10 | Vitest | Harper initialization, violation mapping, dictionary filtering, stale detection |
-| nlp-rules.test.js | 37 | Vitest | Passive voice corpus (21 sentences via it.each), FP rate assertion, indicative mood detection, verb conjugation, bracket/note exclusion |
-| fix-utils.test.js | 11 | Vitest | Offset-aware replacement: second occurrence targeting, HTML tag skipping, backward compat (undefined offset), edge cases |
-| corpus-calibration.node-test.mjs | 5 | Node | Primary rules zero on UFGS, secondary rules >0, FMT-001 absent, note block exemption |
-| corpus-precision.node-test.mjs | 3 | Node | Static FP rate <5%, NLP FP rate <20%, note block exemption on clean corpus |
-| corpus-recall.node-test.mjs | 3 | Node | Static recall ≥80%, NLP recall ≥60%, grammar recall ≥70% with ID mapping |
-| corpus-adversarial.node-test.mjs | 6 | Node | Overall ≥80%, FP traps, true positives, NLP ambiguity, domain jargon, failure documentation |
-| ufgs-tag-coverage.node-test.mjs | 4 | Node | All 60 SGML tags accounted for, no parse errors, TBL→tbl blocks, ATT→mark-att spans |
-| ufgs-structural.node-test.mjs | 8 | Node | Block count, title presence, valid types, depth ≤10, table structure, ref org, monotonic parts |
-| interop.node-test.mjs | 17 | Node | XML declaration, root element, MTA, HDR, SCN/STL/DTE, PRT count, SPT nesting, NTE/OLG grouping, REF structure, TAB structure, TBL roundtrip, inline marks, revisions, encoding, CRLF |
-| interop-encoding.node-test.mjs | 11 | Node | Reverse import roundtrip (block count, types), encoding fidelity (windows-1252, CRLF, no BOM), special character preservation |
-| editor.spec.js (E2E) | 141 | Playwright | Full UI: keyboard, navigation, slash menu, toolbar, marks, layout, table editing, track changes, cross-ref panel, undo/redo, find & replace, bracket replacement, change case, copy without tags, doc validation, orphaned refs, auto-save, notes toggle, drag-and-drop, comments, sidebar search, Word/PDF export, compliance checker |
+| Runner | Tests | Key areas |
+|--------|-------|-----------|
+| Vitest (`npm test`) | 648 | Parser/serializer (82), collab CRDT (53+50+11+7+8=129), compliance (42+23+13=78), inline linting (19+10+37+11=77), revisions/diff (29+23=52), encoding/roundtrip (11+9=20), UI components (9), everything else (211) |
+| Node (`npm run test:compliance`, `test:corpus`, `test:ufgs`, `test:interop`) | 99 | Compliance rules (42), corpus precision/recall/adversarial (17), UFGS tag coverage + structural (12), interop roundtrip (28) |
+| Node (`npm run test:server`) | 45 | HTTP endpoints (30), storage backends (7), auth JWT (8) |
+| Playwright (`npm run test:e2e`) | 141 | Full UI: keyboard, navigation, slash menu, toolbar, marks, tables, track changes, comments, find & replace, export, compliance |
 
-| orphan-comment-spans.test.js | 8 | Vitest | Ghost-span cleanup: no-op, single orphan, mixed valid+orphan, mark-comment-resolved class, reference preservation, nested orphans, non-comment data spans |
-| ytext-html.test.js | 50 | Vitest | HTML↔Y.Text bidirectional: yTextToHtml (deltas→HTML, formatting attributes, nested marks), htmlToAttrList (parse→attr tuples), applyHtmlToYText (LCS diff + CRDT ops), two-doc concurrent merge (text+formatting) |
-| ytable-crdt.test.js | 11 | Vitest | Table CRDT: plain↔nested roundtrip, colspan preservation, colWidths/rowHeights, cell HTML with marks, diff classification (cell-only vs structural), cell Y.Text identity preservation, two-doc concurrent cell merge |
-| yref-crdt.test.js | 7 | Vitest | REF CRDT: plain↔nested roundtrip, empty entries, org update, entry rid update, append entry, remove entry, two-doc concurrent entry additions merge |
-| ConnectionBanner.test.jsx | 5 | Vitest | Connection state rendering, read-only lock, reconnect banner, syncing indicator |
-| RoomPanel.test.jsx | 4 | Vitest | Room list rendering, room creation, room deletion, server auto-detection |
-| auth-jwt.test.mjs | 8 | Node (server) | HS256/RS256 validation, expired token, missing claims, issuer/audience checks |
-| storage-azure.test.mjs | 7 | Node (server) | Blob read/write, list rooms, delete room, container creation, connection string/managed identity |
-
-**Total: 648 Vitest + 99 Node + 45 Server + 141 Playwright = 933 automated tests**
+**Total: 648 + 99 + 45 + 141 = 933 automated tests**
 
 ## Dependencies
 
-**Production:** React 18.3, react-dom 18.3, lucide-react 0.383, harper.js (WASM grammar checker), compromise (NLP), yjs 13.6, y-websocket 1.5.4 (client + server), y-protocols 1.0
-**Dev:** Vite 8.0, @vitejs/plugin-react 6.0.1, Vitest 4.1, linkedom 0.18 (test DOM polyfill), Playwright (E2E)
+**Production:** React 18.3, react-dom 18.3, lucide-react 0.383, harper.js (WASM grammar checker), compromise (NLP), yjs 13.6, y-websocket 1.5.4 (client + server), y-protocols 1.0, jsonwebtoken (JWT auth)
+**Server (optional):** @azure/storage-blob, @azure/identity (Azure backend only)
+**Dev:** Vite 8.0, @vitejs/plugin-react 6.0.1, Vitest 4.1, linkedom 0.18 (test DOM polyfill), Playwright (E2E), @testing-library/react, jsdom
