@@ -25,7 +25,7 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes }) {
   return async (req, res) => {
     // CORS for dev
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
 
@@ -138,6 +138,132 @@ function createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes }) {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end(`Download failed: ${err.message}`);
       }
+      return;
+    }
+
+    // POST /rooms — create a new room
+    if (url.pathname === '/rooms' && req.method === 'POST') {
+      const chunks = [];
+      req.on('data', c => chunks.push(c));
+      req.on('end', async () => {
+        try {
+          const body = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
+          const rawId = body && body.id;
+          if (!rawId || typeof rawId !== 'string') {
+            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            res.end('Missing or invalid room id');
+            return;
+          }
+          // Sanitize: [a-zA-Z0-9_-], max 64 chars
+          const id = String(rawId).replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 64);
+          if (!id) {
+            res.writeHead(400, { 'Content-Type': 'text/plain' });
+            res.end('Invalid room id after sanitization');
+            return;
+          }
+          // Check if room already exists
+          const existing = await storage.readRoom(id);
+          if (existing) {
+            res.writeHead(409, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: `Room "${id}" already exists` }));
+            return;
+          }
+          // Create empty Y.Doc with optional displayName in yMeta
+          const Y = require('yjs');
+          const ydoc = new Y.Doc();
+          if (body.displayName) {
+            const yMeta = ydoc.getMap('meta');
+            ydoc.transact(() => {
+              yMeta.set('sectionTitle', String(body.displayName));
+            });
+          }
+          const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
+          ydoc.destroy();
+
+          await storage.writeRoom(id, { ydocBytes, secBytes: null, commentsJson: null });
+          res.writeHead(201, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ id, ok: true }));
+        } catch (err) {
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          res.end(`Create room failed: ${err.message}`);
+        }
+      });
+      return;
+    }
+
+    // DELETE /rooms/:roomId — delete a room
+    const deleteMatch = url.pathname.match(/^\/rooms\/([^/]+)$/);
+    if (deleteMatch && req.method === 'DELETE') {
+      const roomId = deleteMatch[1];
+      try {
+        const existing = await storage.readRoom(roomId);
+        if (!existing) {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
+          return;
+        }
+        await storage.deleteRoom(roomId);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: true }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end(`Delete room failed: ${err.message}`);
+      }
+      return;
+    }
+
+    // PATCH /rooms/:roomId — update room settings
+    const patchMatch = url.pathname.match(/^\/rooms\/([^/]+)$/);
+    if (patchMatch && req.method === 'PATCH') {
+      const roomId = patchMatch[1];
+      const chunks = [];
+      req.on('data', c => chunks.push(c));
+      req.on('end', async () => {
+        try {
+          const body = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
+          const existing = await storage.readRoom(roomId);
+          if (!existing) {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: `Room "${roomId}" not found` }));
+            return;
+          }
+          // Load persisted Y.Doc and update yMeta fields
+          const Y = require('yjs');
+          const ydoc = new Y.Doc();
+          Y.applyUpdate(ydoc, existing.ydocBytes);
+          const yMeta = ydoc.getMap('meta');
+          ydoc.transact(() => {
+            if (body.displayName !== undefined) yMeta.set('sectionTitle', String(body.displayName));
+            if (body.locked !== undefined) yMeta.set('locked', !!body.locked);
+            if (body.lockedBy !== undefined) yMeta.set('lockedBy', String(body.lockedBy));
+          });
+          const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
+          ydoc.destroy();
+
+          await storage.writeRoom(roomId, {
+            ydocBytes,
+            secBytes: existing.secBytes,
+            commentsJson: existing.commentsJson,
+          });
+
+          // Also update live doc in boundDocs if active
+          const liveDoc = boundDocs.get(roomId);
+          if (liveDoc) {
+            const liveMeta = liveDoc.getMap('meta');
+            liveDoc.transact(() => {
+              if (body.displayName !== undefined) liveMeta.set('sectionTitle', String(body.displayName));
+              if (body.locked !== undefined) liveMeta.set('locked', !!body.locked);
+              if (body.lockedBy !== undefined) liveMeta.set('lockedBy', String(body.lockedBy));
+            });
+          }
+
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ ok: true }));
+        } catch (err) {
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          res.end(`Patch room failed: ${err.message}`);
+        }
+      });
       return;
     }
 

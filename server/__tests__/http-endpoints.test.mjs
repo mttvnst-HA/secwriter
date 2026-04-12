@@ -50,6 +50,44 @@ function httpPost(url, body) {
   });
 }
 
+function httpJson(url, method, jsonBody) {
+  return new Promise((resolve, reject) => {
+    const u = new URL(url);
+    const payload = jsonBody != null ? JSON.stringify(jsonBody) : '';
+    const req = http.request({
+      hostname: u.hostname,
+      port: u.port,
+      path: u.pathname,
+      method,
+      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) },
+    }, (res) => {
+      const chunks = [];
+      res.on('data', c => chunks.push(c));
+      res.on('end', () => resolve({ status: res.statusCode, headers: res.headers, body: Buffer.concat(chunks) }));
+    });
+    req.on('error', reject);
+    req.end(payload);
+  });
+}
+
+function httpDelete(url) {
+  return new Promise((resolve, reject) => {
+    const u = new URL(url);
+    const req = http.request({
+      hostname: u.hostname,
+      port: u.port,
+      path: u.pathname,
+      method: 'DELETE',
+    }, (res) => {
+      const chunks = [];
+      res.on('data', c => chunks.push(c));
+      res.on('end', () => resolve({ status: res.statusCode, headers: res.headers, body: Buffer.concat(chunks) }));
+    });
+    req.on('error', reject);
+    req.end();
+  });
+}
+
 describe('HTTP endpoints', () => {
   let tmpDir, server, baseUrl, storage, boundDocs;
 
@@ -173,6 +211,79 @@ describe('HTTP endpoints', () => {
   it('GET /unknown returns 404', async () => {
     const resp = await httpGet(`${baseUrl}/unknown`);
     assert.strictEqual(resp.status, 404);
+  });
+
+  // --- Room management endpoints ---
+
+  it('POST /rooms creates a new empty room', async () => {
+    const resp = await httpJson(`${baseUrl}/rooms`, 'POST', { id: 'new-room', displayName: 'Test Room' });
+    assert.strictEqual(resp.status, 201);
+    const data = JSON.parse(resp.body.toString());
+    assert.strictEqual(data.id, 'new-room');
+    assert.strictEqual(data.ok, true);
+    // Verify room exists in storage
+    const stored = await storage.readRoom('new-room');
+    assert.ok(stored, 'room should exist in storage');
+    assert.ok(stored.ydocBytes, 'should have ydoc bytes');
+  });
+
+  it('POST /rooms returns 409 for existing room', async () => {
+    const resp = await httpJson(`${baseUrl}/rooms`, 'POST', { id: 'test-room' });
+    assert.strictEqual(resp.status, 409);
+    const data = JSON.parse(resp.body.toString());
+    assert.ok(data.error.includes('already exists'));
+  });
+
+  it('DELETE /rooms/:roomId deletes a room', async () => {
+    // Create a room to delete
+    await storage.writeRoom('del-room', {
+      ydocBytes: Buffer.from([10, 11, 12]),
+      secBytes: null,
+      commentsJson: null,
+    });
+    const resp = await httpDelete(`${baseUrl}/rooms/del-room`);
+    assert.strictEqual(resp.status, 200);
+    const data = JSON.parse(resp.body.toString());
+    assert.strictEqual(data.ok, true);
+    // Verify room is gone
+    const stored = await storage.readRoom('del-room');
+    assert.strictEqual(stored, null);
+  });
+
+  it('DELETE /rooms/:roomId returns 404 for nonexistent room', async () => {
+    const resp = await httpDelete(`${baseUrl}/rooms/no-such-room`);
+    assert.strictEqual(resp.status, 404);
+    const data = JSON.parse(resp.body.toString());
+    assert.ok(data.error.includes('not found'));
+  });
+
+  it('PATCH /rooms/:roomId updates room settings', async () => {
+    // Create a room to patch
+    const Y = require('yjs');
+    const ydoc = new Y.Doc();
+    const ydocBytes = Buffer.from(Y.encodeStateAsUpdate(ydoc));
+    ydoc.destroy();
+    await storage.writeRoom('patch-room', { ydocBytes, secBytes: null, commentsJson: null });
+
+    const resp = await httpJson(`${baseUrl}/rooms/patch-room`, 'PATCH', { locked: true });
+    assert.strictEqual(resp.status, 200);
+    const data = JSON.parse(resp.body.toString());
+    assert.strictEqual(data.ok, true);
+
+    // Verify locked was persisted in yMeta
+    const stored = await storage.readRoom('patch-room');
+    const verifyDoc = new Y.Doc();
+    Y.applyUpdate(verifyDoc, stored.ydocBytes);
+    const yMeta = verifyDoc.getMap('meta');
+    assert.strictEqual(yMeta.get('locked'), true);
+    verifyDoc.destroy();
+  });
+
+  it('PATCH /rooms/:roomId returns 404 for nonexistent room', async () => {
+    const resp = await httpJson(`${baseUrl}/rooms/no-such-room`, 'PATCH', { locked: true });
+    assert.strictEqual(resp.status, 404);
+    const data = JSON.parse(resp.body.toString());
+    assert.ok(data.error.includes('not found'));
   });
 
   it('POST /rooms/:roomId/upload returns 409 when room has no active Y.Doc', async () => {
