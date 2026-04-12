@@ -305,6 +305,59 @@ httpServer.listen(HTTP_PORT, HOST, () => {
   log.info('server.listening', { transport: 'http', host: HOST, port: HTTP_PORT });
 });
 
+// ── Room TTL/Expiry ──────────────────────────────────────────────────
+const ARCHIVE_DAYS = Number(process.env.SIM_ROOM_ARCHIVE_DAYS || 30);
+const DELETE_DAYS = Number(process.env.SIM_ROOM_DELETE_DAYS || 90);
+const SWEEP_INTERVAL_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+async function sweepRooms() {
+  const now = Date.now();
+  log.info('sweep.start', {});
+
+  // Phase 1: Archive idle active rooms
+  try {
+    const rooms = await storage.listRooms();
+    for (const id of rooms) {
+      if (boundDocs.has(id)) continue; // skip rooms with active connections
+      const stat = await storage.statRoom(id);
+      if (!stat || !stat.lastModified) continue;
+      const idleMs = now - new Date(stat.lastModified).getTime();
+      const idleDays = idleMs / (24 * 60 * 60 * 1000);
+      if (idleDays >= ARCHIVE_DAYS) {
+        log.info('sweep.archive', { roomId: id, idleDays: Math.round(idleDays) });
+        await storage.archiveRoom(id);
+      }
+    }
+  } catch (err) {
+    log.error('sweep.archive.failed', { err: err.message });
+  }
+
+  // Phase 2: Delete expired archived rooms
+  try {
+    if (typeof storage.listArchivedRooms === 'function') {
+      const archived = await storage.listArchivedRooms();
+      for (const room of archived) {
+        if (!room.archivedAt) continue;
+        const archivedMs = now - new Date(room.archivedAt).getTime();
+        const archivedDays = archivedMs / (24 * 60 * 60 * 1000);
+        if (archivedDays >= DELETE_DAYS) {
+          log.info('sweep.delete', { roomId: room.id, archivedDays: Math.round(archivedDays) });
+          await storage.deleteArchivedRoom(room.id);
+        }
+      }
+    }
+  } catch (err) {
+    log.error('sweep.delete.failed', { err: err.message });
+  }
+
+  log.info('sweep.done', {});
+}
+
+// Run sweep on startup (after a short delay to let binds complete) and every 24h
+setTimeout(() => sweepRooms().catch(err => log.error('sweep.uncaught', { err: err.message })), 5000);
+const sweepTimer = setInterval(() => sweepRooms().catch(err => log.error('sweep.uncaught', { err: err.message })), SWEEP_INTERVAL_MS);
+if (sweepTimer.unref) sweepTimer.unref();
+
 // ── Graceful shutdown ────────────────────────────────────────────────────
 //
 // SIGINT (Ctrl+C) / SIGTERM: flush every room synchronously so edits made
