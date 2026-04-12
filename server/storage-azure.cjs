@@ -58,21 +58,41 @@ class AzureStorageBackend {
     const names = this._blobNames(roomId);
     const metadata = { generation: String(Date.now()) };
 
-    // Write sidecar files first
-    if (secBytes != null) {
-      const blob = this._container.getBlockBlobClient(names.sec);
-      await blob.upload(secBytes, secBytes.length, { metadata });
+    // Attempt blob lease on .ydoc for multi-instance safety
+    const ydocBlob = this._container.getBlockBlobClient(names.ydoc);
+    let leaseId = null;
+    let leaseClient = null;
+    try {
+      leaseClient = ydocBlob.getBlobLeaseClient();
+      const leaseResult = await leaseClient.acquireLease(30);
+      leaseId = leaseResult.leaseId;
+    } catch {
+      // Blob may not exist yet (first write) or lease unavailable — proceed without
+      leaseClient = null;
     }
 
-    if (commentsJson != null) {
-      const buf = Buffer.from(commentsJson, 'utf-8');
-      const blob = this._container.getBlockBlobClient(names.comments);
-      await blob.upload(buf, buf.length, { metadata });
-    }
+    try {
+      // Write sidecar files first
+      if (secBytes != null) {
+        const blob = this._container.getBlockBlobClient(names.sec);
+        await blob.upload(secBytes, secBytes.length, { metadata });
+      }
 
-    // .ydoc written LAST (source of truth)
-    const blob = this._container.getBlockBlobClient(names.ydoc);
-    await blob.upload(ydocBytes, ydocBytes.length, { metadata });
+      if (commentsJson != null) {
+        const buf = Buffer.from(commentsJson, 'utf-8');
+        const blob = this._container.getBlockBlobClient(names.comments);
+        await blob.upload(buf, buf.length, { metadata });
+      }
+
+      // .ydoc written LAST (source of truth)
+      const uploadOpts = { metadata };
+      if (leaseId) uploadOpts.conditions = { leaseId };
+      await ydocBlob.upload(ydocBytes, ydocBytes.length, uploadOpts);
+    } finally {
+      if (leaseClient && leaseId) {
+        try { await leaseClient.releaseLease(); } catch { /* ignore */ }
+      }
+    }
   }
 
   /**

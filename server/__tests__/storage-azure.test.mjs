@@ -55,6 +55,14 @@ function createMockContainerClient() {
       async exists() {
         return blobs.has(blobName);
       },
+      getBlobLeaseClient() {
+        return {
+          async acquireLease(duration) {
+            return { leaseId: `lease-${blobName}-${Date.now()}` };
+          },
+          async releaseLease() {},
+        };
+      },
     };
   }
 
@@ -79,6 +87,14 @@ function createMockContainerClient() {
       };
     },
   };
+}
+
+/* ── Helpers ────────────────────────────────────────────────────────────── */
+
+function createMockBackend() {
+  const container = createMockContainerClient();
+  const backend = new AzureStorageBackend({ containerClient: container });
+  return { container, backend };
 }
 
 /* ── Tests ─────────────────────────────────────────────────────────────── */
@@ -305,5 +321,34 @@ describe('AzureStorageBackend', () => {
     assert.deepStrictEqual(result.ydocBytes, Buffer.from([0x42]));
     assert.strictEqual(result.secBytes, null);
     assert.strictEqual(result.commentsJson, null);
+  });
+
+  it('writeRoom acquires and releases blob lease when available', async () => {
+    const leaseLog = [];
+    const { backend } = createMockBackend();
+    // Monkey-patch to track lease calls
+    const origGet = backend._container.getBlockBlobClient.bind(backend._container);
+    backend._container.getBlockBlobClient = (name) => {
+      const client = origGet(name);
+      const origLease = client.getBlobLeaseClient.bind(client);
+      client.getBlobLeaseClient = () => {
+        const lc = origLease();
+        const origAcquire = lc.acquireLease.bind(lc);
+        const origRelease = lc.releaseLease.bind(lc);
+        lc.acquireLease = async (d) => { leaseLog.push('acquire'); return origAcquire(d); };
+        lc.releaseLease = async () => { leaseLog.push('release'); return origRelease(); };
+        return lc;
+      };
+      return client;
+    };
+
+    await backend.writeRoom('lease-test', {
+      ydocBytes: Buffer.from([1]),
+      secBytes: null,
+      commentsJson: null,
+    });
+
+    assert.ok(leaseLog.includes('acquire'));
+    assert.ok(leaseLog.includes('release'));
   });
 });
