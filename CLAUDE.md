@@ -414,6 +414,15 @@ npm run dev             # terminal 2: Vite dev server on localhost:5173
 - **Operational:** Per-IP rate limiting (WebSocket + HTTP read/write), `GET /health` endpoint (room health status, connection count), structured JSON logging (`SIM_LOG_FORMAT=json`).
 - **Remaining gaps:** JWT tokens are passed as WebSocket URL query parameters (y-websocket v1 limitation) — production deployments behind reverse proxies must sanitize access logs.
 
+### Collab E2E test gotchas
+
+- **IdentityModal input:** `input[placeholder*="Jordan"]` (placeholder is "e.g. Jordan Rivera", NOT "name")
+- **PresenceBar:** No CSS class — inline styled divs. Self-indicator: `div[title*="(you)"]`
+- **ConnectionBanner:** Returns `null` when connected (no DOM to query). Uses `role="status"` when visible.
+- **GET /rooms response:** Returns `{ rooms: [...] }` wrapper, not a bare array
+- **Two-tab editing tests:** Both tabs load sample data from localStorage and race on initial publish. Server-seed content via `POST /rooms/:id/upload` before joining to avoid this.
+- **Lock state:** Store `lockedByName` (display name) alongside `lockedBy` (user ID) — can't resolve names from IDs without live awareness.
+
 ### Reference data sources
 
 SIM uses two USACE-maintained databases parsed from the legacy SpecsIntact installation:
