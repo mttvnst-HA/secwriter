@@ -56,13 +56,48 @@ export async function getBlockText(page, index = 0) {
   return blocks.nth(index).textContent();
 }
 
+/**
+ * Seed a room with .SEC content via the upload endpoint.
+ * Requires a live Y.Doc on the server (at least one WebSocket client connected).
+ * The caller should connect one client first, then call this, then connect others.
+ */
+export async function seedRoom(roomId, secContent) {
+  return new Promise((resolve, reject) => {
+    const body = Buffer.from(secContent, 'latin1');
+    const req = http.request(`${COLLAB_HTTP}/rooms/${roomId}/upload`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/octet-stream', 'Content-Length': body.length },
+    }, (res) => {
+      const chunks = [];
+      res.on('data', c => chunks.push(c));
+      res.on('end', () => {
+        if (res.statusCode === 200) resolve(JSON.parse(Buffer.concat(chunks).toString()));
+        else reject(new Error(`seedRoom ${roomId}: ${res.statusCode} ${Buffer.concat(chunks).toString()}`));
+      });
+    });
+    req.on('error', reject);
+    req.end(body);
+  });
+}
+
+/** Minimal .SEC content for seeding test rooms. */
+export const MINIMAL_SEC = `<?xml version="1.0" encoding="windows-1252"?><SEC><MTA NAME="SUBFORMAT" CONTENT="NEW"/><MTA NAME="AUTONUMBER" CONTENT="TRUE"/><HDR/><PRT><TTL>PART 1   GENERAL</TTL><SPT><TTL>1.1   TEST SECTION</TTL><TXT>This is seeded test content.</TXT></SPT></PRT></SEC>`;
+
 /** Wait for the collab connection to establish and editor to be ready. */
 export async function waitForConnected(page) {
   // Wait until at least one contenteditable block is visible and no
   // "Connecting" text remains on the page. The ConnectionBanner renders
   // null when connected, so once contenteditable exists and no banner
   // text is present, we're good.
-  await page.waitForSelector('[contenteditable]', { timeout: 15000 });
+  await page.waitForSelector('[contenteditable]', { timeout: 20000 });
   // Give Yjs a moment to complete the sync handshake
   await page.waitForTimeout(1000);
+}
+
+/**
+ * Wait for blocks to become editable (collabReadOnly cleared).
+ * Use after waitForConnected + room seeding to ensure the editor is interactive.
+ */
+export async function waitForEditable(page) {
+  await page.waitForSelector('[contenteditable="true"]', { timeout: 25000 });
 }

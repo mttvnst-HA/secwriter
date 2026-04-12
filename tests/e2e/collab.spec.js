@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import http from 'node:http';
-import { createRoom, deleteRoom, joinRoom, getBlockText, waitForConnected } from './collab-helpers.js';
+import { createRoom, deleteRoom, joinRoom, getBlockText, waitForConnected, waitForEditable, seedRoom, MINIMAL_SEC } from './collab-helpers.js';
 
 const COLLAB_HTTP = 'http://127.0.0.1:1235';
 
@@ -164,47 +164,52 @@ test.describe('Collab', () => {
   });
 
   // ── 6. Two-tab text sync ──────────────────────────────────────────────────────
-  // FIXME: Two-tab typing tests require server-seeded room content.
-  // When both tabs join an empty room, each loads sample data from localStorage
-  // and publishes it — the initial sync race causes typed edits to be overwritten.
-  // Fix: use POST /rooms/:id/upload to seed content server-side before joining.
-  test.fixme('two-tab text sync: text typed by user A is visible to user B', { timeout: 60000 }, async ({ browser }) => {
+  // Server-seeded room content prevents the initial-sync race where both tabs
+  // load sample data from localStorage and overwrite each other's edits.
+  test('two-tab text sync: text typed by user A is visible to user B', { timeout: 60000 }, async ({ browser }) => {
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
     const ctxB = await browser.newContext();
     try {
       await createRoom(room);
 
+      // Connect User A first — this creates the Y.Doc on the server
       const pageA = await joinRoom(ctxA, room);
       await dismissIdentityModal(pageA, 'User A');
       await waitForConnected(pageA);
 
+      // Seed room content server-side so neither client publishes localStorage data
+      await seedRoom(room, MINIMAL_SEC);
+
+      // Wait for User A to receive and render seeded content
+      await waitForEditable(pageA);
+      await pageA.waitForTimeout(2000);
+
+      // Now connect User B — receives seeded content via Yjs sync
       const pageB = await joinRoom(ctxB, room);
       await dismissIdentityModal(pageB, 'User B');
       await waitForConnected(pageB);
 
-      // Wait for blocks to become editable (collabReadOnly clears when connected)
-      await pageA.waitForSelector('[contenteditable="true"]', { timeout: 15000 });
-      await pageB.waitForSelector('[contenteditable="true"]', { timeout: 15000 });
-
-      // Let both tabs fully sync their initial state before editing
-      await pageA.waitForTimeout(2000);
+      // Wait for blocks to become editable on both pages
+      await waitForEditable(pageB);
       await pageB.waitForTimeout(1000);
 
-      // User A clicks the LAST editable block (less likely to conflict with sample data)
-      const editableBlocks = pageA.locator('[contenteditable="true"]');
-      const lastBlock = editableBlocks.last();
+      // User A clicks the last editable block and types a marker
+      const lastBlock = pageA.locator('[contenteditable="true"]').last();
+      await lastBlock.scrollIntoViewIfNeeded();
       await lastBlock.click();
+      await pageA.waitForTimeout(300);
       await pageA.keyboard.press('End');
       const marker = `SYNC-${Date.now()}`;
-      await pageA.keyboard.type(marker);
+      await pageA.keyboard.type(marker, { delay: 50 });
 
-      // Wait for Yjs sync
+      // Blur to trigger handleBlur → onUpdate → publish to Y.Doc
+      await pageA.keyboard.press('Tab');
       await pageA.waitForTimeout(3000);
 
       // User B's page should contain the marker text somewhere in any block
       const allTextB = await pageB.evaluate(() =>
-        [...document.querySelectorAll('[contenteditable="true"]')]
+        [...document.querySelectorAll('[contenteditable]')]
           .map(el => el.textContent).join('|||')
       );
       expect(allTextB).toContain(marker);
@@ -216,40 +221,49 @@ test.describe('Collab', () => {
   });
 
   // ── 7. Two-tab block operations ───────────────────────────────────────────────
-  // FIXME: Same initial-sync race as two-tab text sync — needs server-seeded content.
-  test.fixme('two-tab block ops: new blocks created by A sync to B', { timeout: 60000 }, async ({ browser }) => {
+  // Server-seeded room content prevents the initial-sync race.
+  test('two-tab block ops: new blocks created by A sync to B', { timeout: 60000 }, async ({ browser }) => {
     const room = uniqueRoom();
     const ctxA = await browser.newContext();
     const ctxB = await browser.newContext();
     try {
       await createRoom(room);
 
+      // Connect User A first — this creates the Y.Doc on the server
       const pageA = await joinRoom(ctxA, room);
       await dismissIdentityModal(pageA, 'User A');
       await waitForConnected(pageA);
 
+      // Seed room content server-side
+      await seedRoom(room, MINIMAL_SEC);
+
+      // Wait for User A to receive and render seeded content
+      await waitForEditable(pageA);
+      await pageA.waitForTimeout(2000);
+
+      // Now connect User B
       const pageB = await joinRoom(ctxB, room);
       await dismissIdentityModal(pageB, 'User B');
       await waitForConnected(pageB);
 
-      // Wait for blocks to become editable and let initial sync settle
-      await pageA.waitForSelector('[contenteditable="true"]', { timeout: 15000 });
-      await pageB.waitForSelector('[contenteditable="true"]', { timeout: 15000 });
-      await pageA.waitForTimeout(2000);
+      // Wait for blocks to become editable and let sync settle
+      await waitForEditable(pageB);
+      await pageB.waitForTimeout(1000);
 
       // Count initial blocks on B
       const initialCountB = await pageB.locator('[contenteditable]').count();
 
       // User A clicks the last editable block and presses Enter to create a new block
-      const editableBlocks = pageA.locator('[contenteditable="true"]');
-      const lastBlock = editableBlocks.last();
+      const lastBlock = pageA.locator('[contenteditable="true"]').last();
+      await lastBlock.scrollIntoViewIfNeeded();
       await lastBlock.click();
       await pageA.keyboard.press('End');
       await pageA.keyboard.press('Enter');
       const marker = `NEWBLOCK-${Date.now()}`;
-      await pageA.keyboard.type(marker);
+      await pageA.keyboard.type(marker, { delay: 50 });
 
-      // Wait for sync
+      // Blur to trigger handleBlur → onUpdate → publish to Y.Doc
+      await pageA.keyboard.press('Tab');
       await pageA.waitForTimeout(3000);
 
       // User B should see more blocks than before
