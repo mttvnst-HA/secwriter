@@ -46,15 +46,19 @@ jobs:
       # can pass `--blobHost 0.0.0.0` — the default image binds loopback-
       # only, which isn't reachable from the job steps.
       - name: Start Azurite
-        # Pinned tag: Azurite's `latest` has lagged behind the
-        # @azure/storage-blob SDK's x-ms-version in the past, producing
-        # opaque 400s. 3.34.0 supports SDK versions through 2025-01-05.
-        # --loose disables strict x-ms-version validation as a belt-and-
-        # suspenders measure. -l /data gives Azurite a writable workspace.
+        # @azure/storage-blob 12.31 sends x-ms-version: 2026-02-06, which
+        # Azurite 3.34.0 (and its `latest` tag) doesn't know about and
+        # rejects with 400 InvalidHeaderValue. --skipApiVersionCheck
+        # bypasses that validation — the protocol is stable enough across
+        # recent versions that the tested operations (container CRUD,
+        # blob upload/download/lease, listBlobsFlat) work fine. --loose
+        # is the older umbrella flag but does NOT imply API-version
+        # skipping in 3.34.0, so keep both. -l /data gives Azurite a
+        # writable workspace.
         run: |
           docker run -d --name azurite -p 10000:10000 \
             mcr.microsoft.com/azure-storage/azurite:3.34.0 \
-            azurite-blob --blobHost 0.0.0.0 --loose -l /data
+            azurite-blob --blobHost 0.0.0.0 --loose --skipApiVersionCheck -l /data
 
       - name: Wait for Azurite
         run: |

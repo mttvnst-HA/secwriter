@@ -155,7 +155,7 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
     // External party (simulates another server instance) acquires a lease.
     const ydocBlob = container.getBlockBlobClient('lease-room/room.ydoc');
     const externalLease = ydocBlob.getBlobLeaseClient();
-    const { leaseId } = await externalLease.acquireLease(30);
+    await externalLease.acquireLease(30);
 
     try {
       // Backend's own acquireLease should fail (caught silently), then the
