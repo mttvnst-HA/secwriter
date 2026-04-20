@@ -1,0 +1,34 @@
+# Keep the build context lean for Dockerfile.collab.
+# Only server/, package.json, and package-lock.json need to reach the image.
+
+node_modules
+dist
+test-results
+playwright-report
+coverage
+tools/harper-candidates.*
+
+# Frontend-only source trees
+src
+public
+tests
+reference
+corpus
+
+# VCS + CI config
+.git
+.github
+.vscode
+
+# Local configs not needed at runtime
+*.local
+.env
+.env.*
+!.env.example
+
+# Audit artifacts
+test-results
+
+# OS cruft
+.DS_Store
+Thumbs.db

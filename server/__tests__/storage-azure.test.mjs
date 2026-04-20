@@ -232,7 +232,9 @@ describe('AzureStorageBackend', () => {
 
     const ydocEntry = container._blobs.get('archive/arch-test/room.ydoc');
     assert.deepStrictEqual(ydocEntry.content, Buffer.from([0xAA, 0xBB]), 'ydoc content preserved');
-    assert.ok(ydocEntry.metadata.archivedAt, 'archivedAt metadata set');
+    // Metadata key is lowercase on disk — see storage-azure.cjs comment
+    // re: Node HTTP header normalization on the read path.
+    assert.ok(ydocEntry.metadata.archivedat, 'archivedat metadata set');
   });
 
   it('restoreRoom moves archive blobs back to original names', async () => {

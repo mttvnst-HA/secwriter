@@ -18,14 +18,99 @@ jobs:
           cache: npm
       - run: npm ci
 
-      - name: Vitest unit tests (457 tests)
+      - name: Vitest unit tests (630 tests)
         run: npm test
 
-      - name: Compliance rule tests (40 tests, Node runner)
+      - name: Compliance rule tests (42 tests, Node runner)
         run: npm run test:compliance
 
       - name: Corpus tests (17 tests, Node runner)
         run: npm run test:corpus
+
+      - name: Server tests (55 tests, Node runner)
+        run: npm run test:server
+
+  azure-integration:
+    name: Azure Integration (Azurite)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      # Azurite is Microsoft's in-memory Azure Storage emulator. We run it
+      # as a Docker container (rather than a GHA `services:` entry) so we
+      # can pass `--blobHost 0.0.0.0` — the default image binds loopback-
+      # only, which isn't reachable from the job steps.
+      - name: Start Azurite
+        # @azure/storage-blob 12.31 sends x-ms-version: 2026-02-06, which
+        # Azurite 3.34.0 (and its `latest` tag) doesn't know about and
+        # rejects with 400 InvalidHeaderValue. --skipApiVersionCheck
+        # bypasses that validation — the protocol is stable enough across
+        # recent versions that the tested operations (container CRUD,
+        # blob upload/download/lease, listBlobsFlat) work fine. --loose
+        # is the older umbrella flag but does NOT imply API-version
+        # skipping in 3.34.0, so keep both. -l /data gives Azurite a
+        # writable workspace.
+        run: |
+          docker run -d --name azurite -p 10000:10000 \
+            mcr.microsoft.com/azure-storage/azurite:3.34.0 \
+            azurite-blob --blobHost 0.0.0.0 --loose --skipApiVersionCheck -l /data
+
+      - name: Wait for Azurite
+        run: |
+          for i in {1..30}; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:10000/ || echo 000)
+            if [ "$code" != "000" ]; then
+              echo "Azurite responded (HTTP $code) — ready"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Azurite failed to start"
+          docker logs azurite || true
+          exit 1
+
+      - name: Azurite SDK sanity check
+        # Runs the bare minimum SDK call before the test suite so a
+        # connection/auth/API-version problem surfaces with a clear error,
+        # not through node:test's "hook failed" wrapper.
+        run: |
+          node -e "
+          const { BlobServiceClient } = require('@azure/storage-blob');
+          const cs = process.env.AZURE_STORAGE_CONNECTION_STRING;
+          const client = BlobServiceClient.fromConnectionString(cs);
+          const container = client.getContainerClient('sanity-check');
+          container.create()
+            .then(() => { console.log('OK — container created'); return container.delete(); })
+            .then(() => console.log('OK — cleanup complete'))
+            .catch(err => {
+              console.error('SDK sanity check failed:');
+              console.error('  message:', err.message);
+              console.error('  statusCode:', err.statusCode);
+              console.error('  code:', err.code);
+              console.error('  details:', JSON.stringify(err.details || {}, null, 2));
+              console.error('  responseBody:', err.response?.bodyAsText?.slice(0, 500));
+              process.exit(1);
+            });
+          "
+        env:
+          AZURE_STORAGE_CONNECTION_STRING: "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"
+
+      - name: Azurite integration tests (real @azure/storage-blob SDK)
+        run: npm run test:azure:integration
+        env:
+          # Well-known Azurite connection string (devstoreaccount1 / public dev key).
+          # This is NOT a secret — it's documented in the Azurite README and is
+          # the fixed credential the emulator accepts for shared-key auth.
+          AZURE_STORAGE_CONNECTION_STRING: "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"
+
+      - name: Azurite logs (on failure)
+        if: failure()
+        run: docker logs azurite || true
 
   e2e-tests:
     name: Playwright E2E Tests
@@ -41,7 +126,7 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: E2E tests (140 tests)
+      - name: E2E tests (151 tests)
         run: npm run test:e2e
         env:
           # Raise collab-server rate limits for E2E. Defaults (20 write/min,
