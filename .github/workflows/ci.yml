@@ -27,6 +27,53 @@ jobs:
       - name: Corpus tests (17 tests, Node runner)
         run: npm run test:corpus
 
+  azure-integration:
+    name: Azure Integration (Azurite)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      # Azurite is Microsoft's in-memory Azure Storage emulator. We run it
+      # as a Docker container (rather than a GHA `services:` entry) so we
+      # can pass `--blobHost 0.0.0.0` — the default image binds loopback-
+      # only, which isn't reachable from the job steps.
+      - name: Start Azurite
+        run: |
+          docker run -d --name azurite -p 10000:10000 \
+            mcr.microsoft.com/azure-storage/azurite \
+            azurite-blob --blobHost 0.0.0.0 --loose
+
+      - name: Wait for Azurite
+        run: |
+          for i in {1..30}; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:10000/ || echo 000)
+            if [ "$code" != "000" ]; then
+              echo "Azurite responded (HTTP $code) — ready"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Azurite failed to start"
+          docker logs azurite || true
+          exit 1
+
+      - name: Azurite integration tests (real @azure/storage-blob SDK)
+        run: npm run test:azure:integration
+        env:
+          # Well-known Azurite connection string (devstoreaccount1 / public dev key).
+          # This is NOT a secret — it's documented in the Azurite README and is
+          # the fixed credential the emulator accepts for shared-key auth.
+          AZURE_STORAGE_CONNECTION_STRING: "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"
+
+      - name: Azurite logs (on failure)
+        if: failure()
+        run: docker logs azurite || true
+
   e2e-tests:
     name: Playwright E2E Tests
     runs-on: windows-latest
