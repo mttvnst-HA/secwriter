@@ -1,5 +1,45 @@
 import { describe, it, expect } from 'vitest';
-import { diffWords, stripHtml, diffChars, refineWordDiff } from '../text-diff.js';
+import { parseHTML } from 'linkedom';
+import { diffWords, stripHtml, diffChars, refineWordDiff, annotateDomWithDiff } from '../text-diff.js';
+
+// Shared linkedom document for DOM-based tests.
+//
+// We only attach to globalThis.document when nothing has claimed it yet —
+// defensive against a future Vitest config change (jsdom environment, single
+// worker pool, etc.) that would otherwise let this overwrite a real document
+// or leak into sibling test files.
+const { document: linkedomDoc } = parseHTML('<!DOCTYPE html><html><body></body></html>');
+if (typeof globalThis.document === 'undefined') {
+  globalThis.document = linkedomDoc;
+}
+
+// linkedom Text nodes lack splitText — polyfill it on the prototype
+{
+  const probe = linkedomDoc.createTextNode('x');
+  const TextProto = Object.getPrototypeOf(probe);
+  if (typeof TextProto.splitText !== 'function') {
+    TextProto.splitText = function splitText(offset) {
+      const before = this.textContent.slice(0, offset);
+      const after = this.textContent.slice(offset);
+      this.textContent = before;
+      const newNode = linkedomDoc.createTextNode(after);
+      if (this.nextSibling) {
+        this.parentNode.insertBefore(newNode, this.nextSibling);
+      } else {
+        this.parentNode.appendChild(newNode);
+      }
+      return newNode;
+    };
+  }
+}
+
+function makeContainer(text) {
+  const el = linkedomDoc.createElement('div');
+  // Use innerHTML (wrapped in a span) so we get a proper element child,
+  // giving text nodes a stable parentNode for splitText operations.
+  el.innerHTML = `<span>${text}</span>`;
+  return el;
+}
 
 describe('diffWords', () => {
   it('returns empty for identical text', () => {
@@ -158,5 +198,50 @@ describe('stripHtml', () => {
   it('handles null/empty', () => {
     expect(stripHtml(null)).toBe('');
     expect(stripHtml('')).toBe('');
+  });
+});
+
+describe('annotateDomWithDiff — author attribution', () => {
+  const ALICE = { id: 'u-alice', name: 'Alice', color: '#7a3' };
+
+  it('sets data-author-* and --author-color on <del> nodes when author is provided', () => {
+    const container = makeContainer('the fox');
+    annotateDomWithDiff(container, 'the quick fox', ALICE);
+    const del = container.querySelector('del.mark-del');
+    expect(del).toBeTruthy();
+    expect(del.getAttribute('data-author-id')).toBe('u-alice');
+    expect(del.getAttribute('data-author-name')).toBe('Alice');
+    expect(del.getAttribute('data-author-color')).toBe('#7a3');
+    const style = del.getAttribute('style') || '';
+    expect(style).toContain('--author-color');
+    expect(style).toContain('#7a3');
+  });
+
+  it('sets data-author-* and --author-color on <ins> wrappers when author is provided', () => {
+    const container = makeContainer('the slow fox');
+    annotateDomWithDiff(container, 'the quick fox', ALICE);
+    const ins = container.querySelector('ins.mark-add');
+    expect(ins).toBeTruthy();
+    expect(ins.getAttribute('data-author-id')).toBe('u-alice');
+    expect(ins.getAttribute('data-author-name')).toBe('Alice');
+    expect(ins.getAttribute('data-author-color')).toBe('#7a3');
+    const style = ins.getAttribute('style') || '';
+    expect(style).toContain('--author-color');
+    expect(style).toContain('#7a3');
+  });
+
+  it('does NOT set author attributes when called without author (back-compat)', () => {
+    const container = makeContainer('the slow fox');
+    annotateDomWithDiff(container, 'the quick fox'); // no author
+    const ins = container.querySelector('ins.mark-add');
+    const del = container.querySelector('del.mark-del');
+    if (ins) {
+      expect(ins.getAttribute('data-author-id')).toBeFalsy();
+      expect(ins.getAttribute('data-author-color')).toBeFalsy();
+    }
+    if (del) {
+      expect(del.getAttribute('data-author-id')).toBeFalsy();
+      expect(del.getAttribute('data-author-color')).toBeFalsy();
+    }
   });
 });

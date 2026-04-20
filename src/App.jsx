@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
-import { FileText, Search, Upload, Download, Check, Loader } from "lucide-react";
+import { FileText, Search, Upload, Download, Check, Loader, Users } from "lucide-react";
 import TreeNode from "./components/TreeNode.jsx";
 // MarkLegend component preserved for future user manual documentation (removed from toolbar UI)
 import EditableBlock from "./components/EditableBlock.jsx";
@@ -35,6 +35,80 @@ import { getVisibleTextFromHtml } from "./lib/text-diff.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import { clearInlineLinting } from "./lib/inline-linter.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
+import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES, DEFAULT_HTTP_URL } from "./lib/collab.js";
+import { stripOrphanCommentSpans } from "./lib/orphan-comment-spans.js";
+import { loadIdentity } from "./lib/identity.js";
+import { getToken, onTokenRefresh, getAuthMode, signOut as authSignOut, getIdentity } from './lib/auth-client.js';
+import IdentityModal from "./components/IdentityModal.jsx";
+import RoomPanel from "./components/RoomPanel.jsx";
+import PresenceBar from "./components/PresenceBar.jsx";
+import RemoteCursors from "./components/RemoteCursors.jsx";
+import ConnectionBanner from "./components/ConnectionBanner.jsx";
+import ToastStack, { useToasts } from "./components/Toast.jsx";
+
+const COLLAB_HTTP_URL = DEFAULT_HTTP_URL;
+
+// Walk text nodes under `root` to compute the plain-text offset of
+// (node, offset). Used to transport a caret position across a DOM rewrite
+// caused by a remote collab update.
+function getPlainTextOffset(root, node, offset) {
+  if (!root || !node) return -1;
+  let total = 0;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+  let current;
+  while ((current = walker.nextNode())) {
+    if (current === node) return total + offset;
+    total += current.nodeValue.length;
+  }
+  return -1; // M-6: node not found — caller must bail rather than jump caret to end
+}
+
+// Walk text nodes in `root` and resolve a plain-text offset to a
+// (textNode, offsetInNode) pair. Returns null if the walker is empty.
+// Offsets past the end clamp to the last text node's end.
+function resolveOffsetInRoot(root, index) {
+  let remaining = index;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+  let current;
+  let last = null;
+  while ((current = walker.nextNode())) {
+    last = current;
+    const len = current.nodeValue.length;
+    if (remaining <= len) return { node: current, offset: remaining };
+    remaining -= len;
+  }
+  if (last) return { node: last, offset: last.nodeValue.length };
+  return null;
+}
+
+// Restore a caret or selection inside `root` from plain-text offsets.
+//
+// If `endIndex` is undefined or equal to `startIndex`, a collapsed caret
+// is restored at `startIndex` (unchanged legacy behavior).
+//
+// If `endIndex > startIndex`, a non-collapsed selection is restored
+// spanning both offsets. This preserves text highlighted by the user
+// before a remote update arrived — previously the selection was
+// silently collapsed, which was a UX surprise during long replacements
+// (user thinks text is still selected, types to replace, instead
+// appends).
+function restorePlainTextOffset(root, startIndex, endIndex) {
+  const start = resolveOffsetInRoot(root, startIndex);
+  if (!start) { try { root.focus(); } catch { /* ignore */ } return; }
+  const range = document.createRange();
+  range.setStart(start.node, start.offset);
+  if (endIndex === undefined || endIndex <= startIndex) {
+    range.collapse(true);
+  } else {
+    const end = resolveOffsetInRoot(root, endIndex);
+    if (end) range.setEnd(end.node, end.offset);
+    else range.collapse(true);
+  }
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+  try { root.focus(); } catch { /* ignore */ }
+}
 
 export default function SpecEditor() {
   const {
@@ -66,6 +140,9 @@ export default function SpecEditor() {
   const [commentRect, setCommentRect] = useState(null);
   const [showComments, setShowComments] = useState(false);
   const [complianceOpen, setComplianceOpen] = useState(false);
+  const [collabReachable, setCollabReachable] = useState(false);
+  const [showRoomPanel, setShowRoomPanel] = useState(false);
+  const [roomList, setRoomList] = useState([]);
   const [inlineLintingEnabled, setInlineLintingEnabled] = useState(() => {
     try { return localStorage.getItem('sim-inline-linting') !== 'false'; } catch { return true; }
   });
@@ -79,12 +156,81 @@ export default function SpecEditor() {
   const [editorZoom, setEditorZoom] = useState(() => {
     try { return parseFloat(localStorage.getItem('sim-editor-zoom')) || 1; } catch { return 1; }
   });
+  // ── Collaborative editing (prototype) ──────────────────────────────────
+  // When ?room=... is present the app joins a Yjs room. The collab session
+  // becomes the source of truth for `blocks`; localStorage auto-save and
+  // auto-restore are suppressed, and undo/redo is handled by Y.UndoManager.
+  const [roomId] = useState(() => getRoomFromUrl());
+  const inRoom = !!roomId;
+  const [identity, setIdentity] = useState(() => (inRoom ? loadIdentity() : null));
+  // Safety net: if auth-client extracted identity from JWT but localStorage
+  // wasn't written in time for the useState initializer, sync it here.
+  useEffect(() => {
+    if (inRoom && !identity) {
+      const authIdentity = getIdentity();  // from auth-client
+      if (authIdentity) setIdentity(authIdentity);
+    }
+  }, [inRoom, identity]);
+  const [peers, setPeers] = useState([]);
+  const [collabStatus, setCollabStatus] = useState(inRoom ? 'connecting' : null);
+  const [reconnectIn, setReconnectIn] = useState(0);
+  const [roomLocked, setRoomLocked] = useState(false);
+  const [roomLockedBy, setRoomLockedBy] = useState(null);
+  const [roomLockedByName, setRoomLockedByName] = useState(null);
+  const isLockedByOther = roomLocked && roomLockedBy !== identity?.id;
+  const collabReadOnly = (inRoom && collabStatus !== null && collabStatus !== 'connected') || isLockedByOther;
+  // Reactive auth token — refreshed by MSAL silent renewal or external host
+  const [authToken, setAuthToken] = useState(null);
+  const authHeaders = useMemo(
+    () => authToken ? { 'Authorization': `Bearer ${authToken}` } : {},
+    [authToken]
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    getToken().then(t => { if (!cancelled && t) setAuthToken(t); });
+    const unsub = onTokenRefresh(t => { if (!cancelled) setAuthToken(t); });
+    return () => { cancelled = true; unsub(); };
+  }, []);
+  const toasts = useToasts();
+  // A2 — stable ref to toasts.push so effects can fire toasts without
+  // needing `toasts` in their dep array. Without this, the publish effect
+  // would re-run on every render because `toasts.items` changes whenever
+  // a toast is added or dismissed, which in turn would wastefully re-run
+  // estimatePublishBytes + ref-equality check on every keystroke.
+  const toastPushRef = useRef(toasts.push);
+  toastPushRef.current = toasts.push;
+  const authHeadersRef = useRef(authHeaders);
+  authHeadersRef.current = authHeaders;
+  const collabSessionRef = useRef(null);
+  // Reference-equality guard: whenever onRemoteBlocks runs, we stash the new
+  // array here and the publish effect compares `blocks === lastRemoteBlocksRef.current`
+  // to decide whether the change was local (publish) or remote (skip).
+  // The previous synchronous `remoteApplyingRef` guard was ineffective because
+  // React's effect runs after commit — by then the flag was already cleared,
+  // so every remote change got re-published as a local transaction, which
+  // (a) corrupted initial persistence on join and (b) caused Y.UndoManager
+  // to track remote edits, making Ctrl+Z undo everyone's work.
+  const lastRemoteBlocksRef = useRef(null);
+  const sessionReadyRef = useRef(false);
+  const metaReadyRef = useRef(false);
+  const tcDirtyRef = useRef(false);
+  // Stash the nextBlocks from the initial onRemoteBlocks call so the
+  // subsequent initial onRemoteComments can strip orphan mark-comment
+  // spans against the authoritative remote blocks (blocksRef is not
+  // yet updated — setBlocks is async).
+  const initialBlocksForCleanupRef = useRef(null);
+
   const fileHandleRef = useRef(null); // File System Access API handle for SEC file
   const commentsHandleRef = useRef(null); // File System Access API handle for comments sidecar
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
   const blocksRef = useRef(blocks);
   blocksRef.current = blocks;
+  const sectionMetaRef = useRef(sectionMeta);
+  sectionMetaRef.current = sectionMeta;
+  const commentsRef = useRef(new Map());
+  commentsRef.current = comments;
   const tree = useMemo(() => buildTree(blocks), [blocks]);
   const numberMap = useMemo(() => computeNumbering(blocks), [blocks]);
   const oliLabels = useMemo(() => computeOliLabels(blocks), [blocks]);
@@ -148,7 +294,9 @@ export default function SpecEditor() {
       setSectionMeta(extractMetadata(content));
       setSelectedTreeId(null);
       setFocusedBlockId(null);
-      setComments(new Map());
+      // In a room, yComments is the authoritative source — do not wipe shared
+      // comment state on a local file import.
+      if (!inRoom) setComments(new Map());
       // Prevent cross-file data loss: a stale handle from a previous file
       // would otherwise cause Ctrl+S to silently overwrite that file with
       // the newly-loaded content.
@@ -301,6 +449,12 @@ export default function SpecEditor() {
 
   // Save (Ctrl+S) — save to current location, or prompt if first save
   const handleSave = useCallback(async () => {
+    if (inRoom && roomId) {
+      // Server already persists — just show confirmation
+      setSaveStatus('saved');
+      setTimeout(() => setSaveStatus(null), 2000);
+      return;
+    }
     setSaveStatus('saving');
     const xml = serializeSEC(blocks, sectionMeta);
     const encoded = encodeWindows1252(xml);
@@ -313,7 +467,7 @@ export default function SpecEditor() {
     } else {
       setSaveStatus(null);
     }
-  }, [blocks, sectionMeta, doFileSave, saveCommentsSidecar]);
+  }, [blocks, sectionMeta, doFileSave, saveCommentsSidecar, inRoom, roomId]);
 
   // Save As — always prompt for new location
   const handleSaveAs = useCallback(async () => {
@@ -330,6 +484,44 @@ export default function SpecEditor() {
       setSaveStatus(null);
     }
   }, [blocks, sectionMeta, doFileSave]);
+
+  // Download .SEC from collab server (in-room only)
+  const handleDownloadSec = useCallback(async () => {
+    if (!roomId) return;
+    try {
+      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/sec`, { headers: authHeaders });
+      if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${sectionMeta.sectionNumber?.replace(/\s+/g, '_') || roomId}.SEC`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Download SEC failed:', err);
+      setSaveStatus('error');
+      setTimeout(() => setSaveStatus(null), 2000);
+    }
+  }, [roomId, sectionMeta.sectionNumber, authHeaders]);
+
+  // Download comments JSON from collab server (in-room only)
+  const handleDownloadComments = useCallback(async () => {
+    if (!roomId) return;
+    try {
+      const resp = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}/comments`, { headers: authHeaders });
+      if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${sectionMeta.sectionNumber?.replace(/\s+/g, '_') || roomId}.comments.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Download comments failed:', err);
+    }
+  }, [roomId, sectionMeta.sectionNumber, authHeaders]);
 
   // Programmatic focus for EXISTING elements (arrow nav, tree select, delete-focus-prev)
   // New blocks focus themselves via the ref callback in EditableBlock
@@ -377,6 +569,9 @@ export default function SpecEditor() {
     if (html !== null) {
       setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html } : b));
     }
+    const author = identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' };
+    const createdAt = Date.now();
+    const ts = new Date(createdAt).toISOString();
     setComments(prev => {
       const next = new Map(prev);
       next.set(commentId, {
@@ -384,17 +579,35 @@ export default function SpecEditor() {
         blockId,
         status: "open",
         highlightText: highlightText || "",
-        entries: [{ type: "create", text: "", author: "User", timestamp: new Date().toISOString() }],
+        createdAt,
+        authorId: author.id,
+        authorName: author.name,
+        authorColor: author.color,
+        entries: [{
+          id: `e-${createdAt}`,
+          type: "create",
+          text: "",
+          // New shape fields (used by collab + future Task 7 UI):
+          authorId: author.id,
+          authorName: author.name,
+          authorColor: author.color,
+          ts: createdAt,
+          // Legacy shape fields (keep until Task 7 updates CommentPopup):
+          author: author.name,
+          timestamp: ts,
+        }],
       });
       return next;
     });
+    // NOTE: we do NOT publishComment here — defer to handleCommentUpdateCreate
+    // so the Y.Doc never holds a pending empty-text comment entry.
     // Open the popup immediately so user can type the comment
     setOpenCommentId(commentId);
     setTimeout(() => {
       const el = document.querySelector(`[data-comment-id="${commentId}"]`);
       if (el) setCommentRect(el.getBoundingClientRect());
     }, 50);
-  }, []);
+  }, [inRoom, identity]);
 
   // Update the initial "create" entry with actual comment text and author
   const handleCommentUpdateCreate = useCallback((commentId, text, author) => {
@@ -404,27 +617,83 @@ export default function SpecEditor() {
       if (!c) return prev;
       const entries = [...c.entries];
       if (entries[0]?.type === "create") {
-        entries[0] = { ...entries[0], text, author };
+        // Update both legacy `author` field and new `authorName` field
+        entries[0] = { ...entries[0], text, author, authorName: author };
       }
       next.set(commentId, { ...c, entries });
       return next;
     });
-  }, []);
+    if (inRoom && collabSessionRef.current) {
+      // Publish the full comment now that we have the user's submitted text.
+      // Deferred from handleCommentCreate so the Y.Doc never holds a
+      // pending empty-text comment entry.
+      const effectiveAuthor = identity || { id: 'local', name: author || 'User', color: '#888' };
+      // commentsRef is assigned on every render (`commentsRef.current = comments`),
+      // so it reflects the last *rendered* comments Map. This is safe here
+      // because handleCommentCreate ran on a prior render tick (the user had
+      // to type submission text between create and update-create), so the
+      // freshly-created comment is already present in commentsRef.current.
+      const current = commentsRef.current?.get(commentId);
+      if (current) {
+        try {
+          collabSessionRef.current.publishComment(commentId, {
+            blockId: current.blockId,
+            status: current.status,
+            highlightText: current.highlightText,
+            createdAt: current.createdAt,
+            author: effectiveAuthor,
+            initialText: text,
+          });
+        } catch (err) {
+          console.error('[collab] publishComment (update-create) failed:', err);
+        }
+      }
+    }
+  }, [inRoom, identity]);
 
   const handleCommentReply = useCallback((commentId, text, author) => {
+    const effectiveAuthor = identity || { id: 'local', name: author || 'User', color: '#888' };
+    const ts = Date.now();
+    const timestamp = new Date(ts).toISOString();
     setComments(prev => {
       const next = new Map(prev);
       const c = next.get(commentId);
       if (!c) return prev;
       next.set(commentId, {
         ...c,
-        entries: [...c.entries, { type: "reply", text, author, timestamp: new Date().toISOString() }],
+        entries: [...c.entries, {
+          id: `e-${ts}`,
+          type: "reply",
+          text,
+          // New shape fields:
+          authorId: effectiveAuthor.id,
+          authorName: effectiveAuthor.name,
+          authorColor: effectiveAuthor.color,
+          ts,
+          // Legacy shape fields:
+          author: effectiveAuthor.name,
+          timestamp,
+        }],
       });
       return next;
     });
-  }, []);
+    if (inRoom && collabSessionRef.current) {
+      try {
+        collabSessionRef.current.publishCommentReply(commentId, {
+          author: effectiveAuthor,
+          text,
+          ts,
+        });
+      } catch (err) {
+        console.error('[collab] publishCommentReply failed:', err);
+      }
+    }
+  }, [inRoom, identity]);
 
   const handleCommentResolve = useCallback((commentId) => {
+    const effectiveAuthor = identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' };
+    const ts = Date.now();
+    const timestamp = new Date(ts).toISOString();
     setComments(prev => {
       const next = new Map(prev);
       const c = next.get(commentId);
@@ -432,10 +701,31 @@ export default function SpecEditor() {
       next.set(commentId, {
         ...c,
         status: "resolved",
-        entries: [...c.entries, { type: "resolve", author: getAuthorName() || "User", timestamp: new Date().toISOString() }],
+        entries: [...c.entries, {
+          id: `e-${ts}`,
+          type: "resolve",
+          // New shape fields:
+          authorId: effectiveAuthor.id,
+          authorName: effectiveAuthor.name,
+          authorColor: effectiveAuthor.color,
+          ts,
+          // Legacy shape fields:
+          author: effectiveAuthor.name,
+          timestamp,
+        }],
       });
       return next;
     });
+    if (inRoom && collabSessionRef.current) {
+      try {
+        collabSessionRef.current.publishCommentStatus(commentId, 'resolved', {
+          author: effectiveAuthor,
+          ts,
+        });
+      } catch (err) {
+        console.error('[collab] publishCommentStatus failed:', err);
+      }
+    }
     // Update the span class in the DOM
     const el = document.querySelector(`[data-comment-id="${commentId}"]`);
     if (el) {
@@ -446,9 +736,12 @@ export default function SpecEditor() {
         setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: blockEl.innerHTML } : b));
       }
     }
-  }, []);
+  }, [inRoom, identity]);
 
   const handleCommentReopen = useCallback((commentId) => {
+    const effectiveAuthor = identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' };
+    const ts = Date.now();
+    const timestamp = new Date(ts).toISOString();
     setComments(prev => {
       const next = new Map(prev);
       const c = next.get(commentId);
@@ -456,10 +749,31 @@ export default function SpecEditor() {
       next.set(commentId, {
         ...c,
         status: "open",
-        entries: [...c.entries, { type: "reopen", author: getAuthorName() || "User", timestamp: new Date().toISOString() }],
+        entries: [...c.entries, {
+          id: `e-${ts}`,
+          type: "reopen",
+          // New shape fields:
+          authorId: effectiveAuthor.id,
+          authorName: effectiveAuthor.name,
+          authorColor: effectiveAuthor.color,
+          ts,
+          // Legacy shape fields:
+          author: effectiveAuthor.name,
+          timestamp,
+        }],
       });
       return next;
     });
+    if (inRoom && collabSessionRef.current) {
+      try {
+        collabSessionRef.current.publishCommentStatus(commentId, 'open', {
+          author: effectiveAuthor,
+          ts,
+        });
+      } catch (err) {
+        console.error('[collab] publishCommentStatus failed:', err);
+      }
+    }
     const el = document.querySelector(`[data-comment-id="${commentId}"]`);
     if (el) {
       el.className = "mark-comment";
@@ -469,7 +783,7 @@ export default function SpecEditor() {
         setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: blockEl.innerHTML } : b));
       }
     }
-  }, []);
+  }, [inRoom, identity]);
 
   const handleCommentDelete = useCallback((commentId) => {
     setComments(prev => {
@@ -477,6 +791,13 @@ export default function SpecEditor() {
       next.delete(commentId);
       return next;
     });
+    if (inRoom && collabSessionRef.current) {
+      try {
+        collabSessionRef.current.deleteComment(commentId);
+      } catch (err) {
+        console.error('[collab] deleteComment failed:', err);
+      }
+    }
     // Remove span from DOM, keep text
     const el = document.querySelector(`[data-comment-id="${commentId}"]`);
     if (el) {
@@ -490,7 +811,10 @@ export default function SpecEditor() {
       }
     }
     setOpenCommentId(null);
-  }, []);
+    // `identity` is not read in this handler, but we include it in the
+    // dep array for symmetry with the other comment handlers. Keeps
+    // the hook identity stable across the same renders as its siblings.
+  }, [inRoom, identity]);
 
   const handleCommentClick = useCallback((commentId, rect) => {
     setOpenCommentId(commentId);
@@ -506,6 +830,7 @@ export default function SpecEditor() {
     resumeHistory();
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
     if (trackChanges) {
+      tcDirtyRef.current = true;
       setTcSnapshots(prev => {
         const next = new Map(prev);
         next.set(id, getVisibleTextFromHtml(html));
@@ -644,6 +969,7 @@ export default function SpecEditor() {
     });
     // Track Changes: add empty snapshot so all typed text is marked as additions on blur
     if (trackChanges) {
+      tcDirtyRef.current = true;
       setTcSnapshots(prev => {
         const next = new Map(prev);
         next.set(newId, "");
@@ -803,6 +1129,7 @@ export default function SpecEditor() {
     });
     // Track Changes: add empty snapshot so all typed text is marked as additions on blur
     if (trackChanges) {
+      tcDirtyRef.current = true;
       setTcSnapshots(prev => {
         const next = new Map(prev);
         next.set(newId, "");
@@ -845,6 +1172,7 @@ export default function SpecEditor() {
         for (const b of next) {
           if (b.html) snap.set(b.id, getVisibleTextFromHtml(b.html));
         }
+        tcDirtyRef.current = true;
         setTcSnapshots(snap);
       }
       return next;
@@ -860,6 +1188,7 @@ export default function SpecEditor() {
         for (const b of next) {
           if (b.html) snap.set(b.id, getVisibleTextFromHtml(b.html));
         }
+        tcDirtyRef.current = true;
         setTcSnapshots(snap);
       }
       return next;
@@ -881,6 +1210,33 @@ export default function SpecEditor() {
   useEffect(() => {
     try { localStorage.setItem('sim-inline-linting', String(inlineLintingEnabled)); } catch {}
   }, [inlineLintingEnabled]);
+
+  // Collab server reachability detection — ping GET /rooms on mount and tab focus (30s cooldown)
+  useEffect(() => {
+    let cancelled = false;
+    const checkCollab = async () => {
+      try {
+        const res = await fetch(`${COLLAB_HTTP_URL}/rooms`, { signal: AbortSignal.timeout(3000), headers: authHeadersRef.current });
+        if (!cancelled && res.ok) {
+          setCollabReachable(true);
+          const data = await res.json();
+          setRoomList(data.rooms || []);
+        }
+      } catch {
+        if (!cancelled) setCollabReachable(false);
+      }
+    };
+    checkCollab();
+    let lastCheck = Date.now();
+    const handleFocus = () => {
+      if (Date.now() - lastCheck > 30000) {
+        lastCheck = Date.now();
+        checkCollab();
+      }
+    };
+    window.addEventListener('focus', handleFocus);
+    return () => { cancelled = true; window.removeEventListener('focus', handleFocus); };
+  }, []);
 
   const zoomIn = useCallback(() => setEditorZoom(z => Math.min(2, Math.round((z + 0.1) * 10) / 10)), []);
   const zoomOut = useCallback(() => setEditorZoom(z => Math.max(0.5, Math.round((z - 0.1) * 10) / 10)), []);
@@ -909,13 +1265,15 @@ export default function SpecEditor() {
     }
   }, []);
 
-  // Auto-save to localStorage every 3 seconds (silent, no UI)
+  // Auto-save to localStorage every 3 seconds (silent, no UI).
+  // Suppressed in a collab room — the server-persisted Yjs doc is the source of truth.
   useEffect(() => {
+    if (inRoom) return;
     const timer = setTimeout(() => {
       autoSave(blocks, sectionMeta, comments, fileName);
     }, 3000);
     return () => clearTimeout(timer);
-  }, [blocks, sectionMeta, comments, fileName]);
+  }, [blocks, sectionMeta, comments, fileName, inRoom]);
 
   // Track dirty state — any block/comment change marks dirty
   useEffect(() => {
@@ -926,7 +1284,9 @@ export default function SpecEditor() {
   // this was silent, which let a stale auto-save from a different file
   // quietly overwrite the initial document (and then, combined with a
   // leftover file handle, get written back to disk on the next Ctrl+S).
+  // Suppressed in a collab room — the server Yjs doc wins.
   useEffect(() => {
+    if (inRoom) return;
     const saved = loadAutoSave();
     if (!saved || !saved.blocks || saved.blocks.length === 0 || !saved.fileName) return;
     setBlocks(saved.blocks);
@@ -942,17 +1302,306 @@ export default function SpecEditor() {
     // the next Ctrl+S so it cannot land on an unrelated file.
     fileHandleRef.current = null;
     commentsHandleRef.current = null;
-  }, []);
+  }, [inRoom]);
+
+  // ── Collab session lifecycle ──
+  // Creates the Yjs session once we have both a room ID and an identity.
+  // Remote updates are pushed into React state via setBlocks; local edits
+  // are published by the next effect.
+  useEffect(() => {
+    if (!inRoom || !identity) return;
+
+    const session = createCollabSession({
+      room: roomId,
+      token: authToken,
+      getTokenFn: getToken,
+      identity,
+      initialBlocks: blocksRef.current,
+      onRemoteBlocks: (nextBlocks, meta) => {
+        // Stash the remote snapshot so the publish effect can detect this
+        // update was not a local edit and skip publishing it back.
+        lastRemoteBlocksRef.current = nextBlocks;
+
+        // The first call (initial sync from the server) is what unblocks
+        // local publishing. Before this fires we must NOT push blocks to
+        // Y.Doc — doing so would race the server's persisted state and
+        // duplicate the document on reload.
+        if (meta?.initial) {
+          sessionReadyRef.current = true;
+          // Stash for the ghost-span cleanup pass that runs in the
+          // subsequent initial onRemoteComments call.
+          initialBlocksForCleanupRef.current = nextBlocks;
+        }
+
+        // Preserve caret — and any non-collapsed selection — across a
+        // remote-triggered DOM rewrite. Capturing both endpoints lets a
+        // user who was mid-replacement (e.g., highlighted a phrase and
+        // was about to retype it) keep their selection when a remote
+        // peer's edit lands in the middle of their action. If the
+        // selection spans into a different block we fall back to a
+        // collapsed caret at the start — cross-block selection restore
+        // would require resolving two block IDs and is out of scope for
+        // the prototype.
+        const activeEl = document.activeElement;
+        let caret = null;
+        if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
+          const sel = window.getSelection();
+          if (sel && sel.rangeCount > 0) {
+            const range = sel.getRangeAt(0);
+            if (activeEl.contains(range.startContainer)) {
+              const startOffset = getPlainTextOffset(activeEl, range.startContainer, range.startOffset);
+              if (startOffset >= 0) {
+                let endOffset;
+                if (!range.collapsed && activeEl.contains(range.endContainer)) {
+                  endOffset = getPlainTextOffset(activeEl, range.endContainer, range.endOffset);
+                  if (endOffset < 0) endOffset = undefined;
+                }
+                caret = { blockId: activeEl.dataset.blockId, startOffset, endOffset };
+              }
+            }
+          }
+        }
+        setBlocks(nextBlocks);
+        if (caret) {
+          requestAnimationFrame(() => {
+            const el = document.querySelector(`[data-block-id="${caret.blockId}"]`);
+            if (el) restorePlainTextOffset(el, caret.startOffset, caret.endOffset);
+          });
+        }
+      },
+      initialMeta: { ...sectionMetaRef.current, fileName },
+      onRemoteMeta: (remote) => {
+        // I-3: flip ready flag on first remote meta observation so the
+        // publishMeta effect doesn't clobber server-side state with stale
+        // local values on first join.
+        metaReadyRef.current = true;
+        // M3 — apply remote section metadata updates. No local echo
+        // guard needed; publishMeta's per-key diff + 'local-meta'
+        // origin filter already prevent round-trip.
+        if (!remote || typeof remote !== 'object') return;
+        setSectionMeta((prev) => ({ ...prev, ...remote }));
+        if (remote.fileName) setFileName(remote.fileName);
+        if ('locked' in remote) setRoomLocked(!!remote.locked);
+        if ('lockedBy' in remote) setRoomLockedBy(remote.lockedBy || null);
+        if ('lockedByName' in remote) setRoomLockedByName(remote.lockedByName || null);
+      },
+      onRemoteTc: (tc) => {
+        // M-shared-tc — apply remote Track Changes state. Round-tripping
+        // is prevented by the publish effect's tcDirtyRef gate — only
+        // user actions flip that bit, so these remote setters don't echo.
+        setTrackChanges(!!tc.enabled);
+        setTcSnapshots(new Map(Object.entries(tc.snapshots || {})));
+      },
+      onRemoteComments: (commentsObj, commentsMeta) => {
+        // M-shared-comments — apply remote comment state. The
+        // mark-comment DOM spans are synced via the existing
+        // blocks → yStore pathway, so we only update the metadata Map
+        // here. Publishes are imperative (no effect watching `comments`),
+        // so there is no echo to guard against.
+        setComments(new Map(Object.entries(commentsObj || {})));
+        // Ghost-span cleanup: on initial sync, strip mark-comment
+        // highlight spans whose data-comment-id has no matching entry
+        // in yComments. This recovers from the tab-close abandon case
+        // where the eager span injection got published but the
+        // deferred metadata publish never fired. Runs once per join.
+        if (commentsMeta?.initial && initialBlocksForCleanupRef.current) {
+          const initialBlocks = initialBlocksForCleanupRef.current;
+          initialBlocksForCleanupRef.current = null;
+          const validIds = new Set(Object.keys(commentsObj || {}));
+          const cleaned = stripOrphanCommentSpans(initialBlocks, validIds);
+          if (cleaned !== initialBlocks) {
+            // setBlocks with a new reference — this is NOT equal to
+            // lastRemoteBlocksRef.current, so the publish effect will
+            // fire and push the cleaned version back to the Y.Doc for
+            // all peers. That's intentional: the ghosts should be
+            // removed globally, not just locally.
+            setBlocks(cleaned);
+          }
+        }
+      },
+      onPresenceChange: (states) => setPeers(states),
+      onStatusChange: (status, meta) => {
+        setCollabStatus(status);
+        setReconnectIn(meta?.reconnectIn ?? 0);
+      },
+    });
+    collabSessionRef.current = session;
+    // Debug hook: expose for devtools inspection during prototype QA.
+    // Gated on DEV so a production build does not ship a global that exposes
+    // ydoc + awareness state to any page script that gets past the CSP.
+    const EXPOSE_DEBUG = typeof import.meta !== 'undefined' && import.meta.env?.DEV;
+    if (EXPOSE_DEBUG && typeof window !== 'undefined') window.__collab = session;
+
+    return () => {
+      session.destroy();
+      collabSessionRef.current = null;
+      sessionReadyRef.current = false;
+      metaReadyRef.current = false;
+      lastRemoteBlocksRef.current = null;
+      if (EXPOSE_DEBUG && typeof window !== 'undefined') delete window.__collab;
+    };
+    // Intentionally depend only on roomId + identity so the session is stable
+    // across blocks updates. initialBlocks is read via blocksRef.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inRoom, roomId, identity]);
+
+  // Publish local `blocks` updates to the collab session.
+  //
+  // Two guards:
+  //   1. sessionReadyRef — suppress publishing until the initial server sync
+  //      is complete. Otherwise the first render would push INITIAL_BLOCKS
+  //      into Y.Doc before the server's persisted state arrives, duplicating
+  //      the document on rejoin.
+  //   2. lastRemoteBlocksRef identity check — if the new `blocks` reference
+  //      is literally the same array we just received from a remote update,
+  //      skip the publish effect as a fast path.
+  //
+  // I-2 backstop: ref-equality is the fast path; if an upstream layer
+  // ever clones `blocks` into a new-reference-but-content-equal array,
+  // applyBlocksToYDoc produces a zero-change transaction (pinned by the
+  // `zero-change publish after a remote-applied clone does not grow
+  // undo stack (I-2)` regression test in collab.test.js). Both layers
+  // must hold — a worst-case echo is harmless because zero-change
+  // transactions do not create Y.UndoManager stack items.
+  // A4 — publishDisabled latch: once the document exceeds MAX_PUBLISH_BYTES
+  // we stop calling publishBlocks on every keystroke (which would re-walk
+  // every block through estimatePublishBytes and re-push a toast) until
+  // the user shrinks the document back under the cap. The latch clears
+  // automatically on the next render where the estimate is safe again.
+  const publishDisabledRef = useRef(false);
+  useEffect(() => {
+    if (!inRoom) return;
+    const session = collabSessionRef.current;
+    if (!session) return;
+    if (!sessionReadyRef.current) return;
+    if (blocks === lastRemoteBlocksRef.current) return;
+    try {
+      session.publishBlocks(blocks);
+      // Success — clear any previous over-cap latch.
+      if (publishDisabledRef.current) {
+        publishDisabledRef.current = false;
+        toastPushRef.current?.({
+          kind: 'success',
+          title: 'Sync resumed',
+          body: 'Document is back under the collab size limit.',
+          ttl: 5000,
+        });
+      }
+    } catch (err) {
+      if (err instanceof DocSizeLimitError) {
+        // M7 — client-side doc size guard. Only push the error toast
+        // the first time we hit the limit to avoid spamming the user
+        // on every keystroke while the document is oversized.
+        if (!publishDisabledRef.current) {
+          publishDisabledRef.current = true;
+          toastPushRef.current?.({
+            kind: 'error',
+            title: 'Document too large to sync',
+            body: `This document is ${(err.actualBytes / (1024 * 1024)).toFixed(1)} MB, ` +
+                  `over the ${(err.maxBytes / (1024 * 1024)).toFixed(0)} MB collab limit. ` +
+                  `Your edits are not being shared with other users. ` +
+                  `Remove some content and try again.`,
+            ttl: 0, // sticky — the user has to dismiss it manually
+          });
+        }
+      } else {
+        console.error('[collab] publishBlocks failed:', err);
+      }
+    }
+    // Intentionally NOT depending on `toasts` — A2. Toast dispatch goes
+    // through toastPushRef which is refreshed every render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blocks, inRoom]);
+
+  // M3 — publish local section metadata updates.
+  //
+  // No explicit echo guard here: publishMeta's per-key diff (compare
+  // `cur !== v` before writing) produces a zero-change transaction when
+  // the local state already matches the remote, and the `'local-meta'`
+  // origin is filtered inside handleAfterTx so even a fired transaction
+  // wouldn't round-trip through onRemoteMeta. An earlier version added
+  // an Object.keys().every() guard here but it was both unnecessary and
+  // subtly broken (asymmetric key sets could drop legitimate edits).
+  useEffect(() => {
+    if (!inRoom) return;
+    const session = collabSessionRef.current;
+    if (!session) return;
+    if (!sessionReadyRef.current) return;
+    if (!metaReadyRef.current) return; // I-3: wait for first onRemoteMeta
+    session.publishMeta({ ...sectionMeta, fileName });
+  }, [sectionMeta, fileName, inRoom]);
+
+  // M-shared-tc — publish local TC state changes to the Y.Doc.
+  //
+  // Gating: only publish when `tcDirtyRef` is set (meaning the change
+  // came from a user action). Remote updates land via onRemoteTc WITHOUT
+  // setting tcDirtyRef, so round-tripping is suppressed.
+  //
+  // When disabled, we publish an empty snapshots object so the baseline
+  // is cleared in the same Y.Doc transaction as the flag flip — otherwise
+  // remote clients would re-diff against a stale baseline and flag
+  // phantom changes.
+  useEffect(() => {
+    if (!inRoom) return;
+    const session = collabSessionRef.current;
+    if (!session) return;
+    if (!sessionReadyRef.current) return;
+    if (!tcDirtyRef.current) return;
+    tcDirtyRef.current = false;
+    const snapshots = {};
+    if (trackChanges) {
+      for (const [id, txt] of tcSnapshots.entries()) snapshots[id] = txt;
+    }
+    try {
+      session.publishTc({ enabled: trackChanges, snapshots });
+    } catch (err) {
+      console.error('[collab] publishTc failed:', err);
+    }
+  }, [trackChanges, tcSnapshots, inRoom]);
+
+  // Broadcast our caret position so other users see a live cursor.
+  useEffect(() => {
+    if (!inRoom) return;
+    const handler = () => {
+      const session = collabSessionRef.current;
+      if (!session) return;
+      const active = document.activeElement;
+      if (!active?.dataset?.blockId || active.contentEditable !== 'true') {
+        session.setCursor(null);
+        return;
+      }
+      const sel = window.getSelection();
+      if (!sel || sel.rangeCount === 0) {
+        session.setCursor(null);
+        return;
+      }
+      const range = sel.getRangeAt(0);
+      if (!active.contains(range.startContainer)) {
+        session.setCursor(null);
+        return;
+      }
+      const idx = getPlainTextOffset(active, range.startContainer, range.startOffset);
+      if (idx < 0) { session.setCursor(null); return; }
+      session.setCursor({
+        blockId: active.dataset.blockId,
+        index: idx,
+      });
+    };
+    document.addEventListener('selectionchange', handler);
+    return () => document.removeEventListener('selectionchange', handler);
+  }, [inRoom]);
 
   // Keyboard listener for undo/redo and search
   useEffect(() => {
     const handler = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
         e.preventDefault();
-        undo();
+        if (inRoom && collabSessionRef.current) collabSessionRef.current.undo();
+        else undo();
       } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
         e.preventDefault();
-        redo();
+        if (inRoom && collabSessionRef.current) collabSessionRef.current.redo();
+        else redo();
       } else if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
         setSearchOpen(true);
@@ -975,7 +1624,38 @@ export default function SpecEditor() {
     };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
-  }, [undo, redo, handleSave, zoomIn, zoomOut, zoomReset]);
+  }, [undo, redo, handleSave, zoomIn, zoomOut, zoomReset, inRoom]);
+
+  // Share button handler: generate a room and reload into it, or copy the current room URL.
+  const handleShare = useCallback(() => {
+    if (inRoom) {
+      // M6 — toast instead of alert(). alert() blocks the event loop and
+      // steals focus from the editor, which is a regression from the
+      // otherwise keyboard-driven UX. The toast includes a Copy action
+      // so the user can manually retry if the implicit clipboard write
+      // was blocked by the browser.
+      const url = window.location.href;
+      navigator.clipboard?.writeText(url).catch(() => {});
+      toastPushRef.current?.({
+        kind: 'success',
+        title: 'Room link copied',
+        body: url,
+        actions: [
+          { label: 'Copy again', onClick: () => navigator.clipboard?.writeText(url).catch(() => {}) },
+        ],
+        ttl: 8000,
+      });
+      return;
+    }
+    const newRoom = generateRoomId();
+    const url = buildRoomUrl(newRoom);
+    // Starting a room clears our localStorage auto-save so the server-persisted
+    // doc becomes the source of truth cleanly.
+    try { clearAutoSave(); } catch { /* ignore */ }
+    window.location.href = url;
+    // toasts accessed via toastPushRef; intentionally omitted from deps.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inRoom]);
 
   const sectionNumber = sectionMeta.sectionNumber;
   const sectionTitle = sectionMeta.sectionTitle;
@@ -990,6 +1670,7 @@ export default function SpecEditor() {
       color: "var(--sim-text, #1e293b)",
       overflow: "hidden",
     }}>
+      <ToastStack toasts={toasts.items} onDismiss={toasts.dismiss} />
 
       {/* LEFT SIDEBAR - Navigation Tree */}
       <div style={{
@@ -1191,6 +1872,118 @@ export default function SpecEditor() {
               {saveStatus === 'saved' ? <Check size={14} /> : saveStatus === 'saving' ? <Loader size={14} className="spin" /> : <Download size={14} />}
               {saveStatus === 'saved' ? 'Saved' : saveStatus === 'saving' ? 'Saving...' : 'Save'}
             </button>
+            <button
+              onClick={handleShare}
+              title={inRoom ? "Copy room link to clipboard" : "Start a collaborative room"}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+                padding: "4px 10px",
+                backgroundColor: inRoom ? "#dbeafe" : "#f1f5f9",
+                border: inRoom ? "1px solid #2563eb" : "1px solid #e2e8f0",
+                borderRadius: 6,
+                cursor: "pointer",
+                fontSize: 13,
+                fontWeight: 600,
+                color: inRoom ? "#1d4ed8" : "#475569",
+                minHeight: 32,
+              }}
+            >
+              {inRoom ? `Room ${roomId}` : "Share"}
+            </button>
+            {collabReachable && (
+              <button
+                onClick={() => {
+                  setShowRoomPanel(!showRoomPanel);
+                  if (!showRoomPanel) {
+                    fetch(`${COLLAB_HTTP_URL}/rooms`, { headers: authHeaders })
+                      .then(r => r.json())
+                      .then(d => setRoomList(d.rooms || []))
+                      .catch(() => {});
+                  }
+                }}
+                title="Manage rooms"
+                style={{
+                  display: "flex", alignItems: "center", gap: 4, padding: "4px 10px",
+                  backgroundColor: showRoomPanel ? "#dbeafe" : "#f1f5f9",
+                  border: showRoomPanel ? "1px solid #2563eb" : "1px solid #e2e8f0",
+                  borderRadius: 6, cursor: "pointer", fontSize: 13, fontWeight: 600,
+                  color: showRoomPanel ? "#1d4ed8" : "#475569", minHeight: 32,
+                }}
+              >
+                <Users size={14} /> Rooms
+              </button>
+            )}
+            {inRoom && (
+              <PresenceBar peers={peers} self={identity} />
+            )}
+            {getAuthMode() !== 'stub' && identity && (
+              <span style={{ fontSize: 12, color: '#6b7280', display: 'flex', alignItems: 'center', gap: 4 }}>
+                {identity.name}
+                <span style={{ color: '#d1d5db' }}>·</span>
+                <button
+                  onClick={() => authSignOut().then(() => window.location.reload())}
+                  style={{
+                    background: 'none', border: 'none', color: '#6b7280',
+                    cursor: 'pointer', fontSize: 12, textDecoration: 'underline',
+                    padding: 0,
+                  }}
+                >Sign out</button>
+              </span>
+            )}
+            {inRoom && collabStatus && collabStatus !== 'connected' && (
+              <ConnectionBanner state={collabStatus} reconnectIn={reconnectIn} />
+            )}
+            {inRoom && isLockedByOther && (
+              <div className="locked-banner">
+                Locked by {roomLockedByName || 'another user'} — editing disabled
+              </div>
+            )}
+            {inRoom && (
+              <>
+                <button
+                  onClick={handleDownloadSec}
+                  title="Download .SEC file from server"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 4,
+                    padding: "4px 10px",
+                    backgroundColor: "#f1f5f9",
+                    border: "1px solid #e2e8f0",
+                    borderRadius: 6,
+                    cursor: "pointer",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: "#475569",
+                    minHeight: 32,
+                  }}
+                >
+                  <Download size={14} /> .SEC
+                </button>
+                <button
+                  onClick={handleDownloadComments}
+                  title="Download comments JSON from server"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 4,
+                    padding: "4px 10px",
+                    backgroundColor: "#f1f5f9",
+                    border: "1px solid #e2e8f0",
+                    borderRadius: 6,
+                    cursor: "pointer",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: "#475569",
+                    minHeight: 32,
+                  }}
+                >
+                  <Download size={14} /> Comments
+                </button>
+              </>
+            )}
             <button
               onClick={handleSaveAs}
               title="Save As... (choose new location)"
@@ -1513,7 +2306,14 @@ export default function SpecEditor() {
         <RevisionControls
           trackChanges={trackChanges}
           onTrackChangesChange={(val) => {
+            tcDirtyRef.current = true;
             setTrackChanges(val);
+            // When disabling TC we intentionally leave local tcSnapshots
+            // state as-is. The publish effect at the top of the file
+            // computes `snapshots = {}` whenever trackChanges is false
+            // (regardless of tcSnapshots), so the Y.Doc gets cleared
+            // correctly, and annotateDomWithDiff is not called with TC
+            // off — stale local state is harmless.
             if (val) {
               // Snapshot the "visible" text of each block when TC turns on.
               // Uses getVisibleTextFromHtml which excludes <del> content
@@ -1612,7 +2412,11 @@ export default function SpecEditor() {
             zoom: editorZoom,
           }}
         >
-          <FloatingToolbar editorRef={editorRef} onBlockUpdate={handleBlockUpdate} onRevisionAction={handleRevisionAction} trackChanges={trackChanges} onCommentCreate={handleCommentCreate} />
+          <FloatingToolbar editorRef={editorRef} onBlockUpdate={handleBlockUpdate} onRevisionAction={handleRevisionAction} trackChanges={trackChanges} onCommentCreate={handleCommentCreate} readOnly={collabReadOnly} />
+
+          {inRoom && identity && (
+            <RemoteCursors peers={peers} selfId={identity.id} editorRef={editorRef} />
+          )}
 
           {/* Comment Popup */}
           {openCommentId && comments.get(openCommentId) && commentRect && (
@@ -1670,6 +2474,7 @@ export default function SpecEditor() {
                   onDelete={handleDelete}
                   onFocusPrev={handleFocusPrev}
                   onFocusNext={handleFocusNext}
+                  readOnly={collabReadOnly}
                 />
               );
             }
@@ -1735,6 +2540,7 @@ export default function SpecEditor() {
                     resumeHistory();
                     setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
                   }}
+                  readOnly={collabReadOnly}
                 />
               );
             }
@@ -1748,6 +2554,7 @@ export default function SpecEditor() {
                   ))}
                   isFocused={focusedBlockId === block.id}
                   onFocus={handleClickFocus}
+                  readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
                     resumeHistory();
                     setBlocks(prev => {
@@ -1797,6 +2604,8 @@ export default function SpecEditor() {
                   tailorKey={tailorKey}
                   trackChanges={trackChanges}
                   snapshotText={tcSnapshots.get(block.id)}
+                  identity={identity}
+                  readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
                     resumeHistory();
                     setBlocks(prev => {
@@ -1810,6 +2619,7 @@ export default function SpecEditor() {
                       return next;
                     });
                     if (trackChanges) {
+                      tcDirtyRef.current = true;
                       setTcSnapshots(prev => {
                         const s = new Map(prev);
                         const b = blocksRef.current.find(bl => bl.id === id);
@@ -1832,6 +2642,7 @@ export default function SpecEditor() {
                       return next;
                     });
                     if (trackChanges) {
+                      tcDirtyRef.current = true;
                       setTcSnapshots(prev => {
                         const s = new Map(prev);
                         const b = blocksRef.current.find(bl => bl.id === id);
@@ -1941,6 +2752,69 @@ export default function SpecEditor() {
             unitDisplay={unitDisplay}
           />
         )}
+
+        {/* Room Management Panel (right side) */}
+        {showRoomPanel && (
+          <RoomPanel
+            rooms={roomList}
+            currentRoom={roomId}
+            onJoin={(id) => { window.location.href = buildRoomUrl(id); }}
+            onClose={() => setShowRoomPanel(false)}
+            onCreateRoom={async (name) => {
+              try {
+                const res = await fetch(`${COLLAB_HTTP_URL}/rooms`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json', ...authHeaders },
+                  body: JSON.stringify({ id: name }),
+                });
+                if (res.ok) {
+                  const listRes = await fetch(`${COLLAB_HTTP_URL}/rooms`, { headers: authHeaders });
+                  const data = await listRes.json();
+                  setRoomList(data.rooms || []);
+                }
+              } catch { /* ignore */ }
+            }}
+            onDeleteRoom={async (id) => {
+              if (!window.confirm(`Delete room "${id}"? This cannot be undone.`)) return;
+              try {
+                await fetch(`${COLLAB_HTTP_URL}/rooms/${id}`, { method: 'DELETE', headers: authHeaders });
+                setRoomList(prev => prev.filter(r => r.id !== id));
+              } catch { /* ignore */ }
+            }}
+            onLockRoom={async (roomId, locked) => {
+              try {
+                const token = sessionStorage.getItem('sim-auth-token');
+                const headers = { 'Content-Type': 'application/json', ...authHeaders };
+                if (token && !headers['Authorization']) headers['Authorization'] = `Bearer ${token}`;
+                await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}`, {
+                  method: 'PATCH',
+                  headers,
+                  body: JSON.stringify({ locked, lockedBy: locked ? identity?.id : null, lockedByName: locked ? identity?.name : null }),
+                });
+              } catch (err) {
+                console.warn('Lock room failed:', err.message);
+              }
+            }}
+            onRenameRoom={async (roomId, displayName) => {
+              try {
+                const token = sessionStorage.getItem('sim-auth-token');
+                const headers = { 'Content-Type': 'application/json', ...authHeaders };
+                if (token && !headers['Authorization']) headers['Authorization'] = `Bearer ${token}`;
+                const res = await fetch(`${COLLAB_HTTP_URL}/rooms/${roomId}`, {
+                  method: 'PATCH',
+                  headers,
+                  body: JSON.stringify({ displayName }),
+                });
+                if (res.ok) {
+                  setRoomList(prev => prev.map(r => r.id === roomId ? { ...r, displayName } : r));
+                }
+              } catch (err) {
+                console.warn('Rename room failed:', err.message);
+              }
+            }}
+            currentUserId={identity?.id}
+          />
+        )}
         </div>
 
         {/* Status Bar */}
@@ -1967,6 +2841,11 @@ export default function SpecEditor() {
           onClose={() => setRefWizardOpen(false)}
           existingOrgs={blocks.filter(b => b.type === 'ref' && b.ref?.org).map(b => b.ref.org)}
         />
+      )}
+
+      {/* Collab identity prompt — appears on first load when ?room=... is present */}
+      {inRoom && !identity && getAuthMode() === 'stub' && (
+        <IdentityModal roomId={roomId} onIdentity={setIdentity} />
       )}
     </div>
   );

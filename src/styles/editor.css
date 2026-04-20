@@ -132,6 +132,33 @@ span.mark-chg {
   border-radius: 2px;
 }
 
+/*
+ * Shared Track Changes — per-author color overrides.
+ *
+ * annotateDomWithDiff emits data-author-color + style="--author-color:<hex>"
+ * on every <ins>/<del> it creates in a room. When the attribute is present,
+ * we replace the default green/red with the author's color. When absent
+ * (single-user, or pre-identity), the default styles above still apply.
+ *
+ * `currentColor` + the CSS variable make both the text and the decoration
+ * pick up the author color in one declaration.
+ *
+ * DEPENDENCY: these selectors override `color` and `text-decoration-color`
+ * only — they rely on the base `ins.mark-add` / `del.mark-del` rules
+ * above to set `text-decoration` (underline / line-through). If those
+ * base rules are ever removed, the per-author coloring will still apply
+ * to the glyphs but the underline/strikethrough will disappear.
+ */
+ins.mark-add[data-author-color] {
+  color: var(--author-color, #008000);
+  text-decoration-color: var(--author-color, #008000);
+}
+
+del.mark-del[data-author-color] {
+  color: var(--author-color, #ff4444);
+  text-decoration-color: var(--author-color, #ff4444);
+}
+
 /* Block-level revision indicators */
 .block-revision-add {
   border-left: 3px solid #008000;
@@ -599,3 +626,13 @@ body {
 
 @keyframes sim-spin { to { transform: rotate(360deg); } }
 .spin { animation: sim-spin 1s linear infinite; }
+
+.locked-banner {
+  background-color: #fef3c7;
+  color: #92400e;
+  text-align: center;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-bottom: 1px solid #fbbf24;
+}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Data exfiltration prevention: see src/lib/no-exfil.js and CLAUDE.md "Browser data exfiltration prevention" -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.anthropic.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.anthropic.com ws://127.0.0.1:1234 ws://localhost:1234 http://127.0.0.1:1235 http://localhost:1235; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none';" />
     <meta name="referrer" content="no-referrer" />
     <meta name="google" content="notranslate" />
     <meta name="robots" content="noindex,nofollow,noarchive" />

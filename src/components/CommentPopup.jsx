@@ -26,13 +26,14 @@ function getInitials(name) {
 /**
  * Avatar circle with initials
  */
-function Avatar({ name, size = 28 }) {
+function Avatar({ name, color, size = 28 }) {
   const colors = ["#4285f4", "#ea4335", "#fbbc04", "#34a853", "#8e24aa", "#e67c73"];
   const colorIdx = (name || "").split("").reduce((s, c) => s + c.charCodeAt(0), 0) % colors.length;
+  const bg = color || colors[colorIdx];
   return (
     <div style={{
       width: size, height: size, borderRadius: "50%",
-      backgroundColor: colors[colorIdx],
+      backgroundColor: bg,
       color: "white", fontSize: size * 0.4, fontWeight: 600,
       display: "flex", alignItems: "center", justifyContent: "center",
       flexShrink: 0,
@@ -40,6 +41,32 @@ function Avatar({ name, size = 28 }) {
       {getInitials(name)}
     </div>
   );
+}
+
+/**
+ * Extract the displayable name and color for a comment entry.
+ * Prefers the new identity-based fields (authorName/authorColor) from
+ * room-based comments but falls back to the legacy `author` string for
+ * single-user / pre-identity comments.
+ */
+function resolveEntryAuthor(entry) {
+  return {
+    name: entry.authorName || entry.author || 'User',
+    color: entry.authorColor || null,
+  };
+}
+
+/**
+ * Extract the display timestamp for an entry. Prefers the new `ts`
+ * (number) field, falls back to legacy `timestamp` (ISO string).
+ */
+function resolveEntryTs(entry) {
+  if (typeof entry.ts === 'number') return entry.ts;
+  if (entry.timestamp) {
+    const parsed = Date.parse(entry.timestamp);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
 }
 
 export default function CommentPopup({ comment, rect, onReply, onResolve, onReopen, onDelete, onClose, onUpdateCreate, editorRef }) {
@@ -194,49 +221,53 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
     <div ref={popupRef} style={cardStyle}>
       {/* Thread entries */}
       <div style={{ padding: "12px 12px 0" }}>
-        {comment.entries.map((entry, i) => (
-          <div key={i} style={{ marginBottom: 12 }}>
-            {entry.type === "resolve" ? (
-              <div style={{ fontSize: 12, color: "#188038", display: "flex", alignItems: "center", gap: 6 }}>
-                <Avatar name={entry.author} size={20} />
-                <span><strong>{entry.author}</strong> marked as resolved</span>
-              </div>
-            ) : entry.type === "reopen" ? (
-              <div style={{ fontSize: 12, color: "#b06000", display: "flex", alignItems: "center", gap: 6 }}>
-                <Avatar name={entry.author} size={20} />
-                <span><strong>{entry.author}</strong> reopened</span>
-              </div>
-            ) : (
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <Avatar name={entry.author} />
-                  <div>
-                    <div style={{ fontWeight: 500, color: "#202124", fontSize: 13 }}>{entry.author}</div>
-                    <div style={{ fontSize: 11, color: "#5f6368" }}>
-                      {entry.timestamp ? new Date(entry.timestamp).toLocaleString(undefined, { hour: 'numeric', minute: '2-digit', hour12: true }) : ""}
-                      {" "}
-                      {entry.timestamp ? new Date(entry.timestamp).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : ""}
-                    </div>
-                  </div>
-                  {i === 0 && (
-                    <div style={{ marginLeft: "auto", display: "flex", gap: 4 }}>
-                      {isResolved ? (
-                        <button onClick={() => onReopen(comment.id)} title="Reopen"
-                          style={{ border: "none", background: "transparent", color: "#5f6368", cursor: "pointer", fontSize: 16, padding: 2 }}>&#x21BA;</button>
-                      ) : (
-                        <button onClick={() => onResolve(comment.id)} title="Resolve"
-                          style={{ border: "none", background: "transparent", color: "#1a73e8", cursor: "pointer", fontSize: 16, padding: 2 }}>&#x2713;</button>
-                      )}
-                      <button onClick={() => onDelete(comment.id)} title="Delete"
-                        style={{ border: "none", background: "transparent", color: "#d93025", cursor: "pointer", fontSize: 16, padding: 2, fontWeight: 600 }}>&#x2715;</button>
-                    </div>
-                  )}
+        {comment.entries.map((entry, i) => {
+          const a = resolveEntryAuthor(entry);
+          const ts = resolveEntryTs(entry);
+          return (
+            <div key={i} style={{ marginBottom: 12 }}>
+              {entry.type === "resolve" ? (
+                <div style={{ fontSize: 12, color: "#188038", display: "flex", alignItems: "center", gap: 6 }}>
+                  <Avatar name={a.name} color={a.color} size={20} />
+                  <span><strong>{a.name}</strong> marked as resolved</span>
                 </div>
-                <div style={{ marginTop: 4, marginLeft: 36, color: "#202124", wordBreak: "break-word" }}>{entry.text}</div>
-              </div>
-            )}
-          </div>
-        ))}
+              ) : entry.type === "reopen" ? (
+                <div style={{ fontSize: 12, color: "#b06000", display: "flex", alignItems: "center", gap: 6 }}>
+                  <Avatar name={a.name} color={a.color} size={20} />
+                  <span><strong>{a.name}</strong> reopened</span>
+                </div>
+              ) : (
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <Avatar name={a.name} color={a.color} />
+                    <div>
+                      <div style={{ fontWeight: 500, color: "#202124", fontSize: 13 }}>{a.name}</div>
+                      <div style={{ fontSize: 11, color: "#5f6368" }}>
+                        {ts ? new Date(ts).toLocaleString(undefined, { hour: 'numeric', minute: '2-digit', hour12: true }) : ""}
+                        {" "}
+                        {ts ? new Date(ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : ""}
+                      </div>
+                    </div>
+                    {i === 0 && (
+                      <div style={{ marginLeft: "auto", display: "flex", gap: 4 }}>
+                        {isResolved ? (
+                          <button onClick={() => onReopen(comment.id)} title="Reopen"
+                            style={{ border: "none", background: "transparent", color: "#5f6368", cursor: "pointer", fontSize: 16, padding: 2 }}>&#x21BA;</button>
+                        ) : (
+                          <button onClick={() => onResolve(comment.id)} title="Resolve"
+                            style={{ border: "none", background: "transparent", color: "#1a73e8", cursor: "pointer", fontSize: 16, padding: 2 }}>&#x2713;</button>
+                        )}
+                        <button onClick={() => onDelete(comment.id)} title="Delete"
+                          style={{ border: "none", background: "transparent", color: "#d93025", cursor: "pointer", fontSize: 16, padding: 2, fontWeight: 600 }}>&#x2715;</button>
+                      </div>
+                    )}
+                  </div>
+                  <div style={{ marginTop: 4, marginLeft: 36, color: "#202124", wordBreak: "break-word" }}>{entry.text}</div>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {/* Reply form */}

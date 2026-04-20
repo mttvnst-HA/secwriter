@@ -2,7 +2,8 @@ import { useState, useRef, useCallback } from "react";
 import { addRow, deleteRow, addColumn, deleteColumn, updateCell, mergeCellRight, splitCell } from "../lib/table-ops.js";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
-function TableBlock({ block, onUpdate, isFocused, onFocus }) {
+function TableBlock({ block, onUpdate, isFocused, onFocus, readOnly }) {
+  const canEdit = onUpdate && !readOnly;
   const tbl = block.table;
   if (!tbl || !tbl.rows || tbl.rows.length === 0) return null;
 
@@ -86,7 +87,7 @@ function TableBlock({ block, onUpdate, isFocused, onFocus }) {
     verticalAlign: "top",
     color: "#1e293b",
     position: "relative",
-    cursor: onUpdate ? "pointer" : "default",
+    cursor: canEdit ? "pointer" : "default",
   };
 
   const headerCellStyle = {
@@ -104,15 +105,15 @@ function TableBlock({ block, onUpdate, isFocused, onFocus }) {
     const isHovered = hoverCell?.row === rowIdx && hoverCell?.col === cellIdx;
     const Tag = isHeader ? "th" : "td";
     const style = isHeader ? headerCellStyle : cellStyle;
-    const canMerge = onUpdate && cellIdx < row.length - 1;
-    const canSplit = onUpdate && (cell.colspan || 1) > 1;
+    const canMerge = canEdit && cellIdx < row.length - 1;
+    const canSplit = canEdit && (cell.colspan || 1) > 1;
 
     return (
       <Tag
         key={cellIdx}
         colSpan={cell.colspan > 1 ? cell.colspan : undefined}
         style={style}
-        onDoubleClick={() => onUpdate && startEdit(rowIdx, cellIdx, cell.text)}
+        onDoubleClick={() => canEdit && startEdit(rowIdx, cellIdx, cell.text)}
         onMouseEnter={() => setHoverCell({ row: rowIdx, col: cellIdx })}
         onMouseLeave={() => setHoverCell(null)}
       >
@@ -139,7 +140,7 @@ function TableBlock({ block, onUpdate, isFocused, onFocus }) {
           <span dangerouslySetInnerHTML={{ __html: cell.text || "&nbsp;" }} />
         )}
         {/* Merge/Split buttons on hover */}
-        {isHovered && !isEditing && onUpdate && (
+        {isHovered && !isEditing && canEdit && (
           <span style={{
             position: "absolute", top: 1, right: 1,
             display: "flex", gap: 2,
@@ -204,10 +205,10 @@ function TableBlock({ block, onUpdate, isFocused, onFocus }) {
         lineHeight: "1.5",
       }}>
         {/* Column delete buttons row */}
-        {onUpdate && tbl.columns > 1 && (
+        {canEdit && tbl.columns > 1 && (
           <thead>
             <tr>
-              {onUpdate && <td style={{ border: "none", width: 20 }} />}
+              {canEdit && <td style={{ border: "none", width: 20 }} />}
               {Array.from({ length: tbl.columns }, (_, ci) => (
                 <td key={ci} style={{
                   border: "none", textAlign: "center", padding: "0 0 2px",
@@ -232,7 +233,7 @@ function TableBlock({ block, onUpdate, isFocused, onFocus }) {
               onMouseLeave={() => setHoverRow(-1)}
             >
               {/* Row delete button */}
-              {onUpdate && (
+              {canEdit && (
                 <td style={{
                   border: "none", width: 20, padding: 0, verticalAlign: "middle",
                 }}>
@@ -251,7 +252,7 @@ function TableBlock({ block, onUpdate, isFocused, onFocus }) {
         </tbody>
       </table>
       {/* Add row / add column buttons */}
-      {onUpdate && (
+      {canEdit && (
         <div style={{ display: "flex", gap: 8, marginTop: 4 }}>
           <button onClick={handleAddRow} title="Add row" style={addBtnStyle}>+ Row</button>
           <button onClick={handleAddColumn} title="Add column" style={addBtnStyle}>+ Column</button>
