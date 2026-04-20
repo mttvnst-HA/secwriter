@@ -60,9 +60,23 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
   let backend;
 
   beforeEach(async () => {
-    ({ container, cleanup } = await createScopedContainer());
-    backend = new AzureStorageBackend({ containerClient: container });
-    await backend._initPromise;
+    // Surface the real error — node:test's hook wrapper reports only
+    // "failed running beforeEach hook" in TAP output, which hides the
+    // underlying Azure SDK error (statusCode, code, response body).
+    try {
+      ({ container, cleanup } = await createScopedContainer());
+      backend = new AzureStorageBackend({ containerClient: container });
+      await backend._initPromise;
+    } catch (err) {
+      console.error('[beforeEach] setup failed:', {
+        message: err.message,
+        statusCode: err.statusCode,
+        code: err.code,
+        details: err.details,
+        responseBody: err.response?.bodyAsText || err.response?.parsedBody,
+      });
+      throw err;
+    }
   });
 
   afterEach(async () => {
