@@ -223,8 +223,12 @@ class AzureStorageBackend {
 
       const content = await srcBlob.downloadToBuffer();
       const dstBlob = this._container.getBlockBlobClient(dstName);
+      // Lowercase metadata key: Node's HTTP parser normalizes response
+      // header names to lowercase, so the SDK returns metadata with
+      // lowercase keys on the read path (listArchivedRooms). Writing
+      // lowercase here keeps the round-trip symmetric.
       await dstBlob.upload(content, content.length, {
-        metadata: { archivedAt },
+        metadata: { archivedat: archivedAt },
       });
       await srcBlob.deleteIfExists();
     }
@@ -280,7 +284,11 @@ class AzureStorageBackend {
         try {
           const blob = this._container.getBlockBlobClient(item.name);
           const props = await blob.getProperties();
-          archivedAt = (props.metadata && props.metadata.archivedAt) || '';
+          // Keys arrive lowercased from Node's HTTP parser; fall back to
+          // the camelCase form for forward compatibility with any older
+          // blobs that happened to be archived before this was fixed.
+          const meta = (props && props.metadata) || {};
+          archivedAt = meta.archivedat || meta.archivedAt || '';
         } catch {
           /* best effort */
         }

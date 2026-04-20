@@ -109,18 +109,25 @@ describe('AzureStorageBackend (integration — real @azure/storage-blob SDK)', {
     assert.strictEqual(result.commentsJson, null);
   });
 
-  it('raw SDK 404 surfaces with statusCode=404 and code=BlobNotFound', async () => {
+  it('raw SDK 404 surfaces with statusCode=404 (and code=BlobNotFound on real Azure)', async () => {
     // Sanity check: confirms the backend's `err.statusCode === 404` guard
     // matches the real SDK's error shape (not just our in-memory mock).
-    // We don't `instanceof RestError` here because whether it's re-exported
-    // from @azure/storage-blob varies by version — the duck-typed shape is
-    // what the backend actually relies on.
+    // We don't `instanceof RestError` because whether RestError is
+    // re-exported from @azure/storage-blob varies by version.
+    //
+    // err.code is populated from the x-ms-error-code response header.
+    // Real Azure Storage sends 'BlobNotFound'; Azurite does not always
+    // populate this header on 404s. The backend only depends on
+    // statusCode, so statusCode is the hard assertion; err.code is
+    // verified only when present.
     const missing = container.getBlockBlobClient('does-not-exist/room.ydoc');
     await assert.rejects(
       missing.downloadToBuffer(),
       (err) => {
-        assert.strictEqual(err.statusCode, 404);
-        assert.strictEqual(err.code, 'BlobNotFound');
+        assert.strictEqual(err.statusCode, 404, 'statusCode 404 is what storage-azure.cjs checks');
+        if (err.code !== undefined) {
+          assert.strictEqual(err.code, 'BlobNotFound');
+        }
         return true;
       },
     );
