@@ -18,14 +18,17 @@ jobs:
           cache: npm
       - run: npm ci
 
-      - name: Vitest unit tests (457 tests)
+      - name: Vitest unit tests (630 tests)
         run: npm test
 
-      - name: Compliance rule tests (40 tests, Node runner)
+      - name: Compliance rule tests (42 tests, Node runner)
         run: npm run test:compliance
 
       - name: Corpus tests (17 tests, Node runner)
         run: npm run test:corpus
+
+      - name: Server tests (55 tests, Node runner)
+        run: npm run test:server
 
   azure-integration:
     name: Azure Integration (Azurite)
@@ -88,7 +91,7 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: E2E tests (140 tests)
+      - name: E2E tests (151 tests)
         run: npm run test:e2e
         env:
           # Raise collab-server rate limits for E2E. Defaults (20 write/min,

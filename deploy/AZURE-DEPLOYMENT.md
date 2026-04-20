@@ -122,9 +122,12 @@ Returns `200 OK` with `{ status, rooms, connections }`. Unauthenticated -- suita
 
 | Option | Frontend | Collab Server | Notes |
 |--------|----------|---------------|-------|
-| App Service + Static Web Apps | Static Web Apps | App Service (Node.js) | Simplest. App Service handles TLS. Enable WebSocket support in App Service settings. |
-| Container Instance | Blob Storage static website | Container Instance | Dockerfile needed (not yet created). |
+| App Service + Static Web Apps | Static Web Apps | App Service (Node.js) | Simplest. App Service handles TLS. Enable WebSocket support in App Service settings. Single-port ingress — needs server refactor or Application Gateway for WS. |
+| **Container Apps (recommended)** | App Service | Container Apps via ACR | See `Dockerfile.collab` + `.github/workflows/collab-server-deploy.yml`. Single-port ingress target 1235 covers HTTP + `/health`. WebSocket on 1234 needs routing work (see limitations note in the workflow header). |
+| Container Instance | Blob Storage static website | Container Instance | Reuse `Dockerfile.collab`. No managed identity support — pass `SIM_AZURE_STORAGE_CONNECTION_STRING`. |
 | VM | Served by nginx on VM | Node.js on VM | Most control. Use the `deploy/nginx.conf` directly. |
+
+For a fully-Azure provisioning plan (resource groups, RBAC, federated OIDC credentials, GitHub repo secrets), see [`AZURE-SYSADMIN-CHECKLIST.md`](AZURE-SYSADMIN-CHECKLIST.md).
 
 If using Azure App Service for the collab server, enable **WebSockets** in Configuration > General settings, and set the **Web socket idle timeout** to the maximum (currently 240 minutes).
 
@@ -212,17 +215,33 @@ Test with `SIM_STORAGE_BACKEND=azure` and a real connection string.
 
 ### CI/CD Pipeline
 
-No CI/CD pipeline exists yet. Needed: GitHub Actions (or Azure DevOps) workflow to build the frontend, run the 935 automated tests, and deploy. The test commands:
+Two workflows now exist in `.github/workflows/`:
+
+- `ci.yml` — Unit + compliance + corpus + server + Playwright E2E + the
+  Azurite integration job. Runs on every PR and push to `main`.
+- `collab-server-deploy.yml` — Builds `Dockerfile.collab`, pushes to ACR,
+  deploys to a Container App, and smoke-tests `/health`. Triggers on
+  `server/**` changes in `main` and via `workflow_dispatch`.
+- `main_asp-app-specsintact-modern.yml` — Existing frontend build +
+  deploy to App Service (from PR #17).
+
+Test commands run by CI:
 
 ```bash
 npm test                      # 630 Vitest unit tests
 npm run test:server           # 55 server-side tests (Node runner)
 npm run test:compliance       # 42 compliance rule tests (Node runner)
 npm run test:corpus           # 17 corpus precision/recall tests (Node runner)
+npm run test:e2e              # 151 Playwright E2E tests (requires browser)
+npm run test:azure:integration # 14 Azurite tests (Node runner, gated by env var)
+```
+
+Still not in CI:
+
+```bash
 npm run test:ufgs             # 12 UFGS tag coverage tests (Node runner)
 npm run test:interop          # 28 interop roundtrip tests (Node runner)
 npm run test:interop:encoding # 11 encoding fidelity tests (Node runner)
-npm run test:e2e              # 151 Playwright E2E tests (requires browser)
 ```
 
 ### User Acceptance Testing

@@ -1,0 +1,195 @@
+# Build, push, and deploy the SIM collaborative editing server.
+#
+# Architecture:
+#   - Source        → Dockerfile.collab (Node.js 20-alpine runtime)
+#   - Registry      → Azure Container Registry (ACR)
+#   - Target        → Azure Container Apps (primary HTTP ingress = port 1235)
+#   - Smoke test    → curl https://<fqdn>/health expecting 200 + JSON
+#
+# Required GitHub repository secrets:
+#
+#   AZURE_CLIENT_ID              OIDC-federated service principal (or
+#                                managed identity) with:
+#                                  - AcrPush on the ACR
+#                                  - Contributor on the Container App
+#                                  - Storage Blob Data Contributor on the
+#                                    blob storage account (for SIM runtime
+#                                    using Managed Identity)
+#   AZURE_TENANT_ID
+#   AZURE_SUBSCRIPTION_ID
+#   ACR_LOGIN_SERVER             e.g. "simcollab.azurecr.io"
+#   AZURE_RESOURCE_GROUP         resource group holding the Container App
+#   COLLAB_CONTAINER_APP_NAME    name of the target Container App
+#   SIM_COLLAB_ORIGIN            exact frontend origin — must match the
+#                                deployed static site URL
+#                                (e.g. "https://asp-app-specsintact-modern-<...>.azurewebsites.net")
+#
+# Required pre-provisioned Azure resources (terraform / portal):
+#   - ACR                       (holds the image)
+#   - Container Apps environment
+#   - Container App             with ingress enabled, target port 1235,
+#                               transport 'http' (auto-detects WebSockets),
+#                               and allowInsecure=false. Use Managed
+#                               Identity on the container and grant it
+#                               AcrPull + Storage Blob Data Contributor.
+#   - Storage account + blob container named 'sim-collab-rooms'
+#
+# Known deployment limitation (not fixed by this workflow):
+# Container Apps' HTTP ingress exposes a single target port. We point it at
+# 1235 so /health and the REST API are reachable, but the WebSocket server
+# on 1234 is NOT reachable through the ingress. Resolving this requires
+# either (a) consolidating collab-server.cjs's two listeners onto one
+# http.Server via `ws.WebSocketServer({ noServer: true })` + `upgrade`
+# handler, or (b) placing Azure Front Door / Application Gateway in front
+# with path-based routing. Tracked as a follow-up in deploy/AZURE-DEPLOYMENT.md.
+
+name: Collab Server — Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'server/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'Dockerfile.collab'
+      - '.dockerignore'
+      - '.github/workflows/collab-server-deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # OIDC federated credential for azure/login
+  contents: read
+
+concurrency:
+  group: collab-server-deploy
+  cancel-in-progress: false
+
+env:
+  IMAGE_NAME: sim-collab-server
+
+jobs:
+  build-push-deploy:
+    name: Build, push, deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: ACR login
+        run: |
+          ACR_NAME="${ACR_LOGIN_SERVER%%.*}"
+          az acr login --name "$ACR_NAME"
+        env:
+          ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
+
+      - name: Build image
+        run: |
+          IMAGE_TAG="${GITHUB_SHA::12}"
+          FULL="$ACR_LOGIN_SERVER/$IMAGE_NAME"
+          docker build -f Dockerfile.collab \
+            -t "$FULL:$IMAGE_TAG" \
+            -t "$FULL:latest" \
+            .
+          echo "IMAGE_TAG=$IMAGE_TAG" >> "$GITHUB_ENV"
+          echo "FULL_IMAGE=$FULL:$IMAGE_TAG" >> "$GITHUB_ENV"
+        env:
+          ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
+
+      - name: Push image
+        run: |
+          docker push "$ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG"
+          docker push "$ACR_LOGIN_SERVER/$IMAGE_NAME:latest"
+        env:
+          ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
+
+      - name: Deploy to Container Apps
+        run: |
+          az containerapp update \
+            --name "$CONTAINER_APP" \
+            --resource-group "$RESOURCE_GROUP" \
+            --image "$FULL_IMAGE" \
+            --set-env-vars \
+              SIM_AUTH_PROVIDER=none \
+              SIM_STORAGE_BACKEND=azure \
+              SIM_AZURE_STORAGE_CONTAINER=sim-collab-rooms \
+              SIM_COLLAB_ORIGIN="$SIM_COLLAB_ORIGIN" \
+              SIM_RATE_LIMIT_WS_PER_MIN=10 \
+              SIM_RATE_LIMIT_HTTP_READ_PER_MIN=60 \
+              SIM_RATE_LIMIT_HTTP_WRITE_PER_MIN=20 \
+              SIM_LOG_FORMAT=json \
+              COLLAB_HOST=0.0.0.0 \
+              COLLAB_HTTP_PORT=1235 \
+              COLLAB_PORT=1234
+        env:
+          RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+          CONTAINER_APP: ${{ secrets.COLLAB_CONTAINER_APP_NAME }}
+          SIM_COLLAB_ORIGIN: ${{ secrets.SIM_COLLAB_ORIGIN }}
+
+      - name: Resolve ingress FQDN
+        id: fqdn
+        run: |
+          FQDN=$(az containerapp show \
+            --name "$CONTAINER_APP" \
+            --resource-group "$RESOURCE_GROUP" \
+            --query properties.configuration.ingress.fqdn -o tsv)
+          if [ -z "$FQDN" ]; then
+            echo "No ingress FQDN on $CONTAINER_APP — is ingress enabled?"
+            exit 1
+          fi
+          echo "fqdn=$FQDN" >> "$GITHUB_OUTPUT"
+          echo "Deployed to https://$FQDN"
+        env:
+          RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+          CONTAINER_APP: ${{ secrets.COLLAB_CONTAINER_APP_NAME }}
+
+      - name: Smoke test /health
+        run: |
+          URL="https://${{ steps.fqdn.outputs.fqdn }}/health"
+          echo "Probing $URL"
+          # Container Apps can take ~30-60s to roll out a new revision.
+          # Retry with backoff for up to ~3 minutes before declaring failure.
+          for attempt in $(seq 1 30); do
+            code=$(curl -sS --max-time 10 -o /tmp/health.json \
+              -w "%{http_code}" "$URL" || echo 000)
+            if [ "$code" = "200" ]; then
+              echo "HTTP 200 — body:"
+              cat /tmp/health.json
+              echo
+              # Verify JSON parses and has the 'status' field the handler emits.
+              jq -e '.status | IN("ok", "degraded")' /tmp/health.json > /dev/null \
+                && echo "/health returned 200 with valid JSON" \
+                && exit 0
+              echo "/health body is not valid JSON with an expected status"
+              exit 1
+            fi
+            echo "attempt $attempt: HTTP $code — retrying in 6s"
+            sleep 6
+          done
+          echo "Smoke test failed after 30 attempts"
+          cat /tmp/health.json 2>/dev/null || true
+          exit 1
+
+      - name: Deployment summary
+        if: always()
+        run: |
+          {
+            echo "## Collab Server Deploy"
+            echo ""
+            echo "- Image: \`$ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG\`"
+            echo "- Container App: \`$CONTAINER_APP\` (rg: \`$RESOURCE_GROUP\`)"
+            if [ -n "${{ steps.fqdn.outputs.fqdn }}" ]; then
+              echo "- Ingress: https://${{ steps.fqdn.outputs.fqdn }}"
+              echo "- Health: https://${{ steps.fqdn.outputs.fqdn }}/health"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+        env:
+          ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
+          RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+          CONTAINER_APP: ${{ secrets.COLLAB_CONTAINER_APP_NAME }}

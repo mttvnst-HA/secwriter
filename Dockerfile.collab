@@ -1,0 +1,64 @@
+# Runtime image for the SIM collaborative editing server.
+#
+# Produces a small Node.js container that runs server/collab-server.cjs. The
+# frontend (Vite + React) is NOT bundled — it deploys separately as a static
+# site via .github/workflows/main_asp-app-specsintact-modern.yml.
+#
+# Local build + run:
+#   docker build -f Dockerfile.collab -t sim-collab-server .
+#   docker run --rm -p 1234:1234 -p 1235:1235 \
+#     -e SIM_AUTH_PROVIDER=none \
+#     sim-collab-server
+#
+# Ports:
+#   1234  Yjs CRDT WebSocket
+#   1235  HTTP API (rooms, upload/download, /health)
+#
+# Azure deployment (single-port ingress, e.g. Container Apps / App Service):
+# the platform can only expose one port via HTTPS/WSS ingress. Point the
+# target port at 1235 for HTTP (including /health smoke tests). WebSocket
+# reachability through the same ingress requires either consolidating both
+# listeners onto one http.Server (see README TODO) or a sidecar proxy.
+
+# ── deps stage ──────────────────────────────────────────────────────────────
+FROM node:20-alpine AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+# Production deps only. This still pulls the frontend's runtime dependencies
+# (React, compromise, harper.js, etc. — they live in `dependencies`, not
+# `devDependencies`) which the server doesn't strictly need. Accepting the
+# ~30MB overhead in exchange for a single canonical package.json.
+RUN npm ci --omit=dev
+
+# ── runtime stage ───────────────────────────────────────────────────────────
+FROM node:20-alpine AS runtime
+WORKDIR /app
+
+# Non-root user. The server writes to /app/server/collab-db only when
+# SIM_STORAGE_BACKEND is unset or 'local'; production sets 'azure', so no
+# host mount is required.
+RUN addgroup -S collab && adduser -S collab -G collab
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY package.json ./
+COPY server/ ./server/
+
+USER collab
+
+# Bind all interfaces so the container is reachable from the platform's
+# ingress. The server emits a loud "non-loopback host" warning on startup;
+# that's expected here — TLS terminates at the ingress (Container Apps /
+# App Service), not in this container.
+ENV COLLAB_HOST=0.0.0.0 \
+    COLLAB_PORT=1234 \
+    COLLAB_HTTP_PORT=1235 \
+    NODE_ENV=production
+
+EXPOSE 1234 1235
+
+# Self-health via the HTTP port. Container Apps / App Service probe the
+# ingress endpoint separately; this HEALTHCHECK is for local `docker run`.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
+  CMD wget -q -O /dev/null http://127.0.0.1:1235/health || exit 1
+
+CMD ["node", "server/collab-server.cjs"]
