@@ -1,8 +1,8 @@
-# Azure Sysadmin Checklist — SpecsIntact Modern
+# Azure Sysadmin Checklist — SecWriter
 
 Everything the sysadmin needs to provision and configure on the Azure
 tenant so the two GitHub Actions workflows can build, deploy, and verify
-SpecsIntact Modern. Tick each item off in order; later steps depend on
+SecWriter. Tick each item off in order; later steps depend on
 earlier ones.
 
 This checklist assumes a fresh tenant. If some resources already exist,
@@ -93,7 +93,7 @@ long-lived secrets in the repo.
 - [ ] Add a **federated credential** on that app:
       - Scenario: GitHub Actions
       - Org: `haleyaldrich`
-      - Repo: `specsintact-modern`
+      - Repo: `secwriter`
       - Entity type: Branch
       - Branch: `main`
 - [ ] Optionally add a second federated credential for the deploy branch

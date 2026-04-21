@@ -1,6 +1,6 @@
 # Deployment Guide
 
-Reference configs for deploying SpecsIntact Modern with TLS termination.
+Reference configs for deploying SecWriter with TLS termination.
 
 ## Architecture
 

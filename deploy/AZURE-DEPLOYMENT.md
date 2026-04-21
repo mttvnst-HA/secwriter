@@ -1,8 +1,8 @@
-# Azure Deployment Instructions — SpecsIntact Modern (Multi-User)
+# Azure Deployment Instructions — SecWriter (Multi-User)
 
 ## What You're Deploying
 
-SpecsIntact Modern (SIM) is a web-based specification editor with real-time multi-user collaboration. It consists of two components:
+SecWriter is a web-based specification editor with real-time multi-user collaboration. It consists of two components:
 
 1. **Static frontend** — A React SPA built with Vite (`npm run build` produces `dist/`). Serves on any static host.
 2. **Collab server** — A Node.js process running two services:
@@ -246,7 +246,7 @@ npm run test:interop:encoding # 11 encoding fidelity tests (Node runner)
 
 ### User Acceptance Testing
 
-Have an engineer use SIM for an actual spec editing task to identify workflow gaps. The tool replaces the Word-to-SpecsIntact round-trip workflow -- test that full cycle.
+Have an engineer use SecWriter for an actual spec editing task to identify workflow gaps. The tool replaces the Word-to-SpecsIntact round-trip workflow -- test that full cycle.
 
 ### Performance Profiling
 
