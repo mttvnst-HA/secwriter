@@ -61,7 +61,7 @@ export function generateCommentReport(comments, blocks, sectionMeta) {
   </tr></thead>
   <tbody>${rows || '<tr><td colspan="5" style="padding:12px;text-align:center;color:#94a3b8">No comments</td></tr>'}</tbody>
 </table>
-<div style="margin-top:24px;font-size:11px;color:#94a3b8;text-align:center">Generated ${new Date().toLocaleString()} by SpecsIntact Modern</div>
+<div style="margin-top:24px;font-size:11px;color:#94a3b8;text-align:center">Generated ${new Date().toLocaleString()} by SecWriter</div>
 </body></html>`;
 }
 

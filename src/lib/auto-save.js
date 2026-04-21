@@ -1,5 +1,5 @@
 /**
- * Auto-save and file persistence for SIM.
+ * Auto-save and file persistence for SecWriter.
  *
  * Two persistence layers:
  * 1. localStorage auto-save — crash recovery, saves every few seconds

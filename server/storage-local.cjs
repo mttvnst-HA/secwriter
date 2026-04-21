@@ -1,5 +1,5 @@
 /**
- * LocalStorageBackend — atomic multi-artifact persistence for SIM rooms.
+ * LocalStorageBackend — atomic multi-artifact persistence for SecWriter rooms.
  *
  * Each room stores up to three files:
  *   <room>.ydoc          — binary Yjs state snapshot (Buffer)

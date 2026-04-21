@@ -1,5 +1,5 @@
 /**
- * AzureStorageBackend — Azure Blob Storage persistence for SIM rooms.
+ * AzureStorageBackend — Azure Blob Storage persistence for SecWriter rooms.
  *
  * Drop-in replacement for LocalStorageBackend. Same interface, same semantics.
  *

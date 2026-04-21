@@ -2,7 +2,7 @@
 /**
  * Corpus Test Harness (Phase 1.3)
  *
- * Runs SIM's three text-analysis engines against corpus JSON files in batch.
+ * Runs SecWriter's three text-analysis engines against corpus JSON files in batch.
  * Engines: static UFS rules, NLP (compromise.js), grammar (Harper.js LocalLinter).
  *
  * Harper.js approach: Option A — LocalLinter (no Web Worker). Harper.js exposes

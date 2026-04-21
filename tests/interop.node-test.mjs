@@ -1,7 +1,7 @@
 /**
  * Automated Interop Test Suite
  *
- * Validates structural properties of SIM-serialized .SEC output.
+ * Validates structural properties of SecWriter-serialized .SEC output.
  * Parses reference fixtures with sec-parser.js, serializes with
  * sec-serializer.js, then asserts the output meets .SEC format
  * requirements.
@@ -84,7 +84,7 @@ describe('SEC serializer interop', () => {
     assert.ok(mtaCount >= 2, `At least 2 MTA tags expected, found ${mtaCount}`);
   });
 
-  // 4. HDR element: presence only (SIM produces minimal header — fidelity is Task 2.2)
+  // 4. HDR element: presence only (SecWriter produces minimal header — fidelity is Task 2.2)
   it('HDR element is present with opening and closing tags', () => {
     assert.ok(mainOut.includes('<HDR>'), '<HDR> opening tag must be present');
     assert.ok(mainOut.includes('</HDR>'), '</HDR> closing tag must be present');

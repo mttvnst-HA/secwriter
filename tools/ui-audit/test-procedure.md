@@ -1,9 +1,9 @@
-# SpecsIntact Modern — Autonomous UI Audit Procedure
+# SecWriter — Autonomous UI Audit Procedure
 
 ## Overview
 
 This procedure guides Claude through a systematic test of every interactive UI
-element in the SpecsIntact Modern editor. Claude uses Chrome MCP tools to interact
+element in the SecWriter editor. Claude uses Chrome MCP tools to interact
 with the running app at `http://localhost:5173`.
 
 ## Prerequisites

@@ -73,7 +73,7 @@ export default function LoginGate({ children }) {
         boxShadow: '0 20px 40px rgba(15,23,42,0.12)', textAlign: 'center',
         maxWidth: 400,
       }}>
-        <h1 style={{ fontSize: 22, color: '#1e293b', marginBottom: 8 }}>SpecsIntact Modern</h1>
+        <h1 style={{ fontSize: 22, color: '#1e293b', marginBottom: 8 }}>SecWriter</h1>
         <p style={{ fontSize: 14, color: '#64748b', marginBottom: 24 }}>Sign in to access the collaborative editor.</p>
         <button onClick={() => signIn()} style={{
           padding: '10px 24px', fontSize: 14, fontWeight: 600,
