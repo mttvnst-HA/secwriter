@@ -45,7 +45,7 @@ function main() {
   };
 
   const lines = [];
-  lines.push('# SIM Text Analysis Engine — Corpus Test Report');
+  lines.push('# SecWriter Text Analysis Engine — Corpus Test Report');
   lines.push('');
   lines.push(`Generated: ${new Date().toISOString()}`);
   lines.push('');

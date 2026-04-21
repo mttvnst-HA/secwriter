@@ -1,15 +1,15 @@
 /**
  * Interop Export Script
  *
- * Generates SIM-exported versions of representative .SEC files for SIEditor
- * smoke testing. Each file is parsed through SIM's full pipeline
+ * Generates SecWriter-exported versions of representative .SEC files for SIEditor
+ * smoke testing. Each file is parsed through SecWriter's full pipeline
  * (parseSEC + extractMetadata + serializeSEC) and written to
  * test-results/interop/ with windows-1252 encoding.
  *
  * Usage:
  *   node --import ./tools/json-loader.mjs tools/interop-export.mjs
  *
- * Output: test-results/interop/<filename>_SIM.SEC  (one per input file)
+ * Output: test-results/interop/<filename>_SecWriter.SEC  (one per input file)
  */
 
 import { parseHTML } from 'linkedom';
@@ -45,16 +45,16 @@ if (!fs.existsSync(OUTPUT_DIR)) {
   console.log(`Created output directory: ${OUTPUT_DIR}`);
 }
 
-console.log(`Exporting ${TEST_FILES.length} .SEC files through SIM pipeline...\n`);
+console.log(`Exporting ${TEST_FILES.length} .SEC files through SecWriter pipeline...\n`);
 
 const results = [];
 
 for (const filePath of TEST_FILES) {
   const baseName = path.basename(filePath);
-  // Build output filename: "31_00_00.SEC" -> "31_00_00_SIM.SEC"
+  // Build output filename: "31_00_00.SEC" -> "31_00_00_SecWriter.SEC"
   const ext = path.extname(baseName);
   const stem = baseName.slice(0, baseName.length - ext.length);
-  const outName = `${stem}_SIM${ext.toUpperCase()}`;
+  const outName = `${stem}_SecWriter${ext.toUpperCase()}`;
   const outPath = path.join(OUTPUT_DIR, outName);
 
   const entry = { filePath, outPath, outName, status: null, blockCount: 0, error: null };

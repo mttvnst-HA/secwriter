@@ -73,7 +73,7 @@ const findingsPath = join(RESULTS_DIR, 'findings.json');
 writeFileSync(findingsPath, JSON.stringify(findings, null, 2), 'utf8');
 
 console.log(`
-  SpecsIntact Modern — UI Audit
+  SecWriter — UI Audit
   ─────────────────────────────
   Dev server:  ${devServerRunning ? '✅ Running at http://localhost:5173' : '❌ NOT RUNNING — run: npm run dev'}
   Areas:       ${filteredAreas.length} test areas queued
