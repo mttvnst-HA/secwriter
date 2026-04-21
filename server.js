@@ -64,5 +64,5 @@ const server = createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`SIM static server listening on port ${PORT}`);
+  console.log(`SecWriter static server listening on port ${PORT}`);
 });

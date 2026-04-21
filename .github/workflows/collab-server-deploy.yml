@@ -1,4 +1,4 @@
-# Build, push, and deploy the SIM collaborative editing server.
+# Build, push, and deploy the SecWriter collaborative editing server.
 #
 # Architecture:
 #   - Source        → Dockerfile.collab (Node.js 20-alpine runtime)
@@ -13,7 +13,7 @@
 #                                  - AcrPush on the ACR
 #                                  - Contributor on the Container App
 #                                  - Storage Blob Data Contributor on the
-#                                    blob storage account (for SIM runtime
+#                                    blob storage account (for SecWriter runtime
 #                                    using Managed Identity)
 #   AZURE_TENANT_ID
 #   AZURE_SUBSCRIPTION_ID

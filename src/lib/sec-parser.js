@@ -229,7 +229,7 @@ function extractTable(tabElem) {
  * @returns {Array} Array of block objects
  */
 export function parseSEC(xmlString) {
-  // Legacy USACE .SEC files (and older SIM saves) can contain bare `&`
+  // Legacy USACE .SEC files (and older SecWriter saves) can contain bare `&`
   // characters in text content — e.g. "Concrete & Commentary" in an RTL.
   // The browser's strict XML DOMParser treats any `&` not followed by a
   // valid entity as a fatal error and silently truncates the document at

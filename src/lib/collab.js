@@ -693,7 +693,7 @@ export function createCollabSession({
     onStatusChange?.(isSynced ? 'connected' : 'syncing', { reconnectIn: 0 });
   };
 
-  // Map y-websocket status events to SIM's four-state model.
+  // Map y-websocket status events to SecWriter's four-state model.
   // y-websocket fires 'status' with { status: 'connecting'|'disconnected'|'connected' }
   // on WebSocket lifecycle events. We deliberately ignore 'connected' here because
   // it fires when the WebSocket opens (before Yjs sync completes); the 'sync'

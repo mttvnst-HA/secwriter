@@ -14,7 +14,7 @@ import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
  *   (would clobber caret). External updates re-init only when block.id changes.
  * - Commit on blur — TBL is whitespace-sensitive, debounced input would jitter caret.
  * - Normalize on blur: <br> → \n, </div><div> → \n, &nbsp; → space, strip ZWSP.
- * - spellCheck=false (consistent with rest of SIM, no browser exfiltration).
+ * - spellCheck=false (consistent with rest of SecWriter, no browser exfiltration).
  */
 function PreformattedBlock({ block, isFocused, onFocus, onUpdate, showTags = false }) {
   const ref = useRef(null);

@@ -1,5 +1,5 @@
 /**
- * Grammar Checker — Harper.js Web Worker wrapper for SIM.
+ * Grammar Checker — Harper.js Web Worker wrapper for SecWriter.
  *
  * Lazy-loads Harper's WASM binary on first use. Runs grammar/spelling
  * checks in a Web Worker for non-blocking operation.

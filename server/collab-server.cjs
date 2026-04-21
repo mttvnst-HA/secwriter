@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * SIM collaborative editing relay.
+ * SecWriter collaborative editing relay.
  *
  * A thin y-websocket server for the multi-user prototype. Persists each Yjs
  * doc to disk as a binary state snapshot so reconnecting clients recover

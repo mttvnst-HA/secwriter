@@ -1,5 +1,5 @@
 /**
- * Structured logger for SIM collab server.
+ * Structured logger for SecWriter collab server.
  *
  * When SIM_LOG_FORMAT=json, outputs one JSON line per log call.
  * Otherwise outputs plain-text format matching existing console.log style.
