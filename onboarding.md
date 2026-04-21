@@ -18,8 +18,8 @@ Optional but recommended:
 ## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/haleyaldrich/specsintact-modern.git
-cd specsintact-modern
+git clone https://github.com/haleyaldrich/secwriter.git
+cd secwriter
 ```
 
 If you don't have access, request it from the repo admin. The repo is private.

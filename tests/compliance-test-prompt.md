@@ -4,7 +4,7 @@
 
 You are an autonomous testing agent. Your job is to systematically test the UFS 1-300-02 Compliance Checker in SpecsIntact Modern (SIM). The compliance checker has a history of bugs in five categories: false positives, highlighting mismatches, button failures, exclusion gaps, and scroll/interaction jank. This test suite is designed to catch regressions in all five categories.
 
-**Project location:** `C:\working_claude\specsintact-modern`
+**Project location:** `C:\github\secwriter`
 **Dev server:** `npm run dev` at `http://localhost:5173`
 **Key source files:**
 - `src/lib/compliance-rules.js` — Static rule engine (builds ~81 rules from JSON)

@@ -1,10 +1,10 @@
-# SIM ↔ SpecsIntact Legacy Interoperability Test
+# SecWriter ↔ SpecsIntact Legacy Interoperability Test
 
-**Purpose:** Verify that .SEC files can round-trip between specsintact-modern (SIM) and legacy SpecsIntact/SIEditor without data loss or corruption.
+**Purpose:** Verify that .SEC files can round-trip between SecWriter (formerly SpecsIntact Modern) and legacy SpecsIntact/SIEditor without data loss or corruption.
 
 **Prerequisites:**
 - A Windows machine with legacy SpecsIntact (SIEditor) installed
-- A browser running SIM (specsintact-modern) via `npm run dev`
+- A browser running SecWriter via `npm run dev`
 - A reference .SEC file from the UFGS master set (e.g., `31_00_00.SEC` — EARTHWORK)
 - A hex editor or diff tool that can compare binary files (e.g., HxD, Beyond Compare, or `fc /b` on Windows)
 

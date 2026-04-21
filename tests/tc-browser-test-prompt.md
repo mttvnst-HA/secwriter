@@ -6,7 +6,7 @@ You are an autonomous testing agent. Your job is to test the Track Changes (TC) 
 
 Use the Chrome browser automation MCP tools (`tabs_context_mcp`, `navigate`, `computer`, `read_page`, `find`, `form_input`, `javascript_tool`, `get_page_text`) to interact with the running application UI. For each test, verify expected behavior visually (screenshots) and programmatically (DOM inspection). If a test fails, investigate the root cause in the source code, fix it, and re-run the test until it passes.
 
-**Project location:** `C:\working_claude\specsintact-modern`
+**Project location:** `C:\github\secwriter`
 **Dev server:** `npm run dev` at `http://localhost:5173`
 **Key source files:**
 - `src/lib/text-diff.js` — Word-level LCS diff + DOM annotation
