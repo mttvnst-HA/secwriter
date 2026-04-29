@@ -109,4 +109,25 @@ describe('S3StorageBackend', () => {
 
     assert.deepEqual(rooms.sort(), ['room1', 'room2']);
   });
+
+  test('quarantineRoom copies .ydoc to .<reason>.ydoc and deletes original', async () => {
+    const copies = [];
+    const deletes = [];
+    s3Mock.on(CopyObjectCommand).callsFake(async (input) => {
+      copies.push({ from: input.CopySource, to: input.Key });
+      return {};
+    });
+    s3Mock.on(DeleteObjectCommand).callsFake(async (input) => {
+      deletes.push(input.Key);
+      return {};
+    });
+
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    await backend.quarantineRoom('myroom', 'corrupt');
+
+    assert.equal(copies.length, 1);
+    assert.equal(copies[0].from, 'test/myroom.ydoc');
+    assert.equal(copies[0].to, 'myroom.corrupt.ydoc');
+    assert.deepEqual(deletes, ['myroom.ydoc']);
+  });
 });

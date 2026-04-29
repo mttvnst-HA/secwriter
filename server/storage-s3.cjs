@@ -105,7 +105,16 @@ class S3StorageBackend {
     } while (continuationToken);
     return [...rooms];
   }
-  async quarantineRoom(docName, reason) { throw new Error('not implemented'); }
+  async quarantineRoom(docName, reason) {
+    const sourceKey = `${docName}.ydoc`;
+    const targetKey = `${docName}.${reason}.ydoc`;
+    await this.client.send(new CopyObjectCommand({
+      Bucket: this.bucket,
+      CopySource: `${this.bucket}/${sourceKey}`,
+      Key: targetKey,
+    }));
+    await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
+  }
   async archiveRoom(docName) { throw new Error('not implemented'); }
   async restoreRoom(docName) { throw new Error('not implemented'); }
   async listArchivedRooms() { throw new Error('not implemented'); }
