@@ -3,11 +3,14 @@
 #
 # Deploy sequence:
 #   1. Connect this repo in the Render dashboard → "New Blueprint"
-#   2. Both services deploy. Note the collab service URL (e.g. secwriter-collab.onrender.com)
-#   3. In the Render dashboard, set these two env vars on the secwriter-frontend service:
+#   2. Before first deploy, set these env vars on secwriter-collab in the dashboard:
+#        SIM_AZURE_STORAGE_CONNECTION_STRING = <your Azure storage account connection string>
+#          (Azure portal → Storage account → Security + networking → Access keys → Connection string)
+#   3. Both services deploy. Note the collab service URL (e.g. secwriter-collab.onrender.com)
+#   4. Set these two env vars on secwriter-frontend in the dashboard:
 #        VITE_COLLAB_WS_URL  = wss://<secwriter-collab-url>/ws
 #        VITE_COLLAB_HTTP_URL = https://<secwriter-collab-url>/api
-#   4. Trigger a manual redeploy of secwriter-frontend so Vite inlines the URLs.
+#   5. Trigger a manual redeploy of secwriter-frontend so Vite inlines the URLs.
 #
 # Free-tier note: Web Services on the free plan spin down after 15 min of
 # inactivity. The first WebSocket connection after idle will experience a
@@ -27,7 +30,11 @@ services:
       - key: SIM_AUTH_PROVIDER
         value: none            # No auth needed for dev/testing
       - key: SIM_STORAGE_BACKEND
-        value: local           # Ephemeral disk — rooms reset on redeploy (fine for dev)
+        value: azure           # Use Azure Blob — persistent across redeploys, tests the production backend
+      - key: SIM_AZURE_STORAGE_CONNECTION_STRING
+        sync: false            # Paste your Azure storage account connection string from the portal
+      - key: SIM_AZURE_STORAGE_CONTAINER
+        value: sim-collab-rooms
       - key: SIM_LOG_FORMAT
         value: json
       - key: SIM_COLLAB_ORIGIN
