@@ -23,4 +23,58 @@ describe('S3StorageBackend', () => {
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
     assert.equal(backend.bucket, 'test');
   });
+
+  test('writeRoom + readRoom round-trips all three artifacts', async () => {
+    const stored = new Map();
+    s3Mock.on(PutObjectCommand).callsFake(async (input) => {
+      stored.set(input.Key, input.Body);
+      return {};
+    });
+    s3Mock.on(GetObjectCommand).callsFake(async (input) => {
+      if (!stored.has(input.Key)) {
+        const err = new Error('NoSuchKey'); err.name = 'NoSuchKey';
+        throw err;
+      }
+      const body = stored.get(input.Key);
+      return {
+        Body: {
+          transformToByteArray: async () =>
+            body instanceof Uint8Array ? body : new Uint8Array(Buffer.from(body)),
+        },
+      };
+    });
+
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    const ydocBytes = new Uint8Array([1, 2, 3, 4]);
+    const secBytes = new Uint8Array([5, 6, 7]);
+    const commentsJson = '{"comments":[]}';
+
+    await backend.writeRoom('myroom', { ydocBytes, secBytes, commentsJson });
+    const result = await backend.readRoom('myroom');
+
+    assert.deepEqual(Array.from(result.ydocBytes), [1, 2, 3, 4]);
+    assert.deepEqual(Array.from(result.secBytes), [5, 6, 7]);
+    assert.equal(result.commentsJson, commentsJson);
+  });
+
+  test('readRoom returns null when ydoc missing', async () => {
+    s3Mock.on(GetObjectCommand).callsFake(async () => {
+      const err = new Error('NoSuchKey'); err.name = 'NoSuchKey';
+      throw err;
+    });
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    const result = await backend.readRoom('nope');
+    assert.equal(result, null);
+  });
+
+  test('writeRoom with null secBytes/commentsJson writes only ydoc', async () => {
+    const writes = [];
+    s3Mock.on(PutObjectCommand).callsFake(async (input) => {
+      writes.push(input.Key);
+      return {};
+    });
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    await backend.writeRoom('myroom', { ydocBytes: new Uint8Array([1]), secBytes: null, commentsJson: null });
+    assert.deepEqual(writes, ['myroom.ydoc']);
+  });
 });

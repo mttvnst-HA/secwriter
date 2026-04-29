@@ -26,8 +26,55 @@ class S3StorageBackend {
     this.bucket = bucket;
   }
 
-  async writeRoom(docName, artifacts) { throw new Error('not implemented'); }
-  async readRoom(docName) { throw new Error('not implemented'); }
+  async writeRoom(docName, artifacts) {
+    const { ydocBytes, secBytes, commentsJson } = artifacts;
+    const writes = [
+      this.client.send(new PutObjectCommand({
+        Bucket: this.bucket,
+        Key: `${docName}.ydoc`,
+        Body: ydocBytes,
+        ContentType: 'application/octet-stream',
+      })),
+    ];
+    if (secBytes) {
+      writes.push(this.client.send(new PutObjectCommand({
+        Bucket: this.bucket,
+        Key: `${docName}.SEC`,
+        Body: secBytes,
+        ContentType: 'application/octet-stream',
+      })));
+    }
+    if (commentsJson) {
+      writes.push(this.client.send(new PutObjectCommand({
+        Bucket: this.bucket,
+        Key: `${docName}.comments.json`,
+        Body: commentsJson,
+        ContentType: 'application/json',
+      })));
+    }
+    await Promise.all(writes);
+  }
+
+  async readRoom(docName) {
+    const tryGet = async (key) => {
+      try {
+        const res = await this.client.send(new GetObjectCommand({ Bucket: this.bucket, Key: key }));
+        return await res.Body.transformToByteArray();
+      } catch (err) {
+        if (err.name === 'NoSuchKey' || err.$metadata?.httpStatusCode === 404) return null;
+        throw err;
+      }
+    };
+
+    const ydocBytes = await tryGet(`${docName}.ydoc`);
+    if (!ydocBytes) return null;
+
+    const secBytes = await tryGet(`${docName}.SEC`);
+    const commentsBytes = await tryGet(`${docName}.comments.json`);
+    const commentsJson = commentsBytes ? Buffer.from(commentsBytes).toString('utf8') : null;
+
+    return { ydocBytes, secBytes, commentsJson };
+  }
   async deleteRoom(docName) { throw new Error('not implemented'); }
   async listRooms() { throw new Error('not implemented'); }
   async quarantineRoom(docName, reason) { throw new Error('not implemented'); }
