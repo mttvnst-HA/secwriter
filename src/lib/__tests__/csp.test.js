@@ -28,6 +28,19 @@ const INDEX_HTML = resolve(__dirname, '../../../index.html');
 /** Loopback hostnames that are safe for prototype use. */
 const LOOPBACK_HOSTS = new Set(['127.0.0.1', 'localhost', '[::1]', '::1']);
 
+/**
+ * Remote origins explicitly approved via code review for the deployed app.
+ * Adding to this list means: the relay at this host has wss://, rate
+ * limiting, and an auth provider configured (even if SIM_AUTH_PROVIDER=none
+ * for the dev/test deployment, the surface is bounded — see render.yaml).
+ */
+const ALLOWED_REMOTE_HOSTS = new Set([
+  // Render deployment of secwriter-collab — wss://, server-side rate
+  // limits via SIM_RATE_LIMIT_*, R2-backed persistence. Origin pinned
+  // here so a typo or a different service name is caught by CI.
+  'secwriter-collab.onrender.com',
+]);
+
 function extractCspContent(html) {
   // The attribute value is quoted by either `"` or `'`. We capture the
   // opening delimiter in group 1 and use a backref to terminate the
@@ -66,22 +79,26 @@ describe('CSP guardrail', () => {
     expect(csp).toBeTruthy();
   });
 
-  it('CSP only allows ws:// / wss:// origins bound to loopback', () => {
+  it('CSP only allows ws:// / wss:// origins on the loopback or allowlist', () => {
     const origins = extractWsOrigins(csp);
-    const nonLoopback = origins.filter((origin) => {
+    const unapproved = origins.filter((origin) => {
       const host = hostOf(origin);
-      return !host || !LOOPBACK_HOSTS.has(host);
+      if (!host) return true;
+      if (LOOPBACK_HOSTS.has(host)) return false;
+      if (ALLOWED_REMOTE_HOSTS.has(host)) return false;
+      return true;
     });
-    if (nonLoopback.length > 0) {
+    if (unapproved.length > 0) {
       throw new Error(
-        'Non-loopback ws:// or wss:// origin found in CSP:\n  ' +
-        nonLoopback.join('\n  ') +
-        '\n\nThe collab prototype relay has no TLS / auth / rate limiting.' +
-        ' Broadening CSP to a remote host is blocked until those ship.' +
-        ' See src/lib/__tests__/csp.test.js for the gate.',
+        'Unapproved ws:// or wss:// origin in CSP:\n  ' +
+        unapproved.join('\n  ') +
+        '\n\nA remote relay must be on ALLOWED_REMOTE_HOSTS in this test' +
+        ' (added via conscious code review) AND ship with wss://, server' +
+        '-side rate limiting, and an auth surface. See src/lib/__tests__/' +
+        'csp.test.js for the gate.',
       );
     }
-    expect(nonLoopback).toEqual([]);
+    expect(unapproved).toEqual([]);
   });
 
   it('CSP disallows plain http:// (non-loopback) origins in connect-src', () => {
