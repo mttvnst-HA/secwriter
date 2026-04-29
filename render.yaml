@@ -12,7 +12,9 @@
 #   3. Both services deploy. Note the collab service URL.
 #   4. Set these two env vars on secwriter-frontend in the dashboard:
 #        VITE_COLLAB_WS_URL  = wss://<secwriter-collab-url>/ws
-#        VITE_COLLAB_HTTP_URL = https://<secwriter-collab-url>/api
+#        VITE_COLLAB_HTTP_URL = https://<secwriter-collab-url>
+#          (no path suffix — server mounts /rooms, /health, /rooms/:id at root;
+#           appending /api here causes a 404 on GET /rooms)
 #   5. Trigger a manual redeploy of secwriter-frontend so Vite inlines the URLs.
 #
 # Free-tier note: Web Services on the free plan spin down after 15 min of
@@ -65,4 +67,4 @@ services:
       - key: VITE_COLLAB_WS_URL
         sync: false   # wss://<secwriter-collab>.onrender.com/ws
       - key: VITE_COLLAB_HTTP_URL
-        sync: false   # https://<secwriter-collab>.onrender.com/api
+        sync: false   # https://<secwriter-collab>.onrender.com  (no path suffix)
