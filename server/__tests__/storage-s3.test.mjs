@@ -77,4 +77,17 @@ describe('S3StorageBackend', () => {
     await backend.writeRoom('myroom', { ydocBytes: new Uint8Array([1]), secBytes: null, commentsJson: null });
     assert.deepEqual(writes, ['myroom.ydoc']);
   });
+
+  test('deleteRoom removes all three artifacts', async () => {
+    const deleted = [];
+    s3Mock.on(DeleteObjectCommand).callsFake(async (input) => {
+      deleted.push(input.Key);
+      return {};
+    });
+
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    await backend.deleteRoom('myroom');
+
+    assert.deepEqual(deleted.sort(), ['myroom.SEC', 'myroom.comments.json', 'myroom.ydoc']);
+  });
 });

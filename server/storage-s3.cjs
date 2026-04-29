@@ -75,7 +75,15 @@ class S3StorageBackend {
 
     return { ydocBytes, secBytes, commentsJson };
   }
-  async deleteRoom(docName) { throw new Error('not implemented'); }
+  async deleteRoom(docName) {
+    const keys = [`${docName}.ydoc`, `${docName}.SEC`, `${docName}.comments.json`];
+    await Promise.all(keys.map(Key =>
+      this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key })).catch(err => {
+        // Swallow 404 — optional artifacts (SEC, comments) may legitimately not exist.
+        if (err.name !== 'NoSuchKey' && err.$metadata?.httpStatusCode !== 404) throw err;
+      })
+    ));
+  }
   async listRooms() { throw new Error('not implemented'); }
   async quarantineRoom(docName, reason) { throw new Error('not implemented'); }
   async archiveRoom(docName) { throw new Error('not implemented'); }
