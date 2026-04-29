@@ -90,4 +90,23 @@ describe('S3StorageBackend', () => {
 
     assert.deepEqual(deleted.sort(), ['myroom.SEC', 'myroom.comments.json', 'myroom.ydoc']);
   });
+
+  test('listRooms returns room names from .ydoc objects, excluding quarantine + archive', async () => {
+    s3Mock.on(ListObjectsV2Command).resolves({
+      Contents: [
+        { Key: 'room1.ydoc' },
+        { Key: 'room1.SEC' },
+        { Key: 'room2.ydoc' },
+        { Key: 'room2.comments.json' },
+        { Key: 'room3.corrupt.ydoc' },     // quarantined - exclude
+        { Key: 'room4.oversize.ydoc' },    // quarantined - exclude
+        { Key: 'archive/room5.ydoc' },     // archived - exclude
+      ],
+    });
+
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    const rooms = await backend.listRooms();
+
+    assert.deepEqual(rooms.sort(), ['room1', 'room2']);
+  });
 });

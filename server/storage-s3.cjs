@@ -84,7 +84,27 @@ class S3StorageBackend {
       })
     ));
   }
-  async listRooms() { throw new Error('not implemented'); }
+  async listRooms() {
+    const rooms = new Set();
+    let continuationToken;
+    do {
+      const res = await this.client.send(new ListObjectsV2Command({
+        Bucket: this.bucket,
+        ContinuationToken: continuationToken,
+      }));
+      for (const obj of res.Contents || []) {
+        const key = obj.Key;
+        if (key.startsWith('archive/')) continue;
+        // Match exactly <name>.ydoc — name must not contain '.' to exclude
+        // <name>.<reason>.ydoc (quarantined).
+        const m = key.match(/^([^./]+)\.ydoc$/);
+        if (!m) continue;
+        rooms.add(m[1]);
+      }
+      continuationToken = res.NextContinuationToken;
+    } while (continuationToken);
+    return [...rooms];
+  }
   async quarantineRoom(docName, reason) { throw new Error('not implemented'); }
   async archiveRoom(docName) { throw new Error('not implemented'); }
   async restoreRoom(docName) { throw new Error('not implemented'); }
