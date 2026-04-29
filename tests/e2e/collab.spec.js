@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import http from 'node:http';
 import { createRoom, deleteRoom, joinRoom, getBlockText, waitForConnected, waitForEditable, seedRoom, MINIMAL_SEC } from './collab-helpers.js';
 
-const COLLAB_HTTP = 'http://127.0.0.1:1235';
+const COLLAB_HTTP = 'http://127.0.0.1:1234';
 
 let roomCounter = 0;
 function uniqueRoom() {

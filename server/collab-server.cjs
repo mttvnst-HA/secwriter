@@ -248,7 +248,21 @@ setPersistence({
   },
 });
 
-const wss = new WebSocketServer({ host: HOST, port: PORT });
+// ── HTTP + WebSocket on a single port ────────────────────────────────────
+// When deployed to Render (or any platform that exposes one port), WS and
+// HTTP must share a single listener. Attach WSS to the httpServer so that
+// HTTP upgrade events are intercepted automatically; regular HTTP requests
+// continue to the httpHandler. Render sets PORT; COLLAB_PORT is the
+// legacy two-port fallback for local nginx/Caddy deployments.
+const http = require('node:http');
+const { createHttpHandler } = require('./http-handler.cjs');
+
+const allowedOrigin = process.env.SIM_COLLAB_ORIGIN || '*';
+const httpServer = http.createServer(
+  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES, authProvider, allowedOrigin, getActiveUsers, rateLimiter, roomHealth })
+);
+
+const wss = new WebSocketServer({ server: httpServer });
 
 // Note: This handler is async but EventEmitter.on() does not await it.
 // This is safe because jwt.verify() is synchronous (even for RS256).
@@ -280,28 +294,18 @@ wss.on('connection', async (conn, req) => {
   setupWSConnection(conn, req, { gc: true });
 });
 
-wss.on('listening', () => {
-  log.info('server.listening', { transport: 'ws', host: HOST, port: PORT });
-  log.info('server.storage', { dir: DATA_DIR });
-  log.info('server.config', { maxDocBytes: MAX_DOC_BYTES });
-});
-
 wss.on('error', (err) => {
   log.error('server.error', { err: err.message });
 });
 
-// ── HTTP endpoints for document download/upload ──────────────────────────
-const http = require('node:http');
-const { createHttpHandler } = require('./http-handler.cjs');
-
-const allowedOrigin = process.env.SIM_COLLAB_ORIGIN || '*';
-const httpServer = http.createServer(
-  createHttpHandler({ storage, boundDocs, flushRoom, maxDocBytes: MAX_DOC_BYTES, authProvider, allowedOrigin, getActiveUsers, rateLimiter, roomHealth })
-);
-
-const HTTP_PORT = Number(process.env.COLLAB_HTTP_PORT || 1235);
-httpServer.listen(HTTP_PORT, HOST, () => {
-  log.info('server.listening', { transport: 'http', host: HOST, port: HTTP_PORT });
+// ── Start listening ──────────────────────────────────────────────────────
+// PORT is set by Render (and similar PaaS platforms). COLLAB_PORT is the
+// legacy env var for local reverse-proxy deployments (default 1234).
+const LISTEN_PORT = Number(process.env.PORT || process.env.COLLAB_PORT || 1234);
+httpServer.listen(LISTEN_PORT, HOST, () => {
+  log.info('server.listening', { transport: 'http+ws', host: HOST, port: LISTEN_PORT });
+  log.info('server.storage', { dir: DATA_DIR });
+  log.info('server.config', { maxDocBytes: MAX_DOC_BYTES });
 });
 
 // ── Room TTL/Expiry ──────────────────────────────────────────────────

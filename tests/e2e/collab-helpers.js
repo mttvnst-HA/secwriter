@@ -3,7 +3,7 @@
  */
 import http from 'node:http';
 
-const COLLAB_HTTP = 'http://127.0.0.1:1235';
+const COLLAB_HTTP = 'http://127.0.0.1:1234';
 
 /** POST /rooms to create a room. Returns room id. */
 export async function createRoom(name) {
