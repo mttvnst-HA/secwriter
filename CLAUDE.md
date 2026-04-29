@@ -220,6 +220,13 @@ Each document is a flat array of blocks:
 }
 ```
 
+## Storage Backends
+
+Three storage backends are wired: `local` (default, disk under `server/collab-db/`),
+`azure` (Azure Blob, see `server/storage-azure.cjs`), and `s3` (S3-compatible
+including Cloudflare R2 and MinIO, see `server/storage-s3.cjs`). Selected via
+`SIM_STORAGE_BACKEND`. S3 backend uses the `SIM_S3_*` env vars.
+
 ## Reference Data Sources
 
 - **UMRL** (`src/data/umrl.json`) — Unified Master Reference List. 302 organizations, 4,973 entries. Source: `C:\Program Files (x86)\SpecsIntact 5\UMRL\umrl.ref`. Used by the Reference Wizard.

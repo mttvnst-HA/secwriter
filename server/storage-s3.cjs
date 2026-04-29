@@ -1,0 +1,204 @@
+/**
+ * S3-compatible blob storage backend (Cloudflare R2, AWS S3, MinIO).
+ *
+ * Mirrors AzureStorageBackend's interface. Each room produces three
+ * objects keyed by room name:
+ *   <name>.ydoc            (binary Y.Doc snapshot)
+ *   <name>.SEC             (windows-1252 encoded .SEC bytes)
+ *   <name>.comments.json   (UTF-8 JSON sidecar)
+ *
+ * Quarantined rooms: <name>.<reason>.ydoc (e.g. <name>.corrupt.ydoc).
+ * Archived rooms: archive/<name>.* prefix.
+ *
+ * Configured via SIM_S3_ENDPOINT / SIM_S3_REGION / SIM_S3_ACCESS_KEY_ID /
+ * SIM_S3_SECRET_ACCESS_KEY / SIM_S3_BUCKET. See server/collab-server.cjs
+ * for the env-driven instantiation.
+ */
+
+const { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand,
+        ListObjectsV2Command, CopyObjectCommand, HeadObjectCommand } = require('@aws-sdk/client-s3');
+
+class S3StorageBackend {
+  constructor({ client, bucket }) {
+    if (!client) throw new Error('S3StorageBackend requires { client }');
+    if (!bucket) throw new Error('S3StorageBackend requires { bucket }');
+    this.client = client;
+    this.bucket = bucket;
+  }
+
+  async writeRoom(docName, artifacts) {
+    const { ydocBytes, secBytes, commentsJson } = artifacts;
+    const writes = [
+      this.client.send(new PutObjectCommand({
+        Bucket: this.bucket,
+        Key: `${docName}.ydoc`,
+        Body: ydocBytes,
+        ContentType: 'application/octet-stream',
+      })),
+    ];
+    if (secBytes) {
+      writes.push(this.client.send(new PutObjectCommand({
+        Bucket: this.bucket,
+        Key: `${docName}.SEC`,
+        Body: secBytes,
+        ContentType: 'application/octet-stream',
+      })));
+    }
+    if (commentsJson) {
+      writes.push(this.client.send(new PutObjectCommand({
+        Bucket: this.bucket,
+        Key: `${docName}.comments.json`,
+        Body: commentsJson,
+        ContentType: 'application/json',
+      })));
+    }
+    await Promise.all(writes);
+  }
+
+  async readRoom(docName) {
+    const tryGet = async (key) => {
+      try {
+        const res = await this.client.send(new GetObjectCommand({ Bucket: this.bucket, Key: key }));
+        return await res.Body.transformToByteArray();
+      } catch (err) {
+        if (err.name === 'NoSuchKey' || err.$metadata?.httpStatusCode === 404) return null;
+        throw err;
+      }
+    };
+
+    const ydocBytes = await tryGet(`${docName}.ydoc`);
+    if (!ydocBytes) return null;
+
+    const secBytes = await tryGet(`${docName}.SEC`);
+    const commentsBytes = await tryGet(`${docName}.comments.json`);
+    const commentsJson = commentsBytes ? Buffer.from(commentsBytes).toString('utf8') : null;
+
+    return { ydocBytes, secBytes, commentsJson };
+  }
+  async deleteRoom(docName) {
+    const keys = [`${docName}.ydoc`, `${docName}.SEC`, `${docName}.comments.json`];
+    await Promise.all(keys.map(Key =>
+      this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key })).catch(err => {
+        // Swallow 404 — optional artifacts (SEC, comments) may legitimately not exist.
+        if (err.name !== 'NoSuchKey' && err.$metadata?.httpStatusCode !== 404) throw err;
+      })
+    ));
+  }
+  async listRooms() {
+    const rooms = new Set();
+    let continuationToken;
+    do {
+      const res = await this.client.send(new ListObjectsV2Command({
+        Bucket: this.bucket,
+        ContinuationToken: continuationToken,
+      }));
+      for (const obj of res.Contents || []) {
+        const key = obj.Key;
+        if (key.startsWith('archive/')) continue;
+        // Match exactly <name>.ydoc — name must not contain '.' to exclude
+        // <name>.<reason>.ydoc (quarantined).
+        const m = key.match(/^([^./]+)\.ydoc$/);
+        if (!m) continue;
+        rooms.add(m[1]);
+      }
+      continuationToken = res.NextContinuationToken;
+    } while (continuationToken);
+    return [...rooms];
+  }
+  async quarantineRoom(docName, reason) {
+    const sourceKey = `${docName}.ydoc`;
+    const targetKey = `${docName}.${reason}.ydoc`;
+    await this.client.send(new CopyObjectCommand({
+      Bucket: this.bucket,
+      CopySource: `${this.bucket}/${sourceKey}`,
+      Key: targetKey,
+    }));
+    await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
+  }
+  async archiveRoom(docName) {
+    const suffixes = ['.ydoc', '.SEC', '.comments.json'];
+    const archivedAt = new Date().toISOString();
+    for (const suffix of suffixes) {
+      const sourceKey = `${docName}${suffix}`;
+      const targetKey = `archive/${docName}${suffix}`;
+      try {
+        await this.client.send(new CopyObjectCommand({
+          Bucket: this.bucket,
+          CopySource: `${this.bucket}/${sourceKey}`,
+          Key: targetKey,
+          Metadata: { archivedat: archivedAt },
+          MetadataDirective: 'REPLACE',
+        }));
+        await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
+      } catch (err) {
+        // Optional artifacts (SEC, comments) may not exist — skip silently.
+        if (err.name !== 'NoSuchKey' && err.$metadata?.httpStatusCode !== 404) throw err;
+      }
+    }
+  }
+
+  async restoreRoom(docName) {
+    const suffixes = ['.ydoc', '.SEC', '.comments.json'];
+    for (const suffix of suffixes) {
+      const sourceKey = `archive/${docName}${suffix}`;
+      const targetKey = `${docName}${suffix}`;
+      try {
+        await this.client.send(new CopyObjectCommand({
+          Bucket: this.bucket,
+          CopySource: `${this.bucket}/${sourceKey}`,
+          Key: targetKey,
+        }));
+        await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
+      } catch (err) {
+        if (err.name !== 'NoSuchKey' && err.$metadata?.httpStatusCode !== 404) throw err;
+      }
+    }
+  }
+
+  async listArchivedRooms() {
+    const result = [];
+    let continuationToken;
+    do {
+      const res = await this.client.send(new ListObjectsV2Command({
+        Bucket: this.bucket,
+        Prefix: 'archive/',
+        ContinuationToken: continuationToken,
+      }));
+      for (const obj of res.Contents || []) {
+        const m = obj.Key.match(/^archive\/([^./]+)\.ydoc$/);
+        if (!m) continue;
+        const name = m[1];
+        let archivedAt = null;
+        try {
+          const head = await this.client.send(new HeadObjectCommand({ Bucket: this.bucket, Key: obj.Key }));
+          archivedAt = head.Metadata?.archivedat || null;
+        } catch { /* ignore */ }
+        result.push({ name, archivedAt });
+      }
+      continuationToken = res.NextContinuationToken;
+    } while (continuationToken);
+    return result;
+  }
+
+  async deleteArchivedRoom(docName) {
+    const keys = [`archive/${docName}.ydoc`, `archive/${docName}.SEC`, `archive/${docName}.comments.json`];
+    for (const Key of keys) {
+      try {
+        await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key }));
+      } catch (err) {
+        if (err.name !== 'NoSuchKey' && err.$metadata?.httpStatusCode !== 404) throw err;
+      }
+    }
+  }
+  async statRoom(docName) {
+    try {
+      const res = await this.client.send(new HeadObjectCommand({ Bucket: this.bucket, Key: `${docName}.ydoc` }));
+      return { lastModified: res.LastModified?.toISOString() || null };
+    } catch (err) {
+      if (err.name === 'NotFound' || err.$metadata?.httpStatusCode === 404) return null;
+      throw err;
+    }
+  }
+}
+
+module.exports = { S3StorageBackend };
