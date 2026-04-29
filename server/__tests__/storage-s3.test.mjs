@@ -179,6 +179,69 @@ describe('S3StorageBackend', () => {
     assert.ok(!objects.has('archive/myroom.ydoc'));
   });
 
+  test('listRooms paginates via ContinuationToken', async () => {
+    let calls = 0;
+    s3Mock.on(ListObjectsV2Command).callsFake(async (_input) => {
+      calls++;
+      if (calls === 1) {
+        return {
+          Contents: [{ Key: 'page1room.ydoc' }],
+          NextContinuationToken: 'TOKEN',
+        };
+      }
+      return {
+        Contents: [{ Key: 'page2room.ydoc' }],
+      };
+    });
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    const rooms = await backend.listRooms();
+    assert.deepEqual(rooms.sort(), ['page1room', 'page2room']);
+    assert.equal(calls, 2);
+  });
+
+  test('readRoom propagates non-404 errors', async () => {
+    s3Mock.on(GetObjectCommand).callsFake(async () => {
+      const err = new Error('AccessDenied');
+      err.name = 'AccessDenied';
+      err.$metadata = { httpStatusCode: 403 };
+      throw err;
+    });
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    await assert.rejects(backend.readRoom('myroom'), /AccessDenied/);
+  });
+
+  test('writeRoom passes commentsJson as string to PutObjectCommand', async () => {
+    let commentsBody = null;
+    s3Mock.on(PutObjectCommand).callsFake(async (input) => {
+      if (input.Key.endsWith('.comments.json')) commentsBody = input.Body;
+      return {};
+    });
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    await backend.writeRoom('myroom', {
+      ydocBytes: new Uint8Array([1]),
+      secBytes: null,
+      commentsJson: '{"comments":[]}',
+    });
+    assert.equal(typeof commentsBody, 'string');
+    assert.equal(commentsBody, '{"comments":[]}');
+  });
+
+  test('writeRoom sanitizes special characters in room names', async () => {
+    const writes = [];
+    s3Mock.on(PutObjectCommand).callsFake(async (input) => {
+      writes.push(input.Key);
+      return {};
+    });
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    await backend.writeRoom('foo.bar baz', { ydocBytes: new Uint8Array([1]), secBytes: null, commentsJson: null });
+    // Sanitize replaces any [^a-zA-Z0-9_-] with '_': "foo.bar baz" → "foo_bar_baz"
+    assert.equal(writes.length, 1);
+    assert.equal(writes[0], 'foo_bar_baz.ydoc');
+    assert.match(writes[0], /^[a-zA-Z0-9_-]+\.ydoc$/);
+    assert.ok(!writes[0].includes('.bar'));  // The '.' was replaced
+    assert.ok(!writes[0].includes(' '));
+  });
+
   test('statRoom returns lastModified or null', async () => {
     s3Mock.on(HeadObjectCommand).callsFake(async (input) => {
       if (input.Key === 'myroom.ydoc') return { LastModified: new Date('2026-04-29T12:00:00Z') };
