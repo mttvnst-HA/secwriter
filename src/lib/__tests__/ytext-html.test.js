@@ -5,9 +5,9 @@
  * use it.each(), related assertions are batched in single it() blocks.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import * as Y from 'yjs';
-import { yTextToHtml, htmlToAttrList, applyHtmlToYText } from '../ytext-html.js';
+import { yTextToHtml, htmlToAttrList, applyHtmlToYText, seedYTextFromHtml } from '../ytext-html.js';
 
 /** Helper: build a Y.Text from a delta array. */
 function makeYText(deltas) {
@@ -255,6 +255,76 @@ describe('applyHtmlToYText', () => {
     const readBack = yTextToHtml(yText);
     applyHtmlToYText(yText, readBack);
     expect(yTextToHtml(yText)).toBe(readBack);
+  });
+});
+
+describe('parsererror handling (browser strict-XML failure mode)', () => {
+  // Browsers' text/xml DOMParser returns a document containing a <parsererror>
+  // element when input isn't well-formed XML. The test environment (linkedom)
+  // is lenient and never produces parsererror, so we mock DOMParser to simulate
+  // the browser failure mode. Without the guard, the parsererror text leaked
+  // into Y.Text and corrupted R2-persisted documents on reload.
+  function installFailingDOMParser() {
+    const { parseHTML } = require('linkedom');
+    const helper = parseHTML(
+      '<!doctype html><html><body><div id="err"><parsererror>This page contains the following errors:error on line 1 at column 268: Opening and ending tag mismatch: br line 1 and root</parsererror></div></body></html>',
+    );
+    const errDoc = helper.document;
+    class MockDOMParser {
+      parseFromString() {
+        return errDoc;
+      }
+    }
+    vi.stubGlobal('DOMParser', MockDOMParser);
+  }
+
+  it('htmlToAttrList throws when DOMParser returns parsererror', () => {
+    installFailingDOMParser();
+    try {
+      expect(() => htmlToAttrList('Hello<br>world')).toThrow(/parsererror/i);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('applyHtmlToYText leaves Y.Text untouched on parse failure (no corruption)', () => {
+    const ydoc = new Y.Doc();
+    const yText = ydoc.getText('test');
+    applyHtmlToYText(yText, 'Original content');
+    const before = yTextToHtml(yText);
+
+    installFailingDOMParser();
+    try {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      applyHtmlToYText(yText, 'Hello<br>world');
+      expect(warn).toHaveBeenCalled();
+      warn.mockRestore();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+
+    // Y.Text content must NOT contain parser-error message text.
+    const after = yTextToHtml(yText);
+    expect(after).toBe(before);
+    expect(after).not.toMatch(/parsererror|This page contains the following errors/i);
+  });
+
+  it('seedYTextFromHtml emits no characters on parse failure', () => {
+    const ydoc = new Y.Doc();
+    const yText = ydoc.getText('seed');
+
+    installFailingDOMParser();
+    try {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      seedYTextFromHtml(yText, 'Hello<br>world');
+      expect(warn).toHaveBeenCalled();
+      warn.mockRestore();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+
+    expect(yTextToHtml(yText)).toBe('');
+    expect(yText.toString()).not.toMatch(/parsererror|This page contains the following errors/i);
   });
 });
 

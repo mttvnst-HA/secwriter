@@ -301,6 +301,19 @@ export function htmlToAttrList(html) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(`<root>${safeHtml}</root>`, 'text/xml');
 
+  // Browser DOMParser returns a document containing a <parsererror> element
+  // when the input isn't well-formed XML (e.g. a bare <br> the contentEditable
+  // emits). Walking such a doc would inject the human-readable error message
+  // ("This page contains the following errors...") into the Y.Text as content
+  // and silently corrupt R2 on persist. Refuse to parse instead.
+  // (linkedom is lenient and never produces parsererror, so this guard is
+  // a no-op in unit tests but critical in the browser.)
+  const parseError = doc.querySelector('parsererror');
+  if (parseError) {
+    const detail = (parseError.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 200);
+    throw new Error(`htmlToAttrList: malformed HTML produced parsererror: ${detail}`);
+  }
+
   // The root element is the <root> wrapper we added
   const root = doc.documentElement;
 
@@ -442,7 +455,16 @@ export function applyHtmlToYText(yText, newHtml) {
   // Guard: detached Y.Text (no doc) — return silently
   if (!yText.doc) return;
 
-  const newTuples = htmlToAttrList(newHtml || '');
+  let newTuples;
+  try {
+    newTuples = htmlToAttrList(newHtml || '');
+  } catch (err) {
+    // Malformed HTML — leave Y.Text untouched rather than corrupting it.
+    // The contentEditable still shows the user's input; only Yjs sync skips.
+    // eslint-disable-next-line no-console
+    console.warn('applyHtmlToYText: skipping update due to parse error', { err: err.message, htmlPreview: String(newHtml || '').slice(0, 200) });
+    return;
+  }
   const oldTuples = yTextToAttrList(yText);
 
   // Quick equality check — if both text and attrs match, skip entirely
@@ -537,7 +559,16 @@ export function yTextToHtml(yText) {
  * @param {string} html
  */
 export function seedYTextFromHtml(yText, html) {
-  const tuples = htmlToAttrList(html || '');
+  let tuples;
+  try {
+    tuples = htmlToAttrList(html || '');
+  } catch (err) {
+    // Malformed HTML during seed — emit no characters rather than poisoning
+    // the freshly-attached Y.Text with parsererror message text.
+    // eslint-disable-next-line no-console
+    console.warn('seedYTextFromHtml: skipping seed due to parse error', { err: err.message, htmlPreview: String(html || '').slice(0, 200) });
+    return;
+  }
   if (tuples.length === 0) return;
   // Group consecutive tuples with identical attrs into runs for efficiency.
   // Track position manually — yText.length returns 0 on detached Y.Text instances.
