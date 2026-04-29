@@ -115,10 +115,81 @@ class S3StorageBackend {
     }));
     await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
   }
-  async archiveRoom(docName) { throw new Error('not implemented'); }
-  async restoreRoom(docName) { throw new Error('not implemented'); }
-  async listArchivedRooms() { throw new Error('not implemented'); }
-  async deleteArchivedRoom(docName) { throw new Error('not implemented'); }
+  async archiveRoom(docName) {
+    const suffixes = ['.ydoc', '.SEC', '.comments.json'];
+    const archivedAt = new Date().toISOString();
+    for (const suffix of suffixes) {
+      const sourceKey = `${docName}${suffix}`;
+      const targetKey = `archive/${docName}${suffix}`;
+      try {
+        await this.client.send(new CopyObjectCommand({
+          Bucket: this.bucket,
+          CopySource: `${this.bucket}/${sourceKey}`,
+          Key: targetKey,
+          Metadata: { archivedat: archivedAt },
+          MetadataDirective: 'REPLACE',
+        }));
+        await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
+      } catch (err) {
+        // Optional artifacts (SEC, comments) may not exist — skip silently.
+        if (err.name !== 'NoSuchKey' && err.$metadata?.httpStatusCode !== 404) throw err;
+      }
+    }
+  }
+
+  async restoreRoom(docName) {
+    const suffixes = ['.ydoc', '.SEC', '.comments.json'];
+    for (const suffix of suffixes) {
+      const sourceKey = `archive/${docName}${suffix}`;
+      const targetKey = `${docName}${suffix}`;
+      try {
+        await this.client.send(new CopyObjectCommand({
+          Bucket: this.bucket,
+          CopySource: `${this.bucket}/${sourceKey}`,
+          Key: targetKey,
+        }));
+        await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
+      } catch (err) {
+        if (err.name !== 'NoSuchKey' && err.$metadata?.httpStatusCode !== 404) throw err;
+      }
+    }
+  }
+
+  async listArchivedRooms() {
+    const result = [];
+    let continuationToken;
+    do {
+      const res = await this.client.send(new ListObjectsV2Command({
+        Bucket: this.bucket,
+        Prefix: 'archive/',
+        ContinuationToken: continuationToken,
+      }));
+      for (const obj of res.Contents || []) {
+        const m = obj.Key.match(/^archive\/([^./]+)\.ydoc$/);
+        if (!m) continue;
+        const name = m[1];
+        let archivedAt = null;
+        try {
+          const head = await this.client.send(new HeadObjectCommand({ Bucket: this.bucket, Key: obj.Key }));
+          archivedAt = head.Metadata?.archivedat || null;
+        } catch { /* ignore */ }
+        result.push({ name, archivedAt });
+      }
+      continuationToken = res.NextContinuationToken;
+    } while (continuationToken);
+    return result;
+  }
+
+  async deleteArchivedRoom(docName) {
+    const keys = [`archive/${docName}.ydoc`, `archive/${docName}.SEC`, `archive/${docName}.comments.json`];
+    for (const Key of keys) {
+      try {
+        await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key }));
+      } catch (err) {
+        if (err.name !== 'NoSuchKey' && err.$metadata?.httpStatusCode !== 404) throw err;
+      }
+    }
+  }
   async statRoom(docName) { throw new Error('not implemented'); }
 }
 

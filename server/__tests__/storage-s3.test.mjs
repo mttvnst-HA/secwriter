@@ -130,4 +130,52 @@ describe('S3StorageBackend', () => {
     assert.equal(copies[0].to, 'myroom.corrupt.ydoc');
     assert.deepEqual(deletes, ['myroom.ydoc']);
   });
+
+  test('archive lifecycle: archive → list → restore → archive → delete', async () => {
+    const objects = new Map();
+    objects.set('myroom.ydoc', new Uint8Array([1]));
+    objects.set('myroom.SEC', new Uint8Array([2]));
+
+    s3Mock.on(ListObjectsV2Command).callsFake(async (input) => ({
+      Contents: [...objects.keys()]
+        .filter(k => !input.Prefix || k.startsWith(input.Prefix))
+        .map(Key => ({ Key })),
+    }));
+    s3Mock.on(CopyObjectCommand).callsFake(async (input) => {
+      const sourceKey = String(input.CopySource).split('/').slice(1).join('/');
+      objects.set(input.Key, objects.get(sourceKey));
+      return {};
+    });
+    s3Mock.on(DeleteObjectCommand).callsFake(async (input) => {
+      objects.delete(input.Key);
+      return {};
+    });
+    s3Mock.on(HeadObjectCommand).callsFake(async (input) => {
+      if (!objects.has(input.Key)) {
+        const err = new Error('NotFound'); err.name = 'NotFound'; err.$metadata = { httpStatusCode: 404 };
+        throw err;
+      }
+      return { Metadata: { archivedat: '2026-04-29T00:00:00Z' } };
+    });
+
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+
+    await backend.archiveRoom('myroom');
+    assert.ok(objects.has('archive/myroom.ydoc'));
+    assert.ok(objects.has('archive/myroom.SEC'));
+    assert.ok(!objects.has('myroom.ydoc'));
+
+    const archived = await backend.listArchivedRooms();
+    assert.equal(archived.length, 1);
+    assert.equal(archived[0].name, 'myroom');
+    assert.ok(archived[0].archivedAt);
+
+    await backend.restoreRoom('myroom');
+    assert.ok(objects.has('myroom.ydoc'));
+    assert.ok(!objects.has('archive/myroom.ydoc'));
+
+    await backend.archiveRoom('myroom');
+    await backend.deleteArchivedRoom('myroom');
+    assert.ok(!objects.has('archive/myroom.ydoc'));
+  });
 });
