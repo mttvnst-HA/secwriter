@@ -54,6 +54,24 @@ if (process.env.SIM_STORAGE_BACKEND === 'azure') {
   const { AzureStorageBackend } = require('./storage-azure.cjs');
   storage = new AzureStorageBackend({ containerClient: blobServiceClient.getContainerClient(containerName) });
   log.info('storage.backend', { backend: 'azure', container: containerName });
+} else if (process.env.SIM_STORAGE_BACKEND === 's3') {
+  const { S3Client } = require('@aws-sdk/client-s3');
+  const endpoint = process.env.SIM_S3_ENDPOINT;
+  const region = process.env.SIM_S3_REGION || 'auto';
+  const accessKeyId = process.env.SIM_S3_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.SIM_S3_SECRET_ACCESS_KEY;
+  const bucket = process.env.SIM_S3_BUCKET || 'sim-collab-rooms';
+  if (!endpoint) throw new Error('S3 storage requires SIM_S3_ENDPOINT (e.g. https://<account-id>.r2.cloudflarestorage.com)');
+  if (!accessKeyId || !secretAccessKey) throw new Error('S3 storage requires SIM_S3_ACCESS_KEY_ID and SIM_S3_SECRET_ACCESS_KEY');
+  const client = new S3Client({
+    endpoint,
+    region,
+    credentials: { accessKeyId, secretAccessKey },
+    forcePathStyle: true,  // Required for R2 and MinIO; harmless on AWS S3.
+  });
+  const { S3StorageBackend } = require('./storage-s3.cjs');
+  storage = new S3StorageBackend({ client, bucket });
+  log.info('storage.backend', { backend: 's3', bucket, endpoint });
 } else {
   const { LocalStorageBackend } = require('./storage-local.cjs');
   storage = new LocalStorageBackend(DATA_DIR);
