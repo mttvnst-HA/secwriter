@@ -205,14 +205,19 @@ test.describe('Collab', () => {
 
       // Blur to trigger handleBlur → onUpdate → publish to Y.Doc
       await pageA.keyboard.press('Tab');
-      await pageA.waitForTimeout(3000);
 
-      // User B's page should contain the marker text somewhere in any block
-      const allTextB = await pageB.evaluate(() =>
-        [...document.querySelectorAll('[contenteditable]')]
-          .map(el => el.textContent).join('|||')
-      );
-      expect(allTextB).toContain(marker);
+      // Poll User B for the marker — succeeds as soon as Yjs sync arrives.
+      // Previously a fixed waitForTimeout(3000) followed by a one-shot read
+      // failed intermittently on the contended Windows CI runner where sync
+      // sometimes took >3s. Polling fails-fast on success and only times out
+      // after 15s of trying.
+      await expect.poll(
+        () => pageB.evaluate(() =>
+          [...document.querySelectorAll('[contenteditable]')]
+            .map(el => el.textContent).join('|||')
+        ),
+        { timeout: 15_000, intervals: [200, 500, 1000] }
+      ).toContain(marker);
     } finally {
       await deleteRoom(room);
       await ctxA.close();
