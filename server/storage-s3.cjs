@@ -2,7 +2,7 @@
  * S3-compatible blob storage backend (Cloudflare R2, AWS S3, MinIO).
  *
  * Mirrors AzureStorageBackend's interface. Each room produces three
- * objects keyed by room name:
+ * objects keyed by sanitized room name:
  *   <name>.ydoc            (binary Y.Doc snapshot)
  *   <name>.SEC             (windows-1252 encoded .SEC bytes)
  *   <name>.comments.json   (UTF-8 JSON sidecar)
@@ -17,6 +17,17 @@
 
 const { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand,
         ListObjectsV2Command, CopyObjectCommand, HeadObjectCommand } = require('@aws-sdk/client-s3');
+const { log } = require('./logger.cjs');
+
+/**
+ * Sanitize a room name: keep only [a-zA-Z0-9_-], max 64 chars.
+ * Duplicated from storage-local.cjs / storage-azure.cjs to keep the three
+ * backends aligned without introducing a shared util module.
+ */
+function _sanitize(name) {
+  const safe = String(name).replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 64);
+  return safe || 'default';
+}
 
 class S3StorageBackend {
   constructor({ client, bucket }) {
@@ -26,36 +37,42 @@ class S3StorageBackend {
     this.bucket = bucket;
   }
 
+  /**
+   * Write artifacts in sequence with `.ydoc` LAST. Mirrors the Azure backend's
+   * crash-safety invariant: if a sidecar write fails, `.ydoc` is left at the
+   * older (consistent) state rather than ahead of stale sidecars.
+   */
   async writeRoom(docName, artifacts) {
     const { ydocBytes, secBytes, commentsJson } = artifacts;
-    const writes = [
-      this.client.send(new PutObjectCommand({
-        Bucket: this.bucket,
-        Key: `${docName}.ydoc`,
-        Body: ydocBytes,
-        ContentType: 'application/octet-stream',
-      })),
-    ];
+    const safe = _sanitize(docName);
+
     if (secBytes) {
-      writes.push(this.client.send(new PutObjectCommand({
+      await this.client.send(new PutObjectCommand({
         Bucket: this.bucket,
-        Key: `${docName}.SEC`,
+        Key: `${safe}.SEC`,
         Body: secBytes,
         ContentType: 'application/octet-stream',
-      })));
+      }));
     }
-    if (commentsJson) {
-      writes.push(this.client.send(new PutObjectCommand({
+    if (commentsJson != null) {
+      await this.client.send(new PutObjectCommand({
         Bucket: this.bucket,
-        Key: `${docName}.comments.json`,
+        Key: `${safe}.comments.json`,
         Body: commentsJson,
         ContentType: 'application/json',
-      })));
+      }));
     }
-    await Promise.all(writes);
+    // .ydoc LAST — source of truth, prevents stale-sidecar reads on partial failure.
+    await this.client.send(new PutObjectCommand({
+      Bucket: this.bucket,
+      Key: `${safe}.ydoc`,
+      Body: ydocBytes,
+      ContentType: 'application/octet-stream',
+    }));
   }
 
   async readRoom(docName) {
+    const safe = _sanitize(docName);
     const tryGet = async (key) => {
       try {
         const res = await this.client.send(new GetObjectCommand({ Bucket: this.bucket, Key: key }));
@@ -66,17 +83,18 @@ class S3StorageBackend {
       }
     };
 
-    const ydocBytes = await tryGet(`${docName}.ydoc`);
+    const ydocBytes = await tryGet(`${safe}.ydoc`);
     if (!ydocBytes) return null;
 
-    const secBytes = await tryGet(`${docName}.SEC`);
-    const commentsBytes = await tryGet(`${docName}.comments.json`);
+    const secBytes = await tryGet(`${safe}.SEC`);
+    const commentsBytes = await tryGet(`${safe}.comments.json`);
     const commentsJson = commentsBytes ? Buffer.from(commentsBytes).toString('utf8') : null;
 
     return { ydocBytes, secBytes, commentsJson };
   }
   async deleteRoom(docName) {
-    const keys = [`${docName}.ydoc`, `${docName}.SEC`, `${docName}.comments.json`];
+    const safe = _sanitize(docName);
+    const keys = [`${safe}.ydoc`, `${safe}.SEC`, `${safe}.comments.json`];
     await Promise.all(keys.map(Key =>
       this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key })).catch(err => {
         // Swallow 404 — optional artifacts (SEC, comments) may legitimately not exist.
@@ -99,6 +117,10 @@ class S3StorageBackend {
         // <name>.<reason>.ydoc (quarantined).
         const m = key.match(/^([^./]+)\.ydoc$/);
         if (!m) continue;
+        // Sanitize-validate: a key whose name contains characters outside the
+        // sanitize charset cannot have come from a normal write through this
+        // backend, so skip it rather than surfacing it as a real room.
+        if (_sanitize(m[1]) !== m[1]) continue;
         rooms.add(m[1]);
       }
       continuationToken = res.NextContinuationToken;
@@ -106,21 +128,30 @@ class S3StorageBackend {
     return [...rooms];
   }
   async quarantineRoom(docName, reason) {
-    const sourceKey = `${docName}.ydoc`;
-    const targetKey = `${docName}.${reason}.ydoc`;
+    const safe = _sanitize(docName);
+    const sourceKey = `${safe}.ydoc`;
+    const targetKey = `${safe}.${reason}.ydoc`;
     await this.client.send(new CopyObjectCommand({
       Bucket: this.bucket,
       CopySource: `${this.bucket}/${sourceKey}`,
       Key: targetKey,
     }));
-    await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
+    try {
+      await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
+    } catch (err) {
+      // Quarantine target is in place; that's the more important half. Leaving
+      // the source behind is preferable to throwing — the operator can clean
+      // up manually, and we avoid masking the successful copy.
+      log.warn('quarantine.partial', { room: docName, reason, err: err.message });
+    }
   }
   async archiveRoom(docName) {
+    const safe = _sanitize(docName);
     const suffixes = ['.ydoc', '.SEC', '.comments.json'];
     const archivedAt = new Date().toISOString();
     for (const suffix of suffixes) {
-      const sourceKey = `${docName}${suffix}`;
-      const targetKey = `archive/${docName}${suffix}`;
+      const sourceKey = `${safe}${suffix}`;
+      const targetKey = `archive/${safe}${suffix}`;
       try {
         await this.client.send(new CopyObjectCommand({
           Bucket: this.bucket,
@@ -129,28 +160,44 @@ class S3StorageBackend {
           Metadata: { archivedat: archivedAt },
           MetadataDirective: 'REPLACE',
         }));
-        await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
       } catch (err) {
         // Optional artifacts (SEC, comments) may not exist — skip silently.
         if (err.name !== 'NoSuchKey' && err.$metadata?.httpStatusCode !== 404) throw err;
+        continue;
+      }
+      try {
+        await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
+      } catch (err) {
+        // Copy succeeded; if the delete fails we'd otherwise leave the room
+        // visible in listRooms() AND in the archive simultaneously. Log and
+        // continue rather than rolling back the archive copy.
+        log.warn('archive.partial', { room: docName, suffix, err: err.message });
       }
     }
   }
 
   async restoreRoom(docName) {
+    const safe = _sanitize(docName);
     const suffixes = ['.ydoc', '.SEC', '.comments.json'];
     for (const suffix of suffixes) {
-      const sourceKey = `archive/${docName}${suffix}`;
-      const targetKey = `${docName}${suffix}`;
+      const sourceKey = `archive/${safe}${suffix}`;
+      const targetKey = `${safe}${suffix}`;
       try {
         await this.client.send(new CopyObjectCommand({
           Bucket: this.bucket,
           CopySource: `${this.bucket}/${sourceKey}`,
           Key: targetKey,
         }));
-        await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
       } catch (err) {
         if (err.name !== 'NoSuchKey' && err.$metadata?.httpStatusCode !== 404) throw err;
+        continue;
+      }
+      try {
+        await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: sourceKey }));
+      } catch (err) {
+        // Restored copy is in place. Leaving the archive copy behind is
+        // preferable to failing the restore — operator can clean up later.
+        log.warn('restore.partial', { room: docName, suffix, err: err.message });
       }
     }
   }
@@ -168,6 +215,8 @@ class S3StorageBackend {
         const m = obj.Key.match(/^archive\/([^./]+)\.ydoc$/);
         if (!m) continue;
         const name = m[1];
+        // Sanitize-validate parsed names — see listRooms() comment.
+        if (_sanitize(name) !== name) continue;
         let archivedAt = null;
         try {
           const head = await this.client.send(new HeadObjectCommand({ Bucket: this.bucket, Key: obj.Key }));
@@ -181,7 +230,8 @@ class S3StorageBackend {
   }
 
   async deleteArchivedRoom(docName) {
-    const keys = [`archive/${docName}.ydoc`, `archive/${docName}.SEC`, `archive/${docName}.comments.json`];
+    const safe = _sanitize(docName);
+    const keys = [`archive/${safe}.ydoc`, `archive/${safe}.SEC`, `archive/${safe}.comments.json`];
     for (const Key of keys) {
       try {
         await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key }));
@@ -191,8 +241,9 @@ class S3StorageBackend {
     }
   }
   async statRoom(docName) {
+    const safe = _sanitize(docName);
     try {
-      const res = await this.client.send(new HeadObjectCommand({ Bucket: this.bucket, Key: `${docName}.ydoc` }));
+      const res = await this.client.send(new HeadObjectCommand({ Bucket: this.bucket, Key: `${safe}.ydoc` }));
       return { lastModified: res.LastModified?.toISOString() || null };
     } catch (err) {
       if (err.name === 'NotFound' || err.$metadata?.httpStatusCode === 404) return null;
