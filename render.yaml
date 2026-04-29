@@ -4,9 +4,12 @@
 # Deploy sequence:
 #   1. Connect this repo in the Render dashboard → "New Blueprint"
 #   2. Before first deploy, set these env vars on secwriter-collab in the dashboard:
-#        SIM_AZURE_STORAGE_CONNECTION_STRING = <your Azure storage account connection string>
-#          (Azure portal → Storage account → Security + networking → Access keys → Connection string)
-#   3. Both services deploy. Note the collab service URL (e.g. secwriter-collab.onrender.com)
+#        SIM_S3_ENDPOINT             = https://<account-id>.r2.cloudflarestorage.com
+#        SIM_S3_ACCESS_KEY_ID        = <R2 API token Access Key ID>
+#        SIM_S3_SECRET_ACCESS_KEY    = <R2 API token Secret Access Key>
+#          (Cloudflare dashboard → R2 → Manage R2 API Tokens → Create API Token,
+#           scope: Object Read & Write on bucket sim-collab-rooms)
+#   3. Both services deploy. Note the collab service URL.
 #   4. Set these two env vars on secwriter-frontend in the dashboard:
 #        VITE_COLLAB_WS_URL  = wss://<secwriter-collab-url>/ws
 #        VITE_COLLAB_HTTP_URL = https://<secwriter-collab-url>/api
@@ -30,10 +33,16 @@ services:
       - key: SIM_AUTH_PROVIDER
         value: none            # No auth needed for dev/testing
       - key: SIM_STORAGE_BACKEND
-        value: azure           # Use Azure Blob — persistent across redeploys, tests the production backend
-      - key: SIM_AZURE_STORAGE_CONNECTION_STRING
-        sync: false            # Paste your Azure storage account connection string from the portal
-      - key: SIM_AZURE_STORAGE_CONTAINER
+        value: s3              # Cloudflare R2 (S3-compatible) — persistent across redeploys
+      - key: SIM_S3_ENDPOINT
+        sync: false            # https://<r2-account-id>.r2.cloudflarestorage.com
+      - key: SIM_S3_REGION
+        value: auto
+      - key: SIM_S3_ACCESS_KEY_ID
+        sync: false
+      - key: SIM_S3_SECRET_ACCESS_KEY
+        sync: false
+      - key: SIM_S3_BUCKET
         value: sim-collab-rooms
       - key: SIM_LOG_FORMAT
         value: json
