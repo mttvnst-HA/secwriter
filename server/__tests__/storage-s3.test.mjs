@@ -178,4 +178,17 @@ describe('S3StorageBackend', () => {
     await backend.deleteArchivedRoom('myroom');
     assert.ok(!objects.has('archive/myroom.ydoc'));
   });
+
+  test('statRoom returns lastModified or null', async () => {
+    s3Mock.on(HeadObjectCommand).callsFake(async (input) => {
+      if (input.Key === 'myroom.ydoc') return { LastModified: new Date('2026-04-29T12:00:00Z') };
+      const err = new Error('NotFound'); err.name = 'NotFound'; err.$metadata = { httpStatusCode: 404 };
+      throw err;
+    });
+    const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
+    const stat = await backend.statRoom('myroom');
+    assert.ok(stat.lastModified);
+    const missing = await backend.statRoom('nope');
+    assert.equal(missing, null);
+  });
 });

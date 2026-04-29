@@ -190,7 +190,15 @@ class S3StorageBackend {
       }
     }
   }
-  async statRoom(docName) { throw new Error('not implemented'); }
+  async statRoom(docName) {
+    try {
+      const res = await this.client.send(new HeadObjectCommand({ Bucket: this.bucket, Key: `${docName}.ydoc` }));
+      return { lastModified: res.LastModified?.toISOString() || null };
+    } catch (err) {
+      if (err.name === 'NotFound' || err.$metadata?.httpStatusCode === 404) return null;
+      throw err;
+    }
+  }
 }
 
 module.exports = { S3StorageBackend };
