@@ -18,7 +18,7 @@ Optional but recommended:
 ## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/haleyaldrich/secwriter.git
+git clone https://github.com/mttvnst-HA/secwriter.git
 cd secwriter
 ```
 
