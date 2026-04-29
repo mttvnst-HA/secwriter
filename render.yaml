@@ -1,0 +1,52 @@
+# Render infrastructure-as-code for SecWriter (dev/test environment)
+# Docs: https://render.com/docs/infrastructure-as-code
+#
+# Deploy sequence:
+#   1. Connect this repo in the Render dashboard → "New Blueprint"
+#   2. Both services deploy. Note the collab service URL (e.g. secwriter-collab.onrender.com)
+#   3. In the Render dashboard, set these two env vars on the secwriter-frontend service:
+#        VITE_COLLAB_WS_URL  = wss://<secwriter-collab-url>/ws
+#        VITE_COLLAB_HTTP_URL = https://<secwriter-collab-url>/api
+#   4. Trigger a manual redeploy of secwriter-frontend so Vite inlines the URLs.
+#
+# Free-tier note: Web Services on the free plan spin down after 15 min of
+# inactivity. The first WebSocket connection after idle will experience a
+# ~30 s cold start. Acceptable for dev/testing.
+
+services:
+  # ── Collaborative editing server (WebSocket + HTTP API, single port) ──
+  - type: web
+    name: secwriter-collab
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server/collab-server.cjs
+    envVars:
+      - key: COLLAB_HOST
+        value: 0.0.0.0        # Render terminates TLS; service must accept on all interfaces
+      - key: SIM_AUTH_PROVIDER
+        value: none            # No auth needed for dev/testing
+      - key: SIM_STORAGE_BACKEND
+        value: local           # Ephemeral disk — rooms reset on redeploy (fine for dev)
+      - key: SIM_LOG_FORMAT
+        value: json
+      - key: SIM_COLLAB_ORIGIN
+        value: "*"             # Relaxed CORS for dev; tighten for production
+
+  # ── Frontend static site ──────────────────────────────────────────────
+  - type: web
+    name: secwriter-frontend
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html   # SPA fallback
+    envVars:
+      # Set these in the Render dashboard after the collab service gets its URL.
+      # Both are needed before the frontend build — Vite inlines them into the JS bundle.
+      - key: VITE_COLLAB_WS_URL
+        sync: false   # wss://<secwriter-collab>.onrender.com/ws
+      - key: VITE_COLLAB_HTTP_URL
+        sync: false   # https://<secwriter-collab>.onrender.com/api
