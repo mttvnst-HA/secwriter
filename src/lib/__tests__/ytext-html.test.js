@@ -258,73 +258,67 @@ describe('applyHtmlToYText', () => {
   });
 });
 
-describe('parsererror handling (browser strict-XML failure mode)', () => {
-  // Browsers' text/xml DOMParser returns a document containing a <parsererror>
-  // element when input isn't well-formed XML. The test environment (linkedom)
-  // is lenient and never produces parsererror, so we mock DOMParser to simulate
-  // the browser failure mode. Without the guard, the parsererror text leaked
-  // into Y.Text and corrupted R2-persisted documents on reload.
-  function installFailingDOMParser() {
+describe('lenient HTML parsing (recovers from contentEditable quirks)', () => {
+  // Browsers' text/xml DOMParser is strict and returns a parsererror document
+  // for inputs like bare <br> that contentEditable routinely emits. Switching
+  // to text/html mode (the HTML5 parsing algorithm) is lenient by design and
+  // accepts these without producing parsererror. This test mocks a browser-
+  // accurate DOMParser (strict for text/xml, lenient for text/html) to verify
+  // the implementation routes through text/html.
+  function installBrowserAccurateDOMParser() {
     const { parseHTML } = require('linkedom');
-    const helper = parseHTML(
-      '<!doctype html><html><body><div id="err"><parsererror>This page contains the following errors:error on line 1 at column 268: Opening and ending tag mismatch: br line 1 and root</parsererror></div></body></html>',
-    );
-    const errDoc = helper.document;
-    class MockDOMParser {
-      parseFromString() {
-        return errDoc;
+    class BrowserAccurateDOMParser {
+      parseFromString(str, mode) {
+        if (mode === 'text/xml' && /<(br|img|hr)\b[^/>]*>(?!<\/)/i.test(str)) {
+          // Simulate browser strict-XML failure on void HTML tags
+          return parseHTML(
+            '<!doctype html><html><body><parsererror>error on line 1: Opening and ending tag mismatch</parsererror></body></html>',
+          ).document;
+        }
+        // text/html (or well-formed text/xml): use linkedom's lenient parser
+        return parseHTML(str).document;
       }
     }
-    vi.stubGlobal('DOMParser', MockDOMParser);
+    vi.stubGlobal('DOMParser', BrowserAccurateDOMParser);
   }
 
-  it('htmlToAttrList throws when DOMParser returns parsererror', () => {
-    installFailingDOMParser();
+  it('htmlToAttrList recovers from bare <br> via text/html parsing', () => {
+    installBrowserAccurateDOMParser();
     try {
-      expect(() => htmlToAttrList('Hello<br>world')).toThrow(/parsererror/i);
+      const result = htmlToAttrList('Hello<br>world');
+      expect(result.map(t => t.char).join('')).toBe('Helloworld');
     } finally {
       vi.unstubAllGlobals();
     }
   });
 
-  it('applyHtmlToYText leaves Y.Text untouched on parse failure (no corruption)', () => {
+  it('applyHtmlToYText persists content with bare <br> instead of dropping the edit', () => {
     const ydoc = new Y.Doc();
     const yText = ydoc.getText('test');
-    applyHtmlToYText(yText, 'Original content');
-    const before = yTextToHtml(yText);
+    applyHtmlToYText(yText, 'Original');
 
-    installFailingDOMParser();
+    installBrowserAccurateDOMParser();
     try {
-      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
       applyHtmlToYText(yText, 'Hello<br>world');
-      expect(warn).toHaveBeenCalled();
-      warn.mockRestore();
     } finally {
       vi.unstubAllGlobals();
     }
 
-    // Y.Text content must NOT contain parser-error message text.
-    const after = yTextToHtml(yText);
-    expect(after).toBe(before);
-    expect(after).not.toMatch(/parsererror|This page contains the following errors/i);
+    expect(yTextToHtml(yText)).toBe('Helloworld');
   });
 
-  it('seedYTextFromHtml emits no characters on parse failure', () => {
+  it('seedYTextFromHtml seeds content with bare <br> cleanly', () => {
     const ydoc = new Y.Doc();
     const yText = ydoc.getText('seed');
 
-    installFailingDOMParser();
+    installBrowserAccurateDOMParser();
     try {
-      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
-      seedYTextFromHtml(yText, 'Hello<br>world');
-      expect(warn).toHaveBeenCalled();
-      warn.mockRestore();
+      seedYTextFromHtml(yText, 'a<br>b<br>c');
     } finally {
       vi.unstubAllGlobals();
     }
 
-    expect(yTextToHtml(yText)).toBe('');
-    expect(yText.toString()).not.toMatch(/parsererror|This page contains the following errors/i);
+    expect(yTextToHtml(yText)).toBe('abc');
   });
 });
 
