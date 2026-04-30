@@ -30,6 +30,7 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 
 ```bash
 npm run dev                # Vite dev server at localhost:5173
+npm run collab             # Collab WebSocket+HTTP server at 127.0.0.1:1234 (SIM_STORAGE_BACKEND=local writes to server/collab-db/)
 npm test                   # Vitest unit tests
 npm run test:compliance    # Compliance rule tests (Node runner — NOT Vitest; Vitest OOMs on the regex-heavy engine)
 npm run test:e2e           # Playwright E2E
@@ -72,6 +73,7 @@ Test DOM-dependent code in both browser and Node/linkedom environments. linkedom
 3. **Test files should have ≤30 tests.** Use `it.each()` or batch assertions in a single `it()` for data-driven tests.
 4. **Always verify existing tests pass BEFORE adding new ones.** Run `npm test` first.
 5. **Compliance rule tests use Node's built-in test runner** (`node --test`), not Vitest — the regex-heavy rule engine exhausts Vitest's worker memory. Run via `npm run test:compliance`.
+6. **Source files contain the literal characters `\u200B` (six chars: backslash, u, 2, 0, 0, B) in regex literals** — e.g. EditableBlock.jsx has `replace(/\u200B/g, "")`. When you copy that string through the Edit tool, JSON decodes `\u200B` into the actual zero-width space character (U+200B) and the match fails silently. Anchor your old_string on a different nearby line.
 
 ## Always Check the .ini Files for Formatting
 
@@ -219,6 +221,20 @@ Each document is a flat array of blocks:
   "isNew": true          // Transient: newly created blocks (controls editability + focus)
 }
 ```
+
+## Collab Publish Path
+
+Block content reaches the Y.Doc via **snapshot diff**, not a live `Y.Text` binding:
+
+1. `EditableBlock` fires `onUpdate(blockId, html)` from `handleInput` (debounced `PUBLISH_DEBOUNCE_MS = 400`ms, see `src/components/EditableBlock.jsx`) AND `handleBlur` (which also runs Track Changes annotation). Blur cancels any pending input debounce.
+2. `App.handleBlockUpdate` calls `setBlocks(prev.map(...))`.
+3. The publish effect (`useEffect([blocks, inRoom])` in `src/App.jsx`) calls `session.publishBlocks(blocks)`.
+4. `applyBlocksToYDoc` (`src/lib/collab.js`) walks the block array and calls `applyHtmlToYText(yText, html)` per block — this **diffs the new HTML string against the existing Y.Text** and synthesizes Yjs ops to match.
+5. `ydoc.on('update')` on the server debounces a flush to R2/local (`server/collab-server.cjs`).
+
+**Implication:** concurrent typing in the same paragraph by two users relies on the diff at publish time, not character-level CRDT ops. Workable for single-user rooms; the architectural fix to a real `Y.Text` ↔ DOM binding is tracked at issue #22. The debounced-input symptom fix landed via #21 / PR #23.
+
+`window.__collab` is exposed in DEV (`import.meta.env.DEV`) for browser-side debugging — gives you `{ ydoc, yOrder, yStore, yMeta, yTc, yComments, awareness, provider, undoManager }`.
 
 ## Storage Backends
 
