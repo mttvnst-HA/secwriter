@@ -39,6 +39,7 @@ npm run test:interop       # Structural interop (parse/serialize/roundtrip)
 npm run audit:init         # Autonomous UI audit (15 test areas via Claude in Chrome MCP)
 npm run audit:report       # Markdown report from findings.json
 npm run audit:promote      # Promote findings to GitHub issues
+npm run test:server        # Server tests (Node runner — node --test --test-force-exit)
 ```
 
 **Environment:** Windows (Git Bash). `jq` is not available — use `node -e` for JSON processing in scripts/hooks.
@@ -72,6 +73,7 @@ Test DOM-dependent code in both browser and Node/linkedom environments. linkedom
 3. **Test files should have ≤30 tests.** Use `it.each()` or batch assertions in a single `it()` for data-driven tests.
 4. **Always verify existing tests pass BEFORE adding new ones.** Run `npm test` first.
 5. **Compliance rule tests use Node's built-in test runner** (`node --test`), not Vitest — the regex-heavy rule engine exhausts Vitest's worker memory. Run via `npm run test:compliance`.
+6. **CI-only flakes are timing races.** When a test fails only on a CI runner but passes 10×/10 locally, do NOT keep re-running locally — write a deterministic regression test that forces the race (e.g., manually mutate shared state mid-`await`). See `server/__tests__/collab-server.test.mjs` for the pattern (force-delete the y-websocket docs Map during a slow-storage read to expose the eviction race).
 
 ## Always Check the .ini Files for Formatting
 
@@ -226,6 +228,38 @@ Three storage backends are wired: `local` (default, disk under `server/collab-db
 `azure` (Azure Blob, see `server/storage-azure.cjs`), and `s3` (S3-compatible
 including Cloudflare R2 and MinIO, see `server/storage-s3.cjs`). Selected via
 `SIM_STORAGE_BACKEND`. S3 backend uses the `SIM_S3_*` env vars.
+
+## Collaboration Server
+
+Real-time multi-user editing via Yjs + y-websocket. Server lives in `server/`:
+
+- `server/collab-server.cjs` — y-websocket relay. Exposes `createCollabServer({ storage })` factory; CLI entry-point gated by `if (require.main === module)` so tests can `require()` without binding a port.
+- `server/http-handler.cjs` — HTTP endpoints (`/rooms`, `/rooms/:id`, `/rooms/:id/sec`, `/rooms/:id/comments`, `/health`, `/rooms/:id/upload`).
+- `server/room-serializer.cjs` — extracts .SEC + .comments.json from a Y.Doc on flush.
+- `server/storage-{local,azure,s3}.cjs` — pluggable persistence backends.
+- `server/auth/auth-provider.cjs` — JWT auth (optional via env).
+- `server/__tests__/` — `node --test` integration suite. Run via `npm run test:server`.
+
+**y-websocket v1 is pinned** (Dependabot bump to v3 deliberately deferred). The fix for issue #17 is built around v1 internals — `closeConn` deletes the docs Map entry by NAME (not by instance) when a doc's last conn drops. Upgrading to v3 needs the eviction-guard logic re-validated.
+
+**CJS on purpose:** y-websocket v1 ships its server utils as CJS and `require`s yjs. Mixing ESM and CJS loads two copies of yjs and breaks `instanceof` checks (yjs/yjs#438). The "Yjs was already imported" warning during tests comes from the room-serializer's dynamic `import('../src/lib/sec-serializer.js')` — known and documented; do not "fix" it by switching the server to ESM.
+
+### Two non-obvious patterns
+
+1. **`extractDocName` strips a leading `/ws/`.** `VITE_COLLAB_WS_URL` in production deploys is `wss://host/ws`; WebsocketProvider then connects to `wss://host/ws/<room>`. y-websocket's default extraction (`req.url.slice(1).split('?')[0]`) yields `"ws/<room>"` — sanitized to `ws_<room>.ydoc` in storage. Without `extractDocName`, you get parallel rooms (one HTTP-managed, one WS-managed). See `server/collab-server.cjs:67`.
+
+2. **Stale-close eviction guard.** y-websocket's `closeConn` (`node_modules/y-websocket/bin/utils.js:208`) does `docs.delete(doc.name)` keyed by name when a doc's last conn drops. If a previous WS connection's TCP close drains during a new connection's preload `await`, the stale close evicts our just-loaded doc and `setupWSConnection` creates a fresh empty replacement that bypasses preload — sync step 1 fires with empty state, the client seeds, persisted state CRDT-unions on top, yOrder doubles. Mitigated by re-installing the preloaded doc into `ywsDocs` after the await but before `handleUpgrade`. See `server/collab-server.cjs:350` and the deterministic regression test in `server/__tests__/collab-server.test.mjs`.
+
+### Inspecting / cleaning up production rooms
+
+```bash
+curl https://secwriter-collab.onrender.com/health
+curl https://secwriter-collab.onrender.com/rooms
+curl https://secwriter-collab.onrender.com/rooms/<id>/sec       # SEC export
+curl -X DELETE https://secwriter-collab.onrender.com/rooms/<id> # delete corrupted room
+```
+
+Frontend at https://secwriter-frontend.onrender.com (Render auto-deploys on push to main).
 
 ## Reference Data Sources
 
