@@ -318,8 +318,8 @@ function createCollabServer(config) {
       if (user) conn.user = user;
     }
 
-    // Issue #17 race fix: trigger doc creation+bindState (idempotent — if the
-    // doc already exists in y-websocket's `docs` map, this is a no-op
+    // Issue #17 race fix: trigger doc creation+bindState (idempotent — if
+    // the doc already exists in y-websocket's `docs` map, this is a no-op
     // returning the existing instance), then await our load promise before
     // letting setupWSConnection send sync step 1. Without the await,
     // setupWSConnection writes the doc's CURRENT state vector — empty if
@@ -328,26 +328,38 @@ function createCollabServer(config) {
     // state then merges on top. CRDT union of yOrder doubles the document
     // each reload.
     //
-    // Pause the WS during the await: setupWSConnection installs the
-    // 'message' listener on `conn`, but until then any message the client
-    // already sent (y-websocket emits sync step 1 immediately on open) has
-    // no handler and is dropped. `conn.pause()` halts the underlying
-    // socket so frames stay in the kernel buffer and are parsed only after
-    // resume() — by which point setupWSConnection has wired up its
-    // listener.
+    // Message buffering during the await: the client sends sync step 1
+    // immediately on open. setupWSConnection installs the 'message'
+    // listener that processes those frames, but we can't run
+    // setupWSConnection until the load promise has resolved (or the load
+    // is moot — see below). Install a synchronous buffer listener BEFORE
+    // any await so no client message is dropped, then replay buffered
+    // frames after setupWSConnection's handler is wired up. Buffering via
+    // an EventEmitter listener is more reliable than `conn.pause()` —
+    // `pause()` is a no-op while readyState is CONNECTING, so on fast
+    // runners frames can already have been parsed by the time we call it.
+    const msgBuffer = [];
+    const bufferListener = (data, isBinary) => {
+      msgBuffer.push({ data, isBinary });
+    };
+    conn.on('message', bufferListener);
+
     getYDoc(docName, true);
     const loadPromise = docLoadPromises.get(docName);
     if (loadPromise) {
-      try {
-        if (typeof conn.pause === 'function') conn.pause();
-        await loadPromise;
-      } catch (err) {
-        log.warn('preload-failed', { docName, err: err && err.message });
-      }
+      try { await loadPromise; }
+      catch (err) { log.warn('preload-failed', { docName, err: err && err.message }); }
     }
 
+    conn.off('message', bufferListener);
     setupWSConnection(conn, req, { docName, gc: true });
-    if (typeof conn.resume === 'function') conn.resume();
+    // Replay buffered frames into the listener that setupWSConnection just
+    // installed. EventEmitter.emit dispatches synchronously, so each
+    // buffered message hits y-websocket's messageListener as if it had
+    // arrived live.
+    for (const { data, isBinary } of msgBuffer) {
+      conn.emit('message', data, isBinary);
+    }
   });
 
   wss.on('error', (err) => {
