@@ -286,64 +286,56 @@ function createCollabServer(config) {
     })
   );
 
-  const wss = new WebSocketServer({ server: httpServer });
+  // Issue #17: use noServer + manual upgrade so the WebSocket handshake
+  // itself is gated on bindState completion. Without this, y-websocket's
+  // bindState runs async-and-not-awaited; setupWSConnection sends sync
+  // step 1 with an empty state vector while persisted state is still
+  // loading, the client interprets the empty SV as "fresh room", runs
+  // its initial-blocks seed, and the persisted state then merges on top.
+  // CRDT union of yOrder doubles the document each reload (~+426 in
+  // production R2 conditions).
+  //
+  // Earlier attempts (`conn.pause()`, message-buffering with replay) were
+  // racy on fast runners — by the time the connection event fires,
+  // sync step 1 may already be parsed and dispatched. Blocking the
+  // upgrade is the only place we can guarantee the load completes
+  // *before* any WS frame can be received.
+  const wss = new WebSocketServer({ noServer: true });
 
-  wss.on('connection', async (conn, req) => {
-    const ip = req.socket.remoteAddress || 'unknown';
+  httpServer.on('upgrade', async (req, socket, head) => {
+    const ip = socket.remoteAddress || 'unknown';
     const wsCheck = rateLimiter.checkLimit(ip, 'ws', wsRatePerMin);
     if (!wsCheck.allowed) {
       log.warn('ws.rate-limited', { ip, retryAfter: wsCheck.retryAfter });
-      conn.close(4429, 'Too Many Requests');
+      socket.write('HTTP/1.1 429 Too Many Requests\r\n\r\n');
+      socket.destroy();
       return;
     }
 
-    // Issue #17: use our extractor (not y-websocket's default) so a
-    // VITE_COLLAB_WS_URL with a `/ws` path suffix doesn't produce a different
-    // docName from the HTTP API.
+    // Strip the `/ws` path prefix that VITE_COLLAB_WS_URL adds in
+    // production deploys, so the docName matches what the HTTP API uses
+    // for the same room. Without this strip, a `/ws/<room>` URL produces
+    // docName `"ws/<room>"` which sanitizes to a parallel storage key
+    // (`ws_<room>.ydoc`) — see issue #17.
     const docName = extractDocName(req.url);
 
-    // Token extraction: parse from query string. We can't reuse the URL parse
-    // above for auth because the rate-limit/ws-utils pieces want the raw req.
     const tokenMatch = (req.url || '').match(/[?&]token=([^&]*)/);
     const token = tokenMatch ? decodeURIComponent(tokenMatch[1]) : null;
 
+    let user = null;
     if (authProvider.requiresAuth) {
-      if (!token) { conn.close(4401, 'Unauthorized'); return; }
-      const user = await authProvider.validateToken(token);
-      if (!user) { conn.close(4401, 'Unauthorized'); return; }
-      conn.user = user;
+      if (!token) { socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n'); socket.destroy(); return; }
+      user = await authProvider.validateToken(token);
+      if (!user) { socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n'); socket.destroy(); return; }
     } else if (token) {
-      // Optional auth: validate if token present, but don't require it
-      const user = await authProvider.validateToken(token);
-      if (user) conn.user = user;
+      user = await authProvider.validateToken(token);
     }
 
-    // Issue #17 race fix: trigger doc creation+bindState (idempotent — if
-    // the doc already exists in y-websocket's `docs` map, this is a no-op
-    // returning the existing instance), then await our load promise before
-    // letting setupWSConnection send sync step 1. Without the await,
-    // setupWSConnection writes the doc's CURRENT state vector — empty if
-    // bindState's storage read hasn't finished — and the client interprets
-    // that as "fresh room", runs its initial-blocks seed, and the persisted
-    // state then merges on top. CRDT union of yOrder doubles the document
-    // each reload.
-    //
-    // Message buffering during the await: the client sends sync step 1
-    // immediately on open. setupWSConnection installs the 'message'
-    // listener that processes those frames, but we can't run
-    // setupWSConnection until the load promise has resolved (or the load
-    // is moot — see below). Install a synchronous buffer listener BEFORE
-    // any await so no client message is dropped, then replay buffered
-    // frames after setupWSConnection's handler is wired up. Buffering via
-    // an EventEmitter listener is more reliable than `conn.pause()` —
-    // `pause()` is a no-op while readyState is CONNECTING, so on fast
-    // runners frames can already have been parsed by the time we call it.
-    const msgBuffer = [];
-    const bufferListener = (data, isBinary) => {
-      msgBuffer.push({ data, isBinary });
-    };
-    conn.on('message', bufferListener);
-
+    // Trigger doc creation + bindState (idempotent on repeat calls), then
+    // await the load promise BEFORE completing the WS handshake. The
+    // handshake response isn't sent until wss.handleUpgrade runs below, so
+    // the client's WS doesn't open until then — its sync step 1 can't be
+    // sent until the doc is already loaded.
     getYDoc(docName, true);
     const loadPromise = docLoadPromises.get(docName);
     if (loadPromise) {
@@ -351,15 +343,14 @@ function createCollabServer(config) {
       catch (err) { log.warn('preload-failed', { docName, err: err && err.message }); }
     }
 
-    conn.off('message', bufferListener);
-    setupWSConnection(conn, req, { docName, gc: true });
-    // Replay buffered frames into the listener that setupWSConnection just
-    // installed. EventEmitter.emit dispatches synchronously, so each
-    // buffered message hits y-websocket's messageListener as if it had
-    // arrived live.
-    for (const { data, isBinary } of msgBuffer) {
-      conn.emit('message', data, isBinary);
-    }
+    // Socket may have been destroyed during the await (client gave up,
+    // network blip). Bail out before handleUpgrade tries to write to it.
+    if (socket.destroyed) return;
+
+    wss.handleUpgrade(req, socket, head, (conn) => {
+      if (user) conn.user = user;
+      setupWSConnection(conn, req, { docName, gc: true });
+    });
   });
 
   wss.on('error', (err) => {
