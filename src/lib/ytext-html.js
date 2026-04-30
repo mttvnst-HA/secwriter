@@ -284,38 +284,23 @@ function walkNode(node, parentAttrs, result) {
 export function htmlToAttrList(html) {
   if (!html) return [];
 
-  // Wrap in a root element and parse as text/xml — this is the established
-  // pattern in this codebase (see sec-serializer.js). linkedom's DOMParser
-  // supports text/xml reliably across both browser and Node test environments.
+  // Parse as text/html using the HTML5 parsing algorithm — lenient by design,
+  // so contentEditable quirks like bare <br>, mismatched tags, and unquoted
+  // attributes round-trip cleanly instead of producing the parsererror node
+  // that strict text/xml parsing emits (which would leak error message text
+  // into Y.Text and corrupt R2 on persist).
   //
-  // Pre-processing: replace HTML-only entities (&nbsp;, &mdash;, etc.) with
-  // their numeric equivalents, since XML only defines 5 entities (amp, lt, gt,
-  // apos, quot). Also escape bare ampersands that aren't entity references.
-  const HTML_ENTITIES = { nbsp: 160, mdash: 8212, ndash: 8211, trade: 8482, copy: 169, reg: 174, laquo: 171, raquo: 187, bull: 8226, hellip: 8230, euro: 8364 };
-  let safeHtml = html.replace(/&([a-zA-Z]+);/g, (match, name) => {
-    if (['amp', 'lt', 'gt', 'apos', 'quot'].includes(name)) return match; // XML built-ins
-    const code = HTML_ENTITIES[name];
-    return code ? `&#${code};` : match;
-  });
-  safeHtml = safeHtml.replace(/&(?![a-zA-Z#][a-zA-Z0-9]*;)/g, '&amp;');
+  // Wrap in <div id="ytext-html-root"> for unambiguous root resolution: in a
+  // real browser, parseFromString creates <html><body><div id="..."></div></body>
+  // and getElementById returns the div; linkedom places the div as the document
+  // element directly but getElementById still resolves it. Either way, walking
+  // the children of the resolved root yields the same tree.
+  //
+  // Named entities (&nbsp;, &mdash;, etc.) are decoded natively by the HTML
+  // parser, so the pre-processing dance the text/xml path needed is gone.
   const parser = new DOMParser();
-  const doc = parser.parseFromString(`<root>${safeHtml}</root>`, 'text/xml');
-
-  // Browser DOMParser returns a document containing a <parsererror> element
-  // when the input isn't well-formed XML (e.g. a bare <br> the contentEditable
-  // emits). Walking such a doc would inject the human-readable error message
-  // ("This page contains the following errors...") into the Y.Text as content
-  // and silently corrupt R2 on persist. Refuse to parse instead.
-  // (linkedom is lenient and never produces parsererror, so this guard is
-  // a no-op in unit tests but critical in the browser.)
-  const parseError = doc.querySelector('parsererror');
-  if (parseError) {
-    const detail = (parseError.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 200);
-    throw new Error(`htmlToAttrList: malformed HTML produced parsererror: ${detail}`);
-  }
-
-  // The root element is the <root> wrapper we added
-  const root = doc.documentElement;
+  const doc = parser.parseFromString(`<div id="ytext-html-root">${html}</div>`, 'text/html');
+  const root = doc.getElementById('ytext-html-root') || doc.body || doc.documentElement;
 
   const result = [];
   for (const child of root.childNodes) {
