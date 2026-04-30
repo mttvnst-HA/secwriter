@@ -9,6 +9,13 @@ import { getRules } from "../lib/compliance-rules.js";
 import InlineTooltip from "./InlineTooltip.jsx";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
+// Idle window after the last keystroke before we fire onUpdate (and therefore
+// publishBlocks → Y.Doc → R2). Short enough that a hard reload loses at most
+// ~one half-second of typing; long enough that we don't re-walk every block
+// through applyBlocksToYDoc on every character. Exported so tests can pin
+// against the same value.
+export const PUBLISH_DEBOUNCE_MS = 400;
+
 /** Sanitize pasted text: collapse newlines to single space, strip zero-width spaces, trim */
 export function sanitizePasteText(text) {
   return text.replace(/[\r\n]+/g, ' ').replace(/\u200B/g, '').trimEnd();
@@ -58,6 +65,19 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   const [slashFilter, setSlashFilter] = useState("");
   const [slashIdx, setSlashIdx] = useState(0);
   const [delPopup, setDelPopup] = useState(null); // { el, rect } for del click popup
+  // Debounced input → onUpdate so live typing reaches collab without requiring blur (#21).
+  // Track Changes annotation still runs only on blur via handleBlur — debounced fires
+  // carry pre-annotation HTML; the blur publish remains source of truth for revision marks.
+  const inputDebounceRef = useRef(null);
+  // Latest block.html, mirrored into a ref so setRef can read it without
+  // taking a useCallback dep on it. Without this, every debounced publish
+  // changes block.html → setRef identity → React detaches/re-attaches the
+  // contentEditable ref → setRef body re-runs syncTagLabels mid-edit. That
+  // race broke E2E tests that select text and click a toolbar button within
+  // the debounce window (the saved Range from FloatingToolbar's checkSelection
+  // was getting invalidated by the re-attach).
+  const blockHtmlRef = useRef(block.html);
+  useEffect(() => { blockHtmlRef.current = block.html; }, [block.html]);
 
   // Detect if block has inline revision marks (for gutter button display)
   const hasInlineRevisions = useMemo(() => {
@@ -71,15 +91,23 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   const setRef = useCallback((node) => {
     ref.current = node;
     if (!node) return;
-    // Initialize content on mount
-    if (editable && block.html && !node.dataset.init) {
-      node.innerHTML = resolveHtml ? resolveHtml(block.html) : block.html;
+    const html = blockHtmlRef.current;
+    // Initialize content on mount. dataset.init is a "we've mounted" flag the
+    // sync useEffect below uses to skip pre-mount runs — set it regardless of
+    // whether html is empty, otherwise blocks born empty (created via Enter
+    // with no initial content) never get the flag and the sync useEffect
+    // permanently skips the DOM rewrite, leaving stale content behind on
+    // Accept All / Reject All.
+    if (editable && !node.dataset.init) {
+      if (html) {
+        node.innerHTML = resolveHtml ? resolveHtml(html) : html;
+      }
       node.dataset.init = "1";
     } else if (!editable) {
-      node.innerHTML = resolveHtml ? resolveHtml(block.html || "") : (block.html || "");
+      node.innerHTML = resolveHtml ? resolveHtml(html || "") : (html || "");
     }
     syncTagLabels(node, showTags);
-  }, [editable, block.html, resolveHtml, showTags]);
+  }, [editable, resolveHtml, showTags]);
 
   // Keep non-editable blocks synced when html changes after mount
   useEffect(() => {
@@ -207,6 +235,12 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
 
   const handleBlur = useCallback(() => {
     if (converting.current) return; // skip blur during slash menu conversion
+    // Cancel any pending debounced input publish — the blur fires onUpdate
+    // synchronously below with the final HTML (and TC annotation, if enabled).
+    if (inputDebounceRef.current) {
+      clearTimeout(inputDebounceRef.current);
+      inputDebounceRef.current = null;
+    }
     if (ref.current) {
       // Track Changes: annotate diff before saving
       if (trackChanges && snapshotText != null) {
@@ -287,7 +321,8 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     }
   }, [block.id, block.type, onEnterKey, onUpdate, onDelete, onFocusPrev, onFocusNext, onChangeOliLevel, slashOpen, slashFiltered, slashIdx]);
 
-  // Detect slash commands via input monitoring
+  // Detect slash commands via input monitoring + schedule a debounced publish
+  // so live typing reaches collab/persistence without requiring blur (#21).
   const handleInput = useCallback(() => {
     if (!ref.current) return;
     const text = (ref.current.textContent || "").replace(/\u200B/g, "");
@@ -303,7 +338,38 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
         setSlashFilter("");
       }
     }
-  }, [slashOpen]);
+
+    // Debounced onUpdate. Pre-annotation (no Track Changes diff) on purpose —
+    // annotation runs only at blur via handleBlur. Peers see plain edits live;
+    // revision marks materialize when the editor blurs.
+    //
+    // Defer if the user has an active non-collapsed selection — they're
+    // probably mid-toolbar-action (select text → click Mark/Case/Comment).
+    // Publishing now would re-render and could invalidate the saved Range
+    // FloatingToolbar restored before mutating. The next input event will
+    // re-arm this timer; blur will flush via handleBlur.
+    if (inputDebounceRef.current) clearTimeout(inputDebounceRef.current);
+    inputDebounceRef.current = setTimeout(() => {
+      inputDebounceRef.current = null;
+      if (!ref.current) return;
+      const sel = typeof window !== "undefined" ? window.getSelection?.() : null;
+      if (sel && !sel.isCollapsed && ref.current.contains(sel.anchorNode)) return;
+      const html = stripTagLabels(cleanTaiClasses(ref.current.innerHTML));
+      onUpdate(block.id, html);
+    }, PUBLISH_DEBOUNCE_MS);
+  }, [slashOpen, block.id, onUpdate]);
+
+  // Cancel pending debounced publish on unmount so a stale timer can't fire
+  // onUpdate against a different block id (handleBlockUpdate would still
+  // no-op since it map-matches by id, but we don't want to leak the timer).
+  useEffect(() => {
+    return () => {
+      if (inputDebounceRef.current) {
+        clearTimeout(inputDebounceRef.current);
+        inputDebounceRef.current = null;
+      }
+    };
+  }, []);
 
   // Strip formatting from pasted content — insert plain text only.
   // execCommand('insertText') is deprecated but remains the only reliable way to
