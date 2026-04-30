@@ -9,6 +9,13 @@ import { getRules } from "../lib/compliance-rules.js";
 import InlineTooltip from "./InlineTooltip.jsx";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
+// Idle window after the last keystroke before we fire onUpdate (and therefore
+// publishBlocks → Y.Doc → R2). Short enough that a hard reload loses at most
+// ~one half-second of typing; long enough that we don't re-walk every block
+// through applyBlocksToYDoc on every character. Exported so tests can pin
+// against the same value.
+export const PUBLISH_DEBOUNCE_MS = 400;
+
 /** Sanitize pasted text: collapse newlines to single space, strip zero-width spaces, trim */
 export function sanitizePasteText(text) {
   return text.replace(/[\r\n]+/g, ' ').replace(/\u200B/g, '').trimEnd();
@@ -58,6 +65,10 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   const [slashFilter, setSlashFilter] = useState("");
   const [slashIdx, setSlashIdx] = useState(0);
   const [delPopup, setDelPopup] = useState(null); // { el, rect } for del click popup
+  // Debounced input → onUpdate so live typing reaches collab without requiring blur (#21).
+  // Track Changes annotation still runs only on blur via handleBlur — debounced fires
+  // carry pre-annotation HTML; the blur publish remains source of truth for revision marks.
+  const inputDebounceRef = useRef(null);
 
   // Detect if block has inline revision marks (for gutter button display)
   const hasInlineRevisions = useMemo(() => {
@@ -207,6 +218,12 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
 
   const handleBlur = useCallback(() => {
     if (converting.current) return; // skip blur during slash menu conversion
+    // Cancel any pending debounced input publish — the blur fires onUpdate
+    // synchronously below with the final HTML (and TC annotation, if enabled).
+    if (inputDebounceRef.current) {
+      clearTimeout(inputDebounceRef.current);
+      inputDebounceRef.current = null;
+    }
     if (ref.current) {
       // Track Changes: annotate diff before saving
       if (trackChanges && snapshotText != null) {
@@ -287,7 +304,8 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     }
   }, [block.id, block.type, onEnterKey, onUpdate, onDelete, onFocusPrev, onFocusNext, onChangeOliLevel, slashOpen, slashFiltered, slashIdx]);
 
-  // Detect slash commands via input monitoring
+  // Detect slash commands via input monitoring + schedule a debounced publish
+  // so live typing reaches collab/persistence without requiring blur (#21).
   const handleInput = useCallback(() => {
     if (!ref.current) return;
     const text = (ref.current.textContent || "").replace(/\u200B/g, "");
@@ -303,7 +321,30 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
         setSlashFilter("");
       }
     }
-  }, [slashOpen]);
+
+    // Debounced onUpdate. Pre-annotation (no Track Changes diff) on purpose —
+    // annotation runs only at blur via handleBlur. Peers see plain edits live;
+    // revision marks materialize when the editor blurs.
+    if (inputDebounceRef.current) clearTimeout(inputDebounceRef.current);
+    inputDebounceRef.current = setTimeout(() => {
+      inputDebounceRef.current = null;
+      if (!ref.current) return;
+      const html = stripTagLabels(cleanTaiClasses(ref.current.innerHTML));
+      onUpdate(block.id, html);
+    }, PUBLISH_DEBOUNCE_MS);
+  }, [slashOpen, block.id, onUpdate]);
+
+  // Cancel pending debounced publish on unmount so a stale timer can't fire
+  // onUpdate against a different block id (handleBlockUpdate would still
+  // no-op since it map-matches by id, but we don't want to leak the timer).
+  useEffect(() => {
+    return () => {
+      if (inputDebounceRef.current) {
+        clearTimeout(inputDebounceRef.current);
+        inputDebounceRef.current = null;
+      }
+    };
+  }, []);
 
   // Strip formatting from pasted content — insert plain text only.
   // execCommand('insertText') is deprecated but remains the only reliable way to
