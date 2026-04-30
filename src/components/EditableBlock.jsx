@@ -69,6 +69,15 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   // Track Changes annotation still runs only on blur via handleBlur — debounced fires
   // carry pre-annotation HTML; the blur publish remains source of truth for revision marks.
   const inputDebounceRef = useRef(null);
+  // Latest block.html, mirrored into a ref so setRef can read it without
+  // taking a useCallback dep on it. Without this, every debounced publish
+  // changes block.html → setRef identity → React detaches/re-attaches the
+  // contentEditable ref → setRef body re-runs syncTagLabels mid-edit. That
+  // race broke E2E tests that select text and click a toolbar button within
+  // the debounce window (the saved Range from FloatingToolbar's checkSelection
+  // was getting invalidated by the re-attach).
+  const blockHtmlRef = useRef(block.html);
+  useEffect(() => { blockHtmlRef.current = block.html; }, [block.html]);
 
   // Detect if block has inline revision marks (for gutter button display)
   const hasInlineRevisions = useMemo(() => {
@@ -82,15 +91,23 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   const setRef = useCallback((node) => {
     ref.current = node;
     if (!node) return;
-    // Initialize content on mount
-    if (editable && block.html && !node.dataset.init) {
-      node.innerHTML = resolveHtml ? resolveHtml(block.html) : block.html;
+    const html = blockHtmlRef.current;
+    // Initialize content on mount. dataset.init is a "we've mounted" flag the
+    // sync useEffect below uses to skip pre-mount runs — set it regardless of
+    // whether html is empty, otherwise blocks born empty (created via Enter
+    // with no initial content) never get the flag and the sync useEffect
+    // permanently skips the DOM rewrite, leaving stale content behind on
+    // Accept All / Reject All.
+    if (editable && !node.dataset.init) {
+      if (html) {
+        node.innerHTML = resolveHtml ? resolveHtml(html) : html;
+      }
       node.dataset.init = "1";
     } else if (!editable) {
-      node.innerHTML = resolveHtml ? resolveHtml(block.html || "") : (block.html || "");
+      node.innerHTML = resolveHtml ? resolveHtml(html || "") : (html || "");
     }
     syncTagLabels(node, showTags);
-  }, [editable, block.html, resolveHtml, showTags]);
+  }, [editable, resolveHtml, showTags]);
 
   // Keep non-editable blocks synced when html changes after mount
   useEffect(() => {
@@ -325,10 +342,18 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     // Debounced onUpdate. Pre-annotation (no Track Changes diff) on purpose —
     // annotation runs only at blur via handleBlur. Peers see plain edits live;
     // revision marks materialize when the editor blurs.
+    //
+    // Defer if the user has an active non-collapsed selection — they're
+    // probably mid-toolbar-action (select text → click Mark/Case/Comment).
+    // Publishing now would re-render and could invalidate the saved Range
+    // FloatingToolbar restored before mutating. The next input event will
+    // re-arm this timer; blur will flush via handleBlur.
     if (inputDebounceRef.current) clearTimeout(inputDebounceRef.current);
     inputDebounceRef.current = setTimeout(() => {
       inputDebounceRef.current = null;
       if (!ref.current) return;
+      const sel = typeof window !== "undefined" ? window.getSelection?.() : null;
+      if (sel && !sel.isCollapsed && ref.current.contains(sel.anchorNode)) return;
       const html = stripTagLabels(cleanTaiClasses(ref.current.innerHTML));
       onUpdate(block.id, html);
     }, PUBLISH_DEBOUNCE_MS);

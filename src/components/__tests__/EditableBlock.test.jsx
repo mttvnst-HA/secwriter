@@ -110,4 +110,36 @@ describe('EditableBlock — debounced publish on input (#21)', () => {
 
     expect(props.onUpdate).not.toHaveBeenCalled();
   });
+
+  // Regression: with the publish-debounce active, an E2E flow that types
+  // text → selects it → clicks a toolbar button (FloatingToolbar) saves a
+  // Range and then mutates around it. If publishBlocks fires in the middle
+  // it re-renders and used to invalidate that Range. Defer publish while a
+  // non-collapsed selection is active inside the block.
+  it('skips the debounced publish while a non-collapsed selection is active inside the block', () => {
+    const props = defaultProps();
+    const { container } = render(<EditableBlock {...props} />);
+    const editable = container.querySelector('[data-block-id="b1"]');
+
+    fireInput(editable, 'green text');
+
+    // Simulate a non-collapsed selection inside the block.
+    const text = editable.firstChild;
+    const range = document.createRange();
+    range.setStart(text, 0);
+    range.setEnd(text, text.length);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+
+    act(() => { vi.advanceTimersByTime(PUBLISH_DEBOUNCE_MS); });
+    expect(props.onUpdate).not.toHaveBeenCalled();
+
+    // After the selection collapses and the next input fires, publishing resumes.
+    sel.removeAllRanges();
+    fireInput(editable, 'green text!');
+    act(() => { vi.advanceTimersByTime(PUBLISH_DEBOUNCE_MS); });
+    expect(props.onUpdate).toHaveBeenCalledTimes(1);
+    expect(props.onUpdate).toHaveBeenCalledWith('b1', 'green text!');
+  });
 });
