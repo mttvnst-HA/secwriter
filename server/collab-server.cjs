@@ -30,7 +30,7 @@ const WS = require('ws');
 const WebSocketServer = WS.WebSocketServer || WS.Server;
 const Y = require('yjs');
 const ywsUtils = require('y-websocket/bin/utils');
-const { setupWSConnection, setPersistence, getYDoc } = ywsUtils;
+const { setupWSConnection, setPersistence, getYDoc, docs: ywsDocs } = ywsUtils;
 const fs = require('node:fs');
 const path = require('node:path');
 const http = require('node:http');
@@ -336,7 +336,7 @@ function createCollabServer(config) {
     // handshake response isn't sent until wss.handleUpgrade runs below, so
     // the client's WS doesn't open until then — its sync step 1 can't be
     // sent until the doc is already loaded.
-    getYDoc(docName, true);
+    const doc = getYDoc(docName, true);
     const loadPromise = docLoadPromises.get(docName);
     if (loadPromise) {
       try { await loadPromise; }
@@ -346,6 +346,26 @@ function createCollabServer(config) {
     // Socket may have been destroyed during the await (client gave up,
     // network blip). Bail out before handleUpgrade tries to write to it.
     if (socket.destroyed) return;
+
+    // Stale-close eviction guard (issue #17 redux).
+    //
+    // y-websocket's closeConn (bin/utils.js:208) does `docs.delete(doc.name)`
+    // keyed by name, NOT by instance, when a connection's last conn drops.
+    // If a previous WS connection for this same room is still in TCP-close
+    // teardown when we register OUR new doc, that stale closeConn fires
+    // during our `await loadPromise`, removes the entry from the global map,
+    // and setupWSConnection's internal getYDoc below then creates a FRESH
+    // doc bypassing our preload — sync step 1 fires with empty state, the
+    // client seeds, persisted state CRDT-unions on top, yOrder doubles.
+    // Re-install our preloaded doc into the map so setupWSConnection finds
+    // it.
+    //
+    // No further await between this guard and setupWSConnection, so the
+    // event loop cannot interleave another stale closeConn before
+    // setupWSConnection adds a real conn that keeps doc.conns.size > 0.
+    if (ywsDocs.get(docName) !== doc) {
+      ywsDocs.set(docName, doc);
+    }
 
     wss.handleUpgrade(req, socket, head, (conn) => {
       if (user) conn.user = user;

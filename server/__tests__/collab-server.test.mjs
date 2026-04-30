@@ -266,4 +266,75 @@ describe('collab-server: bindState race (issue #17)', () => {
       await server.flushAllRooms();
     }
   });
+
+  it('survives a stale closeConn evicting our doc mid-preload (deterministic race)', async () => {
+    // Reproduces the CI-only flake from issue #17 redux. y-websocket's
+    // closeConn (utils.js:208) does `docs.delete(doc.name)` keyed by name
+    // when a connection's last conn drops. If a previous WS connection's
+    // close fires while a new connection is still in its preload await,
+    // that delete evicts the new doc from the global map. Without the
+    // re-install guard in the upgrade handler, setupWSConnection then
+    // creates a fresh empty doc that bypasses preload — sync fires with
+    // empty state, client seeds, persisted state CRDT-unions on top, yOrder
+    // doubles.
+    //
+    // We force the race deterministically by deleting the docs entry while
+    // the slow-storage read is still in flight, then asserting yOrder is
+    // exactly BLOCK_COUNT after sync.
+    ywsDocs.clear();
+
+    const ydoc = new Y.Doc();
+    const yOrder = ydoc.getArray('order');
+    const yStore = ydoc.getMap('store');
+
+    const provider = new WebsocketProvider(`${baseUrl}/ws`, ROOM_NAME, ydoc, {
+      WebSocketPolyfill: NodeWebSocket,
+      connect: true,
+    });
+
+    // Storage delay is 200 ms; eviction at 50 ms lands inside the preload
+    // await window. After this, ywsDocs has no entry for the room — exactly
+    // the state a stale closeConn would leave behind.
+    setTimeout(() => { ywsDocs.delete(ROOM_NAME); }, 50);
+
+    await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('sync timeout')), 5000);
+      provider.once('sync', () => { clearTimeout(timer); resolve(); });
+    });
+
+    // App.jsx behavior: seed-if-empty on first sync.
+    const empty = yOrder.length === 0 && yStore.size === 0;
+    if (empty) {
+      ydoc.transact(() => {
+        for (let i = 1; i <= BLOCK_COUNT; i++) {
+          const id = `n${i}`;
+          const ymap = new Y.Map();
+          ymap.set('id', id);
+          ymap.set('type', 'txt');
+          const yText = new Y.Text();
+          yText.insert(0, `Block ${i} body text`);
+          ymap.set('html', yText);
+          yStore.set(id, ymap);
+          yOrder.push([id]);
+        }
+      }, 'seed');
+    }
+
+    // Wait long enough that any second bindState the eviction triggered
+    // would have completed its 200 ms slow-storage read AND propagated the
+    // CRDT-merged state back to the client. 500 ms covers the worst case
+    // (200 ms second-load + propagation buffer).
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    assert.strictEqual(
+      yOrder.length, BLOCK_COUNT,
+      `Stale-close race: yOrder grew to ${yOrder.length}; expected ${BLOCK_COUNT}. ` +
+      `Re-install guard in upgrade handler is missing or ineffective.`,
+    );
+
+    provider.disconnect();
+    provider.destroy();
+    ydoc.destroy();
+    await server.flushAllRooms();
+  });
 });
