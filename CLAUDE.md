@@ -20,8 +20,8 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 - `src/data/` — `ufs-1-300-02-rules.json` (compliance rules), `umrl.json` (reference DB), `umsl.json` (submittal DB), sample spec
 - `reference/section.ini` — **authoritative** formatting rules (MARGINS, COLORS, RULES, CODES, FONTS)
 - `reference/ufs_1_300_02.pdf` — authoritative source for compliance rules
-- `reference/UFGS_M/` — 690 .SEC files for parser validation
-- `tests/e2e/editor.spec.js` — 141 Playwright tests
+- `reference/UFGS_M/` — 689 .SEC files for parser validation
+- `tests/e2e/` — Playwright suite: `editor.spec.js` (141 tests) + `collab.spec.js` (10 tests)
 - `tests/*.node-test.mjs` — UFGS structural + interop tests (Node runner)
 - `corpus/` — 4-corpus test suite (calibration/clean/dirty/adversarial)
 - `tools/` — CLI utilities (parse-sec, interop-scan, ui-audit/)
@@ -150,7 +150,7 @@ The `</>` button toggles `tags-hidden` (default) vs. `tags-visible` on the edito
 
 Data-driven rule engine with two tiers:
 
-1. **`ufs-1-300-02-rules.json`** — authoritative rule data extracted from `reference/ufs_1_300_02.pdf`. 122 rules, 35 prohibited terms, 13 symbols, 20 vague terms, 4 required capitalizations. **Rules are NOT hardcoded in source code.**
+1. **`ufs-1-300-02-rules.json`** — authoritative rule data extracted from `reference/ufs_1_300_02.pdf`. 36 prohibited terms, 13 prohibited symbols, 21 vague terms, 4 required capitalizations, plus colloquial/redundant/required-practice categories. **Rules are NOT hardcoded in source code.** `buildRules()` derives the runtime rule list from these categories.
 2. **`compliance-rules.js`** reads the JSON at startup and generates ~81 rule objects via `buildRules()`. Each rule: id, category, severity, regex, message, UFS reference, optional `fix()`. Rules with `fix === null` defer to AI tier. Uses **binary search** for bracket exclusion.
 3. **`compliance-checker.js`** runs rules against scoped blocks, groups by rule ID, computes stats. Excludes note blocks, bracket content, hidden ENG/MET. Enforces **violation budget** (`MAX_VIOLATIONS = 2000`); returns `truncated: true` when capped.
 4. **`compliance-ai.js`** (Tier 2): builds system prompt dynamically from the JSON, chunks large requests (20 blocks max per API call), estimates token cost, supports abort via AbortController.
