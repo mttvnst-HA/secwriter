@@ -253,6 +253,14 @@ function walkNode(node, parentAttrs, result) {
   }
 
   if (node.nodeType === ELEMENT_NODE) {
+    // <br> emits a newline character carrying parent formatting. Pairs with
+    // the \n → <br> conversion in yTextToHtml so Shift+Enter in a
+    // contentEditable block round-trips through Y.Text as a visible line break.
+    if (node.tagName && node.tagName.toLowerCase() === 'br') {
+      result.push({ char: '\n', attrs: parentAttrs });
+      return;
+    }
+
     const delta = attrsFromElement(node);
     if (delta === null) return; // skip entire subtree (tag-label)
 
@@ -530,7 +538,10 @@ export function yTextToHtml(yText) {
   for (const delta of merged) {
     const attrs = delta.attributes || {};
     const { open, close } = buildTags(attrs);
-    html += open + escapeHtml(delta.insert) + close;
+    // Convert \n to <br> so Y.Text newlines render as visible line breaks
+    // in contentEditable. Done after escapeHtml so the inserted markup is
+    // not itself re-escaped.
+    html += open + escapeHtml(delta.insert).replace(/\n/g, '<br>') + close;
   }
   return html;
 }

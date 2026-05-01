@@ -199,6 +199,45 @@ describe('htmlToAttrList', () => {
     expect(tuples[6].attrs).toEqual({ bold: true });
     expect(tuples[11].attrs).toEqual({ mark: 'rid' });
   });
+
+  it('round-trips <br> ↔ \\n: HTML → tuples → Y.Text → HTML preserves line breaks', () => {
+    // <br> in HTML produces a \n character with parent attrs
+    expect(htmlToAttrList('a<br>b')).toEqual([
+      { char: 'a', attrs: {} },
+      { char: '\n', attrs: {} },
+      { char: 'b', attrs: {} },
+    ]);
+
+    // \n inherits formatting from the surrounding tag
+    expect(htmlToAttrList('<b>a<br>b</b>')).toEqual([
+      { char: 'a', attrs: { bold: true } },
+      { char: '\n', attrs: { bold: true } },
+      { char: 'b', attrs: { bold: true } },
+    ]);
+
+    // Consecutive line breaks
+    expect(htmlToAttrList('a<br><br>b').map(t => t.char).join('')).toBe('a\n\nb');
+
+    // \n in Y.Text serialises back to <br>
+    const yText = makeYText([{ insert: 'line1\nline2' }]);
+    expect(yTextToHtml(yText)).toBe('line1<br>line2');
+
+    // \n with formatting preserves the bold wrapper across the break
+    const yTextBold = makeYText([{ insert: 'a\nb', attributes: { bold: true } }]);
+    expect(yTextToHtml(yTextBold)).toBe('<b>a<br>b</b>');
+
+    // Full round-trip: HTML → Y.Text → HTML
+    const yTextRT = new Y.Doc().getText('test');
+    seedYTextFromHtml(yTextRT, 'first<br>second<br>third');
+    expect(yTextToHtml(yTextRT)).toBe('first<br>second<br>third');
+
+    // <br> nested inside a mark span keeps the mark attr
+    expect(htmlToAttrList('<span class="mark-rid">a<br>b</span>')).toEqual([
+      { char: 'a', attrs: { mark: 'rid' } },
+      { char: '\n', attrs: { mark: 'rid' } },
+      { char: 'b', attrs: { mark: 'rid' } },
+    ]);
+  });
 });
 
 describe('applyHtmlToYText', () => {
@@ -286,7 +325,7 @@ describe('lenient HTML parsing (recovers from contentEditable quirks)', () => {
     installBrowserAccurateDOMParser();
     try {
       const result = htmlToAttrList('Hello<br>world');
-      expect(result.map(t => t.char).join('')).toBe('Helloworld');
+      expect(result.map(t => t.char).join('')).toBe('Hello\nworld');
     } finally {
       vi.unstubAllGlobals();
     }
@@ -304,7 +343,7 @@ describe('lenient HTML parsing (recovers from contentEditable quirks)', () => {
       vi.unstubAllGlobals();
     }
 
-    expect(yTextToHtml(yText)).toBe('Helloworld');
+    expect(yTextToHtml(yText)).toBe('Hello<br>world');
   });
 
   it('seedYTextFromHtml seeds content with bare <br> cleanly', () => {
@@ -318,7 +357,7 @@ describe('lenient HTML parsing (recovers from contentEditable quirks)', () => {
       vi.unstubAllGlobals();
     }
 
-    expect(yTextToHtml(yText)).toBe('abc');
+    expect(yTextToHtml(yText)).toBe('a<br>b<br>c');
   });
 });
 
