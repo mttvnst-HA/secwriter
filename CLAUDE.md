@@ -25,6 +25,9 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 - `tests/*.node-test.mjs` — UFGS structural + interop tests (Node runner)
 - `corpus/` — 4-corpus test suite (calibration/clean/dirty/adversarial)
 - `tools/` — CLI utilities (parse-sec, interop-scan, ui-audit/)
+- `CONTEXT.md` — domain glossary (block, transparent tag, TC snapshot, publish path, etc.). Use these names; consult before introducing new terms.
+- `docs/adr/` — load-bearing architectural decisions. **Read the relevant ADR before proposing a refactor in its area** (CJS server, y-websocket pin, rules-as-data, snapshot-diff publish path).
+- `docs/architecture-review-*.md` — open deepening-candidates backlog from architecture reviews.
 
 ## Running
 
