@@ -76,6 +76,7 @@ Test DOM-dependent code in both browser and Node/linkedom environments. linkedom
 5. **Compliance rule tests use Node's built-in test runner** (`node --test`), not Vitest — the regex-heavy rule engine exhausts Vitest's worker memory. Run via `npm run test:compliance`.
 6. **Source files contain the literal characters `\u200B` (six chars: backslash, u, 2, 0, 0, B) in regex literals** — e.g. EditableBlock.jsx has `replace(/\u200B/g, "")`. When you copy that string through the Edit tool, JSON decodes `\u200B` into the actual zero-width space character (U+200B) and the match fails silently. Anchor your old_string on a different nearby line.
 7. **CI-only flakes are timing races.** When a test fails only on a CI runner but passes 10×/10 locally, do NOT keep re-running locally — write a deterministic regression test that forces the race (e.g., manually mutate shared state mid-`await`). See `server/__tests__/collab-server.test.mjs` for the pattern (force-delete the y-websocket docs Map during a slow-storage read to expose the eviction race).
+8. **CSP allowlist is a CI gate.** Adding a new remote origin (`connect-src`, `script-src`, etc.) requires updating `ALLOWED_REMOTE_HOSTS` in `src/__tests__/csp.test.js`. Don't delete the test — update it.
 
 ## Always Check the .ini Files for Formatting
 
@@ -237,6 +238,8 @@ Block content reaches the Y.Doc via **snapshot diff**, not a live `Y.Text` bindi
 **Implication:** concurrent typing in the same paragraph by two users relies on the diff at publish time, not character-level CRDT ops. Workable for single-user rooms; the architectural fix to a real `Y.Text` ↔ DOM binding is tracked at issue #22. The debounced-input symptom fix landed via #21 / PR #23.
 
 `window.__collab` is exposed in DEV (`import.meta.env.DEV`) for browser-side debugging — gives you `{ ydoc, yOrder, yStore, yMeta, yTc, yComments, awareness, provider, undoManager }`.
+
+**"Connecting to room…" forever?** The collab session effect in `src/App.jsx` is gated on `inRoom && identity`. If `localStorage` has no saved identity, the app shows a name prompt and the WebSocketProvider is never instantiated. Banner persists indefinitely; `/health` shows 0 connections. Fill the name prompt to unblock.
 
 ## Storage Backends
 
