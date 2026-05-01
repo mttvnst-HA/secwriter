@@ -31,8 +31,8 @@ import { generateCommentReport } from "./lib/comment-report.js";
 import { parseSEC } from "./lib/sec-parser.js";
 import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
-import { getVisibleTextFromHtml } from "./lib/text-diff.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
+import * as tc from "./lib/track-changes.js";
 import { clearInlineLinting } from "./lib/inline-linter.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES, DEFAULT_HTTP_URL } from "./lib/collab.js";
@@ -112,9 +112,10 @@ function restorePlainTextOffset(root, startIndex, endIndex) {
 
 export default function SpecEditor() {
   const {
-    blocks, tcSnapshots, setBlocks, setTcSnapshots,
+    blocks, tcState, setBlocks, setTcState,
     undo, redo, canUndo, canRedo, clearHistory, resumeHistory,
   } = useUndoableBlocks(INITIAL_BLOCKS);
+  const trackChanges = tc.isEnabled(tcState);
   const [selectedTreeId, setSelectedTreeId] = useState(null);
   const [focusedBlockId, setFocusedBlockId] = useState(null);
   const [isDragOver, setIsDragOver] = useState(false);
@@ -122,7 +123,6 @@ export default function SpecEditor() {
   const [tailorActive, setTailorActive] = useState(false);
   const [tailorProfile, setTailorProfile] = useState({ branch: null, region: null, deliveryMethod: null });
   const [tailorShowAll, setTailorShowAll] = useState(false);
-  const [trackChanges, setTrackChanges] = useState(false);
   const [showRevisions, setShowRevisions] = useState(true);
   const [showNotes, setShowNotes] = useState(true);
   const [unitDisplay, setUnitDisplay] = useState('both'); // 'both' | 'eng' | 'met'
@@ -214,7 +214,11 @@ export default function SpecEditor() {
   const lastRemoteBlocksRef = useRef(null);
   const sessionReadyRef = useRef(false);
   const metaReadyRef = useRef(false);
-  const tcDirtyRef = useRef(false);
+  // Tracks the publishSeq we last sent to peers. The publish effect compares
+  // tcState.publishSeq against this to decide whether the local change came
+  // from a user action (publishSeq advanced) versus a remote update (no
+  // advance). Replaces the imperative tcDirtyRef flag.
+  const lastPublishedTcSeqRef = useRef(0);
   // Stash the nextBlocks from the initial onRemoteBlocks call so the
   // subsequent initial onRemoteComments can strip orphan mark-comment
   // spans against the authoritative remote blocks (blocksRef is not
@@ -829,15 +833,8 @@ export default function SpecEditor() {
   const handleRevisionAction = useCallback((id, html) => {
     resumeHistory();
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-    if (trackChanges) {
-      tcDirtyRef.current = true;
-      setTcSnapshots(prev => {
-        const next = new Map(prev);
-        next.set(id, getVisibleTextFromHtml(html));
-        return next;
-      });
-    }
-  }, [trackChanges]);
+    setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
+  }, []);
 
   // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions)
   const handleBlockUpdateWithSync = useCallback((id, html) => {
@@ -951,6 +948,7 @@ export default function SpecEditor() {
       const propagateTypes = { oli: "oli", item: "item" };
       const newType = propagateTypes[current.type] || "txt";
 
+      const revisionFlag = tc.revisionFlagForCreate(tcState);
       const newBlock = {
         id: newId,
         type: newType,
@@ -960,24 +958,16 @@ export default function SpecEditor() {
         level: current.level,
         html: "",
         isNew: true,
-        // Track Changes: new blocks are marked as additions
-        ...(trackChanges ? { revision: "add" } : {}),
+        ...(revisionFlag ? { revision: revisionFlag } : {}),
       };
       const next = [...prev];
       next.splice(idx + 1, 0, newBlock);
       return next;
     });
     // Track Changes: add empty snapshot so all typed text is marked as additions on blur
-    if (trackChanges) {
-      tcDirtyRef.current = true;
-      setTcSnapshots(prev => {
-        const next = new Map(prev);
-        next.set(newId, "");
-        return next;
-      });
-    }
+    setTcState(prev => tc.markBlockCreated(prev, newId));
     setFocusedBlockId(newId);
-  }, [trackChanges]);
+  }, [tcState]);
 
   // Tab/Shift+Tab on an OLI item: demote/promote list level (1..4, UFS Figure A-1).
   const handleChangeOliLevel = useCallback((blockId, delta) => {
@@ -1004,10 +994,11 @@ export default function SpecEditor() {
       if (idx <= 0) return prev; // don't delete first block
       const block = prev[idx];
 
-      // Track Changes: mark as deleted instead of removing
-      if (trackChanges && block.revision !== "add") {
+      const flag = tc.revisionFlagForDelete(tcState, block);
+      if (flag === 'del') {
+        // Track Changes: mark as deleted instead of removing
         const next = [...prev];
-        next[idx] = { ...block, revision: "del" };
+        next[idx] = { ...block, revision: 'del' };
         const prevBlock = prev[idx - 1];
         setTimeout(() => focusBlock(prevBlock.id, true), 0);
         return next;
@@ -1019,7 +1010,7 @@ export default function SpecEditor() {
       setTimeout(() => focusBlock(prevBlock.id, true), 0);
       return next;
     });
-  }, [focusBlock, trackChanges]);
+  }, [focusBlock, tcState]);
 
   // A block is focusable if it's a title or an editable text block
   const isFocusable = useCallback((block) => {
@@ -1128,16 +1119,9 @@ export default function SpecEditor() {
       return next;
     });
     // Track Changes: add empty snapshot so all typed text is marked as additions on blur
-    if (trackChanges) {
-      tcDirtyRef.current = true;
-      setTcSnapshots(prev => {
-        const next = new Map(prev);
-        next.set(newId, "");
-        return next;
-      });
-    }
+    setTcState(prev => tc.markBlockCreated(prev, newId));
     setFocusedBlockId(newId);
-  }, [handleConvertToTitle, trackChanges]);
+  }, [handleConvertToTitle]);
 
   // Promote a title (decrease depth)
   const handlePromote = useCallback((blockId) => {
@@ -1167,33 +1151,19 @@ export default function SpecEditor() {
       const next = acceptAllRevisions(prev);
       // Refresh snapshots from the post-resolution state so subsequent edits
       // diff against the correct baseline (not stale pre-accept text)
-      if (trackChanges) {
-        const snap = new Map();
-        for (const b of next) {
-          if (b.html) snap.set(b.id, getVisibleTextFromHtml(b.html));
-        }
-        tcDirtyRef.current = true;
-        setTcSnapshots(snap);
-      }
+      setTcState(s => tc.acceptAll(s, next));
       return next;
     });
-  }, [trackChanges]);
+  }, []);
 
   const handleRejectAll = useCallback(() => {
     resumeHistory();
     setBlocks(prev => {
       const next = rejectAllRevisions(prev);
-      if (trackChanges) {
-        const snap = new Map();
-        for (const b of next) {
-          if (b.html) snap.set(b.id, getVisibleTextFromHtml(b.html));
-        }
-        tcDirtyRef.current = true;
-        setTcSnapshots(snap);
-      }
+      setTcState(s => tc.rejectAll(s, next));
       return next;
     });
-  }, [trackChanges]);
+  }, []);
 
   // Persist dark mode
   useEffect(() => {
@@ -1385,12 +1355,18 @@ export default function SpecEditor() {
         if ('lockedBy' in remote) setRoomLockedBy(remote.lockedBy || null);
         if ('lockedByName' in remote) setRoomLockedByName(remote.lockedByName || null);
       },
-      onRemoteTc: (tc) => {
+      onRemoteTc: (payload) => {
         // M-shared-tc — apply remote Track Changes state. Round-tripping
-        // is prevented by the publish effect's tcDirtyRef gate — only
-        // user actions flip that bit, so these remote setters don't echo.
-        setTrackChanges(!!tc.enabled);
-        setTcSnapshots(new Map(Object.entries(tc.snapshots || {})));
+        // is prevented in the publish effect by comparing publishSeq
+        // against lastPublishedTcSeqRef — applyRemote does NOT bump
+        // publishSeq, so remote updates won't trigger an echo publish.
+        setTcState(prev => {
+          const next = tc.applyRemote(prev, payload);
+          // Mark as already-published so the publish effect doesn't push
+          // back what we just received.
+          lastPublishedTcSeqRef.current = next.publishSeq;
+          return next;
+        });
       },
       onRemoteComments: (commentsObj, commentsMeta) => {
         // M-shared-comments — apply remote comment state. The
@@ -1533,31 +1509,27 @@ export default function SpecEditor() {
 
   // M-shared-tc — publish local TC state changes to the Y.Doc.
   //
-  // Gating: only publish when `tcDirtyRef` is set (meaning the change
-  // came from a user action). Remote updates land via onRemoteTc WITHOUT
-  // setting tcDirtyRef, so round-tripping is suppressed.
+  // Gating: publish only when tcState.publishSeq has advanced past what
+  // we last sent. User-driven verbs bump publishSeq; applyRemote does
+  // not — that's what suppresses round-tripping.
   //
-  // When disabled, we publish an empty snapshots object so the baseline
-  // is cleared in the same Y.Doc transaction as the flag flip — otherwise
-  // remote clients would re-diff against a stale baseline and flag
-  // phantom changes.
+  // When disabled, getPublishableState() emits an empty snapshots object
+  // so the baseline is cleared in the same Y.Doc transaction as the flag
+  // flip — otherwise remote clients would re-diff against a stale
+  // baseline and flag phantom changes.
   useEffect(() => {
     if (!inRoom) return;
     const session = collabSessionRef.current;
     if (!session) return;
     if (!sessionReadyRef.current) return;
-    if (!tcDirtyRef.current) return;
-    tcDirtyRef.current = false;
-    const snapshots = {};
-    if (trackChanges) {
-      for (const [id, txt] of tcSnapshots.entries()) snapshots[id] = txt;
-    }
+    if (tcState.publishSeq === lastPublishedTcSeqRef.current) return;
+    lastPublishedTcSeqRef.current = tcState.publishSeq;
     try {
-      session.publishTc({ enabled: trackChanges, snapshots });
+      session.publishTc(tc.getPublishableState(tcState));
     } catch (err) {
       console.error('[collab] publishTc failed:', err);
     }
-  }, [trackChanges, tcSnapshots, inRoom]);
+  }, [tcState, inRoom]);
 
   // Broadcast our caret position so other users see a live cursor.
   useEffect(() => {
@@ -2306,27 +2278,13 @@ export default function SpecEditor() {
         <RevisionControls
           trackChanges={trackChanges}
           onTrackChangesChange={(val) => {
-            tcDirtyRef.current = true;
-            setTrackChanges(val);
-            // When disabling TC we intentionally leave local tcSnapshots
-            // state as-is. The publish effect at the top of the file
-            // computes `snapshots = {}` whenever trackChanges is false
-            // (regardless of tcSnapshots), so the Y.Doc gets cleared
-            // correctly, and annotateDomWithDiff is not called with TC
-            // off — stale local state is harmless.
-            if (val) {
-              // Snapshot the "visible" text of each block when TC turns on.
-              // Uses getVisibleTextFromHtml which excludes <del> content
-              // (already-deleted text) but includes <ins> content (already-added text).
-              // This ensures re-enabling TC after a toggle doesn't corrupt the baseline.
-              const snap = new Map();
-              for (const b of blocksRef.current) {
-                if (b.html) {
-                  snap.set(b.id, getVisibleTextFromHtml(b.html));
-                }
-              }
-              setTcSnapshots(snap);
-            }
+            // The track-changes module owns the "what's the new baseline?"
+            // logic. enable() snapshots visible text from current blocks;
+            // disable() clears snapshots. Both bump publishSeq so the
+            // publish effect picks the change up.
+            setTcState(prev => val
+              ? tc.enable(prev, blocksRef.current)
+              : tc.disable(prev));
           }}
           showRevisions={showRevisions}
           onShowRevisionsChange={setShowRevisions}
@@ -2603,11 +2561,12 @@ export default function SpecEditor() {
                   resolveHtml={resolveHtml}
                   tailorKey={tailorKey}
                   trackChanges={trackChanges}
-                  snapshotText={tcSnapshots.get(block.id)}
+                  snapshotText={tc.getSnapshot(tcState, block.id)}
                   identity={identity}
                   readOnly={collabReadOnly}
                   onAcceptRevision={(id) => {
                     resumeHistory();
+                    let resolvedHtml = '';
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
                       if (idx < 0) return prev;
@@ -2615,22 +2574,15 @@ export default function SpecEditor() {
                       if (b.revision === 'del') return prev.filter(bl => bl.id !== id);
                       const next = [...prev];
                       const html = b.html ? acceptAllInline(b.html) : b.html;
+                      resolvedHtml = html || '';
                       next[idx] = { ...b, revision: undefined, html };
                       return next;
                     });
-                    if (trackChanges) {
-                      tcDirtyRef.current = true;
-                      setTcSnapshots(prev => {
-                        const s = new Map(prev);
-                        const b = blocksRef.current.find(bl => bl.id === id);
-                        const html = b?.html ? acceptAllInline(b.html) : (b?.html || '');
-                        s.set(id, getVisibleTextFromHtml(html));
-                        return s;
-                      });
-                    }
+                    setTcState(prev => tc.acceptInline(prev, id, resolvedHtml));
                   }}
                   onRejectRevision={(id) => {
                     resumeHistory();
+                    let resolvedHtml = '';
                     setBlocks(prev => {
                       const idx = prev.findIndex(b => b.id === id);
                       if (idx < 0) return prev;
@@ -2638,19 +2590,11 @@ export default function SpecEditor() {
                       if (b.revision === 'add') return prev.filter(bl => bl.id !== id);
                       const next = [...prev];
                       const html = b.html ? rejectAllInline(b.html) : b.html;
+                      resolvedHtml = html || '';
                       next[idx] = { ...b, revision: undefined, html };
                       return next;
                     });
-                    if (trackChanges) {
-                      tcDirtyRef.current = true;
-                      setTcSnapshots(prev => {
-                        const s = new Map(prev);
-                        const b = blocksRef.current.find(bl => bl.id === id);
-                        const html = b?.html ? rejectAllInline(b.html) : (b?.html || '');
-                        s.set(id, getVisibleTextFromHtml(html));
-                        return s;
-                      });
-                    }
+                    setTcState(prev => tc.rejectInline(prev, id, resolvedHtml));
                   }}
                   onRevisionAction={handleRevisionAction}
                   comments={comments}

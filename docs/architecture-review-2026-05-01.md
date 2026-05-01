@@ -14,7 +14,7 @@ Architecture vocabulary used below — *module, interface, depth, seam, leverage
 
 ## 1. Track-changes snapshot lives as a Map across six unrelated call sites
 
-**Status:** Open
+**Status:** Landed — `src/lib/track-changes.js` is now a pure reducer over `{ enabled, snapshots, publishSeq }`. App dispatches verbs (`enable / disable / acceptInline / rejectInline / acceptAll / rejectAll / markBlockCreated / applyResolveAtBlock / applyRemote`) and reads selectors (`isEnabled / getSnapshot / getPublishableState / revisionFlagForCreate / revisionFlagForDelete`). `tcDirtyRef` and the eight ad-hoc `setTcSnapshots(...)` sites are gone; the publish effect gates on `publishSeq` instead. Property test asserts the `snapshot[id] === visibleText(html)` invariant.
 
 **Files:** `src/App.jsx:115,834,1133,1192,1393,1553,2311,2623`, `src/components/EditableBlock.jsx:62`, `src/components/FloatingToolbar.jsx`, `src/lib/useUndoableBlocks.js`
 

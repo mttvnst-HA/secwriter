@@ -84,7 +84,11 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 **Revision** — A pending mutation to a block: `add`, `del`, or `chg` (block-level), or inline `<add>` / `<del>` marks (within HTML).
 
-**TC snapshot** — The plain text of a block at the moment Track Changes was enabled. Stored in `tcSnapshots: Map<blockId, plainText>`. Diffed against current text on blur to synthesize revision marks.
+**TC snapshot** — The plain text of a block at the moment Track Changes was enabled. Held inside the track-changes state's `snapshots: Map<blockId, plainText>`. Diffed against current text on blur to synthesize revision marks.
+
+**Track-changes state** — The bundle owned by the track-changes module (`src/lib/track-changes.js`): `{ enabled, snapshots, publishSeq }`. Captures every fact needed to (a) decide whether the next blur should produce revision marks, (b) emit the next collab publish, (c) restore on undo. State transitions go through the module's verbs (`enable`, `disable`, `acceptInline`/`rejectInline`, `acceptAll`/`rejectAll`, `markBlockCreated`, `applyResolveAtBlock`, `applyRemote`); direct mutation of `snapshots` is not part of the contract. The invariant the module enforces: after every verb, `snapshot[id] === getVisibleTextFromHtml(blocks[id].html)` for every block id the verb touched.
+
+**publishSeq** — A monotonically-increasing integer on the TC state, bumped by every user-driven verb but not by `applyRemote`. The collab publish effect compares it against `lastPublishedTcSeqRef` to decide whether the local state has diverged from what peers have seen — replacing the imperative `tcDirtyRef` flag and making round-tripping a structural property rather than something the caller has to remember to set.
 
 **Diff pipeline** — `diffWords()` → `refineWordDiff()` → `diffChars()`. Refinement applies character-level sub-diff to consecutive del→add pairs sharing ≥50% common characters.
 
