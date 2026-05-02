@@ -20,7 +20,7 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 - `src/data/` — `ufs-1-300-02-rules.json` (compliance rules), `umrl.json` (reference DB), `umsl.json` (submittal DB), sample spec
 - `reference/section.ini` — **authoritative** formatting rules (MARGINS, COLORS, RULES, CODES, FONTS)
 - `reference/ufs_1_300_02.pdf` — authoritative source for compliance rules
-- `reference/UFGS_M/` — 689 .SEC files for parser validation
+- `reference/UFGS_M/` — 690 .SEC files for parser validation
 - `tests/e2e/` — Playwright suite: `editor.spec.js` (141 tests) + `collab.spec.js` (10 tests)
 - `tests/*.node-test.mjs` — UFGS structural + interop tests (Node runner)
 - `corpus/` — 4-corpus test suite (calibration/clean/dirty/adversarial)
