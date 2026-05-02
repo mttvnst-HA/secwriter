@@ -1,7 +1,8 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { checkCompliance } from "../lib/compliance-checker.js";
-import { computeComplianceDiff } from "../lib/compliance-diff.js";
+import { findFirstHighlightInBlock } from "../lib/compliance-highlight.js";
 import { getApiKey, requestAIRewrite, estimateTokens, estimateCost } from "../lib/compliance-ai.js";
+import * as comp from "../lib/compliance.js";
 import ComplianceSettings from "./ComplianceSettings.jsx";
 
 const SEVERITY_COLORS = {
@@ -10,31 +11,44 @@ const SEVERITY_COLORS = {
   low: { bg: "#eff6ff", border: "#3b82f6", text: "#1e40af", badge: "#2563eb" },
 };
 
+/**
+ * CompliancePanel — UI shell for the compliance reducer.
+ *
+ * Domain state lives in App (`complianceState`) per ADR-0005. The panel reads
+ * via selectors from `comp` and dispatches verbs via `dispatchCompliance`.
+ * Pure UI state (filter tab, accordion expand, "Why?" toggle, onboarding,
+ * settings modal) stays local to the panel — these are presentation, not
+ * domain. The AbortController for AI runs is also panel-local because it's
+ * a side-effect handle, not state.
+ *
+ * The .compliance-highlight DOM mutation is owned by App (single seam,
+ * matches linting's CSS.highlights pattern). The panel only triggers
+ * scroll-to-existing-highlight via findFirstHighlightInBlock.
+ */
 export default function CompliancePanel({
   blocks,
   focusedBlockId,
+  complianceState,
+  dispatchCompliance,
   onAcceptFix,
   onAcceptGroupFix,
-  onScrollToBlock,
-  trackChanges,
   unitDisplay,
 }) {
-  const [scope, setScope] = useState("document");
-  const [result, setResult] = useState(null); // { violations, groups, stats }
+  const result = comp.getResult(complianceState);
+  const scope = comp.getScope(complianceState);
+  const activeGroup = comp.getActiveGroup(complianceState);
+  const checking = comp.isChecking(complianceState);
+  const aiRunning = comp.isAiRunning(complianceState);
+  const aiProgress = comp.getAiProgress(complianceState);
+  const aiError = comp.getAiError(complianceState);
+  const sessionTokens = comp.getSessionTokens(complianceState);
+
+  // ── Local UI-only state ───────────────────────────────────────────────────
   const [filter, setFilter] = useState("high");
   const [expandedGroups, setExpandedGroups] = useState(new Set());
   const [expandedWhy, setExpandedWhy] = useState(new Set());
-  const [activeGroup, setActiveGroup] = useState(null); // ruleId of currently selected group
-  const [acceptedGroups, setAcceptedGroups] = useState(new Set());
-  const [rejectedGroups, setRejectedGroups] = useState(new Set());
-  const [acceptedItems, setAcceptedItems] = useState(new Set()); // individual block violations
-  const [rejectedItems, setRejectedItems] = useState(new Set());
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [aiLoading, setAiLoading] = useState(false);
-  const [aiProgress, setAiProgress] = useState(null);
-  const [aiError, setAiError] = useState(null);
-  const [sessionTokens, setSessionTokens] = useState(0);
   const abortRef = useRef(null);
 
   // First-run onboarding
@@ -44,248 +58,81 @@ export default function CompliancePanel({
     }
   }, []);
 
+  // Reset transient UI state on each fresh result.
+  useEffect(() => {
+    setFilter("high");
+    setExpandedGroups(new Set());
+    setExpandedWhy(new Set());
+  }, [result]);
+
   const dismissOnboarding = useCallback(() => {
     setShowOnboarding(false);
     localStorage.setItem("sim-compliance-onboarded", "1");
   }, []);
 
-  // Clear all compliance highlights from the DOM
-  const clearHighlights = useCallback(() => {
-    document.querySelectorAll('.compliance-highlight').forEach(el => {
-      const parent = el.parentNode;
-      if (parent) {
-        parent.replaceChild(document.createTextNode(el.textContent), el);
-        parent.normalize();
-      }
-    });
-  }, []);
+  // ── Verb dispatchers (concise reducer call sites) ─────────────────────────
 
-  // Apply highlights for a group's violations, optionally scroll to a specific block
-  const applyHighlights = useCallback((group, scrollToBlockId) => {
-    clearHighlights();
+  const setScope = useCallback((s) => {
+    dispatchCompliance((state) => comp.setScope(state, s));
+  }, [dispatchCompliance]);
 
-    for (const v of group.instances) {
-      const blockEl = document.querySelector(`[data-block-id="${v.blockId}"]`);
-      if (!blockEl) continue;
+  const setActiveGroup = useCallback((ruleId) => {
+    dispatchCompliance((state) => comp.setActiveGroup(state, ruleId));
+  }, [dispatchCompliance]);
 
-      const walker = document.createTreeWalker(blockEl, NodeFilter.SHOW_TEXT, null);
-      const matchLower = v.match.toLowerCase();
-      const nodesToProcess = [];
+  // ── Run scan ──────────────────────────────────────────────────────────────
 
-      let node;
-      while ((node = walker.nextNode())) {
-        if (node.parentElement?.closest?.('del.mark-del')) continue;
-        if (node.parentElement?.closest?.('.compliance-highlight')) continue;
-        const text = node.textContent.toLowerCase();
-        let searchFrom = 0;
-        let idx;
-        while ((idx = text.indexOf(matchLower, searchFrom)) >= 0) {
-          // Check word boundaries to avoid substring matches
-          // (e.g., "contract" should not match inside "Contractor")
-          const charBefore = idx > 0 ? text[idx - 1] : '';
-          const charAfter = idx + matchLower.length < text.length ? text[idx + matchLower.length] : '';
-          const isWordBoundaryBefore = !charBefore || !/[a-z]/i.test(charBefore);
-          const isWordBoundaryAfter = !charAfter || !/[a-z]/i.test(charAfter);
-          if (isWordBoundaryBefore && isWordBoundaryAfter) {
-            nodesToProcess.push({ node, idx, matchLen: v.match.length });
-            break; // One highlight per text node per violation
-          }
-          searchFrom = idx + 1;
-        }
-      }
-
-      for (let i = nodesToProcess.length - 1; i >= 0; i--) {
-        const { node: textNode, idx, matchLen } = nodesToProcess[i];
-        try {
-          const range = document.createRange();
-          range.setStart(textNode, idx);
-          range.setEnd(textNode, idx + matchLen);
-          const highlight = document.createElement('span');
-          highlight.className = 'compliance-highlight';
-          range.surroundContents(highlight);
-        } catch { /* skip if range is invalid */ }
-      }
-    }
-
-    // Scroll to specific block if provided, otherwise first highlight
-    if (scrollToBlockId) {
-      const targetBlock = document.querySelector(`[data-block-id="${scrollToBlockId}"]`);
-      const targetHighlight = targetBlock?.querySelector('.compliance-highlight');
-      if (targetHighlight) {
-        targetHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else if (targetBlock) {
-        targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    } else {
-      const firstHighlight = document.querySelector('.compliance-highlight');
-      if (firstHighlight) {
-        firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }
-  }, [clearHighlights]);
-
-  // When activeGroup changes, apply highlights
-  const prevActiveGroupRef = useRef(null);
-  useEffect(() => {
-    if (!activeGroup || !result) {
-      clearHighlights();
-      prevActiveGroupRef.current = null;
-      return;
-    }
-
-    const group = result.groups.find(g => g.ruleId === activeGroup);
-    if (!group) return;
-
-    // Only scroll on initial activation (not re-renders of same group)
-    const isNewGroup = prevActiveGroupRef.current !== activeGroup;
-    prevActiveGroupRef.current = activeGroup;
-
-    if (isNewGroup) {
-      applyHighlights(group, null); // scroll to first match
-    }
-
-    return () => clearHighlights();
-  }, [activeGroup, result, applyHighlights, clearHighlights]);
-
-  // Run compliance check (async — yields to browser to prevent "Page Unresponsive")
-  const [checking, setChecking] = useState(false);
   const handleRunCheck = useCallback(async () => {
-    setChecking(true);
+    dispatchCompliance((state) => comp.startCheck(state));
     const anchorId = scope === "document" ? null : focusedBlockId;
     const res = await checkCompliance(blocks, scope, anchorId, { unitDisplay });
-    setResult(res);
-    setFilter("high");
-    setExpandedGroups(new Set());
-    setExpandedWhy(new Set());
-    setAcceptedGroups(new Set());
-    setRejectedGroups(new Set());
-    setAcceptedItems(new Set());
-    setRejectedItems(new Set());
-    setChecking(false);
-  }, [blocks, scope, focusedBlockId, unitDisplay]);
+    dispatchCompliance((state) => comp.setResult(state, res));
+  }, [blocks, scope, focusedBlockId, unitDisplay, dispatchCompliance]);
 
-  // Auto-fix all formatting violations — apply fixFn to block HTML
+  // ── Accept/reject handlers ────────────────────────────────────────────────
+
   const handleAutoFixFmt = useCallback(() => {
     if (!result) return;
-    const fmtViolations = result.violations.filter(
-      (v) => v.category === "formatting" && v.fixFn !== null
-    );
-    if (fmtViolations.length === 0) return;
+    const { fixes, ruleIds, count } = comp.computeFormattingFixes(result, blocks);
+    if (fixes.size === 0) return;
+    onAcceptGroupFix(fixes, `Compliance: auto-fixed ${count} formatting items`);
+    dispatchCompliance((state) => comp.markGroupsAccepted(state, ruleIds));
+  }, [result, blocks, onAcceptGroupFix, dispatchCompliance]);
 
-    // Collect unique block IDs and their fix functions
-    const fixFnByBlock = new Map();
-    for (const v of fmtViolations) {
-      if (!fixFnByBlock.has(v.blockId)) {
-        fixFnByBlock.set(v.blockId, []);
-      }
-      fixFnByBlock.get(v.blockId).push(v.fixFn);
-    }
+  const handleAcceptGroup = useCallback((group) => {
+    const fixes = comp.computeGroupFixes(group, blocks);
+    if (fixes.size === 0) return;
+    const label = `Compliance: accepted ${fixes.size} "${group.representative?.match || group.ruleId}" fixes`;
+    onAcceptGroupFix(fixes, label);
+    dispatchCompliance((state) => comp.acceptGroup(state, group.ruleId));
+  }, [blocks, onAcceptGroupFix, dispatchCompliance]);
 
-    // Apply all fix functions to each block's HTML
-    const fixesByBlock = new Map();
-    for (const [blockId, fixFns] of fixFnByBlock) {
-      const block = blocks.find(b => b.id === blockId);
-      if (!block?.html) continue;
-      let html = block.html;
-      for (const fn of fixFns) {
-        try {
-          const result = fn(html);
-          if (result !== null) html = result;
-        } catch { /* skip */ }
-      }
-      if (html !== block.html) {
-        fixesByBlock.set(blockId, html);
-      }
-    }
-
-    if (fixesByBlock.size === 0) return;
-
-    onAcceptGroupFix(fixesByBlock, `Compliance: auto-fixed ${fmtViolations.length} formatting items`);
-
-    // Mark formatting groups as accepted
-    const fmtGroupIds = result.groups
-      .filter((g) => g.category === "formatting")
-      .map((g) => g.ruleId);
-    setAcceptedGroups((prev) => {
-      const next = new Set(prev);
-      fmtGroupIds.forEach((id) => next.add(id));
-      return next;
-    });
-  }, [result, blocks, onAcceptGroupFix]);
-
-  // Accept all instances in a group — apply fix function to block HTML
-  const handleAcceptGroup = useCallback(
-    (group) => {
-      const fixableInstances = group.instances.filter((v) => v.fixFn !== null);
-      if (fixableInstances.length === 0) return;
-
-      // Collect unique block IDs that need fixing
-      const blockIdsToFix = [...new Set(fixableInstances.map(v => v.blockId))];
-
-      // Build a map of blockId → fixFn (use the first instance's fixFn per block — they're the same rule)
-      const fixFnByBlock = new Map();
-      for (const v of fixableInstances) {
-        if (!fixFnByBlock.has(v.blockId)) {
-          fixFnByBlock.set(v.blockId, v.fixFn);
-        }
-      }
-
-      // Apply fixFn to each block's HTML
-      const fixesByBlock = new Map();
-      for (const blockId of blockIdsToFix) {
-        const block = blocks.find(b => b.id === blockId);
-        if (!block?.html) continue;
-        const fixFn = fixFnByBlock.get(blockId);
-        if (!fixFn) continue;
-        try {
-          const fixedHtml = fixFn(block.html);
-          if (fixedHtml !== null && fixedHtml !== block.html) {
-            fixesByBlock.set(blockId, fixedHtml);
-          }
-        } catch { /* skip blocks where fix fails */ }
-      }
-
-      if (fixesByBlock.size === 0) return;
-
-      onAcceptGroupFix(
-        fixesByBlock,
-        `Compliance: accepted ${fixesByBlock.size} "${group.representative?.match || group.ruleId}" fixes`
-      );
-      setAcceptedGroups((prev) => new Set(prev).add(group.ruleId));
-      setActiveGroup(null); // clear highlights
-    },
-    [onAcceptGroupFix, blocks]
-  );
-
-  // Reject all in a group
   const handleRejectGroup = useCallback((group) => {
-    setRejectedGroups((prev) => new Set(prev).add(group.ruleId));
-    setActiveGroup(null); // clear highlights
-  }, []);
+    dispatchCompliance((state) => comp.rejectGroup(state, group.ruleId));
+  }, [dispatchCompliance]);
 
-  // Accept individual instance — apply fixFn to block HTML
-  const handleAcceptItem = useCallback(
-    (violation) => {
-      if (!violation.fixFn) return;
-      const block = blocks.find(b => b.id === violation.blockId);
-      if (!block?.html) return;
-      try {
-        const fixedHtml = violation.fixFn(block.html);
-        if (fixedHtml !== null && fixedHtml !== block.html) {
-          onAcceptFix(violation.blockId, fixedHtml);
-        }
-      } catch { return; }
-      setAcceptedItems((prev) => new Set(prev).add(`${violation.blockId}-${violation.index}`));
-    },
-    [onAcceptFix, blocks]
-  );
+  const handleAcceptItem = useCallback((violation) => {
+    const fix = comp.computeItemFix(violation, blocks);
+    if (!fix) return;
+    onAcceptFix(fix.blockId, fix.html);
+    dispatchCompliance((state) => comp.acceptItem(state, violation.blockId, violation.index));
+  }, [blocks, onAcceptFix, dispatchCompliance]);
 
-  // Reject individual instance
   const handleRejectItem = useCallback((violation) => {
-    setRejectedItems((prev) => new Set(prev).add(`${violation.blockId}-${violation.index}`));
+    dispatchCompliance((state) => comp.rejectItem(state, violation.blockId, violation.index));
+  }, [dispatchCompliance]);
+
+  // Click on a representative sentence or instance — scroll to its highlight
+  // (which has already been injected by App's effect when the group activated).
+  const scrollToBlockHighlight = useCallback((blockId) => {
+    const target =
+      findFirstHighlightInBlock(document, blockId) ||
+      document.querySelector(`[data-block-id="${blockId}"]`);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
   }, []);
 
-  // AI batch rewrite
+  // ── AI batch rewrite ──────────────────────────────────────────────────────
+
   const handleAIFixAll = useCallback(async () => {
     const apiKey = getApiKey();
     if (!apiKey) {
@@ -294,7 +141,7 @@ export default function CompliancePanel({
     }
     if (!result) return;
 
-    const aiViolations = result.violations.filter(v => v.fixFn === null);
+    const aiViolations = result.violations.filter((v) => v.fixFn === null);
     if (aiViolations.length === 0) return;
 
     const tokens = estimateTokens(blocks, aiViolations);
@@ -304,54 +151,50 @@ export default function CompliancePanel({
     );
     if (!proceed) return;
 
-    setAiLoading(true);
-    setAiError(null);
+    dispatchCompliance((state) => comp.aiStart(state));
     const controller = new AbortController();
     abortRef.current = controller;
 
     try {
       const { rewrites, tokensUsed } = await requestAIRewrite(
-        blocks, aiViolations, apiKey, {
-          model: localStorage.getItem('sim-compliance-model') || 'claude-sonnet-4-20250514',
+        blocks, aiViolations, apiKey,
+        {
+          model: localStorage.getItem("sim-compliance-model") || "claude-sonnet-4-20250514",
           abortSignal: controller.signal,
-          onProgress: setAiProgress,
+          onProgress: (p) => dispatchCompliance((state) => comp.aiProgress(state, p)),
         }
       );
 
-      setSessionTokens(prev => prev + tokensUsed);
-
-      // Apply rewrites as proposed fixes
       if (rewrites.length > 0) {
         const fixesByBlock = new Map();
-        for (const r of rewrites) {
-          fixesByBlock.set(r.blockId, r.proposed);
-        }
+        for (const r of rewrites) fixesByBlock.set(r.blockId, r.proposed);
         onAcceptGroupFix(fixesByBlock, `Compliance AI: rewrote ${rewrites.length} blocks`);
       }
+      dispatchCompliance((state) => comp.aiSuccess(state, tokensUsed));
     } catch (err) {
-      if (err.name !== 'AbortError') {
-        setAiError(err.message);
+      if (err.name === "AbortError") {
+        dispatchCompliance((state) => comp.aiAbort(state));
+      } else {
+        dispatchCompliance((state) => comp.aiError(state, err.message));
       }
     } finally {
-      setAiLoading(false);
-      setAiProgress(null);
       abortRef.current = null;
     }
-  }, [result, blocks, onAcceptGroupFix]);
+  }, [result, blocks, onAcceptGroupFix, dispatchCompliance]);
 
   const handleAICancel = useCallback(() => {
     if (abortRef.current) abortRef.current.abort();
   }, []);
 
-  // Toggle expanded group (accordion — only one open at a time)
+  // ── Local UI toggles ──────────────────────────────────────────────────────
+
   const toggleGroup = useCallback((ruleId) => {
     setExpandedGroups((prev) => {
-      if (prev.has(ruleId)) return new Set(); // collapse if already open
-      return new Set([ruleId]); // open this one, close all others
+      if (prev.has(ruleId)) return new Set();
+      return new Set([ruleId]);
     });
   }, []);
 
-  // Toggle "Why?" section
   const toggleWhy = useCallback((ruleId) => {
     setExpandedWhy((prev) => {
       const next = new Set(prev);
@@ -361,34 +204,15 @@ export default function CompliancePanel({
     });
   }, []);
 
-  // Filtered groups
-  const filteredGroups = useMemo(() => {
-    if (!result) return [];
-    if (filter === "all") return result.groups;
-    return result.groups.filter((g) => g.severity === filter);
-  }, [result, filter]);
+  // ── Derived for render ────────────────────────────────────────────────────
 
-  // Counts for summary
-  const fmtCount = useMemo(() => {
-    if (!result) return 0;
-    return result.violations.filter((v) => v.category === "formatting" && v.fixFn !== null).length;
-  }, [result]);
-
-  const needsAICount = useMemo(() => {
-    if (!result) return 0;
-    return result.violations.filter((v) => v.fixFn === null).length;
-  }, [result]);
-
-  // Severity bar percentages
-  const barPcts = useMemo(() => {
-    if (!result || result.stats.total === 0) return { high: 0, medium: 0, low: 0 };
-    const t = result.stats.total;
-    return {
-      high: (result.stats.high / t) * 100,
-      medium: (result.stats.medium / t) * 100,
-      low: (result.stats.low / t) * 100,
-    };
-  }, [result]);
+  const filteredGroups = useMemo(
+    () => comp.getFilteredGroups(complianceState, filter),
+    [complianceState, filter]
+  );
+  const fmtCount = useMemo(() => comp.getFmtCount(complianceState), [complianceState]);
+  const needsAICount = useMemo(() => comp.getNeedsAICount(complianceState), [complianceState]);
+  const barPcts = useMemo(() => comp.getStatsBarPercents(complianceState), [complianceState]);
 
   return (
     <div
@@ -532,7 +356,7 @@ export default function CompliancePanel({
                 </div>
 
                 {/* Auto-fix FMT button */}
-                {fmtCount > 0 && !acceptedGroups.has("FMT-001") && (
+                {fmtCount > 0 && !comp.isGroupAccepted(complianceState, "FMT-001") && (
                   <button
                     onClick={handleAutoFixFmt}
                     style={{
@@ -598,8 +422,8 @@ export default function CompliancePanel({
 
           {/* Grouped findings */}
           {filteredGroups.map((group) => {
-            const isAccepted = acceptedGroups.has(group.ruleId);
-            const isRejected = rejectedGroups.has(group.ruleId);
+            const isAccepted = comp.isGroupAccepted(complianceState, group.ruleId);
+            const isRejected = comp.isGroupRejected(complianceState, group.ruleId);
             const isExpanded = expandedGroups.has(group.ruleId);
             const isWhyOpen = expandedWhy.has(group.ruleId);
             const colors = SEVERITY_COLORS[group.severity] || SEVERITY_COLORS.medium;
@@ -609,9 +433,7 @@ export default function CompliancePanel({
               <div
                 key={group.ruleId}
                 onClick={(e) => {
-                  // Don't toggle if clicking a button inside the card
-                  if (e.target.closest('button')) return;
-                  // Set this group as active (clicking same group keeps it active — no toggle off)
+                  if (e.target.closest("button")) return;
                   setActiveGroup(group.ruleId);
                 }}
                 style={{
@@ -665,7 +487,8 @@ export default function CompliancePanel({
                       }}
                       onClick={(e) => {
                         e.stopPropagation();
-                        applyHighlights(group, group.representative.blockId);
+                        setActiveGroup(group.ruleId);
+                        scrollToBlockHighlight(group.representative.blockId);
                       }}
                     >
                       {group.representative.sentence}
@@ -771,14 +594,13 @@ export default function CompliancePanel({
                 {/* Expanded individual instances */}
                 {isExpanded && (
                   <div style={{ padding: "0 10px 8px" }}>
-                    {group.instances.map((v, idx) => {
-                      const itemKey = `${v.blockId}-${v.index}`;
-                      const itemAccepted = acceptedItems.has(itemKey);
-                      const itemRejected = rejectedItems.has(itemKey);
+                    {group.instances.map((v) => {
+                      const itemAccepted = comp.isItemAccepted(complianceState, v.blockId, v.index);
+                      const itemRejected = comp.isItemRejected(complianceState, v.blockId, v.index);
 
                       return (
                         <div
-                          key={itemKey}
+                          key={`${v.blockId}-${v.index}`}
                           style={{
                             padding: "6px 8px",
                             marginTop: 6,
@@ -797,9 +619,8 @@ export default function CompliancePanel({
                             style={{ cursor: "pointer", color: "var(--color-text, #475569)", lineHeight: 1.4 }}
                             onClick={(e) => {
                               e.stopPropagation();
-                              // Re-apply highlights and scroll to this specific block
-                              const group = result?.groups.find(g => g.ruleId === v.ruleId);
-                              if (group) applyHighlights(group, v.blockId);
+                              setActiveGroup(group.ruleId);
+                              scrollToBlockHighlight(v.blockId);
                             }}
                           >
                             {v.sentence}
@@ -865,7 +686,7 @@ export default function CompliancePanel({
                 {needsAICount} violations need AI rewrite (vague language, complex restructuring).
               </div>
 
-              {aiLoading ? (
+              {aiRunning ? (
                 <div style={{ fontSize: 11, color: "#7c3aed" }}>
                   <span style={{ animation: "spin 1s linear infinite", display: "inline-block" }}>⟳</span>
                   {" "}Processing{aiProgress ? ` chunk ${aiProgress.chunk}/${aiProgress.totalChunks}` : ""}...

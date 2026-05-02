@@ -58,19 +58,9 @@ Architecture vocabulary used below — *module, interface, depth, seam, leverage
 
 ## 4. CompliancePanel is half UI, half compliance domain
 
-**Status:** Open
+**Status:** Landed — `src/lib/compliance.js` is a pure reducer over `{ scope, status, result, decisions, activeGroup, ai }` per ADR-0005. App owns the state (TC/comments/linting parity); the panel reads via selectors and dispatches verbs (`setScope / startCheck / setResult / acceptGroup / rejectGroup / acceptItem / rejectItem / markGroupsAccepted / setActiveGroup` plus the AI lifecycle: `aiStart / aiProgress / aiSuccess / aiError / aiAbort / aiClearError`). `compliance-highlight.js` owns the `.compliance-highlight` DOM mutation as a single App-level effect, matching linting's `CSS.highlights` pattern. Pure fix-computation helpers (`computeItemFix / computeGroupFixes / computeFormattingFixes`) extracted from the panel's accept handlers — testable without rendering React. The panel kept only true UI state (filter tab, accordion expand, "Why?" toggle, onboarding flag, settings modal flag) and the `AbortController` ref. Local-only — no `publish` envelopes; the local edits from accepting fixes flow through the existing `setBlocks` path. Five property-tested invariants assert: I1 `setResult` clears decisions and `activeGroup`; I2/I3 decisions ⊆ result keys under random verb sequences; I4 `activeGroup` ∈ result keys ∪ {null}; I5 AI status stays in `{idle, running, error}` and `sessionTokens` is monotone non-decreasing.
 
-**Files:** `src/components/CompliancePanel.jsx` (948 lines), `src/lib/compliance-checker.js`, `src/lib/compliance-rules.js`, `src/lib/compliance-ai.js`
-
-**Friction:** the panel owns 9+ pieces of state (result, filter, activeGroup, expandedGroups, expandedWhy, acceptedGroups, rejectedItems, aiLoading, aiError, sessionTokens) AND imperative DOM mutation (`applyHighlights` / `clearHighlights` walk the editor DOM and inject `.compliance-highlight` spans). It also orchestrates the AI tier directly. The three documented tiers (static / Harper / NLP) are not actually composed at one seam — only the static tier flows through the panel; grammar+NLP run separately in inline linting.
-
-**Why shallow:** the "panel" concept conflates display state, finding-derivation cache, DOM highlighting, and AI orchestration. None of those pieces are reusable; each is implicitly coupled to the panel's render lifecycle.
-
-**Deletion test:** delete the panel's highlight/AI/finding code, push it behind a compliance module — what's left is a pure UI shell. The leverage shows up the moment another caller (e.g. an "explain this finding" inline tooltip on a single block) wants the same machinery.
-
-**Sketch:** compliance domain owns "run", "groupings", "highlight spec", and "AI rewrite". The panel renders state and dispatches user actions.
-
-**Tests improve:** finding grouping and highlight-span generation become pure-function tests rather than React-Testing-Library DOM walks.
+**Files:** `src/lib/compliance.js` (new — 454 lines), `src/lib/compliance-highlight.js` (new — 159 lines), `src/lib/__tests__/compliance.test.js` (new — 59 tests including 3 property tests), `src/lib/__tests__/compliance-highlight.test.js` (new — 20 tests), `src/App.jsx`, `src/components/CompliancePanel.jsx` (948 → 769 lines).
 
 ---
 

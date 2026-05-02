@@ -34,6 +34,8 @@ import { encodeWindows1252 } from "./lib/encoding.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
+import * as comp from "./lib/compliance.js";
+import { applyGroupHighlights, clearHighlightSpans } from "./lib/compliance-highlight.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES, DEFAULT_HTTP_URL } from "./lib/collab.js";
 import * as cm from "./lib/comments.js";
@@ -143,6 +145,7 @@ export default function SpecEditor() {
   const [commentRect, setCommentRect] = useState(null);
   const [showComments, setShowComments] = useState(false);
   const [complianceOpen, setComplianceOpen] = useState(false);
+  const [complianceState, setComplianceState] = useState(() => comp.createInitial());
   const [collabReachable, setCollabReachable] = useState(false);
   const [showRoomPanel, setShowRoomPanel] = useState(false);
   const [roomList, setRoomList] = useState([]);
@@ -1042,6 +1045,23 @@ export default function SpecEditor() {
     sync('passive-voice', groups.nlp);
   }, [lintingState]);
 
+  // Compliance highlight DOM mutation. App-level effect keeps the editor's
+  // .compliance-highlight spans in sync with the active group. Cleanup
+  // unwraps spans on activeGroup change, panel close, or unmount. Computing
+  // the targets is pure (compliance-highlight.js); the side effect lives here.
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    if (!complianceOpen) return;
+    const group = comp.getActiveGroupObject(complianceState);
+    if (!group) return;
+    const blocks = applyGroupHighlights(document, group);
+    if (blocks.length > 0) {
+      const first = document.querySelector('.compliance-highlight');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return () => clearHighlightSpans(document);
+  }, [complianceOpen, complianceState.activeGroup, complianceState.result]);
+
   // Collab server reachability detection — ping GET /rooms on mount and tab focus (30s cooldown)
   useEffect(() => {
     let cancelled = false;
@@ -1086,14 +1106,6 @@ export default function SpecEditor() {
       const fix = fixesByBlock.get(b.id);
       return fix ? { ...b, html: fix } : b;
     }));
-  }, []);
-
-  const handleComplianceScrollTo = useCallback((blockId) => {
-    const el = document.querySelector(`[data-block-id="${blockId}"]`);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setFocusedBlockId(blockId);
-    }
   }, []);
 
   // Auto-save to localStorage every 3 seconds (silent, no UI).
@@ -2535,10 +2547,10 @@ export default function SpecEditor() {
           <CompliancePanel
             blocks={blocks}
             focusedBlockId={focusedBlockId}
+            complianceState={complianceState}
+            dispatchCompliance={setComplianceState}
             onAcceptFix={handleComplianceAcceptFix}
             onAcceptGroupFix={handleComplianceAcceptGroup}
-            onScrollToBlock={handleComplianceScrollTo}
-            trackChanges={trackChanges}
             unitDisplay={unitDisplay}
           />
         )}
