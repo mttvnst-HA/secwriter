@@ -74,19 +74,9 @@ Architecture vocabulary used below — *module, interface, depth, seam, leverage
 
 ## 6. Storage backends: three near-identical 80-line atomicity loops
 
-**Status:** Open
+**Status:** Landed — `server/room-storage.cjs` is now a `RoomStorageBase` class that owns the public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom`) by composing seven adapter primitives (`_putBytes / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact`) plus three name-parsing hooks. `server/storage-shared.cjs` owns `sanitize()` (was triple-copied with an apologetic comment) and `ARTIFACT_CATALOG` (was hard-coded across every method of every backend). Adding a fourth artifact is now a one-line catalog edit. Each backend shrank to a thin adapter; Local overrides `writeRoom` to keep its stage-rename-rollback atomicity; Azure overrides it to keep the `.ydoc` blob lease. ADR-0005 captures why atomicity is per-backend (Local has filesystem rename, Azure has leases, S3 has nothing — the honest cross-backend contract is `.ydoc`-LAST write ordering, not multi-artifact atomicity). New `server/__tests__/storage-contract.test.mjs` runs 12 contract assertions × 3 backends (36 tests). Two latent bugs surfaced and fixed during unification: S3 `listArchivedRooms` returned `{ name, archivedAt }` while collab-server's sweep used `room.id` (S3 sweep was silently a no-op); Azure stored `archivedat` metadata as `Date.now()` (numeric string) which `new Date(...)` returns Invalid Date for, so the Azure sweep never deleted archived rooms either. Both backends now return uniform `{ id, archivedAt }` with ISO-8601 timestamps.
 
-**Files:** `server/collab-server.cjs:450–520`, `server/storage-local.cjs`, `server/storage-azure.cjs`, `server/storage-s3.cjs`, `server/room-serializer.cjs`
-
-**Friction:** all three backends repeat the same atomic-multi-artifact-write pattern (stage, rename in order, rollback on failure), each ~80 lines. Each backend hard-codes the artifact names (`.ydoc`, `.SEC`, `.comments.json`). The collab server itself knows that "persist a room" means "extract three artifacts via room-serializer, then call writeRoom on the chosen backend" — that's not the storage layer's interface, it's the caller assembling the contract.
-
-**Why shallow:** the interface (`writeRoom({ ydocBytes, secBytes, commentsJson })`) is barely smaller than the implementation. Adding a fourth artifact (e.g. a `.tailoring.json` sidecar) requires editing all three backends *and* the caller. That's not a seam; that's three parallel implementations sharing a struct.
-
-**Deletion test:** lifting "atomic multi-artifact write" into a shared helper, and lifting "what does a persisted room look like" into one place, makes adding/removing artifacts a one-file change. Each backend shrinks to a thin "where to put bytes" adapter.
-
-**Sketch:** generic atomic-write helper at the storage layer; "room persistence" verb at the caller layer. Today's three-artifact bundle becomes one configuration point.
-
-**Tests improve:** atomicity property tests (interrupt at each step, verify rollback) become engine-agnostic — they run against the local backend and the contract holds for the others.
+**Files:** `server/storage-shared.cjs` (new), `server/room-storage.cjs` (new), `server/storage-local.cjs`, `server/storage-azure.cjs`, `server/storage-s3.cjs`, `server/__tests__/storage-contract.test.mjs` (new — 36 tests across 3 backends), `docs/adr/0005-storage-adapter-atomicity-per-backend.md` (new)
 
 ---
 

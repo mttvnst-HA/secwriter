@@ -121,6 +121,12 @@ describe('S3StorageBackend', () => {
       deletes.push(input.Key);
       return {};
     });
+    // Base class checks existence before copying (matches Azure / Local).
+    s3Mock.on(HeadObjectCommand).callsFake(async (input) => {
+      if (input.Key === 'myroom.ydoc') return { LastModified: new Date(), ContentLength: 1 };
+      const err = new Error('NotFound'); err.name = 'NotFound'; err.$metadata = { httpStatusCode: 404 };
+      throw err;
+    });
 
     const backend = new S3StorageBackend({ client: new S3Client({ region: 'auto' }), bucket: 'test' });
     await backend.quarantineRoom('myroom', 'corrupt');
@@ -167,7 +173,9 @@ describe('S3StorageBackend', () => {
 
     const archived = await backend.listArchivedRooms();
     assert.equal(archived.length, 1);
-    assert.equal(archived[0].name, 'myroom');
+    // Uniform `id` field across all backends — was `name` historically in
+    // S3 only, which broke the collab-server sweep (uses `room.id`).
+    assert.equal(archived[0].id, 'myroom');
     assert.ok(archived[0].archivedAt);
 
     await backend.restoreRoom('myroom');
@@ -210,7 +218,7 @@ describe('S3StorageBackend', () => {
     await assert.rejects(backend.readRoom('myroom'), /AccessDenied/);
   });
 
-  test('writeRoom passes commentsJson as string to PutObjectCommand', async () => {
+  test('writeRoom serializes commentsJson body to UTF-8 bytes', async () => {
     let commentsBody = null;
     s3Mock.on(PutObjectCommand).callsFake(async (input) => {
       if (input.Key.endsWith('.comments.json')) commentsBody = input.Body;
@@ -222,8 +230,10 @@ describe('S3StorageBackend', () => {
       secBytes: null,
       commentsJson: '{"comments":[]}',
     });
-    assert.equal(typeof commentsBody, 'string');
-    assert.equal(commentsBody, '{"comments":[]}');
+    // Shared planArtifactWrites coerces commentsJson to a Buffer so the
+    // SDK receives the same byte sequence regardless of caller types.
+    assert.ok(Buffer.isBuffer(commentsBody) || commentsBody instanceof Uint8Array);
+    assert.equal(Buffer.from(commentsBody).toString('utf-8'), '{"comments":[]}');
   });
 
   test('writeRoom sanitizes special characters in room names', async () => {

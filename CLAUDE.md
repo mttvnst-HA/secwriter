@@ -263,6 +263,8 @@ Three storage backends are wired: `local` (default, disk under `server/collab-db
 including Cloudflare R2 and MinIO, see `server/storage-s3.cjs`). Selected via
 `SIM_STORAGE_BACKEND`. S3 backend uses the `SIM_S3_*` env vars.
 
+All three extend `RoomStorageBase` (`server/room-storage.cjs`), which owns the public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom`) by composing seven adapter primitives (`_putBytes / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact`) plus three name-parsing hooks. Shared `sanitize()` and the `ARTIFACT_CATALOG` (`.ydoc` LAST = source of truth) live in `server/storage-shared.cjs`. Adding a fourth artifact is a one-line catalog edit; adapters never decide write order. Local overrides `writeRoom` for stage-rename-rollback atomicity (filesystem rename); Azure overrides it for `.ydoc` blob lease (multi-instance safety); S3 inherits the default sequential `.ydoc`-LAST write (R2 has no transaction primitives). See [ADR-0005](docs/adr/0005-storage-adapter-atomicity-per-backend.md) for why atomicity is per-backend. Cross-backend contract verified by `server/__tests__/storage-contract.test.mjs` (12 assertions × 3 backends = 36 tests). `listArchivedRooms` returns `{ id, archivedAt }` uniformly with ISO-8601 timestamps — both fields are required by the collab-server sweep.
+
 ## Collaboration Server
 
 Real-time multi-user editing via Yjs + y-websocket. Server lives in `server/`:
