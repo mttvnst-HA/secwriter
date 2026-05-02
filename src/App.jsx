@@ -37,7 +37,8 @@ import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
 import { applyGroupHighlights, clearHighlightSpans } from "./lib/compliance-highlight.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
-import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES, DEFAULT_HTTP_URL } from "./lib/collab.js";
+import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL } from "./lib/collab.js";
+import { useCollabSession } from "./hooks/useCollabSession.js";
 import * as cm from "./lib/comments.js";
 import { loadIdentity } from "./lib/identity.js";
 import { getToken, onTokenRefresh, getAuthMode, signOut as authSignOut, getIdentity } from './lib/auth-client.js';
@@ -211,23 +212,10 @@ export default function SpecEditor() {
   toastPushRef.current = toasts.push;
   const authHeadersRef = useRef(authHeaders);
   authHeadersRef.current = authHeaders;
-  const collabSessionRef = useRef(null);
-  // Reference-equality guard: whenever onRemoteBlocks runs, we stash the new
-  // array here and the publish effect compares `blocks === lastRemoteBlocksRef.current`
-  // to decide whether the change was local (publish) or remote (skip).
-  // The previous synchronous `remoteApplyingRef` guard was ineffective because
-  // React's effect runs after commit — by then the flag was already cleared,
-  // so every remote change got re-published as a local transaction, which
-  // (a) corrupted initial persistence on join and (b) caused Y.UndoManager
-  // to track remote edits, making Ctrl+Z undo everyone's work.
-  const lastRemoteBlocksRef = useRef(null);
-  const sessionReadyRef = useRef(false);
-  const metaReadyRef = useRef(false);
-  // Tracks the publishSeq we last sent to peers. The publish effect compares
-  // tcState.publishSeq against this to decide whether the local change came
-  // from a user action (publishSeq advanced) versus a remote update (no
-  // advance). Replaces the imperative tcDirtyRef flag.
-  const lastPublishedTcSeqRef = useRef(0);
+  // Holds the imperative API returned by useCollabSession (see lifecycle
+  // section below). Maintained as a ref so callbacks defined before the
+  // hook call can still dispatch through it (e.g. dispatchComment).
+  const collabRef = useRef(null);
 
   const fileHandleRef = useRef(null); // File System Access API handle for SEC file
   const commentsHandleRef = useRef(null); // File System Access API handle for comments sidecar
@@ -571,18 +559,14 @@ export default function SpecEditor() {
     setBlocks(prev => reorderSection(prev, dragId, dropId, position));
   }, [resumeHistory]);
 
-  // Comment dispatcher — single seam to the collab session's PublishEnvelope.
-  // The pure verbs in `cm` return `{ state, publish }`; this handler routes
-  // the publish envelope to the collab session if we're in a room. Span
-  // mutation (orphan unwrap, open↔resolved reclass) is handled by the
-  // reconcileBlocks effect below — handlers do NOT touch the DOM directly.
+  // Comment dispatcher — thin wrapper that routes a PublishEnvelope to the
+  // collab session via the useCollabSession hook (set up further below).
+  // collabRef defers the call so this useCallback can be defined before the
+  // hook returns; collab.dispatchComment is itself idempotent when not in
+  // a room.
   const dispatchComment = useCallback((envelope) => {
-    if (!envelope || !inRoom) return;
-    const session = collabSessionRef.current;
-    if (!session) return;
-    try { session.dispatchComment(envelope); }
-    catch (err) { console.error('[collab] dispatchComment failed:', err); }
-  }, [inRoom]);
+    collabRef.current?.dispatchComment(envelope);
+  }, []);
 
   const effectiveIdentity = useCallback(() => (
     identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' }
@@ -1152,285 +1136,112 @@ export default function SpecEditor() {
     commentsHandleRef.current = null;
   }, [inRoom]);
 
-  // ── Collab session lifecycle ──
-  // Creates the Yjs session once we have both a room ID and an identity.
-  // Remote updates are pushed into React state via setBlocks; local edits
-  // are published by the next effect.
-  useEffect(() => {
-    if (!inRoom || !identity) return;
+  // ── Collab session ──
+  // useCollabSession owns: session creation/teardown, the four publish
+  // effects (blocks, meta, TC, comments dispatch), echo/ready/seq guard
+  // refs, the doc-size cap latch + toasts, and cursor broadcast. App
+  // supplies remote-event callbacks that drive React state.
+  //
+  // markTcSeqApplied protocol: when a remote TC payload arrives, App's
+  // setTcState updater computes `next.publishSeq` (which does NOT advance
+  // for applyRemote) and calls collab.markTcSeqApplied(next.publishSeq)
+  // so the publish effect treats the local state as already-seen by
+  // peers. Any user-driven verb subsequently bumps publishSeq past the
+  // gate and a publish fires.
+  const collab = useCollabSession({
+    inRoom,
+    roomId,
+    identity,
+    authToken,
+    getTokenFn: getToken,
 
-    const session = createCollabSession({
-      room: roomId,
-      token: authToken,
-      getTokenFn: getToken,
-      identity,
-      initialBlocks: blocksRef.current,
-      onRemoteBlocks: (nextBlocks, meta) => {
-        // Stash the remote snapshot so the publish effect can detect this
-        // update was not a local edit and skip publishing it back.
-        lastRemoteBlocksRef.current = nextBlocks;
+    blocks,
+    sectionMeta,
+    fileName,
+    tcState,
+    getPublishableTc: tc.getPublishableState,
 
-        // The first call (initial sync from the server) is what unblocks
-        // local publishing. Before this fires we must NOT push blocks to
-        // Y.Doc — doing so would race the server's persisted state and
-        // duplicate the document on reload.
-        if (meta?.initial) {
-          sessionReadyRef.current = true;
-        }
+    getInitialBlocks: useCallback(() => blocksRef.current, []),
+    getInitialMeta: useCallback(() => ({ ...sectionMetaRef.current, fileName }), [fileName]),
 
-        // Preserve caret — and any non-collapsed selection — across a
-        // remote-triggered DOM rewrite. Capturing both endpoints lets a
-        // user who was mid-replacement (e.g., highlighted a phrase and
-        // was about to retype it) keep their selection when a remote
-        // peer's edit lands in the middle of their action. If the
-        // selection spans into a different block we fall back to a
-        // collapsed caret at the start — cross-block selection restore
-        // would require resolving two block IDs and is out of scope for
-        // the prototype.
-        const activeEl = document.activeElement;
-        let caret = null;
-        if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
-          const sel = window.getSelection();
-          if (sel && sel.rangeCount > 0) {
-            const range = sel.getRangeAt(0);
-            if (activeEl.contains(range.startContainer)) {
-              const startOffset = getPlainTextOffset(activeEl, range.startContainer, range.startOffset);
-              if (startOffset >= 0) {
-                let endOffset;
-                if (!range.collapsed && activeEl.contains(range.endContainer)) {
-                  endOffset = getPlainTextOffset(activeEl, range.endContainer, range.endOffset);
-                  if (endOffset < 0) endOffset = undefined;
-                }
-                caret = { blockId: activeEl.dataset.blockId, startOffset, endOffset };
+    onBlocksReceived: useCallback((nextBlocks /* , meta */) => {
+      // Preserve caret — and any non-collapsed selection — across a
+      // remote-triggered DOM rewrite. Capturing both endpoints lets a
+      // user who was mid-replacement keep their selection when a remote
+      // peer's edit lands in the middle of their action. Cross-block
+      // selection restore is out of scope for the prototype.
+      const activeEl = document.activeElement;
+      let caret = null;
+      if (activeEl?.dataset?.blockId && activeEl.contentEditable === 'true') {
+        const sel = window.getSelection();
+        if (sel && sel.rangeCount > 0) {
+          const range = sel.getRangeAt(0);
+          if (activeEl.contains(range.startContainer)) {
+            const startOffset = getPlainTextOffset(activeEl, range.startContainer, range.startOffset);
+            if (startOffset >= 0) {
+              let endOffset;
+              if (!range.collapsed && activeEl.contains(range.endContainer)) {
+                endOffset = getPlainTextOffset(activeEl, range.endContainer, range.endOffset);
+                if (endOffset < 0) endOffset = undefined;
               }
+              caret = { blockId: activeEl.dataset.blockId, startOffset, endOffset };
             }
           }
         }
-        setBlocks(nextBlocks);
-        if (caret) {
-          requestAnimationFrame(() => {
-            const el = document.querySelector(`[data-block-id="${caret.blockId}"]`);
-            if (el) restorePlainTextOffset(el, caret.startOffset, caret.endOffset);
-          });
-        }
-      },
-      initialMeta: { ...sectionMetaRef.current, fileName },
-      onRemoteMeta: (remote) => {
-        // I-3: flip ready flag on first remote meta observation so the
-        // publishMeta effect doesn't clobber server-side state with stale
-        // local values on first join.
-        metaReadyRef.current = true;
-        // M3 — apply remote section metadata updates. No local echo
-        // guard needed; publishMeta's per-key diff + 'local-meta'
-        // origin filter already prevent round-trip.
-        if (!remote || typeof remote !== 'object') return;
-        setSectionMeta((prev) => ({ ...prev, ...remote }));
-        if (remote.fileName) setFileName(remote.fileName);
-        if ('locked' in remote) setRoomLocked(!!remote.locked);
-        if ('lockedBy' in remote) setRoomLockedBy(remote.lockedBy || null);
-        if ('lockedByName' in remote) setRoomLockedByName(remote.lockedByName || null);
-      },
-      onRemoteTc: (payload) => {
-        // M-shared-tc — apply remote Track Changes state. Round-tripping
-        // is prevented in the publish effect by comparing publishSeq
-        // against lastPublishedTcSeqRef — applyRemote does NOT bump
-        // publishSeq, so remote updates won't trigger an echo publish.
-        setTcState(prev => {
-          const next = tc.applyRemote(prev, payload);
-          // Mark as already-published so the publish effect doesn't push
-          // back what we just received.
-          lastPublishedTcSeqRef.current = next.publishSeq;
-          return next;
-        });
-      },
-      onRemoteComments: (commentsObj) => {
-        // M-shared-comments — fold remote yComments into our state via
-        // mergeRemote (M2.5). Local drafts (never seen remote) are
-        // preserved; previously-seen entries that disappear from the
-        // remote payload are tombstoned. The reconcileBlocks effect
-        // then unwraps any orphan spans and reclasses status changes.
-        const normalized = cm.normalizeForLoad(commentsObj || {});
-        setCommentsState(prev => cm.mergeRemote(prev, normalized));
-      },
-      onPresenceChange: (states) => setPeers(states),
-      onStatusChange: (status, meta) => {
-        setCollabStatus(status);
-        setReconnectIn(meta?.reconnectIn ?? 0);
-      },
-    });
-    collabSessionRef.current = session;
-    // Debug hook: expose for devtools inspection during prototype QA.
-    // Gated on DEV so a production build does not ship a global that exposes
-    // ydoc + awareness state to any page script that gets past the CSP.
-    const EXPOSE_DEBUG = typeof import.meta !== 'undefined' && import.meta.env?.DEV;
-    if (EXPOSE_DEBUG && typeof window !== 'undefined') window.__collab = session;
-
-    return () => {
-      session.destroy();
-      collabSessionRef.current = null;
-      sessionReadyRef.current = false;
-      metaReadyRef.current = false;
-      lastRemoteBlocksRef.current = null;
-      if (EXPOSE_DEBUG && typeof window !== 'undefined') delete window.__collab;
-    };
-    // Intentionally depend only on roomId + identity so the session is stable
-    // across blocks updates. initialBlocks is read via blocksRef.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inRoom, roomId, identity]);
-
-  // Publish local `blocks` updates to the collab session.
-  //
-  // Two guards:
-  //   1. sessionReadyRef — suppress publishing until the initial server sync
-  //      is complete. Otherwise the first render would push INITIAL_BLOCKS
-  //      into Y.Doc before the server's persisted state arrives, duplicating
-  //      the document on rejoin.
-  //   2. lastRemoteBlocksRef identity check — if the new `blocks` reference
-  //      is literally the same array we just received from a remote update,
-  //      skip the publish effect as a fast path.
-  //
-  // I-2 backstop: ref-equality is the fast path; if an upstream layer
-  // ever clones `blocks` into a new-reference-but-content-equal array,
-  // applyBlocksToYDoc produces a zero-change transaction (pinned by the
-  // `zero-change publish after a remote-applied clone does not grow
-  // undo stack (I-2)` regression test in collab.test.js). Both layers
-  // must hold — a worst-case echo is harmless because zero-change
-  // transactions do not create Y.UndoManager stack items.
-  // A4 — publishDisabled latch: once the document exceeds MAX_PUBLISH_BYTES
-  // we stop calling publishBlocks on every keystroke (which would re-walk
-  // every block through estimatePublishBytes and re-push a toast) until
-  // the user shrinks the document back under the cap. The latch clears
-  // automatically on the next render where the estimate is safe again.
-  const publishDisabledRef = useRef(false);
-  useEffect(() => {
-    if (!inRoom) return;
-    const session = collabSessionRef.current;
-    if (!session) return;
-    if (!sessionReadyRef.current) return;
-    if (blocks === lastRemoteBlocksRef.current) return;
-    try {
-      session.publishBlocks(blocks);
-      // Success — clear any previous over-cap latch.
-      if (publishDisabledRef.current) {
-        publishDisabledRef.current = false;
-        toastPushRef.current?.({
-          kind: 'success',
-          title: 'Sync resumed',
-          body: 'Document is back under the collab size limit.',
-          ttl: 5000,
+      }
+      setBlocks(nextBlocks);
+      if (caret) {
+        requestAnimationFrame(() => {
+          const el = document.querySelector(`[data-block-id="${caret.blockId}"]`);
+          if (el) restorePlainTextOffset(el, caret.startOffset, caret.endOffset);
         });
       }
-    } catch (err) {
-      if (err instanceof DocSizeLimitError) {
-        // M7 — client-side doc size guard. Only push the error toast
-        // the first time we hit the limit to avoid spamming the user
-        // on every keystroke while the document is oversized.
-        if (!publishDisabledRef.current) {
-          publishDisabledRef.current = true;
-          toastPushRef.current?.({
-            kind: 'error',
-            title: 'Document too large to sync',
-            body: `This document is ${(err.actualBytes / (1024 * 1024)).toFixed(1)} MB, ` +
-                  `over the ${(err.maxBytes / (1024 * 1024)).toFixed(0)} MB collab limit. ` +
-                  `Your edits are not being shared with other users. ` +
-                  `Remove some content and try again.`,
-            ttl: 0, // sticky — the user has to dismiss it manually
-          });
-        }
-      } else {
-        console.error('[collab] publishBlocks failed:', err);
-      }
-    }
-    // Intentionally NOT depending on `toasts` — A2. Toast dispatch goes
-    // through toastPushRef which is refreshed every render.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blocks, inRoom]);
+    }, [setBlocks]),
 
-  // M3 — publish local section metadata updates.
-  //
-  // No explicit echo guard here: publishMeta's per-key diff (compare
-  // `cur !== v` before writing) produces a zero-change transaction when
-  // the local state already matches the remote, and the `'local-meta'`
-  // origin is filtered inside handleAfterTx so even a fired transaction
-  // wouldn't round-trip through onRemoteMeta. An earlier version added
-  // an Object.keys().every() guard here but it was both unnecessary and
-  // subtly broken (asymmetric key sets could drop legitimate edits).
-  useEffect(() => {
-    if (!inRoom) return;
-    const session = collabSessionRef.current;
-    if (!session) return;
-    if (!sessionReadyRef.current) return;
-    if (!metaReadyRef.current) return; // I-3: wait for first onRemoteMeta
-    session.publishMeta({ ...sectionMeta, fileName });
-  }, [sectionMeta, fileName, inRoom]);
+    onMetaReceived: useCallback((remote) => {
+      if (!remote || typeof remote !== 'object') return;
+      setSectionMeta((prev) => ({ ...prev, ...remote }));
+      if (remote.fileName) setFileName(remote.fileName);
+      if ('locked' in remote) setRoomLocked(!!remote.locked);
+      if ('lockedBy' in remote) setRoomLockedBy(remote.lockedBy || null);
+      if ('lockedByName' in remote) setRoomLockedByName(remote.lockedByName || null);
+    }, []),
 
-  // M-shared-tc — publish local TC state changes to the Y.Doc.
-  //
-  // Gating: publish only when tcState.publishSeq has advanced past what
-  // we last sent. User-driven verbs bump publishSeq; applyRemote does
-  // not — that's what suppresses round-tripping.
-  //
-  // When disabled, getPublishableState() emits an empty snapshots object
-  // so the baseline is cleared in the same Y.Doc transaction as the flag
-  // flip — otherwise remote clients would re-diff against a stale
-  // baseline and flag phantom changes.
-  useEffect(() => {
-    if (!inRoom) return;
-    const session = collabSessionRef.current;
-    if (!session) return;
-    if (!sessionReadyRef.current) return;
-    if (tcState.publishSeq === lastPublishedTcSeqRef.current) return;
-    lastPublishedTcSeqRef.current = tcState.publishSeq;
-    try {
-      session.publishTc(tc.getPublishableState(tcState));
-    } catch (err) {
-      console.error('[collab] publishTc failed:', err);
-    }
-  }, [tcState, inRoom]);
-
-  // Broadcast our caret position so other users see a live cursor.
-  useEffect(() => {
-    if (!inRoom) return;
-    const handler = () => {
-      const session = collabSessionRef.current;
-      if (!session) return;
-      const active = document.activeElement;
-      if (!active?.dataset?.blockId || active.contentEditable !== 'true') {
-        session.setCursor(null);
-        return;
-      }
-      const sel = window.getSelection();
-      if (!sel || sel.rangeCount === 0) {
-        session.setCursor(null);
-        return;
-      }
-      const range = sel.getRangeAt(0);
-      if (!active.contains(range.startContainer)) {
-        session.setCursor(null);
-        return;
-      }
-      const idx = getPlainTextOffset(active, range.startContainer, range.startOffset);
-      if (idx < 0) { session.setCursor(null); return; }
-      session.setCursor({
-        blockId: active.dataset.blockId,
-        index: idx,
+    onTcReceived: useCallback((payload) => {
+      setTcState(prev => {
+        const next = tc.applyRemote(prev, payload);
+        // Tell the hook this seq matches what peers already have, so the
+        // publish effect won't echo on the next render.
+        collabRef.current?.markTcSeqApplied(next.publishSeq);
+        return next;
       });
-    };
-    document.addEventListener('selectionchange', handler);
-    return () => document.removeEventListener('selectionchange', handler);
-  }, [inRoom]);
+    }, [setTcState]),
+
+    onCommentsReceived: useCallback((commentsObj) => {
+      const normalized = cm.normalizeForLoad(commentsObj || {});
+      setCommentsState(prev => cm.mergeRemote(prev, normalized));
+    }, []),
+
+    onPresenceChange: useCallback((states) => setPeers(states), []),
+
+    onStatusChange: useCallback((status, meta) => {
+      setCollabStatus(status);
+      setReconnectIn(meta?.reconnectIn ?? 0);
+    }, []),
+
+    pushToast: useCallback((toast) => toastPushRef.current?.(toast), []),
+  });
+  collabRef.current = collab;
 
   // Keyboard listener for undo/redo and search
   useEffect(() => {
     const handler = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
         e.preventDefault();
-        if (inRoom && collabSessionRef.current) collabSessionRef.current.undo();
-        else undo();
+        if (!collab.tryUndo()) undo();
       } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
         e.preventDefault();
-        if (inRoom && collabSessionRef.current) collabSessionRef.current.redo();
-        else redo();
+        if (!collab.tryRedo()) redo();
       } else if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
         setSearchOpen(true);
@@ -1453,7 +1264,11 @@ export default function SpecEditor() {
     };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
-  }, [undo, redo, handleSave, zoomIn, zoomOut, zoomReset, inRoom]);
+    // collab.tryUndo / tryRedo are stable (useCallback with empty deps in
+    // the hook), so omitting `collab` from deps is safe — including it
+    // would cause the listener to re-bind every render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [undo, redo, handleSave, zoomIn, zoomOut, zoomReset]);
 
   // Share button handler: generate a room and reload into it, or copy the current room URL.
   const handleShare = useCallback(() => {
