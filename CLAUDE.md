@@ -31,6 +31,8 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 
 ## Running
 
+**First-time setup on a fresh checkout:** `npm install` then `npx playwright install` (E2E browsers) before running `npm run test:e2e`.
+
 ```bash
 npm run dev                # Vite dev server at localhost:5173
 npm run collab             # Collab WebSocket+HTTP server at 127.0.0.1:1234 (SIM_STORAGE_BACKEND=local writes to server/collab-db/)
@@ -40,7 +42,7 @@ npm run test:e2e           # Playwright E2E (first run on fresh checkout: npx pl
 npm run test:corpus        # Corpus precision/recall/adversarial
 npm run test:ufgs          # UFGS tag coverage + structural across 690 files
 npm run test:interop       # Structural interop (parse/serialize/roundtrip)
-npm run audit:init         # Autonomous UI audit (15 test areas via Claude in Chrome MCP)
+npm run audit:init         # Autonomous UI audit (15 test areas; requires "Claude in Chrome" MCP server attached to Claude Code)
 npm run audit:report       # Markdown report from findings.json
 npm run audit:promote      # Promote findings to GitHub issues
 npm run test:server        # Server tests (Node runner — node --test --test-force-exit)
@@ -275,7 +277,7 @@ Real-time multi-user editing via Yjs + y-websocket. Server lives in `server/`:
 
 1. **`extractDocName` strips a leading `/ws/`.** `VITE_COLLAB_WS_URL` in production deploys is `wss://host/ws`; WebsocketProvider then connects to `wss://host/ws/<room>`. y-websocket's default extraction (`req.url.slice(1).split('?')[0]`) yields `"ws/<room>"` — sanitized to `ws_<room>.ydoc` in storage. Without `extractDocName`, you get parallel rooms (one HTTP-managed, one WS-managed). See `server/collab-server.cjs:67`.
 
-2. **Stale-close eviction guard.** y-websocket's `closeConn` (`node_modules/y-websocket/bin/utils.js:208`) does `docs.delete(doc.name)` keyed by name when a doc's last conn drops. If a previous WS connection's TCP close drains during a new connection's preload `await`, the stale close evicts our just-loaded doc and `setupWSConnection` creates a fresh empty replacement that bypasses preload — sync step 1 fires with empty state, the client seeds, persisted state CRDT-unions on top, yOrder doubles. Mitigated by re-installing the preloaded doc into `ywsDocs` after the await but before `handleUpgrade`. See `server/collab-server.cjs:350` and the deterministic regression test in `server/__tests__/collab-server.test.mjs`.
+2. **Stale-close eviction guard.** y-websocket's `closeConn` (`node_modules/y-websocket/bin/utils.js:208`) does `docs.delete(doc.name)` keyed by name when a doc's last conn drops. If a previous WS connection's TCP close drains during a new connection's preload `await`, the stale close evicts our just-loaded doc and `setupWSConnection` creates a fresh empty replacement that bypasses preload — sync step 1 fires with empty state, the client seeds, persisted state CRDT-unions on top, yOrder doubles. Mitigated by re-installing the preloaded doc into `ywsDocs` after the await but before `handleUpgrade`. See `server/collab-server.cjs` (~line 360, the preload re-install block in the upgrade handler) and the deterministic regression test in `server/__tests__/collab-server.test.mjs`.
 
 ### Inspecting / cleaning up production rooms
 
