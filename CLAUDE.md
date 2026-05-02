@@ -15,9 +15,9 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 ## Orientation
 
 - `src/App.jsx` — main editor layout, state, toolbar, sidebar
-- `src/components/` — block components (EditableBlock, TitleBlock, TableBlock, RefBlock), panels (CompliancePanel, CrossRefPanel, CommentPopup), tooltips, wizards
+- `src/components/` — block components (EditableBlock, TitleBlock, TableBlock, RefBlock), panels (CompliancePanel, CrossRefPanel, CommentPopup), tooltips, wizards, plus `useBlockLinting.js` (per-block lint lifecycle hook)
 - `src/hooks/` — `useCollabSession.js` (Yjs session lifecycle + the four publish effects + coordination refs)
-- `src/lib/` — parsers/serializers (sec-parser, sec-serializer, encoding), compliance engines (compliance-rules, compliance-checker, compliance-ai, inline-linter, grammar-checker, nlp-rules), revisions, table-ops, numbering
+- `src/lib/` — parsers/serializers (sec-parser, sec-serializer, encoding), pure-reducer modules (`track-changes.js`, `comments.js`, `linting.js`, `compliance.js`), domain-side-effect modules (`compliance-highlight.js`), compliance engines (compliance-rules, compliance-checker, compliance-ai, inline-linter, grammar-checker, nlp-rules), revisions, table-ops, numbering
 - `src/data/` — `ufs-1-300-02-rules.json` (compliance rules), `umrl.json` (reference DB), `umsl.json` (submittal DB), sample spec
 - `reference/section.ini` — **authoritative** formatting rules (MARGINS, COLORS, RULES, CODES, FONTS)
 - `reference/ufs_1_300_02.pdf` — authoritative source for compliance rules
@@ -27,7 +27,7 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 - `corpus/` — 4-corpus test suite (calibration/clean/dirty/adversarial)
 - `tools/` — CLI utilities (parse-sec, interop-scan, ui-audit/)
 - `CONTEXT.md` — domain glossary (block, transparent tag, TC snapshot, publish path, etc.). Use these names; consult before introducing new terms.
-- `docs/adr/` — load-bearing architectural decisions. **Read the relevant ADR before proposing a refactor in its area** (CJS server, y-websocket pin, rules-as-data, snapshot-diff publish path).
+- `docs/adr/` — load-bearing architectural decisions. **Read the relevant ADR before proposing a refactor in its area** (CJS server, y-websocket pin, rules-as-data, snapshot-diff publish path, storage atomicity-per-backend).
 - `docs/architecture-review-*.md` — open deepening-candidates backlog from architecture reviews.
 
 ## Running
@@ -137,7 +137,7 @@ TC uses a **snapshot-based diff** approach owned by `src/lib/track-changes.js` �
 
 ## Comments Architecture
 
-Comments use a pure reducer module (`src/lib/comments.js`) that owns a **DOM-based highlight + separate metadata store** — same playbook as Track Changes (`d19d37b`):
+Comments use a pure reducer module (`src/lib/comments.js`) that owns a **DOM-based highlight + separate metadata store** — same playbook as Track Changes, Linting, and Compliance (opaque state, pure verbs, pure selectors, property-tested invariants — see also `src/lib/track-changes.js`, `src/lib/linting.js`, `src/lib/compliance.js`):
 
 1. **State is opaque.** App holds it as `commentsState` and reads it via selectors (`size`, `get`, `all`, `isDraft`, `getCreateEntry`, `reconcileBlocks`, `normalizeForLoad`); mutates it via verbs (`createDraft`, `updateCreate`, `reply`, `resolve`, `reopen`, `remove`, `mergeRemote`). Shape: `{ byId: Map<commentId, Comment>, seenRemoteIds: Set<commentId> }`. Verbs return `{ state, publish }`; caller supplies `identity` and `ts`.
 2. **Span↔metadata reconciliation is a selector.** App runs `useEffect([blocks, commentsState])` → `setBlocksDirect(prev => cm.reconcileBlocks(prev, commentsState))`. The selector unwraps orphan spans (id missing from state) and reclasses open↔resolved when className disagrees with `state.byId.get(id).status`. Idempotent — returns the original `blocks` ref when nothing changes; React bails out, no loop. Routed through `setBlocksDirect` (the non-undoable setter from `useUndoableBlocks`) so a reconcile after Ctrl+Z cannot wipe the redo stack.
@@ -174,7 +174,13 @@ Data-driven rule engine with two tiers:
 
 ## Inline Linting Architecture
 
-Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with three engines:
+Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with three engines, organized as a pure-reducer module + per-block lifecycle hook + App-level highlight effect (the same shape as Track Changes / Comments / Compliance):
+
+- **`src/lib/linting.js`** — pure reducer over `{ enabled, suspended, byBlock: Map<blockId, { compliance, nlp, grammar, grammarText }> }`. Verbs (`createInitial / setEnabled / setSuspended / setBlockFindings / clearBlock / clearAll`), selectors (`isActive / isEnabled / isSuspended / getBlockFindings / getAllFindings / getBlockSeverity / getGrammarText / getRangesByTier`), pure dedup helpers (`dedupNlpAgainstCompliance`, `dedupGrammarAgainstFindings`), and the `DEFERRED_TO_PANEL` set. Range objects are *opaque* to the reducer — DOM-free, plain-Vitest testable.
+- **`src/components/useBlockLinting.js`** — per-block hook that owns all DOM-bound and async effects: debounced lint cycle on input, lint on focus, lint on enable/un-suspend, sync static-rule + NLP pass, async Harper dispatch with stale detection, lazy-load triggers, the dedup pipeline against the reducer's helpers, Range creation against the live DOM, and the cursor-based tooltip detection (selectionchange + arrow keys).
+- **App-level CSS.highlights effect** — single seam (`useEffect([lintingState])` in `src/App.jsx`) that mutates the global `CSS.highlights` registry by reading `linting.getRangesByTier(state)` and calling `CSS.highlights.set(name, new Highlight(...ranges))` per tier. Suspension flips via a separate `useEffect([complianceOpen])` that dispatches `linting.setSuspended`.
+
+The three engines themselves stay where they were:
 
 1. **Static UFS rules** (`compliance-rules.js`): synchronous, <5ms. Yellow highlights.
 2. **Harper.js grammar** (`grammar-checker.js`): async via Web Worker (WASM). Lazy-loaded (~2-4MB). Blue highlights. Custom dictionary for engineering terms.
@@ -182,11 +188,11 @@ Real-time linting uses the **CSS Custom Highlight API** (zero DOM mutation) with
 
 **Key design decisions:**
 - **Browser exfiltration prevention:** All typing surfaces (contentEditable blocks + every spec/comment input/textarea) spread `{...NO_EXFIL_PROPS}` from `src/lib/no-exfil.js`. This disables `spellCheck`, `writingsuggestions` (Chrome "Help me write" / Edge Copilot), `autoComplete`, `autoCorrect`, `autoCapitalize`, and Grammarly's `data-gramm*`. CSP + `referrer="no-referrer"` + `notranslate` in `index.html` provide a second layer. Regression test at `src/lib/__tests__/no-exfil.test.js`. **Do not add a new contentEditable, input, or textarea that accepts spec text without spreading these props and updating the test surface list.**
-- **Only the focused block is linted** — avoids scanning 300+ blocks on every edit. Findings persist across blur/focus.
+- **Only the focused block is linted** — avoids scanning 300+ blocks on every edit. Findings persist across blur/focus inside `lintingState.byBlock`.
 - **Offset-aware range creation:** `createRangeForMatch()` accepts a `targetOffset` hint to disambiguate repeated words.
-- **De-duplication:** Grammar findings overlapping >50% with compliance/NLP findings are suppressed (static rules win — they have UFS citations).
-- **Compliance panel collision:** When `CompliancePanel` is open, inline linting is suppressed to avoid double-highlighting.
-- **Context-dependent deferral:** Rules producing false positives requiring sentence-level context (TERM-suitable, TERM-any, TERM-should, VAGUE-applicable) are filtered via `DEFERRED_TO_PANEL`. They still run in the Compliance Panel on explicit full scan.
+- **De-duplication is in the reducer:** `dedupNlpAgainstCompliance` (compliance wins on overlap) and `dedupGrammarAgainstFindings` (grammar suppressed when >50% overlap with static or NLP — static rules win because they have UFS citations) are pure helpers, table-testable in `linting.test.js`.
+- **Compliance panel collision:** When `CompliancePanel` is open, App dispatches `linting.setSuspended(state, true)`; `isActive(state)` returns false and `getRangesByTier` empties the highlights groups on the next render — no callback wiring through props.
+- **Context-dependent deferral:** Rules producing false positives requiring sentence-level context (TERM-suitable, TERM-any, TERM-should, VAGUE-applicable) live in `linting.DEFERRED_TO_PANEL` and are filtered via `isDeferredRule` in the hook. They still run in the Compliance Panel on explicit full scan.
 - **Stale result handling:** Grammar results tagged with text version; discarded if text changed while Worker was processing.
 - **Bad suggestion filtering:** Harper suggestions that introduce spaces into single words (e.g., "taht" → "ta ht") are suppressed. Oxford comma fixes append punctuation.
 - **Note block exemption:** Note blocks skip compliance and NLP (notes use advisory language). Grammar/spelling still runs.

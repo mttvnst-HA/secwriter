@@ -78,6 +78,10 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 **Rule ID mapping** — `corpus/results/rule-id-mapping.json`. Translates the corpus's semantic injection IDs (`COLLOQ-furnish`) to runtime sequential IDs (`TERM-034`).
 
+**Compliance state** — The bundle owned by the compliance reducer (`src/lib/compliance.js`): `{ scope, status, result, decisions, activeGroup, ai }`. App holds it; the panel reads via selectors and dispatches verbs (`setScope / startCheck / setResult / acceptGroup / rejectGroup / acceptItem / rejectItem / markGroupsAccepted / setActiveGroup` plus the AI lifecycle: `aiStart / aiProgress / aiSuccess / aiError / aiAbort / aiClearError`). Five property-tested invariants — see CLAUDE.md "Compliance Checker Architecture."
+
+**Linting state** — The bundle owned by the linting reducer (`src/lib/linting.js`): `{ enabled, suspended, byBlock: Map<blockId, { compliance, nlp, grammar, grammarText }> }`. App holds it; the per-block hook (`src/components/useBlockLinting.js`) dispatches into it; the App-level `CSS.highlights` effect reads `getRangesByTier(state)` to mutate the global highlight registry. Pure verbs (`setEnabled / setSuspended / setBlockFindings / clearBlock / clearAll`); pure selectors (`isActive / getBlockSeverity / getRangesByTier`, …). Range objects are opaque to the reducer — DOM-free, plain-Vitest testable. Suspension flips when `complianceOpen` toggles.
+
 ---
 
 ## Track changes
@@ -136,9 +140,11 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 ## Storage
 
-**Backend** — One of `local`, `azure`, `s3`. Selected via `SIM_STORAGE_BACKEND`. Implements `writeRoom`, `readRoom`, `listRooms`, `deleteRoom`.
+**Backend** — One of `local`, `azure`, `s3`. Selected via `SIM_STORAGE_BACKEND`. Each backend extends `RoomStorageBase` (`server/room-storage.cjs`) and implements seven adapter primitives (`_putBytes / _getBytes / _deleteKey / _listKeys / _statKey / _copyKey / _keyForArtifact`) plus three name-parsing hooks. The base class owns the public methodset (`writeRoom / readRoom / deleteRoom / listRooms / statRoom / quarantineRoom / archiveRoom / restoreRoom / listArchivedRooms / deleteArchivedRoom`).
 
-**Room artifacts** — The three files persisted per room: `.ydoc` (CRDT state), `.SEC` (serialized section), `.comments.json` (sidecar metadata). Written atomically (stage → rename → rollback).
+**Room artifacts** — The three files persisted per room: `.ydoc` (CRDT state — source of truth), `.SEC` (serialized section), `.comments.json` (sidecar metadata). The `ARTIFACT_CATALOG` in `server/storage-shared.cjs` defines the write order; `.ydoc` is always written LAST so a partial failure leaves `.ydoc` consistent with older sidecars rather than ahead of stale ones.
+
+**Atomicity is per-backend.** Local writes via stage-rename-rollback (filesystem rename is atomic per file). Azure acquires a `.ydoc` blob lease for multi-instance safety. S3 (Cloudflare R2 in production) has no transaction primitives — `.ydoc`-LAST sequential write is the strongest available guarantee. See ADR-0005.
 
 ---
 
