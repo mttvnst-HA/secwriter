@@ -124,7 +124,7 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 **Y.Doc / Y.Text** — Yjs CRDT primitives. SecWriter uses one Y.Doc per room with shared types `yOrder`, `yStore`, `yMeta`, `yTc`, `yComments`.
 
-**Publish path** — The pipeline that gets block content into the Y.Doc: `EditableBlock.onUpdate` (debounced 400ms or on blur) → `App.handleBlockUpdate` → publish effect → `applyBlocksToYDoc` → `applyHtmlToYText`. String-diff at publish time, not a live Y.Text↔DOM binding. See ADR-0004.
+**Publish path** — The pipeline that gets block content into the Y.Doc: `EditableBlock.onUpdate` (debounced 400ms or on blur) → `App.handleBlockUpdate` → publish effect (owned by `src/hooks/useCollabSession.js`) → `applyBlocksToYDoc` → `applyHtmlToYText`. String-diff at publish time, not a live Y.Text↔DOM binding. See ADR-0004.
 
 **Snapshot diff (collab)** — The publish-path strategy of diffing new HTML against existing Y.Text inside `applyHtmlToYText`. Distinct from the **TC snapshot** (plain-text baseline for revision diffs) — same word, different concept.
 

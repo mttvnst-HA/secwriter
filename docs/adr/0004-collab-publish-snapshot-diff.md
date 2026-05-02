@@ -40,6 +40,6 @@ When any of the following is true:
 
 1. Multi-user same-paragraph editing becomes a frequent user complaint or a regression in a paying-customer scenario.
 2. A maintainer has the bandwidth to land issue #22 with full E2E coverage of TC + comments + marks under live binding.
-3. The publish-path coordination logic is extracted into a hook (the smaller in-scope improvement) — at which point the surface for the larger refactor is much narrower.
+3. ~~The publish-path coordination logic is extracted into a hook (the smaller in-scope improvement) — at which point the surface for the larger refactor is much narrower.~~ **Landed** as `src/hooks/useCollabSession.js` — the session lifecycle, the four publish effects (blocks, meta, TC, comments dispatch), the echo/ready/seq guard refs, the doc-size cap latch, and cursor broadcast all live behind one hook surface. Issue #22 now lands by changing the hook's body, not by editing 40 places in App.jsx.
 
 Until then, snapshot diff stays.

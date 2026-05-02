@@ -16,6 +16,7 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 
 - `src/App.jsx` — main editor layout, state, toolbar, sidebar
 - `src/components/` — block components (EditableBlock, TitleBlock, TableBlock, RefBlock), panels (CompliancePanel, CrossRefPanel, CommentPopup), tooltips, wizards
+- `src/hooks/` — `useCollabSession.js` (Yjs session lifecycle + the four publish effects + coordination refs)
 - `src/lib/` — parsers/serializers (sec-parser, sec-serializer, encoding), compliance engines (compliance-rules, compliance-checker, compliance-ai, inline-linter, grammar-checker, nlp-rules), revisions, table-ops, numbering
 - `src/data/` — `ufs-1-300-02-rules.json` (compliance rules), `umrl.json` (reference DB), `umsl.json` (submittal DB), sample spec
 - `reference/section.ini` — **authoritative** formatting rules (MARGINS, COLORS, RULES, CODES, FONTS)
@@ -129,7 +130,7 @@ TC uses a **snapshot-based diff** approach owned by `src/lib/track-changes.js` �
 
 1. **State is opaque.** App reads it via selectors (`isEnabled`, `getSnapshot`, `getPublishableState`, `revisionFlagForCreate`, `revisionFlagForDelete`) and mutates it via verbs (`enable`, `disable`, `acceptInline`/`rejectInline`, `acceptAll`/`rejectAll`, `markBlockCreated`, `applyResolveAtBlock`, `applyRemote`). Don't reach into `state.snapshots` directly — the verbs maintain the invariant `snapshots[id] === getVisibleTextFromHtml(blocks[id].html)` after every touched id, and a property test in `src/lib/__tests__/track-changes.test.js` asserts it.
 2. **`onRevisionAction`** is the prop-layer dispatcher used by FloatingToolbar and EditableBlock's del popup; the App-side handler routes it to `tc.applyResolveAtBlock(...)`.
-3. **Collab publish.** `publishSeq` is a monotonic counter bumped by every user-driven verb but not by `applyRemote`. App's publish effect compares against `lastPublishedTcSeqRef` to decide "did this change come from us?" — replacing the imperative `tcDirtyRef` flag.
+3. **Collab publish.** `publishSeq` is a monotonic counter bumped by every user-driven verb but not by `applyRemote`. The TC publish effect (now inside `src/hooks/useCollabSession.js`) compares against `lastPublishedTcSeqRef` to decide "did this change come from us?" — replacing the imperative `tcDirtyRef` flag. App's `onTcReceived` handler calls `collab.markTcSeqApplied(next.publishSeq)` after `tc.applyRemote(...)` so the next render does not echo a remote-applied state back to peers.
 4. **Undo/redo coupling.** `useUndoableBlocks` snapshots `(blocks, tcState)` together as one frame; the hook is agnostic about tcState's shape.
 5. **Diff pipeline:** `diffWords()` → `refineWordDiff()` → `diffChars()`. Refinement applies character-level sub-diff to consecutive del→add pairs sharing ≥50% common characters, producing fine-grained marks instead of replacing whole words.
 6. **Del elements** have `contentEditable="false"` to prevent caret entry, and `cursor: pointer` for click-to-show popup. Diff annotation (turning the snapshot diff into `<ins>`/`<del>` DOM marks) stays in EditableBlock — the module remains pure and DOM-free.
@@ -239,19 +240,21 @@ Each document is a flat array of blocks:
 
 ## Collab Publish Path
 
-Block content reaches the Y.Doc via **snapshot diff**, not a live `Y.Text` binding:
+Block content reaches the Y.Doc via **snapshot diff**, not a live `Y.Text` binding (see [ADR-0004](docs/adr/0004-collab-publish-snapshot-diff.md) for the deferral; the live-binding refactor is tracked at issue #22):
 
 1. `EditableBlock` fires `onUpdate(blockId, html)` from `handleInput` (debounced `PUBLISH_DEBOUNCE_MS = 400`ms, see `src/components/EditableBlock.jsx`) AND `handleBlur` (which also runs Track Changes annotation). Blur cancels any pending input debounce.
 2. `App.handleBlockUpdate` calls `setBlocks(prev.map(...))`.
-3. The publish effect (`useEffect([blocks, inRoom])` in `src/App.jsx`) calls `session.publishBlocks(blocks)`.
+3. The publish effect — now inside `src/hooks/useCollabSession.js` — calls `session.publishBlocks(blocks)` after the `sessionReadyRef` and `lastRemoteBlocksRef` echo guards pass.
 4. `applyBlocksToYDoc` (`src/lib/collab.js`) walks the block array and calls `applyHtmlToYText(yText, html)` per block — this **diffs the new HTML string against the existing Y.Text** and synthesizes Yjs ops to match.
 5. `ydoc.on('update')` on the server debounces a flush to R2/local (`server/collab-server.cjs`).
 
-**Implication:** concurrent typing in the same paragraph by two users relies on the diff at publish time, not character-level CRDT ops. Workable for single-user rooms; the architectural fix to a real `Y.Text` ↔ DOM binding is tracked at issue #22. The debounced-input symptom fix landed via #21 / PR #23.
+**Coordination lives in the hook, not App.** `useCollabSession` owns the session lifecycle, all four publish effects (blocks, meta, TC, comments dispatch), all coordination refs (`sessionReadyRef`, `metaReadyRef`, `lastRemoteBlocksRef`, `lastPublishedTcSeqRef`, `publishDisabledRef`), the `DocSizeLimitError` toast latch, and the cursor broadcast. App passes a prop bag of remote-event callbacks (`onBlocksReceived`, `onMetaReceived`, `onTcReceived`, `onCommentsReceived`, `onPresenceChange`, `onStatusChange`) and reads back `{ dispatchComment, markTcSeqApplied, tryUndo, tryRedo, canUndo, canRedo }`. The TC echo gate is a small protocol seam: App's `setTcState` updater calls `markTcSeqApplied(next.publishSeq)` after `tc.applyRemote(...)` so the publish effect treats the new state as already-seen by peers.
 
-`window.__collab` is exposed in DEV (`import.meta.env.DEV`) for browser-side debugging — gives you `{ ydoc, yOrder, yStore, yMeta, yTc, yComments, awareness, provider, undoManager }`.
+**Implication:** concurrent typing in the same paragraph by two users relies on the diff at publish time, not character-level CRDT ops. Workable for single-user rooms; the architectural fix is issue #22. The debounced-input symptom fix landed via #21 / PR #23.
 
-**"Connecting to room…" forever?** The collab session effect in `src/App.jsx` is gated on `inRoom && identity`. If `localStorage` has no saved identity, the app shows a name prompt and the WebSocketProvider is never instantiated. Banner persists indefinitely; `/health` shows 0 connections. Fill the name prompt to unblock.
+`window.__collab` is exposed in DEV (`import.meta.env.DEV`) for browser-side debugging — gives you `{ ydoc, yOrder, yStore, yMeta, yTc, yComments, awareness, provider, undoManager, publishBlocks, publishMeta, publishTc, dispatchComment, setCursor, undo, redo, canUndo, canRedo, destroy }`.
+
+**"Connecting to room…" forever?** `useCollabSession`'s lifecycle effect is gated on `inRoom && identity`. If `localStorage` has no saved identity, the app shows a name prompt and the WebSocketProvider is never instantiated. Banner persists indefinitely; `/health` shows 0 connections. Fill the name prompt to unblock.
 
 ## Storage Backends
 

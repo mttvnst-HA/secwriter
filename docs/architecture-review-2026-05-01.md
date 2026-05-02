@@ -66,17 +66,9 @@ Architecture vocabulary used below — *module, interface, depth, seam, leverage
 
 ## 5. Collab publish path: known debt (issue #22), but a smaller win is hoistable now
 
-**Status:** Open. See [ADR-0004](adr/0004-collab-publish-snapshot-diff.md) for the deferred full refactor.
+**Status:** Landed — `src/hooks/useCollabSession.js` owns the session lifecycle (createCollabSession + teardown + DEV `window.__collab` exposure), the four publish effects (blocks, meta, TC, comments dispatch), all coordination refs (`sessionReadyRef`, `metaReadyRef`, `lastRemoteBlocksRef`, `lastPublishedTcSeqRef`, `publishDisabledRef`), the doc-size-cap latch + toasts, and the cursor broadcast. App passes a prop bag of remote-event callbacks (`onBlocksReceived`, `onMetaReceived`, `onTcReceived`, `onCommentsReceived`, `onPresenceChange`, `onStatusChange`) and reads back `{ dispatchComment, markTcSeqApplied, tryUndo, tryRedo, canUndo, canRedo }`. The TC echo gate is a tiny protocol seam: App's `setTcState` updater calls `markTcSeqApplied(next.publishSeq)` after `tc.applyRemote(...)` so the publish effect treats the new state as already-seen by peers. App.jsx 2654 → 2469 lines (-185); hook is 430 lines; 17 unit tests with a fake session replace the previously E2E-only coverage of echo guards, ready gates, seq gating, and the size-cap latch. ADR-0004 "When to revisit" §3 is now satisfied — issue #22 lands by editing the hook's body, not App.
 
-**Files:** `src/App.jsx:1545–1560` (publish effect), `src/lib/collab.js:538–584,813`, `src/lib/ytext-html.js:586–700`
-
-**Friction:** `CLAUDE.md` already flags this — block content reaches Y.Doc by string-diffing HTML against existing Y.Text inside `applyHtmlToYText`, not via a live `Y.Text` ↔ DOM binding. Issue #22 is the long-term fix. Independently of that fix, the *publish coordination* (`lastRemoteBlocksRef` guard, debounce, `DocSizeLimitError` handling, `sessionReadyRef`) is inlined in App.jsx, untestable without mocking Yjs, and re-litigated whenever someone touches the effect.
-
-**Why shallow now:** the publish seam looks like a function call but the caller has to know about the remote-echo guard, the ready ref, and the error type. That's a leaky seam, not a deep one.
-
-**Deletion test:** extracting just the *coordination* (not the diff) into a hook leaves the issue-#22 refactor easier — the Y.Text binding has a single, isolated home to land in. Without this, #22 will need to disturb App.jsx.
-
-**Sketch:** a collab-publish hook that owns the guard ref and the error path. App calls one verb. Issue #22 lands by changing the hook's body, not by editing 40 places in App.
+**Files:** `src/hooks/useCollabSession.js` (new — 430 lines), `src/hooks/__tests__/useCollabSession.test.jsx` (new — 17 tests), `src/App.jsx` (2654 → 2469 lines), `docs/adr/0004-collab-publish-snapshot-diff.md` (When-to-revisit §3 marked landed).
 
 ---
 
