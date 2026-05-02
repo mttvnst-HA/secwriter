@@ -98,13 +98,21 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 ## Comments
 
-**Comment** — Metadata in the `comments: Map<commentId, ...>` store: id, blockId, status, highlightText, entries (thread).
+**Comment** — Metadata in the comments store: id, blockId, status, highlightText, entries (thread). Owned by the `src/lib/comments.js` module; App.jsx holds the state opaquely as `commentsState` and reads it via selectors.
 
-**Comment span** — `<span class="mark-comment" data-comment-id="...">text</span>` in the DOM. Persisted in `block.html` for editable blocks; injected into render-only DOM for ref/table blocks.
+**Comments state** — `{ byId: Map<commentId, Comment>, seenRemoteIds: Set<commentId> }`. Mutated only via the verbs in `comments.js` (`createDraft`, `updateCreate`, `reply`, `resolve`, `reopen`, `remove`, `mergeRemote`).
 
-**Comment status** — `open` | `resolved`. Reflected on the comment metadata AND on the span's class (drift between the two is a known pathology).
+**Comment span** — `<span class="mark-comment" data-comment-id="...">text</span>` in the DOM. Persisted in `block.html` for editable blocks; injected into render-only DOM for ref/table blocks. Editable spans are the source of truth; the `reconcileBlocks` selector reclasses them and unwraps orphans against the metadata store.
 
-**Orphan span** — A `mark-comment` span whose `data-comment-id` has no metadata entry (typically appears after a remote collab sync). Cleaned up by `stripOrphanCommentSpans`.
+**Comment status** — `open` | `resolved`. Reflected on the comment metadata AND on the span's class (`mark-comment` vs `mark-comment-resolved`). The `reconcileBlocks` selector keeps them in sync — drift is no longer possible by construction for editable blocks.
+
+**`seenRemoteIds`** — Tombstone discriminator used by `mergeRemote` (M2.5): any commentId we have ever observed in a remote payload. On the next merge, an id missing from remote *and* present in seenRemoteIds is dropped (peer deletion); an id missing from remote *and* never seen is preserved (local draft).
+
+**`reconcileBlocks(blocks, state)`** — Pure selector that walks each editable block's `mark-comment` spans: unwraps spans with no metadata entry, reclasses spans whose className disagrees with `state.byId.get(id).status`. Idempotent — returns the original `blocks` reference when nothing changes.
+
+**Draft sentinel** — A comment is in "draft" form when its single create entry has empty text (`isDraft(comment) === true`). Drafts exist only locally; publishing is deferred until the user commits text via `updateCreate`, so the Y.Doc never holds a pending empty-text entry.
+
+**Ref/table comment divergence** — Ref and table block comments are visually transient: their highlights live in render-only DOM and aren't persisted in `b.ref` / `b.table`. `reconcileBlocks` is intentionally a no-op for blocks without `b.html`. A separate follow-up will derive ref/table highlights from metadata at render time.
 
 ---
 

@@ -36,7 +36,7 @@ npm run dev                # Vite dev server at localhost:5173
 npm run collab             # Collab WebSocket+HTTP server at 127.0.0.1:1234 (SIM_STORAGE_BACKEND=local writes to server/collab-db/)
 npm test                   # Vitest unit tests
 npm run test:compliance    # Compliance rule tests (Node runner — NOT Vitest; Vitest OOMs on the regex-heavy engine)
-npm run test:e2e           # Playwright E2E
+npm run test:e2e           # Playwright E2E (first run on fresh checkout: npx playwright install)
 npm run test:corpus        # Corpus precision/recall/adversarial
 npm run test:ufgs          # UFGS tag coverage + structural across 690 files
 npm run test:interop       # Structural interop (parse/serialize/roundtrip)
@@ -134,13 +134,17 @@ TC uses a **snapshot-based diff** approach owned by `src/lib/track-changes.js` �
 
 ## Comments Architecture
 
-Comments use a **DOM-based highlight + separate metadata store**:
+Comments use a pure reducer module (`src/lib/comments.js`) that owns a **DOM-based highlight + separate metadata store** — same playbook as Track Changes (`d19d37b`):
 
-1. **In the DOM:** `<span class="mark-comment" data-comment-id="comment-123">text</span>` wraps the commented text.
-2. **In state:** `comments` Map stores metadata (id, blockId, status, highlightText, entries thread). Comment data is NOT in `block.html` — parallel store.
-3. **Editable blocks:** comment spans are persisted in `block.html`. **Ref blocks and table cells:** spans are injected into the rendered DOM only (data stays in `block.ref`/`block.table`).
-4. **Export:** serializer strips `mark-comment` spans. A sidecar `.comments.json` is saved alongside the `.SEC` file.
-5. **File import clears comments** — `loadSECContent()` calls `setComments(new Map())` so comments from a prior file don't leak.
+1. **State is opaque.** App holds it as `commentsState` and reads it via selectors (`size`, `get`, `all`, `isDraft`, `getCreateEntry`, `reconcileBlocks`, `normalizeForLoad`); mutates it via verbs (`createDraft`, `updateCreate`, `reply`, `resolve`, `reopen`, `remove`, `mergeRemote`). Shape: `{ byId: Map<commentId, Comment>, seenRemoteIds: Set<commentId> }`. Verbs return `{ state, publish }`; caller supplies `identity` and `ts`.
+2. **Span↔metadata reconciliation is a selector.** App runs `useEffect([blocks, commentsState])` → `setBlocksDirect(prev => cm.reconcileBlocks(prev, commentsState))`. The selector unwraps orphan spans (id missing from state) and reclasses open↔resolved when className disagrees with `state.byId.get(id).status`. Idempotent — returns the original `blocks` ref when nothing changes; React bails out, no loop. Routed through `setBlocksDirect` (the non-undoable setter from `useUndoableBlocks`) so a reconcile after Ctrl+Z cannot wipe the redo stack.
+3. **Single collab dispatcher.** `session.dispatchComment(envelope)` switches on `envelope.kind ∈ {create, reply, status, delete}` and forwards to the underlying `*ToDoc` functions. The legacy four session methods (`publishComment`, `publishCommentReply`, `publishCommentStatus`, `deleteComment`) are gone. Verbs that produce no publish (drafts) return `publish: null`.
+4. **`mergeRemote` semantics (M2.5).** For each id in `remote ∪ prev.byId`: if id is in remote, remote wins; else if id is in `seenRemoteIds`, drop (peer deletion); else preserve (local draft). `seenRemoteIds` is monotonically non-shrinking — once an id has been observed from peers, its later absence is authoritative.
+5. **Editable blocks** persist comment spans in `block.html`. **Ref/table** spans are visually transient (injected into render-only DOM; data stays in `block.ref` / `block.table`); `reconcileBlocks` skips blocks without `html`. Deriving ref/table highlights from metadata is a follow-up.
+6. **Active highlight is an attribute.** `CommentPopup` sets `data-active="true"` on the comment span on mount and removes it on unmount; CSS is `.mark-comment[data-active="true"]` (light + dark). Reconcile owns the className exclusively, so an in-flight popup close cannot leave a stale class out of sync with `comment.status`.
+7. **Load-boundary shim.** `normalizeForLoad(rawCommentsObj)` runs in `onRemoteComments` and the auto-save restore path. It promotes legacy `author` → `authorName` and `timestamp` (ISO) → `ts` (number); canonical fields take priority. The module never sees legacy fields.
+8. **Export:** serializer strips `mark-comment` spans. A sidecar `.comments.json` is saved alongside the `.SEC` file.
+9. **File import clears comments** — `loadSECContent()` calls `setCommentsState(cm.createInitial())` so comments from a prior file don't leak.
 
 ## Tag Visibility Toggle
 

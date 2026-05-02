@@ -95,14 +95,18 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
     if (!showAuthorInput && isNewComment) createInputRef.current?.focus();
   }, [isNewComment, showAuthorInput]);
 
-  // Activate highlight on the comment span
+  // Activate highlight on the comment span. Sets a `data-active` attribute
+  // (cleared on unmount) so the styling is purely a CSS attribute selector.
+  // App.jsx's reconcileBlocks effect owns the className — the popup must
+  // not write it, otherwise the next reconcile would clobber the active
+  // styling and an in-flight popup-close could leave a stale className
+  // out of sync with `comment.status`.
   useEffect(() => {
     const el = document.querySelector(`[data-comment-id="${comment.id}"]`);
-    if (el && !el.className.includes('resolved')) {
-      el.className = "mark-comment-active";
-      return () => { el.className = comment.status === "resolved" ? "mark-comment-resolved" : "mark-comment"; };
-    }
-  }, [comment.id, comment.status]);
+    if (!el) return undefined;
+    el.setAttribute('data-active', 'true');
+    return () => { el.removeAttribute('data-active'); };
+  }, [comment.id]);
 
   const handleSaveAuthor = () => {
     if (!authorName.trim()) return;
@@ -112,13 +116,13 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
 
   const handleCreateSubmit = () => {
     if (!createText.trim()) return;
-    onUpdateCreate(comment.id, createText.trim(), getAuthorName() || "User");
+    onUpdateCreate(comment.id, createText.trim());
     setCreateText("");
   };
 
   const handleReply = () => {
     if (!replyText.trim()) return;
-    onReply(comment.id, replyText.trim(), getAuthorName() || "User");
+    onReply(comment.id, replyText.trim());
     setReplyText("");
   };
 
