@@ -3,9 +3,7 @@ import SlashMenu, { SLASH_ITEMS } from "./SlashMenu.jsx";
 import { BLOCK_MARGINS } from "../lib/ini-config.js";
 import { cleanTaiClasses } from "../lib/tailor-profile.js";
 import { annotateDomWithDiff } from "../lib/text-diff.js";
-import { initInlineLinting, clearBlockLinting, extractPlainText, findFindingAtCursor, getBlockFindingSeverity, DEBOUNCE_MS } from "../lib/inline-linter.js";
-import { addUserWord } from "../lib/grammar-checker.js";
-import { getRules } from "../lib/compliance-rules.js";
+import { useBlockLinting } from "./useBlockLinting.js";
 import InlineTooltip from "./InlineTooltip.jsx";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
@@ -59,7 +57,7 @@ function stripTagLabels(html) {
   return html.replace(/<span[^>]*class="tag-label"[^>]*>[^<]*<\/span>/g, '');
 }
 
-function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, identity, comments, onCommentClick, onInlineFix, inlineLintingEnabled = true, compliancePanelActive = false, showTags = false, readOnly = false }) {
+function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, identity, comments, onCommentClick, onInlineFix, lintingState, lintingDispatch, showTags = false, readOnly = false }) {
   const ref = useRef(null);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashFilter, setSlashFilter] = useState("");
@@ -433,154 +431,40 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
     return () => window.removeEventListener('scroll', dismiss, true);
   }, [delPopup]);
 
-  // ── Inline linting: debounced input + lint on focus ──
-  const lintTimerRef = useRef(null);
-  const [lintSeverity, setLintSeverity] = useState(null); // 'high' | 'medium' | 'low' | null
-  const lintBlock = useCallback(() => {
-    if (!ref.current || !inlineLintingEnabled || compliancePanelActive) {
-      clearBlockLinting(block.id);
-      setLintSeverity(null);
-      return;
-    }
-    try {
-      const cachedRules = getRules();
-      const plainText = extractPlainText(ref.current);
-      initInlineLinting(ref.current, block.id, plainText, cachedRules, {
-        isNoteBlock: block.type === 'note',
-      });
-      // Update gutter dot after a short delay (grammar is async)
-      setTimeout(() => setLintSeverity(getBlockFindingSeverity(block.id)), 200);
-    } catch {
-      // Linting failed (element not ready), ignore
-    }
-  }, [block.id, block.type, inlineLintingEnabled, compliancePanelActive]);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || !editable) return;
-
-    // If linting is disabled or compliance panel is active, clear and skip
-    if (!inlineLintingEnabled || compliancePanelActive) {
-      clearBlockLinting(block.id);
-      return;
-    }
-
-    const onNativeInput = () => {
-      if (lintTimerRef.current) clearTimeout(lintTimerRef.current);
-      lintTimerRef.current = setTimeout(lintBlock, DEBOUNCE_MS);
-    };
-
-    // Lint on focus (re-lint when clicking back into a block with violations)
-    const onFocusLint = () => lintBlock();
-
-    el.addEventListener('input', onNativeInput);
-    el.addEventListener('focus', onFocusLint);
-
-    // If this block is already focused when linting is (re-)enabled, lint immediately
-    if (document.activeElement === el) {
-      lintBlock();
-    }
-
-    return () => {
-      el.removeEventListener('input', onNativeInput);
-      el.removeEventListener('focus', onFocusLint);
-      if (lintTimerRef.current) clearTimeout(lintTimerRef.current);
-      clearBlockLinting(block.id);
-    };
-  }, [block.id, editable, lintBlock, inlineLintingEnabled, compliancePanelActive]);
-
-  // ── Inline tooltip: selectionchange listener ──
-  const [tooltipFinding, setTooltipFinding] = useState(null);
-  const selTimerRef = useRef(null);
-
-  useEffect(() => {
-    if (!editable) return;
-
-    const checkCursorForTooltip = () => {
-      if (selTimerRef.current) clearTimeout(selTimerRef.current);
-      selTimerRef.current = setTimeout(() => {
-        const sel = document.getSelection();
-        if (!sel || !sel.isCollapsed || !sel.rangeCount) {
-          setTooltipFinding(null);
-          return;
-        }
-        // Only check if cursor is inside this block
-        if (!ref.current || !ref.current.contains(sel.anchorNode)) {
-          setTooltipFinding(null);
-          return;
-        }
-        const finding = findFindingAtCursor(sel.anchorNode, sel.anchorOffset);
-        setTooltipFinding(finding);
-      }, 100);
-    };
-
-    // Arrow keys may not always fire selectionchange, so also listen for keyup
-    const onKeyUp = (e) => {
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' ||
-          e.key === 'ArrowUp' || e.key === 'ArrowDown' ||
-          e.key === 'Home' || e.key === 'End') {
-        checkCursorForTooltip();
-      }
-    };
-
-    // Dismiss tooltip immediately when user starts typing so it doesn't block editing
-    const onInput = () => {
-      setTooltipFinding(null);
-    };
-
-    document.addEventListener('selectionchange', checkCursorForTooltip);
-    document.addEventListener('keyup', onKeyUp);
-    if (ref.current) ref.current.addEventListener('input', onInput);
-    const el = ref.current;
-    return () => {
-      document.removeEventListener('selectionchange', checkCursorForTooltip);
-      document.removeEventListener('keyup', onKeyUp);
-      if (el) el.removeEventListener('input', onInput);
-      if (selTimerRef.current) clearTimeout(selTimerRef.current);
-    };
-  }, [editable]);
-
-  // Handle inline fix: update DOM directly (block is focused), call onFix, re-lint
-  const handleInlineFix = useCallback((blockId, fixedHtml) => {
-    setTooltipFinding(null);
-    clearBlockLinting(blockId);
-    // Update DOM directly since block is focused (React sync skips focused blocks)
-    if (ref.current) {
-      ref.current.innerHTML = fixedHtml;
-      syncTagLabels(ref.current, showTags);
-    }
-    if (onInlineFix) {
-      onInlineFix(blockId, fixedHtml);
-    }
-    // Re-lint the updated content
-    setTimeout(lintBlock, 50);
-  }, [onInlineFix, lintBlock]);
-
-  const dismissTooltip = useCallback(() => setTooltipFinding(null), []);
-
-  // Add a word to the user's custom dictionary and re-lint this block
-  const handleAddToDictionary = useCallback(async (word) => {
-    setTooltipFinding(null);
-    try {
-      await addUserWord(word);
-    } catch {
-      // ignore
-    }
-    // Re-lint so the highlight disappears
-    setTimeout(lintBlock, 50);
-  }, [lintBlock]);
+  // ── Inline linting (delegated to useBlockLinting hook) ──
+  const getEl = useCallback(() => ref.current, []);
+  const applyTagLabelsAfterFix = useCallback(
+    (el) => syncTagLabels(el, showTags),
+    [showTags],
+  );
+  const {
+    severity: lintSeverity,
+    tooltipFinding,
+    dismissTooltip,
+    applyFix: handleInlineFix,
+    addToDictionary: handleAddToDictionary,
+    reLintAfterMutation,
+  } = useBlockLinting({
+    getEl,
+    blockId: block.id,
+    blockType: block.type,
+    editable,
+    lintingState,
+    dispatch: lintingDispatch,
+    onFix: onInlineFix,
+    applyTagLabels: applyTagLabelsAfterFix,
+  });
 
   // On blur: dismiss tooltip, keep highlights persistent.
   // Re-lint after a short delay because blur → onUpdate → React re-render
   // replaces DOM text nodes, which invalidates existing Range objects.
   const origHandleBlur = handleBlur;
   const handleBlurWithLinting = useCallback(() => {
-    setTooltipFinding(null);
-    if (lintTimerRef.current) clearTimeout(lintTimerRef.current);
     origHandleBlur();
-    // Re-create Ranges on the updated DOM after React re-renders
-    setTimeout(lintBlock, 50);
-  }, [origHandleBlur, lintBlock]);
+    reLintAfterMutation();
+  }, [origHandleBlur, reLintAfterMutation]);
+
+  const lintingActive = lintingState ? (lintingState.enabled && !lintingState.suspended) : false;
 
   const isNote = block.type === "note";
   const isTxt = block.type === "txt";
@@ -728,7 +612,7 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
             width: 28,
           }}>{oliLabel}</span>
         )}
-        {lintSeverity && inlineLintingEnabled && !compliancePanelActive && (
+        {lintSeverity && lintingActive && (
           <span
             title={`${lintSeverity} severity finding`}
             style={{
