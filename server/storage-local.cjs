@@ -1,86 +1,77 @@
 /**
- * LocalStorageBackend — atomic multi-artifact persistence for SecWriter rooms.
+ * LocalStorageBackend — atomic multi-artifact persistence to the local
+ * filesystem.
  *
- * Each room stores up to three files:
- *   <room>.ydoc          — binary Yjs state snapshot (Buffer)
- *   <room>.SEC           — Windows-1252 encoded SEC XML (Buffer)
- *   <room>.comments.json — JSON string
+ * Each room stores up to three files (see storage-shared.cjs / ARTIFACT_CATALOG):
+ *   <room>.ydoc          — binary Yjs state snapshot
+ *   <room>.SEC           — Windows-1252 encoded SEC XML
+ *   <room>.comments.json — JSON sidecar
  *
- * Writes are staged to .tmp files, then renamed in sequence. If any rename
- * fails, already-renamed artifacts are rolled back and .tmp files cleaned up.
- * .ydoc is renamed LAST because it is the source of truth — the other two
- * can be regenerated from it.
+ * `writeRoom` is overridden to provide TRUE atomicity: stage every artifact to
+ * a `.tmp` file, then rename them in catalog order (`.ydoc` last). If any
+ * rename fails, already-renamed artifacts are restored from in-memory backup
+ * and remaining `.tmp` files are cleaned up. Filesystem rename is atomic per
+ * file; multi-file atomicity is the wrapping rollback. Azure/S3 inherit the
+ * base class's sequential write since their object models cannot rollback
+ * cheaply.
  *
- * CJS on purpose (see collab-server.cjs header comment).
+ * Active layout:    <dir>/<safe>.{ydoc|SEC|comments.json}
+ * Quarantine layout: <dir>/<safe>.<ext>.<reason>.<ts>
+ * Archive layout:   <dir>/archive/<safe>.<ext>      (+ <safe>.archivedAt marker)
+ *
+ * CJS on purpose (see ADR-0001).
  */
+'use strict';
 
 const fs = require('node:fs');
 const path = require('node:path');
 
-/** Sanitize a room name: keep only [a-zA-Z0-9_-], max 64 chars. */
-function sanitize(name) {
-  const safe = String(name).replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 64);
-  return safe || 'default';
-}
+const { RoomStorageBase } = require('./room-storage.cjs');
+const {
+  sanitize,
+  ARTIFACT_KIND_YDOC,
+  ARTIFACT_KIND_SEC,
+  ARTIFACT_KIND_COMMENTS,
+  ARTIFACT_CATALOG,
+  planArtifactWrites,
+} = require('./storage-shared.cjs');
 
-class LocalStorageBackend {
-  /**
-   * @param {string} dataDir — directory for room files (created if absent)
-   */
+const EXT_BY_KIND = {
+  [ARTIFACT_KIND_YDOC]: '.ydoc',
+  [ARTIFACT_KIND_SEC]: '.SEC',
+  [ARTIFACT_KIND_COMMENTS]: '.comments.json',
+};
+
+class LocalStorageBackend extends RoomStorageBase {
+  /** @param {string} dataDir — directory for room files (created if absent) */
   constructor(dataDir) {
+    super();
     this._dir = path.resolve(dataDir);
     fs.mkdirSync(this._dir, { recursive: true });
   }
 
-  /** Return the base path (no extension) for a sanitized room. */
-  _base(roomId) {
-    return path.join(this._dir, sanitize(roomId));
-  }
+  // ── Public override: atomic writeRoom ───────────────────────────────────
 
   /**
-   * Write all provided artifacts atomically.
-   *
-   * Order: stage all to .tmp → rename .SEC → rename .comments.json → rename .ydoc.
-   * If any rename fails, roll back prior renames and clean up .tmp files.
-   *
-   * @param {string} roomId
-   * @param {{ ydocBytes: Buffer, secBytes: Buffer|null, commentsJson: string|null }} artifacts
+   * Stage all artifacts to .tmp files, then rename in catalog order
+   * (`.ydoc` LAST). If any rename fails, restore renamed artifacts from
+   * in-memory backup and remove .tmp files.
    */
-  async writeRoom(roomId, { ydocBytes, secBytes, commentsJson }) {
-    const base = this._base(roomId);
+  async writeRoom(roomId, artifacts) {
+    const plan = planArtifactWrites(artifacts).map(({ kind, bytes }) => {
+      const target = this._keyForArtifact(roomId, kind);
+      return {
+        target,
+        tmp: `${target}.tmp`,
+        bytes,
+        backup: fs.existsSync(target) ? fs.readFileSync(target) : null,
+      };
+    });
 
-    // Collect artifacts to write: [targetPath, tmpPath, bytes, backupBytes|null]
-    // Ordered so .ydoc is LAST (source of truth).
-    const plan = [];
-
-    if (secBytes != null) {
-      const target = `${base}.SEC`;
-      const tmp = `${target}.tmp`;
-      const backup = fs.existsSync(target) ? fs.readFileSync(target) : null;
-      plan.push({ target, tmp, bytes: secBytes, backup });
-    }
-
-    if (commentsJson != null) {
-      const target = `${base}.comments.json`;
-      const tmp = `${target}.tmp`;
-      const backup = fs.existsSync(target) ? fs.readFileSync(target) : null;
-      plan.push({ target, tmp, bytes: Buffer.from(commentsJson, 'utf-8'), backup });
-    }
-
-    // .ydoc always written (required)
-    {
-      const target = `${base}.ydoc`;
-      const tmp = `${target}.tmp`;
-      const backup = fs.existsSync(target) ? fs.readFileSync(target) : null;
-      plan.push({ target, tmp, bytes: ydocBytes, backup });
-    }
-
-    // Stage: write all .tmp files
     for (const item of plan) {
       fs.writeFileSync(item.tmp, item.bytes);
     }
 
-    // Rename phase: track which renames succeeded for rollback
     const renamed = [];
     try {
       for (const item of plan) {
@@ -88,199 +79,119 @@ class LocalStorageBackend {
         renamed.push(item);
       }
     } catch (err) {
-      // Rollback: restore already-renamed files from backup
       for (const done of renamed) {
         try {
-          if (done.backup != null) {
-            fs.writeFileSync(done.target, done.backup);
-          } else {
-            fs.unlinkSync(done.target);
-          }
-        } catch (_) { /* best effort */ }
+          if (done.backup != null) fs.writeFileSync(done.target, done.backup);
+          else fs.unlinkSync(done.target);
+        } catch { /* best effort */ }
       }
-      // Clean up any remaining .tmp files
       for (const item of plan) {
-        try { fs.unlinkSync(item.tmp); } catch (_) { /* may not exist */ }
+        try { fs.unlinkSync(item.tmp); } catch { /* may not exist */ }
       }
       throw err;
     }
   }
 
-  /**
-   * Read a room's artifacts. Returns null if .ydoc doesn't exist.
-   * Missing .SEC or .comments.json are returned as null (legacy rooms).
-   *
-   * @param {string} roomId
-   * @returns {{ ydocBytes: Buffer, secBytes: Buffer|null, commentsJson: string|null } | null}
-   */
-  async readRoom(roomId) {
-    const base = this._base(roomId);
-    const ydocPath = `${base}.ydoc`;
+  // ── Adapter primitives ──────────────────────────────────────────────────
 
-    if (!fs.existsSync(ydocPath)) return null;
-
-    const ydocBytes = fs.readFileSync(ydocPath);
-
-    const secPath = `${base}.SEC`;
-    const secBytes = fs.existsSync(secPath) ? fs.readFileSync(secPath) : null;
-
-    const commentsPath = `${base}.comments.json`;
-    const commentsJson = fs.existsSync(commentsPath)
-      ? fs.readFileSync(commentsPath, 'utf-8')
-      : null;
-
-    return { ydocBytes, secBytes, commentsJson };
+  async _putBytes(key, bytes) {
+    fs.writeFileSync(key, bytes);
   }
 
-  /**
-   * Quarantine a room's artifacts by renaming them with a reason + timestamp suffix.
-   * Used for oversized or corrupt snapshots that should be preserved for inspection.
-   * @param {string} roomId
-   * @param {'oversize'|'corrupt'} reason
-   */
-  async quarantineRoom(roomId, reason) {
-    const base = this._base(roomId);
-    const suffix = `.${reason}.${Date.now()}`;
-    for (const ext of ['.ydoc', '.SEC', '.comments.json']) {
-      const src = `${base}${ext}`;
-      if (fs.existsSync(src)) {
-        try { fs.renameSync(src, `${src}${suffix}`); } catch { /* ignore */ }
-      }
-    }
+  async _getBytes(key) {
+    if (!fs.existsSync(key)) return null;
+    return fs.readFileSync(key);
   }
 
-  /**
-   * Delete all artifacts for a room.
-   * @param {string} roomId
-   */
-  async deleteRoom(roomId) {
-    const base = this._base(roomId);
-    const exts = ['.ydoc', '.SEC', '.comments.json'];
-    for (const ext of exts) {
-      const p = `${base}${ext}`;
-      try { fs.unlinkSync(p); } catch (_) { /* may not exist */ }
-    }
+  async _deleteKey(key) {
+    try { fs.unlinkSync(key); } catch { /* may not exist */ }
   }
 
-  /**
-   * Return filesystem stats for a room (lastModified, sizeBytes).
-   * Returns null if .ydoc doesn't exist.
-   * @param {string} roomId
-   * @returns {{ lastModified: string, sizeBytes: number } | null}
-   */
-  async statRoom(roomId) {
-    const base = this._base(roomId);
-    const ydocPath = `${base}.ydoc`;
+  async _listKeys({ prefix } = {}) {
+    const dir = prefix || this._dir;
+    if (!fs.existsSync(dir)) return [];
+    return fs.readdirSync(dir).map(name => path.join(dir, name));
+  }
+
+  async _statKey(key) {
     try {
-      const stat = fs.statSync(ydocPath);
+      const stat = fs.statSync(key);
       return { lastModified: stat.mtime.toISOString(), sizeBytes: stat.size };
     } catch {
       return null;
     }
   }
 
-  /**
-   * List room names by scanning for .ydoc files.
-   * Excludes .tmp, .corrupt, .oversize variants.
-   * @returns {string[]}
-   */
-  async listRooms() {
-    const entries = fs.readdirSync(this._dir);
-    const rooms = [];
-    for (const entry of entries) {
-      // Match exactly "<name>.ydoc" — no further extension
-      if (entry.endsWith('.ydoc') && !entry.includes('.ydoc.')) {
-        // Exclude files like "room.ydoc.tmp" — but those end with .tmp, not .ydoc
-        // The pattern "name.ydoc" is what we want; "name.ydoc.corrupt.123" won't match
-        const name = entry.slice(0, -5); // strip ".ydoc"
-        if (name.length > 0) rooms.push(name);
-      }
-    }
-    return rooms;
+  async _copyKey(srcKey, dstKey) {
+    fs.renameSync(srcKey, dstKey);
   }
 
-  /**
-   * Archive a room by moving its files to <dir>/archive/.
-   * A <roomId>.archivedAt file is written with the ISO timestamp.
-   * @param {string} roomId
-   */
-  async archiveRoom(roomId) {
+  // ── Naming ──────────────────────────────────────────────────────────────
+
+  _keyForArtifact(roomId, kind, opts = {}) {
+    const safe = sanitize(roomId);
+    const ext = EXT_BY_KIND[kind];
+    if (opts.archived) {
+      return path.join(this._dir, 'archive', `${safe}${ext}`);
+    }
+    if (opts.quarantine) {
+      const { reason, ts } = opts.quarantine;
+      return path.join(this._dir, `${safe}${ext}.${reason}.${ts}`);
+    }
+    return path.join(this._dir, `${safe}${ext}`);
+  }
+
+  _listPrefix(archived) {
+    return archived ? path.join(this._dir, 'archive') : this._dir;
+  }
+
+  _parseActiveKey(fullKey, kind) {
+    if (kind !== ARTIFACT_KIND_YDOC) return null;
+    const name = path.basename(fullKey);
+    // Match "<name>.ydoc" exactly — exclude "<name>.ydoc.tmp",
+    // "<name>.ydoc.corrupt.<ts>", "<name>.ydoc.oversize.<ts>".
+    if (!name.endsWith('.ydoc') || name.includes('.ydoc.')) return null;
+    const id = name.slice(0, -'.ydoc'.length);
+    return id.length > 0 ? id : null;
+  }
+
+  _parseArchiveKey(fullKey, kind) {
+    if (kind !== ARTIFACT_KIND_YDOC) return null;
+    const name = path.basename(fullKey);
+    if (!name.endsWith('.ydoc') || name.includes('.ydoc.')) return null;
+    const id = name.slice(0, -'.ydoc'.length);
+    return id.length > 0 ? id : null;
+  }
+
+  // ── Archive marker (Local uses a sidecar file) ──────────────────────────
+
+  async _writeArchiveMarker(roomId, archivedAt) {
     const safe = sanitize(roomId);
     const archiveDir = path.join(this._dir, 'archive');
     fs.mkdirSync(archiveDir, { recursive: true });
-
-    for (const ext of ['.ydoc', '.SEC', '.comments.json']) {
-      const src = path.join(this._dir, `${safe}${ext}`);
-      if (fs.existsSync(src)) {
-        fs.renameSync(src, path.join(archiveDir, `${safe}${ext}`));
-      }
-    }
-
-    // Write timestamp marker
-    fs.writeFileSync(
-      path.join(archiveDir, `${safe}.archivedAt`),
-      new Date().toISOString(),
-      'utf-8'
-    );
+    fs.writeFileSync(path.join(archiveDir, `${safe}.archivedAt`), archivedAt, 'utf-8');
   }
 
-  /**
-   * Restore an archived room by moving its files back to the active dir.
-   * @param {string} roomId
-   */
-  async restoreRoom(roomId) {
+  async _readArchiveMarker(roomId) {
     const safe = sanitize(roomId);
-    const archiveDir = path.join(this._dir, 'archive');
-
-    for (const ext of ['.ydoc', '.SEC', '.comments.json']) {
-      const src = path.join(archiveDir, `${safe}${ext}`);
-      if (fs.existsSync(src)) {
-        fs.renameSync(src, path.join(this._dir, `${safe}${ext}`));
-      }
-    }
-
-    // Remove timestamp marker
-    const markerPath = path.join(archiveDir, `${safe}.archivedAt`);
-    try { fs.unlinkSync(markerPath); } catch (_) { /* may not exist */ }
+    const markerPath = path.join(this._dir, 'archive', `${safe}.archivedAt`);
+    if (!fs.existsSync(markerPath)) return null;
+    try { return fs.readFileSync(markerPath, 'utf-8').trim(); }
+    catch { return null; }
   }
 
-  /**
-   * List archived rooms by scanning <dir>/archive/ for .ydoc files.
-   * @returns {{ id: string, archivedAt: string|null }[]}
-   */
-  async listArchivedRooms() {
-    const archiveDir = path.join(this._dir, 'archive');
-    if (!fs.existsSync(archiveDir)) return [];
-
-    const entries = fs.readdirSync(archiveDir);
-    const rooms = [];
-    for (const entry of entries) {
-      if (entry.endsWith('.ydoc') && !entry.includes('.ydoc.')) {
-        const id = entry.slice(0, -5);
-        if (id.length > 0) {
-          const markerPath = path.join(archiveDir, `${id}.archivedAt`);
-          const archivedAt = fs.existsSync(markerPath)
-            ? fs.readFileSync(markerPath, 'utf-8').trim()
-            : null;
-          rooms.push({ id, archivedAt });
-        }
-      }
-    }
-    return rooms;
-  }
-
-  /**
-   * Permanently delete all archived files for a room.
-   * @param {string} roomId
-   */
-  async deleteArchivedRoom(roomId) {
+  async _deleteArchiveMarker(roomId) {
     const safe = sanitize(roomId);
-    const archiveDir = path.join(this._dir, 'archive');
+    const markerPath = path.join(this._dir, 'archive', `${safe}.archivedAt`);
+    try { fs.unlinkSync(markerPath); } catch { /* may not exist */ }
+  }
 
-    for (const ext of ['.ydoc', '.SEC', '.comments.json', '.archivedAt']) {
-      const p = path.join(archiveDir, `${safe}${ext}`);
-      try { fs.unlinkSync(p); } catch (_) { /* may not exist */ }
-    }
+  // ── Override: archiveRoom ensures archive dir exists before copy ────────
+
+  async archiveRoom(roomId) {
+    const archiveDir = path.join(this._dir, 'archive');
+    fs.mkdirSync(archiveDir, { recursive: true });
+    return super.archiveRoom(roomId);
   }
 }
 
