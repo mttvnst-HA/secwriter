@@ -1,0 +1,316 @@
+/**
+ * useBlockLinting — per-block lifecycle hook for inline linting.
+ *
+ * Owns all DOM-bound and async effects:
+ *   - debounced lint cycle on input
+ *   - lint on focus
+ *   - lint on enable/un-suspend (when block is focused)
+ *   - synchronous static-rule + NLP pass
+ *   - asynchronous Harper grammar dispatch with stale detection
+ *   - lazy-load triggers for Harper + compromise
+ *   - dedup pipeline (static-wins-over-NLP, grammar-overlap-50%)
+ *   - Range creation against the live DOM
+ *   - cursor-based tooltip detection (selectionchange + arrow keys)
+ *
+ * Reads + writes the linting state via the supplied dispatch. CSS.highlights
+ * mutation lives in App's top-level effect, fed by `getRangesByTier(state)`.
+ */
+
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import {
+  extractPlainText,
+  createRangeForMatch,
+  findFindingAtCursor,
+  computeFixedText,
+} from '../lib/inline-linter.js';
+import {
+  setBlockFindings,
+  clearBlock,
+  getBlockFindings,
+  getBlockSeverity,
+  getGrammarText,
+  isActive,
+  isDeferredRule,
+  dedupNlpAgainstCompliance,
+  dedupGrammarAgainstFindings,
+} from '../lib/linting.js';
+import { runStaticRules, getRules } from '../lib/compliance-rules.js';
+import {
+  checkGrammar,
+  isGrammarReady,
+  initGrammarChecker,
+} from '../lib/grammar-checker.js';
+import { detectNlpIssues, isNlpReady, preloadNlp } from '../lib/nlp-rules.js';
+import { addUserWord } from '../lib/grammar-checker.js';
+
+/** Idle window after the last keystroke before re-linting the focused block. */
+export const LINT_DEBOUNCE_MS = 500;
+
+/** Re-lint delay after a fix or blur (DOM has just been replaced). */
+const POST_MUTATION_RELINT_MS = 50;
+
+/** Tooltip cursor-position read debounce after selectionchange. */
+const TOOLTIP_DEBOUNCE_MS = 100;
+
+/**
+ * @param {Object} args
+ * @param {() => Element|null} args.getEl — returns the contentEditable DOM node
+ * @param {string} args.blockId
+ * @param {string} args.blockType
+ * @param {boolean} args.editable
+ * @param {Object} args.lintingState
+ * @param {(updater: (s) => s) => void} args.dispatch — setLintingState
+ * @param {(blockId: string, fixedHtml: string) => void} [args.onFix]
+ * @param {(node: Element|null, html: string) => void} [args.applyTagLabels]
+ *   Called after an inline fix replaces innerHTML, so the block's mark spans
+ *   get their `<TAG>` labels re-injected if tag visibility is on.
+ * @returns {{
+ *   severity: 'high'|'medium'|'low'|null,
+ *   tooltipFinding: {range: Range, violation: object} | null,
+ *   dismissTooltip: () => void,
+ *   applyFix: (blockId: string, fixedHtml: string) => void,
+ *   addToDictionary: (word: string) => Promise<void>,
+ *   reLintAfterMutation: () => void,
+ * }}
+ */
+export function useBlockLinting({
+  getEl,
+  blockId,
+  blockType,
+  editable,
+  lintingState,
+  dispatch,
+  onFix,
+  applyTagLabels,
+}) {
+  const [tooltipFinding, setTooltipFinding] = useState(null);
+  const debounceRef = useRef(null);
+  const selTimerRef = useRef(null);
+  const isNoteBlock = blockType === 'note';
+  const active = isActive(lintingState);
+
+  // Mirror lintingState into a ref so listeners (selectionchange, keyup) read
+  // fresh state without forcing the effect to re-bind on every state change.
+  const stateRef = useRef(lintingState);
+  useEffect(() => { stateRef.current = lintingState; }, [lintingState]);
+
+  // ── Core lint cycle ────────────────────────────────────────────────────────
+
+  const lint = useCallback(() => {
+    const el = getEl();
+    if (!el || !active) {
+      dispatch(s => clearBlock(s, blockId));
+      return;
+    }
+    let plainText;
+    try { plainText = extractPlainText(el); } catch { return; }
+
+    // 1. Static UFS rules (synchronous, fast).
+    const rules = getRules();
+    const allStatic = runStaticRules(plainText, blockId, rules, {
+      skipBrackets: true,
+      isNoteBlock,
+    });
+    const complianceViolations = allStatic.filter(v => !isDeferredRule(v));
+
+    // 2. NLP rules — only if compromise is loaded; suppress overlaps with compliance.
+    let nlpViolations = [];
+    if (isNlpReady()) {
+      nlpViolations = dedupNlpAgainstCompliance(
+        detectNlpIssues(plainText, blockId, isNoteBlock),
+        complianceViolations,
+      );
+    } else {
+      preloadNlp();
+    }
+
+    // Build Range objects against the live DOM and stash sync findings.
+    // Clear stale grammar in the same dispatch; if grammar is ready, the snapshot
+    // text doubles as the stale-detection key for the upcoming async pass.
+    const complianceFindings = toFindings(el, complianceViolations);
+    const nlpFindings = toFindings(el, nlpViolations);
+    const grammarReady = isGrammarReady();
+    dispatch(s => setBlockFindings(s, blockId, {
+      compliance: complianceFindings,
+      nlp: nlpFindings,
+      grammar: [],
+      grammarText: grammarReady ? plainText : null,
+    }));
+
+    // 3. Grammar — async; merge results on resolve, abort if stale.
+    if (grammarReady) {
+      runGrammarPass({
+        el,
+        plainText,
+        blockId,
+        dispatch,
+        complianceViolations,
+        nlpViolations,
+      });
+    } else {
+      // Once Harper loads, re-lint this block if it's still focused.
+      initGrammarChecker().then(() => {
+        const cur = getEl();
+        if (cur && cur.isConnected && document.activeElement === cur) {
+          lint();
+        }
+      }).catch(() => {});
+    }
+  }, [getEl, blockId, isNoteBlock, active, dispatch]);
+
+  // ── Severity (read at render time from state) ─────────────────────────────
+
+  const severity = active ? getBlockSeverity(lintingState, blockId) : null;
+
+  // ── Input + focus + lifecycle wiring ──────────────────────────────────────
+
+  useEffect(() => {
+    const el = getEl();
+    if (!el || !editable) return;
+
+    if (!active) {
+      dispatch(s => clearBlock(s, blockId));
+      return;
+    }
+
+    const onInput = () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(lint, LINT_DEBOUNCE_MS);
+    };
+    const onFocus = () => lint();
+
+    el.addEventListener('input', onInput);
+    el.addEventListener('focus', onFocus);
+
+    if (document.activeElement === el) lint();
+
+    return () => {
+      el.removeEventListener('input', onInput);
+      el.removeEventListener('focus', onFocus);
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      dispatch(s => clearBlock(s, blockId));
+    };
+    // intentionally omits getEl/dispatch — those are stable refs from caller scope
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blockId, editable, lint, active]);
+
+  // ── Tooltip cursor tracking ───────────────────────────────────────────────
+
+  useEffect(() => {
+    if (!editable) return;
+
+    const checkCursor = () => {
+      if (selTimerRef.current) clearTimeout(selTimerRef.current);
+      selTimerRef.current = setTimeout(() => {
+        const sel = document.getSelection();
+        const el = getEl();
+        if (!sel || !sel.isCollapsed || !sel.rangeCount) {
+          setTooltipFinding(null);
+          return;
+        }
+        if (!el || !el.contains(sel.anchorNode)) {
+          setTooltipFinding(null);
+          return;
+        }
+        const findings = getBlockFindings(stateRef.current, blockId);
+        setTooltipFinding(findFindingAtCursor(findings, sel.anchorNode, sel.anchorOffset));
+      }, TOOLTIP_DEBOUNCE_MS);
+    };
+
+    const onKeyUp = (e) => {
+      if (
+        e.key === 'ArrowLeft' || e.key === 'ArrowRight' ||
+        e.key === 'ArrowUp'   || e.key === 'ArrowDown' ||
+        e.key === 'Home'      || e.key === 'End'
+      ) checkCursor();
+    };
+    const onInput = () => setTooltipFinding(null);
+
+    document.addEventListener('selectionchange', checkCursor);
+    document.addEventListener('keyup', onKeyUp);
+    const el = getEl();
+    if (el) el.addEventListener('input', onInput);
+
+    return () => {
+      document.removeEventListener('selectionchange', checkCursor);
+      document.removeEventListener('keyup', onKeyUp);
+      if (el) el.removeEventListener('input', onInput);
+      if (selTimerRef.current) clearTimeout(selTimerRef.current);
+    };
+    // lintingState is read inside the listener — re-binding only when editable flips
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editable, blockId]);
+
+  const dismissTooltip = useCallback(() => setTooltipFinding(null), []);
+
+  // ── Inline fix: replace DOM, persist, re-lint ─────────────────────────────
+
+  const applyFix = useCallback((id, fixedHtml) => {
+    setTooltipFinding(null);
+    dispatch(s => clearBlock(s, id));
+    const el = getEl();
+    if (el) {
+      el.innerHTML = fixedHtml;
+      if (applyTagLabels) applyTagLabels(el, fixedHtml);
+    }
+    if (onFix) onFix(id, fixedHtml);
+    setTimeout(lint, POST_MUTATION_RELINT_MS);
+  }, [dispatch, getEl, applyTagLabels, onFix, lint]);
+
+  const addToDictionary = useCallback(async (word) => {
+    setTooltipFinding(null);
+    try { await addUserWord(word); } catch { /* ignore */ }
+    setTimeout(lint, POST_MUTATION_RELINT_MS);
+  }, [lint]);
+
+  // Re-lint after blur (caller calls this from their blur handler — DOM may have
+  // been replaced by React re-render, invalidating prior Range objects).
+  const reLintAfterMutation = useCallback(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    setTooltipFinding(null);
+    setTimeout(lint, POST_MUTATION_RELINT_MS);
+  }, [lint]);
+
+  return {
+    severity,
+    tooltipFinding,
+    dismissTooltip,
+    applyFix,
+    addToDictionary,
+    reLintAfterMutation,
+  };
+}
+
+// ── Helpers (module-internal) ───────────────────────────────────────────────
+
+/** Convert a violation array to findings with Range objects against the live DOM. */
+function toFindings(el, violations) {
+  if (!violations.length) return [];
+  const out = [];
+  for (const v of violations) {
+    const range = createRangeForMatch(el, v.match, v.index);
+    if (range) out.push({ range, violation: v });
+  }
+  return out;
+}
+
+/**
+ * Run Harper grammar check, then dedup against current static + NLP findings
+ * and merge into state. Includes stale-result detection (text changed mid-flight).
+ */
+function runGrammarPass({ el, plainText, blockId, dispatch, complianceViolations, nlpViolations }) {
+  // Caller has already stashed plainText as grammarText for stale detection.
+  checkGrammar(plainText, blockId).then(grammarViolations => {
+    dispatch(s => {
+      // Stale check: if grammarText changed while we awaited, our results are stale.
+      if (getGrammarText(s, blockId) !== plainText) return s;
+      const deduped = dedupGrammarAgainstFindings(
+        grammarViolations,
+        [...complianceViolations, ...nlpViolations],
+      );
+      const grammarFindings = toFindings(el, deduped);
+      return setBlockFindings(s, blockId, { grammar: grammarFindings });
+    });
+  }).catch(() => {});
+}

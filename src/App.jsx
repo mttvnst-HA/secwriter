@@ -33,7 +33,7 @@ import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
 import * as tc from "./lib/track-changes.js";
-import { clearInlineLinting } from "./lib/inline-linter.js";
+import * as linting from "./lib/linting.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES, DEFAULT_HTTP_URL } from "./lib/collab.js";
 import * as cm from "./lib/comments.js";
@@ -146,9 +146,12 @@ export default function SpecEditor() {
   const [collabReachable, setCollabReachable] = useState(false);
   const [showRoomPanel, setShowRoomPanel] = useState(false);
   const [roomList, setRoomList] = useState([]);
-  const [inlineLintingEnabled, setInlineLintingEnabled] = useState(() => {
-    try { return localStorage.getItem('sim-inline-linting') !== 'false'; } catch { return true; }
+  const [lintingState, setLintingState] = useState(() => {
+    let enabled = true;
+    try { enabled = localStorage.getItem('sim-inline-linting') !== 'false'; } catch {}
+    return linting.createInitial({ enabled });
   });
+  const inlineLintingEnabled = lintingState.enabled;
   const [sectionMeta, setSectionMeta] = useState({
     sectionNumber: "31 00 00",
     sectionTitle: "EARTHWORK",
@@ -1018,6 +1021,26 @@ export default function SpecEditor() {
   useEffect(() => {
     try { localStorage.setItem('sim-inline-linting', String(inlineLintingEnabled)); } catch {}
   }, [inlineLintingEnabled]);
+
+  // Suspend inline linting while the compliance panel is open
+  // (panel injects its own .compliance-highlight spans).
+  useEffect(() => {
+    setLintingState(s => linting.setSuspended(s, complianceOpen));
+  }, [complianceOpen]);
+
+  // Single seam that mutates the global CSS.highlights registry. Rebuilt
+  // whenever lintingState changes, fed by getRangesByTier(state).
+  useEffect(() => {
+    if (typeof CSS === 'undefined' || !CSS.highlights) return;
+    const groups = linting.getRangesByTier(lintingState);
+    const sync = (name, ranges) => {
+      if (ranges.length > 0) CSS.highlights.set(name, new Highlight(...ranges));
+      else CSS.highlights.delete(name);
+    };
+    sync('compliance-error', groups.compliance);
+    sync('grammar-error', groups.grammar);
+    sync('passive-voice', groups.nlp);
+  }, [lintingState]);
 
   // Collab server reachability detection — ping GET /rooms on mount and tab focus (30s cooldown)
   useEffect(() => {
@@ -1983,9 +2006,10 @@ export default function SpecEditor() {
             {/* Inline linting toggle */}
             <button
               onClick={() => {
-                setInlineLintingEnabled(prev => {
-                  if (prev) clearInlineLinting();
-                  return !prev;
+                setLintingState(s => {
+                  const next = linting.setEnabled(s, !s.enabled);
+                  // Disabling clears findings so highlights drop immediately.
+                  return next.enabled ? next : linting.clearAll(next);
                 });
               }}
               title={inlineLintingEnabled ? "Disable inline linting" : "Enable inline linting"}
@@ -2422,8 +2446,8 @@ export default function SpecEditor() {
                   comments={comments}
                   onCommentClick={handleCommentClick}
                   onInlineFix={handleComplianceAcceptFix}
-                  inlineLintingEnabled={inlineLintingEnabled}
-                  compliancePanelActive={complianceOpen}
+                  lintingState={lintingState}
+                  lintingDispatch={setLintingState}
                   showTags={showTags}
                 />
                 {focusedBlockId === block.id && (

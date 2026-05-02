@@ -11,8 +11,10 @@ import { render, act } from '@testing-library/react';
 import EditableBlock, { PUBLISH_DEBOUNCE_MS } from '../EditableBlock.jsx';
 
 // Common props — most callbacks are unused for these tests but the component
-// requires them. Inline linting is disabled to avoid the CSS Custom Highlight
-// API which jsdom doesn't implement.
+// requires them. Linting state is constructed disabled to avoid the CSS Custom
+// Highlight API which jsdom doesn't implement.
+import * as linting from '../../lib/linting.js';
+
 function defaultProps(overrides = {}) {
   return {
     block: { id: 'b1', type: 'txt', html: 'hello' },
@@ -24,8 +26,8 @@ function defaultProps(overrides = {}) {
     onFocusNext: vi.fn(),
     onConvertBlock: vi.fn(),
     onChangeOliLevel: vi.fn(),
-    inlineLintingEnabled: false,
-    compliancePanelActive: false,
+    lintingState: linting.createInitial({ enabled: false }),
+    lintingDispatch: vi.fn(),
     showTags: false,
     readOnly: false,
     isFocused: false,
