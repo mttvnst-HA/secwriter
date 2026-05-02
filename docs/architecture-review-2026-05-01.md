@@ -10,6 +10,8 @@ This file is a **backlog**, not a plan. Pick one, drop into a grilling conversat
 
 Architecture vocabulary used below — *module, interface, depth, seam, leverage, locality, deletion test* — is defined in the `improve-codebase-architecture` skill's `LANGUAGE.md`. Domain vocabulary — *block, transparent tag, TC snapshot, publish path, etc.* — is defined in [`CONTEXT.md`](../CONTEXT.md).
 
+**Status (2026-05-02): all six numbered entries have landed.** Each became its own pure-reducer / hook / adapter module with property-tested invariants. App.jsx shrank from ~2850 lines to ~2470. The pure-reducer pattern (`{ state, verbs, selectors, property-tested invariant }`) is now the established playbook for new domain modules in this codebase — see `track-changes.js`, `comments.js`, `linting.js`, `compliance.js`, and `room-storage.cjs`.
+
 ---
 
 ## 1. Track-changes snapshot lives as a Map across six unrelated call sites

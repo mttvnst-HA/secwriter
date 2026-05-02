@@ -38,3 +38,4 @@ Each ADR is one Markdown file: `NNNN-short-slug.md`. Use [`0000-template.md`](00
 | [0002](0002-pin-y-websocket-v1.md) | Pin y-websocket at v1 | Accepted |
 | [0003](0003-compliance-rules-as-data.md) | Compliance rules live in JSON, not source code | Accepted |
 | [0004](0004-collab-publish-snapshot-diff.md) | Collab publish path uses snapshot diff, not live Y.Text binding | Accepted (deferred refactor tracked at issue #22) |
+| [0005](0005-storage-adapter-atomicity-per-backend.md) | Room storage: base class + adapters; multi-artifact atomicity stays per-backend | Accepted |
