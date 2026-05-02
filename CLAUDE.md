@@ -123,13 +123,14 @@ Do NOT add additional focus effects or competing focus mechanisms. The current p
 
 ## Track Changes Architecture
 
-TC uses a **snapshot-based diff** approach:
+TC uses a **snapshot-based diff** approach owned by `src/lib/track-changes.js` — a pure reducer over `{ enabled, snapshots, publishSeq }`:
 
-1. **`tcSnapshots`** (`Map<blockId, plainText>`) stores the baseline text of every block at the moment TC was enabled. On blur, current text is diffed against the snapshot.
-2. **Snapshot syncing is critical.** Every mutation that changes block content must also update `tcSnapshots` to prevent stale baselines from re-creating phantom revisions. This includes: inline accept/reject (FloatingToolbar), gutter accept/reject, Accept All, Reject All, and del popup accept/reject.
-3. **`onRevisionAction`** is a dedicated callback (separate from `onUpdate`) that updates block HTML and tcSnapshots in one pass. Used by FloatingToolbar and EditableBlock's del popup.
-4. **Diff pipeline:** `diffWords()` → `refineWordDiff()` → `diffChars()`. Refinement applies character-level sub-diff to consecutive del→add pairs sharing ≥50% common characters, producing fine-grained marks instead of replacing whole words.
-5. **Del elements** have `contentEditable="false"` to prevent caret entry, and `cursor: pointer` for click-to-show popup.
+1. **State is opaque.** App reads it via selectors (`isEnabled`, `getSnapshot`, `getPublishableState`, `revisionFlagForCreate`, `revisionFlagForDelete`) and mutates it via verbs (`enable`, `disable`, `acceptInline`/`rejectInline`, `acceptAll`/`rejectAll`, `markBlockCreated`, `applyResolveAtBlock`, `applyRemote`). Don't reach into `state.snapshots` directly — the verbs maintain the invariant `snapshots[id] === getVisibleTextFromHtml(blocks[id].html)` after every touched id, and a property test in `src/lib/__tests__/track-changes.test.js` asserts it.
+2. **`onRevisionAction`** is the prop-layer dispatcher used by FloatingToolbar and EditableBlock's del popup; the App-side handler routes it to `tc.applyResolveAtBlock(...)`.
+3. **Collab publish.** `publishSeq` is a monotonic counter bumped by every user-driven verb but not by `applyRemote`. App's publish effect compares against `lastPublishedTcSeqRef` to decide "did this change come from us?" — replacing the imperative `tcDirtyRef` flag.
+4. **Undo/redo coupling.** `useUndoableBlocks` snapshots `(blocks, tcState)` together as one frame; the hook is agnostic about tcState's shape.
+5. **Diff pipeline:** `diffWords()` → `refineWordDiff()` → `diffChars()`. Refinement applies character-level sub-diff to consecutive del→add pairs sharing ≥50% common characters, producing fine-grained marks instead of replacing whole words.
+6. **Del elements** have `contentEditable="false"` to prevent caret entry, and `cursor: pointer` for click-to-show popup. Diff annotation (turning the snapshot diff into `<ins>`/`<del>` DOM marks) stays in EditableBlock — the module remains pure and DOM-free.
 
 ## Comments Architecture
 

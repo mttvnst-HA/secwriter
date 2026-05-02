@@ -1,29 +1,34 @@
 import { useState, useRef, useCallback } from "react";
+import * as tc from "./track-changes.js";
 
 const MAX_HISTORY = 100;
 
 /**
- * Custom hook that wraps blocks + tcSnapshots state with undo/redo history.
+ * Custom hook that wraps blocks + opaque track-changes state with undo/redo
+ * history.
  *
  * Debounce: the first setBlocks call after unpause captures a snapshot,
  * then auto-pauses. Structural actions call resumeHistory() before their
  * setBlocks, which unpauses and ensures a new undo entry is created.
+ *
+ * The hook is agnostic about the shape of `tcState` — it stores whatever
+ * the track-changes module hands it and restores it on undo/redo.
  *
  * @param {Array} initialBlocks
  * @returns {Object}
  */
 export function useUndoableBlocks(initialBlocks) {
   const [blocks, _setBlocks] = useState(initialBlocks);
-  const [tcSnapshots, _setTcSnapshots] = useState(new Map());
+  const [tcState, _setTcState] = useState(() => tc.createInitial());
 
   const historyRef = useRef({ past: [], future: [] });
   const pausedRef = useRef(false);
   const undoingRef = useRef(false); // true during undo/redo to suppress blur-triggered setBlocks
-  const currentRef = useRef({ blocks: initialBlocks, tcSnapshots: new Map() });
+  const currentRef = useRef({ blocks: initialBlocks, tcState: tc.createInitial() });
 
   // Keep currentRef in sync
   currentRef.current.blocks = blocks;
-  currentRef.current.tcSnapshots = tcSnapshots;
+  currentRef.current.tcState = tcState;
 
   const setBlocks = useCallback((updater) => {
     // During undo/redo, blur-triggered setBlocks calls must be suppressed
@@ -34,10 +39,10 @@ export function useUndoableBlocks(initialBlocks) {
       const next = typeof updater === 'function' ? updater(prev) : updater;
 
       if (!pausedRef.current) {
-        // Capture snapshot before mutation
+        // Capture (blocks, tcState) snapshot atomically before mutation.
         const snapshot = {
           blocks: prev,
-          tcSnapshots: new Map(currentRef.current.tcSnapshots),
+          tcState: currentRef.current.tcState,
         };
         const h = historyRef.current;
         h.past.push(snapshot);
@@ -51,11 +56,8 @@ export function useUndoableBlocks(initialBlocks) {
     });
   }, []);
 
-  const setTcSnapshots = useCallback((updater) => {
-    _setTcSnapshots(prev => {
-      const next = typeof updater === 'function' ? updater(prev) : updater;
-      return next;
-    });
+  const setTcState = useCallback((updater) => {
+    _setTcState(prev => (typeof updater === 'function' ? updater(prev) : updater));
   }, []);
 
   const resumeHistory = useCallback(() => {
@@ -101,11 +103,11 @@ export function useUndoableBlocks(initialBlocks) {
     const snapshot = h.past.pop();
     h.future.push({
       blocks: currentBlocks,
-      tcSnapshots: new Map(currentRef.current.tcSnapshots),
+      tcState: currentRef.current.tcState,
     });
 
     _setBlocks(snapshot.blocks);
-    _setTcSnapshots(new Map(snapshot.tcSnapshots));
+    _setTcState(snapshot.tcState);
     pausedRef.current = false;
     undoingRef.current = false;
   }, []);
@@ -122,11 +124,11 @@ export function useUndoableBlocks(initialBlocks) {
     const snapshot = h.future.pop();
     h.past.push({
       blocks: currentRef.current.blocks,
-      tcSnapshots: new Map(currentRef.current.tcSnapshots),
+      tcState: currentRef.current.tcState,
     });
 
     _setBlocks(snapshot.blocks);
-    _setTcSnapshots(new Map(snapshot.tcSnapshots));
+    _setTcState(snapshot.tcState);
     pausedRef.current = false;
     undoingRef.current = false;
   }, []);
@@ -136,9 +138,9 @@ export function useUndoableBlocks(initialBlocks) {
 
   return {
     blocks,
-    tcSnapshots,
+    tcState,
     setBlocks,
-    setTcSnapshots,
+    setTcState,
     undo,
     redo,
     canUndo,
