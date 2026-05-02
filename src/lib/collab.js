@@ -844,17 +844,28 @@ export function createCollabSession({
       // is cleared in the same transaction as the flag flip.
       publishTcToDoc(ydoc, yTc, tc);
     },
-    publishComment(id, payload) {
-      publishCommentToDoc(ydoc, yComments, id, payload);
-    },
-    publishCommentReply(id, reply) {
-      publishCommentReplyToDoc(ydoc, yComments, id, reply);
-    },
-    publishCommentStatus(id, status, meta) {
-      publishCommentStatusToDoc(ydoc, yComments, id, status, meta);
-    },
-    deleteComment(id) {
-      deleteCommentFromDoc(ydoc, yComments, id);
+    dispatchComment(envelope) {
+      // Single entry point for the comments module's PublishEnvelope union.
+      // Underlying *ToDoc functions are unchanged — they are still tested
+      // directly by collab.test.js. This dispatcher is the only seam App.jsx
+      // uses, so the four legacy session methods are gone.
+      if (!envelope || typeof envelope !== 'object') return;
+      switch (envelope.kind) {
+        case 'create':
+          publishCommentToDoc(ydoc, yComments, envelope.commentId, envelope.payload);
+          return;
+        case 'reply':
+          publishCommentReplyToDoc(ydoc, yComments, envelope.commentId, envelope.reply);
+          return;
+        case 'status':
+          publishCommentStatusToDoc(ydoc, yComments, envelope.commentId, envelope.status, envelope.meta);
+          return;
+        case 'delete':
+          deleteCommentFromDoc(ydoc, yComments, envelope.commentId);
+          return;
+        default:
+          return;
+      }
     },
     setCursor(cursor) {
       awareness.setLocalStateField('cursor', cursor);

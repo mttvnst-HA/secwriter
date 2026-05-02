@@ -56,6 +56,15 @@ export function useUndoableBlocks(initialBlocks) {
     });
   }, []);
 
+  // Bypass undo history. Use for mechanical / non-user-driven block updates
+  // — comments reconcile (orphan unwrap, status reclass), remote-collab block
+  // sync, etc. Otherwise these would push onto past + clear future, which
+  // wipes the redo stack the moment a reconcile fires after Ctrl+Z.
+  const setBlocksDirect = useCallback((updater) => {
+    if (undoingRef.current) return;
+    _setBlocks(prev => (typeof updater === 'function' ? updater(prev) : updater));
+  }, []);
+
   const setTcState = useCallback((updater) => {
     _setTcState(prev => (typeof updater === 'function' ? updater(prev) : updater));
   }, []);
@@ -140,6 +149,7 @@ export function useUndoableBlocks(initialBlocks) {
     blocks,
     tcState,
     setBlocks,
+    setBlocksDirect,
     setTcState,
     undo,
     redo,

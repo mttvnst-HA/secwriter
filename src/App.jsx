@@ -36,7 +36,7 @@ import * as tc from "./lib/track-changes.js";
 import { clearInlineLinting } from "./lib/inline-linter.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
 import { createCollabSession, getRoomFromUrl, buildRoomUrl, generateRoomId, DocSizeLimitError, MAX_PUBLISH_BYTES, DEFAULT_HTTP_URL } from "./lib/collab.js";
-import { stripOrphanCommentSpans } from "./lib/orphan-comment-spans.js";
+import * as cm from "./lib/comments.js";
 import { loadIdentity } from "./lib/identity.js";
 import { getToken, onTokenRefresh, getAuthMode, signOut as authSignOut, getIdentity } from './lib/auth-client.js';
 import IdentityModal from "./components/IdentityModal.jsx";
@@ -112,7 +112,7 @@ function restorePlainTextOffset(root, startIndex, endIndex) {
 
 export default function SpecEditor() {
   const {
-    blocks, tcState, setBlocks, setTcState,
+    blocks, tcState, setBlocks, setBlocksDirect, setTcState,
     undo, redo, canUndo, canRedo, clearHistory, resumeHistory,
   } = useUndoableBlocks(INITIAL_BLOCKS);
   const trackChanges = tc.isEnabled(tcState);
@@ -135,7 +135,10 @@ export default function SpecEditor() {
   const [bracketOpen, setBracketOpen] = useState(false);
   const [validationOpen, setValidationOpen] = useState(false);
   const [refWizardOpen, setRefWizardOpen] = useState(false);
-  const [comments, setComments] = useState(new Map()); // Map<commentId, comment>
+  const [commentsState, setCommentsState] = useState(cm.createInitial());
+  // `commentsState.byId` is a Map<commentId, Comment> — alias kept for the
+  // many UI consumers that expect the old `comments` Map shape.
+  const comments = commentsState.byId;
   const [openCommentId, setOpenCommentId] = useState(null);
   const [commentRect, setCommentRect] = useState(null);
   const [showComments, setShowComments] = useState(false);
@@ -219,11 +222,6 @@ export default function SpecEditor() {
   // from a user action (publishSeq advanced) versus a remote update (no
   // advance). Replaces the imperative tcDirtyRef flag.
   const lastPublishedTcSeqRef = useRef(0);
-  // Stash the nextBlocks from the initial onRemoteBlocks call so the
-  // subsequent initial onRemoteComments can strip orphan mark-comment
-  // spans against the authoritative remote blocks (blocksRef is not
-  // yet updated — setBlocks is async).
-  const initialBlocksForCleanupRef = useRef(null);
 
   const fileHandleRef = useRef(null); // File System Access API handle for SEC file
   const commentsHandleRef = useRef(null); // File System Access API handle for comments sidecar
@@ -233,8 +231,8 @@ export default function SpecEditor() {
   blocksRef.current = blocks;
   const sectionMetaRef = useRef(sectionMeta);
   sectionMetaRef.current = sectionMeta;
-  const commentsRef = useRef(new Map());
-  commentsRef.current = comments;
+  const commentsStateRef = useRef(commentsState);
+  commentsStateRef.current = commentsState;
   const tree = useMemo(() => buildTree(blocks), [blocks]);
   const numberMap = useMemo(() => computeNumbering(blocks), [blocks]);
   const oliLabels = useMemo(() => computeOliLabels(blocks), [blocks]);
@@ -300,7 +298,7 @@ export default function SpecEditor() {
       setFocusedBlockId(null);
       // In a room, yComments is the authoritative source — do not wipe shared
       // comment state on a local file import.
-      if (!inRoom) setComments(new Map());
+      if (!inRoom) setCommentsState(cm.createInitial());
       // Prevent cross-file data loss: a stale handle from a previous file
       // would otherwise cause Ctrl+S to silently overwrite that file with
       // the newly-loaded content.
@@ -567,263 +565,103 @@ export default function SpecEditor() {
     setBlocks(prev => reorderSection(prev, dragId, dropId, position));
   }, [resumeHistory]);
 
-  // Comment handlers
+  // Comment dispatcher — single seam to the collab session's PublishEnvelope.
+  // The pure verbs in `cm` return `{ state, publish }`; this handler routes
+  // the publish envelope to the collab session if we're in a room. Span
+  // mutation (orphan unwrap, open↔resolved reclass) is handled by the
+  // reconcileBlocks effect below — handlers do NOT touch the DOM directly.
+  const dispatchComment = useCallback((envelope) => {
+    if (!envelope || !inRoom) return;
+    const session = collabSessionRef.current;
+    if (!session) return;
+    try { session.dispatchComment(envelope); }
+    catch (err) { console.error('[collab] dispatchComment failed:', err); }
+  }, [inRoom]);
+
+  const effectiveIdentity = useCallback(() => (
+    identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' }
+  ), [identity]);
+
   const handleCommentCreate = useCallback((blockId, html, commentId, highlightText) => {
     // html is null for ref blocks (their data is in block.ref, not block.html)
     if (html !== null) {
       setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html } : b));
     }
-    const author = identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' };
-    const createdAt = Date.now();
-    const ts = new Date(createdAt).toISOString();
-    setComments(prev => {
-      const next = new Map(prev);
-      next.set(commentId, {
-        id: commentId,
-        blockId,
-        status: "open",
-        highlightText: highlightText || "",
-        createdAt,
-        authorId: author.id,
-        authorName: author.name,
-        authorColor: author.color,
-        entries: [{
-          id: `e-${createdAt}`,
-          type: "create",
-          text: "",
-          // New shape fields (used by collab + future Task 7 UI):
-          authorId: author.id,
-          authorName: author.name,
-          authorColor: author.color,
-          ts: createdAt,
-          // Legacy shape fields (keep until Task 7 updates CommentPopup):
-          author: author.name,
-          timestamp: ts,
-        }],
-      });
-      return next;
+    const ts = Date.now();
+    const { state } = cm.createDraft(commentsStateRef.current, {
+      commentId, blockId, highlightText: highlightText || '', identity: effectiveIdentity(), ts,
     });
-    // NOTE: we do NOT publishComment here — defer to handleCommentUpdateCreate
-    // so the Y.Doc never holds a pending empty-text comment entry.
-    // Open the popup immediately so user can type the comment
+    setCommentsState(state);
+    // Publish is deferred to handleCommentUpdateCreate so the Y.Doc never
+    // holds a pending empty-text comment entry.
     setOpenCommentId(commentId);
     setTimeout(() => {
       const el = document.querySelector(`[data-comment-id="${commentId}"]`);
       if (el) setCommentRect(el.getBoundingClientRect());
     }, 50);
-  }, [inRoom, identity]);
+  }, [effectiveIdentity]);
 
-  // Update the initial "create" entry with actual comment text and author
-  const handleCommentUpdateCreate = useCallback((commentId, text, author) => {
-    setComments(prev => {
-      const next = new Map(prev);
-      const c = next.get(commentId);
-      if (!c) return prev;
-      const entries = [...c.entries];
-      if (entries[0]?.type === "create") {
-        // Update both legacy `author` field and new `authorName` field
-        entries[0] = { ...entries[0], text, author, authorName: author };
-      }
-      next.set(commentId, { ...c, entries });
-      return next;
-    });
-    if (inRoom && collabSessionRef.current) {
-      // Publish the full comment now that we have the user's submitted text.
-      // Deferred from handleCommentCreate so the Y.Doc never holds a
-      // pending empty-text comment entry.
-      const effectiveAuthor = identity || { id: 'local', name: author || 'User', color: '#888' };
-      // commentsRef is assigned on every render (`commentsRef.current = comments`),
-      // so it reflects the last *rendered* comments Map. This is safe here
-      // because handleCommentCreate ran on a prior render tick (the user had
-      // to type submission text between create and update-create), so the
-      // freshly-created comment is already present in commentsRef.current.
-      const current = commentsRef.current?.get(commentId);
-      if (current) {
-        try {
-          collabSessionRef.current.publishComment(commentId, {
-            blockId: current.blockId,
-            status: current.status,
-            highlightText: current.highlightText,
-            createdAt: current.createdAt,
-            author: effectiveAuthor,
-            initialText: text,
-          });
-        } catch (err) {
-          console.error('[collab] publishComment (update-create) failed:', err);
-        }
-      }
-    }
-  }, [inRoom, identity]);
-
-  const handleCommentReply = useCallback((commentId, text, author) => {
-    const effectiveAuthor = identity || { id: 'local', name: author || 'User', color: '#888' };
+  const handleCommentUpdateCreate = useCallback((commentId, text) => {
     const ts = Date.now();
-    const timestamp = new Date(ts).toISOString();
-    setComments(prev => {
-      const next = new Map(prev);
-      const c = next.get(commentId);
-      if (!c) return prev;
-      next.set(commentId, {
-        ...c,
-        entries: [...c.entries, {
-          id: `e-${ts}`,
-          type: "reply",
-          text,
-          // New shape fields:
-          authorId: effectiveAuthor.id,
-          authorName: effectiveAuthor.name,
-          authorColor: effectiveAuthor.color,
-          ts,
-          // Legacy shape fields:
-          author: effectiveAuthor.name,
-          timestamp,
-        }],
-      });
-      return next;
+    const { state, publish } = cm.updateCreate(commentsStateRef.current, {
+      commentId, text, identity: effectiveIdentity(), ts,
     });
-    if (inRoom && collabSessionRef.current) {
-      try {
-        collabSessionRef.current.publishCommentReply(commentId, {
-          author: effectiveAuthor,
-          text,
-          ts,
-        });
-      } catch (err) {
-        console.error('[collab] publishCommentReply failed:', err);
-      }
-    }
-  }, [inRoom, identity]);
+    setCommentsState(state);
+    dispatchComment(publish);
+  }, [effectiveIdentity, dispatchComment]);
+
+  const handleCommentReply = useCallback((commentId, text) => {
+    const ts = Date.now();
+    const { state, publish } = cm.reply(commentsStateRef.current, {
+      commentId, text, identity: effectiveIdentity(), ts,
+    });
+    setCommentsState(state);
+    dispatchComment(publish);
+  }, [effectiveIdentity, dispatchComment]);
 
   const handleCommentResolve = useCallback((commentId) => {
-    const effectiveAuthor = identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' };
     const ts = Date.now();
-    const timestamp = new Date(ts).toISOString();
-    setComments(prev => {
-      const next = new Map(prev);
-      const c = next.get(commentId);
-      if (!c) return prev;
-      next.set(commentId, {
-        ...c,
-        status: "resolved",
-        entries: [...c.entries, {
-          id: `e-${ts}`,
-          type: "resolve",
-          // New shape fields:
-          authorId: effectiveAuthor.id,
-          authorName: effectiveAuthor.name,
-          authorColor: effectiveAuthor.color,
-          ts,
-          // Legacy shape fields:
-          author: effectiveAuthor.name,
-          timestamp,
-        }],
-      });
-      return next;
+    const { state, publish } = cm.resolve(commentsStateRef.current, {
+      commentId, identity: effectiveIdentity(), ts,
     });
-    if (inRoom && collabSessionRef.current) {
-      try {
-        collabSessionRef.current.publishCommentStatus(commentId, 'resolved', {
-          author: effectiveAuthor,
-          ts,
-        });
-      } catch (err) {
-        console.error('[collab] publishCommentStatus failed:', err);
-      }
-    }
-    // Update the span class in the DOM
-    const el = document.querySelector(`[data-comment-id="${commentId}"]`);
-    if (el) {
-      el.className = "mark-comment-resolved";
-      const blockEl = el.closest('[data-block-id]');
-      if (blockEl) {
-        const blockId = blockEl.getAttribute('data-block-id');
-        setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: blockEl.innerHTML } : b));
-      }
-    }
-  }, [inRoom, identity]);
+    setCommentsState(state);
+    dispatchComment(publish);
+  }, [effectiveIdentity, dispatchComment]);
 
   const handleCommentReopen = useCallback((commentId) => {
-    const effectiveAuthor = identity || { id: 'local', name: getAuthorName() || 'User', color: '#888' };
     const ts = Date.now();
-    const timestamp = new Date(ts).toISOString();
-    setComments(prev => {
-      const next = new Map(prev);
-      const c = next.get(commentId);
-      if (!c) return prev;
-      next.set(commentId, {
-        ...c,
-        status: "open",
-        entries: [...c.entries, {
-          id: `e-${ts}`,
-          type: "reopen",
-          // New shape fields:
-          authorId: effectiveAuthor.id,
-          authorName: effectiveAuthor.name,
-          authorColor: effectiveAuthor.color,
-          ts,
-          // Legacy shape fields:
-          author: effectiveAuthor.name,
-          timestamp,
-        }],
-      });
-      return next;
+    const { state, publish } = cm.reopen(commentsStateRef.current, {
+      commentId, identity: effectiveIdentity(), ts,
     });
-    if (inRoom && collabSessionRef.current) {
-      try {
-        collabSessionRef.current.publishCommentStatus(commentId, 'open', {
-          author: effectiveAuthor,
-          ts,
-        });
-      } catch (err) {
-        console.error('[collab] publishCommentStatus failed:', err);
-      }
-    }
-    const el = document.querySelector(`[data-comment-id="${commentId}"]`);
-    if (el) {
-      el.className = "mark-comment";
-      const blockEl = el.closest('[data-block-id]');
-      if (blockEl) {
-        const blockId = blockEl.getAttribute('data-block-id');
-        setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: blockEl.innerHTML } : b));
-      }
-    }
-  }, [inRoom, identity]);
+    setCommentsState(state);
+    dispatchComment(publish);
+  }, [effectiveIdentity, dispatchComment]);
 
   const handleCommentDelete = useCallback((commentId) => {
-    setComments(prev => {
-      const next = new Map(prev);
-      next.delete(commentId);
-      return next;
-    });
-    if (inRoom && collabSessionRef.current) {
-      try {
-        collabSessionRef.current.deleteComment(commentId);
-      } catch (err) {
-        console.error('[collab] deleteComment failed:', err);
-      }
-    }
-    // Remove span from DOM, keep text
-    const el = document.querySelector(`[data-comment-id="${commentId}"]`);
-    if (el) {
-      const text = document.createTextNode(el.textContent);
-      el.parentNode.replaceChild(text, el);
-      const blockEl = text.parentElement?.closest('[data-block-id]');
-      if (blockEl) {
-        blockEl.normalize();
-        const blockId = blockEl.getAttribute('data-block-id');
-        setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: blockEl.innerHTML } : b));
-      }
-    }
+    const { state, publish } = cm.remove(commentsStateRef.current, { commentId });
+    setCommentsState(state);
+    dispatchComment(publish);
     setOpenCommentId(null);
-    // `identity` is not read in this handler, but we include it in the
-    // dep array for symmetry with the other comment handlers. Keeps
-    // the hook identity stable across the same renders as its siblings.
-  }, [inRoom, identity]);
+  }, [dispatchComment]);
 
   const handleCommentClick = useCallback((commentId, rect) => {
     setOpenCommentId(commentId);
     setCommentRect(rect);
   }, []);
+
+  // Reconcile mark-comment spans against commentsState whenever either side
+  // changes. cm.reconcileBlocks unwraps spans for missing ids and reclasses
+  // open↔resolved when the cached className disagrees with state. The verb
+  // is idempotent — when nothing changes it returns the original `blocks`
+  // ref, so React's setState bails out and there's no re-render loop.
+  //
+  // Routed through setBlocksDirect so the mechanical fix-up does not push
+  // an undo entry / clear the redo stack — otherwise a Ctrl+Z would clear
+  // future right after the reconcile effect ran on the new (post-undo)
+  // blocks reference.
+  useEffect(() => {
+    setBlocksDirect(prev => cm.reconcileBlocks(prev, commentsState));
+  }, [blocks, commentsState, setBlocksDirect]);
 
   const handleBlockUpdate = useCallback((id, html) => {
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
@@ -1263,9 +1101,14 @@ export default function SpecEditor() {
     if (saved.sectionMeta) setSectionMeta(saved.sectionMeta);
     setFileName(saved.fileName);
     if (saved.comments && Array.isArray(saved.comments)) {
-      const m = new Map();
-      for (const c of saved.comments) m.set(c.id, c);
-      setComments(m);
+      const obj = {};
+      for (const c of saved.comments) obj[c.id] = c;
+      const normalized = cm.normalizeForLoad(obj);
+      const byId = new Map();
+      for (const c of Object.values(normalized)) byId.set(c.id, c);
+      // Local-only restore: seenRemoteIds stays empty so a future room join
+      // treats these as preserved local drafts (mergeRemote's M2.5 rule).
+      setCommentsState({ byId, seenRemoteIds: new Set() });
     }
     setIsDirty(false);
     // Restored state has no attached file handle — force a prompt on
@@ -1298,9 +1141,6 @@ export default function SpecEditor() {
         // duplicate the document on reload.
         if (meta?.initial) {
           sessionReadyRef.current = true;
-          // Stash for the ghost-span cleanup pass that runs in the
-          // subsequent initial onRemoteComments call.
-          initialBlocksForCleanupRef.current = nextBlocks;
         }
 
         // Preserve caret — and any non-collapsed selection — across a
@@ -1368,32 +1208,14 @@ export default function SpecEditor() {
           return next;
         });
       },
-      onRemoteComments: (commentsObj, commentsMeta) => {
-        // M-shared-comments — apply remote comment state. The
-        // mark-comment DOM spans are synced via the existing
-        // blocks → yStore pathway, so we only update the metadata Map
-        // here. Publishes are imperative (no effect watching `comments`),
-        // so there is no echo to guard against.
-        setComments(new Map(Object.entries(commentsObj || {})));
-        // Ghost-span cleanup: on initial sync, strip mark-comment
-        // highlight spans whose data-comment-id has no matching entry
-        // in yComments. This recovers from the tab-close abandon case
-        // where the eager span injection got published but the
-        // deferred metadata publish never fired. Runs once per join.
-        if (commentsMeta?.initial && initialBlocksForCleanupRef.current) {
-          const initialBlocks = initialBlocksForCleanupRef.current;
-          initialBlocksForCleanupRef.current = null;
-          const validIds = new Set(Object.keys(commentsObj || {}));
-          const cleaned = stripOrphanCommentSpans(initialBlocks, validIds);
-          if (cleaned !== initialBlocks) {
-            // setBlocks with a new reference — this is NOT equal to
-            // lastRemoteBlocksRef.current, so the publish effect will
-            // fire and push the cleaned version back to the Y.Doc for
-            // all peers. That's intentional: the ghosts should be
-            // removed globally, not just locally.
-            setBlocks(cleaned);
-          }
-        }
+      onRemoteComments: (commentsObj) => {
+        // M-shared-comments — fold remote yComments into our state via
+        // mergeRemote (M2.5). Local drafts (never seen remote) are
+        // preserved; previously-seen entries that disappear from the
+        // remote payload are tombstoned. The reconcileBlocks effect
+        // then unwraps any orphan spans and reclasses status changes.
+        const normalized = cm.normalizeForLoad(commentsObj || {});
+        setCommentsState(prev => cm.mergeRemote(prev, normalized));
       },
       onPresenceChange: (states) => setPeers(states),
       onStatusChange: (status, meta) => {

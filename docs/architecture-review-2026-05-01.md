@@ -32,19 +32,9 @@ Architecture vocabulary used below — *module, interface, depth, seam, leverage
 
 ## 2. Comments are a parallel store glued to DOM spans by 10 handlers
 
-**Status:** Open
+**Status:** Landed — `src/lib/comments.js` is now a pure reducer over `{ byId: Map<commentId, Comment>, seenRemoteIds: Set<commentId> }`. App dispatches verbs (`createDraft / updateCreate / reply / resolve / reopen / remove / mergeRemote`) and reads selectors (`size / get / all / isDraft / getCreateEntry / reconcileBlocks / normalizeForLoad`). The 10 hand-coordinated comment handlers collapsed into 7 dispatcher sites; `dispatchComment(envelope)` is the single seam to collab. Span↔metadata sync is `useEffect([blocks, commentsState])` → `cm.reconcileBlocks` (idempotent selector, routed through `setBlocksDirect` so it does not pollute undo). `mergeRemote` (M2.5) preserves local drafts and tombstones peer-deletions; `orphan-comment-spans.js` is deleted along with its test, and the latent ghost-span pathology is now a unit test (`comments-merge.test.js`) instead of a collab E2E.
 
-**Files:** `src/App.jsx:138,567–819` (10 comment handlers), `src/components/CommentPopup.jsx`, `src/components/EditableBlock.jsx`, `src/lib/orphan-comment-spans.js`
-
-**Friction:** comments are dual-tracked — `<span class="mark-comment" data-comment-id>` in the DOM, metadata in a `Map` in App state. Each of 10 handlers (`handleCommentCreate`, `Reply`, `Resolve`, `Delete`, …) must keep span-class and metadata-status in lock-step by hand. The `orphan-comment-spans` module exists *only* because that hand-coordination occasionally fails on collab sync. Editable-block comments persist in `block.html`; ref/table comments live only in injected DOM. That divergence isn't documented in the data model.
-
-**Why shallow:** there is no "comment" concept in the code — only a Map plus a CSS class plus ten orchestration handlers. The interface is the union of all ten handlers' implicit contracts.
-
-**Deletion test:** if a comments module owned the span ↔ metadata binding, drift becomes impossible by construction. Orphan cleanup becomes a property of `merge(remote, local)` rather than a band-aid module.
-
-**Sketch:** comment identity, span-class derivation, and remote-merge live in one module. App keeps UI state (which popup is open) and calls verbs.
-
-**Tests improve:** the orphan-span pathology becomes a unit test instead of a collab E2E.
+**Files:** `src/lib/comments.js` (new), `src/lib/__tests__/comments.test.js` (new — 32 tests), `src/lib/__tests__/comments-merge.test.js` (new — 17 tests), `src/App.jsx`, `src/components/CommentPopup.jsx`, `src/styles/editor.css`, `src/lib/collab.js`, `src/lib/useUndoableBlocks.js` (added `setBlocksDirect`)
 
 ---
 
