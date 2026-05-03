@@ -43,32 +43,6 @@ function Avatar({ name, color, size = 28 }) {
   );
 }
 
-/**
- * Extract the displayable name and color for a comment entry.
- * Prefers the new identity-based fields (authorName/authorColor) from
- * room-based comments but falls back to the legacy `author` string for
- * single-user / pre-identity comments.
- */
-function resolveEntryAuthor(entry) {
-  return {
-    name: entry.authorName || entry.author || 'User',
-    color: entry.authorColor || null,
-  };
-}
-
-/**
- * Extract the display timestamp for an entry. Prefers the new `ts`
- * (number) field, falls back to legacy `timestamp` (ISO string).
- */
-function resolveEntryTs(entry) {
-  if (typeof entry.ts === 'number') return entry.ts;
-  if (entry.timestamp) {
-    const parsed = Date.parse(entry.timestamp);
-    return Number.isFinite(parsed) ? parsed : null;
-  }
-  return null;
-}
-
 export default function CommentPopup({ comment, rect, onReply, onResolve, onReopen, onDelete, onClose, onUpdateCreate, editorRef }) {
   const isNewComment = comment.entries.length === 1 && comment.entries[0].type === "create" && !comment.entries[0].text;
   const [replyText, setReplyText] = useState("");
@@ -226,26 +200,27 @@ export default function CommentPopup({ comment, rect, onReply, onResolve, onReop
       {/* Thread entries */}
       <div style={{ padding: "12px 12px 0" }}>
         {comment.entries.map((entry, i) => {
-          const a = resolveEntryAuthor(entry);
-          const ts = resolveEntryTs(entry);
+          const name = entry.authorName;
+          const color = entry.authorColor;
+          const ts = entry.ts;
           return (
             <div key={i} style={{ marginBottom: 12 }}>
               {entry.type === "resolve" ? (
                 <div style={{ fontSize: 12, color: "#188038", display: "flex", alignItems: "center", gap: 6 }}>
-                  <Avatar name={a.name} color={a.color} size={20} />
-                  <span><strong>{a.name}</strong> marked as resolved</span>
+                  <Avatar name={name} color={color} size={20} />
+                  <span><strong>{name}</strong> marked as resolved</span>
                 </div>
               ) : entry.type === "reopen" ? (
                 <div style={{ fontSize: 12, color: "#b06000", display: "flex", alignItems: "center", gap: 6 }}>
-                  <Avatar name={a.name} color={a.color} size={20} />
-                  <span><strong>{a.name}</strong> reopened</span>
+                  <Avatar name={name} color={color} size={20} />
+                  <span><strong>{name}</strong> reopened</span>
                 </div>
               ) : (
                 <div>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <Avatar name={a.name} color={a.color} />
+                    <Avatar name={name} color={color} />
                     <div>
-                      <div style={{ fontWeight: 500, color: "#202124", fontSize: 13 }}>{a.name}</div>
+                      <div style={{ fontWeight: 500, color: "#202124", fontSize: 13 }}>{name}</div>
                       <div style={{ fontSize: 11, color: "#5f6368" }}>
                         {ts ? new Date(ts).toLocaleString(undefined, { hour: 'numeric', minute: '2-digit', hour12: true }) : ""}
                         {" "}
