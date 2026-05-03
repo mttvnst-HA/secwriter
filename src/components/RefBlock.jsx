@@ -1,8 +1,34 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { BLOCK_MARGINS } from "../lib/ini-config.js";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
+import * as cm from "../lib/comments.js";
 
-function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRejectRevision, onCommentClick, readOnly }) {
+// Render `text` as React children, wrapping any substring that matches a
+// comment's `highlightText` with the appropriate `mark-comment` /
+// `mark-comment-resolved` span. Driven by `cm.computeCommentSegments` so
+// the segmentation logic stays in the pure-reducer module and can be
+// table-tested without React.
+function renderWithCommentMarks(text, blockComments, activeCommentId) {
+  const segs = cm.computeCommentSegments(text || '', blockComments);
+  if (segs.length === 1 && !segs[0].comment) return text || '';
+  return segs.map((seg, i) => {
+    if (!seg.comment) return seg.text;
+    const cls = seg.comment.status === 'resolved' ? 'mark-comment-resolved' : 'mark-comment';
+    const isActive = seg.comment.id === activeCommentId;
+    return (
+      <span
+        key={`${seg.comment.id}-${i}`}
+        className={cls}
+        data-comment-id={seg.comment.id}
+        {...(isActive ? { 'data-active': 'true' } : {})}
+      >
+        {seg.text}
+      </span>
+    );
+  });
+}
+
+function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRejectRevision, onCommentClick, readOnly, commentsState, activeCommentId }) {
   const ref = block.ref || { org: '', entries: [] };
   const [editingOrg, setEditingOrg] = useState(false);
   const [editingIdx, setEditingIdx] = useState(-1);
@@ -97,6 +123,11 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
 
   const revisionClass = block.revision ? `block-revision-${block.revision}` : '';
   const leftMargin = BLOCK_MARGINS['txt'] || 15;
+
+  const blockComments = useMemo(
+    () => (commentsState ? cm.getBlockComments(commentsState, block.id) : []),
+    [commentsState, block.id]
+  );
 
   return (
     <div
@@ -195,7 +226,7 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
             }}
             onDoubleClick={readOnly ? undefined : startEditOrg}
           >
-            <span style={{ flex: 1 }}>{ref.org || <span style={{ color: "#94a3b8", fontStyle: "italic", fontWeight: 400 }}>Double-click to set organization</span>}</span>
+            <span style={{ flex: 1 }}>{ref.org ? renderWithCommentMarks(ref.org, blockComments, activeCommentId) : <span style={{ color: "#94a3b8", fontStyle: "italic", fontWeight: 400 }}>Double-click to set organization</span>}</span>
             {!readOnly && <button
               onClick={(e) => { e.stopPropagation(); startEditOrg(); }}
               className="ref-action-btn"
@@ -271,12 +302,12 @@ function RefBlock({ block, onUpdate, isFocused, onFocus, onAcceptRevision, onRej
               onDoubleClick={readOnly ? undefined : () => startEditEntry(idx)}
             >
               <span className="mark-rid" style={{ flexShrink: 0 }}>
-                {entry.rid || '???'}
+                {entry.rid ? renderWithCommentMarks(entry.rid, blockComments, activeCommentId) : '???'}
               </span>
               <span className="ref-rtl" style={{
                 color: "#334155", fontSize: 14, flex: 1, lineHeight: "1.65",
               }}>
-                {entry.rtl}
+                {renderWithCommentMarks(entry.rtl, blockComments, activeCommentId)}
               </span>
               {!readOnly && <button
                 onClick={(e) => { e.stopPropagation(); startEditEntry(idx); }}

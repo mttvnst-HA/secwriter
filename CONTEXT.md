@@ -106,7 +106,7 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 **Comments state** — `{ byId: Map<commentId, Comment>, seenRemoteIds: Set<commentId> }`. Mutated only via the verbs in `comments.js` (`createDraft`, `updateCreate`, `reply`, `resolve`, `reopen`, `remove`, `mergeRemote`).
 
-**Comment span** — `<span class="mark-comment" data-comment-id="...">text</span>` in the DOM. Persisted in `block.html` for editable blocks; injected into render-only DOM for ref/table blocks. Editable spans are the source of truth; the `reconcileBlocks` selector reclasses them and unwraps orphans against the metadata store.
+**Comment span** — `<span class="mark-comment" data-comment-id="...">text</span>` in the DOM. Persisted in `block.html` for editable blocks; **derived at render time** from `commentsState` for ref/table blocks via `cm.computeCommentSegments`. Editable spans are the source of truth (the `reconcileBlocks` selector reclasses them and unwraps orphans against the metadata store); ref/table spans are always recomputed from metadata.
 
 **Comment status** — `open` | `resolved`. Reflected on the comment metadata AND on the span's class (`mark-comment` vs `mark-comment-resolved`). The `reconcileBlocks` selector keeps them in sync — drift is no longer possible by construction for editable blocks.
 
@@ -114,9 +114,11 @@ For architecture vocabulary (module, interface, depth, seam, adapter, leverage, 
 
 **`reconcileBlocks(blocks, state)`** — Pure selector that walks each editable block's `mark-comment` spans: unwraps spans with no metadata entry, reclasses spans whose className disagrees with `state.byId.get(id).status`. Idempotent — returns the original `blocks` reference when nothing changes.
 
+**`computeCommentSegments(text, blockComments)`** — Pure helper used by RefBlock/TableBlock to slice plain text into `[{ text, comment }, ...]` segments. Greedy non-overlapping match per comment, scanning left to right. Drives the render-time highlight derivation that keeps ref/table comments in sync with metadata across remote sync, undo/redo, or any re-render.
+
 **Draft sentinel** — A comment is in "draft" form when its single create entry has empty text (`isDraft(comment) === true`). Drafts exist only locally; publishing is deferred until the user commits text via `updateCreate`, so the Y.Doc never holds a pending empty-text entry.
 
-**Ref/table comment divergence** — Ref and table block comments are visually transient: their highlights live in render-only DOM and aren't persisted in `b.ref` / `b.table`. `reconcileBlocks` is intentionally a no-op for blocks without `b.html`. A separate follow-up will derive ref/table highlights from metadata at render time.
+**Ref/table render-time highlights** — Ref/table block text lives outside `b.html` (in `b.ref` / `b.table`), so `reconcileBlocks` is a no-op for them. Instead, `RefBlock` and `TableBlock` derive `mark-comment` / `mark-comment-resolved` wrappings at render time via `cm.getBlockComments(state, blockId)` + `cm.computeCommentSegments`. This is *not* a separate sync mechanism — the spans are recomputed from metadata on every render, so drift is impossible by construction.
 
 ---
 
