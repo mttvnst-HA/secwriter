@@ -2172,6 +2172,9 @@ export default function SpecEditor() {
                     setBlocks(prev => prev.map(b => b.id === id ? { ...b, ...data } : b));
                   }}
                   readOnly={collabReadOnly}
+                  commentsState={commentsState}
+                  activeCommentId={openCommentId}
+                  onCommentClick={handleCommentClick}
                 />
               );
             }
@@ -2210,10 +2213,9 @@ export default function SpecEditor() {
                       return next;
                     });
                   }}
-                  onCommentClick={(commentId, rect) => {
-                    setOpenCommentId(commentId);
-                    setCommentRect(rect);
-                  }}
+                  onCommentClick={handleCommentClick}
+                  commentsState={commentsState}
+                  activeCommentId={openCommentId}
                 />
               );
             }
