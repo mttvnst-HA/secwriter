@@ -39,7 +39,7 @@ import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
 import { applyGroupHighlights, clearHighlightSpans } from "./lib/compliance-highlight.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
-import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL } from "./lib/collab.js";
+import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc } from "./lib/collab.js";
 import { useCollabSession } from "./hooks/useCollabSession.js";
 import * as cm from "./lib/comments.js";
 import { loadIdentity } from "./lib/identity.js";
@@ -248,6 +248,18 @@ export default function SpecEditor() {
   const tree = useMemo(() => buildTree(blocks), [blocks]);
   const numberMap = useMemo(() => computeNumbering(blocks), [blocks]);
   const oliLabels = useMemo(() => computeOliLabels(blocks), [blocks]);
+
+  // Out-of-room: keep the local Y.Doc substrate's structure (yOrder + yMaps)
+  // in sync with the React blocks array. New blocks (Enter/slash menu),
+  // deletions, and reorders flow through React state first; the binder needs
+  // a Y.Map for each id or its getBlockHtml returns ''. applyBlocksToYDoc's
+  // skip-html semantic (#22 sub-PR 1b) means existing yTexts stay intact;
+  // brand-new ids get their html seeded from block.html. In-room mode uses
+  // the existing useCollabSession publish-effect path and skips this.
+  useEffect(() => {
+    if (inRoom) return;
+    applyBlocksToYDoc(localSubstrate.ydoc, localSubstrate.yOrder, localSubstrate.yStore, blocks);
+  }, [blocks, inRoom, localSubstrate]);
 
   // Filter tree for sidebar search
   const filteredTree = useMemo(() => {
@@ -1029,44 +1041,44 @@ export default function SpecEditor() {
 
   const handleAcceptAll = useCallback(() => {
     resumeHistory();
-    setBlocks(prev => {
-      const next = acceptAllRevisions(prev);
-      // Push every changed block's html to the substrate so the binder
-      // and remote peers see the resolution, not just the React-state cache.
-      const yStore = activeYStoreRef.current;
-      if (yStore) {
-        for (let i = 0; i < next.length; i++) {
-          const b = next[i];
-          const before = prev.find(p => p.id === b.id);
-          if (before && typeof b.html === 'string' && before.html !== b.html) {
-            setBlockHtml(yStore, b.id, b.html);
-          }
+    const prev = blocksRef.current;
+    const next = acceptAllRevisions(prev);
+    // Push every changed block's html to the substrate so the binder
+    // and remote peers see the resolution, not just the React-state cache.
+    // Done OUTSIDE the React state updater — setBlockHtml is a side effect
+    // that must not run inside a (potentially-reinvoked-in-StrictMode) updater.
+    const yStore = activeYStoreRef.current;
+    if (yStore) {
+      for (let i = 0; i < next.length; i++) {
+        const b = next[i];
+        const before = prev.find(p => p.id === b.id);
+        if (before && typeof b.html === 'string' && before.html !== b.html) {
+          setBlockHtml(yStore, b.id, b.html);
         }
       }
-      // Refresh snapshots from the post-resolution state so subsequent edits
-      // diff against the correct baseline (not stale pre-accept text)
-      setTcState(s => tc.acceptAll(s, next));
-      return next;
-    });
+    }
+    setBlocks(next);
+    // Refresh snapshots from the post-resolution state so subsequent edits
+    // diff against the correct baseline (not stale pre-accept text)
+    setTcState(s => tc.acceptAll(s, next));
   }, []);
 
   const handleRejectAll = useCallback(() => {
     resumeHistory();
-    setBlocks(prev => {
-      const next = rejectAllRevisions(prev);
-      const yStore = activeYStoreRef.current;
-      if (yStore) {
-        for (let i = 0; i < next.length; i++) {
-          const b = next[i];
-          const before = prev.find(p => p.id === b.id);
-          if (before && typeof b.html === 'string' && before.html !== b.html) {
-            setBlockHtml(yStore, b.id, b.html);
-          }
+    const prev = blocksRef.current;
+    const next = rejectAllRevisions(prev);
+    const yStore = activeYStoreRef.current;
+    if (yStore) {
+      for (let i = 0; i < next.length; i++) {
+        const b = next[i];
+        const before = prev.find(p => p.id === b.id);
+        if (before && typeof b.html === 'string' && before.html !== b.html) {
+          setBlockHtml(yStore, b.id, b.html);
         }
       }
-      setTcState(s => tc.rejectAll(s, next));
-      return next;
-    });
+    }
+    setBlocks(next);
+    setTcState(s => tc.rejectAll(s, next));
   }, []);
 
   // Persist dark mode
