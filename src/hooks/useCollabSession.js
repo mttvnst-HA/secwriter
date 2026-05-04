@@ -218,7 +218,18 @@ export function useCollabSession({
         // ref-identity check can detect "this blocks ref came from us
         // applying a remote payload, skip the echo."
         lastRemoteBlocksRef.current = nextBlocks;
-        if (meta?.initial) sessionReadyRef.current = true;
+        if (meta?.initial) {
+          sessionReadyRef.current = true;
+          // Expose the session yStore only AFTER first sync so
+          // EditableBlock's binder (and every App handler that reads
+          // activeYStoreRef.current) cannot write into a Y.Doc that
+          // hasn't yet absorbed the server's persisted state. Without
+          // this gate, a typed character or programmatic html mutation
+          // landing in the sync window CRDT-merges on top of the
+          // remote state — the eee8977 corruption pattern, via the
+          // direct setBlockHtml path instead of publishBlocks.
+          setYStoreState(session.yStore);
+        }
         onBlocksReceivedRef.current?.(nextBlocks, meta);
       },
       onRemoteMeta: (remote, meta) => {
@@ -246,7 +257,6 @@ export function useCollabSession({
     });
 
     sessionRef.current = session;
-    setYStoreState(session.yStore);
 
     // DEV-only: expose for browser devtools debugging. Gated on DEV so a
     // production build does not ship a global that exposes ydoc + awareness

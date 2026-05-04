@@ -100,6 +100,27 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
     expect(() => result.current.write('whatever')).not.toThrow();
   });
 
+  it('write() is silently dropped while the substrate is null even if the underlying Y.Doc exists (sync-window gate)', () => {
+    // Regression for the sync-window CRDT-merge bug: useCollabSession
+    // withholds its yStore state until first sync completes. Until then,
+    // App passes yStore=null to EditableBlock. The binder must NOT touch
+    // any Y.Doc — even if the caller has another path to the doc.
+    const { ydoc, yStore } = makeDoc();
+    const yTextBefore = yStore.get('n1').get('html');
+    const stateBefore = Y.encodeStateAsUpdate(ydoc);
+
+    // Render the binder with yStore=null (simulates pre-sync state).
+    const { result } = renderHook(() => useBlockBinder({ yStore: null, blockId: 'n1' }));
+    expect(result.current.html).toBe('');
+    result.current.write('this must not land in the doc');
+
+    // The doc's state is byte-for-byte identical — no transaction emitted.
+    const stateAfter = Y.encodeStateAsUpdate(ydoc);
+    expect(stateAfter).toEqual(stateBefore);
+    expect(yStore.get('n1').get('html')).toBe(yTextBefore);
+    expect(yTextBefore.toString()).toBe('hello');
+  });
+
   it('write() with the same html as current is a no-op CRDT-wise', () => {
     const { ydoc, yStore } = makeDoc();
     const before = ydoc.store.clients.size > 0
