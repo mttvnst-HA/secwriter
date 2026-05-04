@@ -15,9 +15,9 @@ A modern web-based editor for UFGS (Unified Facilities Guide Specifications) .SE
 ## Orientation
 
 - `src/App.jsx` — main editor layout, state, toolbar, sidebar
-- `src/components/` — block components (EditableBlock, TitleBlock, TableBlock, RefBlock), panels (CompliancePanel, CrossRefPanel, CommentPopup), tooltips, wizards, plus `useBlockLinting.js` (per-block lint lifecycle hook)
+- `src/components/` — block components (EditableBlock, TitleBlock, TableBlock, RefBlock), panels (CompliancePanel, CrossRefPanel, CommentPopup), tooltips, wizards, plus `useBlockLinting.js` (per-block lint lifecycle hook) and `useBlockBinder.js` (per-block Y.Text ↔ React binder via `useSyncExternalStore`)
 - `src/hooks/` — `useCollabSession.js` (Yjs session lifecycle + the four publish effects + coordination refs)
-- `src/lib/` — parsers/serializers (sec-parser, sec-serializer, encoding), pure-reducer modules (`track-changes.js`, `comments.js`, `linting.js`, `compliance.js`), domain-side-effect modules (`compliance-highlight.js`), compliance engines (compliance-rules, compliance-checker, compliance-ai, inline-linter, grammar-checker, nlp-rules), revisions, table-ops, numbering
+- `src/lib/` — parsers/serializers (sec-parser, sec-serializer, encoding), pure-reducer modules (`track-changes.js`, `comments.js`, `linting.js`, `compliance.js`), domain-side-effect modules (`compliance-highlight.js`), compliance engines (compliance-rules, compliance-checker, compliance-ai, inline-linter, grammar-checker, nlp-rules), revisions, table-ops, numbering, plus `block-html-store.js` (Y.Doc-as-substrate adapter for block html) and `ytext-html.js` (Y.Text ↔ HTML conversion)
 - `src/data/` — `ufs-1-300-02-rules.json` (compliance rules), `umrl.json` (reference DB), `umsl.json` (submittal DB), sample spec
 - `reference/section.ini` — **authoritative** formatting rules (MARGINS, COLORS, RULES, CODES, FONTS)
 - `reference/ufs_1_300_02.pdf` — authoritative source for compliance rules
@@ -140,7 +140,7 @@ TC uses a **snapshot-based diff** approach owned by `src/lib/track-changes.js` �
 Comments use a pure reducer module (`src/lib/comments.js`) that owns a **DOM-based highlight + separate metadata store** — same playbook as Track Changes, Linting, and Compliance (opaque state, pure verbs, pure selectors, property-tested invariants — see also `src/lib/track-changes.js`, `src/lib/linting.js`, `src/lib/compliance.js`):
 
 1. **State is opaque.** App holds it as `commentsState` and reads it via selectors (`size`, `get`, `all`, `isDraft`, `getCreateEntry`, `reconcileBlocks`, `normalizeForLoad`); mutates it via verbs (`createDraft`, `updateCreate`, `reply`, `resolve`, `reopen`, `remove`, `mergeRemote`). Shape: `{ byId: Map<commentId, Comment>, seenRemoteIds: Set<commentId> }`. Verbs return `{ state, publish }`; caller supplies `identity` and `ts`.
-2. **Span↔metadata reconciliation is a selector.** App runs `useEffect([blocks, commentsState])` → `setBlocksDirect(prev => cm.reconcileBlocks(prev, commentsState))`. The selector unwraps orphan spans (id missing from state) and reclasses open↔resolved when className disagrees with `state.byId.get(id).status`. Idempotent — returns the original `blocks` ref when nothing changes; React bails out, no loop. Routed through `setBlocksDirect` (the non-undoable setter from `useUndoableBlocks`) so a reconcile after Ctrl+Z cannot wipe the redo stack.
+2. **Span↔metadata reconciliation is a selector.** App runs `useEffect([blocks, commentsState])` → `setBlocksDirect(prev => cm.reconcileBlocks(prev, commentsState))`. The selector unwraps orphan spans (id missing from state) and reclasses open↔resolved when className disagrees with `state.byId.get(id).status`. Idempotent — returns the original `blocks` ref when nothing changes; React bails out, no loop. Routed through `setBlocksDirect` (the non-undoable setter from `useUndoableBlocks`) so a reconcile after Ctrl+Z cannot wipe the redo stack. Post-1b, the same effect also mirrors any html change into the substrate via `setBlockHtml(activeYStoreRef.current, b.id, b.html)` so peers see comment-status reclassifies.
 3. **Single collab dispatcher.** `session.dispatchComment(envelope)` switches on `envelope.kind ∈ {create, reply, status, delete}` and forwards to the underlying `*ToDoc` functions. The legacy four session methods (`publishComment`, `publishCommentReply`, `publishCommentStatus`, `deleteComment`) are gone. Verbs that produce no publish (drafts) return `publish: null`.
 4. **`mergeRemote` semantics (M2.5).** For each id in `remote ∪ prev.byId`: if id is in remote, remote wins; else if id is in `seenRemoteIds`, drop (peer deletion); else preserve (local draft). `seenRemoteIds` is monotonically non-shrinking — once an id has been observed from peers, its later absence is authoritative.
 5. **Editable blocks** persist comment spans in `block.html`. **Ref/table** spans are visually transient (injected into render-only DOM; data stays in `block.ref` / `block.table`); `reconcileBlocks` skips blocks without `html`. Deriving ref/table highlights from metadata is a follow-up.
@@ -246,17 +246,25 @@ Each document is a flat array of blocks:
 
 ## Collab Publish Path
 
-Block content reaches the Y.Doc via **snapshot diff**, not a live `Y.Text` binding (see [ADR-0004](docs/adr/0004-collab-publish-snapshot-diff.md) for the deferral; the live-binding refactor is tracked at issue #22):
+Post-#46 (sub-PR 1b), block **html** and block **scalars** travel separate paths. See [ADR-0004](docs/adr/0004-collab-publish-snapshot-diff.md); the remaining character-level work is tracked at issue #47.
 
-1. `EditableBlock` fires `onUpdate(blockId, html)` from `handleInput` (debounced `PUBLISH_DEBOUNCE_MS = 400`ms, see `src/components/EditableBlock.jsx`) AND `handleBlur` (which also runs Track Changes annotation). Blur cancels any pending input debounce.
-2. `App.handleBlockUpdate` calls `setBlocks(prev.map(...))`.
-3. The publish effect — now inside `src/hooks/useCollabSession.js` — calls `session.publishBlocks(blocks)` after the `sessionReadyRef` and `lastRemoteBlocksRef` echo guards pass.
-4. `applyBlocksToYDoc` (`src/lib/collab.js`) walks the block array and calls `applyHtmlToYText(yText, html)` per block — this **diffs the new HTML string against the existing Y.Text** and synthesizes Yjs ops to match.
-5. `ydoc.on('update')` on the server debounces a flush to R2/local (`server/collab-server.cjs`).
+**Html path (per debounced keystroke, via the binder):**
+1. `EditableBlock` calls `binderWrite(html)` from `handleInput` (debounced `PUBLISH_DEBOUNCE_MS = 400`ms) AND `handleBlur` (which also runs Track Changes annotation). Blur cancels any pending input debounce.
+2. `binderWrite` is `useBlockBinder().write` — calls `setBlockHtml(yStore, blockId, html)` from `src/lib/block-html-store.js`, which wraps `applyHtmlToYText(yText, html)` in a Yjs transaction with origin `'local-publish'`. Snapshot-diff still lives **inside** that call (issue #47 is the path to character-level ops).
+3. Read pathway: `useBlockBinder` subscribes via `useSyncExternalStore` to `subscribeBlock(yStore, blockId)`; remote ops flip the per-Y.Text dirty bit and the binder re-renders.
+4. `ydoc.on('update')` on the server debounces a flush to R2/local (`server/collab-server.cjs`).
+
+**Scalar/structural path (still publishBlocks):**
+- `App.handleBlockUpdate` calls `setBlocks(prev.map(...))`. The publish effect inside `useCollabSession` calls `session.publishBlocks(blocks)` after the `sessionReadyRef` and `lastRemoteBlocksRef` echo guards pass.
+- `applyBlocksToYDoc` (`src/lib/collab.js`) walks the block array and reconciles structure (yOrder, yStore keys, scalar fields). It **skips html for existing yText** (`fb34a0a`) — only seeds html for brand-new blocks. The binder owns html updates for everything else.
 
 **Coordination lives in the hook, not App.** `useCollabSession` owns the session lifecycle, all four publish effects (blocks, meta, TC, comments dispatch), all coordination refs (`sessionReadyRef`, `metaReadyRef`, `lastRemoteBlocksRef`, `lastPublishedTcSeqRef`, `publishDisabledRef`), the `DocSizeLimitError` toast latch, and the cursor broadcast. App passes a prop bag of remote-event callbacks (`onBlocksReceived`, `onMetaReceived`, `onTcReceived`, `onCommentsReceived`, `onPresenceChange`, `onStatusChange`) and reads back `{ dispatchComment, markTcSeqApplied, tryUndo, tryRedo, canUndo, canRedo }`. The TC echo gate is a small protocol seam: App's `setTcState` updater calls `markTcSeqApplied(next.publishSeq)` after `tc.applyRemote(...)` so the publish effect treats the new state as already-seen by peers.
 
-**Implication:** concurrent typing in the same paragraph by two users relies on the diff at publish time, not character-level CRDT ops. Workable for single-user rooms; the architectural fix is issue #22. The debounced-input symptom fix landed via #21 / PR #23.
+**Implication:** concurrent typing in the same paragraph still resolves via snapshot-diff inside `applyHtmlToYText`, just on a tighter (one-debounced-keystroke) window instead of one-blur. Issue #47 tracks the remaining ProseMirror migration. The debounced-input symptom fix landed via #21 / PR #23.
+
+**Two non-obvious invariants (load-bearing, easy to break):**
+- **`yStore` is null until first sync.** `useCollabSession` only calls `setYStoreState(session.yStore)` from inside `if (meta?.initial)` (`fbc0d0f`). Until then `useBlockBinder.write` no-ops, and every direct `setBlockHtml(activeYStoreRef.current, ...)` caller in App must null-guard. Without this gate, a keystroke landing in the sync window CRDT-merges on top of the server's persisted state — the eee8977 corruption pattern via the new direct-substrate path.
+- **`'local-publish'` is the UndoManager-tracked origin.** `setBlockHtml` writes use it. New code that mutates html outside the binder must go through `setBlockHtml` (not `applyHtmlToYText` directly) or undo coverage is silently lost. There are 11 direct call sites in `App.jsx` already (revisions, compliance fixes, search/replace, accept-all, comments-reconcile, etc.); follow that pattern.
 
 `window.__collab` is exposed in DEV (`import.meta.env.DEV`) for browser-side debugging — gives you `{ ydoc, yOrder, yStore, yMeta, yTc, yComments, awareness, provider, undoManager, publishBlocks, publishMeta, publishTc, dispatchComment, setCursor, undo, redo, canUndo, canRedo, destroy }`.
 
