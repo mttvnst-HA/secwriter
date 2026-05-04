@@ -1,3 +1,33 @@
+/**
+ * block-html-store — Y.Doc-as-source-of-truth substrate for per-block html.
+ *
+ * Sub-PR 1a of issue #22: this is the adapter only. Wiring into App.jsx and
+ * removing `html` from React state is the next session's job. Nothing here
+ * depends on `inRoom`; the same Y.Doc shape backs single-user and collab
+ * editing alike.
+ *
+ * Public API:
+ *   seedBlockArray(ydoc, yOrder, yStore, plainBlocks)
+ *     One-shot seed inside a 'seed' transaction. Throws if yOrder/yStore
+ *     non-empty — fail loud rather than silently clobber existing state.
+ *   getBlockHtml(yStore, blockId) → string
+ *     Derived via yTextToHtml. Returns '' for missing block or non-Y.Text
+ *     html slot. Memoised per Y.Text via an observer-driven dirty bit so
+ *     repeat reads with no intervening mutation skip the toDelta walk.
+ *   setBlockHtml(yStore, blockId, html) → void
+ *     Wraps applyHtmlToYText in a 'local-publish' transaction. Preserves
+ *     Y.Text instance identity. No-op for unknown id, missing yText slot,
+ *     detached yStore, or non-string html (coerced to '').
+ *
+ * Subscribe semantics live with the future binder, not here — the real
+ * consumer (useSyncExternalStore in EditableBlock) doesn't exist yet, and
+ * designing without one produces imagined behaviour.
+ *
+ * Block scalars (id, type, part, depth, section, level, revision) and
+ * table/ref nested CRDTs are handled by collab.js's blockToYMap / yMapToBlock
+ * for now. This module is intentionally narrow; it owns html only.
+ */
+
 import * as Y from 'yjs';
 import { applyHtmlToYText, yTextToHtml, seedYTextFromHtml } from './ytext-html.js';
 
