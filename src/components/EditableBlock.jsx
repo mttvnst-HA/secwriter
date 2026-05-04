@@ -4,6 +4,7 @@ import { BLOCK_MARGINS } from "../lib/ini-config.js";
 import { cleanTaiClasses } from "../lib/tailor-profile.js";
 import { annotateDomWithDiff } from "../lib/text-diff.js";
 import { useBlockLinting } from "./useBlockLinting.js";
+import { useBlockBinder } from "./useBlockBinder.js";
 import InlineTooltip from "./InlineTooltip.jsx";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
 
@@ -57,7 +58,7 @@ function stripTagLabels(html) {
   return html.replace(/<span[^>]*class="tag-label"[^>]*>[^<]*<\/span>/g, '');
 }
 
-function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, identity, comments, onCommentClick, onInlineFix, lintingState, lintingDispatch, showTags = false, readOnly = false }) {
+function EditableBlock({ block, yStore, onUpdate, onEnterKey, isFocused, onFocus, oliLabel, onDelete, onFocusPrev, onFocusNext, onConvertBlock, onChangeOliLevel, resolveHtml, tailorKey, onAcceptRevision, onRejectRevision, onRevisionAction, trackChanges, snapshotText, identity, comments, onCommentClick, onInlineFix, lintingState, lintingDispatch, showTags = false, readOnly = false }) {
   const ref = useRef(null);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashFilter, setSlashFilter] = useState("");
@@ -67,21 +68,32 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   // Track Changes annotation still runs only on blur via handleBlur — debounced fires
   // carry pre-annotation HTML; the blur publish remains source of truth for revision marks.
   const inputDebounceRef = useRef(null);
-  // Latest block.html, mirrored into a ref so setRef can read it without
-  // taking a useCallback dep on it. Without this, every debounced publish
-  // changes block.html → setRef identity → React detaches/re-attaches the
+
+  // Y.Doc-as-source-of-truth substrate (#22 sub-PR 1b). The binder gives us
+  // the live html (re-rendered on yText mutation) and a write() that pushes
+  // directly to the substrate. We prefer binderHtml over block.html for DOM
+  // sync paths so a remote edit observable through the substrate doesn't
+  // wait for the publish-effect → setBlocks round-trip to repaint the DOM.
+  const { html: binderHtml, write: binderWrite } = useBlockBinder({ yStore, blockId: block.id });
+  // The DOM-sync paths use this — falls back to block.html when no substrate
+  // is wired (defensive: jsdom unit tests, transient unmount races).
+  const sourceHtml = yStore ? binderHtml : (block.html || "");
+
+  // Latest html, mirrored into a ref so setRef can read it without taking a
+  // useCallback dep on it. Without this, every debounced publish updates
+  // sourceHtml → setRef identity → React detaches/re-attaches the
   // contentEditable ref → setRef body re-runs syncTagLabels mid-edit. That
   // race broke E2E tests that select text and click a toolbar button within
   // the debounce window (the saved Range from FloatingToolbar's checkSelection
   // was getting invalidated by the re-attach).
-  const blockHtmlRef = useRef(block.html);
-  useEffect(() => { blockHtmlRef.current = block.html; }, [block.html]);
+  const blockHtmlRef = useRef(sourceHtml);
+  useEffect(() => { blockHtmlRef.current = sourceHtml; }, [sourceHtml]);
 
   // Detect if block has inline revision marks (for gutter button display)
   const hasInlineRevisions = useMemo(() => {
-    if (!block.html) return false;
-    return /<ins\s+class="mark-add"|<del\s+class="mark-del"/.test(block.html);
-  }, [block.html]);
+    if (!sourceHtml) return false;
+    return /<ins\s+class="mark-add"|<del\s+class="mark-del"/.test(sourceHtml);
+  }, [sourceHtml]);
 
   // Ref callback - fires the instant React attaches the DOM node
   const typeEditable = block.type === "txt" || block.type === "note" || block.type === "oli" || block.type === "item" || block.type === "lst" || block.isNew;
@@ -110,27 +122,28 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
   // Keep non-editable blocks synced when html changes after mount
   useEffect(() => {
     if (!editable && ref.current) {
-      ref.current.innerHTML = resolveHtml ? resolveHtml(block.html || "") : (block.html || "");
+      ref.current.innerHTML = resolveHtml ? resolveHtml(sourceHtml || "") : (sourceHtml || "");
       syncTagLabels(ref.current, showTags);
     }
-  }, [editable, block.html, resolveHtml, showTags]);
+  }, [editable, sourceHtml, resolveHtml, showTags]);
 
-  // Sync editable block DOM when block.html changes externally (e.g. Accept All / Reject All)
-  // Only sync if the block is NOT currently focused (avoid disrupting active editing)
+  // Sync editable block DOM when html changes externally (e.g. Accept All /
+  // Reject All, remote peer edit). Only sync if the block is NOT currently
+  // focused (avoid disrupting active editing).
   useEffect(() => {
     if (editable && ref.current && ref.current.dataset.init) {
       if (document.activeElement !== ref.current) {
-        ref.current.innerHTML = resolveHtml ? resolveHtml(block.html || "") : (block.html || "");
+        ref.current.innerHTML = resolveHtml ? resolveHtml(sourceHtml || "") : (sourceHtml || "");
         syncTagLabels(ref.current, showTags);
       }
     }
-  }, [editable, block.html, resolveHtml, showTags]);
+  }, [editable, sourceHtml, resolveHtml, showTags]);
 
   // Re-apply TAI resolution when tailoring profile changes
   useEffect(() => {
     if (!ref.current || !resolveHtml) return;
-    // Re-resolve from clean block.html (not DOM innerHTML which may have stale classes)
-    const resolved = resolveHtml(block.html || "");
+    // Re-resolve from clean source html (not DOM innerHTML which may have stale classes)
+    const resolved = resolveHtml(sourceHtml || "");
     ref.current.innerHTML = resolved;
     syncTagLabels(ref.current, showTags);
   }, [tailorKey, showTags]);
@@ -246,13 +259,16 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
       }
       // Strip tag labels and TAI resolution classes before saving to state
       const html = stripTagLabels(cleanTaiClasses(ref.current.innerHTML));
+      // Push the post-annotation html to the substrate so peers see the
+      // revision marks materialize on blur (matching pre-1b semantics).
+      binderWrite(html);
       onUpdate(block.id, html);
     }
     setTimeout(() => {
       setSlashOpen(false);
       setSlashFilter("");
     }, 150);
-  }, [block.id, onUpdate, trackChanges, snapshotText]);
+  }, [block.id, onUpdate, trackChanges, snapshotText, binderWrite]);
 
   const handleKeyDown = useCallback((e) => {
     // Slash menu navigation
@@ -353,9 +369,16 @@ function EditableBlock({ block, onUpdate, onEnterKey, isFocused, onFocus, oliLab
       const sel = typeof window !== "undefined" ? window.getSelection?.() : null;
       if (sel && !sel.isCollapsed && ref.current.contains(sel.anchorNode)) return;
       const html = stripTagLabels(cleanTaiClasses(ref.current.innerHTML));
+      // Y.Doc-direct write (#22 sub-PR 1b). Per-keystroke (debounced) writes
+      // to the substrate; remote peers see edits as they happen instead of
+      // waiting for blur. onUpdate still fires so React-state block.html
+      // reflects the change for non-binder consumers (export, MarkSuggestions,
+      // compliance scan). applyBlocksToYDoc skips html for existing yText so
+      // there's no double-write.
+      binderWrite(html);
       onUpdate(block.id, html);
     }, PUBLISH_DEBOUNCE_MS);
-  }, [slashOpen, block.id, onUpdate]);
+  }, [slashOpen, block.id, onUpdate, binderWrite]);
 
   // Cancel pending debounced publish on unmount so a stale timer can't fire
   // onUpdate against a different block id (handleBlockUpdate would still
