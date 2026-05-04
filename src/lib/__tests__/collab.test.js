@@ -28,6 +28,7 @@ import {
   deleteCommentFromDoc,
   readComments,
 } from '../collab.js';
+import { setBlockHtml } from '../block-html-store.js';
 
 function makeDoc() {
   const ydoc = new Y.Doc();
@@ -79,10 +80,9 @@ describe('collab — seeding, snapshot & update-in-place', () => {
     seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
     const yTextBefore = getYText(yStore, 'b2');
 
-    // Update html
-    const next = [...sampleBlocks];
-    next[1] = { ...next[1], html: 'This section covers grading.' };
-    applyBlocksToYDoc(ydoc, yOrder, yStore, next);
+    // Update html — owned by the binder substrate (#22 sub-PR 1b);
+    // applyBlocksToYDoc no longer touches html for existing yText slots.
+    setBlockHtml(yStore, 'b2', 'This section covers grading.');
 
     const yTextAfter = getYText(yStore, 'b2');
     expect(yTextAfter.toString()).toBe('This section covers grading.');
@@ -154,10 +154,10 @@ describe('collab — structural changes', () => {
     const b2MapBefore = getYMap(yStore, 'b2');
     const b2TextBefore = getYText(yStore, 'b2');
 
-    const next = sampleBlocks.map((b, i) =>
-      i === 1 ? { ...b, html: 'Brand new body for b2.' } : b,
-    );
-    applyBlocksToYDoc(ydoc, yOrder, yStore, next);
+    // Two-step under the post-1b contract: structural pass leaves html
+    // alone, then setBlockHtml updates the binder-owned Y.Text in place.
+    applyBlocksToYDoc(ydoc, yOrder, yStore, sampleBlocks);
+    setBlockHtml(yStore, 'b2', 'Brand new body for b2.');
 
     expect(getYMap(yStore, 'b2')).toBe(b2MapBefore);
     expect(getYText(yStore, 'b2')).toBe(b2TextBefore);
@@ -229,8 +229,9 @@ describe('collab — two-doc sync (CRDT merge)', () => {
     const updateSeed = Y.encodeStateAsUpdate(docA.ydoc);
     Y.applyUpdate(docB.ydoc, updateSeed);
 
-    const nextA = sampleBlocks.map((b, i) => i === 1 ? { ...b, html: 'A typed this.' } : b);
-    applyBlocksToYDoc(docA.ydoc, docA.yOrder, docA.yStore, nextA);
+    // Post-1b: html updates on existing blocks go through setBlockHtml,
+    // not applyBlocksToYDoc.
+    setBlockHtml(docA.yStore, 'b2', 'A typed this.');
     const update = Y.encodeStateAsUpdate(docA.ydoc, Y.encodeStateVector(docB.ydoc));
     Y.applyUpdate(docB.ydoc, update);
     const mirrorB = yBlocksToArray(docB.yOrder, docB.yStore);
@@ -243,10 +244,8 @@ describe('collab — two-doc sync (CRDT merge)', () => {
     seedYBlocks(docC.ydoc, docC.yOrder, docC.yStore, sampleBlocks);
     Y.applyUpdate(docD.ydoc, Y.encodeStateAsUpdate(docC.ydoc));
 
-    const nextC = sampleBlocks.map((b, i) => i === 0 ? { ...b, html: 'EARTHWORK' } : b);
-    applyBlocksToYDoc(docC.ydoc, docC.yOrder, docC.yStore, nextC);
-    const nextD = sampleBlocks.map((b, i) => i === 2 ? { ...b, html: 'B edited item.' } : b);
-    applyBlocksToYDoc(docD.ydoc, docD.yOrder, docD.yStore, nextD);
+    setBlockHtml(docC.yStore, 'b1', 'EARTHWORK');
+    setBlockHtml(docD.yStore, 'b3', 'B edited item.');
     Y.applyUpdate(docD.ydoc, Y.encodeStateAsUpdate(docC.ydoc, Y.encodeStateVector(docD.ydoc)));
     Y.applyUpdate(docC.ydoc, Y.encodeStateAsUpdate(docD.ydoc, Y.encodeStateVector(docC.ydoc)));
 
@@ -273,13 +272,9 @@ describe('collab — two-doc sync (CRDT merge)', () => {
     }, 'local-publish');
     expect(undoManager.undoStack.length).toBe(0);
 
-    // Sanity: a genuine local edit DOES grow the stack
-    ydoc.transact(() => {
-      applyBlocksToYDoc(
-        ydoc, yOrder, yStore,
-        sampleBlocks.map((b, i) => i === 0 ? { ...b, html: 'CHANGED' } : b),
-      );
-    }, 'local-publish');
+    // Sanity: a genuine local edit DOES grow the stack. Post-1b, html
+    // edits go through setBlockHtml (which uses 'local-publish' origin).
+    setBlockHtml(yStore, 'b1', 'CHANGED');
     expect(undoManager.undoStack.length).toBe(1);
 
     // Test 2: zero-change publish after remote-applied clone (I-2)
@@ -308,19 +303,11 @@ describe('collab — two-doc sync (CRDT merge)', () => {
       trackedOrigins: new Set(['local-publish']),
     });
 
-    // A publishes a local edit on b1
-    docA.ydoc.transact(() => {
-      applyBlocksToYDoc(
-        docA.ydoc, docA.yOrder, docA.yStore,
-        sampleBlocks.map((b, i) => i === 0 ? { ...b, html: 'Alice edit.' } : b),
-      );
-    }, 'local-publish');
+    // A publishes a local edit on b1 (via the binder substrate path).
+    setBlockHtml(docA.yStore, 'b1', 'Alice edit.');
 
     // B edits b2 locally and sync A←B
-    applyBlocksToYDoc(
-      docB.ydoc, docB.yOrder, docB.yStore,
-      sampleBlocks.map((b, i) => i === 1 ? { ...b, html: 'Bob edit.' } : b),
-    );
+    setBlockHtml(docB.yStore, 'b2', 'Bob edit.');
     Y.applyUpdate(docA.ydoc, Y.encodeStateAsUpdate(docB.ydoc, Y.encodeStateVector(docA.ydoc)));
 
     const beforeUndo = yBlocksToArray(docA.yOrder, docA.yStore);
@@ -791,12 +778,9 @@ describe('character-level CRDT merge (attribute-aware)', () => {
     seedYBlocks(doc1, o1, s1, blocks);
     Y.applyUpdate(doc2, Y.encodeStateAsUpdate(doc1, Y.encodeStateVector(doc2)));
 
-    applyBlocksToYDoc(doc1, o1, s1, [
-      { id: 'b1', type: 'txt', part: 1, depth: 1, section: 's1', html: 'Hello <b>world</b>' },
-    ]);
-    applyBlocksToYDoc(doc2, o2, s2, [
-      { id: 'b1', type: 'txt', part: 1, depth: 1, section: 's1', html: 'Hello world today' },
-    ]);
+    // Post-1b: html updates on existing blocks go through setBlockHtml.
+    setBlockHtml(s1, 'b1', 'Hello <b>world</b>');
+    setBlockHtml(s2, 'b1', 'Hello world today');
 
     let update1 = Y.encodeStateAsUpdate(doc1, Y.encodeStateVector(doc2));
     let update2 = Y.encodeStateAsUpdate(doc2, Y.encodeStateVector(doc1));
@@ -821,12 +805,8 @@ describe('character-level CRDT merge (attribute-aware)', () => {
     seedYBlocks(doc3, o3, s3, blocks2);
     Y.applyUpdate(doc4, Y.encodeStateAsUpdate(doc3, Y.encodeStateVector(doc4)));
 
-    applyBlocksToYDoc(doc3, o3, s3, [
-      { id: 'b1', type: 'txt', part: 1, depth: 1, section: 's1', html: 'See <span class="mark-rid">ASTM C33</span> and 01 33 00' },
-    ]);
-    applyBlocksToYDoc(doc4, o4, s4, [
-      { id: 'b1', type: 'txt', part: 1, depth: 1, section: 's1', html: 'See ASTM C33 and <span class="mark-srf">01 33 00</span>' },
-    ]);
+    setBlockHtml(s3, 'b1', 'See <span class="mark-rid">ASTM C33</span> and 01 33 00');
+    setBlockHtml(s4, 'b1', 'See ASTM C33 and <span class="mark-srf">01 33 00</span>');
 
     update1 = Y.encodeStateAsUpdate(doc3, Y.encodeStateVector(doc4));
     update2 = Y.encodeStateAsUpdate(doc4, Y.encodeStateVector(doc3));

@@ -38,7 +38,7 @@
  * Inputs / outputs: see the JSDoc on `useCollabSession` below.
  */
 
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import {
   createCollabSession,
@@ -100,6 +100,11 @@ import {
  * @property {() => boolean} tryRedo
  * @property {() => boolean} canUndo  False when no session.
  * @property {() => boolean} canRedo
+ * @property {Y.Map|null} yStore
+ *   The session's per-block Y.Map<string, Y.Map> — exposed so App can
+ *   compute `activeYStore = inRoom ? collab.yStore : localYStore` and
+ *   pass it to EditableBlock's binder. State, not ref: re-renders when
+ *   the session is created or destroyed so the binder resubscribes.
  */
 
 /**
@@ -134,6 +139,12 @@ export function useCollabSession({
   // ── Coordination refs (all hook-owned) ────────────────────────────────
   // The session itself.
   const sessionRef = useRef(null);
+
+  // Active session's yStore as state — mirrors sessionRef.current?.yStore but
+  // re-renders the consumer when the session is (re)created or destroyed so
+  // EditableBlock's binder resubscribes against the right substrate. Null
+  // when out of room.
+  const [yStore, setYStoreState] = useState(null);
 
   // Echo guard for blocks: every remote payload is stashed here BEFORE
   // App's setBlocks runs. The publish effect checks `blocks === remoteRef`
@@ -235,6 +246,7 @@ export function useCollabSession({
     });
 
     sessionRef.current = session;
+    setYStoreState(session.yStore);
 
     // DEV-only: expose for browser devtools debugging. Gated on DEV so a
     // production build does not ship a global that exposes ydoc + awareness
@@ -245,6 +257,7 @@ export function useCollabSession({
     return () => {
       session.destroy();
       sessionRef.current = null;
+      setYStoreState(null);
       sessionReadyRef.current = false;
       metaReadyRef.current = false;
       lastRemoteBlocksRef.current = null;
@@ -411,6 +424,7 @@ export function useCollabSession({
     tryRedo,
     canUndo,
     canRedo,
+    yStore,
   };
 }
 
