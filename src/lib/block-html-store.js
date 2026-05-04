@@ -1,5 +1,5 @@
 import * as Y from 'yjs';
-import { yTextToHtml, seedYTextFromHtml } from './ytext-html.js';
+import { applyHtmlToYText, yTextToHtml, seedYTextFromHtml } from './ytext-html.js';
 
 // Per-Y.Text memo. Each Y.Text gets a single observer that flips `dirty`
 // when the text mutates; getBlockHtml only re-derives html when dirty.
@@ -44,6 +44,15 @@ export function getBlockHtml(yStore, blockId) {
   return getCached(yText);
 }
 
-export function setBlockHtml(_yStore, _blockId, _html) {
-  // stub
+export function setBlockHtml(yStore, blockId, html) {
+  const yMap = yStore.get(blockId);
+  if (!yMap) return;
+  const yText = yMap.get('html');
+  if (!yText || typeof yText.toDelta !== 'function') return;
+  const ydoc = yStore.doc;
+  if (!ydoc) return;
+  const next = typeof html === 'string' ? html : '';
+  ydoc.transact(() => {
+    applyHtmlToYText(yText, next);
+  }, 'local-publish');
 }

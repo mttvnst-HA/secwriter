@@ -90,3 +90,60 @@ describe('getBlockHtml', () => {
     expect(spiedYTextToHtml.mock.calls.length).toBe(callsBeforeB + 1);
   });
 });
+
+describe('setBlockHtml', () => {
+  it('updates html observable through getBlockHtml', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'old' }]);
+    setBlockHtml(yStore, 'n1', 'new value');
+    expect(getBlockHtml(yStore, 'n1')).toBe('new value');
+  });
+
+  it('preserves Y.Text instance identity (=== before/after)', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'a' }]);
+    const before = yStore.get('n1').get('html');
+    setBlockHtml(yStore, 'n1', '<b>completely different</b>');
+    const after = yStore.get('n1').get('html');
+    expect(after).toBe(before);
+  });
+
+  it('uses local-publish transaction origin', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'a' }]);
+    const origins = [];
+    ydoc.on('afterTransaction', (tx) => origins.push(tx.origin));
+    setBlockHtml(yStore, 'n1', 'b');
+    expect(origins).toContain('local-publish');
+  });
+
+  it('is a no-op for an unknown block id', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'a' }]);
+    let txCount = 0;
+    ydoc.on('afterTransaction', () => txCount++);
+    expect(() => setBlockHtml(yStore, 'missing', 'whatever')).not.toThrow();
+    expect(txCount).toBe(0);
+    expect(getBlockHtml(yStore, 'n1')).toBe('a');
+  });
+
+  it('treats non-string html as empty string', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'a' }]);
+    setBlockHtml(yStore, 'n1', null);
+    expect(getBlockHtml(yStore, 'n1')).toBe('');
+    setBlockHtml(yStore, 'n1', 42);
+    expect(getBlockHtml(yStore, 'n1')).toBe('');
+  });
+
+  it('handles consecutive updates without leftover state', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: '' }]);
+    const yText = yStore.get('n1').get('html');
+    setBlockHtml(yStore, 'n1', 'one');
+    setBlockHtml(yStore, 'n1', 'two');
+    setBlockHtml(yStore, 'n1', 'three');
+    expect(getBlockHtml(yStore, 'n1')).toBe('three');
+    expect(yStore.get('n1').get('html')).toBe(yText);
+  });
+});
