@@ -183,3 +183,116 @@ describe('reconcileBlocks', () => {
     expect(twice).toBe(once);
   });
 });
+
+const stateWithComments = (cs) => {
+  const byId = new Map();
+  for (const c of cs) byId.set(c.id, c);
+  return { byId, seenRemoteIds: new Set() };
+};
+
+describe('getBlockComments', () => {
+  it('returns empty array for empty state', () => {
+    expect(comments.getBlockComments(comments.createInitial(), 'b1')).toEqual([]);
+  });
+
+  it('returns only comments anchored to the requested block', () => {
+    const state = stateWithComments([
+      { id: 'c1', blockId: 'b1', status: 'open', highlightText: 'x' },
+      { id: 'c2', blockId: 'b2', status: 'open', highlightText: 'y' },
+      { id: 'c3', blockId: 'b1', status: 'resolved', highlightText: 'z' },
+    ]);
+    const out = comments.getBlockComments(state, 'b1');
+    expect(out.map((c) => c.id).sort()).toEqual(['c1', 'c3']);
+  });
+
+  it('tolerates a malformed state (no Map) by returning empty', () => {
+    expect(comments.getBlockComments({}, 'b1')).toEqual([]);
+    expect(comments.getBlockComments(null, 'b1')).toEqual([]);
+  });
+});
+
+describe('computeCommentSegments', () => {
+  it('returns a single inert segment when text is empty', () => {
+    expect(comments.computeCommentSegments('', [])).toEqual([{ text: '', comment: null }]);
+  });
+
+  it('returns the whole text as a single inert segment when no comments match', () => {
+    const out = comments.computeCommentSegments('hello world', []);
+    expect(out).toEqual([{ text: 'hello world', comment: null }]);
+  });
+
+  it('wraps the matched substring as a comment segment', () => {
+    const c = { id: 'c1', blockId: 'b1', status: 'open', highlightText: 'world' };
+    const out = comments.computeCommentSegments('hello world!', [c]);
+    expect(out).toEqual([
+      { text: 'hello ', comment: null },
+      { text: 'world', comment: c },
+      { text: '!', comment: null },
+    ]);
+  });
+
+  it('handles a match at the very start of the text', () => {
+    const c = { id: 'c1', blockId: 'b1', status: 'open', highlightText: 'hello' };
+    const out = comments.computeCommentSegments('hello world', [c]);
+    expect(out).toEqual([
+      { text: 'hello', comment: c },
+      { text: ' world', comment: null },
+    ]);
+  });
+
+  it('handles a match at the very end of the text', () => {
+    const c = { id: 'c1', blockId: 'b1', status: 'open', highlightText: 'world' };
+    const out = comments.computeCommentSegments('hello world', [c]);
+    expect(out).toEqual([
+      { text: 'hello ', comment: null },
+      { text: 'world', comment: c },
+    ]);
+  });
+
+  it('preserves the comment object reference (so consumers can read .status / .id)', () => {
+    const c = { id: 'c1', blockId: 'b1', status: 'resolved', highlightText: 'foo' };
+    const [seg] = comments.computeCommentSegments('foo', [c]);
+    expect(seg.comment).toBe(c);
+  });
+
+  it('places multiple non-overlapping comments at their first occurrences', () => {
+    const c1 = { id: 'c1', status: 'open', highlightText: 'foo' };
+    const c2 = { id: 'c2', status: 'resolved', highlightText: 'baz' };
+    const out = comments.computeCommentSegments('foo bar baz', [c1, c2]);
+    expect(out).toEqual([
+      { text: 'foo', comment: c1 },
+      { text: ' bar ', comment: null },
+      { text: 'baz', comment: c2 },
+    ]);
+  });
+
+  it('falls back to the next non-overlapping occurrence when the first overlaps an earlier comment', () => {
+    const c1 = { id: 'c1', status: 'open', highlightText: 'abc' };
+    const c2 = { id: 'c2', status: 'open', highlightText: 'bcd' }; // overlaps c1's match
+    const out = comments.computeCommentSegments('abcd-bcd', [c1, c2]);
+    expect(out).toEqual([
+      { text: 'abc', comment: c1 },
+      { text: 'd-', comment: null },
+      { text: 'bcd', comment: c2 },
+    ]);
+  });
+
+  it('drops a comment whose only matches all overlap an earlier comment', () => {
+    const c1 = { id: 'c1', status: 'open', highlightText: 'abc' };
+    const c2 = { id: 'c2', status: 'open', highlightText: 'bc' };
+    const out = comments.computeCommentSegments('abc', [c1, c2]);
+    expect(out).toEqual([{ text: 'abc', comment: c1 }]);
+  });
+
+  it('skips comments without a highlightText', () => {
+    const c1 = { id: 'c1', status: 'open', highlightText: '' };
+    const c2 = { id: 'c2', status: 'open', highlightText: undefined };
+    const out = comments.computeCommentSegments('hello', [c1, c2]);
+    expect(out).toEqual([{ text: 'hello', comment: null }]);
+  });
+
+  it('tolerates non-string text by returning a single empty inert segment', () => {
+    expect(comments.computeCommentSegments(null, [])).toEqual([{ text: '', comment: null }]);
+    expect(comments.computeCommentSegments(undefined, [])).toEqual([{ text: '', comment: null }]);
+  });
+});

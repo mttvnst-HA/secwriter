@@ -246,6 +246,68 @@ export function reconcileBlocks(blocks, state) {
   return anyChanged ? next : blocks;
 }
 
+// ─── Render-time selectors for ref/table block highlights ──────────────────
+//
+// Ref and table blocks store their text outside of `block.html` (in
+// `block.ref` / `block.table` respectively), so `reconcileBlocks` is a
+// no-op for them. To keep the highlight in sync with metadata across
+// remote sync, undo/redo, and any re-render, the components derive
+// `mark-comment` / `mark-comment-resolved` wrappings at render time
+// from the comments state itself.
+
+export function getBlockComments(state, blockId) {
+  const out = [];
+  if (!state || !(state.byId instanceof Map)) return out;
+  for (const c of state.byId.values()) {
+    if (c && c.blockId === blockId) out.push(c);
+  }
+  return out;
+}
+
+// Slice `text` into `[{ text, comment }, ...]` segments. Segments with a
+// non-null `comment` are the substrings the caller should wrap with
+// `mark-comment` / `mark-comment-resolved`. Match strategy: first
+// occurrence per comment, scanning left to right; comments whose match
+// would overlap an already-claimed range fall back to their next
+// occurrence (and are dropped if no non-overlapping occurrence exists).
+// Returns `[{ text, comment: null }]` when there is no work to do, so
+// callers can map without a length check.
+export function computeCommentSegments(text, blockComments) {
+  if (typeof text !== 'string') return [{ text: '', comment: null }];
+  if (text === '') return [{ text: '', comment: null }];
+  const safe = Array.isArray(blockComments) ? blockComments : [];
+  if (safe.length === 0) return [{ text, comment: null }];
+
+  const matches = [];
+  for (const c of safe) {
+    const needle = c?.highlightText;
+    if (typeof needle !== 'string' || needle === '') continue;
+    let from = 0;
+    while (from <= text.length) {
+      const idx = text.indexOf(needle, from);
+      if (idx < 0) break;
+      const end = idx + needle.length;
+      const overlaps = matches.some((m) => !(end <= m.start || idx >= m.end));
+      if (!overlaps) {
+        matches.push({ start: idx, end, comment: c });
+        break;
+      }
+      from = idx + 1;
+    }
+  }
+  if (matches.length === 0) return [{ text, comment: null }];
+  matches.sort((a, b) => a.start - b.start);
+  const segs = [];
+  let cursor = 0;
+  for (const m of matches) {
+    if (m.start > cursor) segs.push({ text: text.slice(cursor, m.start), comment: null });
+    segs.push({ text: text.slice(m.start, m.end), comment: m.comment });
+    cursor = m.end;
+  }
+  if (cursor < text.length) segs.push({ text: text.slice(cursor), comment: null });
+  return segs;
+}
+
 // ─── normalizeForLoad ───────────────────────────────────────────────────────
 //
 // Load-boundary shim: convert legacy `author` (string) + `timestamp` (ISO

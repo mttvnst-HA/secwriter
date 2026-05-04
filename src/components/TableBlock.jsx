@@ -1,8 +1,44 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import { addRow, deleteRow, addColumn, deleteColumn, updateCell, mergeCellRight, splitCell } from "../lib/table-ops.js";
 import { NO_EXFIL_PROPS } from "../lib/no-exfil.js";
+import * as cm from "../lib/comments.js";
 
-function TableBlock({ block, onUpdate, isFocused, onFocus, readOnly }) {
+// Render the cell text, wrapping any substring matching a comment's
+// `highlightText` with `mark-comment` / `mark-comment-resolved`.
+// Cell text is rendered via `dangerouslySetInnerHTML` in the legacy code
+// path (to render `&nbsp;` for empty cells); when there are no comments
+// to overlay, we keep that path. When there are matching comments, we
+// fall back to React-managed text so the segments can be wrapped
+// without parsing the existing innerHTML — input is plain text from
+// `cellDraft`, so this is safe for the data we currently produce.
+function renderCellContent(text, blockComments, activeCommentId) {
+  const segs = cm.computeCommentSegments(text || '', blockComments);
+  const hasComment = segs.some((s) => s.comment);
+  if (!hasComment) {
+    return <span dangerouslySetInnerHTML={{ __html: text || "&nbsp;" }} />;
+  }
+  return (
+    <span>
+      {segs.map((seg, i) => {
+        if (!seg.comment) return seg.text;
+        const cls = seg.comment.status === 'resolved' ? 'mark-comment-resolved' : 'mark-comment';
+        const isActive = seg.comment.id === activeCommentId;
+        return (
+          <span
+            key={`${seg.comment.id}-${i}`}
+            className={cls}
+            data-comment-id={seg.comment.id}
+            {...(isActive ? { 'data-active': 'true' } : {})}
+          >
+            {seg.text}
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
+function TableBlock({ block, onUpdate, isFocused, onFocus, readOnly, commentsState, activeCommentId, onCommentClick }) {
   const canEdit = onUpdate && !readOnly;
   const tbl = block.table;
   if (!tbl || !tbl.rows || tbl.rows.length === 0) return null;
@@ -100,6 +136,11 @@ function TableBlock({ block, onUpdate, isFocused, onFocus, readOnly }) {
 
   const [hoverCell, setHoverCell] = useState(null); // {row, col}
 
+  const blockComments = useMemo(
+    () => (commentsState ? cm.getBlockComments(commentsState, block.id) : []),
+    [commentsState, block.id]
+  );
+
   const renderCell = (cell, rowIdx, cellIdx, isHeader, row) => {
     const isEditing = editingCell?.row === rowIdx && editingCell?.col === cellIdx;
     const isHovered = hoverCell?.row === rowIdx && hoverCell?.col === cellIdx;
@@ -137,7 +178,7 @@ function TableBlock({ block, onUpdate, isFocused, onFocus, readOnly }) {
             }}
           />
         ) : (
-          <span dangerouslySetInnerHTML={{ __html: cell.text || "&nbsp;" }} />
+          renderCellContent(cell.text, blockComments, activeCommentId)
         )}
         {/* Merge/Split buttons on hover */}
         {isHovered && !isEditing && canEdit && (
@@ -196,7 +237,16 @@ function TableBlock({ block, onUpdate, isFocused, onFocus, readOnly }) {
       marginTop: 12,
       marginBottom: 12,
     }}
-    onClick={() => onFocus && onFocus(block.id)}
+    onClick={(e) => {
+      const commentEl = e.target.closest?.('span.mark-comment');
+      if (commentEl && onCommentClick) {
+        e.stopPropagation();
+        const commentId = commentEl.getAttribute('data-comment-id');
+        if (commentId) onCommentClick(commentId, commentEl.getBoundingClientRect());
+        return;
+      }
+      if (onFocus) onFocus(block.id);
+    }}
     >
       <table style={{
         width: "100%",
