@@ -32,12 +32,14 @@ import { parseSEC } from "./lib/sec-parser.js";
 import { serializeSEC } from "./lib/sec-serializer.js";
 import { encodeWindows1252 } from "./lib/encoding.js";
 import { useUndoableBlocks } from "./lib/useUndoableBlocks.js";
+import * as Y from "yjs";
+import { seedBlockArray, resetBlockArray, setBlockHtml } from "./lib/block-html-store.js";
 import * as tc from "./lib/track-changes.js";
 import * as linting from "./lib/linting.js";
 import * as comp from "./lib/compliance.js";
 import { applyGroupHighlights, clearHighlightSpans } from "./lib/compliance-highlight.js";
 import INITIAL_BLOCKS from "./data/sample-31-00-00.json";
-import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL } from "./lib/collab.js";
+import { getRoomFromUrl, buildRoomUrl, generateRoomId, DEFAULT_HTTP_URL, applyBlocksToYDoc } from "./lib/collab.js";
 import { useCollabSession } from "./hooks/useCollabSession.js";
 import * as cm from "./lib/comments.js";
 import { loadIdentity } from "./lib/identity.js";
@@ -118,6 +120,22 @@ export default function SpecEditor() {
     blocks, tcState, setBlocks, setBlocksDirect, setTcState,
     undo, redo, canUndo, canRedo, clearHistory, resumeHistory,
   } = useUndoableBlocks(INITIAL_BLOCKS);
+  // Local Y.Doc — the no-room substrate for block html. EditableBlock's
+  // useBlockBinder reads/writes this when !inRoom. In-room mode, the
+  // session's Y.Doc takes over; the local substrate stays allocated but
+  // dormant. See ADR-0004 (#22 sub-PR 1b).
+  const [localSubstrate] = useState(() => {
+    const ydoc = new Y.Doc();
+    const yOrder = ydoc.getArray('order');
+    const yStore = ydoc.getMap('store');
+    seedBlockArray(ydoc, yOrder, yStore, INITIAL_BLOCKS);
+    return { ydoc, yOrder, yStore };
+  });
+  // Ref to the active substrate's yStore so callbacks declared before the
+  // useCollabSession call (which is where the session yStore comes from)
+  // can still reach it without a temporal-dead-zone reference. Updated
+  // below after `activeYStore` is computed.
+  const activeYStoreRef = useRef(localSubstrate.yStore);
   const trackChanges = tc.isEnabled(tcState);
   const [selectedTreeId, setSelectedTreeId] = useState(null);
   const [focusedBlockId, setFocusedBlockId] = useState(null);
@@ -231,6 +249,18 @@ export default function SpecEditor() {
   const numberMap = useMemo(() => computeNumbering(blocks), [blocks]);
   const oliLabels = useMemo(() => computeOliLabels(blocks), [blocks]);
 
+  // Out-of-room: keep the local Y.Doc substrate's structure (yOrder + yMaps)
+  // in sync with the React blocks array. New blocks (Enter/slash menu),
+  // deletions, and reorders flow through React state first; the binder needs
+  // a Y.Map for each id or its getBlockHtml returns ''. applyBlocksToYDoc's
+  // skip-html semantic (#22 sub-PR 1b) means existing yTexts stay intact;
+  // brand-new ids get their html seeded from block.html. In-room mode uses
+  // the existing useCollabSession publish-effect path and skips this.
+  useEffect(() => {
+    if (inRoom) return;
+    applyBlocksToYDoc(localSubstrate.ydoc, localSubstrate.yOrder, localSubstrate.yStore, blocks);
+  }, [blocks, inRoom, localSubstrate]);
+
   // Filter tree for sidebar search
   const filteredTree = useMemo(() => {
     if (!sidebarSearch.trim()) return tree;
@@ -285,6 +315,14 @@ export default function SpecEditor() {
         return;
       }
       clearHistory();
+      // No-room: rewrite the local Y.Doc substrate so the binder sees the
+      // freshly-loaded blocks. Single 'reset' transaction so the binder's
+      // subscribe never observes a half-cleared document. In-room: the
+      // existing publishBlocks path handles structural seeding for any
+      // brand-new ids, and the binder reads what's already in the room.
+      if (!inRoom) {
+        resetBlockArray(localSubstrate.ydoc, localSubstrate.yOrder, localSubstrate.yStore, parsed);
+      }
       setBlocks(parsed);
       setFileName(name);
       setSectionMeta(extractMetadata(content));
@@ -304,7 +342,7 @@ export default function SpecEditor() {
     } catch (err) {
       alert(`Failed to parse SEC file: ${err.message}`);
     }
-  }, [extractMetadata, clearHistory]);
+  }, [extractMetadata, clearHistory, inRoom, localSubstrate]);
 
   const handleFileImport = useCallback((file) => {
     if (!file) return;
@@ -649,17 +687,41 @@ export default function SpecEditor() {
   // an undo entry / clear the redo stack — otherwise a Ctrl+Z would clear
   // future right after the reconcile effect ran on the new (post-undo)
   // blocks reference.
+  //
+  // Post-1b: also mirror the html change into the substrate so the binder
+  // (and remote peers) see the orphan-unwrap or status-reclass — applyBlocksToYDoc
+  // no longer touches html for existing yText.
   useEffect(() => {
-    setBlocksDirect(prev => cm.reconcileBlocks(prev, commentsState));
+    setBlocksDirect(prev => {
+      const next = cm.reconcileBlocks(prev, commentsState);
+      const yStore = activeYStoreRef.current;
+      if (next !== prev && yStore) {
+        for (const b of next) {
+          if (typeof b.html !== 'string') continue;
+          const before = prev.find(p => p.id === b.id);
+          if (before && before.html !== b.html) setBlockHtml(yStore, b.id, b.html);
+        }
+      }
+      return next;
+    });
   }, [blocks, commentsState, setBlocksDirect]);
 
   const handleBlockUpdate = useCallback((id, html) => {
+    // Mirror the new html into the active Y.Doc substrate so non-typing
+    // mutations stay observable through getBlockHtml. Typing flows through
+    // useBlockBinder.write directly and skips this codepath; this handler
+    // remains for handleBlur, programmatic onUpdate calls, and anything
+    // routed via FloatingToolbar.onBlockUpdate.
+    const yStore = activeYStoreRef.current;
+    if (yStore) setBlockHtml(yStore, id, html);
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
   }, []);
 
   // Update block HTML AND refresh its TC snapshot (used by FloatingToolbar inline accept/reject)
   const handleRevisionAction = useCallback((id, html) => {
     resumeHistory();
+    const yStore = activeYStoreRef.current;
+    if (yStore) setBlockHtml(yStore, id, html);
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
     setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
   }, []);
@@ -673,6 +735,8 @@ export default function SpecEditor() {
       // Clear init flag so setRef won't overwrite on React remount
       delete el.dataset.init;
     }
+    const yStore = activeYStoreRef.current;
+    if (yStore) setBlockHtml(yStore, id, html);
     // Then update React state to match
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
   }, []);
@@ -686,6 +750,8 @@ export default function SpecEditor() {
       // Sync DOM
       const el = document.querySelector(`[data-block-id="${blockId}"]`);
       if (el) el.innerHTML = newHtml;
+      const yStore = activeYStoreRef.current;
+      if (yStore) setBlockHtml(yStore, blockId, newHtml);
       return { ...b, html: newHtml };
     }));
   }, []);
@@ -975,22 +1041,44 @@ export default function SpecEditor() {
 
   const handleAcceptAll = useCallback(() => {
     resumeHistory();
-    setBlocks(prev => {
-      const next = acceptAllRevisions(prev);
-      // Refresh snapshots from the post-resolution state so subsequent edits
-      // diff against the correct baseline (not stale pre-accept text)
-      setTcState(s => tc.acceptAll(s, next));
-      return next;
-    });
+    const prev = blocksRef.current;
+    const next = acceptAllRevisions(prev);
+    // Push every changed block's html to the substrate so the binder
+    // and remote peers see the resolution, not just the React-state cache.
+    // Done OUTSIDE the React state updater — setBlockHtml is a side effect
+    // that must not run inside a (potentially-reinvoked-in-StrictMode) updater.
+    const yStore = activeYStoreRef.current;
+    if (yStore) {
+      for (let i = 0; i < next.length; i++) {
+        const b = next[i];
+        const before = prev.find(p => p.id === b.id);
+        if (before && typeof b.html === 'string' && before.html !== b.html) {
+          setBlockHtml(yStore, b.id, b.html);
+        }
+      }
+    }
+    setBlocks(next);
+    // Refresh snapshots from the post-resolution state so subsequent edits
+    // diff against the correct baseline (not stale pre-accept text)
+    setTcState(s => tc.acceptAll(s, next));
   }, []);
 
   const handleRejectAll = useCallback(() => {
     resumeHistory();
-    setBlocks(prev => {
-      const next = rejectAllRevisions(prev);
-      setTcState(s => tc.rejectAll(s, next));
-      return next;
-    });
+    const prev = blocksRef.current;
+    const next = rejectAllRevisions(prev);
+    const yStore = activeYStoreRef.current;
+    if (yStore) {
+      for (let i = 0; i < next.length; i++) {
+        const b = next[i];
+        const before = prev.find(p => p.id === b.id);
+        if (before && typeof b.html === 'string' && before.html !== b.html) {
+          setBlockHtml(yStore, b.id, b.html);
+        }
+      }
+    }
+    setBlocks(next);
+    setTcState(s => tc.rejectAll(s, next));
   }, []);
 
   // Persist dark mode
@@ -1081,11 +1169,19 @@ export default function SpecEditor() {
 
   const handleComplianceAcceptFix = useCallback((blockId, fixedText) => {
     resumeHistory();
+    const yStore = activeYStoreRef.current;
+    if (yStore) setBlockHtml(yStore, blockId, fixedText);
     setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: fixedText } : b));
   }, []);
 
   const handleComplianceAcceptGroup = useCallback((fixesByBlock, label) => {
     resumeHistory();
+    const yStore = activeYStoreRef.current;
+    if (yStore) {
+      for (const [bid, html] of fixesByBlock) {
+        if (typeof html === 'string') setBlockHtml(yStore, bid, html);
+      }
+    }
     setBlocks(prev => prev.map(b => {
       const fix = fixesByBlock.get(b.id);
       return fix ? { ...b, html: fix } : b;
@@ -1116,6 +1212,9 @@ export default function SpecEditor() {
     if (inRoom) return;
     const saved = loadAutoSave();
     if (!saved || !saved.blocks || saved.blocks.length === 0 || !saved.fileName) return;
+    // Reset the local substrate to mirror the restored blocks so the binder
+    // serves the auto-saved html, not the freshly-seeded INITIAL_BLOCKS.
+    resetBlockArray(localSubstrate.ydoc, localSubstrate.yOrder, localSubstrate.yStore, saved.blocks);
     setBlocks(saved.blocks);
     if (saved.sectionMeta) setSectionMeta(saved.sectionMeta);
     setFileName(saved.fileName);
@@ -1134,7 +1233,7 @@ export default function SpecEditor() {
     // the next Ctrl+S so it cannot land on an unrelated file.
     fileHandleRef.current = null;
     commentsHandleRef.current = null;
-  }, [inRoom]);
+  }, [inRoom, localSubstrate]);
 
   // ── Collab session ──
   // useCollabSession owns: session creation/teardown, the four publish
@@ -1232,6 +1331,17 @@ export default function SpecEditor() {
     pushToast: useCallback((toast) => toastPushRef.current?.(toast), []),
   });
   collabRef.current = collab;
+
+  // The active substrate for EditableBlock's binder. Session yStore wins
+  // when in a room; the local Y.Doc is the substrate for single-user mode.
+  // Reference identity flips on room transitions, which the binder hook's
+  // subscribe deps watch — it tears down the old subscription and attaches
+  // to the new yStore in one render cycle.
+  const activeYStore = inRoom ? collab.yStore : localSubstrate.yStore;
+  // Mirror the active substrate into the ref so callbacks declared above
+  // (which can't reach the const due to JS hoisting / TDZ rules) read the
+  // current substrate at call time, not the initial one.
+  activeYStoreRef.current = activeYStore;
 
   // Keyboard listener for undo/redo and search
   useEffect(() => {
@@ -2223,6 +2333,7 @@ export default function SpecEditor() {
               <div key={`${block.id}-${block.type}`}>
                 <EditableBlock
                   block={block}
+                  yStore={activeYStore}
                   onUpdate={handleBlockUpdate}
                   onEnterKey={handleEnterKey}
                   onFocus={handleClickFocus}
@@ -2250,6 +2361,7 @@ export default function SpecEditor() {
                       const next = [...prev];
                       const html = b.html ? acceptAllInline(b.html) : b.html;
                       resolvedHtml = html || '';
+                      if (activeYStore && typeof html === 'string') setBlockHtml(activeYStore, id, html);
                       next[idx] = { ...b, revision: undefined, html };
                       return next;
                     });
@@ -2266,6 +2378,7 @@ export default function SpecEditor() {
                       const next = [...prev];
                       const html = b.html ? rejectAllInline(b.html) : b.html;
                       resolvedHtml = html || '';
+                      if (activeYStore && typeof html === 'string') setBlockHtml(activeYStore, id, html);
                       next[idx] = { ...b, revision: undefined, html };
                       return next;
                     });

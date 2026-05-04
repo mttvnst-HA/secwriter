@@ -499,11 +499,20 @@ function updateYMapFromBlock(ymap, block) {
     ymap.delete('ref');
   }
 
+  // HTML lives in Y.Text and is owned by the binder (useBlockBinder) for
+  // existing blocks (#22 sub-PR 1b). Per-keystroke writes flow through
+  // setBlockHtml directly; React-state-driven publishes (handleRevisionAction,
+  // search/replace, MarkSuggestions, etc.) call setBlockHtml in addition to
+  // setBlocks. So this path skips html for existing yText — re-applying a
+  // stale React block.html would clobber typing in flight.
+  //
+  // For brand-new blocks (block.id absent from yStore at the call site that
+  // routed us here), the wrapping `applyBlocksToYDoc` path used `blockToYMap`
+  // which seeds the yText directly. The else-branch below is a defensive
+  // fallback for the legacy case of a Y.Map with no html slot at all
+  // (shouldn't happen post-1a, but kept so a bad room state is recoverable).
   const yText = ymap.get('html');
-  // Duck-type check: see yMapToBlock comment above.
-  if (yText && typeof yText.toDelta === 'function') {
-    applyHtmlToYText(yText, typeof block.html === 'string' ? block.html : '');
-  } else {
+  if (!yText || typeof yText.toDelta !== 'function') {
     const t = new Y.Text();
     seedYTextFromHtml(t, typeof block.html === 'string' ? block.html : '');
     ymap.set('html', t);
