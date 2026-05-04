@@ -24,6 +24,9 @@ function getCached(yText) {
 }
 
 export function seedBlockArray(ydoc, yOrder, yStore, plainBlocks) {
+  if (yOrder.length > 0 || yStore.size > 0) {
+    throw new Error('seedBlockArray: yOrder and yStore must be empty before seeding');
+  }
   ydoc.transact(() => {
     for (const b of plainBlocks) {
       const yMap = new Y.Map();

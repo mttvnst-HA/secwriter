@@ -147,3 +147,64 @@ describe('setBlockHtml', () => {
     expect(yStore.get('n1').get('html')).toBe(yText);
   });
 });
+
+describe('seedBlockArray', () => {
+  it('seeds multiple blocks and preserves order', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [
+      { id: 'a', type: 'txt', html: 'A' },
+      { id: 'b', type: 'txt', html: 'B' },
+      { id: 'c', type: 'txt', html: 'C' },
+    ]);
+    expect(yOrder.length).toBe(3);
+    expect(yStore.size).toBe(3);
+    expect(yOrder.get(0)).toBe('a');
+    expect(yOrder.get(1)).toBe('b');
+    expect(yOrder.get(2)).toBe('c');
+    expect(getBlockHtml(yStore, 'a')).toBe('A');
+    expect(getBlockHtml(yStore, 'b')).toBe('B');
+    expect(getBlockHtml(yStore, 'c')).toBe('C');
+  });
+
+  it('throws if yOrder is non-empty', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    yOrder.push(['stale']);
+    expect(() => seedBlockArray(ydoc, yOrder, yStore, [
+      { id: 'a', type: 'txt', html: 'A' },
+    ])).toThrow();
+  });
+
+  it('throws if yStore is non-empty', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    yStore.set('stale', new Y.Map());
+    expect(() => seedBlockArray(ydoc, yOrder, yStore, [
+      { id: 'a', type: 'txt', html: 'A' },
+    ])).toThrow();
+  });
+
+  it('seeds an empty html block to empty content', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: '' }]);
+    expect(getBlockHtml(yStore, 'n1')).toBe('');
+  });
+
+  it('seeds inside the seed transaction origin (single transaction per call)', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    const origins = [];
+    ydoc.on('afterTransaction', (tx) => origins.push(tx.origin));
+    seedBlockArray(ydoc, yOrder, yStore, [
+      { id: 'a', type: 'txt', html: 'A' },
+      { id: 'b', type: 'txt', html: 'B' },
+    ]);
+    expect(origins).toEqual(['seed']);
+  });
+
+  it('preserves Y.Text identity across direct mutations after seeding', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'a' }]);
+    const before = yStore.get('n1').get('html');
+    setBlockHtml(yStore, 'n1', 'b');
+    setBlockHtml(yStore, 'n1', 'c');
+    expect(yStore.get('n1').get('html')).toBe(before);
+  });
+});
