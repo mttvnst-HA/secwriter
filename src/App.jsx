@@ -131,6 +131,11 @@ export default function SpecEditor() {
     seedBlockArray(ydoc, yOrder, yStore, INITIAL_BLOCKS);
     return { ydoc, yOrder, yStore };
   });
+  // Ref to the active substrate's yStore so callbacks declared before the
+  // useCollabSession call (which is where the session yStore comes from)
+  // can still reach it without a temporal-dead-zone reference. Updated
+  // below after `activeYStore` is computed.
+  const activeYStoreRef = useRef(localSubstrate.yStore);
   const trackChanges = tc.isEnabled(tcState);
   const [selectedTreeId, setSelectedTreeId] = useState(null);
   const [focusedBlockId, setFocusedBlockId] = useState(null);
@@ -677,16 +682,17 @@ export default function SpecEditor() {
   useEffect(() => {
     setBlocksDirect(prev => {
       const next = cm.reconcileBlocks(prev, commentsState);
-      if (next !== prev && activeYStore) {
+      const yStore = activeYStoreRef.current;
+      if (next !== prev && yStore) {
         for (const b of next) {
           if (typeof b.html !== 'string') continue;
           const before = prev.find(p => p.id === b.id);
-          if (before && before.html !== b.html) setBlockHtml(activeYStore, b.id, b.html);
+          if (before && before.html !== b.html) setBlockHtml(yStore, b.id, b.html);
         }
       }
       return next;
     });
-  }, [blocks, commentsState, setBlocksDirect, activeYStore]);
+  }, [blocks, commentsState, setBlocksDirect]);
 
   const handleBlockUpdate = useCallback((id, html) => {
     // Mirror the new html into the active Y.Doc substrate so non-typing
@@ -694,17 +700,19 @@ export default function SpecEditor() {
     // useBlockBinder.write directly and skips this codepath; this handler
     // remains for handleBlur, programmatic onUpdate calls, and anything
     // routed via FloatingToolbar.onBlockUpdate.
-    if (activeYStore) setBlockHtml(activeYStore, id, html);
+    const yStore = activeYStoreRef.current;
+    if (yStore) setBlockHtml(yStore, id, html);
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-  }, [activeYStore]);
+  }, []);
 
   // Update block HTML AND refresh its TC snapshot (used by FloatingToolbar inline accept/reject)
   const handleRevisionAction = useCallback((id, html) => {
     resumeHistory();
-    if (activeYStore) setBlockHtml(activeYStore, id, html);
+    const yStore = activeYStoreRef.current;
+    if (yStore) setBlockHtml(yStore, id, html);
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
     setTcState(prev => tc.applyResolveAtBlock(prev, id, html));
-  }, [activeYStore]);
+  }, []);
 
   // Update block HTML and sync the contentEditable DOM (used by MarkSuggestions)
   const handleBlockUpdateWithSync = useCallback((id, html) => {
@@ -715,10 +723,11 @@ export default function SpecEditor() {
       // Clear init flag so setRef won't overwrite on React remount
       delete el.dataset.init;
     }
-    if (activeYStore) setBlockHtml(activeYStore, id, html);
+    const yStore = activeYStoreRef.current;
+    if (yStore) setBlockHtml(yStore, id, html);
     // Then update React state to match
     setBlocks(prev => prev.map(b => b.id === id ? { ...b, html } : b));
-  }, [activeYStore]);
+  }, []);
 
   // Replace a match in a block's HTML at a given visible-text offset
   const handleSearchReplace = useCallback((blockId, offset, length, replacement) => {
@@ -729,10 +738,11 @@ export default function SpecEditor() {
       // Sync DOM
       const el = document.querySelector(`[data-block-id="${blockId}"]`);
       if (el) el.innerHTML = newHtml;
-      if (activeYStore) setBlockHtml(activeYStore, blockId, newHtml);
+      const yStore = activeYStoreRef.current;
+      if (yStore) setBlockHtml(yStore, blockId, newHtml);
       return { ...b, html: newHtml };
     }));
-  }, [activeYStore]);
+  }, []);
 
   // Remove an orphaned RID entry from a REF block
   const handleRemoveOrphaned = useCallback((blockId, rid) => {
@@ -1023,12 +1033,13 @@ export default function SpecEditor() {
       const next = acceptAllRevisions(prev);
       // Push every changed block's html to the substrate so the binder
       // and remote peers see the resolution, not just the React-state cache.
-      if (activeYStore) {
+      const yStore = activeYStoreRef.current;
+      if (yStore) {
         for (let i = 0; i < next.length; i++) {
           const b = next[i];
           const before = prev.find(p => p.id === b.id);
           if (before && typeof b.html === 'string' && before.html !== b.html) {
-            setBlockHtml(activeYStore, b.id, b.html);
+            setBlockHtml(yStore, b.id, b.html);
           }
         }
       }
@@ -1037,25 +1048,26 @@ export default function SpecEditor() {
       setTcState(s => tc.acceptAll(s, next));
       return next;
     });
-  }, [activeYStore]);
+  }, []);
 
   const handleRejectAll = useCallback(() => {
     resumeHistory();
     setBlocks(prev => {
       const next = rejectAllRevisions(prev);
-      if (activeYStore) {
+      const yStore = activeYStoreRef.current;
+      if (yStore) {
         for (let i = 0; i < next.length; i++) {
           const b = next[i];
           const before = prev.find(p => p.id === b.id);
           if (before && typeof b.html === 'string' && before.html !== b.html) {
-            setBlockHtml(activeYStore, b.id, b.html);
+            setBlockHtml(yStore, b.id, b.html);
           }
         }
       }
       setTcState(s => tc.rejectAll(s, next));
       return next;
     });
-  }, [activeYStore]);
+  }, []);
 
   // Persist dark mode
   useEffect(() => {
@@ -1145,22 +1157,24 @@ export default function SpecEditor() {
 
   const handleComplianceAcceptFix = useCallback((blockId, fixedText) => {
     resumeHistory();
-    if (activeYStore) setBlockHtml(activeYStore, blockId, fixedText);
+    const yStore = activeYStoreRef.current;
+    if (yStore) setBlockHtml(yStore, blockId, fixedText);
     setBlocks(prev => prev.map(b => b.id === blockId ? { ...b, html: fixedText } : b));
-  }, [activeYStore]);
+  }, []);
 
   const handleComplianceAcceptGroup = useCallback((fixesByBlock, label) => {
     resumeHistory();
-    if (activeYStore) {
+    const yStore = activeYStoreRef.current;
+    if (yStore) {
       for (const [bid, html] of fixesByBlock) {
-        if (typeof html === 'string') setBlockHtml(activeYStore, bid, html);
+        if (typeof html === 'string') setBlockHtml(yStore, bid, html);
       }
     }
     setBlocks(prev => prev.map(b => {
       const fix = fixesByBlock.get(b.id);
       return fix ? { ...b, html: fix } : b;
     }));
-  }, [activeYStore]);
+  }, []);
 
   // Auto-save to localStorage every 3 seconds (silent, no UI).
   // Suppressed in a collab room — the server-persisted Yjs doc is the source of truth.
@@ -1186,6 +1200,9 @@ export default function SpecEditor() {
     if (inRoom) return;
     const saved = loadAutoSave();
     if (!saved || !saved.blocks || saved.blocks.length === 0 || !saved.fileName) return;
+    // Reset the local substrate to mirror the restored blocks so the binder
+    // serves the auto-saved html, not the freshly-seeded INITIAL_BLOCKS.
+    resetBlockArray(localSubstrate.ydoc, localSubstrate.yOrder, localSubstrate.yStore, saved.blocks);
     setBlocks(saved.blocks);
     if (saved.sectionMeta) setSectionMeta(saved.sectionMeta);
     setFileName(saved.fileName);
@@ -1204,7 +1221,7 @@ export default function SpecEditor() {
     // the next Ctrl+S so it cannot land on an unrelated file.
     fileHandleRef.current = null;
     commentsHandleRef.current = null;
-  }, [inRoom]);
+  }, [inRoom, localSubstrate]);
 
   // ── Collab session ──
   // useCollabSession owns: session creation/teardown, the four publish
@@ -1309,6 +1326,10 @@ export default function SpecEditor() {
   // subscribe deps watch — it tears down the old subscription and attaches
   // to the new yStore in one render cycle.
   const activeYStore = inRoom ? collab.yStore : localSubstrate.yStore;
+  // Mirror the active substrate into the ref so callbacks declared above
+  // (which can't reach the const due to JS hoisting / TDZ rules) read the
+  // current substrate at call time, not the initial one.
+  activeYStoreRef.current = activeYStore;
 
   // Keyboard listener for undo/redo and search
   useEffect(() => {
