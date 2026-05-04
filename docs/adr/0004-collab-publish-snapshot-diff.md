@@ -38,8 +38,11 @@ The publish path stays as a snapshot-diff into Y.Text for now. The full live-bin
 
 When any of the following is true:
 
-1. Multi-user same-paragraph editing becomes a frequent user complaint or a regression in a paying-customer scenario.
+1. Multi-user same-paragraph editing becomes a frequent user complaint or a regression in a paying-customer scenario. **Partially mitigated** by sub-PR 1b's per-keystroke (debounced) binder writes — the contention window is now ~one keystroke, not ~one blur. Same-paragraph concurrent typing is still a snapshot-diff inside `setBlockHtml`, not a per-character `Y.Text.insert`. ProseMirror migration (issue #22 option A) is the long-term fix.
 2. A maintainer has the bandwidth to land issue #22 with full E2E coverage of TC + comments + marks under live binding.
 3. ~~The publish-path coordination logic is extracted into a hook (the smaller in-scope improvement) — at which point the surface for the larger refactor is much narrower.~~ **Landed** as `src/hooks/useCollabSession.js` — the session lifecycle, the four publish effects (blocks, meta, TC, comments dispatch), the echo/ready/seq guard refs, the doc-size cap latch, and cursor broadcast all live behind one hook surface. Issue #22 now lands by changing the hook's body, not by editing 40 places in App.jsx.
+4. ~~The Y.Doc-as-substrate refactor lands so EditableBlock reads/writes its block html through a substrate adapter, not through React `block.html` props.~~ **Landed** in two sub-PRs:
+   - **1a** (`src/lib/block-html-store.js`) introduced the substrate adapter — `seedBlockArray`, `getBlockHtml`, `setBlockHtml` — with a per-Y.Text observer cache so repeat reads with no intervening mutation skip the toDelta walk.
+   - **1b** added `subscribeBlock` (useSyncExternalStore-shaped) and `resetBlockArray` (file-load), the `useBlockBinder` hook in `src/components/useBlockBinder.js`, and wired both App + EditableBlock. App allocates a local Y.Doc on mount; `useCollabSession` exposes its session Y.Doc via `yStore` state; `activeYStore = inRoom ? collab.yStore : localSubstrate.yStore` is passed to EditableBlock. `applyBlocksToYDoc` no longer touches html for existing yText (the binder owns it); non-typing html callers (revisions, search, marks, comments reconcile) push directly to the substrate via `setBlockHtml`. Track Changes annotation timing remains at blur — per-keystroke TC marks via Y.Text formatting attributes is the next sub-PR.
 
-Until then, snapshot diff stays.
+Until issue #22's option A (ProseMirror migration) lands, snapshot-diff still lives inside `applyHtmlToYText` — it just runs from the binder, per debounced keystroke, instead of from the publish-effect, per blur.
