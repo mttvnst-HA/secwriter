@@ -439,6 +439,22 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     expect(onStatusChange).toHaveBeenCalledWith('incompatible', { reconnectIn: 0 });
   });
 
+  it('does not broadcast cursor positions after the gate has tripped', () => {
+    // PR #49 review: the cursor-broadcast effect was the only side-effect
+    // path not gated by schemaIncompatibleRef, leaking the local caret
+    // position into awareness for a room the banner has declared
+    // unusable. Awareness writes are not document mutations but they are
+    // visible to peers via the WebSocketProvider, and SecWriter handles
+    // CUI text — so a leak after the lock is a privacy/consistency bug.
+    renderHook((p) => useCollabSession(p), { initialProps: defaultParams() });
+    fireInitialSync({ schemaVersion: 2 });
+    // Even with no editable element focused, the handler would normally
+    // call setCursor(null). After the gate, it must not call setCursor at
+    // all.
+    act(() => { document.dispatchEvent(new Event('selectionchange')); });
+    expect(lastSession().setCursor).not.toHaveBeenCalled();
+  });
+
   it('passes status updates through normally when the gate has NOT tripped', () => {
     const onStatusChange = vi.fn();
     renderHook((p) => useCollabSession(p), {

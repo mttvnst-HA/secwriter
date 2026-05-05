@@ -402,10 +402,14 @@ export function useCollabSession({
 
   // ── Cursor broadcast ──────────────────────────────────────────────────
   // Listens for selectionchange and broadcasts the caret position so other
-  // peers see a live cursor.
+  // peers see a live cursor. Gated on schemaIncompatibleRef so an
+  // incompatible-room session does not leak the user's caret position into
+  // awareness after the banner has told them the room is locked
+  // (privacy / consistency with the four publish paths).
   useEffect(() => {
     if (!inRoom) return;
     const handler = () => {
+      if (schemaIncompatibleRef.current) return;
       const session = sessionRef.current;
       if (!session) return;
       const active = document.activeElement;
