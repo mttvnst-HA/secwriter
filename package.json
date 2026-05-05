@@ -24,6 +24,7 @@
     "test:interop": "node --import ./tools/json-loader.mjs --test tests/interop.node-test.mjs",
     "test:interop:encoding": "node --import ./tools/json-loader.mjs --test tests/interop-encoding.node-test.mjs",
     "test:ufgs": "node --import ./tools/json-loader.mjs --test tests/ufgs-tag-coverage.node-test.mjs tests/ufgs-structural.node-test.mjs",
+    "test:byte-stability": "node --import ./tools/json-loader.mjs --test tests/pmdoc-html-byte-stability.node-test.mjs",
     "audit:init": "node tools/ui-audit/run-audit.mjs",
     "audit:list": "node tools/ui-audit/run-audit.mjs --list",
     "audit:report": "node tools/ui-audit/collect-findings.mjs test-results/findings.json",
