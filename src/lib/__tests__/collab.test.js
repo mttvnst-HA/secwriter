@@ -28,7 +28,7 @@ import {
   deleteCommentFromDoc,
   readComments,
 } from '../collab.js';
-import { setBlockHtml } from '../block-html-store.js';
+import { setBlockHtml, getBlockHtml } from '../block-html-store.js';
 
 function makeDoc() {
   const ydoc = new Y.Doc();
@@ -78,16 +78,17 @@ describe('collab — seeding, snapshot & update-in-place', () => {
   it('updates html and scalar fields in place without rebuilding', () => {
     const { ydoc, yOrder, yStore } = makeDoc();
     seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
-    const yTextBefore = getYText(yStore, 'b2');
+    const slotBefore = getYText(yStore, 'b2');
 
     // Update html — owned by the binder substrate (#22 sub-PR 1b);
-    // applyBlocksToYDoc no longer touches html for existing yText slots.
+    // applyBlocksToYDoc no longer touches html for existing slots.
     setBlockHtml(yStore, 'b2', 'This section covers grading.');
 
-    const yTextAfter = getYText(yStore, 'b2');
-    expect(yTextAfter.toString()).toBe('This section covers grading.');
-    // Same Y.Text instance preserved (update-in-place path)
-    expect(yTextAfter).toBe(yTextBefore);
+    const slotAfter = getYText(yStore, 'b2');
+    expect(getBlockHtml(yStore, 'b2')).toBe('This section covers grading.');
+    // Same slot instance preserved (update-in-place path; Y.XmlFragment
+    // post-1d, Y.Text legacy fallback both honor identity).
+    expect(slotAfter).toBe(slotBefore);
 
     // Update scalar field
     const next2 = sampleBlocks.map((b, i) => i === 2 ? { ...b, level: 2 } : b);
@@ -104,6 +105,69 @@ describe('collab — seeding, snapshot & update-in-place', () => {
     expect(yBlocksToArray(yOrder, yStore)).toEqual(sampleBlocks);
     expect(before.length).toBeGreaterThan(0);
     expect(after.length).toBeGreaterThan(0);
+  });
+
+  // PR #51 review (comment 4380149320, issue 1) — regression. The
+  // updateYMapFromBlock defensive fallback condition was
+  // `typeof yText.toDelta !== 'function'`, which is TRUE for Y.XmlFragment
+  // (it has toArray, not toDelta). So every scalar/structural publish on
+  // a v2 room would fire the fallback and replace the Y.XmlFragment slot
+  // with a fresh Y.Text — destroying the migrated substrate for every
+  // block on the first publishBlocks call after room join.
+  it('updateYMapFromBlock preserves Y.XmlFragment slot identity across scalar publish (issue 1)', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
+    // seedYBlocks now seeds Y.XmlFragment slots (post-1d).
+    const slotBefore = getYText(yStore, 'b2');
+    expect(typeof slotBefore.toArray).toBe('function');
+    expect(typeof slotBefore.toDelta).toBe('undefined');
+
+    // Trigger a scalar-only update (no html change). The publish-effect
+    // path flows through applyBlocksToYDoc → updateYMapFromBlock.
+    const next = sampleBlocks.map((b) => b.id === 'b2' ? { ...b, depth: 2 } : b);
+    applyBlocksToYDoc(ydoc, yOrder, yStore, next);
+
+    const slotAfter = getYText(yStore, 'b2');
+    // Slot identity is preserved AND the slot is still Y.XmlFragment —
+    // the defensive fallback must not have replaced it with Y.Text.
+    expect(slotAfter).toBe(slotBefore);
+    expect(typeof slotAfter.toArray).toBe('function');
+    expect(typeof slotAfter.toDelta).toBe('undefined');
+    // Scalar field updated as expected.
+    expect(getYMap(yStore, 'b2').get('depth')).toBe(2);
+  });
+
+  // PR #51 review (issue 2) — regression. blockToYMap previously seeded
+  // a fresh Y.Text for the html slot; new blocks created via Enter / slash
+  // menu in a v2 room would land as Y.Text in an otherwise-Y.XmlFragment
+  // doc. The migration broker can't re-run (needsMigration short-circuits
+  // on schemaVersion=2), so the new block is stranded on legacy substrate.
+  it('new blocks created via applyBlocksToYDoc seed Y.XmlFragment, not Y.Text (issue 2)', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
+
+    const next = [
+      ...sampleBlocks,
+      { id: 'b-fresh', type: 'txt', part: 1, depth: 1, section: 'b1', html: '<b>fresh block</b>' },
+    ];
+    applyBlocksToYDoc(ydoc, yOrder, yStore, next);
+
+    const slot = getYText(yStore, 'b-fresh');
+    expect(typeof slot.toArray).toBe('function');
+    expect(typeof slot.toDelta).toBe('undefined');
+    // Round-trips through the v2 serializer (1c).
+    expect(getBlockHtml(yStore, 'b-fresh')).toBe('<b>fresh block</b>');
+  });
+
+  it('seedYBlocks itself produces Y.XmlFragment slots for fresh rooms (issue 2 — initial seed path)', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
+    for (const b of sampleBlocks) {
+      const slot = getYText(yStore, b.id);
+      expect(typeof slot.toArray).toBe('function');
+      expect(typeof slot.toDelta).toBe('undefined');
+      expect(getBlockHtml(yStore, b.id)).toBe(b.html);
+    }
   });
 });
 
@@ -152,16 +216,16 @@ describe('collab — structural changes', () => {
     seedYBlocks(ydoc, yOrder, yStore, sampleBlocks);
 
     const b2MapBefore = getYMap(yStore, 'b2');
-    const b2TextBefore = getYText(yStore, 'b2');
+    const b2SlotBefore = getYText(yStore, 'b2');
 
     // Two-step under the post-1b contract: structural pass leaves html
-    // alone, then setBlockHtml updates the binder-owned Y.Text in place.
+    // alone, then setBlockHtml updates the binder-owned slot in place.
     applyBlocksToYDoc(ydoc, yOrder, yStore, sampleBlocks);
     setBlockHtml(yStore, 'b2', 'Brand new body for b2.');
 
     expect(getYMap(yStore, 'b2')).toBe(b2MapBefore);
-    expect(getYText(yStore, 'b2')).toBe(b2TextBefore);
-    expect(getYText(yStore, 'b2').toString()).toBe('Brand new body for b2.');
+    expect(getYText(yStore, 'b2')).toBe(b2SlotBefore);
+    expect(getBlockHtml(yStore, 'b2')).toBe('Brand new body for b2.');
   });
 
   it('handles reorder and preserves all Y.Text + Y.Map identity (C1 regression)', () => {
@@ -188,20 +252,16 @@ describe('collab — structural changes', () => {
     expect(getYMap(yStore, 'b3')).toBe(b3MapBefore);
   });
 
-  it('preserves a concurrent remote Y.Text edit across a local reorder', () => {
+  it('preserves a concurrent remote html edit across a local reorder', () => {
     const docA = makeDoc();
     const docB = makeDoc();
     seedYBlocks(docA.ydoc, docA.yOrder, docA.yStore, sampleBlocks);
     Y.applyUpdate(docB.ydoc, Y.encodeStateAsUpdate(docA.ydoc));
 
-    // B types directly into the Y.Text for b2
-    const bText = getYText(docB.yStore, 'b2');
-    docB.ydoc.transact(() => {
-      bText.delete(0, bText.length);
-      bText.insert(0, 'B typed new body content.');
-    }, 'local-publish');
+    // B writes to b2 via the binder substrate (post-1d Y.XmlFragment).
+    setBlockHtml(docB.yStore, 'b2', 'B typed new body content.');
 
-    // Concurrently, A reorders without touching b2's content
+    // Concurrently, A reorders without touching b2's content.
     applyBlocksToYDoc(docA.ydoc, docA.yOrder, docA.yStore, [
       sampleBlocks[2], sampleBlocks[0], sampleBlocks[1],
     ]);
@@ -214,7 +274,7 @@ describe('collab — structural changes', () => {
     const finalB = yBlocksToArray(docB.yOrder, docB.yStore);
     expect(finalA).toEqual(finalB);
     expect(finalA.map((b) => b.id)).toEqual(['b3', 'b1', 'b2']);
-    // B's concurrent edit to b2 survived the reorder
+    // B's concurrent edit to b2 survived the reorder.
     const b2 = finalA.find((b) => b.id === 'b2');
     expect(b2.html).toBe('B typed new body content.');
   });
@@ -504,7 +564,7 @@ describe('collab — createCollabSession + URL helpers', () => {
     expect(() => session.publishBlocks(over)).toThrow(DocSizeLimitError);
     const under = [{ id: 'n1', type: 'txt', html: 'small' }];
     expect(() => session.publishBlocks(under)).not.toThrow();
-    expect(session.yStore.get('n1').get('html').toString()).toBe('small');
+    expect(getBlockHtml(session.yStore, 'n1')).toBe('small');
     session.destroy();
 
     // M-8: publishMeta does not echo through onRemoteMeta

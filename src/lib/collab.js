@@ -60,8 +60,9 @@
 
 import * as Y from 'yjs';
 import { WebsocketProvider } from 'y-websocket';
+import { prosemirrorToYXmlFragment } from 'y-prosemirror';
 import { applyHtmlToYText, yTextToHtml, htmlToAttrList, seedYTextFromHtml } from './ytext-html.js';
-import { pmFragmentToHtml } from './pmdoc-html.js';
+import { htmlToPmFragment, pmFragmentToHtml } from './pmdoc-html.js';
 import { tableToYStructure, yStructureToTable, diffTableForPublish, applyTableCellEdits } from './ytable-crdt.js';
 import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js';
 
@@ -177,9 +178,19 @@ function blockToYMap(block) {
   for (const k of SCALAR_KEYS) {
     if (block[k] !== undefined) yMap.set(k, block[k]);
   }
-  const yText = new Y.Text();
-  seedYTextFromHtml(yText, block.html || '');
-  yMap.set('html', yText);
+  // Sub-PR 1d (#47, ADR-0006): the substrate is Y.XmlFragment. New blocks
+  // created post-migration (via Enter, slash menu, etc.) MUST be seeded as
+  // Y.XmlFragment too — otherwise applyBlocksToYDoc's new-block branch
+  // strands them as Y.Text in an otherwise-v2 room and the broker won't
+  // re-run (needsMigration short-circuits on schemaVersion === 2).
+  //
+  // Detached construction is supported: prosemirrorToYXmlFragment uses a
+  // fake transact when type.doc is null, and the queued ops integrate
+  // when the fragment is later attached via yMap.set('html', ...).
+  const yXml = new Y.XmlFragment();
+  const pmNode = htmlToPmFragment(block.html || '');
+  prosemirrorToYXmlFragment(pmNode, yXml);
+  yMap.set('html', yXml);
   // Table/REF: nested CRDT structures
   if (block.table) {
     const yTable = new Y.Map();
@@ -514,23 +525,31 @@ function updateYMapFromBlock(ymap, block) {
     ymap.delete('ref');
   }
 
-  // HTML lives in Y.Text and is owned by the binder (useBlockBinder) for
-  // existing blocks (#22 sub-PR 1b). Per-keystroke writes flow through
-  // setBlockHtml directly; React-state-driven publishes (handleRevisionAction,
-  // search/replace, MarkSuggestions, etc.) call setBlockHtml in addition to
-  // setBlocks. So this path skips html for existing yText — re-applying a
-  // stale React block.html would clobber typing in flight.
+  // HTML lives in the per-block CRDT slot and is owned by the binder
+  // (useBlockBinder) for existing blocks (#22 sub-PR 1b). Per-keystroke
+  // writes flow through setBlockHtml directly; React-state-driven publishes
+  // (handleRevisionAction, search/replace, MarkSuggestions, etc.) call
+  // setBlockHtml in addition to setBlocks. This path skips html for any
+  // existing slot — re-applying a stale React block.html would clobber
+  // typing in flight.
   //
-  // For brand-new blocks (block.id absent from yStore at the call site that
-  // routed us here), the wrapping `applyBlocksToYDoc` path used `blockToYMap`
-  // which seeds the yText directly. The else-branch below is a defensive
-  // fallback for the legacy case of a Y.Map with no html slot at all
-  // (shouldn't happen post-1a, but kept so a bad room state is recoverable).
-  const yText = ymap.get('html');
-  if (!yText || typeof yText.toDelta !== 'function') {
-    const t = new Y.Text();
-    seedYTextFromHtml(t, typeof block.html === 'string' ? block.html : '');
-    ymap.set('html', t);
+  // Sub-PR 1d (#47, ADR-0006): the slot can be Y.XmlFragment (post-broker)
+  // OR Y.Text (legacy / migrationPartial). Both shapes are valid; the
+  // defensive fallback below ONLY fires when the slot is missing or an
+  // unrecognized shape. Without the dual-shape detection, the fallback
+  // would re-seed Y.XmlFragment slots as fresh Y.Text on every scalar/
+  // structural publish, destroying the migrated substrate for every block
+  // (the issue flagged in the PR #51 review, comment 4380149320).
+  const yHtml = ymap.get('html');
+  const isYXmlFragment = yHtml && typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string';
+  const isYText = yHtml && typeof yHtml.toDelta === 'function';
+  if (!isYXmlFragment && !isYText) {
+    // Truly missing or malformed slot — defensive recovery. Use the v2
+    // shape (Y.XmlFragment) so we don't drop the doc back to v1.
+    const yXml = new Y.XmlFragment();
+    const pmNode = htmlToPmFragment(typeof block.html === 'string' ? block.html : '');
+    prosemirrorToYXmlFragment(pmNode, yXml);
+    ymap.set('html', yXml);
   }
 }
 

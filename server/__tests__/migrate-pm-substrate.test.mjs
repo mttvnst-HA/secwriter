@@ -463,6 +463,66 @@ describe('createMigrationCoordinator', () => {
     assert.strictEqual(ydoc.getMap('meta').get(MIGRATION_PARTIAL_KEY), undefined);
   });
 
+  // PR #51 review (comment 4380149320, issue 3) — regression. The
+  // inFlight cache was retaining the archive-failure result permanently:
+  // every subsequent ensureMigrated call returned the cached
+  // { skipped: true, archived: false } promise without re-attempting,
+  // even after storage recovered. Operator had to restart the server.
+  // The fix drops the cache entry on archive-failure resolve so the next
+  // connect re-attempts.
+  it('archive failure clears the inFlight cache so subsequent calls retry (issue 3)', async () => {
+    let archiveAttempts = 0;
+    let shouldFail = true;
+    const storage = {
+      async archiveRoom() {
+        archiveAttempts++;
+        if (shouldFail) throw new Error('storage offline');
+      },
+    };
+    const coord = createMigrationCoordinator({ storage });
+    const ydoc = buildV1Doc(2);
+
+    // First attempt — archive fails.
+    const r1 = await coord.ensureMigrated('room1', ydoc);
+    assert.strictEqual(r1.archived, false);
+    assert.strictEqual(r1.skipped, true);
+    assert.strictEqual(archiveAttempts, 1);
+
+    // Cache must be empty so the next call re-attempts.
+    assert.strictEqual(coord._inFlight.has('room1'), false,
+      'inFlight cache should be cleared after archive-failure resolve so a recovered storage can retry');
+
+    // Second attempt — also fails (storage still offline). Verifies
+    // ensureMigrated re-ran archiveRoom rather than returning a stale
+    // cached promise.
+    const r2 = await coord.ensureMigrated('room1', ydoc);
+    assert.strictEqual(r2.archived, false);
+    assert.strictEqual(archiveAttempts, 2);
+
+    // Storage recovers — third attempt now succeeds.
+    shouldFail = false;
+    const r3 = await coord.ensureMigrated('room1', ydoc);
+    assert.strictEqual(r3.archived, true);
+    assert.strictEqual(r3.schemaVersion, SCHEMA_V2);
+    assert.strictEqual(archiveAttempts, 3);
+
+    // After successful migration, needsMigration short-circuits — but
+    // even if it didn't, the cached promise is fine to keep (collapsing
+    // concurrent calls, not blocking retries).
+  });
+
+  it('successful migration keeps the inFlight cache (concurrent-call lock semantics)', async () => {
+    const storage = { async archiveRoom() {} };
+    const coord = createMigrationCoordinator({ storage });
+    const ydoc = buildV1Doc(1);
+
+    await coord.ensureMigrated('room1', ydoc);
+    // Cache stays — next ensureMigrated short-circuits via needsMigration
+    // (schemaVersion=2 now), so the cached promise is harmless and
+    // serves the concurrent-call lock contract.
+    assert.strictEqual(coord._inFlight.has('room1'), true);
+  });
+
   it('per-room async lock: concurrent ensureMigrated calls collapse onto a single migration', async () => {
     // Slow archive forces both callers into the await window simultaneously.
     const storage = makeFakeStorage({ archiveDelayMs: 60 });

@@ -392,7 +392,23 @@ function createMigrationCoordinator({ storage, log = NOOP_LOG, migrateImpl = mig
     if (!needsMigration(ydoc)) return { skipped: true, alreadyV2: true };
     let p = inFlight.get(docName);
     if (!p) {
-      p = runMigration(docName, ydoc);
+      // Wrap the migration promise so we can drop the cache entry on
+      // archive failure. Without this, an archiveRoom outage would
+      // permanently pin a `{ skipped: true, archived: false }` result for
+      // the room: every subsequent WS upgrade would see the cached promise
+      // and never retry, even after storage recovers — operator would
+      // need to restart the server (PR #51 review comment 4380149320,
+      // issue 3). For success / partial migrations, the cache stays —
+      // needsMigration short-circuits via schemaVersion=2 or
+      // migrationPartial=true so re-attempts wouldn't fire anyway, and
+      // keeping the cache means concurrent broker calls during the
+      // migration window collapse onto one promise.
+      p = runMigration(docName, ydoc).then((result) => {
+        if (result && result.skipped && !result.archived && result.err) {
+          inFlight.delete(docName);
+        }
+        return result;
+      });
       inFlight.set(docName, p);
     }
     return p;
