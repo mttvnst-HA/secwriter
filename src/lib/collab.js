@@ -172,25 +172,25 @@ export function estimatePublishBytes(blocks) {
 }
 
 
-/** Build a Y.Map from a plain block object. */
-function blockToYMap(block) {
+/**
+ * Build a Y.Map skeleton (scalars + empty Y.XmlFragment + JSON keys).
+ * The `html` Y.XmlFragment is intentionally LEFT EMPTY — the caller must
+ * attach the yMap to its parent (yStore) and then call `populateBlockHtml`
+ * on the slot. Doing the populate before attachment works functionally
+ * (y-prosemirror has a fake-transact path for detached fragments) but
+ * triggers a flood of "Invalid access: Add Yjs type to a document before
+ * reading data." warnings every time `updateYFragment` calls `toArray`
+ * on the detached fragment. Under CI's slower runners that flood
+ * overwhelms the Chromium → Playwright IPC channel and the test page
+ * stops responding to keyboard input — the symptom that took down
+ * `collab.spec.js:169 two-tab text sync` on PR #51.
+ */
+function blockToYMapSkeleton(block) {
   const yMap = new Y.Map();
   for (const k of SCALAR_KEYS) {
     if (block[k] !== undefined) yMap.set(k, block[k]);
   }
-  // Sub-PR 1d (#47, ADR-0006): the substrate is Y.XmlFragment. New blocks
-  // created post-migration (via Enter, slash menu, etc.) MUST be seeded as
-  // Y.XmlFragment too — otherwise applyBlocksToYDoc's new-block branch
-  // strands them as Y.Text in an otherwise-v2 room and the broker won't
-  // re-run (needsMigration short-circuits on schemaVersion === 2).
-  //
-  // Detached construction is supported: prosemirrorToYXmlFragment uses a
-  // fake transact when type.doc is null, and the queued ops integrate
-  // when the fragment is later attached via yMap.set('html', ...).
-  const yXml = new Y.XmlFragment();
-  const pmNode = htmlToPmFragment(block.html || '');
-  prosemirrorToYXmlFragment(pmNode, yXml);
-  yMap.set('html', yXml);
+  yMap.set('html', new Y.XmlFragment());
   // Table/REF: nested CRDT structures
   if (block.table) {
     const yTable = new Y.Map();
@@ -203,6 +203,17 @@ function blockToYMap(block) {
     yMap.set('ref', yRef);
   }
   return yMap;
+}
+
+/**
+ * Populate an attached Y.XmlFragment from a block.html string. Caller
+ * MUST have already attached the parent yMap to yStore (so the fragment
+ * is reachable from the doc). Calling on a detached fragment is the
+ * warning-flood path documented above.
+ */
+function populateBlockHtml(yXml, html) {
+  const pmNode = htmlToPmFragment(typeof html === 'string' ? html : '');
+  prosemirrorToYXmlFragment(pmNode, yXml);
 }
 
 /** Build a plain block object from a Y.Map. */
@@ -469,8 +480,12 @@ export function seedYBlocks(ydoc, yOrder, yStore, blocks) {
     yOrder.delete(0, yOrder.length);
     for (const id of Array.from(yStore.keys())) yStore.delete(id);
     for (const b of blocks) {
-      yStore.set(b.id, blockToYMap(b));
+      const yMap = blockToYMapSkeleton(b);
+      yStore.set(b.id, yMap);
       yOrder.push([b.id]);
+      // Populate AFTER attachment so prosemirrorToYXmlFragment runs on a
+      // fragment with a live `.doc` and doesn't fire the warning flood.
+      populateBlockHtml(yMap.get('html'), b.html);
     }
   }, 'seed');
 }
@@ -594,7 +609,10 @@ export function applyBlocksToYDoc(ydoc, yOrder, yStore, blocks) {
       if (existing) {
         updateYMapFromBlock(existing, block);
       } else {
-        yStore.set(block.id, blockToYMap(block));
+        const yMap = blockToYMapSkeleton(block);
+        yStore.set(block.id, yMap);
+        // Populate AFTER attachment — see blockToYMapSkeleton for why.
+        populateBlockHtml(yMap.get('html'), block.html);
       }
     }
 
