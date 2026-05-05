@@ -353,10 +353,39 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     expect(lastSession().publishBlocks).not.toHaveBeenCalled();
   });
 
-  it('does not publish meta when the gate has tripped', () => {
+  it('does not publish meta when the gate has tripped (initial-sync path; metaReady gate)', () => {
+    // Initial-sync path: the gate returns BEFORE flipping metaReadyRef, so
+    // publishMeta is guarded by `!metaReadyRef.current`. This asserts the
+    // observable behavior (no publish) even though the schemaIncompatibleRef
+    // guard is not the line being exercised here.
     const initial = defaultParams();
     const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
     fireInitialSync({ schemaVersion: 2 });
+    rerender(defaultParams({ sectionMeta: { sectionNumber: '99 99 99', sectionTitle: 'X', date: '01/26' } }));
+    expect(lastSession().publishMeta).not.toHaveBeenCalled();
+  });
+
+  it('does not publish meta after the gate trips even when metaReady has been flipped by a later non-initial meta delivery', () => {
+    // PR #49 review (score 78) flagged that the schemaIncompatibleRef
+    // guard on publishMeta is unreachable in the initial-sync path —
+    // metaReadyRef stays false because the gate returns before flipping
+    // it. But a later non-initial onRemoteMeta callback DOES go through
+    // the un-gated branch (the second-fire path is intentionally not
+    // schema-checked because non-initial schema bumps are not expected),
+    // flipping metaReadyRef to true. This is the path where the
+    // `if (schemaIncompatibleRef.current) return;` line in publishMeta
+    // is the actual guard. Without it, a peer's later meta nudge would
+    // unmask publishMeta into firing for an incompatible room.
+    const initial = defaultParams();
+    const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
+    fireInitialSync({ schemaVersion: 2 });
+    // Simulate a later peer-driven meta update. Non-initial → un-gated →
+    // metaReadyRef flips to true.
+    act(() => {
+      lastSession().params.onRemoteMeta({ schemaVersion: 2, sectionTitle: 'X' }, { initial: false });
+    });
+    // Now mutate sectionMeta locally. publishMeta must STILL not fire,
+    // which can only be guaranteed by the schemaIncompatibleRef guard.
     rerender(defaultParams({ sectionMeta: { sectionNumber: '99 99 99', sectionTitle: 'X', date: '01/26' } }));
     expect(lastSession().publishMeta).not.toHaveBeenCalled();
   });
@@ -380,5 +409,50 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     fireInitialSync({ schemaVersion: 2 });
     act(() => { result.current.dispatchComment({ kind: 'create', commentId: 'c1' }); });
     expect(lastSession().dispatchComment).not.toHaveBeenCalled();
+  });
+
+  // Regression: PR #49 review found the 'incompatible' status was being
+  // clobbered by collab.js handleSync's trailing onStatusChange('connected'),
+  // and by y-websocket handleStatus's reconnect events. The hook's
+  // onStatusChange wrapper now suppresses non-'incompatible' transitions
+  // after the gate trips. Fire the full sequence (blocks → meta(v2) →
+  // trailing 'connected', plus a later 'connecting' reconnect event) and
+  // assert the App-side handler only ever sees 'incompatible'.
+  it('keeps the incompatible status sticky against later handleSync and reconnect events', () => {
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onStatusChange }),
+    });
+    const params = lastSession().params;
+    act(() => {
+      params.onRemoteBlocks([{ id: 'n1', type: 'txt', html: 'hello' }], { initial: true });
+      params.onRemoteMeta({ schemaVersion: 2 }, { initial: true });
+      // collab.js handleSync line 702: trailing status fires AFTER onRemoteMeta.
+      params.onStatusChange('connected', { reconnectIn: 0 });
+      // y-websocket handleStatus reconnect path: 'connecting' / 'disconnected'.
+      params.onStatusChange('connecting', { reconnectIn: 1 });
+      params.onStatusChange('disconnected', { reconnectIn: 2 });
+    });
+    // App should see 'incompatible' exactly once and never the post-trip
+    // statuses that would re-enable the editable UI.
+    expect(onStatusChange).toHaveBeenCalledTimes(1);
+    expect(onStatusChange).toHaveBeenCalledWith('incompatible', { reconnectIn: 0 });
+  });
+
+  it('passes status updates through normally when the gate has NOT tripped', () => {
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onStatusChange }),
+    });
+    const params = lastSession().params;
+    act(() => {
+      params.onRemoteBlocks([{ id: 'n1', type: 'txt', html: 'hello' }], { initial: true });
+      params.onRemoteMeta({ schemaVersion: 1 }, { initial: true });
+      params.onStatusChange('connected', { reconnectIn: 0 });
+      params.onStatusChange('connecting', { reconnectIn: 1 });
+    });
+    expect(onStatusChange).toHaveBeenCalledTimes(2);
+    expect(onStatusChange).toHaveBeenNthCalledWith(1, 'connected', { reconnectIn: 0 });
+    expect(onStatusChange).toHaveBeenNthCalledWith(2, 'connecting', { reconnectIn: 1 });
   });
 });

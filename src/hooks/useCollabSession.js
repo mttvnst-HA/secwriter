@@ -277,6 +277,21 @@ export function useCollabSession({
         onPresenceChangeRef.current?.(states);
       },
       onStatusChange: (status, meta) => {
+        // 1b.1 sticky-incompatible. Once the schema-version gate has
+        // tripped, the room is permanently unusable for this session.
+        // Suppress any subsequent status transitions so they cannot clobber
+        // the 'incompatible' banner. This covers two clobber paths:
+        //   1. collab.js handleSync fires onStatusChange('connected') a few
+        //      lines after onRemoteMeta returns — without this guard the
+        //      banner would flash 'incompatible' and immediately revert,
+        //      leaving an editable-looking UI where typing silently never
+        //      persists (the four publish paths are still gated, so writes
+        //      go nowhere).
+        //   2. y-websocket reconnect events fire 'connecting'/'disconnected'
+        //      via handleStatus — same clobber pattern over a longer window.
+        if (schemaIncompatibleRef.current && status !== 'incompatible') {
+          return;
+        }
         onStatusChangeRef.current?.(status, meta);
       },
     });
