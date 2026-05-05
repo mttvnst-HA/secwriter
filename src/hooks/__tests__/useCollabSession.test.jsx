@@ -295,3 +295,180 @@ describe('useCollabSession — cursor broadcast', () => {
     expect(fakeSessions).toHaveLength(0);
   });
 });
+
+// 1b.1 (#47 v2 plan, Q25). The gate trips when the room's schemaVersion
+// exceeds MAX_SUPPORTED_SCHEMA_VERSION on the first remote-meta sync. After
+// it trips: onStatusChange fires 'incompatible'; onMetaReceived must NOT
+// fire (App's downstream meta state machine should see nothing); subsequent
+// local edits to blocks/meta/tc must NOT publish; dispatchComment must
+// no-op; the `yStore` returned by the hook must be null so the binder
+// cannot write into the substrate.
+describe('useCollabSession — schema-version gate (1b.1)', () => {
+  function fireInitialSync(remoteMeta = {}) {
+    const s = lastSession();
+    act(() => {
+      s.params.onRemoteBlocks([{ id: 'n1', type: 'txt', html: 'hello' }], { initial: true });
+      s.params.onRemoteMeta(remoteMeta, { initial: true });
+    });
+  }
+
+  it('does not trip on a v1 room (schemaVersion absent)', () => {
+    const onMetaReceived = vi.fn();
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onMetaReceived, onStatusChange }),
+    });
+    fireInitialSync({ sectionNumber: '01 00 00' });
+    expect(onMetaReceived).toHaveBeenCalledTimes(1);
+    expect(onStatusChange).not.toHaveBeenCalledWith('incompatible', expect.anything());
+  });
+
+  it('does not trip on a v1 room with explicit schemaVersion: 1', () => {
+    const onMetaReceived = vi.fn();
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onMetaReceived, onStatusChange }),
+    });
+    fireInitialSync({ schemaVersion: 1 });
+    expect(onMetaReceived).toHaveBeenCalledTimes(1);
+    expect(onStatusChange).not.toHaveBeenCalledWith('incompatible', expect.anything());
+  });
+
+  it('fires onStatusChange("incompatible") on a v2 room and suppresses onMetaReceived', () => {
+    const onMetaReceived = vi.fn();
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onMetaReceived, onStatusChange }),
+    });
+    fireInitialSync({ schemaVersion: 2 });
+    expect(onStatusChange).toHaveBeenCalledWith('incompatible', { reconnectIn: 0 });
+    expect(onMetaReceived).not.toHaveBeenCalled();
+  });
+
+  it('does not publish subsequent local block edits when the gate has tripped', () => {
+    const initial = defaultParams();
+    const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
+    fireInitialSync({ schemaVersion: 2 });
+    rerender(defaultParams({ blocks: [{ id: 'n1', type: 'txt', html: 'edited' }] }));
+    expect(lastSession().publishBlocks).not.toHaveBeenCalled();
+  });
+
+  it('does not publish meta when the gate has tripped (initial-sync path; metaReady gate)', () => {
+    // Initial-sync path: the gate returns BEFORE flipping metaReadyRef, so
+    // publishMeta is guarded by `!metaReadyRef.current`. This asserts the
+    // observable behavior (no publish) even though the schemaIncompatibleRef
+    // guard is not the line being exercised here.
+    const initial = defaultParams();
+    const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
+    fireInitialSync({ schemaVersion: 2 });
+    rerender(defaultParams({ sectionMeta: { sectionNumber: '99 99 99', sectionTitle: 'X', date: '01/26' } }));
+    expect(lastSession().publishMeta).not.toHaveBeenCalled();
+  });
+
+  it('does not publish meta after the gate trips even when metaReady has been flipped by a later non-initial meta delivery', () => {
+    // PR #49 review (score 78) flagged that the schemaIncompatibleRef
+    // guard on publishMeta is unreachable in the initial-sync path —
+    // metaReadyRef stays false because the gate returns before flipping
+    // it. But a later non-initial onRemoteMeta callback DOES go through
+    // the un-gated branch (the second-fire path is intentionally not
+    // schema-checked because non-initial schema bumps are not expected),
+    // flipping metaReadyRef to true. This is the path where the
+    // `if (schemaIncompatibleRef.current) return;` line in publishMeta
+    // is the actual guard. Without it, a peer's later meta nudge would
+    // unmask publishMeta into firing for an incompatible room.
+    const initial = defaultParams();
+    const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
+    fireInitialSync({ schemaVersion: 2 });
+    // Simulate a later peer-driven meta update. Non-initial → un-gated →
+    // metaReadyRef flips to true.
+    act(() => {
+      lastSession().params.onRemoteMeta({ schemaVersion: 2, sectionTitle: 'X' }, { initial: false });
+    });
+    // Now mutate sectionMeta locally. publishMeta must STILL not fire,
+    // which can only be guaranteed by the schemaIncompatibleRef guard.
+    rerender(defaultParams({ sectionMeta: { sectionNumber: '99 99 99', sectionTitle: 'X', date: '01/26' } }));
+    expect(lastSession().publishMeta).not.toHaveBeenCalled();
+  });
+
+  it('does not publish TC when the gate has tripped', () => {
+    const initial = defaultParams();
+    const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
+    fireInitialSync({ schemaVersion: 2 });
+    rerender(defaultParams({ tcState: { enabled: true, snapshots: { n1: 'hello' }, publishSeq: 1 } }));
+    expect(lastSession().publishTc).not.toHaveBeenCalled();
+  });
+
+  it('exposes yStore as null after the gate trips so the binder cannot write', () => {
+    const { result } = renderHook((p) => useCollabSession(p), { initialProps: defaultParams() });
+    fireInitialSync({ schemaVersion: 2 });
+    expect(result.current.yStore).toBeNull();
+  });
+
+  it('dispatchComment is a no-op when the gate has tripped', () => {
+    const { result } = renderHook((p) => useCollabSession(p), { initialProps: defaultParams() });
+    fireInitialSync({ schemaVersion: 2 });
+    act(() => { result.current.dispatchComment({ kind: 'create', commentId: 'c1' }); });
+    expect(lastSession().dispatchComment).not.toHaveBeenCalled();
+  });
+
+  // Regression: PR #49 review found the 'incompatible' status was being
+  // clobbered by collab.js handleSync's trailing onStatusChange('connected'),
+  // and by y-websocket handleStatus's reconnect events. The hook's
+  // onStatusChange wrapper now suppresses non-'incompatible' transitions
+  // after the gate trips. Fire the full sequence (blocks → meta(v2) →
+  // trailing 'connected', plus a later 'connecting' reconnect event) and
+  // assert the App-side handler only ever sees 'incompatible'.
+  it('keeps the incompatible status sticky against later handleSync and reconnect events', () => {
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onStatusChange }),
+    });
+    const params = lastSession().params;
+    act(() => {
+      params.onRemoteBlocks([{ id: 'n1', type: 'txt', html: 'hello' }], { initial: true });
+      params.onRemoteMeta({ schemaVersion: 2 }, { initial: true });
+      // collab.js handleSync line 702: trailing status fires AFTER onRemoteMeta.
+      params.onStatusChange('connected', { reconnectIn: 0 });
+      // y-websocket handleStatus reconnect path: 'connecting' / 'disconnected'.
+      params.onStatusChange('connecting', { reconnectIn: 1 });
+      params.onStatusChange('disconnected', { reconnectIn: 2 });
+    });
+    // App should see 'incompatible' exactly once and never the post-trip
+    // statuses that would re-enable the editable UI.
+    expect(onStatusChange).toHaveBeenCalledTimes(1);
+    expect(onStatusChange).toHaveBeenCalledWith('incompatible', { reconnectIn: 0 });
+  });
+
+  it('does not broadcast cursor positions after the gate has tripped', () => {
+    // PR #49 review: the cursor-broadcast effect was the only side-effect
+    // path not gated by schemaIncompatibleRef, leaking the local caret
+    // position into awareness for a room the banner has declared
+    // unusable. Awareness writes are not document mutations but they are
+    // visible to peers via the WebSocketProvider, and SecWriter handles
+    // CUI text — so a leak after the lock is a privacy/consistency bug.
+    renderHook((p) => useCollabSession(p), { initialProps: defaultParams() });
+    fireInitialSync({ schemaVersion: 2 });
+    // Even with no editable element focused, the handler would normally
+    // call setCursor(null). After the gate, it must not call setCursor at
+    // all.
+    act(() => { document.dispatchEvent(new Event('selectionchange')); });
+    expect(lastSession().setCursor).not.toHaveBeenCalled();
+  });
+
+  it('passes status updates through normally when the gate has NOT tripped', () => {
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onStatusChange }),
+    });
+    const params = lastSession().params;
+    act(() => {
+      params.onRemoteBlocks([{ id: 'n1', type: 'txt', html: 'hello' }], { initial: true });
+      params.onRemoteMeta({ schemaVersion: 1 }, { initial: true });
+      params.onStatusChange('connected', { reconnectIn: 0 });
+      params.onStatusChange('connecting', { reconnectIn: 1 });
+    });
+    expect(onStatusChange).toHaveBeenCalledTimes(2);
+    expect(onStatusChange).toHaveBeenNthCalledWith(1, 'connected', { reconnectIn: 0 });
+    expect(onStatusChange).toHaveBeenNthCalledWith(2, 'connecting', { reconnectIn: 1 });
+  });
+});

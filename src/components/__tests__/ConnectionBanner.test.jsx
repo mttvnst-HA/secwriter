@@ -28,6 +28,12 @@ describe('ConnectionBanner', () => {
     expect(screen.getByText(/syncing/i)).toBeTruthy();
   });
 
+  it('shows incompatible message (1b.1 schema-version gate)', () => {
+    render(<ConnectionBanner state="incompatible" />);
+    expect(screen.getByText(/requires a newer client/i)).toBeTruthy();
+    expect(screen.getByText(/please reload/i)).toBeTruthy();
+  });
+
   it('counts down each second when disconnected', () => {
     render(<ConnectionBanner state="disconnected" reconnectIn={3} />);
     expect(screen.getByText(/3/)).toBeTruthy();

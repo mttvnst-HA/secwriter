@@ -174,6 +174,15 @@ export function useCollabSession({
   // every keystroke.
   const publishDisabledRef = useRef(false);
 
+  // Sub-PR 1b.1 (#47 v2 plan, Q25). Trips when the room's
+  // yMeta.schemaVersion is higher than this client's max supported version.
+  // Forces collab into read-only via the 'incompatible' status; gates all
+  // publish paths so a stale write cannot land in a v2 doc; nulls the yStore
+  // exposure so EditableBlock's binder writes also no-op. The user reloads
+  // to pick up a newer client.
+  const schemaIncompatibleRef = useRef(false);
+  const MAX_SUPPORTED_SCHEMA_VERSION = 1;
+
   // ── Stable callback refs ──────────────────────────────────────────────
   // The session lifecycle effect depends only on roomId+identity (so the
   // session is stable across blocks updates). All callbacks therefore go
@@ -233,6 +242,22 @@ export function useCollabSession({
         onBlocksReceivedRef.current?.(nextBlocks, meta);
       },
       onRemoteMeta: (remote, meta) => {
+        // 1b.1 schema-version gate. On the first sync, if the room's
+        // schemaVersion exceeds what this client supports, refuse the room.
+        // Pull the yStore back out of the binder so local writes can't even
+        // touch the substrate, and route the ConnectionBanner to its
+        // 'incompatible' state via onStatusChange. metaReadyRef stays false
+        // and onMetaReceived never fires, so App's downstream state machine
+        // sees nothing.
+        if (meta?.initial) {
+          const v = remote?.schemaVersion;
+          if (typeof v === 'number' && v > MAX_SUPPORTED_SCHEMA_VERSION) {
+            schemaIncompatibleRef.current = true;
+            setYStoreState(null);
+            onStatusChangeRef.current?.('incompatible', { reconnectIn: 0 });
+            return;
+          }
+        }
         // I-3: flip ready BEFORE the App callback so a setSectionMeta
         // fired inside onMetaReceived can be safely published on the
         // next render.
@@ -252,6 +277,21 @@ export function useCollabSession({
         onPresenceChangeRef.current?.(states);
       },
       onStatusChange: (status, meta) => {
+        // 1b.1 sticky-incompatible. Once the schema-version gate has
+        // tripped, the room is permanently unusable for this session.
+        // Suppress any subsequent status transitions so they cannot clobber
+        // the 'incompatible' banner. This covers two clobber paths:
+        //   1. collab.js handleSync fires onStatusChange('connected') a few
+        //      lines after onRemoteMeta returns — without this guard the
+        //      banner would flash 'incompatible' and immediately revert,
+        //      leaving an editable-looking UI where typing silently never
+        //      persists (the four publish paths are still gated, so writes
+        //      go nowhere).
+        //   2. y-websocket reconnect events fire 'connecting'/'disconnected'
+        //      via handleStatus — same clobber pattern over a longer window.
+        if (schemaIncompatibleRef.current && status !== 'incompatible') {
+          return;
+        }
         onStatusChangeRef.current?.(status, meta);
       },
     });
@@ -273,6 +313,7 @@ export function useCollabSession({
       lastRemoteBlocksRef.current = null;
       lastPublishedTcSeqRef.current = 0;
       publishDisabledRef.current = false;
+      schemaIncompatibleRef.current = false;
       if (EXPOSE_DEBUG && typeof window !== 'undefined') delete window.__collab;
     };
     // Intentionally depend only on roomId + identity. initialBlocks /
@@ -287,6 +328,7 @@ export function useCollabSession({
     const session = sessionRef.current;
     if (!session) return;
     if (!sessionReadyRef.current) return;
+    if (schemaIncompatibleRef.current) return;
     // Reference-identity echo guard: if blocks IS the array onRemoteBlocks
     // just stashed, this update came from us applying a remote payload.
     if (blocks === lastRemoteBlocksRef.current) return;
@@ -335,6 +377,7 @@ export function useCollabSession({
     if (!session) return;
     if (!sessionReadyRef.current) return;
     if (!metaReadyRef.current) return;
+    if (schemaIncompatibleRef.current) return;
     session.publishMeta({ ...sectionMeta, fileName });
   }, [sectionMeta, fileName, inRoom]);
 
@@ -347,6 +390,7 @@ export function useCollabSession({
     const session = sessionRef.current;
     if (!session) return;
     if (!sessionReadyRef.current) return;
+    if (schemaIncompatibleRef.current) return;
     if (tcState.publishSeq === lastPublishedTcSeqRef.current) return;
     lastPublishedTcSeqRef.current = tcState.publishSeq;
     try {
@@ -358,10 +402,14 @@ export function useCollabSession({
 
   // ── Cursor broadcast ──────────────────────────────────────────────────
   // Listens for selectionchange and broadcasts the caret position so other
-  // peers see a live cursor.
+  // peers see a live cursor. Gated on schemaIncompatibleRef so an
+  // incompatible-room session does not leak the user's caret position into
+  // awareness after the banner has told them the room is locked
+  // (privacy / consistency with the four publish paths).
   useEffect(() => {
     if (!inRoom) return;
     const handler = () => {
+      if (schemaIncompatibleRef.current) return;
       const session = sessionRef.current;
       if (!session) return;
       const active = document.activeElement;
@@ -393,6 +441,7 @@ export function useCollabSession({
   // ── Imperative API ────────────────────────────────────────────────────
   const dispatchComment = useCallback((envelope) => {
     if (!envelope || !inRoom) return;
+    if (schemaIncompatibleRef.current) return;
     const session = sessionRef.current;
     if (!session) return;
     try { session.dispatchComment(envelope); }
