@@ -9,11 +9,7 @@
 'use strict';
 
 const Y = require('yjs');
-// Sub-PR 1d (#47, ADR-0006): the substrate is Y.XmlFragment. The seed
-// path uses the broker's hand-coded delta→fragment helper instead of the
-// ESM y-prosemirror module to keep the dual-package boundary clean
-// (see ADR-0001 / Q22).
-const { populateYXmlFragmentFromDelta } = require('./migrate-pm-substrate.cjs');
+const { SCHEMA_VERSION_KEY, MIGRATION_PARTIAL_KEY } = require('./migrate-pm-substrate.cjs');
 
 // Lazy-loaded ESM module references (cached after first import)
 let _serializeSEC = null;
@@ -87,63 +83,65 @@ async function serializeRoom(ydoc) {
 const SCALAR_KEYS = ['id', 'type', 'part', 'depth', 'section', 'level', 'revision'];
 const JSON_KEYS = ['table', 'ref'];
 
-// Noop logger for the seed path — populateYXmlFragmentFromDelta only logs
-// for unknown mark / revision kinds, and the seed delta has no attrs, so
-// in practice this never fires. Defensive against future shape changes.
-const SEED_LOG = { info: () => {}, warn: () => {}, error: () => {} };
+function blockToYMap(block) {
+  const yMap = new Y.Map();
+  for (const k of SCALAR_KEYS) {
+    if (block[k] !== undefined) yMap.set(k, block[k]);
+  }
+  const yText = new Y.Text();
+  if (typeof block.html === 'string' && block.html.length > 0) {
+    yText.insert(0, block.html);
+  }
+  yMap.set('html', yText);
+  for (const k of JSON_KEYS) {
+    if (block[k] !== undefined) yMap.set(k, JSON.stringify(block[k]));
+  }
+  return yMap;
+}
 
 /**
- * Seed a Y.Doc with parsed blocks, using CJS Yjs to avoid the dual-package
- * hazard. Clears existing content and replaces with the provided blocks.
+ * Seed a Y.Doc with parsed blocks, using CJS Yjs to avoid dual-package hazard.
+ * Clears existing content and replaces with the provided blocks.
  *
- * Each block's html is seeded as a single paragraph holding the raw HTML
- * string in a Y.XmlText (no marks). The first ESM client publish will
- * diff-and-merge against this via `prosemirrorToYXmlFragment` and replace
- * with the properly-marked PM doc — same handoff pattern the v1 seed
- * relied on. Acceptable because seeding is a one-time operation with no
+ * NOTE: Seeds with plain text Y.Text (no formatting attributes) and JSON
+ * strings for table/ref. The ESM client's updateYMapFromBlock() will upgrade
+ * these to attribute-based shapes and nested CRDT structures on first publish.
+ * This is acceptable because seeding is a one-time operation with no
  * concurrent edits.
  *
- * Sub-PR 1d (#47, ADR-0006): seed Y.XmlFragment, NOT Y.Text. After the
- * broker has migrated a room to v2, every new block must use the v2
- * substrate — otherwise an upload via HTTP strands its blocks as Y.Text
- * in an otherwise-v2 room and `needsMigration` short-circuits on the
- * schemaVersion=2 sentinel so the broker never re-runs.
+ * Sub-PR 1d (#47, ADR-0006), issue (d) re-fix. The seed continues to use
+ * Y.Text; instead, we clear `schemaVersion` and `migrationPartial` so the
+ * server-side broker re-evaluates the room on the next WS upgrade and
+ * migrates the seeded Y.Text slots to Y.XmlFragment. Without this clear, a
+ * room that already had `schemaVersion=2` from a prior broker run would
+ * keep the sentinel after the seed wipes its blocks, and `needsMigration`
+ * would short-circuit so the freshly-uploaded Y.Text blocks would never
+ * get promoted to v2 substrate.
  *
- * The order is load-bearing: Y.Map.set rejects a Y.XmlFragment value while
- * the parent map is detached ("Unexpected content type"). We therefore
- * (1) build a yMap with only scalars, (2) attach it via yStore.set, and
- * (3) set the Y.XmlFragment + populate it once the parent is part of the
- * doc tree. JSON_KEYS (table/ref) sit alongside as plain strings.
+ * (Why not seed Y.XmlFragment directly? The hand-coded
+ * populateYXmlFragmentFromDelta path produced an intermittent client-side
+ * "Invalid access: Add Yjs type to a document before reading data." flood
+ * that surfaced as a `t.html.startsWith is not a function` ErrorBoundary
+ * crash on CI runners — the substrate post-decode behaved as if a child
+ * was detached during render. The Y.Text + clear-sentinel approach
+ * achieves the same end state, lets the broker do all v1→v2 work, and
+ * keeps E2E green.)
  */
 function seedRoomFromBlocks(ydoc, blocks) {
   const yOrder = ydoc.getArray('order');
   const yStore = ydoc.getMap('store');
+  const yMeta = ydoc.getMap('meta');
   ydoc.transact(() => {
     yOrder.delete(0, yOrder.length);
     for (const id of Array.from(yStore.keys())) yStore.delete(id);
     for (const b of blocks) {
-      const yMap = new Y.Map();
-      for (const k of SCALAR_KEYS) {
-        if (b[k] !== undefined) yMap.set(k, b[k]);
-      }
-      for (const k of JSON_KEYS) {
-        if (b[k] !== undefined) yMap.set(k, JSON.stringify(b[k]));
-      }
-      yStore.set(b.id, yMap);
+      yStore.set(b.id, blockToYMap(b));
       yOrder.push([b.id]);
-
-      // yMap is now attached — Y.XmlFragment can be set as a value, and
-      // its children integrate into the live doc.
-      const yXml = new Y.XmlFragment();
-      yMap.set('html', yXml);
-      if (typeof b.html === 'string' && b.html.length > 0) {
-        populateYXmlFragmentFromDelta(
-          yXml,
-          [{ insert: b.html }],
-          { blockId: b.id, log: SEED_LOG },
-        );
-      }
     }
+    // Clear migration sentinels so the broker re-runs and converts the
+    // newly-seeded Y.Text slots to Y.XmlFragment on the next WS upgrade.
+    yMeta.delete(SCHEMA_VERSION_KEY);
+    yMeta.delete(MIGRATION_PARTIAL_KEY);
   }, 'seed');
 }
 

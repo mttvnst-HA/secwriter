@@ -274,35 +274,59 @@ describe('serializeRoom — Y.XmlFragment substrate (1d)', () => {
 // inside an otherwise-v2 room. needsMigration short-circuits on the
 // schemaVersion=2 sentinel so the broker never re-runs to convert them.
 // Same bug class as fix #2 in commit 4fbc706 (blockToYMap in collab.js).
-describe('seedRoomFromBlocks — substrate is Y.XmlFragment (1d, issue d)', () => {
-  // Use the SAME Yjs copy that room-serializer.cjs requires. `await
-  // import('yjs')` would load a second copy via the ESM resolver, and
-  // Y.Map.set rejects type values whose constructor doesn't match the
-  // map's owning Yjs ("Unexpected content type") — that's the dual-
-  // package hazard the rest of room-serializer is careful to avoid.
+// PR #51 review (issue d) — regression. The seed path strands uploaded
+// blocks as v1 (Y.Text) but MUST clear the migration sentinels so the
+// broker re-runs on the next WS upgrade and promotes them to Y.XmlFragment.
+// Without this, a room that previously stamped schemaVersion=2 keeps the
+// sentinel after seed-wipe, needsMigration short-circuits, and the
+// freshly-seeded Y.Text slots stay v1 forever in an otherwise-v2 room.
+//
+// (We tried seeding Y.XmlFragment directly via populateYXmlFragmentFromDelta
+// — the hand-coded paragraph+YXmlText shape passed unit tests but produced
+// a client-side "Invalid access" flood under CI's slower-runner timing,
+// crashing the editor with `t.html.startsWith is not a function`. Y.Text +
+// clear-sentinels is the simpler, broker-driven path and keeps E2E green.)
+describe('seedRoomFromBlocks — broker re-run via cleared sentinels (1d, issue d)', () => {
   const Y = require_('yjs');
 
-  it('every seeded block.html slot is a Y.XmlFragment, not a Y.Text', () => {
+  it('clears yMeta.schemaVersion and yMeta.migrationPartial on seed', () => {
     const ydoc = new Y.Doc();
     ydoc.getArray('order');
     ydoc.getMap('store');
+    const yMeta = ydoc.getMap('meta');
+    // Pretend the broker had previously stamped this room as v2.
+    yMeta.set('schemaVersion', 2);
+    yMeta.set('migrationPartial', false);
 
     seedRoomFromBlocks(ydoc, [
       { id: 'b1', type: 'title', part: 1, depth: 0, html: 'GENERAL' },
       { id: 'b2', type: 'txt', part: 1, depth: 0, section: 'b1', html: 'Body.' },
-      { id: 'b3', type: 'txt', part: 1, depth: 0, section: 'b1', html: '' },
     ]);
 
-    const yStore = ydoc.getMap('store');
-    for (const id of ['b1', 'b2', 'b3']) {
-      const slot = yStore.get(id).get('html');
-      assert.ok(slot, `${id} has an html slot`);
-      // Y.XmlFragment exposes toArray; legacy Y.Text would expose toDelta.
-      assert.strictEqual(typeof slot.toArray, 'function',
-        `${id} html slot must be Y.XmlFragment (toArray present)`);
-      assert.strictEqual(typeof slot.toDelta, 'undefined',
-        `${id} html slot must NOT be Y.Text (toDelta absent)`);
-    }
+    assert.strictEqual(yMeta.get('schemaVersion'), undefined,
+      'schemaVersion must be cleared so the broker re-evaluates the seeded doc');
+    assert.strictEqual(yMeta.get('migrationPartial'), undefined,
+      'migrationPartial must be cleared too');
+  });
+
+  it('seeds Y.Text slots that needsMigration() detects (so the broker promotes them)', () => {
+    const { needsMigration } = require_('../migrate-pm-substrate.cjs');
+    const ydoc = new Y.Doc();
+    ydoc.getArray('order');
+    ydoc.getMap('store');
+    ydoc.getMap('meta').set('schemaVersion', 2);
+
+    seedRoomFromBlocks(ydoc, [
+      { id: 'b1', type: 'title', part: 1, depth: 0, html: 'SEEDED' },
+    ]);
+
+    // After seed, the doc looks like a v1 room with Y.Text slots and
+    // no sentinel. The broker's needsMigration must return true so the
+    // next WS upgrade promotes everything to Y.XmlFragment.
+    const slot = ydoc.getMap('store').get('b1').get('html');
+    assert.strictEqual(typeof slot.toDelta, 'function',
+      'seed leaves slots as Y.Text (broker promotes to Y.XmlFragment on upgrade)');
+    assert.strictEqual(needsMigration(ydoc), true);
   });
 
   it('seeded content survives the roundtrip through serializeRoom', async () => {
@@ -322,6 +346,6 @@ describe('seedRoomFromBlocks — substrate is Y.XmlFragment (1d, issue d)', () =
     assert.ok(secText.includes('SEEDED TITLE'), 'title content survived');
     assert.ok(secText.includes('Seeded body text'), 'body content survived');
     assert.ok(!secText.includes('[object Object]'),
-      'no coerced-object leakage from XmlFragment branch');
+      'no coerced-object leakage');
   });
 });

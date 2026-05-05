@@ -394,17 +394,16 @@ describe('HTTP endpoints', () => {
       const yOrder = ydoc.getArray('order');
       assert.ok(yOrder.length >= 2, `yOrder should have ≥2 entries, got ${yOrder.length}`);
 
-      // PR #51 review (issue d) — every seeded html slot MUST be a
-      // Y.XmlFragment. A Y.Text slot would strand uploaded blocks as v1
-      // substrate inside a v2 room and the broker wouldn't re-run.
-      const yStore = ydoc.getMap('store');
-      yStore.forEach((yMap) => {
-        const slot = yMap.get('html');
-        assert.strictEqual(typeof slot.toArray, 'function',
-          'uploaded block html slot must be Y.XmlFragment');
-        assert.strictEqual(typeof slot.toDelta, 'undefined',
-          'uploaded block html slot must NOT be Y.Text');
-      });
+      // PR #51 review (issue d). Seed clears the migration sentinels so
+      // the broker re-runs on the next WS upgrade and promotes the
+      // seeded Y.Text slots to Y.XmlFragment. The HTTP path itself is
+      // CJS-only (the broker runs in the WS upgrade handler, which is
+      // exercised by collab-server tests).
+      const yMeta = ydoc.getMap('meta');
+      assert.strictEqual(yMeta.get('schemaVersion'), undefined,
+        'seed must clear schemaVersion so the broker re-runs on upgrade');
+      assert.strictEqual(yMeta.get('migrationPartial'), undefined,
+        'seed must clear migrationPartial too');
     } finally {
       ydoc.destroy();
       boundDocs.delete('upload-room');
