@@ -295,3 +295,90 @@ describe('useCollabSession — cursor broadcast', () => {
     expect(fakeSessions).toHaveLength(0);
   });
 });
+
+// 1b.1 (#47 v2 plan, Q25). The gate trips when the room's schemaVersion
+// exceeds MAX_SUPPORTED_SCHEMA_VERSION on the first remote-meta sync. After
+// it trips: onStatusChange fires 'incompatible'; onMetaReceived must NOT
+// fire (App's downstream meta state machine should see nothing); subsequent
+// local edits to blocks/meta/tc must NOT publish; dispatchComment must
+// no-op; the `yStore` returned by the hook must be null so the binder
+// cannot write into the substrate.
+describe('useCollabSession — schema-version gate (1b.1)', () => {
+  function fireInitialSync(remoteMeta = {}) {
+    const s = lastSession();
+    act(() => {
+      s.params.onRemoteBlocks([{ id: 'n1', type: 'txt', html: 'hello' }], { initial: true });
+      s.params.onRemoteMeta(remoteMeta, { initial: true });
+    });
+  }
+
+  it('does not trip on a v1 room (schemaVersion absent)', () => {
+    const onMetaReceived = vi.fn();
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onMetaReceived, onStatusChange }),
+    });
+    fireInitialSync({ sectionNumber: '01 00 00' });
+    expect(onMetaReceived).toHaveBeenCalledTimes(1);
+    expect(onStatusChange).not.toHaveBeenCalledWith('incompatible', expect.anything());
+  });
+
+  it('does not trip on a v1 room with explicit schemaVersion: 1', () => {
+    const onMetaReceived = vi.fn();
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onMetaReceived, onStatusChange }),
+    });
+    fireInitialSync({ schemaVersion: 1 });
+    expect(onMetaReceived).toHaveBeenCalledTimes(1);
+    expect(onStatusChange).not.toHaveBeenCalledWith('incompatible', expect.anything());
+  });
+
+  it('fires onStatusChange("incompatible") on a v2 room and suppresses onMetaReceived', () => {
+    const onMetaReceived = vi.fn();
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onMetaReceived, onStatusChange }),
+    });
+    fireInitialSync({ schemaVersion: 2 });
+    expect(onStatusChange).toHaveBeenCalledWith('incompatible', { reconnectIn: 0 });
+    expect(onMetaReceived).not.toHaveBeenCalled();
+  });
+
+  it('does not publish subsequent local block edits when the gate has tripped', () => {
+    const initial = defaultParams();
+    const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
+    fireInitialSync({ schemaVersion: 2 });
+    rerender(defaultParams({ blocks: [{ id: 'n1', type: 'txt', html: 'edited' }] }));
+    expect(lastSession().publishBlocks).not.toHaveBeenCalled();
+  });
+
+  it('does not publish meta when the gate has tripped', () => {
+    const initial = defaultParams();
+    const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
+    fireInitialSync({ schemaVersion: 2 });
+    rerender(defaultParams({ sectionMeta: { sectionNumber: '99 99 99', sectionTitle: 'X', date: '01/26' } }));
+    expect(lastSession().publishMeta).not.toHaveBeenCalled();
+  });
+
+  it('does not publish TC when the gate has tripped', () => {
+    const initial = defaultParams();
+    const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
+    fireInitialSync({ schemaVersion: 2 });
+    rerender(defaultParams({ tcState: { enabled: true, snapshots: { n1: 'hello' }, publishSeq: 1 } }));
+    expect(lastSession().publishTc).not.toHaveBeenCalled();
+  });
+
+  it('exposes yStore as null after the gate trips so the binder cannot write', () => {
+    const { result } = renderHook((p) => useCollabSession(p), { initialProps: defaultParams() });
+    fireInitialSync({ schemaVersion: 2 });
+    expect(result.current.yStore).toBeNull();
+  });
+
+  it('dispatchComment is a no-op when the gate has tripped', () => {
+    const { result } = renderHook((p) => useCollabSession(p), { initialProps: defaultParams() });
+    fireInitialSync({ schemaVersion: 2 });
+    act(() => { result.current.dispatchComment({ kind: 'create', commentId: 'c1' }); });
+    expect(lastSession().dispatchComment).not.toHaveBeenCalled();
+  });
+});
