@@ -180,8 +180,12 @@ export function useCollabSession({
   // publish paths so a stale write cannot land in a v2 doc; nulls the yStore
   // exposure so EditableBlock's binder writes also no-op. The user reloads
   // to pick up a newer client.
+  //
+  // Sub-PR 1d (#47, ADR-0006) bumps max-supported to 2: this client speaks
+  // the Y.XmlFragment substrate. A future v3 client/server pair will bump
+  // this further; the gate's purpose is unchanged.
   const schemaIncompatibleRef = useRef(false);
-  const MAX_SUPPORTED_SCHEMA_VERSION = 1;
+  const MAX_SUPPORTED_SCHEMA_VERSION = 2;
 
   // ── Stable callback refs ──────────────────────────────────────────────
   // The session lifecycle effect depends only on roomId+identity (so the
@@ -256,6 +260,14 @@ export function useCollabSession({
             setYStoreState(null);
             onStatusChangeRef.current?.('incompatible', { reconnectIn: 0 });
             return;
+          }
+          // 1d/Q22 broker outcome: a partial migration leaves the room
+          // editable but with some blocks still on the legacy Y.Text
+          // substrate. Surface the banner so the user knows the room had
+          // issues, but do NOT short-circuit — onMetaReceived must still
+          // fire and publish gates must remain open.
+          if (remote?.migrationPartial === true) {
+            onStatusChangeRef.current?.('migration-partial', { reconnectIn: 0 });
           }
         }
         // I-3: flip ready BEFORE the App callback so a setSectionMeta

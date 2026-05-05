@@ -61,6 +61,7 @@
 import * as Y from 'yjs';
 import { WebsocketProvider } from 'y-websocket';
 import { applyHtmlToYText, yTextToHtml, htmlToAttrList, seedYTextFromHtml } from './ytext-html.js';
+import { pmFragmentToHtml } from './pmdoc-html.js';
 import { tableToYStructure, yStructureToTable, diffTableForPublish, applyTableCellEdits } from './ytable-crdt.js';
 import { refToYStructure, yStructureToRef, applyRefEdits } from './yref-crdt.js';
 
@@ -200,10 +201,24 @@ function yMapToBlock(yMap) {
     const v = yMap.get(k);
     if (v !== undefined) block[k] = v;
   }
-  const yText = yMap.get('html');
-  // Duck-type check instead of instanceof to handle CJS/ESM dual-package hazard.
-  // Y.Text has toDelta(), plain strings don't.
-  block.html = (yText && typeof yText.toDelta === 'function') ? yTextToHtml(yText) : (yText || '');
+  const yHtml = yMap.get('html');
+  // Sub-PR 1d (#47, ADR-0006): the html slot can be either Y.XmlFragment
+  // (post-broker-migration, post-1d) or Y.Text (legacy v1, or migrationPartial
+  // leftover when per-block conversion threw during the broker run). Branch
+  // on duck-type so .SEC flush handles both shapes — without this, the
+  // serializer would coerce String(yXmlFragment) into the export and produce
+  // the literal "[object Object]" string in every migrated block (Q24/B3).
+  if (yHtml && typeof yHtml.toArray === 'function' && typeof yHtml.nodeName !== 'string') {
+    // Y.XmlFragment — fragment has toArray + lacks nodeName. (YXmlElement
+    // has both, so the negative on nodeName disambiguates.)
+    block.html = pmFragmentToHtml(yHtml);
+  } else if (yHtml && typeof yHtml.toDelta === 'function') {
+    // Y.Text — duck-type check instead of instanceof handles CJS/ESM
+    // dual-package hazard.
+    block.html = yTextToHtml(yHtml);
+  } else {
+    block.html = (typeof yHtml === 'string') ? yHtml : '';
+  }
   // Table: nested CRDT or legacy JSON string
   const rawTable = yMap.get('table');
   if (rawTable) {

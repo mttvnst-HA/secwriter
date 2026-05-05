@@ -340,7 +340,7 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     renderHook((p) => useCollabSession(p), {
       initialProps: defaultParams({ onMetaReceived, onStatusChange }),
     });
-    fireInitialSync({ schemaVersion: 2 });
+    fireInitialSync({ schemaVersion: 3 });
     expect(onStatusChange).toHaveBeenCalledWith('incompatible', { reconnectIn: 0 });
     expect(onMetaReceived).not.toHaveBeenCalled();
   });
@@ -348,7 +348,7 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
   it('does not publish subsequent local block edits when the gate has tripped', () => {
     const initial = defaultParams();
     const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
-    fireInitialSync({ schemaVersion: 2 });
+    fireInitialSync({ schemaVersion: 3 });
     rerender(defaultParams({ blocks: [{ id: 'n1', type: 'txt', html: 'edited' }] }));
     expect(lastSession().publishBlocks).not.toHaveBeenCalled();
   });
@@ -360,7 +360,7 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     // guard is not the line being exercised here.
     const initial = defaultParams();
     const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
-    fireInitialSync({ schemaVersion: 2 });
+    fireInitialSync({ schemaVersion: 3 });
     rerender(defaultParams({ sectionMeta: { sectionNumber: '99 99 99', sectionTitle: 'X', date: '01/26' } }));
     expect(lastSession().publishMeta).not.toHaveBeenCalled();
   });
@@ -378,11 +378,11 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     // unmask publishMeta into firing for an incompatible room.
     const initial = defaultParams();
     const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
-    fireInitialSync({ schemaVersion: 2 });
+    fireInitialSync({ schemaVersion: 3 });
     // Simulate a later peer-driven meta update. Non-initial → un-gated →
     // metaReadyRef flips to true.
     act(() => {
-      lastSession().params.onRemoteMeta({ schemaVersion: 2, sectionTitle: 'X' }, { initial: false });
+      lastSession().params.onRemoteMeta({ schemaVersion: 3, sectionTitle: 'X' }, { initial: false });
     });
     // Now mutate sectionMeta locally. publishMeta must STILL not fire,
     // which can only be guaranteed by the schemaIncompatibleRef guard.
@@ -393,20 +393,20 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
   it('does not publish TC when the gate has tripped', () => {
     const initial = defaultParams();
     const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
-    fireInitialSync({ schemaVersion: 2 });
+    fireInitialSync({ schemaVersion: 3 });
     rerender(defaultParams({ tcState: { enabled: true, snapshots: { n1: 'hello' }, publishSeq: 1 } }));
     expect(lastSession().publishTc).not.toHaveBeenCalled();
   });
 
   it('exposes yStore as null after the gate trips so the binder cannot write', () => {
     const { result } = renderHook((p) => useCollabSession(p), { initialProps: defaultParams() });
-    fireInitialSync({ schemaVersion: 2 });
+    fireInitialSync({ schemaVersion: 3 });
     expect(result.current.yStore).toBeNull();
   });
 
   it('dispatchComment is a no-op when the gate has tripped', () => {
     const { result } = renderHook((p) => useCollabSession(p), { initialProps: defaultParams() });
-    fireInitialSync({ schemaVersion: 2 });
+    fireInitialSync({ schemaVersion: 3 });
     act(() => { result.current.dispatchComment({ kind: 'create', commentId: 'c1' }); });
     expect(lastSession().dispatchComment).not.toHaveBeenCalled();
   });
@@ -426,7 +426,7 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     const params = lastSession().params;
     act(() => {
       params.onRemoteBlocks([{ id: 'n1', type: 'txt', html: 'hello' }], { initial: true });
-      params.onRemoteMeta({ schemaVersion: 2 }, { initial: true });
+      params.onRemoteMeta({ schemaVersion: 3 }, { initial: true });
       // collab.js handleSync line 702: trailing status fires AFTER onRemoteMeta.
       params.onStatusChange('connected', { reconnectIn: 0 });
       // y-websocket handleStatus reconnect path: 'connecting' / 'disconnected'.
@@ -447,7 +447,7 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     // visible to peers via the WebSocketProvider, and SecWriter handles
     // CUI text — so a leak after the lock is a privacy/consistency bug.
     renderHook((p) => useCollabSession(p), { initialProps: defaultParams() });
-    fireInitialSync({ schemaVersion: 2 });
+    fireInitialSync({ schemaVersion: 3 });
     // Even with no editable element focused, the handler would normally
     // call setCursor(null). After the gate, it must not call setCursor at
     // all.
@@ -470,5 +470,53 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     expect(onStatusChange).toHaveBeenCalledTimes(2);
     expect(onStatusChange).toHaveBeenNthCalledWith(1, 'connected', { reconnectIn: 0 });
     expect(onStatusChange).toHaveBeenNthCalledWith(2, 'connecting', { reconnectIn: 1 });
+  });
+
+  // 1d (#47, ADR-0006). The server-side migration broker can finish in a
+  // partial state (some blocks converted to Y.XmlFragment, others left as
+  // Y.Text). yMeta.migrationPartial=true is the signal; the room is still
+  // editable, so the hook fires a 'migration-partial' status (informational
+  // banner) but does NOT lock the editor or short-circuit.
+  it('fires migration-partial status when the broker reports partial migration', () => {
+    const onStatusChange = vi.fn();
+    const onMetaReceived = vi.fn();
+    renderHook((p) => useCollabSession(p), {
+      initialProps: defaultParams({ onStatusChange, onMetaReceived }),
+    });
+    const s = lastSession();
+    act(() => {
+      s.params.onRemoteBlocks([{ id: 'n1', type: 'txt', html: 'hello' }], { initial: true });
+      s.params.onRemoteMeta({ migrationPartial: true }, { initial: true });
+    });
+    expect(onStatusChange).toHaveBeenCalledWith('migration-partial', { reconnectIn: 0 });
+    // Room is still editable — meta callback still fires, ready gates open.
+    expect(onMetaReceived).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not fire migration-partial when migrationPartial is absent or false', () => {
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), { initialProps: defaultParams({ onStatusChange }) });
+    const s = lastSession();
+    act(() => {
+      s.params.onRemoteBlocks([{ id: 'n1', type: 'txt', html: 'h' }], { initial: true });
+      s.params.onRemoteMeta({ schemaVersion: 2 }, { initial: true });
+    });
+    expect(onStatusChange).not.toHaveBeenCalledWith('migration-partial', expect.anything());
+    // Pre-1d schema-version 2 is now within MAX_SUPPORTED — no longer trips
+    // the incompatible gate, so the room loads normally.
+    expect(onStatusChange).not.toHaveBeenCalledWith('incompatible', expect.anything());
+  });
+
+  it('publish gates remain OPEN under migration-partial (room is still editable)', () => {
+    const initial = defaultParams();
+    const { rerender } = renderHook((p) => useCollabSession(p), { initialProps: initial });
+    const s = lastSession();
+    act(() => {
+      s.params.onRemoteBlocks(initial.blocks, { initial: true });
+      s.params.onRemoteMeta({ migrationPartial: true }, { initial: true });
+    });
+    // Local edit after migration-partial → publishBlocks must fire.
+    rerender(defaultParams({ blocks: [{ id: 'n1', type: 'txt', html: 'edited' }] }));
+    expect(s.publishBlocks).toHaveBeenCalledTimes(1);
   });
 });

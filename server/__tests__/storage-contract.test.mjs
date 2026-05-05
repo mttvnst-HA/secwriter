@@ -30,6 +30,16 @@ const require = createRequire(import.meta.url);
 const { LocalStorageBackend } = require('../storage-local.cjs');
 const { AzureStorageBackend } = require('../storage-azure.cjs');
 const { S3StorageBackend } = require('../storage-s3.cjs');
+require('../dom-polyfill.cjs');
+const Y = require('yjs');
+const {
+  needsMigration,
+  migrateRoom,
+  createMigrationCoordinator,
+  SCHEMA_VERSION_KEY,
+  SCHEMA_V2,
+  MIGRATION_PARTIAL_KEY,
+} = require('../migrate-pm-substrate.cjs');
 
 /* ── Backend factories ─────────────────────────────────────────────────── */
 
@@ -290,6 +300,150 @@ for (const { name, factory } of BACKENDS) {
       assert.ok(!rooms[0].includes('..'));
       assert.ok(!rooms[0].includes(' '));
       assert.ok(!rooms[0].includes('/'));
+    });
+
+    // Sub-PR 1d (#47, ADR-0006). The broker integration tests live here
+    // (not in a new file) so they exercise the same backend instances as
+    // the rest of the contract. The broker calls storage.archiveRoom
+    // before mutating the doc; archive failure must abort migration; the
+    // per-room async lock must collapse concurrent calls.
+
+    describe('migration broker — Q22/Q23 contract', () => {
+      function buildV1Doc(blockCount = 2) {
+        const ydoc = new Y.Doc();
+        const yOrder = ydoc.getArray('order');
+        const yStore = ydoc.getMap('store');
+        ydoc.transact(() => {
+          for (let i = 1; i <= blockCount; i++) {
+            const id = `n${i}`;
+            const yMap = new Y.Map();
+            yMap.set('id', id);
+            yMap.set('type', 'txt');
+            const yText = new Y.Text();
+            yText.insert(0, `Block ${i} content`);
+            yMap.set('html', yText);
+            yStore.set(id, yMap);
+            yOrder.push([id]);
+          }
+        }, 'seed');
+        return ydoc;
+      }
+
+      it('archive-then-migrate happy path: archive lands in archived set, doc bumps to v2', async () => {
+        // Pre-seed the room so archiveRoom has something to copy.
+        await backend.writeRoom('mig-happy', {
+          ydocBytes: Buffer.from([1, 2, 3]),
+          secBytes: Buffer.from('seed'),
+          commentsJson: null,
+        });
+
+        const coord = createMigrationCoordinator({ storage: backend });
+        const ydoc = buildV1Doc(2);
+        const result = await coord.ensureMigrated('mig-happy', ydoc);
+
+        assert.strictEqual(result.archived, true);
+        assert.strictEqual(result.schemaVersion, SCHEMA_V2);
+        assert.strictEqual(result.migrationPartial, false);
+
+        // The active room is gone (archive deletes the source per
+        // RoomStorageBase.archiveRoom).
+        assert.strictEqual(await backend.readRoom('mig-happy'), null);
+
+        // The archive set has the room with an archivedAt.
+        const archived = await backend.listArchivedRooms();
+        const found = archived.find(r => r.id === 'mig-happy');
+        assert.ok(found, 'migrated room should appear in archive set');
+        assert.ok(found.archivedAt);
+
+        // Doc state stamped v2.
+        assert.strictEqual(ydoc.getMap('meta').get(SCHEMA_VERSION_KEY), SCHEMA_V2);
+      });
+
+      it('archive failure aborts migration: doc stays v1, no schemaVersion stamp', async () => {
+        // Wrap archiveRoom to throw without mutating storage.
+        const failingStorage = Object.create(backend);
+        failingStorage.archiveRoom = async () => { throw new Error('storage offline'); };
+
+        const coord = createMigrationCoordinator({ storage: failingStorage });
+        const ydoc = buildV1Doc(2);
+        const beforeBytes = Y.encodeStateAsUpdate(ydoc);
+        const result = await coord.ensureMigrated('mig-archive-fail', ydoc);
+
+        assert.strictEqual(result.skipped, true);
+        assert.strictEqual(result.archived, false);
+        // Doc is byte-identical — migration did NOT touch yMaps.
+        const afterBytes = Y.encodeStateAsUpdate(ydoc);
+        assert.deepStrictEqual(Buffer.from(beforeBytes), Buffer.from(afterBytes));
+        assert.strictEqual(ydoc.getMap('meta').get(SCHEMA_VERSION_KEY), undefined);
+        assert.strictEqual(ydoc.getMap('meta').get(MIGRATION_PARTIAL_KEY), undefined);
+
+        // needsMigration still true — operator can retry once storage is
+        // back online (subsequent connect re-attempts; createMigrationCoordinator's
+        // promise cache resolved skipped:true but a fresh coordinator
+        // invocation per WS upgrade re-evaluates).
+        assert.strictEqual(needsMigration(ydoc), true);
+      });
+
+      it('partial migration sets migrationPartial sentinel, NOT schemaVersion (mutual exclusion)', async () => {
+        // Pre-seed so archive succeeds.
+        await backend.writeRoom('mig-partial', {
+          ydocBytes: Buffer.from([1]),
+          secBytes: null,
+          commentsJson: null,
+        });
+
+        const ydoc = buildV1Doc(3);
+        const yStore = ydoc.getMap('store');
+        const badSlot = yStore.get('n2').get('html');
+        const orig = badSlot.toDelta.bind(badSlot);
+        badSlot.toDelta = () => { throw new Error('synthetic per-block fault'); };
+
+        const coord = createMigrationCoordinator({ storage: backend });
+        const result = await coord.ensureMigrated('mig-partial', ydoc);
+        badSlot.toDelta = orig;
+
+        assert.strictEqual(result.archived, true);
+        assert.strictEqual(result.migrationPartial, true);
+        assert.strictEqual(result.schemaVersion, null);
+
+        const yMeta = ydoc.getMap('meta');
+        assert.strictEqual(yMeta.get(MIGRATION_PARTIAL_KEY), true);
+        assert.strictEqual(yMeta.get(SCHEMA_VERSION_KEY), undefined,
+          'mutual exclusion: schemaVersion must stay absent when migrationPartial=true');
+      });
+
+      it('per-room async lock: two concurrent ensureMigrated calls collapse to one archive', async () => {
+        // Pre-seed so archive has source bytes.
+        await backend.writeRoom('mig-lock', {
+          ydocBytes: Buffer.from([1, 2, 3]),
+          secBytes: null,
+          commentsJson: null,
+        });
+
+        // Wrap archiveRoom with a counter + tiny delay to widen the race
+        // window deterministically.
+        let archiveCount = 0;
+        const lockingStorage = Object.create(backend);
+        lockingStorage.archiveRoom = async (roomId) => {
+          archiveCount++;
+          await new Promise(r => setTimeout(r, 30));
+          return backend.archiveRoom(roomId);
+        };
+
+        const coord = createMigrationCoordinator({ storage: lockingStorage });
+        const ydoc = buildV1Doc(2);
+        const [r1, r2] = await Promise.all([
+          coord.ensureMigrated('mig-lock', ydoc),
+          coord.ensureMigrated('mig-lock', ydoc),
+        ]);
+
+        // Per-room lock — both callers see the same migration result.
+        assert.strictEqual(r1, r2);
+        assert.strictEqual(r1.schemaVersion, SCHEMA_V2);
+        // Crucially, archive was called exactly once.
+        assert.strictEqual(archiveCount, 1,
+          `Expected the per-room lock to collapse onto one migration; archive was called ${archiveCount}× instead.`);
+      });
     });
   });
 }

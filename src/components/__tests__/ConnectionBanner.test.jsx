@@ -34,6 +34,12 @@ describe('ConnectionBanner', () => {
     expect(screen.getByText(/please reload/i)).toBeTruthy();
   });
 
+  it('shows migration-partial message (1d broker partial outcome)', () => {
+    render(<ConnectionBanner state="migration-partial" />);
+    expect(screen.getByText(/migration had issues/i)).toBeTruthy();
+    expect(screen.getByText(/legacy mode/i)).toBeTruthy();
+  });
+
   it('counts down each second when disconnected', () => {
     render(<ConnectionBanner state="disconnected" reconnectIn={3} />);
     expect(screen.getByText(/3/)).toBeTruthy();

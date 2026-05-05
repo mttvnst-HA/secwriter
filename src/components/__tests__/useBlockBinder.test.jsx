@@ -12,7 +12,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, act, renderHook } from '@testing-library/react';
 import * as Y from 'yjs';
 
-import { seedBlockArray, getBlockHtml } from '../../lib/block-html-store.js';
+import { seedBlockArray, getBlockHtml, setBlockHtml } from '../../lib/block-html-store.js';
 import { useBlockBinder } from '../useBlockBinder.js';
 
 function makeDoc(blocks = [{ id: 'n1', type: 'txt', html: 'hello' }]) {
@@ -47,8 +47,13 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
     expect(origins).toContain('local-publish');
   });
 
-  it('rerenders when the underlying Y.Text mutates (subscription pathway)', () => {
-    const { ydoc, yStore } = makeDoc();
+  it('rerenders when the underlying html slot mutates (subscription pathway)', () => {
+    // Sub-PR 1d (#47, ADR-0006): the substrate is now Y.XmlFragment, but
+    // the binder's contract is shape-agnostic — observeDeep on the slot
+    // is what fires the rerender. Mutate via setBlockHtml so we go through
+    // the same write path the binder would use; the assertion is on the
+    // rendered html, not the slot's internal type.
+    const { yStore } = makeDoc();
     let renders = 0;
     function Probe() {
       const { html } = useBlockBinder({ yStore, blockId: 'n1' });
@@ -60,10 +65,11 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
     const baseRenders = renders;
 
     act(() => {
-      ydoc.transact(() => {
-        const yText = yStore.get('n1').get('html');
-        yText.insert(yText.length, '!');
-      }, 'local-publish');
+      // Direct setBlockHtml mutation — the same code path EditableBlock
+      // uses for keystroke writes. Going through here proves observeDeep
+      // on Y.XmlFragment fires the listener exactly like observe() on
+      // Y.Text did pre-1d.
+      setBlockHtml(yStore, 'n1', 'hello!');
     });
 
     expect(getByTestId('probe').textContent).toBe('hello!');
@@ -85,10 +91,7 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
 
     // Mutating docA after the swap must NOT cause the binder to re-render.
     act(() => {
-      docA.ydoc.transact(() => {
-        const yText = docA.yStore.get('n1').get('html');
-        yText.insert(yText.length, '!');
-      }, 'local-publish');
+      setBlockHtml(docA.yStore, 'n1', 'A!');
     });
     expect(result.current.html).toBe('B');
   });
@@ -106,7 +109,7 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
     // App passes yStore=null to EditableBlock. The binder must NOT touch
     // any Y.Doc — even if the caller has another path to the doc.
     const { ydoc, yStore } = makeDoc();
-    const yTextBefore = yStore.get('n1').get('html');
+    const slotBefore = yStore.get('n1').get('html');
     const stateBefore = Y.encodeStateAsUpdate(ydoc);
 
     // Render the binder with yStore=null (simulates pre-sync state).
@@ -117,8 +120,9 @@ describe('useBlockBinder — Y.Doc-backed block html (#22)', () => {
     // The doc's state is byte-for-byte identical — no transaction emitted.
     const stateAfter = Y.encodeStateAsUpdate(ydoc);
     expect(stateAfter).toEqual(stateBefore);
-    expect(yStore.get('n1').get('html')).toBe(yTextBefore);
-    expect(yTextBefore.toString()).toBe('hello');
+    // Slot identity preserved (substrate is Y.XmlFragment post-1d).
+    expect(yStore.get('n1').get('html')).toBe(slotBefore);
+    expect(getBlockHtml(yStore, 'n1')).toBe('hello');
   });
 
   it('write() with the same html as current is a no-op CRDT-wise', () => {

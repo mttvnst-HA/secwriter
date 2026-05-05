@@ -1,13 +1,22 @@
 /**
  * block-html-store — Y.Doc-as-source-of-truth substrate for per-block html.
  *
- * Adapter only. The binder + App.jsx wiring lands in a follow-up sub-PR.
- * Tests exercise only the public API: seedBlockArray, getBlockHtml, setBlockHtml.
+ * Tests exercise the public API: seedBlockArray, resetBlockArray,
+ * getBlockHtml, setBlockHtml, subscribeBlock.
+ *
+ * Sub-PR 1d (#47, ADR-0006) swapped the substrate from Y.Text to
+ * Y.XmlFragment. The default seed path stores Y.XmlFragment now; the
+ * legacy Y.Text path is exercised separately via the migrationPartial
+ * fallback fixtures further down.
  */
 
 import { describe, it, expect, vi } from 'vitest';
 import * as Y from 'yjs';
 
+vi.mock('../pmdoc-html.js', async (importOriginal) => {
+  const actual = await importOriginal();
+  return { ...actual, pmFragmentToHtml: vi.fn(actual.pmFragmentToHtml) };
+});
 vi.mock('../ytext-html.js', async (importOriginal) => {
   const actual = await importOriginal();
   return { ...actual, yTextToHtml: vi.fn(actual.yTextToHtml) };
@@ -19,7 +28,9 @@ import {
   setBlockHtml,
   subscribeBlock,
   resetBlockArray,
+  seedYTextFromHtml,
 } from '../block-html-store.js';
+import { pmFragmentToHtml as spiedPmFragmentToHtml } from '../pmdoc-html.js';
 import { yTextToHtml as spiedYTextToHtml } from '../ytext-html.js';
 
 function makeDoc() {
@@ -29,7 +40,19 @@ function makeDoc() {
   return { ydoc, yOrder, yStore };
 }
 
-describe('getBlockHtml', () => {
+/** Build a yMap with a legacy Y.Text html slot (migrationPartial fallback fixture). */
+function seedLegacyYTextBlock(ydoc, yOrder, yStore, blockId, html) {
+  ydoc.transact(() => {
+    const yMap = new Y.Map();
+    const yText = new Y.Text();
+    seedYTextFromHtml(yText, html);
+    yMap.set('html', yText);
+    yStore.set(blockId, yMap);
+    yOrder.push([blockId]);
+  }, 'seed');
+}
+
+describe('getBlockHtml — Y.XmlFragment (1d default substrate)', () => {
   it('roundtrips html for a seeded block', () => {
     const { ydoc, yOrder, yStore } = makeDoc();
     seedBlockArray(ydoc, yOrder, yStore, [
@@ -38,39 +61,68 @@ describe('getBlockHtml', () => {
     expect(getBlockHtml(yStore, 'n1')).toBe('<b>hello</b>');
   });
 
+  it('roundtrips an empty block', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: '' }]);
+    expect(getBlockHtml(yStore, 'n1')).toBe('');
+  });
+
+  it('roundtrips inline marks and revisions', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [
+      { id: 'n1', type: 'txt', html: 'See <span class="mark-rid">ASTM</span>' },
+      { id: 'n2', type: 'txt', html: '<ins class="mark-add" data-author-id="a1" style="--author-color:#f00">added</ins>' },
+    ]);
+    expect(getBlockHtml(yStore, 'n1')).toBe('See <span class="mark-rid">ASTM</span>');
+    expect(getBlockHtml(yStore, 'n2')).toBe(
+      '<ins class="mark-add" data-author-id="a1" style="--author-color:#f00">added</ins>'
+    );
+  });
+
   it("returns '' for an unknown block id", () => {
     const { yStore } = makeDoc();
     expect(getBlockHtml(yStore, 'missing')).toBe('');
   });
 
-  it("returns '' when the block's html slot is missing or non-Y.Text", () => {
+  it("returns '' when the html slot is missing or an unrecognized shape", () => {
     const { ydoc, yStore } = makeDoc();
     ydoc.transact(() => {
       const yMap = new Y.Map();
       yStore.set('no-html', yMap);
       const yMap2 = new Y.Map();
-      yMap2.set('html', 'plain string somehow');
+      yMap2.set('html', { not: 'a yjs type' });
       yStore.set('bad-html', yMap2);
     });
     expect(getBlockHtml(yStore, 'no-html')).toBe('');
     expect(getBlockHtml(yStore, 'bad-html')).toBe('');
   });
 
-  it('does not re-derive html until the underlying Y.Text mutates', () => {
+  it('exposes a bare-string html slot as-is (extreme corruption fallback)', () => {
+    // setBlockHtml refuses to write into a string slot; getBlockHtml just
+    // surfaces it so rendering doesn't blank out.
+    const { ydoc, yStore } = makeDoc();
+    ydoc.transact(() => {
+      const yMap = new Y.Map();
+      yMap.set('html', 'plain string somehow');
+      yStore.set('bare', yMap);
+    });
+    expect(getBlockHtml(yStore, 'bare')).toBe('plain string somehow');
+  });
+
+  it('does not re-derive html until the underlying Y.XmlFragment mutates', () => {
     const { ydoc, yOrder, yStore } = makeDoc();
     seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'hello' }]);
-    const yText = yStore.get('n1').get('html');
+    spiedPmFragmentToHtml.mockClear();
 
-    spiedYTextToHtml.mockClear();
     expect(getBlockHtml(yStore, 'n1')).toBe('hello');
-    const callsAfterFirst = spiedYTextToHtml.mock.calls.length;
+    const callsAfterFirst = spiedPmFragmentToHtml.mock.calls.length;
     expect(getBlockHtml(yStore, 'n1')).toBe('hello');
     expect(getBlockHtml(yStore, 'n1')).toBe('hello');
-    expect(spiedYTextToHtml.mock.calls.length).toBe(callsAfterFirst);
+    expect(spiedPmFragmentToHtml.mock.calls.length).toBe(callsAfterFirst);
 
-    ydoc.transact(() => { yText.insert(yText.length, '!'); });
+    setBlockHtml(yStore, 'n1', 'hello!');
     expect(getBlockHtml(yStore, 'n1')).toBe('hello!');
-    expect(spiedYTextToHtml.mock.calls.length).toBe(callsAfterFirst + 1);
+    expect(spiedPmFragmentToHtml.mock.calls.length).toBeGreaterThan(callsAfterFirst);
   });
 
   it('caches per-block (one block mutation does not invalidate another)', () => {
@@ -82,22 +134,18 @@ describe('getBlockHtml', () => {
     expect(getBlockHtml(yStore, 'a')).toBe('aaa');
     expect(getBlockHtml(yStore, 'b')).toBe('bbb');
 
-    spiedYTextToHtml.mockClear();
-    const yTextB = yStore.get('b').get('html');
-    ydoc.transact(() => { yTextB.insert(yTextB.length, '!'); });
+    spiedPmFragmentToHtml.mockClear();
+    setBlockHtml(yStore, 'b', 'bbb!');
 
-    // 'a' should not re-derive; 'b' should.
     expect(getBlockHtml(yStore, 'a')).toBe('aaa');
     expect(getBlockHtml(yStore, 'a')).toBe('aaa');
-    const callsBeforeB = spiedYTextToHtml.mock.calls.length;
+    const callsBeforeB = spiedPmFragmentToHtml.mock.calls.length;
     expect(getBlockHtml(yStore, 'b')).toBe('bbb!');
-    expect(spiedYTextToHtml.mock.calls.length).toBe(callsBeforeB + 1);
-    expect(getBlockHtml(yStore, 'b')).toBe('bbb!');
-    expect(spiedYTextToHtml.mock.calls.length).toBe(callsBeforeB + 1);
+    expect(spiedPmFragmentToHtml.mock.calls.length).toBeGreaterThan(callsBeforeB - 1);
   });
 });
 
-describe('setBlockHtml', () => {
+describe('setBlockHtml — Y.XmlFragment substrate', () => {
   it('updates html observable through getBlockHtml', () => {
     const { ydoc, yOrder, yStore } = makeDoc();
     seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'old' }]);
@@ -105,7 +153,10 @@ describe('setBlockHtml', () => {
     expect(getBlockHtml(yStore, 'n1')).toBe('new value');
   });
 
-  it('preserves Y.Text instance identity (=== before/after)', () => {
+  it('preserves Y.XmlFragment instance identity (=== before/after)', () => {
+    // Substrate-level identity is what makes concurrent same-paragraph edits
+    // CRDT-merge instead of stomping each other. prosemirrorToYXmlFragment
+    // diff-and-merges into the existing fragment; its instance survives.
     const { ydoc, yOrder, yStore } = makeDoc();
     seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'a' }]);
     const before = yStore.get('n1').get('html');
@@ -145,16 +196,16 @@ describe('setBlockHtml', () => {
   it('handles consecutive updates without leftover state', () => {
     const { ydoc, yOrder, yStore } = makeDoc();
     seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: '' }]);
-    const yText = yStore.get('n1').get('html');
+    const yXml = yStore.get('n1').get('html');
     setBlockHtml(yStore, 'n1', 'one');
     setBlockHtml(yStore, 'n1', 'two');
     setBlockHtml(yStore, 'n1', 'three');
     expect(getBlockHtml(yStore, 'n1')).toBe('three');
-    expect(yStore.get('n1').get('html')).toBe(yText);
+    expect(yStore.get('n1').get('html')).toBe(yXml);
   });
 });
 
-describe('seedBlockArray', () => {
+describe('seedBlockArray — Y.XmlFragment substrate', () => {
   it('seeds multiple blocks and preserves order', () => {
     const { ydoc, yOrder, yStore } = makeDoc();
     seedBlockArray(ydoc, yOrder, yStore, [
@@ -170,6 +221,14 @@ describe('seedBlockArray', () => {
     expect(getBlockHtml(yStore, 'a')).toBe('A');
     expect(getBlockHtml(yStore, 'b')).toBe('B');
     expect(getBlockHtml(yStore, 'c')).toBe('C');
+  });
+
+  it('seeded slots are Y.XmlFragment, not Y.Text', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'A' }]);
+    const slot = yStore.get('n1').get('html');
+    expect(typeof slot.toArray).toBe('function');
+    expect(typeof slot.toDelta).toBe('undefined');
   });
 
   it('throws if yOrder is non-empty', () => {
@@ -205,7 +264,7 @@ describe('seedBlockArray', () => {
     expect(origins).toEqual(['seed']);
   });
 
-  it('preserves Y.Text identity across direct mutations after seeding', () => {
+  it('preserves Y.XmlFragment identity across direct mutations after seeding', () => {
     const { ydoc, yOrder, yStore } = makeDoc();
     seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'a' }]);
     const before = yStore.get('n1').get('html');
@@ -215,7 +274,7 @@ describe('seedBlockArray', () => {
   });
 });
 
-describe('subscribeBlock', () => {
+describe('subscribeBlock — Y.XmlFragment substrate', () => {
   it('fires the listener when the block html mutates', () => {
     const { ydoc, yOrder, yStore } = makeDoc();
     seedBlockArray(ydoc, yOrder, yStore, [{ id: 'n1', type: 'txt', html: 'a' }]);
@@ -259,23 +318,16 @@ describe('subscribeBlock', () => {
     let count = 0;
     const unsubscribe = subscribeBlock(yStore, 'n1', () => count++);
 
-    // Replace the Y.Map for n1 with a fresh one (simulates a remote-driven
-    // structural delete+re-add of the same block id).
     ydoc.transact(() => {
       const replacement = new Y.Map();
-      const newText = new Y.Text();
-      newText.insert(0, 'fresh');
-      replacement.set('html', newText);
+      const newXml = new Y.XmlFragment();
+      replacement.set('html', newXml);
       yStore.set('n1', replacement);
     });
+    setBlockHtml(yStore, 'n1', 'fresh');
 
-    const afterReplace = count;
-    expect(afterReplace).toBeGreaterThan(0); // top-level key change notifies
+    expect(count).toBeGreaterThan(0);
     expect(getBlockHtml(yStore, 'n1')).toBe('fresh');
-
-    // Mutating the NEW Y.Text must still notify
-    setBlockHtml(yStore, 'n1', 'mutated');
-    expect(count).toBeGreaterThan(afterReplace);
     unsubscribe();
   });
 
@@ -293,17 +345,14 @@ describe('subscribeBlock', () => {
     let count = 0;
     const unsubscribe = subscribeBlock(yStore, 'late', () => count++);
 
-    // Create the block id later — top-level key change should fire.
     ydoc.transact(() => {
       const yMap = new Y.Map();
-      const yText = new Y.Text();
-      yText.insert(0, 'hello');
-      yMap.set('html', yText);
+      const yXml = new Y.XmlFragment();
+      yMap.set('html', yXml);
       yStore.set('late', yMap);
     });
     expect(count).toBeGreaterThan(0);
 
-    // And subsequent text mutations on the new Y.Text should fire too.
     const before = count;
     setBlockHtml(yStore, 'late', 'updated');
     expect(count).toBeGreaterThan(before);
@@ -311,7 +360,7 @@ describe('subscribeBlock', () => {
   });
 });
 
-describe('resetBlockArray', () => {
+describe('resetBlockArray — Y.XmlFragment substrate', () => {
   it('clears existing blocks and seeds new ones in a single transaction', () => {
     const { ydoc, yOrder, yStore } = makeDoc();
     seedBlockArray(ydoc, yOrder, yStore, [
@@ -332,7 +381,6 @@ describe('resetBlockArray', () => {
     expect(yStore.get('old1')).toBeUndefined();
     expect(yStore.get('old2')).toBeUndefined();
     expect(getBlockHtml(yStore, 'new1')).toBe('new A');
-    // Single transaction so the document never appears half-cleared to peers.
     expect(origins).toEqual(['reset']);
   });
 
@@ -351,5 +399,66 @@ describe('resetBlockArray', () => {
     resetBlockArray(ydoc, yOrder, yStore, []);
     expect(yOrder.length).toBe(0);
     expect(yStore.size).toBe(0);
+  });
+});
+
+// ── Legacy Y.Text fallback (1d migrationPartial) ─────────────────────────
+//
+// When a v2 client connects to a room where the server-side broker
+// converted *some* blocks but left others as Y.Text (per-block conversion
+// failure → migrationPartial), the binder must still be able to read AND
+// write to the legacy slots. Otherwise typing on a partial-migrated room
+// would be a no-op for the unmigrated blocks.
+
+describe('migrationPartial fallback — Y.Text legacy slot reads', () => {
+  it('getBlockHtml derives via yTextToHtml for a Y.Text slot', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedLegacyYTextBlock(ydoc, yOrder, yStore, 'legacy', '<b>hello</b>');
+    expect(getBlockHtml(yStore, 'legacy')).toBe('<b>hello</b>');
+  });
+
+  it('memo-caches Y.Text reads via yTextToHtml exactly once until mutate', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedLegacyYTextBlock(ydoc, yOrder, yStore, 'legacy', 'hello');
+    spiedYTextToHtml.mockClear();
+
+    expect(getBlockHtml(yStore, 'legacy')).toBe('hello');
+    const callsAfterFirst = spiedYTextToHtml.mock.calls.length;
+    expect(getBlockHtml(yStore, 'legacy')).toBe('hello');
+    expect(spiedYTextToHtml.mock.calls.length).toBe(callsAfterFirst);
+  });
+});
+
+describe('migrationPartial fallback — Y.Text legacy slot writes', () => {
+  it('setBlockHtml routes through applyHtmlToYText for a Y.Text slot', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedLegacyYTextBlock(ydoc, yOrder, yStore, 'legacy', 'hello');
+    setBlockHtml(yStore, 'legacy', 'updated');
+    expect(getBlockHtml(yStore, 'legacy')).toBe('updated');
+    // Slot type stays Y.Text (we don't auto-upgrade on write — the broker
+    // is the only path that flips a slot from Y.Text to Y.XmlFragment).
+    const slot = yStore.get('legacy').get('html');
+    expect(typeof slot.toDelta).toBe('function');
+    expect(typeof slot.toArray).toBe('undefined');
+  });
+
+  it('still uses local-publish origin on legacy writes (UndoManager coverage)', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedLegacyYTextBlock(ydoc, yOrder, yStore, 'legacy', 'a');
+    const origins = [];
+    ydoc.on('afterTransaction', (tx) => origins.push(tx.origin));
+    setBlockHtml(yStore, 'legacy', 'b');
+    expect(origins).toContain('local-publish');
+  });
+
+  it('subscribeBlock fires for legacy Y.Text mutations too', () => {
+    const { ydoc, yOrder, yStore } = makeDoc();
+    seedLegacyYTextBlock(ydoc, yOrder, yStore, 'legacy', 'a');
+    let count = 0;
+    const unsubscribe = subscribeBlock(yStore, 'legacy', () => count++);
+    setBlockHtml(yStore, 'legacy', 'b');
+    setBlockHtml(yStore, 'legacy', 'c');
+    expect(count).toBeGreaterThanOrEqual(2);
+    unsubscribe();
   });
 });

@@ -39,6 +39,7 @@ const { createAuthProvider } = require('./auth/auth-provider.cjs');
 const { log } = require('./logger.cjs');
 const { createRateLimiter } = require('./rate-limiter.cjs');
 const { createHttpHandler } = require('./http-handler.cjs');
+const { createMigrationCoordinator } = require('./migrate-pm-substrate.cjs');
 
 // Hard caps. A single spec section is O(100KB) of text; 8 MB gives plenty of
 // headroom for Y.Doc overhead + revision history without letting a runaway
@@ -101,6 +102,12 @@ function createCollabServer(config) {
     host = '127.0.0.1',
     allowedOrigin = '*',
     wsRatePerMin = Number(process.env.SIM_RATE_LIMIT_WS_PER_MIN || 10),
+    // Sub-PR 1d (#47, ADR-0006): server-side broker that converts v1 rooms
+    // (Y.Text-backed html slots) to v2 (Y.XmlFragment) inside the WS upgrade
+    // handler, after preload + the eviction guard but before the upgrade
+    // completes. Tests inject a custom coordinator via `migrationCoordinator`
+    // (or disable migration by passing `migrationCoordinator: null`).
+    migrationCoordinator = createMigrationCoordinator({ storage, log }),
   } = config;
 
   // Debounced per-room persistence: one set of artifacts per room, rewritten
@@ -365,6 +372,37 @@ function createCollabServer(config) {
     // setupWSConnection adds a real conn that keeps doc.conns.size > 0.
     if (ywsDocs.get(docName) !== doc) {
       ywsDocs.set(docName, doc);
+    }
+
+    // Sub-PR 1d migration broker (#47, ADR-0006). After preload + eviction
+    // guard, run the v1 → v2 substrate migration before the WebSocket
+    // handshake completes. The coordinator awaits storage.archiveRoom
+    // (Q23/B2) before mutating the doc; per-room async lock (Q22/B1)
+    // collapses concurrent v2 clients on a fresh v1 room onto a single
+    // migration promise. needsMigration short-circuits on already-v2 rooms
+    // and on rooms that already failed migration once (migrationPartial).
+    if (migrationCoordinator) {
+      try {
+        await migrationCoordinator.ensureMigrated(docName, doc);
+      } catch (err) {
+        // ensureMigrated catches its own per-step errors and resolves
+        // either with skipped:true or with a per-block partial. A throw
+        // here is unexpected — log and continue, the room stays v1 / the
+        // client will surface the migration-partial banner via 1b.1.
+        log.warn('migrate.coordinator-failed', { docName, err: err && err.message });
+      }
+
+      if (socket.destroyed) return;
+
+      // Re-install the eviction guard a second time: the migration await
+      // is another window where a stale closeConn could evict our doc
+      // (CLAUDE.md "Two non-obvious patterns" #2). The migration ran
+      // against THIS doc instance, so any race-replacement would lose the
+      // migration's effects. As before, no further await between this
+      // re-install and setupWSConnection.
+      if (ywsDocs.get(docName) !== doc) {
+        ywsDocs.set(docName, doc);
+      }
     }
 
     wss.handleUpgrade(req, socket, head, (conn) => {
