@@ -519,4 +519,37 @@ describe('useCollabSession — schema-version gate (1b.1)', () => {
     rerender(defaultParams({ blocks: [{ id: 'n1', type: 'txt', html: 'edited' }] }));
     expect(s.publishBlocks).toHaveBeenCalledTimes(1);
   });
+
+  // PR #51 review (issue c) — regression. handleSync inside the underlying
+  // collab session fires onStatusChange('connected') a few lines after
+  // onRemoteMeta returns; the y-websocket reconnect path also re-emits
+  // 'connected'. Without the sticky-migration-partial wrapper, both
+  // transitions clobber the banner and hide the operator-actionable signal
+  // that some blocks failed to migrate.
+  it('migration-partial is sticky: trailing onStatusChange("connected") re-pins to migration-partial (issue c)', () => {
+    const onStatusChange = vi.fn();
+    renderHook((p) => useCollabSession(p), { initialProps: defaultParams({ onStatusChange }) });
+    const s = lastSession();
+    act(() => {
+      s.params.onRemoteBlocks([{ id: 'n1', type: 'txt', html: 'h' }], { initial: true });
+      s.params.onRemoteMeta({ migrationPartial: true }, { initial: true });
+    });
+    // First call from onRemoteMeta.
+    expect(onStatusChange).toHaveBeenCalledWith('migration-partial', { reconnectIn: 0 });
+    onStatusChange.mockClear();
+
+    // Trailing handleSync('connected') — must be rewritten to migration-partial.
+    act(() => { s.params.onStatusChange('connected', { reconnectIn: 0 }); });
+    expect(onStatusChange).toHaveBeenCalledTimes(1);
+    expect(onStatusChange).toHaveBeenCalledWith('migration-partial', { reconnectIn: 0 });
+    expect(onStatusChange).not.toHaveBeenCalledWith('connected', expect.anything());
+
+    // Reconnect cycle still flows through ('disconnected' is more urgent
+    // than the migration banner). On the subsequent 'connected', re-pin.
+    onStatusChange.mockClear();
+    act(() => { s.params.onStatusChange('disconnected', { reconnectIn: 1 }); });
+    expect(onStatusChange).toHaveBeenLastCalledWith('disconnected', { reconnectIn: 1 });
+    act(() => { s.params.onStatusChange('connected', { reconnectIn: 0 }); });
+    expect(onStatusChange).toHaveBeenLastCalledWith('migration-partial', { reconnectIn: 0 });
+  });
 });

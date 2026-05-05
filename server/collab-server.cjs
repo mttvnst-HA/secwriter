@@ -290,6 +290,7 @@ function createCollabServer(config) {
       getActiveUsers,
       rateLimiter,
       roomHealth,
+      migrationCoordinator,
     })
   );
 

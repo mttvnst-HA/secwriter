@@ -187,6 +187,20 @@ export function useCollabSession({
   const schemaIncompatibleRef = useRef(false);
   const MAX_SUPPORTED_SCHEMA_VERSION = 2;
 
+  // Sub-PR 1d (#47, ADR-0006). Trips when the broker reports
+  // yMeta.migrationPartial === true on the first sync. Unlike
+  // schemaIncompatibleRef the room remains editable; the ref only exists
+  // to keep the banner sticky. Without this, the trailing
+  // handleSync('connected') in collab.js (fired immediately after
+  // onRemoteMeta) clobbers the 'migration-partial' status with 'connected'
+  // and the banner disappears, hiding the operator-actionable signal that
+  // some blocks failed to migrate. Reconnect cycles also fire 'connected'
+  // through handleStatus — we re-pin to 'migration-partial' on every
+  // 'connected' transition so the banner survives the full session.
+  // 'connecting' / 'disconnected' / 'syncing' / 'incompatible' are NOT
+  // suppressed — those carry more urgent state for the user.
+  const migrationPartialRef = useRef(false);
+
   // ── Stable callback refs ──────────────────────────────────────────────
   // The session lifecycle effect depends only on roomId+identity (so the
   // session is stable across blocks updates). All callbacks therefore go
@@ -267,6 +281,7 @@ export function useCollabSession({
           // issues, but do NOT short-circuit — onMetaReceived must still
           // fire and publish gates must remain open.
           if (remote?.migrationPartial === true) {
+            migrationPartialRef.current = true;
             onStatusChangeRef.current?.('migration-partial', { reconnectIn: 0 });
           }
         }
@@ -304,6 +319,17 @@ export function useCollabSession({
         if (schemaIncompatibleRef.current && status !== 'incompatible') {
           return;
         }
+        // 1d sticky-migration-partial. handleSync emits 'connected'
+        // shortly after onRemoteMeta sets the partial flag — and every
+        // reconnect re-emits 'connected' too. Replacing 'connected' with
+        // 'migration-partial' (rather than swallowing it entirely)
+        // preserves the rest of the status state machine: a subsequent
+        // 'disconnected' or 'connecting' still reaches the consumer, and
+        // when the room reconnects the banner re-pins automatically.
+        if (migrationPartialRef.current && status === 'connected') {
+          onStatusChangeRef.current?.('migration-partial', meta);
+          return;
+        }
         onStatusChangeRef.current?.(status, meta);
       },
     });
@@ -326,6 +352,7 @@ export function useCollabSession({
       lastPublishedTcSeqRef.current = 0;
       publishDisabledRef.current = false;
       schemaIncompatibleRef.current = false;
+      migrationPartialRef.current = false;
       if (EXPOSE_DEBUG && typeof window !== 'undefined') delete window.__collab;
     };
     // Intentionally depend only on roomId + identity. initialBlocks /

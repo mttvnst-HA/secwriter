@@ -9,6 +9,11 @@
 'use strict';
 
 const Y = require('yjs');
+// Sub-PR 1d (#47, ADR-0006): the substrate is Y.XmlFragment. The seed
+// path uses the broker's hand-coded delta→fragment helper instead of the
+// ESM y-prosemirror module to keep the dual-package boundary clean
+// (see ADR-0001 / Q22).
+const { populateYXmlFragmentFromDelta } = require('./migrate-pm-substrate.cjs');
 
 // Lazy-loaded ESM module references (cached after first import)
 let _serializeSEC = null;
@@ -82,30 +87,33 @@ async function serializeRoom(ydoc) {
 const SCALAR_KEYS = ['id', 'type', 'part', 'depth', 'section', 'level', 'revision'];
 const JSON_KEYS = ['table', 'ref'];
 
-function blockToYMap(block) {
-  const yMap = new Y.Map();
-  for (const k of SCALAR_KEYS) {
-    if (block[k] !== undefined) yMap.set(k, block[k]);
-  }
-  const yText = new Y.Text();
-  if (typeof block.html === 'string' && block.html.length > 0) {
-    yText.insert(0, block.html);
-  }
-  yMap.set('html', yText);
-  for (const k of JSON_KEYS) {
-    if (block[k] !== undefined) yMap.set(k, JSON.stringify(block[k]));
-  }
-  return yMap;
-}
+// Noop logger for the seed path — populateYXmlFragmentFromDelta only logs
+// for unknown mark / revision kinds, and the seed delta has no attrs, so
+// in practice this never fires. Defensive against future shape changes.
+const SEED_LOG = { info: () => {}, warn: () => {}, error: () => {} };
 
 /**
- * Seed a Y.Doc with parsed blocks, using CJS Yjs to avoid dual-package hazard.
- * Clears existing content and replaces with the provided blocks.
+ * Seed a Y.Doc with parsed blocks, using CJS Yjs to avoid the dual-package
+ * hazard. Clears existing content and replaces with the provided blocks.
  *
- * NOTE: Seeds with plain text Y.Text (no formatting attributes) and JSON strings
- * for table/ref. The ESM client's updateYMapFromBlock() will upgrade these to
- * attribute-based Y.Text and nested CRDT structures on first publish. This is
- * acceptable because seeding is a one-time operation with no concurrent edits.
+ * Each block's html is seeded as a single paragraph holding the raw HTML
+ * string in a Y.XmlText (no marks). The first ESM client publish will
+ * diff-and-merge against this via `prosemirrorToYXmlFragment` and replace
+ * with the properly-marked PM doc — same handoff pattern the v1 seed
+ * relied on. Acceptable because seeding is a one-time operation with no
+ * concurrent edits.
+ *
+ * Sub-PR 1d (#47, ADR-0006): seed Y.XmlFragment, NOT Y.Text. After the
+ * broker has migrated a room to v2, every new block must use the v2
+ * substrate — otherwise an upload via HTTP strands its blocks as Y.Text
+ * in an otherwise-v2 room and `needsMigration` short-circuits on the
+ * schemaVersion=2 sentinel so the broker never re-runs.
+ *
+ * The order is load-bearing: Y.Map.set rejects a Y.XmlFragment value while
+ * the parent map is detached ("Unexpected content type"). We therefore
+ * (1) build a yMap with only scalars, (2) attach it via yStore.set, and
+ * (3) set the Y.XmlFragment + populate it once the parent is part of the
+ * doc tree. JSON_KEYS (table/ref) sit alongside as plain strings.
  */
 function seedRoomFromBlocks(ydoc, blocks) {
   const yOrder = ydoc.getArray('order');
@@ -114,8 +122,27 @@ function seedRoomFromBlocks(ydoc, blocks) {
     yOrder.delete(0, yOrder.length);
     for (const id of Array.from(yStore.keys())) yStore.delete(id);
     for (const b of blocks) {
-      yStore.set(b.id, blockToYMap(b));
+      const yMap = new Y.Map();
+      for (const k of SCALAR_KEYS) {
+        if (b[k] !== undefined) yMap.set(k, b[k]);
+      }
+      for (const k of JSON_KEYS) {
+        if (b[k] !== undefined) yMap.set(k, JSON.stringify(b[k]));
+      }
+      yStore.set(b.id, yMap);
       yOrder.push([b.id]);
+
+      // yMap is now attached — Y.XmlFragment can be set as a value, and
+      // its children integrate into the live doc.
+      const yXml = new Y.XmlFragment();
+      yMap.set('html', yXml);
+      if (typeof b.html === 'string' && b.html.length > 0) {
+        populateYXmlFragmentFromDelta(
+          yXml,
+          [{ insert: b.html }],
+          { blockId: b.id, log: SEED_LOG },
+        );
+      }
     }
   }, 'seed');
 }

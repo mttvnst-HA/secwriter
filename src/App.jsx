@@ -206,7 +206,18 @@ export default function SpecEditor() {
   const [roomLockedBy, setRoomLockedBy] = useState(null);
   const [roomLockedByName, setRoomLockedByName] = useState(null);
   const isLockedByOther = roomLocked && roomLockedBy !== identity?.id;
-  const collabReadOnly = (inRoom && collabStatus !== null && collabStatus !== 'connected') || isLockedByOther;
+  // 'migration-partial' is informational, NOT read-only: the broker
+  // succeeded for some blocks but threw on others; the room remains fully
+  // editable (1d, ADR-0006). Treat it as a non-blocking status alongside
+  // 'connected' for the read-only gate. Without this exclusion the editor
+  // locks even though publish gates are open and the substrate accepts
+  // writes — contradicts the "room stays editable" invariant.
+  const collabReadOnly = (
+    inRoom &&
+    collabStatus !== null &&
+    collabStatus !== 'connected' &&
+    collabStatus !== 'migration-partial'
+  ) || isLockedByOther;
   // Reactive auth token — refreshed by MSAL silent renewal or external host
   const [authToken, setAuthToken] = useState(null);
   const authHeaders = useMemo(

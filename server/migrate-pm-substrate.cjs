@@ -414,9 +414,26 @@ function createMigrationCoordinator({ storage, log = NOOP_LOG, migrateImpl = mig
     return p;
   }
 
+  /**
+   * Drop the inFlight entry for a room. The HTTP DELETE handler MUST call
+   * this when a room is deleted: otherwise, if a new room is created with
+   * the same docName (e.g. operator deletes a corrupt room and re-uploads
+   * a SEC under the same id), `ensureMigrated` returns the cached
+   * post-migration result and the new doc is never re-evaluated. The
+   * cached `{ alreadyV2: true }` short-circuits both `archiveRoom` AND
+   * `migrateRoom`, so a freshly-uploaded v1 doc would silently skip
+   * migration and present a mixed-substrate room to clients.
+   *
+   * Idempotent: safe to call for unknown docNames.
+   */
+  function forget(docName) {
+    inFlight.delete(docName);
+  }
+
   return {
     ensureMigrated,
     needsMigration,
+    forget,
     // Test-only: expose the in-flight cache so contract tests can verify
     // the per-room lock collapses concurrent callers onto one promise.
     _inFlight: inFlight,

@@ -13,7 +13,7 @@ import { createRequire } from 'node:module';
 const require_ = createRequire(import.meta.url);
 require_('../dom-polyfill.cjs');
 
-const { serializeRoom } = require_('../room-serializer.cjs');
+const { serializeRoom, seedRoomFromBlocks } = require_('../room-serializer.cjs');
 
 /** Build a minimal Y.Doc with a title + txt block and optional metadata. */
 async function buildTestDoc() {
@@ -265,5 +265,63 @@ describe('serializeRoom — Y.XmlFragment substrate (1d)', () => {
     assert.ok(secText.includes('V2 TITLE'), 'Y.XmlFragment branch fired');
     assert.ok(secText.includes('v1 legacy paragraph'), 'Y.Text branch fired');
     assert.ok(!secText.includes('[object Object]'));
+  });
+});
+
+// PR #51 review (issue d) — regression. seedRoomFromBlocks (called from
+// the HTTP /upload handler) was creating Y.Text html slots, which after
+// migration leaves brand-new uploaded blocks stranded as v1 substrate
+// inside an otherwise-v2 room. needsMigration short-circuits on the
+// schemaVersion=2 sentinel so the broker never re-runs to convert them.
+// Same bug class as fix #2 in commit 4fbc706 (blockToYMap in collab.js).
+describe('seedRoomFromBlocks — substrate is Y.XmlFragment (1d, issue d)', () => {
+  // Use the SAME Yjs copy that room-serializer.cjs requires. `await
+  // import('yjs')` would load a second copy via the ESM resolver, and
+  // Y.Map.set rejects type values whose constructor doesn't match the
+  // map's owning Yjs ("Unexpected content type") — that's the dual-
+  // package hazard the rest of room-serializer is careful to avoid.
+  const Y = require_('yjs');
+
+  it('every seeded block.html slot is a Y.XmlFragment, not a Y.Text', () => {
+    const ydoc = new Y.Doc();
+    ydoc.getArray('order');
+    ydoc.getMap('store');
+
+    seedRoomFromBlocks(ydoc, [
+      { id: 'b1', type: 'title', part: 1, depth: 0, html: 'GENERAL' },
+      { id: 'b2', type: 'txt', part: 1, depth: 0, section: 'b1', html: 'Body.' },
+      { id: 'b3', type: 'txt', part: 1, depth: 0, section: 'b1', html: '' },
+    ]);
+
+    const yStore = ydoc.getMap('store');
+    for (const id of ['b1', 'b2', 'b3']) {
+      const slot = yStore.get(id).get('html');
+      assert.ok(slot, `${id} has an html slot`);
+      // Y.XmlFragment exposes toArray; legacy Y.Text would expose toDelta.
+      assert.strictEqual(typeof slot.toArray, 'function',
+        `${id} html slot must be Y.XmlFragment (toArray present)`);
+      assert.strictEqual(typeof slot.toDelta, 'undefined',
+        `${id} html slot must NOT be Y.Text (toDelta absent)`);
+    }
+  });
+
+  it('seeded content survives the roundtrip through serializeRoom', async () => {
+    const ydoc = new Y.Doc();
+    ydoc.getArray('order');
+    ydoc.getMap('store');
+    ydoc.getMap('meta').set('sectionNumber', '01 00 00');
+    ydoc.getMap('meta').set('sectionTitle', 'SEED TEST');
+
+    seedRoomFromBlocks(ydoc, [
+      { id: 'b1', type: 'title', part: 1, depth: 0, html: 'SEEDED TITLE' },
+      { id: 'b2', type: 'txt', part: 1, depth: 0, section: 'b1', html: 'Seeded body text.' },
+    ]);
+
+    const { secBytes } = await serializeRoom(ydoc);
+    const secText = Buffer.from(secBytes).toString('latin1');
+    assert.ok(secText.includes('SEEDED TITLE'), 'title content survived');
+    assert.ok(secText.includes('Seeded body text'), 'body content survived');
+    assert.ok(!secText.includes('[object Object]'),
+      'no coerced-object leakage from XmlFragment branch');
   });
 });

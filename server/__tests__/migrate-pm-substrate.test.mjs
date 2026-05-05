@@ -88,48 +88,50 @@ function attachedYText(seed) {
 }
 
 // ── needsMigration ────────────────────────────────────────────────────────
+//
+// Detection cases are batched into two `it`s (true vs false) for CLAUDE.md
+// ≤30-test budget. The semantics are simple boolean checks; per-case
+// assertions still pinpoint the failing fixture.
 
 describe('needsMigration', () => {
-  it('returns true for a fresh v1 room (Y.Text slots present, no schemaVersion)', () => {
-    const ydoc = buildV1Doc(3);
-    assert.strictEqual(needsMigration(ydoc), true);
+  it('returns true only for a v1 room with at least one Y.Text html slot and no sentinels', () => {
+    assert.strictEqual(needsMigration(buildV1Doc(3)), true,
+      'fresh v1 doc with Y.Text slots');
+    assert.strictEqual(needsMigration(buildV1Doc(1)), true,
+      'single-block v1 doc');
   });
 
-  it('returns false when schemaVersion === 2', () => {
-    const ydoc = buildV1Doc(2);
-    ydoc.getMap('meta').set(SCHEMA_VERSION_KEY, SCHEMA_V2);
-    assert.strictEqual(needsMigration(ydoc), false);
-  });
+  it('returns false in every non-v1 case (sentinels, empty doc, all-fragments, null input)', () => {
+    // schemaVersion === 2 sentinel
+    const v2 = buildV1Doc(2);
+    v2.getMap('meta').set(SCHEMA_VERSION_KEY, SCHEMA_V2);
+    assert.strictEqual(needsMigration(v2), false, 'schemaVersion=2 short-circuits');
 
-  it('returns false when migrationPartial === true (do-not-retry sentinel)', () => {
-    const ydoc = buildV1Doc(2);
-    ydoc.getMap('meta').set(MIGRATION_PARTIAL_KEY, true);
-    assert.strictEqual(needsMigration(ydoc), false);
-  });
+    // migrationPartial === true sentinel
+    const partial = buildV1Doc(2);
+    partial.getMap('meta').set(MIGRATION_PARTIAL_KEY, true);
+    assert.strictEqual(needsMigration(partial), false, 'migrationPartial=true short-circuits');
 
-  it('returns false for an empty room', () => {
-    const ydoc = new Y.Doc();
-    ydoc.getMap('order'); // ensure types exist
-    ydoc.getMap('store');
-    ydoc.getMap('meta');
-    assert.strictEqual(needsMigration(ydoc), false);
-  });
+    // empty room — yStore present but no blocks
+    const empty = new Y.Doc();
+    empty.getMap('order');
+    empty.getMap('store');
+    empty.getMap('meta');
+    assert.strictEqual(needsMigration(empty), false, 'empty doc');
 
-  it('returns false when every block already has Y.XmlFragment html', () => {
-    const ydoc = new Y.Doc();
-    const yOrder = ydoc.getArray('order');
-    const yStore = ydoc.getMap('store');
-    ydoc.transact(() => {
+    // all blocks already on Y.XmlFragment
+    const v2only = new Y.Doc();
+    const yOrder = v2only.getArray('order');
+    const yStore = v2only.getMap('store');
+    v2only.transact(() => {
       const yMap = new Y.Map();
-      const yXml = new Y.XmlFragment();
-      yMap.set('html', yXml);
+      yMap.set('html', new Y.XmlFragment());
       yStore.set('n1', yMap);
       yOrder.push(['n1']);
     });
-    assert.strictEqual(needsMigration(ydoc), false);
-  });
+    assert.strictEqual(needsMigration(v2only), false, 'all Y.XmlFragment slots');
 
-  it('returns null/false safely on null input', () => {
+    // defensive null/undefined input
     assert.strictEqual(needsMigration(null), false);
     assert.strictEqual(needsMigration(undefined), false);
   });
